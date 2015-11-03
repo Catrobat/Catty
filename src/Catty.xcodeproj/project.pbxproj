@@ -382,8 +382,8 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
 		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; };
+		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; };
@@ -580,7 +580,6 @@
 		AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D11BB36161009F67D2 /* CBFrontendSequenceFilters.swift */; };
 		AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D01BB36161009F67D2 /* CBFrontend.swift */; };
 		AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */; };
-		AABCB3F01BB369DE009F67D2 /* Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = A918B6B41B89F5690017B92F /* Siren.swift */; };
 		AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFF1A38949E00FA9B0F /* InternFormulaUtils.m */; };
 		AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */; };
 		AAF6D9CE1BC0915800686849 /* FormulaElement+Optimization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9CB1BC0915800686849 /* FormulaElement+Optimization.swift */; };
@@ -1458,11 +1457,10 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
-		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
 		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTVCTests.swift; sourceTree = "<group>"; };
+		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
 		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };
@@ -3477,7 +3475,6 @@
 			children = (
 				92EC99481BC3CA870003A891 /* Firmata */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
-				A918B6B31B89F4CD0017B92F /* Siren */,
 				D63864691AE63EB4008569E6 /* Keychain */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
@@ -3646,6 +3643,7 @@
 				92FF2E8A1A24C7D800093DA7 /* Util.h */,
 				92FF2E8B1A24C7D800093DA7 /* Util.m */,
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
+				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
 			);
 			name = Utils;
 			path = Util;
@@ -4267,15 +4265,6 @@
 			);
 			name = "Storyboard+XIB";
 			path = "Catty/Storyboard+XIB";
-			sourceTree = "<group>";
-		};
-		A918B6B31B89F4CD0017B92F /* Siren */ = {
-			isa = PBXGroup;
-			children = (
-				A918B6B41B89F5690017B92F /* Siren.swift */,
-				A918B6B61B89F5870017B92F /* Siren.bundle */,
-			);
-			name = Siren;
 			sourceTree = "<group>";
 		};
 		AA101E3F1B8D3A3900797DEF /* Encapsulated */ = {
@@ -5660,7 +5649,6 @@
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
-				A918B6B71B89F5870017B92F /* Siren.bundle in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
 				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
@@ -5926,7 +5914,6 @@
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
-				AABCB3F01BB369DE009F67D2 /* Siren.swift in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
 				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
@@ -6009,6 +5996,7 @@
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
+				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
