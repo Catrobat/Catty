@@ -195,30 +195,48 @@
     return context;
 }
 
+- (BOOL)isTransparentPixelAtPoint:(CGPoint)point inImage:(UIImage*)image
+{
+    point.x += (image.size.width/2);
+    point.y -= (image.size.height/2);
+    point.y = -point.y;
+    NSInteger pointX = (NSInteger)point.x;
+    NSInteger pointY = (NSInteger)point.y;
+    
+    CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
+    const UInt8* data = CFDataGetBytePtr(pixelData);
+    
+    int pixelInfo = ((image.size.width  * pointY) + pointX ) * 4; // The image is png
+    
+    //UInt8 red = data[pixelInfo];         // If you need this info, enable it
+    //UInt8 green = data[(pixelInfo + 1)]; // If you need this info, enable it
+    //UInt8 blue = data[pixelInfo + 2];    // If you need this info, enable it
+    UInt8 alpha;
+    if (pixelInfo >= 0) {
+        alpha = data[pixelInfo + 3];
+        NSLog(@"Alpha: %i",alpha);
+    }else{
+        return YES;
+    }
+    CFRelease(pixelData);
+    
+    //UIColor* color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f]; // The pixel color info
+    
+    if (alpha) return NO;
+    else return YES;
+
+}
+
 - (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
 {
     x += (image.size.width/2);
     y -= (image.size.height/2);
     y = -y;
-    unsigned char * imageData = [ImageHelper convertUIImageToBitmapRGBA8:image];
-    NSUInteger byteIndex = (CGImageGetWidth(image.CGImage) * y) + x * 4;
-    CGFloat alpha = imageData[byteIndex+3];
-    if(alpha <= 1.0f){
-        return YES;
-    }
-    return NO;
-
-}
-
-// XXX: Unfortunately touch-detection has still problems with the above extension-method!
-- (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
-{
-
-    x += (image.size.width/2);
-    y += (image.size.height/2);
-    y = image.size.height - y;
     NSInteger pointX = (NSInteger)x;
     NSInteger pointY = (NSInteger)y;
+    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), CGPointMake(pointX,pointY))) {
+        return YES;
+    }
     CGImageRef cgImage = image.CGImage;
     NSUInteger width = (NSUInteger)image.size.width;
     NSUInteger height = (NSUInteger)image.size.height;
@@ -258,16 +276,12 @@
     CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
     CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
     CGContextRelease(context);
-    
+
     CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
     if (alpha == 0){
         return YES;
     }
     return NO;
-//    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), CGPointMake(x,y))) {
-//        return YES;
-//    }
-    
 }
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
