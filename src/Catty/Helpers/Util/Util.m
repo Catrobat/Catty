@@ -736,22 +736,24 @@ replacementString:(NSString*)characters
         }
         
         bool atLeastOneNotspace = NO;
+        bool notOnlySpecialCharacters = NO;
+        bool containsBlockedCharacters = NO;
         for(int i =0; i < input.length; i++){
             NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
             if(!([newString  isEqual: @" "])){
                 atLeastOneNotspace = YES;
-                break;
             }
-        }
-        bool notOnlySpecialCharacters = NO;
-        for(int i =0; i < input.length; i++){
-            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
             if(!([newString  isEqual: @"."])&&!([newString  isEqual: @"/"])&&!([newString  isEqual: @"\\"])&&!([newString  isEqual: @"~"])){
                 notOnlySpecialCharacters = YES;
+            }
+            if(([newString  isEqual: @"/"])||([newString  isEqual: @"\\"])||([newString  isEqual: @"~"])){
+                containsBlockedCharacters = YES;
+                break;
+            }
+            if (atLeastOneNotspace && notOnlySpecialCharacters) {
                 break;
             }
         }
-        
         
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if ([input isEqualToString:kLocalizedNewElement]) {
@@ -776,9 +778,18 @@ replacementString:(NSString*)characters
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if(!atLeastOneNotspace){
-            NSString *alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
-                                   textFieldMinInputLength];
+        } else if(!atLeastOneNotspace ||!notOnlySpecialCharacters || containsBlockedCharacters){
+            NSString *alertText;
+            if (!atLeastOneNotspace) {
+                alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
+                             textFieldMinInputLength];
+            } else if (!notOnlySpecialCharacters) {
+                alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
+                             textFieldMinInputLength];
+            } else if (containsBlockedCharacters) {
+                alertText = [NSString stringWithFormat:kLocalizedBlockedCharInputDescription];
+            }
+            
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
             CatrobatAlertView *newAlertView = [Util alertWithText:alertText
@@ -786,17 +797,7 @@ replacementString:(NSString*)characters
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if(!notOnlySpecialCharacters){
-            NSString *alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
-                                   textFieldMinInputLength];
-            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
-                         : [[self class] singularString:alertText]);
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        }else {
+        } else {
             // no name duplicate => call action on target
             SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {

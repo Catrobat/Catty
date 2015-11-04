@@ -287,6 +287,7 @@
 #define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
 #define kLocalizedSpaceInputDescription NSLocalizedString(@"Only space is not allowed. Please enter at least %lu other character(s).", nil)
 #define kLocalizedSpecialCharInputDescription NSLocalizedString(@"Only special characters are not allowed. Please enter at least %lu other character(s).", nil)
+#define kLocalizedBlockedCharInputDescription NSLocalizedString(@"The name contains blocked characters. Please try again!", nil)
 #define kLocalizedInvalidInputDescription NSLocalizedString(@"Invalid input entered, try again.", nil)
 #define kLocalizedProgramNameAlreadyExistsDescription NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kLocalizedInvalidDescriptionDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
