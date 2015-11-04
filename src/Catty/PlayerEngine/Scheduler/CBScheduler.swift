@@ -34,6 +34,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _scheduledContexts = [String:[CBScriptContextProtocol]]()
 
     private var _availableWaitQueues = [dispatch_queue_t]()
+    private var _availableBufferQueues = [dispatch_queue_t]()
     private var _lastQueueIndex = 0
 
     // MARK: Static properties
@@ -91,6 +92,7 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
         var nextWaitClosures = [CBScheduleElement]()
+        var nextBufferElements = [CBBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
@@ -113,6 +115,8 @@ final class CBScheduler: CBSchedulerProtocol {
                         nextWaitClosures += (context, closure)
                     case let .Action(action):
                         nextActionElements += (context, action)
+                    case let .Buffer(brick):
+                        nextBufferElements += (context,brick)
                     case .InvalidInstruction:
                         context.state = .Runnable
                         continue // skip invalid instruction
@@ -149,6 +153,62 @@ final class CBScheduler: CBSchedulerProtocol {
                     self?.runNextInstructionsGroup()
                 }
             }
+            for (context,brick) in nextBufferElements {
+                var queue = _availableBufferQueues.first
+                if queue == nil {
+                    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+                } else {
+                    _availableBufferQueues.removeFirst()
+                }
+                dispatch_async(queue!, {
+                    // brick precalculate -> in every brick precalculate & update other actions
+                    if context.state != .Runnable { return }
+                    switch brick.instruction() {
+                    case let .ExecClosure(closure):
+                        closure(context: context, scheduler: self)
+                    case let .LongDurationAction(durationFormula, actionCreateClosure):
+                        var durationTime = 0.0
+                        switch durationFormula {
+                        case let .VarTime(formula):
+                            durationTime = formula.interpretDoubleForSprite(context.spriteNode.spriteObject)
+                        case let .FixedTime(time):
+                            durationTime = time
+                        }
+                        let actionClosure = actionCreateClosure(duration: durationTime)
+                        let action = SKAction.customActionWithDuration(durationTime, actionBlock: actionClosure)
+                        spriteNode.runAction(action) { [weak self] in
+                            context.state = .Runnable
+                            self?.runNextInstructionsGroup()
+                        }
+                    case let .WaitExecClosure(closure):
+                        var queue = self._availableWaitQueues.first
+                        if queue == nil {
+                            queue = dispatch_queue_create("org.catrobat.wait.queue[\(++self._lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
+                        } else {
+                            self._availableWaitQueues.removeFirst()
+                        }
+                        dispatch_async(queue!, {
+                            closure(context: context, scheduler: self)
+                            self._availableWaitQueues += queue!
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.runNextInstructionOfContext(context)
+                            }
+                        })
+                    case let .Action(action):
+                        spriteNode.runAction(action) { [weak self] in
+                            nextActionElements.forEach { $0.context.state = .Runnable }
+                            self?.runNextInstructionsGroup()
+                        }
+                        
+                    default:
+                        print("should not happen")
+                    }
+                    self._availableBufferQueues += queue!
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.runNextInstructionOfContext(context)
+                    }
+                })
+            }
         }
 
         // execute closures (not node dependend!)
@@ -167,6 +227,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 }
             })
         }
+
 
         for (context, closure) in nextClosures {
             closure(context: context, scheduler: self)

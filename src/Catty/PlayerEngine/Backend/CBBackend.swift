@@ -52,6 +52,12 @@ final class CBBackend: CBBackendProtocol {
 
     private func _instructionForBrick(brick: Brick) -> CBInstruction {
         // check whether conforms to CBInstructionProtocol (i.e. brick extension)
+        if((brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0){
+            // TODO WaitExecclosure of this brick
+            if let instructionBrick = brick as? CBInstructionProtocol {
+                return .Buffer(brick: instructionBrick) // actions that have been ported to Swift yet
+            }
+        }
         if let instructionBrick = brick as? CBInstructionProtocol {
             return instructionBrick.instruction() // actions that have been ported to Swift yet
         }

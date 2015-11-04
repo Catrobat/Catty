@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, Function) {
     NO_FUNCTION = -1
 };
 
-#define kNonIdempotentFunctions @[@(RAND)]
+#define kNonIdempotentFunctions @[@(RAND),@(ARDUINODIGITAL),@(ARDUINOANALOG)]
 //**************************************************************************************************
 
 @interface Functions : NSObject
