@@ -25,56 +25,45 @@ import ReplayKit
 @available(iOS 9.0, *)
 extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
-    // MARK: Computed Properties
-    var screenRecordingToggleEnabled: Bool {
-        return true
-//        return NSUserDefaults.standardUserDefaults().boolForKey(screenRecorderEnabledKey)
-    }
-
     // MARK: Start/Stop Screen Recording
-    func startScreenRecording() {
-        // Do nothing if screen recording hasn't been enabled.
-        guard screenRecordingToggleEnabled else { return }
+    func _startScreenRecording() {
+        if isScreenRecording { return }
         let sharedRecorder = RPScreenRecorder.sharedRecorder()
 
         // Register as the recorder's delegate to handle errors.
         sharedRecorder.delegate = self
         sharedRecorder.startRecordingWithMicrophoneEnabled(true) { error in
             if let error = error {
-                self.showScreenRecordingAlert(error.localizedDescription)
+                self._showScreenRecordingAlert(error.localizedDescription)
             }
         }
     }
-    
-    func isScreenRecording()->Bool{
-        let sharedRecorder = RPScreenRecorder.sharedRecorder()
-        return sharedRecorder.recording
-    }
 
-    func stopScreenRecordingWithHandler(handler:(() -> Void)) {
+    func _stopScreenRecordingWithHandler(handler:(() -> Void)) {
+        if !isScreenRecording { return }
         let sharedRecorder = RPScreenRecorder.sharedRecorder()
-        sharedRecorder.stopRecordingWithHandler { (previewViewController: RPPreviewViewController?, error: NSError?) in
+        sharedRecorder.stopRecordingWithHandler { (previewVC: RPPreviewViewController?, error: NSError?) in
             if let error = error {
                 // If an error has occurred, display an alert to the user.
-                self.showScreenRecordingAlert(error.localizedDescription)
+                self._showScreenRecordingAlert(error.localizedDescription)
                 return
             }
 
-            if let previewViewController = previewViewController {
+            if let previewVC = previewVC {
                 // Set delegate to handle view controller dismissal.
-                previewViewController.previewControllerDelegate = self
+                previewVC.previewControllerDelegate = self
 
                 /*
                 Keep a reference to the `previewViewController` to
                 present when the user presses on preview button.
                 */
-                self.previewViewController = previewViewController
+                self.previewViewController = previewVC
             }
             handler()
         }
     }
 
-    func showScreenRecordingAlert(message: String) {
+    private func _showScreenRecordingAlert(message: String) {
         // Pause the scene and un-pause after the alert returns.
         paused = true
 
@@ -96,25 +85,43 @@ extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
     // MARK: RPScreenRecorderDelegate
     func screenRecorder(screenRecorder: RPScreenRecorder, didStopRecordingWithError error: NSError,
-        previewViewController: RPPreviewViewController?) {
+        previewViewController: RPPreviewViewController?
+    ) {
+        screenRecordingDelegate?.hideMenuRecordButton()
         // Display the error the user to alert them that the recording failed.
-        showScreenRecordingAlert(error.localizedDescription)
+        _showScreenRecordingAlert(error.localizedDescription)
 
         /*
             Hold onto a reference of the `previewViewController` if not nil. The
             `previewViewController` will be nil when:
-            
+
             - There is an error writing the movie file (disk space, avfoundation).
             - startRecording failed due to AirPlay/TVOut session is in progress.
             - startRecording failed because the device does not support it (lower than A7)
         */
-        if previewViewController != nil {
-            self.previewViewController = previewViewController
+        if let previewVC = previewViewController {
+            self.previewViewController = previewVC
         }
+    }
+
+    func screenRecorderDidChangeAvailability(screenRecorder: RPScreenRecorder) {
+        if screenRecorder.available {
+            screenRecordingDelegate?.showMenuRecordButton()
+            return
+        }
+        if isScreenRecording { stopScreenRecording() }
+        screenRecordingDelegate?.hideMenuRecordButton()
     }
 
     // MARK: RPPreviewViewControllerDelegate
     func previewControllerDidFinish(previewController: RPPreviewViewController) {
+        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func previewController(previewController: RPPreviewViewController,
+    didFinishWithActivityTypes activityTypes: Set<String>
+    ) {
+        // TODO: handle activityTypes??
         previewViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }

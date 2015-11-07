@@ -53,9 +53,7 @@
 #import "CatrobatAlertView.h"
 #import "ActionSheetAlertViewTags.h"
 
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
-@interface ScenePresenterViewController() <UIActionSheetDelegate,CatrobatAlertViewDelegate, RPScreenRecorderDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate, CatrobatAlertViewDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -105,8 +103,6 @@
 {
     [super viewWillAppear:animated];
     [self setupScene];
-    RPScreenRecorder *sharedRecorder = [RPScreenRecorder sharedRecorder];
-    sharedRecorder.delegate = self;
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -270,27 +266,21 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
-        [self setupButtonWithButton:self.menuRecordButton
-                    ImageNameNormal:[UIImage imageNamed:@"record"]
-            andImageNameHighlighted:[UIImage imageNamed:@"record"]
-                        andSelector:@selector(recordProgram:)];
-    }
+    [self setupButtonWithButton:self.menuRecordButton
+                ImageNameNormal:[UIImage imageNamed:@"record"]
+        andImageNameHighlighted:[UIImage imageNamed:@"record"]
+                    andSelector:@selector(recordProgram:)];
 }
 
-- (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
+- (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal
+      andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
 {
-    [button setBackgroundImage:stateNormal
-                      forState:UIControlStateNormal];
-    [button setBackgroundImage:stateHighlighted
-                      forState:UIControlStateHighlighted];
-    [button setBackgroundImage:stateHighlighted
-                      forState:UIControlStateSelected];
-    [button  addTarget:self
-                action:myAction
-      forControlEvents:UIControlEventTouchUpInside];
-
+    [button setBackgroundImage:stateNormal forState:UIControlStateNormal];
+    [button setBackgroundImage:stateHighlighted forState:UIControlStateHighlighted];
+    [button setBackgroundImage:stateHighlighted forState:UIControlStateSelected];
+    [button addTarget:self action:myAction forControlEvents:UIControlEventTouchUpInside];
     [self.menuView addSubview:button];
+    button.hidden = (! self.scene.isScreenRecorderAvailable);
 }
 
 - (void)setUpMenuFrames
@@ -367,9 +357,10 @@
 
 - (void)setupScene
 {
-    if (!self.scene) {
+    if (! self.scene) {
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
         scene.name = self.program.header.programName;
+        scene.screenRecordingDelegate = self;
         if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
             scene.scaleMode = SKSceneScaleModeFill;
         } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
@@ -400,8 +391,7 @@
 //        UITouch *anyTouch = (UITouch*)[touches anyObject];
 //        CGPoint location = [anyTouch locationInView:self.skView];
 //        NSDebug(@"StartTouchinScenePresenter");
-//        CBScene *scene = (CBScene*)self.skView.scene;
-//        if ([scene touchedWithTouch:anyTouch atPosition:location]) {
+//        if ([self.scene touchedWithTouch:anyTouch atPosition:location]) {
 //            return;
 //        }
 //    }
@@ -415,8 +405,7 @@
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
 
-        CBScene *scene = (CBScene*)self.skView.scene;
-        if ([scene touchedWithTouches:touches atPosition:location]) {
+        if ([self.scene touchedWithTouches:touches atPosition:location]) {
             break;
         }
     }
@@ -468,9 +457,16 @@
 
 - (void)stopProgramAction:(UIButton*)sender
 {
+    CBScene *previousScene = self.scene;
+    if (previousScene.isScreenRecording) {
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
+        [self.menuView setNeedsDisplay];
+        [previousScene stopScreenRecording];
+        return;
+    }
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = (CBScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
@@ -487,7 +483,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = (CBScene*)self.skView.scene;
+    CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
@@ -501,7 +497,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = (CBScene*)self.skView.scene;
+    CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
@@ -562,17 +558,20 @@
     }
 }
 
--(void)recordProgram:(UIButton*)sender
+- (void)recordProgram:(UIButton*)sender
 {
-    SKView * view = self.skView;
-    if ([((CBScene*)view.scene) isScreenRecording]) {
-        [((CBScene*)view.scene) stopScreenRecording];
+    if (! self.scene.isScreenRecorderAvailable) {
+        return;
+    }
+
+    if (self.scene.isScreenRecording) {
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
         [self.menuView setNeedsDisplay];
+        [self.scene stopScreenRecording];
         return;
     }
-    [((CBScene*)view.scene) startScreenRecording];
+    [self.scene startScreenRecording];
     [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
     [self.menuView setNeedsDisplay];
@@ -581,7 +580,7 @@
 
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
-    self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
     self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
@@ -754,7 +753,7 @@
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
                                      [self bounceAnimation];
                                  }
-//                                 [((CBScene*)view.scene) stopScreenRecording];
+//                                 [self.scene stopScreenRecording];
                              }];
         }
     }
@@ -849,8 +848,7 @@
 }
 
 #pragma mark - Helpers
-- (UIImage*)brightnessBackground:(UIImage*)startImage
-{
+- (UIImage*)brightnessBackground:(UIImage*)startImage {
     CGImageRef image = startImage.CGImage;
     CIImage *ciImage =[ CIImage imageWithCGImage:image];
     CIContext *context = [CIContext contextWithOptions:nil];
@@ -867,13 +865,11 @@
     return output;
 }
 
--(void)alertView:(CatrobatAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(CatrobatAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 
 }
 
--(void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == kLostBluetoothConnectionTag) {
         [self.parentViewController.navigationController setToolbarHidden:NO];
         [self.parentViewController.navigationController setNavigationBarHidden:NO];
@@ -881,11 +877,13 @@
     }
 }
 
-#pragma mark ScreenRecording
+#pragma mark - CBScreenRecordingDelegate
+- (void)showMenuRecordButton {
+    self.menuRecordButton.hidden = NO;
+}
 
--(void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder
-{
-    self.menuRecordButton.hidden = screenRecorder.available;
+- (void)hideMenuRecordButton {
+    self.menuRecordButton.hidden = YES;
 }
 
 @end
