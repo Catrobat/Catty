@@ -16,5 +16,6 @@ pod 'Shimmer'
 pod 'IBActionSheet'
 pod 'MYBlurIntroductionView'
 pod 'TTTAttributedLabel'
+pod 'Siren'
 
 end

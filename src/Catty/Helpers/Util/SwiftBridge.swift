@@ -20,14 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
+import Foundation
+import Siren
 
+@objc public class SwiftBridge:NSObject {
 
-@interface CatrobatTableViewController : BaseTableViewController
-
--(void)afterSuccessfulLogin;
--(void)addProgramFromInbox;
-
-@end
+    @objc public class func sirenBridgeApplicationDidFinishLaunching() {
+        let siren = Siren.sharedInstance
+        siren.appID = kAppStoreIdentifier
+        siren.checkVersion(.Daily)
+        siren.alertType = .Option
+    }
+    
+    @objc public class func sirenApplicationDidBecomeActive() {
+        let siren = Siren.sharedInstance
+        siren.checkVersion(.Daily)
+    }
+    
+    @objc public class func sirenApplicationWillEnterForeground() {
+        let siren = Siren.sharedInstance
+        siren.checkVersion(.Daily)
+    }
+    
+}

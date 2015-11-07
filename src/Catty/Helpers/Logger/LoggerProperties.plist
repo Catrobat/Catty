@@ -4,6 +4,8 @@
 <dict>
 	<key>Program</key>
 	<string>warn</string>
+	<key>GDataXMLElement(CustomExtensions)</key>
+	<string>warn</string>
 	<key>SpriteObject</key>
 	<string>warn</string>
 	<key>Script</key>
