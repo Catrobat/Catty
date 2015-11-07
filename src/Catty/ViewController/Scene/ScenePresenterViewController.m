@@ -359,6 +359,7 @@
 {
     if (! self.scene) {
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+        [scene initializeScreenRecording];
         scene.name = self.program.header.programName;
         scene.screenRecordingDelegate = self;
         if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
@@ -674,6 +675,7 @@
 #pragma mark - Pan Gesture Handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
 {
+    self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
     CGPoint translate = [gesture translationInView:gesture.view];
     translate.y = 0.0;
     CGFloat velocityX = [gesture velocityInView:gesture.view].x;

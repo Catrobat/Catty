@@ -28,11 +28,9 @@ extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
     // MARK: Start/Stop Screen Recording
     func _startScreenRecording() {
         if isScreenRecording { return }
-        let sharedRecorder = RPScreenRecorder.sharedRecorder()
 
         // Register as the recorder's delegate to handle errors.
-        sharedRecorder.delegate = self
-        sharedRecorder.startRecordingWithMicrophoneEnabled(true) { error in
+        RPScreenRecorder.sharedRecorder().startRecordingWithMicrophoneEnabled(true) { error in
             if let error = error {
                 self._showScreenRecordingAlert(error.localizedDescription)
             }
@@ -41,8 +39,9 @@ extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
     func _stopScreenRecordingWithHandler(handler:(() -> Void)) {
         if !isScreenRecording { return }
-        let sharedRecorder = RPScreenRecorder.sharedRecorder()
-        sharedRecorder.stopRecordingWithHandler { (previewVC: RPPreviewViewController?, error: NSError?) in
+        RPScreenRecorder.sharedRecorder().stopRecordingWithHandler {
+            (previewVC: RPPreviewViewController?, error: NSError?) in
+
             if let error = error {
                 // If an error has occurred, display an alert to the user.
                 self._showScreenRecordingAlert(error.localizedDescription)

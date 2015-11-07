@@ -294,6 +294,12 @@ final class CBScene: SKScene {
         scheduler?.run()
     }
 
+    func initializeScreenRecording() {
+        if #available(iOS 9.0, *) {
+            RPScreenRecorder.sharedRecorder().delegate = self
+        }
+    }
+
     func startScreenRecording() {
         if #available(iOS 9.0, *) {
             _startScreenRecording()
