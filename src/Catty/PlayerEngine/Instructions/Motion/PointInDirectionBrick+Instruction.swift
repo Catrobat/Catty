@@ -37,5 +37,11 @@ extension PointInDirectionBrick: CBInstructionProtocol {
             spriteNode.rotation = scene.convertDegreesToScene(degrees)
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.degrees.interpretIntegerForSprite(object)
+    }
 
 }

@@ -25,8 +25,6 @@
 #define MIN_SPEED 0.0f
 #define MAX_SPEED 100.0f
 
-#define MIN_VALUE 0.0f
-#define MAX_VALUE 255.0f
 
 @interface PhiroBrick : BluetoothBrick
 

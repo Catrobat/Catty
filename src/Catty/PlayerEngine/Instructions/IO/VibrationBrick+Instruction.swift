@@ -46,5 +46,12 @@ extension VibrationBrick: CBInstructionProtocol {
         }
 
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        
+        self.durationInSeconds.interpretDoubleForSprite(object)
+    }
 
 }

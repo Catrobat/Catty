@@ -48,5 +48,11 @@ extension WaitBrick: CBInstructionProtocol {
             }
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.timeToWaitInSeconds.interpretIntegerForSprite(object)
+    }
 
 }

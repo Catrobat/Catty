@@ -29,5 +29,9 @@ extension BroadcastBrick: CBInstructionProtocol {
             bcHandler.performBroadcastWithMessage(msg, senderContext: context, broadcastType: .Broadcast)
         }
     }
+    
+    func preCalculate() {
+        
+    }
 
 }

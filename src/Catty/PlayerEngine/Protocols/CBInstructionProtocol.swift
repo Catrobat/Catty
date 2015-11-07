@@ -22,4 +22,8 @@
 
 protocol CBInstructionProtocol {
     func instruction() -> CBInstruction
+    func preCalculate()
 }
+
+
+

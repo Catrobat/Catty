@@ -37,5 +37,11 @@ extension ChangeXByNBrick: CBInstructionProtocol {
             spriteNode.scenePosition = CGPointMake(spriteNode.scenePosition.x + CGFloat(xMov), spriteNode.scenePosition.y);
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.xMovement.interpretIntegerForSprite(object)
+    }
 
 }

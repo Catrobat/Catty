@@ -40,5 +40,11 @@ extension ChangeSizeByNBrick: CBInstructionProtocol {
             spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.size.interpretIntegerForSprite(object)
+    }
 
 }

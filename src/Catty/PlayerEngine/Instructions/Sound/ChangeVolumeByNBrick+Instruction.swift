@@ -39,5 +39,12 @@ extension ChangeVolumeByNBrick: CBInstructionProtocol {
         
     }
     
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        
+        self.volume.interpretDoubleForSprite(object)
+    }
+    
 }
 

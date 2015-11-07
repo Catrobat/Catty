@@ -37,5 +37,11 @@ extension ChangeYByNBrick: CBInstructionProtocol {
             spriteNode.scenePosition = CGPointMake(spriteNode.scenePosition.x, spriteNode.scenePosition.y + CGFloat(yMov));
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.yMovement.interpretIntegerForSprite(object)
+    }
 
 }

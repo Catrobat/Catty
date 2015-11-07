@@ -33,5 +33,9 @@ extension HideBrick: CBInstructionProtocol {
 
         return { spriteNode.hidden = true }
     }
+    
+    func preCalculate() {
+        
+    }
 
 }

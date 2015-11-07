@@ -41,5 +41,11 @@ extension MoveNStepsBrick: CBInstructionProtocol {
             spriteNode.scenePosition = CGPointMake(CGFloat(xPosition), CGFloat(yPosition))
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.steps.interpretIntegerForSprite(object)
+    }
 
 }

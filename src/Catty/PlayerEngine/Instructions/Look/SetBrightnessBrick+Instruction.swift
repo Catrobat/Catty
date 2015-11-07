@@ -84,4 +84,10 @@ extension SetBrightnessBrick: CBInstructionProtocol {
             
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.brightness.interpretIntegerForSprite(object)
+    }
 }

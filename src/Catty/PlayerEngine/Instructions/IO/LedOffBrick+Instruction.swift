@@ -31,5 +31,9 @@ extension LedOffBrick: CBInstructionProtocol {
         }
 
     }
+    
+    func preCalculate() {
+        
+    }
 
 }

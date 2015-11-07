@@ -37,5 +37,12 @@ extension PlaceAtBrick: CBInstructionProtocol {
             spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.xPosition.interpretIntegerForSprite(object)
+        self.yPosition.interpretIntegerForSprite(object)
+    }
 
 }

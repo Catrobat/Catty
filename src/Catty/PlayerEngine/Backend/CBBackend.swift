@@ -36,8 +36,8 @@ final class CBBackend: CBBackendProtocol {
         sequenceList.forEach {
             switch $0 {
             case let opSequence as CBOperationSequence:
-                instructionList += opSequence.operationList.map {
-                    return _instructionForBrick($0.brick)
+                for operation in opSequence.operationList {
+                    instructionList += _instructionForBrick(operation.brick)
                 }
             case let ifSequence as CBIfConditionalSequence:
                 instructionList += self._instructionsForIfSequence(ifSequence)
@@ -50,18 +50,15 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionForBrick(brick: Brick) -> CBInstruction {
+    private func _instructionForBrick(brick: Brick) -> [CBInstruction] {
         // check whether conforms to CBInstructionProtocol (i.e. brick extension)
-        if((brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0){
-            // TODO WaitExecclosure of this brick
-            if let instructionBrick = brick as? CBInstructionProtocol {
-                return .Buffer(brick: instructionBrick) // actions that have been ported to Swift yet
-            }
+        guard let instructionBrick = brick as? CBInstructionProtocol else {
+            return [.Action(action: brick.action())] // fallback: poor old ObjC fellow... ;)
         }
-        if let instructionBrick = brick as? CBInstructionProtocol {
-            return instructionBrick.instruction() // actions that have been ported to Swift yet
+        if (brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0 {
+                return [.Buffer(brick: instructionBrick), instructionBrick.instruction()]
         }
-        return .Action(action: brick.action()) // fallback: poor old ObjC fellow... ;)
+        return [instructionBrick.instruction()] // actions that have been ported to Swift yet
     }
 
     private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence) -> [CBInstruction] {

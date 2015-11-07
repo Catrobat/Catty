@@ -33,5 +33,9 @@ extension ShowBrick: CBInstructionProtocol {
 
         return { spriteNode.hidden = false }
     }
+    
+    func preCalculate() {
+        
+    }
 
 }

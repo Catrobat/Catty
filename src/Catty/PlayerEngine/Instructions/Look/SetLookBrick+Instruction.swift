@@ -64,5 +64,9 @@ extension SetLookBrick: CBInstructionProtocol {
             }
         }
     }
+    
+    func preCalculate() {
+        
+    }
 
 }

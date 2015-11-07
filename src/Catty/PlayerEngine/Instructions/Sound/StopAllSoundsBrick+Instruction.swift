@@ -34,4 +34,8 @@ extension StopAllSoundsBrick: CBInstructionProtocol {
         
     }
     
+    func preCalculate() {
+        
+    }
+    
 }
