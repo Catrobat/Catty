@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension PhiroMotorMoveForwardBrick :CBInstructionProtocol {
+extension PhiroMotorMoveForwardBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         guard let object = self.script?.object

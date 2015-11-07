@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension PhiroPlayToneBrick :CBInstructionProtocol {
+extension PhiroPlayToneBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         guard let object = self.script?.object

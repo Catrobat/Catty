@@ -153,21 +153,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     self?.runNextInstructionsGroup()
                 }
             }
-            for (context, brick) in nextBufferElements {
-                var queue = _availableBufferQueues.first
-                if queue == nil {
-                    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-                } else {
-                    _availableBufferQueues.removeFirst()
-                }
-                dispatch_async(queue!, {
-                    brick.preCalculate()
-                    self._availableBufferQueues += queue!
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.runNextInstructionOfContext(context)
-                    }
-                })
-            }
+            
         }
 
         // execute closures (not node dependend!)
@@ -190,6 +176,22 @@ final class CBScheduler: CBSchedulerProtocol {
 
         for (context, closure) in nextClosures {
             closure(context: context, scheduler: self)
+        }
+        
+        for (context, brick) in nextBufferElements {
+            var queue = _availableBufferQueues.first
+            if queue == nil {
+                queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            } else {
+                _availableBufferQueues.removeFirst()
+            }
+            dispatch_async(queue!, {
+                brick.preCalculate()
+                self._availableBufferQueues += queue!
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.runNextInstructionOfContext(context)
+                }
+            })
         }
 
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {

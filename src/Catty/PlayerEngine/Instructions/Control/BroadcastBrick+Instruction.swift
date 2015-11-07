@@ -30,8 +30,5 @@ extension BroadcastBrick: CBInstructionProtocol {
         }
     }
     
-    func preCalculate() {
-        
-    }
 
 }

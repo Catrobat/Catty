@@ -42,9 +42,5 @@ extension PlaySoundBrick: CBInstructionProtocol {
         }
 
     }
-    
-    func preCalculate() {
-        
-    }
 
 }

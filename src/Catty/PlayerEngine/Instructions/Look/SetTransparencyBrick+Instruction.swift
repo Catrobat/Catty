@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetTransparencyBrick: CBInstructionProtocol {
+extension SetTransparencyBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {

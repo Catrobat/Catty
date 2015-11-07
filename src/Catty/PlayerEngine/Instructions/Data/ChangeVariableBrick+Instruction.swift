@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeVariableBrick: CBInstructionProtocol {
+extension ChangeVariableBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
 

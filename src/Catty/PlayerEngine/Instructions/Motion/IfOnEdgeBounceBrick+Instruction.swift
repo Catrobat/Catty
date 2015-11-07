@@ -149,8 +149,5 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
         }
         return false
     }
-    
-    func preCalculate() {
-        
-    }
+
 }

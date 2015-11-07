@@ -60,9 +60,5 @@ extension ClearGraphicEffectBrick: CBInstructionProtocol {
         }
 
     }
-    
-    func preCalculate() {
-        
-    }
 
 }

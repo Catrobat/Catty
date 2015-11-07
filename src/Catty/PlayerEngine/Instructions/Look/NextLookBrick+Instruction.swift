@@ -66,9 +66,5 @@ extension NextLookBrick: CBInstructionProtocol {
             }
         }
     }
-    
-    func preCalculate() {
-        
-    }
 
 }

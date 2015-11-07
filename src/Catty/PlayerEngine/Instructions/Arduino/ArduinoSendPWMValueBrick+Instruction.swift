@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
+extension ArduinoSendPWMValueBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         
