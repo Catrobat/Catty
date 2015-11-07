@@ -56,7 +56,7 @@ final class CBScene: SKScene {
         }
         return false
     }
-    var screenRecordingDelegate: CBScreenRecordingDelegate?
+    weak var screenRecordingDelegate: CBScreenRecordingDelegate?
 
     // MARK: - Initializers
 
