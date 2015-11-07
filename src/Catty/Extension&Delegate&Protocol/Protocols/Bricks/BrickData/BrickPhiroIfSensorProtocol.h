@@ -20,18 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
+#import "PhiroDefines.h"
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+@class Brick;
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
+@protocol BrickPhiroIfSensorProtocol <NSObject>
 
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
+- (NSString*)sensorForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setSensor:(NSString*)senor forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
-#define kPhiroActivated 1
-#define kArduinoActivated 0
-
+@end

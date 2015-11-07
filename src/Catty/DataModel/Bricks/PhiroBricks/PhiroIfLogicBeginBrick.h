@@ -19,19 +19,12 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+#import "IfLogicBeginBrick.h"
+#import "BrickPhiroIfSensorProtocol.h"
 
+@interface PhiroIfLogicBeginBrick : IfLogicBeginBrick <BrickPhiroIfSensorProtocol>
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+@property (nonatomic, strong) NSString* sensor;
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
-
-#define kPhiroActivated 1
-#define kArduinoActivated 0
-
+-(Sensor)phiroSensor;
+@end

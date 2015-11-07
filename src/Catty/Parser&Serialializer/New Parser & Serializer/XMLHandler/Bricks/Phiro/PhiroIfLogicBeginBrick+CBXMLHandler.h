@@ -20,18 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "CBXMLNodeProtocol.h"
+#import "PhiroIfLogicBeginBrick.h"
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+@interface PhiroIfLogicBeginBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
-
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
-
-#define kPhiroActivated 1
-#define kArduinoActivated 0
-
+@end

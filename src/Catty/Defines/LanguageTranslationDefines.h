@@ -380,6 +380,7 @@
 #define kLocalizedPhiroMoveBackward NSLocalizedString(@"Move Phiro Motor backward\n%@\n Speed %@\%", nil)
 #define kLocalizedPhiroRGBLight NSLocalizedString(@"Set Phiro Light\n%@\n Red %@ Green %@ Blue %@", nil)
 #define kLocalizedPhiroPlayTone NSLocalizedString(@"play Phiro Tone\n%@\n Duration %@ seconds", nil)
+#define kLocalizedPhiroIfLogic NSLocalizedString(@"If %@ is true then", nil)
 
 
 // Arduino bricks

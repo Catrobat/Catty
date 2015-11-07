@@ -21,17 +21,13 @@
  */
 
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+#import "BrickCellDataProtocol.h"
+#import "iOSCombobox.h"
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
+@interface BrickCellPhiroIfSensorData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
 
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 
-#define kPhiroActivated 1
-#define kArduinoActivated 0
-
+@end

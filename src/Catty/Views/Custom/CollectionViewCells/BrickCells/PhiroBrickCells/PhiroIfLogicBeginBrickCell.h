@@ -20,18 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+@interface PhiroIfLogicBeginBrickCell : BrickCell
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
+@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
 
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
-
-#define kPhiroActivated 1
-#define kArduinoActivated 0
-
+@end

@@ -85,6 +85,7 @@
 #import "BrickPhiroMotorProtocol.h"
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
+#import "BrickPhiroIfSensorProtocol.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
 #import <CoreBluetooth/CoreBluetooth.h>
@@ -1189,7 +1190,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
             Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
             [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
-        }
+    }else
+            if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
+                Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
+                [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+            }
 
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];

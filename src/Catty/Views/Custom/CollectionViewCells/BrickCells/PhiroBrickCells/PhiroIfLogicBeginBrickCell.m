@@ -20,18 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "PhiroIfLogicBeginBrickCell.h"
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+@interface PhiroIfLogicBeginBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
+@implementation PhiroIfLogicBeginBrickCell
 
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor PhiroBrickColor] strokeColor:[UIColor PhiroBrickStrokeColor] height:smallBrick width:[Util screenWidth]];
+}
 
-#define kPhiroActivated 1
-#define kArduinoActivated 0
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
+@end
