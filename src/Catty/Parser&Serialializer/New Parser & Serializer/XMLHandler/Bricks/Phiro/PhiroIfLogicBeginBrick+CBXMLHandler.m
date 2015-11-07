@@ -35,7 +35,7 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
     PhiroIfLogicBeginBrick *ifLogicBeginBrick = [self new];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_PHIRO_SENSOR_CONDITION" withContext:context];
     ifLogicBeginBrick.ifCondition = formula;
@@ -72,6 +72,7 @@
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroIfLogicBeginBrick"]];
+    
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     if (!self.ifCondition) {
         self.ifCondition = [[Formula alloc] initWithZero];
@@ -79,12 +80,13 @@
     GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_PHIRO_SENSOR_CONDITION"]];
     [formulaList addChild:formula context:context];
-    [brick addChild:formulaList context:context];
-    GDataXMLElement *formulaList1 = [GDataXMLElement elementWithName:@"formulaList" context:context];
+
     GDataXMLElement *formula1 = [self.ifCondition xmlElementWithContext:context];
     [formula1 addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
-    [formulaList1 addChild:formula1 context:context];
-    [brick addChild:formulaList1 context:context];
+    [formulaList addChild:formula1 context:context];
+    
+    [brick addChild:formulaList context:context];
+    
     NSString *sensor;
     switch (self.phiroSensor) {
         case phiro_front_left:
