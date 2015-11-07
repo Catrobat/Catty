@@ -87,26 +87,8 @@ NSString * const sensorTestStringArray[] = {
     @"side_right",
     @"bottom_left",
     @"bottom_right",
-    @"analogPin0",
-    @"analogPin1",
-    @"analogPin2",
-    @"analogPin3",
-    @"analogPin4",
-    @"analogPin5",
-    @"digitalPin0",
-    @"digitalPin1",
-    @"digitalPin2",
-    @"digitalPin3",
-    @"digitalPin4",
-    @"digitalPin5",
-    @"digitalPin6",
-    @"digitalPin7",
-    @"digitalPin8",
-    @"digitalPin9",
-    @"digitalPin10",
-    @"digitalPin11",
-    @"digitalPin12",
-    @"digitalPin13"
+    @"analogPin",
+    @"digitalPin"
 };
 
 
@@ -548,12 +530,12 @@ NSString * const sensorTestStringArray[] = {
 - (void)testPointInDirectionBrick2Resources
 {
     PointInDirectionBrick *brick = [PointInDirectionBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[24] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses PointInDirectionBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PointInDirectionBrick not correctly calculated");
 }
 - (void)testPlaceAtBrickResources
 {
@@ -568,14 +550,14 @@ NSString * const sensorTestStringArray[] = {
 - (void)testPlaceAtBrick2Resources
 {
     PlaceAtBrick *brick = [PlaceAtBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[25] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
 
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses PlaceAtBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses PlaceAtBrick not correctly calculated");
 }
 - (void)testMoveNStepsBrickResources
 {
@@ -589,12 +571,12 @@ NSString * const sensorTestStringArray[] = {
 - (void)testMoveNStepsBrick2Resources
 {
     MoveNStepsBrick *brick = [MoveNStepsBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[26] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses MoveNStepsBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses MoveNStepsBrick not correctly calculated");
 }
 - (void)testIfOnEdgeBounceBrickResources
 {
@@ -616,12 +598,12 @@ NSString * const sensorTestStringArray[] = {
 - (void)testGoNStepsBackBrick2Resources
 {
     GoNStepsBackBrick *brick = [GoNStepsBackBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[27] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses GoNStepsBackBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses GoNStepsBackBrick not correctly calculated");
 }
 - (void)testGlideToBrickResources
 {
@@ -637,14 +619,14 @@ NSString * const sensorTestStringArray[] = {
 - (void)testGlideToBrick2Resources
 {
     GlideToBrick *brick = [GlideToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[28] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses GlideToBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses GlideToBrick not correctly calculated");
 }
 - (void)testComeToFrontBrickResources
 {
@@ -657,12 +639,12 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeYByNBrickResources
 {
     ChangeYByNBrick *brick = [ChangeYByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[29] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.yMovement = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses ChangeYByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses ChangeYByNBrick not correctly calculated");
 }
 - (void)testChangeYByNBrick2Resources
 {
@@ -686,12 +668,12 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeXByNBrick2Resources
 {
     ChangeXByNBrick *brick = [ChangeXByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[30] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.xMovement = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses ChangeXByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses ChangeXByNBrick not correctly calculated");
 }
 - (void)testChangeSizeByNBrickResources
 {
@@ -705,12 +687,12 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeSizeByNBrick2Resources
 {
     ChangeSizeByNBrick *brick = [ChangeSizeByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[31] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
     brick.size = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kBluetoothArduino, @"Resourses ChangeSizeByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kBluetoothPhiro, @"Resourses ChangeSizeByNBrick not correctly calculated");
 }
 
 #pragma mark-Arduino
@@ -787,7 +769,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testNestedResources
 {
     GlideToBrick *brick = [GlideToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[28] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[24] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
     element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[0] leftChild:nil rightChild:nil parent:nil];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
