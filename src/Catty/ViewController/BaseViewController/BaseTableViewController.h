@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
+@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 
 - (void)showPlaceHolder:(BOOL)show;
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath;

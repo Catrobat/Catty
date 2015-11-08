@@ -197,7 +197,19 @@
                               withSecondParameterType:TOKEN_TYPE_STRING
                               andSecondParameterValue:[NSString stringWithFormat:@" world"]];
             break;
-        
+            
+        case ARDUINODIGITAL:
+            return [self buildSingleParameterFunction:ARDUINODIGITAL
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
+            break;
+            
+        case ARDUINOANALOG:
+            return [self buildSingleParameterFunction:ARDUINOANALOG
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
+            break;
+            
         //PERIOD
             
         case DECIMAL_MARK:
@@ -330,67 +342,21 @@
         case phiro_side_right:
             return  [self buildSensor:phiro_side_right];
             break;
-        case arduino_analogPin0:
-            return  [self buildSensor:arduino_analogPin0];
+        case arduino_analogPin:
+            return [self buildSingleParameterSensor:arduino_analogPin
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
-        case arduino_analogPin1:
-            return  [self buildSensor:arduino_analogPin1];
+//            return  [self buildSensor:arduino_analogPin];
+//            break;
+        case arduino_digitalPin:
+//            return  [self buildSensor:arduino_digitalPin];
+//            break;
+
+            return [self buildSingleParameterSensor:arduino_digitalPin
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
-        case arduino_analogPin2:
-            return  [self buildSensor:arduino_analogPin2];
-            break;
-        case arduino_analogPin3:
-            return  [self buildSensor:arduino_analogPin3];
-            break;
-        case arduino_analogPin4:
-            return  [self buildSensor:arduino_analogPin4];
-            break;
-        case arduino_analogPin5:
-            return  [self buildSensor:arduino_analogPin5];
-            break;
-        case arduino_digitalPin0:
-            return  [self buildSensor:arduino_digitalPin0];
-            break;
-        case arduino_digitalPin1:
-            return  [self buildSensor:arduino_digitalPin1];
-            break;
-        case arduino_digitalPin2:
-            return  [self buildSensor:arduino_digitalPin2];
-            break;
-        case arduino_digitalPin3:
-            return  [self buildSensor:arduino_digitalPin3];
-            break;
-        case arduino_digitalPin4:
-            return  [self buildSensor:arduino_digitalPin4];
-            break;
-        case arduino_digitalPin5:
-            return  [self buildSensor:arduino_digitalPin5];
-            break;
-        case arduino_digitalPin6:
-            return  [self buildSensor:arduino_digitalPin6];
-            break;
-        case arduino_digitalPin7:
-            return  [self buildSensor:arduino_digitalPin7];
-            break;
-        case arduino_digitalPin8:
-            return  [self buildSensor:arduino_digitalPin8];
-            break;
-        case arduino_digitalPin9:
-            return  [self buildSensor:arduino_digitalPin9];
-            break;
-        case arduino_digitalPin10:
-            return  [self buildSensor:arduino_digitalPin10];
-            break;
-        case arduino_digitalPin11:
-           return  [self buildSensor:arduino_digitalPin11];
-            break;
-        case arduino_digitalPin12:
-            return  [self buildSensor:arduino_digitalPin12];
-            break;
-        case arduino_digitalPin13:
-            return  [self buildSensor:arduino_digitalPin13];
-            break;
-  
         default:
             return nil;
             break;
@@ -509,5 +475,25 @@
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_SENSOR
                                                   AndValue:[SensorManager stringForSensor:sensor]]];
     return returnList;
+}
+
+- (NSMutableArray *)buildSingleParameterSensor:(Sensor)sensor
+                          withFirstParameterType:(InternTokenType)firstParameter
+                               andParameterValue:(NSString *)parameterValue
+{
+    NSMutableArray *returnList = [[NSMutableArray alloc]init];
+    
+    [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_FUNCTION_NAME
+                                                  AndValue:[SensorManager stringForSensor:sensor]]];
+    
+    [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
+    
+    [returnList addObject:[[InternToken alloc]initWithType:firstParameter
+                                                  AndValue:parameterValue]];
+    
+    [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
+    
+    return returnList;
+    
 }
 @end

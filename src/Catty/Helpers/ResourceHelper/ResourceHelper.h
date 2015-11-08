@@ -20,25 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
+#import <Foundation/Foundation.h>
+#import "CatrobatAlertView.h"
+#import "Pocket_Code-Swift.h"
 
-extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
-    
-    func instruction() -> CBInstruction {
-        
-        return CBInstruction.Action(action: SKAction.runBlock(actionBlock()))
-    }
-    
-    func actionBlock() -> dispatch_block_t {
-        return{
-            let pinValue = Int(self.pin.interpretIntegerForSprite(self.script?.object))
-            let settingValue = Int(self.value.interpretDoubleForSprite(self.script?.object))
-            
-            if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
-                arduino.setPWMArduinoPin(pinValue, value: settingValue)
-            }
-        }
-        
-    }
-    
-}
+#import <CoreBluetooth/CoreBluetooth.h>
+@class BluetoothPopupVC;
+
+@interface ResourceHelper : NSObject
+
++ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,CatrobatAlertViewDelegate>)delegate;
+
+@end

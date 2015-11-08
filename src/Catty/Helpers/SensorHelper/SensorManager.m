@@ -49,26 +49,8 @@ NSString * const sensorStringArray[] = {
     @"side_right",
     @"bottom_left",
     @"bottom_right",
-    @"analogPin0",
-    @"analogPin1",
-    @"analogPin2",
-    @"analogPin3",
-    @"analogPin4",
-    @"analogPin5",
-    @"digitalPin0",
-    @"digitalPin1",
-    @"digitalPin2",
-    @"digitalPin3",
-    @"digitalPin4",
-    @"digitalPin5",
-    @"digitalPin6",
-    @"digitalPin7",
-    @"digitalPin8",
-    @"digitalPin9",
-    @"digitalPin10",
-    @"digitalPin11",
-    @"digitalPin12",
-    @"digitalPin13"
+    @"analogPin",
+    @"digitalPin"
 };
 
 +(Sensor) sensorForString:(NSString*)sensor
@@ -145,65 +127,11 @@ NSString * const sensorStringArray[] = {
     if([sensor isEqualToString:@"bottom_right"]) {
         return phiro_bottom_right;
     }
-    if([sensor isEqualToString:@"analogPin0"]) {
-        return arduino_analogPin0;
+    if([sensor isEqualToString:@"analogPin"]) {
+        return arduino_analogPin;
     }
-    if([sensor isEqualToString:@"analogPin1"]) {
-        return arduino_analogPin1;
-    }
-    if([sensor isEqualToString:@"analogPin2"]) {
-        return arduino_analogPin2;
-    }
-    if([sensor isEqualToString:@"analogPin3"]) {
-        return arduino_analogPin3;
-    }
-    if([sensor isEqualToString:@"analogPin4"]) {
-        return arduino_analogPin4;
-    }
-    if([sensor isEqualToString:@"analogPin5"]) {
-        return arduino_analogPin5;
-    }
-    if([sensor isEqualToString:@"digitalPin0"]) {
-        return arduino_digitalPin0;
-    }
-    if([sensor isEqualToString:@"digitalPin1"]) {
-        return arduino_digitalPin1;
-    }
-    if([sensor isEqualToString:@"digitalPin2"]) {
-        return arduino_digitalPin2;
-    }
-    if([sensor isEqualToString:@"digitalPin3"]) {
-        return arduino_digitalPin3;
-    }
-    if([sensor isEqualToString:@"digitalPin4"]) {
-        return arduino_digitalPin4;
-    }
-    if([sensor isEqualToString:@"digitalPin5"]) {
-        return arduino_digitalPin5;
-    }
-    if([sensor isEqualToString:@"digitalPin6"]) {
-        return arduino_digitalPin6;
-    }
-    if([sensor isEqualToString:@"digitalPin7"]) {
-        return arduino_digitalPin7;
-    }
-    if([sensor isEqualToString:@"digitalPin8"]) {
-        return arduino_digitalPin8;
-    }
-    if([sensor isEqualToString:@"digitalPin9"]) {
-        return arduino_digitalPin9;
-    }
-    if([sensor isEqualToString:@"digitalPin10"]) {
-        return arduino_digitalPin10;
-    }
-    if([sensor isEqualToString:@"digitalPin11"]) {
-        return arduino_digitalPin11;
-    }
-    if([sensor isEqualToString:@"digitalPin12"]) {
-        return arduino_digitalPin12;
-    }
-    if([sensor isEqualToString:@"digitalPin13"]) {
-        return arduino_digitalPin13;
+    if([sensor isEqualToString:@"digitalPin"]) {
+        return arduino_digitalPin;
     }
     
 //    NSError(@"Unknown Sensor: %@", sensor);
@@ -225,6 +153,11 @@ NSString * const sensorStringArray[] = {
 + (BOOL)isObjectSensor:(Sensor)sensor
 {
     return (sensor >= OBJECT_X && sensor <= OBJECT_LAYER) ? YES : NO;
+}
+
++ (BOOL)isArduinoSensor:(Sensor)sensor
+{
+    return (sensor >= arduino_analogPin && sensor <= arduino_digitalPin) ? YES : NO;
 }
 + (NSString *)getExternName:(NSString *)sensorName
 {
@@ -303,65 +236,11 @@ NSString * const sensorStringArray[] = {
         case phiro_side_right:
             name = kUIFESensorPhiroSideRight;
             break;
-        case arduino_analogPin0:
-            name = kUIFESensorArduinoAnalog0;
+        case arduino_analogPin:
+            name = kUIFESensorArduinoAnalog;
             break;
-        case arduino_analogPin1:
-            name = kUIFESensorArduinoAnalog1;
-            break;
-        case arduino_analogPin2:
-            name = kUIFESensorArduinoAnalog2;
-            break;
-        case arduino_analogPin3:
-            name = kUIFESensorArduinoAnalog3;
-            break;
-        case arduino_analogPin4:
-            name = kUIFESensorArduinoAnalog4;
-            break;
-        case arduino_analogPin5:
-            name = kUIFESensorArduinoAnalog5;
-            break;
-        case arduino_digitalPin0:
-            name = kUIFESensorArduinoDigital0;
-            break;
-        case arduino_digitalPin1:
-            name = kUIFESensorArduinoDigital1;
-            break;
-        case arduino_digitalPin2:
-            name = kUIFESensorArduinoDigital2;
-            break;
-        case arduino_digitalPin3:
-            name = kUIFESensorArduinoDigital3;
-            break;
-        case arduino_digitalPin4:
-            name = kUIFESensorArduinoDigital4;
-            break;
-        case arduino_digitalPin5:
-            name = kUIFESensorArduinoDigital5;
-            break;
-        case arduino_digitalPin6:
-            name = kUIFESensorArduinoDigital6;
-            break;
-        case arduino_digitalPin7:
-            name = kUIFESensorArduinoDigital7;
-            break;
-        case arduino_digitalPin8:
-            name = kUIFESensorArduinoDigital8;
-            break;
-        case arduino_digitalPin9:
-            name = kUIFESensorArduinoDigital9;
-            break;
-        case arduino_digitalPin10:
-            name = kUIFESensorArduinoDigital10;
-            break;
-        case arduino_digitalPin11:
-            name = kUIFESensorArduinoDigital11;
-            break;
-        case arduino_digitalPin12:
-            name = kUIFESensorArduinoDigital12;
-            break;
-        case arduino_digitalPin13:
-            name = kUIFESensorArduinoDigital13;
+        case arduino_digitalPin:
+            name = kUIFESensorArduinoDigital;
             break;
         default:
             break;

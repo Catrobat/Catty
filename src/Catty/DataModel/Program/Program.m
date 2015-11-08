@@ -287,7 +287,6 @@
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 }
 
-// TODO: Maybe this saveToDisk method should be outsourced to another helper class...
 - (void)saveToDisk
 {
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
