@@ -342,7 +342,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
-        NSArray *arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin0", @"analogPin1",@"analogPin2", @"analogPin3", @"analogPin4",@"analogPin5",@"digitalPin0",@"digitalPin1",@"digitalPin2",@"digitalPin3",@"digitalPin4",@"digitalPin5",@"digitalPin6",@"digitalPin7",@"digitalPin8",@"digitalPin9",@"digitalPin10",@"digitalPin11",@"digitalPin12",@"digitalPin13", nil];
+        NSArray *arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin",@"digitalPin", nil];
         for (NSInteger count = 0; count < arduinoSensorArray.count; count++) {
             [self addArduinoSensorViewButton:count and:buttonCount+count];
         }
@@ -380,7 +380,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)addArduinoSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
-    button.tag = 924+tag;
+    button.tag = 523+tag;
 }
 
 -(UIButton*)getSensorButton:(NSInteger)buttonCount

@@ -31,7 +31,7 @@ extension ArduinoSendDigitalValueBrick :CBInstructionProtocol {
     
     func actionBlock() -> dispatch_block_t {
         return{
-        let pinValue = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
+        let pinValue = Int(self.pin.interpretIntegerForSprite(self.script?.object))
         let settingValue = Int(self.value.interpretDoubleForSprite(self.script?.object))
         
         if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {

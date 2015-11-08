@@ -93,66 +93,6 @@ final class CBScene: SKScene {
         startProgram()
     }
 
-//    func touchedWithTouches(touches: NSSet, withX x:CGFloat, andY y:CGFloat) -> Bool {
-//        if scheduler?.running == false {
-//            return false
-//        }
-//
-//        logger?.debug("StartTouchOfScene")
-//        if let touch = touches.anyObject() as? UITouch {
-//            let location = touch.locationInNode(self)
-//            logger?.debug("x:\(location.x),y:\(location.y)")
-//            var foundObject = false
-//            var nodesAtPoint = self.nodesAtPoint(location)
-//            if #available(iOS 9.0, *) {
-//                nodesAtPoint = nodesAtPoint.reverse()
-//            }
-//            if nodesAtPoint.count == 0 {
-//                return false
-//            }
-//
-//            var spriteNode1 = nodesAtPoint[nodesAtPoint.count - 1] as? CBSpriteNode
-//            var counter = nodesAtPoint.count - 2
-//            logger?.debug("How many nodes are touched: \(counter)")
-//            logger?.debug("First Node:\(spriteNode1)")
-//            if spriteNode1?.name == nil {
-//                return false
-//            }
-//
-//            while foundObject == false {
-//                let point = touch.locationInNode(spriteNode1!)
-//                if spriteNode1?.hidden == false {
-//                    if spriteNode1?.touchedWithTouches(touches as Set<NSObject>, withX:point.x, andY:point.y) == false {
-//                        if var zPosition = spriteNode1?.zPosition {
-//                            zPosition -= 1
-//                            if (zPosition == -1) || (counter < 0) {
-//                                foundObject = true
-//                                logger?.debug("Found Object")
-//                            } else {
-//                                spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-//                                logger?.debug("NextNode: \(spriteNode1)")
-//                                --counter
-//                            }
-//                        }
-//                    } else {
-//                        foundObject = true
-//                        logger?.debug("Found Object")
-//                    }
-//                } else if spriteNode1 != nil {
-//                    if counter < 0 {
-//                        foundObject = true
-//                    } else {
-//                        spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-//                        logger?.debug("NextNode: \(spriteNode1)")
-//                        --counter
-//                    }
-//                }
-//            }
-//            return true
-//        }
-//        return false
-//    }
-
     func touchedWithTouches(touches: NSSet, atPosition position: CGPoint) -> Bool {
         assert(scheduler?.running == true)
         logger?.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")

@@ -47,26 +47,8 @@ typedef enum {
     phiro_bottom_left,
     phiro_front_left,
     phiro_side_left,
-    arduino_analogPin0,
-    arduino_analogPin1,
-    arduino_analogPin2,
-    arduino_analogPin3,
-    arduino_analogPin4,
-    arduino_analogPin5,
-    arduino_digitalPin0,
-    arduino_digitalPin1,
-    arduino_digitalPin2,
-    arduino_digitalPin3,
-    arduino_digitalPin4,
-    arduino_digitalPin5,
-    arduino_digitalPin6,
-    arduino_digitalPin7,
-    arduino_digitalPin8,
-    arduino_digitalPin9,
-    arduino_digitalPin10,
-    arduino_digitalPin11,
-    arduino_digitalPin12,
-    arduino_digitalPin13
+    arduino_analogPin,
+    arduino_digitalPin
 } Sensor;
 
 @interface SensorManager : NSObject

@@ -42,6 +42,25 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
     IDEMPOTENT,
     NOT_IDEMPOTENT
 };
+#define kelementTypeStringDict @{\
+@"OPERATOR"               : @(OPERATOR),\
+@"FUNCTION"                : @(FUNCTION),\
+@"NUMBER"                 : @(NUMBER),\
+@"SENSOR"           : @(SENSOR),\
+@"USER_VARIABLE"            : @(USER_VARIABLE),\
+@"BRACKET"        : @(BRACKET),\
+@"STRING"                 : @(STRING)\
+}
+
+#define kstringElementTypeDict @{\
+@(OPERATOR)               : @"OPERATOR",\
+@(FUNCTION)                : @"FUNCTION",\
+@(NUMBER)                 : @"NUMBER",\
+@(SENSOR)           : @"SENSOR",\
+@(USER_VARIABLE)            : @"USER_VARIABLE",\
+@(BRACKET)       : @"BRACKET",\
+@(STRING)                 : @"STRING"\
+}
 
 @interface FormulaElement : NSObject<CBMutableCopying>
 

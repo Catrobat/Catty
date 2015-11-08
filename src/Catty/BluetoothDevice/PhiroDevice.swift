@@ -64,11 +64,20 @@ public class Phiro: ArduinoDevice {
     private let txUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") // TODO
     
     private let phiroHelper:PhiroHelper = PhiroHelper()
+    private var toneTimer:NSTimer = NSTimer()
     
     //MARK: actions
     
-    public func playTone(toneFrequency:NSInteger,duration:NSInteger){
-        //TODO
+    public func playTone(toneFrequency:NSInteger,duration:Double){
+        self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value: toneFrequency)
+        if toneTimer.valid {
+            toneTimer.invalidate()
+        }
+        toneTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: Selector("cancelTone"), userInfo: nil, repeats: false)
+    }
+    
+    func cancelTone(){
+        self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value:0)
     }
     
     public func moveLeftMotorForward(speed:Int){
@@ -152,22 +161,18 @@ public class Phiro: ArduinoDevice {
         playTone(0, duration: 0)
     }
     
-    public func getSensorValue(sensor:UInt8) -> Double{
-//        firmata.writePinMode(PinMode.Input, pin: sensor)
-//        firmata.setAnalogValueReportingforPin(sensor / 8, enabled: true)
-//        let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
-//        BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
-//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-//        firmata.setAnalogValueReportingforPin(sensor / 8, enabled: false)
+    public func getSensorValue(sensor:Int) -> Double{
         let value = getAnalogPin(sensor)
         return Double(value)
     }
     
     public func sendAnalogFirmataMessage(pin:Int,value:Int){
-        firmata.writePWMValue(UInt8(value), pin: UInt8(pin))
+        let analogPin:UInt8 = UInt8(checkValue(pin))
+        let value :UInt8 = UInt8(checkValue(value))
+        firmata.writePWMValue(value, pin: analogPin)
     }
     
-    override func getAnalogPin(analogPinNumber: UInt8) -> Double {
+    override func getAnalogPin(analogPinNumber: Int) -> Double {
         switch (analogPinNumber) {
         case 0:
             return Double(getFrontLeftSensor())
