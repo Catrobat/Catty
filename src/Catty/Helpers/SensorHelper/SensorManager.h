@@ -41,12 +41,12 @@ typedef enum {
     FACE_SIZE,
     FACE_POSITION_X,
     FACE_POSITION_Y,
-    phiro_side_right,
-    phiro_front_right,
-    phiro_bottom_right,
-    phiro_bottom_left,
     phiro_front_left,
+    phiro_front_right,
     phiro_side_left,
+    phiro_side_right,
+    phiro_bottom_left,
+    phiro_bottom_right,
     arduino_analogPin,
     arduino_digitalPin
 } Sensor;

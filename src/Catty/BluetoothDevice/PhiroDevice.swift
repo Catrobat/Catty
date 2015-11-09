@@ -188,6 +188,18 @@ public class Phiro: ArduinoDevice {
 
     // MARK: Sensor Values
     
+    override func reportSensorData(report:Bool) {
+        if (isReportingSensorData == report) {
+            return;
+        }
+        
+        isReportingSensorData = report;
+        
+        for (var i:Int = MIN_SENSOR_PIN; i <= MAX_SENSOR_PIN; i++) {
+            reportAnalogArduinoPin(i,report: report)
+        }
+    }
+    
     public func getFrontLeftSensor() -> Int {
         return phiroHelper.frontLeftSensor;
     }

@@ -31,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor PhiroBrickColor] strokeColor:[UIColor PhiroBrickStrokeColor] height:smallBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor controlBrickOrangeColor] strokeColor:[UIColor controlBrickStrokeColor] height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
