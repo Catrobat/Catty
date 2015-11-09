@@ -68,64 +68,10 @@
 "Arduino send PWM\nPin:%@ Value:%@" = "Arduino send PWM\nPin:%@ Value:%@";
 
 /* No comment provided by engineer. */
-"arduino_analog_0" = "arduino_analog_0";
+"arduino_analog" = "arduino_analog";
 
 /* No comment provided by engineer. */
-"arduino_analog_1" = "arduino_analog_1";
-
-/* No comment provided by engineer. */
-"arduino_analog_2" = "arduino_analog_2";
-
-/* No comment provided by engineer. */
-"arduino_analog_3" = "arduino_analog_3";
-
-/* No comment provided by engineer. */
-"arduino_analog_4" = "arduino_analog_4";
-
-/* No comment provided by engineer. */
-"arduino_analog_5" = "arduino_analog_5";
-
-/* No comment provided by engineer. */
-"arduino_digital_0" = "arduino_digital_0";
-
-/* No comment provided by engineer. */
-"arduino_digital_1" = "arduino_digital_1";
-
-/* No comment provided by engineer. */
-"arduino_digital_10" = "arduino_digital_10";
-
-/* No comment provided by engineer. */
-"arduino_digital_11" = "arduino_digital_11";
-
-/* No comment provided by engineer. */
-"arduino_digital_12" = "arduino_digital_12";
-
-/* No comment provided by engineer. */
-"arduino_digital_13" = "arduino_digital_13";
-
-/* No comment provided by engineer. */
-"arduino_digital_2" = "arduino_digital_2";
-
-/* No comment provided by engineer. */
-"arduino_digital_3" = "arduino_digital_3";
-
-/* No comment provided by engineer. */
-"arduino_digital_4" = "arduino_digital_4";
-
-/* No comment provided by engineer. */
-"arduino_digital_5" = "arduino_digital_5";
-
-/* No comment provided by engineer. */
-"arduino_digital_6" = "arduino_digital_6";
-
-/* No comment provided by engineer. */
-"arduino_digital_7" = "arduino_digital_7";
-
-/* No comment provided by engineer. */
-"arduino_digital_8" = "arduino_digital_8";
-
-/* No comment provided by engineer. */
-"arduino_digital_9" = "arduino_digital_9";
+"arduino_digital" = "arduino_digital";
 
 /* No comment provided by engineer. */
 "Aug" = "Aug";
@@ -803,7 +749,7 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"not available" = "not available";
+"not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
@@ -1212,6 +1158,9 @@
 
 /* No comment provided by engineer. */
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* No comment provided by engineer. */
+"The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";

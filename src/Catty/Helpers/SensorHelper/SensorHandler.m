@@ -204,32 +204,16 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
             
-        case arduino_analogPin0:
-        case arduino_analogPin1:
-        case arduino_analogPin2:
-        case arduino_analogPin3:
-        case arduino_analogPin4:
-        case arduino_analogPin5:
+        case arduino_analogPin:
+
             if ([[BluetoothService sharedInstance] getSensorArduino]) {
-                result = [[[BluetoothService sharedInstance] getSensorArduino] getAnalogPin:sensor-arduino_analogPin0];
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getAnalogPin:sensor-arduino_analogPin];
             }
             break;
-        case arduino_digitalPin0:
-        case arduino_digitalPin1:
-        case arduino_digitalPin2:
-        case arduino_digitalPin3:
-        case arduino_digitalPin4:
-        case arduino_digitalPin5:
-        case arduino_digitalPin6:
-        case arduino_digitalPin7:
-        case arduino_digitalPin8:
-        case arduino_digitalPin9:
-        case arduino_digitalPin10:
-        case arduino_digitalPin11:
-        case arduino_digitalPin12:
-        case arduino_digitalPin13:
+        case arduino_digitalPin:
+
             if ([[BluetoothService sharedInstance] getSensorArduino]) {
-                result = [[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:sensor-arduino_digitalPin0];
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:sensor-arduino_digitalPin];
             }
             break;
                 default:

@@ -27,7 +27,7 @@ extension PhiroPlayToneBrick :CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         return CBInstruction.ExecClosure { (context, _) in
-            let durationInterpretation:NSInteger = NSInteger(self.durationFormula.interpretIntegerForSprite(self.script?.object))
+            let durationInterpretation = self.durationFormula.interpretDoubleForSprite(self.script?.object)
             
             
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
