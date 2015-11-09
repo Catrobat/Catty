@@ -46,11 +46,11 @@
 #import "PhiroRGBLightBrick.h"
 #import "SensorManager.h"
 
-@interface RequiredRecourses : XCTestCase
+@interface RequiredRescourses : XCTestCase
 
 @end
 
-@implementation RequiredRecourses
+@implementation RequiredRescourses
 
 - (void)setUp {
     [super setUp];

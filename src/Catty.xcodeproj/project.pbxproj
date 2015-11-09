@@ -276,7 +276,7 @@
 		92EC99471BC3C95F0003A891 /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99461BC3C95F0003A891 /* BluetoothDevice.swift */; };
 		92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99491BC3CA870003A891 /* Firmata.swift */; };
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
-		92F1A8CE1BE3516B00415032 /* RequiredRecourses.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A8CD1BE3516B00415032 /* RequiredRecourses.m */; };
+		92F1A8CE1BE3516B00415032 /* RequiredRescourses.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
@@ -1239,7 +1239,7 @@
 		92EC99491BC3CA870003A891 /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
 		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		92F1A8CD1BE3516B00415032 /* RequiredRecourses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredRecourses.m; sourceTree = "<group>"; };
+		92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredRescourses.m; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
@@ -3285,7 +3285,7 @@
 		92F1A8C81BE3511000415032 /* requiredResources */ = {
 			isa = PBXGroup;
 			children = (
-				92F1A8CD1BE3516B00415032 /* RequiredRecourses.m */,
+				92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */,
 			);
 			path = requiredResources;
 			sourceTree = "<group>";
@@ -5868,7 +5868,7 @@
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
-				92F1A8CE1BE3516B00415032 /* RequiredRecourses.m in Sources */,
+				92F1A8CE1BE3516B00415032 /* RequiredRescourses.m in Sources */,
 				4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
