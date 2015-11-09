@@ -270,6 +270,7 @@
                 ImageNameNormal:[UIImage imageNamed:@"record"]
         andImageNameHighlighted:[UIImage imageNamed:@"record"]
                     andSelector:@selector(recordProgram:)];
+    self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
 }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal
@@ -280,7 +281,6 @@
     [button setBackgroundImage:stateHighlighted forState:UIControlStateSelected];
     [button addTarget:self action:myAction forControlEvents:UIControlEventTouchUpInside];
     [self.menuView addSubview:button];
-    button.hidden = (! self.scene.isScreenRecorderAvailable);
 }
 
 - (void)setUpMenuFrames
