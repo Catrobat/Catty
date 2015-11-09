@@ -153,7 +153,6 @@ final class CBScheduler: CBSchedulerProtocol {
                     self?.runNextInstructionsGroup()
                 }
             }
-            
         }
 
         // execute closures (not node dependend!)
