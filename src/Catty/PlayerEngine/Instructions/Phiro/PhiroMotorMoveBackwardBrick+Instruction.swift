@@ -22,12 +22,13 @@
 
 import Foundation
 
-extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol {
+extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
-        
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
         return CBInstruction.ExecClosure { (context, _) in
-            let speedValue:Int = Int(self.formula.interpretIntegerForSprite(self.script?.object))
+            let speedValue:Int = Int(self.formula.interpretIntegerForSprite(object))
             //TODO
             //            if (speedValue < MIN_SPEED) {
             //                speedValue = MIN_SPEED;
@@ -53,6 +54,12 @@ extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol {
                 break;
             }
         }
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.formula.interpretIntegerForSprite(object)
     }
     
 }

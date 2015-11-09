@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeXByNBrick: CBInstructionProtocol {
+extension ChangeXByNBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -36,6 +36,12 @@ extension ChangeXByNBrick: CBInstructionProtocol {
             let xMov = xMovement.interpretDoubleForSprite(object)
             spriteNode.scenePosition = CGPointMake(spriteNode.scenePosition.x + CGFloat(xMov), spriteNode.scenePosition.y);
         }
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.xMovement.interpretIntegerForSprite(object)
     }
 
 }

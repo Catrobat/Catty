@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SpeakBrick: CBInstructionProtocol {
+extension SpeakBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         
@@ -46,4 +46,13 @@ extension SpeakBrick: CBInstructionProtocol {
         
     }
     
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        if self.formula.formulaTree.type == .STRING {
+        } else {
+            self.formula.interpretDoubleForSprite(object)
+        }
+        
+    }
 }
