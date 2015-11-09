@@ -423,6 +423,7 @@
         kDTPayloadAskUserPromptValue : (value ? value : [NSNull null]),
         kDTPayloadAskUserPromptPlaceholder : placeholder,
         kDTPayloadAskUserMinInputLength : @(minInputLength),
+        kDTPayloadAskUserMaxInputLength : @(maxInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
         kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
         kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:@""])
@@ -541,6 +542,7 @@
                               kDTPayloadAskUserPromptTitle : title,
                               kDTPayloadAskUserPromptMessage : message,
                               kDTPayloadAskUserMinInputLength : @(minInputLength),
+                              kDTPayloadAskUserMaxInputLength : @(maxInputLength),
                               kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
                               kDTPayloadTextView: textView
                               };
@@ -737,25 +739,30 @@ replacementString:(NSString*)characters
         
         bool atLeastOneNotspace = NO;
         bool notOnlySpecialCharacters = NO;
-        bool containsBlockedCharacters = NO;
+        bool noBlockedCharacters = NO;
         for(int i =0; i < input.length; i++){
             NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
             if(!([newString  isEqual: @" "])){
                 atLeastOneNotspace = YES;
+                break;
             }
+        }
+        for(int i =0; i < input.length; i++){
+            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
             if(!([newString  isEqual: @"."])&&!([newString  isEqual: @"/"])&&!([newString  isEqual: @"\\"])&&!([newString  isEqual: @"~"])){
                 notOnlySpecialCharacters = YES;
+                break;
             }
+        }
+        for(int i =0; i < input.length; i++){
+            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
             if(([newString  isEqual: @"/"])||([newString  isEqual: @"\\"])||([newString  isEqual: @"~"])){
-                containsBlockedCharacters = YES;
-                break;
-            }
-            if (atLeastOneNotspace && notOnlySpecialCharacters) {
-                break;
+                noBlockedCharacters = YES;
             }
         }
         
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
+        NSUInteger textFieldMaxInputLength = [payload[kDTPayloadAskUserMaxInputLength] unsignedIntegerValue];
         if ([input isEqualToString:kLocalizedNewElement]) {
             CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
@@ -778,7 +785,15 @@ replacementString:(NSString*)characters
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if(!atLeastOneNotspace ||!notOnlySpecialCharacters || containsBlockedCharacters){
+        } else if ([input length] > textFieldMaxInputLength) {
+            NSString *alertText = [NSString stringWithFormat:kLocalizedTooLongInputDescription,
+                                   textFieldMaxInputLength];
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if(!atLeastOneNotspace ||!notOnlySpecialCharacters || noBlockedCharacters){
             NSString *alertText;
             if (!atLeastOneNotspace) {
                 alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
@@ -786,7 +801,7 @@ replacementString:(NSString*)characters
             } else if (!notOnlySpecialCharacters) {
                 alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
                              textFieldMinInputLength];
-            } else if (containsBlockedCharacters) {
+            } else if (noBlockedCharacters) {
                 alertText = [NSString stringWithFormat:kLocalizedBlockedCharInputDescription];
             }
             
@@ -879,11 +894,20 @@ replacementString:(NSString*)characters
         }
         NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
+        NSUInteger textFieldMaxInputLength = [payload[kDTPayloadAskUserMaxInputLength] unsignedIntegerValue];
         if ([input length] < textFieldMinInputLength) {
             NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        }else if ([input length] > textFieldMaxInputLength) {
+            NSString *alertText = [NSString stringWithFormat:kLocalizedTooLongInputDescription,
+                                   textFieldMaxInputLength];
             CatrobatAlertView *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
