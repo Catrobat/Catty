@@ -25,8 +25,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FirmataTest : XCTestCase, FirmataDelegate {
- 
+class FirmataMock: FirmataDelegate {
     var callbackInvolved = false
     var data:NSData = NSData()
     var receivedString:String = ""
@@ -35,11 +34,11 @@ final class FirmataTest : XCTestCase, FirmataDelegate {
     var receivedPortData:[Int] = [Int](count:1, repeatedValue: 0)
     var receivedValue:Int = 0
     let testfirmata = Firmata()
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        testfirmata.delegate = self
+    
+    init() {
+        testfirmata.delegate = self;
     }
+    
     func resetCallback () {
         callbackInvolved = false
         data = NSData()
@@ -60,7 +59,7 @@ final class FirmataTest : XCTestCase, FirmataDelegate {
         receivedValue = value
         callbackInvolved = true
     }
-
+    
     func didReceiveDigitalMessage(pin:Int,value:Int){
         receivedPin = pin
         receivedValue = value
@@ -90,145 +89,182 @@ final class FirmataTest : XCTestCase, FirmataDelegate {
     func didUpdateCapability(pins:[[Int:Int]]){
         callbackInvolved = true
     }
-    
+
+}
+
+
+
+
+final class FirmataTests : XCTestCase{
+
+    var mock = FirmataMock()
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        //Given
+        mock = FirmataMock()
+    }
     //MARK: SEND
     func testWritePinModeCallback () {
-        resetCallback()
-        testfirmata.writePinMode(.Analog, pin: 4)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.writePinMode(.Analog, pin: 4)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testReportVersionCallback () {
-        resetCallback()
-        testfirmata.reportVersion()
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.reportVersion()
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testAnalogMappingQueryCallback () {
-        resetCallback()
-        testfirmata.analogMappingQuery()
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.analogMappingQuery()
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testPinStateQueryCallback () {
-        resetCallback()
-        testfirmata.pinStateQuery(4)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.pinStateQuery(4)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testCapabilityQueryCallback () {
-        resetCallback()
-        testfirmata.capabilityQuery()
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.capabilityQuery()
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testServoConfigCallback () {
-        resetCallback()
-        testfirmata.servoConfig(4, minPulse: 1, maxPulse: 4)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.servoConfig(4, minPulse: 1, maxPulse: 4)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testStringDataCallback () {
-        resetCallback()
-        testfirmata.stringData("test")
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.stringData("test")
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testSamplingIntervalCallback () {
-        resetCallback()
-        testfirmata.samplingInterval(50)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.samplingInterval(50)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testWritePWMCallback () {
-        resetCallback()
-        testfirmata.writePWMValue(20, pin: 4)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.writePWMValue(20, pin: 4)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testWritePinStateCallback () {
-        resetCallback()
-        testfirmata.writePinState(.High, pin: 4)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.writePinState(.High, pin: 4)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testAnalogValueReportingCallback () {
-        resetCallback()
-        testfirmata.setAnalogValueReportingforPin(4, enabled: true)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.setAnalogValueReportingforPin(4, enabled: true)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testDigitalStateReportingPinCallback () {
-        resetCallback()
-        testfirmata.setDigitalStateReportingForPin(4, enabled: true)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.setDigitalStateReportingForPin(4, enabled: true)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testDigitalStateReportingPortCallback () {
-        resetCallback()
-        testfirmata.setDigitalStateReportingForPort(1, enabled: true)
-        
-        XCTAssertTrue(callbackInvolved, "Callback not called")
+        //When
+        mock.testfirmata.setDigitalStateReportingForPort(1, enabled: true)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
     }
     func testWritePinModeData () {
-        resetCallback()
-        testfirmata.writePinMode(.Analog, pin: 4)
+        //Given
         let bytes:[UInt8] = [SET_PIN_MODE,4,UInt8(PinMode.Analog.rawValue)]
         let newData:NSData = NSData(bytes: bytes, length: 3)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.writePinMode(.Analog, pin: 4)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testReportVersionData () {
-        resetCallback()
-        testfirmata.reportVersion()
+        //Given
         let bytes:[UInt8] = [REPORT_VERSION]
         let newData:NSData = NSData(bytes: bytes, length: 1)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.reportVersion()
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testAnalogMappingQueryData () {
-        resetCallback()
-        testfirmata.analogMappingQuery()
+        //Given
         let bytes:[UInt8] = [START_SYSEX,ANALOG_MAPPING_QUERY,END_SYSEX]
         let newData:NSData = NSData(bytes: bytes, length: 3)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.analogMappingQuery()
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testPinStateQueryData () {
-        resetCallback()
-        testfirmata.pinStateQuery(4)
+        //Given
         let bytes:[UInt8] = [START_SYSEX,PIN_STATE_QUERY,4,END_SYSEX]
         let newData:NSData = NSData(bytes: bytes, length: 4)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.pinStateQuery(4)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testCapabilityQueryData () {
-        resetCallback()
-        testfirmata.capabilityQuery()
+        //Given
         let bytes:[UInt8] = [START_SYSEX,CAPABILITY_QUERY,END_SYSEX]
         let newData:NSData = NSData(bytes: bytes, length: 3)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.capabilityQuery()
+
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testServoConfigData () {
-        resetCallback()
-        testfirmata.servoConfig(4, minPulse: 1, maxPulse: 4)
+        //Given
         let bytes:[UInt8] = [START_SYSEX,SERVO_CONFIG,4,1 & 0x7F,1 >> 7,4 & 0x7F,4 >> 7,END_SYSEX]
         let newData:NSData = NSData(bytes: bytes, length: 8)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.servoConfig(4, minPulse: 1, maxPulse: 4)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testSamplingIntervalData () {
-        resetCallback()
-        testfirmata.samplingInterval(50)
+        //Given
         let bytes:[UInt8] = [START_SYSEX,SAMPLING_INTERVAL,50 & 0x7F,50 >> 7 ,END_SYSEX]
         let newData:NSData = NSData(bytes: bytes, length: 5)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.samplingInterval(50)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testWritePWMData () {
-        resetCallback()
-        testfirmata.writePWMValue(20, pin: 4)
+        //Given
         let bytes:[UInt8] = [ANALOG_MESSAGE+4,20 & 0x7F,20 >> 7]
         let newData:NSData = NSData(bytes: bytes, length: 3)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.writePWMValue(20, pin: 4)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testWritePinStateData () {
-        resetCallback()
-        testfirmata.writePinState(.High, pin: 4)
+        //Given
         var portMasks = [UInt8](count: 3, repeatedValue: 0)
         var newMask = UInt8(PinState.High.rawValue * Int(powf(2, Float(4))))
         portMasks[Int(0)] &= ~(1 << 4) //prep the saved mask by zeroing this pin's corresponding bit
@@ -237,83 +273,104 @@ final class FirmataTest : XCTestCase, FirmataDelegate {
         var data1 = newMask<<1; data1 >>= 1  //remove MSB
         let data2 = newMask >> 7 //use data1's MSB as data2's LSB
         let bytes:[UInt8] = [DIGITAL_MESSAGE+4/8,data1,data2]
-        let newData:NSData = NSData(bytes: bytes, length: 4)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        let newData:NSData = NSData(bytes: bytes, length:3)
+        
+        //When
+        mock.testfirmata.writePinState(.High, pin: 4)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testAnalogValueReportingData () {
-        resetCallback()
-        testfirmata.setAnalogValueReportingforPin(4, enabled: true)
+        //Given
         let bytes:[UInt8] = [REPORT_ANALOG+4,1]
         let newData:NSData = NSData(bytes: bytes, length:2)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.setAnalogValueReportingforPin(4, enabled: true)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testDigitalStateReportingPinData () {
-        resetCallback()
-        testfirmata.setDigitalStateReportingForPin(4, enabled: true)
+        //Given
         var portMasks = [UInt8](count: 3, repeatedValue: 0)
         var data1:UInt8 = UInt8(portMasks[Int(0)])    //retrieve saved pin mask for port;
         data1 |= 1<<4
         let bytes:[UInt8] = [REPORT_DIGITAL+0,data1]
         let newData:NSData = NSData(bytes: bytes, length:2)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.setDigitalStateReportingForPin(4, enabled: true)
+
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testDigitalStateReportingPortData () {
-        resetCallback()
-        testfirmata.setDigitalStateReportingForPort(1, enabled: true)
+        //Given
         let bytes:[UInt8] = [REPORT_DIGITAL+1,1]
         let newData:NSData = NSData(bytes: bytes, length:2)
-        XCTAssertEqual(data, newData, "Send data wrong calculated")
+        //When
+        mock.testfirmata.setDigitalStateReportingForPort(1, enabled: true)
+        //Then
+        XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     
     //MARK: Receive
 
     func testReceiveReportVersion(){
-        resetCallback()
+        //Given
         let bytes:[UInt8] = [REPORT_VERSION,1,4]
         let receivedData:NSData = NSData(bytes: bytes, length:3)
-        testfirmata.receiveData(receivedData)
-        XCTAssertTrue(callbackInvolved, "Callback not called")
-        XCTAssertEqual(receivedString, "\(1),\(4)", "Received data wrong calculated")
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.receivedString, "\(1),\(4)", "Received data wrong calculated")
     }
     
     func testReceiveAnalogMessage(){
-        resetCallback()
+        //Given
         let bytes:[UInt8] = [ANALOG_MESSAGE+4,20 & 0x7F,20 >> 7]
         let receivedData:NSData = NSData(bytes: bytes, length: 3)
-        testfirmata.receiveData(receivedData)
-        XCTAssertTrue(callbackInvolved, "Callback not called")
-        XCTAssertEqual(receivedPin, 18, "Received Pin wrong")
-        XCTAssertEqual(receivedValue, 20, "Received Value wrong")
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.receivedPin, 18, "Received Pin wrong")
+        XCTAssertEqual(mock.receivedValue, 20, "Received Value wrong")
     }
     
     func testReceiveDigitalMessage(){
-        resetCallback()
+        //Given
         let newMask = UInt8(0)
         var data1 = newMask<<1; data1 >>= 1  //remove MSB
         let data2 = newMask >> 7 //use data1's MSB as data2's LSB
         let bytes:[UInt8] = [DIGITAL_MESSAGE,data1,data2]
         let receivedData:NSData = NSData(bytes: bytes, length: 3)
-        testfirmata.receiveData(receivedData)
-        XCTAssertTrue(callbackInvolved, "Callback not called")
-        XCTAssertEqual(receivedPort, 0, "Received Port wrong")
-        XCTAssertEqual(receivedPortData, [0,0,0,0,0,0,0,0], "Received PortData wrong")
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.receivedPort, 0, "Received Port wrong")
+        XCTAssertEqual(mock.receivedPortData, [0,0,0,0,0,0,0,0], "Received PortData wrong")
     }
     
     func testReceiveDigitalMessage2(){
-        resetCallback()
+        //Given
         let newMask = UInt8(PinState.High.rawValue * Int(powf(2, Float(4))))
         var data1 = newMask<<1; data1 >>= 1  //remove MSB
         let data2 = newMask >> 7 //use data1's MSB as data2's LSB
         let bytes:[UInt8] = [DIGITAL_MESSAGE,data1,data2]
         let receivedData:NSData = NSData(bytes: bytes, length: 3)
-        testfirmata.receiveData(receivedData)
-        XCTAssertTrue(callbackInvolved, "Callback not called")
-        XCTAssertEqual(receivedPort, 0, "Received Port wrong")
-        XCTAssertEqual(receivedPortData, [0,0,0,0,1,0,0,0], "Received PortData wrong")
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.receivedPort, 0, "Received Port wrong")
+        XCTAssertEqual(mock.receivedPortData, [0,0,0,0,1,0,0,0], "Received PortData wrong")
     }
     
     func testReceiveFirmware(){
-        resetCallback()
+        //Given
         let data1:UInt8 = 23
         let data2:UInt8 = 2
         let name = "test"
@@ -329,13 +386,15 @@ final class FirmataTest : XCTestCase, FirmataDelegate {
         }
         bytestoSend.append(END_SYSEX)
         let receivedData:NSData = NSData(bytes: bytestoSend, length:5+(data3!.length))
-        testfirmata.receiveData(receivedData)
-        XCTAssertTrue(callbackInvolved, "Callback not called")
-        XCTAssertEqual(receivedString, name + " \(23)." + "\(2)", "Received Port wrong")
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.receivedString, name + " \(23)." + "\(2)", "Received Port wrong")
     }
     
     func testReceiveStringData(){
-        resetCallback()
+        //Given
         let name = "test"
         let data3 = name.dataUsingEncoding(NSASCIIStringEncoding)
         let count = data3!.length / sizeof(UInt8)
@@ -350,9 +409,11 @@ final class FirmataTest : XCTestCase, FirmataDelegate {
 
         bytestoSend.append(END_SYSEX)
         let receivedData:NSData = NSData(bytes: bytestoSend, length:3+(data3!.length*2))
-        testfirmata.receiveData(receivedData)
-        XCTAssertTrue(callbackInvolved, "Callback not called")
-        XCTAssertEqual(receivedString, name , "Received Port wrong")
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.receivedString, name , "Received Port wrong")
     }
 }
 
