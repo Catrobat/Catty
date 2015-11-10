@@ -33,6 +33,8 @@ class FirmataMock: FirmataDelegate {
     var receivedPort:Int = 0
     var receivedPortData:[Int] = [Int](count:1, repeatedValue: 0)
     var receivedValue:Int = 0
+    var analogMapping = NSMutableDictionary()
+    var capabilityQuery = [[Int:Int]]()
     let testfirmata = Firmata()
     
     init() {
@@ -85,15 +87,14 @@ class FirmataMock: FirmataDelegate {
     }
     func didUpdateAnalogMapping(mapping:NSMutableDictionary){
         callbackInvolved = true
+        analogMapping = mapping
     }
     func didUpdateCapability(pins:[[Int:Int]]){
         callbackInvolved = true
+        capabilityQuery = pins
     }
 
 }
-
-
-
 
 final class FirmataTests : XCTestCase{
 
@@ -414,6 +415,42 @@ final class FirmataTests : XCTestCase{
         //Then
         XCTAssertTrue(mock.callbackInvolved, "Callback not called")
         XCTAssertEqual(mock.receivedString, name , "Received Port wrong")
+    }
+    
+    func testReceiveAnalogMapping(){
+        //Given
+        let count = 4 / sizeof(UInt8)
+        var bytes = [UInt8](count: count, repeatedValue: 0)
+        bytes[0] = 0
+        bytes[1] = 1
+        bytes[2] = 2
+        bytes[3] = 3
+        let bytestoSend:[UInt8] = [START_SYSEX,ANALOG_MAPPING_RESPONSE,bytes[0],bytes[1],bytes[2],bytes[3],END_SYSEX]
+        let receivedData:NSData = NSData(bytes: bytestoSend, length:7)
+        
+        let givenMapping = NSMutableDictionary(objects: [NSNumber(unsignedChar:0),NSNumber(unsignedChar:1),NSNumber(unsignedChar:2),NSNumber(unsignedChar:3)], forKeys: [NSNumber(unsignedChar:0),NSNumber(unsignedChar:1),NSNumber(unsignedChar:2),NSNumber(unsignedChar:3)])
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.analogMapping, givenMapping , "Received Port wrong")
+    }
+    
+    func testReceiveCapabilityQuery(){
+        //Given
+        let bytestoSend:[UInt8] = [START_SYSEX,CAPABILITY_RESPONSE,0,1,3,1,127,2,2,127,3,0,127,END_SYSEX]
+        let receivedData:NSData = NSData(bytes: bytestoSend, length:14)
+        var pin1 : [Int:Int] = [Int:Int]()
+        pin1[0] = 1
+        pin1[3] = 1
+        let pin2 : [Int:Int] = [2:2]
+        let pin3 : [Int:Int] = [3:0]
+        let givenResponse = [pin1,pin2,pin3]
+        //When
+        mock.testfirmata.receiveData(receivedData)
+        //Then
+        XCTAssertTrue(mock.callbackInvolved, "Callback not called")
+        XCTAssertEqual(mock.capabilityQuery, givenResponse , "Received Port wrong")
     }
 }
 

@@ -730,7 +730,7 @@ class Firmata: FirmataProtocol {
 
     /* version report format
     * -------------------------------------------------
-    * 0  version report header (0xF9) (MIDI Undefined)
+    * 0  version report header (0xF9)
     * 1  major version (0-127)
     * 2  minor version (0-127)
     */
@@ -747,7 +747,7 @@ class Firmata: FirmataProtocol {
     
     /* pin state response
     * -------------------------------
-    * 0  START_SYSEX (0xF0) (MIDI System Exclusive)
+    * 0  START_SYSEX (0xF0)
     * 1  pin state response (0x6E)
     * 2  pin (0 to 127)
     * 3  pin mode (the currently configured mode)
@@ -793,7 +793,7 @@ class Firmata: FirmataProtocol {
     
     /* analog mapping response
     * -------------------------------
-    * 0  START_SYSEX (0xF0) (MIDI System Exclusive)
+    * 0  START_SYSEX (0xF0)
     * 1  analog mapping response (0x6A)
     * 2  analog channel corresponding to pin 0, or 127 if pin 0 does not support analog
     * 3  analog channel corresponding to pin 1, or 127 if pin 1 does not support analog
@@ -825,7 +825,7 @@ class Firmata: FirmataProtocol {
 
     /* capabilities response
     * -------------------------------
-    * 0  START_SYSEX (0xF0) (MIDI System Exclusive)
+    * 0  START_SYSEX (0xF0)
     * 1  capabilities response (0x6C)
     * 2  1st mode supported of pin 0
     * 3  1st mode's resolution of pin 0
