@@ -403,10 +403,8 @@ class PeripheralTests: XCTestCase {
                 onConnectionExpectation.fulfill()
             case .Timeout:
                 timeoutExpectation.fulfill()
-                testPeripheral.helper.connectPeripheral(testPeripheral)
-                CentralQueue.async {
-                    testPeripheral.helper.didConnectPeripheral(testPeripheral)
-                }
+//                testPeripheral.helper.connectPeripheral(testPeripheral)
+                testPeripheral.helper.didConnectPeripheral(testPeripheral)
             case .Disconnected:
                 XCTAssert(false, "onSuccess Disconnect invalid")
             case .ForcedDisconnected:
