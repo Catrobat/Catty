@@ -84,14 +84,14 @@ public class BluetoothService:NSObject {
         return dispatch_semaphore_create(0)
     }
     
-    @objc public func getSensorPhiro() -> Phiro? {
+    @objc func getSensorPhiro() -> Phiro? {
         guard let senorPhiro = phiro else{
             return nil
         }
         return senorPhiro
     }
     
-    @objc public func getSensorArduino() -> ArduinoDevice? {
+    @objc func getSensorArduino() -> ArduinoDevice? {
         guard let senorArduino = arduino else{
             return nil
         }
