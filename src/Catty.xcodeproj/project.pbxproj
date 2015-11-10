@@ -217,6 +217,8 @@
 		92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FA61BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift */; };
 		92B46FAA1BC7F4D6004980C1 /* ArduinoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FA91BC7F4D6004980C1 /* ArduinoDevice.swift */; };
 		92B46FAC1BC7F51D004980C1 /* PhiroDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FAB1BC7F51D004980C1 /* PhiroDevice.swift */; };
+		92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCDC831BF1DE2A00F9CB23 /* FirmataTests.swift */; };
+		92BCDC871BF1FB1E00F9CB23 /* FirmataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BCDC861BF1FB1E00F9CB23 /* FirmataProtocols.swift */; };
 		92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631841BC502CB00486958 /* BluetoothPopupVC.swift */; };
 		92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */; };
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; };
@@ -1131,6 +1133,8 @@
 		92B46FA61BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArduinoSendPWMValueBrick+Instruction.swift"; sourceTree = "<group>"; };
 		92B46FA91BC7F4D6004980C1 /* ArduinoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoDevice.swift; sourceTree = "<group>"; };
 		92B46FAB1BC7F51D004980C1 /* PhiroDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroDevice.swift; sourceTree = "<group>"; };
+		92BCDC831BF1DE2A00F9CB23 /* FirmataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmataTests.swift; sourceTree = "<group>"; };
+		92BCDC861BF1FB1E00F9CB23 /* FirmataProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmataProtocols.swift; sourceTree = "<group>"; };
 		92C631841BC502CB00486958 /* BluetoothPopupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothPopupVC.swift; sourceTree = "<group>"; };
 		92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownDevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -3092,6 +3096,38 @@
 			path = PlayerEngine/Instructions/Arduino;
 			sourceTree = "<group>";
 		};
+		92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */ = {
+			isa = PBXGroup;
+			children = (
+				92BCDC811BF1DE2A00F9CB23 /* Arduino */,
+				92BCDC821BF1DE2A00F9CB23 /* Firmata */,
+				92BCDC841BF1DE2A00F9CB23 /* Phiro */,
+			);
+			path = BluetoothDevices;
+			sourceTree = "<group>";
+		};
+		92BCDC811BF1DE2A00F9CB23 /* Arduino */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Arduino;
+			sourceTree = "<group>";
+		};
+		92BCDC821BF1DE2A00F9CB23 /* Firmata */ = {
+			isa = PBXGroup;
+			children = (
+				92BCDC831BF1DE2A00F9CB23 /* FirmataTests.swift */,
+			);
+			path = Firmata;
+			sourceTree = "<group>";
+		};
+		92BCDC841BF1DE2A00F9CB23 /* Phiro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Phiro;
+			sourceTree = "<group>";
+		};
 		92C631831BC502CB00486958 /* BluetoothDeviceSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -3278,6 +3314,7 @@
 			isa = PBXGroup;
 			children = (
 				92EC99491BC3CA870003A891 /* Firmata.swift */,
+				92BCDC861BF1FB1E00F9CB23 /* FirmataProtocols.swift */,
 			);
 			path = Firmata;
 			sourceTree = "<group>";
@@ -4815,6 +4852,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */,
 				AA70F7EF1B866E63003057C6 /* PlayerEngine */,
 				4CD194F21A0631B200484E4F /* Parser & Serialization */,
 				CAD740E61AF2D3F600C32937 /* CBStack */,
@@ -5863,6 +5901,7 @@
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
+				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
@@ -6000,6 +6039,7 @@
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
 				929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */,
+				92BCDC871BF1FB1E00F9CB23 /* FirmataProtocols.swift in Sources */,
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
