@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension PhiroRGBLightBrick :CBInstructionProtocol {
+extension PhiroRGBLightBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         

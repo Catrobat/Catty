@@ -78,9 +78,4 @@ extension PointToBrick: CBInstructionProtocol {
             spriteNode.rotation = rotationDegrees
         }
     }
-    
-    func preCalculate() {
-
-    }
-
 }

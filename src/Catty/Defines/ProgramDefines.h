@@ -110,6 +110,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kDTPayloadAskUserPromptValue @"DTPayloadAskUserPromptValue"
 #define kDTPayloadAskUserPromptPlaceholder @"DTPayloadAskUserPromptPlaceholder"
 #define kDTPayloadAskUserMinInputLength @"DTPayloadAskUserMinInputLength"
+#define kDTPayloadAskUserMaxInputLength @"DTPayloadAskUserMaxInputLength"
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 #define kDTPayloadTextView @"DTPayloadTextView"

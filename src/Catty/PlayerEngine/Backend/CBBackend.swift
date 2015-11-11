@@ -56,7 +56,10 @@ final class CBBackend: CBBackendProtocol {
             return [.Action(action: brick.action())] // fallback: poor old ObjC fellow... ;)
         }
         if (brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0 {
-                return [.Buffer(brick: instructionBrick), instructionBrick.instruction()]
+            guard let formulaBufferBrick = brick as? CBFormulaBufferProtocol else {
+                 fatalError("All bricks with formulas should implement the CBFormulaBufferProtocol")
+            }
+            return [.Buffer(brick: formulaBufferBrick), instructionBrick.instruction()]
         }
         return [instructionBrick.instruction()] // actions that have been ported to Swift yet
     }

@@ -22,7 +22,7 @@
 
 //import AudioToolbox
 
-extension VibrationBrick: CBInstructionProtocol {
+extension VibrationBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
 

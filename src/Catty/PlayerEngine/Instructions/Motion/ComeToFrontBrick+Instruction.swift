@@ -49,9 +49,4 @@ extension ComeToFrontBrick: CBInstructionProtocol {
         }
         
     }
-
-    
-    func preCalculate() {
-        
-    }
 }

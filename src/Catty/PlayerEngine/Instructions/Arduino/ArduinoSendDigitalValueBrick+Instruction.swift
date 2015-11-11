@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension ArduinoSendDigitalValueBrick :CBInstructionProtocol {
+extension ArduinoSendDigitalValueBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         

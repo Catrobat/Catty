@@ -34,7 +34,7 @@
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
     NSString *programDirectoryName = [Program programDirectoryNameForProgramName:programName programID:programID];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", programsPath, programDirectoryName];
-    info.visibleName = programName;
+    info.visibleName = [Util enableBlockedCharactersForString:programName];
     info.programID = programID;
     return info;
 }

@@ -48,9 +48,6 @@ extension PhiroMotorStopBrick :CBInstructionProtocol {
         }
         
     }
-    
-    func preCalculate() {
-        
-    }
+
     
 }
