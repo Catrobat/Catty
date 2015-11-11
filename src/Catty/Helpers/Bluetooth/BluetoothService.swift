@@ -33,14 +33,12 @@ public class BluetoothService:NSObject {
 
     static let swiftSharedInstance = BluetoothService()
 
-    
     // the sharedInstance class method can be reached from ObjC
     @objc public class func sharedInstance() -> BluetoothService {
         return BluetoothService.swiftSharedInstance
     }
 
 
-    
     var digitalSemaphoreArray:[dispatch_semaphore_t] = []
     var analogSemaphoreArray:[dispatch_semaphore_t] = []
     
