@@ -20,46 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
 
-typedef enum {
-    X_ACCELERATION = 900,
-    Y_ACCELERATION,
-    Z_ACCELERATION,
-    COMPASS_DIRECTION,
-    X_INCLINATION,
-    Y_INCLINATION,
-    OBJECT_X,
-    OBJECT_Y,
-    OBJECT_GHOSTEFFECT,
-    OBJECT_BRIGHTNESS,
-    OBJECT_SIZE,
-    OBJECT_ROTATION,
-    OBJECT_LAYER,
-    LOUDNESS,
-    FACE_DETECTED,
-    FACE_SIZE,
-    FACE_POSITION_X,
-    FACE_POSITION_Y,
-    phiro_front_left,
-    phiro_front_right,
-    phiro_side_left,
-    phiro_side_right,
-    phiro_bottom_left,
-    phiro_bottom_right,
-    arduino_analogPin,
-    arduino_digitalPin
-} Sensor;
+#import "BrickCellDataProtocol.h"
+#import "iOSCombobox.h"
 
-@interface SensorManager : NSObject
+@interface BrickCellPhiroIfSensorData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
 
-+ (Sensor) sensorForString:(NSString*)sensor;
-
-+ (NSString*) stringForSensor:(Sensor)sensor;
-
-+ (BOOL) isObjectSensor:(Sensor)sensor;
-
-+ (NSString *)getExternName:(NSString *)sensorName;
-
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 
 @end

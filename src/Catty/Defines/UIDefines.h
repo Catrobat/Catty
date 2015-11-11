@@ -211,7 +211,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kPhiroMotorMoveForwardBrick = 601,
     kPhiroMotorMoveBackwardBrick = 602,
     kPhiroPlayToneBrick          = 603,
-    kPhiroRGBLightBrick          = 604
+    kPhiroRGBLightBrick          = 604,
+    kPhiroIfLogicBeginBrick         = 605
 
 
 };
@@ -336,7 +337,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
     @"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
     @"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
-    @"kPhiroRGBLightBrick"          : @(kPhiroRGBLightBrick)\
+    @"PhiroRGBLightBrick"          : @(kPhiroRGBLightBrick),\
+    @"PhiroIfLogicBeginBrick"         : @(kPhiroIfLogicBeginBrick)\
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
@@ -417,7 +419,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"PhiroMotorMoveForwardBrick"   : @(kBrickHeight3h),\
 @"PhiroMotorMoveBackwardBrick"  : @(kBrickHeight3h),\
 @"PhiroPlayToneBrick"           : @(kBrickHeight3h),\
-@"kPhiroRGBLightBrick"          : @(kBrickHeight3h)\
+@"PhiroRGBLightBrick"          : @(kBrickHeight3h),\
+@"PhiroIfLogicBeginBrick"          : @(kBrickHeight1h)\
 }
 
 // brick heights

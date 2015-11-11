@@ -58,7 +58,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     
     var digitalValue:Int = 0
     var analogValue:Double = 0
-    private var isReportingSensorData = false
+    var isReportingSensorData = false
     private var totalPins = 0
     private var analogMapping = NSMutableDictionary()
     private var pinsArray = [[String:Any]]()
