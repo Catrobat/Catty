@@ -216,7 +216,7 @@ public class BluetoothService:NSObject {
     
     func setArduinoDevice(peripheral:Peripheral){
         
-        let arduino:ArduinoDevice = ArduinoDevice(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
+        let arduino:ArduinoDevice = ArduinoDevice(peripheral:peripheral)
         if peripheral.services.count > 0 {
             for service in peripheral.services{
                 if service.characteristics.count > 0 {
@@ -296,7 +296,7 @@ public class BluetoothService:NSObject {
     
     func setPhiroDevice(peripheral:Peripheral){
         
-        let phiro:Phiro = Phiro(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
+        let phiro:Phiro = Phiro(peripheral:peripheral)
         phiro.reportSensorData(true)
         if peripheral.services.count > 0 {
             for service in peripheral.services{

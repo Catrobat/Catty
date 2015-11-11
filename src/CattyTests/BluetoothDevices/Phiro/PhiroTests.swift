@@ -20,27 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
+import XCTest
+@testable import Pocket_Code
+class PhiroTests: XCTestCase {
 
-extension ArduinoSendDigitalValueBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
-    
-    func instruction() -> CBInstruction {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure{ (context, _) in
-            let pinValue = Int(self.pin.interpretIntegerForSprite(object))
-            let settingValue = Int(self.value.interpretDoubleForSprite(object))
-            if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
-                arduino.setDigitalArduinoPin(pinValue, pinValue: settingValue)
-            }
-        }
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.pin.interpretIntegerForSprite(object)
-        self.value.interpretDoubleForSprite(object)
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
     }
+
+    func testExample() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
 
 }

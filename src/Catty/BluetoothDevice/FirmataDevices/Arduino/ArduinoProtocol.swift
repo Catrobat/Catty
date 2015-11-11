@@ -30,3 +30,10 @@ protocol ArduinoProtocol {
     func setPWMArduinoPin(PWMpin:Int, value:Int)
     func getAnalogArduinoPin(analogPinNumber:Int) -> Double
 }
+
+protocol ArduinoPropertyProtocol {
+    var arduinoHelper: ArduinoHelper  { get }
+    var totalPins:Int { get set }
+    var analogMapping: NSMutableDictionary  { get set }
+    var pinsArray: [[String:Any]]  { get set }
+}

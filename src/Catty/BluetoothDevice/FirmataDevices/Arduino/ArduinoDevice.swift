@@ -44,7 +44,7 @@ private let MAX_PWM_PIN_GROUP_3:Int = 11;
 private let MIN_ANALOG_SENSOR_PIN:Int = 0;
 private let MAX_ANALOG_SENSOR_PIN:Int = 5;
 
-@objc class ArduinoDevice:FirmataDevice,ArduinoProtocol {
+@objc class ArduinoDevice:FirmataDevice,ArduinoProtocol,ArduinoPropertyProtocol {
     
     let Arduino_UUID:CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     static let tag:String = "Arduino";
@@ -55,11 +55,11 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     private var digitalValue:Int = 0
     private var analogValue:Double = 0
     private var isReportingSensorData = false
-    private var totalPins = 0
-    private var analogMapping = NSMutableDictionary()
-    private var pinsArray = [[String:Any]]()
+    internal var totalPins = 0
+    internal var analogMapping = NSMutableDictionary()
+    internal var pinsArray = [[String:Any]]()
     
-    private let arduinoHelper:ArduinoHelper = ArduinoHelper()
+    internal let arduinoHelper:ArduinoHelper = ArduinoHelper()
     
     // MARK: override
     

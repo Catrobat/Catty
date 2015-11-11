@@ -25,7 +25,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-class FirmataMock: FirmataDelegate {
+class FirmataDelegateMock: FirmataDelegate {
     var callbackInvolved = false
     var data:NSData = NSData()
     var receivedString:String = ""
@@ -96,15 +96,66 @@ class FirmataMock: FirmataDelegate {
 
 }
 
+class FirmataMock:Firmata{
+    
+    var receivedPin:UInt8 = 0
+    
+    
+    override func writePinMode(newMode:PinMode, pin:UInt8){
+        receivedPin = pin
+    }
+    override func reportVersion(){
+    }
+    override func reportFirmware(){
+        
+    }
+    override func analogMappingQuery(){
+        
+    }
+    override func capabilityQuery(){
+        
+    }
+    override func pinStateQuery(pin:UInt8){
+        receivedPin = pin
+    }
+    override func servoConfig(pin:UInt8,minPulse:UInt8,maxPulse:UInt8){
+        receivedPin = pin
+    }
+    override func stringData(string:String){
+        
+    }
+    override func samplingInterval(intervalMilliseconds:UInt8){
+        
+    }
+    override func writePWMValue(value:UInt8, pin:UInt8){
+        receivedPin = pin
+    }
+    override func writePinState(newState: PinState, pin:UInt8){
+        receivedPin = pin
+    }
+    override func setAnalogValueReportingforPin(pin:UInt8, enabled:Bool){
+        receivedPin = pin
+    }
+    override func setDigitalStateReportingForPin(digitalPin:UInt8, enabled:Bool){
+        receivedPin = digitalPin
+    }
+    override func setDigitalStateReportingForPort(port:UInt8, enabled:Bool){
+        receivedPin = port
+    }
+    override func receiveData(data:NSData){
+        
+    }
+}
+
 final class FirmataTests : XCTestCase{
 
-    var mock = FirmataMock()
+    var mock = FirmataDelegateMock()
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         //Given
-        mock = FirmataMock()
+        mock = FirmataDelegateMock()
     }
     //MARK: SEND
     func testWritePinModeCallback () {

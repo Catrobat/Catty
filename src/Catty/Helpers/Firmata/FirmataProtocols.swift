@@ -52,4 +52,6 @@ protocol FirmataProtocol {
     func setDigitalStateReportingForPin(digitalPin:UInt8, enabled:Bool)
     func setDigitalStateReportingForPort(port:UInt8, enabled:Bool)
     func receiveData(data:NSData)
+    
+    var delegate : FirmataDelegate! {get set}
 }

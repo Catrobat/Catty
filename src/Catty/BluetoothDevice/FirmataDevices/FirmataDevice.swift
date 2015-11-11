@@ -26,7 +26,7 @@ import BluetoothHelper
 
 
 class FirmataDevice:BluetoothDevice,FirmataDelegate {
-    let firmata:Firmata = Firmata()
+    var firmata:Firmata = Firmata()
     
     var rxUUID: CBUUID { get { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") } }
     var txUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
@@ -35,8 +35,8 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
     var txCharacteristic:CBCharacteristic?
 
     //MARK: Init
-    override init(cbPeripheral: CBPeripheral, advertisements: [String : String], rssi: Int, test:Bool) {
-        super.init(cbPeripheral: cbPeripheral, advertisements: advertisements, rssi: rssi, test: test)
+    override init(peripheral: Peripheral) {
+        super.init(peripheral: peripheral)
         setFirmata()
     }
     func setFirmata() {

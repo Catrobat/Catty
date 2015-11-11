@@ -25,22 +25,16 @@ import Foundation
 extension ArduinoSendPWMValueBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
-        
-        return CBInstruction.Action(action: SKAction.runBlock(actionBlock()))
-    }
-    
-    func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
-        return{
+        return CBInstruction.ExecClosure{ (context, _) in
             let pinValue = Int(self.pin.interpretIntegerForSprite(object))
             let settingValue = Int(self.value.interpretDoubleForSprite(object))
-            
+                
             if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
                 arduino.setPWMArduinoPin(pinValue, value: settingValue)
             }
         }
-        
     }
     
     func preCalculate() {
