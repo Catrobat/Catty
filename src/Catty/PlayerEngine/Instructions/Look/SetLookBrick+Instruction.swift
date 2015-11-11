@@ -64,5 +64,4 @@ extension SetLookBrick: CBInstructionProtocol {
             }
         }
     }
-
 }

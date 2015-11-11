@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeVolumeByNBrick: CBInstructionProtocol {
+extension ChangeVolumeByNBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         
@@ -37,6 +37,13 @@ extension ChangeVolumeByNBrick: CBInstructionProtocol {
             context.state = .Runnable
         }
         
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        
+        self.volume.interpretDoubleForSprite(object)
     }
     
 }

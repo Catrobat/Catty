@@ -149,4 +149,5 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
         }
         return false
     }
+
 }

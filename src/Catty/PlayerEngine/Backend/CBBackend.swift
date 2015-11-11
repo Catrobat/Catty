@@ -36,8 +36,8 @@ final class CBBackend: CBBackendProtocol {
         sequenceList.forEach {
             switch $0 {
             case let opSequence as CBOperationSequence:
-                instructionList += opSequence.operationList.map {
-                    return _instructionForBrick($0.brick)
+                for operation in opSequence.operationList {
+                    instructionList += _instructionForBrick(operation.brick)
                 }
             case let ifSequence as CBIfConditionalSequence:
                 instructionList += self._instructionsForIfSequence(ifSequence)
@@ -50,12 +50,18 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionForBrick(brick: Brick) -> CBInstruction {
+    private func _instructionForBrick(brick: Brick) -> [CBInstruction] {
         // check whether conforms to CBInstructionProtocol (i.e. brick extension)
-        if let instructionBrick = brick as? CBInstructionProtocol {
-            return instructionBrick.instruction() // actions that have been ported to Swift yet
+        guard let instructionBrick = brick as? CBInstructionProtocol else {
+            return [.Action(action: brick.action())] // fallback: poor old ObjC fellow... ;)
         }
-        return .Action(action: brick.action()) // fallback: poor old ObjC fellow... ;)
+        if (brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0 {
+            guard let formulaBufferBrick = brick as? CBFormulaBufferProtocol else {
+                 fatalError("All bricks with formulas should implement the CBFormulaBufferProtocol")
+            }
+            return [.Buffer(brick: formulaBufferBrick), instructionBrick.instruction()]
+        }
+        return [instructionBrick.instruction()] // actions that have been ported to Swift yet
     }
 
     private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence) -> [CBInstruction] {

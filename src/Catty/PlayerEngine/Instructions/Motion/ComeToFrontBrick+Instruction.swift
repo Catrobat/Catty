@@ -49,6 +49,4 @@ extension ComeToFrontBrick: CBInstructionProtocol {
         }
         
     }
-
-
 }

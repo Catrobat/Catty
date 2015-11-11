@@ -56,7 +56,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
             if(delegate!.deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        Util.alertWithTitle("Connection not possible", andText:  "Please try resetting the device and try again.")
+                        Util.alertWithTitle(klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting )
                         self.delegate?.dismissView()
                     })
                     return
@@ -65,7 +65,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
             } else if (delegate!.deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     dispatch_async(dispatch_get_main_queue(), {
-                        Util.alertWithTitle("Connection not possible", andText:  "Please try resetting the device and try again.")
+                        Util.alertWithTitle(klocalizedBluetoothConnectionNotPossible, andText:  klocalizedBluetoothConnectionTryResetting)
                         self.delegate?.dismissView()
                     })
                     return
@@ -83,7 +83,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
     func deviceFailedConnection(){
         dispatch_async(dispatch_get_main_queue(), {
             self.loadingView.hide()
-            Util.alertWithTitle("Connection failed", andText:  "Cannot connect to device, please try resetting the device and try again.")
+            Util.alertWithTitle(klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothCannotConnect)
             self.updateWhenActive()
         })
     }
@@ -91,7 +91,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
     func deviceNotResponding(){
         dispatch_async(dispatch_get_main_queue(), {
             self.loadingView.hide()
-            Util.alertWithTitle("Connection failed", andText:  "Cannot connect to device. The device is not responding.")
+            Util.alertWithTitle(klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothNotResponding)
             self.updateWhenActive()
         })
     }
@@ -99,7 +99,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
     func giveUpConnectionToDevice(){
         dispatch_async(dispatch_get_main_queue(), {
             self.loadingView.hide()
-            Util.alertWithTitle("Connection Lost", andText:  "Device disconnected.")
+            Util.alertWithTitle(klocalizedBluetoothConnectionLost, andText:  klocalizedBluetoothDisconnected)
             self.updateWhenActive()
         })
     }

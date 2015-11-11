@@ -50,38 +50,7 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func startScan(){
-        //    let afterPeripheralDiscovered = {(peripheral:Peripheral) -> Void in
-        //       dispatch_async(dispatch_get_main_queue()){
-        //      self.updateWhenActive()
-        //      }
-        //
-        //      peripheral.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
-        //
-        //      let connectionPromise = {(peripheral:Peripheral, connectionEvent:ConnectionEvent) -> Void in
-        //        switch connectionEvent {
-        //        case .Connect:
-        //          self.updateWhenActive()
-        //        case .Timeout:
-        //          peripheral.reconnect()
-        //          self.updateWhenActive()
-        //        case .Disconnect:
-        //          peripheral.reconnect()
-        //          self.updateWhenActive()
-        //        case .ForceDisconnect:
-        //          self.updateWhenActive()
-        //        case .Failed:
-        //            NSLog("Fail")
-        //        case .GiveUp:
-        //          peripheral.disconnect()
-        //          self.updateWhenActive()
-        //        }
-        //      }
-        //      BluetoothCommunication.sharedInstance.afterConnection = connectionPromise;
-        //      NSLog("NAME:\(peripheral.name)")
-        //    }
-        //    BluetoothCommunication.sharedInstance.afterPeripheralDiscovered = afterPeripheralDiscovered
-        //  CentralManager.sharedInstance.startScanning()
-        
+
         let afterPeripheralDiscovered = {(peripheral:Peripheral) -> Void in
             
             

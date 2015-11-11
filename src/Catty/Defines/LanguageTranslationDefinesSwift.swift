@@ -22,3 +22,13 @@
 
 import Foundation
 
+let klocalizedBluetoothSearch = NSLocalizedString("Search", comment: "bluetooth")
+let klocalizedBluetoothSelectPhiro = NSLocalizedString("Select Phiro", comment: "bluetooth")
+let klocalizedBluetoothSelectArduino = NSLocalizedString("Select Arduino", comment: "bluetooth")
+let klocalizedBluetoothConnectionNotPossible = NSLocalizedString("Connection not possible", comment: "bluetooth")
+let klocalizedBluetoothConnectionTryResetting = NSLocalizedString("Please try resetting the device and try again.", comment: "bluetooth")
+let klocalizedBluetoothConnectionFailed = NSLocalizedString("Connection failed", comment: "bluetooth")
+let klocalizedBluetoothCannotConnect = NSLocalizedString("Cannot connect to device, please try resetting the device and try again.", comment: "bluetooth")
+let klocalizedBluetoothNotResponding = NSLocalizedString("Cannot connect to device. The device is not responding.", comment: "bluetooth")
+let klocalizedBluetoothConnectionLost = NSLocalizedString("Connection Lost", comment: "bluetooth")
+let klocalizedBluetoothDisconnected = NSLocalizedString( "Device disconnected.", comment: "bluetooth")

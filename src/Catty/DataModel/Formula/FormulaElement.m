@@ -1054,6 +1054,19 @@
                 resources |= kNoResources;
         }
     }
+    if (self.type == FUNCTION) {
+        Function function = [Functions getFunctionByValue:self.value];
+        switch (function) {
+            case ARDUINODIGITAL:
+            case ARDUINOANALOG:
+                resources |= kBluetoothArduino;
+                break;
+                
+            default:
+                resources |= kNoResources;
+                break;
+        }
+    }
     return resources;
 }
 

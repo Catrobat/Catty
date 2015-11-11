@@ -48,5 +48,6 @@ extension PhiroMotorStopBrick :CBInstructionProtocol {
         }
         
     }
+
     
 }
