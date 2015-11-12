@@ -190,6 +190,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         let value = getAnalogPin(sensor)
         return Double(value)
     }
+    
     private func getAnalogPin(analogPinNumber: Int) -> Double {
         switch (analogPinNumber) {
         case PIN_SENSOR_FRONT_LEFT:
@@ -210,18 +211,6 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
 
     // MARK: Sensor Values
-    
-    override func reportSensorData(report:Bool) {
-        if (isReportingSensorData == report) {
-            return;
-        }
-        
-        isReportingSensorData = report;
-        
-        for (var i:Int = MIN_SENSOR_PIN; i <= MAX_SENSOR_PIN; i++) {
-            reportAnalogArduinoPin(i,report: report)
-        }
-    }
     
     private func getFrontLeftSensor() -> Int {
         return phiroHelper.frontLeftSensor;
