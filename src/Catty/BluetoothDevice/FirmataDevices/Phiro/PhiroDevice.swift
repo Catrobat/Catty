@@ -117,9 +117,9 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     
     func setLeftRGBLightColor(red:Int,green:Int,blue:Int){
-        let redChecked = self.checkRGBValue(red);
-        let greenChecked = self.checkRGBValue(green);
-        let blueChecked = self.checkRGBValue(blue);
+        let redChecked = checkValue(red)
+        let greenChecked = checkValue(green)
+        let blueChecked = checkValue(blue)
         
         self.sendAnalogFirmataMessage(PIN_RGB_RED_LEFT, value: redChecked)
         self.sendAnalogFirmataMessage(PIN_RGB_GREEN_LEFT, value: greenChecked)
@@ -127,9 +127,9 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     
     func setRightRGBLightColor(red:Int,green:Int,blue:Int){
-        let redChecked = self.checkRGBValue(red);
-        let greenChecked = self.checkRGBValue(green);
-        let blueChecked = self.checkRGBValue(blue);
+        let redChecked = checkValue(red)
+        let greenChecked = checkValue(green);
+        let blueChecked = checkValue(blue);
         
         self.sendAnalogFirmataMessage(PIN_RGB_RED_RIGHT, value: redChecked)
         self.sendAnalogFirmataMessage(PIN_RGB_GREEN_RIGHT, value: greenChecked)
@@ -150,18 +150,6 @@ class Phiro: FirmataDevice,PhiroProtocol {
         }
         
         return (Int) (Double(percent) * 2.55);
-    }
-    
-    private func checkRGBValue(value:Int)->Int{
-        if (value > 255) {
-            return 255;
-        }
-        
-        if (value < 0) {
-            return 0;
-        }
-        
-        return value;
     }
     
     private func sendAnalogFirmataMessage(pin:Int,value:Int){
@@ -220,6 +208,8 @@ class Phiro: FirmataDevice,PhiroProtocol {
             return 0
         }
     }
+
+    // MARK: Sensor Values
     
     private func getFrontLeftSensor() -> Int {
         return phiroHelper.frontLeftSensor;

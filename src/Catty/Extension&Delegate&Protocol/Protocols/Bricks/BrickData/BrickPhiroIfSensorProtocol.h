@@ -21,45 +21,13 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "PhiroDefines.h"
 
-typedef enum {
-    X_ACCELERATION = 900,
-    Y_ACCELERATION,
-    Z_ACCELERATION,
-    COMPASS_DIRECTION,
-    X_INCLINATION,
-    Y_INCLINATION,
-    OBJECT_X,
-    OBJECT_Y,
-    OBJECT_GHOSTEFFECT,
-    OBJECT_BRIGHTNESS,
-    OBJECT_SIZE,
-    OBJECT_ROTATION,
-    OBJECT_LAYER,
-    LOUDNESS,
-    FACE_DETECTED,
-    FACE_SIZE,
-    FACE_POSITION_X,
-    FACE_POSITION_Y,
-    phiro_front_left,
-    phiro_front_right,
-    phiro_side_left,
-    phiro_side_right,
-    phiro_bottom_left,
-    phiro_bottom_right,
-    arduino_analogPin,
-    arduino_digitalPin
-} Sensor;
+@class Brick;
 
-@interface SensorManager : NSObject
+@protocol BrickPhiroIfSensorProtocol <NSObject>
 
-+ (Sensor) sensorForString:(NSString*)sensor;
-
-+ (NSString*) stringForSensor:(Sensor)sensor;
-
-+ (BOOL) isObjectSensor:(Sensor)sensor;
-
-+ (NSString *)getExternName:(NSString *)sensorName;
-
+- (NSString*)sensorForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setSensor:(NSString*)senor forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

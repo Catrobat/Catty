@@ -42,6 +42,7 @@
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
+#import "BrickCellPhiroIfSensorData.h"
 #import "LoopEndBrickCell.h"
 #import "BrickManager.h"
 
@@ -127,7 +128,8 @@
 @[@"{MOTOR}",@"{FLOAT;range=(-inf,inf)}"],     /* move forward         */\
 @[@"{MOTOR}",@"{FLOAT;range=(-inf,inf)}"],     /* move backward         */\
 @[@"{SOUND}",@"{FLOAT;range=(-inf,inf)}"],     /* play tone         */\
-@[@"{LIGHT}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"]     /* move forward         */\
+@[@"{LIGHT}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],     /*light         */\
+@[@"{PHIROIF}"],     /*phiro if         */\
 ]
 // ----------------- REFACTOR END -------------------
 
@@ -503,6 +505,9 @@
             } else if ([afterLabelParam rangeOfString:@"TONE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroToneData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            }else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellPhiroIfSensorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             }else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();

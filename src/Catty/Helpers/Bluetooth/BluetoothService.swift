@@ -255,8 +255,7 @@ public class BluetoothService:NSObject {
                                 print("SHOULD NEVER HAPPEN")
                                 return
                             }
-                        // TODO: Enable when reset is finished
-//                            arduino.reportSensorData(true)
+                            arduino.reportSensorData(true)
                             BluetoothService.swiftSharedInstance.arduino = arduino
                             manager.checkStart()
                             return
@@ -334,6 +333,7 @@ public class BluetoothService:NSObject {
                         guard let manager = self.selectionManager else {
                             return
                         }
+                        phiro.reportSensorData(true)
                         BluetoothService.swiftSharedInstance.phiro = phiro
                         manager.checkStart()
                         return
@@ -365,8 +365,6 @@ public class BluetoothService:NSObject {
     	guard let arduinoReset = arduino else {
     		return
     	}
-        //arduinoReset.reportSensorData(false)
-    	//TODO should we reset?!
         arduinoReset.resetArduino()
     }
 

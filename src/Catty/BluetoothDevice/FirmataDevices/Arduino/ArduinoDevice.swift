@@ -52,9 +52,10 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     override var rxUUID: CBUUID { get { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") } }
     override var txUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
     
-    private var digitalValue:Int = 0
-    private var analogValue:Double = 0
-    private var isReportingSensorData = false
+
+    var digitalValue:Int = 0
+    var analogValue:Double = 0
+    var isReportingSensorData = false
     internal var totalPins = 0
     internal var analogMapping = NSMutableDictionary()
     internal var pinsArray = [[String:Any]]()
@@ -170,10 +171,6 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         }
     }
     
-    private func reportFirmwareVersion(){
-        firmata.reportFirmware()
-    }
-    
     //MARK: Reset
     func resetArduino(){
         reportSensorData(false)
@@ -200,7 +197,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     
     //MARK: Helper
     
-        private func checkDigitalPinCapability(pinNumber:UInt8,neededMode:PinMode) -> Bool {
+    private func checkDigitalPinCapability(pinNumber:UInt8,neededMode:PinMode) -> Bool {
         if(pinsArray.count > 0){
             let pinCheck = "D\(pinNumber)"
             for pin:[String:Any] in pinsArray {

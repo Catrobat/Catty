@@ -235,17 +235,17 @@
 
 - (NSString*)projectPath
 {
-    return [Program projectPathForProgramWithName:self.header.programName programID:self.header.programID];
+    return [Program projectPathForProgramWithName:[Util replaceBlockedCharactersForString:self.header.programName] programID:self.header.programID];
 }
 
 + (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
-    return [NSString stringWithFormat:@"%@%@/", [Program basePath], [[self class] programDirectoryNameForProgramName:programName programID:programID]];
+    return [NSString stringWithFormat:@"%@%@/", [Program basePath], [[self class] programDirectoryNameForProgramName:[Util replaceBlockedCharactersForString:programName] programID:programID]];
 }
 
 - (void)removeFromDisk
 {
-    [Program removeProgramFromDiskWithProgramName:self.header.programName programID:self.header.programID];
+    [Program removeProgramFromDiskWithProgramName:[Util enableBlockedCharactersForString:self.header.programName] programID:self.header.programID];
 }
 
 + (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName

@@ -240,4 +240,8 @@
 
 + (NSDictionary*)defaultBrickStatisticDictionary;
 
++ (NSString*)replaceBlockedCharactersForString:(NSString*)string;
+
++ (NSString*)enableBlockedCharactersForString:(NSString*)string;
+
 @end
