@@ -25,24 +25,6 @@ import CoreBluetooth
 import BluetoothHelper
 @testable import Pocket_Code
 
-class peripheralMock: CBPeripheral {
-    init(test:Bool){
-        //HACK
-    }
-    
-    override func writeValue(data: NSData, forCharacteristic characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
-        
-    }
-}
-
-class ArduinoTestMock: ArduinoPropertyProtocol {
-    internal var totalPins = 3
-    internal var analogMapping = NSMutableDictionary(objects: [NSNumber(unsignedChar:0),NSNumber(unsignedChar:1),NSNumber(unsignedChar:2),NSNumber(unsignedChar:3)], forKeys: [NSNumber(unsignedChar:0),NSNumber(unsignedChar:1),NSNumber(unsignedChar:2),NSNumber(unsignedChar:3)])
-    internal var pinsArray = [[String:Any]]()
-    
-    internal let arduinoHelper:ArduinoHelper = ArduinoHelper()
-}
-
 class ArduinoTests: XCTestCase {
     
     var mock = ArduinoTestMock()

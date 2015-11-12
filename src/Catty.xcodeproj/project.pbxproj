@@ -182,6 +182,7 @@
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
 		926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroTests.swift */; };
+		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0BC1BC39AD60027DEC0 /* BluetoothBrick.m */; };
@@ -1070,6 +1071,7 @@
 		9235038F1BA707DE00021F6A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		926197EF1BF3249E006D1A61 /* ArduinoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoTests.swift; sourceTree = "<group>"; };
 		926197F31BF32500006D1A61 /* PhiroTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroTests.swift; sourceTree = "<group>"; };
+		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
 		9266F95D1BDFBE3C0034828B /* ProgramVariablesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramVariablesManager.h; sourceTree = "<group>"; };
 		9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramVariablesManager.m; sourceTree = "<group>"; };
 		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
@@ -2966,6 +2968,14 @@
 			path = Upload;
 			sourceTree = "<group>";
 		};
+		926198001BF48384006D1A61 /* BluetoothMocks */ = {
+			isa = PBXGroup;
+			children = (
+				926198011BF48384006D1A61 /* BluetoothMocks.swift */,
+			);
+			path = BluetoothMocks;
+			sourceTree = "<group>";
+		};
 		9266F95C1BDFBE3C0034828B /* ProgramVariablesManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3113,6 +3123,7 @@
 		92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */ = {
 			isa = PBXGroup;
 			children = (
+				926198001BF48384006D1A61 /* BluetoothMocks */,
 				92BCDC811BF1DE2A00F9CB23 /* Arduino */,
 				92BCDC821BF1DE2A00F9CB23 /* Firmata */,
 				92BCDC841BF1DE2A00F9CB23 /* Phiro */,
@@ -6331,6 +6342,7 @@
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
+				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,

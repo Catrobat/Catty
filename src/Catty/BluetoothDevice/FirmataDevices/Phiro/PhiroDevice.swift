@@ -60,7 +60,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
     override var rxUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
     override var txUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
     
-    private let phiroHelper:PhiroHelper = PhiroHelper()
+    internal let phiroHelper:PhiroHelper = PhiroHelper()
     private var toneTimer:NSTimer = NSTimer()
     private var isReportingSensorData = false
     
@@ -98,7 +98,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     
     func moveRightMotorBackward(speed:Int){
-        self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
+        self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
     }
     
     func stopLeftMotor(){
@@ -167,6 +167,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
     private func sendAnalogFirmataMessage(pin:Int,value:Int){
         let analogPin:UInt8 = UInt8(checkValue(pin))
         let value :UInt8 = UInt8(checkValue(value))
+        firmata.writePinMode(PinMode.PWM, pin: analogPin)
         firmata.writePWMValue(value, pin: analogPin)
     }
 
