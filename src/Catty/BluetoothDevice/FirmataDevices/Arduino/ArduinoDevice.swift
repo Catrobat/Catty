@@ -144,6 +144,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         if checkDigitalPinCapability(pin, neededMode: PinMode.PWM){
             firmata.writePinMode(PinMode.PWM, pin: pin)
             firmata.writePWMValue(checkedValue, pin: pin)
+            setPortValue(Int(pin), value: Int(checkedValue))
         }
     }
     
@@ -160,6 +161,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             reportAnalogArduinoPin(i,report: report)
         }
     }
+    
     private func reportAnalogArduinoPin(analogPinNumber:Int,report:Bool) {
         let pin: UInt8 = UInt8(checkValue(analogPinNumber))
         if checkAnalogPinCapability(pin, neededMode: PinMode.Unknown) {
@@ -304,8 +306,8 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             if(i<totalDigital){
                 pin["name"] = "D\(i)"
             }else{
-                k++
                 pin["name"] = "A\(k)"
+                k++
             }
             pin["modes"] = modes
             pin["firmatapin"] = i

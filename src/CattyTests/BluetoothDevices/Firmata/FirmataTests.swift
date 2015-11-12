@@ -99,21 +99,29 @@ class FirmataDelegateMock: FirmataDelegate {
 class FirmataMock:Firmata{
     
     var receivedPin:UInt8 = 0
+    var receivedPort:UInt8 = 0
+    var receivedValue:UInt8 = 0
+    var receivedPinMode:PinMode = .Unknown
+    var receivedString:String = ""
+    var receivedPinState:PinState = .Low
+    var receivedBool:Bool = false
     
     
     override func writePinMode(newMode:PinMode, pin:UInt8){
         receivedPin = pin
+        receivedPinMode = newMode
     }
     override func reportVersion(){
+        //tested in FirmataTests
     }
     override func reportFirmware(){
-        
+        //tested in FirmataTests
     }
     override func analogMappingQuery(){
-        
+        //tested in FirmataTests
     }
     override func capabilityQuery(){
-        
+        //tested in FirmataTests
     }
     override func pinStateQuery(pin:UInt8){
         receivedPin = pin
@@ -122,28 +130,33 @@ class FirmataMock:Firmata{
         receivedPin = pin
     }
     override func stringData(string:String){
-        
+        receivedString = string
     }
     override func samplingInterval(intervalMilliseconds:UInt8){
         
     }
     override func writePWMValue(value:UInt8, pin:UInt8){
         receivedPin = pin
+        receivedValue = value
     }
     override func writePinState(newState: PinState, pin:UInt8){
         receivedPin = pin
+        receivedPinState = newState
     }
     override func setAnalogValueReportingforPin(pin:UInt8, enabled:Bool){
         receivedPin = pin
+        receivedBool = enabled
     }
     override func setDigitalStateReportingForPin(digitalPin:UInt8, enabled:Bool){
         receivedPin = digitalPin
+        receivedBool = enabled
     }
     override func setDigitalStateReportingForPort(port:UInt8, enabled:Bool){
-        receivedPin = port
+        receivedPort = port
+        receivedBool = enabled
     }
     override func receiveData(data:NSData){
-        
+        //tested in FirmataTests
     }
 }
 
