@@ -28,7 +28,7 @@ import BluetoothHelper
 class ArduinoTests: XCTestCase {
     
     var mock = ArduinoTestMock()
-    var arduinoTest = ArduinoDevice(peripheral: Peripheral(cbPeripheral:peripheralMock(test: true), advertisements:[String:String](), rssi: 0))
+    var arduinoTest = ArduinoDevice(peripheral: Peripheral(cbPeripheral:PeripheralMock(test: true), advertisements:[String:String](), rssi: 0))
     
     override func setUp( ) {
         super.setUp()
@@ -137,103 +137,148 @@ class ArduinoTests: XCTestCase {
     //MARK: ArduinoProtocolTests
     //digitalPin
     func testSetDigitalPin4To1() {
-        arduinoTest.setDigitalArduinoPin(4, pinValue: 1)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[4], 1 , "Pin is wrong")
+        //Given
+        let pin = 4
+        let value = 1
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], value , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 4 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
     }
     func testSetDigitalPin4To0() {
-        arduinoTest.setDigitalArduinoPin(4, pinValue: 0)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[4], 0 , "Pin is wrong")
+        //Given
+        let pin = 4
+        let value = 0
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], value , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 4 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedPinState, PinState.Low , "PinState is wrong")
     }
     func testSetDigitalPin4To5() {
-        arduinoTest.setDigitalArduinoPin(4, pinValue: 5)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[4], 1 , "Pin is wrong")
+        //Given
+        let pin = 4
+        let value = 5
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], 1 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 4 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
     }
     func testSetDigitalPin4ToMinus3() {
-        arduinoTest.setDigitalArduinoPin(4, pinValue: -3)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[4], 0 , "Pin is wrong")
+        //Given
+        let pin = 4
+        let value = -3
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], 0 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 4 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedPinState, PinState.Low , "PinState is wrong")
     }
     // pwm pin
-    func testSetPWMPin3To1() {
-        arduinoTest.setPWMArduinoPin(3, value: 25)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[3], 25 , "Pin is wrong")
+    func testSetPWMPin3To25() {
+        //Given
+        let pin = 3
+        let value = 25
+        //When
+        arduinoTest.setPWMArduinoPin(pin, value: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin],value , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 25,"PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, UInt8(value),"PinValue is wrong")
     }
     func testSetPWMPin3ToMinus20() {
-        arduinoTest.setPWMArduinoPin(3, value: -20)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[3], 0 , "Pin is wrong")
+        //Given
+        let pin = 3
+        let value = -20
+        //When
+        arduinoTest.setPWMArduinoPin(pin, value: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin],0 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0,"PinValue is wrong")
     }
     
     func testSetPWMPin3To278() {
-        arduinoTest.setPWMArduinoPin(3, value: 278)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[3], 255 , "Pin is wrong")
+        //Given
+        let pin = 3
+        let value = 278
+        //When
+        arduinoTest.setPWMArduinoPin(pin, value: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin],255 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255,"PinValue is wrong")
     }
     
     //check mapping
     func testSetDigitalPin0WithMapping (){
+        //Given
         arduinoTest.pinsArray = mock.pinsArray
-        arduinoTest.setDigitalArduinoPin(0, pinValue: 1)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[0], 1 , "Pin is wrong")
+        let pin = 0
+        let value = 1
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], value , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 0 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
     }
     
     func testSetDigitalPin1WithMapping (){
+        //Given
         arduinoTest.pinsArray = mock.pinsArray
-        arduinoTest.setDigitalArduinoPin(1, pinValue: 1)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[0], 0 , "Pin is wrong")
+        let pin = 1
+        let value = 1
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], 0 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -245,9 +290,14 @@ class ArduinoTests: XCTestCase {
     }
     
     func testSetDigitalPin2WithMapping (){
+        //Given
         arduinoTest.pinsArray = mock.pinsArray
-        arduinoTest.setDigitalArduinoPin(2, pinValue: 34)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[2], 0 , "Pin is wrong")
+        let pin = 2
+        let value = 34
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], 0 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -259,9 +309,14 @@ class ArduinoTests: XCTestCase {
     }
     
     func testSetDigitalPin3WithMapping (){
+        //Given
         arduinoTest.pinsArray = mock.pinsArray
-        arduinoTest.setDigitalArduinoPin(3, pinValue: 1)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[3], 1 , "Pin is wrong")
+        let pin = 3
+        let value = 1
+        //When
+        arduinoTest.setDigitalArduinoPin(pin, pinValue: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], value , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -272,22 +327,32 @@ class ArduinoTests: XCTestCase {
     }
     
     func testSetPWMPin1WithMapping () {
+        //Given
         arduinoTest.pinsArray = mock.pinsArray
-        arduinoTest.setPWMArduinoPin(1, value: 1)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[1], 1 , "Pin is wrong")
+        let pin = 1
+        let value = 1
+        //When
+        arduinoTest.setPWMArduinoPin(pin, value: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], value , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 1 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin,UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedValue, 1,"PinValue is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, UInt8(value),"PinValue is wrong")
     }
     
     func testSetPWMPin2WithMapping () {
+        //Given
         arduinoTest.pinsArray = mock.pinsArray
-        arduinoTest.setPWMArduinoPin(2, value: 25)
-        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[2], 0 , "Pin is wrong")
+        let pin = 2
+        let value = 25
+        //When
+        arduinoTest.setPWMArduinoPin(pin, value: value)
+        //Then
+        XCTAssertEqual(arduinoTest.arduinoHelper.digitalValues[pin], 0 , "Pin is wrong")
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -300,98 +365,129 @@ class ArduinoTests: XCTestCase {
     //Test ArduinoProtocol getter
     
     func testGetDigitalArduinoPin0 () {
+        //Given
         fakeArduinoHelper()
-        let value = arduinoTest.getDigitalArduinoPin(0)
+        let pin = 0
+        //When
+        let value = arduinoTest.getDigitalArduinoPin(pin)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 0 , "Pin is wrong")
-        XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[0], "Value is wrong")
-        XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[0][0], "Value is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
+        XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[pin], "Value is wrong")
+        XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[0][pin], "Value is wrong")
     }
     
     func testGetDigitalArduinoPin4 () {
+        //Given
         fakeArduinoHelper()
-        let value = arduinoTest.getDigitalArduinoPin(4)
+        let pin = 4
+        //When
+        let value = arduinoTest.getDigitalArduinoPin(pin)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 4 , "Pin is wrong")
-        XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[4], "Value is wrong")
-        XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[0][4], "Value is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
+        XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[pin], "Value is wrong")
+        XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[0][pin], "Value is wrong")
     }
     
     func testGetDigitalArduinoPin12 () {
+        //Given
         fakeArduinoHelper()
-        let value = arduinoTest.getDigitalArduinoPin(12)
+        let pin = 12
+        //When
+        let value = arduinoTest.getDigitalArduinoPin(pin)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[12], "Value is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
+        XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[pin], "Value is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[1][4], "Value is wrong")
     }
     
     func testGetAnalogArduinoPin0 () {
+        //Given
         fakeArduinoHelper()
-        let value = arduinoTest.getAnalogArduinoPin(0)
+        let pin = 0
+        //When
+        let value = arduinoTest.getAnalogArduinoPin(pin)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 0 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.analogPin0, "Value is wrong")
     }
     
     func testGetAnalogArduinoPin4 () {
+        //Given
         fakeArduinoHelper()
-        let value = arduinoTest.getAnalogArduinoPin(4)
+        let pin = 4
+        //When
+        let value = arduinoTest.getAnalogArduinoPin(pin)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 4 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.analogPin4, "Value is wrong")
     }
     
     func testGetAnalogArduinoPin7 () {
+        //Given
         fakeArduinoHelper()
-        let value = arduinoTest.getAnalogArduinoPin(7)
+        let pin = 7
+        //When
+        let value = arduinoTest.getAnalogArduinoPin(pin)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, 7 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(Int(value), 0, "Value is wrong")
 
     }
     func testGetAnalogPin0 () {
+        //Given
         fakeArduinoHelper()
+        //When
         let value = arduinoTest.getAnalogPin(0)
-
+        //Then
         XCTAssertEqual(Int(value), mock.arduinoHelper.analogPin0, "Value is wrong")
     }
     
     func testGetAnalogPin4 () {
+        //Given
         fakeArduinoHelper()
+        //When
         let value = arduinoTest.getAnalogPin(4)
-
+        //Then
         XCTAssertEqual(Int(value), mock.arduinoHelper.analogPin4, "Value is wrong")
     }
     
     func testGetAnalogPin7 () {
+        //Given
         fakeArduinoHelper()
+        //When
         let value = arduinoTest.getAnalogPin(7)
-
+        //Then
         XCTAssertEqual(Int(value), 0, "Value is wrong")
-        
     }
     
     func testReportAnalog () {
+        //When
         arduinoTest.reportSensorData(true)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -402,8 +498,11 @@ class ArduinoTests: XCTestCase {
     }
     
     func testStopReportAnalog () {
+        //Given
         arduinoTest.reportSensorData(true)
+        //When
         arduinoTest.reportSensorData(false)
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -414,7 +513,9 @@ class ArduinoTests: XCTestCase {
     }
     
     func testResetArduino () {
+        //When
         arduinoTest.resetArduino()
+        //Then
         guard let firmataMock = arduinoTest.firmata as? FirmataMock else {
             XCTAssert(true)
             return
@@ -428,6 +529,8 @@ class ArduinoTests: XCTestCase {
     }
     
     func testDidUpdateCapability () {
+        //Given
+        
         /////
         // Pin 0 Digital - > .Output
         // Pin 1 Digital - > .PWM
@@ -450,7 +553,11 @@ class ArduinoTests: XCTestCase {
         analogMapping["test"] = "test"
         analogMapping["test"] = "test"
         arduinoTest.analogMapping = analogMapping
+        
+        //When
         arduinoTest.didUpdateCapability(pins)
+        
+        //Then
         var i = 0
         for _ in arduinoTest.pinsArray {
             let arduinoTestPin = arduinoTest.pinsArray[i]
@@ -460,7 +567,40 @@ class ArduinoTests: XCTestCase {
             XCTAssertEqual(arduinoTestPin["firmatapin"] as? Int, mockTestPin["firmatapin"] as? Int, "Capability-firmataPin is wrong")
             XCTAssertEqual((arduinoTestPin["modes"] as? [Int:Int])!, (mockTestPin["modes"] as? [Int:Int])!, "Capability-mode is wrong")
         }
-        
-        
+    }
+    
+    //MARK: FirmataDevice Sending
+    
+    func testFirmataDeviceSending () {
+        //Given
+        let name = "test"
+        let data = name.dataUsingEncoding(NSASCIIStringEncoding)
+        arduinoTest.txCharacteristic = CharacteristicMock(test: true)
+        //When
+        arduinoTest.sendData(data!)
+        //Then
+        guard let peripheralMock = arduinoTest.cbPeripheral as? PeripheralMock else {
+            XCTAssert(true)
+            return
+        }
+
+        XCTAssertEqual(peripheralMock.dataToSend,data,"Data is wrong")
+    }
+    
+    func testFirmataDeviceSending2 () {
+        //Given
+        let name = "testtesttesttesttesttest"
+        let data = name.dataUsingEncoding(NSASCIIStringEncoding)
+        arduinoTest.txCharacteristic = CharacteristicMock(test: true)
+        //When
+        arduinoTest.sendData(data!)
+        //Then
+        guard let peripheralMock = arduinoTest.cbPeripheral as? PeripheralMock else {
+            XCTAssert(true)
+            return
+        }
+        let checkName = "test"
+        let checkData = checkName.dataUsingEncoding(NSASCIIStringEncoding)
+        XCTAssertEqual(peripheralMock.dataToSend,checkData,"Data is wrong")
     }
 }

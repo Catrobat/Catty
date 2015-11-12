@@ -158,14 +158,30 @@ class FirmataMock:Firmata{
     }
 }
 
-class peripheralMock: CBPeripheral {
+class PeripheralMock: CBPeripheral {
+    
+    var dataToSend:NSData = NSData()
     init(test:Bool){
         //HACK
     }
     
     override func writeValue(data: NSData, forCharacteristic characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
-        
+        dataToSend = data
     }
+}
+
+class CharacteristicMock: CBCharacteristic {
+    
+    init(test:Bool){
+        //HACK
+//        self.properties = CBCharacteristicProperties(CBCharacteristicProperties.WriteWithoutResponse.rawValue)
+    
+    }
+    
+    override internal var properties: CBCharacteristicProperties {
+        return CBCharacteristicProperties(rawValue: CBCharacteristicProperties.WriteWithoutResponse.rawValue)
+    }
+
 }
 
 class ArduinoTestMock: ArduinoPropertyProtocol {

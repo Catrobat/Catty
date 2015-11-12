@@ -204,17 +204,17 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     private func getAnalogPin(analogPinNumber: Int) -> Double {
         switch (analogPinNumber) {
-        case 0:
+        case PIN_SENSOR_FRONT_LEFT:
             return Double(getFrontLeftSensor())
-        case 1:
+        case PIN_SENSOR_FRONT_RIGHT:
             return Double(getFrontRightSensor())
-        case 2:
+        case PIN_SENSOR_SIDE_LEFT:
             return Double(getSideLeftSensor())
-        case 3:
+        case PIN_SENSOR_SIDE_RIGHT:
             return Double(getSideRightSensor())
-        case 4:
+        case PIN_SENSOR_BOTTOM_LEFT:
             return Double(getBottomLeftSensor())
-        case 5:
+        case PIN_SENSOR_BOTTOM_RIGHT:
             return Double(getBottomRightSensor())
         default:
             return 0
