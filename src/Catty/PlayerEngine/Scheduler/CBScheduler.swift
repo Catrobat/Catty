@@ -186,6 +186,7 @@ final class CBScheduler: CBSchedulerProtocol {
             }
             dispatch_async(queue!, {
                 brick.preCalculate()
+                print("preCalculate")
                 self._availableBufferQueues += queue!
                 dispatch_async(dispatch_get_main_queue()) {
                     self.runNextInstructionOfContext(context)

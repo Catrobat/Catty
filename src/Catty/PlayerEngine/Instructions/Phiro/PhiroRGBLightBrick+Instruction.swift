@@ -48,7 +48,9 @@ extension PhiroRGBLightBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
                 phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 break;
-            }        }
+            }
+            context.state = .Runnable
+        }
         
     }
     

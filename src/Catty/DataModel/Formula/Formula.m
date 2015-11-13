@@ -112,6 +112,11 @@
 }
 
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite {
+    if (self.bufferedResult) {
+        double bufferedResult = self.bufferedResult.doubleValue;
+        self.bufferedResult = nil;
+        return bufferedResult;
+    }
     if (self.lastResult) {
         return self.lastResult.intValue;
     }
@@ -121,9 +126,15 @@
     }
     if ([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
+        if (([self getRequiredResources] & kBluetoothArduino) > 0) {
+            self.bufferedResult = (NSNumber*)returnValue;
+        }
         return (int)((NSNumber*)returnValue).doubleValue;
     }
     self.lastResult = [self.formulaTree isIdempotent] ? @(0) : nil;
+    if (([self getRequiredResources] & kBluetoothArduino) > 0) {
+        self.bufferedResult = @(0);
+    }
     return 0;
 }
 
@@ -145,12 +156,21 @@
 }
 
 - (NSString*)interpretString:(SpriteObject*)sprite {
+    if (self.bufferedResult) {
+        double bufferedResult = self.bufferedResult.doubleValue;
+        self.bufferedResult = nil;
+        return [NSString stringWithFormat:@"%lf", bufferedResult];
+    }
     if (self.lastResult) {
         return [NSString stringWithFormat:@"%lf", self.lastResult.doubleValue];
     }
+    
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     if([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
+        if (([self getRequiredResources] & kBluetoothArduino) > 0) {
+            self.bufferedResult = (NSNumber*)returnValue;
+        }
         return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
     } else {
         return @"";

@@ -478,6 +478,7 @@
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
     [[BluetoothService sharedInstance] setScenePresenter:nil];
+    [[BluetoothService sharedInstance] resetBluetoothDevice];
 }
 
 -(void)connectionLost

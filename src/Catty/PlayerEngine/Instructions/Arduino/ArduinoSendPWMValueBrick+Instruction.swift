@@ -34,6 +34,7 @@ extension ArduinoSendPWMValueBrick :CBInstructionProtocol,CBFormulaBufferProtoco
             if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
                 arduino.setPWMArduinoPin(pinValue, value: settingValue)
             }
+            context.state = .Runnable
         }
     }
     

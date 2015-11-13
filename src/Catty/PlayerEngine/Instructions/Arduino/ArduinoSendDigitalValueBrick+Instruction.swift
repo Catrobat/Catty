@@ -33,6 +33,7 @@ extension ArduinoSendDigitalValueBrick :CBInstructionProtocol,CBFormulaBufferPro
             if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
                 arduino.setDigitalArduinoPin(pinValue, pinValue: settingValue)
             }
+            context.state = .Runnable
         }
     }
     

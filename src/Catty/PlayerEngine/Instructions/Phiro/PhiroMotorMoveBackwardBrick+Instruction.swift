@@ -53,6 +53,7 @@ extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol,CBFormulaBufferProt
                     phiro.moveLeftMotorBackward(speedValue);
                 break;
             }
+            context.state = .Runnable
         }
     }
     

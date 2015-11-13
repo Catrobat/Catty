@@ -52,8 +52,8 @@ extension PhiroMotorMoveForwardBrick :CBInstructionProtocol,CBFormulaBufferProto
                     phiro.moveLeftMotorForward(speedValue);
                 break;
             }
+            context.state = .Runnable
         }
-        
     }
     
     func preCalculate() {

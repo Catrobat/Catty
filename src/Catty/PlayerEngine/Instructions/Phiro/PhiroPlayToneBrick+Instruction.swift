@@ -59,7 +59,9 @@ extension PhiroPlayToneBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
             case .TI:
                     phiro.playTone(494, duration: durationInterpretation);
                 break;
-            }        }
+            }
+            context.state = .Runnable
+        }
         
     }
     

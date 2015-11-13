@@ -175,14 +175,14 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func resetArduino(){
         reportSensorData(false)
         if(pinsArray.count > 0){
-            var i:Int = 0
-            for _:[String:Any] in pinsArray {
-                let pin = checkValue(i)
-                if(checkDigitalPinCapability(UInt8(pin), neededMode: PinMode.Output)){
-                  setDigitalArduinoPin(pin, pinValue: 0)
-                }
-                i++
-            }
+//            var i:Int = 0
+//            for _:[String:Any] in pinsArray {
+//                let pin = checkValue(i)
+//                if(checkDigitalPinCapability(UInt8(pin), neededMode: PinMode.Output)){
+//                  setDigitalArduinoPin(pin, pinValue: 0)
+//                }
+//                i++
+//            }
         } else {
             for (var i:Int = 2; i <= 11; i++) {
                 setDigitalArduinoPin(i, pinValue: 0)

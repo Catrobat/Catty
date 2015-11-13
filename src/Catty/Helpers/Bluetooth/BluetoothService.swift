@@ -111,7 +111,7 @@ public class BluetoothService:NSObject {
     
     func connectDevice(peri:Peripheral) {
      
-        let future = peri.connect(10, timeoutRetries: 4, disconnectRetries: 0, connectionTimeout: Double(4))
+        let future = peri.connect(10, timeoutRetries: 2, disconnectRetries: 0, connectionTimeout: Double(4))
         future.onSuccess {(peripheral, connectionEvent) in
    
             switch connectionEvent {
@@ -255,7 +255,7 @@ public class BluetoothService:NSObject {
                                 print("SHOULD NEVER HAPPEN")
                                 return
                             }
-                            arduino.reportSensorData(true)
+//                            arduino.reportSensorData(true)
                             BluetoothService.swiftSharedInstance.arduino = arduino
                             manager.checkStart()
                             return
@@ -333,7 +333,7 @@ public class BluetoothService:NSObject {
                         guard let manager = self.selectionManager else {
                             return
                         }
-                        phiro.reportSensorData(true)
+//                        phiro.reportSensorData(true)
                         BluetoothService.swiftSharedInstance.phiro = phiro
                         manager.checkStart()
                         return
@@ -353,21 +353,17 @@ public class BluetoothService:NSObject {
         
     }
     
-    func resetPhiro(){
-    	guard let phiroReset = phiro else {
-    		return
+    func resetBluetoothDevice(){
+        
+    	if let phiroReset = phiro {
+            phiroReset.reportSensorData(false)
+            phiroReset.resetPins()
     	}
-    	phiroReset.reportSensorData(false)
-    	phiroReset.resetPins()
-    }
-    
-    func resetArduino(){
-    	guard let arduinoReset = arduino else {
-    		return
-    	}
-        arduinoReset.resetArduino()
-    }
+        
+        if let arduinoReset = arduino {
+            arduinoReset.resetArduino()
+        }
 
-
+    }
     
 }
