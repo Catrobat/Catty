@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeTransparencyByNBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
+extension ChangeTransparencyByNBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
@@ -52,11 +52,4 @@ extension ChangeTransparencyByNBrick: CBInstructionProtocol,CBFormulaBufferProto
         }
 
     }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.changeTransparency.interpretIntegerForSprite(object)
-    }
-
 }

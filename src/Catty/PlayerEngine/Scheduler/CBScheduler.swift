@@ -92,7 +92,7 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
         var nextWaitClosures = [CBScheduleElement]()
-        var nextBufferElements = [CBBufferElement]()
+        var nextBufferElements = [CBFormulaBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
@@ -115,7 +115,7 @@ final class CBScheduler: CBSchedulerProtocol {
                         nextWaitClosures += (context, closure)
                     case let .Action(action):
                         nextActionElements += (context, action)
-                    case let .Buffer(brick):
+                    case let .FormulaBuffer(brick):
                         nextBufferElements += (context, brick)
                     case .InvalidInstruction:
                         context.state = .Runnable
@@ -185,7 +185,10 @@ final class CBScheduler: CBSchedulerProtocol {
                 _availableBufferQueues.removeFirst()
             }
             dispatch_async(queue!, {
-                brick.preCalculate()
+                let formulaArray = brick.getFormulas()
+                for formula:Formula in formulaArray {
+                    formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
+                }
                 print("preCalculate")
                 self._availableBufferQueues += queue!
                 dispatch_async(dispatch_get_main_queue()) {

@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension PhiroPlayToneBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
+extension PhiroPlayToneBrick :CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         guard let object = self.script?.object
@@ -63,12 +63,6 @@ extension PhiroPlayToneBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
             context.state = .Runnable
         }
         
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.durationFormula.interpretIntegerForSprite(object)
     }
     
 }

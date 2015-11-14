@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension PhiroRGBLightBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
+extension PhiroRGBLightBrick :CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         
@@ -64,14 +64,6 @@ extension PhiroRGBLightBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
         }
     
         return rgbValue;
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.redFormula.interpretIntegerForSprite(object)
-        self.greenFormula.interpretIntegerForSprite(object)
-        self.blueFormula.interpretIntegerForSprite(object)
     }
     
 }

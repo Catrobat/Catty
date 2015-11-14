@@ -45,6 +45,11 @@
     self.timesToRepeat = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.timesToRepeat];
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timesToRepeat = [[Formula alloc] initWithInteger:10];

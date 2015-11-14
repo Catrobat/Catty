@@ -131,3 +131,5 @@
 //#import "LanguageTranslationDefines.h"
 
 #import "ProgramDefines.h"
+
+#import "BrickFormulaProtocol.h"

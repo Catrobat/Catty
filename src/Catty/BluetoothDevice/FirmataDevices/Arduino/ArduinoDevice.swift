@@ -72,20 +72,6 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         return Arduino_UUID
     }
     
-    //MARK: receive Data
- 
-    override internal func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-//        super.peripheral(peripheral, didUpdateValueForCharacteristic: characteristic, error: error)
-        print("readValue")
-        if (characteristic == self.rxCharacteristic){
-            guard let data = characteristic.value else {
-                return
-            }
-            self.firmata.receiveData(data)
-        }
-    }
-
-    
     //MARK: Arduino Protocol
     func setDigitalArduinoPin(digitalPinNumber:Int, pinValue:Int){
         let pin:UInt8 = UInt8(checkValue(digitalPinNumber))

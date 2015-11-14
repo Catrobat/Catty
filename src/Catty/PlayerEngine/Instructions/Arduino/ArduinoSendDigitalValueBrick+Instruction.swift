@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension ArduinoSendDigitalValueBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
+extension ArduinoSendDigitalValueBrick :CBInstructionProtocol{
     
     func instruction() -> CBInstruction {
         guard let object = self.script?.object
@@ -35,13 +35,6 @@ extension ArduinoSendDigitalValueBrick :CBInstructionProtocol,CBFormulaBufferPro
             }
             context.state = .Runnable
         }
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.pin.interpretIntegerForSprite(object)
-        self.value.interpretDoubleForSprite(object)
     }
 
 }

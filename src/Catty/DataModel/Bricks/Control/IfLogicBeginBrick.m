@@ -44,6 +44,11 @@
     return self.ifCondition;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.ifCondition];
+}
+
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.ifCondition = formula;

@@ -62,6 +62,10 @@
     
     return nil;
 }
+- (NSArray*)getFormulas
+{
+    return @[self.redFormula,self.greenFormula,self.blueFormula];
+}
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {

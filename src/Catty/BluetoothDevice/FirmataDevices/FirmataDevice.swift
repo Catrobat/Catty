@@ -117,8 +117,19 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
         return (value);
     }
     
-    //MARK: SendData
+    //MARK: receive Data
+    override internal func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        //        super.peripheral(peripheral, didUpdateValueForCharacteristic: characteristic, error: error)
+        print("readValue")
+        if (characteristic == self.rxCharacteristic){
+            guard let data = characteristic.value else {
+                return
+            }
+            self.firmata.receiveData(data)
+        }
+    }
     
+    //MARK: SendData
     func sendData(data: NSData) {
         //Send data to peripheral
         

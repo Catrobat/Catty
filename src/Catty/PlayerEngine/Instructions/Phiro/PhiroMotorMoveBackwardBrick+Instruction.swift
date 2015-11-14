@@ -22,19 +22,13 @@
 
 import Foundation
 
-extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
+extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
         return CBInstruction.ExecClosure { (context, _) in
             let speedValue:Int = Int(self.formula.interpretIntegerForSprite(object))
-            //TODO
-            //            if (speedValue < MIN_SPEED) {
-            //                speedValue = MIN_SPEED;
-            //            } else if (speedValue > MAX_SPEED) {
-            //                speedValue = MAX_SPEED;
-            //            }
             
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else{
                 return
@@ -56,11 +50,5 @@ extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol,CBFormulaBufferProt
             context.state = .Runnable
         }
     }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.formula.interpretIntegerForSprite(object)
-    }
-    
+
 }
