@@ -113,7 +113,6 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func getAnalogArduinoPin(analogPinNumber:Int) -> Double {
         let pin: UInt8 = UInt8(checkValue(analogPinNumber))
         if checkAnalogPinCapability(pin, neededMode: PinMode.Unknown) {
-                self.firmata.writePinMode(PinMode.Input, pin: pin)
                 self.firmata.setAnalogValueReportingforPin(pin, enabled: true)
                 let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
                 BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
@@ -154,7 +153,6 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     private func reportAnalogArduinoPin(analogPinNumber:Int,report:Bool) {
         let pin: UInt8 = UInt8(checkValue(analogPinNumber))
         if checkAnalogPinCapability(pin, neededMode: PinMode.Unknown) {
-            self.firmata.writePinMode(PinMode.Input, pin: pin)
             self.firmata.setAnalogValueReportingforPin(pin, enabled: report)
         }
     }
@@ -163,19 +161,15 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func resetArduino(){
         reportSensorData(false)
         if(pinsArray.count > 0){
-//            var i:Int = 0
-//            for _:[String:Any] in pinsArray {
-//                let pin = checkValue(i)
-//                if(checkDigitalPinCapability(UInt8(pin), neededMode: PinMode.Output)){
-//                    if (pin == 8 || pin == 9 || pin == 11 || pin == 12 || pin == 13) {
-//                        continue
-//                    }
-//                  setDigitalArduinoPin(pin, pinValue: 0)
-//                }
-//                i++
-//            }
-            for (var i:Int = 2; i <= 7; i++) {
-                setDigitalArduinoPin(i, pinValue: 0)
+            var i:Int = 0
+            for _:[String:Any] in pinsArray {
+                let pin = checkValue(i)
+                if(checkDigitalPinCapability(UInt8(pin), neededMode: PinMode.Output)){
+                    if (i != 8 ) {
+                        setDigitalArduinoPin(pin, pinValue: 0)
+                    }
+                }
+                i++
             }
         } else {
             for (var i:Int = 2; i <= 11; i++) {
