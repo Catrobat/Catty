@@ -26,6 +26,7 @@ typealias CBScheduleActionElement = (context: CBScriptContextProtocol, action: S
 typealias CBHighPriorityScheduleElement = (context: CBScriptContextProtocol, closure: CBHighPriorityExecClosure)
 typealias CBScheduleElement = (context: CBScriptContextProtocol, closure: CBExecClosure)
 typealias CBFormulaBufferElement = (context: CBScriptContextProtocol, brick: BrickFormulaProtocol)
+typealias CBConditionalFormulaBufferElement = (context: CBScriptContextProtocol, condition: CBConditionalSequence)
 
 typealias CBExecClosure = (context: CBScriptContextProtocol, scheduler: CBSchedulerProtocol) -> Void
 typealias CBHighPriorityExecClosure = (context: CBScriptContextProtocol,
@@ -42,6 +43,7 @@ indirect enum CBInstruction {
     case LongDurationAction(duration: CBDuration, actionCreateClosure: CBLongActionCreateClosure)
     case Action(action: SKAction)
     case FormulaBuffer(brick: BrickFormulaProtocol)
+    case ConditionalFormulaBuffer(conditionalBrick: CBConditionalSequence)
     case InvalidInstruction()
 }
 

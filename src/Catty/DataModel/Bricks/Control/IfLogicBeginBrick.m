@@ -44,6 +44,11 @@
     return self.ifCondition;
 }
 
+- (NSArray*)conditions
+{
+    return [self getFormulas];
+}
+
 - (NSArray*)getFormulas
 {
     return @[self.ifCondition];

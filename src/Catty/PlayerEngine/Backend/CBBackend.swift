@@ -70,6 +70,9 @@ final class CBBackend: CBBackendProtocol {
         // add if condition evaluation instruction
         let ifInstructions = instructionsForSequence(ifSequence.sequenceList)
         let numberOfIfInstructions = ifInstructions.count
+        if ifSequence.hasBluetoothFormula() {
+            instructionList += CBInstruction.ConditionalFormulaBuffer(conditionalBrick: ifSequence)
+        }
         instructionList += CBInstruction.ExecClosure { (context, scheduler) in
             if ifSequence.checkCondition() == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
@@ -106,7 +109,12 @@ final class CBBackend: CBBackendProtocol {
         let loopEndInstruction = CBInstruction.HighPriorityExecClosure { (context, scheduler, _) in
             var numOfInstructionsToJump = 0
             if loopSequence.checkCondition() {
-                numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
+                if loopSequence.hasBluetoothFormula() {
+                   numOfInstructionsToJump -= numOfBodyInstructions + 2 // omits loop begin instruction
+                } else {
+                   numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
+                }
+                
                 loopSequence.lastLoopIterationStartTime = NSDate()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
@@ -141,15 +149,26 @@ final class CBBackend: CBBackendProtocol {
                 loopSequence.lastLoopIterationStartTime = NSDate()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
-                context.jump(numberOfInstructions: numOfBodyInstructions + 1) // includes loop end instr.!
+                if loopSequence.hasBluetoothFormula() {
+                   context.jump(numberOfInstructions: numOfBodyInstructions + 2) // includes loop end instr.!
+                } else {
+                    context.jump(numberOfInstructions: numOfBodyInstructions + 1) // includes loop end instr.!
+                }
+                
             }
             context.state = .Runnable
         }
 
         // finally add all instructions to list
         var instructionList = [CBInstruction]()
+        if loopSequence.hasBluetoothFormula() {
+            instructionList += CBInstruction.ConditionalFormulaBuffer(conditionalBrick: loopSequence)
+        }
         instructionList += loopBeginInstruction
         instructionList += bodyInstructions
+        if loopSequence.hasBluetoothFormula() {
+            instructionList += CBInstruction.ConditionalFormulaBuffer(conditionalBrick: loopSequence)
+        }
         instructionList += loopEndInstruction
         return instructionList
     }

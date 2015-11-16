@@ -45,6 +45,11 @@
     self.timesToRepeat = formula;
 }
 
+- (NSArray*)conditions
+{
+    return [self getFormulas];
+}
+
 - (NSArray*)getFormulas
 {
     return @[self.timesToRepeat];
