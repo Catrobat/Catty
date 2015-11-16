@@ -366,4 +366,29 @@ public class BluetoothService:NSObject {
 
     }
     
+    func continueBluetoothDevice(){
+        
+        if let phiroReset = phiro {
+            phiroReset.reportSensorData(true)
+        }
+        
+        if let arduinoReset = arduino {
+            arduinoReset.reportSensorData(true)
+        }
+        
+    }
+
+    func pauseBluetoothDevice(){
+        
+        if let phiroReset = phiro {
+            phiroReset.reportSensorData(false)
+        }
+        
+        if let arduinoReset = arduino {
+            arduinoReset.reportSensorData(false) 
+        }
+        
+    }
+
+    
 }

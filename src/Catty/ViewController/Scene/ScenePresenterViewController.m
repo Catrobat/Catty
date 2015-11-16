@@ -418,12 +418,14 @@
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
     [[FlashHelper sharedFlashHandler] turnOff];
+    [[BluetoothService sharedInstance] pauseBluetoothDevice];
 }
 
 - (void)resumeAction
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
+    [[BluetoothService sharedInstance] continueBluetoothDevice];
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
         [[FlashHelper sharedFlashHandler] turnOn];
     }
@@ -435,6 +437,7 @@
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
         [[FlashHelper sharedFlashHandler] turnOn];
     }
+    [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
     animateDuration = duration > 0.0001f ? duration : 0.35f;
     

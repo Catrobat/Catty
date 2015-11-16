@@ -92,6 +92,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func getDigitalArduinoPin(digitalPinNumber:Int)-> Double {
         let pin: UInt8 = UInt8(checkValue(digitalPinNumber))
         if checkDigitalPinCapability(pin, neededMode: PinMode.Input){
+            reportSensorData(false)
             self.firmata.writePinMode(PinMode.Input, pin: pin)
             self.firmata.setDigitalStateReportingForPort(pin / 8, enabled: true)
             print("requestValue")
@@ -103,6 +104,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             self.firmata.setDigitalStateReportingForPort(pin / 8, enabled: false)
             self.digitalValue = self.getPortValue(Int(pin))
             print("setValue:\(self.digitalValue)")
+            reportSensorData(true)
             return Double(self.digitalValue)
         }
         return Double(0)
@@ -165,19 +167,31 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
 //            for _:[String:Any] in pinsArray {
 //                let pin = checkValue(i)
 //                if(checkDigitalPinCapability(UInt8(pin), neededMode: PinMode.Output)){
+//                    if (pin == 8 || pin == 9 || pin == 11 || pin == 12 || pin == 13) {
+//                        continue
+//                    }
 //                  setDigitalArduinoPin(pin, pinValue: 0)
 //                }
 //                i++
 //            }
+            for (var i:Int = 2; i <= 7; i++) {
+                setDigitalArduinoPin(i, pinValue: 0)
+            }
         } else {
             for (var i:Int = 2; i <= 11; i++) {
                 setDigitalArduinoPin(i, pinValue: 0)
             }
         }
         let totalAnalog = analogMapping.count
-        let totalDigital = totalPins-totalAnalog
+        var totalDigital = totalPins-totalAnalog
+        if totalDigital < 0 {
+            totalDigital = 21
+        }
         arduinoHelper.digitalValues = [Int](count: totalDigital, repeatedValue: 0)
-        let ports = totalPins/8 + 1
+        var ports = totalPins/8 + 1
+        if ports < 1 {
+            ports = 3
+        }
         arduinoHelper.portValues =  Array(count: ports, repeatedValue: Array(count: 8, repeatedValue: 0))
     }
     
@@ -263,6 +277,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         BluetoothService.swiftSharedInstance.signalDigitalSemaphore(true)
     }
     override func didReceiveAnalogMessage(pin:Int,value:Int){
+        print("ANALOG::\(pin):::\(value)")
         arduinoHelper.didReceiveAnalogMessage(pin, value: value)
         BluetoothService.swiftSharedInstance.signalAnalogSemaphore()
     }
