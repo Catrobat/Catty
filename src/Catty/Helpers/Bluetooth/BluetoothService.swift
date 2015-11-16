@@ -44,9 +44,9 @@ public class BluetoothService:NSObject {
     
     var phiro:Phiro?
     var arduino:ArduinoDevice?
-    var selectionManager:BluetoothDevicesTableViewController?
-    var scenePresenter:ScenePresenterViewController?
-    
+    weak var selectionManager:BluetoothDevicesTableViewController?
+    weak var scenePresenter:ScenePresenterViewController?
+    var connectionTimer:NSTimer?
     
     func setDigitalSemaphore(semaphore:dispatch_semaphore_t){
         digitalSemaphoreArray.append(semaphore)
@@ -251,27 +251,31 @@ public class BluetoothService:NSObject {
                         return
                     }
                     if(arduino.txCharacteristic != nil && arduino.rxCharacteristic != nil){
-                            guard let manager = self.selectionManager else {
-                                print("SHOULD NEVER HAPPEN")
-                                return
-                            }
-//                            arduino.reportSensorData(true)
-                            BluetoothService.swiftSharedInstance.arduino = arduino
-                            manager.checkStart()
+                        guard let manager = self.selectionManager else {
+                            print("SHOULD NEVER HAPPEN")
                             return
+                        }
+//                            arduino.reportSensorData(true)
+                        if let timer = self.connectionTimer {
+                            timer.invalidate()
+                        }
+                        BluetoothService.swiftSharedInstance.arduino = arduino
+                        manager.checkStart()
+                        self.selectionManager = nil
+                        return
                     }
-                    self.serviceDiscoveryFailed()
+                    
                 }
                 charFuture.onFailure{error in
                     self.serviceDiscoveryFailed()
                 }
             }
-            
         }
         
         future.onFailure{error in
             self.serviceDiscoveryFailed()
         }
+        connectionTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector:"serviceDiscoveryFailed" , userInfo: nil, repeats: false)
 
     }
     
@@ -279,18 +283,21 @@ public class BluetoothService:NSObject {
         if let manager = self.selectionManager  {
             manager.deviceNotResponding()
         }
+        Util.alertWithTitle(klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothNotResponding)
     }
     
     func giveUpFailure() {
         if let manager = self.selectionManager  {
             manager.giveUpConnectionToDevice()
         }
+        Util.alertWithTitle(klocalizedBluetoothConnectionLost, andText:  klocalizedBluetoothDisconnected)
     }
     
     func connectionFailure() {
         if let manager = self.selectionManager  {
             manager.deviceFailedConnection()
         }
+        Util.alertWithTitle(klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothCannotConnect)
     }
     
     func setPhiroDevice(peripheral:Peripheral){
@@ -305,6 +312,7 @@ public class BluetoothService:NSObject {
                     }
                     BluetoothService.swiftSharedInstance.phiro = phiro
                     manager.checkStart()
+                    self.selectionManager = nil
                     return
                 }
                 

@@ -87,6 +87,7 @@
         if (view.tag == kSavedViewTag)
             [view removeFromSuperview];
     }
+    [self hideLoadingView];
 }
 
 #pragma mark - system events
@@ -348,6 +349,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self showLoadingView];
     [self playSceneAction:sender animated:YES];
 }
 
@@ -411,7 +413,7 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.backgroundColor = [UIColor whiteColor];
+//    self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
     [self.tableView setContentOffset:top animated:NO];
