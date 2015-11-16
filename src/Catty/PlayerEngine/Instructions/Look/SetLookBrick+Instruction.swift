@@ -34,21 +34,20 @@ extension SetLookBrick: CBInstructionProtocol {
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
-        guard let image = UIImage(contentsOfFile: self.pathForLook()) else { return nil }
-
-        let texture = SKTexture(image: image)
-        if object.isBackground() {
-            spriteNode.currentUIImageLook = image
-        } else {
-            //        CGRect newRect = [image cropRectForImage:image];
-            //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-            //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-            //        CGImageRelease(imageRef);
-            spriteNode.currentUIImageLook = image
-        }
-        spriteNode.currentLookBrightness = 0
-
         return {
+            guard let image = UIImage(contentsOfFile: self.pathForLook()) else { return }
+            
+            let texture = SKTexture(image: image)
+            if object.isBackground() {
+                spriteNode.currentUIImageLook = image
+            } else {
+                //        CGRect newRect = [image cropRectForImage:image];
+                //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+                //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+                //        CGImageRelease(imageRef);
+                spriteNode.currentUIImageLook = image
+            }
+            spriteNode.currentLookBrightness = 0
             let xScale = spriteNode.xScale
             let yScale = spriteNode.yScale
             spriteNode.xScale = 1.0

@@ -32,11 +32,12 @@ extension SetBrightnessBrick: CBInstructionProtocol{
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let bright = self.brightness,
-            let look = object.spriteNode!.currentLook
+            let bright = self.brightness
             else { fatalError("This should never happen!") }
         
         return {
+            guard let look = object.spriteNode!.currentLook else { return }
+
             var brightnessValue = bright.interpretDoubleForSprite(object) / 100
             if (brightnessValue > 2) {
                 brightnessValue = 1.0;

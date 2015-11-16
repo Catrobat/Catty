@@ -31,26 +31,22 @@ extension NextLookBrick: CBInstructionProtocol {
 
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let look = spriteNode.nextLook()
+              let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
-        
-        
-        
-        guard let image = UIImage(contentsOfFile: self.pathForLook(look)) else { return nil }
-        let texture = SKTexture(image: image)
-        if object.isBackground() {
-            spriteNode.currentUIImageLook = image
-        } else {
-            //        CGRect newRect = [image cropRectForImage:image];
-            //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-            //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-            //        CGImageRelease(imageRef);
-            spriteNode.currentUIImageLook = image
-        }
-        spriteNode.currentLookBrightness = 0
-
         return {
+            guard let look = spriteNode.nextLook(),
+                  let image = UIImage(contentsOfFile: self.pathForLook(look)) else { return  }
+            let texture = SKTexture(image: image)
+            if object.isBackground() {
+                spriteNode.currentUIImageLook = image
+            } else {
+                //        CGRect newRect = [image cropRectForImage:image];
+                //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
+                //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+                //        CGImageRelease(imageRef);
+                spriteNode.currentUIImageLook = image
+            }
+            spriteNode.currentLookBrightness = 0
             let xScale = spriteNode.xScale
             let yScale = spriteNode.yScale
             spriteNode.xScale = 1.0
