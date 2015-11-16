@@ -52,6 +52,7 @@
 #import "AppDelegate.h"
 #import "CatrobatAlertView.h"
 #import "ActionSheetAlertViewTags.h"
+#import "RuntimeImageCache.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CatrobatAlertViewDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -95,8 +96,7 @@
     self.skView.backgroundColor = UIColor.backgroundColor;
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-
-
+    [self resaveLooks];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -120,7 +120,6 @@
     [self setUpGridView];
     [self checkAspectRatio];
     [[BluetoothService sharedInstance] setScenePresenter:self];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -374,6 +373,17 @@
         self.scene = scene;
         [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
     }
+}
+
+-(void)resaveLooks
+{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        for (SpriteObject *object in self.program.objectList) {
+            for (Look *look in object.lookList) {
+                [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
+            }
+        }
+    });
 }
 
 - (BOOL)prefersStatusBarHidden

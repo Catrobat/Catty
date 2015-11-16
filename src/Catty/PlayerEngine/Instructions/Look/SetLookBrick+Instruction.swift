@@ -35,8 +35,15 @@ extension SetLookBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         return {
-            guard let image = UIImage(contentsOfFile: self.pathForLook()) else { return }
+            let cache:RuntimeImageCache = RuntimeImageCache.sharedImageCache()
+            var image = cache.cachedImageForPath(self.pathForLook())
             
+            if(image == nil){
+                print("LoadImageFromDisk")
+                cache.loadImageFromDiskWithPath(self.pathForLook())
+                guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook()) else { return }
+                image = imageFromDisk
+            }
             let texture = SKTexture(image: image)
             if object.isBackground() {
                 spriteNode.currentUIImageLook = image

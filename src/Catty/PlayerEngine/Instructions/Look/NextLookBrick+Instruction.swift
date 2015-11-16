@@ -34,8 +34,16 @@ extension NextLookBrick: CBInstructionProtocol {
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
         return {
-            guard let look = spriteNode.nextLook(),
-                  let image = UIImage(contentsOfFile: self.pathForLook(look)) else { return  }
+            guard let look = spriteNode.nextLook() else { return  }
+            let cache:RuntimeImageCache = RuntimeImageCache.sharedImageCache()
+            var image = cache.cachedImageForPath(self.pathForLook(look))
+            
+            if(image == nil){
+                print("LoadImageFromDisk")
+                cache.loadImageFromDiskWithPath(self.pathForLook(look))
+                guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook(look)) else { return }
+                image = imageFromDisk
+            }
             let texture = SKTexture(image: image)
             if object.isBackground() {
                 spriteNode.currentUIImageLook = image
