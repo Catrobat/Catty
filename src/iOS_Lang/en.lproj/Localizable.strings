@@ -665,6 +665,9 @@
 "Move Brick" = "Move Brick";
 
 /* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
 "Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
 
 /* No comment provided by engineer. */
