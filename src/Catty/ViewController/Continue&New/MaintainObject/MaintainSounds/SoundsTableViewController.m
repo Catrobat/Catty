@@ -50,9 +50,11 @@
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
 
+
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (atomic, strong) Sound *currentPlayingSong;
+@property (atomic, strong) Sound *sound;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 @property (nonatomic,assign) BOOL isAllowed;
@@ -125,7 +127,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(soundAdded:) name:kSoundAddedNotification object:nil];
-    [dnc addObserver:self selector:@selector(recordAdded:) name:kRecordAddedNotification object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
@@ -156,32 +157,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     [self reloadData];
 }
-- (void)recordAdded:(NSNotification*)notification
-{
-    if (self.isAllowed) {
-        if (notification.userInfo) {
-            NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
-            id sound = notification.userInfo[kUserInfoSound];
-            if ([sound isKindOfClass:[Sound class]]) {
-                Sound* recording =(Sound*)sound;
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                NSString *filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, recording.fileName];
-                [self addSoundToObjectAction:recording];
-                NSError *error;
-                [fileManager removeItemAtPath:filePath error:&error];
-                if (error) {
-                    NSDebug(@"-.-");
-                }
-                self.isAllowed = NO;
-            }
-        }
-    }
-    if (self.afterSafeBlock) {
-        self.afterSafeBlock(nil);
-    }
-    [self reloadData];
-}
+
+
 
 #pragma mark - actions
 - (void)editAction:(id)sender
@@ -610,8 +587,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                             self.isAllowed = YES;
                             [self stopAllSounds];
                             SRViewController *soundRecorderViewController;
+                            
                             soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
-                            soundRecorderViewController.soundsTableViewController = self;
+                            soundRecorderViewController.delegate = self;
                             [self showViewController:soundRecorderViewController sender:self];
  
                         });
@@ -760,6 +738,58 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self changeEditingBarButtonState];
         
     });
+}
+
+#pragma mark Sound Delegate
+
+-(void)addSound:(Sound *)sound
+{
+    if (self.isAllowed) {
+        Sound* recording =(Sound*)sound;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, recording.fileName];
+        [self addSoundToObjectAction:recording];
+        NSError *error;
+        [fileManager removeItemAtPath:filePath error:&error];
+        if (error) {
+            NSDebug(@"-.-");
+        }
+        self.isAllowed = NO;
+
+    }
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
+    [self reloadData];
+}
+
+- (void)showSaveSoundAlert:(Sound *)sound
+{
+    self.sound = sound;
+    [self performActionOnConfirmation:@selector(saveSound)
+                       canceledAction:@selector(cancelPaintSave)
+                               target:self
+                         confirmTitle:kLocalizedSaveToPocketCode
+                       confirmMessage:kLocalizedPaintSaveChanges];
+}
+
+- (void)saveSound
+{
+    if (self.sound) {
+        [self addSound:self.sound];
+    }
+    
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
+}
+
+- (void)cancelPaintSave
+{
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
 }
 
 @end

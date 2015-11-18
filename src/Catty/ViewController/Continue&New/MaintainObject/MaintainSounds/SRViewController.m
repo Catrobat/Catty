@@ -35,6 +35,7 @@
 @property (nonatomic,strong) TimerLabel* timerLabel;
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) AVAudioSession* session;
+@property (nonatomic,assign) BOOL isSaved;
     //@property (nonatomic,strong) UIProgressView* timeProgress;
     //@property (nonatomic,strong) NSTimer* progressTimer;
 
@@ -76,7 +77,7 @@
     
     
     self.isRecording = NO;
-    
+    self.isSaved = NO;
     [self prepareRecorder];
 }
 
@@ -88,9 +89,8 @@
     [self.record setSelected:NO];
     [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     self.recorder = nil;
-    if(self.soundsTableViewController.afterSafeBlock)
-    {
-        self.soundsTableViewController.afterSafeBlock(nil);
+    if (self.sound.name && !self.isSaved) {
+        [self.delegate showSaveSoundAlert:self.sound];
     }
 
 }
@@ -155,7 +155,7 @@
         [self.session setActive:YES error:nil];
         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         [self.recorder recordForDuration:(([delegate.fileManager freeDiskspace]/1024ll)/256.0)];
-        [self setupToolBar];
+//        [self setupToolBar];
         self.sound.name = kLocalizedRecording;
             //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
     } else {
@@ -229,16 +229,9 @@
     [self.record setSelected:NO];
     self.recorder = nil;
     if (self.sound.name) {
-        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc postNotificationName:kRecordAddedNotification
-                           object:nil
-                         userInfo:@{ kUserInfoSound : self.sound}];
-    }else{
-        if(self.soundsTableViewController.afterSafeBlock)
-        {
-            self.soundsTableViewController.afterSafeBlock(nil);
-        }
+        [self.delegate addSound:self.sound];
     }
+    self.isSaved = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -26,7 +26,14 @@
 @class SpriteObject;
 @class Sound;
 
-@interface SoundsTableViewController : BaseTableViewController
+@protocol SoundDelegate <NSObject>
+
+- (void)showSaveSoundAlert:(Sound*)sound;
+- (void)addSound:(Sound *)sound;
+@end
+
+
+@interface SoundsTableViewController : BaseTableViewController <SoundDelegate>
 
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic) BOOL showAddSoundActionSheetAtStart;
