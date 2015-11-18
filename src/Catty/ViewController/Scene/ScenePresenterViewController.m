@@ -208,6 +208,7 @@
         andImageNameHighlighted:[UIImage imageNamed:@"record"]
                     andSelector:@selector(recordProgram:)];
     self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
+    self.menuRecordLabel.hidden = (! self.scene.isScreenRecorderAvailable);
 }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal
