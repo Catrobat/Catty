@@ -271,7 +271,7 @@
 }
 - (void)changeToMoveMode:(id)sender
 {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(exitEditingMode)];

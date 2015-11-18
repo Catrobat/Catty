@@ -107,6 +107,7 @@
 #define kLocalizedAboutCatrobatButtonLabel NSLocalizedString(@"About Catrobat", nil)
 #define kLocalizedEdit NSLocalizedString(@"Edit", nil)
 #define kLocalizedCancel NSLocalizedString(@"Cancel", nil)
+#define kLocalizedDone NSLocalizedString(@"Done", nil)
 #define kLocalizedUndo NSLocalizedString(@"Undo", @"Button title of alert view to invoke undo if user shakes device")
 #define kLocalizedUndoDrawingDescription NSLocalizedString(@"Undo Drawing?", @"Description text in alert view if user shakes the device")
 #define kLocalizedUndoTypingDescription NSLocalizedString(@"Undo Typing?", @"Description text in alert view if user shakes the device")
