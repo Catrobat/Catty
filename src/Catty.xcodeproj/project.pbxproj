@@ -160,6 +160,7 @@
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
+		920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F16DC1BE7467D000D18BE /* ResourceHelper.m */; };
 		921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */; };
 		921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46761BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift */; };
 		921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46771BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift */; };
@@ -180,6 +181,10 @@
 		923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginViewController.m */; };
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */; };
+		927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */; };
+		927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DB1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m */; };
+		927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DF1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m */; };
+		927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79E21BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0BC1BC39AD60027DEC0 /* BluetoothBrick.m */; };
 		929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0C01BC39B0A0027DEC0 /* PhiroBrick.m */; };
@@ -275,6 +280,7 @@
 		92EC99471BC3C95F0003A891 /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99461BC3C95F0003A891 /* BluetoothDevice.swift */; };
 		92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99491BC3CA870003A891 /* Firmata.swift */; };
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
+		92F1A8CE1BE3516B00415032 /* RequiredRescourses.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
@@ -381,8 +387,8 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
 		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; };
+		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; };
@@ -579,7 +585,6 @@
 		AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D11BB36161009F67D2 /* CBFrontendSequenceFilters.swift */; };
 		AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D01BB36161009F67D2 /* CBFrontend.swift */; };
 		AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */; };
-		AABCB3F01BB369DE009F67D2 /* Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = A918B6B41B89F5690017B92F /* Siren.swift */; };
 		AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFF1A38949E00FA9B0F /* InternFormulaUtils.m */; };
 		AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */; };
 		AAF6D9CE1BC0915800686849 /* FormulaElement+Optimization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9CB1BC0915800686849 /* FormulaElement+Optimization.swift */; };
@@ -592,6 +597,7 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -706,7 +712,6 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
-		ECB7ED6D681B96F51A19A4A9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8D321C59F7D79902BCF650 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -986,7 +991,8 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
-		5703FCE2766AC6237CCD4DE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
@@ -995,6 +1001,8 @@
 		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		920F16DB1BE7467D000D18BE /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceHelper.h; path = ResourceHelper/ResourceHelper.h; sourceTree = "<group>"; };
+		920F16DC1BE7467D000D18BE /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceHelper.m; path = ResourceHelper/ResourceHelper.m; sourceTree = "<group>"; };
 		921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeSizeByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeSizeByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46761BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeXByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeXByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46771BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeYByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeYByNBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -1057,6 +1065,15 @@
 		9235038F1BA707DE00021F6A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9266F95D1BDFBE3C0034828B /* ProgramVariablesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramVariablesManager.h; sourceTree = "<group>"; };
 		9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramVariablesManager.m; sourceTree = "<group>"; };
+		927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroIfSensorData.h; sourceTree = "<group>"; };
+		927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroIfSensorData.m; sourceTree = "<group>"; };
+		927F79DA1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroIfLogicBeginBrickCell.h; sourceTree = "<group>"; };
+		927F79DB1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroIfLogicBeginBrickCell.m; sourceTree = "<group>"; };
+		927F79DD1BEE39BE008D1635 /* BrickPhiroIfSensorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickPhiroIfSensorProtocol.h; sourceTree = "<group>"; };
+		927F79DE1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroIfLogicBeginBrick.h; sourceTree = "<group>"; };
+		927F79DF1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroIfLogicBeginBrick.m; sourceTree = "<group>"; };
+		927F79E11BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhiroIfLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		927F79E21BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroIfLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
 		928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatrobatUISlider.m; path = CatrobatSlider/CatrobatUISlider.m; sourceTree = "<group>"; };
 		929108931A41F32A0034564D /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
@@ -1235,6 +1252,7 @@
 		92EC99491BC3CA870003A891 /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
 		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredRescourses.m; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
@@ -1456,11 +1474,10 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
-		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
 		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTVCTests.swift; sourceTree = "<group>"; };
+		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
 		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };
@@ -1812,6 +1829,7 @@
 		AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlaceAtBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PlaceAtBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointInDirectionBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointInDirectionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointToBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.release.xcconfig"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1923,7 +1941,6 @@
 		DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		FA345A2C4822CF65FF1A5FDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1966,7 +1983,7 @@
 				CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */,
 				CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */,
 				CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */,
-				ECB7ED6D681B96F51A19A4A9 /* Pods.framework in Frameworks */,
+				BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1994,7 +2011,7 @@
 				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				C779629B76F76C5C401087EA /* Pods */,
+				3E35E9446B11D52C9B7F182C /* Pods */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -2044,8 +2061,18 @@
 				B450309F170F22EF009265D6 /* SenTestingKit.framework */,
 				B46B26E817703E4000172837 /* XCTest.framework */,
 				1F8D321C59F7D79902BCF650 /* Pods.framework */,
+				6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E35E9446B11D52C9B7F182C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */,
+				AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		4C1608A31A095480002C7032 /* Resources */ = {
@@ -2275,6 +2302,7 @@
 		4C5517D31ABC6A8100A52FF4 /* BrickData */ = {
 			isa = PBXGroup;
 			children = (
+				927F79DD1BEE39BE008D1635 /* BrickPhiroIfSensorProtocol.h */,
 				929CC0D51BC39B460027DEC0 /* BrickPhiroLightProtocol.h */,
 				929CC0D61BC39B460027DEC0 /* BrickPhiroMotorProtocol.h */,
 				929CC0D71BC39B460027DEC0 /* BrickPhiroToneProtocol.h */,
@@ -2965,6 +2993,8 @@
 		929CC0BE1BC39B0A0027DEC0 /* PhiroBricks */ = {
 			isa = PBXGroup;
 			children = (
+				927F79DE1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.h */,
+				927F79DF1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m */,
 				929CC0BF1BC39B0A0027DEC0 /* PhiroBrick.h */,
 				929CC0C01BC39B0A0027DEC0 /* PhiroBrick.m */,
 				929CC0C11BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.h */,
@@ -2993,6 +3023,8 @@
 		929CC0E21BC39B8C0027DEC0 /* PhiroBrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				927F79DA1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.h */,
+				927F79DB1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m */,
 				929CC0E31BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.h */,
 				929CC0E41BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m */,
 				929CC0E51BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.h */,
@@ -3228,6 +3260,8 @@
 		92EC98511BC3ABB90003A891 /* Phiro */ = {
 			isa = PBXGroup;
 			children = (
+				927F79E11BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.h */,
+				927F79E21BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m */,
 				92EC98521BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.h */,
 				92EC98531BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m */,
 				92EC98541BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.h */,
@@ -3266,6 +3300,14 @@
 				92EC99491BC3CA870003A891 /* Firmata.swift */,
 			);
 			path = Firmata;
+			sourceTree = "<group>";
+		};
+		92F1A8C81BE3511000415032 /* requiredResources */ = {
+			isa = PBXGroup;
+			children = (
+				92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */,
+			);
+			path = requiredResources;
 			sourceTree = "<group>";
 		};
 		92FF2DFD1A24C3BE00093DA7 /* Defines */ = {
@@ -3467,7 +3509,6 @@
 			children = (
 				92EC99481BC3CA870003A891 /* Firmata */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
-				A918B6B31B89F4CD0017B92F /* Siren */,
 				D63864691AE63EB4008569E6 /* Keychain */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
@@ -3484,6 +3525,8 @@
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
 				92EC99441BC3C8050003A891 /* Bluetooth */,
+				920F16DB1BE7467D000D18BE /* ResourceHelper.h */,
+				920F16DC1BE7467D000D18BE /* ResourceHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3636,6 +3679,7 @@
 				92FF2E8A1A24C7D800093DA7 /* Util.h */,
 				92FF2E8B1A24C7D800093DA7 /* Util.m */,
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
+				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
 			);
 			name = Utils;
 			path = Util;
@@ -4259,15 +4303,6 @@
 			path = "Catty/Storyboard+XIB";
 			sourceTree = "<group>";
 		};
-		A918B6B31B89F4CD0017B92F /* Siren */ = {
-			isa = PBXGroup;
-			children = (
-				A918B6B41B89F5690017B92F /* Siren.swift */,
-				A918B6B61B89F5870017B92F /* Siren.bundle */,
-			);
-			name = Siren;
-			sourceTree = "<group>";
-		};
 		AA101E3F1B8D3A3900797DEF /* Encapsulated */ = {
 			isa = PBXGroup;
 			children = (
@@ -4517,6 +4552,8 @@
 		AA74F00F1BC05FCE00D1E954 /* BrickCellData */ = {
 			isa = PBXGroup;
 			children = (
+				927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */,
+				927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */,
 				929CC0D81BC39B690027DEC0 /* BrickCellPhiroLightData.h */,
 				929CC0D91BC39B690027DEC0 /* BrickCellPhiroLightData.m */,
 				929CC0DA1BC39B690027DEC0 /* BrickCellPhiroMotorData.h */,
@@ -4863,15 +4900,6 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		C779629B76F76C5C401087EA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FA345A2C4822CF65FF1A5FDB /* Pods.debug.xcconfig */,
-				5703FCE2766AC6237CCD4DE4 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		CA02C5E81B14386E00233FB0 /* CBSpriteNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -4950,6 +4978,7 @@
 		CA8C247918CD06BA00314C2B /* Program */ = {
 			isa = PBXGroup;
 			children = (
+				92F1A8C81BE3511000415032 /* requiredResources */,
 				CA8C247718CD053300314C2B /* ProgramTests.m */,
 			);
 			name = Program;
@@ -5389,7 +5418,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
-				1C6A151AD87D50C17B187B38 /* Check Pods Manifest.lock */,
+				0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */,
 				CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */,
 				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
 				CADBD6D819B0E8C200C62836 /* Resources */,
@@ -5397,11 +5426,11 @@
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
 				CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */,
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
-				BEC18359F4AE6B828428FCE6 /* Embed Pods Frameworks */,
 				929DC44A1BCB9C5000421443 /* License Validator */,
-				B1530C3ABA65C1BF3F9C0A5E /* Copy Pods Resources */,
 				92C6319D1BC5180B00486958 /* CopyFiles */,
 				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
+				4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */,
+				1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5649,7 +5678,6 @@
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
-				A918B6B71B89F5870017B92F /* Siren.bundle in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
 				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
@@ -5672,7 +5700,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C6A151AD87D50C17B187B38 /* Check Pods Manifest.lock */ = {
+		0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5685,6 +5713,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		922123C81BCAB51E008AAE45 /* Todo/Fixme check */ = {
@@ -5728,36 +5786,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/env python";
 			shellScript = "#!/usr/bin/env python\n\nimport os, sys\n\n# config\nsuccess_msg = \"A local git hook has been created! The script will automatically keep track of the project's build number. You should never hear this message again. The app is launching now!\"\nalert_msg_template = \"Can't create local {0} commit git hook! Please stop commiting to the repository and inform the team leader.\"\n\n# immutable paths\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_SRC_DIR = env['PROJECT_DIR']\nPLIST_PATH = os.path.join(PROJECT_SRC_DIR, env['INFOPLIST_FILE'])\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_SRC_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\n# helpers\ndef touch(path):\n    if os.path.exists(path):\n        os.utime(path, None)\n    else:\n        open(fname, 'a').close()\n\ndef make_dir_if_not_exists(path):\n    try:\n        if not os.path.exists(path):\n            os.makedirs(path)\n        elif not os.path.isdir(path):\n            print(\"An error occured! Invalid path '{0}'. This is NO directory.\".format(path))\n    except Exception, e:\n        print(e)\n        raise e\n\n# inject hook code\nmake_dir_if_not_exists(HOOK_DIR)\nassert(os.access(HOOK_DIR, os.W_OK))\npre_commit_hook_path = os.path.join(HOOK_DIR, \"pre-commit\")\n\n# TODO: TEMPORARY TODO SECTION => remove this section later {\npost_commit_hook_path = os.path.join(HOOK_DIR, \"post-commit\")\n\nimport datetime\nexpire_date = datetime.datetime(2015, 10, 7)\nnow_date = datetime.datetime.now()\n\n\nif os.path.isfile(post_commit_hook_path):\n    os.remove(post_commit_hook_path)\n    if not os.path.isfile(post_commit_hook_path):\n        os.system(\"say -v Alex \\\"Successfully removed post-commit hook file. You should never hear this message again. The app is launching now!\\\"\")\n    else:\n        os.system(\"say -v Alex \\\"Cannot remove post-commit hook file. The app is launching now!\\\"\")\n# }\n\npre_commit_code = \"\"\"\n    \\#!/bin/sh\n    PROJECT_ROOT_DIR=\"%s\"\n    PLIST_PATH=\"%s\"\n\n    branchName=`/usr/bin/env git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\n    gitCount=`/usr/bin/env git rev-list $branchName |wc -l | sed 's/^ *//;s/ *$//'`\n    simpleBranchName=`/usr/bin/env git rev-parse --abbrev-ref HEAD`\n    shortHash=`/usr/bin/env git rev-parse --short HEAD`\n\n    buildNumber=\"$((gitCount + 1))\"\n    buildNumber+=\"-${simpleBranchName}\"\n    buildNumber+=\"-{parent:${shortHash}}\"\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $buildNumber\" \"${PLIST_PATH}\"\n\n    # Add modified plist to the staging area\n    cd ${PROJECT_ROOT_DIR}\n    /usr/bin/env git add ${PLIST_PATH}\n    exit 0\n\"\"\" % (PROJECT_ROOT_DIR, PLIST_PATH)\n\n# remove line indentation\npre_commit_code = \"\".join([(line.lstrip() + \"\\n\") for line in pre_commit_code.split(\"\\n\")[1:]])\n\nhook_existed_before = os.path.isfile(pre_commit_hook_path)\n\nwith open(pre_commit_hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(pre_commit_code[1:])\n\nos.chmod(pre_commit_hook_path, 0755) # make script editable and executable\n\nhook_exists_now = os.path.isfile(pre_commit_hook_path)\n\n# inform developer!\nif hook_exists_now and not hook_existed_before:\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(success_msg))\nif not os.path.isfile(pre_commit_hook_path):\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(alert_msg_template.format(\"pre\")))\n";
-		};
-		B1530C3ABA65C1BF3F9C0A5E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BEC18359F4AE6B828428FCE6 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5862,6 +5890,7 @@
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
+				92F1A8CE1BE3516B00415032 /* RequiredRescourses.m in Sources */,
 				4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
@@ -5914,7 +5943,6 @@
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
-				AABCB3F01BB369DE009F67D2 /* Siren.swift in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
 				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
@@ -5989,6 +6017,7 @@
 				AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
+				927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */,
 				AA74EF721BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
@@ -5997,6 +6026,7 @@
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
+				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
@@ -6060,6 +6090,7 @@
 				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				AAF6D9D21BC0966700686849 /* Formula+Optimization.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
+				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
@@ -6117,6 +6148,7 @@
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */,
+				920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */,
 				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				AA74EF611BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
@@ -6189,10 +6221,12 @@
 				4C724E5A1B4D3E8C00E27479 /* Program+CBXMLHandler.m in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
+				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
+				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
 				929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */,
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
@@ -6700,7 +6734,7 @@
 		};
 		CADBD7F919B0E8C200C62836 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA345A2C4822CF65FF1A5FDB /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6740,7 +6774,7 @@
 		};
 		CADBD7FA19B0E8C200C62836 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5703FCE2766AC6237CCD4DE4 /* Pods.release.xcconfig */;
+			baseConfigurationReference = AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

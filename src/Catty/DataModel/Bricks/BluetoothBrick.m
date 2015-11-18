@@ -28,4 +28,12 @@
     return YES;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    //overridden
+    return kNoResources;
+}
+
+
 @end

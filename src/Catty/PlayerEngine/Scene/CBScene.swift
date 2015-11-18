@@ -23,6 +23,11 @@
 import SpriteKit
 import ReplayKit
 
+@objc protocol CBScreenRecordingDelegate {
+    func showMenuRecordButton()
+    func hideMenuRecordButton()
+}
+
 final class CBScene: SKScene {
 
     // MARK: - Properties
@@ -32,17 +37,26 @@ final class CBScene: SKScene {
     private var _previewViewController: AnyObject?
     @available(iOS 9.0, *)
     var previewViewController: RPPreviewViewController? {
-        get {
-            return _previewViewController as? RPPreviewViewController
-        }
-        set {
-            _previewViewController = newValue
-        }
+        get { return _previewViewController as? RPPreviewViewController }
+        set { _previewViewController = newValue }
     }
     private(set) var scheduler: CBSchedulerProtocol?
     private(set) var frontend: CBFrontendProtocol?
     private(set) var backend: CBBackendProtocol?
     private(set) var broadcastHandler: CBBroadcastHandlerProtocol?
+    var isScreenRecorderAvailable: Bool {
+        if #available(iOS 9.0, *) {
+            return RPScreenRecorder.sharedRecorder().available
+        }
+        return false
+    }
+    var isScreenRecording: Bool {
+        if #available(iOS 9.0, *) {
+            return RPScreenRecorder.sharedRecorder().recording
+        }
+        return false
+    }
+    weak var screenRecordingDelegate: CBScreenRecordingDelegate?
 
     // MARK: - Initializers
 
@@ -92,66 +106,6 @@ final class CBScene: SKScene {
     override func didMoveToView(view: SKView) {
         startProgram()
     }
-
-//    func touchedWithTouches(touches: NSSet, withX x:CGFloat, andY y:CGFloat) -> Bool {
-//        if scheduler?.running == false {
-//            return false
-//        }
-//
-//        logger?.debug("StartTouchOfScene")
-//        if let touch = touches.anyObject() as? UITouch {
-//            let location = touch.locationInNode(self)
-//            logger?.debug("x:\(location.x),y:\(location.y)")
-//            var foundObject = false
-//            var nodesAtPoint = self.nodesAtPoint(location)
-//            if #available(iOS 9.0, *) {
-//                nodesAtPoint = nodesAtPoint.reverse()
-//            }
-//            if nodesAtPoint.count == 0 {
-//                return false
-//            }
-//
-//            var spriteNode1 = nodesAtPoint[nodesAtPoint.count - 1] as? CBSpriteNode
-//            var counter = nodesAtPoint.count - 2
-//            logger?.debug("How many nodes are touched: \(counter)")
-//            logger?.debug("First Node:\(spriteNode1)")
-//            if spriteNode1?.name == nil {
-//                return false
-//            }
-//
-//            while foundObject == false {
-//                let point = touch.locationInNode(spriteNode1!)
-//                if spriteNode1?.hidden == false {
-//                    if spriteNode1?.touchedWithTouches(touches as Set<NSObject>, withX:point.x, andY:point.y) == false {
-//                        if var zPosition = spriteNode1?.zPosition {
-//                            zPosition -= 1
-//                            if (zPosition == -1) || (counter < 0) {
-//                                foundObject = true
-//                                logger?.debug("Found Object")
-//                            } else {
-//                                spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-//                                logger?.debug("NextNode: \(spriteNode1)")
-//                                --counter
-//                            }
-//                        }
-//                    } else {
-//                        foundObject = true
-//                        logger?.debug("Found Object")
-//                    }
-//                } else if spriteNode1 != nil {
-//                    if counter < 0 {
-//                        foundObject = true
-//                    } else {
-//                        spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-//                        logger?.debug("NextNode: \(spriteNode1)")
-//                        --counter
-//                    }
-//                }
-//            }
-//            return true
-//        }
-//        return false
-//    }
 
     func touchedWithTouches(touches: NSSet, atPosition position: CGPoint) -> Bool {
         assert(scheduler?.running == true)
@@ -280,17 +234,28 @@ final class CBScene: SKScene {
         scheduler?.run()
     }
 
+    func initializeScreenRecording() {
+        if #available(iOS 9.0, *) {
+            RPScreenRecorder.sharedRecorder().delegate = self
+        }
+    }
+
+    func startScreenRecording() {
+        if #available(iOS 9.0, *) {
+            _startScreenRecording()
+        }
+    }
+
     func stopScreenRecording() {
         if #available(iOS 9.0, *) {
-            stopScreenRecordingWithHandler { [weak self] in
-                guard let previewViewController = self?.previewViewController,
-                      let rootViewController = self?.view?.window?.rootViewController
+            _stopScreenRecordingWithHandler { [weak self] in
+                guard let rootVC = self?.view?.window?.rootViewController,
+                      let previewVC = self?.previewViewController
                 else { fatalError("Preview controller or root view controller not available.") }
 
                 // NOTE: RPPreviewViewController only supports full screen modal presentation.
-                previewViewController.modalPresentationStyle = .FullScreen
-                rootViewController.presentViewController(previewViewController,
-                    animated: true, completion: nil)
+                previewVC.modalPresentationStyle = .FullScreen
+                rootVC.presentViewController(previewVC, animated: true, completion: nil)
             }
         }
     }

@@ -391,6 +391,18 @@
             result = [self interpretFunctionJOIN:sprite];
             break;
         }
+        case ARDUINOANALOG : {
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                result = [NSNumber numberWithDouble:[[[BluetoothService sharedInstance] getSensorArduino] getAnalogPin:(NSInteger)left]];
+            }
+            break;
+        }
+        case ARDUINODIGITAL : {
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                result = [NSNumber numberWithDouble:[[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:(NSInteger)left]];
+            }
+            break;
+        }
         default:
             //abort();
             [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];
@@ -752,29 +764,13 @@
 
 }
 
-// TODO: use map for this...
+
 - (ElementType)elementTypeForString:(NSString*)type
 {
-    if ([type isEqualToString:@"OPERATOR"]) {
-        return OPERATOR;
-    }
-    if ([type isEqualToString:@"FUNCTION"]) {
-        return FUNCTION;
-    }
-    if ([type isEqualToString:@"NUMBER"]) {
-        return NUMBER;
-    }
-    if ([type isEqualToString:@"SENSOR"]) {
-        return SENSOR;
-    }
-    if ([type isEqualToString:@"USER_VARIABLE"]) {
-        return USER_VARIABLE;
-    }
-    if ([type isEqualToString:@"BRACKET"]) {
-        return BRACKET;
-    }
-    if ([type isEqualToString:@"STRING"]) {
-        return STRING;
+    NSDictionary *dict = kelementTypeStringDict;
+    NSNumber *elementType = dict[type];
+    if (elementType) {
+        return (ElementType)elementType.integerValue;
     }
     NSError(@"Unknown Type: %@", type);
     return -1;
@@ -782,26 +778,10 @@
 
 - (NSString*)stringForElementType:(ElementType)type
 {
-    if (type == OPERATOR) {
-        return @"OPERATOR";
-    }
-    if (type == FUNCTION) {
-        return @"FUNCTION";
-    }
-    if (type == NUMBER) {
-        return @"NUMBER";
-    }
-    if (type == SENSOR) {
-        return @"SENSOR";
-    }
-    if (type == USER_VARIABLE) {
-        return @"USER_VARIABLE";
-    }
-    if (type == BRACKET) {
-        return @"BRACKET";
-    }
-    if (type == STRING) {
-        return @"STRING";
+    NSDictionary *dict = kstringElementTypeDict;
+    NSString *elementType = dict[[NSNumber numberWithInt:type]];
+    if (elementType) {
+        return elementType;
     }
     NSError(@"Unknown Type: %@", type);
     return nil;
@@ -906,10 +886,27 @@
         case NUMBER:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:self.value]];
             break;
-        case SENSOR:
-            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+        case SENSOR:{
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:self.value]];
+            BOOL functionHasParameters = false;
+            if (self.leftChild != nil) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
+                functionHasParameters = true;
+                [internTokenList addObjectsFromArray:[self.leftChild getInternTokenList]];
+            }
+            if (self.rightChild != nil) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
+                [internTokenList addObjectsFromArray:[self.rightChild getInternTokenList]];
+            }
+            if (functionHasParameters) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
+            } else {
+                [internTokenList removeAllObjects];
+               [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+            }
+            }
             break;
-            case STRING:
+        case STRING:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_STRING AndValue:self.value]];
             break;
     }
@@ -1004,6 +1001,73 @@
         return NO;
 
     return YES;
+}
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    NSInteger resources = kNoResources;
+    if (self.leftChild != nil) {
+        resources |= [self.leftChild getRequiredResources];
+    }
+    if (self.rightChild != nil) {
+        resources |= [self.rightChild getRequiredResources];
+    }
+    if (self.type == SENSOR) {
+        Sensor sensor = [SensorManager sensorForString:self.value];
+        switch (sensor) {
+            case FACE_DETECTED:
+            case FACE_SIZE:
+            case FACE_POSITION_X:
+            case FACE_POSITION_Y:
+                resources |= kFaceDetection;
+                break;
+                
+            case phiro_bottom_left:
+            case phiro_bottom_right:
+            case phiro_front_left:
+            case phiro_front_right:
+            case phiro_side_left:
+            case phiro_side_right:
+                resources |= kBluetoothPhiro;
+                break;
+            case arduino_analogPin:
+            case arduino_digitalPin:
+                resources |= kBluetoothArduino;
+                break;
+            case X_ACCELERATION:
+            case Y_ACCELERATION:
+            case Z_ACCELERATION:
+                resources |= kAccelerometer;
+                break;
+            case X_INCLINATION:
+            case Y_INCLINATION:
+                resources |= kAccelerometer;
+                break;
+            case COMPASS_DIRECTION:
+                resources |= kLocation;
+                break;
+            case LOUDNESS:
+                resources |= kLoudness;
+                break;
+            default:
+                resources |= kNoResources;
+        }
+    }
+    if (self.type == FUNCTION) {
+        Function function = [Functions getFunctionByValue:self.value];
+        switch (function) {
+            case ARDUINODIGITAL:
+            case ARDUINOANALOG:
+                resources |= kBluetoothArduino;
+                break;
+                
+            default:
+                resources |= kNoResources;
+                break;
+        }
+    }
+    return resources;
 }
 
 @end

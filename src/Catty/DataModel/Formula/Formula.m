@@ -24,9 +24,11 @@
 #import "FormulaElement.h"
 #import "Pocket_Code-Swift.h"
 #import "Operators.h"
+#import "ProgramDefines.h"
 
 @interface Formula()
 @property (nonatomic, strong, readwrite) NSNumber *lastResult;
+@property (nonatomic, strong, readwrite) NSNumber *bufferedResult;
 @end
 
 @implementation Formula
@@ -84,6 +86,11 @@
 }
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite {
+    if (self.bufferedResult) {
+        double bufferedResult = self.bufferedResult.doubleValue;
+        self.bufferedResult = nil;
+        return bufferedResult;
+    }
     if (self.lastResult) {
         return self.lastResult.doubleValue;
     }
@@ -93,6 +100,9 @@
         returnDoubleValue = [returnValue doubleValue];
     }
     self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
+    if (([self getRequiredResources] & kBluetoothArduino) > 0) {
+        self.bufferedResult = @(returnDoubleValue);
+    }
     return returnDoubleValue;
 }
 
@@ -225,5 +235,12 @@
     }
     return formula;
 }
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.formulaTree getRequiredResources];
+}
+
 
 @end

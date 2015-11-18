@@ -54,10 +54,12 @@ typedef NS_ENUM(NSInteger, Function) {
     JOIN,
     LETTER,
     LENGTH,
+    ARDUINODIGITAL,
+    ARDUINOANALOG,
     NO_FUNCTION = -1
 };
 
-#define kNonIdempotentFunctions @[@(RAND)]
+#define kNonIdempotentFunctions @[@(RAND),@(ARDUINODIGITAL),@(ARDUINOANALOG)]
 //**************************************************************************************************
 
 @interface Functions : NSObject

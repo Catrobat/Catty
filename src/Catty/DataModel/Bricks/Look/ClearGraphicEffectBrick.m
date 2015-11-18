@@ -44,4 +44,10 @@
     return [NSString stringWithFormat:@"ClearGraphicEffect"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
+
 @end

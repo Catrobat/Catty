@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeSizeByNBrick: CBInstructionProtocol {
+extension ChangeSizeByNBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -38,13 +38,13 @@ extension ChangeSizeByNBrick: CBInstructionProtocol {
             let sizeInPercent = size.interpretDoubleForSprite(object)
             spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
             spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
-
-            //for touch issue
-            if let image = spriteNode.currentUIImageLook {
-                spriteNode.currentUIImageLook = UIImage(CGImage: image.CGImage!, scale: CGFloat(spriteNode.xScale + CGFloat(1.0/(sizeInPercent/100.0))), orientation: UIImageOrientation.Up)
-    
-            }
         }
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.size.interpretIntegerForSprite(object)
     }
 
 }

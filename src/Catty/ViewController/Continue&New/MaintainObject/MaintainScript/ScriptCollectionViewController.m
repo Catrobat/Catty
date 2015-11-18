@@ -82,9 +82,11 @@
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
+#import "BrickCellPhiroIfSensorData.h"
 #import "BrickPhiroMotorProtocol.h"
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
+#import "BrickPhiroIfSensorProtocol.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
 #import <CoreBluetooth/CoreBluetooth.h>
@@ -102,7 +104,6 @@
                                              CatrobatAlertViewDelegate,
                                              BluetoothSelection>
 
-@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
@@ -116,17 +117,6 @@
 #define kBrickCellInactiveWhileEditingOpacity 0.7f
 #define kBrickCellInactiveWhileInsertingOpacity 0.7f
 #define kBrickCellActiveOpacity 1.0f
-
-#pragma mark - getters and setters
-- (PlaceHolderView*)placeHolderView
-{
-    if (! _placeHolderView) {
-        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.collectionView.bounds];
-        [self.view insertSubview:_placeHolderView aboveSubview:self.collectionView];
-        _placeHolderView.hidden = YES;
-    }
-    return _placeHolderView;
-}
 
 @dynamic collectionView;
 
@@ -158,52 +148,6 @@
     [[BrickMoveManager sharedInstance] reset];
 }
 
-#pragma mark - actions
-- (void)playSceneAction:(id)sender
-{
-    [self playSceneAction:sender animated:YES];
-}
-
-- (void)playSceneAction:(id)sender animated:(BOOL)animated
-{
-    if ([self respondsToSelector:@selector(stopAllSounds)]) {
-        [self performSelector:@selector(stopAllSounds)];
-    }
-    
-    ScenePresenterViewController *vc = [ScenePresenterViewController new];
-    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    NSMutableArray *array = [NSMutableArray new];
-    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"] && kPhiroActivated) { // or has Phiro Bricks
-        if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
-            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
-        }
-        
-    }
-    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
-        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
-            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
-        }
-    }
-    
-    if ( array.count > 0) { // vc.program.requiresBluetooth
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
-        [bvc setDeviceArray:array];
-        [bvc setDelegate:self];
-        [bvc setVc:vc];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
-        [self presentViewController:navController animated:YES completion:nil];
-    } else {
-        [self startSceneWithVC:vc];
-    }
-}
-
--(void)startSceneWithVC:(ScenePresenterViewController*)vc
-{
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (void)showBrickPickerAction:(id)sender
 {
@@ -426,6 +370,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == kResourcesAlertView) {
+        // check if user agreed
+        if (buttonIndex != 0) {
+            [self startSceneWithVC:self.scenePresenterViewController];
+            return;
+        } else {
+            return;
+        }
+    }
     if (buttonIndex == 1)
     {
         [self deleteSelectedBricks];
@@ -681,6 +634,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    [scriptOrBrick setDefaultValuesForObject:self.object];
     self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
@@ -1085,33 +1039,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#pragma mark - Setup Toolbar
-- (void)setupToolBar
-{
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                                                            target:self
-                                                                            action:@selector(deleteAlertView)];
-    delete.tintColor = [UIColor redColor];
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                         target:self
-                                                                         action:@selector(showBrickPickerAction:)];
-    add.enabled = (! self.editing);
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
-    play.enabled = (! self.editing);
-    if (self.editing) {
-        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
-    } else {
-        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
-                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
-    }
-}
 
 #pragma mark - BrickCellData Delegate
 - (void)addMessageWithName:(NSString*)messageName andCompletion:(id)completion
@@ -1253,17 +1180,21 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             
         }
     }else
-        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
+        if ([brickCellData isKindOfClass:[BrickCellPhiroMotorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
             Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
             [motorBrick setMotor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }else
-        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
+        if ([brickCellData isKindOfClass:[BrickCellPhiroToneData class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
             Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
             [toneBrick setTone:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }else
-        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
+        if ([brickCellData isKindOfClass:[BrickCellPhiroLightData class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
             Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
             [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[BrickCellPhiroIfSensorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
+            Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
+            [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
         }
 
     [self reloadData];

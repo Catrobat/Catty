@@ -513,4 +513,49 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [defaults synchronize];
 }
 
+-(void)addProgramFromInboxWithName:(NSString*)newProgramName
+{
+    
+    NSFileManager* filemgr = [NSFileManager defaultManager];
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
+    NSArray* dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath
+                                                     error:nil];
+    if(![dirFiles firstObject])
+    {
+        return;
+    }
+    NSString* newProgramPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
+    
+    NSData* newProgram = [NSData dataWithContentsOfFile:newProgramPath];
+    
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [appDelegate.fileManager unzipAndStore:newProgram
+                             withProgramID:nil
+                                  withName:newProgramName];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath
+                                               error:nil];
+}
+
+-(void)addProgramFromInbox
+{
+    NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                           invertedSet];
+    
+    [Util askUserForUniqueNameAndPerformAction:@selector(addProgramFromInboxWithName:)
+                                        target:self
+                                   promptTitle:kLocalizedEnterNameForImportedProgramTitle
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                   promptValue:nil
+                             promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                minInputLength:kMinNumOfProgramNameCharacters
+                                maxInputLength:kMaxNumOfProgramNameCharacters
+                           blockedCharacterSet:blockedCharacterSet
+                      invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                 existingNames:[Program allProgramNames]];
+}
+
 @end

@@ -38,6 +38,7 @@
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
 #import "Pocket_Code-Swift.h"
+#import "ProgramDefines.h"
 
 @implementation Program
 
@@ -234,17 +235,17 @@
 
 - (NSString*)projectPath
 {
-    return [Program projectPathForProgramWithName:self.header.programName programID:self.header.programID];
+    return [Program projectPathForProgramWithName:[Util replaceBlockedCharactersForString:self.header.programName] programID:self.header.programID];
 }
 
 + (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
-    return [NSString stringWithFormat:@"%@%@/", [Program basePath], [[self class] programDirectoryNameForProgramName:programName programID:programID]];
+    return [NSString stringWithFormat:@"%@%@/", [Program basePath], [[self class] programDirectoryNameForProgramName:[Util replaceBlockedCharactersForString:programName] programID:programID]];
 }
 
 - (void)removeFromDisk
 {
-    [Program removeProgramFromDiskWithProgramName:self.header.programName programID:self.header.programID];
+    [Program removeProgramFromDiskWithProgramName:[Util enableBlockedCharactersForString:self.header.programName] programID:self.header.programID];
 }
 
 + (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
@@ -286,7 +287,6 @@
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 }
 
-// TODO: Maybe this saveToDisk method should be outsourced to another helper class...
 - (void)saveToDisk
 {
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
@@ -417,6 +417,17 @@
             return NO;
     }
     return YES;
+}
+
+- (NSInteger)getRequiredResources
+{
+    NSInteger resources = kNoResources;
+    
+    for (SpriteObject *obj in self.objectList) {
+        resources |= [obj getRequiredResources];
+    }
+    return resources;
+
 }
 
 #pragma mark - helpers

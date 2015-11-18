@@ -34,6 +34,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _scheduledContexts = [String:[CBScriptContextProtocol]]()
 
     private var _availableWaitQueues = [dispatch_queue_t]()
+    private var _availableBufferQueues = [dispatch_queue_t]()
     private var _lastQueueIndex = 0
 
     // MARK: Static properties
@@ -91,6 +92,7 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
         var nextWaitClosures = [CBScheduleElement]()
+        var nextBufferElements = [CBBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
@@ -113,6 +115,8 @@ final class CBScheduler: CBSchedulerProtocol {
                         nextWaitClosures += (context, closure)
                     case let .Action(action):
                         nextActionElements += (context, action)
+                    case let .Buffer(brick):
+                        nextBufferElements += (context, brick)
                     case .InvalidInstruction:
                         context.state = .Runnable
                         continue // skip invalid instruction
@@ -168,8 +172,25 @@ final class CBScheduler: CBSchedulerProtocol {
             })
         }
 
+
         for (context, closure) in nextClosures {
             closure(context: context, scheduler: self)
+        }
+        
+        for (context, brick) in nextBufferElements {
+            var queue = _availableBufferQueues.first
+            if queue == nil {
+                queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            } else {
+                _availableBufferQueues.removeFirst()
+            }
+            dispatch_async(queue!, {
+                brick.preCalculate()
+                self._availableBufferQueues += queue!
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.runNextInstructionOfContext(context)
+                }
+            })
         }
 
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {

@@ -37,7 +37,11 @@
 - (double) valueForSensor:(Sensor)sensor;
 
 - (void) stopSensors;
+- (void)faceDetectionInit;
 
-
-
+- (BOOL)locationAvailable;
+- (BOOL)accelerometerAvailable;
+- (BOOL)gyroAvailable;
+- (BOOL)magnetometerAvailable;
+- (BOOL)loudnessAvailable;
 @end

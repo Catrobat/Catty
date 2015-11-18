@@ -350,8 +350,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
-            [detailCell setNeedsLayout];
-            [self.tableView endUpdates];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [detailCell setNeedsLayout];
+                [self.tableView endUpdates];
+            });
         });
         return detailCell;
     }

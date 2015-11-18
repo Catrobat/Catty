@@ -22,12 +22,13 @@
 
 import Foundation
 
-extension PhiroPlayToneBrick :CBInstructionProtocol {
+extension PhiroPlayToneBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
-        
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
         return CBInstruction.ExecClosure { (context, _) in
-            let durationInterpretation:NSInteger = NSInteger(self.durationFormula.interpretIntegerForSprite(self.script?.object))
+            let durationInterpretation = self.durationFormula.interpretDoubleForSprite(object)
             
             
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
@@ -60,6 +61,12 @@ extension PhiroPlayToneBrick :CBInstructionProtocol {
                 break;
             }        }
         
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.durationFormula.interpretIntegerForSprite(object)
     }
     
 }

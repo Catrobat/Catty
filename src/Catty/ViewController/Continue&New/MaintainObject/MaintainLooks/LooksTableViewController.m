@@ -431,9 +431,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
     }
     image = [UIImage imageWithImage:image
-                   scaledToMaxWidth:[Util screenWidth]
-                          maxHeight:[Util screenHeight]];
-    //    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth] * 2, [Util screenHeight] * 2)];
+                   scaledToMaxWidth:2*[Util screenWidth]
+                          maxHeight:2*[Util screenHeight]];
     
     // add image to object now
     NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];

@@ -63,4 +63,10 @@
     return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", xPosition, yPosition];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.xPosition getRequiredResources]|[self.yPosition getRequiredResources];
+}
+
 @end

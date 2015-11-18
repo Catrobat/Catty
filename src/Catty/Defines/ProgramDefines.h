@@ -44,15 +44,15 @@
 #define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
 #define kMinNumOfProgramNameCharacters 1
-#define kMaxNumOfProgramNameCharacters 20
+#define kMaxNumOfProgramNameCharacters 250
 #define kMinNumOfProgramDescriptionCharacters 1
 #define kMaxNumOfProgramDescriptionCharacters 400
 #define kMinNumOfObjectNameCharacters 1
-#define kMaxNumOfObjectNameCharacters 20
+#define kMaxNumOfObjectNameCharacters 150
 #define kMinNumOfLookNameCharacters 1
-#define kMaxNumOfLookNameCharacters 20
+#define kMaxNumOfLookNameCharacters 150
 #define kMinNumOfSoundNameCharacters 1
-#define kMaxNumOfSoundNameCharacters 20
+#define kMaxNumOfSoundNameCharacters 150
 #define kMinNumOfMessageNameCharacters 1
 #define kMaxNumOfMessageNameCharacters 20
 #define kMinNumOfVariableNameCharacters 1
@@ -82,6 +82,21 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
     kDTMActionVariableName
 };
 
+typedef NS_ENUM(NSInteger, ResourceType) {
+    kNoResources =          0,
+    kTextToSpeech =         1 << 0,
+    kBluetoothPhiro =       1 << 1,
+    kBluetoothArduino =     1 << 2,
+    kFaceDetection =        1 << 3,
+    kVibration =            1 << 4,
+    kLocation =             1 << 5,
+    kAccelerometer =        1 << 6,
+    kGyro =                 1 << 7,
+    kMagnetometer =         1 << 8,
+    kLoudness =             1 << 9,
+    kLED =                  1 << 10
+};
+
 #define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
 #define kDTPayloadSpriteObject @"DTPayloadSpriteObject"
 #define kDTPayloadLook @"DTPayloadLook"
@@ -95,6 +110,7 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserPromptValue @"DTPayloadAskUserPromptValue"
 #define kDTPayloadAskUserPromptPlaceholder @"DTPayloadAskUserPromptPlaceholder"
 #define kDTPayloadAskUserMinInputLength @"DTPayloadAskUserMinInputLength"
+#define kDTPayloadAskUserMaxInputLength @"DTPayloadAskUserMaxInputLength"
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 #define kDTPayloadTextView @"DTPayloadTextView"

@@ -29,6 +29,7 @@
 #import "Pocket_Code-Swift.h"
 #import "NetworkDefines.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "CatrobatTableViewController.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -48,13 +49,9 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
-    Siren* siren = Siren.sharedInstance;
-    siren.appID = kAppStoreIdentifier;
-
-    [siren checkVersion:kSirenUpdateIntervallDaily];
-    [siren setAlertType:kSirenAlertTypeOption];
-    
     [self initNavigationBar];
+    
+    [SwiftBridge sirenBridgeApplicationDidFinishLaunching];
     
     [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDefault;
     
@@ -78,7 +75,7 @@ void uncaughtExceptionHandler(NSException *exception)
 
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [Siren.sharedInstance checkVersion:kSirenUpdateIntervallDaily];
+    [SwiftBridge sirenApplicationDidBecomeActive];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -107,7 +104,7 @@ void uncaughtExceptionHandler(NSException *exception)
         [spvc resumeAction];
     }
     
-    [Siren.sharedInstance checkVersion:kSirenUpdateIntervallDaily];
+    [SwiftBridge sirenApplicationWillEnterForeground];
 }
 
 - (void)initNavigationBar
@@ -115,6 +112,22 @@ void uncaughtExceptionHandler(NSException *exception)
     [UINavigationBar appearance].barTintColor = UIColor.navBarColor;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor navTextColor]}];
     self.window.tintColor = [UIColor globalTintColor];
+}
+
+-(BOOL)application:(UIApplication* )application
+           openURL:(NSURL* )url
+ sourceApplication:(NSString* )sourceApplication
+        annotation:(id)annotation
+{
+    UINavigationController* vc = (UINavigationController*)self.window.rootViewController;
+    [vc popToRootViewControllerAnimated:YES];
+    
+    if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
+        CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
+        [ctvc addProgramFromInbox];
+        return YES;
+    }
+    return NO;
 }
 
 @end

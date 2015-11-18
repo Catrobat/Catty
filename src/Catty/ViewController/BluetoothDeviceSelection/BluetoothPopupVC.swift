@@ -62,7 +62,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, titleForSectionAtIndex index: Int) -> String {
-        return ["Search"][index];//
+        return [klocalizedBluetoothSearch][index];//
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, viewControllerForPageAtIndex index: Int) -> UIViewController {
@@ -86,11 +86,11 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     func setHeader() {
         if(deviceArray!.count > 0){
             if(deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
-                self.navigationController!.title = "Select Phiro"
-                self.title = "Select Phiro"
+                self.navigationController!.title = klocalizedBluetoothSelectPhiro
+                self.title = klocalizedBluetoothSelectPhiro
             } else if (deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
-                self.navigationController!.title = "Select Arduino"
-                self.title = "Select Arduino"
+                self.navigationController!.title = klocalizedBluetoothSelectArduino
+                self.title = klocalizedBluetoothSelectArduino
             }
         }
         view.setNeedsDisplay()

@@ -21,7 +21,23 @@
  */
 
 #import "BaseCollectionViewController.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "TableUtil.h"
+#import "UIDefines.h"
+#import "Util.h"
+#import "ActionSheetAlertViewTags.h"
+#import "LanguageTranslationDefines.h"
+#import <tgmath.h>
+#import "CatrobatAlertView.h"
+#import "LoadingView.h"
+#import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
+#import "ResourceHelper.h"
+
+
+#import <CoreBluetooth/CoreBluetooth.h>
+
+@class BluetoothPopupVC;
 
 @interface BaseCollectionViewController ()
 
@@ -43,5 +59,59 @@
 {
     self.collectionView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
 }
+
+- (void)playSceneAction:(id)sender
+{
+    [self playSceneAction:sender animated:YES];
+}
+
+- (void)playSceneAction:(id)sender animated:(BOOL)animated;
+{
+    if ([self respondsToSelector:@selector(stopAllSounds)]) {
+        [self performSelector:@selector(stopAllSounds)];
+    }
+    
+    self.scenePresenterViewController = [ScenePresenterViewController new];
+    self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
+    if ([ResourceHelper checkResources:resources delegate:self]) {
+        [self startSceneWithVC:self.scenePresenterViewController];
+    }
+}
+
+-(void)startSceneWithVC:(ScenePresenterViewController*)vc
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Setup Toolbar
+- (void)setupToolBar
+{
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                                                            target:self
+                                                                            action:@selector(deleteAlertView)];
+    delete.tintColor = [UIColor redColor];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(showBrickPickerAction:)];
+    add.enabled = (! self.editing);
+    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                          target:self
+                                                                          action:@selector(playSceneAction:)];
+    play.enabled = (! self.editing);
+    if (self.editing) {
+        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
+    } else {
+        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
+                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+    }
+}
+
 
 @end

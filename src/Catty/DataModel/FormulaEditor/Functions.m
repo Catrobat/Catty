@@ -85,6 +85,10 @@
         return LENGTH;
     if([value isEqualToString:@"JOIN"])
         return JOIN;
+    if([value isEqualToString:@"ARDUINOANALOG"])
+        return ARDUINOANALOG;
+    if([value isEqualToString:@"ARDUINODIGITAL"])
+        return ARDUINODIGITAL;
     
     return NO_FUNCTION;
 }
@@ -161,7 +165,12 @@
         case LETTER:
             return @"LETTER";
             break;
-
+        case ARDUINODIGITAL:
+            return @"ARDUINODIGITAL";
+            break;
+        case ARDUINOANALOG:
+            return @"ARDUINOANALOG";
+            break;
         default:
             return nil;
             break;
@@ -244,6 +253,12 @@
             break;
         case JOIN:
             return kUIFEFunctionJoin;
+            break;
+        case ARDUINODIGITAL:
+            return @"digitalArduinoPin";
+            break;
+        case ARDUINOANALOG:
+            return @"analogArduinoPin";
             break;
         default:
             return @"";
