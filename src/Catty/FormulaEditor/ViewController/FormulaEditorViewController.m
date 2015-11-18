@@ -723,7 +723,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
        {
             [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
             }
         }
     }
