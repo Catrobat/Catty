@@ -281,6 +281,7 @@
     [self.tableView reloadData];
     [self.tableView setEditing:YES animated:YES];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
     self.editing = YES;
 }
 
@@ -288,6 +289,7 @@
 {
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.rightBarButtonItem = self.normalModeRightBarButtonItem;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
     [self.tableView setEditing:NO animated:YES];
     [self setupToolBar];
     self.editing = NO;
