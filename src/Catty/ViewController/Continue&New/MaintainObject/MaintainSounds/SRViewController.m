@@ -47,8 +47,13 @@
 {
     [super viewDidLoad];
         // Do any additional setup after loading the view, typically from a nib.
-    [self setupToolBar];
-    
+//    [self setupToolBar];
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                          target:self
+                                                                          action:@selector(saveSound)];
+    self.navigationController.toolbarHidden = YES;
+
+    self.navigationItem.rightBarButtonItem = save;
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - (self.view.frame.size.height * 0.4 / 2.0f), self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4);
 
     self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.2, self.view.frame.size.width, 40)];
