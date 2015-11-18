@@ -502,6 +502,8 @@
 #define kUIFEFunctionLetter NSLocalizedString(@"letter", nil)
 #define kUIFEFunctionJoin NSLocalizedString(@"join", nil)
 #define kUIFEFunctionLength NSLocalizedString(@"length", nil)
+#define kUIFEFunctionFloor NSLocalizedString(@"floor", nil)
+#define kUIFEFunctionCeil NSLocalizedString(@"ceil", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)
