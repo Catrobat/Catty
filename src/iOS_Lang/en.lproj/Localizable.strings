@@ -134,6 +134,9 @@
 "Categories" = "Categories";
 
 /* No comment provided by engineer. */
+"ceil" = "ceil";
+
+/* No comment provided by engineer. */
 "Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 /* No comment provided by engineer. */
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"floor" = "floor";
 
 /* No comment provided by engineer. */
 "for all objects" = "for all objects";
