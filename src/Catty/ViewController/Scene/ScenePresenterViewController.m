@@ -73,30 +73,7 @@
     self.restartProgram = NO;
     [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    
-    // MenuImageBackground
-    UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
-    menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor navBarColor]];
-    UIImage *newBackgroundImage;
-
-    if ([Util screenHeight] == kIphone4ScreenHeight) {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    } else {
-        CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, [Util screenHeight]);
-        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-        [menuBackgroundImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
     self.skView.backgroundColor = UIColor.backgroundColor;
-    self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
-    self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -113,14 +90,15 @@
     }
     self.menuOpen = NO;
     [self.view addSubview:self.skView];
+    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"SceneMenuView" owner:self options:nil];
+    self.menuView = [subviewArray objectAtIndex:0];
+    self.menuView.frame = CGRectMake(self.menuView.frame.origin.x, self.menuView.frame.origin.y, self.menuView.frame.size.width, [Util screenHeight]);
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
     [self setUpMenuButtons];
-    [self setUpMenuFrames];
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
     [[BluetoothService sharedInstance] setScenePresenter:self];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -177,45 +155,14 @@
 #pragma mark View Setup
 - (void)setUpLabels
 {
-    if ([Util screenHeight]==kIphone4ScreenHeight) {
-        UILabel* label     =[[UILabel alloc] initWithFrame:
-                             CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-        self.menuBackLabel = label;
-        label              =[[UILabel alloc] initWithFrame:
-                             CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
-        self.menuRestartLabel = label;
-        label     = [[UILabel alloc] initWithFrame:
-                     CGRectMake(kPlaceofContinueLabel+kContinueOffset,(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-        self.menuContinueLabel = label;
-        label    = [[UILabel alloc] initWithFrame:
-                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-        self.menuScreenshotLabel = label;
-        label         = [[UILabel alloc] initWithFrame:
-                         CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-        self.menuAxisLabel  = label;
-    } else {
-            UILabel* label      = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(kMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-            self.menuBackLabel  = label;
-            label               =[[UILabel alloc] initWithFrame:
-                                  CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
-            self.menuRestartLabel = label;
-            label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofContinueLabel+kContinueOffset,([Util screenHeight]/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-            self.menuContinueLabel = label;
-            label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-            self.menuScreenshotLabel = label;
-            label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(kMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-            self.menuAxisLabel  = label;
-    }
+
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
                                kLocalizedRestart,
                                kLocalizedContinue,
                                kLocalizedScreenshot,
-                               kLocalizedAxes, nil];
-    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
+                               kLocalizedAxes,
+                               kLocalizedRecord, nil];
+    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,self.menuRecordLabel, nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
         [self setupLabel:labelTextArray[i]
                  andView:labelArray[i]];
@@ -228,20 +175,10 @@
     label.textColor = [UIColor navTintColor];
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
     label.textAlignment = NSTextAlignmentCenter;
-    [self.menuView addSubview:label];
-    [self.menuView bringSubviewToFront:label];
 }
 
 - (void)setUpMenuButtons
 {
-    self.menuBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuContinueButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuAspectRatioButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuRecordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
@@ -280,29 +217,6 @@
     [button setBackgroundImage:stateHighlighted forState:UIControlStateHighlighted];
     [button setBackgroundImage:stateHighlighted forState:UIControlStateSelected];
     [button addTarget:self action:myAction forControlEvents:UIControlEventTouchUpInside];
-    [self.menuView addSubview:button];
-}
-
-- (void)setUpMenuFrames
-{
-    self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
-    self.menuRecordButton.frame = CGRectMake(10,[Util screenHeight]- 10 - (kMenuButtonSize-20), kMenuButtonSize-20, kMenuButtonSize-20);
-    ///StartPosition
-    if ([Util screenHeight]==kIphone4ScreenHeight) {
-        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
-        
-        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone4ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
-        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
-        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-        
-    } else {
-        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(kMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
-        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,([Util screenHeight]/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
-        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
-        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(kMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-    }
 }
 
 - (void)setUpGridView
