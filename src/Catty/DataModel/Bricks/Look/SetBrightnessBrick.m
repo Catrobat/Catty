@@ -42,11 +42,6 @@
     self.brightness = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.brightness];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.brightness = [[Formula alloc] initWithInteger:50];

@@ -35,11 +35,6 @@
     self.durationInSeconds = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.durationInSeconds];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.durationInSeconds = [[Formula alloc] initWithZero];

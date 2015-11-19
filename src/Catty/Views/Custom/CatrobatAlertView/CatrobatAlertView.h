@@ -45,14 +45,11 @@
 
 @property (nonatomic, strong) DataTransferMessage *dataTransferMessage; // DTO design pattern
 @property (nonatomic) NSInteger tag;
-@property (nonatomic, strong) UIWindow *alertWindow;
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message
            delegate:(id<CatrobatAlertViewDelegate>)delegate
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
-
-- (void)show:(BOOL)animated;
 
 @end

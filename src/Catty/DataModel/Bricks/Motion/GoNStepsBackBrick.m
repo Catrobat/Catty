@@ -37,11 +37,6 @@
     self.steps = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.steps];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.steps = [[Formula alloc] initWithInteger:1];

@@ -23,7 +23,7 @@
 final class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
-    var spriteObject: SpriteObject?
+    private(set) var spriteObject: SpriteObject?
     var currentLook: Look?
     var currentUIImageLook: UIImage?
     var currentLookBrightness: CGFloat = 1.0

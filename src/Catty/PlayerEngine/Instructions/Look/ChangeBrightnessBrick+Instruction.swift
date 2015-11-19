@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeBrightnessByNBrick: CBInstructionProtocol {
+extension ChangeBrightnessByNBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
@@ -32,11 +32,11 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let bright = self.changeBrightness
+            let bright = self.changeBrightness,
+            let look = object.spriteNode!.currentLook
             else { fatalError("This should never happen!") }
         
         return {
-            guard let look = object.spriteNode!.currentLook else { return }
             var brightnessValue = bright.interpretDoubleForSprite(object) / 100
             brightnessValue += Double(spriteNode.currentLookBrightness)
             if (brightnessValue > 2) {
@@ -82,4 +82,11 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
             
         }
     }
+
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.changeBrightness.interpretIntegerForSprite(object)
+    }
+
 }

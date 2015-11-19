@@ -33,7 +33,7 @@
 @property (nonatomic, strong) FormulaElement *formulaTree;
 @property (nonatomic, weak) NSString *displayString;
 @property (nonatomic, strong, readonly) NSNumber *lastResult;
-@property (nonatomic, strong, readonly) id bufferedResult;
+@property (nonatomic, strong, readonly) NSNumber *bufferedResult;
 
 - (id)initWithZero;
 - (id)initWithInteger:(int)value;
@@ -45,8 +45,6 @@
 - (float)interpretFloatForSprite:(SpriteObject*)sprite;
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
-- (NSString*)interpretString:(SpriteObject*)sprite;
-- (void)preCalculateFormulaForSprite:(SpriteObject*)sprite;
 
 - (BOOL)isSingleNumberFormula;
 - (BOOL)isEqualToFormula:(Formula*)formula;

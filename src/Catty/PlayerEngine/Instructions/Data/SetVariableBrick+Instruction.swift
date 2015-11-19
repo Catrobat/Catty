@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetVariableBrick: CBInstructionProtocol {
+extension SetVariableBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
 
@@ -39,4 +39,12 @@ extension SetVariableBrick: CBInstructionProtocol {
         }
 
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        
+        self.variableFormula.interpretDoubleForSprite(object)
+    }
+
 }
