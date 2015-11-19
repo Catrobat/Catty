@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PlaceAtBrick: CBInstructionProtocol{
+extension PlaceAtBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -36,6 +36,13 @@ extension PlaceAtBrick: CBInstructionProtocol{
             let yPosition = CGFloat(self.yPosition.interpretDoubleForSprite(object))
             spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
         }
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.xPosition.interpretIntegerForSprite(object)
+        self.yPosition.interpretIntegerForSprite(object)
     }
 
 }

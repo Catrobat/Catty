@@ -56,6 +56,8 @@ typedef NS_ENUM(NSInteger, Function) {
     LENGTH,
     ARDUINODIGITAL,
     ARDUINOANALOG,
+    FLOOR,
+    CEIL,
     NO_FUNCTION = -1
 };
 

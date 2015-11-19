@@ -44,11 +44,6 @@
         self.yPosition = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.xPosition,self.yPosition];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.xPosition = [[Formula alloc] initWithInteger:100];

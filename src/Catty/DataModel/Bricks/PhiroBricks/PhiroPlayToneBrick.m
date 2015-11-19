@@ -53,12 +53,6 @@
 {
     self.durationFormula = formula;
 }
-
-- (NSArray*)getFormulas
-{
-    return @[self.durationFormula];
-}
-
 - (NSString*)toneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.tone;

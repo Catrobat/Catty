@@ -31,11 +31,6 @@
     return YES;
 }
 
-- (NSArray*)conditions
-{
-    return @[];
-}
-
 - (BOOL)checkCondition
 {
     NSError(@"Abstract class. Override checkCondition in Subclass: %@", [self class]);

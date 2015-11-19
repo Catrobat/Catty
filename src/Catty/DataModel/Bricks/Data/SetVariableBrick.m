@@ -49,11 +49,6 @@
     self.userVariable = variable;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.variableFormula];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.variableFormula = [[Formula alloc] initWithZero];

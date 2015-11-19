@@ -47,20 +47,7 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     final func resetCondition() {
         _conditionBrick.resetCondition()
     }
-    
-    final func bufferCondition(sprite:SpriteObject?) {
-        for formula:Formula in _conditionBrick.conditions() {
-            formula.preCalculateFormulaForSprite(sprite)
-        }
-    }
-    final func hasBluetoothFormula() -> Bool {
-        for formula:Formula in _conditionBrick.conditions() {
-            if (formula.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0 {
-                return true
-            }
-        }
-        return false
-    }
+
     func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }

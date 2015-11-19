@@ -26,7 +26,6 @@ import BluetoothHelper
 
 @objc protocol BluetoothSelection {
     func startSceneWithVC(scenePresenter:ScenePresenterViewController)
-    func showLoadingView()
 }
 
 class BluetoothPopupVC: MXSegmentedPagerController {
@@ -99,9 +98,8 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     
     func startScene(){
         dispatch_async(dispatch_get_main_queue()){
-            self.delegate!.showLoadingView()
-            self.delegate!.startSceneWithVC(self.vc!)
-        }
+             self.delegate!.startSceneWithVC(self.vc!)
+            }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
