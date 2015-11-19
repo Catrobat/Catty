@@ -367,6 +367,8 @@
 
 -(void)startSceneWithVC:(ScenePresenterViewController*)vc
 {
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }

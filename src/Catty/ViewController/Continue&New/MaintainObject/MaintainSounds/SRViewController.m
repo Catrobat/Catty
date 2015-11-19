@@ -32,7 +32,7 @@
 @interface SRViewController ()
 @property (nonatomic,strong)Sound *sound;
 @property (nonatomic,strong)NSString *filePath;
-@property (nonatomic,strong) TimerLabel* timerLabel;
+@property (nonatomic,weak) IBOutlet TimerLabel* timerLabel;
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) AVAudioSession* session;
 @property (nonatomic,assign) BOOL isSaved;
@@ -57,7 +57,7 @@
     self.navigationItem.rightBarButtonItem = save;
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - (self.view.frame.size.height * 0.4 / 2.0f), self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4);
 
-    self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.2, self.view.frame.size.width, 40)];
+
         //    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
     
     self.timerLabel.timerType = TimerLabelTypeStopWatch;

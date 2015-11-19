@@ -100,14 +100,27 @@
     self.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = [UIColor backgroundColor];
     NSDebug(@"%@",self.project.author);
+    [self initView];
+//    self.scrollViewOutlet.exclusiveTouch = YES;
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.fileManager.delegate = self;
+    appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
+
+    self.useTestUrl = YES;
+}
+
+
+-(void)initView {
+    [self.projectView removeFromSuperview];
     self.projectView = [self createViewForProject:self.project];
     if(!self.project.author){
         [self showLoadingView];
         UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
         button.enabled = NO;
     }
-    CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
-    self.scrollViewOutlet.frame = CGRectMake(self.scrollViewOutlet.frame.origin.x, self.scrollViewOutlet.frame.origin.y, [Util screenWidth],[Util screenHeight]);
+    CGFloat minHeight = self.view.frame.size.height;
+    //    self.scrollViewOutlet.frame = CGRectMake(self.scrollViewOutlet.frame.origin.x, self.scrollViewOutlet.frame.origin.y, [Util screenWidth],[Util screenHeight]);
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
     CGFloat screenHeight = [Util screenHeight];
@@ -123,15 +136,7 @@
     }
     [self.scrollViewOutlet setContentSize:contentSize];
     self.scrollViewOutlet.userInteractionEnabled = YES;
-//    self.scrollViewOutlet.exclusiveTouch = YES;
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    appDelegate.fileManager.delegate = self;
-    appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
-
-    self.useTestUrl = YES;
 }
-
 - (void)initNavigationBar
 {
     self.title = self.navigationItem.title = kLocalizedDetails;
@@ -529,5 +534,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return YES;
     }
     return NO;
+}
+
+#pragma mark Rotation
+
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self initView];
+        [self.view setNeedsDisplay];
+    });
+
 }
 @end

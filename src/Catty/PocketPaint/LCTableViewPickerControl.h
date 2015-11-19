@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-#define kPickerControlWidth 320
-#define kPickerControlAgeHeight 400
 #define kAnimationDuration 0.4
 #define kPickerTitleBarColor [UIColor navBarColor]
 
@@ -48,7 +46,7 @@ typedef enum ActionType actionType;
 @property (weak) id <LCItemPickerDelegate> delegate;
 //@property (nonatomic, assign) NSInteger tag; // leads to warning, because this property is already implemented in superclass (UIView)
 @property (nonatomic, strong) NSString *key;
-
+@property (nonatomic, assign) NSInteger height;
 - (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray*)array offset:(CGPoint)offset navBarOffset:(NSInteger)navbarOffset;
 
 - (void)showInView:(UIView*)view;

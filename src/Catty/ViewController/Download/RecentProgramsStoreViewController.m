@@ -96,6 +96,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
     self.shouldShowAlert = YES;
 }
 
@@ -104,6 +105,7 @@
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     self.delegate=nil;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.navigationController.navigationBar.translucent = YES;
     self.tabBarController.tabBar.translucent = YES;
 
@@ -168,9 +170,6 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor backgroundColor];
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
-    self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height,[Util screenWidth], [Util screenHeight] - (navigationBarHeight + segmentedcontrolHeight));
     self.tableView.scrollsToTop = YES;
 }
 
@@ -187,13 +186,6 @@
         [self.downloadSegmentedControl setTitleTextAttributes:attributes
                                         forState:UIControlStateNormal];
     }
-
-    CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.downloadSegmentedControl.backgroundColor = [UIColor backgroundColor];
-    self.downloadSegmentedControl.tintColor = [UIColor globalTintColor];
-    self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.segmentedControlView.frame.size.height);
-    self.segmentedControlView.backgroundColor = [UIColor backgroundColor];
-    self.downloadSegmentedControl.frame = CGRectMake(9, 9, self.view.frame.size.width - 18, self.downloadSegmentedControl.frame.size.height);
 
 }
 - (void)initFooterView

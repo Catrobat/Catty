@@ -222,6 +222,7 @@
 		92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FA61BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift */; };
 		92B46FAA1BC7F4D6004980C1 /* ArduinoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FA91BC7F4D6004980C1 /* ArduinoDevice.swift */; };
 		92B46FAC1BC7F51D004980C1 /* PhiroDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FAB1BC7F51D004980C1 /* PhiroDevice.swift */; };
+		92B95F171BFDE1CB0095974E /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B95F161BFDE1CB0095974E /* CALayer+XibConfiguration.m */; };
 		92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631841BC502CB00486958 /* BluetoothPopupVC.swift */; };
 		92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */; };
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; };
@@ -1146,6 +1147,8 @@
 		92B46FA61BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ArduinoSendPWMValueBrick+Instruction.swift"; sourceTree = "<group>"; };
 		92B46FA91BC7F4D6004980C1 /* ArduinoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoDevice.swift; sourceTree = "<group>"; };
 		92B46FAB1BC7F51D004980C1 /* PhiroDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroDevice.swift; sourceTree = "<group>"; };
+		92B95F151BFDE1CB0095974E /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+XibConfiguration.h"; path = "CALayer+XibConfiguration/CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
+		92B95F161BFDE1CB0095974E /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+XibConfiguration.m"; path = "CALayer+XibConfiguration/CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		92C631841BC502CB00486958 /* BluetoothPopupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothPopupVC.swift; sourceTree = "<group>"; };
 		92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownDevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -3112,6 +3115,15 @@
 			path = PlayerEngine/Instructions/Arduino;
 			sourceTree = "<group>";
 		};
+		92B95F181BFDE1D30095974E /* CALayer+XibConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				92B95F151BFDE1CB0095974E /* CALayer+XibConfiguration.h */,
+				92B95F161BFDE1CB0095974E /* CALayer+XibConfiguration.m */,
+			);
+			name = "CALayer+XibConfiguration";
+			sourceTree = "<group>";
+		};
 		92C631831BC502CB00486958 /* BluetoothDeviceSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -3350,6 +3362,7 @@
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
 				92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */,
 				92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */,
+				92B95F181BFDE1D30095974E /* CALayer+XibConfiguration */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -6094,6 +6107,7 @@
 				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				AAF6D9D21BC0966700686849 /* Formula+Optimization.swift in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
+				92B95F171BFDE1CB0095974E /* CALayer+XibConfiguration.m in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
@@ -6771,7 +6785,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Debug;
@@ -6811,7 +6825,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
 			name = Release;

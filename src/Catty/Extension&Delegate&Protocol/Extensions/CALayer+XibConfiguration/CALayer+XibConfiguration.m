@@ -20,34 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NavigationController.h"
-#import "PaintViewController.h"
+#import "CALayer+XibConfiguration.h"
 
-@implementation NavigationController
+@implementation CALayer(XibConfiguration)
 
-- (void)viewDidLoad
+-(void)setBorderUIColor:(UIColor*)color
 {
-    [super viewDidLoad];
-    [self setNeedsStatusBarAppearanceUpdate];
-    // Do any additional setup after loading the view.
+    self.borderColor = color.CGColor;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
+-(UIColor*)borderUIColor
 {
-    return UIStatusBarStyleDefault;
+    return [UIColor colorWithCGColor:self.borderColor];
 }
-
-- (BOOL)shouldAutorotate
-{
-    id currentViewController = self.topViewController;
-    
-    if ([currentViewController isKindOfClass:[PaintViewController class]])
-        return NO;
-    if ([currentViewController isKindOfClass:[ScenePresenterViewController class]])
-        return NO;
-    
-    return YES;
-}
-
 
 @end

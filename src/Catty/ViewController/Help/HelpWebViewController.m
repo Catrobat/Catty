@@ -41,4 +41,15 @@
   self.navigationController.hidesBarsOnSwipe = NO;
 }
 
+#pragma mark Rotation
+
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.view setNeedsDisplay];
+    });
+    
+}
+
 @end

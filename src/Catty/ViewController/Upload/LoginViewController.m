@@ -103,17 +103,17 @@
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
+//    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
     
     self.infoLabel.textColor =  [UIColor globalTintColor];
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:28.0f];
     self.infoLabel.text = kLocalizedInfoLogin;
     [self.infoLabel sizeToFit];
-    self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
+//    self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
     
     currentHeight+= self.headerImageView.frame.size.height+20;
     currentHeight = headerHeight+self.infoLabel.frame.size.height;
-    [self addHorizontalLineToView:self.view andHeight:currentHeight];
+//    [self addHorizontalLineToView:self.view andHeight:currentHeight];
     
     currentHeight += 10;
     self.usernameField.backgroundColor = [UIColor whiteColor];
@@ -122,7 +122,7 @@
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
-    self.usernameField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.usernameField.frame.size.height);
+//    self.usernameField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.usernameField.frame.size.height);
     currentHeight+= self.usernameField.frame.size.height;
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView.image = [UIImage imageNamed:@"user"];
@@ -137,7 +137,7 @@
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
-    self.passwordField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.passwordField.frame.size.height);
+//    self.passwordField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.passwordField.frame.size.height);
     currentHeight+= self.passwordField.frame.size.height;
     
     UIImageView* leftView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -151,7 +151,7 @@
     [self.loginButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
-    self.loginButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.loginButton.frame.size.height);
+//    self.loginButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.loginButton.frame.size.height);
     currentHeight+= self.loginButton.frame.size.height+10;
     
     self.forgotButton.backgroundColor = [UIColor clearColor];
@@ -160,10 +160,10 @@
     [self.forgotButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     [self.forgotButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
-    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
+//    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
     currentHeight+= self.forgotButton.frame.size.height+20;
     
-    [self addHorizontalLineToView:self.view andHeight:currentHeight];
+//    [self addHorizontalLineToView:self.view andHeight:currentHeight];
     currentHeight+= 10;
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:16.0f];
@@ -171,7 +171,7 @@
     [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
-    self.registerButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.registerButton.frame.size.height);
+//    self.registerButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.registerButton.frame.size.height);
 }
 
 -(void)addDoneToTextFields
@@ -452,5 +452,30 @@
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
     [self setViewMovedUp:NO];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: YES];
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: NO];
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    const int movementDistance = 80; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
 }
 @end

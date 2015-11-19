@@ -98,7 +98,7 @@
                          kLocalizedPaintSquare, nil];
   self.brushEndingControl = [[UISegmentedControl alloc] initWithItems:mySegments];
   CGFloat width = self.view.frame.size.width-140.0f;
-  self.brushEndingControl.frame =CGRectMake(self.view.center.x-width/2.0f, self.view.frame.size.height*0.9f, width, 20);
+  self.brushEndingControl.frame =CGRectMake(self.view.center.x-width/2.0f, self.view.frame.size.height*0.9f, width, self.view.frame.size.height*0.1f);
   self.brushEndingControl.tintColor = [UIColor globalTintColor];
   switch (self.brushEnding) {
     case Round:
@@ -120,7 +120,7 @@
 - (void)setupBrushSlider
 {
   self.brushSlider = [[CatrobatUISlider alloc] init];
-  self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.7f, self.view.frame.size.width-100, 20);
+  self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.25f, self.view.frame.size.height*0.7f, self.view.frame.size.width/2, 20);
   [self.brushSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
   [self.brushSlider setBackgroundColor:[UIColor clearColor]];
   self.brushSlider.minimumValue = 1.0f;
@@ -128,11 +128,11 @@
   self.brushSlider.continuous = YES;
   self.brushSlider.value = self.brush;
   self.brushSlider.tintColor = [UIColor globalTintColor];
-  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.55f, 40, 10)];
+  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.25f, self.view.frame.size.height*0.55f, 40, 10)];
   label.text = kLocalizedPaintWidth;
   [label sizeToFit];
   label.textColor = [UIColor globalTintColor];
-  self.thicknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.brushSlider.frame.origin.x+self.brushSlider.frame.size.width +20, self.view.frame.size.height*0.7f-7, 40, 10)];
+  self.thicknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.brushSlider.frame.origin.x+self.brushSlider.frame.size.width +10, self.view.frame.size.height*0.7f-7, 40, 10)];
   self.thicknessLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.brush)];
   self.thicknessLabel.textColor = [UIColor globalTintColor];
   [self.thicknessLabel sizeToFit];
@@ -145,7 +145,7 @@
 
 - (void)setupBrushPreview
 {
-  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-60, 60, 125, 125)];
+  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-60, 20, 125, 125)];
   UIGraphicsBeginImageContext(self.brushView.frame.size);
   switch (self.brushEnding) {
     case Round:

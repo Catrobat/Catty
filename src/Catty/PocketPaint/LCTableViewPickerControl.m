@@ -117,15 +117,15 @@
     [_maskView addGestureRecognizer:_tapGesture];
     
     [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-        [self setFrame:CGRectMake(0, SCREEN_HEIGHT - kPickerControlAgeHeight - 10, self.frame.size.width, kPickerControlAgeHeight)];
+        [self setFrame:CGRectMake(0, SCREEN_HEIGHT - self.height - 10, self.frame.size.width, self.height)];
         [self->_maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]];
     } completion:^(BOOL finished){
         //scroll to currentValue
         [UIView animateWithDuration:0.2 animations:^{
-            [self setFrame:CGRectMake(0, SCREEN_HEIGHT - kPickerControlAgeHeight + 5, self.frame.size.width, kPickerControlAgeHeight)];
+            [self setFrame:CGRectMake(0, SCREEN_HEIGHT - self.height + 5, self.frame.size.width, self.height)];
         } completion:^(BOOL finished){
             [UIView animateWithDuration:0.1 animations:^{
-                [self setFrame:CGRectMake(0, SCREEN_HEIGHT - kPickerControlAgeHeight, self.frame.size.width, kPickerControlAgeHeight)];
+                [self setFrame:CGRectMake(0, SCREEN_HEIGHT - self.height, self.frame.size.width, self.height)];
             } completion:^(BOOL finished){
                 //configure your settings after view animation completion
             }];
@@ -148,7 +148,7 @@
 {
     //animation to dismiss
     [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-        [self setFrame:CGRectMake(0, SCREEN_HEIGHT, kPickerControlAgeHeight, self.frame.size.width)];
+        [self setFrame:CGRectMake(0, SCREEN_HEIGHT, self.height, self.frame.size.width)];
         [self->_maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0]];
     } completion:^(BOOL finished){
         [self removeFromSuperview];

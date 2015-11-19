@@ -353,6 +353,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditLook
                                                                         withPayload:payload];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)

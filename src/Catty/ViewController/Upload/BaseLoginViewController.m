@@ -56,26 +56,26 @@
 #define kOFFSET_FOR_KEYBOARD 100.0
 
 -(void)keyboardWillShow {
-    // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+//    // Animate the current view out of the way
+//    if (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
+//    else if (self.view.frame.origin.y < 0)
+//    {
+//        [self setViewMovedUp:NO];
+//    }
 }
 
 -(void)keyboardWillHide {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp:NO];
-    }
+//    if (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
+//    else if (self.view.frame.origin.y < 0)
+//    {
+//        [self setViewMovedUp:NO];
+//    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender

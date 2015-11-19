@@ -364,8 +364,10 @@
 
 - (void)changeAction
 {
-    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0) navBarOffset:self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height];
+    NSInteger height = self.view.frame.size.height * 0.7;
+    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, height) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0) navBarOffset:self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height];
     pickerView.delegate = self;
+    pickerView.height = height;
     self.navigationController.toolbarHidden = YES;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     pickerView.tag = 0;

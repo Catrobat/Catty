@@ -20,34 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NavigationController.h"
-#import "PaintViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
-@implementation NavigationController
+@interface CALayer(XibConfiguration)
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self setNeedsStatusBarAppearanceUpdate];
-    // Do any additional setup after loading the view.
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleDefault;
-}
-
-- (BOOL)shouldAutorotate
-{
-    id currentViewController = self.topViewController;
-    
-    if ([currentViewController isKindOfClass:[PaintViewController class]])
-        return NO;
-    if ([currentViewController isKindOfClass:[ScenePresenterViewController class]])
-        return NO;
-    
-    return YES;
-}
-
+// This assigns a CGColor to borderColor.
+@property(nonatomic, assign) UIColor* borderUIColor;
 
 @end

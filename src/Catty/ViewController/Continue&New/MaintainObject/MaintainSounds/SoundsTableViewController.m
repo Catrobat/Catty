@@ -395,6 +395,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditSound
                                                                         withPayload:@{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] }];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
