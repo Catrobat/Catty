@@ -92,7 +92,8 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
         var nextWaitClosures = [CBScheduleElement]()
-        var nextBufferElements = [CBBufferElement]()
+        var nextBufferElements = [CBFormulaBufferElement]()
+        var nextConditionalBufferElements = [CBConditionalFormulaBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
@@ -115,8 +116,10 @@ final class CBScheduler: CBSchedulerProtocol {
                         nextWaitClosures += (context, closure)
                     case let .Action(action):
                         nextActionElements += (context, action)
-                    case let .Buffer(brick):
+                    case let .FormulaBuffer(brick):
                         nextBufferElements += (context, brick)
+                    case let .ConditionalFormulaBuffer(condition):
+                        nextConditionalBufferElements += (context, condition)
                     case .InvalidInstruction:
                         context.state = .Runnable
                         continue // skip invalid instruction
@@ -185,7 +188,26 @@ final class CBScheduler: CBSchedulerProtocol {
                 _availableBufferQueues.removeFirst()
             }
             dispatch_async(queue!, {
-                brick.preCalculate()
+                let formulaArray = brick.getFormulas()
+                for formula:Formula in formulaArray {
+                    formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
+                }
+                print("preCalculate")
+                self._availableBufferQueues += queue!
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.runNextInstructionOfContext(context)
+                }
+            })
+        }
+        for (context, condition) in nextConditionalBufferElements {
+            var queue = _availableBufferQueues.first
+            if queue == nil {
+                queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            } else {
+                _availableBufferQueues.removeFirst()
+            }
+            dispatch_async(queue!, {
+                condition.bufferCondition(context.spriteNode.spriteObject)
                 self._availableBufferQueues += queue!
                 dispatch_async(dispatch_get_main_queue()) {
                     self.runNextInstructionOfContext(context)

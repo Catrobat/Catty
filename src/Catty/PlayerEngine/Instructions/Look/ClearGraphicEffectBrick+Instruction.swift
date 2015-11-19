@@ -33,15 +33,14 @@ extension ClearGraphicEffectBrick: CBInstructionProtocol {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
-        
-        guard let look = spriteNode.currentLook else{return nil}
-        guard let image = UIImage(contentsOfFile: self.pathForLook(look)) else { return nil }
-        
-        let texture = SKTexture(image: image)
-        spriteNode.currentUIImageLook = image
-        spriteNode.currentLookBrightness = 0
-    
+
         return {
+            guard let look = spriteNode.currentLook,
+                  let image = UIImage(contentsOfFile: self.pathForLook(look)) else {return}
+            
+            let texture = SKTexture(image: image)
+            spriteNode.currentUIImageLook = image
+            spriteNode.currentLookBrightness = 0
             let xScale = spriteNode.xScale
             let yScale = spriteNode.yScale
             spriteNode.xScale = 1.0

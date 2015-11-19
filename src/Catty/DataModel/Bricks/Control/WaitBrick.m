@@ -37,6 +37,11 @@
     self.timeToWaitInSeconds = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.timeToWaitInSeconds];
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];

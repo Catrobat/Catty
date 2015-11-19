@@ -61,7 +61,6 @@
 
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, DismissPopupDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic) BOOL deletionMode;
 @end
 
 @implementation ProgramTableViewController
@@ -216,9 +215,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSMutableArray *options = [NSMutableArray array];
     if ([self.program numberOfNormalObjects]) {
         [options addObject:kLocalizedDeleteObjects];
-    }
-    if ([self.program numberOfNormalObjects] >= 2) {
-        [options addObject:kLocalizedMoveObjects];
     }
     [options addObject:kLocalizedRenameProgram];
     if (self.useDetailCells) {
@@ -389,47 +385,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return indexPath.section;
 }
 
--(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        return NO;
-    }
-    if(self.deletionMode){
-        return NO;
-    }
-    return YES;
-}
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.editing) {
-        return UITableViewCellEditingStyleNone;
-    }
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
-{
-    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
-        NSInteger row = 0;
-        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
-            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
-        }
-        return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
-    }
-    
-    return proposedDestinationIndexPath;
-}
-
--(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    NSInteger index = (kBackgroundSectionIndex + sourceIndexPath.section + sourceIndexPath.row);
-    NSInteger destIndex = (kBackgroundSectionIndex + destinationIndexPath.section + destinationIndexPath.row);
-    SpriteObject* itemToMove = self.program.objectList[index];
-    [self.program.objectList removeObjectAtIndex:index];
-    [self.program.objectList insertObject:itemToMove atIndex:destIndex];
-    [self.program saveToDisk];
-}
-
-
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -536,13 +491,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (actionSheet.tag == kEditProgramActionSheetTag) {
         if ((buttonIndex == 1) && [self.program numberOfNormalObjects]) {
             // Delete objects button
-            self.deletionMode = YES;
             [self setupEditingToolBar];
             [super changeToEditingMode:actionSheet];
-        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects] >=2){
-            self.deletionMode = NO;
-            [super changeToMoveMode:actionSheet];
-        }else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])|| ((buttonIndex == 3) && [self.program numberOfNormalObjects] >= 2)) {
+        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])) {
             // Rename program button
             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
             [unavailableNames removeString:self.program.header.programName];
@@ -558,7 +509,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
-        } else if ((buttonIndex == 2) || ((buttonIndex == 3) && [self.program numberOfNormalObjects])|| ((buttonIndex == 4) && [self.program numberOfNormalObjects] >= 2)) {
+        } else if ((buttonIndex == 2) || ((buttonIndex == 3) && [self.program numberOfNormalObjects])) {
             // Show/Hide details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -574,7 +525,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self.tableView reloadData];
-        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)){
+        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])){
           //description
             if (self.popupViewController == nil) {
                 DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];

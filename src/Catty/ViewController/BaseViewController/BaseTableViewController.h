@@ -42,7 +42,6 @@
 - (void)setupEditingToolBar;
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
 - (void)changeToEditingMode:(id)sender;
-- (void)changeToMoveMode:(id)sender;
 - (void)exitEditingMode;
 - (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 - (void)performActionOnConfirmation:(SEL)confirmedAction

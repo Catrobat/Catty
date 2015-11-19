@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SpeakBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
+extension SpeakBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         
@@ -28,13 +28,13 @@ extension SpeakBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
         
         return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: SpeakBrick")
-            var speakText = ""
-            if self.formula.formulaTree.type == .STRING {
-                speakText = self.formula.formulaTree.value
-            } else {
-                // remove trailing 0's behind the decimal point!!
-                speakText = String(format: "%g", self.formula.interpretDoubleForSprite(object))
-            }
+            let speakText = self.formula.interpretString(object)
+//            if self.formula.formulaTree.type == .STRING {
+//                speakText = self.formula.formulaTree.value
+//            } else {
+//                // remove trailing 0's behind the decimal point!!
+//                speakText = String(format: "%g", self.formula.interpretDoubleForSprite(object))
+//            }
             //            self.logger.debug("Speak text: '\(speakText)'")
             let utterance = AVSpeechUtterance(string: speakText)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
@@ -42,16 +42,6 @@ extension SpeakBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.speakUtterance(utterance)
             context.state = .Runnable
-        }
-        
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        if self.formula.formulaTree.type == .STRING {
-        } else {
-            self.formula.interpretDoubleForSprite(object)
         }
         
     }

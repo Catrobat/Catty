@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension WaitBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
+extension WaitBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
 
@@ -47,12 +47,6 @@ extension WaitBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
                 }
             }
         }
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.timeToWaitInSeconds.interpretIntegerForSprite(object)
     }
 
 }
