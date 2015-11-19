@@ -52,12 +52,6 @@
     return kLocalizedWaitNSeconds;
 }
 
-- (SKAction*)action
-{
-    NSDebug(@"Performing: %@", self.description);
-    return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
-}
-
 #pragma mark - Description
 - (NSString*)description
 {

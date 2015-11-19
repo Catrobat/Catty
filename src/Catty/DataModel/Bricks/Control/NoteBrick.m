@@ -29,14 +29,6 @@
     return kLocalizedNote;
 }
 
-- (SKAction*)action
-{
-    NSError(@"NoteBrick should not be executed!");
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-    }];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.note = [NSString stringWithString:kLocalizedAddCommentHere];
