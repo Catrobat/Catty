@@ -166,7 +166,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         stopAllMotors()
         setLeftRGBLightColor(0, green: 0, blue: 0)
         setRightRGBLightColor(0, green: 0, blue: 0)
-        playTone(0, duration: 0)
+        cancelTone()
     }
 
     //MARK: Report Data
