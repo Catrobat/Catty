@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension TurnLeftBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
+extension TurnLeftBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -35,12 +35,4 @@ extension TurnLeftBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
                spriteNode.rotation += self.degrees.interpretDoubleForSprite(object)
         }
     }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-        else { fatalError("This should never happen!") }
-
-        self.degrees.interpretDoubleForSprite(object)
-    }
-
 }

@@ -66,7 +66,6 @@
 @property (nonatomic,strong)UIImage* paintImage;
 @property (nonatomic,strong)NSString* paintImagePath;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
-@property (nonatomic, assign) BOOL deletionMode;
 @property (nonatomic,strong)NSString *filePath;
 @end
 
@@ -126,9 +125,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSMutableArray *options = [NSMutableArray array];
     if (self.object.lookList.count) {
         [options addObject:kLocalizedDeleteLooks];
-    }
-    if (self.object.lookList.count >= 2) {
-        [options addObject:kLocalizedMoveLooks];
     }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
@@ -341,28 +337,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return YES;
 }
 
--(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(self.deletionMode){
-        return NO;
-    }
-    return YES;
-}
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.editing) {
-         return UITableViewCellEditingStyleNone;
-    }
-    return UITableViewCellEditingStyleDelete;
-}
-
--(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    Look* itemToMove = self.object.lookList[sourceIndexPath.row];
-    [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
-    [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDisk];
-}
-
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -412,7 +386,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
 
 #pragma mark - UIImagePicker Handler
 - (void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType
@@ -578,16 +551,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.object.lookList count]) {
             if (buttonIndex == 0) {
                 // Delete Looks button
-                self.deletionMode = YES;
                 [self setupEditingToolBar];
                 [super changeToEditingMode:actionSheet];
-            } else if (([self.object.lookList count] >= 2)) {
-                if (buttonIndex == 1) {
-                    self.deletionMode = NO;
-                    [super changeToMoveMode:actionSheet];
-                } else if (buttonIndex == 2) {
-                   showHideSelected = YES;
-                }
+            } else if (buttonIndex == 1) {
+                showHideSelected = YES;
             }
         } else if (buttonIndex == 0) {
             showHideSelected = YES;

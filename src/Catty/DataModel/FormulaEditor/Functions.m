@@ -89,10 +89,6 @@
         return ARDUINOANALOG;
     if([value isEqualToString:@"ARDUINODIGITAL"])
         return ARDUINODIGITAL;
-    if([value isEqualToString:@"FLOOR"])
-        return FLOOR;
-    if([value isEqualToString:@"CEIL"])
-        return CEIL;
     
     return NO_FUNCTION;
 }
@@ -174,12 +170,6 @@
             break;
         case ARDUINOANALOG:
             return @"ARDUINOANALOG";
-            break;
-        case FLOOR:
-            return @"FLOOR";
-            break;
-        case CEIL:
-            return @"CEIL";
             break;
         default:
             return nil;
@@ -269,12 +259,6 @@
             break;
         case ARDUINOANALOG:
             return @"analogArduinoPin";
-            break;
-        case FLOOR:
-            return kUIFEFunctionFloor;
-            break;
-        case CEIL:
-            return kUIFEFunctionCeil;
             break;
         default:
             return @"";

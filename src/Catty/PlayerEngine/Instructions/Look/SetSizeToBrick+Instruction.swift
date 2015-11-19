@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetSizeToBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
+extension SetSizeToBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -37,11 +37,4 @@ extension SetSizeToBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
             spriteNode.yScale = CGFloat(sizeInPercent/100.0)
         }
     }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.size.interpretIntegerForSprite(object)
-    }
-
 }

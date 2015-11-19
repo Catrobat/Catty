@@ -68,6 +68,11 @@
     self.formula = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.formula];
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

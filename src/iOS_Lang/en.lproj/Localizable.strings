@@ -134,9 +134,6 @@
 "Categories" = "Categories";
 
 /* No comment provided by engineer. */
-"ceil" = "ceil";
-
-/* No comment provided by engineer. */
 "Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 /* No comment provided by engineer. */
@@ -440,9 +437,6 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
-"floor" = "floor";
-
-/* No comment provided by engineer. */
 "for all objects" = "for all objects";
 
 /* No comment provided by engineer. */
@@ -671,19 +665,10 @@
 "Move Brick" = "Move Brick";
 
 /* No comment provided by engineer. */
-"Move Looks" = "Move Looks";
-
-/* No comment provided by engineer. */
-"Move Objects" = "Move Objects";
-
-/* No comment provided by engineer. */
 "Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
 
 /* No comment provided by engineer. */
 "Move Phiro Motor forward\n%@\n Speed %@\%" = "Move Phiro Motor forward\n%@\n Speed %@\%";
-
-/* No comment provided by engineer. */
-"Move Sounds" = "Move Sounds";
 
 /* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";

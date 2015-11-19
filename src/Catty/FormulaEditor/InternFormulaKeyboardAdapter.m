@@ -209,20 +209,7 @@
                                withFirstParameterType:TOKEN_TYPE_NUMBER
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
-
-        case FLOOR:
-            return [self buildSingleParameterFunction:FLOOR
-                               withFirstParameterType:TOKEN_TYPE_NUMBER
-                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
-            break;
             
-        case CEIL:
-            return [self buildSingleParameterFunction:CEIL
-                               withFirstParameterType:TOKEN_TYPE_NUMBER
-                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
-            break;
-
-
         //PERIOD
             
         case DECIMAL_MARK:

@@ -37,6 +37,11 @@
     self.xMovement = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.xMovement];
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.xMovement = [[Formula alloc] initWithInteger:10];

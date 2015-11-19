@@ -37,6 +37,11 @@
     self.degrees = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.degrees];
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.degrees = [[Formula alloc] initWithInteger:15];
