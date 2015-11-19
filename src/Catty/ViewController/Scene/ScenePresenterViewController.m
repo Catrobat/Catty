@@ -167,14 +167,20 @@
         [self setupLabel:labelTextArray[i]
                  andView:labelArray[i]];
     }
+    [self.menuBackLabel addTarget:self action:@selector(stopProgramAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuContinueLabel addTarget:self action:@selector(continueProgramAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRestartLabel addTarget:self action:@selector(restartProgramAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRecordLabel addTarget:self action:@selector(recordProgram:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setupLabel:(NSString*)name andView:(UILabel*)label
+- (void)setupLabel:(NSString*)name andView:(UIButton*)label
 {
-    label.text = name;
-    label.textColor = [UIColor navTintColor];
-    label.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
-    label.textAlignment = NSTextAlignmentCenter;
+    [label setTitle:name forState:UIControlStateNormal];
+    label.tintColor = [UIColor navTintColor];
+    label.titleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
+    label.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)setUpMenuButtons

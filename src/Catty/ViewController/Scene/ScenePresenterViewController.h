@@ -41,12 +41,12 @@
 @property (weak,nonatomic) IBOutlet UIButton *menuAxisButton;
 @property (weak,nonatomic) IBOutlet UIButton *menuAspectRatioButton;
 @property (weak,nonatomic) IBOutlet UIButton *menuRecordButton;
-@property (weak,nonatomic) IBOutlet UILabel *menuBackLabel;
-@property (weak,nonatomic) IBOutlet UILabel *menuContinueLabel;
-@property (weak,nonatomic) IBOutlet UILabel *menuScreenshotLabel;
-@property (weak,nonatomic) IBOutlet UILabel *menuRestartLabel;
-@property (weak,nonatomic) IBOutlet UILabel *menuAxisLabel;
-@property (weak,nonatomic) IBOutlet UILabel *menuRecordLabel;
+@property (weak,nonatomic) IBOutlet UIButton *menuBackLabel;
+@property (weak,nonatomic) IBOutlet UIButton *menuContinueLabel;
+@property (weak,nonatomic) IBOutlet UIButton *menuScreenshotLabel;
+@property (weak,nonatomic) IBOutlet UIButton *menuRestartLabel;
+@property (weak,nonatomic) IBOutlet UIButton *menuAxisLabel;
+@property (weak,nonatomic) IBOutlet UIButton *menuRecordLabel;
 
 - (void)pauseAction;
 - (void)resumeAction;
