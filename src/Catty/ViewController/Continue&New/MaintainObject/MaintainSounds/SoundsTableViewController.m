@@ -56,6 +56,7 @@
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 @property (nonatomic,assign) BOOL isAllowed;
+@property (nonatomic,assign) BOOL deletionMode;
 @end
 
 @implementation SoundsTableViewController
@@ -190,6 +191,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSMutableArray *options = [NSMutableArray array];
     if (self.object.soundList.count) {
         [options addObject:kLocalizedDeleteSounds];
+    }
+    if (self.object.soundList.count >= 2) {
+        [options addObject:kLocalizedMoveSounds];
     }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
@@ -403,6 +407,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return YES;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(self.deletionMode){
+        return NO;
+    }
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.editing) {
+        return UITableViewCellEditingStyleNone;
+    }
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
+    [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
+    [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
+    [self.object.program saveToDisk];
+}
+
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -549,10 +576,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.object.soundList count]) {
             if (buttonIndex == 0) {
                 // Delete Sounds button
+                self.deletionMode = YES;
                 [self setupEditingToolBar];
                 [super changeToEditingMode:actionSheet];
-            } else if (buttonIndex == 1) {
-                showHideSelected = YES;
+            }  else if (([self.object.lookList count] >= 2)) {
+                if (buttonIndex == 1) {
+                    self.deletionMode = NO;
+                    [super changeToMoveMode:actionSheet];
+                } else if (buttonIndex == 2) {
+                    showHideSelected = YES;
+                }
             }
         } else if (buttonIndex == 0) {
             showHideSelected = YES;
