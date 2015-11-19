@@ -72,7 +72,7 @@
             return [self buildNumber:[NSString stringWithFormat:@"%d",9]];
             break;
             
-            //FUNCTIONS
+        //FUNCTIONS
             
         case SIN:
             return [self buildSingleParameterFunction:SIN
@@ -209,7 +209,7 @@
                                withFirstParameterType:TOKEN_TYPE_NUMBER
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
-
+            
         case FLOOR:
             return [self buildSingleParameterFunction:FLOOR
                                withFirstParameterType:TOKEN_TYPE_NUMBER
@@ -221,8 +221,7 @@
                                withFirstParameterType:TOKEN_TYPE_NUMBER
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
-
-
+            
         //PERIOD
             
         case DECIMAL_MARK:

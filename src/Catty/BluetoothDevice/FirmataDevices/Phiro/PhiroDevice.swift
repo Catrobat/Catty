@@ -24,9 +24,6 @@ import Foundation
 import CoreBluetooth
 import BluetoothHelper
 
-
-//MARK:PHIRO
-
 private let PIN_SPEAKER_OUT:Int = 3;
 
 private let PIN_RGB_RED_LEFT:Int = 4;
@@ -56,19 +53,29 @@ public let PIN_SENSOR_SIDE_LEFT:Int = 5;
 private let MIN_SENSOR_PIN:Int = 0;
 private let MAX_SENSOR_PIN:Int = 5;
 
-public class Phiro: ArduinoDevice {
+class Phiro: FirmataDevice,PhiroProtocol {
     private let PHIRO_UUID:CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     private static let tag:String = "Phiro";
     
-    private let rxUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") // TODO
-    private let txUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") // TODO
+    override var rxUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
+    override var txUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
     
-    private let phiroHelper:PhiroHelper = PhiroHelper()
-    private var toneTimer:NSTimer = NSTimer()
+    internal let phiroHelper:PhiroHelper = PhiroHelper()
+    internal var toneTimer:NSTimer = NSTimer()
+    private var isReportingSensorData = false
     
-    //MARK: actions
+    // MARK: override
     
-    public func playTone(toneFrequency:NSInteger,duration:Double){
+    override internal func getName() -> String{
+        return "Phiro"
+    }
+    
+    override internal func getBluetoothDeviceUUID()->CBUUID{
+        return PHIRO_UUID
+    }
+    //MARK: Phiro Protocol
+    
+    func playTone(toneFrequency:NSInteger,duration:Double){
         self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value: toneFrequency)
         if toneTimer.valid {
             toneTimer.invalidate()
@@ -76,39 +83,64 @@ public class Phiro: ArduinoDevice {
         toneTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: Selector("cancelTone"), userInfo: nil, repeats: false)
     }
     
-    func cancelTone(){
-        self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value:0)
-    }
+
     
-    public func moveLeftMotorForward(speed:Int){
+    func moveLeftMotorForward(speed:Int){
         self.sendAnalogFirmataMessage(PIN_LEFT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
     }
     
-    public func moveLeftMotorBackward(speed:Int){
+    func moveLeftMotorBackward(speed:Int){
         self.sendAnalogFirmataMessage(PIN_LEFT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
     }
     
-    public func moveRightMotorForward(speed:Int){
+    func moveRightMotorForward(speed:Int){
         self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
     }
     
-    public func moveRightMotorBackward(speed:Int){
-        self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
+    func moveRightMotorBackward(speed:Int){
+        self.sendAnalogFirmataMessage(PIN_RIGHT_MOTOR_BACKWARD, value: self.percentToSpeed(speed))
     }
     
-    public func stopLeftMotor(){
+    func stopLeftMotor(){
         self.moveLeftMotorForward(0)
         self.moveLeftMotorBackward(0)
     }
     
-    public func stopRightMotor(){
+    func stopRightMotor(){
         self.moveRightMotorForward(0)
         self.moveRightMotorBackward(0)
     }
     
-    public func stopAllMotors(){
+    func stopAllMotors(){
         self.stopLeftMotor()
         self.stopRightMotor()
+    }
+    
+    func setLeftRGBLightColor(red:Int,green:Int,blue:Int){
+        let redChecked = checkValue(red)
+        let greenChecked = checkValue(green)
+        let blueChecked = checkValue(blue)
+        
+        self.sendAnalogFirmataMessage(PIN_RGB_RED_LEFT, value: redChecked)
+        self.sendAnalogFirmataMessage(PIN_RGB_GREEN_LEFT, value: greenChecked)
+        self.sendAnalogFirmataMessage(PIN_RGB_BLUE_LEFT, value: blueChecked)
+    }
+    
+    func setRightRGBLightColor(red:Int,green:Int,blue:Int){
+        let redChecked = checkValue(red)
+        let greenChecked = checkValue(green);
+        let blueChecked = checkValue(blue);
+        
+        self.sendAnalogFirmataMessage(PIN_RGB_RED_RIGHT, value: redChecked)
+        self.sendAnalogFirmataMessage(PIN_RGB_GREEN_RIGHT, value: greenChecked)
+        self.sendAnalogFirmataMessage(PIN_RGB_BLUE_RIGHT, value: blueChecked)
+    }
+    
+    //MARK:Helper
+    private func cancelTone(){
+        self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value:0)
+        self.toneTimer.invalidate()
+        self.toneTimer = NSTimer()
     }
     
     private func percentToSpeed(percent:Int) -> Int{
@@ -122,78 +154,23 @@ public class Phiro: ArduinoDevice {
         return (Int) (Double(percent) * 2.55);
     }
     
-    public func setLeftRGBLightColor(red:Int,green:Int,blue:Int){
-        let redChecked = self.checkRGBValue(red);
-        let greenChecked = self.checkRGBValue(green);
-        let blueChecked = self.checkRGBValue(blue);
-        
-        self.sendAnalogFirmataMessage(PIN_RGB_RED_LEFT, value: redChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_GREEN_LEFT, value: greenChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_BLUE_LEFT, value: blueChecked)
-    }
-    
-    public func setRightRGBLightColor(red:Int,green:Int,blue:Int){
-        let redChecked = self.checkRGBValue(red);
-        let greenChecked = self.checkRGBValue(green);
-        let blueChecked = self.checkRGBValue(blue);
-        
-        self.sendAnalogFirmataMessage(PIN_RGB_RED_RIGHT, value: redChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_GREEN_RIGHT, value: greenChecked)
-        self.sendAnalogFirmataMessage(PIN_RGB_BLUE_RIGHT, value: blueChecked)
-    }
-    
-    private func checkRGBValue(value:Int)->Int{
-        if (value > 255) {
-            return 255;
-        }
-        
-        if (value < 0) {
-            return 0;
-        }
-        
-        return value;
+    private func sendAnalogFirmataMessage(pin:Int,value:Int){
+        let analogPin:UInt8 = UInt8(checkValue(pin))
+        let value :UInt8 = UInt8(checkValue(value))
+        firmata.writePinMode(PinMode.PWM, pin: analogPin)
+        firmata.writePWMValue(value, pin: analogPin)
     }
 
-    public func resetPins(){
+    //MARK: Reset Phiro
+    func resetPins(){
         stopAllMotors()
         setLeftRGBLightColor(0, green: 0, blue: 0)
         setRightRGBLightColor(0, green: 0, blue: 0)
-        playTone(0, duration: 0)
-    }
-    
-    public func getSensorValue(sensor:Int) -> Double{
-        let value = getAnalogPin(sensor)
-        return Double(value)
-    }
-    
-    public func sendAnalogFirmataMessage(pin:Int,value:Int){
-        let analogPin:UInt8 = UInt8(checkValue(pin))
-        let value :UInt8 = UInt8(checkValue(value))
-        firmata.writePWMValue(value, pin: analogPin)
-    }
-    
-    override func getAnalogPin(analogPinNumber: Int) -> Double {
-        switch (analogPinNumber) {
-        case 0:
-            return Double(getFrontLeftSensor())
-        case 1:
-            return Double(getFrontRightSensor())
-        case 2:
-            return Double(getSideLeftSensor())
-        case 3:
-            return Double(getSideRightSensor())
-        case 4:
-            return Double(getBottomLeftSensor())
-        case 5:
-            return Double(getBottomRightSensor())
-        default:
-            return 0
-        }
+        cancelTone()
     }
 
-    // MARK: Sensor Values
-    
-    override func reportSensorData(report:Bool) {
+    //MARK: Report Data
+    func reportSensorData(report:Bool) {
         if (isReportingSensorData == report) {
             return;
         }
@@ -204,94 +181,68 @@ public class Phiro: ArduinoDevice {
             reportAnalogArduinoPin(i,report: report)
         }
     }
+    private func reportAnalogArduinoPin(analogPinNumber:Int,report:Bool) {
+        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        self.firmata.writePinMode(PinMode.Input, pin: pin)
+        self.firmata.setAnalogValueReportingforPin(pin, enabled: report)
+    }
     
-    public func getFrontLeftSensor() -> Int {
+    //MARK: getter
+    func getSensorValue(sensor:Int) -> Double{
+        let value = getAnalogPin(sensor)
+        return Double(value)
+    }
+    
+    private func getAnalogPin(analogPinNumber: Int) -> Double {
+        switch (analogPinNumber) {
+        case PIN_SENSOR_FRONT_LEFT:
+            return Double(getFrontLeftSensor())
+        case PIN_SENSOR_FRONT_RIGHT:
+            return Double(getFrontRightSensor())
+        case PIN_SENSOR_SIDE_LEFT:
+            return Double(getSideLeftSensor())
+        case PIN_SENSOR_SIDE_RIGHT:
+            return Double(getSideRightSensor())
+        case PIN_SENSOR_BOTTOM_LEFT:
+            return Double(getBottomLeftSensor())
+        case PIN_SENSOR_BOTTOM_RIGHT:
+            return Double(getBottomRightSensor())
+        default:
+            return 0
+        }
+    }
+
+    // MARK: Sensor Values
+    
+    private func getFrontLeftSensor() -> Int {
         return phiroHelper.frontLeftSensor;
     }
     
-    public func getFrontRightSensor() -> Int {
+    private func getFrontRightSensor() -> Int {
         return phiroHelper.frontRightSensor;
     }
     
-    public func getSideLeftSensor() -> Int {
+    private func getSideLeftSensor() -> Int {
         return phiroHelper.sideLeftSensor;
     }
     
-    public func getSideRightSensor() -> Int {
+    private func getSideRightSensor() -> Int {
         return phiroHelper.sideRightSensor;
     }
     
-    public func getBottomLeftSensor() -> Int {
+    private func getBottomLeftSensor() -> Int {
         return phiroHelper.bottomLeftSensor;
     }
     
-    public func getBottomRightSensor() -> Int {
+    private func getBottomRightSensor() -> Int {
         return phiroHelper.bottomRightSensor;
     }
     
     
-    // MARK: override
-    
-    override public func getName() -> String{
-        return "Phiro"
-    }
-    
-    override public func getBluetoothDeviceUUID()->CBUUID{
-        return PHIRO_UUID
-    }
+    //MARK:Firmata Delegate override
     
     override func didReceiveAnalogMessage(pin:Int,value:Int){
         phiroHelper.didReceiveAnalogMessage(pin, value: value)
     }
     
-    override func didReceiveDigitalMessage(pin:Int,value:Int){
-        // Not used
-    }
-    
-    override func didReceiveDigitalPort(port:Int, portData:[Int]) {
-        // Not used
-    }
-    
-    
-    
-}
-
-
-
-class PhiroHelper {
-    private var frontLeftSensor:Int = 0;
-    private var frontRightSensor:Int = 0;
-    private var sideLeftSensor:Int = 0;
-    private var sideRightSensor:Int = 0;
-    private var bottomLeftSensor:Int = 0;
-    private var bottomRightSensor:Int = 0;
-    
-    
-    
-    func didReceiveAnalogMessage(pin:Int,value:Int){
-        switch (pin) {
-        case PIN_SENSOR_SIDE_RIGHT:
-            sideRightSensor = value
-            break
-        case PIN_SENSOR_FRONT_RIGHT:
-            frontRightSensor = value
-            break
-        case PIN_SENSOR_BOTTOM_RIGHT:
-            bottomRightSensor = value
-            break
-        case PIN_SENSOR_BOTTOM_LEFT:
-            bottomLeftSensor = value
-            break
-        case PIN_SENSOR_FRONT_LEFT:
-            frontLeftSensor = value
-            break
-        case PIN_SENSOR_SIDE_LEFT:
-            sideLeftSensor = value
-            break
-            
-        default: break
-            //NOT USED SENSOR
-        }
-        
-    }
 }

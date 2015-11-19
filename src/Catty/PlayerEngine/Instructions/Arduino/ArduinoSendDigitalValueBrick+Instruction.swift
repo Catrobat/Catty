@@ -22,32 +22,19 @@
 
 import Foundation
 
-extension ArduinoSendDigitalValueBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
+extension ArduinoSendDigitalValueBrick :CBInstructionProtocol{
     
     func instruction() -> CBInstruction {
-        
-        return CBInstruction.Action(action: SKAction.runBlock(actionBlock()))
-    }
-    
-    func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
-        return{
-        let pinValue = Int(self.pin.interpretIntegerForSprite(object))
-        let settingValue = Int(self.value.interpretDoubleForSprite(object))
-        
-        if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
-            arduino.setDigitalArduinoPin(pinValue, pinValue: settingValue)
+        return CBInstruction.ExecClosure{ (context, _) in
+            let pinValue = Int(self.pin.interpretIntegerForSprite(object))
+            let settingValue = Int(self.value.interpretDoubleForSprite(object))
+            if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
+                arduino.setDigitalArduinoPin(pinValue, pinValue: settingValue)
             }
+            context.state = .Runnable
         }
-
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.pin.interpretIntegerForSprite(object)
-        self.value.interpretDoubleForSprite(object)
     }
 
 }

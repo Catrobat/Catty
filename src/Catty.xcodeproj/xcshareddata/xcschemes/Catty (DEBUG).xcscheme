@@ -63,6 +63,16 @@
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "92EC98A91BC3C32A0003A891"
+               BuildableName = "BluetoothHelperTests.xctest"
+               BlueprintName = "BluetoothHelperTests"
+               ReferencedContainer = "container:Catty/BluetoothHelper/BluetoothHelper.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

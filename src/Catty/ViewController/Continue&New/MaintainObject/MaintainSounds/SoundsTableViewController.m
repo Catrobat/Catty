@@ -195,7 +195,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.object.soundList.count >= 2) {
         [options addObject:kLocalizedMoveSounds];
     }
-
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
@@ -415,6 +414,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     return YES;
 }
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.editing) {
         return UITableViewCellEditingStyleNone;
@@ -429,7 +429,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
     [self.object.program saveToDisk];
 }
-
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath

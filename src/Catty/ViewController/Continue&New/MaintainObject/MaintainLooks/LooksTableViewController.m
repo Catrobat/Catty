@@ -348,9 +348,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     return YES;
 }
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.editing) {
-         return UITableViewCellEditingStyleNone;
+        return UITableViewCellEditingStyleNone;
     }
     return UITableViewCellEditingStyleDelete;
 }
@@ -412,7 +413,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
 
 #pragma mark - UIImagePicker Handler
 - (void)presentImagePicker:(UIImagePickerControllerSourceType)sourceType
@@ -578,7 +578,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.object.lookList count]) {
             if (buttonIndex == 0) {
                 // Delete Looks button
-                self.deletionMode = YES;
                 [self setupEditingToolBar];
                 [super changeToEditingMode:actionSheet];
             } else if (([self.object.lookList count] >= 2)) {
@@ -586,7 +585,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     self.deletionMode = NO;
                     [super changeToMoveMode:actionSheet];
                 } else if (buttonIndex == 2) {
-                   showHideSelected = YES;
+                    showHideSelected = YES;
                 }
             }
         } else if (buttonIndex == 0) {

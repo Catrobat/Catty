@@ -968,7 +968,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.formulaEditorTextView resignFirstResponder];
     
     [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:kMaxNumOfProgramNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-
 }
 
 - (void)handleNewTextInput:(NSString*)text

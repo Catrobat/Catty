@@ -394,12 +394,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (indexPath.section == 0) {
         return NO;
     }
-    if(self.deletionMode){
+    if(self.deletionMode) {
         return NO;
     }
     return YES;
 }
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (self.editing) {
         return UITableViewCellEditingStyleNone;
     }
@@ -428,7 +430,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.program.objectList insertObject:itemToMove atIndex:destIndex];
     [self.program saveToDisk];
 }
-
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -539,10 +540,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.deletionMode = YES;
             [self setupEditingToolBar];
             [super changeToEditingMode:actionSheet];
-        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects] >=2){
+        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects] >= 2){
             self.deletionMode = NO;
             [super changeToMoveMode:actionSheet];
-        }else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])|| ((buttonIndex == 3) && [self.program numberOfNormalObjects] >= 2)) {
+        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])|| ((buttonIndex == 3) && [self.program numberOfNormalObjects] >= 2)) {
             // Rename program button
             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
             [unavailableNames removeString:self.program.header.programName];
@@ -574,8 +575,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self.tableView reloadData];
-        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)){
-          //description
+        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)) {
+            //description
             if (self.popupViewController == nil) {
                 DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
                 popupViewController.delegate = self;
