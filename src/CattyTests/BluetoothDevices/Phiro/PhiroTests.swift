@@ -38,6 +38,7 @@ class PhiroTests: XCTestCase {
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        phiroTest.toneTimer.invalidate()
         super.tearDown()
     }
     
@@ -332,30 +333,30 @@ class PhiroTests: XCTestCase {
     //MARK: TONE tests
     func testPlayTone () {
         //When
-//        phiroTest.playTone(450, duration: 2.0)
-//        phiroTest.toneTimer.invalidate()
-//        //Then
-//        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
-//            XCTAssert(true)
-//            return
-//        }
-//        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-//        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
-//        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
+        phiroTest.playTone(450, duration: 2.0)
+        phiroTest.toneTimer.invalidate()
+        //Then
+        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+            XCTAssert(true)
+            return
+        }
+        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
     }
     
     //MARK: Reset test
     func testPhiroReset () {
-//        //When
-//        phiroTest.resetPins()
-//        //Then
-//        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
-//            XCTAssert(true)
-//            return
-//        }
-//        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-//        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
-//        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
+        //When
+        phiroTest.resetPins()
+        //Then
+        guard let firmataMock = phiroTest.firmata as? FirmataMock else {
+            XCTAssert(true)
+            return
+        }
+        XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     
     //MARK: Sensor reporting
