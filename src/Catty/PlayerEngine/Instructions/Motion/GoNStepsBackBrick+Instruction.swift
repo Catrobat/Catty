@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension GoNStepsBackBrick: CBInstructionProtocol {
+extension GoNStepsBackBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -48,4 +48,11 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
         }
 
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.steps.interpretIntegerForSprite(object)
+    }
+
 }

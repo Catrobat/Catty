@@ -38,11 +38,6 @@
     self.volume = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.volume];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.volume = [[Formula alloc] initWithInteger:-10];

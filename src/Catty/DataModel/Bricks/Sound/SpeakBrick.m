@@ -82,11 +82,6 @@
     return self.formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.formula];
-}
-
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

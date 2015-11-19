@@ -31,8 +31,6 @@
 - (void)loadImageWithName:(NSString*)imageName
              onCompletion:(void(^)(UIImage *image))completion;
 
-- (void)loadImageFromDiskWithPath:(NSString*)path;
-
 - (void)loadImageFromDiskWithPath:(NSString*)path
                      onCompletion:(void(^)(UIImage *image, NSString* path))completion;
 

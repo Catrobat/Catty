@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetYBrick: CBInstructionProtocol {
+extension SetYBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -38,4 +38,11 @@ extension SetYBrick: CBInstructionProtocol {
             )
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.yPosition.interpretIntegerForSprite(object)
+    }
+
 }

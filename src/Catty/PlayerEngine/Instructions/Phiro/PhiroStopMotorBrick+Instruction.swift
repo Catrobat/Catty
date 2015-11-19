@@ -45,7 +45,6 @@ extension PhiroMotorStopBrick :CBInstructionProtocol {
                 phiro.stopLeftMotor();
                 break;
             }
-            context.state = .Runnable
         }
         
     }

@@ -57,11 +57,6 @@
         self.yDestination = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.durationInSeconds,self.xDestination,self.yDestination];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.durationInSeconds = [[Formula alloc] initWithInteger:1];

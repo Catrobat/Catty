@@ -22,7 +22,7 @@
 
 //import AudioToolbox
 
-extension VibrationBrick: CBInstructionProtocol {
+extension VibrationBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
 
@@ -46,4 +46,12 @@ extension VibrationBrick: CBInstructionProtocol {
         }
 
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        
+        self.durationInSeconds.interpretDoubleForSprite(object)
+    }
+
 }

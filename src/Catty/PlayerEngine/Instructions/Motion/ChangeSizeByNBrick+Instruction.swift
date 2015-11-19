@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeSizeByNBrick: CBInstructionProtocol{
+extension ChangeSizeByNBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -40,4 +40,11 @@ extension ChangeSizeByNBrick: CBInstructionProtocol{
             spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
         }
     }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.size.interpretIntegerForSprite(object)
+    }
+
 }

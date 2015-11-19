@@ -27,10 +27,10 @@ import BluetoothHelper
 
 public class BluetoothDevice:Peripheral {
     
-    init(peripheral:Peripheral) {
-        super.init(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi)
+    init(cbPeripheral: CBPeripheral, advertisements: [String : String], rssi: Int, test:Bool) {
+        super.init(cbPeripheral: cbPeripheral, advertisements: advertisements, rssi: rssi)
+        
     }
-    
     
     public func getName() -> String{
         return "BluetoothDevice"

@@ -87,7 +87,6 @@
         if (view.tag == kSavedViewTag)
             [view removeFromSuperview];
     }
-    [self hideLoadingView];
 }
 
 #pragma mark - system events
@@ -270,11 +269,27 @@
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
     self.editing = YES;
 }
+- (void)changeToMoveMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.navigationItem.hidesBackButton = YES;
+    self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.editing = YES;
+}
 
 - (void)exitEditingMode
 {
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.rightBarButtonItem = self.normalModeRightBarButtonItem;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
     [self.tableView setEditing:NO animated:YES];
     [self setupToolBar];
     self.editing = NO;
@@ -349,7 +364,6 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self showLoadingView];
     [self playSceneAction:sender animated:YES];
 }
 
@@ -413,7 +427,7 @@
 
 - (void)showLoadingView
 {
-//    self.loadingView.backgroundColor = [UIColor whiteColor];
+    self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
     [self.tableView setContentOffset:top animated:NO];

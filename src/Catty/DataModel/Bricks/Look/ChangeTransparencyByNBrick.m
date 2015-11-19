@@ -39,11 +39,6 @@
     self.changeTransparency = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.changeTransparency];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeTransparency = [[Formula alloc] initWithInteger:25];

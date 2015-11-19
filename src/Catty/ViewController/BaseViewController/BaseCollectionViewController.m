@@ -40,16 +40,10 @@
 @class BluetoothPopupVC;
 
 @interface BaseCollectionViewController ()
-@property (nonatomic, strong) LoadingView* loadingView;
+
 @end
 
 @implementation BaseCollectionViewController
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self hideLoadingView];
-}
 
 - (PlaceHolderView*)placeHolderView
 {
@@ -68,7 +62,6 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self showLoadingView];
     [self playSceneAction:sender animated:YES];
 }
 
@@ -118,39 +111,6 @@
         self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                               flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
     }
-}
-
-- (void)showLoadingView
-{
-    //    self.loadingView.backgroundColor = [UIColor whiteColor];
-    self.loadingView.alpha = 1.0;
-
-    self.collectionView.scrollEnabled = NO;
-    self.collectionView.userInteractionEnabled = NO;
-    self.navigationController.navigationBar.userInteractionEnabled = NO;
-    self.navigationController.toolbar.userInteractionEnabled = NO;
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    [self showPlaceHolder:NO];
-    [self.loadingView show];
-}
-
-- (void)hideLoadingView
-{
-    self.collectionView.scrollEnabled = YES;
-    self.collectionView.userInteractionEnabled = YES;
-    self.navigationController.navigationBar.userInteractionEnabled = YES;
-    self.navigationController.toolbar.userInteractionEnabled = YES;
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [self.loadingView hide];
-}
-
--(LoadingView*)loadingView
-{
-    if (! _loadingView) {
-        _loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:_loadingView];
-    }
-    return _loadingView;
 }
 
 

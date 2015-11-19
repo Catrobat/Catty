@@ -22,7 +22,7 @@
 
 import Foundation
 
-extension PhiroRGBLightBrick :CBInstructionProtocol {
+extension PhiroRGBLightBrick :CBInstructionProtocol,CBFormulaBufferProtocol {
     
     func instruction() -> CBInstruction {
         
@@ -48,9 +48,7 @@ extension PhiroRGBLightBrick :CBInstructionProtocol {
                 phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 break;
-            }
-            context.state = .Runnable
-        }
+            }        }
         
     }
     
@@ -64,6 +62,14 @@ extension PhiroRGBLightBrick :CBInstructionProtocol {
         }
     
         return rgbValue;
+    }
+    
+    func preCalculate() {
+        guard let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        self.redFormula.interpretIntegerForSprite(object)
+        self.greenFormula.interpretIntegerForSprite(object)
+        self.blueFormula.interpretIntegerForSprite(object)
     }
     
 }

@@ -37,11 +37,6 @@
     self.yMovement = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.yMovement];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.yMovement = [[Formula alloc] initWithInteger:10];

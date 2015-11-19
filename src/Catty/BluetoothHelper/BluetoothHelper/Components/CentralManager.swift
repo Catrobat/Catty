@@ -208,7 +208,7 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         let values: [Peripheral] = [Peripheral](self.ownPeripherals.values)
         return values
     }
-
+    
     public var state: CBCentralManagerState {
         return self.cbCentralManager.state
     }

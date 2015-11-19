@@ -36,11 +36,6 @@
     self.size = formula;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.size];
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.size = [[Formula alloc] initWithInteger:60];
