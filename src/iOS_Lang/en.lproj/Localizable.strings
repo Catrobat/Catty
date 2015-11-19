@@ -665,10 +665,19 @@
 "Move Brick" = "Move Brick";
 
 /* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
 "Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
 
 /* No comment provided by engineer. */
 "Move Phiro Motor forward\n%@\n Speed %@\%" = "Move Phiro Motor forward\n%@\n Speed %@\%";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
 
 /* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";
