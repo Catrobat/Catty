@@ -61,7 +61,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
     override var txUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
     
     internal let phiroHelper:PhiroHelper = PhiroHelper()
-    private var toneTimer:NSTimer = NSTimer()
+    internal var toneTimer:NSTimer = NSTimer()
     private var isReportingSensorData = false
     
     // MARK: override
@@ -139,6 +139,8 @@ class Phiro: FirmataDevice,PhiroProtocol {
     //MARK:Helper
     private func cancelTone(){
         self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value:0)
+        self.toneTimer.invalidate()
+        self.toneTimer = NSTimer()
     }
     
     private func percentToSpeed(percent:Int) -> Int{

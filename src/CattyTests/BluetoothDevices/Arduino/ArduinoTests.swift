@@ -35,7 +35,6 @@ class ArduinoTests: XCTestCase {
         mock = ArduinoTestMock()
         setPinsArray()
         arduinoTest.firmata = FirmataMock()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     func setPinsArray() {
@@ -375,7 +374,7 @@ class ArduinoTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(5) , "Pin is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[pin], "Value is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[0][pin], "Value is wrong")
     }
@@ -391,7 +390,7 @@ class ArduinoTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(5) , "Pin is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[pin], "Value is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[0][pin], "Value is wrong")
     }
@@ -407,7 +406,7 @@ class ArduinoTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
+        XCTAssertEqual(firmataMock.receivedPin, UInt8(5) , "Pin is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.digitalValues[pin], "Value is wrong")
         XCTAssertEqual(Int(value), mock.arduinoHelper.portValues[1][4], "Value is wrong")
     }
@@ -492,7 +491,6 @@ class ArduinoTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Input , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedBool, true , "Reporting is wrong")
         XCTAssertEqual(firmataMock.receivedPin, 5 , "Reporting is wrong")
     }
@@ -507,7 +505,6 @@ class ArduinoTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Input , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedBool, false , "Reporting is wrong")
         XCTAssertEqual(firmataMock.receivedPin, 5 , "Pin is wrong")
     }
