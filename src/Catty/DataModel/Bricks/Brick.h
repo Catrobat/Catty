@@ -51,8 +51,6 @@
 
 - (NSString*)description;
 
-- (SKAction*)action;
-
 - (BOOL)isEqualToBrick:(Brick*)brick;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;

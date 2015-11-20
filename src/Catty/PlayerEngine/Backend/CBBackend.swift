@@ -53,11 +53,11 @@ final class CBBackend: CBBackendProtocol {
     private func _instructionForBrick(brick: Brick) -> [CBInstruction] {
         // check whether conforms to CBInstructionProtocol (i.e. brick extension)
         guard let instructionBrick = brick as? CBInstructionProtocol else {
-            return [.Action(action: brick.action())] // fallback: poor old ObjC fellow... ;)
+            fatalError("All Bricks should implement the CBInstructionProtocol")
         }
         if (brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0 {
             guard let formulaBufferBrick = brick as? BrickFormulaProtocol else {
-                 fatalError("All bricks with formulas should implement the BrickFormulaProtocol")
+                 fatalError("All Bricks with formulas should implement the BrickFormulaProtocol")
             }
             return [.FormulaBuffer(brick: formulaBufferBrick), instructionBrick.instruction()]
         }
