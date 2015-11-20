@@ -117,6 +117,26 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
         return (value);
     }
     
+    internal func convertAnalogPin(analogPinNumber:Int) -> Int {
+        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        switch (pin) {
+        case 14:
+            return 0
+        case 15:
+            return 1
+        case 16:
+            return 2
+        case 17:
+            return 3
+        case 18:
+            return 4
+        case 19:
+            return 5
+        default:
+            return 100
+        }
+    }
+    
     //MARK: receive Data
     override internal func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         //        super.peripheral(peripheral, didUpdateValueForCharacteristic: characteristic, error: error)
