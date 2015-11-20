@@ -50,7 +50,7 @@
 #import "Pocket_Code-Swift.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "ActionSheetAlertViewTags.h"
 #import "RuntimeImageCache.h"
 
@@ -881,11 +881,11 @@
     return output;
 }
 
-- (void)alertView:(CatrobatAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(CatrobatAlertController*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 
 }
 
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == kLostBluetoothConnectionTag) {
         [self.parentViewController.navigationController setToolbarHidden:NO];
         [self.parentViewController.navigationController setNavigationBarHidden:NO];

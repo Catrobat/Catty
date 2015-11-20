@@ -32,8 +32,7 @@
 #import "Util.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
-#import "CatrobatAlertView.h"
-
+#import "CatrobatAlertController.h"
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
 #import "UIImage+CatrobatUIImageExtensions.h"

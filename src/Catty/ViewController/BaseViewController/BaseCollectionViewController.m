@@ -28,7 +28,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"

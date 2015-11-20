@@ -28,7 +28,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
@@ -391,7 +391,7 @@
 }
 
 #pragma mark - alert view delegate handlers
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == kConfirmAlertViewTag) {
         // check if user agreed

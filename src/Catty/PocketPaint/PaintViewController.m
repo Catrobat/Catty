@@ -34,7 +34,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
-#import "CatrobatActionSheet.h"
+#import "CatrobatAlertController.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BDKNotifyHUD.h"
 
@@ -959,17 +959,17 @@
 
 #pragma mark actionsheet delegate
 
--(void)actionSheet:(CatrobatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)actionSheet:(CatrobatAlertController *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kPocketPaintActionSheetTag) {
         switch (buttonIndex) {
-            case 0:
+            case 1:
                 [self saveAction];
                 break;
-            case 1:
+            case 2:
                 [self closeAction];
                 break;
-            case 2:
+            case 3:
                 [self newCanvasAction];
             default:
                 break;

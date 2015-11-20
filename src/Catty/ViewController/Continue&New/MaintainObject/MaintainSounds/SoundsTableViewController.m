@@ -42,7 +42,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "SharkfoodMuteSwitchDetector.h"
-#import "CatrobatActionSheet.h"
+#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
 #import "SRViewController.h"
@@ -189,8 +189,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
+    NSString* destructive = nil;
     if (self.object.soundList.count) {
-        [options addObject:kLocalizedDeleteSounds];
+        destructive = kLocalizedDeleteSounds;
     }
     if (self.object.soundList.count >= 2) {
         [options addObject:kLocalizedMoveSounds];
@@ -200,15 +201,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSounds
-                                                         delegate:self
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:options
-                                                              tag:kEditSoundsActionSheetTag
-                                                             view:self.navigationController.view];
-    if (self.object.soundList.count) {
-        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
-    }
+    [Util actionSheetWithTitle:kLocalizedEditSounds
+                      delegate:self
+        destructiveButtonTitle:destructive
+             otherButtonTitles:options
+                           tag:kEditSoundsActionSheetTag
+                          view:self.navigationController.view];
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -436,7 +434,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSound
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSound
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -568,26 +566,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 
 #pragma mark - action sheet handlers
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditSoundsActionSheetTag) {
         BOOL showHideSelected = NO;
         if ([self.object.soundList count]) {
-            if (buttonIndex == 0) {
+            if (buttonIndex == 1) {
                 // Delete Sounds button
                 self.deletionMode = YES;
                 [self setupEditingToolBar];
                 [super changeToEditingMode:actionSheet];
-            }  else if (([self.object.lookList count] >= 2)) {
-                if (buttonIndex == 1) {
+            }  else if (([self.object.soundList count] >= 2)) {
+                if (buttonIndex == 2) {
                     self.deletionMode = NO;
                     [super changeToMoveMode:actionSheet];
-                } else if (buttonIndex == 2) {
+                } else if (buttonIndex == 3) {
                     showHideSelected = YES;
                 }
+            } else if (buttonIndex == 2){
+                showHideSelected = YES;
             }
-        } else if (buttonIndex == 0) {
+        } else if (buttonIndex == 1) {
             showHideSelected = YES;
         }
         if (showHideSelected) {
@@ -609,11 +609,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self reloadData];
         }
     } else if (actionSheet.tag == kEditSoundActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy sound button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             [self copySoundActionWithSourceSound:(Sound*)payload[kDTPayloadSound]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             Sound *sound = (Sound*)payload[kDTPayloadSound];
@@ -631,7 +631,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                         invalidInputAlertMessage:kLocalizedInvalidSoundNameDescription];
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
                 //Recorder
             NSDebug(@"Recorder");
             AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -679,7 +679,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     }
                 }];
             }
-                    } else if (buttonIndex == 1) {
+            } else if (buttonIndex == 2) {
             // Select music track
             NSDebug(@"Select music track");
             self.isAllowed = YES;
