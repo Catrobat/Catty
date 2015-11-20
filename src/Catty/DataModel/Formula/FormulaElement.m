@@ -159,14 +159,9 @@
 
 - (id)interpretString:(NSString *)value
 {
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.numberStyle = NSNumberFormatterDecimalStyle;
-    NSLocale *en_US = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    formatter.locale = en_US;
-    
     if(self.parent == nil && self.type != USER_VARIABLE)
     {
-        NSNumber *anotherValue = [formatter numberFromString:value];
+        NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
         
         if(anotherValue == nil)
         {
@@ -183,7 +178,7 @@
         {
                if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)
                {
-                   NSNumber *anotherValue = [formatter numberFromString:value];
+                   NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
                    
                    if(anotherValue == nil)
                    {
@@ -197,7 +192,7 @@
         
         if(isAParentFunction)
         {
-            NSNumber *anotherValue = [formatter numberFromString:value];
+            NSNumber *anotherValue = [NSNumber numberWithDouble:[value doubleValue]];
             
             if(anotherValue == nil)
             {
@@ -212,13 +207,13 @@
         if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
                                   [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
         {
-            NSNumber *anotherValue = [formatter numberFromString:value];
-            if(anotherValue == nil)
+            NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
+            NSNumber * anotherValue = nil;
+            if(![[NSDecimalNumber notANumber] isEqual:number])
             {
-                return value;
-            }else{
-                return anotherValue;
+                anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
             }
+            return anotherValue;
         }
     }
     
@@ -226,16 +221,23 @@
     {
         return [NSNumber numberWithDouble:0.0f];
     }
-    
-    NSNumber *anotherValue = [formatter numberFromString:value];
-    
-    if(anotherValue == nil)
+    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
+    NSNumber * anotherValue = nil;
+    if(![[NSDecimalNumber notANumber] isEqual:number])
     {
-        return value;
-        //return [NSNumber numberWithDouble:0.0f];
-    }else{
-        return anotherValue;
+        anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
     }
+    
+    
+//    NSNumber *anotherValue = [NSNumber numberWithDouble:[value doubleValue]];
+//    if([[NSDecimalNumber notANumber] isEqual:number])
+//    {
+//        NSLog(@"Not a Nubmber");
+//    }
+    
+    
+    return anotherValue;
+    
     
 }
 
@@ -538,11 +540,6 @@
         double left = 0.0f;
         double right = 0.0f;
         
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        formatter.numberStyle = NSNumberFormatterDecimalStyle;
-        NSLocale *en_US = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-        formatter.locale = en_US;
-        
         id leftId = [self.leftChild interpretRecursiveForSprite:sprite];
         if([leftId isKindOfClass:[NSNumber class]])
         {
@@ -578,12 +575,12 @@
                 }else{
                     if([leftId isKindOfClass:[NSString class]])
                     {
-                        leftId = [formatter numberFromString:leftId];
+                        leftId = [NSNumber numberWithDouble:[leftId doubleValue]];
                     }
                     
                     if([rightId isKindOfClass:[NSString class]])
                     {
-                        rightId = [formatter numberFromString:rightId];
+                        rightId = [NSNumber numberWithDouble:[rightId doubleValue]];
                     }
                     
                     
@@ -610,12 +607,12 @@
                 }else{
                     if([leftId isKindOfClass:[NSString class]])
                     {
-                        leftId = [formatter numberFromString:leftId];
+                        leftId = [NSNumber numberWithDouble:[leftId doubleValue]];
                     }
                     
                     if([rightId isKindOfClass:[NSString class]])
                     {
-                        rightId = [formatter numberFromString:rightId];
+                        rightId = [NSNumber numberWithDouble:[rightId doubleValue]];
                     }
                     
                     
@@ -675,12 +672,12 @@
         }
         if([leftId isKindOfClass:[NSString class]])
         {
-            leftId = [formatter numberFromString:leftId];
+            leftId = [NSNumber numberWithDouble:[leftId doubleValue]];
         }
         
         if([rightId isKindOfClass:[NSString class]])
         {
-            rightId = [formatter numberFromString:rightId];
+            rightId = [NSNumber numberWithDouble:[rightId doubleValue]];
         }
         if(rightId == nil || leftId == nil)
         {
