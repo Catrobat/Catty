@@ -271,8 +271,16 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         BluetoothService.swiftSharedInstance.signalDigitalSemaphore(true)
     }
     override func didReceiveAnalogMessage(pin:Int,value:Int){
-        print("ANALOG::\(pin):::\(value)")
-        arduinoHelper.didReceiveAnalogMessage(pin, value: value)
+//        print("ANALOG::\(pin):::\(value)")
+        var analogPin = 100
+        if pinsArray.count > 0 {
+            let totalAnalog = analogMapping.count
+            let totalDigital = totalPins-totalAnalog
+            analogPin = pin - totalDigital
+        } else {
+            analogPin = convertAnalogPin(pin)
+        }
+        arduinoHelper.didReceiveAnalogMessage(analogPin, value: value)
         BluetoothService.swiftSharedInstance.signalAnalogSemaphore()
     }
 
