@@ -240,9 +240,12 @@ class Phiro: FirmataDevice,PhiroProtocol {
     
     
     //MARK:Firmata Delegate override
-    
     override func didReceiveAnalogMessage(pin:Int,value:Int){
-        phiroHelper.didReceiveAnalogMessage(pin, value: value)
+        print("ANALOG::\(pin):::\(value)")
+        let analogPin = convertAnalogPin(pin)
+        
+        phiroHelper.didReceiveAnalogMessage(analogPin, value: value)
     }
+
     
 }

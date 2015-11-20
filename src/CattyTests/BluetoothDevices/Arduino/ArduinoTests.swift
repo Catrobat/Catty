@@ -600,4 +600,62 @@ class ArduinoTests: XCTestCase {
         let checkData = checkName.dataUsingEncoding(NSASCIIStringEncoding)
         XCTAssertEqual(peripheralMock.dataToSend,checkData,"Data is wrong")
     }
+    
+    //MARK: FirmataDevice Convert Analog
+    func testFirmataDeviceConvertAnalog0 () {
+        //Given
+        let analogPin = 14
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,0,"Convertion is wrong")
+    }
+    func testFirmataDeviceConvertAnalog1 () {
+        //Given
+        let analogPin = 15
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,1,"Convertion is wrong")
+    }
+    func testFirmataDeviceConvertAnalog2 () {
+        //Given
+        let analogPin = 16
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,2,"Convertion is wrong")
+    }
+    func testFirmataDeviceConvertAnalog3 () {
+        //Given
+        let analogPin = 17
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,3,"Convertion is wrong")
+    }
+    func testFirmataDeviceConvertAnalog4 () {
+        //Given
+        let analogPin = 18
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,4,"Convertion is wrong")
+    }
+    func testFirmataDeviceConvertAnalog5 () {
+        //Given
+        let analogPin = 19
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,5,"Convertion is wrong")
+    }
+    func testFirmataDeviceConvertAnalogWrong () {
+        //Given
+        let analogPin = 25
+        //When
+        let check = arduinoTest.convertAnalogPin(analogPin)
+        //Then
+        XCTAssertEqual(check,100,"Convertion is wrong")
+    }
 }
