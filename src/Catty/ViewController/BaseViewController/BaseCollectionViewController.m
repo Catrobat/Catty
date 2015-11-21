@@ -83,6 +83,8 @@
     NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
+    } else {
+        [self hideLoadingView];
     }
 }
 
