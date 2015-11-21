@@ -1473,7 +1473,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWx-dQ-BHj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWx-dQ-BHj">
                                 <rect key="frame" x="20" y="0.0" width="560" height="20"/>
                                 <animations/>
                                 <constraints>
@@ -1483,18 +1483,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1O1-zI-Ara">
-                                <rect key="frame" x="20" y="20" width="560" height="3"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1O1-zI-Ara">
+                                <rect key="frame" x="20" y="21" width="560" height="3"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="I0x-F5-Bov"/>
-                                </constraints>
                             </progressView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aRr-mg-UEb" firstAttribute="top" secondItem="HWU-un-tSt" secondAttribute="bottom" id="9it-RG-491"/>
+                            <constraint firstItem="jWx-dQ-BHj" firstAttribute="top" secondItem="LYJ-C4-dCk" secondAttribute="bottom" id="L0k-Bj-0FH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jWx-dQ-BHj" secondAttribute="trailing" id="Lau-ds-mM4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1O1-zI-Ara" secondAttribute="trailing" id="ar8-Kb-GGD"/>
                             <constraint firstItem="HWU-un-tSt" firstAttribute="leading" secondItem="yiR-18-InU" secondAttribute="leading" id="gue-aR-rwd"/>
