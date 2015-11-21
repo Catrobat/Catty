@@ -31,7 +31,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
-#import "BaseWebViewController.h"
+#import "HelpWebViewController.h"
 
 @interface FileManager ()
 
@@ -450,7 +450,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate downloadFinishedWithURL:url andProgramLoadingInfo:info];
         });
-    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProgramLoadingInfo:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProgramLoadingInfo:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
         [self.delegate downloadFinishedWithURL:url andProgramLoadingInfo:info];
     }
 
@@ -630,7 +630,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate updateProgress:progress];
                 });
-            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+            }else if ([self.delegate respondsToSelector:@selector(updateProgress:)] && [self.delegate isKindOfClass:[HelpWebViewController class]]){
                 [self.delegate updateProgress:progress];
             }
 

@@ -21,9 +21,18 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseWebViewController.h"
+#import "FileManager.h"
 
-@interface HelpWebViewController : BaseWebViewController
+@interface HelpWebViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, FileManagerDelegate>
 
+@property (nonatomic, strong) UIColor *tintColor;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+- (id)initWithURL:(NSURL *)URL;
+
+- (void)goBack:(id)sender;
+- (void)goForward:(id)sender;
+- (void)refresh:(id)sender;
+- (void)stop:(id)sender;
 
 @end

@@ -285,16 +285,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
         case kContinueProgramVC:
         case kLocalProgramsVC:
         case kExploreVC:
+        case kHelpVC:
             if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                 [self performSegueWithIdentifier:identifier sender:self];
             }
             break;
-        case kHelpVC:
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-                [self.navigationController pushViewController:webVC animated:YES];
-            }
-            break;
+//        case kHelpVC:
+//            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+////                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+////                [self.navigationController pushViewController:webVC animated:YES];
+//                
+//            }
+//            break;
         case kUploadVC:
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
