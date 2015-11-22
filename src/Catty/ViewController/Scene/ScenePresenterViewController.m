@@ -52,6 +52,7 @@
 #import "AppDelegate.h"
 #import "CatrobatAlertView.h"
 #import "ActionSheetAlertViewTags.h"
+#import "RuntimeImageCache.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CatrobatAlertViewDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -297,6 +298,17 @@
     }
 }
 
+-(void)resaveLooks
+{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        for (SpriteObject *object in self.program.objectList) {
+            for (Look *look in object.lookList) {
+                [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
+            }
+        }
+    });
+}
+
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
@@ -339,12 +351,14 @@
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
     [[FlashHelper sharedFlashHandler] turnOff];
+    [[BluetoothService sharedInstance] pauseBluetoothDevice];
 }
 
 - (void)resumeAction
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
+    [[BluetoothService sharedInstance] continueBluetoothDevice];
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
         [[FlashHelper sharedFlashHandler] turnOn];
     }
@@ -356,6 +370,7 @@
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
         [[FlashHelper sharedFlashHandler] turnOn];
     }
+    [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
     animateDuration = duration > 0.0001f ? duration : 0.35f;
     
@@ -399,6 +414,7 @@
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
     [[BluetoothService sharedInstance] setScenePresenter:nil];
+    [[BluetoothService sharedInstance] resetBluetoothDevice];
 }
 
 -(void)connectionLost

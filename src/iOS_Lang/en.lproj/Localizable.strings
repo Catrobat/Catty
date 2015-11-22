@@ -98,6 +98,12 @@
 "Blue" = "Blue";
 
 /* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* No comment provided by engineer. */
 "Both" = "Both";
 
 /* No comment provided by engineer. */
@@ -132,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Categories" = "Categories";
+
+/* No comment provided by engineer. */
+"ceil" = "ceil";
 
 /* No comment provided by engineer. */
 "Change brightness\nby %@\%" = "Change brightness\nby %@\%";
@@ -443,6 +452,9 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
+"floor" = "floor";
+
+/* No comment provided by engineer. */
 "for all objects" = "for all objects";
 
 /* No comment provided by engineer. */
@@ -671,10 +683,19 @@
 "Move Brick" = "Move Brick";
 
 /* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
 "Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
 
 /* No comment provided by engineer. */
 "Move Phiro Motor forward\n%@\n Speed %@\%" = "Move Phiro Motor forward\n%@\n Speed %@\%";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
 
 /* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";

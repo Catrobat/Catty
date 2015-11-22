@@ -37,6 +37,11 @@
     self.timeToWaitInSeconds = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.timeToWaitInSeconds];
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
@@ -45,12 +50,6 @@
 - (NSString*)brickTitle
 {
     return kLocalizedWaitNSeconds;
-}
-
-- (SKAction*)action
-{
-    NSDebug(@"Performing: %@", self.description);
-    return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
 #pragma mark - Description

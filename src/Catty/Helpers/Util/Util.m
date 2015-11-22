@@ -138,7 +138,7 @@
                                                           otherButtonTitles:nil];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        [alertView show:YES];
     }
     return alertView;
 }
@@ -161,7 +161,7 @@
     [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        [alertView show:YES];
     }
     return alertView;
 }
@@ -216,7 +216,7 @@
         if (target != nil) {
             [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
         } else {
-            [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+            [alertView show:YES];
         }
     }
     return alertView;

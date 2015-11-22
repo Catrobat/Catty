@@ -29,40 +29,12 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
     var debugData:UInt8 = 0x01
      override func viewDidLoad() {
         super.viewDidLoad()
-        let central = CentralManager.sharedInstance
-        if central.isScanning {
-            central.stopScanning()
-            central.disconnectAllPeripherals()
-            central.removeAllPeripherals()
-            self.updateWhenActive()
-        } else {
-            central.disconnectAllPeripherals()
-            central.removeAllPeripherals()
-            CentralManager.sharedInstance.start().onSuccess {
-                self.startScan()
-            }
-            
-        }
+        initScan()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    func startScan(){
-
-        let afterPeripheralDiscovered = {(peripheral:Peripheral) -> Void in
-            
-            
-            //        self.connect(peripheral)
-            self.updateWhenActive()
-        }
-        let afterTimeout = {(error:NSError) -> Void in
-            
-        }
-        let future : FutureStream<Peripheral> = CentralManager.sharedInstance.startScan()
-        future.onSuccess(afterPeripheralDiscovered)
-        future.onFailure(afterTimeout)
     }
 
 
@@ -91,10 +63,10 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         if peripheral.state == .Connected {
             cell.textLabel?.textColor = UIColor.backgroundColor()
             cell.backgroundColor = UIColor.globalTintColor()
-            cell.textLabel?.text = peripheral.name
             cell.userInteractionEnabled = false
         } else {
             cell.textLabel?.textColor = UIColor.globalTintColor()
+            cell.userInteractionEnabled = true
         }
 
         return cell

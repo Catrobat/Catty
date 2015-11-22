@@ -72,7 +72,7 @@
             return [self buildNumber:[NSString stringWithFormat:@"%d",9]];
             break;
             
-            //FUNCTIONS
+        //FUNCTIONS
             
         case SIN:
             return [self buildSingleParameterFunction:SIN
@@ -206,6 +206,18 @@
             
         case ARDUINOANALOG:
             return [self buildSingleParameterFunction:ARDUINOANALOG
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
+            break;
+            
+        case FLOOR:
+            return [self buildSingleParameterFunction:FLOOR
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
+            break;
+            
+        case CEIL:
+            return [self buildSingleParameterFunction:CEIL
                                withFirstParameterType:TOKEN_TYPE_NUMBER
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;

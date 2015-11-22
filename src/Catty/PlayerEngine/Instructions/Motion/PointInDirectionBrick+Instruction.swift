@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PointInDirectionBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
+extension PointInDirectionBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         return .Action(action: SKAction.runBlock(actionBlock()))
@@ -36,12 +36,6 @@ extension PointInDirectionBrick: CBInstructionProtocol,CBFormulaBufferProtocol {
             let degrees = self.degrees.interpretDoubleForSprite(object) - PlayerConfig.RotationDegreeOffset
             spriteNode.rotation = scene.convertDegreesToScene(degrees)
         }
-    }
-    
-    func preCalculate() {
-        guard let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        self.degrees.interpretIntegerForSprite(object)
     }
 
 }

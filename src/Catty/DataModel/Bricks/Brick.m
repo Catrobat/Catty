@@ -109,25 +109,11 @@
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
 }
 
-- (SKAction*)action
-{
-    NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE action METHOD!", self.class);
-    return nil;
-}
-
-
 - (void)performFromScript:(Script*)script
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
                                  userInfo:nil];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE actionBlock METHOD!", self.class);
-    };
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

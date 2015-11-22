@@ -34,6 +34,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+@class CentralManager;
 @class BluetoothPopupVC;
 
 @implementation ResourceHelper
@@ -125,6 +126,9 @@
         //ConnectPhiro
         if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
             [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        } else {
+            Phiro *phiro = [BluetoothService sharedInstance].phiro;
+            [phiro reportSensorData:YES];
         }
     }
     
@@ -132,27 +136,36 @@
         //ConnectArduino
         if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
             [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+        } else {
+            ArduinoDevice *arduino = [BluetoothService sharedInstance].arduino;
+            [arduino reportSensorData:YES];
         }
     }
     if ( bluetoothArray.count > 0) {
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
-        [bvc setDeviceArray:bluetoothArray];
-        [bvc setDelegate:delegate];
-        if ([delegate isKindOfClass:[BaseTableViewController class]]) {
-            BaseTableViewController *btvc = (BaseTableViewController*)delegate;
-            [bvc setVc:btvc.scenePresenterViewController];
-            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
-            [btvc presentViewController:navController animated:YES completion:nil];
-        } else if ([delegate isKindOfClass:[BaseCollectionViewController class]]) {
-            BaseCollectionViewController *bcvc = (BaseCollectionViewController*)delegate;
-            [bvc setVc:bcvc.scenePresenterViewController];
-            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
-            [bcvc presentViewController:navController animated:YES completion:nil];
+        if( [CentralManager sharedInstance].state == CBCentralManagerStatePoweredOn || [CentralManager sharedInstance].state == CBCentralManagerStateUnknown){
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+            BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+            [bvc setDeviceArray:bluetoothArray];
+            [bvc setDelegate:delegate];
+            if ([delegate isKindOfClass:[BaseTableViewController class]]) {
+                BaseTableViewController *btvc = (BaseTableViewController*)delegate;
+                [bvc setVc:btvc.scenePresenterViewController];
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+                [btvc presentViewController:navController animated:YES completion:nil];
+            } else if ([delegate isKindOfClass:[BaseCollectionViewController class]]) {
+                BaseCollectionViewController *bcvc = (BaseCollectionViewController*)delegate;
+                [bvc setVc:bcvc.scenePresenterViewController];
+                UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+                [bcvc presentViewController:navController animated:YES completion:nil];
+            } else {
+                //ViewController To ScenePresenter must have a reference to the ScenePresenterViewController!!
+                return NO;
+            }
+
+        } else if([CentralManager sharedInstance].state == CBCentralManagerStatePoweredOff){
+            [Util alertWithText:kLocalizedBluetoothPoweredOff];
         } else {
-            //ViewController To ScenePresenter must have a reference to the ScenePresenterViewController!!
-            return NO;
+            [Util alertWithText:kLocalizedBluetoothNotAvailable];
         }
         return NO;
     } else {

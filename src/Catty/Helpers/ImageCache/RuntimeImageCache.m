@@ -54,6 +54,14 @@
         });
     });
 }
+- (void)loadImageFromDiskWithPath:(NSString*)path
+{
+    dispatch_async(self.imageCacheQueue, ^{
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+        [super addImage:image withName:path];
+    });
+
+}
 
 - (void)loadImageFromDiskWithPath:(NSString*)path
                      onCompletion:(void(^)(UIImage *image, NSString* path))completion

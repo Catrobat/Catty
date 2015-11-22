@@ -21,8 +21,10 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "Formula.h"
 
 @protocol BrickConditionalBranchProtocol <NSObject>
 - (BOOL)checkCondition;
 - (void)resetCondition;
+- (NSArray<Formula*>*)conditions;
 @end

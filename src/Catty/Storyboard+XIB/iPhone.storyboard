@@ -39,7 +39,7 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
                                                     <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
@@ -81,6 +81,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="zIT-af-eRb" secondAttribute="height" multiplier="1:1" id="pzJ-dd-ayv"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw7-J9-Vvq">
                                             <rect key="frame" x="95" y="55" width="31" height="14.5"/>
@@ -356,6 +363,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="naL-Va-LMI" secondAttribute="height" multiplier="1:1" id="hND-WX-PX7"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
                                     <animations/>
@@ -393,6 +407,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="7nz-m2-X1L" secondAttribute="height" multiplier="1:1" id="k7a-cW-C1g"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbo-P5-yTN">
                                             <rect key="frame" x="95" y="55" width="31" height="14.5"/>
@@ -735,9 +756,9 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                                    <color key="value" red="0.094117647058823528" green="0.6470588235294118" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
@@ -771,13 +792,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFa-PX-63P">
-                                            <rect key="frame" x="20" y="13" width="52" height="52"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="GFa-PX-63P" secondAttribute="height" multiplier="1:1" id="d2b-5Z-x3Y"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8U-b5-eog">
                                             <rect key="frame" x="95" y="55" width="31" height="14.5"/>
                                             <animations/>
@@ -809,6 +823,20 @@
                                                 <rect key="frame" x="95" y="30.5" width="31" height="14.5"/>
                                             </variation>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFa-PX-63P">
+                                            <rect key="frame" x="20" y="13" width="52" height="52"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GFa-PX-63P" secondAttribute="height" multiplier="1:1" id="d2b-5Z-x3Y"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
@@ -955,7 +983,7 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
                                                     <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
@@ -997,6 +1025,13 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="jDK-Dy-lHE" secondAttribute="height" multiplier="1:1" id="kWt-i8-RLg"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.094117647058823528" green="0.6470588235294118" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FN1-0S-nvN">
                                             <rect key="frame" x="95" y="55" width="31" height="14.5"/>
@@ -1400,7 +1435,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
                                                             <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
@@ -1480,7 +1515,7 @@
                                     <constraint firstAttribute="height" constant="20" id="3Ve-NQ-pUz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1O1-zI-Ara">
@@ -1664,7 +1699,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="0"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0.5"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
                                                             <color key="value" red="0.094117647060000004" green="0.64705882349999999" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
@@ -1811,7 +1846,7 @@
                                 <rect key="frame" x="279" y="209" width="42" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -2433,7 +2468,7 @@
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aum-BR-x1G"/>
         <segue reference="Gbh-WU-doT"/>
+        <segue reference="Ynr-aF-UI3"/>
     </inferredMetricsTieBreakers>
 </document>

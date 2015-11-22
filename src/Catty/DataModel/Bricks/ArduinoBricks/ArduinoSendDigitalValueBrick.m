@@ -47,6 +47,11 @@
         self.value = formula;
 }
 
+- (NSArray*)getFormulas
+{
+    return @[self.pin,self.value];
+}
+
 #pragma mark - Description
 - (NSString*)description
 {
