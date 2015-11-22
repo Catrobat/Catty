@@ -96,13 +96,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-fL-dx1">
-                                            <rect key="frame" x="136" y="55" width="31" height="14.5"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVW-gw-iAc">
                                             <rect key="frame" x="136" y="37.5" width="31" height="14.5"/>
                                             <animations/>
@@ -119,6 +112,13 @@
                                             <variation key="heightClass=regular" misplaced="YES">
                                                 <rect key="frame" x="95" y="30.5" width="31" height="14.5"/>
                                             </variation>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-fL-dx1">
+                                            <rect key="frame" x="136" y="55" width="31" height="14.5"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <animations/>
@@ -161,7 +161,7 @@
                                         <constraint firstItem="bw7-J9-Vvq" firstAttribute="centerY" secondItem="KjP-M7-Hhc" secondAttribute="centerY" id="rsY-Hy-5qE"/>
                                         <constraint firstItem="zIT-af-eRb" firstAttribute="leading" secondItem="JAJ-4G-CwQ" secondAttribute="leadingMargin" constant="12" id="tx4-8m-CZy"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="NUj-fL-dx1" secondAttribute="trailing" constant="300" id="uCH-uh-2qG">
-                                            <variation key="heightClass=compact" constant="20"/>
+                                            <variation key="heightClass=compact" constant="40"/>
                                         </constraint>
                                         <constraint firstItem="bw7-J9-Vvq" firstAttribute="top" secondItem="Hfi-md-JjU" secondAttribute="bottom" constant="3.5" id="w9l-ze-2IU"/>
                                     </constraints>
@@ -456,7 +456,7 @@
                                         <constraint firstItem="mvn-R8-NpR" firstAttribute="centerX" secondItem="uN7-jN-mKf" secondAttribute="centerX" id="2VC-y4-YZs"/>
                                         <constraint firstItem="MTI-pY-xXG" firstAttribute="centerY" secondItem="t3G-w3-PcW" secondAttribute="centerY" id="5jU-Hd-ngq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="y3E-l6-rJt" secondAttribute="trailing" constant="300" id="71o-Yp-7ec">
-                                            <variation key="heightClass=compact" constant="20"/>
+                                            <variation key="heightClass=compact" constant="40"/>
                                         </constraint>
                                         <constraint firstAttribute="bottomMargin" secondItem="7nz-m2-X1L" secondAttribute="bottom" constant="5" id="71p-hw-IgL"/>
                                         <constraint firstItem="t3G-w3-PcW" firstAttribute="leading" secondItem="7nz-m2-X1L" secondAttribute="trailing" constant="23" id="7Gy-4B-ejJ"/>
@@ -869,7 +869,7 @@
                                         </constraint>
                                         <constraint firstAttribute="bottomMargin" secondItem="GFa-PX-63P" secondAttribute="bottom" constant="5" id="kk4-6W-v6K"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="7Qu-NK-utg" secondAttribute="trailing" constant="300" id="lBK-aB-Wgw">
-                                            <variation key="heightClass=compact" constant="20"/>
+                                            <variation key="heightClass=compact" constant="40"/>
                                         </constraint>
                                         <constraint firstItem="7Qu-NK-utg" firstAttribute="centerY" secondItem="a8U-b5-eog" secondAttribute="centerY" id="lbo-If-UZz"/>
                                         <constraint firstItem="0dN-ve-x2t" firstAttribute="centerY" secondItem="bOS-ss-JSE" secondAttribute="centerY" id="m18-b6-RVV">
@@ -1933,6 +1933,8 @@
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="toolBar" destination="0ye-ev-MwB" id="9lW-8k-Rxv"/>
                     </connections>
