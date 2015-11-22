@@ -92,38 +92,26 @@
     
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
-    CGFloat currentHeight = 0.0f;
-    CGFloat headerHeight;
-    if (IS_IPHONE4||IS_IPHONE5) {
-        headerHeight = 70.0f;
-    } else {
-        headerHeight = 160.0f;
-    }
+
     
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
-//    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
     
     self.infoLabel.textColor =  [UIColor globalTintColor];
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:28.0f];
     self.infoLabel.text = kLocalizedInfoLogin;
     [self.infoLabel sizeToFit];
-//    self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
+
     
-    currentHeight+= self.headerImageView.frame.size.height+20;
-    currentHeight = headerHeight+self.infoLabel.frame.size.height;
-//    [self addHorizontalLineToView:self.view andHeight:currentHeight];
-    
-    currentHeight += 10;
+
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder =kLocalizedUsername;
     self.usernameField.font = [UIFont fontWithName:fontName size:16.0f];
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
-//    self.usernameField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.usernameField.frame.size.height);
-    currentHeight+= self.usernameField.frame.size.height;
+
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView.image = [UIImage imageNamed:@"user"];
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
@@ -137,8 +125,6 @@
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
-//    self.passwordField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.passwordField.frame.size.height);
-    currentHeight+= self.passwordField.frame.size.height;
     
     UIImageView* leftView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView2.image = [UIImage imageNamed:@"password"];
@@ -151,8 +137,6 @@
     [self.loginButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
-//    self.loginButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.loginButton.frame.size.height);
-    currentHeight+= self.loginButton.frame.size.height+10;
     
     self.forgotButton.backgroundColor = [UIColor clearColor];
     self.forgotButton.titleLabel.font = [UIFont fontWithName:fontName size:15.0f];
@@ -161,10 +145,7 @@
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     [self.forgotButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
 //    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
-    currentHeight+= self.forgotButton.frame.size.height+20;
-    
-//    [self addHorizontalLineToView:self.view andHeight:currentHeight];
-    currentHeight+= 10;
+
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:16.0f];
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];

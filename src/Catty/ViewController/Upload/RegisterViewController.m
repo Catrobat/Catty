@@ -88,34 +88,16 @@
     
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
-    CGFloat currentHeight = 0.0f;
-    CGFloat headerHeight;
-    if (IS_IPHONE4||IS_IPHONE5) {
-        headerHeight = 0.0f;
-    } else {
-        headerHeight = 100.0f;
-    }
     
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
-//    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
-
     
     self.titleLabel.textColor =  [UIColor globalTintColor];
     self.titleLabel.font =  [UIFont fontWithName:boldFontName size:28.0f];
     self.titleLabel.text = kLocalizedInfoRegister;
     [self.titleLabel sizeToFit];
-//    self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
     
-    currentHeight+= self.headerImageView.frame.size.height+20;
-    currentHeight = headerHeight+self.titleLabel.frame.size.height;
-//    [self addHorizontalLineToView:self.view andHeight:currentHeight];
-    
-    currentHeight += 10;
-
-    
-    currentHeight = headerHeight+self.titleLabel.frame.size.height;
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder = kLocalizedUsername;
     if (self.userName) {
@@ -125,8 +107,7 @@
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
-//    self.usernameField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.usernameField.frame.size.height);
-    currentHeight+= self.usernameField.frame.size.height;
+
     
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView.image = [UIImage imageNamed:@"user"];
@@ -143,14 +124,12 @@
     self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.emailField.layer.borderWidth = 1.0f;
     self.emailField.tag = 3;
-//    self.emailField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.emailField.frame.size.height);
-    
+
     UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView3.image = [UIImage imageNamed:@"email"];
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
     self.emailField.leftView = leftView3;
 
-    currentHeight+= self.emailField.frame.size.height;
     
     
     self.passwordField.backgroundColor = [UIColor whiteColor];
@@ -163,23 +142,20 @@
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
-//    self.passwordField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.passwordField.frame.size.height);
-    currentHeight+= self.passwordField.frame.size.height;
+
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.termsOfUseButton addTarget:self action:@selector(openTermsOfUse) forControlEvents:UIControlEventTouchUpInside];
-//    self.termsOfUseButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.termsOfUseButton.frame.size.height);
-    currentHeight+= self.termsOfUseButton.frame.size.height;
+
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
-//    self.registerButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.registerButton.frame.size.height);
 }
 
 -(void)addDoneToTextFields
