@@ -34,6 +34,7 @@
 
 @property (nonatomic, assign) BOOL moveToOtherScript;
 @property (nonatomic, assign) BOOL insertionMode;
+@property (nonatomic, assign) BOOL moveMode;
 
 @end
 
@@ -53,11 +54,17 @@
 - (BOOL)isBrickInsertionMode{
     return self.insertionMode;
 }
+- (BOOL)isBrickMoveMode{
+    return self.moveMode;
+}
 
 - (void)setBrickInsertionMode:(BOOL)isInserting{
     self.insertionMode = isInserting;
 }
 
+- (void)setBrickMoveMode:(BOOL)isMoving{
+    self.moveMode = isMoving;
+}
 #pragma mark - check insert logic
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
@@ -314,6 +321,7 @@
 {
     self.moveToOtherScript = NO;
     self.insertionMode = NO;
+    self.moveMode = NO;
 }
 
 @end
