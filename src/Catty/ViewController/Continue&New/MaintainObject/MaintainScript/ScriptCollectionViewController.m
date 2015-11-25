@@ -268,10 +268,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }else{
                 brick = [script.brickList objectAtIndex:indexPath.item];
             }
-            if (brick.isAnimatedInsertBrick) {
+            if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
                 [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
-            }else{
+            }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
                 return;
+            }else {
+                brick.animateInsertBrick = NO;
+                brick.animateMoveBrick = NO;
             }
             
         }else{
@@ -420,6 +423,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
             Brick *brick = (Brick*)brickCell.scriptOrBrick;
             brick.animateInsertBrick = YES;
+            brick.animateMoveBrick = YES;
+            [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
             [self turnOnInsertingBrickMode];
             [self reloadData];
         }
@@ -502,21 +507,21 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }else{
                 brick = [script.brickList objectAtIndex:indexPath.item];
             }
-            if (brick.isAnimatedInsertBrick) {
+            if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
                 [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
-                [self turnOffInsertingBrickMode];
-            }else{
+            }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
                 return;
+            }else {
+                brick.animateInsertBrick = NO;
+                brick.animateMoveBrick = NO;
             }
-
         }else{
             script.animateInsertBrick = NO;
-            [self turnOffInsertingBrickMode];
         }
+        [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
     }
-    [self reloadInputViews];
     [self reloadData];
     [self.collectionView setNeedsDisplay];
     [self.object.program saveToDisk];
@@ -532,7 +537,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode] && ![[BrickInsertManager sharedInstance] isBrickMoveMode]) {
         return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
     }
     
