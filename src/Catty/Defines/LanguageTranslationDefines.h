@@ -268,6 +268,8 @@
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
 #define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
 #define kLocalizedImagePickerSourceNotAvailable NSLocalizedString(@"Image source not available",nil)
+#define kLocalizedBluetoothPoweredOff NSLocalizedString(@"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.",nil)
+#define kLocalizedBluetoothNotAvailable NSLocalizedString(@"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.",nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
