@@ -30,7 +30,11 @@
 
 - (BOOL)isBrickInsertionMode;
 
+- (BOOL)isBrickMoveMode;
+
 - (void)setBrickInsertionMode:(BOOL)isInserting;
+
+- (void)setBrickMoveMode:(BOOL)isMoving;
 
 +(id)sharedInstance;
 
