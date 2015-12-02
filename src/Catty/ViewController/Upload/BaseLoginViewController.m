@@ -23,7 +23,7 @@
 #import "BaseLoginViewController.h"
 
 @interface BaseLoginViewController ()
-
+@property (nonatomic,assign) BOOL isMovedUp;
 @end
 
 @implementation BaseLoginViewController
@@ -40,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.isMovedUp = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 	// Do any additional setup after loading the view.
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -55,35 +55,45 @@
 
 #define kOFFSET_FOR_KEYBOARD 100.0
 
--(void)keyboardWillShow {
-//    // Animate the current view out of the way
-//    if (self.view.frame.origin.y >= 0)
-//    {
-//        [self setViewMovedUp:YES];
-//    }
-//    else if (self.view.frame.origin.y < 0)
-//    {
-//        [self setViewMovedUp:NO];
-//    }
+-(void)keyboardWillShow:(NSNotification*)notification {
+    if (!self.isMovedUp) {
+        self.isMovedUp = YES;
+        NSValue *keyboardValue = (notification.userInfo[UIKeyboardFrameEndUserInfoKey]);
+        CGRect keyboardRect = keyboardValue.CGRectValue;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+        
+        CGRect rect = self.view.frame;
+        rect.origin.y -= keyboardRect.size.height;
+        rect.size.height += keyboardRect.size.height;
+        self.view.frame = rect;
+        [UIView commitAnimations];
+    }
 }
 
--(void)keyboardWillHide {
-//    if (self.view.frame.origin.y >= 0)
-//    {
-//        [self setViewMovedUp:YES];
-//    }
-//    else if (self.view.frame.origin.y < 0)
-//    {
-//        [self setViewMovedUp:NO];
-//    }
+-(void)keyboardWillHide:(NSNotification*)notification  {
+    if (self.isMovedUp) {
+        self.isMovedUp = NO;
+        NSValue *keyboardValue = (notification.userInfo[UIKeyboardFrameEndUserInfoKey]);
+        CGRect keyboardRect = keyboardValue.CGRectValue;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+        
+        CGRect rect = self.view.frame;
+        rect.origin.y += keyboardRect.size.height;
+        rect.size.height -= keyboardRect.size.height;
+        self.view.frame = rect;
+        [UIView commitAnimations];
+    }
+    
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
-    if  (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp:YES];
-    }
+//    if  (self.view.frame.origin.y >= 0)
+//    {
+//        [self setViewMovedUp:YES];
+//    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
@@ -132,12 +142,12 @@
     [super viewWillAppear:animated];
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow)
+                                             selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide)
+                                             selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 }
