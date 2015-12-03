@@ -88,13 +88,13 @@
 {
     MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedWelcomeToPocketCode description:kLocalizedWelcomeDescription image:[UIImage imageNamed:@"page1_logo"]];
     panel1.PanelImageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    
-    //Create Stock Panel With Image
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedExploreApps description:kLocalizedExploreDescription image:[UIImage imageNamed:@"page2_explore"]];
-    
-       MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedCreateAndEdit description:kLocalizedCreateAndEditDescription image:[UIImage imageNamed:@"page3_info"]];
+    panel1.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
 
+    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedExploreApps description:kLocalizedExploreDescription image:[UIImage imageNamed:@"page2_explore"]];
+    panel2.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
+    
+    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedCreateAndEdit description:kLocalizedCreateAndEditDescription image:[UIImage imageNamed:@"page3_info"]];
+    panel2.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
     
     //Add panels to an array
     NSArray *panels = @[panel1, panel2, panel3];
