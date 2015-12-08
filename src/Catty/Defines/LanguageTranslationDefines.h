@@ -120,6 +120,8 @@
 #define kLocalizedEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
 #define kLocalizedEditLook NSLocalizedString(@"Edit Look", @"Action sheet menu title")
 #define kLocalizedEditBackground NSLocalizedString(@"Edit Background", @"Action sheet menu title")
+#define kLocalizedEditScript NSLocalizedString(@"Edit Script", @"Action sheet menu title")
+#define kLocalizedEditBrick NSLocalizedString(@"Edit Brick", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
 #define kLocalizedLook NSLocalizedString(@"look", @"LOOK")
 #define kLocalizedEditProgram NSLocalizedString(@"Edit Program", nil)

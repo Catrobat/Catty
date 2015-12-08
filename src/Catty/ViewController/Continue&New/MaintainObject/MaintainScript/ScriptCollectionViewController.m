@@ -301,14 +301,16 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 
     // determine destructive title dependend on type of selected Brick/Script
+    NSString *title = kLocalizedEditScript;
     NSString *destructiveTitle = kLocalizedDeleteScript;
     if ([brickCell.scriptOrBrick isKindOfClass:[Brick class]]) {
         Brick *brick = (Brick*)brickCell.scriptOrBrick;
+        title = kLocalizedEditBrick;
         destructiveTitle = ([brick isIfLogicBrick]
                             ? kLocalizedDeleteCondition
                             : ([brick isLoopBrick]) ? kLocalizedDeleteLoop : kLocalizedDeleteBrick);
     }
-    CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:nil
+    CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:title
                                                          delegate:self
                                            destructiveButtonTitle:destructiveTitle
                                                 otherButtonTitles:buttonTitles
