@@ -368,7 +368,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackground : kLocalizedEditLook)
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options

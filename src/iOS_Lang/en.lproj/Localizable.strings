@@ -334,6 +334,9 @@
 /* No comment provided by engineer. */
 "Edit" = "Edit";
 
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
 /* No comment provided by engineer. */
 "Edit Formula" = "Edit Formula";
 
