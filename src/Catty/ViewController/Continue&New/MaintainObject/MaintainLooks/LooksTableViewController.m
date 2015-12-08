@@ -610,11 +610,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self reloadData];
         }
     } else if (actionSheet.tag == kEditLookActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             [self copyLookActionWithSourceLook:(Look*)payload[kDTPayloadLook]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             Look *look = (Look*)payload[kDTPayloadLook];
