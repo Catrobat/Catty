@@ -21,7 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "Pocket_Code-Swift.h"
 
 #import <CoreBluetooth/CoreBluetooth.h>

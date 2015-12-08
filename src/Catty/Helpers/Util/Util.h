@@ -42,9 +42,8 @@
 
 @protocol MYIntroductionDelegate;
 @class SceneViewController;
-@class CatrobatAlertView;
+@class CatrobatAlertController;
 @protocol CatrobatAlertViewDelegate;
-@class CatrobatActionSheet;
 @protocol CatrobatActionSheetDelegate;
 @class ProgramLoadingInfo;
 
@@ -60,27 +59,27 @@
 
 + (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
-+ (CatrobatAlertView*)alertWithText:(NSString*)text;
++ (CatrobatAlertController*)alertWithText:(NSString*)text;
 
-+ (CatrobatAlertView*)alertWithTitle:(NSString*)title
++ (CatrobatAlertController*)alertWithTitle:(NSString*)title
                              andText:(NSString*)text;
 
-+ (CatrobatAlertView*)alertWithText:(NSString*)text
++ (CatrobatAlertController*)alertWithText:(NSString*)text
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag;
 
-+ (CatrobatAlertView*)confirmAlertWithTitle:(NSString*)title
++ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
                                     message:(NSString*)message
                                    delegate:(id<CatrobatAlertViewDelegate>)delegate
                                         tag:(NSInteger)tag;
 
-+ (CatrobatAlertView*)promptWithTitle:(NSString*)title
++ (CatrobatAlertController*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag;
 
-+ (CatrobatAlertView*)promptWithTitle:(NSString*)title
++ (CatrobatAlertController*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
@@ -88,7 +87,7 @@
                                 value:(NSString*)value
                                target:(id)target;
 
-+ (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
++ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
                                     delegate:(id<CatrobatActionSheetDelegate>)delegate
                       destructiveButtonTitle:(NSString*)destructiveButtonTitle
                            otherButtonTitles:(NSArray*)otherButtonTitles
@@ -218,7 +217,7 @@
 
 + (NSArray*)allMessagesForProgram:(Program*)program;
 
-+ (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)index;
++ (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)index;
 
 + (NSArray*)networkErrorCodes;
 

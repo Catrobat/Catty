@@ -334,6 +334,12 @@
 /* No comment provided by engineer. */
 "Edit" = "Edit";
 
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Brick" = "Edit Brick";
+
 /* No comment provided by engineer. */
 "Edit Formula" = "Edit Formula";
 
@@ -351,6 +357,9 @@
 
 /* No comment provided by engineer. */
 "Edit Programs" = "Edit Programs";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
 
 /* Action sheet menu title */
 "Edit Sound" = "Edit Sound";
