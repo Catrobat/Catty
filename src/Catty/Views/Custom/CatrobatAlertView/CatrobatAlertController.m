@@ -149,7 +149,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
     
 
     actionSheet.view.tintColor = [UIColor globalTintColor];
-    actionSheet.view.backgroundColor = [UIColor backgroundColor];
+    actionSheet.view.backgroundColor = [UIColor clearColor];
     return actionSheet;
 }
 
