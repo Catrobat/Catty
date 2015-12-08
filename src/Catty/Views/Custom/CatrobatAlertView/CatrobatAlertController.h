@@ -45,6 +45,9 @@
 
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
+- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet;  // before animation and showing view
+- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet;  // after animation
+
 @optional
 // Called when we cancel the action sheet (e.g. the user clicks somewhere on the screen). This is not called when the user clicks the cancel button or any other button.
 - (void)actionSheetCancelOnTouch:(CatrobatAlertController *)actionSheet;

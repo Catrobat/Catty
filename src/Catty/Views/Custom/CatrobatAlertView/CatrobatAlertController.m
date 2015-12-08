@@ -25,8 +25,15 @@
 #import "Util.h"
 #import "BaseTableViewController.h"
 
+@interface CatrobatAlertController()
+
+@property (strong, nonatomic) id delegate;
+
+@end
+
 @implementation CatrobatAlertController
 
+#pragma mark AlertView initialization
 - (id)initAlertViewWithTitle:(NSString *)title
             message:(NSString *)message
            delegate:(id<CatrobatAlertViewDelegate>)delegate
@@ -83,7 +90,7 @@
 
 }
 
-#pragma mark - initialization
+#pragma mark - ActionSheet initialization
 - (id)initActionSheetWithTitle:(NSString*)title
            delegate:(id<CatrobatActionSheetDelegate>)delegate
   cancelButtonTitle:(NSString*)cancelTitle
@@ -111,7 +118,6 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 {
     
     CatrobatAlertController *actionSheet = [CatrobatAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    
     
     NSInteger i = 0;
     if (![cancelTitle isEqualToString:@""] && cancelTitle != nil) {
@@ -147,7 +153,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
         }
     }
     
-
+    actionSheet.delegate = delegate;
     actionSheet.view.tintColor = [UIColor globalTintColor];
     actionSheet.view.backgroundColor = [UIColor clearColor];
     return actionSheet;
@@ -176,7 +182,14 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
     [self.alertWindow.rootViewController presentViewController:self animated:animated completion:^{}];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
+{
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)]) {
+        [self.delegate willPresentActionSheet:self];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
 {
    self.alertWindow.hidden = true;
    [super viewWillDisappear:animated];

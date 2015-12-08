@@ -319,10 +319,16 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+}
+
+#pragma mark - CatrobatActionSheetDelegate
+- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
+{
+    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:    self.collectionView.indexPathsForSelectedItems.firstObject];
+    
     [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
 }
 
-#pragma mark- UIAlertViewDelegate
 - (void)deleteAlertView
 {
     NSString *title = [[NSString alloc] init];
@@ -372,6 +378,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
+#pragma mark- CatrobatAlertViewDelegate
 - (void)alertView:(CatrobatAlertController *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == kResourcesAlertView) {
