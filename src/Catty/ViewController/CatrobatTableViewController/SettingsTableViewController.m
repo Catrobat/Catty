@@ -86,7 +86,8 @@
         
     }]];
     __unsafe_unretained typeof(self) weakSelf = self;
-    if (kPhiroActivated || kArduinoActivated) {
+    BluetoothService *service = [BluetoothService sharedInstance];
+    if ((kPhiroActivated || kArduinoActivated) && (service.phiro != nil || service.arduino != nil) ) {
         [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
             
             [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
@@ -172,6 +173,7 @@
 - (void)disconnect
 {
     [[BluetoothService sharedInstance] disconnect];
+    [Util alertWithText:kLocalizedDisconnectBluetoothDevices];
 }
 
 @end

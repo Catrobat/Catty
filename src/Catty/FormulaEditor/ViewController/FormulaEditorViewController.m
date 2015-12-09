@@ -387,6 +387,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                action:@selector(buttonPressed:)
      forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0, buttonCount*self.calcButton.frame.size.height, self.sensorScrollHelperView.frame.size.width, self.calcButton.frame.size.height);
+    button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
     [self.sensorScrollHelperView addSubview:button];
     [self.sensorTypeButton addObject:button];
     return button;

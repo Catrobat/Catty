@@ -51,7 +51,7 @@
 {
   if (self = [super initWithFrame:CGRectMake(25, 130, kLoadingBackgroundWidth, kLoadingBackgroundHeight)]) {
     self.tag = kLoadingViewTag;
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor navTintColor];
     self.alpha = 0.90f;
     self.layer.cornerRadius = 5;
     [self initLoadingLabel];
@@ -79,17 +79,17 @@
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
   [super setBackgroundColor:backgroundColor];
-  if ([backgroundColor isEqual:[UIColor whiteColor]])
+//  if ([backgroundColor isEqual:[UIColor whiteColor]])
     self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-  else
-    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//  else
+//    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
 }
 
 - (void)initLoadingLabel
 {
   self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 170, 20)];
   self.loadingLabel.backgroundColor = [UIColor clearColor];
-  self.loadingLabel.textColor = [UIColor globalTintColor];
+  self.loadingLabel.textColor = [UIColor backgroundColor];
   NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kLocalizedLoading];
   self.loadingLabel.text = loadingText;
   self.loadingLabel.textAlignment = NSTextAlignmentCenter;

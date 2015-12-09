@@ -63,7 +63,9 @@
   [self setupStandardColorsView];
   [self setupRGBAView];
   [self setupBrushPreview];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
   self.view.backgroundColor = [UIColor backgroundColor];
+    self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
     self.toolBar.tintColor = [UIColor navTintColor];
   self.toolBar.barTintColor = UIColor.navBarColor;
 }
@@ -431,6 +433,7 @@
 */
 
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [self.delegate closeColorPicker:self];
 }
 

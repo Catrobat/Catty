@@ -307,12 +307,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
 
 - (void)initNoSearchResultsLabel
 {
-    self.noSearchResultsLabel = [[UILabel alloc] init];
-    self.noSearchResultsLabel.text = kLocalizedNoSearchResults;
+    self.noSearchResultsLabel = [[UILabel alloc] initWithFrame:self.view.frame];
+    [self.noSearchResultsLabel setText:kLocalizedNoSearchResults];
     self.noSearchResultsLabel.textAlignment = NSTextAlignmentCenter;
     self.noSearchResultsLabel.textColor = [UIColor globalTintColor];
     self.noSearchResultsLabel.tintColor = [UIColor globalTintColor];
-    self.noSearchResultsLabel.frame = self.view.frame;
     self.noSearchResultsLabel.hidden = YES;
     [self.view addSubview:self.noSearchResultsLabel];
 }

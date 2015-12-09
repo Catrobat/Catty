@@ -710,7 +710,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau">
-                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="yUY-xB-KT0">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="yUY-xB-KT0">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bnx-Gw-xQI">
                                 <rect key="frame" x="20" y="11" width="21" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
