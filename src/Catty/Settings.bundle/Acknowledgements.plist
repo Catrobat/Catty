@@ -16,12 +16,6 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
-                <string>Catty/Resources/Licenses/AHKActionSheet</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/BDKNotifyHUD</string>
             </dict>
             <dict>
@@ -47,12 +41,6 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/GDataXMLNode</string>
-            </dict>
-            <dict>
-                <key>Type</key>
-                <string>PSGroupSpecifier</string>
-                <key>FooterText</key>
-                <string>Catty/Resources/Licenses/IBActionSheet</string>
             </dict>
             <dict>
                 <key>Type</key>

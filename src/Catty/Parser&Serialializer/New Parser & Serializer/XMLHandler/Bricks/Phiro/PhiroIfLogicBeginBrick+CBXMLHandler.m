@@ -39,7 +39,7 @@
     PhiroIfLogicBeginBrick *ifLogicBeginBrick = [self new];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_PHIRO_SENSOR_CONDITION" withContext:context];
     ifLogicBeginBrick.ifCondition = formula;
-    formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
+//    formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
     GDataXMLElement *sensor = [xmlElement childWithElementName:@"sensorSpinnerPosition"];
     if ([sensor.stringValue isEqualToString:@"0"]) {
         ifLogicBeginBrick.sensor = [SensorManager stringForSensor:phiro_front_left];

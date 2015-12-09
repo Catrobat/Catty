@@ -22,36 +22,58 @@
 
 #import <UIKit/UIKit.h>
 
-@class CatrobatAlertView;
+@class CatrobatAlertController;
 @class DataTransferMessage;
 
-// Protocol needed to receive notifications from the IBActionSheet (Will receive UIActionSheet notifications as well)
+
 @protocol CatrobatAlertViewDelegate <NSObject>
 @optional
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 // Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
 // If not defined in the delegate, we simulate a click in the cancel button
-- (void)alertViewCancel:(CatrobatAlertView*)alertView;
-- (void)willPresentAlertView:(CatrobatAlertView*)alertView;  // before animation and showing view
-- (void)didPresentAlertView:(CatrobatAlertView*)alertView;  // after animation
-- (void)alertView:(CatrobatAlertView*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
-- (void)alertView:(CatrobatAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+- (void)alertViewCancel:(CatrobatAlertController*)alertView;
+- (void)willPresentAlertView:(CatrobatAlertController*)alertView;  // before animation and showing view
+- (void)didPresentAlertView:(CatrobatAlertController*)alertView;  // after animation
+- (void)alertView:(CatrobatAlertController*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
+- (void)alertView:(CatrobatAlertController*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 // Called after edits in any of the default fields added by the style
-- (BOOL)alertViewShouldEnableFirstOtherButton:(CatrobatAlertView*)alertView;
+- (BOOL)alertViewShouldEnableFirstOtherButton:(CatrobatAlertController*)alertView;
 @end
 
-@interface CatrobatAlertView : UIAlertController <UITextFieldDelegate>
+@protocol CatrobatActionSheetDelegate <NSObject>
+
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+
+@optional
+// Called when we cancel the action sheet (e.g. the user clicks somewhere on the screen). This is not called when the user clicks the cancel button or any other button.
+- (void)actionSheetCancelOnTouch:(CatrobatAlertController *)actionSheet;
+
+@end
+
+@interface CatrobatAlertController : UIAlertController <UITextFieldDelegate>
 
 @property (nonatomic, strong) DataTransferMessage *dataTransferMessage; // DTO design pattern
 @property (nonatomic) NSInteger tag;
 @property (nonatomic, strong) UIWindow *alertWindow;
 
-- (id)initWithTitle:(NSString *)title
+- (id)initAlertViewWithTitle:(NSString *)title
             message:(NSString *)message
            delegate:(id<CatrobatAlertViewDelegate>)delegate
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
+
+- (id)initActionSheetWithTitle:(NSString*)title
+                      delegate:(id<CatrobatActionSheetDelegate>)delegate
+             cancelButtonTitle:(NSString*)cancelTitle
+        destructiveButtonTitle:(NSString*)destructiveTitle
+             otherButtonTitles:(NSString*)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initActionSheetWithTitle:(NSString *)title
+                      delegate:(id<CatrobatActionSheetDelegate>)delegate
+             cancelButtonTitle:(NSString *)cancelTitle
+        destructiveButtonTitle:(NSString *)destructiveTitle
+        otherButtonTitlesArray:(NSArray *)otherTitlesArray;
+
 
 - (void)show:(BOOL)animated;
 

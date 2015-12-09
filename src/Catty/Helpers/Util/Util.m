@@ -26,8 +26,7 @@
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
 #import "LanguageTranslationDefines.h"
-#import "CatrobatAlertView.h"
-#import "CatrobatActionSheet.h"
+#import "CatrobatAlertController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
@@ -74,7 +73,7 @@
 
 + (void)showComingSoonAlertView
 {
-    CatrobatAlertView *alert = [[CatrobatAlertView alloc] initWithTitle:kLocalizedPocketCode
+    CatrobatAlertController *alert = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
                                                                 message:kLocalizedThisFeatureIsComingSoon
                                                                delegate:nil
                                                       cancelButtonTitle:kLocalizedOK
@@ -114,24 +113,24 @@
     [view addSubview:introductionView];
 }
 
-+ (CatrobatAlertView*)alertWithText:(NSString*)text
++ (CatrobatAlertController*)alertWithText:(NSString*)text
 {
     return [self alertWithText:text delegate:nil tag:0];
 }
 
-+(CatrobatAlertView *)alertWithTitle:(NSString *)title
++(CatrobatAlertController *)alertWithTitle:(NSString *)title
                              andText:(NSString *)text
 {
-    CatrobatAlertView* alertView = [self alertWithText:text];
+    CatrobatAlertController* alertView = [self alertWithText:text];
     alertView.title = title;
     return alertView;
 }
 
-+ (CatrobatAlertView*)alertWithText:(NSString*)text
++ (CatrobatAlertController*)alertWithText:(NSString*)text
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag
 {
-    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:kLocalizedPocketCode
+    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
                                                                     message:text
                                                                    delegate:delegate
                                                           cancelButtonTitle:kLocalizedOK
@@ -143,12 +142,12 @@
     return alertView;
 }
 
-+ (CatrobatAlertView*)confirmAlertWithTitle:(NSString*)title
++ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
                                     message:(NSString*)message
                                    delegate:(id<CatrobatAlertViewDelegate>)delegate
                                         tag:(NSInteger)tag
 {
-    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
+    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:title
                                                                     message:message
                                                                    delegate:delegate
                                                           cancelButtonTitle:kLocalizedNo
@@ -166,7 +165,7 @@
     return alertView;
 }
 
-+ (CatrobatAlertView*)promptWithTitle:(NSString*)title
++ (CatrobatAlertController*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
@@ -181,7 +180,7 @@
                           target:nil];
 }
 
-+ (CatrobatAlertView*)promptWithTitle:(NSString*)title
++ (CatrobatAlertController*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
@@ -189,7 +188,7 @@
                                 value:(NSString*)value
                                target:(id)target
 {
-    CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
+    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:title
                                                                     message:message
                                                                    delegate:delegate
                                                           cancelButtonTitle:kLocalizedCancel
@@ -222,20 +221,20 @@
     return alertView;
 }
 
-+ (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
++ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
                                     delegate:(id<CatrobatActionSheetDelegate>)delegate
                       destructiveButtonTitle:(NSString*)destructiveButtonTitle
                            otherButtonTitles:(NSArray*)otherButtonTitles
                                          tag:(NSInteger)tag
                                         view:(UIView*)view
 {
-    CatrobatActionSheet *actionSheet = [[CatrobatActionSheet alloc] initWithTitle:title
+    CatrobatAlertController *actionSheet = [[CatrobatAlertController alloc] initActionSheetWithTitle:title
                                                                          delegate:delegate
                                                                 cancelButtonTitle:kLocalizedCancel
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
-    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
-    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
+//    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
+//    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
 
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
 //    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
@@ -254,10 +253,7 @@
 
     actionSheet.tag = tag;
     if (! [self activateTestMode:NO]) {
-        [actionSheet showInView:view];
-        if (tag == kEditBrickActionSheetTag) {
-            actionSheet.transparentView.alpha = 0.0f;
-        }
+        [actionSheet show:YES];
     }
     return actionSheet;
 }
@@ -431,7 +427,7 @@
         kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
         kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:@""])
     };
-    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+    CatrobatAlertController *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:placeholder
@@ -462,7 +458,7 @@
                               kDTPayloadAskUserMinInputLength : @(minInputLength),
                               kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
                               };
-    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+    CatrobatAlertController *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
@@ -549,7 +545,7 @@
                               kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
                               kDTPayloadTextView: textView
                               };
-    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+    CatrobatAlertController *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
@@ -710,7 +706,7 @@ replacementString:(NSString*)characters
 }
 
 #pragma mark - alert view delegates
-+ (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(CatrobatAlertController *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
@@ -760,13 +756,13 @@ replacementString:(NSString*)characters
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         NSUInteger textFieldMaxInputLength = [payload[kDTPayloadAskUserMaxInputLength] unsignedIntegerValue];
         if ([input isEqualToString:kLocalizedNewElement]) {
-            CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
+            CatrobatAlertController *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else if (nameAlreadyExists) {
-            CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
+            CatrobatAlertController *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
@@ -776,7 +772,7 @@ replacementString:(NSString*)characters
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                                                         : [[self class] singularString:alertText]);
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
@@ -784,7 +780,7 @@ replacementString:(NSString*)characters
         } else if ([input length] > textFieldMaxInputLength) {
             NSString *alertText = [NSString stringWithFormat:kLocalizedTooLongInputDescription,
                                    textFieldMaxInputLength];
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
@@ -800,7 +796,7 @@ replacementString:(NSString*)characters
             } 
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
@@ -831,7 +827,7 @@ replacementString:(NSString*)characters
         // title of cancel button is "OK"
         if (buttonIndex == kAlertViewCancel) {
             id value = payload[kDTPayloadAskUserPromptValue];
-            CatrobatAlertView *newAlertView = [Util promptWithTitle:payload[kDTPayloadAskUserPromptTitle]
+            CatrobatAlertController *newAlertView = [Util promptWithTitle:payload[kDTPayloadAskUserPromptTitle]
                                                             message:payload[kDTPayloadAskUserPromptMessage]
                                                            delegate:(id<CatrobatAlertViewDelegate>)self
                                                         placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
@@ -851,7 +847,7 @@ replacementString:(NSString*)characters
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
@@ -893,7 +889,7 @@ replacementString:(NSString*)characters
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
@@ -901,7 +897,7 @@ replacementString:(NSString*)characters
         }else if ([input length] > textFieldMaxInputLength) {
             NSString *alertText = [NSString stringWithFormat:kLocalizedTooLongInputDescription,
                                    textFieldMaxInputLength];
-            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;

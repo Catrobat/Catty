@@ -50,7 +50,7 @@
 #import "LanguageTranslationDefines.h"
 #import "ProgramTableHeaderView.h"
 #import "RuntimeImageCache.h"
-#import "CatrobatActionSheet.h"
+#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "ObjectTableViewController.h"
@@ -214,8 +214,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
+    NSString *destructive = nil;
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:kLocalizedDeleteObjects];
+        destructive =kLocalizedDeleteObjects;
     }
     if ([self.program numberOfNormalObjects] >= 2) {
         [options addObject:kLocalizedMoveObjects];
@@ -227,16 +228,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [options addObject:kLocalizedShowDetails];
     }
     [options addObject:kLocalizedDescription];
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
+    [Util actionSheetWithTitle:kLocalizedEditProgram
                                                          delegate:self
-                                           destructiveButtonTitle:kLocalizedDeleteProgram
+                                           destructiveButtonTitle:destructive
                                                 otherButtonTitles:options
                                                               tag:kEditProgramActionSheetTag
                                                              view:self.navigationController.view];
-    [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
-    if ([self.program numberOfNormalObjects]) {
-        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:1];
-    }
+
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -437,7 +435,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -532,7 +530,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditProgramActionSheetTag) {
@@ -594,20 +592,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self dismissPopupWithCode:NO];
             }
 
-        } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
-            // Delete program button
-            [self performActionOnConfirmation:@selector(deleteProgramAction)
-                               canceledAction:nil
-                                       target:self
-                                 confirmTitle:kLocalizedDeleteThisProgram
-                               confirmMessage:kLocalizedThisActionCannotBeUndone];
         }
     } else if (actionSheet.tag == kEditObjectActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy object button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             [self copyObjectActionWithSourceObject:(SpriteObject*)payload[kDTPayloadSpriteObject]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename object button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             SpriteObject *spriteObject = (SpriteObject*)payload[kDTPayloadSpriteObject];

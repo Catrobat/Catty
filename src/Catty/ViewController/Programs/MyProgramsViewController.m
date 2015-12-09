@@ -43,8 +43,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "CatrobatActionSheet.h"
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIDefines.h"
@@ -128,23 +127,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
+    NSString * destructive = nil;
     if (self.programsCounter) {
-        [options addObject:kLocalizedDeletePrograms];
+        destructive = kLocalizedDeletePrograms;
     }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditPrograms
+    [Util actionSheetWithTitle:kLocalizedEditPrograms
                                                          delegate:self
-                                           destructiveButtonTitle:nil
+                                           destructiveButtonTitle:destructive
                                                 otherButtonTitles:options
                                                               tag:kEditProgramsActionSheetTag
                                                              view:self.navigationController.view];
-    if (self.programsCounter) {
-        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
-    }
 }
 
 - (void)addProgramAction:(id)sender
@@ -380,7 +377,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              kLocalizedDescription/*, kLocalizedUpload*/];
         NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
         NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -570,15 +567,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditProgramsActionSheetTag) {
-        if ((buttonIndex == 0) && self.programsCounter) {
+        if ((buttonIndex == 1) && self.programsCounter) {
             // Delete Programs button
             [self setupEditingToolBar];
             [super changeToEditingMode:actionSheet];
-        } else if ((buttonIndex == 0) || ((buttonIndex == 1) && self.programsCounter)) {
+        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && self.programsCounter)) {
             // Show/Hide Details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -596,7 +593,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self reloadTableView];
         }
     } else if (actionSheet.tag == kEditProgramActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
@@ -613,7 +610,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
@@ -632,7 +629,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
-        } else if (buttonIndex == 2) {
+        } else if (buttonIndex == 3) {
             // Description button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
