@@ -324,9 +324,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - CatrobatActionSheetDelegate
 - (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
 {
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:    self.collectionView.indexPathsForSelectedItems.firstObject];
-    
-    [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
+    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
+    if (brickCell) {
+        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
+    }
 }
 
 - (void)deleteAlertView
@@ -1236,7 +1237,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#define kHighlightedBrickCellMarginBottom 10
+#define kHighlightedBrickCellMarginBottom 50
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;

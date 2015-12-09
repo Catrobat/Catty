@@ -184,8 +184,21 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)]) {
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
         [self.delegate willPresentActionSheet:self];
+    }
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(willPresentAlertView:)]) {
+        [self.delegate willPresentAlertView:self];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
+        [self.delegate didPresentActionSheet:self];
+    }
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(didPresentAlertView:)]) {
+        [self.delegate didPresentAlertView:self];
     }
 }
 
@@ -193,6 +206,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 {
    self.alertWindow.hidden = true;
    [super viewWillDisappear:animated];
+    
 }
 
 @end
