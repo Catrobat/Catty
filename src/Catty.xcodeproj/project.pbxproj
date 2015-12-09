@@ -382,6 +382,7 @@
 		92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */; };
 		92FF32671A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */; };
 		92FF32681A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */; };
+		92FF32751A24E2F400093DA7 /* CatrobatAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A81A24E2F400093DA7 /* CatrobatAlertController.m */; };
 		92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322B1A24E2F400093DA7 /* CreateView.m */; };
 		92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322D1A24E2F400093DA7 /* RoundBorderedButton.m */; };
 		92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32301A24E2F400093DA7 /* LoadingView.m */; };
@@ -1459,6 +1460,8 @@
 		92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_LXReorderableCollectionViewFlowLayout; sourceTree = "<group>"; };
 		92FF31891A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		92FF31A71A24E2F400093DA7 /* CatrobatAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertController.h; sourceTree = "<group>"; };
+		92FF31A81A24E2F400093DA7 /* CatrobatAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertController.m; sourceTree = "<group>"; };
 		92FF322A1A24E2F400093DA7 /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
 		92FF322B1A24E2F400093DA7 /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
 		92FF322C1A24E2F400093DA7 /* RoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundBorderedButton.h; sourceTree = "<group>"; };
@@ -4240,6 +4243,8 @@
 			children = (
 				921670F91C182F9300144D6E /* CatrobatAlertController */,
 				92289A441A42F2A3008C771A /* ComboBox */,
+				92FF31A31A24E2F400093DA7 /* CatrobatActionSheet */,
+				92FF31A61A24E2F400093DA7 /* CatrobatAlertController */,
 				92FF31A91A24E2F400093DA7 /* CollectionViewCells */,
 				92FF32291A24E2F400093DA7 /* CreateView */,
 				92FF322E1A24E2F400093DA7 /* LoadingView */,
@@ -4250,6 +4255,23 @@
 				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		92FF31A31A24E2F400093DA7 /* CatrobatActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CatrobatActionSheet;
+			sourceTree = "<group>";
+		};
+		92FF31A61A24E2F400093DA7 /* CatrobatAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				92FF31A71A24E2F400093DA7 /* CatrobatAlertController.h */,
+				92FF31A81A24E2F400093DA7 /* CatrobatAlertController.m */,
+			);
+			name = CatrobatAlertController;
+			path = CatrobatAlertView;
 			sourceTree = "<group>";
 		};
 		92FF31A91A24E2F400093DA7 /* CollectionViewCells */ = {
@@ -6213,6 +6235,7 @@
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
+				92FF32751A24E2F400093DA7 /* CatrobatAlertController.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
