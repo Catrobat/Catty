@@ -10,8 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "rec_symbol_active.png"
+      "filename" : "rec_symbol_active.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

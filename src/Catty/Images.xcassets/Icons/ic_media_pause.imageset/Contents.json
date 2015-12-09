@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "ic_media_pause.png"
+      "filename" : "ic_media_pause.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",

@@ -10,8 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "Icons_looks.png"
+      "filename" : "Icons_looks.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
