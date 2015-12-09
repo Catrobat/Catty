@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C47a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="62e-MX-z1C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -709,7 +709,19 @@
                             <outlet property="delegate" destination="oKj-cD-XDS" id="W7e-U1-6OE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau"/>
+                    <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="yUY-xB-KT0">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bnx-Gw-xQI">
+                                <rect key="frame" x="20" y="11" width="21" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="appsettings"/>
+                                <connections>
+                                    <action selector="openSettings:" destination="oKj-cD-XDS" eventType="touchUpInside" id="7tt-2b-ZWO"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="s37-PF-3iN" kind="show" identifier="segueToPrograms" id="d1c-M4-4gJ"/>
@@ -2479,12 +2491,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="micro" width="150" height="150"/>
-        <image name="micro_active" width="150" height="150"/>
+        <image name="appsettings" width="21" height="21"/>
+        <image name="micro" width="144" height="144"/>
+        <image name="micro_active" width="144" height="144"/>
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="aum-BR-x1G"/>
         <segue reference="Gbh-WU-doT"/>
-        <segue reference="Ynr-aF-UI3"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -187,11 +187,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
     self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:[UIImage imageNamed:@"appsettings"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.leftBarButtonItem = infoItem;
 
 #if DEBUG == 1
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDebugModeTitle
@@ -214,6 +209,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 #endif
 
+- (IBAction)openSettings:(id)sender {
+    [self infoPressed:sender];
+}
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {

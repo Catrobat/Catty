@@ -184,7 +184,7 @@
         [activity startAnimating];
     }
 
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor utilityTintColor].CGColor;
