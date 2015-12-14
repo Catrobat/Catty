@@ -25,16 +25,11 @@
 @class CatrobatAlertController;
 @class DataTransferMessage;
 
-
 @protocol CatrobatAlertViewDelegate <NSObject>
+
 @optional
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
-
-@optional
-// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
-// If not defined in the delegate, we simulate a click in the cancel button
-- (void)alertViewCancel:(CatrobatAlertController*)alertView;
 
 @optional
 - (void)willPresentAlertView:(CatrobatAlertController*)alertView;  // before animation and showing view
@@ -42,15 +37,6 @@
 @optional
 - (void)didPresentAlertView:(CatrobatAlertController*)alertView;  // after animation
 
-@optional
-- (void)alertView:(CatrobatAlertController*)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
-
-@optional
-- (void)alertView:(CatrobatAlertController*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
-
-@optional
-// Called after edits in any of the default fields added by the style
-- (BOOL)alertViewShouldEnableFirstOtherButton:(CatrobatAlertController*)alertView;
 @end
 
 @protocol CatrobatActionSheetDelegate <NSObject>
@@ -62,10 +48,6 @@
 
 @optional
 - (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet;  // after animation
-
-@optional
-// Called when we cancel the action sheet (e.g. the user clicks somewhere on the screen). This is not called when the user clicks the cancel button or any other button.
-- (void)actionSheetCancelOnTouch:(CatrobatAlertController *)actionSheet;
 
 @end
 
