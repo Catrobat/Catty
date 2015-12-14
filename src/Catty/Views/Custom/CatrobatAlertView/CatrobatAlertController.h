@@ -37,6 +37,12 @@
 @optional
 - (void)didPresentAlertView:(CatrobatAlertController*)alertView;  // after animation
 
+@optional
+- (void)alertViewWillDisappear:(CatrobatAlertController*)actionSheet;  // before animation
+
+@optional
+- (void)alertViewDidDisappear:(CatrobatAlertController*)actionSheet;  // after animation
+
 @end
 
 @protocol CatrobatActionSheetDelegate <NSObject>
@@ -48,6 +54,12 @@
 
 @optional
 - (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet;  // after animation
+
+@optional
+- (void)actionSheetWillDisappear:(CatrobatAlertController*)actionSheet;  // before animation
+
+@optional
+- (void)actionSheetDidDisappear:(CatrobatAlertController*)actionSheet;  // after animation
 
 @end
 

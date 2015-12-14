@@ -321,15 +321,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
 }
 
-#pragma mark - CatrobatActionSheetDelegate
-- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
-{
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
-    if (brickCell) {
-        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
-    }
-}
-
 - (void)deleteAlertView
 {
     NSString *title = [[NSString alloc] init];
@@ -397,7 +388,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-#pragma mark - action sheet delegates
+#pragma mark - CatrobatActionSheetDelegate
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
@@ -445,7 +436,22 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         [self addVariableForBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
     }
-    [self enableUserInteractionAndResetHighlight];
+}
+
+- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
+{
+    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
+    if (brickCell) {
+        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
+    }
+}
+
+- (void)actionSheetWillDisappear:(CatrobatAlertController*)actionSheet
+{
+    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
+    if (brickCell) {
+        [self enableUserInteractionAndResetHighlight];
+    }
 }
 
 #pragma mark - Reorderable Cells Delegate
@@ -1237,9 +1243,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#define kHighlightedBrickCellMarginBottom 50
+#define kHighlightedBrickCellMarginBottom 65
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
+    marginBottom += kHighlightedBrickCellMarginBottom;
+    
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
@@ -1265,7 +1273,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + brickCell.frame.size.height - kBrickHeight1h;
 
     if ((collectionViewHeight - brickCellOriginVert) < marginBottom) {
-        CGFloat additionalOffset = marginBottom - (collectionViewHeight - brickCellOriginVert) + kHighlightedBrickCellMarginBottom;
+        CGFloat additionalOffset = marginBottom - (collectionViewHeight - brickCellOriginVert);
         [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + additionalOffset) animated:YES];
     }
 }
