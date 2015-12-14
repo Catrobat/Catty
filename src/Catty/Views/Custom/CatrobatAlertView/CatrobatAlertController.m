@@ -85,6 +85,7 @@
         
         [alertView addAction:action];
     }
+    alertView.delegate = delegate;
     alertView.view.tintColor = [UIColor globalTintColor];
     return alertView;
 
