@@ -804,10 +804,6 @@
     return output;
 }
 
-- (void)alertView:(CatrobatAlertController*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-
-}
-
 - (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == kLostBluetoothConnectionTag) {
         [self.parentViewController.navigationController setToolbarHidden:NO];

@@ -25,8 +25,15 @@
 #import "Util.h"
 #import "BaseTableViewController.h"
 
+@interface CatrobatAlertController()
+
+@property (strong, nonatomic) id delegate;
+
+@end
+
 @implementation CatrobatAlertController
 
+#pragma mark AlertView initialization
 - (id)initAlertViewWithTitle:(NSString *)title
             message:(NSString *)message
            delegate:(id<CatrobatAlertViewDelegate>)delegate
@@ -78,12 +85,13 @@
         
         [alertView addAction:action];
     }
+    alertView.delegate = delegate;
     alertView.view.tintColor = [UIColor globalTintColor];
     return alertView;
 
 }
 
-#pragma mark - initialization
+#pragma mark - ActionSheet initialization
 - (id)initActionSheetWithTitle:(NSString*)title
            delegate:(id<CatrobatActionSheetDelegate>)delegate
   cancelButtonTitle:(NSString*)cancelTitle
@@ -111,7 +119,6 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 {
     
     CatrobatAlertController *actionSheet = [CatrobatAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    
     
     NSInteger i = 0;
     if (![cancelTitle isEqualToString:@""] && cancelTitle != nil) {
@@ -147,7 +154,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
         }
     }
     
-
+    actionSheet.delegate = delegate;
     actionSheet.view.tintColor = [UIColor globalTintColor];
     actionSheet.view.backgroundColor = [UIColor clearColor];
     return actionSheet;
@@ -176,10 +183,47 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
     [self.alertWindow.rootViewController presentViewController:self animated:animated completion:^{}];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-   self.alertWindow.hidden = true;
-   [super viewWillDisappear:animated];
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
+        [self.delegate willPresentActionSheet:self];
+    }
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(willPresentAlertView:)]) {
+        [self.delegate willPresentAlertView:self];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
+        [self.delegate didPresentActionSheet:self];
+    }
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(didPresentAlertView:)]) {
+        [self.delegate didPresentAlertView:self];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.alertWindow.hidden = true;
+    [super viewWillDisappear:animated];
+    
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(actionSheetWillDisappear:)]) {
+        [self.delegate actionSheetWillDisappear:self];
+    }
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(alertViewWillDisappear:)]) {
+        [self.delegate alertViewWillDisappear:self];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(actionSheetDidDisappear:)]) {
+        [self.delegate actionSheetDidDisappear:self];
+    }
+    if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(alertViewDidDisappear:)]) {
+        [self.delegate alertViewDidDisappear:self];
+    }
 }
 
 @end
