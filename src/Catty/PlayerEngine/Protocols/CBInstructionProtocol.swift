@@ -24,9 +24,3 @@ protocol CBInstructionProtocol {
     func instruction() -> CBInstruction
 }
 
-protocol CBFormulaBufferProtocol {
-    func preCalculate()
-}
-
-
-

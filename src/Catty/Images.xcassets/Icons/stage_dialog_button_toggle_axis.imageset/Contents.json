@@ -2,8 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "stage_dialog_button_toggle_axis.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
@@ -11,7 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "stage_icons_axis-xhdpi.png"
     }
   ],
   "info" : {

@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "ScenePresenterViewController.h"
 @class PlaceHolderView;
-@class CatrobatAlertView;
+@class CatrobatAlertController;
 
 @interface BaseTableViewController : UITableViewController
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
@@ -42,8 +42,9 @@
 - (void)setupEditingToolBar;
 - (BOOL)areAllCellsSelectedInSection:(NSInteger)section;
 - (void)changeToEditingMode:(id)sender;
+- (void)changeToMoveMode:(id)sender;
 - (void)exitEditingMode;
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 - (void)performActionOnConfirmation:(SEL)confirmedAction
                      canceledAction:(SEL)canceledAction
                          withObject:(id)object

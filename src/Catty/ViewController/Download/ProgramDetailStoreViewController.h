@@ -35,7 +35,7 @@
 
 @property (nonatomic, strong) CatrobatProgram *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollViewOutlet;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
 @property (nonatomic, strong) SearchStoreViewController *searchStoreController;
 
 @end

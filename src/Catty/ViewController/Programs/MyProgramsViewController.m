@@ -43,8 +43,7 @@
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "CatrobatActionSheet.h"
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIDefines.h"
@@ -52,7 +51,7 @@
 #import "DescriptionPopopViewController.h"
 
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
-                                        CatrobatAlertViewDelegate, UITextFieldDelegate>
+CatrobatAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
@@ -128,23 +127,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
+    NSString * destructive = nil;
     if (self.programsCounter) {
-        [options addObject:kLocalizedDeletePrograms];
+        destructive = kLocalizedDeletePrograms;
     }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditPrograms
+    [Util actionSheetWithTitle:kLocalizedEditPrograms
                                                          delegate:self
-                                           destructiveButtonTitle:nil
+                                           destructiveButtonTitle:destructive
                                                 otherButtonTitles:options
                                                               tag:kEditProgramsActionSheetTag
                                                              view:self.navigationController.view];
-    if (self.programsCounter) {
-        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
-    }
 }
 
 - (void)addProgramAction:(id)sender
@@ -181,7 +178,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
     if (! destinationProgramLoadingInfo)
         return;
-
+    
     [self showLoadingView];
     [Program copyProgramWithSourceProgramName:sourceProgramLoadingInfo.visibleName
                               sourceProgramID:sourceProgramLoadingInfo.programID
@@ -197,7 +194,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self setSectionHeaders];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationTop];
     }
-
+    
     
     [self reloadTableView];
     [self hideLoadingView];
@@ -208,7 +205,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if ([newProgramName isEqualToString:programLoadingInfo.visibleName])
         return;
-
+    
     [self showLoadingView];
     Program *program = [Program programWithLoadingInfo:programLoadingInfo];
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
@@ -293,24 +290,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
-
+    
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.preservesSuperviewLayoutMargins = NO;
     
     if (! [cell isKindOfClass:[CatrobatBaseCell class]] || ! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
-
+    
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     [self configureImageCell:imageCell atIndexPath:indexPath];
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLastAccess];
-        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         detailCell.bottomRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
@@ -334,7 +331,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             } else if (! [tableView.indexPathsForVisibleRows containsObject:indexPath]) {
                 return;
             }
-
+            
             NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
             NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
@@ -344,7 +341,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 programSize = [NSNumber numberWithUnsignedInteger:resultSize];
                 [self.dataCache setObject:programSize forKey:info.visibleName];
             }
-
+            
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
             NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
@@ -380,7 +377,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                              kLocalizedDescription/*, kLocalizedUpload*/];
         NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
         NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -388,9 +385,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                  view:self.navigationController.view];
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
                                                                         withPayload:@{
-            kDTPayloadProgramLoadingInfo : sectionInfos[indexPath.row]
-        }];
+                                                                                      kDTPayloadProgramLoadingInfo : sectionInfos[indexPath.row]
+                                                                                      }];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
@@ -427,7 +425,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
     [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
-
+    
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@small_screenshot.png", info.basePath],
@@ -445,7 +443,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             return;
         }
     }
-
+    
     // no screenshot files in memory, check if one of these screenshot files exists on disk
     // if a screenshot file is found, then load it from disk and cache it in memory for future access
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
@@ -469,7 +467,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return;
             }
         }
-
+        
         // no screenshot file available -> last fallback, show standard program icon instead
         [imageCache loadImageWithName:@"programs" onCompletion:^(UIImage *image){
             // check if cell still needed
@@ -499,7 +497,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.programsCounter < 10) {
         return nil;
     }
-//    return self.sectionTitles; // only the existing ones
+    //    return self.sectionTitles; // only the existing ones
     return @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
 }
 
@@ -516,7 +514,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if ([self dismissPopupWithCode:NO]) {
         return NO;
     }
-
+    
     static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
     if ([identifier isEqualToString:segueToContinue]) {
@@ -534,7 +532,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if (self.selectedProgram) {
                 return YES;
             }
-
+            
             // program failed loading...
             [Util alertWithText:kLocalizedUnableToLoadProgram];
             return NO;
@@ -569,15 +567,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditProgramsActionSheetTag) {
-        if ((buttonIndex == 0) && self.programsCounter) {
+        if ((buttonIndex == 1) && self.programsCounter) {
             // Delete Programs button
             [self setupEditingToolBar];
             [super changeToEditingMode:actionSheet];
-        } else if ((buttonIndex == 0) || ((buttonIndex == 1) && self.programsCounter)) {
+        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && self.programsCounter)) {
             // Show/Hide Details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -595,7 +593,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self reloadTableView];
         }
     } else if (actionSheet.tag == kEditProgramActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
@@ -612,7 +610,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:[Program allProgramNames]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
@@ -620,7 +618,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:info.visibleName];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                 target:self
-                                          cancelAction:nil   
+                                          cancelAction:nil
                                             withObject:info
                                            promptTitle:kLocalizedRenameProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -631,7 +629,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
-        } else if (buttonIndex == 2) {
+        } else if (buttonIndex == 3) {
             // Description button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
@@ -653,8 +651,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             } else {
                 [self dismissPopupWithCode:NO];
             }
-//        } else if (buttonIndex == 3) {
-//            // Upload button
+            //        } else if (buttonIndex == 3) {
+            //            // Upload button
         }
     }
 }
@@ -669,15 +667,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([programLoadingInfo.visibleName isEqualToString:programName])
             exists = YES;
     }
-
+    
     ProgramLoadingInfo *programLoadingInfo = nil;
-
+    
     // add if not exists
     if (! exists) {
         programLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
                                                                             programID:nil];
         NSDebug(@"Adding program: %@", programLoadingInfo.basePath);
-    
+        
         
     }
     [self reloadTableView];
@@ -693,12 +691,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
             [Program removeProgramFromDiskWithProgramName:programName programID:programID];
             NSIndexPath* indexPath = [self getPathForProgramLoadingInfo:info];
-
+            
             if ([self.tableView numberOfRowsInSection:indexPath.section] > 1)
             {
                 [self setSectionHeaders];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                 withRowAnimation:UITableViewRowAnimationTop];
+                                      withRowAnimation:UITableViewRowAnimationTop];
             }
             else
             {
@@ -762,7 +760,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when renaming programs
             [[RuntimeImageCache sharedImageCache] clearImageCache];
-
+            
             // update table view
             [self.tableView reloadRowsAtIndexPaths:@[[self getPathForProgramLoadingInfo:info]] withRowAnimation:UITableViewRowAnimationNone];
             break;
@@ -810,7 +808,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     for (ProgramLoadingInfo* info in programLoadingInfos) {
         NSMutableArray* array = [self.programLoadingInfoDict objectForKey:[[info.visibleName substringToIndex:1] uppercaseString]];
         if (!array.count) {
-           array = [NSMutableArray new];
+            array = [NSMutableArray new];
         }
         [array addObject:info];
         [self.programLoadingInfoDict setObject:array forKey:[[info.visibleName substringToIndex:1] uppercaseString]];
@@ -825,7 +823,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
         [self reloadTableView];
-
+        
     }
 }
 

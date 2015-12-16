@@ -28,7 +28,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
@@ -40,10 +40,16 @@
 @class BluetoothPopupVC;
 
 @interface BaseCollectionViewController ()
-
+@property (nonatomic, strong) LoadingView* loadingView;
 @end
 
 @implementation BaseCollectionViewController
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self hideLoadingView];
+}
 
 - (PlaceHolderView*)placeHolderView
 {
@@ -62,6 +68,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self showLoadingView];
     [self playSceneAction:sender animated:YES];
 }
 
@@ -76,12 +83,16 @@
     NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
+    } else {
+        [self hideLoadingView];
     }
 }
 
 -(void)startSceneWithVC:(ScenePresenterViewController*)vc
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -111,6 +122,39 @@
         self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                               flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
     }
+}
+
+- (void)showLoadingView
+{
+    //    self.loadingView.backgroundColor = [UIColor whiteColor];
+    self.loadingView.alpha = 1.0;
+
+    self.collectionView.scrollEnabled = NO;
+    self.collectionView.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    [self showPlaceHolder:NO];
+    [self.loadingView show];
+}
+
+- (void)hideLoadingView
+{
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    [self.loadingView hide];
+}
+
+-(LoadingView*)loadingView
+{
+    if (! _loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:_loadingView];
+    }
+    return _loadingView;
 }
 
 

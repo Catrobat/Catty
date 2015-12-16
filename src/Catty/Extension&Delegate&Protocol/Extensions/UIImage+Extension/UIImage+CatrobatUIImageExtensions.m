@@ -216,6 +216,7 @@
         alpha = data[pixelInfo + 3];
         NSLog(@"Alpha: %i",alpha);
     }else{
+        CFRelease(pixelData);
         return YES;
     }
     CFRelease(pixelData);

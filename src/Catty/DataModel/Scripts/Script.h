@@ -40,6 +40,7 @@
 @property (strong, nonatomic) NSMutableArray<Brick*> *brickList;
 @property (nonatomic, getter=isAnimated) BOOL animate;
 @property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
+@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
 @property (nonatomic) BOOL isSelected;
 
 - (BOOL)isSelectableForObject;

@@ -26,7 +26,7 @@
 
 - (void)setBorder:(UIColor*)color Width:(CGFloat)width
 {
-  [self setRoundedBorder:color Width:width CornerRadius:0.0f];
+//  [self setRoundedBorder:color Width:width CornerRadius:0.0f];
 }
 
 - (void)setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius

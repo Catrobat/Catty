@@ -34,7 +34,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
-#import "CatrobatActionSheet.h"
+#import "CatrobatAlertController.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BDKNotifyHUD.h"
 
@@ -272,7 +272,7 @@
 
 - (void)setupZoom
 {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height)];
     self.scrollView.scrollEnabled = NO;
     self.scrollView.maximumZoomScale = kMaxZoomScale;
     self.scrollView.minimumZoomScale = kMinZoomScale;
@@ -281,7 +281,7 @@
     [self.scrollView addSubview:self.helper];
     [self.view addSubview:self.scrollView];
     NSInteger width = self.view.bounds.size.width;
-    NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    NSInteger height = (NSInteger)self.view.bounds.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
     if ((imageWidth > width) || (imageHeight > height)) {
@@ -302,8 +302,8 @@
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-//    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
-    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
+    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
     
@@ -364,8 +364,10 @@
 
 - (void)changeAction
 {
-    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
+    NSInteger height = self.view.frame.size.height * 0.7;
+    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, height) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 100) navBarOffset:self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height];
     pickerView.delegate = self;
+    pickerView.height = height;
     self.navigationController.toolbarHidden = YES;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
     pickerView.tag = 0;
@@ -374,7 +376,7 @@
     self.lineToolGesture.enabled = NO;
     [self.view addSubview:pickerView];
     self.pipetteRecognizer.enabled = NO;
-    [pickerView showInView:self.scrollView];
+    [pickerView showInView:self.view];
 }
 
 - (void) updateToolbar
@@ -959,17 +961,17 @@
 
 #pragma mark actionsheet delegate
 
--(void)actionSheet:(CatrobatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)actionSheet:(CatrobatAlertController *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kPocketPaintActionSheetTag) {
         switch (buttonIndex) {
-            case 0:
+            case 1:
                 [self saveAction];
                 break;
-            case 1:
+            case 2:
                 [self closeAction];
                 break;
-            case 2:
+            case 3:
                 [self newCanvasAction];
             default:
                 break;

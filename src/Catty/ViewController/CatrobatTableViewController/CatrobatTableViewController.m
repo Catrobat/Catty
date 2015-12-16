@@ -185,11 +185,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
+    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
     self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.leftBarButtonItem = infoItem;
 
 #if DEBUG == 1
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDebugModeTitle
@@ -212,6 +209,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 #endif
 
+- (IBAction)openSettings:(id)sender {
+    [self infoPressed:sender];
+}
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
@@ -284,16 +284,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
         case kContinueProgramVC:
         case kLocalProgramsVC:
         case kExploreVC:
+        case kHelpVC:
             if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                 [self performSegueWithIdentifier:identifier sender:self];
             }
             break;
-        case kHelpVC:
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-                [self.navigationController pushViewController:webVC animated:YES];
-            }
-            break;
+//        case kHelpVC:
+//            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+////                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+////                [self.navigationController pushViewController:webVC animated:YES];
+//                
+//            }
+//            break;
         case kUploadVC:
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
@@ -338,17 +340,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
     cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-    if(IS_IPHONE4 && (indexPath.row!=0)) {
-        CGRect frame = cell.iconImageView.frame;
-        frame.size.height = kIconDownsizeFactorIphone4*cell.iconImageView.frame.size.height;
-        cell.iconImageView.frame= frame;
-    }
 }
 
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = [UIColor lightTextTintColor];
+    subtitleLabel.textColor = [UIColor textTintColor];
     ProgramLoadingInfo *loadingInfo = [Util lastUsedProgramLoadingInfo];
     subtitleLabel.text = loadingInfo.visibleName;
 }

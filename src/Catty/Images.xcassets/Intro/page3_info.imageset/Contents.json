@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "page3_info.png"
+      "filename" : "logo_pocketcode.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "page3_info@2x.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

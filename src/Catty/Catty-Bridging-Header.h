@@ -115,7 +115,8 @@
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
 #import "LoadingView.h"
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
+#import "RuntimeImageCache.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes
@@ -131,3 +132,6 @@
 //#import "LanguageTranslationDefines.h"
 
 #import "ProgramDefines.h"
+
+#import "BrickFormulaProtocol.h"
+

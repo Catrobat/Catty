@@ -34,13 +34,25 @@
 
 + (UIColor*)navTextColor;
 
-+ (UIColor*)lightTextTintColor;
++ (UIColor*) toolBarColor;
 
-+ (UIColor*)darkTextTintColor;
++ (UIColor*) toolTintColor;
 
-+ (UIColor*)destructiveTintColor;
++ (UIColor*) tabBarColor;
 
-+ (UIColor*)backgroundColor;
++ (UIColor*) tabTintColor;
+
++ (UIColor*) buttonTintColor;
+
++ (UIColor*) textTintColor;
+
++ (UIColor*) buttonHighlightedTintColor;
+
++ (UIColor*) destructiveTintColor;
+
++ (UIColor*) backgroundColor;
+
++(UIColor*)  whiteGrayColor;
 
 // FE
 
@@ -49,6 +61,10 @@
 + (UIColor*)formulaEditorHighlightColor;
 
 + (UIColor*)formulaEditorOperandColor;
+
++ (UIColor*)formulaEditorBorderColor;
+
++ (UIColor*)formulaButtonTextColor;
 
 // Bricks & Scripts Colors
 

@@ -50,7 +50,7 @@
 #import "LanguageTranslationDefines.h"
 #import "ProgramTableHeaderView.h"
 #import "RuntimeImageCache.h"
-#import "CatrobatActionSheet.h"
+#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "ObjectTableViewController.h"
@@ -61,6 +61,7 @@
 
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, DismissPopupDelegate>
 @property (nonatomic) BOOL useDetailCells;
+@property (nonatomic) BOOL deletionMode;
 @end
 
 @implementation ProgramTableViewController
@@ -213,8 +214,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
+    NSString *destructive = nil;
     if ([self.program numberOfNormalObjects]) {
-        [options addObject:kLocalizedDeleteObjects];
+        destructive =kLocalizedDeleteObjects;
+    }
+    if ([self.program numberOfNormalObjects] >= 2) {
+        [options addObject:kLocalizedMoveObjects];
     }
     [options addObject:kLocalizedRenameProgram];
     if (self.useDetailCells) {
@@ -223,16 +228,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [options addObject:kLocalizedShowDetails];
     }
     [options addObject:kLocalizedDescription];
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
+    [Util actionSheetWithTitle:kLocalizedEditProgram
                                                          delegate:self
-                                           destructiveButtonTitle:kLocalizedDeleteProgram
+                                           destructiveButtonTitle:destructive
                                                 otherButtonTitles:options
                                                               tag:kEditProgramActionSheetTag
                                                              view:self.navigationController.view];
-    [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
-    if ([self.program numberOfNormalObjects]) {
-        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:1];
-    }
+
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -324,16 +326,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedScripts,
                                               (unsigned long)[object numberOfScripts]];
-        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedBricks,
                                                (unsigned long)[object numberOfTotalBricks]];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedLooks,
                                                  (unsigned long)[object numberOfLooks]];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
@@ -385,13 +387,55 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return indexPath.section;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return NO;
+    }
+    if(self.deletionMode) {
+        return NO;
+    }
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.editing) {
+        return UITableViewCellEditingStyleNone;
+    }
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+        NSInteger row = 0;
+        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
+        }
+        return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
+    }
+    
+    return proposedDestinationIndexPath;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSInteger index = (kBackgroundSectionIndex + sourceIndexPath.section + sourceIndexPath.row);
+    NSInteger destIndex = (kBackgroundSectionIndex + destinationIndexPath.section + destinationIndexPath.row);
+    SpriteObject* itemToMove = self.program.objectList[index];
+    [self.program.objectList removeObjectAtIndex:index];
+    [self.program.objectList insertObject:itemToMove atIndex:destIndex];
+    [self.program saveToDisk];
+}
+
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -401,6 +445,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditObject
                                                                         withPayload:@{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] }];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         // check just to ensure that background object can never be deleted!!
@@ -459,7 +504,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)view;
-    headerView.textLabel.textColor = [UIColor lightTextTintColor];
+    headerView.textLabel.textColor = [UIColor globalTintColor];
 }
 
 #pragma mark - segue handler
@@ -485,15 +530,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditProgramActionSheetTag) {
         if ((buttonIndex == 1) && [self.program numberOfNormalObjects]) {
             // Delete objects button
+            self.deletionMode = YES;
             [self setupEditingToolBar];
             [super changeToEditingMode:actionSheet];
-        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])) {
+        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects] >= 2){
+            self.deletionMode = NO;
+            [super changeToMoveMode:actionSheet];
+        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])|| ((buttonIndex == 3) && [self.program numberOfNormalObjects] >= 2)) {
             // Rename program button
             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
             [unavailableNames removeString:self.program.header.programName];
@@ -509,7 +558,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
-        } else if ((buttonIndex == 2) || ((buttonIndex == 3) && [self.program numberOfNormalObjects])) {
+        } else if ((buttonIndex == 2) || ((buttonIndex == 3) && [self.program numberOfNormalObjects])|| ((buttonIndex == 4) && [self.program numberOfNormalObjects] >= 2)) {
             // Show/Hide details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -525,8 +574,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self.tableView reloadData];
-        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])){
-          //description
+        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)) {
+            //description
             if (self.popupViewController == nil) {
                 DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
                 popupViewController.delegate = self;
@@ -543,20 +592,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self dismissPopupWithCode:NO];
             }
 
-        } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
-            // Delete program button
-            [self performActionOnConfirmation:@selector(deleteProgramAction)
-                               canceledAction:nil
-                                       target:self
-                                 confirmTitle:kLocalizedDeleteThisProgram
-                               confirmMessage:kLocalizedThisActionCannotBeUndone];
         }
     } else if (actionSheet.tag == kEditObjectActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy object button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             [self copyObjectActionWithSourceObject:(SpriteObject*)payload[kDTPayloadSpriteObject]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename object button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             SpriteObject *spriteObject = (SpriteObject*)payload[kDTPayloadSpriteObject];

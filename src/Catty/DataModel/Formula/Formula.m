@@ -28,7 +28,7 @@
 
 @interface Formula()
 @property (nonatomic, strong, readwrite) NSNumber *lastResult;
-@property (nonatomic, strong, readwrite) NSNumber *bufferedResult;
+@property (nonatomic, strong, readwrite) id bufferedResult;
 @end
 
 @implementation Formula
@@ -85,9 +85,16 @@
     return [self initWithInteger:0];
 }
 
+- (void) preCalculateFormulaForSprite:(SpriteObject*)sprite {
+    self.bufferedResult = [self.formulaTree interpretRecursiveForSprite:sprite];
+}
+
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite {
     if (self.bufferedResult) {
-        double bufferedResult = self.bufferedResult.doubleValue;
+        double bufferedResult = 0;
+        if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
+            bufferedResult = [self.bufferedResult doubleValue];
+        }
         self.bufferedResult = nil;
         return bufferedResult;
     }
@@ -100,9 +107,6 @@
         returnDoubleValue = [returnValue doubleValue];
     }
     self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
-    if (([self getRequiredResources] & kBluetoothArduino) > 0) {
-        self.bufferedResult = @(returnDoubleValue);
-    }
     return returnDoubleValue;
 }
 
@@ -112,19 +116,7 @@
 }
 
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite {
-    if (self.lastResult) {
-        return self.lastResult.intValue;
-    }
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    if (returnValue == nil) {
-        return 0;
-    }
-    if ([returnValue isKindOfClass:[NSNumber class]]) {
-        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
-        return (int)((NSNumber*)returnValue).doubleValue;
-    }
-    self.lastResult = [self.formulaTree isIdempotent] ? @(0) : nil;
-    return 0;
+    return (int)[self interpretDoubleForSprite:sprite];
 }
 
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite
@@ -145,17 +137,32 @@
 }
 
 - (NSString*)interpretString:(SpriteObject*)sprite {
+    if (self.bufferedResult) {
+        double bufferedResult = 0;
+        if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
+            bufferedResult = [self.bufferedResult doubleValue];
+        } else if ([self.bufferedResult isKindOfClass:[NSString class]]){
+            NSString* returnString = (NSString*)self.bufferedResult;
+            self.bufferedResult = nil;
+            return returnString;
+        }
+        self.bufferedResult = nil;
+        return [NSString stringWithFormat:@"%lf", bufferedResult];
+    }
     if (self.lastResult) {
         return [NSString stringWithFormat:@"%lf", self.lastResult.doubleValue];
     }
+    
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     if([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
         return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
-    } else {
+    } else if ([returnValue isKindOfClass:[NSString class]]){
+        NSString* returnString = (NSString*)returnValue;
+        return returnString;
+    } else{
         return @"";
     }
-    return returnValue;
 }
 
 - (InternFormulaState*)getInternFormulaState {

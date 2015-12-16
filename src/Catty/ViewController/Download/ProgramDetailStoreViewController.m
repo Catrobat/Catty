@@ -40,11 +40,6 @@
 #import "ProgramUpdateDelegate.h"
 #import "UIDefines.h"
 
-#define kUIBarHeight 49
-#define kNavBarHeight 44
-
-#define kScrollViewOffset 30.0f
-
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
 
@@ -100,29 +95,7 @@
     self.hidesBottomBarWhenPushed = YES;
     self.view.backgroundColor = [UIColor backgroundColor];
     NSDebug(@"%@",self.project.author);
-    self.projectView = [self createViewForProject:self.project];
-    if(!self.project.author){
-        [self showLoadingView];
-        UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
-        button.enabled = NO;
-    }
-    CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
-    self.scrollViewOutlet.frame = CGRectMake(self.scrollViewOutlet.frame.origin.x, self.scrollViewOutlet.frame.origin.y, [Util screenWidth],[Util screenHeight]);
-    [self.scrollViewOutlet addSubview:self.projectView];
-    self.scrollViewOutlet.delegate = self;
-    CGFloat screenHeight = [Util screenHeight];
-    CGSize contentSize = self.projectView.bounds.size;
-    
-    if (contentSize.height < minHeight) {
-        contentSize.height = minHeight;
-    }
-    contentSize.height += kScrollViewOffset;
-    
-    if (screenHeight == kIphone4ScreenHeight){
-        contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
-    }
-    [self.scrollViewOutlet setContentSize:contentSize];
-    self.scrollViewOutlet.userInteractionEnabled = YES;
+    [self loadProject:self.project];
 //    self.scrollViewOutlet.exclusiveTouch = YES;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -132,6 +105,28 @@
     self.useTestUrl = YES;
 }
 
+
+-(void)loadProject:(CatrobatProgram*)project {
+    [self.projectView removeFromSuperview];
+    self.projectView = [self createViewForProject:project];
+    if(!self.project.author){
+        [self showLoadingView];
+        UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
+        button.enabled = NO;
+    }
+    CGFloat minHeight = self.view.frame.size.height;
+    [self.scrollViewOutlet addSubview:self.projectView];
+    self.scrollViewOutlet.delegate = self;
+    CGSize contentSize = self.projectView.bounds.size;
+    
+    if (contentSize.height < minHeight) {
+        contentSize.height = minHeight;
+    }
+    
+    [self.scrollViewOutlet setContentSize:contentSize];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.scrollViewOutlet.userInteractionEnabled = YES;
+}
 - (void)initNavigationBar
 {
     self.title = self.navigationItem.title = kLocalizedDetails;
@@ -418,26 +413,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)reloadWithProject:(CatrobatProgram *)loadedProject
 {
-    [self.projectView removeFromSuperview];
-    self.projectView = [self createViewForProject:loadedProject];
-    [self.view addSubview:self.projectView];
-    self.project = loadedProject;
-    [self.scrollViewOutlet addSubview:self.projectView];
-    self.scrollViewOutlet.delegate = self;
-    CGFloat screenHeight = [Util screenHeight];
-    CGSize contentSize = self.projectView.bounds.size;
-    CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
-    if (contentSize.height < minHeight) {
-        contentSize.height = minHeight;
-    }
-    contentSize.height += kScrollViewOffset;
-    
-    if (screenHeight == kIphone4ScreenHeight){
-        contentSize.height = contentSize.height - kIphone4ScreenHeight +kIphone5ScreenHeight;
-    }
-    [self.scrollViewOutlet setContentSize:contentSize];
-    self.scrollViewOutlet.userInteractionEnabled = YES;
-    self.scrollViewOutlet.exclusiveTouch = YES;
+    [self loadProject:loadedProject];
     UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
     button.enabled = YES;
     [self hideLoadingView];
@@ -529,5 +505,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return YES;
     }
     return NO;
+}
+
+#pragma mark Rotation
+
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self loadProject:self.project];
+        [self.view setNeedsDisplay];
+    });
+
 }
 @end

@@ -10,8 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "erase.png"
+      "filename" : "icon_backspace.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

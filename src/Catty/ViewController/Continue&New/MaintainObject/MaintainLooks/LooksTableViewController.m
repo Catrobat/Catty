@@ -45,8 +45,7 @@
 #import "AppDelegate.h"
 #import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
-#import "CatrobatActionSheet.h"
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
 #import "PaintViewController.h"
@@ -66,6 +65,7 @@
 @property (nonatomic,strong)UIImage* paintImage;
 @property (nonatomic,strong)NSString* paintImagePath;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
+@property (nonatomic, assign) BOOL deletionMode;
 @property (nonatomic,strong)NSString *filePath;
 @end
 
@@ -123,23 +123,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
+    NSString *destructive = nil;
     if (self.object.lookList.count) {
-        [options addObject:kLocalizedDeleteLooks];
+        destructive = kLocalizedDeleteLooks;
+    }
+    if (self.object.lookList.count >= 2) {
+        [options addObject:kLocalizedMoveLooks];
     }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLooks
-                                                         delegate:self
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:options
-                                                              tag:kEditLooksActionSheetTag
-                                                             view:self.navigationController.view];
-    if (self.object.lookList.count) {
-        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
-    }
+    [Util actionSheetWithTitle:kLocalizedEditLooks
+                      delegate:self
+        destructiveButtonTitle:destructive
+             otherButtonTitles:options
+                           tag:kEditLooksActionSheetTag
+                          view:self.navigationController.view];
+    
 }
 
 - (void)addLookAction:(id)sender
@@ -299,9 +301,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedMeasure];
-        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
 
         NSValue *value = [self.dataCache objectForKey:look.fileName];
         CGSize dimensions;
@@ -314,9 +316,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
@@ -337,13 +339,36 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return YES;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(self.deletionMode){
+        return NO;
+    }
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.editing) {
+        return UITableViewCellEditingStyleNone;
+    }
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    Look* itemToMove = self.object.lookList[sourceIndexPath.row];
+    [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
+    [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
+    [self.object.program saveToDisk];
+}
+
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
+        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackground : kLocalizedEditLook)
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
@@ -353,6 +378,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditLook
                                                                         withPayload:payload];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
@@ -543,18 +569,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditLooksActionSheetTag) {
         BOOL showHideSelected = NO;
         if ([self.object.lookList count]) {
-            if (buttonIndex == 0) {
+            if (buttonIndex == 1) {
                 // Delete Looks button
+                self.deletionMode = YES;
                 [self setupEditingToolBar];
                 [super changeToEditingMode:actionSheet];
-            } else if (buttonIndex == 1) {
-                showHideSelected = YES;
+            } else if (([self.object.lookList count] >= 2)) {
+                if (buttonIndex == 2) {
+                    self.deletionMode = NO;
+                    [super changeToMoveMode:actionSheet];
+                } else if (buttonIndex == 3) {
+                    showHideSelected = YES;
+                }
+            } else if (buttonIndex == 2){
+               showHideSelected = YES;
             }
         } else if (buttonIndex == 0) {
             showHideSelected = YES;
@@ -577,11 +611,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self reloadData];
         }
     } else if (actionSheet.tag == kEditLookActionSheetTag) {
-        if (buttonIndex == 0) {
+        if (buttonIndex == 1) {
             // Copy look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             [self copyLookActionWithSourceLook:(Look*)payload[kDTPayloadLook]];
-        } else if (buttonIndex == 1) {
+        } else if (buttonIndex == 2) {
             // Rename look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             Look *look = (Look*)payload[kDTPayloadLook];
@@ -653,13 +687,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
             if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                importFromCameraIndex = 0;
+                importFromCameraIndex = 1;
             }
         }
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
             NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
             if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                chooseImageIndex = ((importFromCameraIndex == 0) ? 1 : 0);
+                chooseImageIndex = ((importFromCameraIndex == 1) ? 2 : 1);
             }
         }
 
@@ -704,7 +738,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
                 }
             }
-        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
+        } else if (buttonIndex != 0 ) {
             // draw new image
             NSDebug(@"Draw new image");
             dispatch_async(dispatch_get_main_queue(), ^{

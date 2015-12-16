@@ -53,7 +53,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     [SwiftBridge sirenBridgeApplicationDidFinishLaunching];
     
-    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
+    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDefault;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"

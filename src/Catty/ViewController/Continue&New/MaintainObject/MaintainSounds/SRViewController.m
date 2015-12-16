@@ -32,9 +32,10 @@
 @interface SRViewController ()
 @property (nonatomic,strong)Sound *sound;
 @property (nonatomic,strong)NSString *filePath;
-@property (nonatomic,strong) TimerLabel* timerLabel;
+@property (nonatomic,weak) IBOutlet TimerLabel* timerLabel;
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) AVAudioSession* session;
+@property (nonatomic,assign) BOOL isSaved;
     //@property (nonatomic,strong) UIProgressView* timeProgress;
     //@property (nonatomic,strong) NSTimer* progressTimer;
 
@@ -47,11 +48,16 @@
 {
     [super viewDidLoad];
         // Do any additional setup after loading the view, typically from a nib.
-    [self setupToolBar];
-    
+//    [self setupToolBar];
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                          target:self
+                                                                          action:@selector(saveSound)];
+    self.navigationController.toolbarHidden = YES;
+
+    self.navigationItem.rightBarButtonItem = save;
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - (self.view.frame.size.height * 0.4 / 2.0f), self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4);
 
-    self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.2, self.view.frame.size.width, 40)];
+
         //    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
     
     self.timerLabel.timerType = TimerLabelTypeStopWatch;
@@ -59,7 +65,7 @@
         //    [self.view addSubview:self.timeProgress];
     self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
     self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
-    self.timerLabel.timeLabel.textColor = [UIColor lightTextTintColor];
+    self.timerLabel.timeLabel.textColor = [UIColor globalTintColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
     
@@ -71,7 +77,7 @@
     
     
     self.isRecording = NO;
-    
+    self.isSaved = NO;
     [self prepareRecorder];
 }
 
@@ -83,9 +89,8 @@
     [self.record setSelected:NO];
     [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     self.recorder = nil;
-    if(self.soundsTableViewController.afterSafeBlock)
-    {
-        self.soundsTableViewController.afterSafeBlock(nil);
+    if (self.sound.name && !self.isSaved) {
+        [self.delegate showSaveSoundAlert:self.sound];
     }
 
 }
@@ -150,7 +155,7 @@
         [self.session setActive:YES error:nil];
         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         [self.recorder recordForDuration:(([delegate.fileManager freeDiskspace]/1024ll)/256.0)];
-        [self setupToolBar];
+//        [self setupToolBar];
         self.sound.name = kLocalizedRecording;
             //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
     } else {
@@ -224,16 +229,9 @@
     [self.record setSelected:NO];
     self.recorder = nil;
     if (self.sound.name) {
-        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc postNotificationName:kRecordAddedNotification
-                           object:nil
-                         userInfo:@{ kUserInfoSound : self.sound}];
-    }else{
-        if(self.soundsTableViewController.afterSafeBlock)
-        {
-            self.soundsTableViewController.afterSafeBlock(nil);
-        }
+        [self.delegate addSound:self.sound];
     }
+    self.isSaved = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

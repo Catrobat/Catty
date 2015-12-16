@@ -405,6 +405,14 @@
             }
             break;
         }
+        case FLOOR : {
+            result = [NSNumber numberWithInteger:floor(left)];
+            break;
+        }
+        case CEIL : {
+            result = [NSNumber numberWithInteger:ceil(left)];
+            break;
+        }
         default:
             //abort();
             [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];

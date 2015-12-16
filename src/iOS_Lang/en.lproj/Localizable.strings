@@ -37,6 +37,9 @@
 /* Action sheet menu title */
 "Add sound" = "Add sound";
 
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
 /* paint */
 "Alpha" = "Alpha";
 
@@ -98,6 +101,12 @@
 "Blue" = "Blue";
 
 /* No comment provided by engineer. */
+"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings." = "Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.";
+
+/* No comment provided by engineer. */
+"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* No comment provided by engineer. */
 "Both" = "Both";
 
 /* No comment provided by engineer. */
@@ -119,7 +128,7 @@
 "By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
+"By switching to the section \"Explore\" you can discover more interesting programs from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting programs from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Camera Roll";
@@ -132,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Categories" = "Categories";
+
+/* No comment provided by engineer. */
+"ceil" = "ceil";
 
 /* No comment provided by engineer. */
 "Change brightness\nby %@\%" = "Change brightness\nby %@\%";
@@ -204,6 +216,12 @@
 
 /* No comment provided by engineer. */
 "Copy program" = "Copy program";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Create & Remix";
+
+/* No comment provided by engineer. */
+"Create an account" = "Create an account";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -325,6 +343,12 @@
 /* No comment provided by engineer. */
 "Edit" = "Edit";
 
+/* Action sheet menu title */
+"Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Brick" = "Edit Brick";
+
 /* No comment provided by engineer. */
 "Edit Formula" = "Edit Formula";
 
@@ -342,6 +366,9 @@
 
 /* No comment provided by engineer. */
 "Edit Programs" = "Edit Programs";
+
+/* Action sheet menu title */
+"Edit Script" = "Edit Script";
 
 /* Action sheet menu title */
 "Edit Sound" = "Edit Sound";
@@ -435,6 +462,9 @@
 
 /* No comment provided by engineer. */
 "Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"floor" = "floor";
 
 /* No comment provided by engineer. */
 "for all objects" = "for all objects";
@@ -665,10 +695,19 @@
 "Move Brick" = "Move Brick";
 
 /* No comment provided by engineer. */
+"Move Looks" = "Move Looks";
+
+/* No comment provided by engineer. */
+"Move Objects" = "Move Objects";
+
+/* No comment provided by engineer. */
 "Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
 
 /* No comment provided by engineer. */
 "Move Phiro Motor forward\n%@\n Speed %@\%" = "Move Phiro Motor forward\n%@\n Speed %@\%";
+
+/* No comment provided by engineer. */
+"Move Sounds" = "Move Sounds";
 
 /* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";
@@ -849,9 +888,6 @@
 
 /* paint */
 "Please pick an item" = "Please pick an item";
-
-/* No comment provided by engineer. */
-"Please register below" = "Please register below";
 
 /* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
@@ -1226,9 +1262,6 @@
 "Unselect All" = "Unselect All";
 
 /* No comment provided by engineer. */
-"Upcoming version" = "Upcoming version";
-
-/* No comment provided by engineer. */
 "Upload" = "Upload";
 
 /* No comment provided by engineer. */
@@ -1295,9 +1328,6 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
-
-/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1319,7 +1349,7 @@
 "Yesterday" = "Yesterday";
 
 /* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
 
 /* No comment provided by engineer. */
 "You have already downloaded this program!" = "You have already downloaded this program!";

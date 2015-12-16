@@ -18,6 +18,7 @@
 
 @interface UIImage (ImageBlur)
 - (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius;
+
 @end
 
 @implementation UIImage (ImageBlur)
@@ -209,6 +210,8 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
             [self.popupViewController didMoveToParentViewController:self];
             [self.popupViewController endAppearanceTransition];
         }];
+        // if screen orientation changed
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenOrientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
 }
 
@@ -232,6 +235,46 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         [self.popupViewController.view removeFromSuperview];
         [blurView removeFromSuperview];
         self.popupViewController = nil;
+    }];
+}
+#pragma mark - handling screen orientation change
+
+- (CGRect)getPopupFrameForViewController:(UIViewController *)viewController {
+    CGRect frame = viewController.view.frame;
+    CGFloat x;
+    CGFloat y;
+    if (UIDeviceOrientationIsPortrait((UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation) || NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+        x = ([UIScreen mainScreen].bounds.size.width - frame.size.width)/2;
+        y = ([UIScreen mainScreen].bounds.size.height - frame.size.height)/2;
+    } else {
+        x = ([UIScreen mainScreen].bounds.size.height - frame.size.width)/2-frame.size.width;
+        y = ([UIScreen mainScreen].bounds.size.width - frame.size.height)/2-frame.size.height;
+    }
+    return CGRectMake(x, y, frame.size.width, frame.size.height);
+}
+
+- (void)screenOrientationChanged {
+    // make blur view go away so that we can re-blur the original back
+    UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
+    [UIView animateWithDuration:ANIMATION_TIME animations:^{
+        self.popupViewController.view.frame = [self getPopupFrameForViewController:self.popupViewController];
+        if (UIDeviceOrientationIsPortrait((UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation) || NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+            blurView.frame = [UIScreen mainScreen].bounds;
+        } else {
+            blurView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+        }
+            [UIView animateWithDuration:1.0f animations:^{
+                // for delay
+            } completion:^(BOOL finished) {
+                [blurView removeFromSuperview];
+                // popup view alpha to 0 so its not in the blur image
+                self.popupViewController.view.alpha = 0.0f;
+//                [self addBlurView];
+                self.popupViewController.view.alpha = 1.0f;
+                // display blurView again
+                UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
+                blurView.alpha = 1.0f;
+            }];
     }];
 }
 

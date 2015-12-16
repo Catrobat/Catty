@@ -88,30 +88,16 @@
     
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
-    CGFloat currentHeight = 0.0f;
-    CGFloat headerHeight;
-    if (IS_IPHONE4||IS_IPHONE5) {
-        headerHeight = 50.0f;
-    } else {
-        headerHeight = 100.0f;
-    }
     
     self.view.backgroundColor = mainColor;
-    self.headerImageView.image = [UIImage imageNamed:@"cat"];
+    self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
     
-    self.titleLabel.textColor =  [UIColor lightTextTintColor];
-    self.titleLabel.font =  [UIFont fontWithName:boldFontName size:16.0f];
-    self.titleLabel.text = kLocalizedTitleRegister;
-    self.titleLabel.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, headerHeight/2);
+    self.titleLabel.textColor =  [UIColor globalTintColor];
+    self.titleLabel.font =  [UIFont fontWithName:boldFontName size:28.0f];
+    self.titleLabel.text = kLocalizedInfoRegister;
+    [self.titleLabel sizeToFit];
     
-    self.infoLabel.textColor =  [UIColor lightTextTintColor];
-    self.infoLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
-    self.infoLabel.text =kLocalizedInfoRegister;
-    self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
-    
-    currentHeight = headerHeight+self.infoLabel.frame.size.height;
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder = kLocalizedUsername;
     if (self.userName) {
@@ -121,12 +107,29 @@
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
-    self.usernameField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.usernameField.frame.size.height);
-    currentHeight+= self.usernameField.frame.size.height;
+
+    
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView.image = [UIImage imageNamed:@"user"];
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
     self.usernameField.leftView = leftView;
+    UIImageView* leftView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftView2.image = [UIImage imageNamed:@"password"];
+    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
+    self.passwordField.leftView = leftView2;
+    
+    self.emailField.backgroundColor = [UIColor whiteColor];
+    self.emailField.placeholder =kLocalizedEmail;
+    self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
+    self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
+    self.emailField.layer.borderWidth = 1.0f;
+    self.emailField.tag = 3;
+
+    UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftView3.image = [UIImage imageNamed:@"email"];
+    self.emailField.leftViewMode = UITextFieldViewModeAlways;
+    self.emailField.leftView = leftView3;
+
     
     
     self.passwordField.backgroundColor = [UIColor whiteColor];
@@ -139,42 +142,20 @@
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
-    self.passwordField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.passwordField.frame.size.height);
-    currentHeight+= self.passwordField.frame.size.height;
-    
-    UIImageView* leftView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftView2.image = [UIImage imageNamed:@"password"];
-    self.passwordField.leftViewMode = UITextFieldViewModeAlways;
-    self.passwordField.leftView = leftView2;
-    
-    self.emailField.backgroundColor = [UIColor whiteColor];
-    self.emailField.placeholder =kLocalizedEmail;
-    self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
-    self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
-    self.emailField.layer.borderWidth = 1.0f;
-    self.emailField.tag = 3;
-    self.emailField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.emailField.frame.size.height);
-    currentHeight+= self.emailField.frame.size.height;
-    UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    leftView3.image = [UIImage imageNamed:@"email"];
-    self.emailField.leftViewMode = UITextFieldViewModeAlways;
-    self.emailField.leftView = leftView3;
-    
+
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
-    [self.termsOfUseButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.termsOfUseButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.termsOfUseButton addTarget:self action:@selector(openTermsOfUse) forControlEvents:UIControlEventTouchUpInside];
-    self.termsOfUseButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.termsOfUseButton.frame.size.height);
-    currentHeight+= self.termsOfUseButton.frame.size.height;
+
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kUIFEDone forState:UIControlStateNormal];
-    [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
-    self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);
 }
 
 -(void)addDoneToTextFields
@@ -183,13 +164,13 @@
     [self.usernameField addTarget:self
                        action:@selector(textFieldShouldReturn:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.passwordField setReturnKeyType:UIReturnKeyNext];
+    [self.passwordField setReturnKeyType:UIReturnKeyDone];
     [self.passwordField addTarget:self
-                           action:@selector(textFieldShouldReturn:)
+                           action:@selector(registerAction)
               forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.emailField setReturnKeyType:UIReturnKeyDone];
+    [self.emailField setReturnKeyType:UIReturnKeyNext];
     [self.emailField addTarget:self
-                        action:@selector(registerAction)
+                        action:@selector(textFieldShouldReturn:)
               forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
@@ -204,7 +185,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
+{
+    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
+    lineView.backgroundColor = [UIColor utilityTintColor];
+    [view addSubview:lineView];
+}
 
 
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString

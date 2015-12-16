@@ -42,7 +42,6 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
-#import "CatrobatActionSheet.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
 #import "Script.h"
@@ -54,8 +53,8 @@
 #import "BDKNotifyHUD.h"
 #import "Speakbrick.h"
 #import "KeychainUserDefaultsDefines.h"
-#import <AHKActionSheet/AHKActionSheet.h>
 #import "ProgramVariablesManager.h"
+#import "CatrobatAlertController.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -110,8 +109,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *variable;
 @property (weak, nonatomic) IBOutlet UIButton *takeVar;
 
-@property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
-@property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
 @end
@@ -128,6 +125,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     if(self) {
         [self setBrickCellFormulaData:brickCellData];
+        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     }
     
     return self;
@@ -228,7 +227,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self localizeView];
     
     UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-    [UINavigationBar appearance].barTintColor = [UIColor backgroundColor];
+    [UINavigationBar appearance].barTintColor = [UIColor globalTintColor];
     [self.view addSubview:myNav];
     
 
@@ -238,7 +237,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                                      target:self
                                                             action:@selector(dismissFormulaEditorViewController)];
     
-    
+    item.tintColor = [UIColor navTintColor];
     UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
     navigItem.leftBarButtonItem = item;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
@@ -390,6 +389,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                action:@selector(buttonPressed:)
      forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0, buttonCount*self.calcButton.frame.size.height, self.sensorScrollHelperView.frame.size.width, self.calcButton.frame.size.height);
+    button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
     [self.sensorScrollHelperView addSubview:button];
     [self.sensorTypeButton addObject:button];
     return button;
@@ -412,34 +412,34 @@ NS_ENUM(NSInteger, ButtonIndex) {
         NSString *name = [Functions getExternName:[Functions getName:(Function)[button tag]]];
         if([name length] != 0)
         {
-            [button setTitle:name forState:UIControlStateAll];
+            [button setTitle:name forState:UIControlStateNormal];
         }else
         {
             name = [Operators getExternName:[Operators getName:(Operator)[button tag]]];
             if([name length] != 0)
             {
-                [button setTitle:name forState:UIControlStateAll];
+                [button setTitle:name forState:UIControlStateNormal];
             }else{
                 name = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[button tag]]];
                 if([name length] != 0)
                 {
-                    [button setTitle:name forState:UIControlStateAll];
+                    [button setTitle:name forState:UIControlStateNormal];
                 }
 
             }
         }
     }
     
-    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateAll];
-    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateAll];
-    [self.logicButton setTitle:kUIFELogic forState:UIControlStateAll];
-    [self.objectButton setTitle:kUIFEObject forState:UIControlStateAll];
-    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateAll];
-    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateAll];
-    [self.computeButton setTitle:kUIFECompute forState:UIControlStateAll];
-    [self.doneButton setTitle:kUIFEDone forState:UIControlStateAll];
-    [self.variable setTitle:kUIFEVar forState:UIControlStateAll];
-    [self.takeVar setTitle:kUIFETake forState:UIControlStateAll];
+    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateNormal];
+    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateNormal];
+    [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];
+    [self.objectButton setTitle:kUIFEObject forState:UIControlStateNormal];
+    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateNormal];
+    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateNormal];
+    [self.computeButton setTitle:kUIFECompute forState:UIControlStateNormal];
+    [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
+    [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
+    [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
     
 }
 
@@ -579,116 +579,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
-#pragma mark - Getter and setter
-
-- (AHKActionSheet *)mathFunctionsMenu
-{
-    if (!_mathFunctionsMenu) {
-        
-        NSArray *mathFunctions = @[
-                                  [NSNumber numberWithInt:SIN],
-                                  [NSNumber numberWithInt:COS],
-                                  [NSNumber numberWithInt:TAN],
-                                  [NSNumber numberWithInt:LN],
-                                  [NSNumber numberWithInt:LOG],
-                                  [NSNumber numberWithInt:PI_F],
-                                  [NSNumber numberWithInt:SQRT],
-                                  [NSNumber numberWithInt:ABS],
-                                  [NSNumber numberWithInt:MAX],
-                                  [NSNumber numberWithInt:MIN],
-                                  [NSNumber numberWithInt:ARCSIN],
-                                  [NSNumber numberWithInt:ARCCOS],
-                                  [NSNumber numberWithInt:ARCTAN],
-                                  [NSNumber numberWithInt:ROUND],
-                                  [NSNumber numberWithInt:MOD],
-                                  [NSNumber numberWithInt:POW],
-                                  [NSNumber numberWithInt:EXP]
-                                  ];
-        
-        _mathFunctionsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectMathematicalFunction];
-        _mathFunctionsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-        _mathFunctionsMenu.separatorColor = UIColor.globalTintColor;
-        _mathFunctionsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                    NSForegroundColorAttributeName : UIColor.globalTintColor};
-        _mathFunctionsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : [UIColor destructiveTintColor]};
-        _mathFunctionsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
-        _mathFunctionsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
-        _mathFunctionsMenu.automaticallyTintButtonImages = NO;
-        
-        __weak FormulaEditorViewController *weakSelf = self;
-        
-        for(int i = 0; i < [mathFunctions count]; i++) {
-            
-            int type = [[mathFunctions objectAtIndex:i] intValue];
-            NSString *name = [Functions getExternName:[Functions getName:type]];
-            [_mathFunctionsMenu addButtonWithTitle:name
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf handleInputWithTitle:name AndButtonType:type];
-                                            [weakSelf closeMenu];
-                                        }];
-        }
-        
-        _mathFunctionsMenu.cancelHandler = ^(AHKActionSheet *actionSheet) {
-            [weakSelf closeMenu];
-        };
-    }
-    return _mathFunctionsMenu;
-}
-
-- (AHKActionSheet *)logicalOperatorsMenu
-{
-    if (!_logicalOperatorsMenu) {
-        
-        NSArray *logicalOperators = @[
-                                   [NSNumber numberWithInt:EQUAL],
-                                   [NSNumber numberWithInt:NOT_EQUAL],
-                                   [NSNumber numberWithInt:SMALLER_THAN],
-                                   [NSNumber numberWithInt:SMALLER_OR_EQUAL],
-                                   [NSNumber numberWithInt:GREATER_THAN],
-                                   [NSNumber numberWithInt:GREATER_OR_EQUAL],
-                                   [NSNumber numberWithInt:LOGICAL_AND],
-                                   [NSNumber numberWithInt:LOGICAL_OR],
-                                   [NSNumber numberWithInt:LOGICAL_NOT],
-                                   [NSNumber numberWithInt:TRUE_F],
-                                   [NSNumber numberWithInt:FALSE_F]
-                                   ];
-        
-        _logicalOperatorsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectLogicalOperator];
-        _logicalOperatorsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-        _logicalOperatorsMenu.separatorColor = UIColor.globalTintColor;
-        _logicalOperatorsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                   NSForegroundColorAttributeName : UIColor.globalTintColor};
-        _logicalOperatorsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : [UIColor destructiveTintColor]};
-        _logicalOperatorsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
-        _logicalOperatorsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
-        _logicalOperatorsMenu.automaticallyTintButtonImages = NO;
-        
-        __weak FormulaEditorViewController *weakSelf = self;
-        
-        for(int i = 0; i < [logicalOperators count]; i++) {
-            
-            int type = [[logicalOperators objectAtIndex:i] intValue];
-            NSString *name;
-            if([Operators getName:type] == nil)
-                name = [Functions getExternName:[Functions getName:type]];
-            else
-                name = [Operators getExternName:[Operators getName:type]];
-            
-            [_logicalOperatorsMenu addButtonWithTitle:name
-                                              type:AHKActionSheetButtonTypeDefault
-                                           handler:^(AHKActionSheet *actisonSheet) {
-                                               [weakSelf handleInputWithTitle:name AndButtonType:type];
-                                               [weakSelf closeMenu];
-                                           }];
-        }
-        
-        _logicalOperatorsMenu.cancelHandler = ^(AHKActionSheet *actionSheet) {
-            [weakSelf closeMenu];
-        };
-    }
-    return _logicalOperatorsMenu;
-}
 
 #pragma mark - UI
 
@@ -701,44 +591,57 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.formulaEditorTextView becomeFirstResponder];
 }
 
--(void)colorFormulaEditor
+-(void) colorFormulaEditor
 {
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
-        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
+        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
     }
     for(int i = 0; i < [self.normalTypeButton count]; i++) {
         [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
+    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateHighlighted];
         [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
-        [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
-        
-        if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
-        {
-            if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
-            {
-                [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-                [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor grayColor]];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
+    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+      
+    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
+    {
+        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
+       {
+            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
+           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
             }
         }
     }
     for(int i = 0; i < [self.toolTypeButton count]; i++) {
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateNormal];
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateHighlighted];
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateSelected];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateHighlighted];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor utilityTintColor] forState:UIControlStateSelected];
         [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
         [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
     }
     
+  for(int i = 0; i < [self.toolTypeButton count]; i++) {
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
+          [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperatorColor] forState:UIControlStateSelected];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperatorColor]] forState:UIControlStateNormal];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaButtonTextColor]] forState:UIControlStateSelected];
+    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+  }
+
     for(int i = 0; i < [self.highlightedButtons count]; i++) {
-        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateNormal];
+        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
         [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateSelected];
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
     }
     
 
@@ -967,8 +870,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)addNewText:(id)sender {
     [self.formulaEditorTextView resignFirstResponder];
     
-    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:kMaxNumOfProgramNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
 }
 
 - (void)handleNewTextInput:(NSString*)text
@@ -1105,7 +1007,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.isProgramVariable = NO;
 //    if (actionSheet.tag == 444) {

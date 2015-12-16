@@ -28,7 +28,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "LanguageTranslationDefines.h"
 #import <tgmath.h>
-#import "CatrobatAlertView.h"
+#import "CatrobatAlertController.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
@@ -87,6 +87,7 @@
         if (view.tag == kSavedViewTag)
             [view removeFromSuperview];
     }
+    [self hideLoadingView];
 }
 
 #pragma mark - system events
@@ -226,8 +227,8 @@
 {
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
-    self.navigationController.toolbar.barTintColor = [UIColor backgroundColor];
+    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 
@@ -270,10 +271,27 @@
     self.editing = YES;
 }
 
+- (void)changeToMoveMode:(id)sender
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDone
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exitEditingMode)];
+    self.navigationItem.hidesBackButton = YES;
+    self.normalModeRightBarButtonItem = self.navigationItem.rightBarButtonItem;
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    [self.tableView reloadData];
+    [self.tableView setEditing:YES animated:YES];
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.editing = YES;
+}
+
 - (void)exitEditingMode
 {
     self.navigationItem.hidesBackButton = NO;
     self.navigationItem.rightBarButtonItem = self.normalModeRightBarButtonItem;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
     [self.tableView setEditing:NO animated:YES];
     [self setupToolBar];
     self.editing = NO;
@@ -348,6 +366,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self showLoadingView];
     [self playSceneAction:sender animated:YES];
 }
 
@@ -362,17 +381,21 @@
     NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
+    } else {
+        [self hideLoadingView];
     }
 }
 
 -(void)startSceneWithVC:(ScenePresenterViewController*)vc
 {
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - alert view delegate handlers
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == kConfirmAlertViewTag) {
         // check if user agreed
@@ -411,7 +434,7 @@
 
 - (void)showLoadingView
 {
-    self.loadingView.backgroundColor = [UIColor whiteColor];
+//    self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
     [self.tableView setContentOffset:top animated:NO];

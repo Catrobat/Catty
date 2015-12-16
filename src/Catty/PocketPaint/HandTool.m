@@ -54,7 +54,7 @@
     for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
       recognizer.enabled = YES;
     }
-    self.canvas.handToolBarButtonItem.tintColor = [UIColor greenColor];
+    self.canvas.handToolBarButtonItem.tintColor = [UIColor whiteColor];
   } else {
     [self disableHandTool];
   }
@@ -63,7 +63,7 @@
 
 - (void)disableHandTool
 {
-  self.canvas.handToolBarButtonItem.tintColor = [UIColor globalTintColor];
+  self.canvas.handToolBarButtonItem.tintColor = [UIColor toolTintColor];
   if (self.canvas.activeAction == brush || self.canvas.activeAction == eraser) {
     self.canvas.drawGesture.enabled = YES;
   } else if (self.canvas.activeAction == pipette){
