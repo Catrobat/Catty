@@ -180,7 +180,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 
 - (void)show:(BOOL)animated {
     [self.alertWindow makeKeyAndVisible];
-    [self.alertWindow.rootViewController presentViewController:self animated:animated completion:^{}];
+    [self.alertWindow.rootViewController presentViewController:self animated:animated completion:^{self.alertWindow.tintColor = [UIColor globalTintColor];}];
 }
 
 - (void)viewWillAppear:(BOOL)animated
