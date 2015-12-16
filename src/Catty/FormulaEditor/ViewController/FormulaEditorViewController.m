@@ -125,6 +125,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     if(self) {
         [self setBrickCellFormulaData:brickCellData];
+        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     }
     
     return self;
