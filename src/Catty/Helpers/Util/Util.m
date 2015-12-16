@@ -86,12 +86,14 @@
 + (void)showIntroductionScreenInView:(UIView *)view delegate:(id<MYIntroductionDelegate>)delegate
 {
     MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedWelcomeToPocketCode description:kLocalizedWelcomeDescription image:[UIImage imageNamed:@"page1_logo"]];
-    
-    //Create Stock Panel With Image
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedExploreApps description:kLocalizedExploreDescription image:[UIImage imageNamed:@"page2_explore"]];
-    
-       MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedUpcomingVersion description:kLocalizedUpcomingVersionDescription image:[UIImage imageNamed:@"page3_info"]];
+    panel1.PanelImageView.contentMode = UIViewContentModeScaleAspectFit;
+    panel1.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
 
+    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedExploreApps description:kLocalizedExploreDescription image:[UIImage imageNamed:@"page2_explore"]];
+    panel2.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
+    
+    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedCreateAndEdit description:kLocalizedCreateAndEditDescription image:[UIImage imageNamed:@"page3_info"]];
+    panel2.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
     
     //Add panels to an array
     NSArray *panels = @[panel1, panel2, panel3];
@@ -100,8 +102,8 @@
     MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
     introductionView.delegate = delegate;
     [introductionView setEnabled:YES];
-    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor lightTextTintColor]];
-    [introductionView setBackgroundColor:[UIColor backgroundColor]];
+    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor globalTintColor]];
+    [introductionView setBackgroundColor:[UIColor globalTintColor]];
     //introductionView.LanguageDirection = MYLanguageDirectionRightToLeft;
     
     //Build the introduction with desired panels
@@ -232,7 +234,7 @@
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
 //    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
-//    [actionSheet setButtonTextColor:[UIColor lightTextTintColor]];
+//    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
 
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
 //    [actionSheet setButtonTextColor:[UIColor globalTintColor]];

@@ -326,16 +326,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedScripts,
                                               (unsigned long)[object numberOfScripts]];
-        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedBricks,
                                                (unsigned long)[object numberOfTotalBricks]];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedLooks,
                                                  (unsigned long)[object numberOfLooks]];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
@@ -445,6 +445,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditObject
                                                                         withPayload:@{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] }];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         // check just to ensure that background object can never be deleted!!
@@ -503,7 +504,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)view;
-    headerView.textLabel.textColor = [UIColor lightTextTintColor];
+    headerView.textLabel.textColor = [UIColor globalTintColor];
 }
 
 #pragma mark - segue handler

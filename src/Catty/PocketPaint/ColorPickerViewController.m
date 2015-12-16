@@ -63,10 +63,10 @@
   [self setupStandardColorsView];
   [self setupRGBAView];
   [self setupBrushPreview];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
   self.view.backgroundColor = [UIColor backgroundColor];
-
-  self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-  self.toolBar.tintColor = [UIColor navTintColor];
+    self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
+    self.toolBar.tintColor = [UIColor navTintColor];
   self.toolBar.barTintColor = UIColor.navBarColor;
 }
 
@@ -86,7 +86,7 @@
   [self.view addSubview:self.viewChanger];
   self.rgbaView = [[UIView alloc] initWithFrame:CGRectMake(0, 80,self.view.frame.size.width , self.view.frame.size.height *0.45f)];
   self.rgbaSliderView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height *0.6f,self.view.frame.size.width , self.view.frame.size.height *0.55f)];
-  self.standardColors =[[UIView alloc] initWithFrame:CGRectMake(0, 60,self.view.frame.size.width , 299)];
+  self.standardColors =[[UIView alloc] initWithFrame:CGRectMake(0, 60,self.view.frame.size.width , self.view.frame.size.height)];
   [self.view addSubview:self.rgbaView];
   [self.view addSubview:self.rgbaSliderView];
   [self.view addSubview:self.standardColors];
@@ -96,35 +96,49 @@
 - (void)setupStandardColorsView
 {
   self.colorArray = [NSMutableArray array];
-    self.standardColors.frame = CGRectMake(0, self.view.frame.size.height * 0.3f, self.view.frame.size.width, 400);
-  
-  int colorCount = 20;
-  for (int i = 0; i < colorCount; i++) {
-    if (i<4) {
-      UIColor *color = [UIColor colorWithWhite:i/(float)(colorCount - (colorCount-4+1)) alpha:1.0];
-      [self.colorArray addObject:color];
-    } else {
-      UIColor *color = [UIColor colorWithHue:(i-4) / (float)colorCount saturation:1.0 brightness:1.0 alpha:1.0];
-      [self.colorArray addObject:color];
+    self.standardColors.frame = CGRectMake(0, self.view.frame.size.height * 0.3f, self.view.frame.size.width, self.view.frame.size.height);
+    int colorCount = 20;
+    for (int i = 0; i < colorCount; i++) {
+        if (i<4) {
+            UIColor *color = [UIColor colorWithWhite:i/(float)(colorCount - (colorCount-4+1)) alpha:1.0];
+            [self.colorArray addObject:color];
+        } else {
+            UIColor *color = [UIColor colorWithHue:(i-4) / (float)colorCount saturation:1.0 brightness:1.0 alpha:1.0];
+            [self.colorArray addObject:color];
+        }
+        
     }
 
-  }
+    if (self.view.frame.size.height > self.view.frame.size.width) {
+        for (int i = 0; i < colorCount && i < self.colorArray.count; i++) {
+            CALayer *layer = [CALayer layer];
+            layer.cornerRadius = 6.0;
+            UIColor *color = [self.colorArray objectAtIndex:i];
+            layer.backgroundColor = color.CGColor;
+            CGFloat width = self.view.frame.size.width;
+            width = (width / 4.0f)-10.0f;
+            CGFloat factor = 40.0f / 70.0f;
+            int column = i % 4;
+            int row = i / 4;
+            layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width, width*factor);
+            [self.standardColors.layer addSublayer:layer];
+        }
 
-  for (int i = 0; i < colorCount && i < self.colorArray.count; i++) {
-    CALayer *layer = [CALayer layer];
-    layer.cornerRadius = 6.0;
-    UIColor *color = [self.colorArray objectAtIndex:i];
-    layer.backgroundColor = color.CGColor;
-    CGFloat width = self.view.frame.size.width;
-    width = (width / 4.0f)-10.0f;
-    CGFloat factor = 40.0f / 70.0f;
-    int column = i % 4;
-    int row = i / 4;
-    layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width, width*factor);
-    [self.standardColors.layer addSublayer:layer];
-  }
-  
-
+    } else {
+        for (int i = 0; i < colorCount && i < self.colorArray.count; i++) {
+            CALayer *layer = [CALayer layer];
+            layer.cornerRadius = 6.0;
+            UIColor *color = [self.colorArray objectAtIndex:i];
+            layer.backgroundColor = color.CGColor;
+            CGFloat width = self.view.frame.size.width;
+            width = (width / 6.0f)-10.0f;
+            CGFloat factor = 40.0f / 70.0f;
+            int column = i % 6;
+            int row = i / 6;
+            layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width,width*factor);
+            [self.standardColors.layer addSublayer:layer];
+        }
+    }
   UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(colorGridTapped:)];
   [self.standardColors addGestureRecognizer:recognizer];
 
@@ -158,7 +172,7 @@
   self.redLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.redSlider.frame.origin.x+self.redSlider.frame.size.width+20, self.view.frame.size.height*0.05f-7, 40, 10)];
   self.redLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.red*255.0f)];
   [self.redLabel sizeToFit];
-  self.redLabel.textColor = [UIColor lightTextTintColor];
+  self.redLabel.textColor = [UIColor globalTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -186,7 +200,7 @@
   self.greenLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.greenSlider.frame.origin.x+self.greenSlider.frame.size.width+20, self.view.frame.size.height*0.15f-7, 40, 10)];
   self.greenLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.green*255.0f)];
   [self.greenLabel sizeToFit];
-  self.greenLabel.textColor = [UIColor lightTextTintColor];
+  self.greenLabel.textColor = [UIColor globalTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -212,7 +226,7 @@
   self.blueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.blueSlider.frame.origin.x+self.blueSlider.frame.size.width+20, self.view.frame.size.height*0.25f-7, 40, 10)];
   self.blueLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.blue*255.0f)];
   [self.blueLabel sizeToFit];
-  self.blueLabel.textColor = [UIColor lightTextTintColor];
+  self.blueLabel.textColor = [UIColor globalTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -240,7 +254,7 @@
   self.opacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.opacitySlider.frame.origin.x+self.opacitySlider.frame.size.width+20, self.view.frame.size.height*0.35f-7, 40, 10)];
   self.opacityLabel.text = [NSString stringWithFormat:@"%.0f%%",roundf(self.opacity*100.0f)];
   [self.opacityLabel sizeToFit];
-  self.opacityLabel.textColor = [UIColor lightTextTintColor];
+  self.opacityLabel.textColor = [UIColor globalTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -264,7 +278,7 @@
     [self updateRGBAView];
   };
   
-  self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.1f +10, self.view.frame.size.width,self.view.frame.size.height * 0.3f) color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
+  self.colorPicker = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.05f, self.view.frame.size.width,self.view.frame.size.height * 0.3f) color:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity] andDidChangeColorBlock:colorDidChangeBlock];
   [self.rgbaView addSubview:self.colorPicker];
 }
 
@@ -419,6 +433,7 @@
 */
 
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [self.delegate closeColorPicker:self];
 }
 

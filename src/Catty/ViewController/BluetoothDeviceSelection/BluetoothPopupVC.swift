@@ -39,13 +39,14 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.segmentedPager.backgroundColor = UIColor.backgroundColor()
-        
+        self.segmentedPager.backgroundColor = UIColor.navBarColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.navTintColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.navTextColor()]
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        self.segmentedPager.segmentedControl.backgroundColor = UIColor.backgroundColor()
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.lightTextTintColor(), NSFontAttributeName: UIFont.systemFontOfSize(12)];
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName : UIColor.globalTintColor()]
+        self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTintColor()
+        self.segmentedPager.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.backgroundColor(), NSFontAttributeName: UIFont.systemFontOfSize(12)];
+        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName : UIColor.navTintColor()]
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTintColor()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed

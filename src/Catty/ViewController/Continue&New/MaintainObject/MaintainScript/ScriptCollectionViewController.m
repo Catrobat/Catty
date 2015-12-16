@@ -1288,4 +1288,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     });
 }
 
+#pragma mark Rotation
+
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+        [self reloadData];
+}
+
+
 @end

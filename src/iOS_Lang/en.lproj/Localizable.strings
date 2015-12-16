@@ -37,6 +37,9 @@
 /* Action sheet menu title */
 "Add sound" = "Add sound";
 
+/* No comment provided by engineer. */
+"All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
+
 /* paint */
 "Alpha" = "Alpha";
 
@@ -125,7 +128,7 @@
 "By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
+"By switching to the section \"Explore\" you can discover more interesting programs from people all over the world." = "By switching to the section \"Explore\" you can discover more interesting programs from people all over the world.";
 
 /* No comment provided by engineer. */
 "Camera Roll" = "Camera Roll";
@@ -213,6 +216,12 @@
 
 /* No comment provided by engineer. */
 "Copy program" = "Copy program";
+
+/* No comment provided by engineer. */
+"Create & Remix" = "Create & Remix";
+
+/* No comment provided by engineer. */
+"Create an account" = "Create an account";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -881,9 +890,6 @@
 "Please pick an item" = "Please pick an item";
 
 /* No comment provided by engineer. */
-"Please register below" = "Please register below";
-
-/* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
@@ -1256,9 +1262,6 @@
 "Unselect All" = "Unselect All";
 
 /* No comment provided by engineer. */
-"Upcoming version" = "Upcoming version";
-
-/* No comment provided by engineer. */
 "Upload" = "Upload";
 
 /* No comment provided by engineer. */
@@ -1325,9 +1328,6 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
-
-/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1349,7 +1349,7 @@
 "Yesterday" = "Yesterday";
 
 /* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world." = "You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.";
 
 /* No comment provided by engineer. */
 "You have already downloaded this program!" = "You have already downloaded this program!";

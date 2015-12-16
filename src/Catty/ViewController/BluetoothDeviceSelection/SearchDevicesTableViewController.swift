@@ -61,10 +61,11 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         cell.textLabel?.text = peripheral.name
         cell.accessoryType = .None
         if peripheral.state == .Connected {
-            cell.textLabel?.textColor = UIColor.globalTintColor()
+            cell.textLabel?.textColor = UIColor.backgroundColor()
+            cell.backgroundColor = UIColor.globalTintColor()
             cell.userInteractionEnabled = false
         } else {
-            cell.textLabel?.textColor = UIColor.lightGrayColor()
+            cell.textLabel?.textColor = UIColor.globalTintColor()
             cell.userInteractionEnabled = true
         }
 

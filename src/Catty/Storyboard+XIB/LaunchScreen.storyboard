@@ -14,11 +14,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.0" green="0.1450980392" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.094117647058823528" green="0.6470588235294118" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.6588235294" green="0.87450980389999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.1450980392" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.094117647058823528" green="0.6470588235294118" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.6588235294" green="0.87450980389999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.67843137249999996" green="0.93333333330000001" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -50,8 +50,8 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.0" green="0.1450980392" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.6588235294" green="0.87450980389999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.094117647058823528" green="0.6470588235294118" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JM2-42-yL4" firstAttribute="top" secondItem="6ac-A4-f6Q" secondAttribute="bottom" constant="20" id="0J2-vl-epK"/>
                             <constraint firstItem="6ac-A4-f6Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9ab-O8-5d3" secondAttribute="leadingMargin" constant="10" id="PFc-Kh-mQx"/>

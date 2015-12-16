@@ -59,7 +59,7 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
 {
     [super viewDidLoad];
     self.view.frame = CGRectMake(0,0, DESCRIPTION_WIDTH, DESCRIPTION_HEIGHT);
-    self.view.backgroundColor = [UIColor backgroundColor];
+    self.view.backgroundColor = [UIColor whiteGrayColor];
     [self initHeader];
     [self initTextView];
     [self initButtons];
@@ -80,7 +80,7 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
     self.header = [UILabel new];
     self.header.text = kLocalizedSetDescription;
 
-    self.header.textColor =  [UIColor lightTextTintColor];
+    self.header.textColor =  [UIColor globalTintColor];
     self.header.font =  [UIFont systemFontOfSize:16.0f];
     [self.header sizeToFit];
     self.header.frame = CGRectMake(self.view.frame.size.width / 2 - self.header.frame.size.width / 2, 20, self.header.frame.size.width, self.header.frame.size.height);
@@ -90,9 +90,9 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
 
 -(void)initTextView
 {
-    self.descriptionTextView.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.descriptionTextView.keyboardAppearance = UIKeyboardAppearanceDefault;
     self.descriptionTextView.backgroundColor = [UIColor whiteColor];
-    self.descriptionTextView.textColor = [UIColor lightTextTintColor];
+    self.descriptionTextView.textColor = [UIColor textTintColor];
     self.descriptionTextView.tintColor = [UIColor globalTintColor];
     self.descriptionTextView.frame = CGRectMake(20, self.header.frame.origin.y+self.header.frame.size.height+30, self.view.frame.size.width-40, 100);
     

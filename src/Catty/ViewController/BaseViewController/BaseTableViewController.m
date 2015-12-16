@@ -227,8 +227,8 @@
 {
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
-    self.navigationController.toolbar.barTintColor = [UIColor backgroundColor];
+    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 
@@ -388,6 +388,8 @@
 
 -(void)startSceneWithVC:(ScenePresenterViewController*)vc
 {
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }

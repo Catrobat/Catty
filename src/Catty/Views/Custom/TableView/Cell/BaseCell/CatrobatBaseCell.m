@@ -54,7 +54,7 @@
 - (UIView*)createSelectedBackground
 {
     UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor backgroundColor]];
+    [bgColorView setBackgroundColor:[UIColor navTintColor]];
     return bgColorView;
 }
 

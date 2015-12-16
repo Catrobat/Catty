@@ -84,7 +84,7 @@
     self.searchController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y,[Util screenWidth],self.searchController.searchBar.frame.size.height);
-    self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x, self.searchBar.frame.origin.y,[Util screenWidth],self.searchBar.frame.size.height);
+//    self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x, self.searchBar.frame.origin.y,[Util screenWidth],self.searchBar.frame.size.height);
 
     self.tableView.backgroundColor = [UIColor backgroundColor];
     self.checkSearch = YES;
@@ -104,7 +104,7 @@
 //    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightTextTintColor]];
 // [iOS9] DO NOT REMOVE!!!
 // [iOS8] DO NOT REMOVE!!!
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightTextTintColor]];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor textTintColor]];
 // [iOS8] DO NOT REMOVE!!!
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
@@ -194,7 +194,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
         cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier forIndexPath:indexPath];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadingCellIdentifier];
-            cell.textLabel.textColor = [UIColor lightTextTintColor];
+            cell.textLabel.textColor = [UIColor buttonTintColor];
             cell.textLabel.text = @"";
         }
     }
@@ -303,17 +303,15 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor backgroundColor];
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y,[Util screenWidth],[Util screenHeight] - self.navigationController.navigationBar.frame.size.height - self.navigationController.toolbar.frame.size.height - self.searchBar.frame.size.height);
 }
 
 - (void)initNoSearchResultsLabel
 {
-    self.noSearchResultsLabel = [[UILabel alloc] init];
-    self.noSearchResultsLabel.text = kLocalizedNoSearchResults;
+    self.noSearchResultsLabel = [[UILabel alloc] initWithFrame:self.view.frame];
+    [self.noSearchResultsLabel setText:kLocalizedNoSearchResults];
     self.noSearchResultsLabel.textAlignment = NSTextAlignmentCenter;
-    self.noSearchResultsLabel.textColor = [UIColor lightTextTintColor];
+    self.noSearchResultsLabel.textColor = [UIColor globalTintColor];
     self.noSearchResultsLabel.tintColor = [UIColor globalTintColor];
-    self.noSearchResultsLabel.frame = self.view.frame;
     self.noSearchResultsLabel.hidden = YES;
     [self.view addSubview:self.noSearchResultsLabel];
 }

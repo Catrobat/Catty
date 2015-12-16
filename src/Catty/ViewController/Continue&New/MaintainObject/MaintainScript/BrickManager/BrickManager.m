@@ -217,10 +217,8 @@
 - (CGSize)sizeForBrick:(NSString*)brickName
 {
     CGSize size = CGSizeZero;
-    if (IS_IPHONE5 || IS_IPHONE) {
-        NSNumber *height = [_brickHeightDictionary objectForKey:brickName];
-        size = CGSizeMake(UIScreen.mainScreen.bounds.size.width, [height floatValue]);
-    }
+    NSNumber *height = [_brickHeightDictionary objectForKey:brickName];
+    size = CGSizeMake(UIScreen.mainScreen.bounds.size.width, [height floatValue]);
     return size;
 }
 

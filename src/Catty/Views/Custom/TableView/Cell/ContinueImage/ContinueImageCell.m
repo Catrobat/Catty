@@ -32,7 +32,7 @@
 
 - (void)configureImageCell
 {
-    self.titleLabel.textColor = [UIColor lightTextTintColor];
+    self.titleLabel.textColor = [UIColor buttonTintColor];
 }
 
 @end

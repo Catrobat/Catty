@@ -28,7 +28,7 @@
 
 @property(nonatomic, strong) IBOutlet UIButton *record;
 @property (nonatomic, assign) BOOL isRecording;
-@property (nonatomic,weak) SoundsTableViewController *soundsTableViewController;
+@property (nonatomic,weak) id<SoundDelegate> delegate;
 
 - (IBAction)recordClicked;
 

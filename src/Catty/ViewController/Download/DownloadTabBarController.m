@@ -45,12 +45,15 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedExplore;
-    self.tabBar.barTintColor = [UIColor backgroundColor];
+    self.tabBar.barTintColor = [UIColor tabBarColor];
     self.tabBar.barStyle = UIBarStyleDefault;
-    self.tabBar.tintColor = [UIColor globalTintColor];
+    self.tabBar.tintColor = [UIColor tabTintColor];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-                                                      NSForegroundColorAttributeName : [UIColor globalTintColor]
+                                                      NSForegroundColorAttributeName : [UIColor tabTintColor]
                                                       } forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+                                                        NSForegroundColorAttributeName : [UIColor backgroundColor]
+                                                        } forState:UIControlStateNormal];
   
 }
 

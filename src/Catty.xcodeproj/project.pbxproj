@@ -161,6 +161,7 @@
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F16DC1BE7467D000D18BE /* ResourceHelper.m */; };
+		921670FC1C182F9300144D6E /* CatrobatAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921670FB1C182F9300144D6E /* CatrobatAlertController.m */; };
 		921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */; };
 		921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46761BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift */; };
 		921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46771BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift */; };
@@ -180,6 +181,8 @@
 		922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922FE8E21B96430D005A19FA /* Default-568h@2x.png */; };
 		923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginViewController.m */; };
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
+		925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925819831C0206AA003247A9 /* SceneMenuView.xib */; };
+		925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */; };
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
 		926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroTests.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
@@ -354,7 +357,6 @@
 		92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */; };
 		92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */; };
 		92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */; };
-		92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31111A24DEB300093DA7 /* BaseWebViewController.m */; };
 		92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */; };
 		92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311B1A24DEB300093DA7 /* LookImageViewController.m */; };
 		92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */; };
@@ -380,7 +382,6 @@
 		92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */; };
 		92FF32671A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */; };
 		92FF32681A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */; };
-		92FF32751A24E2F400093DA7 /* CatrobatAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A81A24E2F400093DA7 /* CatrobatAlertController.m */; };
 		92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322B1A24E2F400093DA7 /* CreateView.m */; };
 		92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322D1A24E2F400093DA7 /* RoundBorderedButton.m */; };
 		92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32301A24E2F400093DA7 /* LoadingView.m */; };
@@ -900,8 +901,6 @@
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
-		4C9E2D26198F62D800455B77 /* IBActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IBActionSheet.license; sourceTree = "<group>"; };
-		4C9E2D28198F635B00455B77 /* AHKActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AHKActionSheet.license; sourceTree = "<group>"; };
 		4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LXReorderableCollectionViewFlowLayout.license; sourceTree = "<group>"; };
 		4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TTTAttributedLabel.license; sourceTree = "<group>"; };
 		4C9E2D2E198F63FB00455B77 /* FBShimmering.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FBShimmering.license; sourceTree = "<group>"; };
@@ -1010,6 +1009,8 @@
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		920F16DB1BE7467D000D18BE /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceHelper.h; path = ResourceHelper/ResourceHelper.h; sourceTree = "<group>"; };
 		920F16DC1BE7467D000D18BE /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceHelper.m; path = ResourceHelper/ResourceHelper.m; sourceTree = "<group>"; };
+		921670FA1C182F9300144D6E /* CatrobatAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertController.h; sourceTree = "<group>"; };
+		921670FB1C182F9300144D6E /* CatrobatAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertController.m; sourceTree = "<group>"; };
 		921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeSizeByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeSizeByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46761BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeXByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeXByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46771BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeYByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeYByNBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -1070,6 +1071,9 @@
 		9235038D1BA707DE00021F6A /* BaseLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLoginViewController.m; sourceTree = "<group>"; };
 		9235038E1BA707DE00021F6A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9235038F1BA707DE00021F6A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		925819831C0206AA003247A9 /* SceneMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SceneMenuView.xib; sourceTree = "<group>"; };
+		925819861C0208E8003247A9 /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
+		925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		926197EF1BF3249E006D1A61 /* ArduinoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoTests.swift; sourceTree = "<group>"; };
 		926197F31BF32500006D1A61 /* PhiroTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroTests.swift; sourceTree = "<group>"; };
 		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
@@ -1409,8 +1413,6 @@
 		92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCollectionViewController.m; sourceTree = "<group>"; };
 		92FF310E1A24DEB300093DA7 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		92FF31101A24DEB300093DA7 /* BaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebViewController.h; sourceTree = "<group>"; };
-		92FF31111A24DEB300093DA7 /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
 		92FF31131A24DEB300093DA7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
 		92FF311A1A24DEB300093DA7 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
@@ -2699,8 +2701,6 @@
 			isa = PBXGroup;
 			children = (
 				4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */,
-				4C9E2D26198F62D800455B77 /* IBActionSheet.license */,
-				4C9E2D28198F635B00455B77 /* AHKActionSheet.license */,
 				4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */,
 				4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */,
 				4C9E2D2E198F63FB00455B77 /* FBShimmering.license */,
@@ -2937,6 +2937,15 @@
 			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
+		921670F91C182F9300144D6E /* CatrobatAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				921670FA1C182F9300144D6E /* CatrobatAlertController.h */,
+				921670FB1C182F9300144D6E /* CatrobatAlertController.m */,
+			);
+			path = CatrobatAlertController;
+			sourceTree = "<group>";
+		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -2975,6 +2984,15 @@
 			);
 			name = Upload/Login;
 			path = Upload;
+			sourceTree = "<group>";
+		};
+		925819851C0208E8003247A9 /* CALayer+XibConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				925819861C0208E8003247A9 /* CALayer+XibConfiguration.h */,
+				925819871C0208E8003247A9 /* CALayer+XibConfiguration.m */,
+			);
+			path = "CALayer+XibConfiguration";
 			sourceTree = "<group>";
 		};
 		926198001BF48384006D1A61 /* BluetoothMocks */ = {
@@ -3421,6 +3439,7 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
 				92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */,
 				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
@@ -4036,8 +4055,6 @@
 				92FF310D1A24DEB300093DA7 /* BaseCollectionViewController.m */,
 				92FF310E1A24DEB300093DA7 /* BaseTableViewController.h */,
 				92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */,
-				92FF31101A24DEB300093DA7 /* BaseWebViewController.h */,
-				92FF31111A24DEB300093DA7 /* BaseWebViewController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -4223,6 +4240,7 @@
 		92FF31A21A24E2F400093DA7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				921670F91C182F9300144D6E /* CatrobatAlertController */,
 				92289A441A42F2A3008C771A /* ComboBox */,
 				92FF31A31A24E2F400093DA7 /* CatrobatActionSheet */,
 				92FF31A61A24E2F400093DA7 /* CatrobatAlertController */,
@@ -4382,6 +4400,7 @@
 		92FF32C11A24E33B00093DA7 /* Storyboard+XIB */ = {
 			isa = PBXGroup;
 			children = (
+				925819831C0206AA003247A9 /* SceneMenuView.xib */,
 				92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */,
 				92FF32C21A24E33B00093DA7 /* iPhone.storyboard */,
 				92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */,
@@ -5748,6 +5767,7 @@
 			files = (
 				CA2D44431B12305400A3B53D /* Swell.plist in Resources */,
 				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
+				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				92DFB05F1A38960C00FA9B0F /* nko_brightness_guide@2x.png in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
@@ -6044,6 +6064,7 @@
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
+				921670FC1C182F9300144D6E /* CatrobatAlertController.m in Sources */,
 				AA74EFEE1BC05B5F00D1E954 /* LedOffBrick.m in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
@@ -6212,7 +6233,7 @@
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
-				92FF32751A24E2F400093DA7 /* CatrobatAlertController.m in Sources */,
+				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
@@ -6261,7 +6282,6 @@
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
-				92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */,
 				92DFB0591A38960C00FA9B0F /* ImagePicker.m in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,

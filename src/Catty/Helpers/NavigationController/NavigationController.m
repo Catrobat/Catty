@@ -21,6 +21,8 @@
  */
 
 #import "NavigationController.h"
+#import "PaintViewController.h"
+#import "ScriptCollectionViewController.h"
 
 @implementation NavigationController
 
@@ -33,7 +35,23 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
+}
+
+- (BOOL)shouldAutorotate
+{
+    id currentViewController = self.topViewController;
+    
+    if ([currentViewController isKindOfClass:[PaintViewController class]])
+        return NO;
+    if ([currentViewController isKindOfClass:[ScenePresenterViewController class]])
+        return NO;
+    if ([currentViewController isKindOfClass:[ScriptCollectionViewController class]]) {
+        ScriptCollectionViewController *scv = (ScriptCollectionViewController*)currentViewController;
+        return ![scv.presentedViewController isKindOfClass:[FormulaEditorViewController class]];
+    }
+
+    return YES;
 }
 
 

@@ -92,6 +92,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.tabBarController.tabBar.translucent = YES;
+    self.navigationController.navigationBar.translucent =YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

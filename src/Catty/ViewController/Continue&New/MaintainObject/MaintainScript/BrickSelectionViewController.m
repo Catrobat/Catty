@@ -96,9 +96,9 @@
 {
     UIPageControl *pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    pageControl.currentPageIndicatorTintColor = [UIColor globalTintColor];
-    pageControl.pageIndicatorTintColor = [UIColor lightTextTintColor];
-    pageControl.backgroundColor = [UIColor clearColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
+    pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
+    pageControl.backgroundColor = [UIColor toolBarColor];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController
@@ -115,7 +115,7 @@
                                                                                            target:self
                                                                                            action:@selector(dismiss:)];
     
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor navTintColor];
 }
 
 - (void)updateBrickCategoryViewControllerDelegate

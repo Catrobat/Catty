@@ -27,7 +27,7 @@
 #define kLocalizedSkip NSLocalizedString(@"Skip", nil)
 #define kLocalizedWelcomeToPocketCode NSLocalizedString(@"Welcome to Pocket Code", nil)
 #define kLocalizedExploreApps NSLocalizedString(@"Explore apps", nil)
-#define kLocalizedUpcomingVersion NSLocalizedString(@"Upcoming version", nil)
+#define kLocalizedCreateAndEdit NSLocalizedString(@"Create & Remix", nil)
 #define kLocalizedNewProgram NSLocalizedString(@"New Program", nil)
 #define kLocalizedNewMessage NSLocalizedString(@"New Message", nil)
 #define kLocalizedBackground NSLocalizedString(@"Background", nil)
@@ -273,14 +273,15 @@
 #define kLocalizedImagePickerSourceNotAvailable NSLocalizedString(@"Image source not available",nil)
 #define kLocalizedBluetoothPoweredOff NSLocalizedString(@"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.",nil)
 #define kLocalizedBluetoothNotAvailable NSLocalizedString(@"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.",nil)
+#define kLocalizedDisconnectBluetoothDevices NSLocalizedString(@"All Bluetooth devices successfully disconnected", nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
 //************************************************************************************************************
 
 #define kLocalizedWelcomeDescription NSLocalizedString(@"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.", nil)
-#define kLocalizedExploreDescription NSLocalizedString(@"By switching to the section \"Explore\" you can discover much more interesting stuff.", nil)
-#define kLocalizedUpcomingVersionDescription NSLocalizedString(@"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.", nil)
+#define kLocalizedExploreDescription NSLocalizedString(@"By switching to the section \"Explore\" you can discover more interesting programs from people all over the world.", nil)
+#define kLocalizedCreateAndEditDescription NSLocalizedString(@"You are also able to build your own apps, remix existing ones and share them with your friends and other exciting people around the world.", nil)
 #define kLocalizedAboutPocketCodeDescription NSLocalizedString(@"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:", nil)
 #define kLocalizedTermsOfUseDescription NSLocalizedString(@"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.", nil)
 #define kLocalizedNotEnoughFreeMemoryDescription NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
@@ -406,7 +407,7 @@
 #define kLocalizedUsername NSLocalizedString(@"Username", nil)
 #define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)
-#define kLocalizedRegister NSLocalizedString(@"Register", nil)
+#define kLocalizedRegister NSLocalizedString(@"Create an account", nil)
 #define kLocalizedLoginOrRegister NSLocalizedString(@"Login/Register", nil)
 #define kLocalizedUploadProgram NSLocalizedString(@"Upload Program", nil)
 #define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username is necessary!", nil)
@@ -424,8 +425,8 @@
 #define kLocalizedTitleLogin NSLocalizedString(@"GOOD TO SEE YOU",nil)
 #define kLocalizedTitleRegister NSLocalizedString(@"GOOD TO SEE YOU",nil)
 
-#define kLocalizedInfoLogin NSLocalizedString(@"Welcome back, please login below",nil)
-#define kLocalizedInfoRegister NSLocalizedString(@"Please register below",nil)
+#define kLocalizedInfoLogin NSLocalizedString(@"Login",nil)
+#define kLocalizedInfoRegister NSLocalizedString(@"Register",nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
