@@ -122,7 +122,7 @@
     if (contentSize.height < minHeight) {
         contentSize.height = minHeight;
     }
-    
+    contentSize.height += 30.0f;
     [self.scrollViewOutlet setContentSize:contentSize];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.scrollViewOutlet.userInteractionEnabled = YES;
