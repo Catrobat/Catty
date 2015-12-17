@@ -310,7 +310,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     imageCell.indexPath = indexPath;
-
     static NSString *playIconName = @"ic_media_play";
     static NSString *stopIconName = @"ic_media_pause";
 
@@ -397,6 +396,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return UITableViewCellEditingStyleDelete;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+   [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    if (indexPath.row >= [self.object.soundList count]) {
+        return;
+    }
+    [self playSound:imageCell andIndexPath:indexPath];
+}
+
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
@@ -453,7 +463,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (indexPath.row >= [self.object.soundList count]) {
         return;
     }
+    [self playSound:imageCell andIndexPath:indexPath];
+    
+    
+}
 
+-(void)playSound:(UITableViewCell<CatrobatImageCell>*)imageCell andIndexPath:(NSIndexPath*)indexPath
+{
     // acquire lock
     @synchronized(self) {
         if (self.silentDetector.isMute) {
@@ -492,7 +508,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 if (isPlayable) {
                     return;
                 }
-
+                
                 // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [Util alertWithText:kLocalizedUnableToPlaySoundDescription];
