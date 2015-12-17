@@ -83,6 +83,7 @@
 @property (nonatomic,strong) HandTool* handTool;
 @property (nonatomic,strong) ResizeViewManager* resizeViewManager;
 @property (nonatomic,strong) PointerTool* pointerTool;
+@property (nonatomic,strong) UIImageView* currentToolIndicator;
 
 @end
 
@@ -120,7 +121,7 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
-    
+    [self.view bringSubviewToFront:self.currentToolIndicator];
 }
 
 
@@ -225,7 +226,12 @@
 
     [self.helper addSubview:self.saveView];
     [self.helper addSubview:self.drawView];
-    
+    self.currentToolIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
+    self.currentToolIndicator.image = [UIImage imageNamed:@"brush"];
+    self.currentToolIndicator.alpha = 0.4f;
+    self.currentToolIndicator.backgroundColor = [UIColor lightGrayColor];
+    self.currentToolIndicator.layer.cornerRadius = 10.0f;
+    [self.view addSubview:self.currentToolIndicator];
 }
 
 - (void)setupTools
@@ -509,39 +515,58 @@
     switch (self.activeAction) {
         case brush:
             self.drawGesture.enabled = YES;
+            self.currentToolIndicator.image = [UIImage imageNamed:@"brush"];
             break;
         case eraser:
             [self eraserAction];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"eraser"];
             break;
         case resize:
             [self resizeInitAction];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"crop"];
             break;
         case pipette:
             [self initPipette];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"pipette"];
             break;
         case mirror:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"mirror"];
             break;
         case image:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"image_select"];
             break;
         case stamp:
             [self initStamp];
             [self.resizeViewManager showResizeView];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"stamp"];
             break;
         case line:
             self.lineToolGesture.enabled = YES;
+            self.currentToolIndicator.image = [UIImage imageNamed:@"line"];
             break;
         case rectangle:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"rect"];
+            [self.resizeViewManager showResizeView];
+            [self initShape];
+            break;
         case ellipse:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"circle"];
             [self.resizeViewManager showResizeView];
             [self initShape];
             break;
         case rotate:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"rotate"];
             break;
         case fillTool:
             [self initFillTool];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"fill"];
             break;
         case pointer:
             [self initPointerTool];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"pointer"];
+            break;
+        case zoom:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"zoom"];
             break;
         default:
             break;
