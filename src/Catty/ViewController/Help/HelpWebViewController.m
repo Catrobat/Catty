@@ -94,6 +94,7 @@
     self.touchHelperView = [[UIView alloc] initWithFrame:CGRectZero];
     self.touchHelperView.backgroundColor = UIColor.clearColor;
      _progressView.tintColor = [UIColor navTintColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)initUrlTitleLabel
