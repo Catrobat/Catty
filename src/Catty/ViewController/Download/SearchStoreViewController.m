@@ -124,6 +124,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self loadingIndicator:NO];
     [super viewWillDisappear:animated];
 }
 
