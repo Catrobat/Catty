@@ -187,6 +187,7 @@
 #define kLocalizedDeleteThisObject NSLocalizedString(@"Delete this object", nil)
 #define kLocalizedDeleteThisProgram NSLocalizedString(@"Delete this program", nil)
 #define kLocalizedDeleteThisLook NSLocalizedString(@"Delete this look", nil)
+#define kLocalizedDeleteThisBackground NSLocalizedString(@"Delete this background", nil)
 #define kLocalizedDeleteThisSound NSLocalizedString(@"Delete this sound", nil)
 #define kLocalizedCopyProgram NSLocalizedString(@"Copy program", nil)
 #define kLocalizedRenameProgram NSLocalizedString(@"Rename Program", nil)
