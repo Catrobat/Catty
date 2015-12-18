@@ -131,6 +131,7 @@
 
 + (NSString*)getName:(Operator)operator
 {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
     NSString* name;
     switch (operator) {
         case LOGICAL_AND:
@@ -173,7 +174,7 @@
             name = @"DIVIDE";
             break;
         case DECIMAL_MARK:
-            name = @".";
+            name = [formatter decimalSeparator];
             break;
             
         default:
@@ -188,6 +189,7 @@
 {
     NSString* name;
     Operator operator = [self getOperatorByValue:value];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
     
     switch (operator) {
         case LOGICAL_AND:
@@ -230,7 +232,7 @@
             name = @"/";
             break;
         case DECIMAL_MARK:
-            name = @".";
+            name = [formatter decimalSeparator];
             break;
             
         default:
@@ -244,6 +246,7 @@
 
 + (Operator)getOperatorByValue:(NSString*)name
 {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
     if([name isEqualToString:@"LOGICAL_AND"]) {
         return LOGICAL_AND;
     }
@@ -282,6 +285,9 @@
     }
     if([name isEqualToString:@"LOGICAL_NOT"]) {
         return LOGICAL_NOT;
+    }
+    if([name isEqualToString:[formatter decimalSeparator]]) {
+        return DECIMAL_MARK;
     }
     
 //    NSError(@"Unknown Operator: %@", name);
