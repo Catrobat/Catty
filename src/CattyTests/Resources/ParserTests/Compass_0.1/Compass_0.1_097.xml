@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.5</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Simpler is impossible ;-)</description>
+    <deviceName>HTC Sensation Z710e</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>15.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Compass 0.1</programName>
+    <remixOf></remixOf>
+    <screenHeight>960</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>540</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/825</url>
+    <userHandle>hej-wickie-hej</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="Needle">
+      <lookList>
+        <look name="Needle">
+          <fileName>e22fb012de7c5bf48d829c712ffc3eef_look.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="PointInDirectionBrick">
+              <formulaList>
+                <formula category="DEGREES">
+                  <type>SENSOR</type>
+                  <value>COMPASS_DIRECTION</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

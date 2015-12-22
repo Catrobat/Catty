@@ -1,0 +1,1175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.2-691-debug</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Credits: jga8gkimberleyt, and of course the excellent cast of Gossip Girl </description>
+    <deviceName>Nexus 7</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>18.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Gossip Girl</programName>
+    <remixOf></remixOf>
+    <screenHeight>1824</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1200</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/983</url>
+    <userHandle>juliety</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="look">
+          <fileName>99b9e54bd214b155344566b63475597d_look.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>2c98a806a15d2159191da8918abb4a33_GoodMorning.mp3</fileName>
+          <name>GoodMorning</name>
+        </sound>
+        <sound>
+          <fileName>dfec8b5fa48008272c35434a6c7681af_SerenaIntro.mp3</fileName>
+          <name>SerenaIntro</name>
+        </sound>
+        <sound>
+          <fileName>a2377765b9cdc70a8a5512281d625eb9_SerenaBlairBFF.mp3</fileName>
+          <name>SerenaBlairBFF</name>
+        </sound>
+        <sound>
+          <fileName>69e47c4cfe0cbe94637fb1991f0b680a_JennyHumphrey.mp3</fileName>
+          <name>JennyHumphrey</name>
+        </sound>
+        <sound>
+          <fileName>16884343dfa15ccb5fd2e8efe96d363f_XOXO.mp3</fileName>
+          <name>XOXO</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>start</broadcastMessage>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>9</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>top story</broadcastMessage>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[2]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>11.7</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>BFF</broadcastMessage>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[3]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>7.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>Serena and Blair</broadcastMessage>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>4</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>Spotlight on ...</broadcastMessage>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[4]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>8</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>send me all the...</broadcastMessage>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[5]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>7.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>xoxo, gossip girl</broadcastMessage>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Cast photo">
+      <lookList>
+        <look name="cast photo">
+          <fileName>eddb20003fcc8c045985b95a2f04c5da_castphoto.jpg</fileName>
+        </look>
+        <look name="cast photo 2">
+          <fileName>b68b18748fab030314b0347f0ab3729a_gossipcast.jpg</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>start</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>top story</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+          </brickList>
+          <receivedMessage>send me all the...</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>xoxo, gossip girl</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Gossip Girl">
+      <lookList>
+        <look name="Gossip-Girl">
+          <fileName>a80502c8806510d2679c5525e4201f51_Gossip-Girl.jpg</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetYBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>600</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>300</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeSizeByNBrick">
+              <formulaList>
+                <formula category="SIZE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0.333</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+          </brickList>
+          <receivedMessage>start</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>title, disappear</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Serena">
+      <lookList>
+        <look name="Serena returning">
+          <fileName>d50f9f23f14c51dc0726b7e1648772f6_blake_spot.jpg</fileName>
+        </look>
+        <look name="Serena lively">
+          <fileName>748f0ea5cc3cecd3fddb9820643c68c9_blake-lively.jpeg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.9</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>400</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>title, disappear</broadcastMessage>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>160</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>4</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>3.3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>learning the hard way ...</broadcastMessage>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>Serena, disappear</broadcastMessage>
+            </brick>
+          </brickList>
+          <receivedMessage>top story</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <type>NUMBER</type>
+                  <value>4</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Serena, disappear</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetXBrick">
+              <formulaList>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>300</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>Serena and Blair</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Spotlight on ...</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="learning the hard way">
+      <lookList>
+        <look name="was learning ...">
+          <fileName>0b30f207bd2aee86dafb50616febb9a5_1379922363-picsay.jpg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>650</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>330</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>80</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>learning the hard way ...</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Serena, disappear</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="BFF">
+      <lookList>
+        <look name="pals">
+          <fileName>cf24247f20f410f80b0a95952d6dbf38_blair_pals.jpg</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PointInDirectionBrick">
+              <formulaList>
+                <formula category="DEGREES">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>90</value>
+                  </leftChild>
+                  <rightChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>7</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>100</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MULT</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>7</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+          </brickList>
+          <receivedMessage>BFF</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Serena and Blair</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Blair">
+      <lookList>
+        <look name="Blair">
+          <fileName>1fb3fbbd53eff26041935afbf27b3636_leighton-meester-gossip-girl-1261591368.jpg.png</fileName>
+        </look>
+        <look name="white">
+          <fileName>b7657e15fb4f96ed61816db79ad5a9bc_leighton-meester-gossip-girl-1261591368.jpg.png</fileName>
+        </look>
+        <look name="Blair 2">
+          <fileName>d1349eabfd22c0528c561c680c49e996_leighton-meester-gossip-girl-1261591368.jpg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetXBrick">
+              <formulaList>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>300</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>171</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.9</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <receivedMessage>Serena and Blair</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Spotlight on ...</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.9</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>150</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>250</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>put to the test</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Blair, disappear</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Taylor">
+      <lookList>
+        <look name="Taylor">
+          <fileName>80b9c8808fad711bb1b813574a219c8e_taylor_momsen.jpg.png</fileName>
+        </look>
+        <look name="brady">
+          <fileName>6b13a45500810f71214370c85b1936d3_brady.jpg</fileName>
+        </look>
+        <look name="britney">
+          <fileName>293712ba072282dbfa6726f886997fd2_britney.jpg</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>250</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>put to the test</broadcastMessage>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeSizeByNBrick">
+              <formulaList>
+                <formula category="SIZE_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeXByNBrick">
+              <formulaList>
+                <formula category="X_POSITION_CHANGE">
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>Blair, disappear</broadcastMessage>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>300</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.55</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <receivedMessage>Spotlight on ...</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>send me all the...</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="full white">
+      <lookList>
+        <look name="full white">
+          <fileName>1b857664a1f2b3b0f8c698346a93e25a_taylor_momsen.jpg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <receivedMessage>Blair, disappear</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>250</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GoNStepsBackBrick">
+              <formulaList>
+                <formula category="STEPS">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeSizeByNBrick">
+              <formulaList>
+                <formula category="SIZE_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeXByNBrick">
+              <formulaList>
+                <formula category="X_POSITION_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+          </brickList>
+          <receivedMessage>put to the test</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>xoxo, gossip girl</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="xoxo, gossip girl">
+      <lookList>
+        <look name="white">
+          <fileName>b181d04e2ac10ec9bcbcc5eb553dcf72_xoxo_2.jpg.png</fileName>
+        </look>
+        <look name="x">
+          <fileName>ff754f9bd1caa301a4942c4c38c7ebe1_xoxo_2.jpg.png</fileName>
+        </look>
+        <look name="xo">
+          <fileName>d721a76cf9bb5bc0721071b2bf299a5c_xoxo_2.jpg.png</fileName>
+        </look>
+        <look name="xox">
+          <fileName>453ce4db3a3f2dde9aeeb06783a2a473_xoxo_2.jpg.png</fileName>
+        </look>
+        <look name="xoxo,">
+          <fileName>459ac6c0b9b73a2ebc648d30789b2532_xoxo_2.jpg.png</fileName>
+        </look>
+        <look name="xoxo, gossip girl">
+          <fileName>4890ab64fbb458baa77a5642ef507da5_xoxo_2.jpg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>250</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.35</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[4]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[5]"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[6]"/>
+            </brick>
+          </brickList>
+          <receivedMessage>xoxo, gossip girl</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
