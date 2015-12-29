@@ -608,14 +608,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
       
-    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
-    {
-        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
-       {
-            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
-            }
-        }
+//    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
+//    {
+//        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
+//       {
+//            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
+//           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
+//            }
+//        }
     }
     for(int i = 0; i < [self.toolTypeButton count]; i++) {
         [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
