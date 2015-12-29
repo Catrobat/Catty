@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
 		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
@@ -773,6 +774,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
@@ -4437,6 +4439,7 @@
 			isa = PBXGroup;
 			children = (
 				AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */,
+				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
 			);
 			name = PlayerEngine;
 			sourceTree = "<group>";
@@ -5953,6 +5956,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,

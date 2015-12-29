@@ -385,7 +385,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            canceledAction:nil
                                withObject:indexPath
                                    target:self
-                             confirmTitle:kLocalizedDeleteThisLook
+                             confirmTitle:(self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook)
                            confirmMessage:kLocalizedThisActionCannotBeUndone];
     }];
     return @[deleteAction, moreAction];
