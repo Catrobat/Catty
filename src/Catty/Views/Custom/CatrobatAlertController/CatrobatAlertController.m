@@ -185,6 +185,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
         [self.delegate willPresentActionSheet:self];
     }
@@ -195,6 +196,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
         [self.delegate didPresentActionSheet:self];
     }
@@ -218,6 +220,7 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(actionSheetDidDisappear:)]) {
         [self.delegate actionSheetDidDisappear:self];
     }
