@@ -42,7 +42,24 @@ class BluetoothDevicesTableViewController:UITableViewController{
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
+        var peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
+        if self.isKindOfClass(SearchDevicesTableViewController){
+            peri = CentralManager.sharedInstance.peripherals[indexPath.row];
+        } else if self.isKindOfClass(KnownDevicesTableViewController) {
+            let knownController = self as! KnownDevicesTableViewController
+            peri = knownController.knownDevices[indexPath.row]
+            var found = false
+            for peripheral in CentralManager.sharedInstance.peripherals {
+                if peripheral.id == peri.id {
+                    peri = peripheral
+                    found = true
+                }
+            }
+            if !found {
+                return
+            }
+        }
+        
         BluetoothService.swiftSharedInstance.selectionManager = self
         if peri.state == CBPeripheralState.Connected {
             self.deviceConnected(peri)

@@ -61,7 +61,7 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     
     
     //MARK: SCAN
-    public func getKnownPeripheralsWithIdentifiers(uuids:[NSUUID])-> FutureStream<[Peripheral]>  {
+    public func getKnownPeripheralsWithIdentifiers(uuids:[NSUUID])-> [CBPeripheral] {
         return self.helper.retrieveKnownPeripheralsWithIdentifiers(self, uuids: uuids)
     }
     
@@ -217,8 +217,8 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         self.cbCentralManager.scanForPeripheralsWithServices(uuids,options:nil)
     }
     
-    public func retrievePeripheralsWithIdentifiers(uuids:[NSUUID]){
-        self.cbCentralManager.retrievePeripheralsWithIdentifiers(uuids)
+    public func retrievePeripheralsWithIdentifiers(uuids:[NSUUID]) -> [CBPeripheral]{
+        return self.cbCentralManager.retrievePeripheralsWithIdentifiers(uuids)
     }
     public func retrieveConnectedPeripheralsWithServices(uuids:[CBUUID]){
         self.cbCentralManager.retrieveConnectedPeripheralsWithServices(uuids)
@@ -265,10 +265,8 @@ public class CentralManagerHelper<CM where CM:CMWrapper,
         return self.afterPeripheralDiscoveredPromise.future
     }
     
-    public func retrieveKnownPeripheralsWithIdentifiers(central:CM,uuids:[NSUUID])-> FutureStream<[CM.PeripheralWrap]>  {
-        central.retrievePeripheralsWithIdentifiers(uuids)
-        self.afterKnownPeripheralDiscoveredPromise = StreamPromise<[CM.PeripheralWrap]>()
-        return self.afterKnownPeripheralDiscoveredPromise.future
+    public func retrieveKnownPeripheralsWithIdentifiers(central:CM,uuids:[NSUUID])-> [CBPeripheral] {
+        return central.retrievePeripheralsWithIdentifiers(uuids)
     }
     
     public func retrieveConnectedPeripheralsWithServices(central:CM,uuids:[CBUUID])-> FutureStream<[CM.PeripheralWrap]> {

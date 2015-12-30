@@ -64,7 +64,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, titleForSectionAtIndex index: Int) -> String {
-        return [klocalizedBluetoothSearch][index];//
+        return [klocalizedBluetoothKnown,klocalizedBluetoothSearch][index];//
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, viewControllerForPageAtIndex index: Int) -> UIViewController {

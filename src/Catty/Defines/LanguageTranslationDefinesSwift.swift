@@ -23,6 +23,7 @@
 import Foundation
 
 let klocalizedBluetoothSearch = NSLocalizedString("Search", comment: "bluetooth")
+let klocalizedBluetoothKnown = NSLocalizedString("Known devices", comment: "bluetooth")
 let klocalizedBluetoothSelectPhiro = NSLocalizedString("Select Phiro", comment: "bluetooth")
 let klocalizedBluetoothSelectArduino = NSLocalizedString("Select Arduino", comment: "bluetooth")
 let klocalizedBluetoothConnectionNotPossible = NSLocalizedString("Connection not possible", comment: "bluetooth")
