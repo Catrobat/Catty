@@ -55,7 +55,7 @@ public protocol CMWrapper {
     var state       : CBCentralManagerState {get}
     
     func scanForPeripheralsWithServices(uuids:[CBUUID]?)
-    func retrievePeripheralsWithIdentifiers(uuids:[NSUUID])
+    func retrievePeripheralsWithIdentifiers(uuids:[NSUUID]) -> [CBPeripheral]
     func retrieveConnectedPeripheralsWithServices(uuids:[CBUUID])
     func stopScan()
 }

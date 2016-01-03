@@ -22,6 +22,7 @@
 
 import UIKit
 import BluetoothHelper
+import CoreBluetooth
 
 class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
     
@@ -40,37 +41,7 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         }
 
     }
-    
-    func getKnownDevices(){
-        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
-            self.knownDevices = peripherals
-            self.updateWhenActive()
-        }
-        let afterTimeout = {(error:NSError) -> Void in
-            
-        }
-        let bleDevicesData = NSUserDefaults.standardUserDefaults().objectForKey("BLEDevices") as? NSData
-        let future : FutureStream<[Peripheral]>
-        if let bleDevices = bleDevicesData {
-            let bleDevicesArray = NSKeyedUnarchiver.unarchiveObjectWithData(bleDevices) as? [NSUUID]
-            
-            if let knownBleDevices = bleDevicesArray {
-                var knownBLEArray:[NSUUID] = Array()
-                for id:NSUUID in knownBleDevices {
-                    print(id)
-                    knownBLEArray.append(id)
-                }
-                future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(knownBLEArray)
-            }else{
-                future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
-            }
-        } else {
-            future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
-        }
-        future.onSuccess(afterPeripheralDiscovered)
-        future.onFailure(afterTimeout)
-    }
-
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,10 +61,41 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
-        cell.textLabel?.text = String(format: "%li", knownDevices[indexPath.row].name)
+        cell.textLabel?.textColor = UIColor.globalTintColor()
+        cell.userInteractionEnabled = true
+        
+        cell.textLabel?.text = knownDevices[indexPath.row].name
 
         return cell
+    }
+    
+    func getKnownDevices(){
+//        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
+//            self.knownDevices = peripherals
+//            self.updateWhenActive()
+//        }
+//        let afterTimeout = {(error:NSError) -> Void in
+//            
+//        }
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        var knownCBPeripherals:[CBPeripheral]
+        if let tempArray : [AnyObject] = userdefaults.arrayForKey("KnownBluetoothDevices") {
+            let stringArray:[NSString] = tempArray as! [NSString]
+            var UUIDArray:[NSUUID] = [NSUUID]()
+            for id:NSString in stringArray {
+                UUIDArray.append(NSUUID(UUIDString: id as String)!)
+            }
+            knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(UUIDArray)
+        } else {
+            knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
+        }
+    
+        for peri in knownCBPeripherals {
+            let peripheral:Peripheral = Peripheral(cbPeripheral: peri, advertisements: [String:String](), rssi: 0)
+            peripheral.discoverAllServices()
+            self.knownDevices.append(peripheral)
+        }
+        self.updateWhenActive()
     }
     
 

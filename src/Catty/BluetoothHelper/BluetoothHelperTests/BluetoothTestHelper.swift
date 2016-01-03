@@ -60,8 +60,8 @@ class TestCentralManager : CMWrapper {
         
     }
     
-    func retrievePeripheralsWithIdentifiers(uuids: [NSUUID]) {
-        
+    func retrievePeripheralsWithIdentifiers(uuids: [NSUUID]) -> [CBPeripheral] {
+        return [CBPeripheral]()
     }
     
 }
