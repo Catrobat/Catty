@@ -985,22 +985,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
     {
-        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
-            
-            PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
-            allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-            
-            PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
-            [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-                NSDebug(@"asset %@", asset);
-                if (*stop) {
-                    [self presentImagePicker:pickerType];
-                    return;
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusNotDetermined) {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                switch (status) {
+                    case PHAuthorizationStatusAuthorized:
+                        [self presentImagePicker:pickerType];
+                        break;
+                    case PHAuthorizationStatusRestricted:
+                        break;
+                    case PHAuthorizationStatusDenied:
+                        break;
+                    default:
+                        break;
                 }
-                *stop = TRUE;
             }];
         }else{
-            state = YES;
+          state = YES;
         }
     }else if (pickerType == UIImagePickerControllerSourceTypeCamera)
     {
