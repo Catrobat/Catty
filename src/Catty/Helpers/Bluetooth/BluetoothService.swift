@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -167,52 +167,24 @@ public class BluetoothService:NSObject {
     }
     
     func updateKnownDevices(id:NSUUID){
-//        let userdefaults = NSUserDefaults.standardUserDefaults()
-//        if let testArray : [AnyObject] = userdefaults.arrayForKey("KnownBluetoothDevicesTest") {
-//            var objectArray:[NSUUID] = testArray as! [NSUUID]
-//            if objectArray.contains(id){
-//                
-//            }else{
-//                objectArray.append(id)
-//                userdefaults.setObject(objectArray, forKey: "KnownBluetoothDevicesTest")
-//            }
-//            
-//        } else {
-//            var array:[NSUUID] = [NSUUID]()
-//            array.append(id)
-//            userdefaults.setObject(array, forKey: "KnownBluetoothDevicesTest")
-//            
-//        }
-//        userdefaults.synchronize()
-        let bleDevicesData = NSUserDefaults.standardUserDefaults().objectForKey("BLEDevices") as? NSData
-        
-        if let bleDevices = bleDevicesData {
-            let bleDevicesArray = NSKeyedUnarchiver.unarchiveObjectWithData(bleDevices) as? [NSUUID]
-            
-            if let knownBleDevices = bleDevicesArray {
-                var knownBleDevicesArray = knownBleDevices
-                if knownBleDevicesArray.contains(id){
-                    
-                } else {
-                    knownBleDevicesArray.append(id)
-                    let knownBleDevicesData = NSKeyedArchiver.archivedDataWithRootObject(knownBleDevicesArray)
-                    NSUserDefaults.standardUserDefaults().setObject(knownBleDevicesData, forKey: "BLEDevices")
-                }
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        if let tempArray : [AnyObject] = userdefaults.arrayForKey("KnownBluetoothDevices") {
+            var StringArray:[NSString] = tempArray as! [NSString]
+            if StringArray.contains(id.UUIDString){
+                
             }else{
-                var knownBleDevicesArray:[NSUUID] = []
-                knownBleDevicesArray.append(id)
-                let knownBleDevicesData = NSKeyedArchiver.archivedDataWithRootObject(knownBleDevicesArray)
-                NSUserDefaults.standardUserDefaults().setObject(knownBleDevicesData, forKey: "BLEDevices")
- 
+                StringArray.append(id.UUIDString)
+                userdefaults.setObject(StringArray, forKey: "KnownBluetoothDevices")
             }
+            
         } else {
-            var knownBleDevicesArray:[NSUUID] = []
-            knownBleDevicesArray.append(id)
-            let knownBleDevicesData = NSKeyedArchiver.archivedDataWithRootObject(knownBleDevicesArray)
-            NSUserDefaults.standardUserDefaults().setObject(knownBleDevicesData, forKey: "BLEDevices")
+            var array:[NSString] = [NSString]()
+            array.append(id.UUIDString)
+            userdefaults.setObject(array, forKey: "KnownBluetoothDevices")
+            
         }
+        userdefaults.synchronize()
     }
-    
     
     func setArduinoDevice(peripheral:Peripheral){
         
