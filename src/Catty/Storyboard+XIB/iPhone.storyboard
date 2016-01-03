@@ -335,7 +335,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="5kb-7k-9jX" customClass="DarkBlueGradientImageCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="5kb-7k-9jX" customClass="DarkBlueGradientImageCell">
                                 <rect key="frame" x="0.0" y="86" width="600" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5kb-7k-9jX" id="PfH-xi-cdo">
@@ -376,7 +376,7 @@
                                     <outlet property="titleLabel" destination="ZwD-1L-RNz" id="mcQ-kh-u2W"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="mXY-Ha-4Xg" customClass="DarkBlueGradientImageDetailCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="mXY-Ha-4Xg" customClass="DarkBlueGradientImageDetailCell">
                                 <rect key="frame" x="0.0" y="165" width="600" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mXY-Ha-4Xg" id="uN7-jN-mKf">
@@ -1778,9 +1778,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwC-96-opT">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="5M3-h7-vWe"/>
+                                    <constraint firstAttribute="width" constant="200" id="5M3-h7-vWe"/>
                                     <constraint firstAttribute="width" secondItem="JwC-96-opT" secondAttribute="height" multiplier="1:1" id="Flj-5s-MHG"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="micro">
@@ -1792,8 +1792,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-IA-6xb" customClass="TimerLabel">
-                                <rect key="frame" x="279" y="209" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="275.5" y="151" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1804,7 +1804,7 @@
                             <constraint firstItem="uDu-IA-6xb" firstAttribute="centerX" secondItem="jIJ-1a-DdX" secondAttribute="centerX" id="1DJ-Js-8hE"/>
                             <constraint firstItem="JwC-96-opT" firstAttribute="centerX" secondItem="jIJ-1a-DdX" secondAttribute="centerX" id="Fjx-b1-sNW"/>
                             <constraint firstItem="JwC-96-opT" firstAttribute="centerY" secondItem="jIJ-1a-DdX" secondAttribute="centerY" id="Ife-fa-6JC"/>
-                            <constraint firstItem="JwC-96-opT" firstAttribute="top" secondItem="uDu-IA-6xb" secondAttribute="bottom" constant="20" id="Ufr-ZF-tji"/>
+                            <constraint firstItem="JwC-96-opT" firstAttribute="top" secondItem="uDu-IA-6xb" secondAttribute="bottom" constant="25" id="Ufr-ZF-tji"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="oiC-0f-8Wa" appends="YES" id="wbs-bF-BX9"/>
