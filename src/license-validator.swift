@@ -120,6 +120,11 @@ let license3rdPartyDict : [String : License] = [
     "MYBlurIntroductionView" : .MIT,
     "MYIntroductionPanel" : .MIT,
     "TTTAttributedLabel" : .MIT,
+    "MXPagerView" : .MIT,
+    "MXPagerViewController" : .MIT,
+    "MXParallaxHeader" : .MIT,
+    "MXScrollView" : .MIT,
+    "MXScrollViewController" : .MIT,
 ]
 
 let licenseCheckDirs : [String : License] = [
