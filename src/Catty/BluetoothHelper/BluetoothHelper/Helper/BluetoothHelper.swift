@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,7 +55,7 @@ public protocol CMWrapper {
     var state       : CBCentralManagerState {get}
     
     func scanForPeripheralsWithServices(uuids:[CBUUID]?)
-    func retrievePeripheralsWithIdentifiers(uuids:[NSUUID])
+    func retrievePeripheralsWithIdentifiers(uuids:[NSUUID]) -> [CBPeripheral]
     func retrieveConnectedPeripheralsWithServices(uuids:[CBUUID])
     func stopScan()
 }
