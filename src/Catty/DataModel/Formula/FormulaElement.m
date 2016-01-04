@@ -380,7 +380,7 @@
             break;
         }
         case LENGTH: {
-            result = [self interpretFunctionLENGTH:left forSprite:sprite];
+            result = [self interpretFunctionLENGTH:leftId forSprite:sprite];
             break;
         }
         case LETTER: {
@@ -470,7 +470,6 @@
     
     if([right isKindOfClass:[NSNumber class]])
     {
-        
         rightString = [NSString stringWithFormat:@"%g", [right doubleValue]];
     }else if ([right isKindOfClass:[NSString class]])
     {
@@ -491,9 +490,19 @@
     return returnValue;
 }
 
-- (id)interpretFunctionLENGTH:(double)left forSprite:(SpriteObject *)sprite
+- (id)interpretFunctionLENGTH:(id)left forSprite:(SpriteObject *)sprite
 {
-    NSString *left_string = [NSString stringWithFormat:@"%lf", left];
+    NSString *leftString;
+    if([left isKindOfClass:[NSNumber class]])
+    {
+        leftString = [NSString stringWithFormat:@"%g", [left doubleValue]];
+    }else if ([left isKindOfClass:[NSString class]])
+    {
+        leftString = left;
+    }else{
+        leftString = @"";
+    }
+
     if(self.leftChild == nil)
     {
         return [NSNumber numberWithDouble:0.0f];
@@ -508,7 +517,7 @@
     }
     
     
-    return [NSNumber numberWithDouble:[left_string length]];
+    return [NSNumber numberWithDouble:[leftString length]];
 }
 
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
