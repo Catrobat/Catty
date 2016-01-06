@@ -165,11 +165,7 @@
       <userBricks/>
     </object>
     <object name="Pointer">
-      <lookList>
-        <look name="fred-a">
-          <fileName>d7410176a6f9ea4720d928298c17a020_fred-a.png</fileName>
-        </look>
-      </lookList>
+      <lookList/>
       <soundList/>
       <scriptList>
         <script type="StartScript">
@@ -296,9 +292,6 @@
     <object name="Airplane">
       <lookList>
         <look name="look1">
-          <fileName>6BC61066A43990301DB003201BD71ED1_look.png</fileName>
-        </look>
-        <look name="look1_copy">
           <fileName>6BC61066A43990301DB003201BD71ED1_look.png</fileName>
         </look>
       </lookList>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
+		4C06A2A91C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A81C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m */; };
+		4C06A2AB1C3D5F2C00E9234C /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2AA1C3D5F2C00E9234C /* XMLSerializerTests.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
@@ -178,8 +181,6 @@
 		4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */; };
 		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
 		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
-		4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */; };
-		4CEF0CF21B9C655B003C9B20 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -798,6 +799,9 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
+		4C06A2A81C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
+		4C06A2AA1C3D5F2C00E9234C /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
@@ -1039,8 +1043,6 @@
 		4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_096.xml; sourceTree = "<group>"; };
 		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
 		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
-		4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
-		4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -2142,6 +2144,57 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */ = {
+			isa = PBXGroup;
+			children = (
+				4C0DC6661C3D5CE5006D6691 /* XMLParserTests */,
+				4C0DC6691C3D5CE5006D6691 /* XMLSerializerTests */,
+			);
+			name = CatrobatLanguage0.97;
+			path = "Parser & Serialization/CatrobatLanguage0.97";
+			sourceTree = "<group>";
+		};
+		4C0DC6661C3D5CE5006D6691 /* XMLParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C0DC6671C3D5CE5006D6691 /* BlackBox Tests */,
+			);
+			path = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4C0DC6671C3D5CE5006D6691 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C0DC6691C3D5CE5006D6691 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C0DC66A1C3D5CE5006D6691 /* BlackBox Tests */,
+				4C0DC66C1C3D5CE5006D6691 /* Unit Tests */,
+			);
+			path = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		4C0DC66A1C3D5CE5006D6691 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C06A2A81C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C0DC66C1C3D5CE5006D6691 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C06A2AA1C3D5F2C00E9234C /* XMLSerializerTests.m */,
+			);
+			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2833,6 +2886,7 @@
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 				4C2EE3DA1B5554D7006DE9B8 /* CatrobatLanguage0.95 */,
 				4CEF0CE71B9C655B003C9B20 /* CatrobatLanguage0.96 */,
+				4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */,
 			);
 			name = "Parser & Serialization";
 			sourceTree = "<group>";
@@ -2943,7 +2997,6 @@
 			isa = PBXGroup;
 			children = (
 				4CEF0CE81B9C655B003C9B20 /* XMLParserTests */,
-				4CEF0CEB1B9C655B003C9B20 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.96;
 			path = "CattyTests/Parser & Serialization/CatrobatLanguage0.96";
@@ -2963,31 +3016,6 @@
 				4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */,
 			);
 			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4CEF0CEB1B9C655B003C9B20 /* XMLSerializerTests */ = {
-			isa = PBXGroup;
-			children = (
-				4CEF0CEC1B9C655B003C9B20 /* BlackBox Tests */,
-				4CEF0CEE1B9C655B003C9B20 /* Unit Tests */,
-			);
-			path = XMLSerializerTests;
-			sourceTree = "<group>";
-		};
-		4CEF0CEC1B9C655B003C9B20 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */,
-			);
-			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4CEF0CEE1B9C655B003C9B20 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */,
-			);
-			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		921670F91C182F9300144D6E /* CatrobatAlertController */ = {
@@ -6060,7 +6088,6 @@
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
-				4CEF0CF21B9C655B003C9B20 /* XMLSerializerTests.m in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
@@ -6072,6 +6099,7 @@
 				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
+				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
@@ -6091,7 +6119,7 @@
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
-				4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */,
+				4C06A2A91C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
@@ -6133,6 +6161,7 @@
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
+				4C06A2AB1C3D5F2C00E9234C /* XMLSerializerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
