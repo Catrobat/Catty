@@ -898,7 +898,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 0) {
-        return [[self.variableSource objectAtIndex:row] title];
+        if (row < self.variableSource.count) {
+           return [[self.variableSource objectAtIndex:row] title];
+        }
     }
     return @"";
 }
@@ -907,11 +909,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
     UIColor *color = [UIColor globalTintColor];
-    
-    VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
-    if([pickerData isLabel])
-        color = [UIColor globalTintColor];
-    
+    if (row < self.variableSource.count) {
+        VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+        if([pickerData isLabel])
+            color = [UIColor globalTintColor];
+    }
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;
 }
@@ -919,9 +921,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if(component == 0) {
-        VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
-        if([pickerData isLabel])
-            [pickerView selectRow:(row + 1) inComponent:component animated:NO];
+        if (row < self.variableSource.count) {
+            VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+            if([pickerData isLabel])
+                [pickerView selectRow:(row + 1) inComponent:component animated:NO];
+        }
     }
     self.currentComponent = component;
 }
