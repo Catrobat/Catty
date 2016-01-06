@@ -1,6 +1,6 @@
 #!/usr/bin/env xcrun swift -I .
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -120,6 +120,11 @@ let license3rdPartyDict : [String : License] = [
     "MYBlurIntroductionView" : .MIT,
     "MYIntroductionPanel" : .MIT,
     "TTTAttributedLabel" : .MIT,
+    "MXPagerView" : .MIT,
+    "MXPagerViewController" : .MIT,
+    "MXParallaxHeader" : .MIT,
+    "MXScrollView" : .MIT,
+    "MXScrollViewController" : .MIT,
 ]
 
 let licenseCheckDirs : [String : License] = [

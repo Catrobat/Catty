@@ -47,7 +47,7 @@ typedef enum ActionType actionType;
 //@property (nonatomic, assign) NSInteger tag; // leads to warning, because this property is already implemented in superclass (UIView)
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, assign) NSInteger height;
-- (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray*)array offset:(CGPoint)offset navBarOffset:(NSInteger)navbarOffset;
+- (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray*)array screenHeight:(NSInteger)screenHeight navBarOffset:(NSInteger)navbarOffset;
 
 - (void)showInView:(UIView*)view;
 - (void)dismiss;

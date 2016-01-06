@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@
     if (contentSize.height < minHeight) {
         contentSize.height = minHeight;
     }
-    
+    contentSize.height += 30.0f;
     [self.scrollViewOutlet setContentSize:contentSize];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.scrollViewOutlet.userInteractionEnabled = YES;

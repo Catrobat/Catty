@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -58,18 +58,7 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }
-    func getKnownDevices(){
-        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
-            self.updateWhenActive()
-        }
-        let afterTimeout = {(error:NSError) -> Void in
-            
-        }
-        
-        let future : FutureStream<[Peripheral]> = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
-        future.onSuccess(afterPeripheralDiscovered)
-        future.onFailure(afterTimeout)
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

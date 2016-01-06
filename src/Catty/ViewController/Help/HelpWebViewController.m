@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -94,6 +94,7 @@
     self.touchHelperView = [[UIView alloc] initWithFrame:CGRectZero];
     self.touchHelperView.backgroundColor = UIColor.clearColor;
      _progressView.tintColor = [UIColor navTintColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)initUrlTitleLabel

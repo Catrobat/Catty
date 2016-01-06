@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2016 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -608,14 +608,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
       
-    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
-    {
-        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
-       {
-            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
-            }
-        }
+//    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
+//    {
+//        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
+//       {
+//            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
+//           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
+//            }
+//        }
     }
     for(int i = 0; i < [self.toolTypeButton count]; i++) {
         [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -898,7 +898,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 0) {
-        return [[self.variableSource objectAtIndex:row] title];
+        if (row < self.variableSource.count) {
+           return [[self.variableSource objectAtIndex:row] title];
+        }
     }
     return @"";
 }
@@ -907,11 +909,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
     UIColor *color = [UIColor globalTintColor];
-    
-    VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
-    if([pickerData isLabel])
-        color = [UIColor globalTintColor];
-    
+    if (row < self.variableSource.count) {
+        VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+        if([pickerData isLabel])
+            color = [UIColor globalTintColor];
+    }
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;
 }
@@ -919,9 +921,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if(component == 0) {
-        VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
-        if([pickerData isLabel])
-            [pickerView selectRow:(row + 1) inComponent:component animated:NO];
+        if (row < self.variableSource.count) {
+            VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+            if([pickerData isLabel])
+                [pickerView selectRow:(row + 1) inComponent:component animated:NO];
+        }
     }
     self.currentComponent = component;
 }

@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UINavigationBar *navBar;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UITableView *aTableView;
-@property (nonatomic, assign) CGPoint offset;
+@property (nonatomic, assign) NSInteger screenHeight;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
 @property (nonatomic, assign) NSInteger navBarOffset;
@@ -32,14 +32,14 @@
 
 @dynamic tag;
 
-- (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray *)array offset:(CGPoint)offset navBarOffset:(NSInteger)navbarOffset
+- (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray *)array screenHeight:(NSInteger)screenHeight navBarOffset:(NSInteger)navbarOffset
 {
     if (self = [super initWithFrame:frame])
     {
         self.currentVale = value;
         self.items = [NSArray arrayWithArray:array];
         self.title = title;
-        self.offset = offset;
+        self.screenHeight = screenHeight;
         self.navBarOffset = navbarOffset;
         
         [self initializeControlWithFrame:frame];
@@ -103,7 +103,7 @@
 - (void)showInView:(UIView *)view
 {
     //add mask
-    self.maskView = [[UIView alloc] initWithFrame:CGRectMake(view.bounds.origin.x, view.bounds.origin.y, view.bounds.size.width, view.bounds.size.height+500)];
+    self.maskView = [[UIView alloc] initWithFrame:CGRectMake(view.bounds.origin.x, view.bounds.origin.y, view.bounds.size.width, view.bounds.size.height+self.height)];
     [_maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0]];
     [view insertSubview:_maskView atIndex:0];
     
@@ -117,15 +117,15 @@
     [_maskView addGestureRecognizer:_tapGesture];
     
     [UIView animateWithDuration:kAnimationDuration delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-        [self setFrame:CGRectMake(0, SCREEN_HEIGHT - self.height - 10, self.frame.size.width, self.height)];
+        [self setFrame:CGRectMake(0, self.screenHeight - self.height - 10, self.frame.size.width, self.height)];
         [self->_maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]];
     } completion:^(BOOL finished){
         //scroll to currentValue
         [UIView animateWithDuration:0.2 animations:^{
-            [self setFrame:CGRectMake(0, SCREEN_HEIGHT - self.height + 5, self.frame.size.width, self.height)];
+            [self setFrame:CGRectMake(0, self.screenHeight - self.height + 5, self.frame.size.width, self.height)];
         } completion:^(BOOL finished){
             [UIView animateWithDuration:0.1 animations:^{
-                [self setFrame:CGRectMake(0, SCREEN_HEIGHT - self.height, self.frame.size.width, self.height)];
+                [self setFrame:CGRectMake(0, self.screenHeight - self.height, self.frame.size.width, self.height)];
             } completion:^(BOOL finished){
                 //configure your settings after view animation completion
             }];
