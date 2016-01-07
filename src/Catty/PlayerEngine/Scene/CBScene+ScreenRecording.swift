@@ -120,7 +120,6 @@ extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
     func previewController(previewController: RPPreviewViewController,
     didFinishWithActivityTypes activityTypes: Set<String>
     ) {
-        // TODO: handle activityTypes??
         previewViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }

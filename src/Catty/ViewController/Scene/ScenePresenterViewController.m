@@ -408,6 +408,7 @@
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[FlashHelper sharedFlashHandler] pause];
+    [[FlashHelper sharedFlashHandler] reset];
     previousScene.userInteractionEnabled = YES;
     [self.loadingView hide];
     [self.parentViewController.navigationController setToolbarHidden:NO];
@@ -441,7 +442,6 @@
     [[FlashHelper sharedFlashHandler] pause];
     [[FlashHelper sharedFlashHandler] reset];
 
-    // FIXME: UGLY HACK BUT ACTUALLY WORKS...
     [self freeRessources];
     NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
     [controllers removeLastObject];
