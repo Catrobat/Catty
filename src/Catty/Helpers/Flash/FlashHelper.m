@@ -58,12 +58,11 @@ static FlashHelper *sharedFlashHandler = nil;
 {
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(self.flashQueue, ^{
-        weakSelf.session = [[AVCaptureSession alloc] init];
-        [weakSelf.session beginConfiguration];
+        [weakSelf setupSession];
         
         AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         
-        if ([device hasTorch] && [device hasFlash]){
+        if ([device hasTorch] && [device hasFlash] && sharedFlashHandler.wasTurnedOn != FlashON){
             [device lockForConfiguration:nil];
             [device setTorchMode:AVCaptureTorchModeOn];
             [device setFlashMode:AVCaptureFlashModeOn];
@@ -86,10 +85,10 @@ static FlashHelper *sharedFlashHandler = nil;
 {
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(self.flashQueue, ^{
-        if (! weakSelf.session.isRunning) {
-            return;
-        }
-
+//        if (! weakSelf.session.isRunning) {
+//            return;
+//        }
+        [weakSelf setupSession];
         AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 
         if ([device hasTorch] && [device hasFlash]){
@@ -97,10 +96,17 @@ static FlashHelper *sharedFlashHandler = nil;
             [device setTorchMode:AVCaptureTorchModeOff];
             [device setFlashMode:AVCaptureFlashModeOff];
             [device unlockForConfiguration];
+            [weakSelf.session commitConfiguration];
             [weakSelf.session stopRunning];
             sharedFlashHandler.wasTurnedOn = FlashOFF;
         }
     });
+}
+
+-(void)setupSession
+{
+    self.session = [[AVCaptureSession alloc] init];
+    [self.session beginConfiguration];
 }
 
 - (void)reset
@@ -110,7 +116,9 @@ static FlashHelper *sharedFlashHandler = nil;
 
 - (void)pause
 {
-    if (self.session.isRunning) {
+    [self setupSession];
+    if (self.session) {
+        [self.session commitConfiguration];
         [self.session stopRunning];
         sharedFlashHandler.wasTurnedOn = FlashOFF;
     }
