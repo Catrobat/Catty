@@ -25,7 +25,7 @@ final class CBScheduler: CBSchedulerProtocol {
     // MARK: - Properties
     var logger: CBLogger
 //    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
-    private(set) var running = false
+    var running = false
     private let _broadcastHandler: CBBroadcastHandlerProtocol
 
     private var _spriteNodes = [String:CBSpriteNode]()
@@ -79,7 +79,9 @@ final class CBScheduler: CBSchedulerProtocol {
     func runNextInstructionOfContext(context: CBScriptContextProtocol) {
         assert(NSThread.currentThread().isMainThread)
         context.state = .Runnable
+        if(self.running == true) {
         runNextInstructionsGroup()
+        }
     }
 
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
@@ -137,7 +139,10 @@ final class CBScheduler: CBSchedulerProtocol {
                                 : nextActionElements.first!.1
                 spriteNode.runAction(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .Runnable }
-                    self?.runNextInstructionsGroup()
+                    if(self?.running == true) {
+                        self?.runNextInstructionsGroup()
+                    }
+                    
                 }
             }
 
@@ -153,7 +158,9 @@ final class CBScheduler: CBSchedulerProtocol {
                 let action = SKAction.customActionWithDuration(durationTime, actionBlock: actionClosure)
                 spriteNode.runAction(action) { [weak self] in
                     context.state = .Runnable
+                    if(self?.running == true) {
                     self?.runNextInstructionsGroup()
+                    }
                 }
             }
         }
@@ -216,7 +223,9 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
-            runNextInstructionsGroup()
+            if(running == true) {
+                runNextInstructionsGroup()
+            }
             return
         }
 
