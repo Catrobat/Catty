@@ -25,6 +25,8 @@
 #define FlashUninitialized 10000
 #define FlashON 10001
 #define FlashOFF 10002
+#define FlashPause 10003
+#define FlashResume 10004
 
 @interface FlashHelper : NSObject
 
@@ -35,6 +37,7 @@
 - (void)turnOff;
 - (void)reset;
 - (void)pause;
+- (void)resume;
 - (BOOL)isAvailable;
 
 @end
