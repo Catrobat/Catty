@@ -221,7 +221,6 @@
     
 }
 
-
 - (void)testEqual
 {
     NSMutableArray *firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:@"1" withOperator:EQUAL secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"1"];
@@ -252,7 +251,11 @@
     [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
     
     
+    secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1,555.555" withOperator:NOT_EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"1555.555"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
+    secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"1.0"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
 }
 
 - (void)testNotEqual
@@ -498,26 +501,5 @@
     firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
     [self binaryOperatorTest:firstTerm withExpectedResult:nil];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

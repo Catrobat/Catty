@@ -115,18 +115,30 @@
         [internTokenList removeObjectAtIndex:0];
         internTokenListIndex++;
     }
-    
-    //self.generatedExternFormulaString = [self.generatedExternFormulaString stringByAppendingString:@" "];
 }
 
 - (NSString *)generateExternStringFromToken:(InternToken *)internToken
 {
     NSString *returnValue;
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:[[internToken getTokenStringValue] stringByReplacingOccurrencesOfString:@" " withString:@""]];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
 
     switch ([internToken getInternTokenType]) {
         case TOKEN_TYPE_NUMBER:
 
+            if(![[NSDecimalNumber notANumber] isEqual:number])
+            {
+                NSString *returnString = [formatter stringFromNumber:[NSNumber numberWithDouble:[number doubleValue]]];
+                if([[internToken getTokenStringValue] hasSuffix:@"."])
+                {
+                    returnString = [returnString stringByAppendingString:[formatter decimalSeparator]];
+                }
+                return returnString;
+            } else {
                 return [internToken getTokenStringValue];
+            }
             
             break;
             
