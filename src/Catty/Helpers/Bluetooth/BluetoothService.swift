@@ -186,6 +186,11 @@ public class BluetoothService:NSObject {
         userdefaults.synchronize()
     }
     
+    func removeKnownDevices() {
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+         userdefaults.setObject([NSString](), forKey: "KnownBluetoothDevices")
+    }
+    
     func setArduinoDevice(peripheral:Peripheral){
         
         let arduino:ArduinoDevice = ArduinoDevice(peripheral:peripheral)
