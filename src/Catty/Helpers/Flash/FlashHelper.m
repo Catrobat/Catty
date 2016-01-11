@@ -53,72 +53,70 @@ static FlashHelper *sharedFlashHandler = nil;
     }
     return sharedFlashHandler;
 }
-
+#pragma mark - API
 - (void)turnOn
 {
-    __weak __typeof__(self) weakSelf = self;
-    dispatch_async(self.flashQueue, ^{
-        weakSelf.session = [[AVCaptureSession alloc] init];
-        [weakSelf.session beginConfiguration];
-        
-        AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        
-        if ([device hasTorch] && [device hasFlash]){
-            [device lockForConfiguration:nil];
-            [device setTorchMode:AVCaptureTorchModeOn];
-            [device setFlashMode:AVCaptureFlashModeOn];
-            [device unlockForConfiguration];
-            
-            AVCaptureDeviceInput * flashInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
-            if (flashInput){
-                [weakSelf.session addInput:flashInput];
-            }
-            AVCaptureVideoDataOutput * output = [[AVCaptureVideoDataOutput alloc] init];
-            [weakSelf.session addOutput:output];
-            [weakSelf.session commitConfiguration];
-            [weakSelf.session startRunning];
-            sharedFlashHandler.wasTurnedOn = FlashON;
-        }
-    });
+    [self toggleFlash:FlashON];
 }
     
 - (void)turnOff
 {
-    __weak __typeof__(self) weakSelf = self;
-    dispatch_async(self.flashQueue, ^{
-        if (! weakSelf.session.isRunning) {
-            return;
-        }
-
-        AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-
-        if ([device hasTorch] && [device hasFlash]){
-            [device lockForConfiguration:nil];
-            [device setTorchMode:AVCaptureTorchModeOff];
-            [device setFlashMode:AVCaptureFlashModeOff];
-            [device unlockForConfiguration];
-            [weakSelf.session stopRunning];
-            sharedFlashHandler.wasTurnedOn = FlashOFF;
-        }
-    });
+    [self toggleFlash:FlashOFF];
 }
 
 - (void)reset
 {
-    sharedFlashHandler.wasTurnedOn = FlashUninitialized;
+    [self toggleFlash:FlashUninitialized];
 }
 
 - (void)pause
 {
-    if (self.session.isRunning) {
-        [self.session stopRunning];
-        sharedFlashHandler.wasTurnedOn = FlashOFF;
-    }
+    [self toggleFlash:FlashPause];
+}
+
+- (void)resume
+{
+    [self toggleFlash:FlashResume];
+}
+
+
+#pragma mark - Helper
+
+- (void)toggleFlash:(NSInteger)toggle
+{
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(self.flashQueue, ^{
+
+        if ((toggle == FlashON && weakSelf.wasTurnedOn != FlashPause && sharedFlashHandler.wasTurnedOn != FlashON) || toggle == FlashResume) {
+            if ([self isAvailable]){
+                AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+
+                [device lockForConfiguration:nil];
+                [device setTorchMode:AVCaptureTorchModeOn];
+                [device setFlashMode:AVCaptureFlashModeOn];
+                [device unlockForConfiguration];
+                sharedFlashHandler.wasTurnedOn = FlashON;
+            }
+        } else if (toggle == FlashOFF || toggle == FlashPause || toggle == FlashUninitialized) {
+            if ([self isAvailable]){
+                AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+                
+                [device lockForConfiguration:nil];
+                [device setTorchMode:AVCaptureTorchModeOff];
+                [device setFlashMode:AVCaptureFlashModeOff];
+                [device unlockForConfiguration];
+            }
+            if (toggle != FlashPause) {
+                sharedFlashHandler.wasTurnedOn = toggle;
+            }
+        }
+    });
+ 
 }
 
 -(BOOL)isAvailable
 {
-    AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     if ([device hasTorch] && [device hasFlash]){
         return YES;

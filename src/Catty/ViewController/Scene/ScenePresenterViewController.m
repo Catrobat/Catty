@@ -350,7 +350,7 @@
 {
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
-    [[FlashHelper sharedFlashHandler] turnOff];
+    [[FlashHelper sharedFlashHandler] pause];
     [[BluetoothService sharedInstance] pauseBluetoothDevice];
 }
 
@@ -360,7 +360,7 @@
     [[AudioManager sharedAudioManager] resumeAllSounds];
     [[BluetoothService sharedInstance] continueBluetoothDevice];
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
-        [[FlashHelper sharedFlashHandler] turnOn];
+        [[FlashHelper sharedFlashHandler] resume];
     }
 }
 
@@ -368,7 +368,7 @@
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
-        [[FlashHelper sharedFlashHandler] turnOn];
+        [[FlashHelper sharedFlashHandler] resume];
     }
     [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
@@ -407,7 +407,7 @@
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
-    [[FlashHelper sharedFlashHandler] pause];
+    [[FlashHelper sharedFlashHandler] reset];
     previousScene.userInteractionEnabled = YES;
     [self.loadingView hide];
     [self.parentViewController.navigationController setToolbarHidden:NO];
@@ -425,7 +425,7 @@
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
-    [[FlashHelper sharedFlashHandler] pause];
+    [[FlashHelper sharedFlashHandler] reset];
     previousScene.userInteractionEnabled = YES;
     [self.loadingView hide];
     [Util alertWithText:@"Lost Bluetooth Connection" delegate:self tag:kLostBluetoothConnectionTag];
@@ -438,10 +438,8 @@
     CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
-    [[FlashHelper sharedFlashHandler] pause];
     [[FlashHelper sharedFlashHandler] reset];
 
-    // FIXME: UGLY HACK BUT ACTUALLY WORKS...
     [self freeRessources];
     NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
     [controllers removeLastObject];
@@ -652,7 +650,7 @@
                                  view.paused=YES;
                                  [self pauseAction];
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
-                                     [self bounceAnimation];
+//                                     [self bounceAnimation];
                                  }
                                  
                              }];
@@ -690,7 +688,7 @@
                                  view.paused=YES;
                                  [self pauseAction];
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
-                                     [self bounceAnimation];
+//                                     [self bounceAnimation];
                                  }
 //                                 [self.scene stopScreenRecording];
                              }];
