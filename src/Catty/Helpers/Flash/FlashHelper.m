@@ -82,43 +82,29 @@ static FlashHelper *sharedFlashHandler = nil;
 
 #pragma mark - Helper
 
--(void)setupSession
-{
-    self.session = [[AVCaptureSession alloc] init];
-    [self.session beginConfiguration];
-}
-
 - (void)toggleFlash:(NSInteger)toggle
 {
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(self.flashQueue, ^{
-        [weakSelf setupSession];
-        
-        AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+
         if ((toggle == FlashON && weakSelf.wasTurnedOn != FlashPause && sharedFlashHandler.wasTurnedOn != FlashON) || toggle == FlashResume) {
             if ([self isAvailable]){
+                AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOn];
                 [device setFlashMode:AVCaptureFlashModeOn];
                 [device unlockForConfiguration];
-                AVCaptureDeviceInput * flashInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
-                if (flashInput){
-                    [weakSelf.session addInput:flashInput];
-                }
-                AVCaptureVideoDataOutput * output = [[AVCaptureVideoDataOutput alloc] init];
-                [weakSelf.session addOutput:output];
-                [weakSelf.session commitConfiguration];
-                [weakSelf.session startRunning];
                 sharedFlashHandler.wasTurnedOn = FlashON;
             }
         } else if (toggle == FlashOFF || toggle == FlashPause || toggle == FlashUninitialized) {
             if ([self isAvailable]){
+                AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+                
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOff];
                 [device setFlashMode:AVCaptureFlashModeOff];
                 [device unlockForConfiguration];
-                [weakSelf.session commitConfiguration];
-                [weakSelf.session stopRunning];
             }
             if (toggle != FlashPause) {
                 sharedFlashHandler.wasTurnedOn = toggle;
@@ -130,7 +116,7 @@ static FlashHelper *sharedFlashHandler = nil;
 
 -(BOOL)isAvailable
 {
-    AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
     if ([device hasTorch] && [device hasFlash]){
         return YES;
