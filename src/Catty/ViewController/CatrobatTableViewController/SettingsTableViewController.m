@@ -88,17 +88,17 @@
     __unsafe_unretained typeof(self) weakSelf = self;
     BluetoothService *service = [BluetoothService sharedInstance];
     
-    if ((kPhiroActivated || kArduinoActivated) && (service.phiro != nil || service.arduino != nil) ) {
+    if ((kPhiroActivated || kArduinoActivated) ) {
         [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-            
-            [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
-                cell.backgroundColor = [UIColor backgroundColor];
-                cell.mainColor = [UIColor globalTintColor];
-                cell.actionBlock = ^{
-                    [weakSelf disconnect];
-                };
-            }]];
-            
+            if((service.phiro != nil || service.arduino != nil)){
+                [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
+                    cell.backgroundColor = [UIColor backgroundColor];
+                    cell.mainColor = [UIColor globalTintColor];
+                    cell.actionBlock = ^{
+                        [weakSelf disconnect];
+                    };
+                }]];
+            }
             
             NSArray *tempArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"KnownBluetoothDevices"];
             if(tempArray.count) {
