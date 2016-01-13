@@ -79,15 +79,14 @@ final class CBScheduler: CBSchedulerProtocol {
     func runNextInstructionOfContext(context: CBScriptContextProtocol) {
         assert(NSThread.currentThread().isMainThread)
         context.state = .Runnable
-        if(self.running == true) {
         runNextInstructionsGroup()
-        }
     }
 
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
     // <<<   SCHEDULER   |   CONTROLLER  >>>
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
     func runNextInstructionsGroup() {
+        guard self.running else { return }
         // TODO: apply scheduling via StrategyPattern => selects scripts to be scheduled NOW!
         assert(NSThread.currentThread().isMainThread)
 
@@ -139,9 +138,7 @@ final class CBScheduler: CBSchedulerProtocol {
                                 : nextActionElements.first!.1
                 spriteNode.runAction(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .Runnable }
-                    if(self?.running == true) {
-                        self?.runNextInstructionsGroup()
-                    }
+                    self?.runNextInstructionsGroup()
                     
                 }
             }
@@ -158,9 +155,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 let action = SKAction.customActionWithDuration(durationTime, actionBlock: actionClosure)
                 spriteNode.runAction(action) { [weak self] in
                     context.state = .Runnable
-                    if(self?.running == true) {
                     self?.runNextInstructionsGroup()
-                    }
                 }
             }
         }
@@ -223,9 +218,7 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
-            if(running == true) {
-                runNextInstructionsGroup()
-            }
+            runNextInstructionsGroup()
             return
         }
 
