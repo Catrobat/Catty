@@ -32,116 +32,116 @@
 
 - (void)testAirFight
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Air_fight_0.5_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Air_fight_0.5_097"];
 }
 
 - (void)testInvalidAirFight
 {
-    Program *program095 = [self getProgramForXML:@"Air_fight_0.5_096"];
+    Program *program095 = [self getProgramForXML:@"Air_fight_0.5_097"];
     SpriteObject *background = (SpriteObject*)[program095.objectList objectAtIndex:0];
     background.name = @"Invalid";
-    BOOL equal = [self isProgram:program095 equalToXML:@"Air_fight_0.5_096"];
+    BOOL equal = [self isProgram:program095 equalToXML:@"Air_fight_0.5_097"];
     XCTAssertFalse(equal, @"Serialized program and XML are not equal");
 }
 
 - (void)testAirplaneWithShadow06
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Airplane_with_shadow_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Airplane_with_shadow_097"];
 }
 
 - (void)testCompass01
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Compass_0.1_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Compass_0.1_097"];
 }
 
 - (void)testDemonstration
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Demonstration_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Demonstration_097"];
 }
 
 - (void)testDrinkMoreWater
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Drink_more_water_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Drink_more_water_097"];
 }
 
 - (void)testEncapsulated
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Encapsulated_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Encapsulated_097"];
 }
 
 - (void)testFlapPacMan
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Flap_Pac_Man_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Flap_Pac_Man_097"];
 }
 
 - (void)testFlappy30
 {
-   [self testParseXMLAndSerializeProgramAndCompareXML:@"Flappy_v3.0_096"];
+   [self testParseXMLAndSerializeProgramAndCompareXML:@"Flappy_v3.0_097"];
 }
 
 - (void)testGossipGirl
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Gossip_Girl_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Gossip_Girl_097"];
 }
 
 - (void)testMemory
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Memory_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Memory_097"];
 }
 
 - (void)testMinecraftWorkInProgress
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Minecraft_Work_In_Progress_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Minecraft_Work_In_Progress_097"];
 }
 
 - (void)testMinions_
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Minions__096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Minions__097"];
 }
 
 - (void)testPongStarter
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Pong_Starter_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Pong_Starter_097"];
 }
 
 - (void)testRockPaperScissors
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Rock_paper_scissors_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Rock_paper_scissors_097"];
 }
 
 - (void)testTicTacToeMaster
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Tic_Tac_Toe_Master_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Tic_Tac_Toe_Master_097"];
 }
 
 - (void)testWordBalloonDemo
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Word_balloon_demo_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Word_balloon_demo_097"];
 }
 
 - (void)testXRayPhone
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"X_Ray_phone_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"X_Ray_phone_097"];
 }
 
 - (void)testGalaxyWar
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Galaxy_War_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Galaxy_War_097"];
 }
 
 - (void)testSkydivingSteve
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Skydiving_Steve_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Skydiving_Steve_097"];
 }
 
 - (void)testPythagoreanTheorem
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Pythagorean_Theorem_096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Pythagorean_Theorem_097"];
 }
 
 - (void)testValidProgramAllBricks
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks096"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks097"];
 }
 
 @end
