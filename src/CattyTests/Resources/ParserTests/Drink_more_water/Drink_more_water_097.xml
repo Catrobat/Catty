@@ -184,7 +184,7 @@ REMIX TIPS:
     </objectVariableList>
     <programListOfLists/>
     <programVariableList>
-      <userVariable></userVariable>
+      <userVariable>hold</userVariable>
     </programVariableList>
     <userBrickVariableList/>
   </data>

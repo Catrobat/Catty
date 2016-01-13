@@ -5675,18 +5675,23 @@
   <data>
     <objectListOfList>
       <entry>
-        <object reference="../../../../objectList/object[17]"/>
+        <object reference="../../../../objectList/object[2]"/>
         <list/>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[2]"/>
+        <object reference="../../../../objectList/object[17]"/>
         <list/>
       </entry>
     </objectListOfList>
     <objectVariableList>
       <entry>
-        <object reference="../../../../objectList/object[7]"/>
-        <list/>
+        <object reference="../../../../objectList/object[12]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick/userVariable"/>
+        </list>
       </entry>
       <entry>
         <object reference="../../../../objectList/object[11]"/>
@@ -5698,13 +5703,12 @@
         </list>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[9]"/>
-        <list>
-          <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick[2]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick/userVariable"/>
-        </list>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
       </entry>
       <entry>
         <object reference="../../../../objectList/object[15]"/>
@@ -5716,6 +5720,25 @@
         </list>
       </entry>
       <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+        </list>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[18]"/>
+        <list/>
+      </entry>
+      <entry>
         <object reference="../../../../objectList/object[13]"/>
         <list>
           <userVariable reference="../../../../../objectList/object[13]/scriptList/script/brickList/brick[2]/userVariable"/>
@@ -5725,31 +5748,7 @@
         </list>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[6]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[4]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[5]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[3]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[18]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[8]"/>
+        <object reference="../../../../objectList/object[7]"/>
         <list/>
       </entry>
       <entry>
@@ -5769,6 +5768,19 @@
         </list>
       </entry>
       <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[16]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick/userVariable"/>
+        </list>
+      </entry>
+      <entry>
         <object reference="../../../../objectList/object[14]"/>
         <list>
           <userVariable reference="../../../../../objectList/object[14]/scriptList/script/brickList/brick[2]/userVariable"/>
@@ -5778,28 +5790,16 @@
         </list>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[12]"/>
-        <list>
-          <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick[2]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[12]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[12]/scriptList/script/brickList/brick/userVariable"/>
-        </list>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[2]"/>
+        <object reference="../../../../objectList/object[9]"/>
         <list>
-          <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
-        </list>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[16]"/>
-        <list>
-          <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick[2]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[16]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
-          <userVariable reference="../../../../../objectList/object[16]/scriptList/script/brickList/brick/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[9]/scriptList/script[4]/brickList/brick[3]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[9]/scriptList/script/brickList/brick/userVariable"/>
         </list>
       </entry>
     </objectVariableList>
