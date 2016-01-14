@@ -142,8 +142,8 @@
             break;
         }
         case STRING:
-            		
-            result = [self interpretString:self.value];
+    
+            result = self.value;
             break;
             
         default:
@@ -157,80 +157,97 @@
     
 }
 
-- (id)interpretString:(NSString *)value
+- (bool) isStringDecimalNumber:(NSString *)stringValue
 {
-    if(self.parent == nil && self.type != USER_VARIABLE)
-    {
-        NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
-        
-        if(anotherValue == nil)
-        {
-            return value;
-        }else{
-            return anotherValue;
-        }
+    bool result = false;
+    
+    NSString *decimalRegex = @"^(?:|-)(?:|0|[1-9]\\d*)(?:\\.\\d*)?$";
+    NSPredicate *regexPredicate =
+    [NSPredicate predicateWithFormat:@"SELF MATCHES %@", decimalRegex];
+    
+    if ([regexPredicate evaluateWithObject: stringValue]){
+        //Matches
+        result = true;
     }
     
-    if(self.parent != nil)
-    {
-        BOOL isAParentFunction = [Functions getFunctionByValue:self.parent.value] != NO_FUNCTION;
-        if(isAParentFunction && self.parent.type == STRING)
-        {
-               if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)
-               {
-                   NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
-                   
-                   if(anotherValue == nil)
-                   {
-                       return [NSNumber numberWithDouble:0.0f];
-                   }else{
-                       return anotherValue;
-                   }
-               }
-            return value;
-        }
-        
-        if(isAParentFunction)
-        {
-            NSNumber *anotherValue = [NSNumber numberWithDouble:[value doubleValue]];
-            
-            if(anotherValue == nil)
-            {
-                return value;
-            }else{
-                return anotherValue;
-            }
-        }
-        
-        BOOL isParentAnOperator = [Operators getOperatorByValue:self.parent.value] != NO_OPERATOR;
-        
-        if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
-                                  [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
-        {
-            NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
-            NSNumber * anotherValue = nil;
-            if(![[NSDecimalNumber notANumber] isEqual:number])
-            {
-                anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
-            }
-            return anotherValue;
-        }
-    }
-    
-    if([value length] == 0)
-    {
-        return [NSNumber numberWithDouble:0.0f];
-    }
-    
-    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
-    NSNumber * anotherValue = nil;
-    if(![[NSDecimalNumber notANumber] isEqual:number])    {
-        anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
-    }
-    
-    return anotherValue;
-    
+    return result;
 }
+
+
+#pragma mark deprecated
+//- (id)interpretString:(NSString *)value
+//{
+//    if(self.parent == nil && self.type != USER_VARIABLE)
+//    {
+//        if(![self isStringDecimalNumber:self.value])
+//        {
+//            return value;
+//        }else{
+//             NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
+//            return anotherValue;
+//        }
+//    }
+//    
+//    if(self.parent != nil)
+//    {
+//        BOOL isAParentFunction = [Functions getFunctionByValue:self.parent.value] != NO_FUNCTION;
+//        if(isAParentFunction && self.parent.type == STRING)
+//        {
+//               if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)
+//               {
+//                  
+//                   
+//                if(![self isStringDecimalNumber:self.value])
+//                   {
+//                       return [NSNumber numberWithDouble:0.0f];
+//                   }else{
+//                        NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
+//                       return anotherValue;
+//                   }
+//               }
+//            return value;
+//        }
+//        
+//        if(isAParentFunction)
+//        {
+//            if(![self isStringDecimalNumber:self.value])
+//            {
+//                return value;
+//            }else{
+//                 NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
+//                return anotherValue;
+//            }
+//        }
+//        
+//        BOOL isParentAnOperator = [Operators getOperatorByValue:self.parent.value] != NO_OPERATOR;
+//        
+//        if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
+//                                  [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
+//        {
+//            NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
+//            NSNumber * anotherValue = nil;
+//            if(![[NSDecimalNumber notANumber] isEqual:number])
+//            {
+//                anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
+//            }
+//            return anotherValue;
+//        }
+//    }
+//    
+//    if([value length] == 0)
+//    {
+//        return [NSNumber numberWithDouble:0.0f];
+//    }
+//    
+//    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
+//    NSNumber * anotherValue = nil;
+//    if(![[NSDecimalNumber notANumber] isEqual:number])    {
+//        anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
+//    }
+//    
+//    return anotherValue;
+//    
+//}
 
 -(id) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
 {
@@ -239,11 +256,16 @@
     double right = 0.0f;
     id leftId = nil;
     id rightId = nil;
+    
+    //// THIS IS WHERE THE MAGIC HAPPENS!!!
     if(self.leftChild) {
         leftId =[self.leftChild interpretRecursiveForSprite:sprite];
         if([leftId isKindOfClass:[NSNumber class]])
         {
             left = [leftId doubleValue];
+        } else if ([leftId isKindOfClass:[NSString class]] && (function != LENGTH || function != JOIN))
+        {
+            // ERROR
         }
     }
     if (self.rightChild) {
@@ -251,6 +273,9 @@
         if([rightId isKindOfClass:[NSNumber class]])
         {
             right = [rightId doubleValue];
+        } else if ([leftId isKindOfClass:[NSString class]] && (function != LENGTH || function != JOIN || function != LETTER))
+        {
+            // ERROR
         }
     }
     

@@ -32,7 +32,8 @@ typedef enum {
     FORMULA_PARSER_OK = -1,
     FORMULA_PARSER_STACK_OVERFLOW = -2,
     FORMULA_PARSER_INPUT_SYNTAX_ERROR = -3,
-    FORMULA_PARSER_NO_INPUT = -4
+    FORMULA_PARSER_STRING = -4,
+    FORMULA_PARSER_NO_INPUT = -5
 } FormulaParserStatus;
 
 @interface InternFormulaParser : NSObject
