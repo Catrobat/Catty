@@ -66,9 +66,11 @@
     
     id<ScriptDataSourceDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
-        // TODO: Handle Error
         NSError *error = nil;
         [delegate scriptDataSource:self stateChanged:self.state error:error];
+        if (error) {
+            NSDebug(@"%@",error.localizedDescription);
+        }
     }
 }
 
