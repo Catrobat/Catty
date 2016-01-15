@@ -449,6 +449,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     if (! self.presentingViewController.isBeingDismissed) {
         [self.brickCellData drawBorder:NO];
+        [self setBrickCellFormulaData:self.brickCellData];
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
