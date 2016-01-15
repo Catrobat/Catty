@@ -605,7 +605,6 @@
     self.isEraser = YES;
     self.drawView.image = self.saveView.image;
     self.drawGesture.enabled = YES;
-    self.saveView.hidden = YES;
 }
 
 - (void)resizeInitAction
