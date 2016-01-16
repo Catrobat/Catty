@@ -23,7 +23,7 @@
 protocol CBSchedulerProtocol : class {
 
     // properties
-    var running:Bool { get }
+    var running:Bool { get set }
 
     // queries
     func isContextScheduled(context: CBScriptContextProtocol) -> Bool
