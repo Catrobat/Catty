@@ -78,6 +78,10 @@
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.frame =CGRectMake(0, self.toolBar.frame.size.height, self.view.frame.size.width, 40);
   self.viewChanger.selectedSegmentIndex = 0;
+  self.viewChanger.layer.cornerRadius = 0.0;
+  self.viewChanger.layer.borderColor = [UIColor globalTintColor].CGColor;
+  self.viewChanger.layer.borderWidth = 1.0f;
+  self.viewChanger.layer.masksToBounds = YES;
   self.viewChanger.tintColor = [UIColor globalTintColor];
   [self.viewChanger addTarget:self
                               action:@selector(viewChanged:)
@@ -85,7 +89,7 @@
 
   [self.view addSubview:self.viewChanger];
   self.rgbaView = [[UIView alloc] initWithFrame:CGRectMake(0, 80,self.view.frame.size.width , self.view.frame.size.height *0.45f)];
-  self.rgbaSliderView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height *0.6f,self.view.frame.size.width , self.view.frame.size.height *0.55f)];
+  self.rgbaSliderView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height *0.55f,self.view.frame.size.width , self.view.frame.size.height *0.55f)];
   self.standardColors =[[UIView alloc] initWithFrame:CGRectMake(0, 60,self.view.frame.size.width , self.view.frame.size.height)];
   [self.view addSubview:self.rgbaView];
   [self.view addSubview:self.rgbaSliderView];
