@@ -25,7 +25,7 @@ final class CBScheduler: CBSchedulerProtocol {
     // MARK: - Properties
     var logger: CBLogger
 //    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
-    private(set) var running = false
+    var running = false
     private let _broadcastHandler: CBBroadcastHandlerProtocol
 
     private var _spriteNodes = [String:CBSpriteNode]()
@@ -86,6 +86,7 @@ final class CBScheduler: CBSchedulerProtocol {
     // <<<   SCHEDULER   |   CONTROLLER  >>>
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
     func runNextInstructionsGroup() {
+        guard self.running else { return }
         // TODO: apply scheduling via StrategyPattern => selects scripts to be scheduled NOW!
         assert(NSThread.currentThread().isMainThread)
 
@@ -138,6 +139,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 spriteNode.runAction(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .Runnable }
                     self?.runNextInstructionsGroup()
+                    
                 }
             }
 

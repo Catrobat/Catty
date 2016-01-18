@@ -82,25 +82,39 @@
                 [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
             }]];
         }
-
+       
         
     }]];
     __unsafe_unretained typeof(self) weakSelf = self;
     BluetoothService *service = [BluetoothService sharedInstance];
-    if ((kPhiroActivated || kArduinoActivated) && (service.phiro != nil || service.arduino != nil) ) {
-        [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-            
-            [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
-                cell.backgroundColor = [UIColor backgroundColor];
-                cell.mainColor = [UIColor globalTintColor];
-                cell.actionBlock = ^{
-                    [weakSelf disconnect];
-                };
-            }]];
-
-        }]];
-    }
     
+    if ((kPhiroActivated || kArduinoActivated) ) {
+        [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+            if((service.phiro != nil || service.arduino != nil)){
+                [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
+                    cell.backgroundColor = [UIColor backgroundColor];
+                    cell.mainColor = [UIColor globalTintColor];
+                    cell.actionBlock = ^{
+                        [weakSelf disconnect];
+                    };
+                }]];
+            }
+            
+            NSArray *tempArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"KnownBluetoothDevices"];
+            if(tempArray.count) {
+                [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedRemoveKnownDevices key:nil handler:^(BOButtonTableViewCell *cell) {
+                    cell.backgroundColor = [UIColor backgroundColor];
+                    cell.mainColor = [UIColor globalTintColor];
+                    cell.actionBlock = ^{
+                        [weakSelf removeKnownDevices];
+                    };
+                }]];
+ 
+            }
+            
+        }]];
+
+    }
 
 	
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
@@ -174,6 +188,12 @@
 {
     [[BluetoothService sharedInstance] disconnect];
     [Util alertWithText:kLocalizedDisconnectBluetoothDevices];
+}
+
+- (void)removeKnownDevices
+{
+    [[BluetoothService sharedInstance] removeKnownDevices];
+    [Util alertWithText:kLocalizedRemovedKnownBluetoothDevices];
 }
 
 @end
