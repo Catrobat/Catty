@@ -306,7 +306,7 @@ class Firmata: FirmataProtocol {
     }
     
     
-    /* WritePWM
+    /* WriteDigitalState
     * -------------------------------
     * 0  DIGITAL_MESSAGE (0x90) + port
     * 1  portmask (LSB)
