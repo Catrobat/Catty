@@ -82,7 +82,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
                     })
                     return
                 }
-                BluetoothService.swiftSharedInstance.setPhiroDevice(peripheral)
+                BluetoothService.swiftSharedInstance.setBLEDevice(peripheral, type: .phiro)
             } else if (delegate!.deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     dispatch_async(dispatch_get_main_queue(), {
@@ -91,7 +91,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
                     })
                     return
                 }
-                BluetoothService.swiftSharedInstance.setArduinoDevice(peripheral)
+                BluetoothService.swiftSharedInstance.setBLEDevice(peripheral, type: .arduino)
             }
         }
     }
