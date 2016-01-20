@@ -245,7 +245,7 @@
 		92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C361BF2059F00A54750 /* PhiroDevice.swift */; };
 		92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C381BF2098700A54750 /* PhiroProtocol.swift */; };
 		92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */; };
-		92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */; };
+		92D71C041BBBC57700F1177C /* DescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
 		92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEE1A38949E00FA9B0F /* FormulaEditorHistory.m */; };
@@ -1177,8 +1177,8 @@
 		92D56C361BF2059F00A54750 /* PhiroDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroDevice.swift; sourceTree = "<group>"; };
 		92D56C381BF2098700A54750 /* PhiroProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroProtocol.swift; sourceTree = "<group>"; };
 		92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroHelper.swift; sourceTree = "<group>"; };
-		92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionPopopViewController.h; sourceTree = "<group>"; };
-		92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionPopopViewController.m; sourceTree = "<group>"; };
+		92D71C021BBBC57700F1177C /* DescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionViewController.h; sourceTree = "<group>"; };
+		92D71C031BBBC57700F1177C /* DescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionViewController.m; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
 		92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
 		92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
@@ -4160,8 +4160,8 @@
 		92FF31401A24DEB300093DA7 /* Programs */ = {
 			isa = PBXGroup;
 			children = (
-				92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */,
-				92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */,
+				92D71C021BBBC57700F1177C /* DescriptionViewController.h */,
+				92D71C031BBBC57700F1177C /* DescriptionViewController.m */,
 				92FF31411A24DEB300093DA7 /* MyProgramsViewController.h */,
 				92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */,
 			);
@@ -6113,7 +6113,7 @@
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
-				92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */,
+				92D71C041BBBC57700F1177C /* DescriptionViewController.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */,

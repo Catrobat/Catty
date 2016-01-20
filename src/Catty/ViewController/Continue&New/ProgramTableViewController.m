@@ -56,10 +56,9 @@
 #import "ObjectTableViewController.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
-#import "UIViewController+CWPopup.h"
-#import "DescriptionPopopViewController.h"
+#import "DescriptionViewController.h"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, DismissPopupDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @end
@@ -576,22 +575,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.tableView reloadData];
         } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)) {
             //description
-            if (self.popupViewController == nil) {
-                DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
-                popupViewController.delegate = self;
-                self.tableView.scrollEnabled = NO;
-                self.navigationController.toolbar.userInteractionEnabled = NO;
-                self.navigationController.navigationBar.userInteractionEnabled = NO;
-                self.navigationController.navigationBar.alpha = 0.3f;
-                self.navigationController.toolbar.alpha = 0.3f;
-                for (UITableViewCell *cell in self.tableView.visibleCells) {
-                    cell.alpha = 0.3f;
-                }
-                [self presentPopupViewController:popupViewController WithFrame:CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y, [Util screenWidth], [Util screenHeight]) Centered:NO];
-            } else {
-                [self dismissPopupWithCode:NO];
-            }
-
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+            DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+            dViewController.delegate = self;
+            [self.navigationController presentViewController:dViewController animated:YES completion:nil];
         }
     } else if (actionSheet.tag == kEditObjectActionSheetTag) {
         if (buttonIndex == 1) {
@@ -661,25 +648,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
-#pragma mark Dismiss popup
-- (BOOL)dismissPopupWithCode:(BOOL)save
+#pragma mark description delegate
+- (void)setDescription:(NSString *)description
 {
-    if (self.popupViewController != nil) {
-        [self dismissPopupViewController];
-        if (save) {
-            [self.program updateDescriptionWithText:self.changedProgramDescription];
-        }
-        self.tableView.scrollEnabled = YES;
-        self.navigationController.toolbar.userInteractionEnabled = YES;
-        self.navigationController.navigationBar.userInteractionEnabled = YES;
-        self.navigationController.navigationBar.alpha = 1.0f;
-        self.navigationController.toolbar.alpha = 1.0f;
-        for (UITableViewCell *cell in self.tableView.visibleCells) {
-            cell.alpha = 1.0f;
-        }
-        return YES;
-    }
-    return NO;
+    [self.program updateDescriptionWithText:description];
 }
 
 @end
