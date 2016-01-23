@@ -40,9 +40,9 @@
 @property(nonatomic, readonly) NSUInteger pageIndex;
 @property(nonatomic, weak) SpriteObject *spriteObject;
 
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject;
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray;
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage;
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject maxPage:(NSInteger)maxPage andPageIndexArray:(NSArray*)pageIndexArray;
 
 // disallow init
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));

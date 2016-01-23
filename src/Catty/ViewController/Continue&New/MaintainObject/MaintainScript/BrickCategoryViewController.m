@@ -27,19 +27,20 @@
 #import "Brick.h"
 
 @interface BrickCategoryViewController ()
-@property(nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;
+@property (nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;
 @property (nonatomic, strong) NSArray *bricks;
+@property (nonatomic, strong) NSArray *pageIndexArray;
 
 @end
 
 @implementation BrickCategoryViewController
 
 #pragma mark - Init
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray
 {
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
         self.pageIndexCategoryType = type;
-        
+        self.pageIndexArray = pageIndexArray;
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
         self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
         self.spriteObject = spriteObject;
@@ -48,10 +49,11 @@
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject maxPage:(NSInteger)maxPage andPageIndexArray:(NSArray*)pageIndexArray
 {
-    if ((pageIndex >= kPageIndexScriptFavourites)) { 
-        return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject];
+    NSNumber* number = pageIndexArray[0];
+    if (pageIndex >= number.integerValue) {
+        return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject andPageIndexArray:pageIndexArray];
     }
     return nil;
 }

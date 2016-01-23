@@ -151,8 +151,7 @@
 - (void)showBrickPickerAction:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object];
-        bcvc.delegate = self;
+
         BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
                                               initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
@@ -166,7 +165,12 @@
         if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
             [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
         }
-
+        NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+        if (!favouritesDict.count && self.lastSelectedBrickCategory == 0) {
+            self.lastSelectedBrickCategory = 1;
+        }
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object andPageIndexArray:bsvc.pageIndexArray];
+        bcvc.delegate = self;
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO

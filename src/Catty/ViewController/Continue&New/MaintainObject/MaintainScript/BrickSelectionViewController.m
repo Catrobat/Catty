@@ -26,6 +26,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BrickSelectionViewController() <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@property (nonatomic, strong) UIPageControl *pageControl;
 @end
 
 @implementation BrickSelectionViewController
@@ -33,7 +34,12 @@
 -(id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary<NSString *,id> *)options
 {
     self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
-    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexScriptFavourites],[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
+
+    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
+    NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+    if (favouritesDict.count) {
+        [self.pageIndexArray insertObject:[NSNumber numberWithInteger:kPageIndexScriptFavourites] atIndex:0];
+    }
     return self;
 }
 
@@ -49,15 +55,29 @@
     [self updateTitle];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateNumberOfPageIndicator];
+}
+
 #pragma mark - UIPageViewControllerDataSource
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
      viewControllerBeforeViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
+    NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     NSInteger pageIndex = bcVC.pageIndex - 1;
-    if (pageIndex >= 0) {
+    if (!favouritesDict.count) {
+        pageIndex -= 1;
+    }
+    if (pageIndex == 0) {
+        pageIndex = 0;
+    }
+    NSNumber* number = self.pageIndexArray[0];
+    if (pageIndex >= number.integerValue || (!favouritesDict.count && pageIndex == 0)) {
         NSNumber *index = self.pageIndexArray[pageIndex];
-        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue andObject:bcVC.spriteObject andMaxPage:self.pageIndexArray.count];
+        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue object:bcVC.spriteObject maxPage:self.pageIndexArray.count andPageIndexArray:self.pageIndexArray];
     }
     return nil;
 }
@@ -66,10 +86,14 @@
      viewControllerAfterViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSUInteger pageIndex = bcVC.pageIndex + 1;
+    NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+    NSUInteger pageIndex = bcVC.pageIndex;
+    if (favouritesDict.count) {
+       pageIndex += 1;
+    }
     if (pageIndex < self.pageIndexArray.count) {
         NSNumber *index = self.pageIndexArray[pageIndex];
-        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue andObject:bcVC.spriteObject andMaxPage:self.pageIndexArray.count];
+        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue object:bcVC.spriteObject maxPage:self.pageIndexArray.count andPageIndexArray:self.pageIndexArray];
     }
     return nil;
 }
@@ -83,22 +107,30 @@
         [self updateTitle];
         [self updateBrickCategoryViewControllerDelegate];
     }
+    [self updateNumberOfPageIndicator];
 }
+
+
 
 #pragma mark - Pageindicator
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
     [self overwritePageControl];
+    NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+    if (!favouritesDict.count) {
+        return self.pageIndexArray.count+1;
+    }
     return self.pageIndexArray.count;
 }
 
 - (void)overwritePageControl
 {
-    UIPageControl *pageControl = [[self.view.subviews
+    self.pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
-    pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
-    pageControl.backgroundColor = [UIColor toolBarColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
+    self.pageControl.backgroundColor = [UIColor toolBarColor];
+
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController
@@ -106,6 +138,16 @@
     BrickCategoryViewController *bcvc = [pageViewController.viewControllers objectAtIndex:0];
     return bcvc.pageIndex;
 }
+
+- (void)updateNumberOfPageIndicator
+{
+    NSNumber* number = self.pageIndexArray[0];
+    if (number.integerValue == 1) {
+        UIView * view = self.pageControl.subviews[0];
+        view.hidden = YES;
+    }
+}
+
 
 #pragma mark - Setup
 
@@ -131,7 +173,8 @@
 {
     BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
     NSInteger pageIndex = bcvc.pageIndex;
-    if (pageIndex >= 0) {
+    NSNumber* number = self.pageIndexArray[0];
+    if (pageIndex >= number.integerValue) {
         self.title = CBTitleFromPageIndexCategoryType(pageIndex);
     }
 }
