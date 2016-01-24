@@ -594,58 +594,67 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 -(void) colorFormulaEditor
 {
-    for(int i = 0; i < [self.orangeTypeButton count]; i++) {
-        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
-        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
-        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
-        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
-    }
-    for(int i = 0; i < [self.normalTypeButton count]; i++) {
-        [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
-    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateHighlighted];
-        [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
-    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
-      
-//    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
-//    {
-//        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
-//       {
-//            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
-//           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
-//            }
-//        }
-    }
-    for(int i = 0; i < [self.toolTypeButton count]; i++) {
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateHighlighted];
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor utilityTintColor] forState:UIControlStateSelected];
-        [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
-        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+    for(UIButton *button in self.orangeTypeButton) {
+        [button setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
+        [button setBackgroundColor:[UIColor formulaEditorOperatorColor]];
+        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
+        [[button layer] setBorderWidth:1.0f];
+        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        button.titleLabel.minimumScaleFactor = 0.01f;
     }
     
-  for(int i = 0; i < [self.toolTypeButton count]; i++) {
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
-          [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperatorColor] forState:UIControlStateSelected];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperatorColor]] forState:UIControlStateNormal];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaButtonTextColor]] forState:UIControlStateSelected];
-    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
-  }
-
-    for(int i = 0; i < [self.highlightedButtons count]; i++) {
-        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
-        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateSelected];
-        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+    for(UIButton *button in self.normalTypeButton) {
+        [button setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor backgroundColor] forState:UIControlStateHighlighted];
+        [button setBackgroundColor:[UIColor backgroundColor]];
+        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
+        [[button layer] setBorderWidth:1.0f];
+        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        button.titleLabel.minimumScaleFactor = 0.01f;
+        //    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
+        //    {
+        //        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
+        //       {
+        //            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
+        //           [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor navTintColor] forState:UIControlStateNormal];
+        //            }
+        //        }
+    }
+    //    for(UIButton *button in self.toolTypeButton) {
+    //        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    //        [button setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateHighlighted];
+    //        [button setTitleColor:[UIColor utilityTintColor] forState:UIControlStateSelected];
+    //        [button setBackgroundColor:[UIColor backgroundColor]];
+    //        [[button layer] setBorderWidth:1.0f];
+    //        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+    //        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+    //        button.titleLabel.minimumScaleFactor = 0.01f;
+    //    }
+    
+    for(UIButton *button in self.toolTypeButton) {
+        [button setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor formulaEditorOperatorColor] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperatorColor]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaButtonTextColor]] forState:UIControlStateSelected];
+        [[button layer] setBorderWidth:1.0f];
+        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        button.titleLabel.minimumScaleFactor = 0.01f;
     }
     
-
+    for(UIButton *button in self.highlightedButtons) {
+        [button setTitleColor:[UIColor formulaButtonTextColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+        [button setBackgroundColor:[UIColor formulaEditorOperatorColor]];
+        [button setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateSelected];
+        [[button layer] setBorderWidth:1.0f];
+        [[button layer] setBorderColor:[UIColor formulaEditorBorderColor].CGColor];
+        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        button.titleLabel.minimumScaleFactor = 0.01f;
+    }
+    
 }
 
 - (void)update
