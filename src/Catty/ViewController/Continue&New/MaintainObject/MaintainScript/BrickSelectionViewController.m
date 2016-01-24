@@ -33,7 +33,7 @@
 -(id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary<NSString *,id> *)options
 {
     self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
-    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexScriptFavourites],[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
+    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexScriptFavourites],[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
     return self;
 }
 

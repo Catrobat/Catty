@@ -125,6 +125,8 @@
             int column = i % 4;
             int row = i / 4;
             layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width, width*factor);
+            layer.borderColor = [UIColor globalTintColor].CGColor;
+            layer.borderWidth = 1.0f;
             [self.standardColors.layer addSublayer:layer];
         }
 
@@ -140,6 +142,8 @@
             int column = i % 6;
             int row = i / 6;
             layer.frame = CGRectMake(8 + (column * (width +8)), 8 + row * (width*factor+8), width,width*factor);
+            layer.borderColor = [UIColor globalTintColor].CGColor;
+            layer.borderWidth = 1.0f;
             [self.standardColors.layer addSublayer:layer];
         }
     }
