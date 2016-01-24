@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
 
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
 /* paint */
 "Alpha" = "Alpha";
 
@@ -171,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Changes saved!" = "Changes saved!";
+
+/* No comment provided by engineer. */
+"Choose" = "Choose";
 
 /* No comment provided by engineer. */
 "Choose image" = "Choose image";
@@ -989,6 +995,9 @@
 "Registration successful" = "Registration successful";
 
 /* No comment provided by engineer. */
+"Remove known devices" = "Remove known devices";
+
+/* No comment provided by engineer. */
 "Rename" = "Rename";
 
 /* No comment provided by engineer. */
@@ -1181,9 +1190,6 @@
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Take" = "Take";
-
-/* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Tap \"+\" to add %@";
 
 /* No comment provided by engineer. */
@@ -1343,7 +1349,7 @@
 "When tapped" = "When tapped";
 
 /* paint */
-"Width" = "Width";
+"Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";

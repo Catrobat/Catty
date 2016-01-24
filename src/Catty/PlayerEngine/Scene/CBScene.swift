@@ -260,6 +260,17 @@ final class CBScene: SKScene {
         }
     }
 
+    func pauseScheduler() {
+        scheduler?.running = false
+    }
+    
+    func resumeScheduler() {
+        if(scheduler?.running == false){
+            scheduler?.running = true
+            scheduler?.runNextInstructionsGroup()
+        }
+    }
+    
     // MARK: - Stop program
     func stopProgram() {
         view?.paused = true

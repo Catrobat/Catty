@@ -229,6 +229,9 @@
   cell.imageView.backgroundColor = [UIColor backgroundColor];
   cell.textLabel.textColor = [UIColor buttonTintColor];
   cell.backgroundColor = [UIColor backgroundColor];
+  UIView *selectionView = [UIView new];
+    selectionView.backgroundColor = [UIColor navTintColor];
+    [[UITableViewCell appearance] setSelectedBackgroundView:selectionView];
   
   switch (item) {
     case brush:{

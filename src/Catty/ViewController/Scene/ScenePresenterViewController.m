@@ -352,6 +352,7 @@
     [[AudioManager sharedAudioManager] pauseAllSounds];
     [[FlashHelper sharedFlashHandler] pause];
     [[BluetoothService sharedInstance] pauseBluetoothDevice];
+    [self.scene pauseScheduler];
 }
 
 - (void)resumeAction
@@ -362,6 +363,7 @@
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
         [[FlashHelper sharedFlashHandler] resume];
     }
+    [self.scene resumeScheduler];
 }
 
 - (void)continueProgramAction:(UIButton*)sender withDuration:(CGFloat)duration
@@ -370,6 +372,7 @@
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
         [[FlashHelper sharedFlashHandler] resume];
     }
+    [self.scene resumeScheduler];
     [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
     animateDuration = duration > 0.0001f ? duration : 0.35f;
