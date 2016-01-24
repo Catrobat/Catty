@@ -438,7 +438,7 @@
     
 }
 
-- (id)interpretFunctionJOIN:(SpriteObject *)sprite
+- (NSString*)interpretFunctionJOIN:(SpriteObject *)sprite
 {
     NSString *returnValue = [self interpretFunctionJOINParameter:self.leftChild witSprite:sprite];
     return [returnValue stringByAppendingString:[self interpretFunctionJOINParameter:self.rightChild witSprite:sprite]];
@@ -481,7 +481,7 @@
     return parameterInterpretation;
 }
 
-- (id)interpretFunctionLETTER:(id)left and:(id)right
+- (NSString*)interpretFunctionLETTER:(id)left and:(id)right
 {
     int index = [left doubleValue] - 1;
     NSString *rightString = nil;
@@ -508,7 +508,7 @@
     return returnValue;
 }
 
-- (id)interpretFunctionLENGTH:(id)left forSprite:(SpriteObject *)sprite
+- (NSNumber*)interpretFunctionLENGTH:(id)left forSprite:(SpriteObject *)sprite
 {
     NSString *leftString;
     if([left isKindOfClass:[NSNumber class]])
@@ -563,192 +563,101 @@
 }
 
 
-- (id) interpretOperator:(Operator)operator forSprite:(SpriteObject*)sprite
+- (NSNumber*) interpretOperator:(Operator)operator forSprite:(SpriteObject*)sprite
 {
-
-    id result = nil;
-    
-    if(self.leftChild) { // binary operator
-        
-        double left = 0.0f;
-        double right = 0.0f;
-        
-        id leftId = [self.leftChild interpretRecursiveForSprite:sprite];
-        if([leftId isKindOfClass:[NSNumber class]])
-        {
-            left = [leftId doubleValue];
-        }
-        
-        id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
-        if([rightId isKindOfClass:[NSNumber class]])
-        {
-            right = [rightId doubleValue];
-        }
-        
-        switch (operator) {
-            case LOGICAL_AND: {
-                result = [NSNumber numberWithDouble:(left * right) != 0.0 ? 1.0 : 0.0];
-                break;
-            }
-            case LOGICAL_OR: {
-                result = [NSNumber numberWithDouble:left != 0.0 || right != 0.0 ? 1.0 : 0.0];
-                break;
-            }
-            case EQUAL: {
-                if([leftId isKindOfClass:[NSString class]] && [rightId isKindOfClass:[NSString class]])
-                {
-                    if([leftId isEqualToString:rightId])
-                    {
-                        return [NSNumber numberWithDouble:1.0f];
-                    }
-                    else
-                    {
-                        return [NSNumber numberWithDouble:0.0f];
-                    }
-                }else{
-                    if([leftId isKindOfClass:[NSString class]])
-                    {
-                        leftId = [NSNumber numberWithDouble:[leftId doubleValue]];
-                    }
-                    
-                    if([rightId isKindOfClass:[NSString class]])
-                    {
-                        rightId = [NSNumber numberWithDouble:[rightId doubleValue]];
-                    }
-                    
-                    
-                    if(leftId == nil || rightId == nil)
-                    {
-                        return [NSNumber numberWithDouble:0.0f];
-                    }else{
-                        result = [NSNumber numberWithDouble:left == right ? 1.0 : 0.0];
-                    }
-                }
-                break;
-            }
-            case NOT_EQUAL: {
-                if([leftId isKindOfClass:[NSString class]] && [rightId isKindOfClass:[NSString class]])
-                {
-                    if([leftId isEqualToString:rightId])
-                    {
-                        return [NSNumber numberWithDouble:0.0f];
-                    }
-                    else
-                    {
-                        return [NSNumber numberWithDouble:1.0f];
-                    }
-                }else{
-                    if([leftId isKindOfClass:[NSString class]])
-                    {
-                        leftId = [NSNumber numberWithDouble:[leftId doubleValue]];
-                    }
-                    
-                    if([rightId isKindOfClass:[NSString class]])
-                    {
-                        rightId = [NSNumber numberWithDouble:[rightId doubleValue]];
-                    }
-                    
-                    
-                    if(leftId == nil || rightId == nil)
-                    {
-                        return [NSNumber numberWithDouble:1.0f];
-                    }else{
-                        result = [NSNumber numberWithDouble:left == right ? 0.0 : 1.0];
-                    }
-                }
-                
-                break;
-            }
-            case SMALLER_OR_EQUAL: {
-                result = [NSNumber numberWithDouble:left <= right ? 1.0 : 0.0];
-                break;
-            }
-            case GREATER_OR_EQUAL: {
-                result = [NSNumber numberWithDouble:left >= right ? 1.0 : 0.0];
-                break;
-            }
-            case SMALLER_THAN: {
-                result = [NSNumber numberWithDouble:left < right ? 1.0 : 0.0];
-                break;
-            }
-            case GREATER_THAN: {
-                result = [NSNumber numberWithDouble:left > right ? 1.0 : 0.0];
-                break;
-            }
-            case PLUS: {
-                result =  [NSNumber numberWithDouble:left + right];
-                break;
-            }
-            case MINUS: {
-                result = [NSNumber numberWithDouble:left - right];
-                break;
-            }
-            case MULT: {
-                result = [NSNumber numberWithDouble:left * right];
-                break;
-            }
-            case DIVIDE: {
-                /*if(right > 0.0 || right < 0.0) {
-                    result = left / right;
-                } else {
-                    result = left;
-                }*/
-                result = [NSNumber numberWithDouble:left / right];
-                
-                break;
-            }
-
-            default:
-                //abort();
-                [InternFormulaParserException raise:@"Unknown Operator" format:@"Unknown Operator: %d", operator];
-                break;
-        }
-        if([leftId isKindOfClass:[NSString class]])
-        {
-            leftId = [NSNumber numberWithDouble:[leftId doubleValue]];
-        }
-        
-        if([rightId isKindOfClass:[NSString class]])
-        {
-            rightId = [NSNumber numberWithDouble:[rightId doubleValue]];
-        }
-        if(rightId == nil || leftId == nil)
-        {
-            result = nil;
-        }
-    }
-    else { // unary operator
-        
-        
-        double right = 0.0f;
-        
-        id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
-        if([rightId isKindOfClass:[NSNumber class]])
-        {
-            right = [rightId doubleValue];
-        }
-        switch (operator) {
-            case MINUS: {
-                result = [NSNumber numberWithDouble:-right];
-                break;
-            }
-                
-            case LOGICAL_NOT: {
-                result = [NSNumber numberWithDouble:right == 0.0 ? 1.0 : 0.0];
-                break;
-            }
-                
-            default:
-                //abort();
-                [InternFormulaParserException raise:@"Unknown Unary Operator" format:@"Unknown Unary Operator: %d", operator];
-                break;
-        }
-    }
-    
-    return result;
-    
-    
+    return self.leftChild ? [self interpretBinaryOperator:operator forSprite:sprite] : [self interpretUnaryOperator:operator forSprite:sprite];
 }
+
+- (NSNumber*) interpretUnaryOperator:(Operator)operator forSprite:(SpriteObject*)sprite
+{
+    id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
+    double rightDouble = [self doubleWithId:rightId];
+    
+    switch (operator) {
+        case MINUS: {
+            return [NSNumber numberWithDouble:rightDouble * -1];
+        }
+        case LOGICAL_NOT: {
+            return [NSNumber numberWithDouble:rightDouble == 0.0 ? 1.0 : 0.0];
+        }
+            
+        default:
+            //abort();
+            [InternFormulaParserException raise:@"Unknown Unary Operator" format:@"Unknown Unary Operator: %d", operator];
+            break;
+    }
+    
+    return nil;
+}
+
+- (NSNumber*) interpretBinaryOperator:(Operator)operator forSprite:(SpriteObject*)sprite
+{
+    id leftId = [self.leftChild interpretRecursiveForSprite:sprite];
+    id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
+    double leftDouble = [self doubleWithId:leftId];
+    double rightDouble = [self doubleWithId:rightId];
+    
+    switch (operator) {
+        case LOGICAL_AND: {
+            return [NSNumber numberWithDouble:(leftDouble * rightDouble) != 0.0 ? 1.0 : 0.0];
+        }
+        case LOGICAL_OR: {
+            return [NSNumber numberWithDouble:leftDouble != 0.0 || rightDouble != 0.0 ? 1.0 : 0.0];
+        }
+        case EQUAL: {
+            if(leftId == nil || rightId == nil)
+            {
+                return [NSNumber numberWithDouble:0.0f];
+            } else if([leftId isKindOfClass:[NSString class]] && [rightId isKindOfClass:[NSString class]])
+            {
+                return [NSNumber numberWithDouble:([leftId isEqualToString:rightId] ? 1.0f : 0.0f)];
+            }
+            return [NSNumber numberWithDouble:leftDouble == rightDouble ? 1.0 : 0.0];
+        }
+        case NOT_EQUAL: {
+            if(leftId == nil || rightId == nil)
+            {
+                return [NSNumber numberWithDouble:1.0f];
+            } else if([leftId isKindOfClass:[NSString class]] && [rightId isKindOfClass:[NSString class]])
+            {
+                return [NSNumber numberWithDouble:[leftId isEqualToString:rightId] ? 0.0f : 1.0f];
+            }
+            return [NSNumber numberWithDouble:leftDouble == rightDouble ? 0.0 : 1.0];
+        }
+        case SMALLER_OR_EQUAL: {
+            return [NSNumber numberWithDouble:leftDouble <= rightDouble ? 1.0 : 0.0];
+        }
+        case GREATER_OR_EQUAL: {
+            return [NSNumber numberWithDouble:leftDouble >= rightDouble ? 1.0 : 0.0];
+        }
+        case SMALLER_THAN: {
+            return [NSNumber numberWithDouble:leftDouble < rightDouble ? 1.0 : 0.0];
+        }
+        case GREATER_THAN: {
+            return [NSNumber numberWithDouble:leftDouble > rightDouble ? 1.0 : 0.0];
+        }
+        case PLUS: {
+            return [NSNumber numberWithDouble:leftDouble + rightDouble];
+        }
+        case MINUS: {
+            return [NSNumber numberWithDouble:leftDouble - rightDouble];
+        }
+        case MULT: {
+            return [NSNumber numberWithDouble:leftDouble * rightDouble];
+        }
+        case DIVIDE: {
+            return [NSNumber numberWithDouble:leftDouble / rightDouble];
+        }
+            
+        default:
+            //abort();
+            [InternFormulaParserException raise:@"Unknown Operator" format:@"Unknown Operator: %d", operator];
+            break;
+    }
+    
+    return nil;
+}
+
 
 - (double) interpretLookSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
 {
@@ -791,7 +700,6 @@
     }
     
     return result;
-
 }
 
 
@@ -995,6 +903,14 @@
         return true;
     }
     return false;
+}
+
+- (double)doubleWithId:(id)object
+{
+    if ([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSString class]]) {
+        return [object doubleValue];
+    }
+    return 0.0;
 }
 
 #pragma mark - Copy
