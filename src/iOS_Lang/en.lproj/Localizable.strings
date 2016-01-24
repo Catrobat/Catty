@@ -176,6 +176,9 @@
 "Changes saved!" = "Changes saved!";
 
 /* No comment provided by engineer. */
+"Choose" = "Choose";
+
+/* No comment provided by engineer. */
 "Choose image" = "Choose image";
 
 /* No comment provided by engineer. */
@@ -1187,9 +1190,6 @@
 "Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
-"Take" = "Take";
-
-/* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Tap \"+\" to add %@";
 
 /* No comment provided by engineer. */
@@ -1349,7 +1349,7 @@
 "When tapped" = "When tapped";
 
 /* paint */
-"Width" = "Width";
+"Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";
