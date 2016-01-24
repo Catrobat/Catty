@@ -656,15 +656,16 @@
 
 - (void)initShape
 {
-    self.resizeViewManager.resizeViewer.frame = CGRectMake(0, 0, 150, 150);
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.drawView.center.x - 75, self.drawView.center.y - 75, 150, 150);
     self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
-    //  [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
     [self.resizeViewManager updateShape];
 }
 
 - (void)initStamp
 {
     //  self.resizeViewManager.border.hidden = NO;
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.drawView.center.x - 75, self.drawView.center.y - 75, 150, 150);
+    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
     self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
 
