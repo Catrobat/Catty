@@ -611,13 +611,13 @@
 - (void)resizeInitAction
 {
     if (self.saveView.image) {
-        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
+        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.drawView.frame];
         [self.view addSubview:self.cropperView];
         self.drawView.hidden = YES;
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
         //    enabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
+//        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = NO;
         }
