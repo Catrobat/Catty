@@ -58,6 +58,7 @@
 #import "ViewControllerDefines.h"
 #import "UIViewController+CWPopup.h"
 #import "DescriptionPopopViewController.h"
+#import "PlaceHolderView.h"
 
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, DismissPopupDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -115,6 +116,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
     }
+    self.placeHolderView.title = kLocalizedObjects;
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
@@ -166,6 +169,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     };
     [self.navigationController pushViewController:ltvc animated:NO];
+    [self showPlaceHolder:NO];
     [self hideLoadingView];
 }
 
@@ -268,6 +272,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.program removeObjects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -278,6 +283,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
