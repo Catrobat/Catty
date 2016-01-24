@@ -241,6 +241,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 {
 	for (UITouch *touch in touches){
 		[self dispatchTouchEvent:[touch locationInView:self]];
+        [self _updateBrightnessWithMovement:CGPointMake(11, 187.65)];
     }
 }
 
