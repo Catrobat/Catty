@@ -290,8 +290,8 @@
     NSInteger height = (NSInteger)self.view.bounds.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
-    if ((imageWidth > width) || (imageHeight > height)) {
-        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth, imageHeight) animated:NO];
+    if ((imageWidth >= width) || (imageHeight >= height)) {
+        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth / 0.8f, imageHeight / 0.8f) animated:NO];
     }
     
     CGSize boundsSize = self.scrollView.bounds.size;
