@@ -290,8 +290,8 @@
     NSInteger height = (NSInteger)self.view.bounds.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
-    if ((imageWidth > width) || (imageHeight > height)) {
-        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth, imageHeight) animated:NO];
+    if ((imageWidth >= width) || (imageHeight >= height)) {
+        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth / 0.8f, imageHeight / 0.8f) animated:NO];
     }
     
     CGSize boundsSize = self.scrollView.bounds.size;
@@ -656,15 +656,16 @@
 
 - (void)initShape
 {
-    self.resizeViewManager.resizeViewer.frame = CGRectMake(0, 0, 150, 150);
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.drawView.center.x - 75, self.drawView.center.y - 75, 150, 150);
     self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
-    //  [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
     [self.resizeViewManager updateShape];
 }
 
 - (void)initStamp
 {
     //  self.resizeViewManager.border.hidden = NO;
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.drawView.center.x - 75, self.drawView.center.y - 75, 150, 150);
+    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
     self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
 
