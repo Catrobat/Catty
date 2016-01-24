@@ -119,12 +119,12 @@
   if (self.drawingEnabled == YES) {
     self.drawingEnabled = NO;
     self.colorView.hidden = YES;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor navTintColor];
     
   } else{
     self.drawingEnabled = YES;
     self.colorView.hidden = NO;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor greenColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor whiteColor];
     [self updateColorView];
   }
   
