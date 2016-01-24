@@ -330,7 +330,7 @@
 - (void)editAction
 {
    
-    NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintClose,kLocalizedPaintNewCanvas];
+    NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintNewCanvas];
     [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.navigationController.view];
     
 }
@@ -880,11 +880,6 @@
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
-- (void)closeAction
-{
-    NSDebug(@"don't save and close");
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)newCanvasAction
 {
@@ -995,9 +990,6 @@
                 [self saveAction];
                 break;
             case 2:
-                [self closeAction];
-                break;
-            case 3:
                 [self newCanvasAction];
             default:
                 break;
