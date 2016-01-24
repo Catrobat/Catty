@@ -37,7 +37,7 @@
 
 - (void)initPointerView
 {
-  self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x , self.canvas.helper.center.y, 125 , 125)];
+  self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x - 62.5f, self.canvas.helper.center.y - 62.5f, 125 , 125)];
   [self.pointerView setUserInteractionEnabled:YES];
   self.pointerView.backgroundColor = [UIColor clearColor];
   self.pointerView.hidden = YES;
