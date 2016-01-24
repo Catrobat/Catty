@@ -167,9 +167,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }else if (self.afterSafeBlock && !look){
             self.afterSafeBlock(nil);
         }
+        [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     };
     [self.navigationController pushViewController:ltvc animated:NO];
-    [self showPlaceHolder:NO];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
