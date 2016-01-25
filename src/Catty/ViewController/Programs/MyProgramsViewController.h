@@ -22,10 +22,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
 #import "Program.h"
 
-@interface MyProgramsViewController : BaseTableViewController <DismissPopupDelegate>
+@interface MyProgramsViewController : BaseTableViewController
 @property (nonatomic, strong) Program *selectedProgram;
-@property (nonatomic, strong) NSString *changedDescription;
 @end
