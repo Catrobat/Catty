@@ -527,7 +527,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.selectedProgram =[Program programWithLoadingInfo:info];
             if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
                 self.selectedProgram.header.programName = info.visibleName;
-                [self.selectedProgram saveToDisk];
+                [self.selectedProgram saveToDiskWithNotification:YES];
             }
             if (self.selectedProgram) {
                 return YES;
