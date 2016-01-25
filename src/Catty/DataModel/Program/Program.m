@@ -409,8 +409,6 @@
         return NO;
     if ([self.objectList count] != [program.objectList count])
         return NO;
-    if ([self.objectList count] != [program.objectList count])
-        return NO;
     
     NSUInteger idx;
     for (idx = 0; idx < [self.objectList count]; idx++) {
