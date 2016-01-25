@@ -336,12 +336,7 @@
     </object>
   </objectList>
   <data>
-    <objectListOfList>
-      <entry>
-        <object reference="../../../../objectList/object[2]"/>
-        <list/>
-      </entry>
-    </objectListOfList>
+    <objectListOfList/>
     <objectVariableList>
       <entry>
         <object reference="../../../../objectList/object[3]"/>

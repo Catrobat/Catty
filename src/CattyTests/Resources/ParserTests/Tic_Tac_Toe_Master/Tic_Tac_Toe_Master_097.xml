@@ -8217,12 +8217,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
     </object>
   </objectList>
   <data>
-    <objectListOfList>
-      <entry>
-        <object reference="../../../../objectList/object[3]"/>
-        <list/>
-      </entry>
-    </objectListOfList>
+    <objectListOfList/>
     <objectVariableList>
       <entry>
         <object reference="../../../../objectList/object[7]"/>
