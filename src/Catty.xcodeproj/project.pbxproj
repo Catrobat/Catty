@@ -919,7 +919,7 @@
 		4CB1FB6A1BC2C75B0000A2FE /* Encapsulated_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_096.xml; sourceTree = "<group>"; };
 		4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestProtocol.swift; sourceTree = "<group>"; };
 		4CB4FE021B95DF2900431757 /* BrickInsertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManager.h; sourceTree = "<group>"; };
-		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManager.m; sourceTree = "<group>"; };
+		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
@@ -1207,7 +1207,7 @@
 		92DFB0021A38949E00FA9B0F /* InternToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternToken.h; sourceTree = "<group>"; };
 		92DFB0031A38949E00FA9B0F /* InternToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternToken.m; sourceTree = "<group>"; };
 		92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorViewController.h; sourceTree = "<group>"; };
-		92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorViewController.m; sourceTree = "<group>"; };
+		92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FormulaEditorViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextView.h; sourceTree = "<group>"; };
 		92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextView.m; sourceTree = "<group>"; };
 		92DFB0201A38960C00FA9B0F /* BrushPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushPickerViewController.h; sourceTree = "<group>"; };

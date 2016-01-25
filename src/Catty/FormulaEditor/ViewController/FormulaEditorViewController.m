@@ -868,7 +868,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
     }
     
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
 }
 
@@ -985,7 +985,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 BOOL removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
                 if (removed) {
                     [self.variableSource removeObjectAtIndex:row];
-                    [self.object.program saveToDisk];
+                    [self.object.program saveToDiskWithNotification:YES];
                     [self updateVariablePickerData];
                 }
             } else {

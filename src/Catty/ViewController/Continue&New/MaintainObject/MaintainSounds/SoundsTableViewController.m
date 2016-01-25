@@ -208,7 +208,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
     
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
@@ -412,7 +412,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
