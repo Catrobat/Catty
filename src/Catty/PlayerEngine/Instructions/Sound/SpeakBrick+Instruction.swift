@@ -27,15 +27,7 @@ extension SpeakBrick: CBInstructionProtocol {
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         
         return CBInstruction.ExecClosure { (context, _) in
-            //            self.logger.debug("Performing: SpeakBrick")
             let speakText = self.formula.interpretString(object)
-//            if self.formula.formulaTree.type == .STRING {
-//                speakText = self.formula.formulaTree.value
-//            } else {
-//                // remove trailing 0's behind the decimal point!!
-//                speakText = String(format: "%g", self.formula.interpretDoubleForSprite(object))
-//            }
-            //            self.logger.debug("Speak text: '\(speakText)'")
             let utterance = AVSpeechUtterance(string: speakText)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
             

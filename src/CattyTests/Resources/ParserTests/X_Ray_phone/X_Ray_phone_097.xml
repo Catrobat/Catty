@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.4</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Put your left hand on a table. Set phone 6&quot; over it, Top of phone alligned toward your fingertips. Tilt and turn the phone to look at your bones!</description>
+    <deviceName>Nexus 4</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>17.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>X-Ray phone</programName>
+    <remixOf></remixOf>
+    <screenHeight>1184</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>768</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1447</url>
+    <userHandle>Yan</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="look">
+          <fileName>ce9f165e2336a7b4235c917384cbec15_look.jpg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Cursor_Copy">
+      <lookList>
+        <look name="5327224133_bf0f021a1b_z">
+          <fileName>61b405b0e50dd355caeafc6ed29ad7b8_5327224133_bf0f021a1b_z.jpg.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>COMPASS_DIRECTION</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>90</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>Angle</userVariable>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="PointInDirectionBrick">
+              <formulaList>
+                <formula category="DEGREES">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>COMPASS_DIRECTION</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>Angle</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>0.75</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <leftChild>
+                          <type>SENSOR</type>
+                          <value>Y_INCLINATION</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>SENSOR</type>
+                          <value>Y_INCLINATION</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MULT</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>SENSOR</type>
+                        <value>Y_INCLINATION</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MULT</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>0.75</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <leftChild>
+                          <type>SENSOR</type>
+                          <value>X_INCLINATION</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>SENSOR</type>
+                          <value>X_INCLINATION</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MULT</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>SENSOR</type>
+                        <value>X_INCLINATION</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MULT</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists/>
+    <programVariableList>
+      <userVariable>X</userVariable>
+      <userVariable>Y</userVariable>
+      <userVariable>Yp</userVariable>
+      <userVariable>Xp</userVariable>
+      <userVariable>Yoffset</userVariable>
+      <userVariable>Xoffset</userVariable>
+      <userVariable reference="../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+    </programVariableList>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

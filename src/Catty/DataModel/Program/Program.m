@@ -409,12 +409,23 @@
         return NO;
     if ([self.objectList count] != [program.objectList count])
         return NO;
-
+    
     NSUInteger idx;
     for (idx = 0; idx < [self.objectList count]; idx++) {
         SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
-        SpriteObject *secondObject = [program.objectList objectAtIndex:idx];
-        if (! [firstObject isEqualToSpriteObject:secondObject])
+        SpriteObject *secondObject = nil;
+        
+        NSUInteger programIdx;
+        for (programIdx = 0; programIdx < [program.objectList count]; programIdx++) {
+            SpriteObject *programObject = [program.objectList objectAtIndex:programIdx];
+            
+            if ([programObject.name isEqualToString:firstObject.name]) {
+                secondObject = programObject;
+                break;
+            }
+        }
+        
+        if (secondObject == nil || ! [firstObject isEqualToSpriteObject:secondObject])
             return NO;
     }
     return YES;

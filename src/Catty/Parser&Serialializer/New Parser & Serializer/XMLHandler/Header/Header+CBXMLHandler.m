@@ -27,6 +27,7 @@
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLSerializer.h"
 #import "CBXMLPropertyMapping.h"
+#import "CBXMLParserContext.h"
 #import "Util.h"
 
 @implementation Header (CBXMLHandler)
@@ -66,6 +67,11 @@
     return headerProperties;
 }
 
++ (NSMutableArray*)headerPropertiesForLanguageVersion097
+{
+    return [self headerPropertiesForLanguageVersion093];
+}
+
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
 withContextForLanguageVersion093:(CBXMLParserContext*)context
@@ -93,15 +99,17 @@ withContextForLanguageVersion095:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];
-    NSArray *headerProperties = [self headerPropertiesForLanguageVersion095];
+    NSArray *headerProperties = context.languageVersion == 0.97f ? [self headerPropertiesForLanguageVersion097] : [self headerPropertiesForLanguageVersion095];
+    
     [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count]
                   message:@"Invalid number of header properties in XML!"];
 
     for (CBXMLPropertyMapping *headerProperty in headerProperties) {
+        
         // ignore isPhiroProProject property
-//        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"]) {
-//            continue;
-//        }
+        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"] && context.languageVersion < 0.97f) {
+            continue;
+        }
 
         GDataXMLElement *headerPropertyNode = [xmlElement childWithElementName:headerProperty.xmlElementName];
         [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!",
@@ -141,6 +149,7 @@ withContextForLanguageVersion095:(CBXMLParserContext*)context
                                                     stringValue:kCBXMLSerializerLanguageVersion
                                                         context:context]
                        context:context];
+    
     NSString *dateTimeUploadString = (self.dateTimeUpload
                                    ? [[[self class] headerDateFormatter] stringFromDate:self.dateTimeUpload]
                                    : nil);
@@ -154,10 +163,6 @@ withContextForLanguageVersion095:(CBXMLParserContext*)context
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
                                                     stringValue:self.deviceName
-                                                        context:context]
-                       context:context];
-    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"isPhiroProProject"
-                                                    stringValue:@"false"
                                                         context:context]
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"mediaLicense"
