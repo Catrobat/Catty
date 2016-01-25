@@ -22,10 +22,15 @@
 
 #import <UIKit/UIKit.h>
 #import "NetworkDefines.h"
-#import "UIViewController+CWPopup.h"
 
-@interface DescriptionPopopViewController : UIViewController
+@protocol SetDescriptionDelegate <NSObject>
 
-@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
+-(void)setDescription:(NSString*)description;
+
+@end
+
+@interface DescriptionViewController : UIViewController
+
+@property (nonatomic, weak) id<SetDescriptionDelegate> delegate;
 
 @end

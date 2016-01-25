@@ -158,7 +158,7 @@
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
     [self.objectList addObject:object];
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
     return object;
 }
 
@@ -183,7 +183,7 @@
 - (void)removeObject:(SpriteObject*)object
 {
     [self removeObjectFromList:object];
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
 }
 
 - (void)removeObjects:(NSArray*)objects
@@ -193,7 +193,7 @@
             [self removeObject:((SpriteObject*)object)];
         }
     }
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
 }
 
 - (BOOL)objectExistsWithName:(NSString*)objectName
@@ -261,7 +261,7 @@
     ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName programID:nil];
     Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
     program.header.programName = destinationProgramLoadingInfo.visibleName;
-    [program saveToDisk];
+    [program saveToDiskWithNotification:YES];
 }
 
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID
@@ -287,17 +287,18 @@
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 }
 
-- (void)saveToDisk
+- (void)saveToDiskWithNotification:(BOOL)notify
 {
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // show saved view bezel
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
-            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
-        });
-
+        if (notify) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
+                [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
+            });
+        }
         // TODO: find correct serializer class dynamically
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
@@ -352,7 +353,7 @@
     if (isLastProgram) {
         [Util setLastProgramWithName:self.header.programName programID:self.header.programID];
     }
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
 }
 
 - (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
@@ -361,13 +362,13 @@
         return;
     }
     object.name = [Util uniqueName:newObjectName existingNames:[self allObjectNames]];
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
 }
 
 - (void)updateDescriptionWithText:(NSString*)descriptionText
 {
     self.header.programDescription = descriptionText;
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
 }
 
 - (NSArray*)allObjectNames
@@ -396,7 +397,7 @@
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
-    [self saveToDisk];
+    [self saveToDiskWithNotification:YES];
     return copiedObject;
 }
 

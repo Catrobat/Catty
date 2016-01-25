@@ -33,7 +33,6 @@
 @property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
 @property (strong, nonatomic) Program *program;
 @property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
-@property (nonatomic,strong) NSString *changedProgramDescription;
 @property (copy) void (^afterSafeBlock)(SpriteObject* object);
 
 - (void)addObjectAction:(id)sender;
