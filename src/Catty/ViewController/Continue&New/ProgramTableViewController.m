@@ -153,7 +153,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ltvc.afterSafeBlock =  ^(Look* look) {
         [self.navigationController popViewControllerAnimated:YES];
         if (!look) {
-            [self deleteObjectForIndexPath:indexPath];
+            NSUInteger index = (kBackgroundObjects + indexPath.row);
+            SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
+            [self.program removeObjectFromList:object];
+            [self.program saveToDiskWithNotification:NO];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
         }
         if (self.afterSafeBlock && look ) {
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
@@ -162,9 +166,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }else if (self.afterSafeBlock && !look){
             self.afterSafeBlock(nil);
         }
+        [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     };
     [self.navigationController pushViewController:ltvc animated:NO];
-    [self showPlaceHolder:NO];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -431,7 +436,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject* itemToMove = self.program.objectList[index];
     [self.program.objectList removeObjectAtIndex:index];
     [self.program.objectList insertObject:itemToMove atIndex:destIndex];
-    [self.program saveToDisk];
+    [self.program saveToDiskWithNotification:YES];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
