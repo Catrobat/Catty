@@ -32,6 +32,7 @@
                 <outlet property="variableButton" destination="MGd-da-Hvk" id="Iji-nY-633"/>
                 <outlet property="variablePicker" destination="EC0-vt-5UA" id="92G-vd-uKY"/>
                 <outlet property="variableScrollView" destination="AR6-D2-lLT" id="SMS-E5-5xR"/>
+                <outlet property="variableSegmentedControl" destination="aAn-6g-gNG" id="bNh-Hk-62d"/>
                 <outletCollection property="buttons" destination="SUT-4U-uAA" id="dDu-m8-miC"/>
                 <outletCollection property="buttons" destination="DpH-97-0s2" id="NhG-yw-iRl"/>
                 <outletCollection property="buttons" destination="Wxl-Bw-XuK" id="5H8-uT-J6l"/>
@@ -1339,7 +1340,7 @@
                     <rect key="frame" x="82" y="86.5" width="245" height="173.5"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uE-Bt-F7y" userLabel="del">
-                            <rect key="frame" x="81.5" y="0.0" width="81.5" height="43.5"/>
+                            <rect key="frame" x="81" y="0.0" width="81.5" height="43.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <state key="normal" title="del">
                                 <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1371,8 +1372,18 @@
                                 <action selector="addNewVariable:" destination="-1" eventType="touchUpInside" id="S4R-we-MVJ"/>
                             </connections>
                         </button>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aAn-6g-gNG">
+                            <rect key="frame" x="0.0" y="48.5" width="244.5" height="29"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <connections>
+                                <action selector="changeVariablePickerView:" destination="-1" eventType="valueChanged" id="SNB-Q7-qnT"/>
+                            </connections>
+                        </segmentedControl>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC0-vt-5UA">
-                            <rect key="frame" x="0.0" y="73" width="244.5" height="100"/>
+                            <rect key="frame" x="0.0" y="81.5" width="244.5" height="100"/>
                             <color key="tintColor" red="0.90980392160000001" green="0.57254901960000004" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="D3a-WJ-tKH"/>
@@ -1380,19 +1391,22 @@
                         </pickerView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="EC0-vt-5UA" firstAttribute="top" secondItem="aAn-6g-gNG" secondAttribute="bottom" constant="5" id="CCX-vU-2h6"/>
                         <constraint firstItem="i5e-9M-JLK" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="Epv-cB-ZdQ"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" id="GVp-Nz-pIt"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="top" secondItem="AR6-D2-lLT" secondAttribute="top" id="GoB-7J-I7p"/>
                         <constraint firstAttribute="trailing" secondItem="i5e-9M-JLK" secondAttribute="trailing" constant="100" id="Hfs-wg-Y98"/>
                         <constraint firstItem="i5e-9M-JLK" firstAttribute="width" secondItem="AR6-D2-lLT" secondAttribute="width" multiplier="0.33333" id="Kq3-Id-ejG"/>
                         <constraint firstItem="i5e-9M-JLK" firstAttribute="top" secondItem="AR6-D2-lLT" secondAttribute="top" id="Qib-eq-ZUR"/>
+                        <constraint firstItem="aAn-6g-gNG" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="ROo-pc-hlS"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="top" secondItem="AR6-D2-lLT" secondAttribute="top" id="UXl-F9-LFF"/>
+                        <constraint firstItem="aAn-6g-gNG" firstAttribute="top" secondItem="8uE-Bt-F7y" secondAttribute="bottom" constant="5" id="VRa-Lb-jiZ"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="height" secondItem="i5e-9M-JLK" secondAttribute="height" id="aaL-qw-BMd"/>
                         <constraint firstItem="EC0-vt-5UA" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="cqS-G0-li5"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" id="frP-cx-2pT"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="height" secondItem="i5e-9M-JLK" secondAttribute="height" id="gSA-Tf-x41"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="leading" secondItem="8uE-Bt-F7y" secondAttribute="trailing" id="m5V-zc-XsC"/>
-                        <constraint firstItem="EC0-vt-5UA" firstAttribute="top" secondItem="8uE-Bt-F7y" secondAttribute="bottom" constant="30" id="sMX-bm-34z"/>
+                        <constraint firstItem="aAn-6g-gNG" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" multiplier="3" id="rDl-nD-9vJ"/>
                         <constraint firstItem="EC0-vt-5UA" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" multiplier="3" id="tNk-Pa-YQ2"/>
                         <constraint firstAttribute="bottom" secondItem="i5e-9M-JLK" secondAttribute="bottom" constant="131" id="tbA-SG-Jrq"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="leading" secondItem="i5e-9M-JLK" secondAttribute="trailing" id="zPH-0b-ivG"/>
@@ -1588,7 +1602,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-134.5" y="288"/>
+            <point key="canvasLocation" x="-134.5" y="452.5"/>
         </view>
     </objects>
     <resources>

@@ -88,6 +88,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic)        UIScrollView *sensorScrollHelperView;
 @property (weak, nonatomic) IBOutlet UIScrollView *variableScrollView;
 @property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *variableSegmentedControl;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *calcButton;
 @property (weak, nonatomic) IBOutlet UIButton *mathbutton;
@@ -815,6 +817,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
         [pickerData setIsProgramVariable:YES];
         [self.variableSource addObject:pickerData];
+        [self.variableSourceProgram addObject:pickerData];
     }
     
     NSArray *array = [variables.objectVariableList objectForKey:self.object];
@@ -826,6 +829,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
             [pickerData setIsProgramVariable:NO];
             [self.variableSource addObject:pickerData];
+            [self.variableSourceObject addObject:pickerData];
         }
     }
   
@@ -899,19 +903,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component == 0) {
-        return self.variableSource.count;
+    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0) {
+        return self.variableSourceProgram.count;
+    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1) {
+        return self.variableSourceObject.count;
     }
     return 0;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (component == 0) {
-        if (row < self.variableSource.count) {
-           return [[self.variableSource objectAtIndex:row] title];
+    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0) {
+        if (row < self.variableSourceProgram.count) {
+            return [[self.variableSourceProgram objectAtIndex:row] title];
+        }
+    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1) {
+        if (row < self.variableSourceObject.count) {
+            return [[self.variableSourceObject objectAtIndex:row] title];
         }
     }
+    
     return @"";
 }
 
@@ -1019,6 +1030,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     return NO;
 }
+
+- (IBAction)changeVariablePickerView:(id)sender {
+    [self.variablePicker reloadAllComponents];
+}
+
 
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
