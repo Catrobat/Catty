@@ -1023,14 +1023,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.isProgramVariable = NO;
-//    if (actionSheet.tag == 444) {
-        if (buttonIndex == 1) {
-            self.isProgramVariable = YES;
-        }
-        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-//    }
+    if(buttonIndex == 0) {
+        [self.formulaEditorTextView becomeFirstResponder];
+        return;
+    }
     
+    if (buttonIndex == 1) {
+        self.isProgramVariable = YES;
+    } else {
+        self.isProgramVariable = NO;
+    }
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
 }
 
 
