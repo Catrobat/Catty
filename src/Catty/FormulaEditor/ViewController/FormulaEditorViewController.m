@@ -1023,7 +1023,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 0) return;
+    if(buttonIndex == 0) {
+        [self.formulaEditorTextView becomeFirstResponder];
+        return;
+    }
     
     if (buttonIndex == 1) {
         self.isProgramVariable = YES;
