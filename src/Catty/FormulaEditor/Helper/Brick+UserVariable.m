@@ -24,6 +24,8 @@
 #import "UserVariable.h"
 #import "BrickFormulaProtocol.h"
 #import "FormulaElement+UserVariable.h"
+#import "SetVariableBrick.h"
+#import "ChangeVariableBrick.h"
 
 @implementation Brick (UserVariable)
 
@@ -33,6 +35,21 @@
 {
     if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
        return NO;
+    
+    if([self conformsToProtocol:@protocol(BrickVariableProtocol)]){
+        if ([self isKindOfClass:[SetVariableBrick class]]) {
+            SetVariableBrick* varBrick = (SetVariableBrick*) self;
+            if ([variable isEqualToUserVariable:varBrick.userVariable]) {
+                return YES;
+            }
+        } else if ([self isKindOfClass:[ChangeVariableBrick class]]) {
+            ChangeVariableBrick* varBrick = (ChangeVariableBrick*) self;
+            if ([variable isEqualToUserVariable:varBrick.userVariable]) {
+                return YES;
+            }
+        }
+    }
+
     
     for(int line = 0; line <= BRICK_MAX_LINE_NUMBER; line++) {
         for(int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
