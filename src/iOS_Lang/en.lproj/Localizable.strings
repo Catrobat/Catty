@@ -142,6 +142,12 @@
 /* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+
 /* No comment provided by engineer. */
 "Categories" = "Categories";
 
@@ -207,6 +213,15 @@
 
 /* No comment provided by engineer. */
 "Computed result is TRUE" = "Computed result is TRUE";
+
+/* bluetooth */
+"Connection failed" = "Connection failed";
+
+/* bluetooth */
+"Connection Lost" = "Connection Lost";
+
+/* bluetooth */
+"Connection not possible" = "Connection not possible";
 
 /* No comment provided by engineer. */
 "Continue" = "Continue";
@@ -318,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Details" = "Details";
+
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
 
 /* No comment provided by engineer. */
 "direction" = "direction";
@@ -592,6 +610,9 @@
 /* No comment provided by engineer. */
 "June" = "June";
 
+/* bluetooth */
+"Known devices" = "Known devices";
+
 /* No comment provided by engineer. */
 "LA" = "LA";
 
@@ -633,6 +654,9 @@
 
 /* No comment provided by engineer. */
 "Login/Register" = "Login/Register";
+
+/* No comment provided by engineer. */
+"Look" = "Look";
 
 /* LOOK */
 "look" = "look";
@@ -901,6 +925,9 @@
 /* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
 
+/* bluetooth */
+"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
@@ -1064,10 +1091,19 @@
 "Screenshot saved to project" = "Screenshot saved to project";
 
 /* No comment provided by engineer. */
+"Script" = "Script";
+
+/* No comment provided by engineer. */
 "Scripts" = "Scripts";
+
+/* bluetooth */
+"Search" = "Search";
 
 /* No comment provided by engineer. */
 "Select All" = "Select All";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
 "Select Brick Category" = "Select Brick Category";
@@ -1080,6 +1116,9 @@
 
 /* paint */
 "Select option:" = "Select option:";
+
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensors";
@@ -1305,6 +1344,9 @@
 
 /* No comment provided by engineer. */
 "v" = "v";
+
+/* No comment provided by engineer. */
+"Variable" = "Variable";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
