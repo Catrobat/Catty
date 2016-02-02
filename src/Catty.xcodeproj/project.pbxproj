@@ -258,7 +258,6 @@
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; };
 		92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631871BC502CB00486958 /* SearchDevicesTableViewController.swift */; };
 		92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */; };
-		92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92C631991BC5173200486958 /* BluetoothHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */; };
 		92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C95FDA1BD8DBEB00742F7E /* BluetoothService.swift */; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
@@ -780,14 +779,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		92C6319D1BC5180B00486958 /* CopyFiles */ = {
+		A9140DB21C60D89700AD7F3C /* Synchronize Localization between Swift and Objective C */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 7;
 			files = (
-				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */,
 			);
+			name = "Synchronize Localization between Swift and Objective C";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -5629,7 +5628,9 @@
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
 				0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */,
+				A9140DB21C60D89700AD7F3C /* Synchronize Localization between Swift and Objective C */,
 				CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */,
+				A9140DB31C60D8D100AD7F3C /* Synchronize Localization Constants */,
 				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
 				CADBD6D819B0E8C200C62836 /* Resources */,
 				CADBD70119B0E8C200C62836 /* Sources */,
@@ -5637,7 +5638,6 @@
 				CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */,
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
 				929DC44A1BCB9C5000421443 /* License Validator */,
-				92C6319D1BC5180B00486958 /* CopyFiles */,
 				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
 				4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */,
 				1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */,
@@ -6006,6 +6006,20 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi";
 		};
+		A9140DB31C60D8D100AD7F3C /* Synchronize Localization Constants */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Synchronize Localization Constants";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "python synchronize_localization.py&\n./update-localized-strings.sh&";
+		};
 		AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6046,7 +6060,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\npython synchronize_localization.py&\n./update-localized-strings.sh&";
+			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
