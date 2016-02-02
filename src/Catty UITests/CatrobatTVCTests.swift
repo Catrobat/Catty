@@ -22,8 +22,6 @@
 
 import XCTest
 
-@testable import Pocket_Code
-
 class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
     override func setUp() {
