@@ -20,6 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+
+/*
+     _       _     _                       _              _         _
+    / \   __| | __| |   ___ ___  _ __  ___| |_ __ _ _ __ | |_ ___  | |_ ___
+   / _ \ / _` |/ _` |  / __/ _ \| '_ \/ __| __/ _` | '_ \| __/ __| | __/ _ \
+  / ___ \ (_| | (_| | | (_| (_) | | | \__ \ || (_| | | | | |_\__ \ | || (_) |
+ /_/   \_\__,_|\__,_|  \___\___/|_| |_|___/\__\__,_|_| |_|\__|___/  \__\___/
+  _                                            _____                    _       _   _             ____        __ _                   _
+ | |    __ _ _ __   __ _ _   _  __ _  __ _  __|_   _| __ __ _ _ __  ___| | __ _| |_(_) ___  _ __ |  _ \  ___ / _(_)_ __   ___  ___  | |__
+ | |   / _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \| || '__/ _` | '_ \/ __| |/ _` | __| |/ _ \| '_ \| | | |/ _ \ |_| | '_ \ / _ \/ __| | '_ \
+ | |__| (_| | | | | (_| | |_| | (_| | (_| |  __/| || | | (_| | | | \__ \ | (_| | |_| | (_) | | | | |_| |  __/  _| | | | |  __/\__ \_| | | |
+ |_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___||_||_|  \__,_|_| |_|___/_|\__,_|\__|_|\___/|_| |_|____/ \___|_| |_|_| |_|\___||___(_)_| |_|
+                   |___/             |___/
+ */
+
+
 //************************************************************************************************************
 //************************************       TERMS/BUZZWORDS      ********************************************
 //************************************************************************************************************
@@ -55,7 +71,6 @@
 #define kLocalizedFebruary NSLocalizedString(@"February", nil)
 #define kLocalizedMarch NSLocalizedString(@"March", nil)
 #define kLocalizedApril NSLocalizedString(@"April", nil)
-#define kLocalizedMay NSLocalizedString(@"May", nil)
 #define kLocalizedJune NSLocalizedString(@"June", nil)
 #define kLocalizedJuly NSLocalizedString(@"July", nil)
 #define kLocalizedAugust NSLocalizedString(@"August", nil)
@@ -77,13 +92,9 @@
 #define kLocalizedDec NSLocalizedString(@"Dec", nil)
 #define kLocalizedPocketCode NSLocalizedString(@"Pocket Code", nil)
 #define kLocalizedCategories NSLocalizedString(@"Categories", nil)
-#define kLocalizedExplore NSLocalizedString(@"Explore", nil)
-#define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedDetails NSLocalizedString(@"Details", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
-#define kLocalizedSounds NSLocalizedString(@"Sounds", nil)
 #define kLocalizedChooseSound NSLocalizedString(@"Choose sound", nil)
-#define kLocalizedPrograms NSLocalizedString(@"Programs", nil)
 #define kLocalizedFeaturedPrograms NSLocalizedString(@"Featured Programs", nil)
 #define kLocalizedScripts NSLocalizedString(@"Scripts", nil)
 #define kLocalizedBackgrounds NSLocalizedString(@"Backgrounds", nil)
@@ -94,7 +105,6 @@
 #define kLocalizedPrograms NSLocalizedString(@"Programs", nil)
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedExplore NSLocalizedString(@"Explore", nil)
-#define kLocalizedUpload NSLocalizedString(@"Upload", nil)
 #define kLocalizedDeletionMenu NSLocalizedString(@"Deletion Mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
@@ -113,7 +123,6 @@
 #define kLocalizedUndoTypingDescription NSLocalizedString(@"Undo Typing?", @"Description text in alert view if user shakes the device")
 #define kLocalizedSelectAllItems NSLocalizedString(@"Select All", nil)
 #define kLocalizedUnselectAllItems NSLocalizedString(@"Unselect All", nil)
-#define kLocalizedDelete NSLocalizedString(@"Delete", nil)
 #define kLocalizedSaveToPocketCode NSLocalizedString(@"Save to PocketCode", nil)
 #define kLocalizedEditSounds NSLocalizedString(@"Edit Sounds",@"Action sheet menu title")
 #define kLocalizedEditSound NSLocalizedString(@"Edit Sound",@"Action sheet menu title")
@@ -157,23 +166,14 @@
 #define kLocalizedChooseImage NSLocalizedString(@"Choose image", nil)
 #define kLocalizedDrawNewImage NSLocalizedString(@"Draw new image", nil)
 #define kLocalizedRename NSLocalizedString(@"Rename", nil)
-#define kLocalizedRenameProgram NSLocalizedString(@"Rename Program", nil)
 #define kLocalizedCopy NSLocalizedString(@"Copy", nil)
-#define kLocalizedDescription NSLocalizedString(@"Description", nil)
 #define kLocalizedUpload NSLocalizedString(@"Upload", nil)
 #define kLocalizedDeleteObjects NSLocalizedString(@"Delete Objects", nil)
 #define kLocalizedMoveObjects NSLocalizedString(@"Move Objects",nil)
 #define kLocalizedDeletePrograms NSLocalizedString(@"Delete Programs", nil)
 #define kLocalizedPocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
-#define kLocalizedChooseSound NSLocalizedString(@"Choose sound", nil)
 #define kLocalizedCameraRoll NSLocalizedString(@"Camera Roll", nil)
 #define kLocalizedProject NSLocalizedString(@"Project", nil)
-#define kLocalizedDelete NSLocalizedString(@"Delete", nil)
-#define kLocalizedControl NSLocalizedString(@"Control", nil)
-#define kLocalizedMotion NSLocalizedString(@"Motion", nil)
-#define kLocalizedSound NSLocalizedString(@"Sound", nil)
-#define kLocalizedLooks NSLocalizedString(@"Looks", nil)
-#define kLocalizedVariables NSLocalizedString(@"Variables", nil)
 #define kLocalizedPlay NSLocalizedString(@"Play", nil)
 #define kLocalizedDownload NSLocalizedString(@"Download", nil)
 #define kLocalizedMore NSLocalizedString(@"More", nil)
@@ -183,7 +183,6 @@
 #define kLocalizedRenameObject NSLocalizedString(@"Rename object", nil)
 #define kLocalizedRenameImage NSLocalizedString(@"Rename image", nil)
 #define kLocalizedRenameSound NSLocalizedString(@"Rename sound", nil)
-#define kLocalizedDeleteThisProgram NSLocalizedString(@"Delete this program", nil)
 #define kLocalizedDeleteThisObject NSLocalizedString(@"Delete this object", nil)
 #define kLocalizedDeleteThisProgram NSLocalizedString(@"Delete this program", nil)
 #define kLocalizedDeleteThisLook NSLocalizedString(@"Delete this look", nil)
@@ -215,17 +214,12 @@
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
 #define kLocalizedObject NSLocalizedString(@"Object", nil)
 #define kLocalizedObjects NSLocalizedString(@"Objects", nil)
-#define kLocalizedScripts NSLocalizedString(@"Scripts", nil)
 #define kLocalizedBricks NSLocalizedString(@"Bricks", nil)
-#define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedSounds NSLocalizedString(@"Sounds", nil)
 #define kLocalizedLastAccess NSLocalizedString(@"Last access", nil)
-#define kLocalizedSize NSLocalizedString(@"Size", nil)
 #define kLocalizedLength NSLocalizedString(@"Length", nil)
-#define kLocalizedBack NSLocalizedString(@"Back", nil)
 #define kLocalizedRecord NSLocalizedString(@"Record", nil)
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
-#define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
 #define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most Downloaded", nil)
@@ -234,7 +228,6 @@
 #define kLocalizedControl NSLocalizedString(@"Control", nil)
 #define kLocalizedMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
-#define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
 #define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
@@ -249,7 +242,6 @@
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
 #define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
-#define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedName NSLocalizedString(@"Name", nil)
 #define kLocalizedDownloaded NSLocalizedString(@"Download sucessful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
@@ -417,14 +409,13 @@
 #define kLocalizedLoginEmailNotValid NSLocalizedString(@"Email is not valid!", nil)
 #define kLocalizedLoginPasswordNotValid NSLocalizedString(@"Password is not vaild! \n It has to contain at least 6 characters/symbols", nil)
 #define kLocalizedUploadProgramNecessary NSLocalizedString(@"Program Name is necessary!", nil)
-#define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedTermsAgreementPart NSLocalizedString(@"By registering you agree to our", nil)
 #define kLocalizedUploadSuccessful NSLocalizedString(@"Upload successful", nil)
 #define kLocalizedRegistrationSuccessful NSLocalizedString(@"Registration successful", nil)
 #define kLocalizedLoginSuccessful NSLocalizedString(@"Login successful", nil)
 #define kUploadSelectedProgram NSLocalizedString(@"Upload Selected Program", nil)
-#define kLocalizedUploadProblem NSLocalizedString (@"Problems occured while Uploading your program", nil)
-#define kLocalizedUploadSelectProgram NSLocalizedString (@"Please select a program to upload", nil)
+#define kLocalizedUploadProblem NSLocalizedString(@"Problems occured while Uploading your program", nil)
+#define kLocalizedUploadSelectProgram NSLocalizedString(@"Please select a program to upload", nil)
 #define kLocalizedTitleLogin NSLocalizedString(@"GOOD TO SEE YOU",nil)
 #define kLocalizedTitleRegister NSLocalizedString(@"GOOD TO SEE YOU",nil)
 
@@ -461,7 +452,6 @@
 #define kLocalizedPaintClose NSLocalizedString(@"Close Paint", @"paint")
 #define kLocalizedPaintNewCanvas NSLocalizedString(@"New Canvas", @"paint")
 #define kLocalizedPaintPickItem NSLocalizedString(@"Please pick an item", @"paint")
-#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
 #define kLocalizedPaintNoCrop NSLocalizedString(@"Nothing to crop!", @"paint")
 #define kLocalizedPaintAskNewCanvas NSLocalizedString(@"Do you really want to delete the current drawing?", @"paint")
 #define kLocalizedPaintRound NSLocalizedString(@"round", @"paint")
@@ -565,14 +555,14 @@
 #define kUIFENewText NSLocalizedString(@"New Text", nil)
 #define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
 #define kUIFavouritesTitle NSLocalizedString(@"Frequently Used", @"Title of View where the user can see the frequently used bricks.")
-#define kUIScriptTitle NSLocalizedStringFromTable(@"Script", @"BrickCategoryViewController", nil);
-#define kUIControlTitle NSLocalizedStringFromTable(@"Control", @"BrickCategoryViewController", nil);
-#define kUIMotionTitle  NSLocalizedStringFromTable(@"Motion", @"BrickCategoryViewController", nil);
-#define kUISoundTitle  NSLocalizedStringFromTable(@"Sound", @"BrickCategoryViewController", nil);
-#define kUILookTitle  NSLocalizedStringFromTable(@"Look", @"BrickCategoryViewController", nil);
-#define kUIVariableTitle  NSLocalizedStringFromTable(@"Variable", @"BrickCategoryViewController", nil);
-#define kUIArduinoTitle  NSLocalizedStringFromTable(@"Arduino", @"BrickCategoryViewController", nil);
-#define kUIPhiroTitle  NSLocalizedStringFromTable(@"Phiro", @"BrickCategoryViewController", nil);
+#define kUIScriptTitle NSLocalizedString(@"Script", nil);
+#define kUIControlTitle NSLocalizedString(@"Control", nil);
+#define kUIMotionTitle  NSLocalizedString(@"Motion", nil);
+#define kUISoundTitle  NSLocalizedString(@"Sound", nil);
+#define kUILookTitle  NSLocalizedString(@"Look", nil);
+#define kUIVariableTitle  NSLocalizedString(@"Variable", nil);
+#define kUIArduinoTitle  NSLocalizedString(@"Arduino", nil);
+#define kUIPhiroTitle  NSLocalizedString(@"Phiro", nil);
 
 
 //************************************************************************************************************
@@ -592,13 +582,40 @@
 #define kLocalizedPhiroLA  NSLocalizedString(@"LA", nil)
 #define kLocalizedPhiroTI  NSLocalizedString(@"TI", nil)
 
-#if DEBUG == 1
+
+#define klocalizedBluetoothSearch NSLocalizedString(@"Search", @"bluetooth")
+#define klocalizedBluetoothKnown NSLocalizedString(@"Known devices", @"bluetooth")
+#define klocalizedBluetoothSelectPhiro NSLocalizedString(@"Select Phiro", @"bluetooth")
+#define klocalizedBluetoothSelectArduino NSLocalizedString(@"Select Arduino", @"bluetooth")
+#define klocalizedBluetoothConnectionNotPossible NSLocalizedString(@"Connection not possible", @"bluetooth")
+#define klocalizedBluetoothConnectionTryResetting NSLocalizedString(@"Please try resetting the device and try again.", @"bluetooth")
+#define klocalizedBluetoothConnectionFailed NSLocalizedString(@"Connection failed", @"bluetooth")
+#define klocalizedBluetoothCannotConnect NSLocalizedString(@"Cannot connect to device, please try resetting the device and try again.", @"bluetooth")
+#define klocalizedBluetoothNotResponding NSLocalizedString(@"Cannot connect to device. The device is not responding.", @"bluetooth")
+#define klocalizedBluetoothConnectionLost NSLocalizedString(@"Connection Lost", @"bluetooth")
+#define klocalizedBluetoothDisconnected NSLocalizedString(@"Device disconnected.", @"bluetooth")
+
+
+
+
 //************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
 #define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
 #define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
-#endif
 
 
 
+/*
+     _       _     _                       _              _         _
+    / \   __| | __| |   ___ ___  _ __  ___| |_ __ _ _ __ | |_ ___  | |_ ___
+   / _ \ / _` |/ _` |  / __/ _ \| '_ \/ __| __/ _` | '_ \| __/ __| | __/ _ \
+  / ___ \ (_| | (_| | | (_| (_) | | | \__ \ || (_| | | | | |_\__ \ | || (_) |
+ /_/   \_\__,_|\__,_|  \___\___/|_| |_|___/\__\__,_|_| |_|\__|___/  \__\___/
+  _                                            _____                    _       _   _             ____        __ _                   _
+ | |    __ _ _ __   __ _ _   _  __ _  __ _  __|_   _| __ __ _ _ __  ___| | __ _| |_(_) ___  _ __ |  _ \  ___ / _(_)_ __   ___  ___  | |__
+ | |   / _` | '_ \ / _` | | | |/ _` |/ _` |/ _ \| || '__/ _` | '_ \/ __| |/ _` | __| |/ _ \| '_ \| | | |/ _ \ |_| | '_ \ / _ \/ __| | '_ \
+ | |__| (_| | | | | (_| | |_| | (_| | (_| |  __/| || | | (_| | | | \__ \ | (_| | |_| | (_) | | | | |_| |  __/  _| | | | |  __/\__ \_| | | |
+ |_____\__,_|_| |_|\__, |\__,_|\__,_|\__, |\___||_||_|  \__,_|_| |_|___/_|\__,_|\__|_|\___/|_| |_|____/ \___|_| |_|_| |_|\___||___(_)_| |_|
+                   |___/             |___/
+*/
