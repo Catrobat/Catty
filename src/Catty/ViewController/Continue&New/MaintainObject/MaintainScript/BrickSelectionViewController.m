@@ -37,7 +37,7 @@
 
     self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
     NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
-    if (favouritesDict.count) {
+    if (favouritesDict.count >= kMinFavouriteBrickSize) {
         [self.pageIndexArray insertObject:[NSNumber numberWithInteger:kPageIndexScriptFavourites] atIndex:0];
     }
     return self;
@@ -68,14 +68,14 @@
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     NSInteger pageIndex = bcVC.pageIndex - 1;
-    if (!favouritesDict.count) {
+    if (favouritesDict.count < kMinFavouriteBrickSize) {
         pageIndex -= 1;
     }
     if (pageIndex == 0) {
         pageIndex = 0;
     }
     NSNumber* number = self.pageIndexArray[0];
-    if (pageIndex >= number.integerValue || (!favouritesDict.count && pageIndex == 0)) {
+    if (pageIndex >= number.integerValue || (favouritesDict.count < kMinFavouriteBrickSize && pageIndex == 0)) {
         NSNumber *index = self.pageIndexArray[pageIndex];
         return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue object:bcVC.spriteObject maxPage:self.pageIndexArray.count andPageIndexArray:self.pageIndexArray];
     }
@@ -88,7 +88,7 @@
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     NSUInteger pageIndex = bcVC.pageIndex;
-    if (favouritesDict.count) {
+    if (favouritesDict.count >= kMinFavouriteBrickSize) {
        pageIndex += 1;
     }
     if (pageIndex < self.pageIndexArray.count) {
@@ -117,7 +117,7 @@
 {
     [self overwritePageControl];
     NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
-    if (!favouritesDict.count) {
+    if (favouritesDict.count < kMinFavouriteBrickSize) {
         return self.pageIndexArray.count+1;
     }
     return self.pageIndexArray.count;

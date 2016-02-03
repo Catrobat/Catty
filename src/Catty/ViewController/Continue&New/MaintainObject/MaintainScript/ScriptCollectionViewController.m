@@ -166,7 +166,7 @@
             [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
         }
         NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
-        if (!favouritesDict.count && self.lastSelectedBrickCategory == 0) {
+        if (favouritesDict.count < kMinFavouriteBrickSize && self.lastSelectedBrickCategory == 0) {
             self.lastSelectedBrickCategory = 1;
         }
         BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object andPageIndexArray:bsvc.pageIndexArray];

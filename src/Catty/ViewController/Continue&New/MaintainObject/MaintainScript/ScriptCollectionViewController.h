@@ -25,6 +25,8 @@
 
 @class SpriteObject;
 
+#define kMinFavouriteBrickSize 5
+
 @interface ScriptCollectionViewController : BaseCollectionViewController<BrickCategoryViewControllerDelegate>
 @property (nonatomic, strong) SpriteObject *object;
 @end
