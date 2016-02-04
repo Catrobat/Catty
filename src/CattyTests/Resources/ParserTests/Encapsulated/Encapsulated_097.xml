@@ -5,11 +5,10 @@
         <applicationBuildNumber>3279-iOS9_IOS-91_100_102_154_159_193-{parent:c01add4}</applicationBuildNumber>
         <applicationName>Pocket Code</applicationName>
         <applicationVersion>0.4</applicationVersion>
-        <catrobatLanguageVersion>0.96</catrobatLanguageVersion>
+        <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
         <dateTimeUpload/>
         <description/>
         <deviceName>iPhone</deviceName>
-        <isPhiroProProject>false</isPhiroProProject>
         <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
         <platform>iPhone OS</platform>
         <platformVersion>9.0</platformVersion>

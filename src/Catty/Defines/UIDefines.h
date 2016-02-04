@@ -120,8 +120,8 @@ static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kControlBrick              = 1,
     kMotionBrick               = 2,
-    kSoundBrick                = 3,
-    kLookBrick                 = 4,
+    kLookBrick                 = 3,
+    kSoundBrick                = 4,
     kVariableBrick             = 5,
     kArduinoBrick              = 6,
     kPhiroBrick                = 7,
@@ -132,8 +132,8 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
     kPageIndexScriptFavourites,
     kPageIndexControlBrick,
     kPageIndexMotionBrick,
-    kPageIndexSoundBrick,
     kPageIndexLookBrick,
+    kPageIndexSoundBrick,
     kPageIndexVariableBrick,
     kPageIndexArduinoBrick,
     kPageIndexPhiroBrick
@@ -174,29 +174,31 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kGlideToBrick              = 111,
     kGoNStepsBackBrick         = 112,
     kComeToFrontBrick          = 113,
+    
+    // 2xx look bricks
+    kSetLookBrick              = 200,
+    kNextLookBrick             = 201,
+    kSetSizeToBrick            = 202,
+    kChangeSizeByNBrick        = 203,
+    kHideBrick                 = 204,
+    kShowBrick                 = 205,
+    kSetTransparencyBrick      = 206,
+    kChangeTransparencyByNBrick= 207,
+    kSetBrightnessBrick        = 208,
+    kChangeBrightnessByNBrick  = 209,
+    kClearGraphicEffectBrick   = 210,
+    kLedOnBrick                = 211,
+    kLedOffBrick               = 212,
+    kVibrationBrick            = 213,
+    
+    // 3xx sound bricks
+    kPlaySoundBrick            = 300,
+    kStopAllSoundsBrick        = 301,
+    kSetVolumeToBrick          = 302,
+    kChangeVolumeByNBrick      = 303,
+    kSpeakBrick                = 304,
 
-    // 2xx sound bricks
-    kPlaySoundBrick            = 200,
-    kStopAllSoundsBrick        = 201,
-    kSetVolumeToBrick          = 202,
-    kChangeVolumeByNBrick      = 203,
-    kSpeakBrick                = 204,
 
-    // 3xx look bricks
-    kSetLookBrick              = 300,
-    kNextLookBrick             = 301,
-    kSetSizeToBrick            = 302,
-    kChangeSizeByNBrick        = 303,
-    kHideBrick                 = 304,
-    kShowBrick                 = 305,
-    kSetTransparencyBrick      = 306,
-    kChangeTransparencyByNBrick= 307,
-    kSetBrightnessBrick        = 308,
-    kChangeBrightnessByNBrick  = 309,
-    kClearGraphicEffectBrick   = 310,
-    kLedOnBrick                = 311,
-    kLedOffBrick               = 312,
-    kVibrationBrick            = 313,
 
     // 4xx variable bricks
     kSetVariableBrick          = 400,
@@ -239,8 +241,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 #define kBrickCategoryNames @[\
     kLocalizedControl,\
     kLocalizedMotion,\
-    kLocalizedSound,\
     kLocalizedLooks,\
+    kLocalizedSound,\
     kLocalizedVariables,\
     kLocalizedPhiro\
 ]
@@ -248,8 +250,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 #define kBrickCategoryColors @[\
     [UIColor controlBrickOrangeColor],\
     [UIColor motionBrickBlueColor],\
-    [UIColor soundBrickVioletColor],\
     [UIColor lookBrickGreenColor],\
+    [UIColor soundBrickVioletColor],\
     [UIColor varibaleBrickRedColor],\
     [UIColor ArduinoBrickColor],\
     [UIColor PhiroBrickColor]\
@@ -258,8 +260,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 #define kBrickCategoryStrokeColors @[\
     [UIColor controlBrickStrokeColor],\
     [UIColor motionBrickStrokeColor],\
-    [UIColor soundBrickStrokeColor],\
     [UIColor lookBrickStrokeColor],\
+    [UIColor soundBrickStrokeColor],\
     [UIColor variableBrickStrokeColor],\
     [UIColor ArduinoBrickStrokeColor],\
     [UIColor PhiroBrickStrokeColor]\

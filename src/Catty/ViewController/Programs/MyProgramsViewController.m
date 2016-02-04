@@ -48,10 +48,10 @@
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIDefines.h"
 #import "UIUtil.h"
-#import "DescriptionPopopViewController.h"
+#import "DescriptionViewController.h"
 
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
-CatrobatAlertViewDelegate, UITextFieldDelegate>
+CatrobatAlertViewDelegate, UITextFieldDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
@@ -511,9 +511,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.editing) {
         return NO;
     }
-    if ([self dismissPopupWithCode:NO]) {
-        return NO;
-    }
     
     static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
@@ -527,7 +524,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.selectedProgram =[Program programWithLoadingInfo:info];
             if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
                 self.selectedProgram.header.programName = info.visibleName;
-                [self.selectedProgram saveToDisk];
+                [self.selectedProgram saveToDiskWithNotification:YES];
             }
             if (self.selectedProgram) {
                 return YES;
@@ -634,23 +631,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             Program *program = [Program programWithLoadingInfo:info];
-            if (self.popupViewController == nil) {
-                DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
-                popupViewController.delegate = self;
-                self.tableView.scrollEnabled = NO;
-                self.navigationController.toolbar.userInteractionEnabled = NO;
-                self.navigationController.navigationBar.userInteractionEnabled = NO;
-                self.navigationController.navigationBar.alpha = 0.3f;
-                self.navigationController.toolbar.alpha = 0.3f;
-                for (UITableViewCell *cell in self.tableView.visibleCells) {
-                    cell.alpha = 0.3f;
-                }
-                self.selectedProgram = program;
-                NSLog(@"%f",self.tableView.contentOffset.y);
-                [self presentPopupViewController:popupViewController WithFrame:CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y, [Util screenWidth], [Util screenHeight]) Centered:NO];
-            } else {
-                [self dismissPopupWithCode:NO];
-            }
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+            DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+            dViewController.delegate = self;
+            self.selectedProgram = program;
+            [self.navigationController presentViewController:dViewController animated:YES completion:nil];
             //        } else if (buttonIndex == 3) {
             //            // Upload button
         }
@@ -835,27 +820,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView reloadData];
 }
 
-#pragma mark - popup delegate
-- (BOOL)dismissPopupWithCode:(BOOL)save
+#pragma mark - description delegate
+
+-(void) setDescription:(NSString *)description
 {
-    if (self.popupViewController != nil) {
-        [self dismissPopupViewController];
-        if (save) {
-            [self updateProgramDescriptionActionWithText:self.changedDescription sourceProgram:self.selectedProgram];
-        }
-        self.selectedProgram = nil;
-        self.tableView.scrollEnabled = YES;
-        self.navigationController.toolbar.userInteractionEnabled = YES;
-        self.navigationController.navigationBar.userInteractionEnabled = YES;
-        self.navigationController.navigationBar.alpha = 1.0f;
-        self.navigationController.toolbar.alpha = 1.0f;
-        for (UITableViewCell *cell in self.tableView.visibleCells) {
-            cell.alpha = 1.0f;
-        }
-        return YES;
-    }
-    return NO;
+    [self updateProgramDescriptionActionWithText:description sourceProgram:self.selectedProgram];
 }
+
 
 
 @end

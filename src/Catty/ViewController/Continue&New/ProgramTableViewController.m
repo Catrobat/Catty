@@ -56,10 +56,10 @@
 #import "ObjectTableViewController.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
-#import "UIViewController+CWPopup.h"
-#import "DescriptionPopopViewController.h"
+#import "DescriptionViewController.h"
+#import "PlaceHolderView.h"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, DismissPopupDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @end
@@ -115,6 +115,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
     }
+    self.placeHolderView.title = kLocalizedObjects;
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
@@ -151,7 +153,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ltvc.afterSafeBlock =  ^(Look* look) {
         [self.navigationController popViewControllerAnimated:YES];
         if (!look) {
-            [self deleteObjectForIndexPath:indexPath];
+            NSUInteger index = (kBackgroundObjects + indexPath.row);
+            SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
+            [self.program removeObjectFromList:object];
+            [self.program saveToDiskWithNotification:NO];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
         }
         if (self.afterSafeBlock && look ) {
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
@@ -160,8 +166,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }else if (self.afterSafeBlock && !look){
             self.afterSafeBlock(nil);
         }
+        [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     };
     [self.navigationController pushViewController:ltvc animated:NO];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -264,6 +272,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.program removeObjects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -274,6 +283,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -426,7 +436,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject* itemToMove = self.program.objectList[index];
     [self.program.objectList removeObjectAtIndex:index];
     [self.program.objectList insertObject:itemToMove atIndex:destIndex];
-    [self.program saveToDisk];
+    [self.program saveToDiskWithNotification:YES];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -576,22 +586,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.tableView reloadData];
         } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)) {
             //description
-            if (self.popupViewController == nil) {
-                DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
-                popupViewController.delegate = self;
-                self.tableView.scrollEnabled = NO;
-                self.navigationController.toolbar.userInteractionEnabled = NO;
-                self.navigationController.navigationBar.userInteractionEnabled = NO;
-                self.navigationController.navigationBar.alpha = 0.3f;
-                self.navigationController.toolbar.alpha = 0.3f;
-                for (UITableViewCell *cell in self.tableView.visibleCells) {
-                    cell.alpha = 0.3f;
-                }
-                [self presentPopupViewController:popupViewController WithFrame:CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y, [Util screenWidth], [Util screenHeight]) Centered:NO];
-            } else {
-                [self dismissPopupWithCode:NO];
-            }
-
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+            DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+            dViewController.delegate = self;
+            [self.navigationController presentViewController:dViewController animated:YES completion:nil];
         }
     } else if (actionSheet.tag == kEditObjectActionSheetTag) {
         if (buttonIndex == 1) {
@@ -661,25 +659,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
-#pragma mark Dismiss popup
-- (BOOL)dismissPopupWithCode:(BOOL)save
+#pragma mark description delegate
+- (void)setDescription:(NSString *)description
 {
-    if (self.popupViewController != nil) {
-        [self dismissPopupViewController];
-        if (save) {
-            [self.program updateDescriptionWithText:self.changedProgramDescription];
-        }
-        self.tableView.scrollEnabled = YES;
-        self.navigationController.toolbar.userInteractionEnabled = YES;
-        self.navigationController.navigationBar.userInteractionEnabled = YES;
-        self.navigationController.navigationBar.alpha = 1.0f;
-        self.navigationController.toolbar.alpha = 1.0f;
-        for (UITableViewCell *cell in self.tableView.visibleCells) {
-            cell.alpha = 1.0f;
-        }
-        return YES;
-    }
-    return NO;
+    [self.program updateDescriptionWithText:description];
 }
 
 @end

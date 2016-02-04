@@ -37,7 +37,7 @@
 
 - (void)initPointerView
 {
-  self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x , self.canvas.helper.center.y, 125 , 125)];
+  self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x - 62.5f, self.canvas.helper.center.y - 62.5f, 125 , 125)];
   [self.pointerView setUserInteractionEnabled:YES];
   self.pointerView.backgroundColor = [UIColor clearColor];
   self.pointerView.hidden = YES;
@@ -119,12 +119,12 @@
   if (self.drawingEnabled == YES) {
     self.drawingEnabled = NO;
     self.colorView.hidden = YES;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor navTintColor];
     
   } else{
     self.drawingEnabled = YES;
     self.colorView.hidden = NO;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor greenColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor whiteColor];
     [self updateColorView];
   }
   

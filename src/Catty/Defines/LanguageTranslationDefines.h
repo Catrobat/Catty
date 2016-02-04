@@ -244,6 +244,7 @@
 #define kLocalizedFaceDetectionFrontCamera NSLocalizedString(@"Use front camera", nil)
 #define kLocalizedFaceDetectionDefaultCamera NSLocalizedString(@"default camera is back camera", nil)
 #define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)
+#define kLocalizedRemoveKnownDevices NSLocalizedString(@"Remove known devices", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
@@ -275,6 +276,7 @@
 #define kLocalizedBluetoothPoweredOff NSLocalizedString(@"Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.",nil)
 #define kLocalizedBluetoothNotAvailable NSLocalizedString(@"Bluetooth is not available. Either your device does not support Bluetooth 4.0 or your Bluetooth chip is damaged. Please check it by connection to another Bluetooth device in the Settings.",nil)
 #define kLocalizedDisconnectBluetoothDevices NSLocalizedString(@"All Bluetooth devices successfully disconnected", nil)
+#define kLocalizedRemovedKnownBluetoothDevices NSLocalizedString(@"All known Bluetooth devices successfully removed", nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -433,7 +435,7 @@
 //************************************       PAINT                ********************************************
 //************************************************************************************************************
 
-#define kLocalizedPaintWidth NSLocalizedString(@"Width", @"paint")
+#define kLocalizedPaintWidth NSLocalizedString(@"Width selection", @"paint")
 #define kLocalizedPaintRed NSLocalizedString(@"Red", @"paint")
 #define kLocalizedPaintGreen NSLocalizedString(@"Green", @"paint")
 #define kLocalizedPaintBlue NSLocalizedString(@"Blue", @"paint")
@@ -477,7 +479,7 @@
 #define kUIFENumbers NSLocalizedString(@"Numbers", nil)
 #define kUIFELogic NSLocalizedString(@"Logic", nil)
 #define kUIFEVar NSLocalizedString(@"New", nil)
-#define kUIFETake NSLocalizedString(@"Take", nil)
+#define kUIFETake NSLocalizedString(@"Choose", nil)
 #define kUIFEMath NSLocalizedString(@"Math", nil)
 #define kUIFEObject NSLocalizedString(@"Object", nil)
 #define kUIFESensor NSLocalizedString(@"Sensors", nil)

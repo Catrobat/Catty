@@ -44,10 +44,10 @@
 {
     if (self.languageVersion == 0.93f) {
         return [modelClass parseFromElement:xmlElement withContextForLanguageVersion093:self];
-    } else if (self.languageVersion >= 0.94f || self.languageVersion <= 0.96f) {
+    } else if (self.languageVersion >= 0.94f && self.languageVersion <= 0.97f) {
         return [modelClass parseFromElement:xmlElement withContextForLanguageVersion095:self];
     } else {
-        NSError(@"Unsupported CatrobatLanguageVersion %@", self.languageVersion);
+        NSError(@"Unsupported CatrobatLanguageVersion %.2f", self.languageVersion);
     }
     return nil;
 }

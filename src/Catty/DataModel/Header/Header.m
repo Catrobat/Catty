@@ -52,7 +52,6 @@
     header.programScreenshotManuallyTaken = kCatrobatHeaderProgramScreenshotDefaultValue;
     header.tags = nil;
     header.programID = nil;
-    header.isPhiroProProject = @"false";
     return header;
 }
 

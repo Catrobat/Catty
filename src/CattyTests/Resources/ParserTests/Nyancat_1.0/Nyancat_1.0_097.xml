@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.5</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>The famous Internet meme in its infinite version.</description>
+    <deviceName>HTC Sensation Z710e</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>15.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Nyancat 1.0</programName>
+    <remixOf></remixOf>
+    <screenHeight>960</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>540</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/950</url>
+    <userHandle>hej-wickie-hej</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="black">
+          <fileName>3dbeb2840d2df22773f2f9e447481513_3DBEB2840D2DF22773F2F9E447481513_black.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>058d1dda46ac71a009f6531513a7d257_058D1DDA46AC71A009F6531513A7D257_Nyan Cat [original].mp3</fileName>
+          <name>Nyan Cat [original]</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.3</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>26.55</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Nyancat">
+      <lookList>
+        <look name="1">
+          <fileName>9db9eb8b0e327de38c5f830c22f3c59d_9DB9EB8B0E327DE38C5F830C22F3C59D_nyancat_1.png</fileName>
+        </look>
+        <look name="2">
+          <fileName>386ce740c82a68d424fc273c1c2e25fa_386CE740C82A68D424FC273C1C2E25FA_nyancat_2.png</fileName>
+        </look>
+        <look name="3">
+          <fileName>03eaaf2c0ceedc6639c9df8bdaa9ef44_03EAAF2C0CEEDC6639C9DF8BDAA9EF44_nyancat_3.png</fileName>
+        </look>
+        <look name="4">
+          <fileName>e2d06f065286998e367910c5a99bcf7f_E2D06F065286998E367910C5A99BCF7F_nyancat_4.png</fileName>
+        </look>
+        <look name="5">
+          <fileName>16740e1eb432bbe8504dc6de6167d65e_16740E1EB432BBE8504DC6DE6167D65E_nyancat_5.png</fileName>
+        </look>
+        <look name="6">
+          <fileName>8390c492cb0b769d4e58437717b28538_8390C492CB0B769D4E58437717B28538_nyancat_6.png</fileName>
+        </look>
+        <look name="7">
+          <fileName>3415f3828565db0afacb71feab4070e0_3415F3828565DB0AFACB71FEAB4070E0_nyancat_7.png</fileName>
+        </look>
+        <look name="8">
+          <fileName>fe525ed77468bdd692771e09154ffff8_FE525ED77468BDD692771E09154FFFF8_nyancat_8.png</fileName>
+        </look>
+        <look name="9">
+          <fileName>9a7ba4f271eecf99f898c719dcf6bdf6_9A7BA4F271EECF99F898C719DCF6BDF6_nyancat_9.png</fileName>
+        </look>
+        <look name="10">
+          <fileName>4a7f6598e62a8d843f6672ac15da4610_4A7F6598E62A8D843F6672AC15DA4610_nyancat_10.png</fileName>
+        </look>
+        <look name="11">
+          <fileName>d7708d0475c04509af24f892ab871165_D7708D0475C04509AF24F892AB871165_nyancat_11.png</fileName>
+        </look>
+        <look name="12">
+          <fileName>7f93826fb7cac213364d4e82ab749e7b_7F93826FB7CAC213364D4E82AB749E7B_nyancat_12.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>135</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.16</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
