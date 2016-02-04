@@ -994,7 +994,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self updateVariablePickerData];
                 }
             } else {
-                [Util alertWithText:kUIFEDeleteVarBeingUsed];
+                [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
             }
         }
     }
@@ -1044,7 +1044,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
-- (void)showNotification:(NSString*)text
+- (void)showNotification:(NSString*)text andDuration:(CGFloat)duration
 {
     if(self.notficicationHud)
         [self.notficicationHud removeFromSuperview];
@@ -1065,30 +1065,30 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.notficicationHud.center = CGPointMake(self.view.center.x, offset);
     
     [self.view addSubview:self.notficicationHud];
-    [self.notficicationHud presentWithDuration:kBDKNotifyHUDPresentationDuration
+    [self.notficicationHud presentWithDuration:duration
                                          speed:kBDKNotifyHUDPresentationSpeed
                                         inView:self.view completion:^{ [self.notficicationHud removeFromSuperview]; }];
 }
 
 - (void)showChangesSavedView
 {
-    [self showNotification:kUIFEChangesSaved];
+    [self showNotification:kUIFEChangesSaved andDuration:kBDKNotifyHUDPresentationDuration];
 }
 
 - (void)showChangesDiscardedView
 {
-    [self showNotification:kUIFEChangesDiscarded];
+    [self showNotification:kUIFEChangesDiscarded andDuration:kBDKNotifyHUDPresentationDuration];
 }
 
 - (void)showSyntaxErrorView
 {
-    [self showNotification:kUIFESyntaxError];
+    [self showNotification:kUIFESyntaxError andDuration:kBDKNotifyHUDPresentationDuration];
     [self.formulaEditorTextView setParseErrorCursorAndSelection];
 }
 
 - (void)showFormulaTooLongView
 {
-    [self showNotification:kUIFEtooLongFormula];
+    [self showNotification:kUIFEtooLongFormula andDuration:kBDKNotifyHUDPresentationDuration];
 }
 
 @end
