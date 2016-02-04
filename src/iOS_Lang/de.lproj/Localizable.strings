@@ -296,7 +296,7 @@
 "Edit" = "Bearbeiten";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "Bearbeite Formel";
+"Edit Formula" = "Formel bearbeiten";
 
 /* Action sheet menu title */
 "Edit Look" = "Aussehen bearbeiten";
@@ -557,7 +557,7 @@
 "Measure" = "Abmessung";
 
 /* paint */
-"Menu" = "Men&#xFC;";
+"Menu" = "Menü";
 
 /* No comment provided by engineer. */
 "Message" = "Nachricht";

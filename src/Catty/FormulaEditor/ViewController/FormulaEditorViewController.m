@@ -952,7 +952,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (IBAction)choseVariable:(UIButton *)sender {
 
-    NSInteger row = [self.variablePicker selectedRowInComponent:0];
+ NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         VariablePickerData *pickerData;
         if (self.variableSegmentedControl.selectedSegmentIndex == 0) {
@@ -970,6 +970,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
    
 }
+
 
 - (IBAction)deleteVariable:(UIButton *)sender {
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
@@ -1033,12 +1034,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.isProgramVariable = NO;
-//    if (actionSheet.tag == 444) {
-        if (buttonIndex == 2) {
-            self.isProgramVariable = YES;
-        }
-        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-//    }
+    //    if (actionSheet.tag == 444) {
+    if (buttonIndex == 2) {
+        self.isProgramVariable = YES;
+    }
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    //    }
     
 }
 
