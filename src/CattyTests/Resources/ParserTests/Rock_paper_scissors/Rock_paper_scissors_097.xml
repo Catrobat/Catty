@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.5</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Hold your phone in the right hand then move it up and down and it will show random gestures on the screen.</description>
+    <deviceName>HTC Sensation Z710e</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>15.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Rock paper scissors</programName>
+    <remixOf>http://pocketcode.org/details/0</remixOf>
+    <screenHeight>960</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>540</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/710</url>
+    <userHandle>hej-wickie-hej</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="look">
+          <fileName>0f120901ddc9097e90b89afaa0719a8c_look.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="Player">
+      <lookList>
+        <look name="guu">
+          <fileName>6BD6E8982817E19565D34648C140F9E0_Aussehen.jpg</fileName>
+        </look>
+        <look name="choki">
+          <fileName>E25EAE5764DD1692854FE2DEBFB64B6B_Aussehen.jpg</fileName>
+        </look>
+        <look name="paa!">
+          <fileName>12CD990907D78E4EBFAFD7167A408B47_Aussehen.jpg</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>115</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>FUNCTION</type>
+                  <value>TRUE</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>ready</userVariable>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>Y_INCLINATION</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>15</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_OR_EQUAL</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>ready</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>FUNCTION</type>
+                  <value>FALSE</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[2]/userVariable"/>
+            </brick>
+            <brick type="BroadcastWaitBrick">
+              <broadcastMessage>aikoudesho</broadcastMessage>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>3</value>
+                    </rightChild>
+                    <type>FUNCTION</type>
+                    <value>RAND</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1.0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>2</value>
+                    </rightChild>
+                    <type>FUNCTION</type>
+                    <value>RAND</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1.0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>aikoudesho</receivedMessage>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>Y_INCLINATION</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>20</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>GREATER_OR_EQUAL</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <type>USER_VARIABLE</type>
+                      <value>ready</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>LOGICAL_NOT</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>FUNCTION</type>
+                  <value>TRUE</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists/>
+    <programVariableList>
+      <userVariable>counter</userVariable>
+      <userVariable>still speaking</userVariable>
+      <userVariable reference="../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
+    </programVariableList>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

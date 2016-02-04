@@ -40,10 +40,11 @@
 - (SpriteObject* _Nonnull)addObjectWithName:(NSString* _Nonnull)objectName;
 - (void)removeObjects:(NSArray* _Nonnull)objects;
 - (void)removeObject:(SpriteObject* _Nonnull)object;
+- (void)removeObjectFromList:(SpriteObject* _Nonnull)object;
 - (NSString* _Nonnull)projectPath;
 - (void)removeFromDisk;
 - (void)removeReferences;
-- (void)saveToDisk;
+- (void)saveToDiskWithNotification:(BOOL)notify;
 - (BOOL)isLastUsedProgram;
 - (void)setAsLastUsedProgram;
 - (void)translateDefaultProgram;

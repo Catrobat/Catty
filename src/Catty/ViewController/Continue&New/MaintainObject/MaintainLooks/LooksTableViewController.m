@@ -359,7 +359,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Look* itemToMove = self.object.lookList[sourceIndexPath.row];
     [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -901,7 +901,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [saveOp setCompletionBlock:^{
                 // execute this on the main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.object.program saveToDisk];
+                [self.object.program saveToDiskWithNotification:YES];
             }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];

@@ -188,7 +188,7 @@
     look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
     [self.lookList addObject:look];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
     return;
 }
@@ -242,7 +242,7 @@
         }
     }
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
 }
 
@@ -250,7 +250,7 @@
 {
     [self removeLookFromList:look];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
 }
 
@@ -288,7 +288,7 @@
         }
     }
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
 }
 
@@ -296,7 +296,7 @@
 {
     [self removeSoundFromList:sound];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
 }
 
@@ -319,7 +319,7 @@
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
     return copiedLook;
 }
@@ -333,7 +333,7 @@
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
     return copiedSound;
 }
@@ -345,7 +345,7 @@
     }
     look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
 }
 
@@ -356,7 +356,7 @@
     }
     sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
     if(save) {
-        [self.program saveToDisk];
+        [self.program saveToDiskWithNotification:YES];
     }
 }
 

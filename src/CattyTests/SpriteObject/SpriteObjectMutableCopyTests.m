@@ -155,13 +155,6 @@
     [self compareSpriteObjectsWithIsEqualMethodForProgramWithXML:@"Flap_Pac_Man_093"];
 }
 
-/*
-- (void)testIfCopiedSpriteObjectsAreEqualToOriginalForEncapsulated
-{
-    [self compareSpriteObjectsWithIsEqualMethodForProgramWithXML:@"Encapsulated"];
-}
-*/
-
 #pragma mark - helpers
 - (void)compareSpriteObjectsWithIsEqualMethodForProgramWithXML:(NSString*)xml
 {

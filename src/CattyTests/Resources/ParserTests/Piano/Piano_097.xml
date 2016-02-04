@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.2</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Tap to play each note.
+REMIX TIPS:
+ * Change the sound of the piano
+ * Change the looks</description>
+    <deviceName>Nexus 7</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>18.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Piano</programName>
+    <remixOf></remixOf>
+    <screenHeight>1920</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1080</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/968</url>
+    <userHandle>PocketCodeTeam</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="c">
+      <lookList>
+        <look name="c1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="c2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>3ec79f9addcf5055e069ec794db954e8_c.mp3</fileName>
+          <name>c</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>680</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="d">
+      <lookList>
+        <look name="d1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="d2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>778fc114464dcf4b368c7d2841863beb_d.mp3</fileName>
+          <name>d</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>450</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="e">
+      <lookList>
+        <look name="e1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="e2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>152badadc1a428c7a89b46cf6d82a43b_e.mp3</fileName>
+          <name>e</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>220</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="f">
+      <lookList>
+        <look name="f1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="f2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>dbdd35220c46b04c7ace3f04af185702_f.mp3</fileName>
+          <name>f</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="g">
+      <lookList>
+        <look name="g1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="g2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>e2b1d3b4f3d65de8f6468539ad695e94_g.mp3</fileName>
+          <name>g</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>240</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="a">
+      <lookList>
+        <look name="a1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="a2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>ba454104796ff54154552e6501870d10_a.mp3</fileName>
+          <name>a</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>470</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="h">
+      <lookList>
+        <look name="h1">
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+        </look>
+        <look name="h2">
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>9cfb811c257d934d69671369ac15e88e_H.mp3</fileName>
+          <name>H</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>700</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="c#">
+      <lookList>
+        <look name="c#1">
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+        </look>
+        <look name="c#2">
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>8586959b14c74023b91e2c17da40cab4_c#.mp3</fileName>
+          <name>c#</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>570</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="d#">
+      <lookList>
+        <look name="c#1">
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+        </look>
+        <look name="c#2">
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>3bdf92aad67a35e1d67f8b9c304cc732_d#.mp3</fileName>
+          <name>d#</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>340</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="e#">
+      <lookList>
+        <look name="c#1">
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+        </look>
+        <look name="c#2">
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>7511b8919dadb9d098d77ab228d41ca5_e#.mp3</fileName>
+          <name>e#</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>120</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="f#">
+      <lookList>
+        <look name="c#1">
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+        </look>
+        <look name="c#2">
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>459ab4eb37f698e3cee4a7f773870a79_f#.mp3</fileName>
+          <name>f#</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="g#">
+      <lookList>
+        <look name="c#1">
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+        </look>
+        <look name="c#2">
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>590e4930d1a4d647da8b5d43919fd2ab_g#.mp3</fileName>
+          <name>g#</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>580</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[10]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[7]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[9]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[11]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[12]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[13]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
