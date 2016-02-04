@@ -664,6 +664,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         button.titleLabel.adjustsFontSizeToFitWidth = YES;
         button.titleLabel.minimumScaleFactor = 0.01f;
     }
+    self.variableScrollView.backgroundColor = [UIColor backgroundColor];
     
 }
 
@@ -1033,7 +1034,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.isProgramVariable = NO;
 //    if (actionSheet.tag == 444) {
-        if (buttonIndex == 1) {
+        if (buttonIndex == 2) {
             self.isProgramVariable = YES;
         }
         [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
