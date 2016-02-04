@@ -136,7 +136,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+//    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
 }
 
