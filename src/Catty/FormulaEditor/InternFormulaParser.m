@@ -146,12 +146,14 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 - (FormulaElement*)formulaForSpriteObject:(SpriteObject*)object
 {
     FormulaElement *termListTree = [self termListForSpriteObject:object];
-         
+    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Parse Error" reason:nil userInfo:nil];
+    if (termListTree.type == STRING) {
+        self.errorTokenIndex = FORMULA_PARSER_STRING;
+    }
     if ([self.currentToken isEndOfFileToken]) {
         return termListTree;
     }
-    
-    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Parse Error" reason:nil userInfo:nil];
+
     @throw exception;
 }
      

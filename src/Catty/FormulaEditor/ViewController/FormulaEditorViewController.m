@@ -582,6 +582,24 @@ NS_ENUM(NSInteger, ButtonIndex) {
             case FORMULA_PARSER_STACK_OVERFLOW:
                 [self showFormulaTooLongView];
                 break;
+            case FORMULA_PARSER_STRING:
+                if(!self.brickCellData.brickCell.isScriptBrick){
+                    Brick* brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+                    if(![brick requiresStringFormula]){
+                        [self showSyntaxErrorView];
+                    }else{
+                        computedString = [formula getResultForComputeDialog:brick.script.object];
+                        
+                        alert = [UIAlertController alertControllerWithTitle:kUIFEResult message:computedString preferredStyle:UIAlertControllerStyleAlert];
+                        cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                        }];
+                        [alert addAction:cancelAction];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }
+                }
+                
+                break;
+
             default:
                 [self showSyntaxErrorView];
                 break;
@@ -715,6 +733,20 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     break;
                 case FORMULA_PARSER_STACK_OVERFLOW:
                     [self showFormulaTooLongView];
+                    break;
+                case FORMULA_PARSER_STRING:
+                    if(!self.brickCellData.brickCell.isScriptBrick){
+                        Brick* brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+                        if(![brick requiresStringFormula]){
+                            [self showSyntaxErrorView];
+                        }else{
+                            if(self.delegate) {
+                                [self.delegate saveFormula:formula];
+                            }
+                            return YES;
+                        }
+                    }
+                    
                     break;
                 default:
                     [self showSyntaxErrorView];
