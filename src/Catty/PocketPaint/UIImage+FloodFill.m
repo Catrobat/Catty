@@ -67,7 +67,7 @@
       int x = startPoint.x;
       int y = startPoint.y;
 //      unsigned int byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
-    NSUInteger byteIndex = (bytesPerRow * startPoint.y) + startPoint.x * bytesPerPixel;
+    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
     
     unsigned int ocolor = getColorCode(byteIndex, imageData);
     
@@ -133,7 +133,7 @@
     
     while ([points popFront:&x andY:&y] != INVALID_NODE_CONTENT)
     {
-      byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+      byteIndex = ((bytesPerRow * y) + x * bytesPerPixel);
       
       color = getColorCode(byteIndex, imageData);
       
@@ -143,7 +143,7 @@
         
         if(y >= 0)
         {
-          byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+          byteIndex = ((bytesPerRow * y) + x * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
         }
@@ -159,7 +159,7 @@
       
       spanLeft = spanRight = NO;
       
-      byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+      byteIndex = ((bytesPerRow * y) + x * bytesPerPixel);
       
       color = getColorCode(byteIndex, imageData);
       
@@ -173,7 +173,7 @@
         
         if(x > 0)
         {
-          byteIndex = (unsigned int)((bytesPerRow * y) + (x - 1) * bytesPerPixel);
+          byteIndex = ((bytesPerRow * y) + (x - 1) * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
           
@@ -198,7 +198,7 @@
         
         if(x < width - 1)
         {
-          byteIndex = (unsigned int)((bytesPerRow * y) + (x + 1) * bytesPerPixel);
+          byteIndex = ((bytesPerRow * y) + (x + 1) * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
           
@@ -225,7 +225,7 @@
         
         if(y < height)
         {
-          byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+          byteIndex = ((bytesPerRow * y) + x * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
         }
@@ -233,7 +233,7 @@
       
       if (y<height)
       {
-        byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+        byteIndex = ((bytesPerRow * y) + x * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
           // Add the bottom point on the antialiasing list
@@ -252,7 +252,7 @@
     
     while ([antiAliasingPoints popFront:&x andY:&y] != INVALID_NODE_CONTENT)
     {
-      byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+      byteIndex = ((bytesPerRow * y) + x * bytesPerPixel);
       color = getColorCode(byteIndex, imageData);
       
       if (!compareColor(ncolor, color, 0))
@@ -278,7 +278,7 @@
         // left
       if (x>1 && y>0)
       {
-        byteIndex = (unsigned int)(bytesPerRow * (y-1) + (x-1) * bytesPerPixel);
+        byteIndex = (bytesPerRow * (y-1) + (x-1) * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -303,7 +303,7 @@
       }
       if (x<width && y>0)
       {
-        byteIndex = (unsigned int)(bytesPerRow * (y-1) + (x+1) * bytesPerPixel);
+        byteIndex = (bytesPerRow * (y-1) + (x+1) * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -330,7 +330,7 @@
       
       if (y>1)
       {
-        byteIndex = (unsigned int)(bytesPerRow * (y-2) + x * bytesPerPixel);
+        byteIndex = (bytesPerRow * (y-2) + x * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -355,7 +355,7 @@
       
       if (y<height)
       {
-        byteIndex = (unsigned int)(bytesPerRow * y + x * bytesPerPixel);
+        byteIndex = (bytesPerRow * y + x * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
