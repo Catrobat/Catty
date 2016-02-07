@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.10</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Download this program to start with the &quot;One Hour of Code&quot; - Tutorial!</description>
+    <deviceName>Nexus 7</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>19.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Skydiving Steve</programName>
+    <remixOf></remixOf>
+    <screenHeight>1776</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1080</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1976</url>
+    <userHandle>PocketCodeTeam</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="sky">
+          <fileName>9c9b9b43b47b00008eb15e0c72808ecd_2014_08_15_041410.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="parachute">
+      <lookList>
+        <look name="paratrooper">
+          <fileName>1581e93cf174078c6ba6805bff216c17_2014_08_15_041354.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="target">
+      <lookList>
+        <look name="target">
+          <fileName>a75070545c64b571e9606e6c33b22c0d_2014_08_15_041340.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="parcel">
+      <lookList>
+        <look name="parcel">
+          <fileName>b2b9774d1a60399daf8a9eab7c1ebf9c_look.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+    <object name="restart">
+      <lookList>
+        <look name="restart">
+          <fileName>4bcb3c90c99eee32cc97eb575766a9ee_2014_08_15_041258.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

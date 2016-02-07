@@ -375,7 +375,7 @@
     [self.scene resumeScheduler];
     [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
-    animateDuration = duration > 0.0001f ? duration : 0.35f;
+    animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
     
     [UIView animateWithDuration:animateDuration
                           delay:0.0f
@@ -506,15 +506,20 @@
     if (self.scene.isScreenRecording) {
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
-        [self.menuView setNeedsDisplay];
         [self.scene stopScreenRecording];
-        return;
+        [self setupLabel:kLocalizedRecord
+                 andView:self.menuRecordLabel];
+        [self.menuView setNeedsDisplay];
     }
-    [self.scene startScreenRecording];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
-    [self.menuView setNeedsDisplay];
-    [self continueProgramAction:nil withDuration:0];
+    else {
+        [self.scene startScreenRecording];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
+        [self setupLabel:kLocalizedStop
+                 andView:self.menuRecordLabel];
+        [self.menuView setNeedsDisplay];
+        [self continueProgramAction:nil withDuration:0];
+    }
 }
 
 - (void)manageAspectRatioAction:(UIButton *)sender

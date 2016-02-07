@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.8</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>KEWL</description>
+    <deviceName>SM-T210R</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>16.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Minecraft Work In Progress</programName>
+    <remixOf></remixOf>
+    <screenHeight>1024</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>600</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1723</url>
+    <userHandle>EndMakesMC</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="Screenshot_2014-07-09-10-42-25">
+          <fileName>31c6898d0b6e00bcf338f82023b251c1_Screenshot_2014-07-09-10-42-25.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList/>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

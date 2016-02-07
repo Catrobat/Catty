@@ -1,0 +1,1721 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.6</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>The Pac-Men are falling to their doom! Luckily enough though they&apos;ve sprouted wings - tap them quick enough and they&apos;ll fly away from danger. Can you make it to the highest rank of Fantastic Pactastic? Tap screen to start.</description>
+    <deviceName>GT-I8160</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>10.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Flap-Pac-Man</programName>
+    <remixOf></remixOf>
+    <screenHeight>800</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>480</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/1532</url>
+    <userHandle>garygreen</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="PacTunnel2-small">
+          <fileName>051195b0e4b30af4f23eea7e6e0c33ce_PacTunnel2-small.png</fileName>
+        </look>
+        <look name="pantunnel3-small">
+          <fileName>dcd67133f3e176357e4c9b21dfbc0441_pantunnel3-small.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>250</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>game state</userVariable>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>game start</broadcastMessage>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>score</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>lives</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0.5</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>speed</userVariable>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <receivedMessage>game start</receivedMessage>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../script/brickList/brick[3]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="FlaPacMan">
+      <lookList>
+        <look name="pacman fly2-small">
+          <fileName>5507c93676ade40a946fff42f65d06ba_pacman fly2-small.png</fileName>
+        </look>
+        <look name="pacman fly3-small">
+          <fileName>5babed09eaa5c6fd2b8d254b143fcf63_pacman fly3-small.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav</fileName>
+          <name>Evolution FX4</name>
+        </sound>
+        <sound>
+          <fileName>cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav</fileName>
+          <name>Evo2MinusScore2</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>game state... 1=intro, 2=in game, 3=game end</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>450</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>200</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>50</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>36</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PointInDirectionBrick">
+              <formulaList>
+                <formula category="DEGREES">
+                  <type>NUMBER</type>
+                  <value>180</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>paclives</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0.0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>change anim</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>animframe</userVariable>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>speed</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <type>SENSOR</type>
+                      <value>OBJECT_Y</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>260</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>SMALLER_THAN</value>
+                  </leftChild>
+                  <rightChild>
+                    <leftChild>
+                      <type>USER_VARIABLE</type>
+                      <value>paclives</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>EQUAL</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[2]"/>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[7]/userVariable"/>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[8]/userVariable"/>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>change anim</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[8]/userVariable"/>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>0.04</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>paclives</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>40</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnLeftBrick">
+              <formulaList>
+                <formula category="TURN_LEFT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.05</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <type>NUMBER</type>
+                  <value>2.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <receivedMessage>game start</receivedMessage>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="ghost">
+      <lookList>
+        <look name="ghost">
+          <fileName>c955a9c72ba1586233c0340d1bbdb0d0_pacghost1-small.png</fileName>
+        </look>
+        <look name="pacghost2-small">
+          <fileName>bd84cae5c25994fbd6b4f96bfbc08380_pacghost2-small.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>36</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>340</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeXByNBrick">
+              <formulaList>
+                <formula category="X_POSITION_CHANGE">
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>OBJECT_X</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>250</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetXBrick">
+              <formulaList>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>250</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="NextLookBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <receivedMessage>game start</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Text">
+      <lookList>
+        <look name="FlapPac">
+          <fileName>cde847f616b8ddc6b26f1efe9b16a76a_FlapPac.png</fileName>
+        </look>
+        <look name="Measly">
+          <fileName>2407816992a8db03c20ff0d4c07fae35_Measly.png</fileName>
+        </look>
+        <look name="Sluggish">
+          <fileName>7f0a00899636f0ce0f86529eef0ad054_Sluggish.png</fileName>
+        </look>
+        <look name="Focused">
+          <fileName>350feb87a13c06d5612f08c246dc3186_Focused.png</fileName>
+        </look>
+        <look name="Eager">
+          <fileName>abcd93cf4f00bb2b4347acc9df1a171a_Eager.png</fileName>
+        </look>
+        <look name="Dynamic">
+          <fileName>ef3f8170e2f48888402afe83e05ed736_Dynamic.png</fileName>
+        </look>
+        <look name="Go-Go">
+          <fileName>4ef1585289c08a04d6da8c8cb0d1423d_Go-Go.png</fileName>
+        </look>
+        <look name="Mega">
+          <fileName>df4cf452f89b3a13456484a33c7f7c9a_Mega.png</fileName>
+        </look>
+        <look name="Fantastic">
+          <fileName>6f7e2c0549e9346f7157972d8f45b4aa_Fantastic.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>112</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>lives</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <leftChild>
+                    <leftChild>
+                      <type>USER_VARIABLE</type>
+                      <value>score</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>12</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>DIVIDE</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>ROUND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="NextLookBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>4</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[3]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <receivedMessage>game start</receivedMessage>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[3]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="FlaPacMan_Copy">
+      <lookList>
+        <look name="pacman fly2-small">
+          <fileName>5507c93676ade40a946fff42f65d06ba_pacman fly2-small.png</fileName>
+        </look>
+        <look name="pacman fly3-small">
+          <fileName>5babed09eaa5c6fd2b8d254b143fcf63_pacman fly3-small.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav</fileName>
+          <name>Evolution FX4</name>
+        </sound>
+        <sound>
+          <fileName>cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav</fileName>
+          <name>Evo2MinusScore2</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>game state... 1=intro, 2=in game, 3=game end</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>450</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>200</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>50</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>36</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PointInDirectionBrick">
+              <formulaList>
+                <formula category="DEGREES">
+                  <type>NUMBER</type>
+                  <value>180</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>paclives</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0.0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>change anim</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>animframe</userVariable>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>speed</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <type>SENSOR</type>
+                      <value>OBJECT_Y</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>260</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>SMALLER_THAN</value>
+                  </leftChild>
+                  <rightChild>
+                    <leftChild>
+                      <type>USER_VARIABLE</type>
+                      <value>paclives</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>EQUAL</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[2]"/>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[7]/userVariable"/>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[9]/userVariable"/>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>change anim</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[9]/userVariable"/>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>0.04</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>paclives</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>40</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnLeftBrick">
+              <formulaList>
+                <formula category="TURN_LEFT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.05</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <type>NUMBER</type>
+                  <value>2.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <receivedMessage>game start</receivedMessage>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="FlaPacMan_Copy1">
+      <lookList>
+        <look name="pacman fly2-small">
+          <fileName>5507c93676ade40a946fff42f65d06ba_pacman fly2-small.png</fileName>
+        </look>
+        <look name="pacman fly3-small">
+          <fileName>5babed09eaa5c6fd2b8d254b143fcf63_pacman fly3-small.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>9fb111c07e3bdae5ee7f6546a44f1ddd_Evolution FX4.wav</fileName>
+          <name>Evolution FX4</name>
+        </sound>
+        <sound>
+          <fileName>cb61b2020b42d8b6276bb374dda290e2_Evo2MinusScore2.wav</fileName>
+          <name>Evo2MinusScore2</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>game state... 1=intro, 2=in game, 3=game end</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>450</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>65</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>65</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>36</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PointInDirectionBrick">
+              <formulaList>
+                <formula category="DEGREES">
+                  <type>NUMBER</type>
+                  <value>180</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetTransparencyBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>paclives</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0.0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>change anim</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>animframe</userVariable>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>speed</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <type>SENSOR</type>
+                      <value>OBJECT_Y</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>260</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>SMALLER_THAN</value>
+                  </leftChild>
+                  <rightChild>
+                    <leftChild>
+                      <type>USER_VARIABLE</type>
+                      <value>paclives</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>EQUAL</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound[2]"/>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[7]/userVariable"/>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[9]/userVariable"/>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>change anim</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../brick[9]/userVariable"/>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>0.04</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>paclives</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>40</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="TurnLeftBrick">
+              <formulaList>
+                <formula category="TURN_LEFT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.05</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="ChangeTransparencyByNBrick">
+              <formulaList>
+                <formula category="TRANSPARENCY_CHANGE">
+                  <type>NUMBER</type>
+                  <value>2.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <receivedMessage>game start</receivedMessage>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>game state</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeYByNBrick">
+              <formulaList>
+                <formula category="Y_POSITION_CHANGE">
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+        </list>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+        </list>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+        </list>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists/>
+    <programVariableList>
+      <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+      <userVariable reference="../../../objectList/object/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+    </programVariableList>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

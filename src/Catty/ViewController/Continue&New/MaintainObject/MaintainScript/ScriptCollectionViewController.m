@@ -136,7 +136,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+//    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
 }
 
@@ -280,7 +280,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             script.animateInsertBrick = NO;
         }
         [self turnOffInsertingBrickMode];
-        [self.object.program saveToDisk];
+        [self.object.program saveToDiskWithNotification:YES];
         [self reloadData];
         [self.collectionView setNeedsDisplay];
         return;
@@ -534,7 +534,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self reloadData];
     [self.collectionView setNeedsDisplay];
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
 }
 
 - (void)collectionView:(UICollectionView*)collectionView
@@ -667,7 +667,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self reloadData];
         manager.isInsertingScript = YES;
         if (self.object.scriptList.count == 1) {
-            [self.object.program saveToDisk];
+            [self.object.program saveToDiskWithNotification:YES];
             return;
         }
         script.animateInsertBrick = YES;
@@ -680,7 +680,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         script.object = self.object;
         [self.object.scriptList addObject:script];
         [self reloadData];
-        [self.object.program saveToDisk];
+        [self.object.program saveToDiskWithNotification:YES];
     }
 
     NSInteger targetScriptIndex = 0;
@@ -809,7 +809,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [[BrickSelectionManager sharedInstance] reset];
         [self reloadData];
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
-        [self.object.program saveToDisk];
+        [self.object.program saveToDiskWithNotification:YES];
     }];
 }
 
@@ -945,7 +945,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSArray* indexArray = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:brick];
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
 }
 
 #pragma mark - Remove Brick
@@ -967,7 +967,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } completion:^(BOOL finished) {
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self reloadData];
-        [self.object.program saveToDisk];
+        [self.object.program saveToDiskWithNotification:YES];
         [self setEditing:NO animated:NO];
     }];
 
@@ -1062,7 +1062,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(messageName);
     }
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];
 }
@@ -1073,7 +1073,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(variableName);
     }
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];
 }
@@ -1143,7 +1143,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
-        [self.object.program saveToDisk];
+        [self.object.program saveToDiskWithNotification:YES];
         return;
     } else
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
@@ -1214,7 +1214,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];
-    [self.object.program saveToDisk];
+    [self.object.program saveToDiskWithNotification:YES];
 }
 
 -(void)enableUserInteractionAndResetHighlight

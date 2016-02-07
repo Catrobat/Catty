@@ -37,8 +37,8 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
-    Formula *pin = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"PIN" withContext:context];
-    Formula *value = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VALUE" withContext:context];
+    Formula *pin = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"ARDUINO_DIGITAL_PIN_NUMBER" withContext:context];
+    Formula *value = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"ARDUINO_DIGITAL_PIN_VALUE" withContext:context];
     ArduinoSendDigitalValueBrick *sendDigitalValueBrick = [self new];
     sendDigitalValueBrick.pin = pin;
     sendDigitalValueBrick.value = value;
@@ -58,10 +58,10 @@
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ArduinoSendDigitalValueBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.pin xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PIN"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"ARDUINO_DIGITAL_PIN_NUMBER"]];
     [formulaList addChild:formula context:context];
     formula = [self.value xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VALUE"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"ARDUINO_DIGITAL_PIN_VALUE"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

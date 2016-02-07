@@ -1,0 +1,1975 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Catroid</applicationName>
+    <applicationVersion>0.7.0beta</applicationVersion>
+    <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Control the ship by tilting the phone and shoot down as many enemies as possible.</description>
+    <deviceName>Nexus 4</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>17.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Galaxy War</programName>
+    <remixOf>https://pocketcode.org/details/719</remixOf>
+    <screenHeight>1184</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>768</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/719</url>
+    <userHandle>DavidR</userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="Space_Background_bigger">
+          <fileName>827829F8866ACCF1050373EC6DFBAD98_Space_Background_bigger.gif</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>34631984F52E51EDD974F0130D6F46A2_8-Bit Betty - Spooky Loop_cut.mp3</fileName>
+          <name>8-Bit Betty - Spooky Loop</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>110</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>gameOver</broadcastMessage>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>killCount</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>55</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SpeakBrick">
+              <formulaList>
+                <formula category="SPEAK">
+                  <type>STRING</type>
+                  <value>Congratulations, soldier! You saved the galaxy.</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="SpeakBrick">
+              <formulaList>
+                <formula category="SPEAK">
+                  <type>STRING</type>
+                  <value>The enemy forces are overwhelming us. Mission failed!</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ChangeXByNBrick">
+              <formulaList>
+                <formula category="X_POSITION_CHANGE">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>X_INCLINATION</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>DIVIDE</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="WhenScript">
+          <brickList>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>beamReady</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastWaitBrick">
+              <broadcastMessage>fire</broadcastMessage>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+          </brickList>
+          <action>Tapped</action>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Spaceship">
+      <lookList>
+        <look name="ship_default">
+          <fileName>0ADBFB7858B144CBF268F64D807F60B3_ship_default.png</fileName>
+        </look>
+        <look name="ship_right">
+          <fileName>5A95239B6A85E986B047C8FCE446F01E_ship_right.png</fileName>
+        </look>
+        <look name="ship_left">
+          <fileName>4E3D93893ADD9E694D64221C2D0D6AD5_ship_left.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>150</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>500</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_X</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>ShipX</userVariable>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>X_INCLINATION</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>5</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>SMALLER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[2]"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>X_INCLINATION</value>
+                      </leftChild>
+                      <rightChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>5</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MINUS</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>GREATER_THAN</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>X_INCLINATION</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>5</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_THAN</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>X_INCLINATION</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ChangeXByNBrick">
+              <formulaList>
+                <formula category="X_POSITION_CHANGE">
+                  <leftChild>
+                    <rightChild>
+                      <type>SENSOR</type>
+                      <value>X_INCLINATION</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>DIVIDE</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <rightChild>
+                    <leftChild>
+                      <type>SENSOR</type>
+                      <value>OBJECT_X</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>384</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>MINUS</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>SMALLER_THAN</value>
+                  </rightChild>
+                  <type>BRACKET</type>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetXBrick">
+              <formulaList>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>384</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>SENSOR</type>
+                    <value>OBJECT_X</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>384</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetXBrick">
+              <formulaList>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>384</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Laser beam">
+      <lookList>
+        <look name="laser_beam">
+          <fileName>0C4D13C8DF21C1A849972227C4743594_laser_beam.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>B5C52D60568A416924CC601731F7EA74_zap.mp3</fileName>
+          <name>zap</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>beamReady</userVariable>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_X</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>laserBeamX</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_Y</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>laserBeamY</userVariable>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="SetXBrick">
+              <formulaList>
+                <formula category="X_POSITION">
+                  <type>USER_VARIABLE</type>
+                  <value>ShipX</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetYBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>450</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="Y_DESTINATION">
+                  <type>NUMBER</type>
+                  <value>600</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>ShipX</value>
+                </formula>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
+            </brick>
+          </brickList>
+          <receivedMessage>fire</receivedMessage>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
+            </brick>
+          </brickList>
+          <receivedMessage>dead</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Enemy1">
+      <lookList>
+        <look name="enemy1">
+          <fileName>6AE15615E84C6EA587EF1CCC8308F075_enemy1.png</fileName>
+        </look>
+        <look name="enemy2">
+          <fileName>941E21431FE47DF1415B7B94AC175066_enemy2.png</fileName>
+        </look>
+        <look name="explosion1">
+          <fileName>50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png</fileName>
+        </look>
+        <look name="explosion2">
+          <fileName>5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png</fileName>
+        </look>
+        <look name="explosion3">
+          <fileName>5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png</fileName>
+        </look>
+        <look name="explosion4">
+          <fileName>B614C1D375CEE4492337E182F521249A_explosion4.png</fileName>
+        </look>
+        <look name="explosion5">
+          <fileName>4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png</fileName>
+        </look>
+        <look name="explosion6">
+          <fileName>A189888BA2005349801C9455CDC42E7B_explosion6.png</fileName>
+        </look>
+        <look name="explosion7">
+          <fileName>79F752FC400F14D30BDF623ACC5EDD36_explosion7.png</fileName>
+        </look>
+        <look name="explosion8">
+          <fileName>C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>E13E0F5F2E34969E8514F121BC45D645_explode4.mp3</fileName>
+          <name>explode4</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0.0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable>killCount</userVariable>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>550</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="Y_DESTINATION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>550</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+                <formula category="DURATION_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Check for laser beam hit</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>MINUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>GREATER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </leftChild>
+                      <rightChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>PLUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>SMALLER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>LOGICAL_AND</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>SENSOR</type>
+                          <value>OBJECT_Y</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>laserBeamY</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>30</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MINUS</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>GREATER_THAN</value>
+                      </rightChild>
+                      <type>BRACKET</type>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>LOGICAL_AND</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>OBJECT_Y</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>laserBeamY</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>30</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_THAN</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>7</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="HideBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>1000</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1000</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>dead</broadcastMessage>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Enemy2">
+      <lookList>
+        <look name="enemy1">
+          <fileName>6AE15615E84C6EA587EF1CCC8308F075_enemy1.png</fileName>
+        </look>
+        <look name="enemy2">
+          <fileName>941E21431FE47DF1415B7B94AC175066_enemy2.png</fileName>
+        </look>
+        <look name="explosion1">
+          <fileName>50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png</fileName>
+        </look>
+        <look name="explosion2">
+          <fileName>5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png</fileName>
+        </look>
+        <look name="explosion3">
+          <fileName>5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png</fileName>
+        </look>
+        <look name="explosion4">
+          <fileName>B614C1D375CEE4492337E182F521249A_explosion4.png</fileName>
+        </look>
+        <look name="explosion5">
+          <fileName>4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png</fileName>
+        </look>
+        <look name="explosion6">
+          <fileName>A189888BA2005349801C9455CDC42E7B_explosion6.png</fileName>
+        </look>
+        <look name="explosion7">
+          <fileName>79F752FC400F14D30BDF623ACC5EDD36_explosion7.png</fileName>
+        </look>
+        <look name="explosion8">
+          <fileName>C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>E13E0F5F2E34969E8514F121BC45D645_explode4.mp3</fileName>
+          <name>explode4</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0.0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>550</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="Y_DESTINATION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>550</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+                <formula category="DURATION_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Check for laser beam hit</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>MINUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>GREATER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </leftChild>
+                      <rightChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>PLUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>SMALLER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>LOGICAL_AND</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>SENSOR</type>
+                          <value>OBJECT_Y</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>laserBeamY</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>30</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MINUS</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>GREATER_THAN</value>
+                      </rightChild>
+                      <type>BRACKET</type>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>LOGICAL_AND</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>OBJECT_Y</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>laserBeamY</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>30</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_THAN</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>7</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="HideBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>1000</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1000</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>dead</broadcastMessage>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Enemy3">
+      <lookList>
+        <look name="enemy1">
+          <fileName>6AE15615E84C6EA587EF1CCC8308F075_enemy1.png</fileName>
+        </look>
+        <look name="enemy2">
+          <fileName>941E21431FE47DF1415B7B94AC175066_enemy2.png</fileName>
+        </look>
+        <look name="explosion1">
+          <fileName>50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png</fileName>
+        </look>
+        <look name="explosion2">
+          <fileName>5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png</fileName>
+        </look>
+        <look name="explosion3">
+          <fileName>5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png</fileName>
+        </look>
+        <look name="explosion4">
+          <fileName>B614C1D375CEE4492337E182F521249A_explosion4.png</fileName>
+        </look>
+        <look name="explosion5">
+          <fileName>4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png</fileName>
+        </look>
+        <look name="explosion6">
+          <fileName>A189888BA2005349801C9455CDC42E7B_explosion6.png</fileName>
+        </look>
+        <look name="explosion7">
+          <fileName>79F752FC400F14D30BDF623ACC5EDD36_explosion7.png</fileName>
+        </look>
+        <look name="explosion8">
+          <fileName>C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>E13E0F5F2E34969E8514F121BC45D645_explode4.mp3</fileName>
+          <name>explode4</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>550</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="Y_DESTINATION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>550</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+                <formula category="DURATION_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Check for laser beam hit</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>MINUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>GREATER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </leftChild>
+                      <rightChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>PLUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>SMALLER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>LOGICAL_AND</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>SENSOR</type>
+                          <value>OBJECT_Y</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>laserBeamY</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>30</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MINUS</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>GREATER_THAN</value>
+                      </rightChild>
+                      <type>BRACKET</type>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>LOGICAL_AND</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>OBJECT_Y</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>laserBeamY</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>30</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_THAN</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>7</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="HideBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>1000</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1000</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>dead</broadcastMessage>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="Enemy4">
+      <lookList>
+        <look name="enemy1">
+          <fileName>6AE15615E84C6EA587EF1CCC8308F075_enemy1.png</fileName>
+        </look>
+        <look name="enemy2">
+          <fileName>941E21431FE47DF1415B7B94AC175066_enemy2.png</fileName>
+        </look>
+        <look name="explosion1">
+          <fileName>50BA1CBA05A9FBD20CFE55036CB4A969_explosion1.png</fileName>
+        </look>
+        <look name="explosion2">
+          <fileName>5F3C4906D49694EC3ACE8D76AEA2EDBB_explosion2.png</fileName>
+        </look>
+        <look name="explosion3">
+          <fileName>5E1E67C1512AFDEC1F1D8A3FEE7DED29_explosion3.png</fileName>
+        </look>
+        <look name="explosion4">
+          <fileName>B614C1D375CEE4492337E182F521249A_explosion4.png</fileName>
+        </look>
+        <look name="explosion5">
+          <fileName>4B64BEA67EFAD5943BC087D35C07B49A_explosion5.png</fileName>
+        </look>
+        <look name="explosion6">
+          <fileName>A189888BA2005349801C9455CDC42E7B_explosion6.png</fileName>
+        </look>
+        <look name="explosion7">
+          <fileName>79F752FC400F14D30BDF623ACC5EDD36_explosion7.png</fileName>
+        </look>
+        <look name="explosion8">
+          <fileName>C7C93E1597712BCACD6E75DCCFD1931A_explosion8.png</fileName>
+        </look>
+      </lookList>
+      <soundList>
+        <sound>
+          <fileName>E13E0F5F2E34969E8514F121BC45D645_explode4.mp3</fileName>
+          <name>explode4</name>
+        </sound>
+      </soundList>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="ShowBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>550</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="Y_DESTINATION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>550</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>350</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+                <formula category="DURATION_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>RAND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Check for laser beam hit</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <leftChild>
+                      <leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>MINUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>GREATER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </leftChild>
+                      <rightChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>SENSOR</type>
+                            <value>OBJECT_X</value>
+                          </leftChild>
+                          <rightChild>
+                            <leftChild>
+                              <type>USER_VARIABLE</type>
+                              <value>laserBeamX</value>
+                            </leftChild>
+                            <rightChild>
+                              <type>NUMBER</type>
+                              <value>30</value>
+                            </rightChild>
+                            <type>OPERATOR</type>
+                            <value>PLUS</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>SMALLER_THAN</value>
+                        </rightChild>
+                        <type>BRACKET</type>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>LOGICAL_AND</value>
+                    </leftChild>
+                    <rightChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>SENSOR</type>
+                          <value>OBJECT_Y</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>laserBeamY</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>30</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MINUS</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>GREATER_THAN</value>
+                      </rightChild>
+                      <type>BRACKET</type>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>LOGICAL_AND</value>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>OBJECT_Y</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>laserBeamY</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>30</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_THAN</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NoteBrick">
+              <formulaList>
+                <formula category="NOTE">
+                  <type>STRING</type>
+                  <value>Place somewhere outside the screen so laserbeam can&apos;t hit again.</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <inUserBrick>false</inUserBrick>
+              <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="PlaySoundBrick">
+              <sound reference="../../../../../soundList/sound"/>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look[3]"/>
+            </brick>
+            <brick type="RepeatBrick">
+              <formulaList>
+                <formula category="TIMES_TO_REPEAT">
+                  <type>NUMBER</type>
+                  <value>7</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="NextLookBrick"/>
+            <brick type="LoopEndBrick"/>
+            <brick type="HideBrick"/>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>1000</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1000</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>dead</broadcastMessage>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+    <object name="End screen">
+      <lookList>
+        <look name="end_screen">
+          <fileName>469817C6324C625001A140CAC36D1E4E_end_screen.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ShowBrick"/>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>110</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <receivedMessage>gameOver</receivedMessage>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="HideBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[7]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists/>
+    <programVariableList>
+      <userVariable reference="../../../objectList/object[2]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script/brickList/brick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script/brickList/brick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script/brickList/brick[5]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
+    </programVariableList>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

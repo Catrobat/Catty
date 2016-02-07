@@ -284,7 +284,7 @@ const CGFloat PADDING = 5.0f;
     }
     [self.program renameToProgramName:self.programNameTextField.text];
     self.program.header.programDescription = self.descriptionTextView.text;
-    [self.program saveToDisk];
+    [self.program saveToDiskWithNotification:YES];
     if (!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
         //        _loadingView.backgroundColor = [UIColor globalTintColor];
@@ -384,7 +384,7 @@ const CGFloat PADDING = 5.0f;
                         //Set unique Program-ID received from server
                     NSString* projectId = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
                     self.program.header.programID = projectId;
-                    [self.program saveToDisk];
+                    [self.program saveToDiskWithNotification:YES];
                     
                         //Set new token but when? everytime is wrong
 //                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];

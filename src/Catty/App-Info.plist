@@ -38,13 +38,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3812-IOS-173_rebase-{parent:f4335f3}</string>
+	<string>3813-IOS-173_rebase-{parent:05c7ca6}</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
 	<string>Catty</string>
 	<key>CatrobatLanguageVersion</key>
-	<string>0.96</string>
+	<string>0.97</string>
 	<key>CatrobatMediaLicense</key>
 	<string>http://developer.catrobat.org/ccbysa_v3</string>
 	<key>CatrobatProgramLicense</key>
