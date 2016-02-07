@@ -140,7 +140,7 @@
           UIGraphicsEndImageContext();
           
           self.canvas.saveView.image = image;
-          self.canvas.drawView.hidden = YES;
+//          self.canvas.drawView.hidden = YES;
         }else {
             //UNDO-Manager
             UndoManager* manager = [self.canvas getUndoManager];
