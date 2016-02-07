@@ -375,7 +375,7 @@
     [self.scene resumeScheduler];
     [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
-    animateDuration = duration > 0.0001f ? duration : 0.35f;
+    animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
     
     [UIView animateWithDuration:animateDuration
                           delay:0.0f
