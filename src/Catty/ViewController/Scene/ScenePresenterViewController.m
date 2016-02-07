@@ -506,15 +506,20 @@
     if (self.scene.isScreenRecording) {
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
-        [self.menuView setNeedsDisplay];
         [self.scene stopScreenRecording];
-        return;
+        [self setupLabel:kLocalizedRecord
+                 andView:self.menuRecordLabel];
+        [self.menuView setNeedsDisplay];
     }
-    [self.scene startScreenRecording];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
-    [self.menuView setNeedsDisplay];
-    [self continueProgramAction:nil withDuration:0];
+    else {
+        [self.scene startScreenRecording];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
+        [self setupLabel:kLocalizedStop
+                 andView:self.menuRecordLabel];
+        [self.menuView setNeedsDisplay];
+        [self continueProgramAction:nil withDuration:0];
+    }
 }
 
 - (void)manageAspectRatioAction:(UIButton *)sender
