@@ -38,7 +38,11 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>3752-IOS-318-{parent:54e065d}</string>
+=======
+	<string>3836-IOS-314-{parent:def9e8c}</string>
+>>>>>>> master
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
