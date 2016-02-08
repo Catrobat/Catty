@@ -152,7 +152,7 @@
 #define kLocalizedDeleteScript NSLocalizedString(@"Delete Script", nil)
 #define kLocalizedDeleteThisScript NSLocalizedString(@"Delete this Script?", nil)
 #define kLocalizedDeleteTheseScripts NSLocalizedString(@"Delete these Scripts?", nil)
-#define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick", nil)
+#define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick-Parts", nil)
 #define kLocalizedCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kLocalizedEditFormula NSLocalizedString(@"Edit Formula", nil)
 #define kLocalizedMoveBrick NSLocalizedString(@"Move Brick", nil)
