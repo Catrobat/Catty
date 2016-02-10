@@ -436,7 +436,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject* itemToMove = self.program.objectList[index];
     [self.program.objectList removeObjectAtIndex:index];
     [self.program.objectList insertObject:itemToMove atIndex:destIndex];
-    [self.program saveToDiskWithNotification:YES];
+    [self.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
