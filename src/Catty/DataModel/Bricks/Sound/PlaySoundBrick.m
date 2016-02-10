@@ -22,12 +22,24 @@
 
 #import "PlaySoundBrick.h"
 #import "Sound.h"
+#import "CBMutableCopyContext.h"
 
 @implementation PlaySoundBrick
 
 - (NSString*)brickTitle
 {
     return kLocalizedPlaySound;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    PlaySoundBrick *brick = [[self class] new];
+    brick.sound = self.sound;
+    [context updateReference:self WithReference:brick];
+    
+    return brick;
 }
 
 #pragma mark - Description
