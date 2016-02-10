@@ -104,7 +104,7 @@
     return NO;
 }
 
-- (BOOL)requiresStringFormula
+- (BOOL)allowsStringFormula
 {
     return NO;
 }

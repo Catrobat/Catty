@@ -72,6 +72,11 @@
     return kLocalizedChangeVariable;
 }
 
+- (BOOL)allowsStringFormula
+{
+    return YES;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {
