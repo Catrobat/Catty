@@ -800,7 +800,7 @@
 "No imported sounds found" = "No imported sounds found";
 
 /* No comment provided by engineer. */
-"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+"No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
 "No Internet Connection" = "No Internet Connection";

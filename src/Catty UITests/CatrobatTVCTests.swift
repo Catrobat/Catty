@@ -88,7 +88,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     func testNewInvalidNames() {
         restoreDefaultProgram()
         
-        let progNamesErrorMsgMap = ["":                      "No input or the input is too short. Please enter at least 1 character.",
+        let progNamesErrorMsgMap = ["":"No input. Please enter at least 1 character.",
                                     "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
                                     ".":"Only special characters are not allowed. Please enter at least 1 other character.",
                                     "/":"Only special characters are not allowed. Please enter at least 1 other character.",
@@ -102,6 +102,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         for (programName, errorMessage) in progNamesErrorMsgMap {
             app.tables.staticTexts["New"].tap()
             let collectionViewsQuery = app.alerts["New Program"].collectionViews
+            collectionViewsQuery.textFields["Enter your program name here..."].tap()
             collectionViewsQuery.textFields["Enter your program name here..."].typeText(programName)
             collectionViewsQuery.buttons["OK"].tap()
         
