@@ -50,6 +50,8 @@
 
 - (BOOL)isArduinoBrick;
 
+- (BOOL)requiresStringFormula;
+
 - (NSString*)description;
 
 - (BOOL)isEqualToBrick:(Brick*)brick;

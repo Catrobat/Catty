@@ -228,7 +228,9 @@
             double_result = [tempResult doubleValue];
         }
         
-        result = [NSString stringWithFormat:@"%f", double_result];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        result = [formatter stringFromNumber:[NSNumber numberWithDouble:double_result]];
     }
     return result;
 }
