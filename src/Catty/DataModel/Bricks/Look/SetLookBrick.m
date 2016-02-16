@@ -26,6 +26,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
+#import "CBMutableCopyContext.h"
 
 @implementation SetLookBrick
 
@@ -80,4 +81,16 @@
 {
     return kNoResources;
 }
+
+
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    SetLookBrick *brick = [[self class] new];
+    brick.look = self.look;
+    [context updateReference:self WithReference:brick];
+    
+    return brick;
+}
+
 @end
