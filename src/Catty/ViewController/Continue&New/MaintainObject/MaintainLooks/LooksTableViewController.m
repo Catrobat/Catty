@@ -359,7 +359,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Look* itemToMove = self.object.lookList[sourceIndexPath.row];
     [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView

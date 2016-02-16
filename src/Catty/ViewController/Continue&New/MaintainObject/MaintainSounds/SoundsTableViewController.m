@@ -416,7 +416,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
