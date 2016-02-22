@@ -127,7 +127,7 @@
     [self setupToolBar];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.placeHolderView.title = kLocalizedScripts;
+    self.placeHolderView.title = kUIScriptTitle;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;

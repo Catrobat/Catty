@@ -115,7 +115,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
     }
-    self.placeHolderView.title = kLocalizedObjects;
+    self.placeHolderView.title = kLocalizedObject;
     [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
