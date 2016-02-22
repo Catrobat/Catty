@@ -135,17 +135,25 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)setUserVariable:(UserVariable*)userVariable toValue:(double)value
+- (void)setUserVariable:(UserVariable*)userVariable toValue:(id)value
 {
     pthread_mutex_lock(&variablesLock);
-    userVariable.value = [NSNumber numberWithDouble:value];
+    if([value isKindOfClass:[NSString class]]){
+        NSString *stringValue = (NSString*)value;
+        userVariable.value = stringValue;
+    } else if([value isKindOfClass:[NSNumber class]]){
+        NSNumber *numberValue = (NSNumber*)value;
+        userVariable.value = numberValue;
+    }
     pthread_mutex_unlock(&variablesLock);
 }
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);
-    userVariable.value = [NSNumber numberWithFloat:(CGFloat)(([userVariable.value doubleValue] + value))];
+    if ([userVariable.value isKindOfClass:[NSNumber class]]){
+        userVariable.value = [NSNumber numberWithFloat:(CGFloat)(([userVariable.value doubleValue] + value))];
+    }
     pthread_mutex_unlock(&variablesLock);
 }
 
