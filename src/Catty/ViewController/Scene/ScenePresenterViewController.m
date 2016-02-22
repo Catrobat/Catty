@@ -279,6 +279,7 @@
 
 - (void)setupScene
 {
+    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
     if (! self.scene) {
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
         [scene initializeScreenRecording];
@@ -294,7 +295,6 @@
         self.skView.paused = NO;
         [self.skView presentScene:scene];
         self.scene = scene;
-        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
     }
 }
 
