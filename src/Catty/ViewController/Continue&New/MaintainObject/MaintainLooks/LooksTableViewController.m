@@ -57,6 +57,7 @@
 #import "UIUtil.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "MediaLibraryViewController.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -738,7 +739,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
                 }
             }
-        } else if (buttonIndex != 0 ) {
+        } else if (chooseImageIndex+1 == buttonIndex) {
             // draw new image
             NSDebug(@"Draw new image");
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -750,7 +751,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self.navigationController pushViewController:vc animated:YES];
             });
 
-        } else {
+        }else if(buttonIndex != 0)
+        {
+            //media library
+            NSDebug(@"Media library");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
+                vc.paintDelegate = self;
+                vc.urlEnding = @"looks";
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            });
+        }else {
             if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
                 if (self.afterSafeBlock) {
                     self.afterSafeBlock(nil);
@@ -776,8 +788,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [buttonTitles addObject:kLocalizedChooseImage];
         }
     }
+    
+    
+    
     [buttonTitles addObject:kLocalizedDrawNewImage];
 
+    [buttonTitles addObject:@"Media Library"];
+    
     [Util actionSheetWithTitle:kLocalizedAddLook
                       delegate:self
         destructiveButtonTitle:nil
@@ -825,6 +842,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
                          invisibleButton, deleteButton, nil];
 }
 
+#pragma mark mediaLibraryDelegate
+
+- (void)showDownloadImageAlert:(UIImage *)image
+{
+    self.paintImage = image;
+    [self performActionOnConfirmation:@selector(savePaintImage)
+                       canceledAction:@selector(cancelPaintSave)
+                               target:self
+                         confirmTitle:kLocalizedSaveToPocketCode
+                       confirmMessage:@"Do you want to save the image"];
+}
+
 #pragma mark paintDelegate
 
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
@@ -837,6 +866,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                          confirmTitle:kLocalizedSaveToPocketCode
                        confirmMessage:kLocalizedPaintSaveChanges];
 }
+
 
 - (void)savePaintImage
 {

@@ -21,24 +21,14 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "LooksTableViewController.h"
+#import "SoundsTableViewController.h"
 
-@class SpriteObject;
-@class Brick;
-@class Look;
-@protocol BrickLookProtocol;
-
-@protocol PaintDelegate <NSObject>
-
-- (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
-- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-- (void)showDownloadImageAlert:(UIImage*)image;
-@end
-
-
-@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
-@property (copy) void (^afterSafeBlock)(Look* look);
+@interface MediaLibraryViewController : UIViewController <UIWebViewDelegate>
+@property (weak, nonatomic) IBOutlet NSString *urlEnding;
+@property (weak, nonatomic) NSURL *url;
+@property (strong, nonatomic) Sound *sound;
+@property (strong, nonatomic) UIImage *image;
+@property (nonatomic,weak)id<SoundDelegate> soundDelegate;
+@property (nonatomic,weak)id<PaintDelegate> paintDelegate;
 @end
