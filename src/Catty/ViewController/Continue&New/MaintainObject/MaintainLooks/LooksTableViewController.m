@@ -844,18 +844,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                          invisibleButton, deleteButton, nil];
 }
 
-#pragma mark mediaLibraryDelegate
-
-- (void)showDownloadImageAlert:(UIImage *)image
-{
-    self.paintImage = image;
-    [self performActionOnConfirmation:@selector(savePaintImage)
-                       canceledAction:@selector(cancelPaintSave)
-                               target:self
-                         confirmTitle:kLocalizedSaveToPocketCode
-                       confirmMessage:@"Do you want to save the image"];
-}
-
 #pragma mark paintDelegate
 
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
@@ -892,6 +880,44 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     }
     
+}
+
+- (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName
+{
+    NSDebug(@"SAVING");  // add image to object now
+    [self showLoadingView];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    // use temporary filename, will be renamed by user afterwards
+    NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                  [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                  kLocalizedMyImageExtension];
+    Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
+                                               existingNames:[self.object allLookNames]]
+                                    andPath:newImageFileName];
+    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+    self.filePath = newImagePath;
+    NSDebug(@"Writing file to disk");
+    // leaving the main queue here!
+    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+        // save image to programs directory
+        [imageData writeToFile:newImagePath atomically:YES];
+    }];
+    // completion block is NOT executed on the main queue
+    [saveOp setCompletionBlock:^{
+        // execute this on the main queue
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            
+            [self addLookActionWithName:look.name look:look];
+        }];
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:saveOp];
+
+    [self reloadData];
 }
 
 

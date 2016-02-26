@@ -32,7 +32,7 @@
 
 - (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-- (void)showDownloadImageAlert:(UIImage*)image;
+- (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
 @end
 
 

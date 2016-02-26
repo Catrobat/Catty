@@ -73,6 +73,9 @@
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
                                                 navigationType:(UIWebViewNavigationType)navigationType {
 
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.loadingView show];
+//    });
             if(navigationType == UIWebViewNavigationTypeLinkClicked)
             {
 //                dispatch_async(dispatch_get_main_queue(), ^{
@@ -89,7 +92,9 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    NSString *cssString = [NSString stringWithFormat:@"body { background-color: %@; } header { display: none; } #footer-menu-bottom { display: none; } article img { background-color: %@; }", [self hexStringFromColor:[UIColor backgroundColor]], [self hexStringFromColor:[UIColor navTintColor]]];
+    NSString *cssString = [NSString stringWithFormat:@"body { background-color: %@; } header { display: none; } #footer-menu-bottom { display: none; } article img { background-color: %@; }",
+                           [self hexStringFromColor:[UIColor backgroundColor]],
+                           [self hexStringFromColor:[UIColor navTintColor]]];
     
     NSString *javascriptString = @"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style)";
     
@@ -135,7 +140,7 @@
     if (image)
     {
         // Success use the image
-        [self.paintDelegate showDownloadImageAlert:image];
+        [self.paintDelegate addMediaLibraryLoadedImage:image withName:[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject]];
     }
     else
     {
