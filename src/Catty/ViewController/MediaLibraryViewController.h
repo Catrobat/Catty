@@ -24,7 +24,7 @@
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 
-@interface MediaLibraryViewController : UIViewController <UIWebViewDelegate>
+@interface MediaLibraryViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDataDelegate>
 @property (weak, nonatomic) IBOutlet NSString *urlEnding;
 @property (weak, nonatomic) NSURL *url;
 @property (strong, nonatomic) Sound *sound;

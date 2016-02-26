@@ -32,10 +32,29 @@
     @property (weak, nonatomic) IBOutlet UIWebView *webView;
     @property (strong, nonatomic) LoadingView *loadingView;
     @property (nonatomic,strong)NSString *filePath;
+    @property (nonatomic, strong)NSMutableData * mdata;
+    @property (strong, nonatomic)NSURLConnection *connection;
 @end
 
 @implementation MediaLibraryViewController
 
+#pragma mark - getters and setters
+- (NSMutableData*)mdata
+{
+    if (! _mdata) {
+        _mdata = [[NSMutableData alloc]init];
+    }
+    return _mdata;
+}
+
+-(LoadingView *)loadingView
+{
+    if (!_loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    return _loadingView;
+}
 
 - (void)viewDidLoad {
   
@@ -53,16 +72,6 @@
   
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (!_loadingView) {
-        _loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -70,22 +79,24 @@
     [self.loadingView hide];
 }
 
+#pragma mark - WebViewDelegate
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request
                                                 navigationType:(UIWebViewNavigationType)navigationType {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView show];
+    });
 
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.loadingView show];
-//    });
-            if(navigationType == UIWebViewNavigationTypeLinkClicked)
-            {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.url = [request URL];
-                    [self loadAndPrepareData];
-                    [self.navigationController popViewControllerAnimated:YES];
-                    
-//                });
-            }
-    
+    if(navigationType == UIWebViewNavigationTypeLinkClicked)
+    {
+        self.url = [request URL];
+        NSURLRequest *datarequest = [NSURLRequest requestWithURL:self.url
+                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                 timeoutInterval:60.0];
+        
+        self.connection = [[NSURLConnection alloc] initWithRequest:datarequest delegate:self];
+        
+        return NO;
+    }
 
     return YES;
 }
@@ -105,38 +116,27 @@
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    [self.loadingView show];
+    
     [self.webView setHidden:YES];
 }
 
 
-#pragma mark - WebViewDelegate
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
     });
-//    if (error.code != -999) {
-//        if ([[Util networkErrorCodes] containsObject:[NSNumber
-//                                                      numberWithInteger:error.code]]){
-//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//        } else {
-//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            }];
-//            [alert addAction:cancelAction];
-//            [self presentViewController:alert animated:YES completion:nil];
-//        }
-//    }
 }
 
-- (void)loadAndPrepareData
-{
-    NSData * data = [NSData dataWithContentsOfURL:self.url];
-    UIImage * image = [UIImage imageWithData:data];
-    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString *fileName =[[NSString uuid] stringByAppendingString:@".mpga"];
 
+#pragma mark - NSURLDelegate
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
+    UIImage * image = [UIImage imageWithData:self.mdata];
+    NSString *fileName =[[NSString uuid] stringByAppendingString:@".mpga"];
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
     if (image)
     {
         // Success use the image
@@ -148,11 +148,35 @@
         
         self.sound.fileName = fileName;
         self.sound.name = [[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject];
-        [data writeToFile:self.filePath atomically:YES];
+        [self.mdata writeToFile:self.filePath atomically:YES];
         [self.soundDelegate showDownloadSoundAlert:self.sound];
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
+    });
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.mdata = [[NSMutableData alloc]init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.mdata appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.loadingView hide];
+    });
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Util
 - (NSString *)hexStringFromColor:(UIColor *)color
 {
     const CGFloat *components = CGColorGetComponents(color.CGColor);

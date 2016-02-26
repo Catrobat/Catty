@@ -831,12 +831,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)showDownloadSoundAlert:(Sound *)sound
 {
     self.sound = sound;
-    [self performActionOnConfirmation:@selector(saveSound)
-                       canceledAction:@selector(cancelPaintSave)
-                               target:self
-                         confirmTitle:kLocalizedSaveToPocketCode
-                       confirmMessage:@"Do you want to save the sound"];
-//    [self saveSound];
+//    [self performActionOnConfirmation:@selector(saveSound)
+//                       canceledAction:@selector(cancelPaintSave)
+//                               target:self
+//                         confirmTitle:kLocalizedSaveToPocketCode
+//                       confirmMessage:@"Do you want to save the sound"];
+    [self saveSound];
 }
 
 - (void)showSaveSoundAlert:(Sound *)sound
