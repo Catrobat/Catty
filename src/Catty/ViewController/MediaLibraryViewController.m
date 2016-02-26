@@ -89,7 +89,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    NSString *cssString = [NSString stringWithFormat:@"body { background-color: %@; } #header-top { display: none; } .btn-menu { display: none; } #footer-menu-bottom { display: none; } article img { background-color: %@; }", [self hexStringFromColor:[UIColor backgroundColor]], [self hexStringFromColor:[UIColor navTintColor]]];
+    NSString *cssString = [NSString stringWithFormat:@"body { background-color: %@; } header { display: none; } #footer-menu-bottom { display: none; } article img { background-color: %@; }", [self hexStringFromColor:[UIColor backgroundColor]], [self hexStringFromColor:[UIColor navTintColor]]];
     
     NSString *javascriptString = @"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style)";
     

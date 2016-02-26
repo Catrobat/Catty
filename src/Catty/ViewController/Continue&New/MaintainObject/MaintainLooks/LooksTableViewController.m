@@ -758,7 +758,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
                 vc.paintDelegate = self;
-                vc.urlEnding = @"looks";
+                
+                vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
+             
                 [self.navigationController pushViewController:vc animated:YES];
                 
             });
