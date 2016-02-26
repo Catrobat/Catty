@@ -33,7 +33,7 @@ extension ShowTextBrick: CBInstructionProtocol {
         let yFormula = self.yFormula
 
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: SetVariableBrick")
+//            self.logger.debug("Performing: ShowTextBrick")
             let xResult = xFormula.interpretDoubleForSprite(spriteObject)
             let yResult = yFormula.interpretDoubleForSprite(spriteObject)
             var value = ""
@@ -45,7 +45,11 @@ extension ShowTextBrick: CBInstructionProtocol {
 //                value = string
             }
             userVariable.textLabel.text = value
-            userVariable.textLabel.position = CGPoint(x: xResult, y: yResult)
+            userVariable.textLabel.scene
+            guard let scene = userVariable.textLabel.scene else {
+                fatalError("This should never happen!")
+            }
+            userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
             userVariable.textLabel.hidden = false
             context.state = .Runnable
         }

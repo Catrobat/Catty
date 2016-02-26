@@ -233,8 +233,7 @@ final class CBScene: SKScene {
         for variable:UserVariable in variableList {
             variable.textLabel = SKLabelNode()
             variable.textLabel.text = ""
-            variable.textLabel.position = CGPoint(x: CGRectGetMidX(self.frame), y:  CGRectGetMidY(self.frame))
-            variable.textLabel.zPosition = 30
+            variable.textLabel.zPosition = CGFloat(zPosition + 1)
             variable.textLabel.fontColor = UIColor.blackColor()
             variable.textLabel.fontSize = 16
             variable.textLabel.hidden = true
