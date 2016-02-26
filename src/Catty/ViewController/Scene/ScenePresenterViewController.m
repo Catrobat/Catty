@@ -280,6 +280,7 @@
 - (void)setupScene
 {
     if (! self.scene) {
+        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
         [scene initializeScreenRecording];
         scene.name = self.program.header.programName;

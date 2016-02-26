@@ -113,7 +113,9 @@
 // variable bricks
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
+    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* change size by N         */\
+    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
+    @[@"{VARIABLE}"]     /* hide Text        */\
 ]
 
 // arduino bricks

@@ -20,22 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <SpriteKit/SpriteKit.h>
-#import "CBMutableCopying.h"
+#import "Brick.h"
+#import "BrickVariableProtocol.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
-@class Program;
+@class UserVariable;
+@class Formula;
 
-@interface UserVariable : NSObject<CBMutableCopying>
+@interface HideTextBrick : Brick<BrickVariableProtocol>
 
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSNumber* value;
-@property (nonatomic, strong) SKLabelNode *textLabel;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
-
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
+@property (nonatomic, strong) UserVariable *userVariable;
 
 @end

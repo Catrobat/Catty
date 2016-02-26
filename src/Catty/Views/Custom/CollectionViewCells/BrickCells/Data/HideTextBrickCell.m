@@ -20,22 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <SpriteKit/SpriteKit.h>
-#import "CBMutableCopying.h"
+#import "HideTextBrickCell.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
-@class Program;
+@interface HideTextBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@end
 
-@interface UserVariable : NSObject<CBMutableCopying>
+@implementation HideTextBrickCell
 
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSNumber* value;
-@property (nonatomic, strong) SKLabelNode *textLabel;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+}
 
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
 
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+}
 
 @end
