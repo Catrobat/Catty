@@ -35,6 +35,9 @@ extension SetVariableBrick: CBInstructionProtocol {
 //            self.logger.debug("Performing: SetVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
+            
+            //update visible userVariable
+            userVariable.textLabel.text = String(Int(result))
             context.state = .Runnable
         }
 

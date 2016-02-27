@@ -35,6 +35,10 @@ extension ChangeVariableBrick: CBInstructionProtocol {
 //            self.logger.debug("Performing: ChangeVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.changeVariable(userVariable, byValue: result)
+            
+            //update active UserVariable
+            userVariable.textLabel.text = String(Int(userVariable.value.doubleValue))
+            
             context.state = .Runnable
         }
 
