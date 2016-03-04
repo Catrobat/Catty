@@ -129,6 +129,7 @@ let kLocalizedEditSound = NSLocalizedString("Edit Sound", comment: "Action sheet
 let kLocalizedEditLooks = NSLocalizedString("Edit Looks", comment: "Action sheet menu title")
 let kLocalizedEditLook = NSLocalizedString("Edit Look", comment: "Action sheet menu title")
 let kLocalizedEditBackground = NSLocalizedString("Edit Background", comment: "Action sheet menu title")
+let kLocalizedEditBackgrounds = NSLocalizedString("Edit Backgrounds", comment: "Action sheet menu title")
 let kLocalizedEditScript = NSLocalizedString("Edit Script", comment: "Action sheet menu title")
 let kLocalizedEditBrick = NSLocalizedString("Edit Brick", comment: "Action sheet menu title")
 let kLocalizedAddLook = NSLocalizedString("Add look", comment: "Action sheet menu title")

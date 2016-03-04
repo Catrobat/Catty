@@ -142,7 +142,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [options addObject:kLocalizedShowDetails];
     }
     
-    [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackground : kLocalizedEditLooks)
+    [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackgrounds : kLocalizedEditLooks)
                       delegate:self
         destructiveButtonTitle:destructive
              otherButtonTitles:options
