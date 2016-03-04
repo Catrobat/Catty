@@ -260,6 +260,9 @@
 "Delete" = "Delete";
 
 /* No comment provided by engineer. */
+"Delete Backgrounds" = "Delete Backgrounds";
+
+/* No comment provided by engineer. */
 "Delete Brick" = "Delete Brick";
 
 /* No comment provided by engineer. */
@@ -372,6 +375,9 @@
 
 /* Action sheet menu title */
 "Edit Background" = "Edit Background";
+
+/* Action sheet menu title */
+"Edit Backgrounds" = "Edit Backgrounds";
 
 /* Action sheet menu title */
 "Edit Brick" = "Edit Brick";

@@ -101,7 +101,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                               ? kLocalizedBackgrounds
                                               : kLocalizedLooks);
     [self initNavigationBar];
-    self.placeHolderView.title = kLocalizedLooks;
+    if (self.object.isBackground) {
+        self.placeHolderView.title = kLocalizedBackground;
+    } else {
+        self.placeHolderView.title = kUILookTitle;
+    }
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -125,7 +129,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSMutableArray *options = [NSMutableArray array];
     NSString *destructive = nil;
     if (self.object.lookList.count) {
-        destructive = kLocalizedDeleteLooks;
+        destructive = (self.object.isBackground
+                       ? kLocalizedDeleteBackgrounds
+                       : kLocalizedDeleteLooks);
     }
     if (self.object.lookList.count >= 2) {
         [options addObject:kLocalizedMoveLooks];
@@ -135,7 +141,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditLooks
+    
+    [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackgrounds : kLocalizedEditLooks)
                       delegate:self
         destructiveButtonTitle:destructive
              otherButtonTitles:options
