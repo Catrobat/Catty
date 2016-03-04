@@ -42,6 +42,11 @@
     return @[self.timeToWaitInSeconds];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];

@@ -144,6 +144,8 @@ static pthread_mutex_t variablesLock;
     } else if([value isKindOfClass:[NSNumber class]]){
         NSNumber *numberValue = (NSNumber*)value;
         userVariable.value = numberValue;
+    } else {
+        userVariable.value = [NSNumber numberWithInt:0];
     }
     pthread_mutex_unlock(&variablesLock);
 }

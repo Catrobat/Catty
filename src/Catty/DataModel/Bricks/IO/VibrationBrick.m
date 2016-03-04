@@ -45,6 +45,11 @@
     self.durationInSeconds = [[Formula alloc] initWithZero];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedVibrateNSeconds;

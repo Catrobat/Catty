@@ -59,6 +59,11 @@
     return @[self.durationFormula];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (NSString*)toneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.tone;

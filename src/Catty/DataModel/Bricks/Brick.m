@@ -104,12 +104,6 @@
     return NO;
 }
 
-- (BOOL)allowsStringFormula
-{
-    return NO;
-}
-
-
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
