@@ -47,6 +47,11 @@
     return @[self.brightness];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.brightness = [[Formula alloc] initWithInteger:50];

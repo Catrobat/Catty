@@ -71,6 +71,11 @@
     return kLocalizedSetVariable;
 }
 
+- (BOOL)allowsStringFormula
+{
+    return YES;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

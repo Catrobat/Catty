@@ -38,14 +38,16 @@ extension ShowTextBrick: CBInstructionProtocol {
             let yResult = yFormula.interpretDoubleForSprite(spriteObject)
             var value = ""
             if userVariable.value is NSNumber{
-                let number:NSNumber = userVariable.value as NSNumber
+                let number:NSNumber = (userVariable.value as? NSNumber)!
                 value = number.stringValue
             } else if userVariable.value is NSString {
-//                let string:NSString = userVariable.value as NSString
-//                value = string
+                let string:NSString = userVariable.value as! NSString
+                value = string as String
+            } else {
+                value = ""
             }
             userVariable.textLabel.text = value
-            userVariable.textLabel.scene
+            
             guard let scene = userVariable.textLabel.scene else {
                 fatalError("This should never happen!")
             }

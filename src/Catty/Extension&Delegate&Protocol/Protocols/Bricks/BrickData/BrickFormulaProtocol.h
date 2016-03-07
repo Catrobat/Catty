@@ -30,4 +30,6 @@
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (NSArray<Formula*>*) getFormulas;
 
+- (BOOL)allowsStringFormula;
+
 @end

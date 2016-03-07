@@ -75,6 +75,10 @@
     }
 }
 
+- (BOOL)allowsStringFormula{
+    return NO;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedShowVariable;

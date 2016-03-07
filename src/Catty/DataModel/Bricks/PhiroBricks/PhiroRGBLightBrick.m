@@ -79,6 +79,12 @@
         self.blueFormula = formula;
     }
 }
+
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (NSString*)lightForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.light;

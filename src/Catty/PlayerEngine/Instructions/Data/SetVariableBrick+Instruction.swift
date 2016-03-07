@@ -33,11 +33,21 @@ extension SetVariableBrick: CBInstructionProtocol {
 
         return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: SetVariableBrick")
-            let result = variableFormula.interpretDoubleForSprite(spriteObject)
+            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
             
             //update visible userVariable
-            userVariable.textLabel.text = String(Int(result))
+            var value = ""
+            if userVariable.value is NSNumber{
+                let number:NSNumber = (userVariable.value as? NSNumber)!
+                value = number.stringValue
+            } else if userVariable.value is NSString {
+                let string:NSString = userVariable.value as! NSString
+                value = string as String
+            } else {
+                value = ""
+            }
+            userVariable.textLabel.text = value
             context.state = .Runnable
         }
 

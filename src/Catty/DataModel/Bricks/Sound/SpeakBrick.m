@@ -39,7 +39,7 @@
     return kLocalizedSpeak;
 }
 
-- (BOOL)requiresStringFormula
+- (BOOL)allowsStringFormula
 {
     return YES;
 }

@@ -59,6 +59,11 @@
     self.ifCondition = formula;
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.ifCondition = [[Formula alloc] initWithInteger:1];

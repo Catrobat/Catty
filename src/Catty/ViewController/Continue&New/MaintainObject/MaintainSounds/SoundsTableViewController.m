@@ -106,7 +106,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self changeEditingBarButtonState];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-    self.placeHolderView.title = kLocalizedSounds;
+    self.placeHolderView.title = kUISoundTitle;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
