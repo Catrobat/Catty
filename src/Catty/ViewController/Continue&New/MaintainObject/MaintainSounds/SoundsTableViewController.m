@@ -707,7 +707,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
                     vc.soundDelegate = self;
-                    vc.urlEnding = @"sounds";
+                    vc.urlEnding = [kLocalizedSounds lowercaseString];
                     [self.navigationController pushViewController:vc animated:YES];
                     
                     
@@ -742,7 +742,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [Util actionSheetWithTitle:kLocalizedAddSound
                       delegate:self
         destructiveButtonTitle:nil
-             otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound, @"Media Library"]
+             otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound, kLocalizedMediaLibrary]
                            tag:kAddSoundActionSheetTag
                           view:self.navigationController.view];
 }

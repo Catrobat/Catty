@@ -759,7 +759,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
                 vc.paintDelegate = self;
                 
-                vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
+                vc.urlEnding = self.object.isBackground ? [kLocalizedBackgrounds lowercaseString] : [kLocalizedLooks lowercaseString];
              
                 [self.navigationController pushViewController:vc animated:YES];
                 
@@ -795,7 +795,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     [buttonTitles addObject:kLocalizedDrawNewImage];
 
-    [buttonTitles addObject:@"Media Library"];
+    [buttonTitles addObject:kLocalizedMediaLibrary];
     
     [Util actionSheetWithTitle:kLocalizedAddLook
                       delegate:self
