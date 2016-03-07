@@ -572,11 +572,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 
                 computedString = [formula getResultForComputeDialog:brick.script.object];
                 
-                alert = [UIAlertController alertControllerWithTitle:kUIFEResult message:computedString preferredStyle:UIAlertControllerStyleAlert];
-                cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                }];
-                [alert addAction:cancelAction];
-                [self presentViewController:alert animated:YES completion:nil];
+                [self showNotification:computedString andDuration:2.0f];
 
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
