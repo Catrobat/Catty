@@ -52,6 +52,11 @@
     return @[self.pin,self.value];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

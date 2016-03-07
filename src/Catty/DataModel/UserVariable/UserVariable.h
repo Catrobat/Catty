@@ -30,7 +30,7 @@
 @interface UserVariable : NSObject<CBMutableCopying>
 
 @property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSNumber* value;
+@property (nonatomic, strong) id value;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 

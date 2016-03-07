@@ -584,8 +584,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 break;
             case FORMULA_PARSER_STRING:
                 if(!self.brickCellData.brickCell.isScriptBrick){
-                    Brick* brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
-                    if(![brick requiresStringFormula]){
+                    Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
+                    if(![brick allowsStringFormula]){
                         [self showSyntaxErrorView];
                     }else{
                         computedString = [formula getResultForComputeDialog:brick.script.object];
@@ -736,8 +736,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     break;
                 case FORMULA_PARSER_STRING:
                     if(!self.brickCellData.brickCell.isScriptBrick){
-                        Brick* brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
-                        if(![brick requiresStringFormula]){
+                        Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
+                        if(![brick allowsStringFormula]){
                             [self showSyntaxErrorView];
                         }else{
                             if(self.delegate) {

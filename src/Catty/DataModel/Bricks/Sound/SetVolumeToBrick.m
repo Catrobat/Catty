@@ -41,6 +41,11 @@
     return @[self.volume];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.volume = [[Formula alloc] initWithInteger:60];

@@ -42,6 +42,11 @@
     return @[self.degrees];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.degrees = [[Formula alloc] initWithInteger:90];

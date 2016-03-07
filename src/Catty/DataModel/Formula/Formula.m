@@ -165,6 +165,17 @@
     }
 }
 
+- (id)interpretVariableDataForSprite:(SpriteObject*)sprite {
+    if (self.bufferedResult) {
+        NSNumber* bufferedResult = self.bufferedResult;
+        self.bufferedResult = nil;
+        return bufferedResult;
+    }
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    return returnValue;
+}
+
+
 - (InternFormulaState*)getInternFormulaState {
     return [[self getInternFormula] getInternFormulaState];
 }

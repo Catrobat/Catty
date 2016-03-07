@@ -46,6 +46,7 @@
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 - (NSString*)interpretString:(SpriteObject*)sprite;
+- (id)interpretVariableDataForSprite:(SpriteObject*)sprite;
 - (void)preCalculateFormulaForSprite:(SpriteObject*)sprite;
 
 - (BOOL)isSingleNumberFormula;

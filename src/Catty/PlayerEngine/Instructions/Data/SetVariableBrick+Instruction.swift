@@ -33,7 +33,7 @@ extension SetVariableBrick: CBInstructionProtocol {
 
         return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: SetVariableBrick")
-            let result = variableFormula.interpretDoubleForSprite(spriteObject)
+            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
             context.state = .Runnable
         }
