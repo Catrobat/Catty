@@ -21,6 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <SpriteKit/SpriteKit.h>
 #import "CBMutableCopying.h"
 
 @class GDataXMLElement;
@@ -30,7 +31,8 @@
 @interface UserVariable : NSObject<CBMutableCopying>
 
 @property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSNumber* value;
+@property (nonatomic, strong) id value;
+@property (nonatomic, strong) SKLabelNode *textLabel;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 

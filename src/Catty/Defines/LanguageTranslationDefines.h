@@ -129,6 +129,7 @@
 #define kLocalizedEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
 #define kLocalizedEditLook NSLocalizedString(@"Edit Look", @"Action sheet menu title")
 #define kLocalizedEditBackground NSLocalizedString(@"Edit Background", @"Action sheet menu title")
+#define kLocalizedEditBackgrounds NSLocalizedString(@"Edit Backgrounds", @"Action sheet menu title")
 #define kLocalizedEditScript NSLocalizedString(@"Edit Script", @"Action sheet menu title")
 #define kLocalizedEditBrick NSLocalizedString(@"Edit Brick", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
@@ -152,7 +153,7 @@
 #define kLocalizedDeleteScript NSLocalizedString(@"Delete Script", nil)
 #define kLocalizedDeleteThisScript NSLocalizedString(@"Delete this Script?", nil)
 #define kLocalizedDeleteTheseScripts NSLocalizedString(@"Delete these Scripts?", nil)
-#define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick", nil)
+#define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick-Parts", nil)
 #define kLocalizedCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kLocalizedEditFormula NSLocalizedString(@"Edit Formula", nil)
 #define kLocalizedMoveBrick NSLocalizedString(@"Move Brick", nil)
@@ -161,6 +162,7 @@
 #define kLocalizedHideDetails NSLocalizedString(@"Hide Details", nil)
 #define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)
 #define kLocalizedDeleteLooks NSLocalizedString(@"Delete Looks",nil)
+#define kLocalizedDeleteBackgrounds NSLocalizedString(@"Delete Backgrounds",nil)
 #define kLocalizedMoveLooks NSLocalizedString(@"Move Looks",nil)
 #define kLocalizedFromCamera NSLocalizedString(@"From Camera", nil)
 #define kLocalizedChooseImage NSLocalizedString(@"Choose image", nil)
@@ -291,7 +293,7 @@
 #define kLocalizedEnterYourSoundNameHere NSLocalizedString(@"Enter your sound name here...", @"Placeholder for add sound-name input field")
 #define kLocalizedNoImportedSoundsFoundTitle NSLocalizedString(@"No imported sounds found", @"Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
 #define kLocalizedNoImportedSoundsFoundDescription NSLocalizedString(@"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", @"Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
-#define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
+#define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input. Please enter at least %lu character(s).", nil)
 #define kLocalizedTooLongInputDescription NSLocalizedString(@"The input is too long. Please enter maximal %lu character(s).", nil)
 #define kLocalizedSpaceInputDescription NSLocalizedString(@"Only space is not allowed. Please enter at least %lu other character(s).", nil)
 #define kLocalizedSpecialCharInputDescription NSLocalizedString(@"Only special characters are not allowed. Please enter at least %lu other character(s).", nil)
@@ -376,6 +378,9 @@
 // variable bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
+#define kLocalizedShowVariable NSLocalizedString(@"Show variable\n%@\nx: %@ y:%@", nil)
+#define kLocalizedHideVariable NSLocalizedString(@"Hide variable\n%@\n", nil)
+
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)

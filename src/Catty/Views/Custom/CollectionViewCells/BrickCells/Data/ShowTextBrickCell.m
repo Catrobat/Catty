@@ -20,37 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Sound.h"
-#import "CBMutableCopyContext.h"
+#import "ShowTextBrickCell.h"
 
-@implementation Sound
+@interface ShowTextBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel2;
+@end
 
-- (NSString*)description
+@implementation ShowTextBrickCell
+
+- (void)drawRect:(CGRect)rect
 {
-    return [NSString stringWithFormat:@"Sound: %@\r", self.name];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:largeBrick width:[Util screenWidth]];
 }
 
-- (BOOL)isEqualToSound:(Sound*)sound
++ (CGFloat)cellHeight
 {
-    if([self.name isEqualToString:sound.name] && [self.fileName isEqualToString:sound.fileName])
-        return YES;
-    return NO;
+    return kBrickHeight3h;
 }
 
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
-    Sound *copiedSound = [[Sound alloc] init];
-    copiedSound.fileName = [NSString stringWithString:self.fileName];
-    copiedSound.name = [NSString stringWithString:self.name];
-    copiedSound.playing = NO;
-    
-    [context updateReference:self WithReference:copiedSound];
-    return copiedSound;
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+    self.thirdRowTextLabel = inlineViewSubViews[2];
+    self.xValueTextField = inlineViewSubViews[3];
+    self.thirdRowTextLabel2 = inlineViewSubViews[4];
+    self.xValueTextField = inlineViewSubViews[5];
 }
-
-
 
 @end

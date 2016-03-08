@@ -20,37 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Sound.h"
-#import "CBMutableCopyContext.h"
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "BrickVariableProtocol.h"
 
-@implementation Sound
+@class UserVariable;
+@class Formula;
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Sound: %@\r", self.name];
-}
+@interface ShowTextBrick : Brick<BrickFormulaProtocol, BrickVariableProtocol>
 
-- (BOOL)isEqualToSound:(Sound*)sound
-{
-    if([self.name isEqualToString:sound.name] && [self.fileName isEqualToString:sound.fileName])
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
-{
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
-    Sound *copiedSound = [[Sound alloc] init];
-    copiedSound.fileName = [NSString stringWithString:self.fileName];
-    copiedSound.name = [NSString stringWithString:self.name];
-    copiedSound.playing = NO;
-    
-    [context updateReference:self WithReference:copiedSound];
-    return copiedSound;
-}
-
-
+@property (nonatomic, strong) UserVariable *userVariable;
+@property (nonatomic, strong) Formula *xFormula;
+@property (nonatomic, strong) Formula *yFormula;
 
 @end

@@ -20,23 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetVariableBrick.h"
+#import "ShowTextBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Script.h"
 
-@implementation SetVariableBrick
+@implementation ShowTextBrick
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.variableFormula;
+    if(paramNumber == 0)
+        return self.xFormula;
+    else if(paramNumber == 1)
+        return self.yFormula;
+    
+    return nil;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.variableFormula = formula;
+    if(paramNumber == 0)
+        self.xFormula = formula;
+    else if(paramNumber == 1)
+        self.yFormula = formula;
 }
 
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
@@ -51,12 +59,13 @@
 
 - (NSArray*)getFormulas
 {
-    return @[self.variableFormula];
+    return @[self.xFormula,self.yFormula];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.variableFormula = [[Formula alloc] initWithZero];
+    self.xFormula = [[Formula alloc] initWithZero];
+    self.yFormula = [[Formula alloc] initWithZero];
     if(spriteObject) {
         NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
         if([variables count] > 0)
@@ -66,28 +75,30 @@
     }
 }
 
-- (NSString*)brickTitle
-{
-    return kLocalizedSetVariable;
+- (BOOL)allowsStringFormula{
+    return NO;
 }
 
-- (BOOL)allowsStringFormula
+- (NSString*)brickTitle
 {
-    return YES;
+    return kLocalizedShowVariable;
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
+    double result = [self.xFormula interpretDoubleForSprite:self.script.object];
+    double result1 = [self.yFormula interpretDoubleForSprite:self.script.object];
+    return [NSString stringWithFormat:@"Show Variable Brick: Uservariable: %@, toX: %f toY: %f", self.userVariable, result,result1];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((SetVariableBrick*)brick).userVariable])
+    if (! [self.userVariable isEqualToUserVariable:((ShowTextBrick*)brick).userVariable])
         return NO;
-    if (! [self.variableFormula isEqualToFormula:((SetVariableBrick*)brick).variableFormula])
+    if (! [self.xFormula isEqualToFormula:((ShowTextBrick*)brick).xFormula])
+        return NO;
+    if (! [self.yFormula isEqualToFormula:((ShowTextBrick*)brick).yFormula])
         return NO;
     return YES;
 }
@@ -95,7 +106,7 @@
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return [self.variableFormula getRequiredResources];
+    return [self.xFormula getRequiredResources]|[self.yFormula getRequiredResources];
 }
 
 @end

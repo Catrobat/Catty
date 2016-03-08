@@ -44,6 +44,11 @@
     return @[self.changeTransparency];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeTransparency = [[Formula alloc] initWithInteger:25];

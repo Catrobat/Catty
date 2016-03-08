@@ -106,7 +106,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self changeEditingBarButtonState];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-    self.placeHolderView.title = kLocalizedSounds;
+    self.placeHolderView.title = kUISoundTitle;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -249,6 +249,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [super exitEditingMode];
         return;
     }
+    self.deletionMode = NO;
     [self deleteSelectedSoundsAction];
 }
 
@@ -399,13 +400,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-    if (indexPath.row >= [self.object.soundList count]) {
-        return;
+    if (!self.deletionMode) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+        if (indexPath.row >= [self.object.soundList count]) {
+            return;
+        }
+        [self playSound:imageCell andIndexPath:indexPath];
+
     }
-    [self playSound:imageCell andIndexPath:indexPath];
 }
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
@@ -413,7 +417,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -557,6 +561,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
             currentPlayingSongCell.iconImageView.image = image;
         }
     }
+}
+
+- (void)exitEditingMode
+{
+    [super exitEditingMode];
+    self.deletionMode = NO;
 }
 
 

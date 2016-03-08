@@ -73,6 +73,11 @@
     return @[self.formula];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

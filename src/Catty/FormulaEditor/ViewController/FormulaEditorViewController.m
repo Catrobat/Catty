@@ -584,8 +584,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 break;
             case FORMULA_PARSER_STRING:
                 if(!self.brickCellData.brickCell.isScriptBrick){
-                    Brick* brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
-                    if(![brick requiresStringFormula]){
+                    Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
+                    if(![brick allowsStringFormula]){
                         [self showSyntaxErrorView];
                     }else{
                         computedString = [formula getResultForComputeDialog:brick.script.object];
@@ -736,8 +736,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     break;
                 case FORMULA_PARSER_STRING:
                     if(!self.brickCellData.brickCell.isScriptBrick){
-                        Brick* brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick;
-                        if(![brick requiresStringFormula]){
+                        Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
+                        if(![brick allowsStringFormula]){
                             [self showSyntaxErrorView];
                         }else{
                             if(self.delegate) {
@@ -1067,9 +1067,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.isProgramVariable = NO;
     //    if (actionSheet.tag == 444) {
+    self.variableSegmentedControl.selectedSegmentIndex = 1;
     if (buttonIndex == 2) {
         self.isProgramVariable = YES;
+        self.variableSegmentedControl.selectedSegmentIndex = 0;
     }
+    [self.variableSegmentedControl setNeedsDisplay];
     [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
     //    }
     

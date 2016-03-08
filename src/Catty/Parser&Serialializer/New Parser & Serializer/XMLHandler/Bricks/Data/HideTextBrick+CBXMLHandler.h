@@ -20,37 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Sound.h"
-#import "CBMutableCopyContext.h"
+#import "HideTextBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@implementation Sound
+@class CBXMLContext;
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Sound: %@\r", self.name];
-}
-
-- (BOOL)isEqualToSound:(Sound*)sound
-{
-    if([self.name isEqualToString:sound.name] && [self.fileName isEqualToString:sound.fileName])
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
-{
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
-    Sound *copiedSound = [[Sound alloc] init];
-    copiedSound.fileName = [NSString stringWithString:self.fileName];
-    copiedSound.name = [NSString stringWithString:self.name];
-    copiedSound.playing = NO;
-    
-    [context updateReference:self WithReference:copiedSound];
-    return copiedSound;
-}
-
-
+@interface HideTextBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

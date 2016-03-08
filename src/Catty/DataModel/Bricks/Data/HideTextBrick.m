@@ -20,24 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetVariableBrick.h"
+#import "HideTextBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Script.h"
 
-@implementation SetVariableBrick
+@implementation HideTextBrick
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.variableFormula;
-}
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.variableFormula = formula;
-}
 
 - (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
@@ -49,14 +40,9 @@
     self.userVariable = variable;
 }
 
-- (NSArray*)getFormulas
-{
-    return @[self.variableFormula];
-}
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.variableFormula = [[Formula alloc] initWithZero];
     if(spriteObject) {
         NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
         if([variables count] > 0)
@@ -68,34 +54,20 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetVariable;
-}
-
-- (BOOL)allowsStringFormula
-{
-    return YES;
+    return kLocalizedHideVariable;
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
+    return [NSString stringWithFormat:@"Hide Variable Brick: Uservariable: %@", self.userVariable];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userVariable isEqualToUserVariable:((SetVariableBrick*)brick).userVariable])
-        return NO;
-    if (! [self.variableFormula isEqualToFormula:((SetVariableBrick*)brick).variableFormula])
+    if (! [self.userVariable isEqualToUserVariable:((HideTextBrick*)brick).userVariable])
         return NO;
     return YES;
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return [self.variableFormula getRequiredResources];
 }
 
 @end
