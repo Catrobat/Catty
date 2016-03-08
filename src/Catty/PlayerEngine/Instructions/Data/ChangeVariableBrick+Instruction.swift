@@ -33,8 +33,18 @@ extension ChangeVariableBrick: CBInstructionProtocol {
 
         return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: ChangeVariableBrick")
-            let result = variableFormula.interpretDoubleForSprite(spriteObject)
-            variables.changeVariable(userVariable, byValue: result)
+            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
+            if userVariable.value is NSNumber && result is NSNumber {
+                let number:NSNumber = (result as? NSNumber)!
+                variables.changeVariable(userVariable, byValue: number.doubleValue)
+                //update active UserVariable
+                userVariable.textLabel.text = String(Int(userVariable.value.doubleValue))
+            } else if userVariable.value is NSString {
+                // do nothing
+            } else {
+                // do nothing
+            }
+            
             context.state = .Runnable
         }
 

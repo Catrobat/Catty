@@ -155,7 +155,7 @@ final class CBScene: SKScene {
 
     // MARK: - Start program
     func startProgram() {
-        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
+        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject], let variableList = frontend?.program?.variables.allVariables() as NSArray? as? [UserVariable]
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
         assert(NSThread.currentThread().isMainThread)
 
@@ -229,6 +229,15 @@ final class CBScene: SKScene {
                 context! += instructions // generate instructions and add them to script context
                 scheduler?.registerContext(context!)
             }
+        }
+        for variable:UserVariable in variableList {
+            variable.textLabel = SKLabelNode()
+            variable.textLabel.text = ""
+            variable.textLabel.zPosition = CGFloat(zPosition + 1)
+            variable.textLabel.fontColor = UIColor.blackColor()
+            variable.textLabel.fontSize = 16
+            variable.textLabel.hidden = true
+            addChild(variable.textLabel)
         }
 
         scheduler?.run()
