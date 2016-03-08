@@ -20,23 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetVariableBrick: CBInstructionProtocol {
+extension ShowTextBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
+              let _ = spriteObject.program?.variables
         else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
-        let variableFormula = self.variableFormula
+        let xFormula = self.xFormula
+        let yFormula = self.yFormula
 
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: SetVariableBrick")
-            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
-            variables.setUserVariable(userVariable, toValue: result)
-            
-            //update visible userVariable
+//            self.logger.debug("Performing: ShowTextBrick")
+            let xResult = xFormula.interpretDoubleForSprite(spriteObject)
+            let yResult = yFormula.interpretDoubleForSprite(spriteObject)
             var value = ""
             if userVariable.value is NSNumber{
                 let number:NSNumber = (userVariable.value as? NSNumber)!
@@ -48,6 +47,12 @@ extension SetVariableBrick: CBInstructionProtocol {
                 value = ""
             }
             userVariable.textLabel.text = value
+            
+            guard let scene = userVariable.textLabel.scene else {
+                fatalError("This should never happen!")
+            }
+            userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
+            userVariable.textLabel.hidden = false
             context.state = .Runnable
         }
 

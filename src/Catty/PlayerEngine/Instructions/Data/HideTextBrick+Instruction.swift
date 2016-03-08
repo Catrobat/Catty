@@ -20,22 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <SpriteKit/SpriteKit.h>
-#import "CBMutableCopying.h"
+extension HideTextBrick: CBInstructionProtocol {
+    
+    func instruction() -> CBInstruction {
 
-@class GDataXMLElement;
-@class SpriteObject;
-@class Program;
+        guard let spriteObject = self.script?.object,
+              let _ = spriteObject.program?.variables
+        else { fatalError("This should never happen!") }
 
-@interface UserVariable : NSObject<CBMutableCopying>
+        let userVariable = self.userVariable
 
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) id value;
-@property (nonatomic, strong) SKLabelNode *textLabel;
+        return CBInstruction.ExecClosure { (context, _) in
+//            self.logger.debug("Performing: HideTextBrick")
+            userVariable.textLabel.hidden = true
+            context.state = .Runnable
+        }
 
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
-
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
-
-@end
+    }
+}
