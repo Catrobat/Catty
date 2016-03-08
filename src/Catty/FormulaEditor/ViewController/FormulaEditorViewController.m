@@ -1067,9 +1067,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.isProgramVariable = NO;
     //    if (actionSheet.tag == 444) {
+    self.variableSegmentedControl.selectedSegmentIndex = 1;
     if (buttonIndex == 2) {
         self.isProgramVariable = YES;
+        self.variableSegmentedControl.selectedSegmentIndex = 0;
     }
+    [self.variableSegmentedControl setNeedsDisplay];
     [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
     //    }
     
