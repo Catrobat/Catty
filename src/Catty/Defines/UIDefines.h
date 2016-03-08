@@ -115,6 +115,8 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kBDKNotifyHUDPaddingTop 30.0f
 static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 
+#define kFormulaEditorShowResultDuration 4.0f
+
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
