@@ -378,6 +378,9 @@
 // variable bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
+#define kLocalizedShowVariable NSLocalizedString(@"Show variable\n%@\nx: %@ y:%@", nil)
+#define kLocalizedHideVariable NSLocalizedString(@"Hide variable\n%@\n", nil)
+
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)

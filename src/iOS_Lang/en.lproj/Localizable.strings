@@ -557,6 +557,9 @@
 "Hide Details" = "Hide Details";
 
 /* No comment provided by engineer. */
+"Hide variable\n%@\n" = "Hide variable\n%@\n";
+
+/* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
 
 /* No comment provided by engineer. */
@@ -1173,6 +1176,9 @@
 
 /* No comment provided by engineer. */
 "Show Details" = "Show Details";
+
+/* No comment provided by engineer. */
+"Show variable\n%@\nx: %@ y:%@" = "Show variable\n%@\nx: %@ y:%@";
 
 /* No comment provided by engineer. */
 "size" = "size";

@@ -20,22 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <SpriteKit/SpriteKit.h>
-#import "CBMutableCopying.h"
+#import "ShowTextBrickCell.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
-@class Program;
+@interface ShowTextBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel2;
+@end
 
-@interface UserVariable : NSObject<CBMutableCopying>
+@implementation ShowTextBrickCell
 
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) id value;
-@property (nonatomic, strong) SKLabelNode *textLabel;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:largeBrick width:[Util screenWidth]];
+}
 
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
++ (CGFloat)cellHeight
+{
+    return kBrickHeight3h;
+}
 
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+    self.thirdRowTextLabel = inlineViewSubViews[2];
+    self.xValueTextField = inlineViewSubViews[3];
+    self.thirdRowTextLabel2 = inlineViewSubViews[4];
+    self.xValueTextField = inlineViewSubViews[5];
+}
 
 @end

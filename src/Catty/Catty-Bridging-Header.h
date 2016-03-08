@@ -89,6 +89,8 @@
 #import "ClearGraphicEffectBrick.h"
 #import "ChangeTransparencyByNBrick.h"
 #import "ChangeBrightnessByNBrick.h"
+#import "ShowTextBrick.h"
+#import "HideTextBrick.h"
 
 // Formulas
 #import "Formula.h"

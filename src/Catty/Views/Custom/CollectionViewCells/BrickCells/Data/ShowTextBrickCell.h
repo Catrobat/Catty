@@ -20,22 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <SpriteKit/SpriteKit.h>
-#import "CBMutableCopying.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
-@class Program;
+@interface ShowTextBrickCell : BrickCell
 
-@interface UserVariable : NSObject<CBMutableCopying>
-
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) id value;
-@property (nonatomic, strong) SKLabelNode *textLabel;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
-
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
-
+@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
+@property (nonatomic, weak) UITextField *xValueTextField;
+@property (nonatomic, weak) UITextField *yValueTextField;
 @end
