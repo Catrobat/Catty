@@ -559,8 +559,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (IBAction)compute:(id)sender
 {
-    UIAlertController *alert;
-    UIAlertAction *cancelAction;
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
         Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
@@ -571,12 +569,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
             case FORMULA_PARSER_OK:
                 
                 computedString = [formula getResultForComputeDialog:brick.script.object];
-                
-                alert = [UIAlertController alertControllerWithTitle:kUIFEResult message:computedString preferredStyle:UIAlertControllerStyleAlert];
-                cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                }];
-                [alert addAction:cancelAction];
-                [self presentViewController:alert animated:YES completion:nil];
+                [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
 
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
@@ -585,16 +578,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
             case FORMULA_PARSER_STRING:
                 if(!self.brickCellData.brickCell.isScriptBrick){
                     Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
-                    if(![brick allowsStringFormula]){
+                    if (![brick allowsStringFormula]) {
                         [self showSyntaxErrorView];
-                    }else{
+                    } else {
                         computedString = [formula getResultForComputeDialog:brick.script.object];
-                        
-                        alert = [UIAlertController alertControllerWithTitle:kUIFEResult message:computedString preferredStyle:UIAlertControllerStyleAlert];
-                        cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                        }];
-                        [alert addAction:cancelAction];
-                        [self presentViewController:alert animated:YES completion:nil];
+                        [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
                     }
                 }
                 
