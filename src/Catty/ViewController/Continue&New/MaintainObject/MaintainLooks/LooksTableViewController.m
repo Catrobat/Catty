@@ -416,6 +416,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
+        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -754,6 +756,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 vc.editingPath = nil;
                 vc.programHeight = self.object.program.header.screenHeight.floatValue;
                 vc.programWidth = self.object.program.header.screenWidth.floatValue;
+                NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+                [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
                 [self.navigationController pushViewController:vc animated:YES];
             });
 
