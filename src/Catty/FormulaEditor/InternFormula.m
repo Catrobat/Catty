@@ -375,7 +375,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
                 return AM_LEFT;
             }
             self.externCursorPosition --;
-            return DO_NOT_MODIFY;
+            return AM_RIGHT;
             
             break;
             
