@@ -202,6 +202,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                       kResourceFileNameSeparator,
                       sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
+    if (![self checkIfSoundFolderExists]) {
+        [delegate.fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
+    }
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -213,6 +216,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
     }
+}
+
+
+-(BOOL)checkIfSoundFolderExists{
+    FileManager* manager = [[FileManager alloc] init];
+    NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName];
+    if ([manager directoryExists:path]) {
+        return YES;
+    }
+    return NO;
+    
 }
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound
