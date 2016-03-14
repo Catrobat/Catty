@@ -37,6 +37,10 @@
 
 #import <CoreBluetooth/CoreBluetooth.h>
 
+// tags
+#define kSelectAllItemsTag 0
+#define kUnselectAllItemsTag 1
+
 @class BluetoothPopupVC;
 
 @interface BaseCollectionViewController ()
@@ -109,6 +113,11 @@
                                                               target:self
                                                               action:@selector(deleteAlertView)];
     
+    UIBarButtonItem *selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedSelectAllItems
+                                                                                style:UIBarButtonItemStylePlain
+                                                                                target:self
+                                                                                action:@selector(selectAllRows:)];
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(showBrickPickerAction:)];
@@ -118,12 +127,13 @@
                                                                           action:@selector(playSceneAction:)];
     play.enabled = (! self.editing);
     if (self.editing) {
-        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
+        self.toolbarItems = @[selectAllRowsButtonItem,flexItem,delete];
     } else {
         self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                               flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
     }
 }
+
 
 - (void)showLoadingView
 {

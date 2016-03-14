@@ -310,23 +310,14 @@
 }
 
 - (void)selectAllBricks:(UICollectionView*)collectionView{
-    if (! self.selectedAllCells) {
-        self.selectedAllCells = YES;
-        for (BrickCell *cell in collectionView.visibleCells) {
-            cell.selectButton.selected = YES;
-            NSIndexPath *indexPath = [collectionView indexPathForCell:cell];
-            [self addToSelectedIndexPaths:indexPath];
-        }
-        return;
-    }
     
-    self.selectedAllCells = NO;
     for (BrickCell *cell in collectionView.visibleCells) {
-        cell.selectButton.selected = NO;
         NSIndexPath *indexPath = [collectionView indexPathForCell:cell];
-        [self removeFromSelectedIndexPaths:indexPath];
+        if (cell.isScriptBrick) {
+            Script *script = (Script*)cell.scriptOrBrick;
+            [self brickCell:cell didSelectBrickCellButton:cell.selectButton IndexPath:indexPath andObject:script.object];
+        }
     }
-  
 }
 
 -(void)reset

@@ -90,6 +90,9 @@
 #import "Pocket_Code-Swift.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
+#define kSelectAllItemsTag 0
+#define kUnselectAllItemsTag 1
+
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -1291,6 +1294,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
         [self reloadData];
+}
+
+
+- (void)selectAllRows:(id)sender
+{
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        UIBarButtonItem *button = (UIBarButtonItem*)sender;
+        if (button.tag == kSelectAllItemsTag) {
+            button.tag = kUnselectAllItemsTag;
+            button.title = kLocalizedUnselectAllItems;
+        } else {
+            button.tag = kSelectAllItemsTag;
+            button.title = kLocalizedSelectAllItems;
+        }
+    }
+    
+    [self selectAllBricks];
+    [self reloadData];
 }
 
 
