@@ -37,7 +37,6 @@
 @property(nonatomic, readonly) PageIndexCategoryType pageIndexCategoryType;
 @property(nonatomic, weak) id<BrickCategoryViewControllerDelegate> delegate;
 @property(nonatomic, readonly) NSArray *bricks;
-@property(nonatomic, readonly) NSUInteger pageIndex;
 @property(nonatomic, weak) SpriteObject *spriteObject;
 
 - (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray;

@@ -51,10 +51,13 @@
 
 + (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject maxPage:(NSInteger)maxPage andPageIndexArray:(NSArray*)pageIndexArray
 {
-    NSNumber* number = pageIndexArray[0];
-    if (pageIndex >= number.integerValue) {
+    // check if pageIndex exists in pageIndexArray
+    NSPredicate *valuePredicate = [NSPredicate predicateWithFormat:@"self.intValue == %d", pageIndex];
+    
+    if ([[pageIndexArray filteredArrayUsingPredicate:valuePredicate] count] != 0) {
         return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject andPageIndexArray:pageIndexArray];
     }
+
     return nil;
 }
 
