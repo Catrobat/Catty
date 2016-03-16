@@ -55,14 +55,13 @@
     [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
     [self addNameLabelWithProjectName:project.projectName toView:view];
     [self addAuthorLabelWithAuthor:project.author toView:view];
-    
-    [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
     [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
-        //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
+    //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
     [self addDownloadButtonToView:view withTarget:target];
     [self addLoadingButtonToView:view withTarget:target];
     [self addPlayButtonToView:view withTarget:target];
     [self addDownloadAgainButtonToView:view withTarget:target];
+    [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
 
     NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
     NSString *uploaded = [[CatrobatProgram uploadDateFormatter] stringFromDate:projectDate];
@@ -184,7 +183,7 @@
         [activity startAnimating];
     }
 
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
     imageView.layer.borderColor = [UIColor utilityTintColor].CGColor;
