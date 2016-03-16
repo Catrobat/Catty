@@ -75,8 +75,6 @@
 - (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString *)value
 {
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
-    [combobox reloadInputViews];
-    [combobox setNeedsDisplay];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox

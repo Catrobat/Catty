@@ -1209,10 +1209,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
             [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
         }
-
-    [self reloadData];
+    
+    [self.object.program saveToDiskWithNotification:NO];
     [self enableUserInteractionAndResetHighlight];
-    [self.object.program saveToDiskWithNotification:YES];
+    [self reloadData];
 }
 
 -(void)enableUserInteractionAndResetHighlight
