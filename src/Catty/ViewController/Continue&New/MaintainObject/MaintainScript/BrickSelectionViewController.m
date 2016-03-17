@@ -24,8 +24,10 @@
 #import "BrickCategoryViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "KeychainUserDefaultsDefines.h"
 
 @interface BrickSelectionViewController() <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@property (nonatomic, strong) UIPageControl *pageControl;
 @end
 
 @implementation BrickSelectionViewController
@@ -33,7 +35,22 @@
 -(id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary<NSString *,id> *)options
 {
     self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
-    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexScriptFavourites],[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
+
+    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
+    
+    NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+    if (favouritesDict.count >= kMinFavouriteBrickSize) {
+        [self.pageIndexArray insertObject:[NSNumber numberWithInteger:kPageIndexFrequentlyUsed] atIndex:0];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
+        [self.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
+        [self.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
+    }
+    
     return self;
 }
 
@@ -46,7 +63,11 @@
     self.view.backgroundColor = [UIColor backgroundColor];
     self.navigationController.toolbarHidden = YES;
     [self setupNavBar];
-    [self updateTitle];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 #pragma mark - UIPageViewControllerDataSource
@@ -54,24 +75,28 @@
      viewControllerBeforeViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSInteger pageIndex = bcVC.pageIndex - 1;
-    if (pageIndex >= 0) {
-        NSNumber *index = self.pageIndexArray[pageIndex];
-        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue andObject:bcVC.spriteObject andMaxPage:self.pageIndexArray.count];
+    NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
+    
+    if ([pageIndex isEqualToNumber:[self.pageIndexArray firstObject]]) {
+        return nil;
     }
-    return nil;
+    
+    NSNumber *previousIndex = self.pageIndexArray[[self arrayIndexForCategoryType:bcVC.pageIndexCategoryType] - 1];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:previousIndex.intValue object:bcVC.spriteObject andPageIndexArray:self.pageIndexArray];
 }
 
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
      viewControllerAfterViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSUInteger pageIndex = bcVC.pageIndex + 1;
-    if (pageIndex < self.pageIndexArray.count) {
-        NSNumber *index = self.pageIndexArray[pageIndex];
-        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue andObject:bcVC.spriteObject andMaxPage:self.pageIndexArray.count];
+    NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
+    
+    if ([pageIndex isEqualToNumber:[self.pageIndexArray lastObject]]) {
+        return nil;
     }
-    return nil;
+    
+    NSNumber *nextIndex = self.pageIndexArray[[self arrayIndexForCategoryType:bcVC.pageIndexCategoryType] + 1];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:nextIndex.intValue object:bcVC.spriteObject andPageIndexArray:self.pageIndexArray];
 }
 
 - (void)pageViewController:(UIPageViewController*)pageViewController
@@ -85,6 +110,8 @@
     }
 }
 
+
+
 #pragma mark - Pageindicator
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
@@ -94,17 +121,18 @@
 
 - (void)overwritePageControl
 {
-    UIPageControl *pageControl = [[self.view.subviews
+    self.pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
-    pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
-    pageControl.backgroundColor = [UIColor toolBarColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
+    self.pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
+    self.pageControl.backgroundColor = [UIColor toolBarColor];
+
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController
 {
     BrickCategoryViewController *bcvc = [pageViewController.viewControllers objectAtIndex:0];
-    return bcvc.pageIndex;
+    return [self arrayIndexForCategoryType:bcvc.pageIndexCategoryType];
 }
 
 #pragma mark - Setup
@@ -116,6 +144,8 @@
                                                                                            action:@selector(dismiss:)];
     
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor navTintColor];
+    
+    [self updateTitle];
 }
 
 - (void)updateBrickCategoryViewControllerDelegate
@@ -130,10 +160,8 @@
 - (void)updateTitle
 {
     BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
-    NSInteger pageIndex = bcvc.pageIndex;
-    if (pageIndex >= 0) {
-        self.title = CBTitleFromPageIndexCategoryType(pageIndex);
-    }
+    PageIndexCategoryType type = bcvc.pageIndexCategoryType;
+    self.title = CBTitleFromPageIndexCategoryType(type);
 }
 
 #pragma mark Button Actions
@@ -143,6 +171,22 @@
     if ([sender isKindOfClass:UIBarButtonItem.class]) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
+}
+
+#pragma mark - Helper
+
+- (NSInteger)arrayIndexForCategoryType:(PageIndexCategoryType)type
+{
+    NSInteger arrayIndex = 0;
+    
+    for (NSNumber *index in self.pageIndexArray) {
+        if (index.intValue == type) {
+            return arrayIndex;
+        }
+        arrayIndex++;
+    }
+    
+    return 0;
 }
 
 @end

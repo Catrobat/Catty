@@ -184,7 +184,7 @@
     }
     if (categoryType == kFavouriteBricks) {
         NSArray *selectableBricksOrScripts = [selectableBricks arrayByAddingObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
-        NSArray *favouriteBricks = [Util getSubsetOfTheMostFavoriteChosenBricks:kMaxNumberOfFavouriteBricksShown];
+        NSArray *favouriteBricks = [Util getSubsetOfTheMostFavoriteChosenBricks:kMaxFavouriteBrickSize];
         for(NSString* oneFavouriteBrickTitle in favouriteBricks) {
             for(id<BrickProtocol> scriptOrBrick in selectableBricksOrScripts) {
                 NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)[scriptOrBrick brickType]].stringValue;
