@@ -36,11 +36,19 @@
 @implementation BrickCategoryViewController
 
 #pragma mark - Init
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray<NSNumber*>*)pageIndexArray
 {
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
+        // check if pageIndex exists in pageIndexArray
+        NSPredicate *valuePredicate = [NSPredicate predicateWithFormat:@"self.intValue == %d", type];
+
+        if ([[pageIndexArray filteredArrayUsingPredicate:valuePredicate] count] == 0) {
+            type = [pageIndexArray firstObject].intValue;
+        }
+        
         self.pageIndexCategoryType = type;
         self.pageIndexArray = pageIndexArray;
+        
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
         self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
         self.spriteObject = spriteObject;
@@ -51,14 +59,7 @@
 
 + (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray
 {
-    // check if pageIndex exists in pageIndexArray
-    NSPredicate *valuePredicate = [NSPredicate predicateWithFormat:@"self.intValue == %d", pageIndex];
-    
-    if ([[pageIndexArray filteredArrayUsingPredicate:valuePredicate] count] != 0) {
-        return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject andPageIndexArray:pageIndexArray];
-    }
-
-    return nil;
+    return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject andPageIndexArray:pageIndexArray];
 }
 
 #pragma mark - Getters
@@ -172,7 +173,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
 {
     switch (pageIndexType) {
-        case kPageIndexScriptFavourites:
+        case kPageIndexFrequentlyUsed:
             return kUIFavouritesTitle;
         case kPageIndexControlBrick:
             return kUIControlTitle;

@@ -39,7 +39,7 @@
 @property(nonatomic, readonly) NSArray *bricks;
 @property(nonatomic, weak) SpriteObject *spriteObject;
 
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray;
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray<NSNumber*>*)pageIndexArray;
 
 + (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray;
 

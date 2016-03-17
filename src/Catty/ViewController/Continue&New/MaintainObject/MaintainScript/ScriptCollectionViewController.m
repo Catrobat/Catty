@@ -107,7 +107,7 @@
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
-@property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
+@property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic,strong) Script *moveHelperScript;
 @end
 
@@ -158,23 +158,14 @@
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
-        //ADD Indexes from PageIndexCategoryType for selection those bricks
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
-            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
-        }
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
-            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
-        }
-        NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
-        if (favouritesDict.count < kMinFavouriteBrickSize && self.lastSelectedBrickCategory == 0) {
-            self.lastSelectedBrickCategory = 1;
-        }
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object andPageIndexArray:bsvc.pageIndexArray];
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategoryType andObject:self.object andPageIndexArray:bsvc.pageIndexArray];
         bcvc.delegate = self;
+        
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
                       completion:NULL];
+        
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
         [self presentViewController:navController animated:YES completion:NULL];
     }
@@ -654,7 +645,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
     [scriptOrBrick setDefaultValuesForObject:self.object];
-    self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
+    self.lastSelectedBrickCategoryType = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
     BrickInsertManager* manager = [BrickInsertManager sharedInstance];
