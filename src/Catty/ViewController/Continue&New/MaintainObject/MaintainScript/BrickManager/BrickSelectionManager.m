@@ -319,8 +319,11 @@
         }
         
     }
+}
 
-    [collectionView reloadData];
+-(void)deselectAllBricks
+{
+    [self.selectedIndexPaths removeAllObjects];
 }
 
 -(void)reset

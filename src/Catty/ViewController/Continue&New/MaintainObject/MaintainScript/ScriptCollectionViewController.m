@@ -816,10 +816,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }];
 }
 
-- (void)selectAllBricks
-{
-    [[BrickSelectionManager sharedInstance] selectAllBricks:self.collectionView];
-}
 
 - (NSString*)keyWithSelectIndexPath:(NSIndexPath*)indexPath
 {
@@ -1261,18 +1257,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         UIBarButtonItem *button = (UIBarButtonItem*)sender;
-        if (button.tag == kSelectAllItemsTag) {
-            button.tag = kUnselectAllItemsTag;
+        if (!self.allBricksSelected) {
             button.title = kLocalizedUnselectAllItems;
             self.allBricksSelected = YES;
+            [[BrickSelectionManager sharedInstance] selectAllBricks:self.collectionView];
         } else {
-            button.tag = kSelectAllItemsTag;
             button.title = kLocalizedSelectAllItems;
             self.allBricksSelected = NO;
+            [[BrickSelectionManager sharedInstance] deselectAllBricks];
         }
     }
-    
-    [self selectAllBricks];
+
     [self reloadData];
 }
 
