@@ -311,13 +311,16 @@
 
 - (void)selectAllBricks:(UICollectionView*)collectionView{
     
-    for (BrickCell *cell in collectionView.visibleCells) {
-        NSIndexPath *indexPath = [collectionView indexPathForCell:cell];
-        if (cell.isScriptBrick) {
-            Script *script = (Script*)cell.scriptOrBrick;
-            [self brickCell:cell didSelectBrickCellButton:cell.selectButton IndexPath:indexPath andObject:script.object];
+    for (NSInteger i = 0; i < [collectionView numberOfSections]; i++)
+    {
+        for (NSInteger j = 0; j < [collectionView numberOfItemsInSection:i]; j++)
+        {
+            [self.selectedIndexPaths addObject:[NSIndexPath indexPathForItem:j inSection:i]];
         }
+        
     }
+
+    [collectionView reloadData];
 }
 
 -(void)reset

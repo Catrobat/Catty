@@ -45,6 +45,7 @@
 
 @interface BaseCollectionViewController ()
 @property (nonatomic, strong) LoadingView* loadingView;
+
 @end
 
 @implementation BaseCollectionViewController
@@ -112,11 +113,19 @@
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
                                                               action:@selector(deleteAlertView)];
+    UIBarButtonItem *selectAllRowsButtonItem;
+    if (!self.allBricksSelected) {
+        selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedSelectAllItems
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(selectAllRows:)];
+    } else {
+        selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedUnselectAllItems
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(selectAllRows:)];
+    }
     
-    UIBarButtonItem *selectAllRowsButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedSelectAllItems
-                                                                                style:UIBarButtonItemStylePlain
-                                                                                target:self
-                                                                                action:@selector(selectAllRows:)];
     
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
