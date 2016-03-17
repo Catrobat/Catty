@@ -27,18 +27,27 @@
 #import "Brick.h"
 
 @interface BrickCategoryViewController ()
-@property(nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;
+@property (nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;
 @property (nonatomic, strong) NSArray *bricks;
+@property (nonatomic, strong) NSArray *pageIndexArray;
 
 @end
 
 @implementation BrickCategoryViewController
 
 #pragma mark - Init
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject andPageIndexArray:(NSArray<NSNumber*>*)pageIndexArray
 {
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
+        // check if pageIndex exists in pageIndexArray
+        NSPredicate *valuePredicate = [NSPredicate predicateWithFormat:@"self.intValue == %d", type];
+
+        if ([[pageIndexArray filteredArrayUsingPredicate:valuePredicate] count] == 0) {
+            type = [pageIndexArray firstObject].intValue;
+        }
+        
         self.pageIndexCategoryType = type;
+        self.pageIndexArray = pageIndexArray;
         
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
         self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
@@ -48,12 +57,9 @@
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray
 {
-    if ((pageIndex >= kPageIndexScriptFavourites)) { 
-        return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject];
-    }
-    return nil;
+    return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject andPageIndexArray:pageIndexArray];
 }
 
 #pragma mark - Getters
@@ -167,7 +173,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
 {
     switch (pageIndexType) {
-        case kPageIndexScriptFavourites:
+        case kPageIndexFrequentlyUsed:
             return kUIFavouritesTitle;
         case kPageIndexControlBrick:
             return kUIControlTitle;
