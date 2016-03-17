@@ -859,6 +859,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)changeDeleteBarButtonState
 {
+    UIBarButtonItem *navBarButton;
+    if (!self.editing) {
+        navBarButton= [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
+    } else {
+        navBarButton= [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
+    }
+    self.navigationItem.rightBarButtonItem = navBarButton;
     if (self.object.scriptList.count) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
@@ -1314,7 +1321,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          [[BrickSelectionManager sharedInstance] reset];
                      }];
     self.editing = NO;
- 
+    self.allBricksSelected = NO;
 }
 
 @end
