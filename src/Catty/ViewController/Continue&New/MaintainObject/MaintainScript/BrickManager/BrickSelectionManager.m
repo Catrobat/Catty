@@ -310,14 +310,13 @@
 }
 
 - (void)selectAllBricks:(UICollectionView*)collectionView{
-    
-    for (NSInteger i = 0; i < [collectionView numberOfSections]; i++)
+    [self deselectAllBricks];
+    for (NSInteger section = 0; section < [collectionView numberOfSections]; section++)
     {
-        for (NSInteger j = 0; j < [collectionView numberOfItemsInSection:i]; j++)
+        for (NSInteger row = 0; row < [collectionView numberOfItemsInSection:section]; row++)
         {
-            [self.selectedIndexPaths addObject:[NSIndexPath indexPathForItem:j inSection:i]];
+            [self.selectedIndexPaths addObject:[NSIndexPath indexPathForItem:row inSection:section]];
         }
-        
     }
 }
 
