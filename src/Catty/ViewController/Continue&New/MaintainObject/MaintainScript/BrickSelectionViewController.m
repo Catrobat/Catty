@@ -72,7 +72,7 @@
     }
 
     NSNumber *previousIndex = self.pageIndexArray[pageIndex.intValue - 2];
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:previousIndex.intValue object:bcVC.spriteObject maxPage:self.pageIndexArray.count andPageIndexArray:self.pageIndexArray];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:previousIndex.intValue object:bcVC.spriteObject andPageIndexArray:self.pageIndexArray];
 }
 
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
@@ -86,7 +86,7 @@
     }
     
     NSNumber *nextIndex = self.pageIndexArray[pageIndex.intValue];
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:nextIndex.intValue object:bcVC.spriteObject maxPage:self.pageIndexArray.count andPageIndexArray:self.pageIndexArray];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:nextIndex.intValue object:bcVC.spriteObject andPageIndexArray:self.pageIndexArray];
 }
 
 - (void)pageViewController:(UIPageViewController*)pageViewController

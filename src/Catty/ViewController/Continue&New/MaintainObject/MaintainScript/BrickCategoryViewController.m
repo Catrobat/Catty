@@ -49,7 +49,7 @@
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject maxPage:(NSInteger)maxPage andPageIndexArray:(NSArray*)pageIndexArray
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex object:(SpriteObject*)spriteObject andPageIndexArray:(NSArray*)pageIndexArray
 {
     // check if pageIndex exists in pageIndexArray
     NSPredicate *valuePredicate = [NSPredicate predicateWithFormat:@"self.intValue == %d", pageIndex];
