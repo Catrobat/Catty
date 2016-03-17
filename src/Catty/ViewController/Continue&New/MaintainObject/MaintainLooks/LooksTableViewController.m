@@ -101,7 +101,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                               ? kLocalizedBackgrounds
                                               : kLocalizedLooks);
     [self initNavigationBar];
-    self.placeHolderView.title = kLocalizedLooks;
+    if (self.object.isBackground) {
+        self.placeHolderView.title = kLocalizedBackground;
+    } else {
+        self.placeHolderView.title = kUILookTitle;
+    }
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -125,7 +129,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSMutableArray *options = [NSMutableArray array];
     NSString *destructive = nil;
     if (self.object.lookList.count) {
-        destructive = kLocalizedDeleteLooks;
+        destructive = (self.object.isBackground
+                       ? kLocalizedDeleteBackgrounds
+                       : kLocalizedDeleteLooks);
     }
     if (self.object.lookList.count >= 2) {
         [options addObject:kLocalizedMoveLooks];
@@ -135,7 +141,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditLooks
+    
+    [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackgrounds : kLocalizedEditLooks)
                       delegate:self
         destructiveButtonTitle:destructive
              otherButtonTitles:options
@@ -359,7 +366,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Look* itemToMove = self.object.lookList[sourceIndexPath.row];
     [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -409,6 +416,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
+        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -747,6 +756,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 vc.editingPath = nil;
                 vc.programHeight = self.object.program.header.screenHeight.floatValue;
                 vc.programWidth = self.object.program.header.screenWidth.floatValue;
+                NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+                [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
                 [self.navigationController pushViewController:vc animated:YES];
             });
 

@@ -45,6 +45,11 @@
     self.timesToRepeat = formula;
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (NSArray*)conditions
 {
     return [self getFormulas];

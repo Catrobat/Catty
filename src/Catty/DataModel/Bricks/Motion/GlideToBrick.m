@@ -62,6 +62,11 @@
     return @[self.durationInSeconds,self.xDestination,self.yDestination];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.durationInSeconds = [[Formula alloc] initWithInteger:1];

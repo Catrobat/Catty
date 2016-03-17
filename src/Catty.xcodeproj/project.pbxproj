@@ -186,6 +186,14 @@
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
+		9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2C61C808006002F5CA4 /* HideTextBrick.m */; };
+		9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2C81C808006002F5CA4 /* ShowTextBrick.m */; };
+		9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */; };
+		9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */; };
+		9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2D21C8082EF002F5CA4 /* HideTextBrickCell.m */; };
+		9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2D41C8082EF002F5CA4 /* ShowTextBrickCell.m */; };
+		9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */; };
+		9200C2DC1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */; };
 		920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F16DC1BE7467D000D18BE /* ResourceHelper.m */; };
 		921670FC1C182F9300144D6E /* CatrobatAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921670FB1C182F9300144D6E /* CatrobatAlertController.m */; };
 		921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */; };
@@ -1059,6 +1067,20 @@
 		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		9200C2C51C808006002F5CA4 /* HideTextBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideTextBrick.h; sourceTree = "<group>"; };
+		9200C2C61C808006002F5CA4 /* HideTextBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideTextBrick.m; sourceTree = "<group>"; };
+		9200C2C71C808006002F5CA4 /* ShowTextBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTextBrick.h; sourceTree = "<group>"; };
+		9200C2C81C808006002F5CA4 /* ShowTextBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTextBrick.m; sourceTree = "<group>"; };
+		9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HideTextBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/HideTextBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ShowTextBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/ShowTextBrick+Instruction.swift"; sourceTree = "<group>"; };
+		9200C2D11C8082EF002F5CA4 /* HideTextBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideTextBrickCell.h; sourceTree = "<group>"; };
+		9200C2D21C8082EF002F5CA4 /* HideTextBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideTextBrickCell.m; sourceTree = "<group>"; };
+		9200C2D31C8082EF002F5CA4 /* ShowTextBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTextBrickCell.h; sourceTree = "<group>"; };
+		9200C2D41C8082EF002F5CA4 /* ShowTextBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTextBrickCell.m; sourceTree = "<group>"; };
+		9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HideTextBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/HideTextBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HideTextBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/HideTextBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ShowTextBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ShowTextBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ShowTextBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ShowTextBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		920F16DB1BE7467D000D18BE /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceHelper.h; path = ResourceHelper/ResourceHelper.h; sourceTree = "<group>"; };
 		920F16DC1BE7467D000D18BE /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceHelper.m; path = ResourceHelper/ResourceHelper.m; sourceTree = "<group>"; };
 		921670FA1C182F9300144D6E /* CatrobatAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertController.h; sourceTree = "<group>"; };
@@ -2693,6 +2715,10 @@
 		4C724DF71B4D3E8C00E27479 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */,
+				9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */,
+				9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */,
+				9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */,
 				AA74EF731BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.h */,
 				AA74EF741BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m */,
 				AA74EF751BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.h */,
@@ -4536,6 +4562,8 @@
 		AA74EDDB1BC051FB00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */,
+				9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */,
 				AA74EE241BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift */,
 				AA74EE251BC0540D00D1E954 /* SetVariableBrick+Instruction.swift */,
 			);
@@ -4635,6 +4663,10 @@
 		AA74EF961BC05B5F00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9200C2C51C808006002F5CA4 /* HideTextBrick.h */,
+				9200C2C61C808006002F5CA4 /* HideTextBrick.m */,
+				9200C2C71C808006002F5CA4 /* ShowTextBrick.h */,
+				9200C2C81C808006002F5CA4 /* ShowTextBrick.m */,
 				AA74EF971BC05B5F00D1E954 /* ChangeVariableBrick.h */,
 				AA74EF981BC05B5F00D1E954 /* ChangeVariableBrick.m */,
 				AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */,
@@ -4826,6 +4858,10 @@
 		AA74F03D1BC05FCE00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9200C2D11C8082EF002F5CA4 /* HideTextBrickCell.h */,
+				9200C2D21C8082EF002F5CA4 /* HideTextBrickCell.m */,
+				9200C2D31C8082EF002F5CA4 /* ShowTextBrickCell.h */,
+				9200C2D41C8082EF002F5CA4 /* ShowTextBrickCell.m */,
 				AA74F03E1BC05FCE00D1E954 /* ChangeVariableBrickCell.h */,
 				AA74F03F1BC05FCE00D1E954 /* ChangeVariableBrickCell.m */,
 				AA74F0401BC05FCE00D1E954 /* SetVariableBrickCell.h */,
@@ -6046,7 +6082,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\n./update-localized-strings.sh&\n";
+			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\npython synchronize_localization.py && ./update-localized-strings.sh&\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6230,7 +6266,9 @@
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
+				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
+				9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
@@ -6381,11 +6419,13 @@
 				9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
+				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,
 				AA74EF001BC057C900D1E954 /* ShowBrick+CBXMLHandler.m in Sources */,
 				AA74EFE41BC05B5F00D1E954 /* IfLogicBeginBrick.m in Sources */,
 				AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
+				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
 				AA74EEF81BC057C900D1E954 /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */,
@@ -6493,6 +6533,7 @@
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
+				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
@@ -6523,8 +6564,10 @@
 				AA74EFFD1BC05B5F00D1E954 /* ChangeYByNBrick.m in Sources */,
 				92DFB0661A38960C00FA9B0F /* RGBAHelper.m in Sources */,
 				4C724E271B4D3E8C00E27479 /* CBXMLSerializer.m in Sources */,
+				9200C2DC1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
+				9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */,
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
@@ -6618,6 +6661,7 @@
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
+				9200C2D01C808206002F5CA4 /* ShowTextBrick+Instruction.swift in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,

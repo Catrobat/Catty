@@ -39,6 +39,11 @@
     return kLocalizedSpeak;
 }
 
+- (BOOL)allowsStringFormula
+{
+    return YES;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     Formula *speakFormula = [Formula new];

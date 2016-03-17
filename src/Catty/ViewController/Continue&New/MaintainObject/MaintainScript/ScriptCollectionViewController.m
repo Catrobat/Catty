@@ -127,7 +127,7 @@
     [self setupToolBar];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    self.placeHolderView.title = kLocalizedScripts;
+    self.placeHolderView.title = kUIScriptTitle;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
@@ -136,7 +136,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+//    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
 }
 
@@ -868,7 +868,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [super setEditing:editing animated:animated];
 
     if (self.isEditing) {
-        self.navigationItem.title = kLocalizedDeletionMenu;
         self.navigationItem.rightBarButtonItem.title = kLocalizedCancel;
 
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -884,7 +883,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
         }];
     } else {
-        self.navigationItem.title = kLocalizedScripts;
         self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
         

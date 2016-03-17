@@ -115,6 +115,8 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kBDKNotifyHUDPaddingTop 30.0f
 static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 
+#define kFormulaEditorShowResultDuration 4.0f
+
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
@@ -203,6 +205,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     // 4xx variable bricks
     kSetVariableBrick          = 400,
     kChangeVariableBrick       = 401,
+    kShowTextBrick             = 402,
+    kHideTextBrick             = 403,
     
     // 5xx arduino bricks
     kArduinoSendDigitalValueBrick  = 500,
@@ -330,6 +334,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
     @"ChangeVariableBrick"       : @(kChangeVariableBrick),\
+    @"ShowTextBrick"             : @(kShowTextBrick),\
+    @"HideTextBrick"             : @(kHideTextBrick),\
 \
     /* arduino bricks */\
     @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
@@ -412,6 +418,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\
 @"ChangeVariableBrick"       : @(kBrickHeight3h),\
+@"ShowTextBrick"             : @(kBrickHeight3h),\
+@"HideTextBrick"             : @(kBrickHeight2h),\
 \
 /* arduino bricks */\
 @"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\

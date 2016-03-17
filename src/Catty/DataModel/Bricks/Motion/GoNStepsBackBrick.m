@@ -42,6 +42,11 @@
     return @[self.steps];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.steps = [[Formula alloc] initWithInteger:1];

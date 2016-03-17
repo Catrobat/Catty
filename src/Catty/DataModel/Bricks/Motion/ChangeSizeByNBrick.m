@@ -42,6 +42,11 @@
     return @[self.size];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.size = [[Formula alloc] initWithInteger:10];

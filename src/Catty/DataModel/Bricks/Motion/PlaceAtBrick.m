@@ -49,6 +49,11 @@
     return @[self.xPosition,self.yPosition];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.xPosition = [[Formula alloc] initWithInteger:100];

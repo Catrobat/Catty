@@ -104,10 +104,11 @@
                                                                               action:nil];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                                                            target:self
-                                                                            action:@selector(deleteAlertView)];
-    delete.tintColor = [UIColor redColor];
+    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(deleteAlertView)];
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(showBrickPickerAction:)];

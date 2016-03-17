@@ -221,7 +221,6 @@
     
 }
 
-
 - (void)testEqual
 {
     NSMutableArray *firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:@"1" withOperator:EQUAL secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"1"];
@@ -243,6 +242,9 @@
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"1.0"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
+    
+    secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:EQUAL secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"1.0"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"!`\"§$%&/()=?" withOperator:EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"!`\"§$%&/()=????"];
@@ -250,9 +252,6 @@
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"555.555" withOperator:EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"055.77.77"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
-    
-    
-    
 }
 
 - (void)testNotEqual
@@ -276,7 +275,7 @@
     [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:NOT_EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"1.0"];
-    [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"!`\"§$%&/()=?" withOperator:NOT_EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"!`\"§$%&/()=????"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
@@ -284,7 +283,8 @@
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"555.555" withOperator:NOT_EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"055.77.77"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
     
-    
+    secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1,555.555" withOperator:NOT_EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"1555.555"];
+    [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
 }
 
 - (void)testNot
@@ -360,8 +360,6 @@
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:LOGICAL_AND secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"0"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"0"];
-    
-    
 }
 
 - (void)testOr
@@ -391,7 +389,6 @@
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:LOGICAL_OR secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"0"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
-    
 }
 
 - (void)testPlus
@@ -399,7 +396,6 @@
     NSString *firstOperand = @"1.3";
     NSString *secondOperand = @"3";
     NSString *result = @"4.3";
-    
     
     NSMutableArray *firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:firstOperand withOperator:PLUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
     [self binaryOperatorTest:firstTerm withExpectedResult:result];
@@ -417,7 +413,7 @@
     secondOperand = @"3.14";
     
     firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:PLUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
-    [self binaryOperatorTest:firstTerm withExpectedResult:nil];
+    [self binaryOperatorTest:firstTerm withExpectedResult:@"3.14"];
 }
 
 - (void)testDivision
@@ -479,7 +475,6 @@
     NSString *secondOperand = @"2";
     NSString *result = @"7.0";
     
-    
     NSMutableArray *firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
     [self binaryOperatorTest:firstTerm withExpectedResult:result];
     
@@ -496,28 +491,7 @@
     secondOperand = @"3.14";
     
     firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
-    [self binaryOperatorTest:firstTerm withExpectedResult:nil];
+    [self binaryOperatorTest:firstTerm withExpectedResult:@"-3.14"];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

@@ -280,6 +280,8 @@
 - (void)setupScene
 {
     if (! self.scene) {
+        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
+        
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
         [scene initializeScreenRecording];
         scene.name = self.program.header.programName;
@@ -294,7 +296,6 @@
         self.skView.paused = NO;
         [self.skView presentScene:scene];
         self.scene = scene;
-        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
     }
 }
 
@@ -375,7 +376,7 @@
     [self.scene resumeScheduler];
     [[BluetoothService sharedInstance] continueBluetoothDevice];
     CGFloat animateDuration = 0.0f;
-    animateDuration = duration > 0.0001f ? duration : 0.35f;
+    animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
     
     [UIView animateWithDuration:animateDuration
                           delay:0.0f

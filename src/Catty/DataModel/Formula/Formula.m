@@ -165,6 +165,17 @@
     }
 }
 
+- (id)interpretVariableDataForSprite:(SpriteObject*)sprite {
+    if (self.bufferedResult) {
+        NSNumber* bufferedResult = self.bufferedResult;
+        self.bufferedResult = nil;
+        return bufferedResult;
+    }
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    return returnValue;
+}
+
+
 - (InternFormulaState*)getInternFormulaState {
     return [[self getInternFormula] getInternFormulaState];
 }
@@ -228,7 +239,9 @@
             double_result = [tempResult doubleValue];
         }
         
-        result = [NSString stringWithFormat:@"%f", double_result];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        result = [formatter stringFromNumber:[NSNumber numberWithDouble:double_result]];
     }
     return result;
 }

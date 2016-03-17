@@ -42,6 +42,11 @@
     return @[self.xMovement];
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.xMovement = [[Formula alloc] initWithInteger:10];

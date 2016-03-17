@@ -38,6 +38,11 @@
     self.volume = formula;
 }
 
+- (BOOL)allowsStringFormula
+{
+    return NO;
+}
+
 - (NSArray*)getFormulas
 {
     return @[self.volume];

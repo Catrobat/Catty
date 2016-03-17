@@ -115,7 +115,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.navigationItem.title = self.program.header.programName;
         self.title = self.program.header.programName;
     }
-    self.placeHolderView.title = kLocalizedObjects;
+    self.placeHolderView.title = kLocalizedObject;
     [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
@@ -436,7 +436,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject* itemToMove = self.program.objectList[index];
     [self.program.objectList removeObjectAtIndex:index];
     [self.program.objectList insertObject:itemToMove atIndex:destIndex];
-    [self.program saveToDiskWithNotification:YES];
+    [self.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView

@@ -106,7 +106,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self changeEditingBarButtonState];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
-    self.placeHolderView.title = kLocalizedSounds;
+    self.placeHolderView.title = kUISoundTitle;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -202,6 +202,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                       kResourceFileNameSeparator,
                       sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
+    if (![self checkIfSoundFolderExists]) {
+        [delegate.fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
+    }
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object.soundList addObject:sound];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -213,6 +216,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
     }
+}
+
+
+-(BOOL)checkIfSoundFolderExists{
+    FileManager* manager = [[FileManager alloc] init];
+    NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName];
+    if ([manager directoryExists:path]) {
+        return YES;
+    }
+    return NO;
+    
 }
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound
@@ -248,6 +262,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [super exitEditingMode];
         return;
     }
+    self.deletionMode = NO;
     [self deleteSelectedSoundsAction];
 }
 
@@ -398,13 +413,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-    if (indexPath.row >= [self.object.soundList count]) {
-        return;
+    if (!self.deletionMode) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+        if (indexPath.row >= [self.object.soundList count]) {
+            return;
+        }
+        [self playSound:imageCell andIndexPath:indexPath];
+
     }
-    [self playSound:imageCell andIndexPath:indexPath];
 }
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
@@ -412,7 +430,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
     [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
     [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:YES];
+    [self.object.program saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -556,6 +574,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
             currentPlayingSongCell.iconImageView.image = image;
         }
     }
+}
+
+- (void)exitEditingMode
+{
+    [super exitEditingMode];
+    self.deletionMode = NO;
 }
 
 
