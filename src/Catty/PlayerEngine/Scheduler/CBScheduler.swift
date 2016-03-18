@@ -66,7 +66,11 @@ final class CBScheduler: CBSchedulerProtocol {
         precondition(!_contexts.contains(context))
         precondition(_spriteNodes[spriteName] == context.spriteNode)
 
-        _contexts += context
+        if context is CBWhenScriptContext {
+            _contexts.insert(context, atIndex: 0);
+        } else {
+            _contexts += context
+        }
         if let whenContext = context as? CBWhenScriptContext {
             if _whenContexts[spriteName] == nil {
                 _whenContexts[spriteName] = [CBWhenScriptContext]()
@@ -282,7 +286,8 @@ final class CBScheduler: CBSchedulerProtocol {
             }
         }
 
-        if !areAnyContextsRunning { runNextInstructionsGroup() }
+//        if !areAnyContextsRunning { runNextInstructionsGroup() }
+        runNextInstructionsGroup()
     }
 
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
