@@ -280,9 +280,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             script.animateInsertBrick = NO;
         }
         [self turnOffInsertingBrickMode];
-        [self.object.program saveToDiskWithNotification:YES];
         [self reloadData];
-        [self.collectionView setNeedsDisplay];
         return;
     }
 
@@ -396,7 +394,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     
     if (buttonIndex == 0) {
-        [self reloadData];
+        return;
     } else if (actionSheet.tag == kEditBrickActionSheetTag) {
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
         CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
@@ -508,6 +506,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 layout:(UICollectionViewLayout*)collectionViewLayout
 didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (self.isEditingBrickMode) {
+        return;
+    }
+    
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (indexPath.item != 0) {
@@ -531,10 +533,9 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
+        [self.object.program saveToDiskWithNotification:YES];
     }
     [self reloadData];
-    [self.collectionView setNeedsDisplay];
-    [self.object.program saveToDiskWithNotification:YES];
 }
 
 - (void)collectionView:(UICollectionView*)collectionView
@@ -658,7 +659,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         Script *script = (Script*)scriptOrBrick;
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        [self reloadData];
         [self.collectionView reloadData];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
@@ -679,8 +679,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         StartScript *script = [StartScript new];
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        [self reloadData];
-        [self.object.program saveToDiskWithNotification:YES];
     }
 
     NSInteger targetScriptIndex = 0;
@@ -725,7 +723,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:targetScriptIndex] andObject:self.object];
         [self reloadData];
-        [self.collectionView setNeedsDisplay];
         return;
     }
     
@@ -1091,7 +1088,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1110,7 +1106,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                 [self reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1129,7 +1124,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
                 [self reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popToViewController:self animated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1212,7 +1206,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [self.object.program saveToDiskWithNotification:NO];
     [self enableUserInteractionAndResetHighlight];
-    [self reloadData];
 }
 
 -(void)enableUserInteractionAndResetHighlight
@@ -1282,7 +1275,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             //do something
         [self.collectionView reloadData];
         [self changeDeleteBarButtonState];
-        
+        [self.collectionView setNeedsDisplay];
     });
 }
 
