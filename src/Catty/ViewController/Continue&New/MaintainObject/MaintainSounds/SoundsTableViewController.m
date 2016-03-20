@@ -51,7 +51,7 @@
 #import "UIUtil.h"
 
 
-@interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate>
+@interface SoundsTableViewController () <CatrobatActionSheetDelegate,AudioManagerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, strong) Sound *sound;
@@ -543,23 +543,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark audio delegate
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
-{
-    if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
+
+-(void)audioItemDidFinishPlaying:(NSNotification *) notification {
+    // Will be called when AVPlayer finishes playing playerItem
+    NSLog(@"finishTV");
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:notification.object];
+    if ((! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
         return;
     }
-
+    
     @synchronized(self) {
         Sound *currentPlayingSong = self.currentPlayingSong;
         UITableViewCell<CatrobatImageCell> *currentPlayingSongCell = self.currentPlayingSongCell;
         self.currentPlayingSong.playing = NO;
         self.currentPlayingSong = nil;
         self.currentPlayingSongCell = nil;
-
+        
         static NSString *playIconName = @"ic_media_play";
         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
         UIImage *image = [imageCache cachedImageForName:playIconName];
-
+        
         if (! image) {
             [imageCache loadImageWithName:playIconName
                              onCompletion:^(UIImage *img){
@@ -575,6 +578,38 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     }
 }
+//- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
+//{
+//    if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
+//        return;
+//    }
+//
+//    @synchronized(self) {
+//        Sound *currentPlayingSong = self.currentPlayingSong;
+//        UITableViewCell<CatrobatImageCell> *currentPlayingSongCell = self.currentPlayingSongCell;
+//        self.currentPlayingSong.playing = NO;
+//        self.currentPlayingSong = nil;
+//        self.currentPlayingSongCell = nil;
+//
+//        static NSString *playIconName = @"ic_media_play";
+//        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+//        UIImage *image = [imageCache cachedImageForName:playIconName];
+//
+//        if (! image) {
+//            [imageCache loadImageWithName:playIconName
+//                             onCompletion:^(UIImage *img){
+//                                 // check if user tapped again on this song in the meantime...
+//                                 @synchronized(self) {
+//                                     if ((currentPlayingSong != self.currentPlayingSong) && (currentPlayingSongCell != self.currentPlayingSongCell)) {
+//                                         currentPlayingSongCell.iconImageView.image = img;
+//                                     }
+//                                 }
+//                             }];
+//        } else {
+//            currentPlayingSongCell.iconImageView.image = image;
+//        }
+//    }
+//}
 
 - (void)exitEditingMode
 {
