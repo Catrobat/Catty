@@ -119,6 +119,7 @@
 #import "LoadingView.h"
 #import "CatrobatAlertController.h"
 #import "RuntimeImageCache.h"
+#import "SharkfoodMuteSwitchDetector.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes
