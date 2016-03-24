@@ -339,10 +339,7 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
-
-        if ([self.scene touchedWithTouches:touches atPosition:location]) {
-            break;
-        }
+        [self.scene touchedWithTouches:touches atPosition:location];
     }
 }
 

@@ -39,9 +39,8 @@ extension PlaySoundBrick: CBInstructionProtocol {
             //            self.logger.debug("Performing: PlaySoundBrick")
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
                 audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
-                context.state = .Runnable
             }
-            
+            context.state = .Runnable
         }
 
     }
