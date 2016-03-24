@@ -187,7 +187,7 @@ final class CBScene: SKScene {
             spriteNode.setLook()
             spriteNode.userInteractionEnabled = true
             if spriteNode.spriteObject?.isBackground() == false {
-                ++zPosition
+                zPosition += 1
             }
             scheduler?.registerSpriteNode(spriteNode)
 

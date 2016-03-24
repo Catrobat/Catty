@@ -80,7 +80,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         if toneTimer.valid {
             toneTimer.invalidate()
         }
-        toneTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: Selector("cancelTone"), userInfo: nil, repeats: false)
+        toneTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: Selector(cancelTone()), userInfo: nil, repeats: false)
     }
     
 
@@ -177,7 +177,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         
         isReportingSensorData = report;
         
-        for (var i:Int = MIN_SENSOR_PIN; i <= MAX_SENSOR_PIN; i++) {
+        for i in MIN_SENSOR_PIN ... MAX_SENSOR_PIN {
             reportAnalogArduinoPin(i,report: report)
         }
     }

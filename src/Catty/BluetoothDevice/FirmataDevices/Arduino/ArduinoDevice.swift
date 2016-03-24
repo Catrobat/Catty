@@ -145,7 +145,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     
         isReportingSensorData = report;
     
-        for (var i:Int = MIN_ANALOG_SENSOR_PIN; i <= MAX_ANALOG_SENSOR_PIN; i++) {
+        for i in MIN_ANALOG_SENSOR_PIN ... MAX_ANALOG_SENSOR_PIN {
             reportAnalogArduinoPin(i,report: report)
         }
     }
@@ -169,10 +169,10 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
                         setDigitalArduinoPin(pin, pinValue: 0)
                     }
                 }
-                i++
+                i += 1
             }
         } else {
-            for (var i:Int = 2; i <= 11; i++) {
+            for i in 2 ... 11 {
                 setDigitalArduinoPin(i, pinValue: 0)
             }
         }
@@ -297,8 +297,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         
         var k = 0;
         var pinArray = [[String:Any]]()
-        for (var i = 0; i < pins.count ; i++)
-        {
+        for i in 0 ..< pins.count {
             let modes:[Int:Int] = pins[i] 
             
             var pin:[String:Any] = [String:Any]()
@@ -307,7 +306,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
                 pin["name"] = "D\(i)"
             }else{
                 pin["name"] = "A\(k)"
-                k++
+                k += 1
             }
             pin["modes"] = modes
             pin["firmatapin"] = i

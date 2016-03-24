@@ -53,7 +53,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
 
         setHeader()
         
-        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "dismissView")
+        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: #selector(BluetoothPopupVC.dismissView))
         self.navigationItem.rightBarButtonItem = rightButton
 
     }

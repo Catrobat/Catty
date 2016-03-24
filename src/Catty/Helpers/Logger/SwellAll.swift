@@ -490,7 +490,7 @@ public class CBLogger {
     
     public func log<T>(logLevel: LogLevel,
                         @autoclosure message: () -> T,
-                        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                        filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         if (self.enabled) && (logLevel.level >= level.level) {
             let logMessage = formatter.formatLog(self, level: logLevel, message: message,
                 filename: filename, line: line, function: function);
@@ -505,32 +505,32 @@ public class CBLogger {
     // Main log methods
     
     public func trace<T>(@autoclosure message: () -> T,
-                         filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.TRACE, message: message, filename: filename, line: line, function: function)
     }
     
     public func debug<T>(@autoclosure message: () -> T,
-                         filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.DEBUG, message: message, filename: filename, line: line, function: function)
     }
     
     public func info<T>(@autoclosure message: () -> T,
-                        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                     filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.INFO, message: message, filename: filename, line: line, function: function)
     }
     
     public func warn<T>(@autoclosure message: () -> T,
-                        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                     filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.WARN, message: message, filename: filename, line: line, function: function)
     }
     
     public func error<T>(@autoclosure message: () -> T,
-                         filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.ERROR, message: message, filename: filename, line: line, function: function)
     }
     
     public func severe<T>(@autoclosure message: () -> T,
-                          filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__) {
+                       filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.SEVERE, message: message, filename: filename, line: line, function: function)
     }
     
@@ -538,7 +538,7 @@ public class CBLogger {
     // Log methods that accepts closures - closures must accept no param and return a String
     
     public func log(logLevel: LogLevel,
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
+                    filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
             
             if (self.enabled) && (logLevel.level >= level.level) {
@@ -548,39 +548,38 @@ public class CBLogger {
     }
     
     public func trace(
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
+        filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String
         ) {
             log(.TRACE, filename: filename, line: line, function: function, fn: fn)
     }
     
     public func debug(
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
+        filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
             log(.DEBUG, filename: filename, line: line, function: function, fn: fn)
     }
     
     public func info(
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
+        filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
             log(.INFO, filename: filename, line: line, function: function, fn: fn)
     }
     
     public func warn(
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
+        filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
             log(.WARN, filename: filename, line: line, function: function, fn: fn)
     }
     
     public func error(
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
+        filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
             log(.ERROR, filename: filename, line: line, function: function, fn: fn)
     }
     
     public func severe(
-        filename: String? = __FILE__, line: Int? = __LINE__,  function: String? = __FUNCTION__,
-        fn: () -> String) {
+        filename: String? = #file, line: Int? = #line,  function: String? = #function, fn: () -> String) {
             log(.SEVERE, filename: filename, line: line, function: function, fn: fn)
     }
     
