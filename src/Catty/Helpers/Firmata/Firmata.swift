@@ -617,8 +617,8 @@ class Firmata: FirmataProtocol {
         print(self, "received data", "data = \(data[0]) : length = \(length)")
         
         //each message is 3 bytes long
-        for (var i = 0; i < length; i+=3){
-            
+        var i = 0
+        while i < length {
             //Digital Reporting (per port)
             //Port 0
             if (data[i] == DIGITAL_MESSAGE) {
@@ -658,6 +658,8 @@ class Firmata: FirmataProtocol {
                 let bytes:[UInt8] = [data[i], data[i+1],data[i+2]]
                 parseReportVersionResponse(NSData(bytes: bytes, length: 3))
             }
+
+            i += 3
         }
     }
     

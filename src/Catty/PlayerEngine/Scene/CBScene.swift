@@ -123,7 +123,8 @@ final class CBScene: SKScene {
             logger?.debug("Number of touched nodes: \(nodeIndex)")
             
             nodes.forEach { print(">>> \($0.name)") }
-            while --nodeIndex >= 0 {
+            nodeIndex -= 1
+            while nodeIndex >= 0 {
                 guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
                     else { fatalError("This should not happen!") }
                 if currentNode.name == nil {
@@ -146,6 +147,7 @@ final class CBScene: SKScene {
                     }
                     
                 }
+                nodeIndex -= 1
             }
             return true
         }
