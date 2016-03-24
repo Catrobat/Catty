@@ -130,8 +130,7 @@
 
             if(![[NSDecimalNumber notANumber] isEqual:number])
             {
-                NSNumber* number1 = [NSNumber numberWithDouble:[number doubleValue]];
-                NSString *priorityString = [number1 stringValue];
+                NSString *priorityString = [[internToken getTokenStringValue] stringByReplacingOccurrencesOfString:@" " withString:@""];
                 NSRange range = [priorityString rangeOfString:@"."];
                 NSInteger digits = 0;
                 if (range.location != NSNotFound) {
@@ -146,7 +145,7 @@
                         digits = 0;
                     }
                 }
-                NSString *returnString = [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", digits], number1.doubleValue];
+                NSString *returnString = [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", digits], number.doubleValue];
                 if([[internToken getTokenStringValue] hasSuffix:@"."])
                 {
                     returnString = [returnString stringByAppendingString:[formatter decimalSeparator]];

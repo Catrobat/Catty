@@ -84,7 +84,6 @@
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
-    self.navigationController.navigationBar.backItem.hidesBackButton = YES;
     self.navigationController.toolbarHidden = YES;
     // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -121,7 +120,6 @@
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
 
     // reenable swipe back gesture
-    self.navigationController.navigationBar.backItem.hidesBackButton = NO;
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
