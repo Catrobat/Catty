@@ -143,7 +143,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
+    if ((! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) && animated == NO) {
         self.tableView.scrollEnabled = NO;
         [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
     } else {
