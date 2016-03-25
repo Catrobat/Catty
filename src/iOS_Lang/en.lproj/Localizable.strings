@@ -362,6 +362,9 @@
 "Download" = "Download";
 
 /* No comment provided by engineer. */
+"Download only with WiFi" = "Download only with WiFi";
+
+/* No comment provided by engineer. */
 "Download sucessful" = "Download sucessful";
 
 /* No comment provided by engineer. */
@@ -831,6 +834,9 @@
 
 /* No comment provided by engineer. */
 "not available. Continue anyway?" = "not available. Continue anyway?";
+
+/* No comment provided by engineer. */
+"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data." = "Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";

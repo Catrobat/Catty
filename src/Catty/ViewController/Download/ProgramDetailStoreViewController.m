@@ -39,6 +39,7 @@
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 #import "UIDefines.h"
+#import "KeychainUserDefaultsDefines.h"
 
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
@@ -50,6 +51,7 @@
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) NSString *duplicateName;
+@property (nonatomic, strong) Reachability *reachability;
 
 @end
 
@@ -101,7 +103,7 @@
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     appDelegate.fileManager.delegate = self;
     appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
-
+    self.reachability = [Reachability reachabilityForInternetConnection];
     self.useTestUrl = YES;
 }
 
@@ -136,6 +138,8 @@
 {
     [super viewWillDisappear:animated];
     self.hidesBottomBarWhenPushed = NO;
+    [self.reachability stopNotifier];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIView*)createViewForProject:(CatrobatProgram*)project
@@ -336,11 +340,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
-    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-    button.hidden = NO;
-    button.progress = 0;
-    [self downloadWithName:self.project.name];
+    if ([self isConenctedToWifiWithSettingEnabled]) {
+        EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+        [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+        button.hidden = NO;
+        button.progress = 0;
+        [self downloadWithName:self.project.name];
+    }
+    
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -348,17 +355,40 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self downloadButtonPressed];
 }
 
+-(BOOL)isConenctedToWifiWithSettingEnabled
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kUseWiFiDownload]) {
+        return YES;
+    } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+        [self.reachability startNotifier];
+        NetworkStatus status = [self.reachability currentReachabilityStatus];
+        [self.reachability stopNotifier];
+        if (status == ReachableViaWiFi)
+        {
+            return YES;
+        }else{
+            [Util alertWithText:kLocalizedNoWifiConnection];
+            return NO;
+        }
+    }
+    return NO;
+}
+
+
 -(void)downloadAgain
 {
-    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-    [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
-    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
-    downloadAgainButton.enabled = NO;
-    button.hidden = NO;
-    button.progress = 0;
-    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
-    NSDebug(@"%@",[Program allProgramNames]);
-    [self downloadWithName:self.duplicateName];
+    if ([self isConenctedToWifiWithSettingEnabled]) {
+        EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+        [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+        UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+        downloadAgainButton.enabled = NO;
+        button.hidden = NO;
+        button.progress = 0;
+        self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
+        NSDebug(@"%@",[Program allProgramNames]);
+        [self downloadWithName:self.duplicateName];
+    }
 }
 
 -(void)downloadWithName:(NSString*)name
@@ -517,4 +547,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
     });
 
 }
+
+
+
+#pragma mark NetworkStatus
+- (void)networkStatusChanged:(NSNotification *)notification
+{
+    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+    if(remoteHostStatus == ReachableViaWWAN && [[NSUserDefaults standardUserDefaults] boolForKey:kUseWiFiDownload]) {
+        [self stopLoading];
+    }
+}
+
 @end
