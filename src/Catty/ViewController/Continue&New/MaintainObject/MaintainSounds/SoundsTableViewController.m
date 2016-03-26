@@ -717,7 +717,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
                     vc.soundDelegate = self;
-                    vc.urlEnding = [kLocalizedSounds lowercaseString];
+                    vc.urlEnding = @"sounds";
+                    
                     [self.navigationController pushViewController:vc animated:YES];
                     
                     
