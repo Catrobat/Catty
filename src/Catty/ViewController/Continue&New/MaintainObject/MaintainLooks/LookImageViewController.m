@@ -128,6 +128,8 @@
     self.imageView.backgroundColor = [UIColor backgroundColor];
     vc.editingImage = img;
 //    NSDebug(@"%@",img);
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
