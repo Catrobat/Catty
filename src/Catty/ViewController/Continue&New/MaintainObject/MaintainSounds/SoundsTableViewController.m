@@ -729,7 +729,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSDebug(@"Media library");
                 self.isAllowed = YES;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
+                    MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
                     vc.soundDelegate = self;
                     vc.urlEnding = @"sounds";
                     

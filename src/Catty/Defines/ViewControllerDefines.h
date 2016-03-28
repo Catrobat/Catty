@@ -26,3 +26,4 @@
 #define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
 #define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
 #define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
+#define kMediaLibraryViewControllerIdentifier @"medialibrary"
