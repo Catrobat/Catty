@@ -379,10 +379,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             return;
         }
-    }
-    if (buttonIndex == 1)
+    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
     {
         [self deleteSelectedBricks];
+        self.allBricksSelected = NO;
     }
 }
 
