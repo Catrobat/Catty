@@ -20,10 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
-#define kMediaLibraryViewControllerIdentifier @"medialibrary"
+#import <UIKit/UIKit.h>
+#import "LooksTableViewController.h"
+#import "SoundsTableViewController.h"
+
+@interface MediaLibraryViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDataDelegate>
+@property (weak, nonatomic) IBOutlet NSString *urlEnding;
+@property (weak, nonatomic) NSURL *url;
+@property (strong, nonatomic) Sound *sound;
+@property (strong, nonatomic) UIImage *image;
+@property (nonatomic,weak)id<SoundDelegate> soundDelegate;
+@property (nonatomic,weak)id<PaintDelegate> paintDelegate;
+@end
