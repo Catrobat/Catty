@@ -770,7 +770,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"medialibrary"];
                 vc.paintDelegate = self;
                 
-                vc.urlEnding = self.object.isBackground ? [kLocalizedBackgrounds lowercaseString] : [kLocalizedLooks lowercaseString];
+                vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
              
                 [self.navigationController pushViewController:vc animated:YES];
                 

@@ -55,7 +55,7 @@
     }
     return _loadingView;
 }
-
+	
 - (void)viewDidLoad {
   
     [super viewDidLoad];
@@ -69,6 +69,7 @@
     self.view.backgroundColor = [UIColor backgroundColor];
     self.webView.delegate = self;
     self.sound = [[Sound alloc] init];
+    self.navigationItem.title = kLocalizedMediaLibrary;
   
 }
 
