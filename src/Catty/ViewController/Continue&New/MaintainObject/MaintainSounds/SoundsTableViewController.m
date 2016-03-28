@@ -49,7 +49,7 @@
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
-
+#import "MediaLibraryViewController.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -211,6 +211,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    //Error on save?
     [self.object.program saveToDiskWithNotification:YES];
     
     if(self.afterSafeBlock) {
@@ -722,7 +723,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     self.afterSafeBlock(nil);
                 }
             }];
-        } else {
+            } else if(buttonIndex == 3)
+            {
+                //media library
+                NSDebug(@"Media library");
+                self.isAllowed = YES;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
+                    vc.soundDelegate = self;
+                    vc.urlEnding = @"sounds";
+                    
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                    
+                });
+            }else {
             if(self.afterSafeBlock) {
                 self.afterSafeBlock(nil);
             }
@@ -752,7 +767,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [Util actionSheetWithTitle:kLocalizedAddSound
                       delegate:self
         destructiveButtonTitle:nil
-             otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound]
+             otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound, kLocalizedMediaLibrary]
                            tag:kAddSoundActionSheetTag
                           view:self.navigationController.view];
 }
@@ -838,6 +853,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self reloadData];
 }
 
+- (void)showDownloadSoundAlert:(Sound *)sound
+{
+    self.sound = sound;
+//    [self performActionOnConfirmation:@selector(saveSound)
+//                       canceledAction:@selector(cancelPaintSave)
+//                               target:self
+//                         confirmTitle:kLocalizedSaveToPocketCode
+//                       confirmMessage:@"Do you want to save the sound"];
+    [self saveSound];
+}
+
 - (void)showSaveSoundAlert:(Sound *)sound
 {
     self.sound = sound;
@@ -847,6 +873,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                          confirmTitle:kLocalizedSaveToPocketCode
                        confirmMessage:kLocalizedPaintSaveChanges];
 }
+
 
 - (void)saveSound
 {
