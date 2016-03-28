@@ -27,6 +27,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "NetworkDefines.h"
 
 @interface MediaLibraryViewController ()
     @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -59,8 +60,7 @@
 - (void)viewDidLoad {
   
     [super viewDidLoad];
-    NSString *urlString = @"https://share.catrob.at/pocketcode/pocket-library/";
-    urlString = [urlString stringByAppendingString:self.urlEnding];
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", kMediaLibraryUrl, self.urlEnding];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:urlRequest];
