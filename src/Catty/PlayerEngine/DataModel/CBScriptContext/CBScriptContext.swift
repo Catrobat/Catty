@@ -79,8 +79,9 @@ class CBScriptContext: CBScriptContextProtocol {
         if (_instructionPointer == _instructionList.count) || (_instructionList.count == 0) {
             return nil
         }
+        let instruction = _instructionList[_instructionPointer]
         _instructionPointer += 1
-        return _instructionList[_instructionPointer]
+        return instruction
     }
 
     final func jump(numberOfInstructions numberOfInstructions: Int) {

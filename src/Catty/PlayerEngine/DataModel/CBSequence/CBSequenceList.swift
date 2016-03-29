@@ -44,8 +44,9 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
             if i >= self.sequenceList.count {
                 return .None
             } else {
+                let sequence = self.sequenceList[i]
                 i += 1
-                return self.sequenceList[i]
+                return sequence
             }
         }
     }

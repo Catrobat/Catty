@@ -849,21 +849,24 @@ class Firmata: FirmataProtocol {
 
         //start at 2 to ditch start and command byte
         //take end byte off the end
-        for var i in 2 ..< (data.length - 1){
+        var i = 2
+        while i < (data.length - 1) {
             //ugh altering i inside of loop...
             var modes = [Int:Int]()
     
             while(bytes[i] != 127){
-                i += 1
                 let mode = bytes[i]
                 i += 1
                 let resolution = bytes[i]
-    
+                i += 1
+                
 //                print("Pin %i  Mode: %02hhx Resolution:%02hhx", j, mode, resolution);
                 modes[Int(mode)] = Int(resolution)
             }
             j=j+1
             pins.append(modes)
+            
+            i += 1
         }
     
         print("Capability Response %@",pins)
