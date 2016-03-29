@@ -30,6 +30,7 @@
 
 - (void)showSaveSoundAlert:(Sound*)sound;
 - (void)addSound:(Sound *)sound;
+- (void)showDownloadSoundAlert:(Sound *)sound;
 @end
 
 
