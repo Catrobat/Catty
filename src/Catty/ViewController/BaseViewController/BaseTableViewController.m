@@ -34,6 +34,9 @@
 #import "PlaceHolderView.h"
 #import "Pocket_Code-Swift.h"
 #import "ResourceHelper.h"
+#import "Reachability.h"
+#import "MediaLibraryViewController.h"
+#import "SegueDefines.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @class BluetoothPopupVC;
@@ -53,6 +56,7 @@
 @property (nonatomic) SEL canceledAction;
 @property (nonatomic, strong) id target;
 @property (nonatomic, strong) id passingObject;
+@property (nonatomic, strong) Reachability *reachability;
 @end
 
 @implementation BaseTableViewController
@@ -78,6 +82,11 @@
                            selector:@selector(showSavedView)
                                name:kShowSavedViewNotification
                              object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
+    
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [self.reachability startNotifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -219,8 +228,47 @@
     if (self.isEditing) {
         return NO;
     }
+    
     return YES;
 }
+
+//- (BOOL)shouldPerformSegueWithIdentifierForWebView:(NSString *)identifier sender:(id)sender
+//{
+//    if([identifier isEqualToString:kSegueToMediaLibrary]){
+//        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+//        
+//        if(remoteHostStatus == NotReachable) {
+//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+//            NSDebug(@"not reachable");
+//            return NO;
+//        } else if (remoteHostStatus == ReachableViaWiFi) {
+//            if (!self.reachability.connectionRequired) {
+//                NSDebug(@"reachable via Wifi");
+//                return YES;
+//            }else{
+//                NSDebug(@"reachable via wifi but no data");
+//                if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]]) {
+//                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                    return NO;
+//                }
+//                return NO;
+//            }
+//            return YES;
+//        } else if (remoteHostStatus == ReachableViaWWAN){
+//            if (!self.reachability.connectionRequired) {
+//                NSDebug(@"reachable via celullar");
+//                return YES;
+//            }else{
+//                NSDebug(@" not reachable via celullar");
+//                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+//                return NO;
+//            }
+//            return YES;
+//        }
+//    }
+//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+//}
 
 #pragma mark - helpers
 - (void)setupToolBar
@@ -484,6 +532,79 @@
     }
     return _loadingView;
 }
+
+#pragma mark - network status
+- (void)networkStatusChanged:(NSNotification *)notification
+{
+    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+    if(remoteHostStatus == NotReachable) {
+        if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
+            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        NSDebug(@"not reachable");
+    } else if (remoteHostStatus == ReachableViaWiFi) {
+        if (!self.reachability.connectionRequired) {
+            NSDebug(@"reachable via Wifi");
+        }else{
+            NSDebug(@"reachable via wifi but no data");
+            if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }  else if (remoteHostStatus == ReachableViaWWAN){
+        if (! self.reachability.connectionRequired) {
+            NSDebug(@"celluar data ok");
+        } else {
+            NSDebug(@"reachable via cellular but no data");
+            if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
+}
+
+//#pragma mark - segue handling
+//- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
+//{
+//    if([identifier isEqualToString:kSegueToExplore]){
+//        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
+//        
+//        if(remoteHostStatus == NotReachable) {
+//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+//            NSDebug(@"not reachable");
+//            return NO;
+//        } else if (remoteHostStatus == ReachableViaWiFi) {
+//            if (!self.reachability.connectionRequired) {
+//                NSDebug(@"reachable via Wifi");
+//                return YES;
+//            }else{
+//                NSDebug(@"reachable via wifi but no data");
+//                if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]]) {
+//                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+//                    [self.navigationController popToRootViewControllerAnimated:YES];
+//                    return NO;
+//                }
+//                return NO;
+//            }
+//            return YES;
+//        } else if (remoteHostStatus == ReachableViaWWAN){
+//            if (!self.reachability.connectionRequired) {
+//                NSDebug(@"reachable via celullar");
+//                return YES;
+//            }else{
+//                NSDebug(@" not reachable via celullar");
+//                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+//                return NO;
+//            }
+//            return YES;
+//        }
+//    }
+//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+//}
+
 
 
 @end

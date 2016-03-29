@@ -615,6 +615,7 @@
 		AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */; };
 		AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */; };
 		AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22891BC0D0630076F11E /* TurnRightBrick+Instruction.swift */; };
+		AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */; settings = {ASSET_TAGS = (); }; };
 		AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */; };
 		AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
 		AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -1905,6 +1906,8 @@
 		AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetYBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/SetYBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TurnLeftBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/TurnLeftBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAAF22891BC0D0630076F11E /* TurnRightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TurnRightBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/TurnRightBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAB2B7261C6D086100ED0664 /* MediaLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaLibraryViewController.h; sourceTree = "<group>"; };
+		AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaLibraryViewController.m; sourceTree = "<group>"; };
 		AABCB3C41BB36120009F67D2 /* CBBackendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendProtocol.swift; path = PlayerEngine/Protocols/CBBackendProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandlerProtocol.swift; path = PlayerEngine/Protocols/CBBroadcastHandlerProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendProtocol.swift; path = PlayerEngine/Protocols/CBFrontendProtocol.swift; sourceTree = "<group>"; };
@@ -4169,6 +4172,8 @@
 				92FF313D1A24DEB300093DA7 /* Help */,
 				92FF31401A24DEB300093DA7 /* Programs */,
 				92FF31431A24DEB300093DA7 /* Scene */,
+				AAB2B7261C6D086100ED0664 /* MediaLibraryViewController.h */,
+				AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -6466,6 +6471,7 @@
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
+				AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,

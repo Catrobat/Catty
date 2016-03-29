@@ -31,6 +31,7 @@
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
+@property (nonatomic, assign) BOOL allBricksSelected;
 
 - (void)showPlaceHolder:(BOOL)show;
 - (void)playSceneAction:(id)sender animated:(BOOL)animated;

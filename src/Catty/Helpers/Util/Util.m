@@ -1111,7 +1111,7 @@ replacementString:(NSString*)characters
     NSDictionary *insertionStatistic = [userDefaults objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     if(insertionStatistic == nil)
     {
-        insertionStatistic = [self defaultBrickStatisticDictionary];
+//        insertionStatistic = [self defaultBrickStatisticDictionary];
         [userDefaults setObject:insertionStatistic
                          forKey:kUserDefaultsBrickSelectionStatisticsMap];
         [userDefaults synchronize];

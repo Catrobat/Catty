@@ -90,6 +90,9 @@
 #import "Pocket_Code-Swift.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
+#define kSelectAllItemsTag 0
+#define kUnselectAllItemsTag 1
+
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -107,7 +110,7 @@
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
-@property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
+@property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic,strong) Script *moveHelperScript;
 @end
 
@@ -151,26 +154,21 @@
 - (void)showBrickPickerAction:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object];
-        bcvc.delegate = self;
+
         BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
                                               initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                               navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
-        //ADD Indexes from PageIndexCategoryType for selection those bricks
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
-            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
-        }
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
-            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
-        }
-
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategoryType andObject:self.object andPageIndexArray:bsvc.pageIndexArray];
+        bcvc.delegate = self;
+        
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
                       completion:NULL];
+        
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
         [self presentViewController:navController animated:YES completion:NULL];
     }
@@ -381,10 +379,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             return;
         }
-    }
-    if (buttonIndex == 1)
+    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
     {
         [self deleteSelectedBricks];
+        self.allBricksSelected = NO;
     }
 }
 
@@ -610,14 +608,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if(!brickCell.isScriptBrick)
         {
             Brick *selectBrick = (Brick*)brickCell.scriptOrBrick;
-            if (selectBrick.isSelected) {
+            if (selectBrick.isSelected || self.allBricksSelected) {
                 brickCell.selectButton.selected = YES;
             }else{
                 brickCell.selectButton.selected = NO;
             }
         }else{
             Script *selectScript = (Script *)brickCell.scriptOrBrick;
-            if (selectScript.isSelected) {
+            if (selectScript.isSelected || self.allBricksSelected) {
                 brickCell.selectButton.selected = YES;
             }else{
                 brickCell.selectButton.selected = NO;
@@ -650,7 +648,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
     [scriptOrBrick setDefaultValuesForObject:self.object];
-    self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
+    self.lastSelectedBrickCategoryType = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
     BrickInsertManager* manager = [BrickInsertManager sharedInstance];
@@ -813,10 +811,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }];
 }
 
-- (void)selectAllBricks
-{
-    [[BrickSelectionManager sharedInstance] selectAllBricks:self.collectionView];
-}
 
 - (NSString*)keyWithSelectIndexPath:(NSIndexPath*)indexPath
 {
@@ -860,6 +854,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)changeDeleteBarButtonState
 {
+    UIBarButtonItem *navBarButton;
+    if (!self.editing) {
+        navBarButton= [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
+    } else {
+        navBarButton= [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
+    }
+    self.navigationItem.rightBarButtonItem = navBarButton;
     if (self.object.scriptList.count) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
@@ -872,46 +873,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     [super setEditing:editing animated:animated];
 
-    if (self.isEditing) {
-        self.navigationItem.rightBarButtonItem.title = kLocalizedCancel;
-
-        [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            for (BrickCell *brickCell in self.collectionView.visibleCells) {
-                if (animated) {
-                    brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
-                }
-                brickCell.selectButton.alpha = 1.0f;
-            }
-        } completion:^(BOOL finished) {
-            for (BrickCell *brickCell in self.collectionView.visibleCells) {
-                brickCell.enabled = NO;
-            }
-        }];
-    } else {
-        self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
-        
-        [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             for (BrickCell *brickCell in self.collectionView.visibleCells) {
-                                 brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
-                                 brickCell.selectButton.alpha = 0.0f;
-                             }
-                         } completion:^(BOOL finished) {
-                             for (BrickCell *brickCell in self.collectionView.visibleCells) {
-                                 brickCell.enabled = YES;
-                               brickCell.selectButton.selected = NO;
-                             }
-                             for (Script *script in self.object.scriptList) {
-                                 script.isSelected = NO;
-                                 for (Brick *brick in script.brickList) {
-                                     brick.isSelected = NO;
-                                 }
-                             }
-                             [[BrickSelectionManager sharedInstance] reset];
-                         }];
-        
-    }
     [self setupToolBar];
 }
 
@@ -1039,8 +1000,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
-    [self.editButtonItem setTitle:kLocalizedDelete];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
+    self.navigationItem.rightBarButtonItem = deleteButton;
     [self changeDeleteBarButtonState];
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     [[BrickSelectionManager sharedInstance] reset];
@@ -1293,5 +1254,69 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self reloadData];
 }
 
+
+- (void)selectAllRows:(id)sender
+{
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        UIBarButtonItem *button = (UIBarButtonItem*)sender;
+        if (!self.allBricksSelected) {
+            button.title = kLocalizedUnselectAllItems;
+            self.allBricksSelected = YES;
+            [[BrickSelectionManager sharedInstance] selectAllBricks:self.collectionView];
+        } else {
+            button.title = kLocalizedSelectAllItems;
+            self.allBricksSelected = NO;
+            [[BrickSelectionManager sharedInstance] deselectAllBricks];
+        }
+    }
+
+    [self reloadData];
+}
+
+-(void)enterDeleteMode
+{
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel style:UIBarButtonItemStylePlain target:self action:@selector(exitDeleteMode)];
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    
+    [UIView animateWithDuration:0.5f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        for (BrickCell *brickCell in self.collectionView.visibleCells) {
+            brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
+            brickCell.selectButton.alpha = 1.0f;
+        }
+    } completion:^(BOOL finished) {
+        for (BrickCell *brickCell in self.collectionView.visibleCells) {
+            brickCell.enabled = NO;
+        }
+    }];
+    self.editing = YES;
+}
+
+-(void)exitDeleteMode
+{
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
+    self.navigationItem.rightBarButtonItem = deleteButton;
+    
+    [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         for (BrickCell *brickCell in self.collectionView.visibleCells) {
+                             brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
+                             brickCell.selectButton.alpha = 0.0f;
+                         }
+                     } completion:^(BOOL finished) {
+                         for (BrickCell *brickCell in self.collectionView.visibleCells) {
+                             brickCell.enabled = YES;
+                             brickCell.selectButton.selected = NO;
+                         }
+                         for (Script *script in self.object.scriptList) {
+                             script.isSelected = NO;
+                             for (Brick *brick in script.brickList) {
+                                 brick.isSelected = NO;
+                             }
+                         }
+                         [[BrickSelectionManager sharedInstance] reset];
+                     }];
+    self.editing = NO;
+    self.allBricksSelected = NO;
+}
 
 @end

@@ -23,6 +23,7 @@
 #import "NavigationController.h"
 #import "PaintViewController.h"
 #import "ScriptCollectionViewController.h"
+#import "CatrobatTableViewController.h"
 
 @implementation NavigationController
 
@@ -46,6 +47,11 @@
         return NO;
     if ([currentViewController isKindOfClass:[ScenePresenterViewController class]])
         return NO;
+    if ([currentViewController isKindOfClass:[CatrobatTableViewController class]]){
+        CatrobatTableViewController *ctvc = (CatrobatTableViewController*)currentViewController;
+        return ctvc.tableView.scrollEnabled;
+    }
+    
     if ([currentViewController isKindOfClass:[ScriptCollectionViewController class]]) {
         ScriptCollectionViewController *scv = (ScriptCollectionViewController*)currentViewController;
         return ![scv.presentedViewController isKindOfClass:[FormulaEditorViewController class]];

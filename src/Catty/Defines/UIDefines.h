@@ -131,7 +131,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
 };
 
 typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
-    kPageIndexScriptFavourites,
+    kPageIndexFrequentlyUsed,
     kPageIndexControlBrick,
     kPageIndexMotionBrick,
     kPageIndexLookBrick,
@@ -223,7 +223,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
 };
 
-#define kMaxNumberOfFavouriteBricksShown 10
+#define kMinFavouriteBrickSize 5
+#define kMaxFavouriteBrickSize 10
 
 #define WRAP_BRICK_TYPE_IN_NSSTRING(brick) (WRAP_UINT_IN_NSNUMBER(brick).stringValue)
 #define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])

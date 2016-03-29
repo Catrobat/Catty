@@ -118,16 +118,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
-        self.tableView.scrollEnabled = NO;
-        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
-    } else {
-        self.tableView.scrollEnabled = YES;
-        [self initNavigationBar];
-    }
-
     //Always use the Test-Server for test-uploads and -logins, because Webteam receives emails for each of this actions on the other server
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
 #if DEBUG == 1
     [defaults setBool:YES forKey:kUseTestServerForUploadAndLogin];
 #else // DEBUG == 0
@@ -149,6 +142,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
     [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
+        self.tableView.scrollEnabled = NO;
+        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
+    } else {
+        self.tableView.scrollEnabled = YES;
+        [self initNavigationBar];
+    }
 }
 
 - (BOOL)shouldLockIphoneInAppWithoutScenePresenter
