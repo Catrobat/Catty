@@ -119,11 +119,10 @@ final class CBScene: SKScene {
             let numberOfNodes = nodes.count
             if numberOfNodes == 0 { return false } // needed if scene has no background image!
             
-            var nodeIndex = numberOfNodes
-            logger?.debug("Number of touched nodes: \(nodeIndex)")
+            logger?.debug("Number of touched nodes: \(numberOfNodes)")
+            var nodeIndex = numberOfNodes - 1
             
             nodes.forEach { print(">>> \($0.name)") }
-            nodeIndex -= 1
             while nodeIndex >= 0 {
                 guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
                     else { fatalError("This should not happen!") }
