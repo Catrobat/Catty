@@ -198,4 +198,9 @@
 
 }
 
+- (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName
+{
+    //do nothing
+}
+
 @end

@@ -48,6 +48,7 @@
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL kBaseUrl @"termsOfUse"
 #define kRecoverPassword kBaseUrl @"resetting/request"
+#define kMediaLibraryUrl kBaseUrl @"pocket-library"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recentIDs.json"

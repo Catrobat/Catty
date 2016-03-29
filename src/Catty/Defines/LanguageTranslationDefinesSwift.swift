@@ -603,6 +603,11 @@ let klocalizedBluetoothConnectionLost = NSLocalizedString("Connection Lost", com
 let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", comment: "bluetooth")
 
 
+//************************************************************************************************************
+//************************************       MediaLibrary        *********************************************
+//************************************************************************************************************
+let kLocalizedMediaLibrary = NSLocalizedString("Media Library", comment: "")
+
 
 
 //************************************************************************************************************
