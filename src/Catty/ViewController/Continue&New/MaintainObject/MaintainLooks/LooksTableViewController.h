@@ -32,7 +32,9 @@
 
 - (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
+- (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
 @end
+
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
