@@ -311,7 +311,7 @@ public final class CharacteristicImplementation<C:CharacteristicWrapper> {
         if characteristic.propertyEnabled(.Read) {
             characteristic.readValueForCharacteristic()
             self.reading = true
-            self.readSequence++
+            self.readSequence += 1
             self.timeoutRead(characteristic, sequence:self.readSequence, timeout:timeout)
         } else {
             self.readPromise.failure(BluetoothError.characteristicReadNotSupported)
@@ -333,7 +333,7 @@ public final class CharacteristicImplementation<C:CharacteristicWrapper> {
         if characteristic.propertyEnabled(.Write) {
             characteristic.writeValue(value)
             self.writing = true
-            self.writeSequence++
+            self.writeSequence += 1
             self.timeoutWrite(characteristic, sequence:self.writeSequence, timeout:timeout)
         } else {
             self.writePromise.failure(BluetoothError.characteristicWriteNotSupported)

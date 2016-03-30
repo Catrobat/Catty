@@ -75,7 +75,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
                     logger.info("Unsubscribed CBBroadcastContext of object \(object!.name) for message \(message)")
                     return
                 }
-                ++index
+                index += 1
             }
         }
         fatalError("FATAL: Given BroadcastScript is NOT registered!")
@@ -140,7 +140,8 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         if let counterNumber = _selfBroadcastCounters[message] {
             counter = counterNumber
         }
-        if ++counter % PlayerConfig.MaxRecursionLimitOfSelfBroadcasts == 0 { // XXX: DIRTY PERFORMANCE HACK!!
+        counter += 1
+        if counter % PlayerConfig.MaxRecursionLimitOfSelfBroadcasts == 0 { // XXX: DIRTY PERFORMANCE HACK!!
             // TODO: restart special case issue
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 // restart this self-listening BroadcastScript

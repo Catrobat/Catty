@@ -244,7 +244,7 @@ class Firmata: FirmataProtocol {
 //        //issue #72 and #50 on firmata, will be fixed in 2.4
 //        let end1:UInt8 = 0
 //        let end2:UInt8 = 0
-        for (var i = 0; i < data.length; i++){
+        for i in 0 ..< data.length {
             let lsb = bytes[i] & 0x7f;
             let append1:UInt8 = lsb
             let appendData:[UInt8] = [append1]
@@ -456,7 +456,7 @@ class Firmata: FirmataProtocol {
         data.getBytes(&bytes, length:count * sizeof(UInt8))
     
     
-        for (var i = 0; i < data.length; i++){
+        for i in 0 ..< data.length {
             let lsb:UInt8 = bytes[i] & 0x7f;
             let msb:UInt8 = bytes[i] >> 7  & 0x7f;
     
@@ -527,7 +527,7 @@ class Firmata: FirmataProtocol {
         let count = data.length / sizeof(UInt8)
         var bytes = [UInt8](count: count, repeatedValue: 0)
         data.getBytes(&bytes, length:count * sizeof(UInt8))
-        for (var i = 0; i < data.length; i++){
+        for i in 0 ..< data.length {
             let byte:UInt8 = bytes[i];
     
             if(byte==START_SYSEX){
@@ -617,8 +617,8 @@ class Firmata: FirmataProtocol {
         print(self, "received data", "data = \(data[0]) : length = \(length)")
         
         //each message is 3 bytes long
-        for (var i = 0; i < length; i+=3){
-            
+        var i = 0
+        while i < length {
             //Digital Reporting (per port)
             //Port 0
             if (data[i] == DIGITAL_MESSAGE) {
@@ -658,6 +658,8 @@ class Firmata: FirmataProtocol {
                 let bytes:[UInt8] = [data[i], data[i+1],data[i+2]]
                 parseReportVersionResponse(NSData(bytes: bytes, length: 3))
             }
+
+            i += 3
         }
     }
     
@@ -667,8 +669,7 @@ class Firmata: FirmataProtocol {
         
         var portData:[Int] = []
         //Iterate through all  pins
-        for (var i:Int = 0; i <= 7; i++) {
-            
+        for i in 0 ... 7 {
             var state = pinStates
             let mask = 1 << i
             state = state & mask
@@ -810,7 +811,7 @@ class Firmata: FirmataProtocol {
         data.getBytes(&bytes, length:count * sizeof(UInt8))
         
         let length = data.length - 1
-        for (var i = 2; i < length; i++){
+        for i in 2 ..< length {
     
             if(bytes[i] != 127){
                 analogMapping.setObject(NSNumber(unsignedChar: j), forKey: NSNumber(unsignedChar: bytes[i]))
@@ -848,23 +849,27 @@ class Firmata: FirmataProtocol {
 
         //start at 2 to ditch start and command byte
         //take end byte off the end
-        for (var i = 2; i < data.length - 1; i++){
+        var i = 2
+        while i < (data.length - 1) {
             //ugh altering i inside of loop...
             var modes = [Int:Int]()
     
             while(bytes[i] != 127){
-    
-                let mode = bytes[i++];
-                let resolution = bytes[i++];
-    
+                let mode = bytes[i]
+                i += 1
+                let resolution = bytes[i]
+                i += 1
+                
 //                print("Pin %i  Mode: %02hhx Resolution:%02hhx", j, mode, resolution);
                 modes[Int(mode)] = Int(resolution)
             }
-            j=j+1;
-            pins.append(modes);
+            j=j+1
+            pins.append(modes)
+            
+            i += 1
         }
     
-        print("Capability Response %@",pins);
+        print("Capability Response %@",pins)
         delegate.didUpdateCapability(pins)
 //    [peripheralDelegate didUpdateCapability:(NSMutableArray*)pins];
     }
