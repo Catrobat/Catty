@@ -40,8 +40,14 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
     // MARK: - Generator
     func generate() -> AnyGenerator<CBSequenceProtocol> {
         var i = 0
-        return anyGenerator {
-            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
+        return AnyGenerator {
+            if i >= self.sequenceList.count {
+                return .None
+            } else {
+                let sequence = self.sequenceList[i]
+                i += 1
+                return sequence
+            }
         }
     }
 

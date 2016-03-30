@@ -268,7 +268,7 @@ public class PeripheralHelper<P where P:PeripheralWrapper,
             NSLog("reconnect peripheral \(peripheral.name)")
             peripheral.connect()
             self.forcedDisconnect = false
-            self.connectionSequence++
+            self.connectionSequence += 1
             self.timeoutConnection(peripheral, sequence:self.connectionSequence)
         }
     }
@@ -428,7 +428,7 @@ public class PeripheralHelper<P where P:PeripheralWrapper,
         }
         if self.timeoutRetries > 0 {
             self.connectionPromise?.success((peripheral, ConnectionEvent.Timeout))
-            self.timeoutRetries!--
+            self.timeoutRetries! -= 1
         } else {
             self.connectionPromise?.success((peripheral, ConnectionEvent.GiveUp))
         }
@@ -441,7 +441,7 @@ public class PeripheralHelper<P where P:PeripheralWrapper,
             return
         }
         if self.disconnectRetries > 0 {
-            self.disconnectRetries!--
+            self.disconnectRetries! -= 1
             self.connectionPromise?.success((peripheral, ConnectionEvent.Disconnected))
         } else {
             self.connectionPromise?.success((peripheral, ConnectionEvent.GiveUp))

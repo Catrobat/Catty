@@ -74,7 +74,7 @@ final class CBFrontendTests: XCTestCase {
                 continue // NoteBricks are ommited
             }
             XCTAssertTrue(operationSequence.operationList[index].brick === brick)
-            ++index
+            index += 1
         }
     }
 
@@ -146,7 +146,7 @@ final class CBFrontendTests: XCTestCase {
                 continue // NoteBricks are ommited
             }
             XCTAssertTrue(operationSequence.operationList[index].brick === brick)
-            ++index
+            index += 1
         }
 
         let secondSequence = sequenceList.sequenceList[1]
@@ -165,7 +165,7 @@ final class CBFrontendTests: XCTestCase {
         index = 0
         for brick in ifOperationSequenceBricks {
             XCTAssertTrue(ifOperationSequence.operationList[index].brick === brick)
-            ++index
+            index += 1
         }
         XCTAssertNotNil(ifConditionalSequence.elseSequenceList)
         XCTAssertTrue(ifConditionalSequence.elseSequenceList!.rootSequenceList! === scriptSequenceList)
@@ -179,7 +179,7 @@ final class CBFrontendTests: XCTestCase {
         index = 0
         for brick in elseOperationSequenceBricks {
             XCTAssertTrue(elseOperationSequence.operationList[index].brick === brick)
-            ++index
+            index += 1
         }
 
         let thirdSequence = sequenceList.sequenceList[2]
@@ -191,7 +191,7 @@ final class CBFrontendTests: XCTestCase {
         index = 0
         for brick in postIfElseOperationSequenceBricks {
             XCTAssertTrue(postOperationSequence.operationList[index].brick === brick)
-            ++index
+            index += 1
         }
     }
 

@@ -280,7 +280,7 @@ func getFilePaths() -> NSDirectoryEnumerator {
 func getFileNameOfScript() -> String {
     
     guard let firstArgument = Process.arguments.first else {
-        print("\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! "
+        print("\(#file):\(#line - 1): error: WTH is going on here!! "
             + "Unable to determine the file name of this script!\n")
         exit(kErrorFailed)
     }
