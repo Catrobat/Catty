@@ -47,7 +47,7 @@ public struct CentralQueue {
 //MARK: Protocols
 public protocol CMWrapper {
     
-    typealias PeripheralWrap
+    associatedtype PeripheralWrap
     
     var isOn        : Bool                  {get}
     var isOff       : Bool                  {get}
@@ -64,7 +64,7 @@ public protocol CMWrapper {
 
 public protocol PeripheralWrapper {
     
-    typealias ServiceWrap
+    associatedtype ServiceWrap
     //
     var name            : String                {get}
     var state           : CBPeripheralState     {get}

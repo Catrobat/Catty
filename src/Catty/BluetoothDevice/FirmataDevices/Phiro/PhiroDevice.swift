@@ -80,7 +80,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         if toneTimer.valid {
             toneTimer.invalidate()
         }
-        toneTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: Selector("cancelTone"), userInfo: nil, repeats: false)
+        toneTimer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: #selector(Phiro.cancelTone), userInfo: nil, repeats: false)
     }
     
 
@@ -137,7 +137,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     
     //MARK:Helper
-    private func cancelTone(){
+    @objc private func cancelTone(){
         self.sendAnalogFirmataMessage(PIN_SPEAKER_OUT, value:0)
         self.toneTimer.invalidate()
         self.toneTimer = NSTimer()
@@ -156,9 +156,9 @@ class Phiro: FirmataDevice,PhiroProtocol {
     
     private func sendAnalogFirmataMessage(pin:Int,value:Int){
         let analogPin:UInt8 = UInt8(checkValue(pin))
-        let value :UInt8 = UInt8(checkValue(value))
+        let checkedValue :UInt8 = UInt8(checkValue(value))
         firmata.writePinMode(PinMode.PWM, pin: analogPin)
-        firmata.writePWMValue(value, pin: analogPin)
+        firmata.writePWMValue(checkedValue, pin: analogPin)
     }
 
     //MARK: Reset Phiro
@@ -177,7 +177,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         
         isReportingSensorData = report;
         
-        for (var i:Int = MIN_SENSOR_PIN; i <= MAX_SENSOR_PIN; i++) {
+        for i in MIN_SENSOR_PIN ... MAX_SENSOR_PIN {
             reportAnalogArduinoPin(i,report: report)
         }
     }

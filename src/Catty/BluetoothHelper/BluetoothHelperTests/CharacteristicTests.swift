@@ -422,7 +422,7 @@ class CharacteristicTests: XCTestCase {
         updateFuture.onSuccess {characteristic in
             if updates == 0 {
                 updateOnSuccessExpectation.fulfill()
-                ++updates
+                updates += 1
             } else {
                 XCTAssert(false, "update onSuccess called more than once")
             }
