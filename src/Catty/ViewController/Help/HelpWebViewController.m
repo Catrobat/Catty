@@ -423,6 +423,12 @@
                        completion:^{ [hud removeFromSuperview]; }];
 }
 
+- (void)timeoutReached
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:@"Timeout reached. Please try again later"];
+}
+
 - (void)setBackDownloadStatus
 {
     

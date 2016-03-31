@@ -30,6 +30,7 @@
 - (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo*)info;
 - (void) updateProgress:(double)progress;
 - (void) setBackDownloadStatus;
+- (void) timeoutReached;
 
 @end
 

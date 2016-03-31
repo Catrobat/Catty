@@ -474,6 +474,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [button setProgress:progress animated:YES];
 }
 
+- (void)timeoutReached
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:@"Timeout reached. Please try again later"];
+}
+
 - (void)setBackDownloadStatus
 {
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
