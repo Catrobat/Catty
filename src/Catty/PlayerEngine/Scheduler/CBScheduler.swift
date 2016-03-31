@@ -151,8 +151,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 case let .FixedTime(time):
                     durationTime = time
                 }
-                let actionClosure = actionCreateClosure(duration: durationTime)
-                let action = SKAction.customActionWithDuration(durationTime, actionBlock: actionClosure)
+                let action = actionCreateClosure(duration: durationTime)
                 spriteNode.runAction(action) { [weak self] in
                     context.state = .Runnable
                     self?.runNextInstructionsGroup()

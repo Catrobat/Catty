@@ -25,34 +25,33 @@ extension GlideToBrick: CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         guard let durationFormula = self.durationInSeconds,
-            let object = self.script?.object,
-            let spriteNode = object.spriteNode
+            let object = self.script?.object
             else { fatalError("This should never happen!") }
         
         let cachedDuration = durationFormula.isIdempotent()
             ? CBDuration.FixedTime(duration: durationFormula.interpretDoubleForSprite(object))
             : CBDuration.VarTime(formula: durationFormula)
-        var isRunning = false
         
         return .LongDurationAction(duration: cachedDuration, actionCreateClosure: {
-            (duration) -> CBLongActionClosure in
-            return { (node, elapsedTime) in
-                if isRunning == false {
-                    //                self?.logger.debug("Performing: \(self.description())")
-                    isRunning = true
-                    let xDestination = self.xDestination.interpretFloatForSprite(object)
-                    let yDestination = self.yDestination.interpretFloatForSprite(object)
-                    guard let scene = spriteNode.scene else {
-                        fatalError("This should never happen!")
-                    }
-                    let destPoint = CGPoint(x: scene.size.width / 2 + CGFloat(xDestination), y: scene.size.height / 2 + CGFloat(yDestination))
-                    let action = SKAction.moveTo(destPoint, duration: duration)
-                    spriteNode.runAction(action){
-                        isRunning = false
-                    }
-                }
-                
-            }
+            (duration) -> SKAction in
+                return self.action(duration)
         })
+    }
+    
+    func action(duration : NSTimeInterval) -> SKAction {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
+        
+        let xDestination = self.xDestination.interpretFloatForSprite(object)
+        let yDestination = self.yDestination.interpretFloatForSprite(object)
+        let duration = self.durationInSeconds.interpretDoubleForSprite(object)
+        guard let scene = spriteNode.scene else {
+            fatalError("This should never happen!")
+        }
+        let destPoint = CGPoint(x: scene.size.width / 2 + CGFloat(xDestination), y: scene.size.height / 2 + CGFloat(yDestination))
+        
+        let action = SKAction.moveTo(destPoint, duration: duration)
+        return action
     }
 }
