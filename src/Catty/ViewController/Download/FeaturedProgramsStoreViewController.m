@@ -197,24 +197,13 @@
     //self.data = [[NSMutableData alloc] init];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-    
 
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            if (error.code != -999) {
-                if ([[Util networkErrorCodes] containsObject:[NSNumber
-                                                              numberWithInteger:error.code]]){
-                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-                } else {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    }];
-                    [alert addAction:cancelAction];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
+            if ([Util isNetworkError:error]) {
+                [Util defaultAlertForNetworkError];
                 [self hideLoadingView];
             }
-            
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self loadIDsWith:data andResponse:response];
@@ -227,8 +216,6 @@
         [self.dataTask resume];
         [self showLoadingView];
     }
-    
-
 }
 
 - (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
@@ -236,15 +223,7 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            }];
-            
-        [alert addAction:okAction];
-            
-            
-            [self presentViewController:alert animated:YES completion:nil];
-    
+            [Util defaultAlertForNetworkError];
         }
         return;
     }
@@ -263,11 +242,17 @@
         
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
-        self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-        
-        for (NSDictionary *projectDict in catrobatProjects) {
-            CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-            [self.projects addObject:project];
+        if (catrobatProjects) {
+            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+            
+            for (NSDictionary *projectDict in catrobatProjects) {
+                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                [self.projects addObject:project];
+            }
+        } else {
+            [Util defaultAlertForUnknownError];
+            [self hideLoadingView];
+            return;
         }
     }
     [self update];
@@ -279,7 +264,7 @@
 
         NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error) {
-                if (error.code != -999) {
+                if (error.code != kCFURLErrorCancelled) {
                     NSLog(@"%@", error);
                 }
                 
@@ -304,11 +289,7 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            }];
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [Util defaultAlertForNetworkError];
         }
         return;
     }
@@ -327,21 +308,25 @@
         
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
-        NSInteger counter=0;
-        CatrobatProgram *loadedProject;
-        NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
-        loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-        
-        for (CatrobatProgram* project in self.projects) {
-            if ([project.projectID isEqualToString:loadedProject.projectID ]) {
-                @synchronized(self.projects){
-                    loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
-                    [self.projects removeObject:project];
-                    [self.projects insertObject:loadedProject atIndex:counter];
+        if (catrobatProjects) {
+            NSInteger counter=0;
+            CatrobatProgram *loadedProject;
+            NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
+            loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+            
+            for (CatrobatProgram* project in self.projects) {
+                if ([project.projectID isEqualToString:loadedProject.projectID ]) {
+                    @synchronized(self.projects){
+                        loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
+                        [self.projects removeObject:project];
+                        [self.projects insertObject:loadedProject atIndex:counter];
+                    }
+                    break;
                 }
-                break;
+                counter++;
             }
-            counter++;
+        } else {
+            [Util defaultAlertForUnknownError];
         }
     }
     [self update];

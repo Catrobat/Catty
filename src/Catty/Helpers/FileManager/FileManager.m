@@ -31,6 +31,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
+#import "NetworkDefines.h"
 #import "HelpWebViewController.h"
 
 @interface FileManager ()
@@ -376,12 +377,13 @@
         // iOS7 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
 #endif
-        sessionConfig.timeoutIntervalForRequest = 10.0;
-        sessionConfig.timeoutIntervalForResource = 10.0;
+        
+        sessionConfig.timeoutIntervalForRequest = kConnectionTimeout;
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
     }
+    
     NSURLSessionDownloadTask *getProgramTask = [self.downloadSession downloadTaskWithURL:url];
     if (getProgramTask) {
         [self.programTaskDict setObject:url forKey:getProgramTask];
@@ -397,11 +399,13 @@
     if (!self.downloadSession) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         // iOS8 specific stuff
-        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"at.tugraz"];
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
 #else
         // iOS7 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
 #endif
+        sessionConfig.timeoutIntervalForRequest = 10.0;
+        sessionConfig.timeoutIntervalForResource = 10.0;
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -649,6 +653,8 @@
         // XXX: hack: workaround for app crash issue...
         if (error.code != -1009) {
             [task suspend];
+            UIApplication* app = [UIApplication sharedApplication];
+            app.networkActivityIndicatorVisible = NO;
         }
         if (error.code == -1003) {
             if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
@@ -656,8 +662,14 @@
                     [self.delegate setBackDownloadStatus];
                 });
             }
-            UIApplication* app = [UIApplication sharedApplication];
-            app.networkActivityIndicatorVisible = NO;
+            return;
+        }
+        if (error.code == -1001){
+            if ([self.delegate respondsToSelector:@selector(timeoutReached)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate timeoutReached];
+                });
+            }
             return;
         }
         NSURL *url = [self.programTaskDict objectForKey:task];
