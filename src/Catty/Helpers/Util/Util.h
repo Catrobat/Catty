@@ -219,7 +219,9 @@
 
 + (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)index;
 
-+ (NSArray*)networkErrorCodes;
++ (BOOL)isNetworkError:(NSError*)error;
+
++ (void)defaultAlertForNetworkError;
 
 + (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults;
 

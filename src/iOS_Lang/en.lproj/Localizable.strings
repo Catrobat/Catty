@@ -53,6 +53,9 @@
 "An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
+"An unknown error occurred. Check your Internet connection." = "An unknown error occurred. Check your Internet connection.";
+
+/* No comment provided by engineer. */
 "and" = "and";
 
 /* No comment provided by engineer. */
@@ -815,12 +818,6 @@
 "No input. Please enter at least %lu character(s)." = "No input. Please enter at least %lu character(s).";
 
 /* No comment provided by engineer. */
-"No Internet Connection" = "No Internet Connection";
-
-/* No comment provided by engineer. */
-"No internet connection available." = "No internet connection available.";
-
-/* No comment provided by engineer. */
 "No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
 
 /* No comment provided by engineer. */
@@ -1191,9 +1188,6 @@
 
 /* No comment provided by engineer. */
 "Skip" = "Skip";
-
-/* No comment provided by engineer. */
-"Slow Internet Connection!" = "Slow Internet Connection!";
 
 /* No comment provided by engineer. */
 "SO" = "SO";

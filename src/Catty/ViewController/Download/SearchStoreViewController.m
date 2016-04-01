@@ -354,24 +354,16 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
     if (self.dataTask) {
         [self.dataTask cancel];
     }
- NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0];
-    self.dataTask = [self.session dataTaskWithURL:[NSURL URLWithString:queryString]  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:queryString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+    
+    self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            if (error.code != -999) {
-                if ([[Util networkErrorCodes] containsObject:[NSNumber
-                                                              numberWithInteger:error.code]]){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-                    });
-                } else {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    }];
-                    [alert addAction:cancelAction];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
+            if ([Util isNetworkError:error]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [Util defaultAlertForNetworkError];
+                });
             }
-            
         } else {
             NSMutableArray *results;
             id jsonObject = [NSJSONSerialization JSONObjectWithData:data

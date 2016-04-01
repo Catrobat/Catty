@@ -31,6 +31,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
+#import "NetworkDefines.h"
 #import "HelpWebViewController.h"
 
 @interface FileManager ()
@@ -376,8 +377,7 @@
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
 #endif
         
-        sessionConfig.timeoutIntervalForRequest = 10.0;
-        sessionConfig.timeoutIntervalForResource = 10.0;
+        sessionConfig.timeoutIntervalForRequest = kConnectionTimeout;
         self.downloadSession = [NSURLSession sessionWithConfiguration:sessionConfig
                                                              delegate:self
                                                         delegateQueue:nil];
@@ -664,7 +664,7 @@
             return;
         }
         if (error.code == -1001){
-            if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+            if ([self.delegate respondsToSelector:@selector(timeoutReached)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate timeoutReached];
                 });

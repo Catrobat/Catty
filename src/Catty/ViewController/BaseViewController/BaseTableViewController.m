@@ -539,7 +539,7 @@
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
-            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+            [Util defaultAlertForNetworkError];
             [self.navigationController popViewControllerAnimated:YES];
         }
         NSDebug(@"not reachable");
@@ -549,7 +549,7 @@
         }else{
             NSDebug(@"reachable via wifi but no data");
             if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
-                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                [Util defaultAlertForNetworkError];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
@@ -559,7 +559,7 @@
         } else {
             NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
-                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                [Util defaultAlertForNetworkError];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
