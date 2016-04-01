@@ -316,6 +316,20 @@
 }
 
 # pragma mark - Touch Event Handling
+
+- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.menuOpen) {
+        NSDebug(@"touch on scene not allowed, because menu is open");
+        return;
+    }
+    NSDebug(@"touch on scene allowed");
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInView:self.skView];
+        NSDebug(@"StartTouchinScenePresenter");
+        [self.scene touchedWithTouches:touches atPosition:location];
+    }
+}
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
 //    if (self.menuOpen) {
 //        NSDebug(@"touch on scene not allowed, because menu is open");
@@ -331,16 +345,7 @@
 //        }
 //    }
 
-    if (self.menuOpen) {
-        NSDebug(@"touch on scene not allowed, because menu is open");
-        return;
-    }
-    NSDebug(@"touch on scene allowed");
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInView:self.skView];
-        NSDebug(@"StartTouchinScenePresenter");
-        [self.scene touchedWithTouches:touches atPosition:location];
-    }
+
 }
 
 #pragma mark - Game Event Handling
