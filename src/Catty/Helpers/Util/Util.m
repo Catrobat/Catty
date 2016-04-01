@@ -1072,6 +1072,17 @@ replacementString:(NSString*)characters
     }
 }
 
++ (void)defaultAlertForUnknownError
+{
+    if ([NSThread isMainThread]) {
+        [[self class] alertWithText:kLocalizedErrorUnknown];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [Util defaultAlertForUnknownError];
+        });
+    }
+}
+
 #pragma mark - brick statistics
 
 + (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults

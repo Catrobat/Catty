@@ -263,6 +263,7 @@
 #define kLocalizedUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
 #define kLocalizedErrorInternetConnection NSLocalizedString(@"An unknown error occurred. Check your Internet connection.", nil)
+#define kLocalizedErrorUnknown NSLocalizedString(@"An unknown error occurred. Please try again later.", nil)
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
 #define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
 #define kLocalizedImagePickerSourceNotAvailable NSLocalizedString(@"Image source not available",nil)

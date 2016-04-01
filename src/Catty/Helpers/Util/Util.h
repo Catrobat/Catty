@@ -223,6 +223,8 @@
 
 + (void)defaultAlertForNetworkError;
 
++ (void)defaultAlertForUnknownError;
+
 + (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults;
 
 + (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics;

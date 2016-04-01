@@ -242,11 +242,17 @@
         
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
-        self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-        
-        for (NSDictionary *projectDict in catrobatProjects) {
-            CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-            [self.projects addObject:project];
+        if (catrobatProjects) {
+            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+            
+            for (NSDictionary *projectDict in catrobatProjects) {
+                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                [self.projects addObject:project];
+            }
+        } else {
+            [Util defaultAlertForUnknownError];
+            [self hideLoadingView];
+            return;
         }
     }
     [self update];
@@ -302,21 +308,25 @@
         
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
-        NSInteger counter=0;
-        CatrobatProgram *loadedProject;
-        NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
-        loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-        
-        for (CatrobatProgram* project in self.projects) {
-            if ([project.projectID isEqualToString:loadedProject.projectID ]) {
-                @synchronized(self.projects){
-                    loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
-                    [self.projects removeObject:project];
-                    [self.projects insertObject:loadedProject atIndex:counter];
+        if (catrobatProjects) {
+            NSInteger counter=0;
+            CatrobatProgram *loadedProject;
+            NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
+            loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+            
+            for (CatrobatProgram* project in self.projects) {
+                if ([project.projectID isEqualToString:loadedProject.projectID ]) {
+                    @synchronized(self.projects){
+                        loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
+                        [self.projects removeObject:project];
+                        [self.projects insertObject:loadedProject atIndex:counter];
+                    }
+                    break;
                 }
-                break;
+                counter++;
             }
-            counter++;
+        } else {
+            [Util defaultAlertForUnknownError];
         }
     }
     [self update];
