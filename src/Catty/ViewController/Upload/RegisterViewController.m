@@ -326,7 +326,7 @@
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            if (error.code != -999) {
+            if (error.code != kCFURLErrorCancelled) {
                 NSLog(@"%@", error);
             }
             
@@ -379,7 +379,7 @@
         self.registerButton.enabled = NO;
     } else {
         NSDebug(@"Connection could not be established");
-        [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+        [Util defaultAlertForNetworkError];
     }
 }
 
