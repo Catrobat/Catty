@@ -1063,7 +1063,13 @@ replacementString:(NSString*)characters
 
 + (void)defaultAlertForNetworkError
 {
-    [[self class] alertWithText:kLocalizedErrorInternetConnection];
+    if ([NSThread isMainThread]) {
+        [[self class] alertWithText:kLocalizedErrorInternetConnection];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [Util defaultAlertForNetworkError];
+        });
+    }
 }
 
 #pragma mark - brick statistics
