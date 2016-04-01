@@ -36,6 +36,9 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _availableBufferQueues = [dispatch_queue_t]()
     private var _lastQueueIndex = 0
+    
+    private let lockWaitQueue = dispatch_queue_create("org.catrobat.LockWaitQueue", nil)
+    private let lockBufferQueue = dispatch_queue_create("org.catrobat.LockBufferQueue", nil)
 
     // MARK: Static properties
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
@@ -160,34 +163,38 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         // execute closures (not node dependend!)
+        dispatch_async(lockWaitQueue){
         for (context, closure) in nextWaitClosures {
-            var queue = _availableWaitQueues.first
+            var queue = self._availableWaitQueues.first
             if queue == nil {
-                _lastQueueIndex += 1
-                queue = dispatch_queue_create("org.catrobat.wait.queue[\(_lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
+                self._lastQueueIndex += 1
+                queue = dispatch_queue_create("org.catrobat.wait.queue[\(self._lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
             } else {
-                _availableWaitQueues.removeFirst()
+                self._availableWaitQueues.removeFirst()
             }
             dispatch_async(queue!, {
                 closure(context: context, scheduler: self)
-                self._availableWaitQueues += queue!
+                dispatch_async(self.lockWaitQueue){
+                    self._availableWaitQueues += queue!
+                }
                 dispatch_async(dispatch_get_main_queue()) {
                     self.runNextInstructionOfContext(context)
                 }
             })
+        }
         }
 
 
         for (context, closure) in nextClosures {
             closure(context: context, scheduler: self)
         }
-        
+        dispatch_async(lockBufferQueue){
         for (context, brick) in nextBufferElements {
-            var queue = _availableBufferQueues.first
+            var queue = self._availableBufferQueues.first
             if queue == nil {
                 queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
             } else {
-                _availableBufferQueues.removeFirst()
+                self._availableBufferQueues.removeFirst()
             }
             dispatch_async(queue!, {
                 let formulaArray = brick.getFormulas()
@@ -195,11 +202,14 @@ final class CBScheduler: CBSchedulerProtocol {
                     formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
                 }
                 print("preCalculate")
+                dispatch_async(self.lockBufferQueue){
                 self._availableBufferQueues += queue!
+                }
                 dispatch_async(dispatch_get_main_queue()) {
                     self.runNextInstructionOfContext(context)
                 }
             })
+        }
         }
         for (context, condition) in nextConditionalBufferElements {
             var queue = _availableBufferQueues.first
