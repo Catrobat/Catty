@@ -365,7 +365,7 @@ const CGFloat PADDING = 5.0f;
         self.dataTask = [self.session dataTaskWithRequest:request  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             [self enableUploadView];
             if (error) {
-                if (error.code != -999) {
+                if (error.code != kCFURLErrorCancelled) {
                     NSLog(@"%@", error);
                 }
                 [self setEnableActivityIndicator:NO];
@@ -434,7 +434,7 @@ const CGFloat PADDING = 5.0f;
         } else {
             NSDebug(@"Connection could not be established");
             [self enableUploadView];
-            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+            [Util defaultAlertForNetworkError];
         }
     } else {
         NSDebug(@"Could not build checksum");

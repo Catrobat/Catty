@@ -168,7 +168,8 @@ final class CBScheduler: CBSchedulerProtocol {
         for (context, closure) in nextWaitClosures {
             var queue = _availableWaitQueues.first
             if queue == nil {
-                queue = dispatch_queue_create("org.catrobat.wait.queue[\(++_lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
+                _lastQueueIndex += 1
+                queue = dispatch_queue_create("org.catrobat.wait.queue[\(_lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
             } else {
                 _availableWaitQueues.removeFirst()
             }
@@ -238,7 +239,7 @@ final class CBScheduler: CBSchedulerProtocol {
         running = true
         _broadcastHandler.setup()
 
-        for var idx = 1; idx <= PlayerConfig.NumberOfWaitQueuesInitialValue; ++idx {
+        for idx in 1 ... PlayerConfig.NumberOfWaitQueuesInitialValue {
             _availableWaitQueues += dispatch_queue_create("org.catrobat.wait.queue[\(idx)]", DISPATCH_QUEUE_SERIAL)
         }
         _lastQueueIndex = PlayerConfig.NumberOfWaitQueuesInitialValue
