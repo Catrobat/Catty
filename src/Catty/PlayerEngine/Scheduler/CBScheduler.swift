@@ -272,7 +272,6 @@ final class CBScheduler: CBSchedulerProtocol {
         guard let contexts = _whenContexts[spriteName] else { return }
 
         let scheduledContextsOfSprite = _scheduledContexts[spriteName]
-        let areAnyContextsRunning = !_scheduledContexts.isEmpty
 
         for context in contexts {
 //            if context.state == .Running || context.state == .Waiting {
@@ -286,12 +285,10 @@ final class CBScheduler: CBSchedulerProtocol {
             }
         }
 
-//        if !areAnyContextsRunning { runNextInstructionsGroup() }
         runNextInstructionsGroup()
     }
 
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
-        let areAnyContextsRunning = !_scheduledContexts.isEmpty
         
         for context in broadcastContexts {
             if context.state == .Running || context.state == .Waiting {
@@ -306,7 +303,7 @@ final class CBScheduler: CBSchedulerProtocol {
             }
         }
         
-        if !areAnyContextsRunning { runNextInstructionsGroup() }
+        runNextInstructionsGroup()
 
     }
 
