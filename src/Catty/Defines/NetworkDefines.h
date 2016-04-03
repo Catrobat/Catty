@@ -23,7 +23,7 @@
 #define kAppStoreIdentifier @"CHANGEME"    // TODO: change as we get into AppStore (IOS-4)
 #define kAppStoreURL @"itms-apps://itunes.apple.com/app/" kAppStoreIdentifier
 
-#define kConnectionTimeout 30
+#define kConnectionTimeout 15
 #define kBaseUrl @"https://share.catrob.at/pocketcode/"
 #define kTestUrl @"https://catroid-test.catrob.at/pocketcode/"
 #define kConnectionHost kBaseUrl @"api/projects"

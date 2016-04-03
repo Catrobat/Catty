@@ -30,7 +30,7 @@ import Foundation
 //============================================================================================================
 
 // CAVE: NEVER separate these two statements by adding a new line
-let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = __LINE__;
+let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = #line;
 
 let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
@@ -38,10 +38,10 @@ let localizedStringCheckExcludeFiles = [
     "Functions.[hm]",
     "Operators.m",
     "BSKeyboardControls.m"
-]; let localizedStringCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+]; let localizedStringCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 let localizedStringCheckSeparatedExcludeDirs = [
     "Pods",
-]; let localizedStringCheckSeparatedExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+]; let localizedStringCheckSeparatedExcludeDirsLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 
 let licenseCheckExcludeDirs = [
@@ -68,7 +68,7 @@ let licenseCheckExcludeDirs = [
     "Siren",
     "Pods",
     "PodSource"
-]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+]; let licenseCheckExcludeDirsLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
     "AHKActionSheet.[mh]",
@@ -92,7 +92,7 @@ let licenseCheckExcludeFiles = [
     "JNKeychain.[mh]",
     "SwellAll.swift",
     "license-validator.swift"
-]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"
                                 + " *  (http://developer.catrobat.org/credits)\n *\n"
@@ -161,7 +161,7 @@ func localizedStringCheck(filePath : String, fileContent : String) -> (failed: B
         return (false, nil)
     }
 
-    let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
+    let newRange : Range<String.Index> = fileContent.startIndex ..< range!.startIndex
     let substring : String = fileContent.substringWithRange(newRange)
     var lineNumber : Int = substring.componentsSeparatedByString("\n").count
     if lineNumber == 0 {
@@ -178,7 +178,7 @@ func licenseCheck(filePath : String, fileContent : String, lineNumberOffset : In
     if range != nil {
         let index: Int = fileContent.startIndex.distanceTo(range!.startIndex)
         if index != 0 {
-            let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
+            let newRange : Range<String.Index> = fileContent.startIndex ..< range!.startIndex
             let substring : String = fileContent.substringWithRange(newRange)
             var lineNumber : Int = substring.componentsSeparatedByString("\n").count
             if lineNumber == 0 {
@@ -196,7 +196,7 @@ func licenseCheck(filePath : String, fileContent : String, lineNumberOffset : In
         let index: Int = fileContent.startIndex.distanceTo(rangePreviousYear!.startIndex)
         var lineNumber : Int = 1
         if index != 0 {
-            let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: rangePreviousYear!.startIndex)
+            let newRange : Range<String.Index> = fileContent.startIndex ..< rangePreviousYear!.startIndex
             let substring : String = fileContent.substringWithRange(newRange)
             lineNumber = substring.componentsSeparatedByString("\n").count
             if lineNumber == 0 {
@@ -217,15 +217,13 @@ func licenseCheckForReadme(filePath : String, fileContent : String) -> (failed: 
     if range == nil {
         return (true, "\(pathToReadmeFile):1: error: Unable to find license header section\n")
     }
-    let sectionString = fileContent.substringWithRange(Range<String.Index>(start: range!.startIndex,
-        end: fileContent.endIndex))
+    let sectionString = fileContent.substringWithRange(range!.startIndex ..< fileContent.endIndex)
     let sectionRange = sectionString.rangeOfString("<code>")
     if sectionRange == nil {
         return (true, "\(pathToReadmeFile):1: error: Unable to find code section within license header section\n")
     }
-    let licenseString = sectionString.substringWithRange(Range<String.Index>(start: sectionRange!.endIndex.advancedBy(1),
-                                                                               end: sectionString.endIndex))
-    let newLineCountRange = Range<String.Index>(start: fileContent.startIndex, end: range!.endIndex)
+    let licenseString = sectionString.substringWithRange(sectionRange!.endIndex.advancedBy(1) ..< sectionString.endIndex)
+    let newLineCountRange = fileContent.startIndex ..< range!.endIndex
     let newLineCountSubString = fileContent.substringWithRange(newLineCountRange)
     let lineNumberOfLicenseHeaderStart : Int = newLineCountSubString.componentsSeparatedByString("\n").count
     return licenseCheck(pathToReadmeFile,
@@ -242,7 +240,7 @@ let fileManager = NSFileManager.defaultManager()
 let enumerator:NSDirectoryEnumerator? = fileManager.enumeratorAtPath(".")
 
 guard let firstArgument = Process.arguments.first else {
-    printErrorAndExitIfFailed("\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! "
+    printErrorAndExitIfFailed("\(#file):\(#line - 1): error: WTH is going on here!! "
         + "Unable to determine the file name of this script!\n")
     exit(ERR_FAILED)
 }
@@ -258,7 +256,7 @@ var localizedStringCheckSeparatedExcludeFiles = [String]()
 for excludeFile in localizedStringCheckExcludeFiles {
     if excludeFile.hasSuffix(".m") || excludeFile.hasSuffix(".h") || excludeFile.hasSuffix(".swift") {
         localizedStringCheckSeparatedExcludeFiles.append(excludeFile)
-        ++index
+        index += 1
         continue
     }
     if excludeFile.hasSuffix(".[hm]") || excludeFile.hasSuffix(".[mh]") {
@@ -267,11 +265,11 @@ for excludeFile in localizedStringCheckExcludeFiles {
         localizedStringCheckSeparatedExcludeFiles.append(fileNameWithoutExtension + ".m")
     } else {
         let errorLineNumber = localizedStringCheckExcludeFilesLine - (localizedStringCheckExcludeFiles.count - index)
-        let errorMessage = "\(__FILE__):\(errorLineNumber): error: The entry \(excludeFile) is invalid!\n"
+        let errorMessage = "\(#file):\(errorLineNumber): error: The entry \(excludeFile) is invalid!\n"
         stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
         exit(ERR_FAILED)
     }
-    ++index
+    index += 1
 }
 localizedStringCheckSeparatedExcludeFiles.append(fileNameOfThisScript)
 
@@ -280,7 +278,7 @@ var licenseCheckSeparatedExcludeFiles = [String]()
 for excludeFile in licenseCheckExcludeFiles {
     if excludeFile.hasSuffix(".m") || excludeFile.hasSuffix(".h") || excludeFile.hasSuffix(".swift") {
         licenseCheckSeparatedExcludeFiles.append(excludeFile)
-        ++index
+        index += 1
         continue
     }
     if excludeFile.hasSuffix(".[hm]") || excludeFile.hasSuffix(".[mh]") {
@@ -289,11 +287,11 @@ for excludeFile in licenseCheckExcludeFiles {
         licenseCheckSeparatedExcludeFiles.append(fileNameWithoutExtension + ".m")
     } else {
         let errorLineNumber = licenseCheckExcludeFilesLine - (licenseCheckExcludeFiles.count - index)
-        let errorMessage = "\(__FILE__):\(errorLineNumber): error: The entry \(excludeFile) is invalid!\n"
+        let errorMessage = "\(#file):\(errorLineNumber): error: The entry \(excludeFile) is invalid!\n"
         stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
         exit(ERR_FAILED)
     }
-    ++index
+    index += 1
 }
 licenseCheckSeparatedExcludeFiles.append(fileNameOfThisScript)
 
@@ -360,5 +358,5 @@ do {
     let (failed, errorMessage) = licenseCheckForReadme(pathToReadmeFile, fileContent: readmeFileContent)
     printResultErrorAndExitIfFailed(failed, errorMessage:errorMessage)
 } catch {
-    printErrorAndExitIfFailed("\(__FILE__):\(pathToReadmeFileLine): error: Unable to open file or invalid filePath given!\n")
+    printErrorAndExitIfFailed("\(#file):\(pathToReadmeFileLine): error: Unable to open file or invalid filePath given!\n")
 }

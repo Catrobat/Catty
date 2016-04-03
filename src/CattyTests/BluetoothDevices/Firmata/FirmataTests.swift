@@ -309,7 +309,7 @@ final class FirmataTests : XCTestCase{
         var bytes = [UInt8](count: count, repeatedValue: 0)
         data3!.getBytes(&bytes, length:count * sizeof(UInt8))
         var bytestoSend:[UInt8] = [START_SYSEX,REPORT_FIRMWARE,data1,data2]
-        for (var i = 0; i < data3!.length; i++){
+        for i in 0 ..< data3!.length {
             let lsb = bytes[i] & 0x7f;
             let append1:UInt8 = lsb
             bytestoSend.append(append1)
@@ -331,7 +331,7 @@ final class FirmataTests : XCTestCase{
         var bytes = [UInt8](count: count, repeatedValue: 0)
         data3!.getBytes(&bytes, length:count * sizeof(UInt8))
         var bytestoSend:[UInt8] = [START_SYSEX,STRING_DATA]
-        for (var i = 0; i < data3!.length; i++){
+        for i in 0 ..< data3!.length {
             let lsb = bytes[i] & 0x7f;
             let append1:UInt8 = lsb
             bytestoSend.append(append1)

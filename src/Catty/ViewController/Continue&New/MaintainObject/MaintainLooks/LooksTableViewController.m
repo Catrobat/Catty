@@ -980,9 +980,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
         NSString *previewImageName =  [NSString stringWithFormat:@"%@%@%@",
-                                       [fileName substringToIndex:result.location],
+                                       [fileName substringToIndex:result.location+1],
                                        kPreviewImageNamePrefix,
-                                       [fileName substringFromIndex:(result.location)]
+                                       [fileName substringFromIndex:(result.location+1)]
                                        ];
         
         
