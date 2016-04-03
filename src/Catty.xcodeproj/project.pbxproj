@@ -223,6 +223,8 @@
 		926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroTests.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */; };
+		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
+		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
 		927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */; };
 		927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DB1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m */; };
 		927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DF1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m */; };
@@ -330,6 +332,7 @@
 		92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99491BC3CA870003A891 /* Firmata.swift */; };
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
 		92F1A8CE1BE3516B00415032 /* RequiredRescourses.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */; };
+		92F6C5211CB135F3008BE0C4 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
@@ -1158,6 +1161,10 @@
 		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
 		9266F95D1BDFBE3C0034828B /* ProgramVariablesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramVariablesManager.h; sourceTree = "<group>"; };
 		9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramVariablesManager.m; sourceTree = "<group>"; };
+		9276B7031C9E8F6C008BC594 /* SoundCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCache.h; sourceTree = "<group>"; };
+		9276B7041C9E8F6C008BC594 /* SoundCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCache.m; sourceTree = "<group>"; };
+		9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatPlayerItem.h; sourceTree = "<group>"; };
+		9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatPlayerItem.m; sourceTree = "<group>"; };
 		927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroIfSensorData.h; sourceTree = "<group>"; };
 		927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroIfSensorData.m; sourceTree = "<group>"; };
 		927F79DA1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroIfLogicBeginBrickCell.h; sourceTree = "<group>"; };
@@ -1353,6 +1360,7 @@
 		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredRescourses.m; sourceTree = "<group>"; };
+		92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
@@ -3137,6 +3145,15 @@
 			path = ProgramVariablesManager;
 			sourceTree = "<group>";
 		};
+		9276B7021C9E8F6C008BC594 /* SoundCache */ = {
+			isa = PBXGroup;
+			children = (
+				9276B7031C9E8F6C008BC594 /* SoundCache.h */,
+				9276B7041C9E8F6C008BC594 /* SoundCache.m */,
+			);
+			path = SoundCache;
+			sourceTree = "<group>";
+		};
 		928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -3541,6 +3558,14 @@
 			path = requiredResources;
 			sourceTree = "<group>";
 		};
+		92F6C51F1CB135F3008BE0C4 /* OrderedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */,
+			);
+			path = OrderedDictionary;
+			sourceTree = "<group>";
+		};
 		92FF2DFD1A24C3BE00093DA7 /* Defines */ = {
 			isa = PBXGroup;
 			children = (
@@ -3739,6 +3764,8 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				92F6C51F1CB135F3008BE0C4 /* OrderedDictionary */,
+				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92EC99481BC3CA870003A891 /* Firmata */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				D63864691AE63EB4008569E6 /* Keychain */,
@@ -3770,6 +3797,8 @@
 				92FF2E4F1A24C7D800093DA7 /* AudioManager.m */,
 				92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */,
 				92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */,
+				9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */,
+				9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -6374,6 +6403,7 @@
 				92DFB05A1A38960C00FA9B0F /* LCTableViewPickerControl.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				AA74EE271BC0540D00D1E954 /* SetVariableBrick+Instruction.swift in Sources */,
+				9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */,
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
@@ -6543,6 +6573,7 @@
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
+				92F6C5211CB135F3008BE0C4 /* OrderedDictionary.swift in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
@@ -6626,6 +6657,7 @@
 				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
 				921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				92DFB0611A38960C00FA9B0F /* NKOColorPickerView.m in Sources */,
+				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				AA74F00D1BC05B5F00D1E954 /* SpeakBrick.m in Sources */,
 				AA74EEDE1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
