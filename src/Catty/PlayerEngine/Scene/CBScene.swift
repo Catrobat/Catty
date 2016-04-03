@@ -108,7 +108,9 @@ final class CBScene: SKScene {
     }
 
     func touchedWithTouches(touches: NSSet, atPosition position: CGPoint) -> Bool {
-        assert(scheduler?.running == true)
+        if scheduler?.running != true {
+            return false
+        }
         logger?.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
         if let touch = touches.anyObject() as? UITouch {
             let location = touch.locationInNode(self)

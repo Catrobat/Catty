@@ -31,6 +31,14 @@ extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
         // Register as the recorder's delegate to handle errors.
         RPScreenRecorder.sharedRecorder().startRecordingWithMicrophoneEnabled(true) { error in
+            
+            if SharkfoodMuteSwitchDetector.shared().isMute {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategorySoloAmbient)
+                } catch {
+                    print("muting not possible")
+                }
+            }
             if let error = error {
                 self._showScreenRecordingAlert(error.localizedDescription)
             }
