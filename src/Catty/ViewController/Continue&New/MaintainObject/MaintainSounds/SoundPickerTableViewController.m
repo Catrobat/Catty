@@ -34,7 +34,7 @@
 #import "Util.h"
 #import "SharkfoodMuteSwitchDetector.h"
 
-@interface SoundPickerTableViewController () <AVAudioPlayerDelegate>
+@interface SoundPickerTableViewController () <AudioManagerDelegate>
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) NSArray *playableSounds;
@@ -233,9 +233,9 @@
 }
 
 #pragma mark audio delegate methods
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+-(void)audioItemDidFinishPlaying:(NSNotification *) notification;
 {
-    if ((! flag) || (! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
+    if ((! self.currentPlayingSong) || (! self.currentPlayingSongCell)) {
         return;
     }
 

@@ -347,8 +347,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor textTintColor];
-    ProgramLoadingInfo *loadingInfo = [Util lastUsedProgramLoadingInfo];
-    subtitleLabel.text = loadingInfo.visibleName;
+    Program *lastProgram = self.lastUsedProgram;
+    subtitleLabel.text = (lastProgram) ? lastProgram.header.programName :  @"";
 }
 
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath
