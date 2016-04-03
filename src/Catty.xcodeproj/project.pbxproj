@@ -87,6 +87,8 @@
 		4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */; };
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
+		4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */; };
+		4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
 		4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */; };
@@ -613,7 +615,7 @@
 		AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */; };
 		AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */; };
 		AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22891BC0D0630076F11E /* TurnRightBrick+Instruction.swift */; };
-		AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */; settings = {ASSET_TAGS = (); }; };
+		AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */; };
 		AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */; };
 		AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
 		AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -937,6 +939,8 @@
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
 		4C79F5531B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentProgramsStoreViewControllerTests.h; path = Download/RecentProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentProgramsStoreViewControllerTests.m; path = Download/RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
+		4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_092.xml; sourceTree = "<group>"; };
+		4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_097.xml; sourceTree = "<group>"; };
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -2254,6 +2258,7 @@
 				CAE3E51F1B4C50B300CC88BD /* Rock_paper_scissors */,
 				CAE3E5221B4C50B300CC88BD /* Skydiving_Steve */,
 				CAE3E5251B4C50B300CC88BD /* SKYPASCAL */,
+				4C8B79531CB141AA001231F1 /* Solar_System_v1.0 */,
 				CAE3E5281B4C50B300CC88BD /* Tic_Tac_Toe_Master */,
 				CAE3E52B1B4C50B300CC88BD /* Word_balloon_demo */,
 				CAE3E52E1B4C50B300CC88BD /* X_Ray_phone */,
@@ -2828,6 +2833,16 @@
 			);
 			path = "Old Parser";
 			sourceTree = "<group>";
+		};
+		4C8B79531CB141AA001231F1 /* Solar_System_v1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */,
+				4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */,
+			);
+			name = Solar_System_v1.0;
+			path = CattyTests/Resources/ParserTests/Solar_System_v1.0;
+			sourceTree = SOURCE_ROOT;
 		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
@@ -5825,6 +5840,7 @@
 				4CEF0CD21B9C63E7003C9B20 /* Memory_096.xml in Resources */,
 				4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */,
 				CAE3E5381B4C50B300CC88BD /* Air_fight_0.5_093.xml in Resources */,
+				4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */,
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
@@ -5894,6 +5910,7 @@
 				4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */,
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
+				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
 				4CE2D40D1C29505000938B5E /* Pong_Starter_097.xml in Resources */,
