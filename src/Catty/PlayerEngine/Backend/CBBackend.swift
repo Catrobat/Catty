@@ -77,7 +77,7 @@ final class CBBackend: CBBackendProtocol {
             if ifSequence.checkCondition() == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
-                    ++numberOfInstructionsToJump // includes jump instr. at the end of if sequence
+                    numberOfInstructionsToJump += 1 // includes jump instr. at the end of if sequence
                 }
                 context.jump(numberOfInstructions: numberOfInstructionsToJump)
             }

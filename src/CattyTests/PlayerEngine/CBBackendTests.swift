@@ -66,5 +66,84 @@ final class CBBackendTests: XCTestCase {
                 XCTFail("Wrong instruction type")
         }
     }
+    
+    func testSetLookChangeLookInstruction() {
+        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let backend = CBBackend(logger: self.logger)
+        
+        let startScript = StartScript()
+        let spriteObject = SpriteObject()
+        let spriteNode = CBSpriteNode()
+        spriteNode.spriteObject = spriteObject
+        spriteObject.name = "SpriteObjectName"
+        spriteObject.spriteNode = spriteNode
+        startScript.object = spriteObject
+        
+        let setLookBrick = SetLookBrick()
+        setLookBrick.script = startScript
+        let nextLookBrick = NextLookBrick()
+        nextLookBrick.script = startScript
+        let note1Brick = NoteBrick()
+        
+        startScript.brickList = [setLookBrick, nextLookBrick, note1Brick]
+        
+        let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
+        let instructionList = backend.instructionsForSequence(sequenceList)
+        XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
+        
+        switch instructionList[0] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[1] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+    }
+    
+    func testSetYSetXInstruction() {
+        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let backend = CBBackend(logger: self.logger)
+        
+        let startScript = StartScript()
+        let spriteObject = SpriteObject()
+        let spriteNode = CBSpriteNode()
+        spriteNode.spriteObject = spriteObject
+        spriteObject.name = "SpriteObjectName"
+        spriteObject.spriteNode = spriteNode
+        startScript.object = spriteObject
+        
+        let setYBrick = SetYBrick()
+        setYBrick.script = startScript
+        let setXBrick = SetXBrick()
+        setXBrick.script = startScript
+        let note1Brick = NoteBrick()
+        
+        startScript.brickList = [setYBrick, setXBrick, note1Brick]
+        
+        let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
+        let instructionList = backend.instructionsForSequence(sequenceList)
+        XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
+        
+        switch instructionList[0] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[1] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+    }
+
 
 }

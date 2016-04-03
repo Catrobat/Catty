@@ -290,20 +290,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            if (error.code != -999) {
-                if ([[Util networkErrorCodes] containsObject:[NSNumber
-                                                              numberWithInteger:error.code]]){
-                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-                } else {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    }];
-                    [alert addAction:cancelAction];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
+            if ([Util isNetworkError:error]) {
+                [Util defaultAlertForNetworkError];
                 [self hideLoadingView];
             }
-            
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSError *error = nil;
@@ -502,6 +492,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDebug(@"updateProgress:%f",((float)progress));
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     [button setProgress:progress animated:YES];
+}
+
+- (void)timeoutReached
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:@"Timeout reached. Please try again later"];
 }
 
 - (void)setBackDownloadStatus
