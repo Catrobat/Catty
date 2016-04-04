@@ -21,45 +21,37 @@
  */
 
 extension GlideToBrick: CBInstructionProtocol {
-
+    
     func instruction() -> CBInstruction {
-
+        
         guard let durationFormula = self.durationInSeconds,
-              let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
+            let object = self.script?.object
+            else { fatalError("This should never happen!") }
+        
         let cachedDuration = durationFormula.isIdempotent()
-                           ? CBDuration.FixedTime(duration: durationFormula.interpretDoubleForSprite(object))
-                           : CBDuration.VarTime(formula: durationFormula)
-
+            ? CBDuration.FixedTime(duration: durationFormula.interpretDoubleForSprite(object))
+            : CBDuration.VarTime(formula: durationFormula)
+        
         return .LongDurationAction(duration: cachedDuration, actionCreateClosure: {
-            (duration) -> CBLongActionClosure in
-
-            self.isInitialized = false
-            return { (node, elapsedTime) in
-//                self?.logger.debug("Performing: \(self.description())")
-                let xDestination = self.xDestination.interpretFloatForSprite(object)
-                let yDestination = self.yDestination.interpretFloatForSprite(object)
-                if !self.isInitialized {
-                    self.isInitialized = true
-                    let startingPoint = spriteNode.scenePosition
-                    self.startingPoint = startingPoint
-                    let startingX = Float(startingPoint.x)
-                    let startingY = Float(startingPoint.y)
-                    self.deltaX = xDestination - startingX
-                    self.deltaY = yDestination - startingY
-                }
-                
-                let percent = Float(elapsedTime) / Float(duration)
-                let startingPoint = self.startingPoint
-                let startingX = Float(startingPoint.x)
-                let startingY = Float(startingPoint.y)
-                spriteNode.scenePosition = CGPointMake(
-                    CGFloat(startingX + self.deltaX * percent),
-                    CGFloat(startingY + self.deltaY * percent)
-                )
-            }
+            (duration) -> SKAction in
+                return self.action(duration)
         })
+    }
+    
+    func action(duration : NSTimeInterval) -> SKAction {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
+        
+        let xDestination = self.xDestination.interpretFloatForSprite(object)
+        let yDestination = self.yDestination.interpretFloatForSprite(object)
+        let duration = self.durationInSeconds.interpretDoubleForSprite(object)
+        guard let scene = spriteNode.scene else {
+            fatalError("This should never happen!")
+        }
+        let destPoint = CGPoint(x: scene.size.width / 2 + CGFloat(xDestination), y: scene.size.height / 2 + CGFloat(yDestination))
+        
+        let action = SKAction.moveTo(destPoint, duration: duration)
+        return action
     }
 }

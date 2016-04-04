@@ -372,6 +372,7 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         // iOS8 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+//        sessionConfig.identifier = @"at.tugraz";
 #else
         // iOS7 specific stuff
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:@"at.tugraz"];
@@ -692,6 +693,18 @@
         app.networkActivityIndicatorVisible = NO;
     }
 }
+
+-(void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(NSError *)error
+{
+    if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate setBackDownloadStatus];
+        });
+    }
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = NO;
+}
+
 
 #pragma mark - exclude file from iCloud Backup
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSString *)URL

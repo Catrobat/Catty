@@ -1,0 +1,1476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.14</applicationVersion>
+    <catrobatLanguageVersion>0.92</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Hello there! 
+Interested in some space facts with cool animations and all the planets orbiting right in front of you? 
+
+Well go ahead and check it out! 
+
+V0.01
+Just a simple earth and Mars going in circles around the sun. 
+V0.02
+Math! Yes I added equations now the planets go in orbits around the sun and around their selfs. 
+And made a cooler looking sun. 
+V0.1
+Major new look elliptical orbits. 
+Much better and cleaner and faster orbiting planets. 
+The planets move at a emulated speed from the real ones! Earth does 30 km/sec well it does the same here, The orbits are calculated by earth year timing.
+Only the planets befor the asteroid belt have been added. 
+*soon i will add to planet zoom in, and info. 
+Stay tuned for more, updates! </description>
+    <deviceName>S500i</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>17</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>solar system v1.0</programName>
+    <remixOf/>
+    <screenHeight>854</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>480</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/2222</url>
+    <userHandle>pharone</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>e32580ecd882f7af205fdf38edc04cc3_1417097038359.jpg</fileName>
+          <name>1417097038359</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>175</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>120</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>120</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>b4863239faa9f6cac829d256600c131b_1416754489379.png</fileName>
+          <name>sun</name>
+        </look>
+      </lookList>
+      <name>sun</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>4</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zoom in earth</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>8f36b0f02d7d7973b001446965f1f5b1_1417347618444.png</fileName>
+          <name>1417347618444</name>
+        </look>
+      </lookList>
+      <name>venues</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>12</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>Mars number of laps</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>MNOL sin</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>Mars number of laps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>MNOL cos</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>Mars number of laps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>Mx</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>129</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>MNOL sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>My</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>23</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>MNOL cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>Mx</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>My</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>My</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>21.5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>c54cbf565e6af2a7029b0fb914a296ec_1417356344467.png</fileName>
+          <name>1417356344467</name>
+        </look>
+      </lookList>
+      <name>Mercury</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>EMNOL </name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>EMNOL sin</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL </value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>EMNOL cos</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL </value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>EMX</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>100</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>EMY</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>17</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.0000001</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>EMX</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>EMY</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMY</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>15</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>5770b07dcddddd79dc6a179658f4d0aa_1417165285791.png</fileName>
+          <name>1417165285791</name>
+        </look>
+      </lookList>
+      <name>orbit 1</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>46</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>99fe79bb8392f07a33f5f6f7c574e365_1417165285791.png</fileName>
+          <name>mars orbit</name>
+        </look>
+      </lookList>
+      <name>orbit 2</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>60.0</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>fb3c0fc431ece2c7be76b90f6d34a3a0_1417165285791.png</fileName>
+          <name>orbit 3</name>
+        </look>
+      </lookList>
+      <name>orbit 3</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>76</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>cd003c6b948c3170f14c0f4756e64084_1416595467754.png</fileName>
+          <name>1416595467754</name>
+        </look>
+      </lookList>
+      <name>Earth</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>12</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>v number of lsps</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.6</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>vnol sin</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>v number of lsps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>vnol cos</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>v number of lsps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>vx</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>164</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>vnol sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>vy</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>28</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>vnol cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>vx</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>vy</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>vy</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>27.2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>e6e2ae67c2ed2001f113becd0d5f6f72_1417165285791.png</fileName>
+          <name>orbit 4</name>
+        </look>
+      </lookList>
+      <name>orbit 4</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>110</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>4774c7be2ae3bcee34e2e3b3abbf3116_1416640839441.png</fileName>
+          <name>1416640839441</name>
+        </look>
+      </lookList>
+      <name>mars</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>16</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zoom in earth</broadcastMessage>
+            </broadcastBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>hide planet 1</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>s</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.4</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>s sin</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>s cos</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>x</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>237</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>y</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>43</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>x</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>USER_VARIABLE</type>
+                  <value>y</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>y</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>42.6</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zoom in earth</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zoom in earth</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[10]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programVariableList>
+      <userVariable>
+        <name>earth main x</name>
+      </userVariable>
+      <userVariable>
+        <name>earth main y</name>
+      </userVariable>
+      <userVariable>
+        <name>B 360 turn</name>
+      </userVariable>
+      <userVariable>
+        <name>B sin</name>
+      </userVariable>
+      <userVariable>
+        <name>B cos</name>
+      </userVariable>
+      <userVariable reference="../../../objectList/object[10]/scriptList/startScript[2]/brickList/setVariableBrick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/startScript[2]/brickList/setVariableBrick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/startScript[2]/brickList/changeVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/startScript[2]/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/startScript[2]/brickList/setVariableBrick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/startScript[2]/brickList/changeVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/startScript[2]/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/startScript[2]/brickList/setVariableBrick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/startScript[2]/brickList/setVariableBrick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/startScript[2]/brickList/setVariableBrick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/startScript[2]/brickList/changeVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/startScript[2]/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/startScript[2]/brickList/setVariableBrick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/startScript[2]/brickList/setVariableBrick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/startScript[2]/brickList/setVariableBrick[4]/userVariable"/>
+      <userVariable>
+        <name>zoom earth</name>
+      </userVariable>
+      <userVariable>
+        <name>ERR</name>
+      </userVariable>
+      <userVariable>
+        <name>moon h/s</name>
+      </userVariable>
+      <userVariable reference="../../../objectList/object[8]/scriptList/startScript[2]/brickList/changeVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/startScript[2]/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/startScript[2]/brickList/setVariableBrick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/startScript[2]/brickList/setVariableBrick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/startScript[2]/brickList/setVariableBrick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+    </programVariableList>
+  </variables>
+</program>

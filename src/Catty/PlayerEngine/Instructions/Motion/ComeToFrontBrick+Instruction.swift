@@ -43,7 +43,6 @@ extension ComeToFrontBrick: CBInstructionProtocol {
                 }
                 if(objSpriteNode.zPosition > zValue) && (objSpriteNode.zPosition <= CGFloat(frontValue) && (obj as! SpriteObject != object)){
                     objSpriteNode.zPosition -= 1
-                    print(objSpriteNode.zPosition)
                 }
             }
         }
