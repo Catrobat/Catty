@@ -42,7 +42,7 @@ final class CBSpriteNode: SKSpriteNode {
             self.zRotation = CGFloat(Util.degreeToRadians(rotationInDegrees))
         }
         get {
-            var rotation = Util.radiansToDegree(Double(self.zRotation))%360.0 // swift equivalent for fmodf
+            var rotation = (360.0 - Util.radiansToDegree(Double(self.zRotation)) + PlayerConfig.RotationDegreeOffset)%360.0 // swift equivalent for fmodf
             if (rotation < 0.0) { rotation += 360.0 }
             return rotation
         }
