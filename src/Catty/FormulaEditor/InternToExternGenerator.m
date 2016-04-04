@@ -145,7 +145,7 @@
                         digits = 0;
                     }
                 }
-                NSString *returnString = [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", digits], number.doubleValue];
+                NSString *returnString = [NSString stringWithFormat:[NSString stringWithFormat:@"%%.%luf", (long)digits], number.doubleValue];
                 if([[internToken getTokenStringValue] hasSuffix:@"."])
                 {
                     returnString = [returnString stringByAppendingString:[formatter decimalSeparator]];
