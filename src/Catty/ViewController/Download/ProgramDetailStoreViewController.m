@@ -330,7 +330,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
-    if ([self isConenctedToWifiWithSettingEnabled]) {
+    if ([self isConnectedToWifiWithSettingEnabled]) {
         EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
         [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
         button.hidden = NO;
@@ -345,7 +345,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self downloadButtonPressed];
 }
 
--(BOOL)isConenctedToWifiWithSettingEnabled
+-(BOOL)isConnectedToWifiWithSettingEnabled
 {
     if (![[NSUserDefaults standardUserDefaults] boolForKey:kUseWiFiDownload]) {
         return YES;
@@ -368,7 +368,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)downloadAgain
 {
-    if ([self isConenctedToWifiWithSettingEnabled]) {
+    if ([self isConnectedToWifiWithSettingEnabled]) {
         EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
         [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
         UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
