@@ -556,7 +556,7 @@
 
 - (void)stopLoading:(NSURLSessionDownloadTask *)task
 {
-    [task suspend];
+    [task cancel];
     NSURL* url = [self.programTaskDict objectForKey:task];
     if (url) {
         [self.programTaskDict removeObjectForKey:task];

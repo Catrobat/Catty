@@ -497,7 +497,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)timeoutReached
 {
     [self setBackDownloadStatus];
-    [Util alertWithText:@"Timeout reached. Please try again later"];
+    [Util defaultAlertForNetworkError];
 }
 
 - (void)setBackDownloadStatus
