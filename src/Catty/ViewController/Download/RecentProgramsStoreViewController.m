@@ -300,18 +300,9 @@
     }
     self.idTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            if (error.code != -999) {
-                if ([[Util networkErrorCodes] containsObject:[NSNumber
-                                                              numberWithInteger:error.code]]){
-                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-                } else {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                    }];
-                    [alert addAction:cancelAction];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
+            if ([Util isNetworkError:error]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [Util defaultAlertForNetworkError];
                     [self hideLoadingView];
                     [self loadingIndicator:NO];
                 });
@@ -341,11 +332,7 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            }];
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [Util defaultAlertForNetworkError];
         }
         return;
     }
@@ -420,10 +407,7 @@
         
     }
     
-    
-    
     [self update];
-    
 }
 
 - (void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects
@@ -444,18 +428,9 @@
             dispatch_sync(_serialQueue, ^{
                 self.infoTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                     if (error) {
-                        if (error.code != -999) {
-                            if ([[Util networkErrorCodes] containsObject:[NSNumber
-                                                                          numberWithInteger:error.code]]){
-                                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-                            } else {
-                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                                }];
-                                [alert addAction:cancelAction];
-                                [self presentViewController:alert animated:YES completion:nil];
-                            }
+                        if ([Util isNetworkError:error]) {
                             dispatch_async(dispatch_get_main_queue(), ^{
+                                [Util defaultAlertForNetworkError];
                                 [self hideLoadingView];
                                 [self loadingIndicator:NO];
                             });
@@ -482,8 +457,6 @@
         
         // }
     }
-    
-    
 }
 
 
@@ -492,11 +465,7 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            }];
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [Util defaultAlertForNetworkError];
         }
         return;
     }

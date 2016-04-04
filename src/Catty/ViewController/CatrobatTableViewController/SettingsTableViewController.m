@@ -62,6 +62,17 @@
         }]];
 
     }]];
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+        
+        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedWiFiProgramDownloads key:kUseWiFiDownload handler:^(BOSwitchTableViewCell *cell) {
+            cell.backgroundColor = [UIColor backgroundColor];
+            cell.mainColor = [UIColor globalTintColor];
+            cell.toggleSwitch.tintColor = [UIColor globalTintColor];
+            [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
+        }]];
+        
+    }]];
+
 	
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         

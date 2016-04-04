@@ -136,4 +136,9 @@
     [self compareProgram:@"X_Ray_phone_095" withProgram:@"X_Ray_phone_097"];
 }
 
+- (void)testSolarSystem
+{
+    [self compareProgram:@"Solar_System_v1.0_092" withProgram:@"Solar_System_v1.0_097"];
+}
+
 @end

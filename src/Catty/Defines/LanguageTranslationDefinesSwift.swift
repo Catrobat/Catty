@@ -248,7 +248,8 @@ let kLocalizedReportProgram = NSLocalizedString("Report as inappropriate", comme
 let kLocalizedName = NSLocalizedString("Name", comment: "")
 let kLocalizedDownloaded = NSLocalizedString("Download sucessful", comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", comment: "")
-
+let kLocalizedWiFiProgramDownloads = NSLocalizedString("Download only with WiFi", comment: "")
+let kLocalizedNoWifiConnection = NSLocalizedString("Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -262,9 +263,8 @@ let kLocalizedNoDescriptionAvailable = NSLocalizedString("No Description availab
 let kLocalizedNoSearchResults = NSLocalizedString("No search results", comment: "")
 let kLocalizedUnableToLoadProgram = NSLocalizedString("Unable to load program!", comment: "")
 let kLocalizedThisActionCannotBeUndone = NSLocalizedString("This action can not be undone!", comment: "")
-let kLocalizedNoInternetConnectionAvailable = NSLocalizedString("No internet connection available.", comment: "")
-let kLocalizedNoInternetConnection = NSLocalizedString("No Internet Connection", comment: "")
-let kLocalizedSlowInternetConnection = NSLocalizedString("Slow Internet Connection!", comment: "")
+let kLocalizedErrorInternetConnection = NSLocalizedString("An unknown error occurred. Check your Internet connection.", comment: "")
+let kLocalizedErrorUnknown = NSLocalizedString("An unknown error occurred. Please try again later.", comment: "")
 let kLocalizedInvalidURLGiven = NSLocalizedString("Invalid URL given!", comment: "")
 let kLocalizedNoCamera = NSLocalizedString("No Camera available", comment: "")
 let kLocalizedImagePickerSourceNotAvailable = NSLocalizedString("Image source not available", comment: "")
@@ -601,6 +601,11 @@ let klocalizedBluetoothNotResponding = NSLocalizedString("Cannot connect to devi
 let klocalizedBluetoothConnectionLost = NSLocalizedString("Connection Lost", comment: "bluetooth")
 let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", comment: "bluetooth")
 
+
+//************************************************************************************************************
+//************************************       MediaLibrary        *********************************************
+//************************************************************************************************************
+let kLocalizedMediaLibrary = NSLocalizedString("Media Library", comment: "")
 
 
 

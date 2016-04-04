@@ -82,14 +82,14 @@ public protocol StringDeserialize {
 }
 
 public protocol RawDeserialize {
-    typealias RawType
+    associatedtype RawType
     static var uuid         : String {get}
     var rawValue            : RawType {get}
     init?(rawValue:RawType)
 }
 
 public protocol RawArrayDeserialize {
-    typealias RawType
+    associatedtype RawType
     static var uuid     : String {get}
     static var size     : Int {get}
     var rawValue        : [RawType] {get}
@@ -97,8 +97,8 @@ public protocol RawArrayDeserialize {
 }
 
 public protocol RawPairDeserialize {
-    typealias RawType1
-    typealias RawType2
+    associatedtype RawType1
+    associatedtype RawType2
     static var uuid     : String {get}
     var rawValue1       : RawType1 {get}
     var rawValue2       : RawType2 {get}
@@ -106,8 +106,8 @@ public protocol RawPairDeserialize {
 }
 
 public protocol RawArrayPairDeserialize {
-    typealias RawType1
-    typealias RawType2
+    associatedtype RawType1
+    associatedtype RawType2
     static var uuid     : String {get}
     static var size1    : Int {get}
     static var size2    : Int {get}

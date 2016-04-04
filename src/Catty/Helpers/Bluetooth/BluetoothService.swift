@@ -270,7 +270,7 @@ public class BluetoothService:NSObject {
         future.onFailure{error in
             self.serviceDiscoveryFailed()
         }
-        connectionTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector:"serviceDiscoveryFailed" , userInfo: nil, repeats: false)
+        connectionTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector:#selector(BluetoothService.serviceDiscoveryFailed) , userInfo: nil, repeats: false)
 
     }
     

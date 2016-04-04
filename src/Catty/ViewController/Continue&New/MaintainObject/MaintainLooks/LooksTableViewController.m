@@ -57,6 +57,7 @@
 #import "UIUtil.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "MediaLibraryViewController.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -747,7 +748,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
                 }
             }
-        } else if (buttonIndex != 0 ) {
+        } else if (chooseImageIndex+1 == buttonIndex) {
             // draw new image
             NSDebug(@"Draw new image");
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -761,7 +762,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self.navigationController pushViewController:vc animated:YES];
             });
 
-        } else {
+        }else if(buttonIndex != 0)
+        {
+            //media library
+            NSDebug(@"Media library");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
+                vc.paintDelegate = self;
+                
+                vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
+             
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            });
+        }else {
             if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
                 if (self.afterSafeBlock) {
                     self.afterSafeBlock(nil);
@@ -787,8 +801,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [buttonTitles addObject:kLocalizedChooseImage];
         }
     }
+    
+    
+    
     [buttonTitles addObject:kLocalizedDrawNewImage];
 
+    [buttonTitles addObject:kLocalizedMediaLibrary];
+    
     [Util actionSheetWithTitle:kLocalizedAddLook
                       delegate:self
         destructiveButtonTitle:nil
@@ -849,6 +868,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                        confirmMessage:kLocalizedPaintSaveChanges];
 }
 
+
 - (void)savePaintImage
 {
     if (self.paintImage) {
@@ -871,6 +891,44 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     }
     
+}
+
+- (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName
+{
+    NSDebug(@"SAVING");  // add image to object now
+    [self showLoadingView];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    // use temporary filename, will be renamed by user afterwards
+    NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                  [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                  kLocalizedMyImageExtension];
+    Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
+                                               existingNames:[self.object allLookNames]]
+                                    andPath:newImageFileName];
+    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+    self.filePath = newImagePath;
+    NSDebug(@"Writing file to disk");
+    // leaving the main queue here!
+    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+        // save image to programs directory
+        [imageData writeToFile:newImagePath atomically:YES];
+    }];
+    // completion block is NOT executed on the main queue
+    [saveOp setCompletionBlock:^{
+        // execute this on the main queue
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            
+            [self addLookActionWithName:look.name look:look];
+        }];
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:saveOp];
+
+    [self reloadData];
 }
 
 
@@ -922,9 +980,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
         NSString *previewImageName =  [NSString stringWithFormat:@"%@%@%@",
-                                       [fileName substringToIndex:result.location],
+                                       [fileName substringToIndex:result.location+1],
                                        kPreviewImageNamePrefix,
-                                       [fileName substringFromIndex:(result.location)]
+                                       [fileName substringFromIndex:(result.location+1)]
                                        ];
         
         
