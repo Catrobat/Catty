@@ -64,7 +64,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 60.0f, 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 30.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickOver360
@@ -89,7 +89,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 40.0f, 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 50.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickNegative
@@ -114,7 +114,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-60.0f), 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation,150.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickNegativeOver360
@@ -139,7 +139,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-40.0f), 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 130.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 @end

@@ -87,34 +87,34 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
                 
                 var xPosition = spriteNode.scenePosition.x
                 var rotation = spriteNode.rotation
-                let xComparePosition = -virtualScreenWidth + (width/2.0)
-                let xOtherComparePosition = virtualScreenWidth - (width/2.0)
-                if xPosition < xComparePosition {
-                    if (rotation > 90) && (rotation < 270) {
+                let xLeftPosition = -virtualScreenWidth + (width/2.0)
+                let xRightPosition = virtualScreenWidth - (width/2.0)
+                if xPosition < xLeftPosition {
+                    if (rotation >= 0 && rotation < 90) || (rotation > 270 && rotation <= 360) || (rotation <= 0 && rotation > -90) || (rotation < -270 && rotation >= -360){
                         rotation = 180 - rotation
                     }
-                    xPosition = xComparePosition
-                } else if xPosition > xOtherComparePosition {
-                    if (rotation >= 0 && rotation < 90) || (rotation > 270 && rotation <= 360) {
+                    xPosition = xLeftPosition
+                } else if xPosition > xRightPosition {
+                    if (rotation > 90) && (rotation < 270) || (rotation < -90) && (rotation > -270){
                         rotation = 180 - rotation
                     }
-                    xPosition = xOtherComparePosition
+                    xPosition = xRightPosition
                 }
-                if rotation < 0 { rotation += 360 }
+                //if rotation < 0 { rotation += 360 }
                 
                 var yPosition = spriteNode.scenePosition.y
-                let yComparePosition = virtualScreenHeight - (height/2.0)
-                let yOtherComparePosition = -virtualScreenHeight + (height/2.0)
-                if yPosition > yComparePosition {
-                    if (rotation > 0) && (rotation < 180) {
+                let yUpPosition = virtualScreenHeight - (height/2.0)
+                let yDownPosition = -virtualScreenHeight + (height/2.0)
+                if yPosition > yUpPosition {
+                    if (rotation > 180) && (rotation < 360) || (rotation < -180) && (rotation > -360) {
                         rotation = -rotation
                     }
-                    yPosition = yComparePosition
-                } else if yPosition < yOtherComparePosition {
-                    if (rotation > 180) && (rotation < 360) {
+                    yPosition = yUpPosition
+                } else if yPosition < yDownPosition {
+                    if (rotation > 0) && (rotation < 180) || (rotation < 0) && (rotation > -180) {
                         rotation = 360 - rotation
                     }
-                    yPosition = yOtherComparePosition
+                    yPosition = yDownPosition
                 }
                 spriteNode.rotation = rotation
                 spriteNode.scenePosition = CGPointMake(xPosition, yPosition)

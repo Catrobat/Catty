@@ -36,8 +36,8 @@ extension MoveNStepsBrick: CBInstructionProtocol {
             let steps = stepsFormula.interpretDoubleForSprite(object)
             let rotation = ((spriteNode.rotation + 90) % 360) * M_PI / 180
             let position = spriteNode.scenePosition
-            let xPosition = round(Double(position.x) + (steps * sin(rotation)))
-            let yPosition = round(Double(position.y) - (steps * cos(rotation)))
+            let xPosition = round(Double(position.x) - (steps * sin(rotation)))
+            let yPosition = round(Double(position.y) + (steps * cos(rotation)))
             spriteNode.scenePosition = CGPointMake(CGFloat(xPosition), CGFloat(yPosition))
         }
     }

@@ -48,24 +48,24 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     spriteNode.zRotation = 0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
-    TurnRightBrick *brick = [[TurnRightBrick alloc] init];
+    
+    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
     brick.script = script;
-
+    
     Formula *degrees = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
-    formulaTree.value = @"20";
+    formulaTree.value = @"60";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
 
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f", spriteNode.rotation);
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-20.0f), 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 150.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickOver360
@@ -91,7 +91,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f", spriteNode.rotation);
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-40.0f), 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 130.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickNegative
@@ -117,7 +117,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f", spriteNode.rotation);
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 20.0f, 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 70.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickNegativeOver360
@@ -143,7 +143,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f", spriteNode.rotation);
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 40.0f, 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 50.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickWrongInput
@@ -169,7 +169,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f", spriteNode.rotation);
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 0.0, 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 90.0, 0.0001, @"TurnRightBrick not correct");
 }
 
 @end

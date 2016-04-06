@@ -28,13 +28,12 @@ extension PointInDirectionBrick: CBInstructionProtocol {
 
     func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let scene = spriteNode.scene as? CBScene
+              let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            let degrees = self.degrees.interpretDoubleForSprite(object) - PlayerConfig.RotationDegreeOffset
-            spriteNode.rotation = scene.convertDegreesToScene(degrees)
+            let degrees = self.degrees.interpretDoubleForSprite(object)
+            spriteNode.rotation = degrees
         }
     }
 
