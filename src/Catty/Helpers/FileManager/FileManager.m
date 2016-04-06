@@ -134,7 +134,11 @@
             NSArray *fileParts = [fileName componentsSeparatedByString:@"."];
             NSString *fileNameWithoutExtension = ([fileParts count] ? [fileParts firstObject] : fileName);
             sound.fileName = fileName;
-            NSRange stringRange = {0, MIN([fileNameWithoutExtension length], kMaxNumOfSoundNameCharacters)};
+            NSUInteger soundNameLength = [fileNameWithoutExtension length];
+            if (soundNameLength > kMaxNumOfSoundNameCharacters)
+                soundNameLength = kMaxNumOfSoundNameCharacters;
+            
+            NSRange stringRange = {0,  soundNameLength};
             stringRange = [fileNameWithoutExtension rangeOfComposedCharacterSequencesForRange:stringRange];
             sound.name = [fileNameWithoutExtension substringWithRange:stringRange];
             sound.playing = NO;
@@ -552,7 +556,7 @@
 
 - (void)stopLoading:(NSURLSessionDownloadTask *)task
 {
-    [task suspend];
+    [task cancel];
     NSURL* url = [self.programTaskDict objectForKey:task];
     if (url) {
         [self.programTaskDict removeObjectForKey:task];
@@ -651,12 +655,12 @@
 {
     if (error) {
         // XXX: hack: workaround for app crash issue...
-        if (error.code != -1009) {
+        if (error.code != kCFURLErrorNotConnectedToInternet) {
             [task suspend];
             UIApplication* app = [UIApplication sharedApplication];
             app.networkActivityIndicatorVisible = NO;
         }
-        if (error.code == -1003) {
+        if (error.code == kCFURLErrorCannotFindHost) {
             if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate setBackDownloadStatus];
@@ -664,7 +668,7 @@
             }
             return;
         }
-        if (error.code == -1001){
+        if (error.code == kCFURLErrorTimedOut){
             if ([self.delegate respondsToSelector:@selector(timeoutReached)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate timeoutReached];
