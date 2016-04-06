@@ -235,6 +235,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
     navigItem.leftBarButtonItem = item;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
+    self.deleteButton.imageEdgeInsets = UIEdgeInsetsMake(10 , 20, 10, 20);
 }
 
 - (void)viewWillAppear:(BOOL)animated
