@@ -167,8 +167,9 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         // execute closures (not node dependend!)
-        dispatch_async(lockWaitQueue){
-            for (context, closure) in nextWaitClosures {
+        
+        for (context, closure) in nextWaitClosures {
+            dispatch_async(lockWaitQueue){
                 var queue = self._availableWaitQueues.first
                 if queue == nil {
                     self._lastQueueIndex += 1
@@ -195,8 +196,9 @@ final class CBScheduler: CBSchedulerProtocol {
             closure(context: context, scheduler: self)
         }
         
-        dispatch_async(lockBufferQueue){
-            for (context, brick) in nextBufferElements {
+        
+        for (context, brick) in nextBufferElements {
+            dispatch_async(lockBufferQueue){
                 var queue = self._availableBufferQueues.first
                 if queue == nil {
                     queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -218,7 +220,9 @@ final class CBScheduler: CBSchedulerProtocol {
                     }
                 })
             }
-            for (context, condition) in nextConditionalBufferElements {
+        }
+        for (context, condition) in nextConditionalBufferElements {
+            dispatch_async(lockBufferQueue){
                 var queue = self._availableBufferQueues.first
                 if queue == nil {
                     queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -236,7 +240,6 @@ final class CBScheduler: CBSchedulerProtocol {
                     }
                 })
             }
-
         }
         
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
