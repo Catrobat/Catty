@@ -248,7 +248,8 @@
 #define kLocalizedName NSLocalizedString(@"Name", nil)
 #define kLocalizedDownloaded NSLocalizedString(@"Download sucessful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
-
+#define kLocalizedWiFiProgramDownloads NSLocalizedString(@"Download only with WiFi", nil)
+#define kLocalizedNoWifiConnection NSLocalizedString(@"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -262,9 +263,8 @@
 #define kLocalizedNoSearchResults NSLocalizedString(@"No search results", nil)
 #define kLocalizedUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
-#define kLocalizedNoInternetConnectionAvailable NSLocalizedString(@"No internet connection available.", nil)
-#define kLocalizedNoInternetConnection NSLocalizedString(@"No Internet Connection", nil)
-#define kLocalizedSlowInternetConnection NSLocalizedString(@"Slow Internet Connection!",nil)
+#define kLocalizedErrorInternetConnection NSLocalizedString(@"An unknown error occurred. Check your Internet connection.", nil)
+#define kLocalizedErrorUnknown NSLocalizedString(@"An unknown error occurred. Please try again later.", nil)
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
 #define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
 #define kLocalizedImagePickerSourceNotAvailable NSLocalizedString(@"Image source not available",nil)
@@ -601,6 +601,11 @@
 #define klocalizedBluetoothConnectionLost NSLocalizedString(@"Connection Lost", @"bluetooth")
 #define klocalizedBluetoothDisconnected NSLocalizedString(@"Device disconnected.", @"bluetooth")
 
+
+//************************************************************************************************************
+//************************************       MediaLibrary        *********************************************
+//************************************************************************************************************
+#define kLocalizedMediaLibrary NSLocalizedString(@"Media Library", nil)
 
 
 

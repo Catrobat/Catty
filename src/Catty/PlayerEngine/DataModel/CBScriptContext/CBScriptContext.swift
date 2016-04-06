@@ -25,6 +25,7 @@ protocol CBScriptContextProtocol: class {
     var spriteNode: CBSpriteNode { get }
     var script: Script { get }
     var state: CBScriptContextState { get set }
+    var index:Int { get set }
 
     func appendInstructions(instructionList: [CBInstruction])
     func nextInstruction() -> CBInstruction?
@@ -46,6 +47,7 @@ class CBScriptContext: CBScriptContextProtocol {
     final let script: Script
     final var state: CBScriptContextState
     final var count: Int { return _instructionList.count }
+    final var index: Int  = 0
 
     final private var _instructionPointer: Int = 0
     final private lazy var _instructionList = [CBInstruction]()
@@ -60,11 +62,12 @@ class CBScriptContext: CBScriptContextProtocol {
         self.script = script
         self.state = state
         assert(spriteNode.name != nil)
-        let index = spriteNode.spriteObject?.scriptList.indexOfObject(script)
-        assert(index != nil)
-        self.id = "[\(spriteNode.name!)][\(index!)]"
+        let nodeIndex = spriteNode.spriteObject?.scriptList.indexOfObject(script)
+        assert(nodeIndex != nil)
+        self.id = "[\(spriteNode.name!)][\(nodeIndex!)]"
         print(self.id)
         _instructionPointer = 0
+        index = 0
         _instructionList = instructionList
     }
 
@@ -79,7 +82,9 @@ class CBScriptContext: CBScriptContextProtocol {
         if (_instructionPointer == _instructionList.count) || (_instructionList.count == 0) {
             return nil
         }
-        return _instructionList[_instructionPointer++]
+        let instruction = _instructionList[_instructionPointer]
+        _instructionPointer += 1
+        return instruction
     }
 
     final func jump(numberOfInstructions numberOfInstructions: Int) {
@@ -95,6 +100,7 @@ class CBScriptContext: CBScriptContextProtocol {
 
     final func reset() {
         _instructionPointer = 0
+        index += 1
         for brick in script.brickList {
             if brick is LoopBeginBrick { brick.resetCondition() }
         }

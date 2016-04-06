@@ -21,32 +21,27 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
-#import "SoundsTableViewController.h"
+#import "CatrobatPlayerItem.h"
 
-//@protocol AVAudioPlayerDelegate;
+@interface SoundCache : NSObject <NSCacheDelegate>
 
-@protocol AudioManagerDelegate <NSObject>
+@property (nonatomic, strong, readonly) dispatch_queue_t soundCacheQueue; // readonly access for subclasses
 
--(void)audioItemDidFinishPlaying:(NSNotification *) notification;
++ (instancetype)sharedSoundCache;
 
-@end
+- (CatrobatPlayerItem*)cachedSoundForName:(NSString*)name;
 
-@interface AudioManager : NSObject <AVAudioPlayerDelegate>
+- (CatrobatPlayerItem*)cachedSoundForPath:(NSString*)path;
 
-+ (instancetype)sharedAudioManager;
+- (void)addSound:(CatrobatPlayerItem*)image withName:(NSString*)name;
 
-- (BOOL)playSoundWithFileName:(NSString*)fileName
-                       andKey:(NSString*)key
-                   atFilePath:(NSString*)filePath
-                     delegate:(id<AudioManagerDelegate>) delegate;
-- (BOOL)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
+- (void)replaceSound:(CatrobatPlayerItem*)image withName:(NSString*)name;
 
-- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)stopAllSounds;
-- (void)pauseAllSounds;
-- (void)resumeAllSounds;
-- (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath;
+- (void)loadSoundFromDiskWithPath:(NSString*)path
+                     onCompletion:(void(^)(CatrobatPlayerItem *playerItem, NSString* path))completion;
+
+- (CatrobatPlayerItem *)loadSoundFromDiskWithPath:(NSString*)path;
+
+- (void)clearSoundCache;
 
 @end

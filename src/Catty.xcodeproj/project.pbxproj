@@ -87,6 +87,8 @@
 		4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */; };
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
+		4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */; };
+		4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
 		4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */; };
@@ -221,6 +223,8 @@
 		926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroTests.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
 		9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */; };
+		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
+		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
 		927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */; };
 		927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DB1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m */; };
 		927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79DF1BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m */; };
@@ -328,6 +332,7 @@
 		92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99491BC3CA870003A891 /* Firmata.swift */; };
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
 		92F1A8CE1BE3516B00415032 /* RequiredRescourses.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */; };
+		92F6C5211CB135F3008BE0C4 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
@@ -613,6 +618,7 @@
 		AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */; };
 		AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */; };
 		AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22891BC0D0630076F11E /* TurnRightBrick+Instruction.swift */; };
+		AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */; };
 		AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */; };
 		AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
 		AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -936,6 +942,8 @@
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
 		4C79F5531B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentProgramsStoreViewControllerTests.h; path = Download/RecentProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentProgramsStoreViewControllerTests.m; path = Download/RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
+		4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_092.xml; sourceTree = "<group>"; };
+		4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_097.xml; sourceTree = "<group>"; };
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -1153,6 +1161,10 @@
 		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
 		9266F95D1BDFBE3C0034828B /* ProgramVariablesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramVariablesManager.h; sourceTree = "<group>"; };
 		9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramVariablesManager.m; sourceTree = "<group>"; };
+		9276B7031C9E8F6C008BC594 /* SoundCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCache.h; sourceTree = "<group>"; };
+		9276B7041C9E8F6C008BC594 /* SoundCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCache.m; sourceTree = "<group>"; };
+		9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatPlayerItem.h; sourceTree = "<group>"; };
+		9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatPlayerItem.m; sourceTree = "<group>"; };
 		927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroIfSensorData.h; sourceTree = "<group>"; };
 		927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroIfSensorData.m; sourceTree = "<group>"; };
 		927F79DA1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroIfLogicBeginBrickCell.h; sourceTree = "<group>"; };
@@ -1348,6 +1360,7 @@
 		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		92F1A8CD1BE3516B00415032 /* RequiredRescourses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredRescourses.m; sourceTree = "<group>"; };
+		92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
@@ -1899,6 +1912,8 @@
 		AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetYBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/SetYBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TurnLeftBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/TurnLeftBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAAF22891BC0D0630076F11E /* TurnRightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TurnRightBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/TurnRightBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAB2B7261C6D086100ED0664 /* MediaLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaLibraryViewController.h; sourceTree = "<group>"; };
+		AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaLibraryViewController.m; sourceTree = "<group>"; };
 		AABCB3C41BB36120009F67D2 /* CBBackendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendProtocol.swift; path = PlayerEngine/Protocols/CBBackendProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandlerProtocol.swift; path = PlayerEngine/Protocols/CBBroadcastHandlerProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendProtocol.swift; path = PlayerEngine/Protocols/CBFrontendProtocol.swift; sourceTree = "<group>"; };
@@ -2251,6 +2266,7 @@
 				CAE3E51F1B4C50B300CC88BD /* Rock_paper_scissors */,
 				CAE3E5221B4C50B300CC88BD /* Skydiving_Steve */,
 				CAE3E5251B4C50B300CC88BD /* SKYPASCAL */,
+				4C8B79531CB141AA001231F1 /* Solar_System_v1.0 */,
 				CAE3E5281B4C50B300CC88BD /* Tic_Tac_Toe_Master */,
 				CAE3E52B1B4C50B300CC88BD /* Word_balloon_demo */,
 				CAE3E52E1B4C50B300CC88BD /* X_Ray_phone */,
@@ -2826,6 +2842,16 @@
 			path = "Old Parser";
 			sourceTree = "<group>";
 		};
+		4C8B79531CB141AA001231F1 /* Solar_System_v1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */,
+				4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */,
+			);
+			name = Solar_System_v1.0;
+			path = CattyTests/Resources/ParserTests/Solar_System_v1.0;
+			sourceTree = SOURCE_ROOT;
+		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -3117,6 +3143,15 @@
 				9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */,
 			);
 			path = ProgramVariablesManager;
+			sourceTree = "<group>";
+		};
+		9276B7021C9E8F6C008BC594 /* SoundCache */ = {
+			isa = PBXGroup;
+			children = (
+				9276B7031C9E8F6C008BC594 /* SoundCache.h */,
+				9276B7041C9E8F6C008BC594 /* SoundCache.m */,
+			);
+			path = SoundCache;
 			sourceTree = "<group>";
 		};
 		928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */ = {
@@ -3523,6 +3558,14 @@
 			path = requiredResources;
 			sourceTree = "<group>";
 		};
+		92F6C51F1CB135F3008BE0C4 /* OrderedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */,
+			);
+			path = OrderedDictionary;
+			sourceTree = "<group>";
+		};
 		92FF2DFD1A24C3BE00093DA7 /* Defines */ = {
 			isa = PBXGroup;
 			children = (
@@ -3721,6 +3764,8 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				92F6C51F1CB135F3008BE0C4 /* OrderedDictionary */,
+				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92EC99481BC3CA870003A891 /* Firmata */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				D63864691AE63EB4008569E6 /* Keychain */,
@@ -3752,6 +3797,8 @@
 				92FF2E4F1A24C7D800093DA7 /* AudioManager.m */,
 				92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */,
 				92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */,
+				9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */,
+				9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -4151,6 +4198,8 @@
 				92FF313D1A24DEB300093DA7 /* Help */,
 				92FF31401A24DEB300093DA7 /* Programs */,
 				92FF31431A24DEB300093DA7 /* Scene */,
+				AAB2B7261C6D086100ED0664 /* MediaLibraryViewController.h */,
+				AAB2B7271C6D086100ED0664 /* MediaLibraryViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -5820,6 +5869,7 @@
 				4CEF0CD21B9C63E7003C9B20 /* Memory_096.xml in Resources */,
 				4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */,
 				CAE3E5381B4C50B300CC88BD /* Air_fight_0.5_093.xml in Resources */,
+				4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */,
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
@@ -5889,6 +5939,7 @@
 				4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */,
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
+				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
 				4CE2D40D1C29505000938B5E /* Pong_Starter_097.xml in Resources */,
@@ -6352,6 +6403,7 @@
 				92DFB05A1A38960C00FA9B0F /* LCTableViewPickerControl.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				AA74EE271BC0540D00D1E954 /* SetVariableBrick+Instruction.swift in Sources */,
+				9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */,
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
@@ -6447,6 +6499,7 @@
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
+				AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
@@ -6520,6 +6573,7 @@
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
+				92F6C5211CB135F3008BE0C4 /* OrderedDictionary.swift in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
@@ -6603,6 +6657,7 @@
 				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
 				921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				92DFB0611A38960C00FA9B0F /* NKOColorPickerView.m in Sources */,
+				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				AA74F00D1BC05B5F00D1E954 /* SpeakBrick.m in Sources */,
 				AA74EEDE1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
@@ -6820,6 +6875,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -6882,6 +6938,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -6940,7 +6997,7 @@
 		CA7698B31B0E4A97000D0340 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -6982,7 +7039,7 @@
 		CA7698B41B0E4A97000D0340 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -7038,6 +7095,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
 					"DEBUG=1",
+					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
@@ -7048,6 +7106,7 @@
 					"-ObjC",
 					"-all_load",
 					"-lxml2",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat;
 				PRODUCT_NAME = "Pocket Code";
@@ -7078,6 +7137,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
 					"DEBUG=0",
+					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
@@ -7088,6 +7148,7 @@
 					"-ObjC",
 					"-all_load",
 					"-lxml2",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.catrobat;
 				PRODUCT_NAME = "Pocket Code";

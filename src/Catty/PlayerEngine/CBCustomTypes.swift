@@ -31,8 +31,7 @@ typealias CBConditionalFormulaBufferElement = (context: CBScriptContextProtocol,
 typealias CBExecClosure = (context: CBScriptContextProtocol, scheduler: CBSchedulerProtocol) -> Void
 typealias CBHighPriorityExecClosure = (context: CBScriptContextProtocol,
     scheduler: CBSchedulerProtocol, broadcastHandler: CBBroadcastHandlerProtocol) -> Void
-typealias CBLongActionClosure = (SKNode, CGFloat) -> Void
-typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> CBLongActionClosure
+typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> SKAction
 
 // MARK: - Enums
 indirect enum CBInstruction {
@@ -119,7 +118,7 @@ extension CollectionType where Generator.Element == CBScriptContextProtocol {
             if element == e {
                 return index
             }
-            ++index
+            index += 1
         }
         return nil
     }
@@ -143,7 +142,7 @@ extension CollectionType where Generator.Element == CBBroadcastScriptContextProt
             if element == e {
                 return index
             }
-            ++index
+            index += 1
         }
         return nil
     }

@@ -91,7 +91,7 @@ final class CBSpriteNode: SKSpriteNode {
         }
         if let spriteObject = self.spriteObject {
             var index = spriteObject.lookList.indexOfObject(currentLook!)
-            ++index
+            index += 1
             index %= spriteObject.lookList.count
             return spriteObject.lookList[index] as? Look
         }
@@ -187,15 +187,7 @@ final class CBSpriteNode: SKSpriteNode {
         _lastTimeTouchedSpriteNode[spriteName] = NSDate()
 
         scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
-//        if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
-//            for whenContext in whenContexts {
-//                if scheduler.isContextScheduled(whenContext) {
-//                    scheduler.forceStopContext(whenContext)
-//                }
-//                scheduler.scheduleContext(whenContext)
-//            }
-//            scheduler.runNextInstructionsGroup()
-//        }
+
         return true
     }
 

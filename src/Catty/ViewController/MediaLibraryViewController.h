@@ -20,33 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
+#import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 
-//@protocol AVAudioPlayerDelegate;
-
-@protocol AudioManagerDelegate <NSObject>
-
--(void)audioItemDidFinishPlaying:(NSNotification *) notification;
-
-@end
-
-@interface AudioManager : NSObject <AVAudioPlayerDelegate>
-
-+ (instancetype)sharedAudioManager;
-
-- (BOOL)playSoundWithFileName:(NSString*)fileName
-                       andKey:(NSString*)key
-                   atFilePath:(NSString*)filePath
-                     delegate:(id<AudioManagerDelegate>) delegate;
-- (BOOL)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
-
-- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)stopAllSounds;
-- (void)pauseAllSounds;
-- (void)resumeAllSounds;
-- (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath;
-
+@interface MediaLibraryViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDataDelegate>
+@property (weak, nonatomic) IBOutlet NSString *urlEnding;
+@property (weak, nonatomic) NSURL *url;
+@property (strong, nonatomic) Sound *sound;
+@property (strong, nonatomic) UIImage *image;
+@property (nonatomic,weak)id<SoundDelegate> soundDelegate;
+@property (nonatomic,weak)id<PaintDelegate> paintDelegate;
 @end

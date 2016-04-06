@@ -119,11 +119,11 @@ final class CBScene: SKScene {
             let numberOfNodes = nodes.count
             if numberOfNodes == 0 { return false } // needed if scene has no background image!
             
-            var nodeIndex = numberOfNodes
-            logger?.debug("Number of touched nodes: \(nodeIndex)")
+            logger?.debug("Number of touched nodes: \(numberOfNodes)")
+            var nodeIndex = numberOfNodes - 1
             
             nodes.forEach { print(">>> \($0.name)") }
-            while --nodeIndex >= 0 {
+            while nodeIndex >= 0 {
                 guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
                     else { fatalError("This should not happen!") }
                 if currentNode.name == nil {
@@ -146,6 +146,7 @@ final class CBScene: SKScene {
                     }
                     
                 }
+                nodeIndex -= 1
             }
             return true
         }
@@ -187,7 +188,7 @@ final class CBScene: SKScene {
             spriteNode.setLook()
             spriteNode.userInteractionEnabled = true
             if spriteNode.spriteObject?.isBackground() == false {
-                ++zPosition
+                zPosition += 1
             }
             scheduler?.registerSpriteNode(spriteNode)
 

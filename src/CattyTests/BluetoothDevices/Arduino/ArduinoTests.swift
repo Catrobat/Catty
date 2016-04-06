@@ -58,7 +58,7 @@ class ArduinoTests: XCTestCase {
         let pin5 : [Int:Int] = [2:2]
         let pins = [pin0,pin1,pin2,pin3,pin4,pin5]
         var k = 0;
-        for (var i = 0; i < 6 ; i++)
+        for i in 0 ..< 6
         {
             let modes:[Int:Int] = pins[i]
             
@@ -68,7 +68,7 @@ class ArduinoTests: XCTestCase {
                 pin["name"] = "D\(i)"
             }else{
                 pin["name"] = "A\(k)"
-                k++
+                k += 1
             }
             pin["modes"] = modes
             pin["firmatapin"] = i
@@ -559,7 +559,7 @@ class ArduinoTests: XCTestCase {
         for _ in arduinoTest.pinsArray {
             let arduinoTestPin = arduinoTest.pinsArray[i]
             let mockTestPin = mock.pinsArray[i]
-            i++;
+            i += 1;
             XCTAssertEqual(arduinoTestPin["name"] as? String, mockTestPin["name"] as? String, "Capability-name is wrong")
             XCTAssertEqual(arduinoTestPin["firmatapin"] as? Int, mockTestPin["firmatapin"] as? Int, "Capability-firmataPin is wrong")
             XCTAssertEqual((arduinoTestPin["modes"] as? [Int:Int])!, (mockTestPin["modes"] as? [Int:Int])!, "Capability-mode is wrong")
