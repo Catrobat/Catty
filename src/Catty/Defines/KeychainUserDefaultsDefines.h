@@ -31,6 +31,7 @@
 
 #define kUseFaceDetectionSensors @"useFaceDetectionSensors"
 #define kUseFrontCamera @"useFrontCamera"
+#define kUseWiFiDownload @"useWiFiDownload"
 
 #define kPhiroActivated 0
 #define kArduinoActivated 1
