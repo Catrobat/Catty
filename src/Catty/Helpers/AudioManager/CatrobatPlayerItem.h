@@ -20,33 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "SoundsTableViewController.h"
 
-//@protocol AVAudioPlayerDelegate;
+@interface CatrobatPlayerItem : AVPlayerItem
 
-@protocol AudioManagerDelegate <NSObject>
-
--(void)audioItemDidFinishPlaying:(NSNotification *) notification;
-
-@end
-
-@interface AudioManager : NSObject <AVAudioPlayerDelegate>
-
-+ (instancetype)sharedAudioManager;
-
-- (BOOL)playSoundWithFileName:(NSString*)fileName
-                       andKey:(NSString*)key
-                   atFilePath:(NSString*)filePath
-                     delegate:(id<AudioManagerDelegate>) delegate;
-- (BOOL)playSoundWithFileName:(NSString*)fileName andKey:(NSString*)key atFilePath:(NSString*)filePath;
-
-- (void)setVolumeToPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key;
-- (void)stopAllSounds;
-- (void)pauseAllSounds;
-- (void)resumeAllSounds;
-- (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath;
+@property (nonatomic,strong) NSString *key;
 
 @end
