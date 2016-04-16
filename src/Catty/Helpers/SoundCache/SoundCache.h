@@ -21,7 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "CatrobatPlayerItem.h"
+#import "CatrobatAudioPlayer.h"
 
 @interface SoundCache : NSObject <NSCacheDelegate>
 
@@ -29,18 +29,18 @@
 
 + (instancetype)sharedSoundCache;
 
-- (CatrobatPlayerItem*)cachedSoundForName:(NSString*)name;
+- (CatrobatAudioPlayer*)cachedSoundForName:(NSString*)name;
 
-- (CatrobatPlayerItem*)cachedSoundForPath:(NSString*)path;
+- (CatrobatAudioPlayer*)cachedSoundForPath:(NSString*)path;
 
-- (void)addSound:(CatrobatPlayerItem*)image withName:(NSString*)name;
+- (void)addSound:(CatrobatAudioPlayer*)image withName:(NSString*)name;
 
-- (void)replaceSound:(CatrobatPlayerItem*)image withName:(NSString*)name;
+- (void)replaceSound:(CatrobatAudioPlayer*)image withName:(NSString*)name;
 
 - (void)loadSoundFromDiskWithPath:(NSString*)path
-                     onCompletion:(void(^)(CatrobatPlayerItem *playerItem, NSString* path))completion;
+                     onCompletion:(void(^)(CatrobatAudioPlayer *playerItem, NSString* path))completion;
 
-- (CatrobatPlayerItem *)loadSoundFromDiskWithPath:(NSString*)path;
+- (CatrobatAudioPlayer *)loadSoundFromDiskWithPath:(NSString*)path;
 
 - (void)clearSoundCache;
 
