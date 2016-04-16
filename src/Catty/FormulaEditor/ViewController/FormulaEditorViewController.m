@@ -55,6 +55,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "ProgramVariablesManager.h"
 #import "CatrobatAlertController.h"
+#import "ShapeButton.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -95,7 +96,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *logicButton;
 @property (weak, nonatomic) IBOutlet UIButton *objectButton;
 @property (weak, nonatomic) IBOutlet UIButton *sensorButton;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet ShapeButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *variableButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
@@ -235,7 +236,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
     navigItem.leftBarButtonItem = item;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
-    self.deleteButton.imageEdgeInsets = UIEdgeInsetsMake(10 , 20, 10, 20);
+    self.deleteButton.shapeStrokeColor = [UIColor navTintColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
