@@ -101,6 +101,7 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextWaitClosures = [CBScheduleElement]()
         var nextBufferElements = [CBFormulaBufferElement]()
         var nextConditionalBufferElements = [CBConditionalFormulaBufferElement]()
+        var hasActions = false
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
@@ -140,6 +141,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
             // execute actions (node dependend!)
             if nextActionElements.count > 0 {
+                hasActions = true
                 let groupAction = nextActionElements.count > 1
                                 ? SKAction.group(nextActionElements.map { $0.action })
                                 : nextActionElements.first!.1
@@ -151,6 +153,7 @@ final class CBScheduler: CBSchedulerProtocol {
             }
 
             for (context, duration, actionCreateClosure) in nextLongActionElements {
+                hasActions = true
                 var durationTime = 0.0
                 switch duration {
                 case let .VarTime(formula):
@@ -183,7 +186,8 @@ final class CBScheduler: CBSchedulerProtocol {
                     self._availableWaitQueues += queue!
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.runNextInstructionOfContext(context)
+//                            self.runNextInstructionOfContext(context)
+                            context.state = .Runnable
                         }
                     }
                 })
@@ -212,7 +216,8 @@ final class CBScheduler: CBSchedulerProtocol {
                     self._availableBufferQueues += queue!
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.runNextInstructionOfContext(context)
+//                            self.runNextInstructionOfContext(context)
+                            context.state = .Runnable
                         }
                     }
                 })
@@ -233,21 +238,31 @@ final class CBScheduler: CBSchedulerProtocol {
                     self._availableBufferQueues += queue!
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
-                            self.runNextInstructionOfContext(context)
+//                            self.runNextInstructionOfContext(context)
+                            context.state = .Runnable
                         }
                     }
                 })
             }
         }
         
-        if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
-            runNextInstructionsGroup()
-            return
+        if nextHighPriorityClosures.count == 0 {
+            dispatch_async(dispatch_get_main_queue()) {
+                //                            self.runNextInstructionOfContext(context)
+                if hasActions == false {
+                    self.runNextInstructionsGroup()
+                }
+                
+            }
         }
+
 
         for (context, closure) in nextHighPriorityClosures {
             closure(context: context, scheduler: self, broadcastHandler: _broadcastHandler)
         }
+
+
+        
     }
 
     // MARK: - Events
@@ -297,7 +312,7 @@ final class CBScheduler: CBSchedulerProtocol {
             scheduleContext(context)
         }
 
-        runNextInstructionsGroup()
+//        runNextInstructionsGroup()
     }
 
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
@@ -310,7 +325,7 @@ final class CBScheduler: CBSchedulerProtocol {
             scheduleContext(context)
         }
         
-        //runNextInstructionsGroup()
+//        runNextInstructionsGroup()
 
     }
 
