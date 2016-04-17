@@ -34,6 +34,8 @@ IB_DESIGNABLE
 @property (nonatomic, strong) IBInspectable UIColor *shapeStrokeColor; // Default white
 @property (nonatomic, assign) IBInspectable CGFloat leftShapeInset; // Default 20.f
 @property (nonatomic, assign) IBInspectable CGFloat topShapeInset; // Default 10.f
+@property (nonatomic, assign) IBInspectable CGFloat shapePathOffsetX; // Default 18.f
+@property (nonatomic, assign) IBInspectable CGFloat shapePathOffsetY; // Default 10.f
 
 + (instancetype)shapeButtonWithType:(ShapeButtonType)type frame:(CGRect)frame;
 

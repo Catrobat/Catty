@@ -146,6 +146,8 @@
     self.shapeStrokeColor = [UIColor whiteColor];
     self.leftShapeInset = 20.f;
     self.topShapeInset = 10.f;
+    self.shapePathOffsetX = 18.f;
+    self.shapePathOffsetY = 10.f;
 }
 
 - (CAShapeLayer *)backSpaceShapeLayer
@@ -155,14 +157,41 @@
     self.backGroundLayer.backgroundColor = [UIColor clearColor].CGColor;
     [self.layer addSublayer:self.backGroundLayer];
     
-    CGRect pathRect = CGRectInset(self.bounds, self.leftShapeInset, self.topShapeInset);
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:pathRect];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    shapeLayer.path = path.CGPath;
-    shapeLayer.fillColor = [UIColor clearColor].CGColor;
     shapeLayer.strokeColor = self.shapeStrokeColor.CGColor;
+    shapeLayer.fillColor = [UIColor clearColor].CGColor;
     shapeLayer.lineWidth = self.lineWidth;
+    shapeLayer.miterLimit = 2.f;
     
+    CGFloat pathOffsetX = self.shapePathOffsetX;
+    CGFloat pathOffsetY = self.shapePathOffsetY;
+    CGRect shapeRect = CGRectInset(self.backGroundLayer.bounds, pathOffsetX, pathOffsetY);
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(pathOffsetX, CGRectGetHeight(shapeRect) / 2.f + pathOffsetY)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 3.f + pathOffsetX, pathOffsetY)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX, pathOffsetY)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX, CGRectGetHeight(shapeRect) + pathOffsetY)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 3.f +  pathOffsetX, CGRectGetHeight(shapeRect) + pathOffsetY)];
+    [path closePath];
+
+    CGFloat subPathOffSetX = ceilf(CGRectGetWidth(shapeRect) / 5.f);
+    CGFloat subPathOffSetY = ceilf(CGRectGetHeight(shapeRect) / 6.f);
+    
+    UIBezierPath *leftLinePath = [UIBezierPath bezierPath];
+    [leftLinePath moveToPoint:CGPointMake(CGRectGetWidth(shapeRect) - pathOffsetX + subPathOffSetX, pathOffsetY + subPathOffSetY)];
+    [leftLinePath addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX - subPathOffSetX, CGRectGetHeight(shapeRect) + pathOffsetY - subPathOffSetY)];
+    [leftLinePath closePath];
+    [path appendPath:leftLinePath];
+    
+    UIBezierPath *rightLinePath = [UIBezierPath bezierPath];
+    [rightLinePath moveToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX - subPathOffSetX, pathOffsetY + subPathOffSetY)];
+    [rightLinePath addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) - pathOffsetX + subPathOffSetX, CGRectGetHeight(shapeRect) + pathOffsetY - subPathOffSetY)];
+    [rightLinePath closePath];
+    [path appendPath:rightLinePath];
+    
+    shapeLayer.path = path.CGPath;
+
     return shapeLayer;
 }
 
