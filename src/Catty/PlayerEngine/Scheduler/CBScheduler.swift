@@ -169,7 +169,7 @@ final class CBScheduler: CBSchedulerProtocol {
         // execute closures (not node dependend!)
         
         for (context, closure) in nextWaitClosures {
-            dispatch_async(_lockWaitQueue){
+            dispatch_async(self._lockWaitQueue) {
                 var queue = self._availableWaitQueues.first
                 if queue == nil {
                     self._lastQueueIndex += 1
@@ -180,7 +180,9 @@ final class CBScheduler: CBSchedulerProtocol {
                 dispatch_async(queue!, {
                     let index = context.index
                     closure(context: context, scheduler: self)
-                    self._availableWaitQueues += queue!
+                    dispatch_async(self._lockWaitQueue) {
+                        self._availableWaitQueues += queue!
+                    }
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.runNextInstructionOfContext(context)
@@ -195,7 +197,7 @@ final class CBScheduler: CBSchedulerProtocol {
         }
         
         for (context, brick) in nextBufferElements {
-            dispatch_async(_lockBufferQueue){
+            dispatch_async(self._lockBufferQueue) {
                 var queue = self._availableBufferQueues.first
                 if queue == nil {
                     queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -209,7 +211,9 @@ final class CBScheduler: CBSchedulerProtocol {
                         formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
                     }
                     print("preCalculate")
-                    self._availableBufferQueues += queue!
+                    dispatch_async(self._lockBufferQueue) {
+                        self._availableBufferQueues += queue!
+                    }
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.runNextInstructionOfContext(context)
@@ -220,7 +224,7 @@ final class CBScheduler: CBSchedulerProtocol {
         }
         
         for (context, condition) in nextConditionalBufferElements {
-            dispatch_async(_lockBufferQueue){
+            dispatch_async(self._lockBufferQueue) {
                 var queue = self._availableBufferQueues.first
                 if queue == nil {
                     queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -230,7 +234,9 @@ final class CBScheduler: CBSchedulerProtocol {
                 dispatch_async(queue!, {
                     let index = context.index
                     condition.bufferCondition(context.spriteNode.spriteObject)
-                    self._availableBufferQueues += queue!
+                    dispatch_async(self._lockBufferQueue) {
+                        self._availableBufferQueues += queue!
+                    }
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.runNextInstructionOfContext(context)
