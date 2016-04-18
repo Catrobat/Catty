@@ -140,6 +140,21 @@
 - (void)drawPoint:(UITapGestureRecognizer *)recognizer{
     CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
     [self drawLineFrom:point to:point];
+    UIGraphicsBeginImageContext(self.canvas.saveView.frame.size);
+    [self.canvas.saveView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    if (self.canvas.isEraser) {
+        [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0f];
+    } else {
+        [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
+    }
+    
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
+    self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
+    self.canvas.drawView.image = nil;
+    UIGraphicsEndImageContext();
+
 }
 
 @end
