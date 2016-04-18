@@ -10,11 +10,11 @@
 /* Let's inset everything that's drawn (the handles and the content view)
    so that users can trigger a resize from a few pixels outside of
    what they actually see as the bounding box. */
-#define kSPUserResizableViewGlobalInset -15.0
+#define kSPUserResizableViewGlobalInset -5.0
 
 #define kSPUserResizableViewDefaultMinWidth 40.0
 #define kSPUserResizableViewDefaultMinHeight 40.0
-#define kSPUserResizableViewInteractiveBorderSize 30.0
+#define kSPUserResizableViewInteractiveBorderSize 20.0
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
@@ -65,7 +65,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     
     // (3) Create the gradient to paint the anchor points.
     CGFloat colors [] = { 
-        0.9, 0.57, 0.02, 1.0,
+        0.095, 0.647, 0.717, 1.0,
         1.0, 1.0, 1.0, 1.0
     };
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
@@ -131,7 +131,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     [self addSubview:_borderView];
     self.minWidth = kSPUserResizableViewDefaultMinWidth;
     self.minHeight = kSPUserResizableViewDefaultMinHeight;
-    self.preventsPositionOutsideSuperview = YES;
+    self.preventsPositionOutsideSuperview = NO;
     self.rotation = 0;
 }
 
