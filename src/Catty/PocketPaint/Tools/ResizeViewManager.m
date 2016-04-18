@@ -198,7 +198,6 @@
 
 - (void)takeImage:(UITapGestureRecognizer *)recognizer
 {
-    
     if (self.canvas.activeAction == stamp) {
         if (!self.gotImage) {
             if (self.canvas.saveView.image != nil) {
@@ -208,8 +207,8 @@
                 CGRect rect = self.resizeViewer.frame;
                 rect.origin.x = rect.origin.x + 15 + self.canvas.saveView.frame.origin.x;
                 rect.origin.y = rect.origin.y + 10 + self.canvas.saveView.frame.origin.y;
-                rect.size.width -= 40;
-                rect.size.height -= 10;
+                rect.size.width -= 30;
+                rect.size.height -= 20;
                 //for retina displays
                 self.canvas.saveView.backgroundColor = [UIColor clearColor];
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {

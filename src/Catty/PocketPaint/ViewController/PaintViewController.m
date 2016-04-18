@@ -257,6 +257,10 @@
     self.drawGesture.delegate = self;
     [self.view addGestureRecognizer:self.drawGesture];
     
+    self.drawRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(drawPoint:)];
+    self.drawRecognizer.delegate = self;
+    [self.view addGestureRecognizer:self.drawRecognizer];
+    
     self.lineToolGesture  = [[UIPanGestureRecognizer alloc] initWithTarget:self.lineTool action:@selector(drawLine:)];
     self.lineToolGesture.delegate = self;
     [self.view addGestureRecognizer:self.lineToolGesture];
@@ -379,6 +383,7 @@
     pickerView.tag = 0;
     [self setBackAllActions];
     self.drawGesture.enabled = NO;
+    self.drawRecognizer.enabled = NO;
     self.lineToolGesture.enabled = NO;
     [self.view addSubview:pickerView];
     self.pipetteRecognizer.enabled = NO;
@@ -476,11 +481,15 @@
 
 - (void)setBackAllActions
 {
+    if (self.activeAction == resize){
+        return;
+    }
     self.isEraser = NO;
     self.resizeViewManager.gotImage = NO;
     self.saveView.hidden = NO;
     
     self.drawGesture.enabled = NO;
+    self.drawRecognizer.enabled = NO;
     self.lineToolGesture.enabled = NO;
     self.pipetteRecognizer.enabled = NO;
     self.fillRecognizer.enabled = NO;
@@ -515,6 +524,7 @@
     switch (self.activeAction) {
         case brush:
             self.drawGesture.enabled = YES;
+            self.drawRecognizer.enabled = YES;
             self.currentToolIndicator.image = [UIImage imageNamed:@"brush"];
             break;
         case eraser:
@@ -523,7 +533,7 @@
             break;
         case resize:
             [self resizeInitAction];
-            self.currentToolIndicator.image = [UIImage imageNamed:@"crop"];
+//            self.currentToolIndicator.image = [UIImage imageNamed:@"crop"];
             break;
         case pipette:
             [self initPipette];
@@ -605,12 +615,13 @@
     self.isEraser = YES;
     self.drawView.image = self.saveView.image;
     self.drawGesture.enabled = YES;
+    self.drawRecognizer.enabled = YES;
 }
 
 - (void)resizeInitAction
 {
     if (self.saveView.image) {
-        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.drawView.frame];
+        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:CGRectMake(0 , 0, self.view.frame.size.width-10, self.view.frame.size.height - 10)];
         [self.view addSubview:self.cropperView];
         self.drawView.hidden = YES;
         self.saveView.hidden = YES;

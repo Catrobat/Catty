@@ -57,9 +57,9 @@ static CGSize minSize = {40, 40};
         self.imageView.image = image;
 
         // Pinch
-        UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
-                                                                                                     action:@selector(pinchGesture:)];
-        [self addGestureRecognizer:pinchGestureRecognizer];
+//        UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+//                                                                                                     action:@selector(pinchGesture:)];
+//        [self addGestureRecognizer:pinchGestureRecognizer];
 
         // Pan
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self

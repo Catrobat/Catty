@@ -31,6 +31,8 @@
 @property (nonatomic,weak) PaintViewController* canvas;
 
 - (void)draw:(UIPanGestureRecognizer *)recognizer;
+- (void)drawPoint:(UITapGestureRecognizer *)recognizer;
 - (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)drawLineFrom:(CGPoint)startPoint to:(CGPoint)endPoint;
 
 @end

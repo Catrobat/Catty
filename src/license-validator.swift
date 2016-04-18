@@ -134,7 +134,8 @@ let licenseCheckDirs : [String : License] = [
     "M13ProgressSuite" : .MIT,
     "MXSegmentedPager" : .MIT,
     "Target Support Files" : .MIT,
-    "VGParallaxHeader" : .MIT
+    "VGParallaxHeader" : .MIT,
+    "TOCropViewController" : .MIT
     
 ]
 
@@ -145,7 +146,8 @@ let checkDirs : [String] = [
     "M13ProgressSuite",
     "MXSegmentedPager",
     "Target Support Files",
-    "VGParallaxHeader"
+    "VGParallaxHeader",
+    "TOCropViewController"
 ]
 
 let compatibleLicenses : [License] = [

@@ -167,6 +167,11 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     [_borderView setNeedsDisplay];
 }
 
+-(CGPoint)getTouchStart
+{
+    return touchStart;
+}
+
 static CGFloat SPDistanceBetweenTwoPoints(CGPoint point1, CGPoint point2) {
     CGFloat dx = point2.x - point1.x;
     CGFloat dy = point2.y - point1.y;
@@ -242,6 +247,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     if (self.delegate && [self.delegate respondsToSelector:@selector(userResizableViewDidEndEditing:)]) {
         [self.delegate userResizableViewDidEndEditing:self];
     }
+    touchStart = CGPointZero;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -252,6 +258,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     if (self.delegate && [self.delegate respondsToSelector:@selector(userResizableViewDidEndEditing:)]) {
         [self.delegate userResizableViewDidEndEditing:self];
     }
+    touchStart = CGPointZero;
 }
 
 - (void)showEditingHandles {
