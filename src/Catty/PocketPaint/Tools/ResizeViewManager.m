@@ -210,6 +210,7 @@
                 rect.size.width -= 30;
                 rect.size.height -= 20;
                 //for retina displays
+                UIColor *color = self.canvas.saveView.backgroundColor;
                 self.canvas.saveView.backgroundColor = [UIColor clearColor];
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
                     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
@@ -222,7 +223,7 @@
                 [self.canvas.saveView.layer renderInContext:ctx];
                 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
-                self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+                self.canvas.saveView.backgroundColor = color;
                 [self showStampAction];
                 self.stampImage = viewImage;
                 self.resizeViewer.contentView.image = viewImage;
@@ -235,10 +236,11 @@
         }
     }
     [self.resizeViewer hideEditingHandles];
+    UIColor *color = self.canvas.saveView.backgroundColor;
     self.canvas.saveView.backgroundColor = [UIColor clearColor];
     CGFloat scale = self.canvas.scrollView.zoomScale;
     [self.canvas.scrollView setZoomScale:1.0f];
-    UIGraphicsBeginImageContextWithOptions(self.canvas.helper.frame.size, NO, self.canvas.scrollView.zoomScale);
+    UIGraphicsBeginImageContextWithOptions(self.canvas.drawView.frame.size, NO, 1.0);
     [self.canvas.helper.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -250,7 +252,7 @@
 
     self.canvas.saveView.image = img;
     [self showUserAction];
-    self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.canvas.saveView.backgroundColor = color;
 }
 
 

@@ -122,6 +122,7 @@
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     [self.view bringSubviewToFront:self.currentToolIndicator];
+    [self.view bringSubviewToFront:self.resizeViewManager.resizeViewer];
 }
 
 
@@ -192,11 +193,12 @@
     CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
-    
-    self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.view.backgroundColor = [UIColor lightGrayColor];
+//    self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     
     self.helper = [[UIView alloc] initWithFrame:rect];
+    self.saveView.backgroundColor = [UIColor whiteColor];
     //add blank image at the beginning
     if (self.editingImage) {
         UIImage *image = self.editingImage;
