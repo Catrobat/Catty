@@ -23,6 +23,9 @@
 #import "DrawTool.h"
 #import "UndoManager.h"
 
+static const CGFloat kPointMinDistance = 5.0f;
+static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDistance;
+
 @implementation DrawTool 
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
@@ -42,31 +45,24 @@
       if (self.canvas.isEraser) {
           self.canvas.saveView.hidden = YES;
           self.canvas.drawView.image = self.canvas.saveView.image;
+          self.canvas.drawView.backgroundColor = self.canvas.saveView.backgroundColor;
       }
-//    if (enabled) {
-      fingerSwiped = NO;
-      lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+      CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+      currentPoint = CGPointMake(-1, -1);
+      [self drawLine:point];
   }else if (recognizer.state == UIGestureRecognizerStateChanged){
-//    if (enabled) {
-      fingerSwiped = YES;
-      CGPoint currentPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-      [self drawLineFrom:lastPoint to:currentPoint];
-      lastPoint = currentPoint;
-//    }
-    
+
+      CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+      [self drawLine:point];
   }else {
-//    if (enabled) {
-      if (!fingerSwiped) {
-          // draw a single point
-          [self drawLineFrom:lastPoint to:lastPoint];
-      }
-      if (self.canvas.isEraser && fingerSwiped) {
-            //UNDO-Manager
-            UndoManager* manager = [self.canvas getUndoManager];
-            [manager setImage:self.canvas.saveView.image];
-          self.canvas.saveView.image = self.canvas.drawView.image;
-            self.canvas.drawView.image = nil;
-            self.canvas.saveView.hidden = NO;
+      if (self.canvas.isEraser) {
+        //UNDO-Manager
+        UndoManager* manager = [self.canvas getUndoManager];
+        [manager setImage:self.canvas.saveView.image];
+        self.canvas.saveView.image = self.canvas.drawView.image;
+        self.canvas.drawView.image = nil;
+        self.canvas.drawView.backgroundColor = nil;
+        self.canvas.saveView.hidden = NO;
       } else {
           UIGraphicsBeginImageContext(self.canvas.saveView.frame.size);
           [self.canvas.saveView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
@@ -87,18 +83,39 @@
   
 }
 
--(void)drawLineFrom:(CGPoint)startPoint to:(CGPoint)endPoint {
-
+-(void)drawLine:(CGPoint)startPoint
+{
+    
+    CGFloat dx = startPoint.x - currentPoint.x;
+    CGFloat dy = startPoint.y - currentPoint.y;
+    if (currentPoint.x == -1 && currentPoint.y == -1){
+        beforeLastPoint = startPoint;
+        lastPoint = startPoint;
+        currentPoint = startPoint;
+    } else if ((dx * dx + dy * dy) < kPointMinDistanceSquared) {
+        // ... then ignore this movement
+        return;
+    } else {
+        beforeLastPoint = lastPoint;
+        lastPoint = currentPoint;
+        currentPoint = startPoint;
+    }
+    
+    CGPoint mid1 = [self midPoint:lastPoint and:beforeLastPoint];
+    CGPoint mid2 = [self midPoint:currentPoint and:lastPoint];
+    
+    
+    
     // 1
     UIGraphicsBeginImageContext(self.canvas.drawView.frame.size);
 //    let context = UIGraphicsGetCurrentContext()
     [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height)];
     
     // 2
-    CGPoint mid1 = [self midPoint:startPoint and:endPoint];
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), startPoint.x, startPoint.y);
-    CGContextAddQuadCurveToPoint(UIGraphicsGetCurrentContext(), startPoint.x, startPoint.y, mid1.x, mid1.y);
-    CGContextAddQuadCurveToPoint(UIGraphicsGetCurrentContext(), mid1.x, mid1.y, endPoint.x, endPoint.y);
+
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), mid1.x, mid1.y);
+    CGContextAddQuadCurveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y, mid2.x, mid2.y);
+
     // 3
     switch (self.canvas.ending) {
         case Round:
@@ -139,7 +156,8 @@
 
 - (void)drawPoint:(UITapGestureRecognizer *)recognizer{
     CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-    [self drawLineFrom:point to:point];
+    currentPoint = CGPointMake(-1, -1);
+    [self drawLine:point];
     UIGraphicsBeginImageContext(self.canvas.saveView.frame.size);
     [self.canvas.saveView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     if (self.canvas.isEraser) {
