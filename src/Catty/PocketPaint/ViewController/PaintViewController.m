@@ -318,7 +318,6 @@
     self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
-    
 }
 
 - (void)setupNavigationBar
@@ -402,76 +401,77 @@
     
     self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
     self.colorBarButtonItem.tintColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     switch (self.activeAction) {
         case brush:{
             UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.colorBarButtonItem,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,brushPicker,flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case eraser:{
             UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem ,flexibleSpace,brushPicker,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case resize:{
             UIBarButtonItem* resize = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(resizeAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,resize,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem ,flexibleSpace,resize,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case pipette:{
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem, self.colorBarButtonItem,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem, flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case mirror:{
             UIBarButtonItem* mirrorVertical = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mirror_vertical"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(mirrorVerticalAction)];
             UIBarButtonItem* mirrorHorizontal = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mirror_horizontal"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(mirrorHorizontalAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,mirrorVertical,mirrorHorizontal,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem ,flexibleSpace,mirrorVertical,flexibleSpace,mirrorHorizontal,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case image:{
             UIBarButtonItem* camera = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self.imagePicker action:@selector(cameraImagePickerAction)];
             UIBarButtonItem* cameraRoll = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"image_select"] style:UIBarButtonItemStylePlain target:self.imagePicker action:@selector(imagePickerAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem , camera, cameraRoll,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem , flexibleSpace,camera, flexibleSpace,cameraRoll,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case line:{
             UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker, self.colorBarButtonItem,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem ,flexibleSpace,brushPicker, flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case ellipse:
         case rectangle:
         {
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,self.colorBarButtonItem,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
             
         case stamp:
         {
             UIBarButtonItem* newStamp = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"stamp"] style:UIBarButtonItemStylePlain target:self action:@selector(stampAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,newStamp,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,newStamp,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case rotate:{
             UIBarButtonItem*rotateR = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_right"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
             UIBarButtonItem*rotateL = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_left"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateL,rotateR,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem ,flexibleSpace,rotateL,flexibleSpace,rotateR,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case zoom:{
             UIBarButtonItem* zoomIn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_in"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(zoomIn)];
             UIBarButtonItem* zoomOut = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_out"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(zoomOut)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,zoomIn,zoomOut,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,zoomIn,flexibleSpace,zoomOut,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case fillTool:{
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,self.colorBarButtonItem,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action,flexibleSpace, self.handToolBarButtonItem ,flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         case pointer:{
             UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
             self.pointerToolBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"pointer"] style:UIBarButtonItemStylePlain target:self.pointerTool action:@selector(drawingChangeAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.colorBarButtonItem,self.pointerToolBarButtonItem,self.undo,self.redo, nil];
+            self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,brushPicker,flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.pointerToolBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
         default:
