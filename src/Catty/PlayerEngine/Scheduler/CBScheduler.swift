@@ -35,6 +35,8 @@ final class CBScheduler: CBSchedulerProtocol {
 
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _availableBufferQueues = [dispatch_queue_t]()
+    private let _lockWaitQueue = dispatch_queue_create("org.catrobat.LockWaitQueue", nil)
+    private let _lockBufferQueue = dispatch_queue_create("org.catrobat.LockBufferQueue", nil)
     private var _lastQueueIndex = 0
 
     // MARK: Static properties
@@ -165,72 +167,85 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         // execute closures (not node dependend!)
+        
         for (context, closure) in nextWaitClosures {
-            var queue = _availableWaitQueues.first
-            if queue == nil {
-                _lastQueueIndex += 1
-                queue = dispatch_queue_create("org.catrobat.wait.queue[\(_lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
-            } else {
-                _availableWaitQueues.removeFirst()
-            }
-            dispatch_async(queue!, {
-                let index = context.index
-                closure(context: context, scheduler: self)
-                self._availableWaitQueues += queue!
-                if index == context.index {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.runNextInstructionOfContext(context)
-                    }
+            dispatch_async(self._lockWaitQueue) {
+                var queue = self._availableWaitQueues.first
+                if queue == nil {
+                    self._lastQueueIndex += 1
+                    queue = dispatch_queue_create("org.catrobat.wait.queue[\(self._lastQueueIndex)]", DISPATCH_QUEUE_SERIAL)
+                } else {
+                    self._availableWaitQueues.removeFirst()
                 }
-            })
+                dispatch_async(queue!, {
+                    let index = context.index
+                    closure(context: context, scheduler: self)
+                    dispatch_async(self._lockWaitQueue) {
+                        self._availableWaitQueues += queue!
+                    }
+                    if index == context.index {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.runNextInstructionOfContext(context)
+                        }
+                    }
+                })
+            }
         }
-
 
         for (context, closure) in nextClosures {
             closure(context: context, scheduler: self)
         }
         
         for (context, brick) in nextBufferElements {
-            var queue = _availableBufferQueues.first
-            if queue == nil {
-                queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-            } else {
-                _availableBufferQueues.removeFirst()
-            }
-            dispatch_async(queue!, {
-                let index = context.index
-                let formulaArray = brick.getFormulas()
-                for formula:Formula in formulaArray {
-                    formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
+            dispatch_async(self._lockBufferQueue) {
+                var queue = self._availableBufferQueues.first
+                if queue == nil {
+                    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+                } else {
+                    self._availableBufferQueues.removeFirst()
                 }
-                print("preCalculate")
-                self._availableBufferQueues += queue!
-                if index == context.index {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.runNextInstructionOfContext(context)
+                dispatch_async(queue!, {
+                    let index = context.index
+                    let formulaArray = brick.getFormulas()
+                    for formula:Formula in formulaArray {
+                        formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
                     }
-                }
-            })
+                    print("preCalculate")
+                    dispatch_async(self._lockBufferQueue) {
+                        self._availableBufferQueues += queue!
+                    }
+                    if index == context.index {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.runNextInstructionOfContext(context)
+                        }
+                    }
+                })
+            }
         }
+        
         for (context, condition) in nextConditionalBufferElements {
-            var queue = _availableBufferQueues.first
-            if queue == nil {
-                queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-            } else {
-                _availableBufferQueues.removeFirst()
-            }
-            dispatch_async(queue!, {
-                let index = context.index
-                condition.bufferCondition(context.spriteNode.spriteObject)
-                self._availableBufferQueues += queue!
-                if index == context.index {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.runNextInstructionOfContext(context)
-                    }
+            dispatch_async(self._lockBufferQueue) {
+                var queue = self._availableBufferQueues.first
+                if queue == nil {
+                    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+                } else {
+                    self._availableBufferQueues.removeFirst()
                 }
-            })
+                dispatch_async(queue!, {
+                    let index = context.index
+                    condition.bufferCondition(context.spriteNode.spriteObject)
+                    dispatch_async(self._lockBufferQueue) {
+                        self._availableBufferQueues += queue!
+                    }
+                    if index == context.index {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.runNextInstructionOfContext(context)
+                        }
+                    }
+                })
+            }
         }
-
+        
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
             runNextInstructionsGroup()
             return
