@@ -925,6 +925,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)cancelPaintSave
 {
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, self.sound.fileName];
+    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
     }
