@@ -72,7 +72,7 @@
     // SpriteKit coordinates: 0/0 => center instead of top left corner
     // SpriteKit: +90 degrees is turn left / -90degrees is turn right
     // Catrabot: 90 degrees shifted
-    XCTAssertEqualWithAccuracy(firstSpriteNode.rotation, 90.0f, 0.1f, @"PointToBrick not correct");
+    XCTAssertEqualWithAccuracy(firstSpriteNode.rotation,0.0f, 0.1f, @"PointToBrick not correct");
 }
 
 - (void)testPointToBrickZeroDegrees

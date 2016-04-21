@@ -32,7 +32,7 @@ extension TurnLeftBrick: CBInstructionProtocol {
             else { debugPrint("This should never happen!"); return {}}
 
         return {
-               spriteNode.rotation += self.degrees.interpretDoubleForSprite(object)
+               spriteNode.rotation -= self.degrees.interpretDoubleForSprite(object)
         }
     }
 }

@@ -37,14 +37,17 @@ final class CBSpriteNode: SKSpriteNode {
     var scaleY: CGFloat { return (100 * yScale) }
     var rotation: Double {
         set {
-            var rotationInDegrees = newValue%360.0 // swift equivalent for fmodf
-            if rotationInDegrees < 0.0 { rotationInDegrees += 360.0 }
-            self.zRotation = CGFloat(Util.degreeToRadians(rotationInDegrees))
+            var rotationInDegrees = 0.0
+            if newValue < 0.0 {
+               rotationInDegrees = newValue % -360.0 // swift equivalent for fmodf
+            } else {
+               rotationInDegrees = newValue % 360.0 // swift equivalent for fmodf
+            }
+            self.zRotation = CGFloat(Util.degreeToRadians(-rotationInDegrees+PlayerConfig.RotationDegreeOffset))
         }
         get {
-            var rotation = Util.radiansToDegree(Double(self.zRotation))%360.0 // swift equivalent for fmodf
-            if (rotation < 0.0) { rotation += 360.0 }
-            return rotation
+            let degrees = Util.radiansToDegree(Double(self.zRotation))
+            return -(degrees-PlayerConfig.RotationDegreeOffset)
         }
     }
     private var _lastTimeTouchedSpriteNode = [String:NSDate]()
@@ -150,7 +153,6 @@ final class CBSpriteNode: SKSpriteNode {
     // MARK: Events
     func start(zPosition: CGFloat) {
         self.scenePosition = CGPointMake(0, 0)
-        self.zRotation = 0
         self.currentLookBrightness = 0
         if self.spriteObject?.isBackground() == true {
             self.zPosition = 0

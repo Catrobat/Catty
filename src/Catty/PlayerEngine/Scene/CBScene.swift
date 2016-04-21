@@ -170,6 +170,7 @@ final class CBScene: SKScene {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.name = spriteObject.name
             spriteNode.hidden = false
+            spriteNode.rotation = 90.0
             guard let scriptList = spriteObject.scriptList as NSArray? as? [Script]
             else { fatalError("!! No script list given in object: \(spriteObject) !!") }
 
