@@ -122,11 +122,12 @@
     NSString *returnValue;
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:[[internToken getTokenStringValue] stringByReplacingOccurrencesOfString:@" " withString:@""]];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
+    NSString* tokenString = [[internToken getTokenStringValue] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
     switch ([internToken getInternTokenType]) {
-        case TOKEN_TYPE_NUMBER:
+        case TOKEN_TYPE_NUMBER:{
+            NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:tokenString];
+            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
 
             if(![[NSDecimalNumber notANumber] isEqual:number])
             {
@@ -156,7 +157,7 @@
             }
             
             break;
-            
+        }
         case TOKEN_TYPE_OPERATOR:
             return [Operators getExternName:[internToken getTokenStringValue]];
             
