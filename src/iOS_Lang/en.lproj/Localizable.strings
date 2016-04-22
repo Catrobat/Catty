@@ -85,6 +85,9 @@
 /* No comment provided by engineer. */
 "arduino_digital" = "arduino_digital";
 
+/* paint */
+"Attributes:" = "Attributes:";
+
 /* No comment provided by engineer. */
 "Aug" = "Aug";
 
@@ -114,6 +117,9 @@
 
 /* No comment provided by engineer. */
 "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device." = "Bluetooth is turned off. Please turn it on to connect to a Bluetooth device.";
+
+/* paint */
+"bold" = "bold";
 
 /* No comment provided by engineer. */
 "Both" = "Both";
@@ -607,6 +613,9 @@
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
 
+/* paint */
+"italic" = "italic";
+
 /* No comment provided by engineer. */
 "Jan" = "Jan";
 
@@ -938,6 +947,9 @@
 "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
 /* paint */
+"Please enter a text!" = "Please enter a text!";
+
+/* paint */
 "Please pick an item" = "Please pick an item";
 
 /* No comment provided by engineer. */
@@ -1258,6 +1270,9 @@
 /* No comment provided by engineer. */
 "Text message:" = "Text message:";
 
+/* paint */
+"Text:" = "Text:";
+
 /* No comment provided by engineer. */
 "Th" = "Th";
 
@@ -1317,6 +1332,9 @@
 
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* paint */
+"underline" = "underline";
 
 /* Button title of alert view to invoke undo if user shakes device */
 "Undo" = "Undo";

@@ -107,7 +107,7 @@
     _activeAction = brush;
     _degrees = 0;
     
-    self.actionTypeArray = @[@(brush),@(eraser),@(resize),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
+    self.actionTypeArray = @[@(brush),@(eraser),@(resize),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool),@(text)];
     
     [self setupCanvas];
     [self setupTools];
@@ -123,6 +123,13 @@
     }
     [self.view bringSubviewToFront:self.currentToolIndicator];
     [self.view bringSubviewToFront:self.resizeViewManager.resizeViewer];
+    
+    
+    self.text = @"Text";
+    self.textFontDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                               [UIFont systemFontOfSize:40], NSFontAttributeName,
+                               [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
+    self.textDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"Bold",[NSNumber numberWithBool:NO],@"Italic",[NSNumber numberWithBool:NO],@"Underline",[NSNumber numberWithInteger:40],@"Size",[NSNumber numberWithInteger:0],@"Font", nil];
 }
 
 
@@ -445,7 +452,13 @@
             self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,self.colorBarButtonItem,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
-            
+        case text:
+        {
+            UIBarButtonItem* textChanger = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(textAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,self.colorBarButtonItem,flexibleSpace,textChanger,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
+        }
+            break;
+        
         case stamp:
         {
             UIBarButtonItem* newStamp = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"stamp"] style:UIBarButtonItemStylePlain target:self action:@selector(stampAction)];
@@ -562,6 +575,11 @@
             [self initShape];
             break;
         case ellipse:
+            self.currentToolIndicator.image = [UIImage imageNamed:@"circle"];
+            [self.resizeViewManager showResizeView];
+            [self initShape];
+            break;
+        case text:
             self.currentToolIndicator.image = [UIImage imageNamed:@"circle"];
             [self.resizeViewManager showResizeView];
             [self initShape];
@@ -742,6 +760,30 @@
 }
 
 
+#pragma mark change text
+
+-(void)textAction
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    TextInputViewController *tvc = [storyboard instantiateViewControllerWithIdentifier:@"textInputPicker"];
+    tvc.delegate = self;
+    tvc.text = self.text;
+    tvc.fontDictionary = self.textFontDictionary;
+    NSNumber *number = [self.textDictionary objectForKey:@"Bold"];
+    tvc.bold  = number.boolValue;
+    number = [self.textDictionary objectForKey:@"Italic"];
+    tvc.italic  = number.boolValue;
+    number = [self.textDictionary objectForKey:@"Underline"];
+    tvc.underline  = number.boolValue;
+    number = [self.textDictionary objectForKey:@"Size"];
+    tvc.fontSize  = number.integerValue;
+    number = [self.textDictionary objectForKey:@"Font"];
+    tvc.fontType  = number.integerValue;
+    
+    //  self.view.userInteractionEnabled = NO;
+    //  enabled = NO;
+    [self presentViewController:tvc animated:YES completion:nil];
+}
 
 
 #pragma mark tool helpers
@@ -817,11 +859,24 @@
     //  self.view.userInteractionEnabled = YES;
     [self updateToolbar];
     //  enabled = YES;
-    if (self.activeAction == rectangle || self.activeAction == ellipse) {
+    if (self.activeAction == rectangle || self.activeAction == ellipse || self.activeAction == text) {
         [self.resizeViewManager updateShape];
     }
     if (self.activeAction == pointer) {
         [self.pointerTool updateColorView];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark textPickerDelegate
+
+- (void)closeTextInput:(id)sender andDictionary:(NSDictionary *)dict
+{
+    if (dict) {
+        self.textDictionary = dict;
+        self.text = ((TextInputViewController*)sender).text;
+        self.textFontDictionary = ((TextInputViewController*)sender).fontDictionary;
+        [self.resizeViewManager updateShape];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

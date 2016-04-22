@@ -465,7 +465,12 @@ let kLocalizedPaintSquare = NSLocalizedString("square", comment: "paint")
 let kLocalizedPaintPocketPaint = NSLocalizedString("Pocket Paint", comment: "paint")
 let kLocalizedPaintStamped = NSLocalizedString("Stamped", comment: "paint")
 let kLocalizedPaintInserted = NSLocalizedString("Inserted", comment: "paint")
-
+let kLocalizedPaintText = NSLocalizedString("Text:", comment: "paint")
+let kLocalizedPaintAttributes = NSLocalizedString("Attributes:", comment: "paint")
+let kLocalizedPaintBold = NSLocalizedString("bold", comment: "paint")
+let kLocalizedPaintItalic = NSLocalizedString("italic", comment: "paint")
+let kLocalizedPaintUnderline = NSLocalizedString("underline", comment: "paint")
+let kLocalizedPaintTextAlert = NSLocalizedString("Please enter a text!", comment: "paint")
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************

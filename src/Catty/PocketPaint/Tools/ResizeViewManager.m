@@ -162,11 +162,37 @@
       [self.resizeViewer setNeedsDisplay];
     }
       break;
-      
+    case text: {
+          UIImage* image = [self drawText:self.canvas.text];
+          UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
+          self.resizeViewer.contentView = imageView;
+          [self.resizeViewer.contentView setAlpha:self.canvas.opacity];
+          [self.resizeViewer setNeedsDisplay];
+      }
+          break;
     default:
       break;
   }
   
+}
+
+-(UIImage*) drawText:(NSString*)string
+{
+
+    CGSize stringBoundingBox = [string sizeWithAttributes:self.canvas.textFontDictionary];
+    self.resizeViewer.frame = CGRectMake(self.resizeViewer.frame.origin.x, self.resizeViewer.frame.origin.y, stringBoundingBox.width, stringBoundingBox.height);
+    
+    UIGraphicsBeginImageContext(self.resizeViewer.frame.size);
+//    [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
+    CGRect rect = CGRectMake(0 , 0, self.resizeViewer.frame.size.width, self.resizeViewer.frame.size.height);
+    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue,self.canvas.opacity);
+    [self.canvas.textFontDictionary setObject:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity] forKey: NSForegroundColorAttributeName];
+    [string drawInRect:CGRectIntegral(rect) withAttributes:self.canvas.textFontDictionary];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (void)showResizeView

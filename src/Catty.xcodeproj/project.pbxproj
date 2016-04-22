@@ -236,6 +236,7 @@
 		921D468A1BDF698A0086AD20 /* NextLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46841BDF698A0086AD20 /* NextLookBrick+Instruction.swift */; };
 		921D468B1BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46851BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift */; };
 		921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */; };
+		921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */; };
 		921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EE9B51BA8045A00834711 /* JNKeychain.m */; };
 		922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 922123CC1BCAEB1D008AAE45 /* FaceDetection.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
@@ -1155,6 +1156,8 @@
 		921D46841BDF698A0086AD20 /* NextLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NextLookBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/NextLookBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46851BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBrightnessBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBrightnessBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetTransparencyBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetTransparencyBrick+Instruction.swift"; sourceTree = "<group>"; };
+		921E84E61CC9F3E400F7EE9F /* TextInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputViewController.h; sourceTree = "<group>"; };
+		921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputViewController.m; sourceTree = "<group>"; };
 		921EE9B41BA8045A00834711 /* JNKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JNKeychain.h; path = Keychain/JNKeychain.h; sourceTree = "<group>"; };
 		921EE9B51BA8045A00834711 /* JNKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JNKeychain.m; path = Keychain/JNKeychain.m; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -3167,6 +3170,8 @@
 		9218B1F51CC4AB75007B4C60 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				921E84E61CC9F3E400F7EE9F /* TextInputViewController.h */,
+				921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */,
 				9218B1F61CC4AB75007B4C60 /* BrushPickerViewController.h */,
 				9218B1F71CC4AB75007B4C60 /* BrushPickerViewController.m */,
 				9218B1F81CC4AB75007B4C60 /* ColorPickerViewController.h */,
@@ -6388,6 +6393,7 @@
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
 				92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */,
 				AA74F0A41BC05FCE00D1E954 /* LoopEndBrickCell.m in Sources */,
+				921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */,
 				921D467D1BDF61350086AD20 /* ComeToFrontBrick+Instruction.swift in Sources */,
 				9218B20F1CC4AB75007B4C60 /* MirrorRotationZoomTool.m in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,

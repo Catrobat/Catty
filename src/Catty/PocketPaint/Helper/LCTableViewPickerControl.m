@@ -304,6 +304,10 @@
       cell.imageView.image = [UIImage imageNamed:@"pointer"];
     }
       break;
+      case text:{
+          [cell.textLabel setText:@"Text"];
+          cell.imageView.image = [UIImage imageNamed:@"pointer"];
+      }
     default:
       break;
   }
