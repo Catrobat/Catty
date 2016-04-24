@@ -150,6 +150,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self setCursorPositionToEndOfFormula];
     [self update];
+    
     [self.formulaEditorTextView highlightSelection:[[self.internFormula getExternFormulaString] length]
                        start:0
                          end:(int)[[self.internFormula getExternFormulaString] length]];
@@ -543,8 +544,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setCursorPositionToEndOfFormula];
     }
 }
-- (IBAction)backspaceButtonAction:(id)sender {
-  [self backspace:nil];
+- (IBAction)backspaceButtonAction:(id)sender
+{
+    [self backspace:nil];
 }
 
 - (void)backspace:(id)sender
@@ -561,9 +563,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
 }
+
 - (void)updateDeleteButton:(BOOL)enabled
 {
-    [self.deleteButton setEnabled:enabled];
+    self.deleteButton.shapeStrokeColor = enabled ? [UIColor navTintColor] : [UIColor grayColor];
 }
 
 - (IBAction)compute:(id)sender
@@ -1132,7 +1135,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (note.object) {
         FormulaEditorTextView *textView = (FormulaEditorTextView *)note.object;
-        self.deleteButton.shapeStrokeColor = textView.text.length > 0 ? [UIColor navTintColor] : [UIColor grayColor];
+        BOOL containsText = textView.text.length > 0;
+        self.deleteButton.shapeStrokeColor = containsText ? [UIColor navTintColor] : [UIColor grayColor];
+        self.deleteButton.enabled = containsText;
     }
 }
 
