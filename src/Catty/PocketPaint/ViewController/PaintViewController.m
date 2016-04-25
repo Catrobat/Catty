@@ -454,7 +454,7 @@
             break;
         case text:
         {
-            UIBarButtonItem* textChanger = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(textAction)];
+            UIBarButtonItem* textChanger = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"text"] style:UIBarButtonItemStylePlain target:self action:@selector(textAction)];
             self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,self.colorBarButtonItem,flexibleSpace,textChanger,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
@@ -580,7 +580,7 @@
             [self initShape];
             break;
         case text:
-            self.currentToolIndicator.image = [UIImage imageNamed:@"circle"];
+            self.currentToolIndicator.image = [UIImage imageNamed:@"text"];
             [self.resizeViewManager showResizeView];
             [self initShape];
             break;

@@ -451,6 +451,7 @@
 #define kLocalizedPaintFill NSLocalizedString(@"fill", @"paint")
 #define kLocalizedPaintZoom NSLocalizedString(@"zoom", @"paint")
 #define kLocalizedPaintPointer NSLocalizedString(@"pointer", @"paint")
+#define kLocalizedPaintTextTool NSLocalizedString(@"text", @"paint")
 #define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
 #define kLocalizedPaintMenuButtonTitle NSLocalizedString(@"Menu", @"paint")
 #define kLocalizedPaintSelect NSLocalizedString(@"Select option:", @"paint")

@@ -114,11 +114,18 @@
     _boldButton.selected = self.bold;
     
     self.italicButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.italicButton.frame = CGRectMake(20+self.boldButton.frame.size.width, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
+    self.italicButton.frame = CGRectMake(self.view.frame.size.width / 2 - 50, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
     self.italicButton.tintColor = [UIColor globalTintColor];
     [self.italicButton setTitle:kLocalizedPaintItalic forState:UIControlStateNormal];
     [self.italicButton addTarget:self action:@selector(italicAction) forControlEvents:UIControlEventTouchUpInside];
     self.italicButton.selected = self.italic;
+    
+    self.underlineButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.underlineButton.frame = CGRectMake(self.view.frame.size.width - 120, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
+    self.underlineButton.tintColor = [UIColor globalTintColor];
+    [self.underlineButton setTitle:kLocalizedPaintUnderline forState:UIControlStateNormal];
+    [self.underlineButton addTarget:self action:@selector(underlineAction) forControlEvents:UIControlEventTouchUpInside];
+    self.underlineButton.selected = self.underline;
     
 
     [self.view addSubview:self.textField];
@@ -128,7 +135,7 @@
     [self.view addSubview:attributesLabel];
     [self.view addSubview:self.boldButton];
     [self.view addSubview:self.italicButton];
-    
+    [self.view addSubview:self.underlineButton];
 }
 
 - (void) setupPickerViews
@@ -140,7 +147,7 @@
     self.sizePickerView.delegate = self;
     self.sizePickerView.dataSource = self;
     self.sizePickerView.tintColor = [UIColor globalTintColor];
-    self.sizePickerData = [[NSMutableArray alloc] initWithObjects:@"40",@"60",@"80", nil];
+    self.sizePickerData = [[NSMutableArray alloc] initWithObjects:@"40",@"60",@"80",@"100",@"120",nil];
     self.fontPickerData = [[NSMutableArray alloc] initWithObjects:@"Standard",@"Serif",@"SanSerif", nil];
 }
 
@@ -237,6 +244,10 @@
     [self fontSelected:self.selectedRow];
 }
 
+-(void)underlineAction{
+    self.underline = !self.underline;
+    self.underlineButton.selected = self.underline;
+}
 
 /*
 #pragma mark - Navigation
