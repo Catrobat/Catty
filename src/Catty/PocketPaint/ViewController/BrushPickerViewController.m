@@ -54,7 +54,12 @@
         self.view.frame = frame;
         self.brush = controller.thickness;
         self.brushEnding = controller.ending;
-        self.color =[UIColor colorWithRed:controller.red green:controller.green blue:controller.blue alpha:controller.opacity];
+        if (controller.activeAction == eraser){
+            self.color =[UIColor blackColor];
+        } else {
+           self.color =[UIColor colorWithRed:controller.red green:controller.green blue:controller.blue alpha:controller.opacity];
+        }
+        
     }
     return self;
 }

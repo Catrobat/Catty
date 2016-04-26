@@ -304,6 +304,10 @@
       cell.imageView.image = [UIImage imageNamed:@"pointer"];
     }
       break;
+      case text:{
+          [cell.textLabel setText:kLocalizedPaintTextTool];
+          cell.imageView.image = [UIImage imageNamed:@"text"];
+      }
     default:
       break;
   }

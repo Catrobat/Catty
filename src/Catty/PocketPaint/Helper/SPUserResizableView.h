@@ -37,6 +37,7 @@ typedef struct SPUserResizableViewAnchorPoint {
     CGPoint m_originalAnchorPoint;
 }
 
+
 @property (nonatomic,strong)SPGripViewBorderView *borderView;
 
 @property (nonatomic, weak) id <SPUserResizableViewDelegate> delegate;
@@ -94,6 +95,8 @@ typedef struct SPUserResizableViewAnchorPoint {
 - (BOOL)isResizing;
 
 - (void)changeBorderWithColor:(UIColor*)color;
+
+-(CGPoint)getTouchStart;
 
 @property(nonatomic) CGFloat rotation;
 
