@@ -24,7 +24,6 @@
 #import "AudioManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "CatrobatAudioPlayer.h"
-#import "CatrobatPlayerItem.h"
 #import "SoundCache.h"
 
 @interface AudioManager()
@@ -68,68 +67,41 @@
 - (BOOL)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
-                     delegate:(SoundsTableViewController*) delegate
+                     delegate:(id<AVAudioPlayerDelegate>) delegate
 {
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
     if (! audioPlayers) {
         audioPlayers = [[NSMutableDictionary alloc] init];
         [self.sounds setObject:audioPlayers forKey:key];
     }
+    
     NSString *path =[NSString stringWithFormat:@"%@/%@", filePath, fileName];
-    //for 1 and 3 method
-//    CatrobatPlayerItem *item = [[SoundCache sharedSoundCache] cachedSoundForPath:path];
-    //3.method
-//    if (!item) {
-//        [[SoundCache sharedSoundCache] loadSoundFromDiskWithPath:path onCompletion:^(CatrobatPlayerItem *loadeditem, NSString* path) {
-//            [self triggerPlaySoundItem:loadeditem withPlayers:audioPlayers fileName:fileName andDelegate:delegate];
-//        }];
-//
-//    }else{
-//        [self triggerPlaySoundItem:item withPlayers:audioPlayers fileName:fileName andDelegate:delegate];
-//    }
     
-    // 1.method
-//    if (!item) {
-//        item = [[SoundCache sharedSoundCache] loadSoundFromDiskWithPath:path];
-//    }
-    
-    //2.method
-    CatrobatPlayerItem *item = [[CatrobatPlayerItem alloc] initWithURL:[NSURL fileURLWithPath:path]];
-    
-    
-    // for 1 and 2 method
-    if(!item) return NO;
-    [self triggerPlaySoundItem:item withPlayers:audioPlayers fileName:fileName andDelegate:delegate];
-    //////
-    
-    return YES;
-}
-
--(void)triggerPlaySoundItem:(CatrobatPlayerItem*)playerItem withPlayers:(NSMutableDictionary*)audioPlayers fileName:(NSString*)fileName andDelegate:(id)delegate
-{
     CatrobatAudioPlayer *player = [audioPlayers objectForKey:fileName];
-    playerItem = (CatrobatPlayerItem*)[playerItem copyWithZone:nil];
     if (! player) {
-        player = [[CatrobatAudioPlayer alloc] initWithPlayerItem:playerItem];
-        playerItem.key = fileName;
+        player = [[SoundCache sharedSoundCache] cachedSoundForPath:path];
+        if (!player){
+            player =  [[SoundCache sharedSoundCache] loadSoundFromDiskWithPath:path];
+        }
+        player.delegate = self;
         [player setKey:fileName];
         [audioPlayers setObject:player forKey:fileName];
     } else {
         self.soundCounter++;
-        player = [[CatrobatAudioPlayer alloc] initWithPlayerItem:playerItem];
-        playerItem.key = [fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]];
-        [player setKey:playerItem.key];
-        [audioPlayers setObject:player forKey:playerItem.key];
+        player.delegate = self;
+        [player setKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
+        [audioPlayers setObject:player forKey:[fileName stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)self.soundCounter]]];
     }
-    
-    if (delegate) {
-        [[NSNotificationCenter defaultCenter] addObserver:delegate selector:@selector(audioItemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioItemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
-    }
+    //  if ([player isPlaying]) {
+    //    [player stop];
+    //    [player setCurrentTime:0];
+    //  }
+    if (delegate)
+        player.delegate = delegate;
     
     player.volume = self.current_volume;
     [player play];
+    return YES;
 }
 
 - (BOOL)playSoundWithFileName:(NSString*)fileName
@@ -147,7 +119,7 @@
             player.volume = self.current_volume;
         }
     }
-
+    
 }
 
 - (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key
@@ -165,54 +137,46 @@
 {
     for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
         for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-            [player pause];
+            [player stop];
         }
         [audioPlayers removeAllObjects];
     }
-
     [self.sounds removeAllObjects];
     self.sounds = nil;
 }
 
 - (void)pauseAllSounds
 {
-  for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-    for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-        [player pause];
-    }
-  }
-
-}
-
-- (void)resumeAllSounds
-{
-  for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-    for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
-      [player play];
-    }
-  }
-
-}
-
--(void)audioItemDidFinishPlaying:(NSNotification *) notification {
-    // Will be called when AVPlayer finishes playing playerItem
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:notification.object];
-    if ([notification.object isKindOfClass:[CatrobatPlayerItem class]]) {
-        CatrobatPlayerItem *item = (CatrobatPlayerItem*)notification.object;
-        for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-            [audioPlayers removeObjectForKey:item.key];
+    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
+            if ([player isPlaying]) {
+                [player pause];
+            }
+            else{
+                [audioPlayers removeObjectForKey:player.key];
+            }
         }
     }
     
 }
 
-//- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
-//{
-//  CatrobatAudioPlayer *playerToDelete = (CatrobatAudioPlayer *)player;
-//  for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
-//    [audioPlayers removeObjectForKey:playerToDelete.key];
-//  }
-//}
+- (void)resumeAllSounds
+{
+    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+        for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
+            [player play];
+        }
+    }
+    
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    CatrobatAudioPlayer *playerToDelete = (CatrobatAudioPlayer *)player;
+    for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
+        [audioPlayers removeObjectForKey:playerToDelete.key];
+    }
+}
 
 - (CGFloat)durationOfSoundWithFilePath:(NSString*)filePath
 {

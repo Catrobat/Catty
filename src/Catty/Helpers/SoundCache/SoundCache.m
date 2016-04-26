@@ -84,12 +84,12 @@ static NSMutableDictionary *sharedSoundCaches = nil;
     abort();
 }
 
-- (CatrobatPlayerItem*)getSoundWithName:(NSString*)name
+- (CatrobatAudioPlayer*)getSoundWithName:(NSString*)name
 {
     return [self.soundCache objectForKey:name];
 }
 
-- (void)addSound:(CatrobatPlayerItem*)playerItem withName:(NSString*)name
+- (void)addSound:(CatrobatAudioPlayer*)playerItem withName:(NSString*)name
 {
     if ([self.soundCache objectForKey:name] || (! playerItem) || (! name)) {
         return;
@@ -97,7 +97,7 @@ static NSMutableDictionary *sharedSoundCaches = nil;
     [self.soundCache setObject:playerItem forKey:name];
 }
 
-- (void)replaceSound:(CatrobatPlayerItem*)playerItem withName:(NSString*)name
+- (void)replaceSound:(CatrobatAudioPlayer*)playerItem withName:(NSString*)name
 {
     if ([self.soundCache objectForKey:name] && (playerItem) && (name)) {
         [self.soundCache removeObjectForKey:name];
@@ -107,11 +107,12 @@ static NSMutableDictionary *sharedSoundCaches = nil;
 }
 
 - (void)loadSoundFromDiskWithPath:(NSString*)path
-                     onCompletion:(void(^)(CatrobatPlayerItem *playerItem, NSString* path))completion
+                     onCompletion:(void(^)(CatrobatAudioPlayer *playerItem, NSString* path))completion
 {
     dispatch_async(self.soundCacheQueue, ^{
         NSURL *url = [NSURL fileURLWithPath:path];
-        CatrobatPlayerItem *playerItem = [[CatrobatPlayerItem alloc] initWithURL:url];
+        NSError *error = nil;
+        CatrobatAudioPlayer *playerItem = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:url error:&error];
         [self addSound:playerItem withName:path];
         
         // run completion handling block on main queue
@@ -121,10 +122,11 @@ static NSMutableDictionary *sharedSoundCaches = nil;
     });
 }
 
-- (CatrobatPlayerItem *)loadSoundFromDiskWithPath:(NSString*)path
+- (CatrobatAudioPlayer *)loadSoundFromDiskWithPath:(NSString*)path
 {
     NSURL *url = [NSURL fileURLWithPath:path];
-    CatrobatPlayerItem *playerItem = [[CatrobatPlayerItem alloc] initWithURL:url];
+    NSError *error = nil;
+    CatrobatAudioPlayer *playerItem = [[CatrobatAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     [self addSound:playerItem withName:path];
     return playerItem;
 }
@@ -134,12 +136,12 @@ static NSMutableDictionary *sharedSoundCaches = nil;
     [self.soundCache removeAllObjects];
 }
 
-- (CatrobatPlayerItem*)cachedSoundForName:(NSString*)name
+- (CatrobatAudioPlayer*)cachedSoundForName:(NSString*)name
 {
     return [self getSoundWithName:name];
 }
 
-- (CatrobatPlayerItem*)cachedSoundForPath:(NSString*)path
+- (CatrobatAudioPlayer*)cachedSoundForPath:(NSString*)path
 {
     return [self getSoundWithName:path];
 }
