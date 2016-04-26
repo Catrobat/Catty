@@ -643,6 +643,7 @@
     if (self.saveView.image) {
         self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:CGRectMake(0 , 0, self.view.frame.size.width-10, self.view.frame.size.height - 10)];
         [self.view addSubview:self.cropperView];
+        self.cropperView.backgroundColor = self.saveView.backgroundColor;
         self.drawView.hidden = YES;
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
