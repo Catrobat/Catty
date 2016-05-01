@@ -451,6 +451,7 @@
 #define kLocalizedPaintFill NSLocalizedString(@"fill", @"paint")
 #define kLocalizedPaintZoom NSLocalizedString(@"zoom", @"paint")
 #define kLocalizedPaintPointer NSLocalizedString(@"pointer", @"paint")
+#define kLocalizedPaintTextTool NSLocalizedString(@"text", @"paint")
 #define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
 #define kLocalizedPaintMenuButtonTitle NSLocalizedString(@"Menu", @"paint")
 #define kLocalizedPaintSelect NSLocalizedString(@"Select option:", @"paint")
@@ -465,7 +466,12 @@
 #define kLocalizedPaintPocketPaint NSLocalizedString(@"Pocket Paint", @"paint")
 #define kLocalizedPaintStamped NSLocalizedString(@"Stamped", @"paint")
 #define kLocalizedPaintInserted NSLocalizedString(@"Inserted", @"paint")
-
+#define kLocalizedPaintText NSLocalizedString(@"Text:", @"paint")
+#define kLocalizedPaintAttributes NSLocalizedString(@"Attributes:", @"paint")
+#define kLocalizedPaintBold NSLocalizedString(@"bold", @"paint")
+#define kLocalizedPaintItalic NSLocalizedString(@"italic", @"paint")
+#define kLocalizedPaintUnderline NSLocalizedString(@"underline", @"paint")
+#define kLocalizedPaintTextAlert NSLocalizedString(@"Please enter a text!", @"paint")
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************

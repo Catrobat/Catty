@@ -87,7 +87,6 @@
     [self.recorder stop];
     [self.timerLabel reset];
     [self.record setSelected:NO];
-    [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     self.recorder = nil;
     if (self.sound.name && !self.isSaved) {
         [self.delegate showSaveSoundAlert:self.sound];

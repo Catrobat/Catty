@@ -27,10 +27,13 @@
 @interface DrawTool : NSObject{
   BOOL fingerSwiped;
   CGPoint lastPoint;
+  CGPoint beforeLastPoint;
+  CGPoint currentPoint;
 }
 @property (nonatomic,weak) PaintViewController* canvas;
 
 - (void)draw:(UIPanGestureRecognizer *)recognizer;
+- (void)drawPoint:(UITapGestureRecognizer *)recognizer;
 - (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
 @end

@@ -27,8 +27,9 @@
 #import "Util.h"
 #import "CatrobatAlertController.h"
 #import "LCTableViewPickerControl.h"
+#import "TextInputViewController.h"
 
-@interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,CatrobatAlertViewDelegate,CatrobatActionSheetDelegate> {
+@interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,CatrobatAlertViewDelegate,CatrobatActionSheetDelegate,TextInputViewControllerDelegate> {
   CGPoint lastPoint;
   BOOL fingerSwiped;
 }
@@ -37,6 +38,9 @@
 @property (nonatomic) CGFloat blue;
 @property (nonatomic) CGFloat opacity;
 @property (nonatomic) CGFloat thickness;
+@property (nonatomic,strong) NSString *text;
+@property (nonatomic,strong) NSMutableDictionary *textFontDictionary;
+@property (nonatomic,strong) NSDictionary *textDictionary;
 @property (nonatomic) enum LineEnding ending;
 @property (nonatomic) enum ActionType activeAction;
 @property (nonatomic) BOOL vertical;
@@ -63,6 +67,7 @@
 
 
 @property (nonatomic,strong) UIPanGestureRecognizer *drawGesture;
+@property (nonatomic,strong) UITapGestureRecognizer *drawRecognizer;
 @property (nonatomic,strong) UIPanGestureRecognizer *lineToolGesture;
 @property (nonatomic,strong) UITapGestureRecognizer *pipetteRecognizer;
 

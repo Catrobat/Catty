@@ -20,10 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <AVFoundation/AVFoundation.h>
+#import <UIKit/UIKit.h>
+@protocol TextInputViewControllerDelegate <NSObject>
+- (void)closeTextInput:(id)sender andDictionary:(NSDictionary*)dict;
+@end
 
-@interface CatrobatAudioPlayer : AVAudioPlayer
+@interface TextInputViewController : UIViewController <UIGestureRecognizerDelegate>
+@property (nonatomic,strong) NSString* text;
+@property (nonatomic,strong) NSMutableDictionary  *fontDictionary;
+@property (nonatomic,assign) BOOL bold;
+@property (nonatomic,assign) BOOL italic;
+@property (nonatomic,assign) BOOL underline;
+@property (nonatomic,strong) NSString *fontString;
+@property (nonatomic,assign) NSInteger fontSize;
+@property (nonatomic,assign) NSInteger fontType;
 
-@property (nonatomic,strong) NSString* key;
+
+
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+- (IBAction)closeAction:(UIBarButtonItem *)sender;
+- (IBAction)cancelAction:(UIBarButtonItem *)sender;
+
+@property (nonatomic, weak) id<TextInputViewControllerDelegate> delegate;
 
 @end
