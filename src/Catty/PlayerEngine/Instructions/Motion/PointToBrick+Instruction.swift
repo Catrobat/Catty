@@ -28,8 +28,7 @@ extension PointToBrick: CBInstructionProtocol {
 
     func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let scene = spriteNode.scene as? CBScene
+              let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
@@ -74,7 +73,7 @@ extension PointToBrick: CBInstructionProtocol {
 
 //            self.log.info("Performing: \(self.description), Degreees: \(rotationDegrees), Pointed Object: Position: \(NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition))")
 
-            rotationDegrees = scene.convertDegreesToScene(rotationDegrees) + PlayerConfig.RotationDegreeOffset
+            rotationDegrees = CBSceneHelper.convertDegreesToScene(rotationDegrees) + PlayerConfig.RotationDegreeOffset
             spriteNode.rotation = rotationDegrees
         }
     }

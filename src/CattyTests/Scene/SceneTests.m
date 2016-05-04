@@ -25,6 +25,8 @@
 
 @implementation SceneTests
 
+#define EPSILON 0.001
+
 - (void)setUp
 {
     [super setUp];
@@ -43,7 +45,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeCenter = CGPointMake(0, 0);
     CGPoint sceneCenter = CGPointMake(240, 400);
-    CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
+    CGPoint convertedCenter = [[CBSceneHelper class] convertPointToScene:pocketCodeCenter sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedCenter, sceneCenter), @"The Scene Center is not correctly calculated");
 }
 
@@ -52,7 +54,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomLeft = CGPointMake(-240, -400);
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
-    CGPoint convertedBottomLeft = [scene convertPointToScene:pocketCodeBottomLeft];
+    CGPoint convertedBottomLeft = [[CBSceneHelper class] convertPointToScene:pocketCodeBottomLeft sceneSize:scene.size];
     
     XCTAssertTrue(CGPointEqualToPoint(convertedBottomLeft, sceneBottomLeft), @"The Bottom Left is not correctly calculated");
 }
@@ -62,7 +64,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomRight = CGPointMake(240, -400);
     CGPoint sceneBottomRight = CGPointMake(480, 0);
-    CGPoint convertedBottomRight = [scene convertPointToScene:pocketCodeBottomRight];
+    CGPoint convertedBottomRight = [[CBSceneHelper class] convertPointToScene:pocketCodeBottomRight sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedBottomRight, sceneBottomRight), @"The Bottom Right is not correctly calculated");
 }
 
@@ -71,7 +73,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopLeft = CGPointMake(-240, 400);
     CGPoint sceneTopLeft = CGPointMake(0, 800);
-    CGPoint convertedTopLeft = [scene convertPointToScene:pocketCodeTopLeft];
+    CGPoint convertedTopLeft = [[CBSceneHelper class] convertPointToScene:pocketCodeTopLeft sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedTopLeft, sceneTopLeft), @"The Top Left is not correctly calculated");
 }
 
@@ -80,7 +82,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopRight = CGPointMake(240, 400);
     CGPoint sceneTopRight = CGPointMake(480, 800);
-    CGPoint convertedTopRight = [scene convertPointToScene:pocketCodeTopRight];
+    CGPoint convertedTopRight = [[CBSceneHelper class] convertPointToScene:pocketCodeTopRight sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, sceneTopRight), @"The Top Right is not correctly calculated");
 }
 
@@ -90,7 +92,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeCenter = CGPointMake(0, 0);
     CGPoint sceneCenter = CGPointMake(240, 400);
-    CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
+    CGPoint convertedCenter = [[CBSceneHelper class] convertPointToScene:pocketCodeCenter sceneSize:scene.size];
     
     XCTAssertTrue(CGPointEqualToPoint(convertedCenter, sceneCenter), @"The Scene Center is not correctly calculated");
 }
@@ -100,7 +102,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomLeft = CGPointMake(-240, -400);
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
-    CGPoint convertedBottomLeft = [scene convertSceneCoordinateToPoint:sceneBottomLeft];
+    CGPoint convertedBottomLeft = [[CBSceneHelper class] convertSceneCoordinateToPoint:sceneBottomLeft sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedBottomLeft, pocketCodeBottomLeft), @"The Bottom Left is not correctly calculated");
 }
 
@@ -109,7 +111,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomRight = CGPointMake(240, -400);
     CGPoint sceneBottomRight = CGPointMake(480, 0);
-    CGPoint convertedBottomRight = [scene convertSceneCoordinateToPoint:sceneBottomRight];
+    CGPoint convertedBottomRight = [[CBSceneHelper class] convertSceneCoordinateToPoint:sceneBottomRight sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedBottomRight, pocketCodeBottomRight), @"The Bottom Right is not correctly calculated");
 }
 
@@ -118,7 +120,7 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopLeft = CGPointMake(-240, 400);
     CGPoint sceneTopLeft = CGPointMake(0, 800);
-    CGPoint convertedTopLeft = [scene convertSceneCoordinateToPoint:sceneTopLeft];
+    CGPoint convertedTopLeft = [[CBSceneHelper class] convertSceneCoordinateToPoint:sceneTopLeft sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedTopLeft, pocketCodeTopLeft), @"The Top Left is not correctly calculated");
 }
 
@@ -127,8 +129,17 @@
     CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopRight = CGPointMake(240, 400);
     CGPoint sceneTopRight = CGPointMake(480, 800);
-    CGPoint convertedTopRight = [scene convertSceneCoordinateToPoint:sceneTopRight];
+    CGPoint convertedTopRight = [[CBSceneHelper class] convertSceneCoordinateToPoint:sceneTopRight sceneSize:scene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, pocketCodeTopRight), @"The Top Right is not correctly calculated");
+}
+
+- (void)testDegreesToScene
+{
+    XCTAssertEqual(90, [[CBSceneHelper class] convertDegreesToScene:0], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(0, [[CBSceneHelper class] convertDegreesToScene:90], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(45, [[CBSceneHelper class] convertDegreesToScene:45], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(135, [[CBSceneHelper class] convertDegreesToScene:-45], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(270, [[CBSceneHelper class] convertDegreesToScene:180], @"Conversion between degrees and scene is not correctly calculated");
 }
 
 @end

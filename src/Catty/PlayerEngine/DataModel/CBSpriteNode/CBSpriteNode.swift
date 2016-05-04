@@ -28,8 +28,8 @@ final class CBSpriteNode: SKSpriteNode {
     var currentUIImageLook: UIImage?
     var currentLookBrightness: CGFloat = 1.0
     var scenePosition: CGPoint {
-        set { self.position = (scene as! CBScene).convertPointToScene(newValue) }
-        get { return (scene as! CBScene).convertSceneCoordinateToPoint(self.position) }
+        set { self.position = CBSceneHelper.convertPointToScene(newValue, sceneSize: (scene?.size)!) }
+        get { return CBSceneHelper.convertSceneCoordinateToPoint(self.position, sceneSize: (scene?.size)!) }
     }
     var zIndex: CGFloat { return zPosition }
     var brightness: CGFloat { return (100 * self.currentLookBrightness) }

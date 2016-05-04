@@ -49,7 +49,6 @@
 #define BOUNCE_BOTTOM_POSITION -(BOUNCE_TOP_POSITION)
 #define BOUNCE_RIGHT_POSITION RIGHT_BORDER_POSITION - (OBJECT_WIDTH / 2)
 #define BOUNCE_LEFT_POSITION -(BOUNCE_RIGHT_POSITION)
-#define ROTATION_DEGREE_OFFSET 90.0
 #define EPSILON 0.001
 
 - (void)setUp
@@ -214,10 +213,7 @@
 
 - (NSNumber*)convertCBToSKDegrees:(CGFloat)degrees
 {
-    double deg = degrees - ROTATION_DEGREE_OFFSET;
-    NSNumber *test = [NSNumber numberWithFloat:fmodf([(CBScene*)self.scene convertDegreesToScene:(CGFloat)deg], 360.0f)];
-    NSLog(@"%f CB = %f IOS", degrees, [test floatValue]);
-    return test;
+    return [NSNumber numberWithFloat:fmodf([[CBSceneHelper class] convertDegreesToScene:degrees], 360.0f)];
 }
 
 - (void)setPosition:(CGPoint)position AndRotation:(NSNumber*)rotation
