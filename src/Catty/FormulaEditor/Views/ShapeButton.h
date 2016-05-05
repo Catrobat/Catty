@@ -30,12 +30,9 @@ typedef NS_ENUM(NSUInteger, ShapeButtonType) {
 IB_DESIGNABLE
 @interface ShapeButton : UIButton
 @property (nonatomic, assign) IBInspectable NSInteger shapeType; // Adapter for IB shape enum
-@property (nonatomic, assign) IBInspectable CGFloat lineWidth; // Default 1.f
+@property (nonatomic, assign) IBInspectable CGFloat lineWidth; // Default 1
 @property (nonatomic, strong) IBInspectable UIColor *shapeStrokeColor; // Default white
-@property (nonatomic, assign) IBInspectable CGFloat leftShapeInset; // Default 20.f
-@property (nonatomic, assign) IBInspectable CGFloat topShapeInset; // Default 10.f
-@property (nonatomic, assign) IBInspectable CGFloat shapePathOffsetX; // Default 18.f
-@property (nonatomic, assign) IBInspectable CGFloat shapePathOffsetY; // Default 10.f
+@property (nonatomic, assign) IBInspectable UIEdgeInsets buttonInsets; // Default top:10, left:28, bottom:10, right:24
 
 + (instancetype)shapeButtonWithType:(ShapeButtonType)type frame:(CGRect)frame;
 

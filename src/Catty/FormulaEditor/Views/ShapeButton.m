@@ -83,7 +83,8 @@
     [self setup];
 }
 
-- (void)setShapeStrokeColor:(UIColor *)shapeStrokeColor {
+- (void)setShapeStrokeColor:(UIColor *)shapeStrokeColor
+{
     _shapeStrokeColor = shapeStrokeColor;
     
     if (self.buttonShapeLayer) {
@@ -91,7 +92,8 @@
     }
 }
 
-- (void)setLineWidth:(CGFloat)lineWidth {
+- (void)setLineWidth:(CGFloat)lineWidth
+{
     _lineWidth = lineWidth;
     
     if (self.buttonShapeLayer) {
@@ -99,16 +101,9 @@
     }
 }
 
-- (void)setLeftShapeInset:(CGFloat)leftShapeInset {
-    _leftShapeInset = leftShapeInset;
-    
-    if (self.buttonShapeLayer) {
-        [self setup];
-    }
-}
-
-- (void)setTopShapeInset:(CGFloat)topShapeInset {
-    _topShapeInset = topShapeInset;
+- (void)setButtonInsets:(UIEdgeInsets)buttonInsets
+{
+    _buttonInsets = buttonInsets;
     
     if (self.buttonShapeLayer) {
         [self setup];
@@ -144,10 +139,7 @@
 {
     self.lineWidth = 1.f;
     self.shapeStrokeColor = [UIColor whiteColor];
-    self.leftShapeInset = 20.f;
-    self.topShapeInset = 10.f;
-    self.shapePathOffsetX = 18.f;
-    self.shapePathOffsetY = 10.f;
+    self.buttonInsets = UIEdgeInsetsMake(10.f, 28.f, 10.f, 24.f);
 }
 
 - (CAShapeLayer *)backSpaceShapeLayer
@@ -163,33 +155,32 @@
     shapeLayer.lineWidth = self.lineWidth;
     shapeLayer.miterLimit = 2.f;
     
-    CGFloat pathOffsetX = self.shapePathOffsetX;
-    CGFloat pathOffsetY = self.shapePathOffsetY;
+    CGFloat pathOffsetX = self.buttonInsets.right;
+    CGFloat pathOffsetY = self.buttonInsets.top;
     CGRect shapeRect = CGRectInset(self.backGroundLayer.bounds, pathOffsetX, pathOffsetY);
+    CGFloat diffLeftRight = ABS(self.buttonInsets.left - self.buttonInsets.right);
     
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(pathOffsetX, CGRectGetHeight(shapeRect) / 2.f + pathOffsetY)];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 3.f + pathOffsetX, pathOffsetY)];
+    [path moveToPoint:CGPointMake(self.buttonInsets.left - diffLeftRight, CGRectGetHeight(shapeRect) / 2 + pathOffsetY)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 2 + pathOffsetX - diffLeftRight, pathOffsetY)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX, pathOffsetY)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX, CGRectGetHeight(shapeRect) + pathOffsetY)];
-    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 3.f +  pathOffsetX, CGRectGetHeight(shapeRect) + pathOffsetY)];
+    [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 2 + pathOffsetX - diffLeftRight, CGRectGetHeight(shapeRect) + pathOffsetY)];
     [path closePath];
 
-    CGFloat subPathOffSetX = ceilf(CGRectGetWidth(shapeRect) / 5.f);
-    CGFloat subPathOffSetY = ceilf(CGRectGetHeight(shapeRect) / 6.f);
-    
     UIBezierPath *leftLinePath = [UIBezierPath bezierPath];
-    [leftLinePath moveToPoint:CGPointMake(CGRectGetWidth(shapeRect) - pathOffsetX + subPathOffSetX, pathOffsetY + subPathOffSetY)];
-    [leftLinePath addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX - subPathOffSetX, CGRectGetHeight(shapeRect) + pathOffsetY - subPathOffSetY)];
+    [leftLinePath moveToPoint:CGPointMake(CGRectGetMidX(shapeRect) - 4.f + diffLeftRight, CGRectGetMidY(shapeRect) + 4.f)];
+    [leftLinePath addLineToPoint:CGPointMake(CGRectGetMidX(shapeRect) + 4.f + diffLeftRight, CGRectGetMidY(shapeRect) - 4.f)];
     [leftLinePath closePath];
     [path appendPath:leftLinePath];
     
-    UIBezierPath *rightLinePath = [UIBezierPath bezierPath];
-    [rightLinePath moveToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX - subPathOffSetX, pathOffsetY + subPathOffSetY)];
-    [rightLinePath addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) - pathOffsetX + subPathOffSetX, CGRectGetHeight(shapeRect) + pathOffsetY - subPathOffSetY)];
-    [rightLinePath closePath];
+    UIBezierPath *rightLinePath = [leftLinePath copy];
+    CGAffineTransform mirror = CGAffineTransformMakeScale(1.0f, -1.f);
+    CGAffineTransform translate = CGAffineTransformMakeTranslation(0.f, CGRectGetHeight(self.bounds));
+    [rightLinePath applyTransform:mirror];
+    [rightLinePath applyTransform:translate];
     [path appendPath:rightLinePath];
-    
+
     shapeLayer.path = path.CGPath;
 
     return shapeLayer;
