@@ -298,6 +298,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //            }
 //            break;
         case kUploadVC:
+            [[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:@"segueToUpload" sender:self];

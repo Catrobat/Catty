@@ -38,6 +38,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "BDKNotifyHUD.h"
 
 #define usernameTag @"registrationUsername"
 #define passwordTag @"registrationPassword"
@@ -81,7 +82,7 @@
     self.navigationController.title  = self.title = kLocalizedLogin;
     [self initView];
     [self addDoneToTextFields];
-
+    [self showLoggedInView];
 }
 
 
@@ -459,4 +460,19 @@
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
 }
+
+- (void)showLoggedInView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedLoginSuccessful];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kLoginViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
+
 @end
