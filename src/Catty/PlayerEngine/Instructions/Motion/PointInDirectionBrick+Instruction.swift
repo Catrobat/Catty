@@ -32,8 +32,7 @@ extension PointInDirectionBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         return {
-            let degrees = self.degrees.interpretDoubleForSprite(object) - PlayerConfig.RotationDegreeOffset
-            spriteNode.rotation = CBSceneHelper.convertDegreesToScene(degrees)
+            spriteNode.rotation = self.degrees.interpretDoubleForSprite(object)
         }
     }
 
