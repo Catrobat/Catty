@@ -25,7 +25,7 @@ struct PlayerConfig {
     static let MinIntervalBetweenTwoAcceptedTouches = 0.2 // 200ms
     static let MaxRecursionLimitOfSelfBroadcasts = 40
     static let NumberOfWaitQueuesInitialValue = 3
-    static let RotationDegreeOffset = 90.0 // needed for PointInDirectionBrick + PointToBrick
+    static let RotationDegreeOffset = 90.0 // needed for CBSceneHelper
 }
 
 // Logger names for release and debug mode configured in Swell.plist

@@ -37,14 +37,10 @@ final class CBSpriteNode: SKSpriteNode {
     var scaleY: CGFloat { return (100 * yScale) }
     var rotation: Double {
         set {
-            var rotationInDegrees = newValue%360.0 // swift equivalent for fmodf
-            if rotationInDegrees < 0.0 { rotationInDegrees += 360.0 }
-            self.zRotation = CGFloat(Util.degreeToRadians(rotationInDegrees))
+            self.zRotation = CGFloat(Util.degreeToRadians(CBSceneHelper.convertDegreesToScene(newValue)))
         }
         get {
-            var rotation = Util.radiansToDegree(Double(self.zRotation))%360.0 // swift equivalent for fmodf
-            if (rotation < 0.0) { rotation += 360.0 }
-            return rotation
+            return CBSceneHelper.convertSceneToDegrees(Util.radiansToDegree(Double(self.zRotation)))
         }
     }
     private var _lastTimeTouchedSpriteNode = [String:NSDate]()

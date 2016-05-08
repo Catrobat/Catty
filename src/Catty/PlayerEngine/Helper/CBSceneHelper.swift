@@ -22,8 +22,6 @@
 
 @objc class CBSceneHelper: NSObject {
     
-    static let ROTATION_DEGREE_OFFSET = 90.0
-    
     // MARK: - Operations (Helpers)
     class func convertPointToScene(point: CGPoint, sceneSize: CGSize) -> CGPoint {
         let x = convertXCoordinateToScene(point.x, sceneSize: sceneSize)
@@ -46,11 +44,21 @@
     }
     
     class func convertDegreesToScene(degrees: Double) -> Double {
-        return 360.0 - (degrees - ROTATION_DEGREE_OFFSET)
+        if degrees < 0.0 {
+            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees % -360.0)) % -360.0
+        }
+        
+        return (360.0 - (degrees % 360.0 - PlayerConfig.RotationDegreeOffset)) % 360.0
     }
     
-    class func convertSceneToDegrees(degrees: CGFloat) -> CGFloat {
-        return 360.0 + degrees
+    class func convertSceneToDegrees(scene: Double) -> Double {
+        let sceneDegrees = self.convertDegreesToScene(scene)
+        
+        if sceneDegrees > 180.0 {
+            return sceneDegrees - 360.0
+        }
+        
+        return sceneDegrees
     }
 
 }

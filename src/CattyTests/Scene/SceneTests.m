@@ -138,8 +138,27 @@
     XCTAssertEqual(90, [[CBSceneHelper class] convertDegreesToScene:0], @"Conversion between degrees and scene is not correctly calculated");
     XCTAssertEqual(0, [[CBSceneHelper class] convertDegreesToScene:90], @"Conversion between degrees and scene is not correctly calculated");
     XCTAssertEqual(45, [[CBSceneHelper class] convertDegreesToScene:45], @"Conversion between degrees and scene is not correctly calculated");
-    XCTAssertEqual(135, [[CBSceneHelper class] convertDegreesToScene:-45], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(-225, [[CBSceneHelper class] convertDegreesToScene:-45], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(-225, [[CBSceneHelper class] convertDegreesToScene:-405], @"Conversion between degrees and scene is not correctly calculated");
     XCTAssertEqual(270, [[CBSceneHelper class] convertDegreesToScene:180], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(-180, [[CBSceneHelper class] convertDegreesToScene:-90], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(0, [[CBSceneHelper class] convertDegreesToScene:-270], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(180, [[CBSceneHelper class] convertDegreesToScene:270], @"Conversion between degrees and scene is not correctly calculated");
+    XCTAssertEqual(180, [[CBSceneHelper class] convertDegreesToScene:630], @"Conversion between degrees and scene is not correctly calculated");
+}
+
+- (void)testSceneToDegrees
+{
+    XCTAssertEqual(90, [[CBSceneHelper class] convertSceneToDegrees:0], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(0, [[CBSceneHelper class] convertSceneToDegrees:90], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(45, [[CBSceneHelper class] convertSceneToDegrees:45], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(-225, [[CBSceneHelper class] convertSceneToDegrees:-45], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(-225, [[CBSceneHelper class] convertSceneToDegrees:-405], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(270, [[CBSceneHelper class] convertSceneToDegrees:180], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(-180, [[CBSceneHelper class] convertSceneToDegrees:-90], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(0, [[CBSceneHelper class] convertSceneToDegrees:-270], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(180, [[CBSceneHelper class] convertSceneToDegrees:270], @"Conversion between scene and degrees is not correctly calculated");
+    XCTAssertEqual(180, [[CBSceneHelper class] convertSceneToDegrees:630], @"Conversion between scene and degrees is not correctly calculated");
 }
 
 @end
