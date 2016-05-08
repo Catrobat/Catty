@@ -23,6 +23,7 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "SpriteObject.h"
 #import "Pocket_Code-Swift.h"
 
 @interface TurnLeftBrickTests : BrickTests
@@ -44,102 +45,48 @@
 
 - (void)testTurnLeftBrick
 {
-    SpriteObject *object = [[SpriteObject alloc] init];
-    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
-    object.spriteNode = spriteNode;
-    spriteNode.zRotation = 0;
-
-    Script *script = [[WhenScript alloc] init];
-    script.object = object;
-
-    TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.script = script;
-
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"60";
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
-
-    dispatch_block_t action = [brick actionBlock];
-    action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 60.0f, 0.0001, @"TurnLeftBrick not correct");
-}
-
-- (void)testTurnLeftBrickOver360
-{
-    SpriteObject* object = [[SpriteObject alloc] init];
-    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
-    object.spriteNode = spriteNode;
-    spriteNode.zRotation = 0;
-
-    Script *script = [[WhenScript alloc] init];
-    script.object = object;
-
-    TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.script = script;
-
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"400";
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
-
-    dispatch_block_t action = [brick actionBlock];
-    action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 40.0f, 0.0001, @"TurnLeftBrick not correct");
+    [self turnLeftWithInitialRotation:90 andRotation:60];
+    [self turnLeftWithInitialRotation:0 andRotation:60];
+    [self turnLeftWithInitialRotation:90 andRotation:400];
 }
 
 - (void)testTurnLeftBrickNegative
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
-    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
-    object.spriteNode = spriteNode;
-    spriteNode.zRotation = 0;
-
-    Script *script = [[WhenScript alloc] init];
-    script.object = object;
-
-    TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.script = script;
-
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-60";
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
-
-    dispatch_block_t action = [brick actionBlock];
-    action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-60.0f), 0.0001, @"TurnLeftBrick not correct");
+    [self turnLeftWithInitialRotation:90 andRotation:-60];
 }
 
 - (void)testTurnLeftBrickNegativeOver360
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    [self turnLeftWithInitialRotation:90 andRotation:-400];
+}
+
+- (void)turnLeftWithInitialRotation:(CGFloat)initialRotation andRotation:(CGFloat)rotation
+{
+    rotation = fmodf(rotation, 360.0f);
+    
+    SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.zRotation = 0;
-
+    spriteNode.rotation = initialRotation;
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
     brick.script = script;
-
+    
     Formula *degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
-    formulaTree.value = @"-400";
+    formulaTree.value = [NSString stringWithFormat:@"%f", rotation];
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-
+    
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-40.0f), 0.0001, @"TurnLeftBrick not correct");
+    
+    CGFloat expectedRotation = initialRotation - rotation;
+    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.rotation, 0.0001, @"TurnLeftBrick not correct");
 }
 
 @end
