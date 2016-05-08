@@ -37,7 +37,7 @@ extension PointToBrick: CBInstructionProtocol {
 
             var rotationDegrees = 0.0
             if (objectPosition.x == pointedObjectPosition.x) && (objectPosition.y == pointedObjectPosition.y) {
-                rotationDegrees = 90.0
+                rotationDegrees = 0.0
             } else if objectPosition.x == pointedObjectPosition.x {
                 if (objectPosition.y > pointedObjectPosition.y) {
                     rotationDegrees = 180.0
@@ -73,7 +73,6 @@ extension PointToBrick: CBInstructionProtocol {
 
 //            self.log.info("Performing: \(self.description), Degreees: \(rotationDegrees), Pointed Object: Position: \(NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition))")
 
-            rotationDegrees = CBSceneHelper.convertDegreesToScene(rotationDegrees) + PlayerConfig.RotationDegreeOffset
             spriteNode.rotation = rotationDegrees
         }
     }
