@@ -309,6 +309,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
                 vc.catTVC = self;
                 [self.navigationController pushViewController:vc animated:YES];
+                
+                NSDebug(@"Send Notification");
+                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                [notificationCenter postNotificationName:kLoggedInNotification object:self];
             }
 
             break;

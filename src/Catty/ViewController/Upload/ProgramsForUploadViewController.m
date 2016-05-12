@@ -70,6 +70,12 @@
     
     [self setupToolBar];
     self.navigationController.toolbarHidden = NO;
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(showLoggedInView)
+                               name:kLoggedInNotification
+                             object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -287,6 +293,21 @@
 
 }
 
+- (void)showLoggedInView
+{
+    NSDebug(@"HON notification received!!!");
+    
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedLoginSuccessful];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kLoginViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
 
 
 @end

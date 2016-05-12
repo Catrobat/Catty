@@ -94,6 +94,7 @@ static NSString *const kProgramDownloadedNotification = @"ProgramDownloadedNotif
 static NSString *const kHideLoadingViewNotification = @"HideLoadingViewNotification";
 static NSString *const kShowSavedViewNotification = @"ShowSavedViewNotification";
 static NSString *const kReadyToUpload = @"ReadyToUploadProgram";
+static NSString *const kLoggedInNotification = @"LoggedInNotification";
 
 // Notification keys
 static NSString *const kUserInfoKeyBrickCell = @"UserInfoKeyBrickCell";

@@ -38,7 +38,6 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "KeychainUserDefaultsDefines.h"
-#import "BDKNotifyHUD.h"
 
 #define usernameTag @"registrationUsername"
 #define passwordTag @"registrationPassword"
@@ -82,7 +81,13 @@
     self.navigationController.title  = self.title = kLocalizedLogin;
     [self initView];
     [self addDoneToTextFields];
-    [self showLoggedInView];
+    
+    NSDebug(@"Init Notification receiver");
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(showLoggedInView)
+                               name:kLoggedInNotification
+                             object:nil];
 }
 
 
@@ -360,6 +365,12 @@
                     [JNKeychain saveValue:self.password forKey:kcPassword];
                     [JNKeychain saveValue:token forKey:kUserLoginToken];
 
+                    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                    [notificationCenter postNotificationName:kLoggedInNotification object:self];
+                    
+                    NSDebug(@"HON parents name is @", [[self.navigationController parentViewController] nibName]);
+                    [[self.navigationController parentViewController] nibName];
+                    
                     [self.navigationController popViewControllerAnimated:NO];
                     
                 } else {
@@ -367,7 +378,7 @@
                     
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
                     NSDebug(@"Error: %@", serverResponse);
-                    [Util alertWithText:serverResponse];
+                    [Util alertWithText:[NSString stringWithFormat:@"Error: %@", serverResponse]];
                 }
             });
         }
@@ -463,6 +474,8 @@
 
 - (void)showLoggedInView
 {
+    NSDebug(@"HON notification received!!!");
+    
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
                                                     text:kLocalizedLoginSuccessful];
     hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
