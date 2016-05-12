@@ -69,8 +69,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    double expectedRotation = [[CBSceneHelper class] convertDegreesToScene:20];
-    XCTAssertEqualWithAccuracy(spriteNode.zRotation, [Util degreeToRadians:expectedRotation], 0.0001, @"PointInDirectionBrick is not correctly calculated");
+    double expectedRotation = 20;
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, expectedRotation, 0.0001, @"PointInDirectionBrick is not correctly calculated");
 }
 
 @end
