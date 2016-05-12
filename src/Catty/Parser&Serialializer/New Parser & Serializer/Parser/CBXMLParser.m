@@ -90,7 +90,7 @@
         return nil;
     }
 
-    //NSDebug(@"%@", xmlFile);
+    NSDebug(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
 
     // sanity check

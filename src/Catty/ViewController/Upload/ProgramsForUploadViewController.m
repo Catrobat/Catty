@@ -60,6 +60,12 @@
     return _uploadingProgramInfos;
 }
 
+-(id)init
+{
+    _showLoginFeedback = false;
+    return self;
+}
+
 #pragma mark - View Events
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,12 +76,6 @@
     
     [self setupToolBar];
     self.navigationController.toolbarHidden = NO;
-    
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self
-                           selector:@selector(showLoggedInView)
-                               name:kLoggedInNotification
-                             object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +84,12 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
     [self.tableView reloadData];
+    
+    if(_showLoginFeedback) {
+        [self showLoggedInView];
+    }
+    
+    _showLoginFeedback = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -240,6 +246,7 @@
 - (void)uploadProgramAction:(id)sender
 {
     NSDebug(@"Upload program: %@", self.lastUsedProgram.header.programName);
+    NSDebug(@"Attention: Currently not working!");
     
     /*
      ProgramLoadingInfo *info = self.programLoadingInfos.firstObject;
@@ -295,8 +302,6 @@
 
 - (void)showLoggedInView
 {
-    NSDebug(@"HON notification received!!!");
-    
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
                                                     text:kLocalizedLoginSuccessful];
     hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
