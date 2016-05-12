@@ -58,6 +58,10 @@
             return sceneDegrees - 360.0
         }
         
+        if sceneDegrees < -180.0 {
+            return 360 + sceneDegrees
+        }
+        
         return sceneDegrees
     }
 
