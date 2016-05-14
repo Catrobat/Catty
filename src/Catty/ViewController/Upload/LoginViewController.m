@@ -30,7 +30,6 @@
 #import "Util.h"
 #import "JNKeychain.h"
 #import "CatrobatTableViewController.h"
-#import "BDKNotifyHUD.h"
 #import "RegisterViewController.h"
 
 #import "NetworkDefines.h"
@@ -81,7 +80,6 @@
     self.navigationController.title  = self.title = kLocalizedLogin;
     [self initView];
     [self addDoneToTextFields];
-
 }
 
 
@@ -116,7 +114,6 @@
     leftView.image = [UIImage imageNamed:@"user"];
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
     self.usernameField.leftView = leftView;
-    
     
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder =kLocalizedPassword;
@@ -171,8 +168,7 @@
 {
     if (!parent) {
         [self.catTVC afterSuccessfulLogin];
-    }
-    
+    }    
 }
 
 - (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
@@ -272,7 +268,6 @@
 
 -(void)registerAction
 {
-//TODO present registerViewController
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
     RegisterViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterController"];
     vc.catTVC = self.catTVC;
@@ -280,7 +275,6 @@
     vc.password = self.passwordField.text;
     
     [self.navigationController pushViewController:vc animated:YES];
-
 }
 
 - (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
@@ -324,11 +318,11 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
     
-    
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
         if (error) {
             if (error.code != kCFURLErrorCancelled) {
-                NSLog(@"%@", error);
+                NSLog(@"ERROR: %@", error);
             }
             
         } else {
@@ -342,7 +336,6 @@
                 
                 if ([statusCode isEqualToString:statusCodeOK]) {
 
-                    [self showLoginSuccessfulView];
                     NSDebug(@"Login successful");
                     NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
                     NSDebug(@"Token is %@", token);
@@ -366,7 +359,7 @@
                     
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
                     NSDebug(@"Error: %@", serverResponse);
-                    [Util alertWithText:serverResponse];
+                    [Util alertWithText:[NSString stringWithFormat:@"Error: %@", serverResponse]];
                 }
             });
         }
@@ -381,20 +374,6 @@
         NSDebug(@"Connection could not be established");
         [Util defaultAlertForNetworkError];
     }
-}
-
-- (void)showLoginSuccessfulView
-{
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
-                                                    text:kLocalizedLoginSuccessful];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    hud.tag = kLoginViewTag;
-    [self.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
-                      inView:self.view
-                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (NSURLSession *)session {
@@ -459,4 +438,5 @@
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
 }
+
 @end
