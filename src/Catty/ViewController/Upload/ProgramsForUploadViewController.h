@@ -26,4 +26,6 @@
 
 @interface ProgramsForUploadViewController : BaseTableViewController
 
+@property Boolean showLoginFeedback;
+
 @end

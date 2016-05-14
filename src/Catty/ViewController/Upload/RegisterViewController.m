@@ -30,7 +30,6 @@
 #import "Util.h"
 #import "JNKeychain.h"
 #import "CatrobatTableViewController.h"
-#import "BDKNotifyHUD.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
@@ -172,12 +171,6 @@
     [self.emailField addTarget:self
                         action:@selector(textFieldShouldReturn:)
               forControlEvents:UIControlEventEditingDidEndOnExit];
-}
-
--(void)willMoveToParentViewController:(UIViewController *)parent
-{
-    // TODO when successful registration -> it pops to CtrobatTableViewController ->
-    // make sure it will go back to upload. For now user has to klick again.
 }
 
 - (void)didReceiveMemoryWarning
@@ -340,11 +333,7 @@
                 NSDebug(@"StatusCode is %@", statusCode);
                 
                 if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
-                    
-                    if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
-                        [self showRegistrationSuccessfulView];
-                    }
-                    
+
                     NSDebug(@"Login successful");
                     NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
                     NSDebug(@"Token is %@", token);
@@ -382,21 +371,6 @@
         [Util defaultAlertForNetworkError];
     }
 }
-
-- (void)showRegistrationSuccessfulView
-{
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
-                                                    text:kLocalizedRegistrationSuccessful];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    hud.tag = kRegistrationViewTag;
-    [self.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
-                      inView:self.view
-                  completion:^{ [hud removeFromSuperview]; }];
-}
-
 
 - (NSURLSession *)session {
     if (!_session) {

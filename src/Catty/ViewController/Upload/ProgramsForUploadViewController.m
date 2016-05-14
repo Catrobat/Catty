@@ -60,6 +60,12 @@
     return _uploadingProgramInfos;
 }
 
+-(id)init
+{
+    _showLoginFeedback = false;
+    return self;
+}
+
 #pragma mark - View Events
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,6 +84,12 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
     [self.tableView reloadData];
+    
+    if(_showLoginFeedback) {
+        [self showLoggedInView];
+    }
+    
+    _showLoginFeedback = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -234,6 +246,7 @@
 - (void)uploadProgramAction:(id)sender
 {
     NSDebug(@"Upload program: %@", self.lastUsedProgram.header.programName);
+    NSDebug(@"Attention: Currently not working!");
     
     /*
      ProgramLoadingInfo *info = self.programLoadingInfos.firstObject;
@@ -287,6 +300,19 @@
 
 }
 
+- (void)showLoggedInView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedLoginSuccessful];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kLoginViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
 
 
 @end
