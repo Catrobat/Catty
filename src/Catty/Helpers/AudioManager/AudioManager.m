@@ -80,8 +80,10 @@
     CatrobatAudioPlayer *player = [audioPlayers objectForKey:fileName];
     if (! player) {
         player = [[SoundCache sharedSoundCache] cachedSoundForPath:path];
-        if (!player){
-            player =  [[SoundCache sharedSoundCache] loadSoundFromDiskWithPath:path];
+        if (! player){
+            player = [[SoundCache sharedSoundCache] loadSoundFromDiskWithPath:path];
+            if (! player)
+                return NO;
         }
         player.delegate = self;
         [player setKey:fileName];
@@ -100,8 +102,7 @@
         player.delegate = delegate;
     
     player.volume = self.current_volume;
-    [player play];
-    return YES;
+    return [player play];
 }
 
 - (BOOL)playSoundWithFileName:(NSString*)fileName

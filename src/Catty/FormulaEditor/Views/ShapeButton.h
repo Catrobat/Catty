@@ -20,12 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
 
-@interface ProgramsForUploadViewController : BaseTableViewController
+typedef NS_ENUM(NSUInteger, ShapeButtonType) {
+    ShapeButtonTypeBackSpace = 0
+};
 
-@property Boolean showLoginFeedback;
+IB_DESIGNABLE
+@interface ShapeButton : UIButton
+@property (nonatomic, assign) IBInspectable NSInteger shapeType; // Adapter for IB shape enum
+@property (nonatomic, assign) IBInspectable CGFloat lineWidth; // Default 1
+@property (nonatomic, strong) IBInspectable UIColor *shapeStrokeColor; // Default white
+@property (nonatomic, assign) IBInspectable UIEdgeInsets buttonInsets; // Default top:10, left:28, bottom:10, right:24
+
++ (instancetype)shapeButtonWithType:(ShapeButtonType)type frame:(CGRect)frame;
 
 @end

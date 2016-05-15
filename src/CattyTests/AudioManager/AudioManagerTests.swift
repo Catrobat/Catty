@@ -20,25 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
-import Siren
+import XCTest
+@testable import Pocket_Code
 
-@objc public class SwiftBridge:NSObject {
-
-    @objc public class func sirenBridgeApplicationDidFinishLaunching() {
-        let siren = Siren.sharedInstance
-        siren.checkVersion(.Daily)
-        siren.alertType = .Option
+class AudioManagerTests: XCTestCase {
+    
+    var audioManager = AudioManager.sharedAudioManager()
+    
+    override func setUp( ) {
+        super.setUp()
+        audioManager = AudioManager.sharedAudioManager()
     }
     
-    @objc public class func sirenApplicationDidBecomeActive() {
-        let siren = Siren.sharedInstance
-        siren.checkVersion(.Daily)
+    override func tearDown() {
+        super.tearDown()
+        audioManager.stopAllSounds()
     }
     
-    @objc public class func sirenApplicationWillEnterForeground() {
-        let siren = Siren.sharedInstance
-        siren.checkVersion(.Daily)
+    func testPlaySound() {
+        let testBundle = NSBundle(forClass: self.dynamicType)
+        let fileURL = testBundle.URLForResource("silence", withExtension: "mp3")
+        XCTAssertNotNil(fileURL)
+        
+        let result = audioManager.playSoundWithFileName(fileURL!.lastPathComponent, andKey: "key", atFilePath: fileURL!.URLByDeletingLastPathComponent!.path)
+        XCTAssertTrue(result)
     }
     
+    func testPlaySoundAndFail() {
+        let result = audioManager.playSoundWithFileName("invalidFile", andKey: "key", atFilePath: "invalidPath")
+        XCTAssertFalse(result)
+    }
 }
