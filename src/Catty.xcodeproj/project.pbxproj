@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C295A2C72A8491E42352707 /* Pods_Catty_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */; };
+		3689721E1A530929D06631A0 /* Pods_Catty_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C06A2A91C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A81C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m */; };
 		4C06A2AB1C3D5F2C00E9234C /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2AA1C3D5F2C00E9234C /* XMLSerializerTests.m */; };
@@ -811,12 +813,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		082A746B6893F5E2A479AE77 /* Pods-Catty Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty Tests/Pods-Catty Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F8D321C59F7D79902BCF650 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		44A2A816C67B1A98117F5F13 /* Pods-Catty Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Catty Tests/Pods-Catty Tests.release.xcconfig"; sourceTree = "<group>"; };
+		47D1DBFF5CB268B8D0056D0B /* Pods-Catty UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty UITests/Pods-Catty UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C06A2A81C3D5F2200E9234C /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
 		4C06A2AA1C3D5F2C00E9234C /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
@@ -1071,6 +1076,7 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
+		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
@@ -1963,6 +1969,7 @@
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA2D44401B122E8500A3B53D /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
@@ -2045,6 +2052,7 @@
 		CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LegoNxtMotorActionBrick.xml; path = CattyTests/Resources/ParserTests/LegoNxtMotorActionBrick.xml; sourceTree = SOURCE_ROOT; };
 		CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = CattyTests/Resources/ParserTests/ValidFormulaList.xml; sourceTree = SOURCE_ROOT; };
 		CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickConditionalBranchProtocol.h; sourceTree = "<group>"; };
+		D0B35F3F0244826FFD2AB212 /* Pods-Catty UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Catty UITests/Pods-Catty UITests.release.xcconfig"; sourceTree = "<group>"; };
 		D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsForUploadViewController.h; sourceTree = "<group>"; };
 		D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsForUploadViewController.m; sourceTree = "<group>"; };
 		D63864661AE6334E008569E6 /* UploadInfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadInfoPopupViewController.h; sourceTree = "<group>"; };
@@ -2064,6 +2072,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C295A2C72A8491E42352707 /* Pods_Catty_UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2072,6 +2081,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
+				3689721E1A530929D06631A0 /* Pods_Catty_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2178,6 +2188,8 @@
 				B46B26E817703E4000172837 /* XCTest.framework */,
 				1F8D321C59F7D79902BCF650 /* Pods.framework */,
 				6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */,
+				C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */,
+				677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2187,6 +2199,10 @@
 			children = (
 				7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */,
 				AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */,
+				082A746B6893F5E2A479AE77 /* Pods-Catty Tests.debug.xcconfig */,
+				44A2A816C67B1A98117F5F13 /* Pods-Catty Tests.release.xcconfig */,
+				47D1DBFF5CB268B8D0056D0B /* Pods-Catty UITests.debug.xcconfig */,
+				D0B35F3F0244826FFD2AB212 /* Pods-Catty UITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -5764,9 +5780,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */;
 			buildPhases = (
+				10DE512E761C3D1602E05656 /* 📦 Check Pods Manifest.lock */,
 				AAADA0001B9B29D500E0CA9A /* Sources */,
 				AAADA0011B9B29D500E0CA9A /* Frameworks */,
 				AAADA0021B9B29D500E0CA9A /* Resources */,
+				C4032B959C094F0756E0AE19 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5782,9 +5800,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "Catty Tests" */;
 			buildPhases = (
+				73F45A9972A10D8C48F7818A /* 📦 Check Pods Manifest.lock */,
 				CA7698A61B0E4A97000D0340 /* Sources */,
 				CA7698A71B0E4A97000D0340 /* Frameworks */,
 				CA7698A81B0E4A97000D0340 /* Resources */,
+				F4D0B7B52819AD10BCB7BDF3 /* 📦 Embed Pods Frameworks */,
+				E1EF1D2BADF1AB7C8F52215F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5800,7 +5821,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
-				0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */,
+				0996A6A7C8E2E38BE98F9351 /* 📦 Check Pods Manifest.lock */,
 				CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */,
 				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
 				CADBD6D819B0E8C200C62836 /* Resources */,
@@ -5811,8 +5832,8 @@
 				929DC44A1BCB9C5000421443 /* License Validator */,
 				92C6319D1BC5180B00486958 /* CopyFiles */,
 				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
-				4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */,
-				1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */,
+				4FEDB393FCF94E05E6C01E4C /* 📦 Embed Pods Frameworks */,
+				1CAB9D66718A42AFF93E08C1 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6108,14 +6129,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */ = {
+		0996A6A7C8E2E38BE98F9351 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6123,14 +6144,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */ = {
+		10DE512E761C3D1602E05656 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1CAB9D66718A42AFF93E08C1 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6138,19 +6174,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */ = {
+		4FEDB393FCF94E05E6C01E4C /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73F45A9972A10D8C48F7818A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		922123C81BCAB51E008AAE45 /* Todo/Fixme check */ = {
@@ -6195,6 +6246,21 @@
 			shellPath = "/usr/bin/env python";
 			shellScript = "#!/usr/bin/env python\n\nimport os, sys\n\n# config\nsuccess_msg = \"A local git hook has been created! The script will automatically keep track of the project's build number. You should never hear this message again. The app is launching now!\"\nalert_msg_template = \"Can't create local {0} commit git hook! Please stop commiting to the repository and inform the team leader.\"\n\n# immutable paths\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_SRC_DIR = env['PROJECT_DIR']\nPLIST_PATH = os.path.join(PROJECT_SRC_DIR, env['INFOPLIST_FILE'])\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_SRC_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\n# helpers\ndef touch(path):\n    if os.path.exists(path):\n        os.utime(path, None)\n    else:\n        open(fname, 'a').close()\n\ndef make_dir_if_not_exists(path):\n    try:\n        if not os.path.exists(path):\n            os.makedirs(path)\n        elif not os.path.isdir(path):\n            print(\"An error occured! Invalid path '{0}'. This is NO directory.\".format(path))\n    except Exception, e:\n        print(e)\n        raise e\n\n# inject hook code\nmake_dir_if_not_exists(HOOK_DIR)\nassert(os.access(HOOK_DIR, os.W_OK))\npre_commit_hook_path = os.path.join(HOOK_DIR, \"pre-commit\")\n\n# TODO: TEMPORARY TODO SECTION => remove this section later {\npost_commit_hook_path = os.path.join(HOOK_DIR, \"post-commit\")\n\nimport datetime\nexpire_date = datetime.datetime(2015, 10, 7)\nnow_date = datetime.datetime.now()\n\n\nif os.path.isfile(post_commit_hook_path):\n    os.remove(post_commit_hook_path)\n    if not os.path.isfile(post_commit_hook_path):\n        os.system(\"say -v Alex \\\"Successfully removed post-commit hook file. You should never hear this message again. The app is launching now!\\\"\")\n    else:\n        os.system(\"say -v Alex \\\"Cannot remove post-commit hook file. The app is launching now!\\\"\")\n# }\n\npre_commit_code = \"\"\"\n    \\#!/bin/sh\n    PROJECT_ROOT_DIR=\"%s\"\n    PLIST_PATH=\"%s\"\n\n    branchName=`/usr/bin/env git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\n    gitCount=`/usr/bin/env git rev-list $branchName |wc -l | sed 's/^ *//;s/ *$//'`\n    simpleBranchName=`/usr/bin/env git rev-parse --abbrev-ref HEAD`\n    shortHash=`/usr/bin/env git rev-parse --short HEAD`\n\n    buildNumber=\"$((gitCount + 1))\"\n    buildNumber+=\"-${simpleBranchName}\"\n    buildNumber+=\"-{parent:${shortHash}}\"\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $buildNumber\" \"${PLIST_PATH}\"\n\n    # Add modified plist to the staging area\n    cd ${PROJECT_ROOT_DIR}\n    /usr/bin/env git add ${PLIST_PATH}\n    exit 0\n\"\"\" % (PROJECT_ROOT_DIR, PLIST_PATH)\n\n# remove line indentation\npre_commit_code = \"\".join([(line.lstrip() + \"\\n\") for line in pre_commit_code.split(\"\\n\")[1:]])\n\nhook_existed_before = os.path.isfile(pre_commit_hook_path)\n\nwith open(pre_commit_hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(pre_commit_code[1:])\n\nos.chmod(pre_commit_hook_path, 0755) # make script editable and executable\n\nhook_exists_now = os.path.isfile(pre_commit_hook_path)\n\n# inform developer!\nif hook_exists_now and not hook_existed_before:\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(success_msg))\nif not os.path.isfile(pre_commit_hook_path):\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(alert_msg_template.format(\"pre\")))\n";
 		};
+		C4032B959C094F0756E0AE19 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty UITests/Pods-Catty UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6236,6 +6302,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/perl -w";
 			shellScript = "use strict;\n\nmy $ACKNOWLEDGEMENTS_HEADER = \"PORTIONS OF THE APPLICATION MAY UTILIZE THE FOLLOWING COPYRIGHTED MATERIAL, THE USE OF WHICH IS HEREBY ACKNOWLEDGED:\";\n\nmy $out = \"Catty/Settings.bundle/en.lproj/Acknowledgements.strings\";\nmy $plistout = \"Catty/Settings.bundle/Acknowledgements.plist\";\n\nunlink $out;\n\nopen(my $outfh, '>', $out) or die $!;\nopen(my $plistfh, '>', $plistout) or die $!;\n\nprint $plistfh <<'EOD';\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n    <key>StringsTable</key>\n    <string>Acknowledgements</string>\n    <key>PreferenceSpecifiers</key>\n        <array>\nEOD\n\nprint $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>AcknowledgementHeader</string>\n            </dict>\nEOD\n\nprint $outfh \"\\\"AcknowledgementHeader\\\" = \\\"$ACKNOWLEDGEMENTS_HEADER\\\";\\n\";\n\nfor my $i (sort glob(\"Catty/Resources/Licenses/*.license\"))\n{\n    my $value=`cat $i`;\n    $value =~ s/\\r//g;\n    $value =~ s/\\n/\\r/g;\n    $value =~ s/[ \\t]+\\r/\\r/g;\n    $value =~ s/\\\"/\\'/g;\n    my $key=$i;\n    $key =~ s/\\.license$//;\n    \n    print $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>$key</string>\n            </dict>\nEOD\n    \n    print $outfh \"\\\"$key\\\" = \\\"$value\\\";\\n\";\n}\n\nprint $plistfh <<'EOD';\n        </array>\n</dict>\n</plist>\nEOD\n\nclose($outfh);\nclose($plistfh);";
+		};
+		E1EF1D2BADF1AB7C8F52215F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty Tests/Pods-Catty Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4D0B7B52819AD10BCB7BDF3 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty Tests/Pods-Catty Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -6903,6 +6999,7 @@
 /* Begin XCBuildConfiguration section */
 		AAADA00B1B9B29D500E0CA9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47D1DBFF5CB268B8D0056D0B /* Pods-Catty UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -6936,6 +7033,7 @@
 		};
 		AAADA00C1B9B29D500E0CA9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B35F3F0244826FFD2AB212 /* Pods-Catty UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -7087,6 +7185,7 @@
 		};
 		CA7698B31B0E4A97000D0340 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 082A746B6893F5E2A479AE77 /* Pods-Catty Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -7104,6 +7203,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"TESTMODE=1",
+					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -7129,6 +7229,7 @@
 		};
 		CA7698B41B0E4A97000D0340 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44A2A816C67B1A98117F5F13 /* Pods-Catty Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -7147,6 +7248,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=0",
 					"TESTMODE=1",
+					"$(inherited)",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -7181,7 +7283,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",
@@ -7223,7 +7325,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"TESTMODE=0",

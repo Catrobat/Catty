@@ -27,7 +27,6 @@ import Siren
 
     @objc public class func sirenBridgeApplicationDidFinishLaunching() {
         let siren = Siren.sharedInstance
-        siren.appID = kAppStoreIdentifier
         siren.checkVersion(.Daily)
         siren.alertType = .Option
     }
