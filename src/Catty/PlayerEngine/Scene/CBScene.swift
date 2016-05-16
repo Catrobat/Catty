@@ -289,32 +289,4 @@ final class CBScene: SKScene {
         logger?.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
 
-    // MARK: - Operations (Helpers)
-    func convertPointToScene(point: CGPoint) -> CGPoint {
-        let x = convertXCoordinateToScene(point.x)
-        let y = convertYCoordinateToScene(point.y)
-        return CGPoint(x: x, y: y)
-    }
-
-    func convertXCoordinateToScene(x: CGFloat) -> CGFloat {
-        return (size.width/2.0 + x)
-    }
-
-    func convertYCoordinateToScene(y: CGFloat) -> CGFloat {
-        return (size.height/2.0 + y)
-    }
-
-    func convertSceneCoordinateToPoint(point: CGPoint) -> CGPoint {
-        let x = point.x - size.width/2.0
-        let y = point.y - size.height/2.0
-        return CGPointMake(x, y);
-    }
-
-    func convertDegreesToScene(degrees: Double) -> Double {
-        return 360.0 - degrees
-    }
-
-    func convertSceneToDegrees(degrees: CGFloat) -> CGFloat {
-        return 360.0 + degrees
-    }
 }

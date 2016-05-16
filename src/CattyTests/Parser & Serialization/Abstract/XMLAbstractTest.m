@@ -111,7 +111,6 @@
 
 - (void)saveProgram:(Program*)program
 {
-    // TODO: find correct serializer class dynamically
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
     id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:program];

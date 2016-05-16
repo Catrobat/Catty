@@ -68,7 +68,9 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.zRotation, [Util degreeToRadians:(double)(360-(-70))], 0.0001, @"PointInDirectionBrick is not correctly calculated");
+    
+    double expectedRotation = 20;
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, expectedRotation, 0.0001, @"PointInDirectionBrick is not correctly calculated");
 }
 
 @end
