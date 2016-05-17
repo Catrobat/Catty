@@ -31,6 +31,7 @@
 #import "JNKeychain.h"
 #import "CatrobatTableViewController.h"
 #import "RegisterViewController.h"
+#import "LoadingView.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
@@ -58,6 +59,7 @@
 @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) LoadingView* loadingView;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 //@property (nonatomic, strong) Keychain *keychain;
@@ -82,6 +84,11 @@
     [self addDoneToTextFields];
 }
 
+- (void)dealloc
+{
+    [self.loadingView removeFromSuperview];
+    self.loadingView = nil;
+}
 
 -(void)initView
 {
@@ -280,7 +287,7 @@
 - (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
-    
+
     BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
     NSString *uploadUrl = useTestServer ? kTestLoginUrl : kLoginUrl;
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLogin];
@@ -318,11 +325,15 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
     
+    [self showLoadingView];
+    
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     
         if (error) {
             if (error.code != kCFURLErrorCancelled) {
                 NSLog(@"ERROR: %@", error);
+                [self hideLoadingView];
+                [Util alertWithText:kLocalizedErrorInternetConnection];
             }
             
         } else {
@@ -352,10 +363,12 @@
                     [JNKeychain saveValue:self.password forKey:kcPassword];
                     [JNKeychain saveValue:token forKey:kUserLoginToken];
 
+                    [self hideLoadingView];
                     [self.navigationController popViewControllerAnimated:NO];
                     
                 } else {
                     self.loginButton.enabled = YES;
+                    [self hideLoadingView];
                     
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
                     NSDebug(@"Error: %@", serverResponse);
@@ -370,8 +383,10 @@
         NSDebug(@"Connection Successful");
         [self setEnableActivityIndicator:YES];
         self.loginButton.enabled = NO;
+        [self showLoadingView];
     } else {
         NSDebug(@"Connection could not be established");
+        [self hideLoadingView];
         [Util defaultAlertForNetworkError];
     }
 }
@@ -402,6 +417,8 @@
     NSString *url = kRecoverPassword;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
+
+#pragma mark Helpers
 
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
@@ -437,6 +454,21 @@
     [UIView setAnimationDuration: movementDuration];
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
+}
+
+- (void)showLoadingView
+{
+    if(!self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+        [self.view addSubview:self.loadingView];
+    }
+    [self.loadingView show];
+}
+
+- (void) hideLoadingView
+{
+    [self.loadingView hide];
 }
 
 @end
