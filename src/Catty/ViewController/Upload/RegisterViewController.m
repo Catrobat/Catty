@@ -330,6 +330,7 @@
         if (error) {
             if (error.code != kCFURLErrorCancelled) {
                 NSLog(@"ERROR: %@", error);
+                self.registerButton.enabled = YES;
                 [self hideLoadingView];
                 [Util alertWithText:kLocalizedErrorInternetConnection];
             }
@@ -430,11 +431,19 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
+    [self loadingIndicator:YES];
 }
 
 - (void) hideLoadingView
 {
     [self.loadingView hide];
+    [self loadingIndicator:NO];
+}
+
+- (void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 @end

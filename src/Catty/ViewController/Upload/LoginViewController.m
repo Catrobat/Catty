@@ -62,6 +62,8 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
+@property (nonatomic) BOOL shouldShowAlert;
+@property (nonatomic) BOOL shouldResume;
 //@property (nonatomic, strong) Keychain *keychain;
 @end
 
@@ -82,6 +84,8 @@
     self.navigationController.title  = self.title = kLocalizedLogin;
     [self initView];
     [self addDoneToTextFields];
+    self.shouldShowAlert = YES;
+    self.shouldResume = YES;
 }
 
 - (void)dealloc
@@ -122,6 +126,8 @@
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
     self.usernameField.leftView = leftView;
     
+    self.usernameField.text = @"ios"; //TODO: remove
+    
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder =kLocalizedPassword;
     [self.passwordField setSecureTextEntry:YES];
@@ -134,6 +140,8 @@
     leftView2.image = [UIImage imageNamed:@"password"];
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
+    
+    self.passwordField.text = @"icatty"; //TODO: remove
     
     self.loginButton.backgroundColor = darkColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
@@ -328,66 +336,87 @@
     [self showLoadingView];
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-    
+
         if (error) {
-            if (error.code != kCFURLErrorCancelled) {
+            if ([Util isNetworkError:error]) {
                 NSLog(@"ERROR: %@", error);
+                
+                self.loginButton.enabled = YES;
+                [Util defaultAlertForNetworkError];
                 [self hideLoadingView];
-                [Util alertWithText:kLocalizedErrorInternetConnection];
+                //[self.dataTask cancel];
+                self.shouldResume = NO;
+                return;
             }
-            
+
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setEnableActivityIndicator:NO];
-                
-                NSError *error = nil;
-                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
-                NSDebug(@"StatusCode is %@", statusCode);
-                
-                if ([statusCode isEqualToString:statusCodeOK]) {
-
-                    NSDebug(@"Login successful");
-                    NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
-                    NSDebug(@"Token is %@", token);
-                    
-                    //save username, password and email in keychain and token in nsuserdefaults
-                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
-                    [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
-                    
-                    //TODO email?!
-                    [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-            
-                    [JNKeychain saveValue:self.password forKey:kcPassword];
-                    [JNKeychain saveValue:token forKey:kUserLoginToken];
-
-                    [self hideLoadingView];
-                    [self.navigationController popViewControllerAnimated:NO];
-                    
-                } else {
-                    self.loginButton.enabled = YES;
-                    [self hideLoadingView];
-                    
-                    NSString *serverResponse = [dictionary valueForKey:answerTag];
-                    NSDebug(@"Error: %@", serverResponse);
-                    [Util alertWithText:[NSString stringWithFormat:@"Error: %@", serverResponse]];
-                }
+                [self handleLoginResponseWithData:data andResponse:response];
             });
         }
     }];
+  
     
-    if (self.dataTask) {
+    if (self.dataTask && self.shouldResume) {
         [self.dataTask resume];
-        NSDebug(@"Connection Successful");
-        [self setEnableActivityIndicator:YES];
         self.loginButton.enabled = NO;
         [self showLoadingView];
     } else {
-        NSDebug(@"Connection could not be established");
+        self.loginButton.enabled = YES;
         [self hideLoadingView];
         [Util defaultAlertForNetworkError];
+    }
+    
+}
+
+-(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
+{
+    
+     if (data == nil) {
+         NSDebug(@"HON: Data is nil");
+     
+         if (self.shouldShowAlert) {
+             self.shouldShowAlert = NO;
+             [self hideLoadingView];
+             NSDebug(@"Hiding loading view");
+             [Util defaultAlertForNetworkError];
+         }
+         return;
+     }
+     
+    NSError *error = nil;
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
+    NSDebug(@"StatusCode is %@", statusCode);
+    
+    if ([statusCode isEqualToString:statusCodeOK]) {
+        
+        NSDebug(@"Login successful");
+        NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
+        NSDebug(@"Token is %@", token);
+        
+        //save username, password and email in keychain and token in nsuserdefaults
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
+        [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
+        [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
+        
+        //TODO email to Keychain?!
+        [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [JNKeychain saveValue:self.password forKey:kcPassword];
+        [JNKeychain saveValue:token forKey:kUserLoginToken];
+        
+        [self hideLoadingView];
+        [self.navigationController popViewControllerAnimated:NO];
+        
+    } else {
+        self.loginButton.enabled = YES;
+        [self hideLoadingView];
+        
+        NSString *serverResponse = [dictionary valueForKey:answerTag];
+        NSDebug(@"Error: %@", serverResponse);
+        [Util alertWithText:[NSString stringWithFormat:@"Error: %@", serverResponse]];
     }
 }
 
@@ -419,11 +448,6 @@
 }
 
 #pragma mark Helpers
-
-- (void)setEnableActivityIndicator:(BOOL)enabled
-{
-    [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:enabled];
-}
 
 -(void)dismissKeyboard {
     [self.usernameField resignFirstResponder];
@@ -464,11 +488,19 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
+    [self loadingIndicator:YES];
 }
 
 - (void) hideLoadingView
 {
     [self.loadingView hide];
+    [self loadingIndicator:NO];
+}
+
+- (void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 @end
