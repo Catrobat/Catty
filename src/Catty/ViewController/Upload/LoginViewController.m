@@ -339,6 +339,8 @@
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
     
+    [request setTimeoutInterval:kConnectionTimeout];
+    
     [self showLoadingView];
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

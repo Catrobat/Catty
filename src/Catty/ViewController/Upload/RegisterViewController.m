@@ -334,6 +334,8 @@
     // set request body
     [request setHTTPBody:body];
     
+    [request setTimeoutInterval:kConnectionTimeout];
+    
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
     
