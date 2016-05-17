@@ -195,6 +195,15 @@
 }
 
 
+-(BOOL)stringContainsSpace:(NSString *)checkString
+{
+    NSRange whiteSpaceRange = [checkString rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (whiteSpaceRange.location != NSNotFound) {
+        return true;
+    }
+    return false;
+}
+
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString
 {
     BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
@@ -272,6 +281,9 @@
         return;
     } else if ([self.emailField.text isEqualToString:@""] || ![self NSStringIsValidEmail:self.emailField.text]) {
         [Util alertWithText:kLocalizedLoginEmailNotValid];
+        return;
+    } else if ([self stringContainsSpace:self.usernameField.text] || [self stringContainsSpace:self.passwordField.text]) {
+        [Util alertWithText:kLocalizedNoWhitespaceAllowed];
         return;
     }
     

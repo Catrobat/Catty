@@ -49,6 +49,7 @@
 #define answerTag @"answer"
 #define statusCodeOK @"200"
 #define statusCodeRegistrationOK @"201"
+#define statusAuthenticationFailed @"601"
 
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
@@ -194,6 +195,14 @@
 }
 
 
+-(BOOL)stringContainsSpace:(NSString *)checkString
+{
+    NSRange whiteSpaceRange = [checkString rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (whiteSpaceRange.location != NSNotFound) {
+        return true;
+    }
+    return false;
+}
 
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString
 {
@@ -268,6 +277,9 @@
         return;
     } else if (![self validPassword:self.passwordField.text]) {
         [Util alertWithText:kLocalizedLoginPasswordNotValid];
+        return;
+    } else if ([self stringContainsSpace:self.usernameField.text] || [self stringContainsSpace:self.passwordField.text]) {
+        [Util alertWithText:kLocalizedNoWhitespaceAllowed];
         return;
     }
     
@@ -401,6 +413,9 @@
         [self hideLoadingView];
         [self.navigationController popViewControllerAnimated:NO];
         
+    } else if ([statusCode isEqualToString:statusAuthenticationFailed]) {
+        NSDebug(@"Error: %@", kLocalizedAuthenticationFailed);
+        [Util alertWithText:kLocalizedAuthenticationFailed];
     } else {
         self.loginButton.enabled = YES;
         [self hideLoadingView];

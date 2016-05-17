@@ -424,6 +424,8 @@ let kLocalizedUploadProblem = NSLocalizedString("Problems occured while Uploadin
 let kLocalizedUploadSelectProgram = NSLocalizedString("Please select a program to upload", comment: "")
 let kLocalizedTitleLogin = NSLocalizedString("GOOD TO SEE YOU", comment: "")
 let kLocalizedTitleRegister = NSLocalizedString("GOOD TO SEE YOU", comment: "")
+let kLocalizedNoWhitespaceAllowed = NSLocalizedString("No whitespace character allowed", comment: "")
+let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", comment: "")
 
 let kLocalizedInfoLogin = NSLocalizedString("Login", comment: "")
 let kLocalizedInfoRegister = NSLocalizedString("Register", comment: "")
