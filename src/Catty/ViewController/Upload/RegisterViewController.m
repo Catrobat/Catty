@@ -58,6 +58,7 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSURLSessionDataTask *dataTask;
+@property (nonatomic) BOOL shouldShowAlert;
 //@property (nonatomic, strong) Keychain *keychain;
 @end
 
@@ -78,7 +79,7 @@
 	self.navigationController.title  = self.title = kLocalizedRegister;
     [self initView];
     [self addDoneToTextFields];
-    
+    self.shouldShowAlert = YES;
 }
 
 - (void)dealloc
@@ -124,6 +125,7 @@
     leftView2.image = [UIImage imageNamed:@"password"];
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
+
     
     self.emailField.backgroundColor = [UIColor whiteColor];
     self.emailField.placeholder =kLocalizedEmail;
@@ -137,7 +139,6 @@
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
     self.emailField.leftView = leftView3;
 
-    
     
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder = kLocalizedPassword;
@@ -327,66 +328,84 @@
     [self showLoadingView];
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
         if (error) {
-            if (error.code != kCFURLErrorCancelled) {
+            if ([Util isNetworkError:error]) {
                 NSLog(@"ERROR: %@", error);
-                self.registerButton.enabled = YES;
-                [self hideLoadingView];
-                [Util alertWithText:kLocalizedErrorInternetConnection];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.registerButton.enabled = YES;
+                    [self hideLoadingView];
+                    [Util defaultAlertForNetworkError];
+                    return;
+                });
             }
             
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setEnableActivityIndicator:NO];
-                
-                NSError *error = nil;
-                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
-                NSDebug(@"StatusCode is %@", statusCode);
-                
-                if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
-
-                    NSDebug(@"Login successful");
-                    NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
-                    NSDebug(@"Token is %@", token);
-                    
-                    //save username, password and email in keychain and token in nsuserdefaults
-                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
-                    [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
-                    [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-            
-                    [JNKeychain saveValue:self.password forKey:kcPassword];
-                    [JNKeychain saveValue:token forKey:kUserLoginToken];
-
-                    [self hideLoadingView];
-                    [self.navigationController popToRootViewControllerAnimated:NO];
-                    
-                } else {
-                    self.registerButton.enabled = YES;
-                    [self hideLoadingView];
-                    
-                    NSString *serverResponse = [dictionary valueForKey:answerTag];
-                    NSDebug(@"Error: %@", serverResponse);
-                    [Util alertWithText:serverResponse];
-                }
+                [self handleRegisterResponseWithData:data andResponse:response];
             });
         }
     }];
     
+    
     if (self.dataTask) {
         [self.dataTask resume];
-        NSDebug(@"Connection Successful");
-        [self setEnableActivityIndicator:YES];
         self.registerButton.enabled = NO;
         [self showLoadingView];
-        
     } else {
-        NSDebug(@"Connection could not be established");
+        self.registerButton.enabled = YES;
         [self hideLoadingView];
         [Util defaultAlertForNetworkError];
     }
+}
+
+-(void)handleRegisterResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
+{
+    if (data == nil) {
+        
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            [self hideLoadingView];
+            [Util defaultAlertForNetworkError];
+        }
+        return;
+    }
+    
+    NSError *error = nil;
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
+    NSDebug(@"StatusCode is %@", statusCode);
+    
+    if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
+        
+        NSDebug(@"Login successful");
+        NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
+        NSDebug(@"Token is %@", token);
+        
+        //save username, password and email in keychain and token in nsuserdefaults
+        [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
+        [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
+        [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
+        
+        //TODO: email to keychain?
+        [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [JNKeychain saveValue:self.password forKey:kcPassword];
+        [JNKeychain saveValue:token forKey:kUserLoginToken];
+        
+        [self hideLoadingView];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        
+    } else {
+        self.registerButton.enabled = YES;
+        [self hideLoadingView];
+        
+        NSString *serverResponse = [dictionary valueForKey:answerTag];
+        NSDebug(@"Error: %@", serverResponse);
+        [Util alertWithText:serverResponse];
+    } 
 }
 
 - (NSURLSession *)session {
@@ -408,13 +427,6 @@
 {
     NSString *url = kTermsOfUseURL;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-}
-
-
-
-- (void)setEnableActivityIndicator:(BOOL)enabled
-{
-    [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:enabled];
 }
 
 -(void)dismissKeyboard {

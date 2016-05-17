@@ -63,7 +63,6 @@
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic) BOOL shouldShowAlert;
-@property (nonatomic) BOOL shouldResume;
 //@property (nonatomic, strong) Keychain *keychain;
 @end
 
@@ -85,7 +84,6 @@
     [self initView];
     [self addDoneToTextFields];
     self.shouldShowAlert = YES;
-    self.shouldResume = YES;
 }
 
 - (void)dealloc
@@ -126,8 +124,6 @@
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
     self.usernameField.leftView = leftView;
     
-    self.usernameField.text = @"ios"; //TODO: remove
-    
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder =kLocalizedPassword;
     [self.passwordField setSecureTextEntry:YES];
@@ -140,8 +136,6 @@
     leftView2.image = [UIImage imageNamed:@"password"];
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
-    
-    self.passwordField.text = @"icatty"; //TODO: remove
     
     self.loginButton.backgroundColor = darkColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
@@ -341,12 +335,12 @@
             if ([Util isNetworkError:error]) {
                 NSLog(@"ERROR: %@", error);
                 
-                self.loginButton.enabled = YES;
-                [Util defaultAlertForNetworkError];
-                [self hideLoadingView];
-                //[self.dataTask cancel];
-                self.shouldResume = NO;
-                return;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.loginButton.enabled = YES;
+                    [self hideLoadingView];
+                    [Util defaultAlertForNetworkError];
+                    return;
+                });
             }
 
         } else {
@@ -357,7 +351,7 @@
     }];
   
     
-    if (self.dataTask && self.shouldResume) {
+    if (self.dataTask) {
         [self.dataTask resume];
         self.loginButton.enabled = NO;
         [self showLoadingView];
@@ -371,18 +365,15 @@
 
 -(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
 {
-    
-     if (data == nil) {
-         NSDebug(@"HON: Data is nil");
-     
-         if (self.shouldShowAlert) {
-             self.shouldShowAlert = NO;
-             [self hideLoadingView];
-             NSDebug(@"Hiding loading view");
-             [Util defaultAlertForNetworkError];
-         }
-         return;
-     }
+    if (data == nil) {
+         
+        if (self.shouldShowAlert) {
+            self.shouldShowAlert = NO;
+            [self hideLoadingView];
+            [Util defaultAlertForNetworkError];
+        }
+        return;
+    }
      
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -416,7 +407,7 @@
         
         NSString *serverResponse = [dictionary valueForKey:answerTag];
         NSDebug(@"Error: %@", serverResponse);
-        [Util alertWithText:[NSString stringWithFormat:@"Error: %@", serverResponse]];
+        [Util alertWithText:serverResponse];
     }
 }
 
