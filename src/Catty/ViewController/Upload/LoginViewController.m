@@ -177,8 +177,15 @@
 -(void)willMoveToParentViewController:(UIViewController *)parent
 {
     if (!parent) {
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.dataTask cancel];
+            });
+        }
+        
         [self.catTVC afterSuccessfulLogin];
-    }    
+    }
 }
 
 - (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
