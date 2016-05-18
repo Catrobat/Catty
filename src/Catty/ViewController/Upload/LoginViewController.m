@@ -174,16 +174,18 @@
                  forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.dataTask cancel];
+    });
+    
+    [super viewWillDisappear:animated];
+}
+
 -(void)willMoveToParentViewController:(UIViewController *)parent
 {
     if (!parent) {
-        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.dataTask cancel];
-            });
-        }
-        
         [self.catTVC afterSuccessfulLogin];
     }
 }

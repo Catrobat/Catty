@@ -182,6 +182,15 @@
               forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.dataTask cancel];
+    });
+    
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
