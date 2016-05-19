@@ -325,9 +325,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-            if ([self shouldPerformSegueWithIdentifier:@"segueToUpload" sender:self]) {
+            static NSString *segueToUploadIdentifier = kSegueToUpload;
+            
+            if ([self shouldPerformSegueWithIdentifier:segueToUploadIdentifier sender:self]) {
                 self.freshLogin = true;
-                [self performSegueWithIdentifier:@"segueToUpload" sender:self];
+                [self performSegueWithIdentifier:segueToUploadIdentifier sender:self];
             }
         }
     });

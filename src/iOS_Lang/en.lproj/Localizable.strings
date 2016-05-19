@@ -95,6 +95,9 @@
 "August" = "August";
 
 /* No comment provided by engineer. */
+"Authentication failed" = "Authentication failed";
+
+/* No comment provided by engineer. */
 "Author" = "Author";
 
 /* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
@@ -840,6 +843,9 @@
 
 /* No comment provided by engineer. */
 "No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"No whitespace character allowed" = "No whitespace character allowed";
 
 /* No comment provided by engineer. */
 "not" = "not";

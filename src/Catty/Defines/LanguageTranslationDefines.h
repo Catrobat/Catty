@@ -424,6 +424,8 @@
 #define kLocalizedUploadSelectProgram NSLocalizedString(@"Please select a program to upload", nil)
 #define kLocalizedTitleLogin NSLocalizedString(@"GOOD TO SEE YOU",nil)
 #define kLocalizedTitleRegister NSLocalizedString(@"GOOD TO SEE YOU",nil)
+#define kLocalizedNoWhitespaceAllowed NSLocalizedString(@"No whitespace character allowed",nil)
+#define kLocalizedAuthenticationFailed NSLocalizedString(@"Authentication failed",nil)
 
 #define kLocalizedInfoLogin NSLocalizedString(@"Login",nil)
 #define kLocalizedInfoRegister NSLocalizedString(@"Register",nil)
