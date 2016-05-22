@@ -450,7 +450,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-#define kActionsheetBrickCellMarginBottom 21.0f
+#define kActionsheetBrickCellMarginBottom 15.0f
 - (void)actionSheetPresented:(CatrobatAlertController*)actionSheet
 {
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
@@ -1235,7 +1235,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:brickCell];
     UICollectionViewLayoutAttributes *brickCellAttributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
     CGFloat collectionViewHeight = self.collectionView.frame.size.height;
-    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + [brickCell inlineViewHeight];
+    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + [brickCell inlineViewHeight] + [brickCell inlineViewOffsetY];
 
     if ((collectionViewHeight - brickCellOriginVert) < marginBottom) {
         CGFloat additionalOffset = marginBottom - (collectionViewHeight - brickCellOriginVert);
