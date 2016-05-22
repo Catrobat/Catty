@@ -22,7 +22,41 @@
 
 #import "CatrobatReorderableCollectionViewFlowLayout.h"
 
+@interface CatrobatReorderableCollectionViewFlowLayout()
+
+@property (strong, nonatomic) UILongPressGestureRecognizer *customLongPressGestureRecognizer;
+@property (strong, nonatomic) UIPanGestureRecognizer *customPanGestureRecognizer;
+
+@end
+
 @implementation CatrobatReorderableCollectionViewFlowLayout
+
+- (void)setupCollectionView {
+    if (![self.collectionView.gestureRecognizers containsObject:self.longPressGestureRecognizer]) {
+        self.customLongPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(handleLongPressGesture:)];
+        self.customLongPressGestureRecognizer.delegate = self;
+        
+        // Links the default long press gesture recognizer to the custom long press gesture recognizer we are creating now
+        // by enforcing failure dependency so that they doesn't clash.
+        for (UIGestureRecognizer *gestureRecognizer in self.collectionView.gestureRecognizers) {
+            if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+                [gestureRecognizer requireGestureRecognizerToFail:self.longPressGestureRecognizer];
+            }
+        }
+        [self.collectionView addGestureRecognizer:self.longPressGestureRecognizer];
+    }
+    
+    if (![self.collectionView.gestureRecognizers containsObject:self.panGestureRecognizer]) {
+        self.customPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(handlePanGesture:)];
+        self.panGestureRecognizer.delegate = self;
+        [self.collectionView addGestureRecognizer:self.panGestureRecognizer];
+    }
+    
+    // Useful in multiple scenarios: one common scenario being when the Notification Center drawer is pulled down
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleApplicationWillResignActive:) name: UIApplicationWillResignActiveNotification object:nil];
+}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     if ([self.longPressGestureRecognizer isEqual:gestureRecognizer]) {
@@ -41,6 +75,16 @@
     }
     
     return NO;
+}
+
+- (UILongPressGestureRecognizer*)longPressGestureRecognizer
+{
+    return self.customLongPressGestureRecognizer;
+}
+
+- (UIPanGestureRecognizer*)panGestureRecognizer
+{
+    return self.customPanGestureRecognizer;
 }
 
 @end
