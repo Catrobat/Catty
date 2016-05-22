@@ -36,5 +36,7 @@
 - (void)showPlaceHolder:(BOOL)show;
 - (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)setupToolBar;
+- (void)showLoadingView;
+- (void)hideLoadingView;
 
 @end

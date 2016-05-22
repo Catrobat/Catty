@@ -136,9 +136,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-//    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    // do not call super to prevent automatic scrolling when opening a UIPickerView
+    [super hideLoadingView];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
+    
+    if (self.isEditingBrickMode) {
+        [self enableUserInteractionAndResetHighlight];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -446,11 +450,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
+#define kActionsheetBrickCellMarginBottom 21.0f
 - (void)actionSheetPresented:(CatrobatAlertController*)actionSheet
 {
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
     if (brickCell) {
-        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
+        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height + kActionsheetBrickCellMarginBottom];
     }
 }
 
@@ -1206,11 +1211,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#define kHighlightedBrickCellMarginBottom 1
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
-    marginBottom += kHighlightedBrickCellMarginBottom;
-    
     CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
@@ -1233,7 +1235,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:brickCell];
     UICollectionViewLayoutAttributes *brickCellAttributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
     CGFloat collectionViewHeight = self.collectionView.frame.size.height;
-    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + brickCell.frame.size.height - kBrickHeight1h;
+    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + [brickCell inlineViewHeight];
 
     if ((collectionViewHeight - brickCellOriginVert) < marginBottom) {
         CGFloat additionalOffset = marginBottom - (collectionViewHeight - brickCellOriginVert);

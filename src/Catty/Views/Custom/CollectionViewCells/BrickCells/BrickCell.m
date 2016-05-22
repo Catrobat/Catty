@@ -536,6 +536,16 @@
     return kBrickHeight1h;  // needs to be overwritten from subclasses
 }
 
+- (CGFloat)inlineViewHeight
+{
+    return self.inlineView.frame.size.height;
+}
+
+- (CGFloat)inlineViewOffsetY
+{
+    return self.inlineView.frame.origin.y;
+}
+
 - (BOOL)isScriptBrick
 {
     return [self.scriptOrBrick isKindOfClass:[Script class]];
