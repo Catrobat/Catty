@@ -424,6 +424,8 @@ let kLocalizedUploadProblem = NSLocalizedString("Problems occured while Uploadin
 let kLocalizedUploadSelectProgram = NSLocalizedString("Please select a program to upload", comment: "")
 let kLocalizedTitleLogin = NSLocalizedString("GOOD TO SEE YOU", comment: "")
 let kLocalizedTitleRegister = NSLocalizedString("GOOD TO SEE YOU", comment: "")
+let kLocalizedNoWhitespaceAllowed = NSLocalizedString("No whitespace character allowed", comment: "")
+let kLocalizedAuthenticationFailed = NSLocalizedString("Authentication failed", comment: "")
 
 let kLocalizedInfoLogin = NSLocalizedString("Login", comment: "")
 let kLocalizedInfoRegister = NSLocalizedString("Register", comment: "")
@@ -451,6 +453,7 @@ let kLocalizedPaintRotate = NSLocalizedString("rotate", comment: "paint")
 let kLocalizedPaintFill = NSLocalizedString("fill", comment: "paint")
 let kLocalizedPaintZoom = NSLocalizedString("zoom", comment: "paint")
 let kLocalizedPaintPointer = NSLocalizedString("pointer", comment: "paint")
+let kLocalizedPaintTextTool = NSLocalizedString("text", comment: "paint")
 let kLocalizedPaintSaveChanges = NSLocalizedString("Do you want to save the changes", comment: "paint")
 let kLocalizedPaintMenuButtonTitle = NSLocalizedString("Menu", comment: "paint")
 let kLocalizedPaintSelect = NSLocalizedString("Select option:", comment: "paint")
@@ -465,7 +468,12 @@ let kLocalizedPaintSquare = NSLocalizedString("square", comment: "paint")
 let kLocalizedPaintPocketPaint = NSLocalizedString("Pocket Paint", comment: "paint")
 let kLocalizedPaintStamped = NSLocalizedString("Stamped", comment: "paint")
 let kLocalizedPaintInserted = NSLocalizedString("Inserted", comment: "paint")
-
+let kLocalizedPaintText = NSLocalizedString("Text:", comment: "paint")
+let kLocalizedPaintAttributes = NSLocalizedString("Attributes:", comment: "paint")
+let kLocalizedPaintBold = NSLocalizedString("bold", comment: "paint")
+let kLocalizedPaintItalic = NSLocalizedString("italic", comment: "paint")
+let kLocalizedPaintUnderline = NSLocalizedString("underline", comment: "paint")
+let kLocalizedPaintTextAlert = NSLocalizedString("Please enter a text!", comment: "paint")
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************
 //************************************************************************************************************

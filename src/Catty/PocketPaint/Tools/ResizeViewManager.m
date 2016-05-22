@@ -162,11 +162,37 @@
       [self.resizeViewer setNeedsDisplay];
     }
       break;
-      
+    case text: {
+          UIImage* image = [self drawText:self.canvas.text];
+          UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
+          self.resizeViewer.contentView = imageView;
+          [self.resizeViewer.contentView setAlpha:self.canvas.opacity];
+          [self.resizeViewer setNeedsDisplay];
+      }
+          break;
     default:
       break;
   }
   
+}
+
+-(UIImage*) drawText:(NSString*)string
+{
+
+    CGSize stringBoundingBox = [string sizeWithAttributes:self.canvas.textFontDictionary];
+    self.resizeViewer.frame = CGRectMake(self.resizeViewer.frame.origin.x, self.resizeViewer.frame.origin.y, stringBoundingBox.width, stringBoundingBox.height);
+    
+    UIGraphicsBeginImageContext(self.resizeViewer.frame.size);
+//    [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
+    CGRect rect = CGRectMake(0 , 0, self.resizeViewer.frame.size.width, self.resizeViewer.frame.size.height);
+    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue,self.canvas.opacity);
+    [self.canvas.textFontDictionary setObject:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity] forKey: NSForegroundColorAttributeName];
+    [string drawInRect:CGRectIntegral(rect) withAttributes:self.canvas.textFontDictionary];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (void)showResizeView
@@ -198,7 +224,6 @@
 
 - (void)takeImage:(UITapGestureRecognizer *)recognizer
 {
-    
     if (self.canvas.activeAction == stamp) {
         if (!self.gotImage) {
             if (self.canvas.saveView.image != nil) {
@@ -208,9 +233,10 @@
                 CGRect rect = self.resizeViewer.frame;
                 rect.origin.x = rect.origin.x + 15 + self.canvas.saveView.frame.origin.x;
                 rect.origin.y = rect.origin.y + 10 + self.canvas.saveView.frame.origin.y;
-                rect.size.width -= 40;
-                rect.size.height -= 10;
+                rect.size.width -= 30;
+                rect.size.height -= 20;
                 //for retina displays
+                UIColor *color = self.canvas.saveView.backgroundColor;
                 self.canvas.saveView.backgroundColor = [UIColor clearColor];
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
                     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
@@ -223,7 +249,7 @@
                 [self.canvas.saveView.layer renderInContext:ctx];
                 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
-                self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+                self.canvas.saveView.backgroundColor = color;
                 [self showStampAction];
                 self.stampImage = viewImage;
                 self.resizeViewer.contentView.image = viewImage;
@@ -236,10 +262,11 @@
         }
     }
     [self.resizeViewer hideEditingHandles];
+    UIColor *color = self.canvas.saveView.backgroundColor;
     self.canvas.saveView.backgroundColor = [UIColor clearColor];
     CGFloat scale = self.canvas.scrollView.zoomScale;
     [self.canvas.scrollView setZoomScale:1.0f];
-    UIGraphicsBeginImageContextWithOptions(self.canvas.helper.frame.size, NO, self.canvas.scrollView.zoomScale);
+    UIGraphicsBeginImageContextWithOptions(self.canvas.drawView.frame.size, NO, 1.0);
     [self.canvas.helper.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -251,7 +278,7 @@
 
     self.canvas.saveView.image = img;
     [self showUserAction];
-    self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.canvas.saveView.backgroundColor = color;
 }
 
 

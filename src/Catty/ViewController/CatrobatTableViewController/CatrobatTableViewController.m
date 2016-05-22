@@ -68,6 +68,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @property (nonatomic, strong) Reachability *reachability;
+@property (nonatomic, assign) BOOL freshLogin;
 
 @end
 
@@ -99,6 +100,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super viewDidLoad];
     [self initTableView];
 
+    self.freshLogin = false;
     self.lastUsedProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -298,6 +300,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //            }
 //            break;
         case kUploadVC:
+            //[[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];    //Just for testing purpose
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:@"segueToUpload" sender:self];
@@ -322,13 +325,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-            if ([self shouldPerformSegueWithIdentifier:@"segueToUpload" sender:self]) {
-                [self performSegueWithIdentifier:@"segueToUpload" sender:self];
+            static NSString *segueToUploadIdentifier = kSegueToUpload;
+            
+            if ([self shouldPerformSegueWithIdentifier:segueToUploadIdentifier sender:self]) {
+                self.freshLogin = true;
+                [self performSegueWithIdentifier:segueToUploadIdentifier sender:self];
             }
         }
     });
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -440,6 +445,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             programTableViewController.program = self.defaultProgram;
             self.defaultProgram = nil;
         }
+    } else if ([segue.identifier isEqualToString:kSegueToUpload] && _freshLogin) {
+        ProgramsForUploadViewController *destinationVC = [segue destinationViewController];
+        self.freshLogin = false;
+        destinationVC .showLoginFeedback = true;
     }
 }
 

@@ -43,7 +43,7 @@
     [super tearDown];
 }
 
-- (void)testPointToBrick90Degrees
+- (void)testPointToBrickZeroDegrees
 {
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     CBSpriteNode *firstSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:firstObject];
@@ -69,13 +69,10 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
 
-    // SpriteKit coordinates: 0/0 => center instead of top left corner
-    // SpriteKit: +90 degrees is turn left / -90degrees is turn right
-    // Catrabot: 90 degrees shifted
-    XCTAssertEqualWithAccuracy(firstSpriteNode.rotation, 90.0f, 0.1f, @"PointToBrick not correct");
+    XCTAssertEqualWithAccuracy(firstSpriteNode.rotation, 0.0f, 0.1f, @"PointToBrick not correct");
 }
 
-- (void)testPointToBrickZeroDegrees
+- (void)testPointToBrickSamePosition
 {
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     CBSpriteNode *firstSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:firstObject];

@@ -4,16 +4,24 @@ use_frameworks!
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
-link_with 'Catty'
+def available_pods
+    pod 'MXSegmentedPager'
+    pod 'M13ProgressSuite', '~> 1.2.7'
+    pod 'Bohr'
+    pod 'Shimmer'
+    pod 'MYBlurIntroductionView'
+    pod 'TTTAttributedLabel'
+    pod 'Siren'
+end
 
 target 'Catty' do
+    available_pods
+end
 
-pod 'MXSegmentedPager', :git => 'https://github.com/maxep/MXSegmentedPager.git'
-pod 'M13ProgressSuite', '~> 1.2.7'
-pod 'Bohr'
-pod 'Shimmer'
-pod 'MYBlurIntroductionView'
-pod 'TTTAttributedLabel'
-pod 'Siren'
+target 'Catty Tests' do
+    available_pods
+end
 
+target 'Catty UITests' do
+    available_pods
 end

@@ -22,7 +22,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface CatrobatAudioPlayer : AVPlayer
+@interface CatrobatAudioPlayer : AVAudioPlayer
 
 @property (nonatomic,strong) NSString* key;
 

@@ -325,28 +325,11 @@
     }
     NSDebug(@"touch on scene allowed");
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
-        [self.scene touchedWithTouches:touches atPosition:location];
+        [self.scene touchedWithTouch:touch];
     }
 }
-- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-//    if (self.menuOpen) {
-//        NSDebug(@"touch on scene not allowed, because menu is open");
-//        return;
-//    }
-//    NSDebug(@"touch on scene allowed");
-//    for (UITouch *touch in touches) {
-//        UITouch *anyTouch = (UITouch*)[touches anyObject];
-//        CGPoint location = [anyTouch locationInView:self.skView];
-//        NSDebug(@"StartTouchinScenePresenter");
-//        if ([self.scene touchedWithTouch:anyTouch atPosition:location]) {
-//            return;
-//        }
-//    }
 
-
-}
 
 #pragma mark - Game Event Handling
 - (void)pauseAction

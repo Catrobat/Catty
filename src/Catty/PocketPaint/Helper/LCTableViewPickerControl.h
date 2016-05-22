@@ -26,7 +26,8 @@ enum ActionType {
   stamp,
   fillTool,
   zoom,
-  pointer
+  pointer,
+  text
 };
 typedef enum ActionType actionType;
 

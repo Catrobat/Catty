@@ -55,6 +55,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "ProgramVariablesManager.h"
 #import "CatrobatAlertController.h"
+#import "ShapeButton.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -95,7 +96,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *logicButton;
 @property (weak, nonatomic) IBOutlet UIButton *objectButton;
 @property (weak, nonatomic) IBOutlet UIButton *sensorButton;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet ShapeButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *variableButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
@@ -133,6 +134,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
+}
+
 - (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 
 {
@@ -144,6 +150,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self setCursorPositionToEndOfFormula];
     [self update];
+    
     [self.formulaEditorTextView highlightSelection:[[self.internFormula getExternFormulaString] length]
                        start:0
                          end:(int)[[self.internFormula getExternFormulaString] length]];
@@ -235,6 +242,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
     navigItem.leftBarButtonItem = item;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
+    self.deleteButton.shapeStrokeColor = [UIColor navTintColor];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(formulaTextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -534,8 +544,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setCursorPositionToEndOfFormula];
     }
 }
-- (IBAction)backspaceButtonAction:(id)sender {
-  [self backspace:nil];
+- (IBAction)backspaceButtonAction:(id)sender
+{
+    [self backspace:nil];
 }
 
 - (void)backspace:(id)sender
@@ -552,9 +563,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
 }
+
 - (void)updateDeleteButton:(BOOL)enabled
 {
-    [self.deleteButton setEnabled:enabled];
+    self.deleteButton.shapeStrokeColor = enabled ? [UIColor navTintColor] : [UIColor grayColor];
 }
 
 - (IBAction)compute:(id)sender
@@ -604,7 +616,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + 50, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
-        [self update];
+    [self update];
+    
     [self.formulaEditorTextView becomeFirstResponder];
 }
 
@@ -1114,6 +1127,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)showFormulaTooLongView
 {
     [self showNotification:kUIFEtooLongFormula andDuration:kBDKNotifyHUDPresentationDuration];
+}
+
+#pragma mark NotificationCenter
+
+- (void)formulaTextViewTextDidChangeNotification:(NSNotification *)note
+{
+    if (note.object) {
+        FormulaEditorTextView *textView = (FormulaEditorTextView *)note.object;
+        BOOL containsText = textView.text.length > 0;
+        self.deleteButton.shapeStrokeColor = containsText ? [UIColor navTintColor] : [UIColor grayColor];
+        self.deleteButton.enabled = containsText;
+    }
 }
 
 @end
