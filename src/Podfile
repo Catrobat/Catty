@@ -12,6 +12,7 @@ def available_pods
     pod 'MYBlurIntroductionView'
     pod 'TTTAttributedLabel'
     pod 'Siren'
+    pod 'LXReorderableCollectionViewFlowLayout'
 end
 
 target 'Catty' do

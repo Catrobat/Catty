@@ -29,7 +29,7 @@
 #import "Script.h"
 #import "StartScript.h"
 #import "Brick.h"
-#import "LXReorderableCollectionViewFlowLayout.h"
+#import "CatrobatReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
 #import "StartScriptCell.h"
 #import "BrickTransition.h"
@@ -96,8 +96,6 @@
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
-                                             LXReorderableCollectionViewDelegateFlowLayout,
-                                             LXReorderableCollectionViewDataSource,
                                              UIViewControllerTransitioningDelegate,
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
@@ -436,6 +434,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
 {
+    if (IS_OS_9_OR_LATER) {
+        [self actionSheetPresented:actionSheet];
+    }
+}
+
+- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
+{
+    if (! IS_OS_9_OR_LATER) {
+        [self actionSheetPresented:actionSheet];
+    }
+}
+
+- (void)actionSheetPresented:(CatrobatAlertController*)actionSheet
+{
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
     if (brickCell) {
         [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
@@ -444,8 +456,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)actionSheetWillDisappear:(CatrobatAlertController*)actionSheet
 {
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
-    if (brickCell) {
+    if (self.isEditingBrickMode) {
         [self enableUserInteractionAndResetHighlight];
     }
 }
@@ -826,7 +837,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;
     }
-    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
     [self.navigationItem setHidesBackButton:YES animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -841,7 +852,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = YES;
     }
-    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
     [self.navigationItem setHidesBackButton:NO animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -995,7 +1006,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.backgroundColor = [UIColor backgroundColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
-    self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
+    self.collectionView.collectionViewLayout = [CatrobatReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
     self.navigationItem.rightBarButtonItem = deleteButton;
@@ -1171,7 +1182,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)enableUserInteractionAndResetHighlight
 {
-    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.isEditingBrickMode = NO;
@@ -1195,12 +1206,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#define kHighlightedBrickCellMarginBottom 65
+#define kHighlightedBrickCellMarginBottom 1
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
     marginBottom += kHighlightedBrickCellMarginBottom;
     
-    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
