@@ -54,6 +54,8 @@
 @property (nonatomic, strong) SelectButton *selectButton;
 
 - (kBrickShapeType)brickShapeType;
+- (CGFloat)inlineViewHeight;
+- (CGFloat)inlineViewOffsetY;
 + (CGFloat)cellHeight;
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
