@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kAppStoreIdentifier @"CHANGEME"    // TODO: change as we get into AppStore (IOS-4)
+#define kAppStoreIdentifier @"1117935892"
 #define kAppStoreURL @"itms-apps://itunes.apple.com/app/" kAppStoreIdentifier
 
 #define kConnectionTimeout 15
