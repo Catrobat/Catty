@@ -5840,6 +5840,7 @@
 				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
 				4FEDB393FCF94E05E6C01E4C /* 📦 Embed Pods Frameworks */,
 				1CAB9D66718A42AFF93E08C1 /* 📦 Copy Pods Resources */,
+				4C807B931CF7488C0066CE92 /* Remove git hooks */,
 			);
 			buildRules = (
 			);
@@ -6178,6 +6179,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4C807B931CF7488C0066CE92 /* Remove git hooks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Remove git hooks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env python";
+			shellScript = "# immutable paths\nimport os\n\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_SRC_DIR = env['PROJECT_DIR']\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_SRC_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\npre_commit_hook_path = os.path.join(HOOK_DIR, \"pre-commit\")\npost_commit_hook_path = os.path.join(HOOK_DIR, \"post-commit\")\n\nif os.path.isfile(pre_commit_hook_path):\n    os.remove(pre_commit_hook_path)\n\nif os.path.isfile(post_commit_hook_path):\n    os.remove(post_commit_hook_path)\n";
 		};
 		4FEDB393FCF94E05E6C01E4C /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
