@@ -30,7 +30,7 @@
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
 #define kLoginUrlExtension @"api/login"
 #define kRegisterUrlExtension @"api/register"
-#define kReportProgramExtension @"flagInappropriate/flag.json"
+#define kReportProgramExtension @"api/reportProgram/reportProgram.json"
 #define kUploadUrlExtension @"api/upload"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension

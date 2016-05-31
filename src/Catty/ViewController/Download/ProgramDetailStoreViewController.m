@@ -104,7 +104,7 @@
     appDelegate.fileManager.delegate = self;
     appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
     self.reachability = [Reachability reachabilityForInternetConnection];
-    self.useTestUrl = YES;
+    self.useTestUrl = NO;
 }
 
 
@@ -245,16 +245,15 @@
 {
     NSDebug(@"report");
     // TODO use this if api is ready!
-//    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
-//    if (isLoggedIn) {
+    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
+    if (isLoggedIn) {
     
-            //[Util askUserForReportMessageAndPerformAction:@selector(sendReportWithMessage:) target:self promptTitle:@"Report Program" promptMessage:@"Why do you think this program is inappropriate?" minInputLength:1 maxInputLength:10 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only ...characters"];
+        [Util askUserForReportMessageAndPerformAction:@selector(sendReportWithMessage:) target:self promptTitle:kLocalizedReportProgram promptMessage:kLocalizedEnterReason minInputLength:1 maxInputLength:10 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kLocalizedBlockedCharInputDescription];
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://pocketcode.org/details/%@",self.project.projectID]]];
 
-//    } else {
-//       
-//    }
+    } else {
+        [Util alertWithText:kLocalizedLoginToReport];
+    }
 }
 
 
@@ -277,7 +276,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     NSString *reportUrl = self.useTestUrl ? kTestReportProgramUrl : kReportProgramUrl;
 
-    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"id",self.project.projectID,@"message",message];
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     
@@ -299,16 +298,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSError *error = nil;
                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                 NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
-                    //int statusCode = [dictionary valueForKey:@"statusCode"];
+                    
                 NSDebug(@"StatusCode is %@", statusCode);
                 
-                    //some ugly code just to get logic working
-                if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
-                    
-                    
-                } else {
-                    [Util alertWithText:[dictionary valueForKey:@"answer"]];
-                }
+                [Util alertWithText:[dictionary valueForKey:@"answer"]];
 
             });
         }
