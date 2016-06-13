@@ -35,4 +35,4 @@
 
 #define kPhiroActivated 0
 #define kArduinoActivated 1
-
+#define kProductionServerActivated 0

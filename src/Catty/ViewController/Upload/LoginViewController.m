@@ -311,8 +311,7 @@
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
 
-    BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
-    NSString *uploadUrl = useTestServer ? kTestLoginUrl : kLoginUrl;
+    NSString *uploadUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLogin];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

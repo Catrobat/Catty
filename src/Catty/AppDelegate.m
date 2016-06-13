@@ -63,10 +63,10 @@ void uncaughtExceptionHandler(NSException *exception)
     application.statusBarHidden = NO;
     application.statusBarStyle = UIStatusBarStyleLightContent;
     
-    if (!kPhiroActivated) {
+    if (![Util isPhiroActivated]) {
         [defaults setBool:NO forKey:kUsePhiroBricks];
     }
-    if (!kArduinoActivated) {
+    if (![Util isArduinoActivated]) {
         [defaults setBool:NO forKey:kUseArduinoBricks];
     }
     [defaults synchronize];
