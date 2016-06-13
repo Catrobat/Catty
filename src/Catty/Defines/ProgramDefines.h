@@ -120,7 +120,6 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserIsLoggedIn @"userIsLoggedIn"
 #define kUserLoginToken @"userLoginToken"
-#define kUseTestServerForUploadAndLogin @"useTestServer"
 #define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"

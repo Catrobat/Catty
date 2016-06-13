@@ -314,8 +314,7 @@ const CGFloat PADDING = 5.0f;
         //Upload example URL: https://pocketcode.org/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
         //For testing use: https://catroid-test.catrob.at/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
         
-        BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
-        NSString *uploadUrl = useTestServer ? kTestUploadUrl : kUploadUrl;
+        NSString *uploadUrl = [Util isProductionServerActivated] ? kUploadUrl : kTestUploadUrl;
         NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionUpload];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

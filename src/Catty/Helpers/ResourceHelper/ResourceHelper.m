@@ -122,7 +122,7 @@
     }
     //CheckBluetooth
     
-    if ((requiredResources & kBluetoothPhiro) > 0 && kPhiroActivated) {
+    if ((requiredResources & kBluetoothPhiro) > 0 && [Util isPhiroActivated]) {
         //ConnectPhiro
         if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
             [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
@@ -132,7 +132,7 @@
         }
     }
     
-    if ((requiredResources & kBluetoothArduino) > 0 && kArduinoActivated) {
+    if ((requiredResources & kBluetoothArduino) > 0 && [Util isArduinoActivated]) {
         //ConnectArduino
         if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
             [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];

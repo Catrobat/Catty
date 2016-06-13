@@ -47,7 +47,6 @@
 @property (nonatomic, strong) UIView *projectView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) Program *loadedProgram;
-@property (nonatomic, assign) BOOL useTestUrl;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) NSString *duplicateName;
@@ -104,7 +103,6 @@
     appDelegate.fileManager.delegate = self;
     appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
     self.reachability = [Reachability reachabilityForInternetConnection];
-    self.useTestUrl = NO;
 }
 
 
@@ -244,7 +242,6 @@
 - (void)reportProgram
 {
     NSDebug(@"report");
-    // TODO use this if api is ready!
     BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
     if (isLoggedIn) {
     
@@ -274,7 +271,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSDebug(@"ReportMessage::::::%@",message);
     
-    NSString *reportUrl = self.useTestUrl ? kTestReportProgramUrl : kReportProgramUrl;
+    NSString *reportUrl = [Util isProductionServerActivated] ? kReportProgramUrl : kTestReportProgramUrl;
 
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];

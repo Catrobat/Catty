@@ -248,4 +248,10 @@
 
 + (NSString*)enableBlockedCharactersForString:(NSString*)string;
 
++ (BOOL)isArduinoActivated;
+
++ (BOOL)isPhiroActivated;
+
++ (BOOL)isProductionServerActivated;
+
 @end

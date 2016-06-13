@@ -76,7 +76,7 @@
 	
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
-        if (kPhiroActivated) {
+        if ([Util isPhiroActivated]) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = [UIColor backgroundColor];
                 cell.mainColor = [UIColor globalTintColor];
@@ -85,7 +85,7 @@
             }]];
         }
         
-        if (kArduinoActivated) {
+        if ([Util isArduinoActivated]) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = [UIColor backgroundColor];
                 cell.mainColor = [UIColor globalTintColor];
@@ -99,7 +99,7 @@
     __unsafe_unretained typeof(self) weakSelf = self;
     BluetoothService *service = [BluetoothService sharedInstance];
     
-    if ((kPhiroActivated || kArduinoActivated) ) {
+    if (([Util isPhiroActivated] || [Util isArduinoActivated]) ) {
         [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
             if((service.phiro != nil || service.arduino != nil)){
                 [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
