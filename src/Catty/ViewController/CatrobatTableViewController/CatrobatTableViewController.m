@@ -119,15 +119,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorInset = UIEdgeInsetsZero;
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    //Always use the Test-Server for test-uploads and -logins, because Webteam receives emails for each of this actions on the other server
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-#if DEBUG == 1
-    [defaults setBool:YES forKey:kUseTestServerForUploadAndLogin];
-#else // DEBUG == 0
-    [defaults setBool:NO forKey:kUseTestServerForUploadAndLogin];
-#endif // DEBUG
 }
 
 - (void)viewWillAppear:(BOOL)animated
