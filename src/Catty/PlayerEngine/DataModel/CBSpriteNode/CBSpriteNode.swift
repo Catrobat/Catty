@@ -167,8 +167,8 @@ final class CBSpriteNode: SKSpriteNode {
               let spriteName = spriteObject.name
         else { fatalError("Invalid SpriteObject!") }
         let touchedPoint = touch.locationInNode(self)
-        // or if imageLook.isTransparentPixel(imageLook, withX: touchedPoint.x, andY: touchedPoint.y) {
-        if imageLook.isTransparentPixelAtPoint(touchedPoint, inImage: imageLook) {
+        
+        if imageLook.isTransparentPixelAtScenePoint(touchedPoint) {
             print("\(spriteName): \"I'm transparent at this point\"")
             return false
         }

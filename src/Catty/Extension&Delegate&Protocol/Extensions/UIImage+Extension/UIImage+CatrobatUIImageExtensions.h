@@ -38,8 +38,8 @@
 + (UIImage*)setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness;
 - (CGRect)cropRectForImage:(UIImage *)image;
 - (CGContextRef)newARGBBitmapContextFromImage:(CGImageRef)inImage;
-- (BOOL)isTransparentPixelAtPoint:(CGPoint)point inImage:(UIImage*)image;
-- (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;
+- (BOOL)isTransparentPixelAtPoint:(CGPoint)point;
+- (BOOL)isTransparentPixelAtScenePoint:(CGPoint)point;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
 + (UIImage*)changeImage:(UIImage*)image toColor:(UIColor*)color;
