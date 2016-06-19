@@ -15,6 +15,7 @@
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
+		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
@@ -832,6 +833,7 @@
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
+		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
@@ -2555,6 +2557,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */,
+				4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */,
 				4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */,
 				CAE3E4E91B4C509800CC88BD /* test.png */,
 				CAE3E4EA1B4C509800CC88BD /* test2.png */,
@@ -6060,6 +6063,7 @@
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
+				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
 				CAE3E5591B4C50B300CC88BD /* Rock_paper_scissors_093.xml in Resources */,
 				4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */,
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,

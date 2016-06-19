@@ -106,6 +106,19 @@ final class UIImageExtensionTests: XCTestCase {
         }
     }
     
+    func testTransparencyRGB() {
+        let bundlePath = NSBundle(forClass: self.dynamicType).pathForResource("transparency-rgb", ofType: "png")
+        let image = UIImage(contentsOfFile: bundlePath!)
+        
+        for pixelX in 0..<10 {
+            for pixelY in 0..<10 {
+                let point = CGPoint(x: pixelX, y: pixelY)
+                let isTransparent = image!.isTransparentPixelAtPoint(point)
+                XCTAssertFalse(isTransparent, "Wrong alpha value at point")
+            }
+        }
+    }
+    
     func testTransparencyARGB() {
       let pixels: [PixelDataARGB] = [
             PixelDataARGB(a: 0, r: 0, g: 0, b: 0),
