@@ -43,6 +43,7 @@
 #import "BroadcastBrick.h"
 #import "BroadcastScript.h"
 #import "SpriteObject.h"
+#import "KeychainUserDefaultsDefines.h"
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
 #import "OrderedDictionary.h"
@@ -1191,4 +1192,20 @@ replacementString:(NSString*)characters
     string = [string stringByReplacingOccurrencesOfString:@"%3E" withString:@">"];
     return string;
 }
+
++ (BOOL)isPhiroActivated
+{
+    return kPhiroActivated == 1;
+}
+
++ (BOOL)isArduinoActivated
+{
+    return kArduinoActivated == 1;
+}
+
++ (BOOL)isProductionServerActivated
+{
+    return kProductionServerActivated == 1;
+}
+
 @end

@@ -41,7 +41,6 @@
         _lineNumber = line;
         _parameterNumber = parameter;
         NSMutableArray *options = [[NSMutableArray alloc] init];
-        NSMutableArray *images = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         if (!brickCell.isInserting) {
@@ -57,50 +56,26 @@
                         NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName];
                         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
                         UIImage *image = [imageCache cachedImageForPath:path];
+                        
                         if (!image) {
                             [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image, NSString* path) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    UITableView* tV = (UITableView*)self.brickCell.superview;
-                                    [tV reloadData];
+                                dispatch_async(dispatch_get_main_queue(),^{
+                                    if (! self.currentImage) {
+                                        [self setCurrentImage:image];
+                                    }
+                                    [self setNeedsDisplay];
                                 });
                             }];
-                        }
-                        if (image) {
-                            [images addObject:image];
+                        } else if (! self.currentImage) {
+                            [self setCurrentImage:image];
                         }
                         currentOptionIndex = optionIndex;
                     }
                     optionIndex++;
                 }
-//                if (currentLook && ![options containsObject:currentLook.name]) {
-//                    [options addObject:currentLook.name];
-//                    currentOptionIndex = optionIndex;
-//                    NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName];
-//                    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-//                    UIImage *image = [imageCache cachedImageForPath:path];
-//                    if (!image) {
-//                        [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
-//                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                UITableView* tV = (UITableView*)self.brickCell.superview;
-//                                [tV reloadData];
-//                            });
-//                        }];
-//                    }
-//                    
-//                    if (image) {
-//                        [images addObject:image];
-//                    }
-//                    
-//                }
             }
             
-//            [self setImages:images];
             self.object = object;
-            if (images.count) {
-                [self setCurrentImage:images[0]];
-            } else {
-                [self setCurrentImage:nil];
-            }
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
@@ -112,8 +87,6 @@
 - (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString *)value
 {
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
-    [combobox reloadInputViews];
-    [combobox setNeedsDisplay];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox

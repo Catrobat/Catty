@@ -445,6 +445,9 @@
 /* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
+/* No comment provided by engineer. */
+"Enter a reason" = "Enter a reason";
+
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
 
@@ -954,6 +957,9 @@
 
 /* paint */
 "Please enter a text!" = "Please enter a text!";
+
+/* No comment provided by engineer. */
+"Please log in to report this program as inappropriate" = "Please log in to report this program as inappropriate";
 
 /* paint */
 "Please pick an item" = "Please pick an item";

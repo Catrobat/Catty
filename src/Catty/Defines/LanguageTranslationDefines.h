@@ -245,6 +245,8 @@
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
 #define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
+#define kLocalizedEnterReason NSLocalizedString(@"Enter a reason", nil)
+#define kLocalizedLoginToReport NSLocalizedString(@"Please log in to report this program as inappropriate", nil)
 #define kLocalizedName NSLocalizedString(@"Name", nil)
 #define kLocalizedDownloaded NSLocalizedString(@"Download sucessful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)

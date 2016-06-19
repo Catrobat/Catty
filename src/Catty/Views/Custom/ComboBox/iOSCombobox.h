@@ -26,7 +26,7 @@
 #import "BSKeyboardControls.h"
 #import "SpriteObject.h"
 
-#define kiOSComboboxTotalHeight 305.0f
+#define kiOSComboboxTotalHeight 264.0f
 
 @protocol iOSComboboxDelegate;
 

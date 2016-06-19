@@ -20,23 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "CatrobatAlertController.h"
-#import "Pocket_Code-Swift.h"
-#import "ScenePresenterViewController.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
-@class PlaceHolderView;
-@class BluetoothPopupVC;
-@interface BaseCollectionViewController : UICollectionViewController <CatrobatAlertViewDelegate,BluetoothSelection>
-
-@property (nonatomic, strong) PlaceHolderView *placeHolderView;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
-@property (nonatomic, assign) BOOL allBricksSelected;
-
-- (void)showPlaceHolder:(BOOL)show;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
-- (void)setupToolBar;
-- (void)showLoadingView;
-- (void)hideLoadingView;
+@interface CatrobatReorderableCollectionViewFlowLayout : LXReorderableCollectionViewFlowLayout
 
 @end

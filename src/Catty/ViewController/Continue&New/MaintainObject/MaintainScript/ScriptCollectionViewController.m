@@ -29,7 +29,7 @@
 #import "Script.h"
 #import "StartScript.h"
 #import "Brick.h"
-#import "LXReorderableCollectionViewFlowLayout.h"
+#import "CatrobatReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
 #import "StartScriptCell.h"
 #import "BrickTransition.h"
@@ -96,8 +96,6 @@
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
-                                             LXReorderableCollectionViewDelegateFlowLayout,
-                                             LXReorderableCollectionViewDataSource,
                                              UIViewControllerTransitioningDelegate,
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
@@ -138,9 +136,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-//    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    // do not call super to prevent automatic scrolling when opening a UIPickerView
+    [super hideLoadingView];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
+    
+    if (self.isEditingBrickMode) {
+        [self enableUserInteractionAndResetHighlight];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -278,9 +280,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             script.animateInsertBrick = NO;
         }
         [self turnOffInsertingBrickMode];
-        [self.object.program saveToDiskWithNotification:YES];
         [self reloadData];
-        [self.collectionView setNeedsDisplay];
         return;
     }
 
@@ -394,7 +394,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     
     if (buttonIndex == 0) {
-        [self reloadData];
+        return;
     } else if (actionSheet.tag == kEditBrickActionSheetTag) {
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
         CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
@@ -438,16 +438,30 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
 {
+    if (IS_OS_9_OR_LATER) {
+        [self actionSheetPresented:actionSheet];
+    }
+}
+
+- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
+{
+    if (! IS_OS_9_OR_LATER) {
+        [self actionSheetPresented:actionSheet];
+    }
+}
+
+#define kActionsheetBrickCellMarginBottom 15.0f
+- (void)actionSheetPresented:(CatrobatAlertController*)actionSheet
+{
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
     if (brickCell) {
-        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height];
+        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height + kActionsheetBrickCellMarginBottom];
     }
 }
 
 - (void)actionSheetWillDisappear:(CatrobatAlertController*)actionSheet
 {
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
-    if (brickCell) {
+    if (self.isEditingBrickMode) {
         [self enableUserInteractionAndResetHighlight];
     }
 }
@@ -506,6 +520,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 layout:(UICollectionViewLayout*)collectionViewLayout
 didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (self.isEditingBrickMode) {
+        return;
+    }
+    
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (indexPath.item != 0) {
@@ -529,10 +547,9 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self turnOffInsertingBrickMode];
     } else {
         [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
+        [self.object.program saveToDiskWithNotification:YES];
     }
     [self reloadData];
-    [self.collectionView setNeedsDisplay];
-    [self.object.program saveToDiskWithNotification:YES];
 }
 
 - (void)collectionView:(UICollectionView*)collectionView
@@ -656,7 +673,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         Script *script = (Script*)scriptOrBrick;
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        [self reloadData];
         [self.collectionView reloadData];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
@@ -677,8 +693,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         StartScript *script = [StartScript new];
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        [self reloadData];
-        [self.object.program saveToDiskWithNotification:YES];
     }
 
     NSInteger targetScriptIndex = 0;
@@ -723,7 +737,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:targetScriptIndex] andObject:self.object];
         [self reloadData];
-        [self.collectionView setNeedsDisplay];
         return;
     }
     
@@ -829,7 +842,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;
     }
-    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
     [self.navigationItem setHidesBackButton:YES animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -844,7 +857,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = YES;
     }
-    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
     [self.navigationItem setHidesBackButton:NO animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -998,7 +1011,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.backgroundColor = [UIColor backgroundColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
-    self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
+    self.collectionView.collectionViewLayout = [CatrobatReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
     self.navigationItem.rightBarButtonItem = deleteButton;
@@ -1052,7 +1065,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1071,7 +1083,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                 [self reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1090,7 +1101,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
                 [self reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popToViewController:self animated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1170,15 +1180,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
             [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
         }
-
-    [self reloadData];
+    
+    [self.object.program saveToDiskWithNotification:NO];
     [self enableUserInteractionAndResetHighlight];
-    [self.object.program saveToDiskWithNotification:YES];
 }
 
 -(void)enableUserInteractionAndResetHighlight
 {
-    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.isEditingBrickMode = NO;
@@ -1202,12 +1211,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#define kHighlightedBrickCellMarginBottom 65
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
-    marginBottom += kHighlightedBrickCellMarginBottom;
-    
-    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
@@ -1229,7 +1235,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:brickCell];
     UICollectionViewLayoutAttributes *brickCellAttributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
     CGFloat collectionViewHeight = self.collectionView.frame.size.height;
-    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + brickCell.frame.size.height - kBrickHeight1h;
+    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + [brickCell inlineViewHeight] + [brickCell inlineViewOffsetY];
 
     if ((collectionViewHeight - brickCellOriginVert) < marginBottom) {
         CGFloat additionalOffset = marginBottom - (collectionViewHeight - brickCellOriginVert);
@@ -1243,7 +1249,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             //do something
         [self.collectionView reloadData];
         [self changeDeleteBarButtonState];
-        
+        [self.collectionView setNeedsDisplay];
     });
 }
 
