@@ -195,17 +195,20 @@
     return context;
 }
 
-- (BOOL)isTransparentPixelAtScenePoint:(CGPoint)point
+- (BOOL)isTransparentPixelAtScenePoint:(CGPoint)scenePoint
 {
-    point.x += (self.size.width/2);
-    point.y -= (self.size.height/2);
-    point.y = -point.y;
+    CGPoint imagePoint = CGPointMake(scenePoint.x, scenePoint.y);
+    imagePoint.x += (self.size.width/2);
+    imagePoint.y -= (self.size.height/2);
+    imagePoint.y = -imagePoint.y;
     
-    return [self isTransparentPixelAtPoint:point];
+    return [self isTransparentPixelAtPoint:imagePoint];
 }
 
-- (BOOL)isTransparentPixelAtPoint:(CGPoint)point
+- (BOOL)isTransparentPixelAtPoint:(CGPoint)imagePoint
 {
+    CGPoint point = CGPointMake((NSInteger)imagePoint.x, (NSInteger)imagePoint.y);
+    
     if (! CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), point)) {
         return YES;
     }
