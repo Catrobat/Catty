@@ -144,6 +144,189 @@ final class CBBackendTests: XCTestCase {
             XCTFail("Wrong instruction type")
         }
     }
-
-
+    
+    func testIfElseInstruction() {
+        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let backend = CBBackend(logger: self.logger)
+        let broadcastHandler = CBBroadcastHandler(logger: self.logger)
+        let scheduler = CBScheduler(logger: self.logger, broadcastHandler: broadcastHandler)
+        
+        let startScript = StartScript()
+        let spriteObject = SpriteObject()
+        let spriteNode = CBSpriteNode()
+        spriteNode.name = "SpriteNodeName"
+        spriteNode.spriteObject = spriteObject
+        spriteObject.name = "SpriteObjectName"
+        spriteObject.spriteNode = spriteNode
+        startScript.object = spriteObject
+        
+        let setYBrick = SetYBrick()
+        setYBrick.script = startScript
+        let ifLogicBeginBrick = IfLogicBeginBrick()
+        ifLogicBeginBrick.script = startScript
+        ifLogicBeginBrick.ifCondition = Formula(integer: 1)
+        let setXBrick = SetXBrick()
+        setXBrick.script = startScript
+        let ifLogicElseBrick = IfLogicElseBrick()
+        ifLogicElseBrick.script = startScript
+        let ledOnBrick = LedOnBrick()
+        ledOnBrick.script = startScript
+        let ifLogicEndBrick = IfLogicEndBrick()
+        ifLogicEndBrick.script = startScript
+        let vibrationBrick = VibrationBrick()
+        vibrationBrick.script = startScript
+        vibrationBrick.durationInSeconds = Formula(integer: 3)
+        ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick
+        ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick
+        ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick
+        ifLogicElseBrick.ifEndBrick = ifLogicEndBrick
+        ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick
+        ifLogicEndBrick.ifElseBrick = ifLogicElseBrick
+        
+        let context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, state: .Running)
+        
+        startScript.brickList = [setYBrick, ifLogicBeginBrick, setXBrick, ifLogicElseBrick, ledOnBrick, ifLogicEndBrick, vibrationBrick]
+        
+        let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
+        // [[CBOperationSequence] [CBIfConditionalSequence] [CBOperationSequence]]
+        let instructionList = backend.instructionsForSequence(sequenceList)
+        
+        
+        XCTAssertEqual(instructionList.count, 6, "Instruction list should contain six instructions")
+        
+        switch instructionList[0] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[1] {
+        case let .ExecClosure(closure):
+            closure(context: context, scheduler: scheduler)
+            XCTAssertEqual(context.state, CBScriptContextState.Runnable, "State should be runnable")
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[2] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[3] {
+        case let .ExecClosure(closure):
+            closure(context: context, scheduler: scheduler)
+            XCTAssertEqual(context.state, CBScriptContextState.Runnable, "State should be runnable")
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[4] {
+        case let .ExecClosure(closure):
+            closure(context: context, scheduler: scheduler)
+            XCTAssertEqual(context.state, CBScriptContextState.Runnable, "State should be runnable")
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[5] {
+        case let .ExecClosure(closure):
+            closure(context: context, scheduler: scheduler)
+            XCTAssertEqual(context.state, CBScriptContextState.Runnable, "State should be runnable")
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+    }
+    
+    func testLoopInstruction() {
+        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let backend = CBBackend(logger: self.logger)
+        let broadcastHandler = CBBroadcastHandler(logger: self.logger)
+        let scheduler = CBScheduler(logger: self.logger, broadcastHandler: broadcastHandler)
+        
+        let startScript = StartScript()
+        let spriteObject = SpriteObject()
+        let spriteNode = CBSpriteNode()
+        spriteNode.name = "SpriteNodeName"
+        spriteNode.spriteObject = spriteObject
+        spriteObject.name = "SpriteObjectName"
+        spriteObject.spriteNode = spriteNode
+        startScript.object = spriteObject
+        
+        let loopBeginBrick = LoopBeginBrick()
+        loopBeginBrick.script = startScript
+        let broadcastBrick = BroadcastBrick(message: "This is a test")
+        broadcastBrick.script = startScript
+        let noteBrick = NoteBrick()
+        noteBrick.script = startScript
+        let waitBrick = WaitBrick()
+        waitBrick.script = startScript
+        waitBrick.timeToWaitInSeconds = Formula(integer: 5)
+        let hideBrick = HideBrick()
+        hideBrick.script = startScript
+        let turnRightBrick = TurnRightBrick()
+        turnRightBrick.script = startScript
+        turnRightBrick.degrees = Formula(integer: 2)
+        let loopEndBrick = LoopEndBrick()
+        loopEndBrick.script = startScript
+        loopEndBrick.loopBeginBrick = loopBeginBrick
+        loopBeginBrick.loopEndBrick = loopEndBrick
+        
+        let context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, state: .Running)
+        
+        startScript.brickList = [loopBeginBrick, broadcastBrick, noteBrick, waitBrick, hideBrick, turnRightBrick, loopEndBrick]
+        
+        let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
+        let instructionList = backend.instructionsForSequence(sequenceList)
+        
+        
+        XCTAssertEqual(instructionList.count, 6, "Instruction list should contain six instructions")
+        
+        switch instructionList[0] {
+        case let .ExecClosure(closure):
+            closure(context: context, scheduler: scheduler)
+            XCTAssertEqual(context.state, CBScriptContextState.Runnable, "State should be runnable")
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[1] {
+        case .HighPriorityExecClosure(_):
+            break;
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[2] {
+        case .WaitExecClosure(_):
+            break;
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[3] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[4] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[5] {
+        case .HighPriorityExecClosure(_):
+            break;
+        default:
+            XCTFail("Wrong instruction type")
+        }
+    }
 }
