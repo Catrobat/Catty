@@ -143,8 +143,8 @@
             NSData *blankdata = UIImagePNGRepresentation(blank);
             NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
             if (![blankdata isEqualToData:saveViewData]) {
-                NSData *editingData = UIImagePNGRepresentation(self.editingImage);
-                if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
+                //NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+                if (self.editingImage != nil && ![self.editingImage isEqual:self.saveView.image]) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
