@@ -87,6 +87,58 @@
     
     self.reachability = [Reachability reachabilityForInternetConnection];
     [self.reachability startNotifier];
+    
+  
+  NSLayoutConstraint *topConstraint = [NSLayoutConstraint
+                                       constraintWithItem:self.placeHolderView
+                                       attribute:NSLayoutAttributeTop
+                                       relatedBy:NSLayoutRelationEqual
+                                       toItem:self.placeHolderView.superview
+                                       attribute: NSLayoutAttributeTop
+                                       multiplier:1.0f constant:0];
+  
+  NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint
+                                           constraintWithItem:self.placeHolderView
+                                           attribute:NSLayoutAttributeLeading
+                                           relatedBy:NSLayoutRelationEqual
+                                           toItem:self.placeHolderView.superview
+                                           attribute: NSLayoutAttributeLeading
+                                           multiplier:1.0f constant:0];
+  
+  
+  NSLayoutConstraint *widthConstraint = [NSLayoutConstraint
+                                         constraintWithItem:self.placeHolderView
+                                         attribute:NSLayoutAttributeWidth
+                                         relatedBy:NSLayoutRelationEqual
+                                         toItem:self.placeHolderView.superview
+                                         attribute: NSLayoutAttributeWidth
+                                         multiplier:1.0f constant:0];
+  
+  NSLayoutConstraint *heightConstraint = [NSLayoutConstraint
+                                          constraintWithItem:self.placeHolderView
+                                          attribute:NSLayoutAttributeHeight
+                                          relatedBy:NSLayoutRelationEqual
+                                          toItem:self.placeHolderView.superview
+                                          attribute: NSLayoutAttributeHeight
+                                          multiplier:1.0f constant:0];
+    NSLayoutConstraint *centerXConstraint = [NSLayoutConstraint
+                                            constraintWithItem:self.placeHolderView.contentView
+                                            attribute:NSLayoutAttributeCenterX
+                                            relatedBy:NSLayoutRelationEqual
+                                            toItem:self.placeHolderView.contentView.superview
+                                            attribute: NSLayoutAttributeCenterX
+                                            multiplier:1.0f constant:0];
+    
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint
+                                            constraintWithItem:self.placeHolderView.contentView
+                                            attribute:NSLayoutAttributeCenterY
+                                            relatedBy:NSLayoutRelationEqual
+                                            toItem:self.placeHolderView.contentView.superview
+                                            attribute: NSLayoutAttributeCenterY
+                                            multiplier:1.0f constant:0];
+    
+  [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
+  [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -118,9 +170,16 @@
 - (PlaceHolderView*)placeHolderView
 {
     if (! _placeHolderView) {
-        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
-        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
+//        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
+//        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
+        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+      
+
+      
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
+      
+
+
         _placeHolderView.hidden = YES;
     }
     return _placeHolderView;

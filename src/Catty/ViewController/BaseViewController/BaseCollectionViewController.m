@@ -50,6 +50,60 @@
 
 @implementation BaseCollectionViewController
 
+- (void) viewDidLoad
+{
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint
+                                         constraintWithItem:self.placeHolderView
+                                         attribute:NSLayoutAttributeTop
+                                         relatedBy:NSLayoutRelationEqual
+                                         toItem:self.placeHolderView.superview
+                                         attribute: NSLayoutAttributeTop
+                                         multiplier:1.0f constant:0];
+    
+    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint
+                                             constraintWithItem:self.placeHolderView
+                                             attribute:NSLayoutAttributeLeading
+                                             relatedBy:NSLayoutRelationEqual
+                                             toItem:self.placeHolderView.superview
+                                             attribute: NSLayoutAttributeLeading
+                                             multiplier:1.0f constant:0];
+    
+    
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint
+                                           constraintWithItem:self.placeHolderView
+                                           attribute:NSLayoutAttributeWidth
+                                           relatedBy:NSLayoutRelationEqual
+                                           toItem:self.placeHolderView.superview
+                                           attribute: NSLayoutAttributeWidth
+                                           multiplier:1.0f constant:0];
+    
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint
+                                            constraintWithItem:self.placeHolderView
+                                            attribute:NSLayoutAttributeHeight
+                                            relatedBy:NSLayoutRelationEqual
+                                            toItem:self.placeHolderView.superview
+                                            attribute: NSLayoutAttributeHeight
+                                            multiplier:1.0f constant:0];
+    NSLayoutConstraint *centerXConstraint = [NSLayoutConstraint
+                                             constraintWithItem:self.placeHolderView.contentView
+                                             attribute:NSLayoutAttributeCenterX
+                                             relatedBy:NSLayoutRelationEqual
+                                             toItem:self.placeHolderView.contentView.superview
+                                             attribute: NSLayoutAttributeCenterX
+                                             multiplier:1.0f constant:0];
+    
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint
+                                             constraintWithItem:self.placeHolderView.contentView
+                                             attribute:NSLayoutAttributeCenterY
+                                             relatedBy:NSLayoutRelationEqual
+                                             toItem:self.placeHolderView.contentView.superview
+                                             attribute: NSLayoutAttributeCenterY
+                                             multiplier:1.0f constant:0];
+    
+    [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
+    [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

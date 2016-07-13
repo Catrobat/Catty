@@ -51,7 +51,8 @@
 - (void)initPlaceHolderView
 {
     self.userInteractionEnabled = NO;
-    self.placeholderDescriptionLabel = [UILabel new];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    self.placeholderDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))];
     self.placeholderDescriptionLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
                                                         UIViewAutoresizingFlexibleRightMargin |
                                                         UIViewAutoresizingFlexibleTopMargin |
@@ -63,7 +64,12 @@
     self.placeholderDescriptionLabel.textColor = UIColor.globalTintColor;
     self.placeholderDescriptionLabel.numberOfLines = 0;
     self.contentView = self.placeholderDescriptionLabel;
+  self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.shimmering = YES;
+    
+  
+
+    
 }
 
 - (void)setTitle:(NSString *)title
