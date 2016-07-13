@@ -47,6 +47,7 @@
 @property (nonatomic, strong) NSArray *featuredSize;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic) BOOL shouldShowAlert;
+@property (nonatomic) BOOL shouldHideLoadingView;
 
 @end
 
@@ -87,6 +88,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.shouldShowAlert = YES;
+    self.shouldHideLoadingView = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -202,6 +204,7 @@
         if (error) {
             if ([Util isNetworkError:error]) {
                 [Util defaultAlertForNetworkError];
+                self.shouldHideLoadingView = YES;
                 [self hideLoadingView];
             }
         } else {
@@ -251,6 +254,7 @@
             }
         } else {
             [Util defaultAlertForUnknownError];
+            self.shouldHideLoadingView = YES;
             [self hideLoadingView];
             return;
         }
@@ -330,6 +334,7 @@
         }
     }
     [self update];
+    self.shouldHideLoadingView = YES;
     [self hideLoadingView];
    
 }
@@ -347,8 +352,11 @@
 
 - (void)hideLoadingView
 {
-    [self.loadingView hide];
-    [self loadingIndicator:NO];
+    if(self.shouldHideLoadingView) {
+        [self.loadingView hide];
+        [self loadingIndicator:NO];
+        self.shouldHideLoadingView = NO;
+    }
 }
 
 - (void)loadingIndicator:(BOOL)value
