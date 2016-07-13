@@ -143,8 +143,8 @@
             NSData *blankdata = UIImagePNGRepresentation(blank);
             NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
             if (![blankdata isEqualToData:saveViewData]) {
-                NSData *editingData = UIImagePNGRepresentation(self.editingImage);
-                if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
+                //NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+                if (self.editingImage != nil && ![self.editingImage isEqual:self.saveView.image]) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
@@ -687,8 +687,8 @@
 
 - (void)initShape
 {
-    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.drawView.center.x - 75, self.drawView.center.y - 75, 150, 150);
-    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.drawView.center.x - 150, self.drawView.center.y - 150, 300, 300);
+    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 300 , 300);
     [self.resizeViewManager updateShape];
 }
 

@@ -138,17 +138,24 @@
     NSString *fileName =[[NSString uuid] stringByAppendingString:@".mpga"];
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
+    
     if (image)
     {
+        NSString *decodedFilename = [(NSString *)[self.url absoluteString] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+        decodedFilename = [decodedFilename stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
         // Success use the image
-        [self.paintDelegate addMediaLibraryLoadedImage:image withName:[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject]];
+        [self.paintDelegate addMediaLibraryLoadedImage:image withName:[[decodedFilename componentsSeparatedByString:@"="] lastObject]];
     }
     else
     {
         self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
         
+        NSString *decodedFilename = [(NSString *)[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+        decodedFilename = [decodedFilename stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
         self.sound.fileName = fileName;
-        self.sound.name = [[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject];
+        self.sound.name = decodedFilename;
         [self.mdata writeToFile:self.filePath atomically:YES];
         [self.soundDelegate showDownloadSoundAlert:self.sound];
     }

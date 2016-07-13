@@ -768,7 +768,7 @@
 {
     if (!_skView) {
         _skView = [[SKView alloc] initWithFrame:self.view.bounds];
-#ifdef DEBUG
+#if DEBUG == 1
         _skView.showsFPS = YES;
         _skView.showsNodeCount = YES;
         _skView.showsDrawCount = YES;
