@@ -195,94 +195,60 @@
     return context;
 }
 
-- (BOOL)isTransparentPixelAtPoint:(CGPoint)point inImage:(UIImage*)image
+- (BOOL)isTransparentPixelAtScenePoint:(CGPoint)scenePoint
 {
-    point.x += (image.size.width/2);
-    point.y -= (image.size.height/2);
-    point.y = -point.y;
-    NSInteger pointX = (NSInteger)point.x;
-    NSInteger pointY = (NSInteger)point.y;
+    CGPoint imagePoint = CGPointMake(scenePoint.x, scenePoint.y);
+    imagePoint.x += (self.size.width/2);
+    imagePoint.y -= (self.size.height/2);
+    imagePoint.y = -imagePoint.y;
     
-    CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(image.CGImage));
-    const UInt8* data = CFDataGetBytePtr(pixelData);
-    
-    int pixelInfo = ((image.size.width  * pointY) + pointX ) * 4; // The image is png
-    
-    //UInt8 red = data[pixelInfo];         // If you need this info, enable it
-    //UInt8 green = data[(pixelInfo + 1)]; // If you need this info, enable it
-    //UInt8 blue = data[pixelInfo + 2];    // If you need this info, enable it
-    UInt8 alpha;
-    if (pixelInfo >= 0) {
-        alpha = data[pixelInfo + 3];
-        NSLog(@"Alpha: %i",alpha);
-    }else{
-        CFRelease(pixelData);
-        return YES;
-    }
-    CFRelease(pixelData);
-    
-    //UIColor* color = [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:alpha/255.0f]; // The pixel color info
-    
-    if (alpha) return NO;
-    else return YES;
-
+    return [self isTransparentPixelAtPoint:imagePoint];
 }
 
-- (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
+- (BOOL)isTransparentPixelAtPoint:(CGPoint)imagePoint
 {
-    x += (image.size.width/2);
-    y -= (image.size.height/2);
-    y = -y;
-    NSInteger pointX = (NSInteger)x;
-    NSInteger pointY = (NSInteger)y;
-    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), CGPointMake(pointX,pointY))) {
+    CGPoint point = CGPointMake((NSInteger)imagePoint.x, (NSInteger)imagePoint.y);
+    
+    if (! CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), point)) {
         return YES;
     }
-    CGImageRef cgImage = image.CGImage;
-    NSUInteger width = (NSUInteger)image.size.width;
-    NSUInteger height = (NSUInteger)image.size.height;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    int bytesPerPixel = 4;
-    int bytesPerRow = bytesPerPixel * 1;
-    NSUInteger bitsPerComponent = 8;
-    unsigned char pixelData[4] = { 0, 0, 0, 0 };
-    CGBitmapInfo oldBitmapInfo = CGImageGetBitmapInfo(cgImage);
-    CGImageAlphaInfo alphaInfo = oldBitmapInfo & kCGBitmapAlphaInfoMask;
     
-    //Since iOS8 it's not allowed anymore to create contexts with unmultiplied Alpha info
-    if (alphaInfo == kCGImageAlphaLast) {
-        alphaInfo = kCGImageAlphaPremultipliedLast;
+    CGImageRef cgImage = self.CGImage;
+    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(cgImage);
+    size_t bytesPerPixel = CGImageGetBitsPerPixel(cgImage) / 8;
+    UInt8 alphaIndex = 0;
+    
+    switch(alphaInfo) {
+        case kCGImageAlphaNone:
+            return NO;
+        case kCGImageAlphaNoneSkipFirst:
+            return NO;
+        case kCGImageAlphaNoneSkipLast:
+            return NO;
+        case kCGImageAlphaOnly:
+            return YES;
+        case kCGImageAlphaLast:
+            alphaIndex = bytesPerPixel - 1;
+            break;
+        case kCGImageAlphaPremultipliedLast:
+            alphaIndex = bytesPerPixel - 1;
+            break;
+        case kCGImageAlphaFirst:
+            alphaIndex = 0;
+            break;
+        case kCGImageAlphaPremultipliedFirst:
+            alphaIndex = 0;
+            break;
     }
-    if (alphaInfo == kCGImageAlphaFirst) {
-        alphaInfo = kCGImageAlphaPremultipliedFirst;
-    }
     
-    //reset the bits
-    CGBitmapInfo newBitmapInfo = oldBitmapInfo & ~kCGBitmapAlphaInfoMask;
+    CFDataRef pixelData = CGDataProviderCopyData(CGImageGetDataProvider(cgImage));
+    const UInt8* data = CFDataGetBytePtr(pixelData);
     
-    //set the bits to the new alphaInfo
-    newBitmapInfo |= alphaInfo;
-
-    CGContextRef context = CGBitmapContextCreate(pixelData,
-                                                 1,
-                                                 1,
-                                                 bitsPerComponent,
-                                                 bytesPerRow,
-                                                 colorSpace,
-                                                 newBitmapInfo);
-    CGColorSpaceRelease(colorSpace);
-    CGContextSetBlendMode(context, kCGBlendModeCopy);
+    int pixelInfo = ((self.size.width  * point.y) + point.x) * bytesPerPixel;
+    UInt8 alpha = data[pixelInfo + alphaIndex];
     
-    // Draw the pixel we are interested in onto the bitmap context
-    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
-    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
-    CGContextRelease(context);
-
-    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
-    if (alpha == 0){
-        return YES;
-    }
-    return NO;
+    CFRelease(pixelData);
+    return alpha == 0;
 }
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
