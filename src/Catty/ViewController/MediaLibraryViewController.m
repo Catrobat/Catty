@@ -62,7 +62,7 @@
     [super viewDidLoad];
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", kMediaLibraryUrl, self.urlEnding];
     NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:kConnectionTimeout];
     [_webView loadRequest:urlRequest];
     self.webView.allowsInlineMediaPlayback = YES;
     self.webView.backgroundColor = UIColor.backgroundColor;
@@ -183,6 +183,7 @@
     });
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 #pragma mark - Util
 - (NSString *)hexStringFromColor:(UIColor *)color
