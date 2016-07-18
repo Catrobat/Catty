@@ -105,6 +105,7 @@
     _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
     _urlTitleLabel.alpha = 0.6f;
     
+    
 }
 
 - (void)setupToolBar
@@ -345,6 +346,7 @@
     __weak HelpWebViewController *weakself = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         weakself.progressView.hidden = doneLoadingURL;
+        weakself.urlTitleLabel.hidden = doneLoadingURL;
     });
 }
 
