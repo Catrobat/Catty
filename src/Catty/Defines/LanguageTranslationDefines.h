@@ -462,7 +462,7 @@
 #define kLocalizedPaintSave NSLocalizedString(@"Save to CameraRoll", @"paint")
 #define kLocalizedPaintClose NSLocalizedString(@"Close Paint", @"paint")
 #define kLocalizedPaintNewCanvas NSLocalizedString(@"New Canvas", @"paint")
-#define kLocalizedPaintPickItem NSLocalizedString(@"Please pick an item", @"paint")
+#define kLocalizedPaintPickTool NSLocalizedString(@"Please pick a tool", @"paint")
 #define kLocalizedPaintNoCrop NSLocalizedString(@"Nothing to crop!", @"paint")
 #define kLocalizedPaintAskNewCanvas NSLocalizedString(@"Do you really want to delete the current drawing?", @"paint")
 #define kLocalizedPaintRound NSLocalizedString(@"round", @"paint")
