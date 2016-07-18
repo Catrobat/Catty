@@ -127,6 +127,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
     });
+    if ([Util isNetworkError:error]) {
+        [Util defaultAlertForNetworkError];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
