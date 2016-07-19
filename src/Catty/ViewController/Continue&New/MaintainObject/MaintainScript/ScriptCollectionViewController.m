@@ -107,6 +107,7 @@
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPathForDeletion;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic,strong) Script *moveHelperScript;
@@ -371,6 +372,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark- CatrobatAlertViewDelegate
 - (void)alertView:(CatrobatAlertController *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    /* previous but unused implementation
     if (alertView.tag == kResourcesAlertView) {
         // check if user agreed
         if (buttonIndex != 0) {
@@ -383,7 +385,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     {
         [self deleteSelectedBricks];
         self.allBricksSelected = NO;
+    } 
+    */
+    
+    if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
+    {
+        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForDeletion];
+        [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:self.selectedIndexPathForDeletion];
     }
+
 }
 
 #pragma mark - CatrobatActionSheetDelegate
@@ -401,7 +411,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         
         if (buttonIndex == 1) {
             // delete script or brick action
-            [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+            self.selectedIndexPathForDeletion = indexPath;
+            NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
+            if ([brickCell isScriptBrick] && (numberOfBricksInSection > 1))
+            {
+                [Util confirmAlertWithTitle:kLocalizedDeleteThisScript message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+            } else {
+                [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+            }
         } else if (buttonIndex == 2) {
             // copy brick action
             CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
