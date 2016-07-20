@@ -33,8 +33,15 @@ extension VibrationBrick: CBInstructionProtocol {
 //            self.logger.debug("Performing: VibrationBrick")
             dispatch_async(CBScheduler.vibrateSerialQueue, {
                 let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
-                let max = Int(2 * durationInSeconds)
-                for i in 1 ..< max {
+                var numberOfVibrations = durationInSeconds*2;
+                if ((numberOfVibrations < 1) && (numberOfVibrations > 0)){
+                    numberOfVibrations = ceil(numberOfVibrations)
+                }else{
+                    numberOfVibrations = floor(numberOfVibrations)
+                }
+                
+                let max = Int(numberOfVibrations)
+                for i in 0 ..< max {
                     let delayTime = dispatch_time(DISPATCH_TIME_NOW,
                         Int64(Double(i)*0.5 * Double(NSEC_PER_SEC)))
                     dispatch_after(delayTime, dispatch_get_main_queue()) {
