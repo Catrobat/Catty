@@ -177,6 +177,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kGlideToBrick              = 111,
     kGoNStepsBackBrick         = 112,
     kComeToFrontBrick          = 113,
+    kVibrationBrick            = 114,
     
     // 2xx look bricks
     kSetLookBrick              = 200,
@@ -192,7 +193,6 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kClearGraphicEffectBrick   = 210,
     kLedOnBrick                = 211,
     kLedOffBrick               = 212,
-    kVibrationBrick            = 213,
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
@@ -308,6 +308,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"GlideToBrick"              : @(kGlideToBrick),\
     @"GoNStepsBackBrick"         : @(kGoNStepsBackBrick),\
     @"ComeToFrontBrick"          : @(kComeToFrontBrick),\
+    @"VibrationBrick"            : @(kVibrationBrick),\
 \
     /* sound bricks */\
     @"PlaySoundBrick"            : @(kPlaySoundBrick),\
@@ -330,7 +331,6 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"LedOnBrick"                : @(kLedOnBrick),\
     @"LedOffBrick"               : @(kLedOffBrick),\
-    @"VibrationBrick"            : @(kVibrationBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\

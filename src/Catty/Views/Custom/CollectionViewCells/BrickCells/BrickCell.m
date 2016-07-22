@@ -80,7 +80,8 @@
     @"{OBJECT}",                                                 /* point to brick     */\
     @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
     @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
-    @[]                                                          /* come to front      */\
+    @[],                                                         /* come to front      */\
+    @"{FLOAT;range=(-inf,inf)}"                                  /* vibration          */\
 ]
 
 // sound bricks
@@ -106,8 +107,7 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
-    @[],                            /* turn off flashlight      */\
-    @"{FLOAT;range=(-inf,inf)}"     /* vibration                */\
+    @[]                             /* turn off flashlight      */\
 ]
 
 // variable bricks
