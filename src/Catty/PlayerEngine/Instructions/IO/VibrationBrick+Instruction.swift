@@ -40,13 +40,13 @@ extension VibrationBrick: CBInstructionProtocol {
                 numberOfVibrations = floor(numberOfVibrations)
             }
             var previousOperation : NSBlockOperation? = nil;
-            
+            let delayTime = UInt32(0.5 * Double(USEC_PER_SEC))
             
             let max = Int(numberOfVibrations)
             for _ in 0 ..< max {
                 let operation : NSBlockOperation = NSBlockOperation (block: {
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                usleep(500000)})
+                usleep(delayTime)})
                 
                 if let previous = previousOperation {
                     operation.addDependency(previous)
