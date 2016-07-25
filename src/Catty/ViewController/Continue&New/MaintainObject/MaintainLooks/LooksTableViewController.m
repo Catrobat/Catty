@@ -134,7 +134,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         destructive = (self.object.isBackground
                        ? kLocalizedDeleteBackgrounds
                        : kLocalizedDeleteLooks);
-        [options addObject:@"Copy Looks"];
+        [options addObject:kLocalizedCopyLooks];
     }
     if (self.object.lookList.count >= 2) {
         [options addObject:kLocalizedMoveLooks];
@@ -209,7 +209,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)copyLooksActionWithSourceLooks:(NSArray<Look *> *)sourceLooks
 {
     [self showLoadingView];
-    NSMutableArray<NSIndexPath *> *indizes = [NSMutableArray arrayWithCapacity:[sourceLooks count]];
+    NSMutableArray<NSIndexPath *> *paths = [NSMutableArray arrayWithCapacity:[sourceLooks count]];
     
     for (id look in sourceLooks) {
         if ([look isKindOfClass:[Look class]]) {
@@ -219,11 +219,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-            [indizes addObject:indexPath];
+            [paths addObject:indexPath];
         }
     }
     
-    [self.tableView insertRowsAtIndexPaths:indizes withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationBottom];
     [self hideLoadingView];
 }
 

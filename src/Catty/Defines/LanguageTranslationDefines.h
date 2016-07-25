@@ -164,6 +164,7 @@
 #define kLocalizedDeleteLooks NSLocalizedString(@"Delete Looks",nil)
 #define kLocalizedDeleteBackgrounds NSLocalizedString(@"Delete Backgrounds",nil)
 #define kLocalizedMoveLooks NSLocalizedString(@"Move Looks",nil)
+#define kLocalizedCopyLooks NSLocalizedString(@"Copy Looks",nil)
 #define kLocalizedFromCamera NSLocalizedString(@"From Camera", nil)
 #define kLocalizedChooseImage NSLocalizedString(@"Choose image", nil)
 #define kLocalizedDrawNewImage NSLocalizedString(@"Draw new image", nil)
