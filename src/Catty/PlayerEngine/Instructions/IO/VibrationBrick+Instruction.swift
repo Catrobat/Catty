@@ -43,7 +43,7 @@ extension VibrationBrick: CBInstructionProtocol {
             
             
             let max = Int(numberOfVibrations)
-            for i in 0 ..< max {
+            for _ in 0 ..< max {
                 let operation : NSBlockOperation = NSBlockOperation (block: {
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 usleep(500000)})
