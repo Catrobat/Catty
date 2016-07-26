@@ -75,6 +75,13 @@ void uncaughtExceptionHandler(NSException *exception)
 
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
+    UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
+    
+    if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
+        ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
+        [spvc resumeAction];
+    }
+    
     [SwiftBridge sirenApplicationDidBecomeActive];
 }
 
