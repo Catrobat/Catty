@@ -193,6 +193,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kLedOnBrick                = 211,
     kLedOffBrick               = 212,
     kVibrationBrick            = 213,
+    kSetColorToBrick           = 214,
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
@@ -331,6 +332,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"LedOnBrick"                : @(kLedOnBrick),\
     @"LedOffBrick"               : @(kLedOffBrick),\
     @"VibrationBrick"            : @(kVibrationBrick),\
+    @"SetColorToBrick"           : @(kSetColorToBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
@@ -415,6 +417,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"LedOnBrick"                : @(kBrickHeight1h),\
 @"LedOffBrick"               : @(kBrickHeight1h),\
 @"VibrationBrick"            : @(kBrickHeight1h),\
+@"SetColorToBrick"           : @(kBrickHeight2h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

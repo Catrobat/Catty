@@ -107,7 +107,8 @@
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
     @[],                            /* turn off flashlight      */\
-    @"{FLOAT;range=(-inf,inf)}"     /* vibration                */\
+    @"{FLOAT;range=(-inf,inf)}",     /* vibration                */\
+    @"{FLOAT;range=(-inf,inf)}"     /* set color to             */\
 ]
 
 // variable bricks
