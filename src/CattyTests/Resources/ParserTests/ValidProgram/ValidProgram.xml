@@ -13,7 +13,7 @@
         <platform>Android</platform>
         <platformVersion>19.0</platformVersion>
         <programLicense>programLicense</programLicense>
-        <programName>My first program</programName>
+        <programName>Valid Program/programName>
         <remixOf>remixOf</remixOf>
         <screenHeight>1184</screenHeight>
         <screenMode>STRETCH</screenMode>
