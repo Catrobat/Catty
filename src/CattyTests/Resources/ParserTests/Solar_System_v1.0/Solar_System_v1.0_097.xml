@@ -2,7 +2,7 @@
 <program>
   <header>
     <applicationBuildName>Catty</applicationBuildName>
-    <applicationBuildNumber>3986-IOS-366-{parent:ecb7222}</applicationBuildNumber>
+    <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.4</applicationVersion>
     <catrobatLanguageVersion>0.97</catrobatLanguageVersion>

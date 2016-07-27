@@ -2,7 +2,7 @@
 <program>
     <header>
         <applicationBuildName>Catty</applicationBuildName>
-        <applicationBuildNumber>3279-iOS9_IOS-91_100_102_154_159_193-{parent:c01add4}</applicationBuildNumber>
+        <applicationBuildNumber>1</applicationBuildNumber>
         <applicationName>Pocket Code</applicationName>
         <applicationVersion>0.4</applicationVersion>
         <catrobatLanguageVersion>0.97</catrobatLanguageVersion>
@@ -13,7 +13,7 @@
         <platform>iPhone OS</platform>
         <platformVersion>9.0</platformVersion>
         <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-        <programName>test2</programName>
+        <programName>Encapsulated</programName>
         <remixOf/>
         <screenHeight>1280</screenHeight>
         <screenMode>STRETCH</screenMode>

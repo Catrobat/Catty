@@ -49,7 +49,7 @@
     XCTAssertTrue([header.mediaLicense isEqualToString: @"mediaLicense"], @"mediaLicense not correctly parsed");
     XCTAssertTrue([header.platform isEqualToString: @"Android"], @"platform not correctly parsed");
     XCTAssertTrue([header.programLicense isEqualToString: @"programLicense"], @"programLicense not correctly parsed");
-    XCTAssertTrue([header.programName isEqualToString: @"My first program"], @"programName not correctly parsed");
+    XCTAssertTrue([header.programName isEqualToString: @"Valid Program"], @"programName not correctly parsed");
     XCTAssertTrue([header.remixOf isEqualToString: @"remixOf"], @"remixOf not correctly parsed");
     XCTAssertEqual([header.screenHeight intValue], 1184, @"screenHeight not correctly parsed");
     XCTAssertEqual([header.screenWidth intValue], 768, @"screenWidth not correctly parsed");
