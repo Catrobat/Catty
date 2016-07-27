@@ -25,23 +25,36 @@
 extension VibrationBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-
+        
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
 
         let durationFormula = self.durationInSeconds
         return CBInstruction.ExecClosure { (context, scheduler) in
 //            self.logger.debug("Performing: VibrationBrick")
-            dispatch_async(CBScheduler.vibrateSerialQueue, {
-                let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
-                let max = Int(2 * durationInSeconds)
-                for i in 1 ..< max {
-                    let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                        Int64(Double(i)*0.5 * Double(NSEC_PER_SEC)))
-                    dispatch_after(delayTime, dispatch_get_main_queue()) {
-                        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                    }
+            
+            let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
+            var numberOfVibrations = durationInSeconds*2;
+            if ((numberOfVibrations < 1) && (numberOfVibrations > 0)){
+                numberOfVibrations = ceil(numberOfVibrations)
+            }else{
+                numberOfVibrations = floor(numberOfVibrations)
+            }
+            var previousOperation : NSBlockOperation? = nil;
+            let delayTime = UInt32(0.5 * Double(USEC_PER_SEC))
+            
+            let max = Int(numberOfVibrations)
+            for _ in 0 ..< max {
+                let operation : NSBlockOperation = NSBlockOperation (block: {
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                usleep(delayTime)})
+                
+                if let previous = previousOperation {
+                    operation.addDependency(previous)
                 }
-            })
+            CBScheduler.vibrateSerialQueue.addOperation(operation)
+            previousOperation = operation
+            }
+            
             context.state = .Runnable
         }
 

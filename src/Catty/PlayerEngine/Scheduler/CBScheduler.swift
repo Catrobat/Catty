@@ -40,7 +40,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _lastQueueIndex = 0
 
     // MARK: Static properties
-    static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
+    static let vibrateSerialQueue = NSOperationQueue()
 
     // MARK: - Initializers
     init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol) {
@@ -351,6 +351,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
     func shutdown() {
         logger.info("!!! SCHEDULER SHUTDOWN !!!")
+        CBScheduler.vibrateSerialQueue.cancelAllOperations()
         _scheduledContexts.orderedValues.forEach { $0.forEach {
             stopContext($0, continueWaitingBroadcastSenders: false)
         } }
