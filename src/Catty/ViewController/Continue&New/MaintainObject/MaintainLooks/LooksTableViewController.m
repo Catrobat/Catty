@@ -67,6 +67,7 @@
 @property (nonatomic,strong)NSString* paintImagePath;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
 @property (nonatomic, assign) BOOL deletionMode;
+@property (nonatomic, assign) BOOL copyMode;
 @property (nonatomic,strong)NSString *filePath;
 @end
 
@@ -133,6 +134,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         destructive = (self.object.isBackground
                        ? kLocalizedDeleteBackgrounds
                        : kLocalizedDeleteLooks);
+        [options addObject:kLocalizedCopyLooks];
     }
     if (self.object.lookList.count >= 2) {
         [options addObject:kLocalizedMoveLooks];
@@ -186,14 +188,42 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self reloadData];
 }
 
-- (void)copyLookActionWithSourceLook:(Look*)sourceLook
+- (void)copySelectedLooksAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to delete...
+        [super exitEditingMode];
+        return;
+    }
+    
+    NSMutableArray *looksToCopy = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        Look *look = (Look*)[self.object.lookList objectAtIndex:selectedRowIndexPath.row];
+        [looksToCopy addObject:look];
+    }
+    [self copyLooksActionWithSourceLooks:looksToCopy];
+    [super exitEditingMode];
+}
+
+- (void)copyLooksActionWithSourceLooks:(NSArray<Look *> *)sourceLooks
 {
     [self showLoadingView];
-    NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
-    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook AndSaveToDisk:YES];
-    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    NSMutableArray<NSIndexPath *> *paths = [NSMutableArray arrayWithCapacity:[sourceLooks count]];
+    
+    for (id look in sourceLooks) {
+        if ([look isKindOfClass:[Look class]]) {
+            Look *sourceLook = (Look*) look;
+            NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
+            [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook AndSaveToDisk:YES];
+            
+            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
+            [paths addObject:indexPath];
+        }
+    }
+    
+    [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationBottom];
     [self hideLoadingView];
 }
 
@@ -349,7 +379,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.deletionMode){
+    if(self.deletionMode || self.copyMode){
         return NO;
     }
     return YES;
@@ -588,16 +618,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if (buttonIndex == 1) {
                 // Delete Looks button
                 self.deletionMode = YES;
+                self.copyMode = NO;
                 [self setupEditingToolBar];
                 [super changeToEditingMode:actionSheet];
-            } else if (([self.object.lookList count] >= 2)) {
-                if (buttonIndex == 2) {
+            }
+            else if (buttonIndex == 2) {
+                // Copy Looks button
+                self.deletionMode = NO;
+                self.copyMode = YES;
+                [self setupEditingToolBar];
+                [super changeToEditingMode:actionSheet];
+            }
+            else if (([self.object.lookList count] >= 2)) {
+                if (buttonIndex == 3) {
                     self.deletionMode = NO;
+                    self.copyMode = NO;
                     [super changeToMoveMode:actionSheet];
-                } else if (buttonIndex == 3) {
+                } else if (buttonIndex == 4) {
                     showHideSelected = YES;
                 }
-            } else if (buttonIndex == 2){
+            } else if (buttonIndex == 3){
                showHideSelected = YES;
             }
         } else if (buttonIndex == 0) {
@@ -624,7 +664,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if (buttonIndex == 1) {
             // Copy look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            [self copyLookActionWithSourceLook:(Look*)payload[kDTPayloadLook]];
+            NSMutableArray *lookToCopy = [NSMutableArray arrayWithCapacity:1];
+            [lookToCopy addObject:(Look*)payload[kDTPayloadLook]];
+            [self copyLooksActionWithSourceLooks:lookToCopy];
         } else if (buttonIndex == 2) {
             // Rename look button
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
@@ -842,17 +884,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super setupEditingToolBar];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
-                                                                              action:nil];
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(confirmDeleteSelectedLooksAction:)];
+                                                                            action:nil];
+    UIBarButtonItem *editActionButton;
+    if (self.deletionMode){
+        editActionButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(confirmDeleteSelectedLooksAction:)];
+    } else{
+        editActionButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCopy
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(copySelectedLooksAction:)];
+    }
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
-                         invisibleButton, deleteButton, nil];
+                         invisibleButton, editActionButton, nil];
 }
 
 #pragma mark paintDelegate
