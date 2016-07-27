@@ -369,6 +369,8 @@
 #define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
 #define kLocalizedChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
 #define kLocalizedClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
+#define kLocalizedSetColor NSLocalizedString(@"Set color to %@", nil)
+
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound\n%@", nil)

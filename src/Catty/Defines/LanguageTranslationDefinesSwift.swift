@@ -369,6 +369,8 @@ let kLocalizedChangeTransparencyByN = NSLocalizedString("Change transparency\nby
 let kLocalizedSetBrightness = NSLocalizedString("Set brightness to %@%", comment: "")
 let kLocalizedChangeBrightnessByN = NSLocalizedString("Change brightness\nby %@%", comment: "")
 let kLocalizedClearGraphicEffect = NSLocalizedString("Clear graphic effects", comment: "")
+let kLocalizedSetColor = NSLocalizedString("Set color to %", comment: "")
+
 
 // sound bricks
 let kLocalizedPlaySound = NSLocalizedString("Start sound\n%", comment: "")

@@ -27,21 +27,21 @@
 
 @implementation SetColorToBrick
 
-@synthesize transparency = _transparency;
+@synthesize color = _color;
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.transparency;
+    return self.color;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.transparency = formula;
+    self.color = formula;
 }
 
 - (NSArray*)getFormulas
 {
-    return @[self.transparency];
+    return @[self.color];
 }
 
 - (BOOL)allowsStringFormula
@@ -51,23 +51,23 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.transparency = [[Formula alloc] initWithInteger:50];
+    self.color = [[Formula alloc] initWithInteger:50];
 }
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetTransparency;
+    return kLocalizedSetColor;
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetTransparencyBrick (%f%%)", [self.transparency interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetColorBrick (%f)", [self.color interpretDoubleForSprite:self.script.object]];
 }
 
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return [self.transparency getRequiredResources];
+    return [self.color getRequiredResources];
 }
 @end

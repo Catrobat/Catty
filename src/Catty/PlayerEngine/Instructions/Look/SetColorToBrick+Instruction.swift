@@ -32,7 +32,7 @@ extension SetColorToBrick: CBInstructionProtocol{
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
-              let transparency = self.transparency
+              let transparency = self.color
         else { fatalError("This should never happen!") }
 
         return {
@@ -40,6 +40,7 @@ extension SetColorToBrick: CBInstructionProtocol{
             let alpha = 1.0 - (trans / 100.0)
             if (alpha < 0) {
                 spriteNode.alpha = 0;
+                spriteNode.spriteObject
             }
             else if (alpha > 1){
                 spriteNode.alpha = 1;

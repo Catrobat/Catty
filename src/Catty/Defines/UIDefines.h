@@ -417,7 +417,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"LedOnBrick"                : @(kBrickHeight1h),\
 @"LedOffBrick"               : @(kBrickHeight1h),\
 @"VibrationBrick"            : @(kBrickHeight1h),\
-@"SetColorToBrick"           : @(kBrickHeight2h),\
+@"SetColorToBrick"           : @(kBrickHeight1h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

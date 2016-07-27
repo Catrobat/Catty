@@ -24,6 +24,6 @@
 
 @interface SetColorToBrickCell : BrickCell
 
-@property (nonatomic, weak) UITextField *transparencyTextField;
+@property (nonatomic, weak) UITextField *colorTextField;
 
 @end

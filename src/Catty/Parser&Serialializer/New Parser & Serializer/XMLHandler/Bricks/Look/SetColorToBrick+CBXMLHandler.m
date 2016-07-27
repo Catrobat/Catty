@@ -34,9 +34,9 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY" withContext:context];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"COLOR" withContext:context];
     SetColorToBrick *setColorToBrick = [self new];
-    setColorToBrick.transparency = formula;
+    setColorToBrick.color = formula;
     return setColorToBrick;
 }
 
@@ -49,10 +49,10 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetTransparencyBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetColorBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.transparency xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"TRANSPARENCY"]];
+    GDataXMLElement *formula = [self.color xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"COLOR"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

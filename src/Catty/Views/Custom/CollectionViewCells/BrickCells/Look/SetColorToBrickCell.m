@@ -23,29 +23,20 @@
 #import "SetColorToBrickCell.h"
 
 @interface SetColorToBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
-@property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
-@property (nonatomic, strong) UILabel *secondRowRightTextLabel;
+@property (nonatomic, strong) UILabel *textLabel;
 @end
 
 @implementation SetColorToBrickCell
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
-}
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.secondRowLeftTextLabel = inlineViewSubViews[1];
-    self.transparencyTextField = inlineViewSubViews[2];
-    self.secondRowRightTextLabel = inlineViewSubViews[3];
+    self.textLabel = inlineViewSubViews[0];
+    self.colorTextField = inlineViewSubViews[1];
 }
 
 @end

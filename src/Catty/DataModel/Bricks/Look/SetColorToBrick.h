@@ -27,6 +27,6 @@
 
 @interface SetColorToBrick : Brick<BrickFormulaProtocol>
 
-@property (nonatomic, strong) Formula *transparency;
+@property (nonatomic, strong) Formula *color;
 
 @end
