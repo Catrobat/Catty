@@ -452,7 +452,7 @@
 		99814DB41D47F55B00CCB460 /* SetColorToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DB31D47F55B00CCB460 /* SetColorToBrick.m */; };
 		99814DB91D47F65400CCB460 /* SetColorToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */; };
 		99814DBB1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */; };
-		99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandle.m */; };
+		99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */; };
 		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
@@ -1617,7 +1617,7 @@
 		99814DB71D47F65400CCB460 /* SetColorToBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorToBrickCell.h; sourceTree = "<group>"; };
 		99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrickCell.m; sourceTree = "<group>"; };
 		99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorToBrick+Instruction.swift"; sourceTree = "<group>"; };
-		99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetColorToBrick+CBXMLHandle.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandle.m"; sourceTree = SOURCE_ROOT; };
+		99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetColorToBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		99814DBD1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetColorToBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
@@ -2714,7 +2714,7 @@
 				AA74EEEF1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m */,
 				AA74EEF01BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.h */,
 				AA74EEF11BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m */,
-				99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandle.m */,
+				99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */,
 				99814DBD1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.h */,
 				AA74EEF21BC057C900D1E954 /* SetLookBrick+CBXMLHandler.h */,
 				AA74EEF31BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m */,
@@ -6672,7 +6672,7 @@
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
-				99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandle.m in Sources */,
+				99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m in Sources */,
 				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
