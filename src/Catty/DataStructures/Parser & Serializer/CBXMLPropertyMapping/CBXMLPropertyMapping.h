@@ -26,8 +26,11 @@
 
 @property (nonatomic, strong, readonly) NSString *classPropertyName;
 @property (nonatomic, strong, readonly) NSString *xmlElementName;
+@property (nonatomic, readonly) BOOL ignoreProperty;
 
 - (id)initWithClassPropertyName:(NSString*)classPropertyName;
+- (id)initWithClassPropertyName:(NSString*)classPropertyName andIgnore:(BOOL)ignore;
 - (id)initWithClassPropertyName:(NSString*)classPropertyName andXMLElementName:(NSString*)xmlElementName;
+- (id)initWithClassPropertyName:(NSString*)classPropertyName andXMLElementName:(NSString*)xmlElementName andIgnore:(BOOL)ignore;
 
 @end

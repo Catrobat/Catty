@@ -52,6 +52,7 @@
     header.programScreenshotManuallyTaken = kCatrobatHeaderProgramScreenshotDefaultValue;
     header.tags = nil;
     header.programID = nil;
+    header.landscapeMode = false;
     return header;
 }
 
@@ -100,6 +101,8 @@
     if (! [self.screenMode isEqualToString:header.screenMode])
         return NO;
     if (! [self.url isEqualToString:header.url])
+        return NO;
+    if (self.landscapeMode != header.landscapeMode)
         return NO;
     return YES;
 }

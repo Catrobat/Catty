@@ -43,6 +43,7 @@
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
+#define kParserObjectTypeBOOL           @"T@\"BOOL\""
 
 @implementation CBXMLParserHelper
 
@@ -112,6 +113,8 @@
         value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
     } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
         value = [[Header headerDateFormatter] dateFromString:propertyNode.stringValue];
+    } else if ([propertyType isEqualToString:kParserObjectTypeBOOL]) {
+        value = [NSNumber numberWithBool:[[propertyNode stringValue] boolValue]];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
     }
@@ -130,6 +133,8 @@
         value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
     } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
         value = [[Header headerDateFormatter] dateFromString:propertyNode.stringValue];
+    } else if ([propertyType isEqualToString:kParserObjectTypeBOOL]) {
+        value = [NSNumber numberWithBool:[[propertyNode stringValue] boolValue]];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
     }

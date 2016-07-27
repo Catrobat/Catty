@@ -37,7 +37,7 @@
 @implementation SpriteObject (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
     if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
@@ -98,11 +98,6 @@
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement withContext:context];
     spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
     return spriteObject;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 + (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context

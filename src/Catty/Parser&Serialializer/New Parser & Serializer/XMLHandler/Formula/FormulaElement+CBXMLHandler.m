@@ -30,7 +30,7 @@
 
 @implementation FormulaElement (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     GDataXMLElement *typeElement = [xmlElement childWithElementName:@"type"];
     [XMLError exceptionIfNil:xmlElement message:@"No type element found..."];
@@ -68,11 +68,6 @@
     }
         
     return formulaTree;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
