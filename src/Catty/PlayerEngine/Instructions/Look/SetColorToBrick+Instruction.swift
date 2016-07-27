@@ -40,7 +40,6 @@ extension SetColorToBrick: CBInstructionProtocol{
             let alpha = 1.0 - (trans / 100.0)
             if (alpha < 0) {
                 spriteNode.alpha = 0;
-                spriteNode.spriteObject
             }
             else if (alpha > 1){
                 spriteNode.alpha = 1;
