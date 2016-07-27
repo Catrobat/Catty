@@ -1472,7 +1472,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3H-t7-Eut">
-                                                    <rect key="frame" x="97.5" y="28.5" width="38.5" height="21.5"/>
+                                                    <rect key="frame" x="97.5" y="28.5" width="461" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1492,6 +1492,7 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="F3H-t7-Eut" firstAttribute="trailing" secondItem="kSt-1q-BiB" secondAttribute="trailingMargin" id="0Aj-To-ERT"/>
                                                 <constraint firstItem="F3H-t7-Eut" firstAttribute="leading" secondItem="idW-ZC-ZwS" secondAttribute="trailing" constant="25" id="5as-lH-jQ7"/>
                                                 <constraint firstItem="idW-ZC-ZwS" firstAttribute="leading" secondItem="kSt-1q-BiB" secondAttribute="leadingMargin" constant="12" id="cyM-nV-bp9"/>
                                                 <constraint firstItem="F3H-t7-Eut" firstAttribute="centerY" secondItem="idW-ZC-ZwS" secondAttribute="centerY" id="ouc-xj-bmj"/>
