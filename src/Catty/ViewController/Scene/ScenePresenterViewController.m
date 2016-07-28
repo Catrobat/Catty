@@ -334,10 +334,13 @@
 #pragma mark - Game Event Handling
 - (void)pauseAction
 {
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
-    [[AudioManager sharedAudioManager] pauseAllSounds];
-    [[FlashHelper sharedFlashHandler] pause];
-    [[BluetoothService sharedInstance] pauseBluetoothDevice];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+        [[AudioManager sharedAudioManager] pauseAllSounds];
+        [[FlashHelper sharedFlashHandler] pause];
+        [[BluetoothService sharedInstance] pauseBluetoothDevice];
+    });
+    
     [self.scene pauseScheduler];
 }
 
@@ -391,14 +394,17 @@
         [previousScene stopScreenRecording];
         return;
     }
-    [self.loadingView show];
-    self.menuView.userInteractionEnabled = NO;
-    previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[FlashHelper sharedFlashHandler] reset];
-    previousScene.userInteractionEnabled = YES;
-    [self.loadingView hide];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        self.menuView.userInteractionEnabled = NO;
+        previousScene.userInteractionEnabled = NO;
+        [previousScene stopProgram];
+        [[AudioManager sharedAudioManager] stopAllSounds];
+        [[FlashHelper sharedFlashHandler] reset];
+        previousScene.userInteractionEnabled = YES;
+    });
+    
+    
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
