@@ -39,6 +39,7 @@ final class CBSpriteNode: SKSpriteNode {
     }
     var zIndex: CGFloat { return zPosition }
     var brightness: CGFloat { return (100 * self.currentLookBrightness) }
+    var colorValue: CGFloat { return (self.currentLookBrightness*100/CGFloat(M_PI)) }
     var scaleX: CGFloat { return (100 * xScale) }
     var scaleY: CGFloat { return (100 * yScale) }
     var rotation: Double {
@@ -87,37 +88,6 @@ final class CBSpriteNode: SKSpriteNode {
     }
 
     // MARK: - Operations
-    /*
-     func setFilter(newFilterDict: Dictionary<String, Dictionary<String, AnyObject> >){
-        let filterName = newFilterDict.keys.first
-        let newFilterParams = newFilterDict.values.first
-        
-        if let filter = allFilters[filterName!]{
-            var existingFilterParams = filter
-            for (paramName, paramValue) in newFilterParams! {
-                existingFilterParams[paramName] = paramValue
-            }
-            allFilters[filterName!] = existingFilterParams
-        } else{
-            allFilters[filterName!] = newFilterParams
-        }
-    }
-    
-    func changeFilter(newFilterDict: Dictionary<String, Dictionary<String, AnyObject> >){
-        let filterName = newFilterDict.keys.first
-        let newFilterParams = newFilterDict.values.first
-        
-        if let filter = allFilters[filterName!]{
-            var existingFilterParams = filter
-            for (paramName, paramValue) in newFilterParams! {
-                existingFilterParams[paramName] = paramValue
-            }
-            allFilters[filterName!] = existingFilterParams
-        } else{
-            allFilters[filterName!] = newFilterParams
-        }
-    }
-    */
     func returnFIlterInstance(filterName: String, image: CIImage) -> CIFilter?{
         var filter: CIFilter? = nil;
         if (filterName == "brightness"){
