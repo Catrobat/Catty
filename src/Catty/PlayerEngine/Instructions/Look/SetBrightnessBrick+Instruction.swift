@@ -50,9 +50,14 @@ extension SetBrightnessBrick: CBInstructionProtocol{
             }
 
             let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
-            
-            spriteNode.filterDict["brightness"] = true
+            let brightnessDefaultValue:CGFloat = 0.0
             spriteNode.currentLookBrightness = CGFloat(brightnessValue)
+            
+            if (CGFloat(brightnessValue) != brightnessDefaultValue){
+                spriteNode.filterDict["brightness"] = true
+            }else{
+                spriteNode.filterDict["brightness"] = false
+            }
             spriteNode.executeFilter(lookImage)
             
         }

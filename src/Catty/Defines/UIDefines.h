@@ -189,12 +189,12 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeTransparencyByNBrick= 207,
     kSetBrightnessBrick        = 208,
     kChangeBrightnessByNBrick  = 209,
-    kClearGraphicEffectBrick   = 210,
-    kLedOnBrick                = 211,
-    kLedOffBrick               = 212,
-    kVibrationBrick            = 213,
-    kSetColorToBrick           = 214,
-    kChangeColorByNBrick       = 215,
+    kSetColorToBrick           = 210,
+    kChangeColorByNBrick       = 211,
+    kClearGraphicEffectBrick   = 212,
+    kLedOnBrick                = 213,
+    kLedOffBrick               = 214,
+    kVibrationBrick            = 215,
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
@@ -329,12 +329,12 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
+    @"SetColorToBrick"           : @(kSetColorToBrick),\
+    @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"LedOnBrick"                : @(kLedOnBrick),\
     @"LedOffBrick"               : @(kLedOffBrick),\
     @"VibrationBrick"            : @(kVibrationBrick),\
-    @"SetColorToBrick"           : @(kSetColorToBrick),\
-    @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\

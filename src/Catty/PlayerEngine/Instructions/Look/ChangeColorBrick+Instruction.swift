@@ -41,10 +41,16 @@ extension ChangeColorByNBrick: CBInstructionProtocol {
             let colorValue = colorFormula.interpretDoubleForSprite(object)
             
             let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
+            let colorDefaultValue:CGFloat = 0.0
+            let colorValueRadian = (spriteNode.currentLookColor + CGFloat(colorValue)*CGFloat(M_PI)/100)%(2*CGFloat(M_PI))
+            spriteNode.currentLookColor = colorValueRadian
             
-            spriteNode.filterDict["color"] = true
-            spriteNode.currentLookColor =
-                (spriteNode.currentLookColor + CGFloat(colorValue)*CGFloat(M_PI)/100)%(2*CGFloat(M_PI))
+            if (colorValueRadian != colorDefaultValue){
+                spriteNode.filterDict["color"] = true
+            }else{
+                spriteNode.filterDict["color"] = false
+            }
+            
             spriteNode.executeFilter(lookImage)
             
         }

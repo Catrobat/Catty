@@ -114,27 +114,27 @@ final class CBSpriteNode: SKSpriteNode {
             }
         }
         
-        if let outputImage = filter!.outputImage {
-            // 2
-            let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
-            
-            // 3
-            let newImage = UIImage(CGImage: cgimg)
-            self.currentUIImageLook = newImage
-            self.texture = SKTexture(image: newImage)
-            let xScale = self.xScale
-            let yScale = self.yScale
-            self.xScale = 1.0
-            self.yScale = 1.0
-            self.size = self.texture!.size()
-            self.texture = self.texture
-            if(xScale != 1.0) {
-                self.xScale = xScale;
-            }
-            if(yScale != 1.0) {
-                self.yScale = yScale;
-            }
+        let outputImage = ciImage
+        // 2
+        let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
+        
+        // 3
+        let newImage = UIImage(CGImage: cgimg)
+        self.currentUIImageLook = newImage
+        self.texture = SKTexture(image: newImage)
+        let xScale = self.xScale
+        let yScale = self.yScale
+        self.xScale = 1.0
+        self.yScale = 1.0
+        self.size = self.texture!.size()
+        self.texture = self.texture
+        if(xScale != 1.0) {
+            self.xScale = xScale;
         }
+        if(yScale != 1.0) {
+            self.yScale = yScale;
+        }
+        
     }
     
     

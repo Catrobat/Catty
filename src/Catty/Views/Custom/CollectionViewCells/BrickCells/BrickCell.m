@@ -104,12 +104,12 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
     @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
     @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
     @[],                            /* turn off flashlight      */\
-    @"{FLOAT;range=(-inf,inf)}",    /* vibration                */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
-    @"{FLOAT;range=(-inf,inf)}"     /* change color by N        */\
+    @"{FLOAT;range=(-inf,inf)}"     /* vibration                */\
 ]
 
 // variable bricks
