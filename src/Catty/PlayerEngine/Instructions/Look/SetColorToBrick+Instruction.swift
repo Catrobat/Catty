@@ -21,34 +21,32 @@
  */
 
 extension SetColorToBrick: CBInstructionProtocol{
-
+    
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
             return .Action(action: SKAction.runBlock(actionClosure))
         }
         return .InvalidInstruction()
     }
-
+    
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let transparency = self.color
-        else { fatalError("This should never happen!") }
-
+            let spriteNode = object.spriteNode,
+            let colorFormula = self.color
+            else { fatalError("This should never happen!") }
+        
         return {
-            let trans = transparency.interpretDoubleForSprite(object)
-            let alpha = 1.0 - (trans / 100.0)
-            if (alpha < 0) {
-                spriteNode.alpha = 0;
-            }
-            else if (alpha > 1){
-                spriteNode.alpha = 1;
-            }
-            else{
-               spriteNode.alpha = CGFloat(alpha);
-            }
-
+            guard let look = object.spriteNode!.currentLook else { return }
+            
+            let colorValue = colorFormula.interpretDoubleForSprite(object)
+            
+            let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
+            
+            spriteNode.filterDict["color"] = true
+            spriteNode.currentLookColor = (CGFloat(colorValue)*CGFloat(M_PI)/100)%(2*CGFloat(M_PI))
+            spriteNode.executeFilter(lookImage)
+            
+            
         }
     }
-
 }

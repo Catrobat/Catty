@@ -20,15 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+#import "ChangeColorByNBrickCell.h"
 
-@class Formula;
+@interface ChangeColorByNBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@interface SetColorToBrick : Brick<BrickFormulaProtocol>
+@implementation ChangeColorByNBrickCell
 
-@property (nonatomic, strong) Formula *color;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
 
-- (NSString*)pathForLook:(Look*)look;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.colorTextField = inlineViewSubViews[1];
+}
 
 @end

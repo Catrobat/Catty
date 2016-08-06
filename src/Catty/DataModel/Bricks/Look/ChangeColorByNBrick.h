@@ -25,9 +25,9 @@
 
 @class Formula;
 
-@interface SetColorToBrick : Brick<BrickFormulaProtocol>
+@interface ChangeColorByNBrick : Brick<BrickFormulaProtocol>
 
-@property (nonatomic, strong) Formula *color;
+@property (nonatomic, strong) Formula *changeColor;
 
 - (NSString*)pathForLook:(Look*)look;
 

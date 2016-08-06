@@ -27,6 +27,12 @@ final class CBSpriteNode: SKSpriteNode {
     var currentLook: Look?
     var currentUIImageLook: UIImage?
     var currentLookBrightness: CGFloat = 1.0
+    var currentLookColor: CGFloat = 0.0
+    
+    var filterDict = ["brightness": false,
+                               "color": false]
+    
+    
     var scenePosition: CGPoint {
         set { self.position = CBSceneHelper.convertPointToScene(newValue, sceneSize: (scene?.size)!) }
         get { return CBSceneHelper.convertSceneCoordinateToPoint(self.position, sceneSize: (scene?.size)!) }
@@ -81,6 +87,87 @@ final class CBSpriteNode: SKSpriteNode {
     }
 
     // MARK: - Operations
+    /*
+     func setFilter(newFilterDict: Dictionary<String, Dictionary<String, AnyObject> >){
+        let filterName = newFilterDict.keys.first
+        let newFilterParams = newFilterDict.values.first
+        
+        if let filter = allFilters[filterName!]{
+            var existingFilterParams = filter
+            for (paramName, paramValue) in newFilterParams! {
+                existingFilterParams[paramName] = paramValue
+            }
+            allFilters[filterName!] = existingFilterParams
+        } else{
+            allFilters[filterName!] = newFilterParams
+        }
+    }
+    
+    func changeFilter(newFilterDict: Dictionary<String, Dictionary<String, AnyObject> >){
+        let filterName = newFilterDict.keys.first
+        let newFilterParams = newFilterDict.values.first
+        
+        if let filter = allFilters[filterName!]{
+            var existingFilterParams = filter
+            for (paramName, paramValue) in newFilterParams! {
+                existingFilterParams[paramName] = paramValue
+            }
+            allFilters[filterName!] = existingFilterParams
+        } else{
+            allFilters[filterName!] = newFilterParams
+        }
+    }
+    */
+    func returnFIlterInstance(filterName: String, image: CIImage) -> CIFilter?{
+        var filter: CIFilter? = nil;
+        if (filterName == "brightness"){
+            filter = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputImageKey:image, "inputBrightness":self.currentLookBrightness])
+        }
+        if (filterName == "color"){
+            filter = CIFilter(name: "CIHueAdjust", withInputParameters: [kCIInputImageKey:image, "inputAngle":self.currentLookColor])
+        }
+        return filter
+    }
+    
+    func executeFilter(inputImage: UIImage?){
+        let lookImage = inputImage
+        var filter: CIFilter? = nil;
+        let image = lookImage!.CGImage
+        var ciImage = CIImage(CGImage: image!)
+        /////
+        let context = CIContext(options: nil)
+        
+        for (filterName, isActive) in filterDict {
+            if (isActive == true){
+                filter = returnFIlterInstance(filterName, image: ciImage)
+                ciImage = (filter?.outputImage)!
+            }
+        }
+        
+        if let outputImage = filter!.outputImage {
+            // 2
+            let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
+            
+            // 3
+            let newImage = UIImage(CGImage: cgimg)
+            self.currentUIImageLook = newImage
+            self.texture = SKTexture(image: newImage)
+            let xScale = self.xScale
+            let yScale = self.yScale
+            self.xScale = 1.0
+            self.yScale = 1.0
+            self.size = self.texture!.size()
+            self.texture = self.texture
+            if(xScale != 1.0) {
+                self.xScale = xScale;
+            }
+            if(yScale != 1.0) {
+                self.yScale = yScale;
+            }
+        }
+    }
+    
+    
     func nextLook() -> Look? {
         if currentLook == nil {
             return nil

@@ -89,7 +89,7 @@
     @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{INT}"                       /* speak              */\
+    @"{INT}"                        /* speak              */\
 ]
 
 // look bricks
@@ -107,8 +107,9 @@
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
     @[],                            /* turn off flashlight      */\
-    @"{FLOAT;range=(-inf,inf)}",     /* vibration                */\
-    @"{FLOAT;range=(-inf,inf)}"     /* set color to             */\
+    @"{FLOAT;range=(-inf,inf)}",    /* vibration                */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
+    @"{FLOAT;range=(-inf,inf)}"     /* change color by N        */\
 ]
 
 // variable bricks

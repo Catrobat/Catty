@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeBrightnessByNBrick: CBInstructionProtocol {
+extension ChangeColorByNBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
@@ -32,24 +32,19 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let bright = self.changeBrightness
+            let colorFormula = self.changeColor
             else { fatalError("This should never happen!") }
         
         return {
             guard let look = object.spriteNode!.currentLook else { return }
-            var brightnessValue = bright.interpretDoubleForSprite(object) / 100
-            brightnessValue += Double(spriteNode.currentLookBrightness)
-            if (brightnessValue > 1) {
-                brightnessValue = 1.0;
-            }
-            else if (brightnessValue < -1){
-                brightnessValue = -1.0;
-            }
+            
+            let colorValue = colorFormula.interpretDoubleForSprite(object)
             
             let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
-
-            spriteNode.filterDict["brightness"] = true
-            spriteNode.currentLookBrightness = CGFloat(brightnessValue)
+            
+            spriteNode.filterDict["color"] = true
+            spriteNode.currentLookColor =
+                (spriteNode.currentLookColor + CGFloat(colorValue)*CGFloat(M_PI)/100)%(2*CGFloat(M_PI))
             spriteNode.executeFilter(lookImage)
             
         }

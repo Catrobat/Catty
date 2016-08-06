@@ -20,28 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetColorToBrick.h"
+#import "ChangeColorByNBrick.h"
 #import "Formula.h"
+#import "Look.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation SetColorToBrick
-
-@synthesize color = _color;
+@implementation ChangeColorByNBrick
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.color;
+    return self.changeColor;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.color = formula;
+    self.changeColor = formula;
 }
 
 - (NSArray*)getFormulas
 {
-    return @[self.color];
+    return @[self.changeColor];
 }
 
 - (BOOL)allowsStringFormula
@@ -51,12 +51,18 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.color = [[Formula alloc] initWithInteger:50];
+    self.changeColor = [[Formula alloc] initWithInteger:25];
 }
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetColor;
+    return kLocalizedChangeColorByN;
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"ChangeColorByN (%f)", [self.changeColor interpretDoubleForSprite:self.script.object]];
 }
 
 - (NSString*)pathForLook:(Look*)look
@@ -64,15 +70,10 @@
     return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
 }
 
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"SetColorToBrick (%f)", [self.color interpretDoubleForSprite:self.script.object]];
-}
-
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return [self.color getRequiredResources];
+    return [self.changeColor getRequiredResources];
 }
+
 @end
