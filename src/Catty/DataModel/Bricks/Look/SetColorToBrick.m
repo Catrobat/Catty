@@ -51,7 +51,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.color = [[Formula alloc] initWithInteger:50];
+    self.color = [[Formula alloc] initWithZero];
 }
 
 - (NSString*)brickTitle
