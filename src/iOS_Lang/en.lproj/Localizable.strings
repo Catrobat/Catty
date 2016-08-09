@@ -107,6 +107,9 @@
 "Back" = "Back";
 
 /* No comment provided by engineer. */
+"Back camera" = "Back camera";
+
+/* No comment provided by engineer. */
 "Background" = "Background";
 
 /* No comment provided by engineer. */
@@ -488,6 +491,9 @@
 "FA" = "FA";
 
 /* No comment provided by engineer. */
+"Face detection camera" = "Face detection camera";
+
+/* No comment provided by engineer. */
 "face_detected" = "face_detected";
 
 /* No comment provided by engineer. */
@@ -549,6 +555,9 @@
 
 /* No comment provided by engineer. */
 "From Camera" = "From Camera";
+
+/* No comment provided by engineer. */
+"Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
 "Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
@@ -1386,9 +1395,6 @@
 
 /* No comment provided by engineer. */
 "Use face detection" = "Use face detection";
-
-/* No comment provided by engineer. */
-"Use front camera" = "Use front camera";
 
 /* No comment provided by engineer. */
 "Use Phiro bricks" = "Use Phiro bricks";

@@ -34,12 +34,12 @@
 @implementation SettingsTableViewController
 
 - (void)setup {
-	
-	self.title = @"Settings";
+    
+    self.title = @"Settings";
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+        
         [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetection key:kUseFaceDetectionSensors handler:^(BOSwitchTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
@@ -47,20 +47,18 @@
             [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
         }]];
         
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetectionFrontCamera key:kUseFrontCamera handler:^(BOSwitchTableViewCell *cell) {
+        [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedFaceDetectionCamera key:kUseFrontCamera handler:^(BOChoiceTableViewCell *cell) {
             cell.visibilityKey = kUseFaceDetectionSensors;
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
-            cell.toggleSwitch.tintColor = [UIColor globalTintColor];
-            [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
             cell.visibilityBlock = ^BOOL(id settingValue) {
                 return [settingValue boolValue];
             };
-            cell.onFooterTitle = kLocalizedFaceDetectionDefaultCamera;
-            cell.offFooterTitle = kLocalizedFaceDetectionDefaultCamera;
-            
+            cell.footerTitles = @[kLocalizedFaceDetectionDefaultCamera, kLocalizedFaceDetectionDefaultCamera];
+            cell.options = @[kLocalizedBackCamera, kLocalizedFrontCamera];
+            cell.destinationViewController = [self returnFaceDetectionCameraOptions];
         }]];
-
+        
     }]];
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
@@ -72,8 +70,8 @@
         }]];
         
     }]];
-
-	
+    
+    
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
         if ([Util isPhiroActivated]) {
@@ -93,7 +91,7 @@
                 [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
             }]];
         }
-       
+        
         
     }]];
     __unsafe_unretained typeof(self) weakSelf = self;
@@ -120,29 +118,29 @@
                         [weakSelf removeKnownDevices];
                     };
                 }]];
- 
+                
             }
             
         }]];
-
+        
     }
-
-	
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-		[section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
-			cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
+    
+    
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+        [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
+            cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
-		}]];
+        }]];
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedTermsOfUse key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
             cell.destinationViewController = [TermsOfUseOptionTableViewController new];
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
         }]];
-	}]];
-	
-	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-		
+    }]];
+    
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+        
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedPrivacySettings key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
@@ -150,20 +148,20 @@
                 [weakSelf openPrivacySettings];
             };
         }]];
-		[section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedRateUs key:nil handler:^(BOButtonTableViewCell *cell) {
+        [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedRateUs key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
-			cell.actionBlock = ^{
-				[weakSelf openRateUsURL];
-			};
-		}]];
+            cell.actionBlock = ^{
+                [weakSelf openRateUsURL];
+            };
+        }]];
         NSString *version = [[NSString alloc] initWithFormat:@"%@%@",
                              kLocalizedVersionLabel,
                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-		section.footerTitle = version;
-	}]];
+        section.footerTitle = version;
+    }]];
     
-
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -172,17 +170,17 @@
 }
 
 - (void)presentAlertControllerWithTitle:(NSString *)title message:(NSString *)message {
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-	[alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-		[alertController dismissViewControllerAnimated:YES completion:nil];
-	}]];
-	
-	[self presentViewController:alertController animated:YES completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)showTappedButtonAlert {
     // open url
-	[self presentAlertControllerWithTitle:@"Button tapped!" message:nil];
+    [self presentAlertControllerWithTitle:@"Button tapped!" message:nil];
 }
 
 - (void)openRateUsURL
@@ -205,6 +203,21 @@
 {
     [[BluetoothService sharedInstance] removeKnownDevices];
     [Util alertWithText:kLocalizedRemovedKnownBluetoothDevices];
+}
+
+- (BOTableViewController *)returnFaceDetectionCameraOptions
+{
+    BOTableViewController *cameraOptions = [[BOTableViewController alloc] init];
+    cameraOptions.view.backgroundColor = [UIColor backgroundColor];
+    cameraOptions.title = kLocalizedFaceDetectionCamera;
+    
+    [cameraOptions addSection:[BOTableViewSection sectionWithHeaderTitle:nil handler:^(BOTableViewSection *section) {
+        [section addCell:[BOOptionTableViewCell cellWithTitle:kLocalizedBackCamera key:kUseFrontCamera handler:nil]];
+        
+        [section addCell:[BOOptionTableViewCell cellWithTitle:kLocalizedFrontCamera key:kUseFrontCamera handler:nil]];
+    }]];
+    
+    return cameraOptions;
 }
 
 @end
