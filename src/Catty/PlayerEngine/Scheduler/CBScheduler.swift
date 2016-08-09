@@ -352,6 +352,8 @@ final class CBScheduler: CBSchedulerProtocol {
     func shutdown() {
         logger.info("!!! SCHEDULER SHUTDOWN !!!")
         CBScheduler.vibrateSerialQueue.cancelAllOperations()
+        CBScheduler.vibrateSerialQueue.suspended = false
+
         _scheduledContexts.orderedValues.forEach { $0.forEach {
             stopContext($0, continueWaitingBroadcastSenders: false)
         } }
@@ -360,6 +362,19 @@ final class CBScheduler: CBSchedulerProtocol {
         _contexts.removeAll()
         _broadcastHandler.tearDown()
         running = false
+    }
+    
+    func pause() {
+        running = false
+        CBScheduler.vibrateSerialQueue.suspended = true
+    }
+    
+    func resume() {
+        if(running == false){
+            running = true
+            runNextInstructionsGroup()
+            CBScheduler.vibrateSerialQueue.suspended = false
+        }
     }
 
 }
