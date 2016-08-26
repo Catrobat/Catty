@@ -232,6 +232,44 @@ NSString * const sensorTestStringArray[] = {
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(resources, kAccelerometer, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
+- (void)testChangeColorByNBrickResources
+{
+    ChangeColorByNBrick *brick = [ChangeColorByNBrick new];
+    brick.changeColor = [[Formula alloc] initWithInteger:1];
+    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
+    
+    NSInteger resources = [prog getRequiredResources];
+    XCTAssertEqual(resources, kNoResources, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+}
+- (void)testChangeColorByNBrick2Resources
+{
+    ChangeColorByNBrick *brick = [ChangeColorByNBrick new];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[5] leftChild:nil rightChild:nil parent:nil];
+    brick.changeColor = [[Formula alloc] initWithFormulaElement:element];
+    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
+    
+    NSInteger resources = [prog getRequiredResources];
+    XCTAssertEqual(resources, kAccelerometer, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+}
+- (void)testSetColorToBrickResources
+{
+    SetColorToBrick *brick = [SetColorToBrick new];
+    brick.color = [[Formula alloc] initWithInteger:1];
+    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
+    
+    NSInteger resources = [prog getRequiredResources];
+    XCTAssertEqual(resources, kNoResources, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+}
+- (void)testSetColorToBrick2Resources
+{
+    SetColorToBrick *brick = [SetColorToBrick new];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[5] leftChild:nil rightChild:nil parent:nil];
+    brick.color = [[Formula alloc] initWithFormulaElement:element];
+    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
+    
+    NSInteger resources = [prog getRequiredResources];
+    XCTAssertEqual(resources, kAccelerometer, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+}
 #pragma mark-Control
 - (void)testWaitBrickResources
 {

@@ -39,7 +39,7 @@ final class CBSpriteNode: SKSpriteNode {
     }
     var zIndex: CGFloat { return zPosition }
     var brightness: CGFloat { return (100 * self.currentLookBrightness) }
-    var colorValue: CGFloat { return (self.currentLookBrightness*100/CGFloat(M_PI)) }
+    var colorValue: CGFloat { return (self.currentLookColor*100/CGFloat(M_PI)) }
     var scaleX: CGFloat { return (100 * xScale) }
     var scaleY: CGFloat { return (100 * yScale) }
     var rotation: Double {
