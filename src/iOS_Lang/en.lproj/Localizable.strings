@@ -140,7 +140,7 @@
 "Broadcast\n%@" = "Broadcast\n%@";
 
 /* paint */
-"brush" = "brush";
+"Brush" = "Brush";
 
 /* No comment provided by engineer. */
 "By registering you agree to our" = "By registering you agree to our";
@@ -252,6 +252,9 @@
 
 /* No comment provided by engineer. */
 "Copy Brick" = "Copy Brick";
+
+/* No comment provided by engineer. */
+"Copy Looks" = "Copy Looks";
 
 /* No comment provided by engineer. */
 "Copy program" = "Copy program";
@@ -431,7 +434,7 @@
 "Edit Sounds" = "Edit Sounds";
 
 /* paint */
-"ellipse / circle" = "ellipse / circle";
+"Ellipse / Circle" = "Ellipse / Circle";
 
 /* No comment provided by engineer. */
 "Else" = "Else";
@@ -473,7 +476,7 @@
 "Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
-"eraser" = "eraser";
+"Eraser" = "Eraser";
 
 /* No comment provided by engineer. */
 "Error" = "Error";
@@ -512,7 +515,7 @@
 "February" = "February";
 
 /* paint */
-"fill" = "fill";
+"Fill" = "Fill";
 
 /* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
@@ -590,7 +593,7 @@
 "If on edge, bounce" = "If on edge, bounce";
 
 /* paint */
-"image" = "image";
+"Image" = "Image";
 
 /* No comment provided by engineer. */
 "Image name" = "Image name";
@@ -674,7 +677,7 @@
 "letter" = "letter";
 
 /* paint */
-"line" = "line";
+"Line" = "Line";
 
 /* No comment provided by engineer. */
 "Loading" = "Loading";
@@ -737,7 +740,7 @@
 "MI" = "MI";
 
 /* paint */
-"mirror" = "mirror";
+"Mirror" = "Mirror";
 
 /* No comment provided by engineer. */
 "Mo" = "Mo";
@@ -944,7 +947,7 @@
 "phiro_side_right" = "phiro_side_right";
 
 /* paint */
-"pipette" = "pipette";
+"Pipette" = "Pipette";
 
 /* No comment provided by engineer. */
 "Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
@@ -965,7 +968,7 @@
 "Please log in to report this program as inappropriate" = "Please log in to report this program as inappropriate";
 
 /* paint */
-"Please pick an item" = "Please pick an item";
+"Please pick a tool" = "Please pick a tool";
 
 /* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
@@ -1013,7 +1016,7 @@
 "Point towards\n%@" = "Point towards\n%@";
 
 /* paint */
-"pointer" = "pointer";
+"Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
 "pos_x" = "pos_x";
@@ -1055,7 +1058,7 @@
 "Recording" = "Recording";
 
 /* paint */
-"rectangle / square" = "rectangle / square";
+"Rectangle / Square" = "Rectangle / Square";
 
 /* paint */
 "Red" = "Red";
@@ -1091,7 +1094,7 @@
 "Report as inappropriate" = "Report as inappropriate";
 
 /* paint */
-"resize" = "resize";
+"Resize" = "Resize";
 
 /* No comment provided by engineer. */
 "Restart" = "Restart";
@@ -1103,7 +1106,7 @@
 "Right" = "Right";
 
 /* paint */
-"rotate" = "rotate";
+"Rotate" = "Rotate";
 
 /* paint */
 "round" = "round";
@@ -1250,7 +1253,7 @@
 "square" = "square";
 
 /* paint */
-"stamp" = "stamp";
+"Stamp" = "Stamp";
 
 /* paint */
 "Stamped" = "Stamped";
@@ -1286,7 +1289,7 @@
 "Terms of Use" = "Terms of Use";
 
 /* paint */
-"text" = "text";
+"Text" = "Text";
 
 /* No comment provided by engineer. */
 "Text message:" = "Text message:";
@@ -1466,5 +1469,5 @@
 "You have already downloaded this program!" = "You have already downloaded this program!";
 
 /* paint */
-"zoom" = "zoom";
+"Zoom" = "Zoom";
 

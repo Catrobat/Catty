@@ -42,7 +42,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.durationInSeconds = [[Formula alloc] initWithZero];
+    self.durationInSeconds = [[Formula alloc] initWithInteger:1];
 }
 
 - (BOOL)allowsStringFormula

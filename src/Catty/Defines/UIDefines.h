@@ -177,6 +177,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kGlideToBrick              = 111,
     kGoNStepsBackBrick         = 112,
     kComeToFrontBrick          = 113,
+    kVibrationBrick            = 114,
     
     // 2xx look bricks
     kSetLookBrick              = 200,
@@ -194,7 +195,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kClearGraphicEffectBrick   = 212,
     kLedOnBrick                = 213,
     kLedOffBrick               = 214,
-    kVibrationBrick            = 215,
+
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
@@ -310,6 +311,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"GlideToBrick"              : @(kGlideToBrick),\
     @"GoNStepsBackBrick"         : @(kGoNStepsBackBrick),\
     @"ComeToFrontBrick"          : @(kComeToFrontBrick),\
+    @"VibrationBrick"            : @(kVibrationBrick),\
 \
     /* sound bricks */\
     @"PlaySoundBrick"            : @(kPlaySoundBrick),\
@@ -334,7 +336,6 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"LedOnBrick"                : @(kLedOnBrick),\
     @"LedOffBrick"               : @(kLedOffBrick),\
-    @"VibrationBrick"            : @(kVibrationBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
@@ -396,6 +397,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"GlideToBrick"              : @(kBrickHeight3h),\
 @"GoNStepsBackBrick"         : @(kBrickHeight1h),\
 @"ComeToFrontBrick"          : @(kBrickHeight1h),\
+@"VibrationBrick"            : @(kBrickHeight1h),\
 \
 /* sound bricks */\
 @"PlaySoundBrick"            : @(kBrickHeight2h),\
@@ -418,7 +420,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
 @"LedOnBrick"                : @(kBrickHeight1h),\
 @"LedOffBrick"               : @(kBrickHeight1h),\
-@"VibrationBrick"            : @(kBrickHeight1h),\
 @"SetColorToBrick"           : @(kBrickHeight1h),\
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 \

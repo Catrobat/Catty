@@ -79,7 +79,7 @@
     self.searchController = [[UISearchController alloc] init];
     self.searchController.searchBar.backgroundColor = [UIColor backgroundColor];
     [self.searchController setActive:YES ];
-    [self.searchController.searchBar becomeFirstResponder];
+    [self.searchBar becomeFirstResponder];
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
