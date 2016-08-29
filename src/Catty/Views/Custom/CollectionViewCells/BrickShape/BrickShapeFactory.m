@@ -98,7 +98,7 @@
     [bezier4Path stroke];
     */
 
-    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 
     //// Group
     {
@@ -164,7 +164,7 @@
     [bezierPath stroke];
 
 
-    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 
 
     //// Group
@@ -228,7 +228,7 @@
     [bezierPath stroke];
 
 
-    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 }
 
 + (void)drawEndForeverLoopShape2WithFillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor height: (CGFloat)height width: (CGFloat)width
@@ -264,7 +264,7 @@
     [bezierPath stroke];
 
 
-    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 }
 
 + (void)drawEndForeverLoopShape3WithFillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor height: (CGFloat)height width: (CGFloat)width
@@ -303,7 +303,7 @@
     [bezierPath stroke];
 
 
-    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 
     //// Group
     {
@@ -333,13 +333,25 @@
     }
 }
 
-+ (void)drawThreeLeftLinesInFrame: (CGRect*)frame fillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor
++ (void)drawThreeLeftLinesInFrame: (CGRect*)frame fillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor brickHeight: (CGFloat)height
 {
+    CGFloat gap = 0.0f;
+    CGFloat firstLine = 0.0f;
+    CGFloat secondLine = 0.0f;
+    CGFloat thirdLine = 0.0f;
+    
     CGFloat frameHeigth = CGRectGetHeight(*frame);
-    CGFloat gap = (frameHeigth - smallBrick)/2.0f;
-    CGFloat firstLine = 0.43238 * smallBrick;
-    CGFloat secondLine = 0.53442 * smallBrick;
-    CGFloat thirdLine = 0.63647 * smallBrick;
+    
+    if((height != roundedLargeBrick) && (height != roundedSmallBrick))
+    {
+        gap = (frameHeigth - smallBrick)/2.0f;
+    }else {
+        gap = 0.3 * CGRectGetHeight(*frame);
+        gap = gap + ((1-0.3) * CGRectGetHeight(*frame) - smallBrick)/2.0f;
+    }
+    firstLine = 0.43238 * smallBrick;
+    secondLine = 0.53442 * smallBrick;
+    thirdLine = 0.63647 * smallBrick;
     
     //// Bezier 2 Drawing
     UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
