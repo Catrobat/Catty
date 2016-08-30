@@ -411,7 +411,7 @@
 #define kLocalizedUsername NSLocalizedString(@"Username", nil)
 #define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)
-#define kLocalizedRegister NSLocalizedString(@"Create an account", nil)
+#define kLocalizedRegister NSLocalizedString(@"Create account", nil)
 #define kLocalizedLoginOrRegister NSLocalizedString(@"Login/Register", nil)
 #define kLocalizedUploadProgram NSLocalizedString(@"Upload Program", nil)
 #define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username is necessary!", nil)
