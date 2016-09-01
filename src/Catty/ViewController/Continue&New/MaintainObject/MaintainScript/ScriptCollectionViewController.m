@@ -762,9 +762,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (brick == lastBrick)
     {
         [self reloadDataSynchronous];
-        NSInteger section = [self numberOfSectionsInCollectionView:self.collectionView] - 1;
-        NSInteger item = [self collectionView:self.collectionView numberOfItemsInSection:section] - 1;
-        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+        NSIndexPath *lastIndexPath = [self findLastIndexPath];
         [self.collectionView scrollToItemAtIndexPath:lastIndexPath
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
@@ -822,6 +820,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Helpers
+-(NSIndexPath*)findLastIndexPath{
+    NSInteger section = [self numberOfSectionsInCollectionView:self.collectionView] - 1;
+    NSInteger item = [self collectionView:self.collectionView numberOfItemsInSection:section] - 1;
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+    return lastIndexPath;
+}
+
+
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (self.editing) {
         [self setEditing:YES animated:NO];
@@ -948,6 +954,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
     [self.object.program saveToDiskWithNotification:YES];
+    
+    NSIndexPath *lastIndexPath = [self findLastIndexPath];
+    if(lastIndexPath == indexArray[0])
+    {
+        [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                            animated:YES];
+    }
 }
 
 #pragma mark - Remove Brick
