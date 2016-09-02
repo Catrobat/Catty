@@ -690,12 +690,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         Script *script = (Script*)scriptOrBrick;
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        [self.collectionView reloadData];
+        [self reloadDataSynchronous];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
        
-        [self reloadData];
         manager.isInsertingScript = YES;
         if (self.object.scriptList.count == 1) {
             [self.object.program saveToDiskWithNotification:YES];
@@ -749,7 +748,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }else{
         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
-    // empty script list, insert first brick and continue
+    // Only one empty Script in script list, insert first brick without highlighting the brick after insertion and continue
     if (targetScript.brickList.count == 1 && self.object.scriptList.count == 1) {
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:targetScriptIndex] andObject:self.object];
@@ -757,9 +756,21 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         return;
     }
     
+    Brick* lastBrick = self.object.scriptList.lastObject.brickList.lastObject;
     brick.animateInsertBrick = YES;
     manager.isInsertingScript = NO;
-    [self reloadData];
+    if (brick == lastBrick)
+    {
+        [self reloadDataSynchronous];
+        NSIndexPath *lastIndexPath = [self findLastIndexPath];
+        [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                            animated:YES];
+    }
+    else
+    {
+        [self reloadData];
+    }
     [self turnOnInsertingBrickMode];
 //    [self.object.program saveToDisk];
 }
@@ -809,6 +820,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Helpers
+-(NSIndexPath*)findLastIndexPath{
+    NSInteger section = [self numberOfSectionsInCollectionView:self.collectionView] - 1;
+    NSInteger item = [self collectionView:self.collectionView numberOfItemsInSection:section] - 1;
+    NSIndexPath *lastIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+    return lastIndexPath;
+}
+
+
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (self.editing) {
         [self setEditing:YES animated:NO];
@@ -935,6 +954,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
     [self.object.program saveToDiskWithNotification:YES];
+    
+    NSIndexPath *lastIndexPath = [self findLastIndexPath];
+    if(lastIndexPath == indexArray[0])
+    {
+        [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                            animated:YES];
+    }
 }
 
 #pragma mark - Remove Brick
@@ -1265,6 +1292,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     dispatch_async(dispatch_get_main_queue(),^{
             //do something
         [self.collectionView reloadData];
+        [self changeDeleteBarButtonState];
+        [self.collectionView setNeedsDisplay];
+    });
+}
+
+-(void)reloadDataSynchronous
+{
+    [self.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(),^{
+        //do something
         [self changeDeleteBarButtonState];
         [self.collectionView setNeedsDisplay];
     });
