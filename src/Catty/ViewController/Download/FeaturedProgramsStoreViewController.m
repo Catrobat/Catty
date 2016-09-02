@@ -374,7 +374,18 @@
         NSNumber* height = self.featuredSize[1];
         
         CGFloat factor = width.floatValue / [Util screenWidth];
-        return height.floatValue/factor;
+        float realCellHeigt = height.floatValue/factor;
+        float expectedCellHeight = [TableUtil heightForFeaturedCell];
+        
+        float discrepancy = fabsf(expectedCellHeight - realCellHeigt);
+        if (discrepancy < [Util screenWidth]/10)
+        {
+            return realCellHeigt;
+        }
+        else
+        {
+            return expectedCellHeight;
+        }
     }
     return [TableUtil heightForFeaturedCell];
 }
