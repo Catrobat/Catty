@@ -128,6 +128,11 @@
 		4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
 		4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */; };
+		4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */; };
+		4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */; };
+		4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */; };
+		4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */; };
+		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
 		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
@@ -476,11 +481,6 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		996F46111D6FA1AE003C7687 /* SetColorToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 996F46101D6FA1AD003C7687 /* SetColorToBrickTests.m */; };
-		99814DB41D47F55B00CCB460 /* SetColorToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DB31D47F55B00CCB460 /* SetColorToBrick.m */; };
-		99814DB91D47F65400CCB460 /* SetColorToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */; };
-		99814DBB1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */; };
-		99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */; };
 		99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */; };
 		99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBF91D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m */; };
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
@@ -1048,6 +1048,14 @@
 		4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-gray-alpha.png"; path = "CattyTests/Resources/Images/transparency-gray-alpha.png"; sourceTree = SOURCE_ROOT; };
 		4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_097.xml; sourceTree = "<group>"; };
 		4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestProtocol.swift; sourceTree = "<group>"; };
+		4CB2CF9F1D7AD762009F3034 /* SetColorBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrick.h; sourceTree = "<group>"; };
+		4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrick.m; sourceTree = "<group>"; };
+		4CB2CFA41D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetColorBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetColorBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorBrickCell.h; sourceTree = "<group>"; };
+		4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrickCell.m; sourceTree = "<group>"; };
+		4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorBrickTests.m; sourceTree = "<group>"; };
 		4CB4FE021B95DF2900431757 /* BrickInsertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManager.h; sourceTree = "<group>"; };
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BrickInsertManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
@@ -1672,14 +1680,6 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		996F46101D6FA1AD003C7687 /* SetColorToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrickTests.m; sourceTree = "<group>"; };
-		99814DB21D47F55B00CCB460 /* SetColorToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorToBrick.h; sourceTree = "<group>"; };
-		99814DB31D47F55B00CCB460 /* SetColorToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrick.m; sourceTree = "<group>"; };
-		99814DB71D47F65400CCB460 /* SetColorToBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorToBrickCell.h; sourceTree = "<group>"; };
-		99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrickCell.m; sourceTree = "<group>"; };
-		99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorToBrick+Instruction.swift"; sourceTree = "<group>"; };
-		99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetColorToBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		99814DBD1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetColorToBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickTests.m; sourceTree = "<group>"; };
 		99EBDBF81D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeColorByNBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ChangeColorByNBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		99EBDBF91D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ChangeColorByNBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ChangeColorByNBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
@@ -2810,8 +2810,8 @@
 				AA74EEEF1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m */,
 				AA74EEF01BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.h */,
 				AA74EEF11BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m */,
-				99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */,
-				99814DBD1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.h */,
+				4CB2CFA41D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.h */,
+				4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */,
 				AA74EEF21BC057C900D1E954 /* SetLookBrick+CBXMLHandler.h */,
 				AA74EEF31BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m */,
 				AA74EF791BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.h */,
@@ -3172,7 +3172,7 @@
 				4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */,
 				4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */,
 				4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */,
-				996F46101D6FA1AD003C7687 /* SetColorToBrickTests.m */,
+				4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */,
 				4CEB22461B95E47500B3BE2F /* SetLookBrickTests.m */,
 				4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */,
 				4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */,
@@ -4914,7 +4914,7 @@
 				921D46831BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift */,
 				921D46841BDF698A0086AD20 /* NextLookBrick+Instruction.swift */,
 				921D46851BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift */,
-				99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */,
+				4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */,
 				921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */,
 				AAF6D9D31BC0B9EA00686849 /* HideBrick+Instruction.swift */,
 				AAF6D9D91BC0BB1F00686849 /* SetLookBrick+Instruction.swift */,
@@ -4998,8 +4998,8 @@
 				AA74EFAC1BC05B5F00D1E954 /* NextLookBrick.m */,
 				AA74EFAD1BC05B5F00D1E954 /* SetBrightnessBrick.h */,
 				AA74EFAE1BC05B5F00D1E954 /* SetBrightnessBrick.m */,
-				99814DB21D47F55B00CCB460 /* SetColorToBrick.h */,
-				99814DB31D47F55B00CCB460 /* SetColorToBrick.m */,
+				4CB2CF9F1D7AD762009F3034 /* SetColorBrick.h */,
+				4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */,
 				AA74EFAF1BC05B5F00D1E954 /* SetLookBrick.h */,
 				AA74EFB01BC05B5F00D1E954 /* SetLookBrick.m */,
 				AA74EFB11BC05B5F00D1E954 /* SetSizeToBrick.h */,
@@ -5193,8 +5193,8 @@
 				AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */,
 				AA74F0501BC05FCE00D1E954 /* SetBrightnessBrickCell.h */,
 				AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */,
-				99814DB71D47F65400CCB460 /* SetColorToBrickCell.h */,
-				99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */,
+				4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */,
+				4CB2CFAA1D7AD86D009F3034 /* SetColorBrickCell.m */,
 				AA74F0521BC05FCE00D1E954 /* SetTransparencyBrickCell.h */,
 				AA74F0531BC05FCE00D1E954 /* SetTransparencyBrickCell.m */,
 				AA74F0541BC05FCE00D1E954 /* SetLookBrickCell.h */,
@@ -6573,7 +6573,6 @@
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
-				996F46111D6FA1AE003C7687 /* SetColorToBrickTests.m in Sources */,
 				4CEB22541B95E47500B3BE2F /* BrickTests.m in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
@@ -6609,6 +6608,7 @@
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
+				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
 				4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */,
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
@@ -6655,6 +6655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */,
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
@@ -6703,6 +6704,7 @@
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
 				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
 				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
+				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,
 				AAF6D9CE1BC0915800686849 /* FormulaElement+Optimization.swift in Sources */,
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */,
@@ -6832,13 +6834,11 @@
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
-				99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m in Sources */,
 				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				AA74EE3D1BC0543700D1E954 /* StopAllSoundsBrick+Instruction.swift in Sources */,
 				AA74EEDC1BC057B900D1E954 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
-				99814DB41D47F55B00CCB460 /* SetColorToBrick.m in Sources */,
 				92FF2E9B1A24C7D800093DA7 /* Reachability.m in Sources */,
 				AA74EFFA1BC05B5F00D1E954 /* ShowBrick.m in Sources */,
 				AA74EF501BC0586F00D1E954 /* GlideToBrick+CBXMLHandler.m in Sources */,
@@ -6891,6 +6891,7 @@
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */,
+				4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */,
 				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				AA74EF611BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
@@ -6995,13 +6996,13 @@
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
+				4CB2CFAB1D7AD86D009F3034 /* SetColorBrickCell.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
 				921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */,
 				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
-				99814DBB1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
@@ -7051,7 +7052,6 @@
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
-				99814DB91D47F65400CCB460 /* SetColorToBrickCell.m in Sources */,
 				AA74F0011BC05B5F00D1E954 /* IfOnEdgeBounceBrick.m in Sources */,
 				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */,

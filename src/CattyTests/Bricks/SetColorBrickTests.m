@@ -26,10 +26,10 @@
 #import "WhenScript.h"
 #import "Pocket_Code-Swift.h"
 
-@interface SetColorToBrickTests : BrickTests
+@interface SetColorBrickTests : BrickTests
 @end
 
-@implementation SetColorToBrickTests
+@implementation SetColorBrickTests
 
 - (void)setUp
 {
@@ -43,7 +43,7 @@
     [super tearDown];
 }
 
-- (void)testSetColorToBrickLower
+- (void)testSetColorBrickLower
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
@@ -59,7 +59,7 @@
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-    SetColorToBrick *brick = [[SetColorToBrick alloc] init];
+    SetColorBrick *brick = [[SetColorBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
@@ -76,11 +76,11 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, -60.0f,0.1f, @"SetColorToBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.colorValue, -60.0f,0.1f, @"SetColorBrick - Color not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
-- (void)testSetColorToBrickHigher
+- (void)testSetColorBrickHigher
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
@@ -96,7 +96,7 @@
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-    SetColorToBrick *brick = [[SetColorToBrick alloc] init];
+    SetColorBrick *brick = [[SetColorBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
@@ -113,11 +113,11 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 140.0f,0.1f, @"SetColorToBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 140.0f,0.1f, @"SetColorBrick - Color not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
-- (void)testSetColorToBrickMoreThan2Pi
+- (void)testSetColorBrickMoreThan2Pi
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
@@ -133,7 +133,7 @@
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-    SetColorToBrick *brick = [[SetColorToBrick alloc] init];
+    SetColorBrick *brick = [[SetColorBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
@@ -150,12 +150,12 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 30.0f,0.1f, @"SetColorToBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 30.0f,0.1f, @"SetColorBrick - Color not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 
-- (void)testSetColorToBrickWrongInput
+- (void)testSetColorBrickWrongInput
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
@@ -172,7 +172,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
     
-    SetColorToBrick *brick = [[SetColorToBrick alloc] init];
+    SetColorBrick *brick = [[SetColorBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
@@ -189,7 +189,7 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 0.0f,0.1f, @"SetColorToBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 0.0f,0.1f, @"SetColorBrick - Color not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
