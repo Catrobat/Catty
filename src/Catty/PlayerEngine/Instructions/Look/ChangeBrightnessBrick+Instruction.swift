@@ -47,38 +47,15 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
             }
             
             let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
+            let brightnessDefaultValue:CGFloat = 0.0
+            spriteNode.currentLookBrightness = CGFloat(brightnessValue)
             
-            let image = lookImage!.CGImage
-            let ciImage = CIImage(CGImage: image!)
-            /////
-            let context = CIContext(options: nil)
-            
-            let dict:[String:AnyObject] = [kCIInputImageKey:ciImage,"inputBrightness":brightnessValue]
-            
-            let filter = CIFilter(name: "CIColorControls", withInputParameters: dict)
-            
-            if let outputImage = filter?.outputImage {
-                // 2
-                let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
-                
-                // 3
-                let newImage = UIImage(CGImage: cgimg)
-                spriteNode.currentUIImageLook = newImage
-                spriteNode.texture = SKTexture(image: newImage)
-                spriteNode.currentLookBrightness = CGFloat(brightnessValue)
-                let xScale = spriteNode.xScale
-                let yScale = spriteNode.yScale
-                spriteNode.xScale = 1.0
-                spriteNode.yScale = 1.0
-                spriteNode.size = spriteNode.texture!.size()
-                spriteNode.texture = spriteNode.texture
-                if(xScale != 1.0) {
-                    spriteNode.xScale = xScale;
-                }
-                if(yScale != 1.0) {
-                    spriteNode.yScale = yScale;
-                }
+            if (CGFloat(brightnessValue) != brightnessDefaultValue){
+                spriteNode.filterDict["brightness"] = true
+            }else{
+                spriteNode.filterDict["brightness"] = false
             }
+            spriteNode.executeFilter(lookImage)
             
         }
     }

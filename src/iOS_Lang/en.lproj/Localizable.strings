@@ -173,6 +173,9 @@
 "Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 /* No comment provided by engineer. */
+"Change color by %@" = "Change color by %@";
+
+/* No comment provided by engineer. */
 "Change size by %@\%" = "Change size by %@\%";
 
 /* No comment provided by engineer. */
@@ -1179,6 +1182,9 @@
 
 /* No comment provided by engineer. */
 "Set brightness to %@\%" = "Set brightness to %@\%";
+
+/* No comment provided by engineer. */
+"Set color to %@" = "Set color to %@";
 
 /* No comment provided by engineer. */
 "Set description" = "Set description";

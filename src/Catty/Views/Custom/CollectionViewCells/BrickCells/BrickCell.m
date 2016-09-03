@@ -90,7 +90,7 @@
     @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{INT}"                       /* speak              */\
+    @"{INT}"                        /* speak              */\
 ]
 
 // look bricks
@@ -105,6 +105,8 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
     @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
     @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
     @[]                             /* turn off flashlight      */\
