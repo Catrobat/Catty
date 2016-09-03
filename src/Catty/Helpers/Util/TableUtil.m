@@ -26,7 +26,8 @@
 #import "CatrobatBaseCell.h"
 #import "LanguageTranslationDefines.h"
 
-#define kFeaturedCellHeight  135.0f
+#define kFeaturedProgramsBannerHeight  400.0f
+#define kFeaturedProgramsBannerWidth   1024.0f
 
 @implementation TableUtil
 
@@ -51,7 +52,7 @@
 }
 + (CGFloat)heightForFeaturedCell
 {
-    return kFeaturedCellHeight;
+    return kFeaturedProgramsBannerHeight/(kFeaturedProgramsBannerWidth/[Util screenWidth]);
 }
 
 + (UIBarButtonItem*)editButtonItemWithTarget:(id)target action:(SEL)action

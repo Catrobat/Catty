@@ -190,9 +190,12 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeTransparencyByNBrick= 207,
     kSetBrightnessBrick        = 208,
     kChangeBrightnessByNBrick  = 209,
-    kClearGraphicEffectBrick   = 210,
-    kLedOnBrick                = 211,
-    kLedOffBrick               = 212,
+    kSetColorToBrick           = 210,
+    kChangeColorByNBrick       = 211,
+    kClearGraphicEffectBrick   = 212,
+    kLedOnBrick                = 213,
+    kLedOffBrick               = 214,
+
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
@@ -328,6 +331,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
+    @"SetColorToBrick"           : @(kSetColorToBrick),\
+    @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"LedOnBrick"                : @(kLedOnBrick),\
     @"LedOffBrick"               : @(kLedOffBrick),\
@@ -392,6 +397,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"GlideToBrick"              : @(kBrickHeight3h),\
 @"GoNStepsBackBrick"         : @(kBrickHeight1h),\
 @"ComeToFrontBrick"          : @(kBrickHeight1h),\
+@"VibrationBrick"            : @(kBrickHeight1h),\
 \
 /* sound bricks */\
 @"PlaySoundBrick"            : @(kBrickHeight2h),\
@@ -414,7 +420,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
 @"LedOnBrick"                : @(kBrickHeight1h),\
 @"LedOffBrick"               : @(kBrickHeight1h),\
-@"VibrationBrick"            : @(kBrickHeight1h),\
+@"SetColorToBrick"           : @(kBrickHeight1h),\
+@"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

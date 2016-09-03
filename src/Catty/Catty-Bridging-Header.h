@@ -85,6 +85,8 @@
 #import "ArduinoSendPWMValueBrick.h"
 #import "SetTransparencyBrick.h"
 #import "SetBrightnessBrick.h"
+#import "SetColorToBrick.h"
+#import "ChangeColorByNBrick.h"
 #import "NextLookBrick.h"
 #import "ClearGraphicEffectBrick.h"
 #import "ChangeTransparencyByNBrick.h"

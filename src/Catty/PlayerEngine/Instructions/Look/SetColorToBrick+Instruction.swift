@@ -20,48 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ClearGraphicEffectBrick: CBInstructionProtocol {
-
+extension SetColorToBrick: CBInstructionProtocol{
+    
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
             return .Action(action: SKAction.runBlock(actionClosure))
         }
         return .InvalidInstruction()
     }
-
+    
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
+            let spriteNode = object.spriteNode,
+            let colorFormula = self.color
+            else { fatalError("This should never happen!") }
+        
         return {
-            guard let look = spriteNode.currentLook,
-                  let image = UIImage(contentsOfFile: self.pathForLook(look)) else {return}
+            guard let look = object.spriteNode!.currentLook else { return }
             
-            let texture = SKTexture(image: image)
-            spriteNode.currentUIImageLook = image
-            spriteNode.currentLookBrightness = 0
-            spriteNode.currentLookColor = 0
-            for (paramName, _) in spriteNode.filterDict {
-                spriteNode.filterDict[paramName] = false
+            let colorValue = colorFormula.interpretDoubleForSprite(object)
+            
+            let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
+            let colorDefaultValue:CGFloat = 0.0
+            let colorValueRadian = (CGFloat(colorValue)*CGFloat(M_PI)/100)%(2*CGFloat(M_PI))
+            spriteNode.currentLookColor = colorValueRadian
+            
+            if (colorValueRadian != colorDefaultValue){
+                spriteNode.filterDict["color"] = true
+            }else{
+                spriteNode.filterDict["color"] = false
             }
-            let xScale = spriteNode.xScale
-            let yScale = spriteNode.yScale
-            spriteNode.xScale = 1.0
-            spriteNode.yScale = 1.0
-            spriteNode.alpha = 1.0
-            spriteNode.size = texture.size()
-            spriteNode.texture = texture
-            spriteNode.currentLook = look
-            if xScale != 1.0 {
-                spriteNode.xScale = CGFloat(xScale)
-            }
-            if yScale != 1.0 {
-                spriteNode.yScale = CGFloat(yScale)
-            }
-
+            
+            spriteNode.executeFilter(lookImage)
         }
-
     }
-
 }

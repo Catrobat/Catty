@@ -20,28 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSchedulerProtocol : class {
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
-    // properties
-    var running:Bool { get set }
+@class Formula;
 
-    // queries
-    func isContextScheduled(context: CBScriptContextProtocol) -> Bool
-    func startWhenContextsOfSpriteNodeWithName(spriteName: String)
-    func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol])
+@interface SetColorToBrick : Brick<BrickFormulaProtocol>
 
-    // registration
-    func registerSpriteNode(spriteNode: CBSpriteNode)
-    func registerContext(context: CBScriptContextProtocol)
+@property (nonatomic, strong) Formula *color;
 
-    // events
-    func run()
-    func shutdown()
-    func pause()
-    func resume()
-    func runNextInstructionOfContext(context: CBScriptContextProtocol)
-    func runNextInstructionsGroup()
-    func scheduleContext(context: CBScriptContextProtocol)
-    func stopContext(context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
+- (NSString*)pathForLook:(Look*)look;
 
-}
+@end

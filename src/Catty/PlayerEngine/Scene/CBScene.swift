@@ -270,14 +270,11 @@ final class CBScene: SKScene {
     }
 
     func pauseScheduler() {
-        scheduler?.running = false
+        scheduler?.pause()
     }
     
     func resumeScheduler() {
-        if(scheduler?.running == false){
-            scheduler?.running = true
-            scheduler?.runNextInstructionsGroup()
-        }
+        scheduler?.resume()
     }
     
     // MARK: - Stop program

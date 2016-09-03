@@ -67,9 +67,11 @@
 #import "TurnRightBrick.h"
 #import "GoNStepsBackBrick.h"
 #import "SetBrightnessBrick.h"
+#import "SetColorToBrick.h"
 #import "MoveNStepsBrick.h"
 #import "ClearGraphicEffectBrick.h"
 #import "ChangeBrightnessByNBrick.h"
+#import "ChangeColorByNBrick.h"
 #import "NextLookBrick.h"
 
 

@@ -20,28 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSchedulerProtocol : class {
+#import "ChangeColorByNBrickCell.h"
 
-    // properties
-    var running:Bool { get set }
+@interface ChangeColorByNBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-    // queries
-    func isContextScheduled(context: CBScriptContextProtocol) -> Bool
-    func startWhenContextsOfSpriteNodeWithName(spriteName: String)
-    func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol])
+@implementation ChangeColorByNBrickCell
 
-    // registration
-    func registerSpriteNode(spriteNode: CBSpriteNode)
-    func registerContext(context: CBScriptContextProtocol)
-
-    // events
-    func run()
-    func shutdown()
-    func pause()
-    func resume()
-    func runNextInstructionOfContext(context: CBScriptContextProtocol)
-    func runNextInstructionsGroup()
-    func scheduleContext(context: CBScriptContextProtocol)
-    func stopContext(context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
-
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
 }
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.colorTextField = inlineViewSubViews[1];
+}
+
+@end
