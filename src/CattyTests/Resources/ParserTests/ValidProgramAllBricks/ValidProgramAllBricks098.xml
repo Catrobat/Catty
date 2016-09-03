@@ -253,22 +253,6 @@
                         </formulaList>
                       </brick>
                       <brick type="ClearGraphicEffectBrick"/>
-                      <brick type="TurnRightSpeedBrick">
-                        <formulaList>
-                          <formula category="PHYSICS_TURN_RIGHT_SPEED">
-                            <type>NUMBER</type>
-                            <value>0</value>
-                          </formula>
-                        </formulaList>
-                      </brick>
-                      <brick type="TurnRightSpeedBrick">
-                        <formulaList>
-                          <formula category="PHYSICS_TURN_RIGHT_SPEED">
-                            <type>NUMBER</type>
-                            <value>0</value>
-                          </formula>
-                        </formulaList>
-                      </brick>
                       <brick type="BroadcastWaitBrick">
                         <broadcastMessage>Nachricht 1</broadcastMessage>
                       </brick>

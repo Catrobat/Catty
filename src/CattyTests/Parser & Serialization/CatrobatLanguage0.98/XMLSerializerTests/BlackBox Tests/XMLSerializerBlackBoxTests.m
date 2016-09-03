@@ -141,7 +141,6 @@
 
 - (void)testValidProgramAllBricks
 {
-    // TODO: test should pass after TurnRightSpeedBrick is implemented
     [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks098"];
 }
 
