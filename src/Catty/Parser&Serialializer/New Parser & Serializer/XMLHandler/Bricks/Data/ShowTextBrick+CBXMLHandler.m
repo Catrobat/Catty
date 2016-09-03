@@ -41,6 +41,11 @@
     
     [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:2];
     
+    GDataXMLElement *userVariableName = [xmlElement childWithElementName:@"userVariableName"];
+    if (userVariableName != nil) {
+        childCount -= 1;
+    }
+    
     if (childCount == 3) {
         userVariableElement = [xmlElement childWithElementName:@"userVariable"];
         [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
@@ -93,8 +98,13 @@
     // add pseudo <inUserBrick> element to produce a Catroid equivalent XML (unused at the moment)
     [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context] context:context];
 
-    if (self.userVariable)
+    if (self.userVariable) {
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+        
+        GDataXMLElement *userVariableName = [GDataXMLElement elementWithName:@"userVariableName" stringValue:self.userVariable.name context:context];
+        [brick addChild:userVariableName context:context];
+    }
+    
     return brick;
 }
 

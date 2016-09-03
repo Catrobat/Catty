@@ -333,6 +333,21 @@
                     </formula>
                 </formulaList>
             </brick>
+            <brick type="ShowTextBrick">
+                <formulaList>
+                    <formula category="Y_POSITION">
+                        <type>NUMBER</type>
+                        <value>200</value>
+                    </formula>
+                    <formula category="X_POSITION">
+                        <type>NUMBER</type>
+                        <value>100</value>
+                    </formula>
+                </formulaList>
+                <inUserBrick>false</inUserBrick>
+                <userVariable reference="../../brick[13]/userVariable"/>
+                <userVariableName>global</userVariableName>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
