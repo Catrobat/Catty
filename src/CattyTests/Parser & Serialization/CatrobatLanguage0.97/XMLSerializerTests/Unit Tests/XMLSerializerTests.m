@@ -38,7 +38,7 @@
 {
     Program *program = [self getProgramForXML:@"ValidHeader095"];
     Header *header = program.header;
-    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader098"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader097"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
@@ -47,24 +47,24 @@
     Program *program = [self getProgramForXML:@"ValidHeader095"];
     Header *header = program.header;
     header.programDescription = @"Invalid";
-    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader098"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader095"];
     XCTAssertFalse(equal, @"GDataXMLElement::isEqualToElement not working correctly!");
 }
 
 - (void)testFormulaAndMoveNStepsBrick
 {
-    Program *program = [self getProgramForXML:@"ValidProgramAllBricks093"];
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks"];
     MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
-    BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks098"];
+    BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
 - (void)testRemoveObjectAndSerializeProgram
 {
-    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.98f];
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.97f];
     
-    Program *referenceProgram = [self getProgramForXML:@"ValidProgram098"];
-    Program *program = [self getProgramForXML:@"ValidProgram098"];
+    Program *referenceProgram = [self getProgramForXML:@"ValidProgram097"];
+    Program *program = [self getProgramForXML:@"ValidProgram097"];
     SpriteObject *moleOne = [program.objectList objectAtIndex:1];
     [program removeObject:moleOne];
     

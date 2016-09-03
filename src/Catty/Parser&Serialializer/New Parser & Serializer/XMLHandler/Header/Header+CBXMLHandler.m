@@ -155,12 +155,12 @@
                                                     stringValue:self.programDescription
                                                         context:context]
                        context:context];
-    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"landscapeMode"
-                                                    stringValue:self.landscapeMode ? @"true" : @"false"
-                                                        context:context]
-                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
                                                     stringValue:self.deviceName
+                                                        context:context]
+                       context:context];
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"landscapeMode"
+                                                    stringValue:self.landscapeMode ? @"true" : @"false"
                                                         context:context]
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"mediaLicense"

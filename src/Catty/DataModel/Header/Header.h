@@ -44,13 +44,14 @@
 @property (nonatomic, strong) NSNumber *screenHeight;
 @property (nonatomic, strong) NSNumber *screenWidth;
 @property (nonatomic, strong) NSString *screenMode;
-@property (nonatomic, assign) BOOL landscapeMode;
 
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *userHandle;
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
-@property (nonatomic, assign) NSString *isArduinoProject;
+
+@property (nonatomic, assign) BOOL isArduinoProject;
+@property (nonatomic, assign) BOOL landscapeMode;
 
 // do not persist following properties
 @property (nonatomic, strong) NSString *programID;

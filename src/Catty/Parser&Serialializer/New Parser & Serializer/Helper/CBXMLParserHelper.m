@@ -43,7 +43,7 @@
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
-#define kParserObjectTypeBOOL           @"T@\"BOOL\""
+#define kParserObjectTypeBOOL           @"TB"
 
 @implementation CBXMLParserHelper
 

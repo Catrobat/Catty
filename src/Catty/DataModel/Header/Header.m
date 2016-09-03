@@ -52,6 +52,7 @@
     header.programScreenshotManuallyTaken = kCatrobatHeaderProgramScreenshotDefaultValue;
     header.tags = nil;
     header.programID = nil;
+    header.isArduinoProject = false;
     header.landscapeMode = false;
     return header;
 }

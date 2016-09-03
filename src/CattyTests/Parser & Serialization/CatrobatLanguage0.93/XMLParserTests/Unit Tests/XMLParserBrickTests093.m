@@ -283,7 +283,7 @@
 
 - (void)testValidSetXBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
@@ -306,7 +306,7 @@
 
 - (void)testValidSetXBrickEqual
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
@@ -340,7 +340,7 @@
 
 - (void)testValidSetYBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[3]" error:nil];
@@ -363,7 +363,7 @@
 
 - (void)testValidChangeXByNBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[4]" error:nil];
@@ -386,7 +386,7 @@
 
 - (void)testValidChangeYByNBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[5]" error:nil];
@@ -408,7 +408,7 @@
 
 - (void)testValidMoveNStepsBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" error:nil];
@@ -430,7 +430,7 @@
 
 - (void)testValidTurnLeftBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[7]" error:nil];
@@ -452,7 +452,7 @@
 
 - (void)testValidTurnRightBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[8]" error:nil];
@@ -474,7 +474,7 @@
 
 - (void)testValidPointInDirectionBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[9]" error:nil];
@@ -496,7 +496,7 @@
 
 - (void)testValidStopAllSoundBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]/pointedObject[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
@@ -512,7 +512,7 @@
 
 - (void)testValidPointToBrick
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]" error:nil];
