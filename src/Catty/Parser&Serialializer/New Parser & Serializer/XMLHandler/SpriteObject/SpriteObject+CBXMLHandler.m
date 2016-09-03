@@ -225,6 +225,9 @@
     
     // add pseudo <userBricks/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"userBricks" context:nil]];
+    
+    // add pseudo <nfcTagList/> element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"nfcTagList" context:nil]];
 
     return xmlElement;
 }
