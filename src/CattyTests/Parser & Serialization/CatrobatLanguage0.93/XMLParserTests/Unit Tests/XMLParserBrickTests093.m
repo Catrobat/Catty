@@ -551,4 +551,42 @@
     XCTAssertTrue([pointedObject.name isEqualToString:@"Mole 2"], @"Invalid object name!");
 }
 
+- (void)testValidSetColorToBrick
+{
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[15]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetColorToBrick class]];
+    
+    XCTAssertTrue(brick.brickType == kSetColorToBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetColorToBrick class]], @"Invalid brick class");
+    
+    SetColorToBrick *setColorToBrick = (SetColorToBrick*)brick;
+    XCTAssertEqual(1, [setColorToBrick.color interpretIntegerForSprite:nil], @"Invalid formula");
+}
+
+- (void)testValidChangeColorByNBrick
+{
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[16]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[ChangeColorByNBrick class]];
+    
+    XCTAssertTrue(brick.brickType == kChangeColorByNBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[ChangeColorByNBrick class]], @"Invalid brick class");
+    
+    ChangeColorByNBrick *changeColorByNBrick = (ChangeColorByNBrick*)brick;
+    XCTAssertEqual(2, [changeColorByNBrick.changeColor interpretIntegerForSprite:nil], @"Invalid formula");
+}
+
 @end

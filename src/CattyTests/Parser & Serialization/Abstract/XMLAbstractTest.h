@@ -63,6 +63,8 @@
 #import "PointInDirectionBrick+CBXMLHandler.h"
 #import "PointToBrick+CBXMLHandler.h"
 #import "StopAllSoundsBrick+CBXMLHandler.h"
+#import "SetColorToBrick+CBXMLHandler.h"
+#import "ChangeColorByNBrick+CBXMLHandler.h"
 
 @interface XMLAbstractTest : XCTestCase
 

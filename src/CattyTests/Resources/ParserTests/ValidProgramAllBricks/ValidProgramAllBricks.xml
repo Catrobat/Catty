@@ -317,6 +317,22 @@
               <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>lokal</userVariable>
             </brick>
+            <brick type="SetColorBrick">
+                <formulaList>
+                    <formula category="COLOR">
+                        <type>NUMBER</type>
+                        <value>1</value>
+                    </formula>
+                </formulaList>
+            </brick>
+            <brick type="ChangeColorByNBrick">
+                <formulaList>
+                    <formula category="COLOR_CHANGE">
+                        <type>NUMBER</type>
+                        <value>2</value>
+                    </formula>
+                </formulaList>
+            </brick>
           </brickList>
           <!-- <isUserScript>false</isUserScript> -->
         </script>
