@@ -74,6 +74,32 @@
 		4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */; };
 		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
 		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
+		4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */; };
+		4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15CF1D7AC5A500CE53CD /* Compass_0.1_098.xml */; };
+		4C6D15D21D7AC5B600CE53CD /* Demonstration_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15D11D7AC5B600CE53CD /* Demonstration_098.xml */; };
+		4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15D31D7AC5BD00CE53CD /* Drink_more_water_098.xml */; };
+		4C6D15D61D7AC5C500CE53CD /* Encapsulated_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15D51D7AC5C500CE53CD /* Encapsulated_098.xml */; };
+		4C6D15D81D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15D71D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml */; };
+		4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15D91D7AC5D300CE53CD /* Flappy_v3.0_098.xml */; };
+		4C6D15DC1D7AC5D900CE53CD /* Galaxy_War_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15DB1D7AC5D900CE53CD /* Galaxy_War_098.xml */; };
+		4C6D15DE1D7AC5E200CE53CD /* Gossip_Girl_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15DD1D7AC5E200CE53CD /* Gossip_Girl_098.xml */; };
+		4C6D15E01D7AC5E700CE53CD /* Memory_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15DF1D7AC5E700CE53CD /* Memory_098.xml */; };
+		4C6D15E21D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15E11D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml */; };
+		4C6D15E41D7AC5F300CE53CD /* Minions__098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15E31D7AC5F300CE53CD /* Minions__098.xml */; };
+		4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15E51D7AC5F900CE53CD /* Nyancat_1.0_098.xml */; };
+		4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15E71D7AC5FE00CE53CD /* Piano_098.xml */; };
+		4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15E91D7AC60500CE53CD /* Pong_Starter_098.xml */; };
+		4C6D15EC1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15EB1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml */; };
+		4C6D15EE1D7AC61000CE53CD /* Rock_paper_scissors_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15ED1D7AC61000CE53CD /* Rock_paper_scissors_098.xml */; };
+		4C6D15F01D7AC61600CE53CD /* Skydiving_Steve_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15EF1D7AC61600CE53CD /* Skydiving_Steve_098.xml */; };
+		4C6D15F21D7AC61C00CE53CD /* Solar_System_v1.0_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15F11D7AC61C00CE53CD /* Solar_System_v1.0_098.xml */; };
+		4C6D15F41D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15F31D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml */; };
+		4C6D15F61D7AC62800CE53CD /* Word_balloon_demo_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15F51D7AC62800CE53CD /* Word_balloon_demo_098.xml */; };
+		4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15F71D7AC62E00CE53CD /* X_Ray_phone_098.xml */; };
+		4C6D15FA1D7AC63400CE53CD /* ValidHeader098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15F91D7AC63400CE53CD /* ValidHeader098.xml */; };
+		4C6D15FC1D7AC63A00CE53CD /* ValidProgram098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15FB1D7AC63A00CE53CD /* ValidProgram098.xml */; };
+		4C6D15FE1D7AC64000CE53CD /* ValidProgramAllBricks098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15FD1D7AC64000CE53CD /* ValidProgramAllBricks098.xml */; };
+		4C6D16001D7AC65400CE53CD /* ValidProgramAllBricks093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15FF1D7AC65400CE53CD /* ValidProgramAllBricks093.xml */; };
 		4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724D891B4D3E8C00E27479 /* CBXMLParserHelper.m */; };
 		4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724D8B1B4D3E8C00E27479 /* CBXMLSerializerHelper.m */; };
 		4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724D8D1B4D3E8C00E27479 /* CBXMLValidator.m */; };
@@ -112,7 +138,6 @@
 		4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDD1B9C717C0097E470 /* ValidProgram.xml */; };
 		4CC85CE71B9C717C0097E470 /* ValidProgram095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDE1B9C717C0097E470 /* ValidProgram095.xml */; };
 		4CC85CE81B9C717C0097E470 /* ValidProgram096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */; };
-		4CC85CE91B9C717C0097E470 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */; };
 		4CC85CEA1B9C717C0097E470 /* ValidProgramAllBricks095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */; };
 		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
 		4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD085DC1CD9EE59009A6428 /* SceneTests.m */; };
@@ -922,6 +947,32 @@
 		4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTests.m; path = Formula/InternFormulaTests.m; sourceTree = "<group>"; };
 		4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTokenSelectionTest.m; path = Formula/InternFormulaTokenSelectionTest.m; sourceTree = "<group>"; };
 		4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaUtilsTest.m; path = Formula/InternFormulaUtilsTest.m; sourceTree = "<group>"; };
+		4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_098.xml; sourceTree = "<group>"; };
+		4C6D15CF1D7AC5A500CE53CD /* Compass_0.1_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_098.xml; sourceTree = "<group>"; };
+		4C6D15D11D7AC5B600CE53CD /* Demonstration_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Demonstration_098.xml; sourceTree = "<group>"; };
+		4C6D15D31D7AC5BD00CE53CD /* Drink_more_water_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Drink_more_water_098.xml; sourceTree = "<group>"; };
+		4C6D15D51D7AC5C500CE53CD /* Encapsulated_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_098.xml; sourceTree = "<group>"; };
+		4C6D15D71D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flap_Pac_Man_098.xml; sourceTree = "<group>"; };
+		4C6D15D91D7AC5D300CE53CD /* Flappy_v3.0_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flappy_v3.0_098.xml; sourceTree = "<group>"; };
+		4C6D15DB1D7AC5D900CE53CD /* Galaxy_War_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Galaxy_War_098.xml; sourceTree = "<group>"; };
+		4C6D15DD1D7AC5E200CE53CD /* Gossip_Girl_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Gossip_Girl_098.xml; sourceTree = "<group>"; };
+		4C6D15DF1D7AC5E700CE53CD /* Memory_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Memory_098.xml; sourceTree = "<group>"; };
+		4C6D15E11D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minecraft_Work_In_Progress_098.xml; sourceTree = "<group>"; };
+		4C6D15E31D7AC5F300CE53CD /* Minions__098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minions__098.xml; sourceTree = "<group>"; };
+		4C6D15E51D7AC5F900CE53CD /* Nyancat_1.0_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_098.xml; sourceTree = "<group>"; };
+		4C6D15E71D7AC5FE00CE53CD /* Piano_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano_098.xml; sourceTree = "<group>"; };
+		4C6D15E91D7AC60500CE53CD /* Pong_Starter_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pong_Starter_098.xml; sourceTree = "<group>"; };
+		4C6D15EB1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_098.xml; sourceTree = "<group>"; };
+		4C6D15ED1D7AC61000CE53CD /* Rock_paper_scissors_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_098.xml; sourceTree = "<group>"; };
+		4C6D15EF1D7AC61600CE53CD /* Skydiving_Steve_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_098.xml; sourceTree = "<group>"; };
+		4C6D15F11D7AC61C00CE53CD /* Solar_System_v1.0_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_098.xml; sourceTree = "<group>"; };
+		4C6D15F31D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_098.xml; sourceTree = "<group>"; };
+		4C6D15F51D7AC62800CE53CD /* Word_balloon_demo_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_098.xml; sourceTree = "<group>"; };
+		4C6D15F71D7AC62E00CE53CD /* X_Ray_phone_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_098.xml; sourceTree = "<group>"; };
+		4C6D15F91D7AC63400CE53CD /* ValidHeader098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidHeader098.xml; sourceTree = "<group>"; };
+		4C6D15FB1D7AC63A00CE53CD /* ValidProgram098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram098.xml; sourceTree = "<group>"; };
+		4C6D15FD1D7AC64000CE53CD /* ValidProgramAllBricks098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks098.xml; sourceTree = "<group>"; };
+		4C6D15FF1D7AC65400CE53CD /* ValidProgramAllBricks093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks093.xml; sourceTree = "<group>"; };
 		4C724D881B4D3E8C00E27479 /* CBXMLParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserHelper.h; sourceTree = "<group>"; };
 		4C724D891B4D3E8C00E27479 /* CBXMLParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserHelper.m; sourceTree = "<group>"; };
 		4C724D8A1B4D3E8C00E27479 /* CBXMLSerializerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializerHelper.h; sourceTree = "<group>"; };
@@ -1000,7 +1051,6 @@
 		4CC85CDD1B9C717C0097E470 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram.xml; sourceTree = "<group>"; };
 		4CC85CDE1B9C717C0097E470 /* ValidProgram095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram095.xml; sourceTree = "<group>"; };
 		4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram096.xml; sourceTree = "<group>"; };
-		4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks.xml; sourceTree = "<group>"; };
 		4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks095.xml; sourceTree = "<group>"; };
 		4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks096.xml; sourceTree = "<group>"; };
 		4CD085DB1CD9EE59009A6428 /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneTests.h; path = Scene/SceneTests.h; sourceTree = "<group>"; };
@@ -2934,6 +2984,7 @@
 			children = (
 				4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */,
 				4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */,
+				4C6D15F11D7AC61C00CE53CD /* Solar_System_v1.0_098.xml */,
 			);
 			name = Solar_System_v1.0;
 			path = CattyTests/Resources/ParserTests/Solar_System_v1.0;
@@ -2997,6 +3048,7 @@
 				4CC85CDA1B9C717C0097E470 /* ValidHeader095.xml */,
 				4CC85CDB1B9C717C0097E470 /* ValidHeader096.xml */,
 				4CE2D41A1C2950A200938B5E /* ValidHeader097.xml */,
+				4C6D15F91D7AC63400CE53CD /* ValidHeader098.xml */,
 			);
 			name = ValidHeader;
 			path = CattyTests/Resources/ParserTests/ValidHeader;
@@ -3009,6 +3061,7 @@
 				4CC85CDE1B9C717C0097E470 /* ValidProgram095.xml */,
 				4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */,
 				4CE2D41C1C2950AB00938B5E /* ValidProgram097.xml */,
+				4C6D15FB1D7AC63A00CE53CD /* ValidProgram098.xml */,
 			);
 			name = ValidProgram;
 			path = CattyTests/Resources/ParserTests/ValidProgram;
@@ -3017,10 +3070,11 @@
 		4CC85CE01B9C717C0097E470 /* ValidProgramAllBricks */ = {
 			isa = PBXGroup;
 			children = (
-				4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */,
+				4C6D15FF1D7AC65400CE53CD /* ValidProgramAllBricks093.xml */,
 				4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */,
 				4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */,
 				4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */,
+				4C6D15FD1D7AC64000CE53CD /* ValidProgramAllBricks098.xml */,
 			);
 			name = ValidProgramAllBricks;
 			path = CattyTests/Resources/ParserTests/ValidProgramAllBricks;
@@ -4723,6 +4777,7 @@
 			isa = PBXGroup;
 			children = (
 				4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */,
+				4C6D15D51D7AC5C500CE53CD /* Encapsulated_098.xml */,
 			);
 			name = Encapsulated;
 			path = CattyTests/Resources/ParserTests/Encapsulated;
@@ -5492,6 +5547,7 @@
 				4C2EE3EA1B55570C006DE9B8 /* Airplane_with_shadow_095.xml */,
 				4CEF0CC11B9C636A003C9B20 /* Airplane_with_shadow_096.xml */,
 				4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */,
+				4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */,
 			);
 			name = Airplane_with_shadow;
 			path = CattyTests/Resources/ParserTests/Airplane_with_shadow;
@@ -5505,6 +5561,7 @@
 				CAE3E4F51B4C50B300CC88BD /* Compass_0.1_093.xml */,
 				4CEF0CC31B9C6373003C9B20 /* Compass_0.1_096.xml */,
 				4CE2D3F41C294F2000938B5E /* Compass_0.1_097.xml */,
+				4C6D15CF1D7AC5A500CE53CD /* Compass_0.1_098.xml */,
 			);
 			name = Compass_0.1;
 			path = CattyTests/Resources/ParserTests/Compass_0.1;
@@ -5518,6 +5575,7 @@
 				4C2EE3EE1B55572D006DE9B8 /* Demonstration_095.xml */,
 				4CEF0CC51B9C637D003C9B20 /* Demonstration_096.xml */,
 				4CE2D3F61C294F2900938B5E /* Demonstration_097.xml */,
+				4C6D15D11D7AC5B600CE53CD /* Demonstration_098.xml */,
 			);
 			name = Demonstration;
 			path = CattyTests/Resources/ParserTests/Demonstration;
@@ -5531,6 +5589,7 @@
 				4C2EE3F01B555740006DE9B8 /* Drink_more_water_095.xml */,
 				4CEF0CC71B9C63A2003C9B20 /* Drink_more_water_096.xml */,
 				4CE2D3F81C294F3300938B5E /* Drink_more_water_097.xml */,
+				4C6D15D31D7AC5BD00CE53CD /* Drink_more_water_098.xml */,
 			);
 			name = Drink_more_water;
 			path = CattyTests/Resources/ParserTests/Drink_more_water;
@@ -5544,6 +5603,7 @@
 				CAE3E4FE1B4C50B300CC88BD /* Flap_Pac_Man_093.xml */,
 				4CEF0CC91B9C63AD003C9B20 /* Flap_Pac_Man_096.xml */,
 				4CE2D3FA1C294FFE00938B5E /* Flap_Pac_Man_097.xml */,
+				4C6D15D71D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml */,
 			);
 			name = Flap_Pac_Man;
 			path = CattyTests/Resources/ParserTests/Flap_Pac_Man;
@@ -5557,6 +5617,7 @@
 				4C2EE3F41B555766006DE9B8 /* Flappy_v3.0_095.xml */,
 				4CEF0CCB1B9C63BA003C9B20 /* Flappy_v3.0_096.xml */,
 				4CE2D3FC1C29500700938B5E /* Flappy_v3.0_097.xml */,
+				4C6D15D91D7AC5D300CE53CD /* Flappy_v3.0_098.xml */,
 			);
 			name = Flappy_v3.0;
 			path = CattyTests/Resources/ParserTests/Flappy_v3.0;
@@ -5570,6 +5631,7 @@
 				4C2EE3F61B55577C006DE9B8 /* Galaxy_War_095.xml */,
 				4CEF0CCD1B9C63C2003C9B20 /* Galaxy_War_096.xml */,
 				4CE2D3FE1C29500F00938B5E /* Galaxy_War_097.xml */,
+				4C6D15DB1D7AC5D900CE53CD /* Galaxy_War_098.xml */,
 			);
 			name = Galaxy_War;
 			path = CattyTests/Resources/ParserTests/Galaxy_War;
@@ -5583,6 +5645,7 @@
 				4C2EE3F81B55578C006DE9B8 /* Gossip_Girl_095.xml */,
 				4CEF0CCF1B9C63DB003C9B20 /* Gossip_Girl_096.xml */,
 				4CE2D4001C29501800938B5E /* Gossip_Girl_097.xml */,
+				4C6D15DD1D7AC5E200CE53CD /* Gossip_Girl_098.xml */,
 			);
 			name = Gossip_Girl;
 			path = CattyTests/Resources/ParserTests/Gossip_Girl;
@@ -5596,6 +5659,7 @@
 				4C2EE3FA1B55579D006DE9B8 /* Memory_095.xml */,
 				4CEF0CD11B9C63E7003C9B20 /* Memory_096.xml */,
 				4CE2D4021C29502300938B5E /* Memory_097.xml */,
+				4C6D15DF1D7AC5E700CE53CD /* Memory_098.xml */,
 			);
 			name = Memory;
 			path = CattyTests/Resources/ParserTests/Memory;
@@ -5609,6 +5673,7 @@
 				4C2EE3FC1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml */,
 				4CEF0CD31B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml */,
 				4CE2D4041C29502C00938B5E /* Minecraft_Work_In_Progress_097.xml */,
+				4C6D15E11D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml */,
 			);
 			name = Minecraft_Work_In_Progress;
 			path = CattyTests/Resources/ParserTests/Minecraft_Work_In_Progress;
@@ -5622,6 +5687,7 @@
 				4C2EE3FE1B5557BF006DE9B8 /* Minions__095.xml */,
 				4CEF0CD51B9C6406003C9B20 /* Minions__096.xml */,
 				4CE2D4061C29503300938B5E /* Minions__097.xml */,
+				4C6D15E31D7AC5F300CE53CD /* Minions__098.xml */,
 			);
 			name = Minions_;
 			path = CattyTests/Resources/ParserTests/Minions_;
@@ -5634,6 +5700,7 @@
 				CAE3E5131B4C50B300CC88BD /* Nyancat_1.0_093.xml */,
 				4CEF0CD71B9C6413003C9B20 /* Nyancat_1.0_096.xml */,
 				4CE2D4081C29503B00938B5E /* Nyancat_1.0_097.xml */,
+				4C6D15E51D7AC5F900CE53CD /* Nyancat_1.0_098.xml */,
 			);
 			name = Nyancat_1.0;
 			path = CattyTests/Resources/ParserTests/Nyancat_1.0;
@@ -5646,6 +5713,7 @@
 				CAE3E5161B4C50B300CC88BD /* Piano_093.xml */,
 				4CEF0CD91B9C641E003C9B20 /* Piano_096.xml */,
 				4CE2D40A1C29504300938B5E /* Piano_097.xml */,
+				4C6D15E71D7AC5FE00CE53CD /* Piano_098.xml */,
 			);
 			name = Piano;
 			path = CattyTests/Resources/ParserTests/Piano;
@@ -5668,6 +5736,7 @@
 				4C2EE4041B5557F3006DE9B8 /* Pong_Starter_095.xml */,
 				4CEF0CDB1B9C642A003C9B20 /* Pong_Starter_096.xml */,
 				4CE2D40C1C29505000938B5E /* Pong_Starter_097.xml */,
+				4C6D15E91D7AC60500CE53CD /* Pong_Starter_098.xml */,
 			);
 			name = Pong_Starter;
 			path = CattyTests/Resources/ParserTests/Pong_Starter;
@@ -5681,6 +5750,7 @@
 				4C2EE4061B555811006DE9B8 /* Pythagorean_Theorem_095.xml */,
 				4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */,
 				4CE2D40E1C29505A00938B5E /* Pythagorean_Theorem_097.xml */,
+				4C6D15EB1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml */,
 			);
 			name = Pythagorean_Theorem;
 			path = CattyTests/Resources/ParserTests/Pythagorean_Theorem;
@@ -5694,6 +5764,7 @@
 				4C2EE4081B555826006DE9B8 /* Rock_paper_scissors_095.xml */,
 				4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */,
 				4CE2D4101C29506600938B5E /* Rock_paper_scissors_097.xml */,
+				4C6D15ED1D7AC61000CE53CD /* Rock_paper_scissors_098.xml */,
 			);
 			name = Rock_paper_scissors;
 			path = CattyTests/Resources/ParserTests/Rock_paper_scissors;
@@ -5707,6 +5778,7 @@
 				4C2EE40A1B55583F006DE9B8 /* Skydiving_Steve_095.xml */,
 				4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */,
 				4CE2D4121C29506E00938B5E /* Skydiving_Steve_097.xml */,
+				4C6D15EF1D7AC61600CE53CD /* Skydiving_Steve_098.xml */,
 			);
 			name = Skydiving_Steve;
 			path = CattyTests/Resources/ParserTests/Skydiving_Steve;
@@ -5730,6 +5802,7 @@
 				4C2EE40C1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml */,
 				4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */,
 				4CE2D4141C29507F00938B5E /* Tic_Tac_Toe_Master_097.xml */,
+				4C6D15F31D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml */,
 			);
 			name = Tic_Tac_Toe_Master;
 			path = CattyTests/Resources/ParserTests/Tic_Tac_Toe_Master;
@@ -5743,6 +5816,7 @@
 				4C2EE40E1B555871006DE9B8 /* Word_balloon_demo_095.xml */,
 				4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */,
 				4CE2D4161C29508A00938B5E /* Word_balloon_demo_097.xml */,
+				4C6D15F51D7AC62800CE53CD /* Word_balloon_demo_098.xml */,
 			);
 			name = Word_balloon_demo;
 			path = CattyTests/Resources/ParserTests/Word_balloon_demo;
@@ -5756,6 +5830,7 @@
 				4C2EE4101B555882006DE9B8 /* X_Ray_phone_095.xml */,
 				4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */,
 				4CE2D4181C29509400938B5E /* X_Ray_phone_097.xml */,
+				4C6D15F71D7AC62E00CE53CD /* X_Ray_phone_098.xml */,
 			);
 			name = X_Ray_phone;
 			path = CattyTests/Resources/ParserTests/X_Ray_phone;
@@ -6008,7 +6083,6 @@
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
-				4CC85CE91B9C717C0097E470 /* ValidProgramAllBricks.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
@@ -6029,15 +6103,21 @@
 				4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */,
 				CAE3E5381B4C50B300CC88BD /* Air_fight_0.5_093.xml in Resources */,
 				4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */,
+				4C6D15E41D7AC5F300CE53CD /* Minions__098.xml in Resources */,
+				4C6D15F01D7AC61600CE53CD /* Skydiving_Steve_098.xml in Resources */,
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
+				4C6D15D21D7AC5B600CE53CD /* Demonstration_098.xml in Resources */,
 				4C2EE3FD1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml in Resources */,
 				CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				4CE2D4071C29503300938B5E /* Minions__097.xml in Resources */,
+				4C6D15EE1D7AC61000CE53CD /* Rock_paper_scissors_098.xml in Resources */,
 				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
+				4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */,
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
+				4C6D15FC1D7AC63A00CE53CD /* ValidProgram098.xml in Resources */,
 				4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */,
 				CAE3E5411B4C50B300CC88BD /* Flap_Pac_Man_091.xml in Resources */,
 				4CC85CE41B9C717C0097E470 /* ValidHeader095.xml in Resources */,
@@ -6046,36 +6126,47 @@
 				CAE3E5561B4C50B300CC88BD /* Pythagorean_Theorem_092.xml in Resources */,
 				CAE3E5491B4C50B300CC88BD /* Memory_09.xml in Resources */,
 				4CE2D3FF1C29500F00938B5E /* Galaxy_War_097.xml in Resources */,
+				4C6D15FA1D7AC63400CE53CD /* ValidHeader098.xml in Resources */,
 				4CE2D3F31C294F1700938B5E /* Airplane_with_shadow_097.xml in Resources */,
 				4CEF0CDE1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml in Resources */,
 				CAE3E5501B4C50B300CC88BD /* Nyancat_1.0_093.xml in Resources */,
 				4C2EE3ED1B55571D006DE9B8 /* Compass_0.1_095.xml in Resources */,
 				4CE2D4131C29506E00938B5E /* Skydiving_Steve_097.xml in Resources */,
 				4CE2D41D1C2950AB00938B5E /* ValidProgram097.xml in Resources */,
+				4C6D15FE1D7AC64000CE53CD /* ValidProgramAllBricks098.xml in Resources */,
 				4CEF0CC61B9C637D003C9B20 /* Demonstration_096.xml in Resources */,
 				CAE3E53F1B4C50B300CC88BD /* Drink_more_water_09.xml in Resources */,
 				4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */,
 				4CE2D4031C29502300938B5E /* Memory_097.xml in Resources */,
 				4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */,
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
+				4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */,
 				4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */,
+				4C6D15F41D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml in Resources */,
 				CAE3E54F1B4C50B300CC88BD /* Nyancat_1.0_091.xml in Resources */,
 				4CEF0CC81B9C63A2003C9B20 /* Drink_more_water_096.xml in Resources */,
 				CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */,
 				4CE2D4191C29509400938B5E /* X_Ray_phone_097.xml in Resources */,
+				4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
+				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
 				CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */,
+				4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */,
+				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
 				4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */,
 				4CE2D4051C29502C00938B5E /* Minecraft_Work_In_Progress_097.xml in Resources */,
 				4CE2D41B1C2950A200938B5E /* ValidHeader097.xml in Resources */,
 				CAE3E4EB1B4C509800CC88BD /* test.png in Resources */,
 				4C2EE4091B555826006DE9B8 /* Rock_paper_scissors_095.xml in Resources */,
 				4CC85CEA1B9C717C0097E470 /* ValidProgramAllBricks095.xml in Resources */,
+				4C6D15E21D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml in Resources */,
 				4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */,
+				4C6D15D61D7AC5C500CE53CD /* Encapsulated_098.xml in Resources */,
 				4CE2D4091C29503B00938B5E /* Nyancat_1.0_097.xml in Resources */,
+				4C6D16001D7AC65400CE53CD /* ValidProgramAllBricks093.xml in Resources */,
 				4CE2D3FB1C294FFE00938B5E /* Flap_Pac_Man_097.xml in Resources */,
 				4C2EE3EF1B55572D006DE9B8 /* Demonstration_095.xml in Resources */,
 				4CE2D4171C29508A00938B5E /* Word_balloon_demo_097.xml in Resources */,
@@ -6084,6 +6175,7 @@
 				CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */,
 				4CE2D4011C29501800938B5E /* Gossip_Girl_097.xml in Resources */,
 				CAE3E5551B4C50B300CC88BD /* Pong_Starter_093.xml in Resources */,
+				4C6D15D81D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml in Resources */,
 				4CE2D4151C29507F00938B5E /* Tic_Tac_Toe_Master_097.xml in Resources */,
 				4CE2D3F71C294F2900938B5E /* Demonstration_097.xml in Resources */,
 				4CC85CE81B9C717C0097E470 /* ValidProgram096.xml in Resources */,
@@ -6093,7 +6185,9 @@
 				4C2EE3F71B55577C006DE9B8 /* Galaxy_War_095.xml in Resources */,
 				4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */,
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
+				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
+				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
 				CAE3E5591B4C50B300CC88BD /* Rock_paper_scissors_093.xml in Resources */,
@@ -6101,20 +6195,26 @@
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
 				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
+				4C6D15F21D7AC61C00CE53CD /* Solar_System_v1.0_098.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
+				4C6D15F61D7AC62800CE53CD /* Word_balloon_demo_098.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
 				4CE2D40D1C29505000938B5E /* Pong_Starter_097.xml in Resources */,
+				4C6D15DE1D7AC5E200CE53CD /* Gossip_Girl_098.xml in Resources */,
 				4CE2D3FD1C29500700938B5E /* Flappy_v3.0_097.xml in Resources */,
 				CAE3E53B1B4C50B300CC88BD /* Compass_0.1_091.xml in Resources */,
 				CAE3E54E1B4C50B300CC88BD /* Minions__093.xml in Resources */,
 				4C2EE4111B555882006DE9B8 /* X_Ray_phone_095.xml in Resources */,
+				4C6D15DC1D7AC5D900CE53CD /* Galaxy_War_098.xml in Resources */,
 				CAE3E54B1B4C50B300CC88BD /* Minecraft_Work_In_Progress_092.xml in Resources */,
 				4CEF0CDA1B9C641E003C9B20 /* Piano_096.xml in Resources */,
 				4CC85CE71B9C717C0097E470 /* ValidProgram095.xml in Resources */,
 				CAE3E5471B4C50B300CC88BD /* Gossip_Girl_091.xml in Resources */,
+				4C6D15E01D7AC5E700CE53CD /* Memory_098.xml in Resources */,
 				4CE2D4111C29506600938B5E /* Rock_paper_scissors_097.xml in Resources */,
 				4C2EE4051B5557F3006DE9B8 /* Pong_Starter_095.xml in Resources */,
 				4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */,
+				4C6D15EC1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml in Resources */,
 				CAE3E5421B4C50B300CC88BD /* Flap_Pac_Man_093.xml in Resources */,
 				CAE3E5581B4C50B300CC88BD /* Rock_paper_scissors_091.xml in Resources */,
 				CAE3E5461B4C50B300CC88BD /* Galaxy_War_093.xml in Resources */,
