@@ -39,10 +39,10 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
             guard let look = object.spriteNode!.currentLook else { return }
             var brightnessValue = bright.interpretDoubleForSprite(object) / 100
             brightnessValue += Double(spriteNode.currentLookBrightness)
-            if (brightnessValue > 2) {
+            if (brightnessValue > 1) {
                 brightnessValue = 1.0;
             }
-            else if (brightnessValue < 0){
+            else if (brightnessValue < -1){
                 brightnessValue = -1.0;
             }
             
