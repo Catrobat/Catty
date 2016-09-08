@@ -349,9 +349,9 @@
         gap = 0.3 * CGRectGetHeight(*frame);
         gap = gap + ((1-0.3) * CGRectGetHeight(*frame) - smallBrick)/2.0f;
     }
-    firstLine = 0.43238 * smallBrick;
-    secondLine = 0.53442 * smallBrick;
-    thirdLine = 0.63647 * smallBrick;
+    firstLine = 0.40238 * smallBrick;
+    secondLine = 0.50442 * smallBrick;
+    thirdLine = 0.60647 * smallBrick;
     
     //// Bezier 2 Drawing
     UIBezierPath* bezier2Path = [UIBezierPath bezierPath];

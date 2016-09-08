@@ -446,8 +446,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
-#define kBrickShapeNormalInlineViewOffsetY 2.0f
-#define kBrickShapeRoundedSmallInlineViewOffsetY 21.0f
+#define kBrickShapeNormalInlineViewOffsetY 4.0f
+#define kBrickShapeRoundedSmallInlineViewOffsetY 20.7f
 #define kBrickShapeRoundedBigInlineViewOffsetY 37.0f
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 27.0f
