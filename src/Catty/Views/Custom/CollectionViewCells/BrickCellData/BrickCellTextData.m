@@ -33,6 +33,11 @@
 
 @implementation BrickCellTextData
 
+#define BORDER_WIDTH 1.0
+#define BORDER_HEIGHT 4
+#define BORDER_TRANSPARENCY 0.9
+#define BORDER_PADDING 3.8
+
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
@@ -51,7 +56,20 @@
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         //        self.userInteractionEnabled = NO;
         self.textColor = [UIColor whiteColor];
+        
+        UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 1)];
+        self.leftView = paddingView;
+        self.leftViewMode = UITextFieldViewModeAlways;
         [self sizeToFit];
+        
+        NSInteger availableHeightWithBorder = frame.size.height + 2 * BORDER_WIDTH;
+        if (self.frame.size.height < availableHeightWithBorder)
+        {
+            CGRect newFrame = self.frame;
+            newFrame.size.height = availableHeightWithBorder;
+            self.frame = newFrame;
+        }
+        
         if (self.frame.origin.x + self.frame.size.width + 60 > [Util screenWidth]) {
             self.frame = CGRectMake(self.frame.origin.x,self.frame.origin.y,[Util screenWidth] - 60 - self.frame.origin.x, self.frame.size.height);
         }
@@ -65,10 +83,6 @@
     return self;
 }
 
-#define BORDER_WIDTH 1.0
-#define BORDER_HEIGHT 4
-#define BORDER_TRANSPARENCY 0.9
-#define BORDER_PADDING 0
 
 - (void)drawBorder:(BOOL)isActive
 {

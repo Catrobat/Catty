@@ -581,7 +581,7 @@
 "Hide Details" = "Hide Details";
 
 /* No comment provided by engineer. */
-"Hide variable\n%@\n" = "Hide variable\n%@\n";
+"Hide variable\n%@" = "Hide variable\n%@";
 
 /* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";

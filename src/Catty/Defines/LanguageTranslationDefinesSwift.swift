@@ -382,7 +382,7 @@ let kLocalizedSpeak = NSLocalizedString("Speak %", comment: "")
 let kLocalizedSetVariable = NSLocalizedString("Set variable\n%@\nto %", comment: "")
 let kLocalizedChangeVariable = NSLocalizedString("Change variable\n%@\nby %", comment: "")
 let kLocalizedShowVariable = NSLocalizedString("Show variable\n%@\nx: %@ y:%", comment: "")
-let kLocalizedHideVariable = NSLocalizedString("Hide variable\n%@\n", comment: "")
+let kLocalizedHideVariable = NSLocalizedString("Hide variable\n%", comment: "")
 
 
 let kLocalizedAddCommentHere = NSLocalizedString("add comment here...", comment: "")
