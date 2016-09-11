@@ -64,7 +64,7 @@
     bezierPath.lineWidth = 1;
     [bezierPath stroke];
 
-
+    /*
     //// Bezier 2 Drawing
     UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
     [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.46063 * CGRectGetHeight(frame))];
@@ -96,7 +96,9 @@
     [strokeColor setStroke];
     bezier4Path.lineWidth = 1;
     [bezier4Path stroke];
+    */
 
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 
     //// Group
     {
@@ -162,37 +164,7 @@
     [bezierPath stroke];
 
 
-    //// Bezier 2 Drawing
-    UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
-    [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier2Path fill];
-    [strokeColor setStroke];
-    bezier2Path.lineWidth = 1;
-    [bezier2Path stroke];
-
-
-    //// Bezier 3 Drawing
-    UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
-    [bezier3Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [bezier3Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier3Path fill];
-    [strokeColor setStroke];
-    bezier3Path.lineWidth = 1;
-    [bezier3Path stroke];
-
-
-    //// Bezier 4 Drawing
-    UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
-    [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier4Path fill];
-    [strokeColor setStroke];
-    bezier4Path.lineWidth = 1;
-    [bezier4Path stroke];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 
 
     //// Group
@@ -256,37 +228,7 @@
     [bezierPath stroke];
 
 
-    //// Bezier 2 Drawing
-    UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
-    [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier2Path fill];
-    [strokeColor setStroke];
-    bezier2Path.lineWidth = 1;
-    [bezier2Path stroke];
-
-
-    //// Bezier 3 Drawing
-    UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
-    [bezier3Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [bezier3Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier3Path fill];
-    [strokeColor setStroke];
-    bezier3Path.lineWidth = 1;
-    [bezier3Path stroke];
-
-
-    //// Bezier 4 Drawing
-    UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
-    [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier4Path fill];
-    [strokeColor setStroke];
-    bezier4Path.lineWidth = 1;
-    [bezier4Path stroke];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 }
 
 + (void)drawEndForeverLoopShape2WithFillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor height: (CGFloat)height width: (CGFloat)width
@@ -322,37 +264,7 @@
     [bezierPath stroke];
 
 
-    //// Bezier 2 Drawing
-    UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
-    [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier2Path fill];
-    [strokeColor setStroke];
-    bezier2Path.lineWidth = 1;
-    [bezier2Path stroke];
-
-
-    //// Bezier 3 Drawing
-    UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
-    [bezier3Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [bezier3Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier3Path fill];
-    [strokeColor setStroke];
-    bezier3Path.lineWidth = 1;
-    [bezier3Path stroke];
-
-
-    //// Bezier 4 Drawing
-    UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
-    [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier4Path fill];
-    [strokeColor setStroke];
-    bezier4Path.lineWidth = 1;
-    [bezier4Path stroke];
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 }
 
 + (void)drawEndForeverLoopShape3WithFillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor height: (CGFloat)height width: (CGFloat)width
@@ -391,38 +303,7 @@
     [bezierPath stroke];
 
 
-    //// Bezier 2 Drawing
-    UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
-    [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.43238 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier2Path fill];
-    [strokeColor setStroke];
-    bezier2Path.lineWidth = 1;
-    [bezier2Path stroke];
-
-
-    //// Bezier 3 Drawing
-    UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
-    [bezier3Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [bezier3Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.53442 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier3Path fill];
-    [strokeColor setStroke];
-    bezier3Path.lineWidth = 1;
-    [bezier3Path stroke];
-
-
-    //// Bezier 4 Drawing
-    UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
-    [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(frame) + 16, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(frame) + 34, CGRectGetMinY(frame) + 0.63647 * CGRectGetHeight(frame))];
-    [fillColor setFill];
-    [bezier4Path fill];
-    [strokeColor setStroke];
-    bezier4Path.lineWidth = 1;
-    [bezier4Path stroke];
-
+    [self drawThreeLeftLinesInFrame:&frame fillColor:fillColor strokeColor:strokeColor brickHeight:height];
 
     //// Group
     {
@@ -450,6 +331,61 @@
         [fillColor setFill];
         [rectangle2Path fill];
     }
+}
+
++ (void)drawThreeLeftLinesInFrame: (CGRect*)frame fillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor brickHeight: (CGFloat)height
+{
+    CGFloat gap = 0.0f;
+    CGFloat firstLine = 0.0f;
+    CGFloat secondLine = 0.0f;
+    CGFloat thirdLine = 0.0f;
+    
+    CGFloat frameHeigth = CGRectGetHeight(*frame);
+    
+    if((height != roundedLargeBrick) && (height != roundedSmallBrick))
+    {
+        gap = (frameHeigth - smallBrick)/2.0f;
+    }else {
+        gap = 0.3 * CGRectGetHeight(*frame);
+        gap = gap + ((1-0.3) * CGRectGetHeight(*frame) - smallBrick)/2.0f;
+    }
+    firstLine = 0.40238 * smallBrick;
+    secondLine = 0.50442 * smallBrick;
+    thirdLine = 0.60647 * smallBrick;
+    
+    //// Bezier 2 Drawing
+    UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
+    [bezier2Path moveToPoint: CGPointMake(CGRectGetMinX(*frame) + 16, CGRectGetMinY(*frame) + gap + firstLine)];
+    [bezier2Path addLineToPoint: CGPointMake(CGRectGetMinX(*frame) + 34, CGRectGetMinY(*frame) + gap + firstLine)];
+    [fillColor setFill];
+    [bezier2Path fill];
+    [strokeColor setStroke];
+    bezier2Path.lineWidth = 1;
+    [bezier2Path stroke];
+    
+    
+    //// Bezier 3 Drawing
+    UIBezierPath* bezier3Path = [UIBezierPath bezierPath];
+    [bezier3Path moveToPoint: CGPointMake(CGRectGetMinX(*frame) + 16, CGRectGetMinY(*frame) + gap + secondLine)];
+    [bezier3Path addLineToPoint: CGPointMake(CGRectGetMinX(*frame) + 34, CGRectGetMinY(*frame) + gap + secondLine)];
+    [fillColor setFill];
+    [bezier3Path fill];
+    [strokeColor setStroke];
+    bezier3Path.lineWidth = 1;
+    [bezier3Path stroke];
+    
+    
+    //// Bezier 4 Drawing
+    UIBezierPath* bezier4Path = [UIBezierPath bezierPath];
+    [bezier4Path moveToPoint: CGPointMake(CGRectGetMinX(*frame) + 16, CGRectGetMinY(*frame) + gap + thirdLine)];
+    [bezier4Path addLineToPoint: CGPointMake(CGRectGetMinX(*frame) + 34, CGRectGetMinY(*frame) + gap + thirdLine)];
+    [fillColor setFill];
+    [bezier4Path fill];
+    [strokeColor setStroke];
+    bezier4Path.lineWidth = 1;
+    [bezier4Path stroke];
+    
+    
 }
 
 @end
