@@ -2060,7 +2060,7 @@
                                     <constraint firstItem="ZkT-15-ozN" firstAttribute="centerX" secondItem="iA0-BG-aV3" secondAttribute="centerX" id="XgU-KK-tqF"/>
                                     <constraint firstItem="rIj-Oz-qtW" firstAttribute="height" secondItem="HeJ-1o-CcE" secondAttribute="height" id="YIi-J3-0DM"/>
                                     <constraint firstItem="rIj-Oz-qtW" firstAttribute="top" secondItem="HeJ-1o-CcE" secondAttribute="bottom" id="c5b-jn-PFC"/>
-                                    <constraint firstItem="fmw-qE-O5K" firstAttribute="top" secondItem="iA0-BG-aV3" secondAttribute="top" priority="750" id="p9X-vJ-jPa"/>
+                                    <constraint firstItem="fmw-qE-O5K" firstAttribute="top" secondItem="iA0-BG-aV3" secondAttribute="top" id="p9X-vJ-jPa"/>
                                     <constraint firstAttribute="trailing" secondItem="rIj-Oz-qtW" secondAttribute="trailing" constant="10" id="xjT-UD-5kh"/>
                                     <constraint firstAttribute="trailing" secondItem="fmw-qE-O5K" secondAttribute="trailing" constant="10" id="y3S-1x-Tu2"/>
                                     <constraint firstItem="rIj-Oz-qtW" firstAttribute="leading" secondItem="iA0-BG-aV3" secondAttribute="leading" constant="10" id="yWe-36-5sd"/>
@@ -2073,6 +2073,12 @@
                                         <exclude reference="IkX-ky-eit"/>
                                         <exclude reference="XgU-KK-tqF"/>
                                         <exclude reference="VPi-JW-b6q"/>
+                                        <exclude reference="p9X-vJ-jPa"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="p9X-vJ-jPa"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
@@ -2123,10 +2129,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4Sx-1R-Wzi" firstAttribute="height" secondItem="sRc-Kz-pby" secondAttribute="height" multiplier="0.66" priority="750" id="0Gy-P1-hp0"/>
+                            <constraint firstItem="4Sx-1R-Wzi" firstAttribute="height" secondItem="sRc-Kz-pby" secondAttribute="height" multiplier="0.66" id="0Gy-P1-hp0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sRc-Kz-pby" secondAttribute="trailing" id="0PI-8W-FCw"/>
                             <constraint firstItem="4Sx-1R-Wzi" firstAttribute="top" secondItem="SEq-8U-LNO" secondAttribute="bottom" id="7di-OH-XnA"/>
-                            <constraint firstItem="4Sx-1R-Wzi" firstAttribute="height" secondItem="iA0-BG-aV3" secondAttribute="height" multiplier="0.66" priority="750" id="MLa-Iq-vSD"/>
+                            <constraint firstItem="4Sx-1R-Wzi" firstAttribute="height" secondItem="iA0-BG-aV3" secondAttribute="height" multiplier="0.66" id="MLa-Iq-vSD"/>
                             <constraint firstItem="sRc-Kz-pby" firstAttribute="height" secondItem="4Sx-1R-Wzi" secondAttribute="height" id="NjA-SA-jpc"/>
                             <constraint firstItem="B0O-VG-Cop" firstAttribute="top" secondItem="sRc-Kz-pby" secondAttribute="bottom" id="VBC-kj-tSV"/>
                             <constraint firstItem="iA0-BG-aV3" firstAttribute="leading" secondItem="sp5-pE-tC9" secondAttribute="leadingMargin" id="alF-hi-tdT"/>
@@ -2141,8 +2147,16 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                            	<exclude reference="0Gy-P1-hp0"/>
+                                <exclude reference="MLa-Iq-vSD"/>
                                 <exclude reference="tGo-ZL-l1U"/>
                                 <exclude reference="NjA-SA-jpc"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="0Gy-P1-hp0"/>
+                                <include reference="MLa-Iq-vSD"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
