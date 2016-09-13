@@ -93,6 +93,7 @@
 #import "ChangeBrightnessByNBrick.h"
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
+#import "FlashBrick.h"
 
 // Formulas
 #import "Formula.h"

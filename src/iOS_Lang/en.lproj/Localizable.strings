@@ -1349,6 +1349,9 @@
 "Tuesday" = "Tuesday";
 
 /* No comment provided by engineer. */
+"Turn flashlight\n%@" = "Turn flashlight\n%@";
+
+/* No comment provided by engineer. */
 "Turn left %@°" = "Turn left %@°";
 
 /* No comment provided by engineer. */
