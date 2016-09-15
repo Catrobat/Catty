@@ -55,6 +55,7 @@
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
+#import "BrickStaticChoiceProtocol.h"
 #import "BrickVariableProtocol.h"
 #import "BrickCellLookData.h"
 #import "BrickCellSoundData.h"
@@ -82,6 +83,7 @@
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
 #import "BrickCellPhiroIfSensorData.h"
+#import "BrickCellStaticChoiceData.h"
 #import "BrickPhiroMotorProtocol.h"
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
@@ -1162,6 +1164,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
         [(Brick<BrickTextProtocol>*)brick setText:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     } else
+    if ([brickCellData isKindOfClass:[BrickCellStaticChoiceData class]] && [brick conformsToProtocol:@protocol(BrickStaticChoiceProtocol)]) {
+            [(Brick<BrickStaticChoiceProtocol>*)brick setChoice:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
     if ([brickCellData isKindOfClass:[BrickCellMessageData class]] && [brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {

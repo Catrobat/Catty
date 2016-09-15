@@ -32,46 +32,47 @@
     return kLocalizedFlash;
 }
 
-- (id)initWithMessage:(NSString *)message
+- (id)initWithChoice:(int)choice
 {
     self = [super init];
     if (self)
     {
-        self.broadcastMessage = message;
+        self.flashChoice = choice;
     }
     return self;
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    if(spriteObject) {
-        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
-        if([messages count] > 0)
-            self.broadcastMessage = [messages objectAtIndex:0];
-        else
-            self.broadcastMessage = nil;
-    }
-    if(!self.broadcastMessage)
-        self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
+    self.flashChoice = 0;
 }
 
-- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber
+- (void)setChoice:(NSString*)choice forLineNumber:(NSInteger)lineNumber
 andParameterNumber:(NSInteger)paramNumber
 {
-    if (message) {
-        self.broadcastMessage = message;
+    if ([choice isEqualToString:kLocalizedOff]) {
+        self.flashChoice = 0;
+    } else {
+        self.flashChoice = 1;
     }
 }
 
-- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (NSString*)choiceForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.broadcastMessage;
+    NSArray *choices = [self possibleChoicesForLineNumber:1 andParameterNumber:0];
+    return choices[self.flashChoice];
+}
+
+- (NSArray<NSString *>*)possibleChoicesForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    NSArray<NSString *> *choices = [NSArray arrayWithObjects: kLocalizedOff, kLocalizedOn, nil];
+    return choices;
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Broadcast (Msg: %@)", self.broadcastMessage];
+    return [NSString stringWithFormat:@"flash choice (%i)", self.flashChoice];
 }
 
 #pragma mark - Resources

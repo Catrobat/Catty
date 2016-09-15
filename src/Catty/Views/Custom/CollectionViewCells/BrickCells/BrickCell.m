@@ -38,6 +38,7 @@
 #import "BrickCellFormulaData.h"
 #import "BrickCellTextData.h"
 #import "BrickCellMessageData.h"
+#import "BrickCellStaticChoiceData.h"
 #import "BrickCellVariableData.h"
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
@@ -110,7 +111,7 @@
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
     @[],                            /* turn off flashlight      */\
-    @"{MESSAGE}"                    /* flash brick              */\
+    @"{STATICCHOICE}"               /* flash brick              */\
 ]
 
 // variable bricks
@@ -500,7 +501,10 @@
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
-            }  else if ([afterLabelParam rangeOfString:@"MOTOR"].location != NSNotFound) {
+            } else if ([afterLabelParam rangeOfString:@"STATICCHOICE"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellStaticChoiceData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"MOTOR"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroMotorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LIGHT"].location != NSNotFound) {
@@ -509,7 +513,7 @@
             } else if ([afterLabelParam rangeOfString:@"TONE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroToneData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
-            }else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
+            } else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroIfSensorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             }else {

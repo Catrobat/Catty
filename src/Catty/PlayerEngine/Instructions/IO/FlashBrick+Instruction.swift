@@ -24,9 +24,19 @@ extension FlashBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
 
-        let msg = self.broadcastMessage
-        return CBInstruction.HighPriorityExecClosure { (context, _, bcHandler) in
-            bcHandler.performBroadcastWithMessage(msg, senderContext: context, broadcastType: .Broadcast)
+        let choice = self.flashChoice
+        return CBInstruction.ExecClosure { (context, _) in
+            //            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
+            if (choice == 0)
+            {
+                FlashHelper.sharedFlashHandler().turnOff()
+            }
+            else if (choice == 1)
+            {
+                FlashHelper.sharedFlashHandler().turnOn()
+            }
+            
+            context.state = .Runnable
         }
     }
     

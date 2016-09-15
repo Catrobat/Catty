@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickStaticChoiceProtocol.h"
+#import <Foundation/Foundation.h>
 
-@interface FlashBrick : Brick<BrickStaticChoiceProtocol>
+@class Brick;
 
-@property (nonatomic) int flashChoice;
-- (id)initWithChoice:(int)choice;
-
+@protocol BrickStaticChoiceProtocol <NSObject>
+- (NSString*)choiceForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setChoice:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (NSArray<NSString *>*)possibleChoicesForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 @end

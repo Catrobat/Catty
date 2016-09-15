@@ -32,16 +32,23 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
-    GDataXMLElement *broadcastMessageElement = [xmlElement childWithElementName:@"broadcastMessage"];
-    [XMLError exceptionIfNil:broadcastMessageElement
-                     message:@"BroadcastBrick element does not contain a broadcastMessage child element!"];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+    GDataXMLElement *flashChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
+    [XMLError exceptionIfNil:flashChoiceElement
+                     message:@"FlashBrick element does not contain a spinnerSelectionID child element!"];
 
-    NSString *broadcastMessage = [broadcastMessageElement stringValue];
-    [XMLError exceptionIfNil:broadcastMessage message:@"No broadcastMessage given..."];
+    NSString *flashChoice = [flashChoiceElement stringValue];
+    [XMLError exceptionIfNil:flashChoice message:@"No flashChoice given..."];
 
     FlashBrick *flashBrick = [self new];
-    flashBrick.broadcastMessage = broadcastMessage;
+    
+    int choiceInt = (int)[flashChoice integerValue];
+    if ((choiceInt < 0) || (choiceInt > 1))
+    {
+        [XMLError exceptionWithMessage:@"Parameter for spinnerSelectionID is not valid. Must be 0 or 1"];
+    }
+        
+    flashBrick.flashChoice = choiceInt;
     return flashBrick;
 }
 
@@ -52,12 +59,12 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    /* New Serializer. Uncomment once the brick is finished.
-     
+    NSString *numberString = [NSString stringWithFormat:@"%i", self.flashChoice];
+    
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"FlashBrick"]];
-    GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:@"0" context:context];
+    GDataXMLElement *spinnerID = [GDataXMLElement elementWithName:@"spinnerSelectionID" stringValue:numberString context:context];
     GDataXMLElement *offString = [GDataXMLElement elementWithName:@"string" stringValue:@"off" context:context];
     GDataXMLElement *onString = [GDataXMLElement elementWithName:@"string" stringValue:@"on" context:context];
     GDataXMLElement *spinnerValues = [GDataXMLElement elementWithName:@"spinnerValues" context:context];
@@ -66,15 +73,6 @@
     [spinnerValues addChild:onString context:context];
     [brick addChild:spinnerID context:context];
     [brick addChild:spinnerValues context:context];
-    return brick;
-     
-    */
-    
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"BroadcastBrick"]];
-    GDataXMLElement *message = [GDataXMLElement elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage context:context];
-    [brick addChild:message context:context];
     return brick;
 }
 

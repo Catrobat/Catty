@@ -255,6 +255,8 @@ let kLocalizedDownloaded = NSLocalizedString("Download sucessful", comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", comment: "")
 let kLocalizedWiFiProgramDownloads = NSLocalizedString("Download only with WiFi", comment: "")
 let kLocalizedNoWifiConnection = NSLocalizedString("Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", comment: "")
+let kLocalizedOff = NSLocalizedString("off", comment: "")
+let kLocalizedOn = NSLocalizedString("on", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

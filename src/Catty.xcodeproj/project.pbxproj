@@ -458,6 +458,7 @@
 		99B2C3701D884D2900736769 /* FlashBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C36F1D884D2900736769 /* FlashBrick.m */; };
 		99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C3721D884E8A00736769 /* FlashBrickCell.m */; };
 		99B2C3751D884F2D00736769 /* FlashBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C3741D884F2D00736769 /* FlashBrick+Instruction.swift */; };
+		99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C8D1BA1D8AE339003FBC42 /* BrickCellStaticChoiceData.m */; };
 		99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */; };
 		99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBF91D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m */; };
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
@@ -1630,6 +1631,7 @@
 		99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetColorToBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		99814DBD1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetColorToBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		9990BB6C1D89D89A0088357A /* BrickStaticChoiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickStaticChoiceProtocol.h; sourceTree = "<group>"; };
 		99B2C3691D884C1300736769 /* FlashBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FlashBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/FlashBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		99B2C36A1D884C1300736769 /* FlashBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FlashBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/FlashBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		99B2C36E1D884D2900736769 /* FlashBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashBrick.h; sourceTree = "<group>"; };
@@ -1637,6 +1639,8 @@
 		99B2C3711D884E8A00736769 /* FlashBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashBrickCell.h; sourceTree = "<group>"; };
 		99B2C3721D884E8A00736769 /* FlashBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlashBrickCell.m; sourceTree = "<group>"; };
 		99B2C3741D884F2D00736769 /* FlashBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FlashBrick+Instruction.swift"; path = "PlayerEngine/Instructions/IO/FlashBrick+Instruction.swift"; sourceTree = "<group>"; };
+		99C8D1B91D8AE339003FBC42 /* BrickCellStaticChoiceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellStaticChoiceData.h; sourceTree = "<group>"; };
+		99C8D1BA1D8AE339003FBC42 /* BrickCellStaticChoiceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellStaticChoiceData.m; sourceTree = "<group>"; };
 		99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickTests.m; sourceTree = "<group>"; };
 		99EBDBF81D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeColorByNBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ChangeColorByNBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		99EBDBF91D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ChangeColorByNBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ChangeColorByNBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
@@ -2552,17 +2556,18 @@
 		4C5517D31ABC6A8100A52FF4 /* BrickData */ = {
 			isa = PBXGroup;
 			children = (
-				927F79DD1BEE39BE008D1635 /* BrickPhiroIfSensorProtocol.h */,
-				929CC0D51BC39B460027DEC0 /* BrickPhiroLightProtocol.h */,
-				929CC0D61BC39B460027DEC0 /* BrickPhiroMotorProtocol.h */,
-				929CC0D71BC39B460027DEC0 /* BrickPhiroToneProtocol.h */,
 				4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */,
 				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
 				4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */,
 				4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */,
+				927F79DD1BEE39BE008D1635 /* BrickPhiroIfSensorProtocol.h */,
+				929CC0D51BC39B460027DEC0 /* BrickPhiroLightProtocol.h */,
+				929CC0D61BC39B460027DEC0 /* BrickPhiroMotorProtocol.h */,
+				929CC0D71BC39B460027DEC0 /* BrickPhiroToneProtocol.h */,
 				4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */,
-				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
+				9990BB6C1D89D89A0088357A /* BrickStaticChoiceProtocol.h */,
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
+				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
 			);
 			path = BrickData;
 			sourceTree = "<group>";
@@ -5000,14 +5005,6 @@
 		AA74F00F1BC05FCE00D1E954 /* BrickCellData */ = {
 			isa = PBXGroup;
 			children = (
-				927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */,
-				927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */,
-				929CC0D81BC39B690027DEC0 /* BrickCellPhiroLightData.h */,
-				929CC0D91BC39B690027DEC0 /* BrickCellPhiroLightData.m */,
-				929CC0DA1BC39B690027DEC0 /* BrickCellPhiroMotorData.h */,
-				929CC0DB1BC39B690027DEC0 /* BrickCellPhiroMotorData.m */,
-				929CC0DC1BC39B690027DEC0 /* BrickCellPhiroToneData.h */,
-				929CC0DD1BC39B690027DEC0 /* BrickCellPhiroToneData.m */,
 				AA74F0101BC05FCE00D1E954 /* BrickCellFormulaData.h */,
 				AA74F0111BC05FCE00D1E954 /* BrickCellFormulaData.m */,
 				AA74F0121BC05FCE00D1E954 /* BrickCellLookData.h */,
@@ -5016,8 +5013,18 @@
 				AA74F0151BC05FCE00D1E954 /* BrickCellMessageData.m */,
 				AA74F0161BC05FCE00D1E954 /* BrickCellObjectData.h */,
 				AA74F0171BC05FCE00D1E954 /* BrickCellObjectData.m */,
+				927F79D51BEE39A3008D1635 /* BrickCellPhiroIfSensorData.h */,
+				927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */,
+				929CC0D81BC39B690027DEC0 /* BrickCellPhiroLightData.h */,
+				929CC0D91BC39B690027DEC0 /* BrickCellPhiroLightData.m */,
+				929CC0DA1BC39B690027DEC0 /* BrickCellPhiroMotorData.h */,
+				929CC0DB1BC39B690027DEC0 /* BrickCellPhiroMotorData.m */,
+				929CC0DC1BC39B690027DEC0 /* BrickCellPhiroToneData.h */,
+				929CC0DD1BC39B690027DEC0 /* BrickCellPhiroToneData.m */,
 				AA74F0181BC05FCE00D1E954 /* BrickCellSoundData.h */,
 				AA74F0191BC05FCE00D1E954 /* BrickCellSoundData.m */,
+				99C8D1B91D8AE339003FBC42 /* BrickCellStaticChoiceData.h */,
+				99C8D1BA1D8AE339003FBC42 /* BrickCellStaticChoiceData.m */,
 				AA74F01A1BC05FCE00D1E954 /* BrickCellTextData.h */,
 				AA74F01B1BC05FCE00D1E954 /* BrickCellTextData.m */,
 				AA74F01C1BC05FCE00D1E954 /* BrickCellVariableData.h */,
@@ -6550,6 +6557,7 @@
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
+				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
