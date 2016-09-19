@@ -21,10 +21,6 @@
  */
 
 
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVAudioPlayer.h>
-
-
 @class SpriteObject;
 
 @protocol SpriteManagerDelegate <NSObject>

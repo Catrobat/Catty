@@ -150,7 +150,7 @@ final class UIImageExtensionTests: XCTestCase {
             width * 4,
             CGColorSpaceCreateDeviceRGB(),
             CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue),
-            providerRef,
+            providerRef!,
             nil,
             true,
             CGColorRenderingIntent.RenderingIntentDefault
