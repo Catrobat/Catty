@@ -11,7 +11,7 @@ def available_pods
     pod 'Shimmer'
     pod 'MYBlurIntroductionView'
     pod 'TTTAttributedLabel'
-    pod 'Siren'
+    pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift2.3'
     pod 'LXReorderableCollectionViewFlowLayout', '~> 0.1.1'
 end
 
@@ -25,4 +25,12 @@ end
 
 target 'Catty UITests' do
     available_pods
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '2.3'
+        end
+    end
 end
