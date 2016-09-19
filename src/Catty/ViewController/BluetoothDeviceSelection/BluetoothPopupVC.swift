@@ -43,13 +43,13 @@ class BluetoothPopupVC: MXSegmentedPagerController {
         self.navigationController?.navigationBar.tintColor = UIColor.navTintColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.navTextColor()]
         // Segmented Control customization
-        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocation.Down;
         self.segmentedPager.segmentedControl.backgroundColor = UIColor.globalTintColor()
         self.segmentedPager.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.backgroundColor(), NSFontAttributeName: UIFont.systemFontOfSize(12)];
         self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName : UIColor.navTintColor()]
-        self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox
+        self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.Box
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTintColor()
-        self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed
+        self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.Fixed
 
         setHeader()
         

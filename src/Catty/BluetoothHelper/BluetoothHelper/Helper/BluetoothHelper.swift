@@ -52,7 +52,7 @@ public protocol CMWrapper {
     var isOn        : Bool                  {get}
     var isOff       : Bool                  {get}
     var peripherals : [PeripheralWrap]      {get}
-    var state       : CBCentralManagerState {get}
+    var state       : ManagerState {get}
     
     func scanForPeripheralsWithServices(uuids:[CBUUID]?)
     func retrievePeripheralsWithIdentifiers(uuids:[NSUUID]) -> [CBPeripheral]
@@ -141,6 +141,15 @@ public enum PeripheralManagerError : Int {
 
 public enum CentralError : Int {
     case IsScanning         = 50
+}
+
+@objc public enum ManagerState : Int {
+    case Unknown
+    case Resetting
+    case Unsupported
+    case Unauthorized
+    case PoweredOff
+    case PoweredOn
 }
 
 public struct BluetoothError {
