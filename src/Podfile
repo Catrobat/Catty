@@ -5,13 +5,13 @@ use_frameworks!
 inhibit_all_warnings!
 
 def available_pods
-    pod 'MXSegmentedPager'
+    pod 'MXSegmentedPager', '3.0.0'
     pod 'M13ProgressSuite', '~> 1.2.7'
     pod 'Bohr'
     pod 'Shimmer'
     pod 'MYBlurIntroductionView'
     pod 'TTTAttributedLabel'
-    pod 'Siren'
+    pod 'Siren', '0.9.4'
     pod 'LXReorderableCollectionViewFlowLayout', '~> 0.1.1'
 end
 
