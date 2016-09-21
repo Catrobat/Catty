@@ -98,6 +98,12 @@
     for (GDataXMLElement *entry in entries) {
         [XMLError exceptionIfNode:entry isNilOrNodeNameNotEquals:@"entry"];
         NSArray *objectElements = [entry elementsForName:@"object"];
+        
+        if ([objectElements count] != 1) {
+            // Work-around for broken XML (e.g. for program 4705)
+            continue;
+        }
+        
         [XMLError exceptionIf:[objectElements count] notEquals:1 message:@"Too many object-elements given!"];
         GDataXMLElement *objectElement = [objectElements firstObject];
 
