@@ -117,6 +117,7 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 
 #define kFormulaEditorShowResultDuration 4.0f
+#define kFormulaEditorTopOffset 64.0f
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
@@ -453,8 +454,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
-#define kBrickShapeNormalInlineViewOffsetY 7.0f
-#define kBrickShapeRoundedSmallInlineViewOffsetY 17.0f
+#define kBrickShapeNormalInlineViewOffsetY 4.0f
+#define kBrickShapeRoundedSmallInlineViewOffsetY 20.7f
 #define kBrickShapeRoundedBigInlineViewOffsetY 37.0f
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 27.0f

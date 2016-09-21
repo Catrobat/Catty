@@ -60,7 +60,7 @@
 {
     UISearchBar *searchBar = [UISearchBar new];
     self.searchStoreViewController.searchBar = searchBar;
-    self.searchStoreViewController.searchBar.text = @"a";
+    self.searchStoreViewController.searchBar.text = @" ";
     [self.searchStoreViewController performSearch];
     
     [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
