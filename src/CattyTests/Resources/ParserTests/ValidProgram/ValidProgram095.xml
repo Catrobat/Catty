@@ -14,7 +14,7 @@
         <platform>Android</platform>
         <platformVersion>21.0</platformVersion>
         <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-        <programName>Pythagorean Theorem</programName>
+        <programName>Valid Program</programName>
         <remixOf>http://pocketcode.org/details/0</remixOf>
         <screenHeight>1184</screenHeight>
         <screenMode>MAXIMIZE</screenMode>

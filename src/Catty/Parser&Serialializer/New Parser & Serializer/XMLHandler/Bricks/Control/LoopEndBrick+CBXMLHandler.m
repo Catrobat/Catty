@@ -34,7 +34,7 @@
 
 @implementation LoopEndBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
     LoopEndBrick *loopEndBrick = [self new];
@@ -49,11 +49,6 @@
     LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
     loopBeginBrick.loopEndBrick = loopEndBrick;
     return loopEndBrick;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

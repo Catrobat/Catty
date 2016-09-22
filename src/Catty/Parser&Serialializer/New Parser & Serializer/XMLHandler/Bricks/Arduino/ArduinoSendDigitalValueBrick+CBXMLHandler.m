@@ -34,7 +34,7 @@
 
 @implementation ArduinoSendDigitalValueBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
     Formula *pin = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"ARDUINO_DIGITAL_PIN_NUMBER" withContext:context];
@@ -43,12 +43,6 @@
     sendDigitalValueBrick.pin = pin;
     sendDigitalValueBrick.value = value;
     return sendDigitalValueBrick;
-}
-
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

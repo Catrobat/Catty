@@ -31,7 +31,7 @@
 
 @implementation GlideToBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
     Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
@@ -47,25 +47,20 @@
     return glideToBrick;
 }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
-}
-
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"GlideToBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.yDestination xmlElementWithContext:context];
+    GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];;
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
+    [formulaList addChild:formula context:context];
+    formula = [self.yDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_DESTINATION"]];
     [formulaList addChild:formula context:context];
     formula = [self.xDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_DESTINATION"]];
-    [formulaList addChild:formula context:context];
-    formula = [self.durationInSeconds xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

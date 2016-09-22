@@ -34,12 +34,17 @@
 
 @implementation ShowTextBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     NSUInteger childCount = [xmlElement.childrenWithoutComments count];
     GDataXMLElement *userVariableElement = nil;
     
     [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:2];
+    
+    GDataXMLElement *userVariableName = [xmlElement childWithElementName:@"userVariableName"];
+    if (userVariableName != nil) {
+        childCount -= 1;
+    }
     
     if (childCount == 3) {
         userVariableElement = [xmlElement childWithElementName:@"userVariable"];
@@ -76,11 +81,6 @@
     return showTextBrick;
 }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
-}
-
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
@@ -98,8 +98,13 @@
     // add pseudo <inUserBrick> element to produce a Catroid equivalent XML (unused at the moment)
     [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context] context:context];
 
-    if (self.userVariable)
+    if (self.userVariable) {
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+        
+        GDataXMLElement *userVariableName = [GDataXMLElement elementWithName:@"userVariableName" stringValue:self.userVariable.name context:context];
+        [brick addChild:userVariableName context:context];
+    }
+    
     return brick;
 }
 

@@ -31,7 +31,7 @@
 
 @implementation RepeatBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     RepeatBrick *repeatBrick = [self new];
@@ -41,11 +41,6 @@
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:repeatBrick];
     return repeatBrick;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

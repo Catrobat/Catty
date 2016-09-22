@@ -20,15 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+#import "SetColorBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@class Formula;
-
-@interface SetColorToBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong) Formula *color;
-
-- (NSString*)pathForLook:(Look*)look;
+@interface SetColorBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

@@ -31,7 +31,7 @@
 
 @implementation PointInDirectionBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DEGREES" withContext:context];
@@ -40,11 +40,6 @@
     PointInDirectionBrick *pointInDirectionBrick = [self new];
     pointInDirectionBrick.degrees = formula;
     return pointInDirectionBrick;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

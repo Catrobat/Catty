@@ -32,7 +32,7 @@
 
 - (void)testIfCopiedSpriteObjectsAreEqualToOriginalForValidProgramAllBricks
 {
-    [self compareSpriteObjectsWithIsEqualMethodForProgramWithXML:@"ValidProgramAllBricks"];
+    [self compareSpriteObjectsWithIsEqualMethodForProgramWithXML:@"ValidProgramAllBricks093"];
 }
 
 - (void)testIfCopiedSpriteObjectsAreEqualToOriginalForAirFight

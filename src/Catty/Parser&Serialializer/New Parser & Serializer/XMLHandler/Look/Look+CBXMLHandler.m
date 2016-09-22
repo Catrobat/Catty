@@ -31,7 +31,7 @@
 @implementation Look (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
     GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
@@ -46,11 +46,6 @@
                         message:@"Look contains wrong child node"];
     look.fileName = [fileNameElement stringValue];
     return look;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 #pragma mark - Serialization
