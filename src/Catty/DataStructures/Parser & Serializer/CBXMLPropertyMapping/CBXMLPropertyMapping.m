@@ -30,6 +30,18 @@
     if (self) {
         _classPropertyName = [NSString stringWithString:classPropertyName];
         _xmlElementName = [NSString stringWithString:classPropertyName];
+        _ignoreProperty = NO;
+    }
+    return self;
+}
+
+- (id)initWithClassPropertyName:(NSString*)classPropertyName andIgnore:(BOOL)ignore
+{
+    self = [super init];
+    if (self) {
+        _classPropertyName = [NSString stringWithString:classPropertyName];
+        _xmlElementName = [NSString stringWithString:classPropertyName];
+        _ignoreProperty = ignore;
     }
     return self;
 }
@@ -40,6 +52,18 @@
     if (self) {
         _classPropertyName = [NSString stringWithString:classPropertyName];
         _xmlElementName = [NSString stringWithString:xmlElementName];
+        _ignoreProperty = NO;
+    }
+    return self;
+}
+
+- (id)initWithClassPropertyName:(NSString*)classPropertyName andXMLElementName:(NSString*)xmlElementName andIgnore:(BOOL)ignore
+{
+    self = [super init];
+    if (self) {
+        _classPropertyName = [NSString stringWithString:classPropertyName];
+        _xmlElementName = [NSString stringWithString:xmlElementName];
+        _ignoreProperty = ignore;
     }
     return self;
 }

@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetColorToBrick.h"
+#import "SetColorBrick.h"
 #import "Formula.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation SetColorToBrick
+@implementation SetColorBrick
 
 @synthesize color = _color;
 
@@ -67,7 +67,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetColorToBrick (%f)", [self.color interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetColorBrick (%f)", [self.color interpretDoubleForSprite:self.script.object]];
 }
 
 #pragma mark - Resources

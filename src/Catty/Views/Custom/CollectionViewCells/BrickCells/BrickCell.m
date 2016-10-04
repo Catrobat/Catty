@@ -474,7 +474,7 @@
             CGRect inputViewFrame = remainingFrame;
 //            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
 //            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
-            inputViewFrame.origin.y += kBrickInputFieldTopMargin/(kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin) * (remainingFrame.size.height - kBrickInputFieldHeight);
+            inputViewFrame.origin.y += (inputViewFrame.size.height - kBrickInputFieldHeight)/2 - 0.5;
             inputViewFrame.size.height = kBrickInputFieldHeight;
             inputViewFrame.size.width = kBrickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
@@ -482,7 +482,6 @@
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
                 inputField = [[BrickCellFormulaData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                 inputViewFrame.size.height = kBrickInputFieldHeight;
                 inputField = [[BrickCellTextData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {

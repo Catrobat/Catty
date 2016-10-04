@@ -80,7 +80,7 @@
 - (void)testValidObjectListForAllBricks
 {
     CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks093"]];
     GDataXMLElement *xmlElement = [document rootElement];
 
     NSArray *objectListElements = [xmlElement elementsForName:@"objectList"];

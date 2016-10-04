@@ -82,7 +82,7 @@
 
 //    //######### FIXME remove that later!! {
 //        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks" ofType:@"xml"];
+//        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks093" ofType:@"xml"];
 //    // }
 
     Program *program = nil;

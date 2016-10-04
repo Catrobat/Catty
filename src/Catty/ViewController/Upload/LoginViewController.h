@@ -40,7 +40,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView * headerImageView;
 
-@property (nonatomic, weak) IBOutlet UILabel * infoLabel;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @end

@@ -20,10 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+#import "SetColorBrickCell.h"
 
-@interface SetColorToBrickCell : BrickCell
+@interface SetColorBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@property (nonatomic, weak) UITextField *colorTextField;
+@implementation SetColorBrickCell
+
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.colorTextField = inlineViewSubViews[1];
+}
 
 @end

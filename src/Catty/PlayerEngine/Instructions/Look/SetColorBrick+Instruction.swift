@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetColorToBrick: CBInstructionProtocol{
+extension SetColorBrick: CBInstructionProtocol{
     
     func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {

@@ -158,6 +158,8 @@
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
+    UIEdgeInsets insets = { .left = 15, .right = 15, .top = 10, .bottom = 10 };
+    self.registerButton.contentEdgeInsets = insets;
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
 //    self.registerButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.registerButton.frame.size.height);
 }

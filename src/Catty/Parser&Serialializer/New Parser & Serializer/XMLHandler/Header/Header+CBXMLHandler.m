@@ -33,7 +33,7 @@
 @implementation Header (CBXMLHandler)
 
 #pragma mark - Header properties
-+ (NSMutableArray*)headerPropertiesForLanguageVersion093
++ (NSMutableArray<CBXMLPropertyMapping*>*)defaultHeaderProperties
 {
     return [NSMutableArray arrayWithObjects:
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"applicationBuildName"],
@@ -60,62 +60,56 @@
             nil];
 }
 
-+ (NSMutableArray*)headerPropertiesForLanguageVersion095
++ (NSMutableArray<CBXMLPropertyMapping*>*)headerPropertiesForLanguageVersion095
 {
-    NSMutableArray *headerProperties = [self headerPropertiesForLanguageVersion093];
-    [headerProperties addObject:[[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"isPhiroProProject"]];
+    NSMutableArray *headerProperties = [self defaultHeaderProperties];
+    [headerProperties addObject:[[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"isPhiroProProject" andIgnore:YES]];
     return headerProperties;
 }
 
-+ (NSMutableArray*)headerPropertiesForLanguageVersion097
++ (NSMutableArray<CBXMLPropertyMapping*>*)headerPropertiesForLanguageVersion098
 {
-    return [self headerPropertiesForLanguageVersion093];
+    NSMutableArray *headerProperties = [self defaultHeaderProperties];
+    [headerProperties addObject:[[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"landscapeMode"]];
+    return headerProperties;
 }
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
-withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
-    Header *header = [self defaultHeader];
-    NSArray *headerProperties = [self headerPropertiesForLanguageVersion093];
-    [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count]
-                  message:@"Invalid number of header properties in XML!"];
-
-    for (CBXMLPropertyMapping *headerProperty in headerProperties) {
-        GDataXMLElement *headerPropertyNode = [xmlElement childWithElementName:headerProperty.xmlElementName];
-        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!",
-         headerProperty.xmlElementName];
-        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName
-                                                  andXMLNode:headerPropertyNode];
-        // Note: weak properties are not yet supported!!
-        [header setValue:value forKey:headerProperty.classPropertyName];
+    
+    NSArray<CBXMLPropertyMapping*> *headerProperties;
+    
+    if (context.languageVersion == 0.95f || context.languageVersion == 0.96f) {
+        headerProperties = [self headerPropertiesForLanguageVersion095];
+    } else if (context.languageVersion == 0.98f) {
+        headerProperties = [self headerPropertiesForLanguageVersion098];
+    } else {
+        headerProperties = [self defaultHeaderProperties];
     }
+    
+    Header *header = [self getHeaderFromElement:xmlElement withContext:context andProperties:headerProperties];
     return header;
 }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
-withContextForLanguageVersion095:(CBXMLParserContext*)context
++ (instancetype)getHeaderFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context andProperties:(NSArray<CBXMLPropertyMapping*>*)headerProperties
 {
-    [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];
-    NSArray *headerProperties = context.languageVersion == 0.97f ? [self headerPropertiesForLanguageVersion097] : [self headerPropertiesForLanguageVersion095];
     
     [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count]
                   message:@"Invalid number of header properties in XML!"];
 
     for (CBXMLPropertyMapping *headerProperty in headerProperties) {
         
-        // ignore isPhiroProProject property
-        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"] && context.languageVersion < 0.97f) {
+        if (headerProperty.ignoreProperty) {
             continue;
         }
-
+        
         GDataXMLElement *headerPropertyNode = [xmlElement childWithElementName:headerProperty.xmlElementName];
-        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!",
-         headerProperty.xmlElementName];
-        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName
-                                                  andXMLNode:headerPropertyNode];
+        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!", headerProperty.xmlElementName];
+        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName andXMLNode:headerPropertyNode];
+        
         // Note: weak properties are not yet supported!!
         [header setValue:value forKey:headerProperty.classPropertyName];
     }
@@ -163,6 +157,10 @@ withContextForLanguageVersion095:(CBXMLParserContext*)context
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
                                                     stringValue:self.deviceName
+                                                        context:context]
+                       context:context];
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"landscapeMode"
+                                                    stringValue:self.landscapeMode ? @"true" : @"false"
                                                         context:context]
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"mediaLicense"

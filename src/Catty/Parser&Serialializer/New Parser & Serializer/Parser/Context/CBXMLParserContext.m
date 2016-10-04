@@ -39,13 +39,11 @@
     return self;
 }
 
-#pragma mark - CatrobatLanguageVersion selection
+#pragma mark - CatrobatLanguageVersion check
 - (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass
 {
-    if (self.languageVersion == 0.93f) {
-        return [modelClass parseFromElement:xmlElement withContextForLanguageVersion093:self];
-    } else if (self.languageVersion >= 0.94f && self.languageVersion <= 0.97f) {
-        return [modelClass parseFromElement:xmlElement withContextForLanguageVersion095:self];
+    if (self.languageVersion >= 0.93f && self.languageVersion <= 0.98f) {
+        return [modelClass parseFromElement:xmlElement withContext:self];
     } else {
         NSError(@"Unsupported CatrobatLanguageVersion %.2f", self.languageVersion);
     }
