@@ -374,7 +374,6 @@ const CGFloat PADDING = 5.0f;
         
         
         
-        
         self.dataTask = [self.session dataTaskWithRequest:request  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             [self enableUploadView];
             if (error) {
@@ -400,8 +399,8 @@ const CGFloat PADDING = 5.0f;
                     [self.program saveToDiskWithNotification:YES];
                     
                         //Set new token but when? everytime is wrong
-//                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-//                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
+                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
+                   [JNKeychain saveValue:newToken forKey:kUserLoginToken];
                     
                     [self showUploadSuccessfulView];
                     
