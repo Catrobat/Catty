@@ -34,7 +34,7 @@
 
 @implementation PhiroRGBLightBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
     Formula *red = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"RED" withContext:context];
@@ -47,12 +47,6 @@
     phiroRGBLightBrick.blueFormula = blue;
     phiroRGBLightBrick.light = light.stringValue;
     return phiroRGBLightBrick;
-}
-
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

@@ -42,7 +42,7 @@
     SetVariableBrick *setVariableBrick = [SetVariableBrick new];
     GDataXMLElement *xmlElement = [setVariableBrick xmlElementWithContext:self.serializerContext];
     
-    XCTAssertThrowsSpecificNamed([SetVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext], NSException, NSStringFromClass([CBXMLParserHelper class]), @"SetVariableBrick has invalid number of formulas. Should throw exception.");
+    XCTAssertThrowsSpecificNamed([SetVariableBrick parseFromElement:xmlElement withContext:self.parserContext], NSException, NSStringFromClass([CBXMLParserHelper class]), @"SetVariableBrick has invalid number of formulas. Should throw exception.");
 }
 
 - (void)testSetVariableBrickWithoutUserVariable
@@ -56,7 +56,7 @@
     GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
     XCTAssertNotNil(inUserBrickElement, @"No inUserBrickElement element found");
     
-    SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext];
+    SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedSetVariableBrick, @"Could not parse SetVariableBrick");
     XCTAssertNotNil(parsedSetVariableBrick.variableFormula, @"Formula not correctly parsed");
@@ -77,7 +77,7 @@
     
     XCTAssertNil([xmlElement childWithElementName:@"inUserBrick"], @"inUserBrickElement element not removed");
     
-    SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext];
+    SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedSetVariableBrick, @"Could not parse SetVariableBrick");
     XCTAssertNotNil(parsedSetVariableBrick.variableFormula, @"Formula not correctly parsed");
@@ -97,7 +97,7 @@
     
     XCTAssertNotNil(xmlElement, @"GDataXMLElement must not be nil");
     
-    SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext];
+    SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedSetVariableBrick, @"Could not parse SetVariableBrick");
     XCTAssertNotNil(parsedSetVariableBrick.variableFormula, @"Formula not correctly parsed");
@@ -109,7 +109,7 @@
     ChangeVariableBrick *changeVariableBrick = [ChangeVariableBrick new];
     GDataXMLElement *xmlElement = [changeVariableBrick xmlElementWithContext:self.serializerContext];
     
-    XCTAssertThrowsSpecificNamed([ChangeVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext], NSException, NSStringFromClass([CBXMLParserHelper class]), @"ChangeVariableBrick has invalid number of formulas. Should throw exception.");
+    XCTAssertThrowsSpecificNamed([ChangeVariableBrick parseFromElement:xmlElement withContext:self.parserContext], NSException, NSStringFromClass([CBXMLParserHelper class]), @"ChangeVariableBrick has invalid number of formulas. Should throw exception.");
 }
 
 - (void)testChangeVariableBrickWithoutUserVariable
@@ -123,7 +123,7 @@
     GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
     XCTAssertNotNil(inUserBrickElement, @"No inUserBrickElement element found");
     
-    ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext];
+    ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedChangeVariableBrick, @"Could not parse ChangeVariableBrick");
     XCTAssertNotNil(parsedChangeVariableBrick.variableFormula, @"Formula not correctly parsed");
@@ -144,7 +144,7 @@
     
     XCTAssertNil([xmlElement childWithElementName:@"inUserBrick"], @"inUserBrickElement element not removed");
     
-    ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext];
+    ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedChangeVariableBrick, @"Could not parse ChangeVariableBrick");
     XCTAssertNotNil(parsedChangeVariableBrick.variableFormula, @"Formula not correctly parsed");
@@ -164,7 +164,7 @@
     
     XCTAssertNotNil(xmlElement, @"GDataXMLElement must not be nil");
     
-    ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContextForLanguageVersion095:self.parserContext];
+    ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedChangeVariableBrick, @"Could not parse ChangeVariableBrick");
     XCTAssertNotNil(parsedChangeVariableBrick.variableFormula, @"Formula not correctly parsed");

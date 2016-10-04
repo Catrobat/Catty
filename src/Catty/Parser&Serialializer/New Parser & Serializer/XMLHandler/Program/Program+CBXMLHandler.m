@@ -37,8 +37,7 @@
 @implementation Program (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
-withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
     [XMLError exceptionIfNil:context message:@"No context given!"];
@@ -50,12 +49,6 @@ withContextForLanguageVersion093:(CBXMLParserContext*)context
     
     [self addMissingVariablesToVariablesContainer:program.variables withContext:context];
     return program;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
-withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 #pragma mark Header parsing

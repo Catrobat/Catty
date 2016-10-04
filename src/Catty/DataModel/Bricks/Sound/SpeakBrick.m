@@ -66,7 +66,7 @@
 
 - (NSString*)text
 {
-    NSError(@"This property can not be accessed and is only used for backward compatibility with ProjectParser for CatrobatLanguage < 0.93");
+    NSDebug(@"This property can not be accessed and is only used for backward compatibility with ProjectParser for CatrobatLanguage < 0.93");
     return nil;
 }
 

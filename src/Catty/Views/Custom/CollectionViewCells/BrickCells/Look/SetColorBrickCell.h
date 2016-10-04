@@ -20,9 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetColorToBrick.h"
-#import "CBXMLNodeProtocol.h"
+#import "BrickCell.h"
 
-@interface SetColorToBrick (CBXMLHandler) <CBXMLNodeProtocol>
+@interface SetColorBrickCell : BrickCell
+
+@property (nonatomic, weak) UITextField *colorTextField;
 
 @end

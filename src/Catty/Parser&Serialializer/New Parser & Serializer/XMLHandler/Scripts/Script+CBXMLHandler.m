@@ -39,7 +39,7 @@
 @implementation Script (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
     NSArray *attributes = [xmlElement attributes];
@@ -79,11 +79,6 @@
     script.object = context.spriteObject;
     script.brickList = [self parseAndCreateBricks:xmlElement forScript:script withContext:context];
     return script;
-}
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 + (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement forScript:(Script*)script
