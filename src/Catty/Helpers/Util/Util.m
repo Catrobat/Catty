@@ -303,7 +303,7 @@
 
 + (NSString*)platformName
 {
-  return [[UIDevice currentDevice] systemName];
+    return @"iOS";
 }
 
 + (NSString*)platformVersion

@@ -83,6 +83,15 @@
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 
         NSDebug(@"Generated XML output:\n%@", xmlString);
+        
+        
+        // Diese Zeile ist nur ein Funktionstest. Nach beendigung von IOS-434 wieder löschen !!!
+        // +++++++++++
+        NSInfo(xmlString);
+        // +++++++++++
+        
+        
+        
         NSError *error = nil;
 
         if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
