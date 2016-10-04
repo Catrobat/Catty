@@ -209,6 +209,10 @@ const CGFloat PADDING = 5.0f;
         self.descriptionTextView.text = self.program.header.programDescription;
     }
     self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
+
+    self.descriptionTextView.layer.borderWidth = 1.0f;
+    self.descriptionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.descriptionTextView.layer.cornerRadius = 8;
 }
 
 - (void)initActionButtons
@@ -361,6 +365,16 @@ const CGFloat PADDING = 5.0f;
         NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
         [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
         
+        
+        // DEBUG, kann nachher wieder weg
+        NSLog(@"%@", [request allHTTPHeaderFields]);
+        NSData *body2 = request.HTTPBody;
+        NSString* myString = [[NSString alloc] initWithData:body2 encoding:NSASCIIStringEncoding];
+        NSLog(@"Request body %@", myString);
+        
+        
+        
+        
         self.dataTask = [self.session dataTaskWithRequest:request  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             [self enableUploadView];
             if (error) {
@@ -419,6 +433,14 @@ const CGFloat PADDING = 5.0f;
                 
 
             }
+            
+            
+            
+            //DEBUG, kann nachher wieder weg
+            NSData *data1 = data;
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            NSError *error1 = error;
+            NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         }];
         
         if (self.dataTask) {
@@ -467,13 +489,31 @@ const CGFloat PADDING = 5.0f;
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
+
+
+
+
+
+
+
+
+
+
+
 -(void)enableUploadView
 {
-    [self.loadingView hide];
-    self.view.alpha = 1.0f;
-    self.view.userInteractionEnabled = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self.loadingView hide];
+        for (UIView *view in self.view.subviews) {
+            if (![view isKindOfClass:[LoadingView class]]) {
+                view.alpha = 1.0f;
+            }
+        }
+        self.view.userInteractionEnabled = YES;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    });
 }
+
 
 
 @end

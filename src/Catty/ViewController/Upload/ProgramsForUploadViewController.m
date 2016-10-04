@@ -248,14 +248,14 @@
     NSDebug(@"Upload program: %@", self.lastUsedProgram.header.programName);
     NSDebug(@"Attention: Currently not working!");
     
-    [Util alertWithText:kLocalizedThisFeatureIsComingSoon];
+    //[Util alertWithText:kLocalizedThisFeatureIsComingSoon];
     
     /*
      ProgramLoadingInfo *info = self.programLoadingInfos.firstObject;
      NSDebug(@"%@", info.basePath);
      */
     
-    //[self showUploadInfoView];  //Currently not working
+    [self showUploadInfoView];  //Currently not working
 }
 
 #pragma mark - Helpers
