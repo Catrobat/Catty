@@ -27,6 +27,11 @@
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl {
     self = [super init];
     if (self) {
+        
+        if ([baseUrl hasPrefix:@"//"]) {
+            baseUrl = [NSString stringWithFormat:@"https:%@", baseUrl];
+        }
+        
         self.name            = [dict valueForKey:@"ProjectName"];
         self.author          = [dict valueForKey:@"Author"];
         self.projectDescription = [dict valueForKey:@"Description"];
