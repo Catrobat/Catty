@@ -245,7 +245,7 @@
 - (void)uploadProgramAction:(id)sender
 {
     NSDebug(@"Upload program: %@", self.lastUsedProgram.header.programName);
-    NSDebug(@"Attention: Currently not working!");
+    //NSDebug(@"Attention: Currently not working!");
     
     //[Util alertWithText:kLocalizedThisFeatureIsComingSoon];
     
