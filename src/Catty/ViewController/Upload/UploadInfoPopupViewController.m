@@ -123,6 +123,9 @@ const CGFloat PADDING = 5.0f;
                            selector:@selector(uploadAction)
                                name:kReadyToUpload
                              object:nil];
+    [self.navigationController.navigationBar setTintColor:[UIColor navTintColor]];
+    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -211,7 +214,7 @@ const CGFloat PADDING = 5.0f;
     self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
 
     self.descriptionTextView.layer.borderWidth = 1.0f;
-    self.descriptionTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.descriptionTextView.layer.borderColor = [[UIColor textViewBorderGrayColor] CGColor];
     self.descriptionTextView.layer.cornerRadius = 8;
 }
 
@@ -219,12 +222,12 @@ const CGFloat PADDING = 5.0f;
 {
     [self.uploadButton setTitle:kLocalizedUpload forState:UIControlStateNormal];
     [self.uploadButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE+4]];
-    [self.uploadButton.titleLabel setTextColor:[UIColor buttonHighlightedTintColor]];
     [self.uploadButton setBackgroundColor:[UIColor globalTintColor]];
     self.uploadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.uploadButton sizeToFit];
     self.uploadButton.frame = CGRectMake(0, self.currentHeight, self.view.frame.size.width, self.uploadButton.frame.size.height);
     [self.uploadButton addTarget:self action:@selector(checkProgramAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.uploadButton setTitleColor:[UIColor buttonHighlightedTintColor] forState: UIControlStateNormal];
 }
 
 #pragma mark Helpers
@@ -365,15 +368,6 @@ const CGFloat PADDING = 5.0f;
         NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
         [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
         
-        
-        // DEBUG, kann nachher wieder weg
-        NSLog(@"%@", [request allHTTPHeaderFields]);
-        NSData *body2 = request.HTTPBody;
-        NSString* myString = [[NSString alloc] initWithData:body2 encoding:NSASCIIStringEncoding];
-        NSLog(@"Request body %@", myString);
-        
-        
-        
         self.dataTask = [self.session dataTaskWithRequest:request  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             [self enableUploadView];
             if (error) {
@@ -432,14 +426,6 @@ const CGFloat PADDING = 5.0f;
                 
 
             }
-            
-            
-            
-            //DEBUG, kann nachher wieder weg
-            NSData *data1 = data;
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-            NSError *error1 = error;
-            NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         }];
         
         if (self.dataTask) {
@@ -462,7 +448,6 @@ const CGFloat PADDING = 5.0f;
         [Util alertWithText:kLocalizedUploadProblem];
     }
 }
-
 
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
@@ -488,16 +473,10 @@ const CGFloat PADDING = 5.0f;
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
-
-
-
-
-
-
-
-
-
-
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:true];
+}
 
 -(void)enableUploadView
 {
