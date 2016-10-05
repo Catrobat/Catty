@@ -303,7 +303,7 @@
 
 + (NSString*)platformName
 {
-    return @"iOS";
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatPlatformName"];
 }
 
 + (NSString*)platformVersion
