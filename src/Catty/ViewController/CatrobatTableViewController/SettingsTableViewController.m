@@ -28,7 +28,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
-
+#import "CatrobatTableViewController.h"
 
 
 @implementation SettingsTableViewController
@@ -133,9 +133,7 @@
                 cell.mainColor = [UIColor varibaleBrickRedColor];
                 cell.actionBlock = ^{
                     [weakSelf logoutUser];
-                    //TODO: hide this section after logout
-                    
-                    //[self setup];
+                    [self.navigationController popViewControllerAnimated:YES];
                 };
             }]];
         }]];
