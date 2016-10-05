@@ -62,6 +62,11 @@
     return [UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
 }
 
++(UIColor*)textViewBorderGrayColor
+{
+    return [UIColor colorWithRed:225.0f/255.0f green:225.0f/255.0f blue:225.0f/255.0f alpha:1.0f];
+}
+
 +(UIColor*)destructiveColor
 {
     return [UIColor colorWithHex: 0xF26C4F];

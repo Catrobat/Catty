@@ -47,6 +47,8 @@
 	<string>0.98</string>
 	<key>CatrobatMediaLicense</key>
 	<string>http://developer.catrobat.org/ccbysa_v3</string>
+	<key>CatrobatPlatformName</key>
+	<string>iOS</string>
 	<key>CatrobatProgramLicense</key>
 	<string>http://developer.catrobat.org/agpl_v3</string>
 	<key>LSRequiresIPhoneOS</key>

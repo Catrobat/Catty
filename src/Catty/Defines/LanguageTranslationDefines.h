@@ -412,6 +412,7 @@
 //************************************************************************************************************
 
 #define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedLogout NSLocalizedString(@"Logout", nil)
 #define kLocalizedUsername NSLocalizedString(@"Username", nil)
 #define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)
