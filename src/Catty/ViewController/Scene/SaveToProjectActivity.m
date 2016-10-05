@@ -73,14 +73,6 @@
     NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.image)];
     [data writeToFile:pngFilePath atomically:YES];
 
-    ///Save small Screenshot too??
-    NSString *pngFilePathSmall = [NSString stringWithFormat:@"%@/small_screenshot.png",self.path];
-    UIGraphicsBeginImageContext( CGSizeMake(160, 160) );
-    [self.image drawInRect:CGRectMake(0,0,160,160)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData *dataSmall = [NSData dataWithData:UIImagePNGRepresentation(newImage)];
-    [dataSmall writeToFile:pngFilePathSmall atomically:YES];
     [self activityDidFinish:YES];
 }
 

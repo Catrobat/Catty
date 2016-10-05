@@ -170,8 +170,7 @@
     
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@small_screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
