@@ -89,11 +89,11 @@ extension UITestProtocol {
         let drawNewImageButton = app.buttons["Draw new image"]
         let image = app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).elementBoundByIndex(1)
         let looksButton = app.navigationBars["Pocket Paint"].buttons["Backgrounds"]
-        let yesButton = app.alerts["Save to PocketCode"].collectionViews.buttons["Yes"]
-        let collectionViewsQuery = app.alerts["Add image"].collectionViews
-        let enterYourImageNameHereTextField = collectionViewsQuery.textFields["Enter your image name here..."]
-        let okButton = collectionViewsQuery.buttons["OK"]
-        let clearTextButton = collectionViewsQuery.buttons["Clear text"]
+        let yesButton = app.alerts["Save to PocketCode"].buttons["Yes"]
+        let alertQuery = app.alerts["Add image"]
+        let enterYourImageNameHereTextField = alertQuery.textFields["Enter your image name here..."]
+        let okButton = alertQuery.buttons["OK"]
+        let clearTextButton = alertQuery.buttons["Clear text"]
         
         for i : UInt in 1...numLooks {
             addButton.tap()

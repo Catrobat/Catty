@@ -63,9 +63,10 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
         
-        let collectionViewsQuery = app.alerts["New Program"].collectionViews
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText(programName)
-        collectionViewsQuery.buttons["OK"].tap()
+        let alertQuery = app.alerts["New Program"]
+        alertQuery.textFields["Enter your program name here..."].typeText(programName)
+        
+        app.alerts["New Program"].buttons["OK"].tap()
         
         // check if worked to create new Program
         XCTAssert(app.navigationBars[programName].staticTexts[programName].exists)
@@ -74,12 +75,12 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         app.navigationBars[programName].buttons["Pocket Code"].tap()
         app.tables.staticTexts["New"].tap()
         
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText(programName)
-        collectionViewsQuery.buttons["OK"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText(programName)
+        app.buttons["OK"].tap()
         // check if error message is displayed
         XCTAssert(app.alerts["Pocket Code"].staticTexts["A program with the same name already exists, try again."].exists)
-        app.alerts["Pocket Code"].collectionViews.buttons["OK"].tap()
-        collectionViewsQuery.buttons["Cancel"].tap()
+        app.alerts["Pocket Code"].buttons["OK"].tap()
+        alertQuery.buttons["Cancel"].tap()
         
         // check if gone back to initial screen after pressing cancel button
         XCTAssert(app.tables.staticTexts["New"].exists)
@@ -101,14 +102,14 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
         for (programName, errorMessage) in progNamesErrorMsgMap {
             app.tables.staticTexts["New"].tap()
-            let collectionViewsQuery = app.alerts["New Program"].collectionViews
-            collectionViewsQuery.textFields["Enter your program name here..."].tap()
-            collectionViewsQuery.textFields["Enter your program name here..."].typeText(programName)
-            collectionViewsQuery.buttons["OK"].tap()
+            let alertQuery = app.alerts["New Program"]
+            alertQuery.textFields["Enter your program name here..."].tap()
+            alertQuery.textFields["Enter your program name here..."].typeText(programName)
+            alertQuery.buttons["OK"].tap()
         
             XCTAssert(app.alerts["Pocket Code"].staticTexts[errorMessage].exists)
-            app.alerts["Pocket Code"].collectionViews.buttons["OK"].tap()
-            collectionViewsQuery.buttons["Cancel"].tap()
+            app.alerts["Pocket Code"].buttons["OK"].tap()
+            alertQuery.buttons["Cancel"].tap()
         }
     }
     
@@ -118,9 +119,9 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
         
-        let collectionViewsQuery = app.alerts["New Program"].collectionViews
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText("testprogramToCancel")
-        collectionViewsQuery.buttons["Cancel"].tap()
+        let alertQuery = app.alerts["New Program"]
+        alertQuery.textFields["Enter your program name here..."].typeText("testprogramToCancel")
+        alertQuery.buttons["Cancel"].tap()
         
         XCTAssertTrue(app.navigationBars["Pocket Code"].staticTexts["Pocket Code"].exists)
     }
@@ -140,9 +141,9 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
         let tablesQuery = app.tables
         let newStaticText = tablesQuery.staticTexts["New"]
-        let collectionViewsQuery = app.alerts["New Program"].collectionViews
-        let enterYourProgramNameHereTextField = collectionViewsQuery.textFields["Enter your program name here..."]
-        let okButton = collectionViewsQuery.buttons["OK"]
+        let alertQuery = app.alerts["New Program"]
+        let enterYourProgramNameHereTextField = alertQuery.textFields["Enter your program name here..."]
+        let okButton = alertQuery.buttons["OK"]
         
         for i in 0...2 {
             newStaticText.tap()

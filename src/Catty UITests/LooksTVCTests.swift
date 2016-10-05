@@ -79,7 +79,7 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
             let name = "Image" + String(i)
             tablesQuery.staticTexts[name].swipeLeft()
             tablesQuery.buttons["Delete"].tap()
-            app.alerts["Delete this look"].collectionViews.buttons["Yes"].tap()
+            app.alerts["Delete this look"].buttons["Yes"].tap()
             XCTAssertEqual(app.tables.staticTexts.count, (constants.numLooks-i))
         }
     }
@@ -88,8 +88,8 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
 
         let app = XCUIApplication()
         let tablesQuery = app.tables
-        let collectionViewsQuery = app.alerts["Rename image"].collectionViews
-        let clearTextButton = collectionViewsQuery.buttons["Clear text"]
+        let alertQuery = app.alerts["Rename image"]
+        let clearTextButton = alertQuery.buttons["Clear text"]
 
         addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         XCTAssertEqual(app.tables.staticTexts.count, constants.numLooks)
@@ -105,8 +105,8 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
             tablesQuery.buttons["More"].tap()
             app.buttons["Rename"].tap()
             clearTextButton.tap()
-            collectionViewsQuery.textFields["Enter your image name here..."].typeText(new_name)
-            collectionViewsQuery.buttons["OK"].tap()
+            alertQuery.textFields["Enter your image name here..."].typeText(new_name)
+            alertQuery.buttons["OK"].tap()
             
             XCTAssertFalse(tablesQuery.staticTexts[old_name].exists)
             XCTAssertTrue(tablesQuery.staticTexts[new_name].exists)
