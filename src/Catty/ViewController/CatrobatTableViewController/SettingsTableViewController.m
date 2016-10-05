@@ -134,6 +134,8 @@
                 cell.actionBlock = ^{
                     [weakSelf logoutUser];
                     //TODO: hide this section after logout
+                    
+                    //[self setup];
                 };
             }]];
         }]];
@@ -238,8 +240,6 @@
     [[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];
     [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kUserLoginToken];
     [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kcUsername];
-    
-    [self setup];
 }
 
 @end
