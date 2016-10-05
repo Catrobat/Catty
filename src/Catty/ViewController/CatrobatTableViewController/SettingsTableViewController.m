@@ -125,6 +125,19 @@
         
     }
     
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue])
+    {
+        [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+            [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedLogout key:nil handler:^(BOButtonTableViewCell *cell) {
+                cell.backgroundColor = [UIColor backgroundColor];
+                cell.mainColor = [UIColor varibaleBrickRedColor];
+                cell.actionBlock = ^{
+                    [weakSelf logoutUser];
+                    //TODO: hide this section after logout
+                };
+            }]];
+        }]];
+    }
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
@@ -218,6 +231,15 @@
     }]];
     
     return cameraOptions;
+}
+
+- (void)logoutUser
+{
+    [[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kUserLoginToken];
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kcUsername];
+    
+    [self setup];
 }
 
 @end
