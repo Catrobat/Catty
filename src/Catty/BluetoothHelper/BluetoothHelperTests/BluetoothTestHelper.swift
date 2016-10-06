@@ -32,21 +32,21 @@ class TestCentralManager : CMWrapper {
     
     let helper = CentralManagerHelper<TestCentralManager>()
     
-    var state : CBCentralManagerState
+    var state : ManagerState
     
     var isOn : Bool {
-        return self.state == CBCentralManagerState.PoweredOn
+        return self.state == ManagerState.PoweredOn
     }
     
     var isOff : Bool {
-        return self.state == CBCentralManagerState.PoweredOff
+        return self.state == ManagerState.PoweredOff
     }
     
     var peripherals : [TestPeripheral] {
         return []
     }
     
-    init(state:CBCentralManagerState = .PoweredOn) {
+    init(state:ManagerState = .PoweredOn) {
         self.state = state
     }
     

@@ -119,7 +119,7 @@ final class CBSpriteNode: SKSpriteNode {
         let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
         
         // 3
-        let newImage = UIImage(CGImage: cgimg)
+        let newImage = UIImage(CGImage: cgimg!)
         self.currentUIImageLook = newImage
         self.texture = SKTexture(image: newImage)
         let xScale = self.xScale

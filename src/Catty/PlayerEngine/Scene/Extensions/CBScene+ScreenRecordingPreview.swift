@@ -20,27 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "DarkBlueGradientImageCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+import ReplayKit
 
-@implementation DarkBlueGradientImageCell
+extension CBScene: RPPreviewViewControllerDelegate {
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    [self configureImageCell];
+    func previewControllerDidFinish(previewController: RPPreviewViewController) {
+        if #available(iOS 9.0, *) {
+            previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+
+    func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+        if #available(iOS 9.0, *) {
+            previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 }
-
-- (void)configureImageCell
-{
-    self.titleLabel.textColor = [UIColor buttonTintColor];
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.iconImageView.center = CGPointMake(self.iconImageView.center.x, self.contentView.center.y);
-    self.titleLabel.center = CGPointMake(self.titleLabel.center.x, self.contentView.center.y);
-}
-
-@end

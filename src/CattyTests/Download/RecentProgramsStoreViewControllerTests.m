@@ -58,7 +58,7 @@
 - (void)setUp
 {
     [super setUp];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"downloadFinished"];
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"recentDownloadFinished"];
     self.recentProgramsStoreViewController = [[TestRecentProgramsStoreViewController alloc] initWithExpectation:expectation];
 }
 

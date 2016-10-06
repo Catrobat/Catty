@@ -34,7 +34,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@class CentralManager;
 @class BluetoothPopupVC;
 
 @implementation ResourceHelper

@@ -8,30 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		92EC98A41BC3C32A0003A891 /* BluetoothHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 92EC98A31BC3C32A0003A891 /* BluetoothHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		92EC98AB1BC3C32A0003A891 /* BluetoothHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EC98A01BC3C32A0003A891 /* BluetoothHelper.framework */; settings = {ASSET_TAGS = (); }; };
+		92EC98AB1BC3C32A0003A891 /* BluetoothHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EC98A01BC3C32A0003A891 /* BluetoothHelper.framework */; };
 		92EC98B01BC3C32A0003A891 /* BluetoothHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98AF1BC3C32A0003A891 /* BluetoothHelperTests.swift */; };
-		92EC98CC1BC3C3500003A891 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BB1BC3C3500003A891 /* CentralManager.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98CD1BC3C3500003A891 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BC1BC3C3500003A891 /* Characteristic.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98CE1BC3C3500003A891 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BD1BC3C3500003A891 /* Peripheral.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98CF1BC3C3500003A891 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BE1BC3C3500003A891 /* Service.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D01BC3C3500003A891 /* BluetoothHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C01BC3C3500003A891 /* BluetoothHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D11BC3C3500003A891 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C11BC3C3500003A891 /* DoubleExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D21BC3C3500003A891 /* SimpleFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C21BC3C3500003A891 /* SimpleFutures.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D31BC3C3500003A891 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C31BC3C3500003A891 /* StringExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D41BC3C3500003A891 /* CharacteristicProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C51BC3C3500003A891 /* CharacteristicProfile.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D51BC3C3500003A891 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C61BC3C3500003A891 /* ProfileManager.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D61BC3C3500003A891 /* ServiceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C71BC3C3500003A891 /* ServiceProfile.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D71BC3C3500003A891 /* DeserializeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C91BC3C3500003A891 /* DeserializeExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D81BC3C3500003A891 /* SerializeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98CA1BC3C3500003A891 /* SerializeExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98D91BC3C3500003A891 /* SerializerDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98CB1BC3C3500003A891 /* SerializerDeserializer.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E21BC3C39A0003A891 /* BluetoothTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DA1BC3C39A0003A891 /* BluetoothTestHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E31BC3C39A0003A891 /* CentralManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DB1BC3C39A0003A891 /* CentralManagerTests.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E41BC3C39A0003A891 /* CharacteristicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DC1BC3C39A0003A891 /* CharacteristicTests.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E51BC3C39A0003A891 /* PeripheralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DD1BC3C39A0003A891 /* PeripheralTests.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E61BC3C39A0003A891 /* RawSerializerDeserializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DE1BC3C39A0003A891 /* RawSerializerDeserializerTests.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E71BC3C39A0003A891 /* RawTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DF1BC3C39A0003A891 /* RawTestHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E81BC3C39A0003A891 /* SerializerDeserializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98E01BC3C39A0003A891 /* SerializerDeserializerTests.swift */; settings = {ASSET_TAGS = (); }; };
-		92EC98E91BC3C39A0003A891 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98E11BC3C39A0003A891 /* ServiceTests.swift */; settings = {ASSET_TAGS = (); }; };
+		92EC98CC1BC3C3500003A891 /* CentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BB1BC3C3500003A891 /* CentralManager.swift */; };
+		92EC98CD1BC3C3500003A891 /* Characteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BC1BC3C3500003A891 /* Characteristic.swift */; };
+		92EC98CE1BC3C3500003A891 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BD1BC3C3500003A891 /* Peripheral.swift */; };
+		92EC98CF1BC3C3500003A891 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98BE1BC3C3500003A891 /* Service.swift */; };
+		92EC98D01BC3C3500003A891 /* BluetoothHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C01BC3C3500003A891 /* BluetoothHelper.swift */; };
+		92EC98D11BC3C3500003A891 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C11BC3C3500003A891 /* DoubleExtensions.swift */; };
+		92EC98D21BC3C3500003A891 /* SimpleFutures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C21BC3C3500003A891 /* SimpleFutures.swift */; };
+		92EC98D31BC3C3500003A891 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C31BC3C3500003A891 /* StringExtensions.swift */; };
+		92EC98D41BC3C3500003A891 /* CharacteristicProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C51BC3C3500003A891 /* CharacteristicProfile.swift */; };
+		92EC98D51BC3C3500003A891 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C61BC3C3500003A891 /* ProfileManager.swift */; };
+		92EC98D61BC3C3500003A891 /* ServiceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C71BC3C3500003A891 /* ServiceProfile.swift */; };
+		92EC98D71BC3C3500003A891 /* DeserializeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98C91BC3C3500003A891 /* DeserializeExtensions.swift */; };
+		92EC98D81BC3C3500003A891 /* SerializeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98CA1BC3C3500003A891 /* SerializeExtensions.swift */; };
+		92EC98D91BC3C3500003A891 /* SerializerDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98CB1BC3C3500003A891 /* SerializerDeserializer.swift */; };
+		92EC98E21BC3C39A0003A891 /* BluetoothTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DA1BC3C39A0003A891 /* BluetoothTestHelper.swift */; };
+		92EC98E31BC3C39A0003A891 /* CentralManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DB1BC3C39A0003A891 /* CentralManagerTests.swift */; };
+		92EC98E41BC3C39A0003A891 /* CharacteristicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DC1BC3C39A0003A891 /* CharacteristicTests.swift */; };
+		92EC98E51BC3C39A0003A891 /* PeripheralTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DD1BC3C39A0003A891 /* PeripheralTests.swift */; };
+		92EC98E61BC3C39A0003A891 /* RawSerializerDeserializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DE1BC3C39A0003A891 /* RawSerializerDeserializerTests.swift */; };
+		92EC98E71BC3C39A0003A891 /* RawTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98DF1BC3C39A0003A891 /* RawTestHelper.swift */; };
+		92EC98E81BC3C39A0003A891 /* SerializerDeserializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98E01BC3C39A0003A891 /* SerializerDeserializerTests.swift */; };
+		92EC98E91BC3C39A0003A891 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98E11BC3C39A0003A891 /* ServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,7 +240,7 @@
 		92EC98971BC3C32A0003A891 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Marc Slavec";
 				TargetAttributes = {
 					92EC989F1BC3C32A0003A891 = {
@@ -348,8 +348,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -377,6 +379,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -396,8 +399,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -417,6 +422,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -427,6 +434,7 @@
 		92EC98B51BC3C32A0003A891 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -444,6 +452,7 @@
 		92EC98B61BC3C32A0003A891 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

@@ -224,6 +224,8 @@
 		4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */; };
 		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
 		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
+		4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */; };
+		4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -681,7 +683,6 @@
 		AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44481B1249DD00A3B53D /* CBScheduler.swift */; };
 		AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
 		AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3CC1BB36131009F67D2 /* CBScene.swift */; };
-		AABCB3EB1BB3687D009F67D2 /* CBScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3CD1BB36131009F67D2 /* CBScene+ScreenRecording.swift */; };
 		AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D11BB36161009F67D2 /* CBFrontendSequenceFilters.swift */; };
 		AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D01BB36161009F67D2 /* CBFrontend.swift */; };
 		AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */; };
@@ -1154,6 +1155,8 @@
 		4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_096.xml; sourceTree = "<group>"; };
 		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
 		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
+		4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecording.swift"; sourceTree = "<group>"; };
+		4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecordingPreview.swift"; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -2029,7 +2032,6 @@
 		AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendProtocol.swift; path = PlayerEngine/Protocols/CBFrontendProtocol.swift; sourceTree = "<group>"; };
 		AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulerProtocol.swift; path = PlayerEngine/Protocols/CBSchedulerProtocol.swift; sourceTree = "<group>"; };
 		AABCB3CC1BB36131009F67D2 /* CBScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScene.swift; path = Catty/PlayerEngine/Scene/CBScene.swift; sourceTree = SOURCE_ROOT; };
-		AABCB3CD1BB36131009F67D2 /* CBScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CBScene+ScreenRecording.swift"; path = "Catty/PlayerEngine/Scene/CBScene+ScreenRecording.swift"; sourceTree = SOURCE_ROOT; };
 		AABCB3D01BB36161009F67D2 /* CBFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontend.swift; path = PlayerEngine/Frontend/CBFrontend.swift; sourceTree = "<group>"; };
 		AABCB3D11BB36161009F67D2 /* CBFrontendSequenceFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendSequenceFilters.swift; path = PlayerEngine/Frontend/CBFrontendSequenceFilters.swift; sourceTree = "<group>"; };
 		AABCB3D41BB3616F009F67D2 /* CBBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackend.swift; path = PlayerEngine/Backend/CBBackend.swift; sourceTree = "<group>"; };
@@ -3253,6 +3255,16 @@
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
 		};
+		4CF16E301D90310100B8C99A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */,
+				4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */,
+			);
+			name = Extensions;
+			path = Catty/PlayerEngine/Scene/Extensions;
+			sourceTree = SOURCE_ROOT;
+		};
 		4CFC3BF41CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -4377,9 +4389,9 @@
 		92FF30AF1A24DCAA00093DA7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				4CF16E301D90310100B8C99A /* Extensions */,
 				CA4C506A1B1C891000BB43E1 /* SetupScene.swift */,
 				AABCB3CC1BB36131009F67D2 /* CBScene.swift */,
-				AABCB3CD1BB36131009F67D2 /* CBScene+ScreenRecording.swift */,
 			);
 			name = Scene;
 			path = DataModel/Scene;
@@ -6026,10 +6038,11 @@
 					};
 					CA7698A91B0E4A97000D0340 = {
 						CreatedOnToolsVersion = 6.3.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 8FL5R8726S;
 					};
 				};
 			};
@@ -6672,7 +6685,6 @@
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
 				AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */,
-				AABCB3EB1BB3687D009F67D2 /* CBScene+ScreenRecording.swift in Sources */,
 				AA74F0B61BC05FCE00D1E954 /* ChangeXByNBrickCell.m in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
 				AA74EE3C1BC0543700D1E954 /* SpeakBrick+Instruction.swift in Sources */,
@@ -6761,6 +6773,7 @@
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
+				4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
 				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,
@@ -6781,6 +6794,7 @@
 				9218B2081CC4AB75007B4C60 /* UIImage+FloodFill.m in Sources */,
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
+				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
 				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,
@@ -7341,6 +7355,7 @@
 				PRODUCT_NAME = Catty;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = "";
@@ -7399,6 +7414,7 @@
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
@@ -7419,7 +7435,9 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7463,8 +7481,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -7506,6 +7526,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -7548,6 +7569,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = 8FL5R8726S;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
