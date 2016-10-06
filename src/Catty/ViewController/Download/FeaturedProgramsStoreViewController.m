@@ -240,7 +240,7 @@
     
     // TODO: Quick hack to use other featured programs, REMOVE THIS!
     
-    NSString *fakeResponse = @"{\"CatrobatProjects\":[{\"ProjectId\":719,\"ProjectName\":\"Galaxy War\",\"Author\":\"DavidR\",\"FeaturedImage\":\"resources/featured/featured_11.jpeg\"},{\"ProjectId\":821,\"ProjectName\":\"Whack a Mole\",\"Author\":\"VesnaK\",\"FeaturedImage\":\"resources/featured/featured_3.jpeg\"},{\"ProjectId\":719,\"ProjectName\":\"Galaxy War\",\"Author\":\"DavidR\",\"FeaturedImage\":\"resources/featured/featured_11.jpeg\"}],\"preHeaderMessages\":\"\",\"CatrobatInformation\":{\"BaseUrl\":\"https://share.catrob.at/\",\"TotalProjects\":\"1\",\"ProjectsExtension\":\".catrobat\"}}";
+    NSString *fakeResponse = @"{\"CatrobatProjects\":[{\"ProjectId\":719,\"ProjectName\":\"Galaxy War\",\"Author\":\"DavidR\",\"FeaturedImage\":\"resources/featured/featured_11.jpeg\"},{\"ProjectId\":821,\"ProjectName\":\"Whack a Mole\",\"Author\":\"VesnaK\",\"FeaturedImage\":\"resources/featured/featured_3.jpeg\"}],\"preHeaderMessages\":\"\",\"CatrobatInformation\":{\"BaseUrl\":\"https://share.catrob.at/\",\"TotalProjects\":\"2\",\"ProjectsExtension\":\".catrobat\"}}";
     
  
     NSData *jsonData = [fakeResponse dataUsingEncoding:NSUTF8StringEncoding];
