@@ -23,7 +23,6 @@
 
 #define kcServiceName @"Catty"
 #define kcUsername @"username"
-#define kcPassword @"password"
 #define kcEmail @"userEmail"
 
 #define kUsePhiroBricks @"usePhiroBricks"
