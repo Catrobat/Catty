@@ -153,6 +153,10 @@
     if ([brickTypeName isEqualToString:@"ChangeGhostEffectByNBrick"]) {
         return @"ChangeTransparencyByNBrick";
     }
+    if (([brickTypeName isEqualToString:@"LedOnBrick"]) ||
+       ([brickTypeName isEqualToString:@"LedOffBrick"])){
+        return @"FlashBrick";
+    }
     return (NSString*)brickXMLHandlerClassName;
 }
 

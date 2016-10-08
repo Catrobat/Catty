@@ -483,11 +483,6 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		996F46111D6FA1AE003C7687 /* SetColorToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 996F46101D6FA1AD003C7687 /* SetColorToBrickTests.m */; };
-		99814DB41D47F55B00CCB460 /* SetColorToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DB31D47F55B00CCB460 /* SetColorToBrick.m */; };
-		99814DB91D47F65400CCB460 /* SetColorToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */; };
-		99814DBB1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */; };
-		99814DBE1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */; };
 		99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C36A1D884C1300736769 /* FlashBrick+CBXMLHandler.m */; };
 		99B2C3701D884D2900736769 /* FlashBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C36F1D884D2900736769 /* FlashBrick.m */; };
 		99B2C3731D884E8A00736769 /* FlashBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B2C3721D884E8A00736769 /* FlashBrickCell.m */; };
@@ -1694,14 +1689,6 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		996F46101D6FA1AD003C7687 /* SetColorToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrickTests.m; sourceTree = "<group>"; };
-		99814DB21D47F55B00CCB460 /* SetColorToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorToBrick.h; sourceTree = "<group>"; };
-		99814DB31D47F55B00CCB460 /* SetColorToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrick.m; sourceTree = "<group>"; };
-		99814DB71D47F65400CCB460 /* SetColorToBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetColorToBrickCell.h; sourceTree = "<group>"; };
-		99814DB81D47F65400CCB460 /* SetColorToBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetColorToBrickCell.m; sourceTree = "<group>"; };
-		99814DBA1D47F75D00CCB460 /* SetColorToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetColorToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetColorToBrick+Instruction.swift"; sourceTree = "<group>"; };
-		99814DBC1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetColorToBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		99814DBD1D47FB2500CCB460 /* SetColorToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetColorToBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetColorToBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		9990BB6C1D89D89A0088357A /* BrickStaticChoiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickStaticChoiceProtocol.h; sourceTree = "<group>"; };
 		99B2C3691D884C1300736769 /* FlashBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FlashBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/FlashBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		99B2C36A1D884C1300736769 /* FlashBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FlashBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/FlashBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
@@ -7115,7 +7102,6 @@
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
 				99B2C36B1D884C1300736769 /* FlashBrick+CBXMLHandler.m in Sources */,
-				99814DB91D47F65400CCB460 /* SetColorToBrickCell.m in Sources */,
 				AA74F0011BC05B5F00D1E954 /* IfOnEdgeBounceBrick.m in Sources */,
 				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */,

@@ -30,31 +30,36 @@
 
 @implementation FlashBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
-    GDataXMLElement *flashChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
-    [XMLError exceptionIfNil:flashChoiceElement
-                     message:@"FlashBrick element does not contain a spinnerSelectionID child element!"];
-
-    NSString *flashChoice = [flashChoiceElement stringValue];
-    [XMLError exceptionIfNil:flashChoice message:@"No flashChoice given..."];
-
+    NSString *brickType = [xmlElement XMLRootElementAsString];
     FlashBrick *flashBrick = [self new];
-    
-    int choiceInt = (int)[flashChoice integerValue];
-    if ((choiceInt < 0) || (choiceInt > 1))
-    {
-        [XMLError exceptionWithMessage:@"Parameter for spinnerSelectionID is not valid. Must be 0 or 1"];
-    }
-        
-    flashBrick.flashChoice = choiceInt;
-    return flashBrick;
-}
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
+    if([brickType rangeOfString:@"LedOffBrick"].location != NSNotFound) {
+        flashBrick.flashChoice = 0;
+    } else if([brickType rangeOfString:@"LedOnBrick"].location != NSNotFound){
+        flashBrick.flashChoice = 1;
+    } else if([brickType rangeOfString:@"FlashBrick"].location != NSNotFound){
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
+        GDataXMLElement *flashChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
+        [XMLError exceptionIfNil:flashChoiceElement
+                         message:@"FlashBrick element does not contain a spinnerSelectionID child element!"];
+        
+        NSString *flashChoice = [flashChoiceElement stringValue];
+        [XMLError exceptionIfNil:flashChoice message:@"No flashChoice given..."];
+        
+        
+        int choiceInt = (int)[flashChoice integerValue];
+        if ((choiceInt < 0) || (choiceInt > 1))
+        {
+            [XMLError exceptionWithMessage:@"Parameter for spinnerSelectionID is not valid. Must be 0 or 1"];
+        }
+        flashBrick.flashChoice = choiceInt;
+    }else{
+        [XMLError exceptionWithMessage:@"Flash Brick is faulty"];
+    }
+    
+    return flashBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
