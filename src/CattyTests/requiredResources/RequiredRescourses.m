@@ -251,24 +251,24 @@ NSString * const sensorTestStringArray[] = {
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(resources, kAccelerometer, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
 }
-- (void)testSetColorToBrickResources
+- (void)testSetColorBrickResources
 {
-    SetColorToBrick *brick = [SetColorToBrick new];
+    SetColorBrick *brick = [SetColorBrick new];
     brick.color = [[Formula alloc] initWithInteger:1];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kNoResources, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kNoResources, @"Resourses SetColorBrick not correctly calculated");
 }
-- (void)testSetColorToBrick2Resources
+- (void)testSetColorBrick2Resources
 {
-    SetColorToBrick *brick = [SetColorToBrick new];
+    SetColorBrick *brick = [SetColorBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[5] leftChild:nil rightChild:nil parent:nil];
     brick.color = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kAccelerometer, @"Resourses ChangeBrightnessByNBrick not correctly calculated");
+    XCTAssertEqual(resources, kAccelerometer, @"Resourses SetColorBrick not correctly calculated");
 }
 #pragma mark-Control
 - (void)testWaitBrickResources

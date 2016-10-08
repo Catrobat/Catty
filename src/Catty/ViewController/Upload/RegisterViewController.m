@@ -407,14 +407,10 @@
         
         //save username, password and email in keychain and token in nsuserdefaults
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-        [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
         [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
-        
-        //TODO: email to keychain?
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:self.password forKey:kcPassword];
         [JNKeychain saveValue:token forKey:kUserLoginToken];
         
         [self hideLoadingView];

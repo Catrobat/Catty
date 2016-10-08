@@ -86,8 +86,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView show];
     });
-
-    if(navigationType == UIWebViewNavigationTypeLinkClicked)
+	
+//    if(navigationType == UIWebViewNavigationTypeLinkClicked)
+//    {
+    if([[[request URL] absoluteString] containsString:@"https://share.catrob.at/pocketcode/download-media/"])
     {
         self.url = [request URL];
         NSURLRequest *datarequest = [NSURLRequest requestWithURL:self.url

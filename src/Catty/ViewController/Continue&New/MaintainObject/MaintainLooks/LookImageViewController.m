@@ -178,9 +178,10 @@
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
 
-    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
+    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1))) {
         abort();
         return;
+    }
     
     NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
             [fileName substringToIndex:result.location],

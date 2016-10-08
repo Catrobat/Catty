@@ -20,15 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+#import "BrickCell.h"
 
-@class Formula;
+@interface SetColorBrickCell : BrickCell
 
-@interface SetColorToBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong) Formula *color;
-
-- (NSString*)pathForLook:(Look*)look;
+@property (nonatomic, weak) UITextField *colorTextField;
 
 @end

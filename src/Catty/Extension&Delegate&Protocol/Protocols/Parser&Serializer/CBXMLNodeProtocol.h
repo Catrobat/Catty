@@ -29,9 +29,7 @@
 @protocol CBXMLNodeProtocol <NSObject>
 
 @required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context;
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context;
-
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context;
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context;
 
 @end

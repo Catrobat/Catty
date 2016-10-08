@@ -28,7 +28,6 @@
 #import "FXBlurView.h"
 #import "math.h"
 
-#define kTopAnimationOffset 50.0f
 
 @interface BrickTransition ()
 @property (nonatomic, strong) UIView *animateView;
@@ -78,7 +77,7 @@
             CGPoint posBrickCell = self.animateView.layer.position;
             _animatedFromPositionY = ceilf(self.animateView.frame.origin.y - scvc.collectionView.contentOffset.y);
             _animatedFromRect = self.animateView.frame;
-            posBrickCell.y = CGRectGetMidY(self.animateView.layer.bounds) + kTopAnimationOffset;
+            posBrickCell.y = CGRectGetMidY(self.animateView.layer.bounds) + kFormulaEditorTopOffset;
             fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             
             UIView *animationView = [self.animateView snapshotViewAfterScreenUpdates:NO];

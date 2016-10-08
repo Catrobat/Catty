@@ -195,13 +195,23 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     
     //MARK: Wrap
     public var isOn : Bool {
-        return self.cbCentralManager.state == CBCentralManagerState.PoweredOn
+        switch self.cbCentralManager.state {
+        case .PoweredOn:
+            return true
+        default:
+            return false
+        }
     }
     
+    //MARK: Wrap
     public var isOff : Bool {
-        return self.cbCentralManager.state == CBCentralManagerState.PoweredOff
+        switch self.cbCentralManager.state {
+        case .PoweredOff:
+            return true
+        default:
+            return false
+        }
     }
-    
     
     public var peripherals : [Peripheral] {
         
@@ -209,8 +219,21 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         return values
     }
 
-    public var state: CBCentralManagerState {
-        return self.cbCentralManager.state
+    public var state: ManagerState {
+        switch self.cbCentralManager.state {
+        case .Unknown:
+            return .Unknown
+        case .Resetting:
+            return .Resetting
+        case .Unsupported:
+            return .Unsupported
+        case .Unauthorized:
+            return .Unauthorized
+        case .PoweredOff:
+            return .PoweredOff
+        case .PoweredOn:
+            return .PoweredOn
+        }
     }
     
     public func scanForPeripheralsWithServices(uuids:[CBUUID]?) {

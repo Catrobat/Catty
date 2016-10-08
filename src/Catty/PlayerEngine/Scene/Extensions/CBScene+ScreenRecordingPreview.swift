@@ -20,23 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetColorToBrickCell.h"
+import ReplayKit
 
-@interface SetColorToBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+extension CBScene: RPPreviewViewControllerDelegate {
 
-@implementation SetColorToBrickCell
+    func previewControllerDidFinish(previewController: RPPreviewViewController) {
+        if #available(iOS 9.0, *) {
+            previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+        if #available(iOS 9.0, *) {
+            previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 }
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-    self.colorTextField = inlineViewSubViews[1];
-}
-
-@end

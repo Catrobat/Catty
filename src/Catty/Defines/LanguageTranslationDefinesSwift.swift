@@ -415,10 +415,11 @@ let kLocalizedArduinoSendPWMValue = NSLocalizedString("Arduino send PWM\nPin:%@ 
 //************************************************************************************************************
 
 let kLocalizedLogin = NSLocalizedString("Login", comment: "")
+let kLocalizedLogout = NSLocalizedString("Logout", comment: "")
 let kLocalizedUsername = NSLocalizedString("Username", comment: "")
 let kLocalizedPassword = NSLocalizedString("Password", comment: "")
 let kLocalizedEmail = NSLocalizedString("Email", comment: "")
-let kLocalizedRegister = NSLocalizedString("Create an account", comment: "")
+let kLocalizedRegister = NSLocalizedString("Create account", comment: "")
 let kLocalizedLoginOrRegister = NSLocalizedString("Login/Register", comment: "")
 let kLocalizedUploadProgram = NSLocalizedString("Upload Program", comment: "")
 let kLocalizedLoginUsernameNecessary = NSLocalizedString("Username is necessary!", comment: "")

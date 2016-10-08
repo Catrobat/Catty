@@ -52,7 +52,9 @@
 
 + (UIColor*) backgroundColor;
 
-+(UIColor*)  whiteGrayColor;
++ (UIColor*)  whiteGrayColor;
+
++ (UIColor*)  textViewBorderGrayColor;
 
 // FE
 

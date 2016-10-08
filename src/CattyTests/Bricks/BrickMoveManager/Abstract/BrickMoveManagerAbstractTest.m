@@ -60,7 +60,7 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(1, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    [[BrickMoveManager sharedInstance] reset];
+    [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
 }
 
 - (NSUInteger)addForeverLoopWithWaitBrickToScript:(Script*)script

@@ -34,7 +34,7 @@
 
 @implementation PhiroPlayToneBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
     Formula *duration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"PHIRO_DURATION_IN_SECONDS" withContext:context];
@@ -43,12 +43,6 @@
     phiroPlayToneBrick.durationFormula = duration;
     phiroPlayToneBrick.tone = tone.stringValue;
     return phiroPlayToneBrick;
-}
-
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-{
-    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

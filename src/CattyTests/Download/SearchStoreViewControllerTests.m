@@ -46,7 +46,7 @@
 - (void)setUp
 {
     [super setUp];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"downloadFinished"];
+    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"searchDownloadFinished"];
     self.searchStoreViewController = [[TestSearchStoreViewController alloc] initWithExpectation: expectation];
 }
 

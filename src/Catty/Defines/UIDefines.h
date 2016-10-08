@@ -117,6 +117,7 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 
 #define kFormulaEditorShowResultDuration 4.0f
+#define kFormulaEditorTopOffset 64.0f
 
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
@@ -190,7 +191,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeTransparencyByNBrick= 207,
     kSetBrightnessBrick        = 208,
     kChangeBrightnessByNBrick  = 209,
-    kSetColorToBrick           = 210,
+    kSetColorBrick           = 210,
     kChangeColorByNBrick       = 211,
     kClearGraphicEffectBrick   = 212,
     kLedOnBrick                = 213,
@@ -332,7 +333,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
-    @"SetColorToBrick"           : @(kSetColorToBrick),\
+    @"SetColorBrick"             : @(kSetColorBrick),\
     @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"LedOnBrick"                : @(kLedOnBrick),\
@@ -422,7 +423,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
 @"LedOnBrick"                : @(kBrickHeight1h),\
 @"LedOffBrick"               : @(kBrickHeight1h),\
-@"SetColorToBrick"           : @(kBrickHeight1h),\
+@"SetColorBrick"             : @(kBrickHeight1h),\
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 @"FlashBrick"                : @(kBrickHeight2h),\
 \
