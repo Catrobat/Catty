@@ -422,6 +422,8 @@
         [self.navigationController popViewControllerAnimated:NO];
         
     } else if ([statusCode isEqualToString:statusAuthenticationFailed]) {
+        self.loginButton.enabled = YES;
+        [self hideLoadingView];
         NSDebug(@"Error: %@", kLocalizedAuthenticationFailed);
         [Util alertWithText:kLocalizedAuthenticationFailed];
     } else {
