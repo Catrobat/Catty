@@ -109,8 +109,6 @@
     @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
     @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
-    @[],                            /* turn on flashlight       */\
-    @[],                            /* turn off flashlight      */\
     @"{STATICCHOICE}"               /* flash brick              */\
 ]
 

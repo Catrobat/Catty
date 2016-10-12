@@ -53,8 +53,6 @@
 #import "SetVolumeToBrick.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
-#import "LedOnBrick.h"
-#import "LedOffBrick.h"
 #import "VibrationBrick.h"
 #import "GlideToBrick.h"
 #import "MoveNStepsBrick.h"

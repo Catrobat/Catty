@@ -191,12 +191,10 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeTransparencyByNBrick= 207,
     kSetBrightnessBrick        = 208,
     kChangeBrightnessByNBrick  = 209,
-    kSetColorBrick           = 210,
+    kSetColorBrick             = 210,
     kChangeColorByNBrick       = 211,
     kClearGraphicEffectBrick   = 212,
-    kLedOnBrick                = 213,
-    kLedOffBrick               = 214,
-    kFlashBrick                = 215,
+    kFlashBrick                = 213,
 
     
     // 3xx sound bricks
@@ -336,8 +334,6 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"SetColorBrick"             : @(kSetColorBrick),\
     @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
-    @"LedOnBrick"                : @(kLedOnBrick),\
-    @"LedOffBrick"               : @(kLedOffBrick),\
     @"FlashBrick"                : @(kFlashBrick),\
 \
     /* variable bricks */\
@@ -421,8 +417,6 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SetBrightnessBrick"        : @(kBrickHeight2h),\
 @"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
-@"LedOnBrick"                : @(kBrickHeight1h),\
-@"LedOffBrick"               : @(kBrickHeight1h),\
 @"SetColorBrick"             : @(kBrickHeight1h),\
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 @"FlashBrick"                : @(kBrickHeight2h),\
