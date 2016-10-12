@@ -25,14 +25,10 @@ import ReplayKit
 extension CBScene: RPPreviewViewControllerDelegate {
 
     func previewControllerDidFinish(previewController: RPPreviewViewController) {
-        if #available(iOS 9.0, *) {
-            previewViewController?.dismissViewControllerAnimated(true, completion: nil)
-        }
+        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
-        if #available(iOS 9.0, *) {
-            previewViewController?.dismissViewControllerAnimated(true, completion: nil)
-        }
+        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }

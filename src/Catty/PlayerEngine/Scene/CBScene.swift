@@ -45,16 +45,11 @@ final class CBScene: SKScene {
     private(set) var backend: CBBackendProtocol?
     private(set) var broadcastHandler: CBBroadcastHandlerProtocol?
     var isScreenRecorderAvailable: Bool {
-        if #available(iOS 9.0, *) {
-            return RPScreenRecorder.sharedRecorder().available
-        }
-        return false
+    return RPScreenRecorder.sharedRecorder().available
+    
     }
     var isScreenRecording: Bool {
-        if #available(iOS 9.0, *) {
-            return RPScreenRecorder.sharedRecorder().recording
-        }
-        return false
+        return RPScreenRecorder.sharedRecorder().recording
     }
     weak var screenRecordingDelegate: CBScreenRecordingDelegate?
 
@@ -114,9 +109,7 @@ final class CBScene: SKScene {
         
         let location = touch.locationInNode(self)
         var nodes = nodesAtPoint(location)
-        if #available(iOS 9.0, *) {
-            nodes = nodes.reverse()
-        }
+        nodes = nodes.reverse()
         let numberOfNodes = nodes.count
         if numberOfNodes == 0 { return false } // needed if scene has no background image!
         
@@ -161,9 +154,6 @@ final class CBScene: SKScene {
 
         removeAllChildren() // just to ensure
 
-        if #available(iOS 9, *) { // FIXME!!! detect + consider iPhone/iPad version
-//            spriteObjectList = spriteObjectList.reverse()
-        }
 
         var zPosition = 1
         for spriteObject in spriteObjectList {
@@ -244,28 +234,23 @@ final class CBScene: SKScene {
     }
 
     func initializeScreenRecording() {
-        if #available(iOS 9.0, *) {
-            RPScreenRecorder.sharedRecorder().delegate = self
-        }
+        RPScreenRecorder.sharedRecorder().delegate = self
     }
 
     func startScreenRecording() {
-        if #available(iOS 9.0, *) {
-            _startScreenRecording()
-        }
+        _startScreenRecording()
     }
 
     func stopScreenRecording() {
-        if #available(iOS 9.0, *) {
-            _stopScreenRecordingWithHandler { [weak self] in
-                guard let rootVC = self?.view?.window?.rootViewController,
-                      let previewVC = self?.previewViewController
-                else { fatalError("Preview controller or root view controller not available.") }
+        
+        _stopScreenRecordingWithHandler { [weak self] in
+            guard let rootVC = self?.view?.window?.rootViewController,
+                    let previewVC = self?.previewViewController
+                    else { fatalError("Preview controller or root view controller not available.") }
 
-                // NOTE: RPPreviewViewController only supports full screen modal presentation.
-                previewVC.modalPresentationStyle = .FullScreen
-                rootVC.presentViewController(previewVC, animated: true, completion: nil)
-            }
+            // NOTE: RPPreviewViewController only supports full screen modal presentation.
+            previewVC.modalPresentationStyle = .FullScreen
+            rootVC.presentViewController(previewVC, animated: true, completion: nil)
         }
     }
 
