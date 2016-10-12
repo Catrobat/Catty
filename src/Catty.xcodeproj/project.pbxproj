@@ -1715,8 +1715,6 @@
 		AA74EE281BC0541E00D1E954 /* GlideToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GlideToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/GlideToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE291BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "IfOnEdgeBounceBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/IfOnEdgeBounceBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE2A1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MoveNStepsBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/MoveNStepsBrick+Instruction.swift"; sourceTree = "<group>"; };
-		AA74EE2E1BC0542C00D1E954 /* LedOffBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LedOffBrick+Instruction.swift"; path = "PlayerEngine/Instructions/IO/LedOffBrick+Instruction.swift"; sourceTree = "<group>"; };
-		AA74EE2F1BC0542C00D1E954 /* LedOnBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LedOnBrick+Instruction.swift"; path = "PlayerEngine/Instructions/IO/LedOnBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE301BC0542C00D1E954 /* VibrationBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "VibrationBrick+Instruction.swift"; path = "PlayerEngine/Instructions/IO/VibrationBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE341BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeVolumeByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/ChangeVolumeByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE351BC0543600D1E954 /* PlaySoundBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlaySoundBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Sound/PlaySoundBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -1789,10 +1787,6 @@
 		AA74EF491BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TurnLeftBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/TurnLeftBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		AA74EF4A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TurnRightBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/TurnRightBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		AA74EF4B1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TurnRightBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Motion/TurnRightBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF5B1BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LedOffBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/LedOffBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF5C1BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LedOffBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/LedOffBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		AA74EF5D1BC0587B00D1E954 /* LedOnBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "LedOnBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/LedOnBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		AA74EF5E1BC0587B00D1E954 /* LedOnBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LedOnBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/LedOnBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		AA74EF5F1BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "VibrationBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/VibrationBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		AA74EF601BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "VibrationBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/IO/VibrationBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		AA74EF641BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeVolumeByNBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/ChangeVolumeByNBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -1935,10 +1929,6 @@
 		AA74F02E1BC05FCE00D1E954 /* IfLogicElseBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrickCell.m; sourceTree = "<group>"; };
 		AA74F02F1BC05FCE00D1E954 /* IfLogicEndBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrickCell.h; sourceTree = "<group>"; };
 		AA74F0301BC05FCE00D1E954 /* IfLogicEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrickCell.m; sourceTree = "<group>"; };
-		AA74F0311BC05FCE00D1E954 /* LedOffBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOffBrickCell.h; sourceTree = "<group>"; };
-		AA74F0321BC05FCE00D1E954 /* LedOffBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOffBrickCell.m; sourceTree = "<group>"; };
-		AA74F0331BC05FCE00D1E954 /* LedOnBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOnBrickCell.h; sourceTree = "<group>"; };
-		AA74F0341BC05FCE00D1E954 /* LedOnBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOnBrickCell.m; sourceTree = "<group>"; };
 		AA74F0351BC05FCE00D1E954 /* LoopEndBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrickCell.h; sourceTree = "<group>"; };
 		AA74F0361BC05FCE00D1E954 /* LoopEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrickCell.m; sourceTree = "<group>"; };
 		AA74F0371BC05FCE00D1E954 /* NoteBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrickCell.h; sourceTree = "<group>"; };
@@ -2879,10 +2869,6 @@
 			children = (
 				99B2C3691D884C1300736769 /* FlashBrick+CBXMLHandler.h */,
 				99B2C36A1D884C1300736769 /* FlashBrick+CBXMLHandler.m */,
-				AA74EF5B1BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.h */,
-				AA74EF5C1BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.m */,
-				AA74EF5D1BC0587B00D1E954 /* LedOnBrick+CBXMLHandler.h */,
-				AA74EF5E1BC0587B00D1E954 /* LedOnBrick+CBXMLHandler.m */,
 				AA74EF5F1BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.h */,
 				AA74EF601BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m */,
 			);
@@ -4888,8 +4874,6 @@
 			isa = PBXGroup;
 			children = (
 				99B2C3741D884F2D00736769 /* FlashBrick+Instruction.swift */,
-				AA74EE2E1BC0542C00D1E954 /* LedOffBrick+Instruction.swift */,
-				AA74EE2F1BC0542C00D1E954 /* LedOnBrick+Instruction.swift */,
 				AA74EE301BC0542C00D1E954 /* VibrationBrick+Instruction.swift */,
 			);
 			name = IO;
@@ -5164,10 +5148,6 @@
 				AA74F02E1BC05FCE00D1E954 /* IfLogicElseBrickCell.m */,
 				AA74F02F1BC05FCE00D1E954 /* IfLogicEndBrickCell.h */,
 				AA74F0301BC05FCE00D1E954 /* IfLogicEndBrickCell.m */,
-				AA74F0311BC05FCE00D1E954 /* LedOffBrickCell.h */,
-				AA74F0321BC05FCE00D1E954 /* LedOffBrickCell.m */,
-				AA74F0331BC05FCE00D1E954 /* LedOnBrickCell.h */,
-				AA74F0341BC05FCE00D1E954 /* LedOnBrickCell.m */,
 				AA74F0351BC05FCE00D1E954 /* LoopEndBrickCell.h */,
 				AA74F0361BC05FCE00D1E954 /* LoopEndBrickCell.m */,
 				AA74F0371BC05FCE00D1E954 /* NoteBrickCell.h */,
