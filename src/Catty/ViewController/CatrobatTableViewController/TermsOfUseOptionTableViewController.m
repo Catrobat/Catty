@@ -28,10 +28,13 @@
 @implementation TermsOfUseOptionTableViewController
 
 - (void)setup {
+    CGFloat yOffset = self.navigationController.navigationBar.frame.origin.y + self.navigationController.navigationBar.frame.size.height + 20;
+    self.tableView.contentInset = UIEdgeInsetsMake(yOffset, 0, 0, 0);     //Fixes Issue 402: Avoid TableView-Top beeing beneath NavigationBar (if too much lines of text)
+    
     self.title = kLocalizedTermsOfUse;
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
-    [self addSection:[BOTableViewSection sectionWithHeaderTitle:kLocalizedAboutPocketCode handler:^(BOTableViewSection *section) {
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:kLocalizedTermsOfUse handler:^(BOTableViewSection *section) {
         
         section.headerTitle = kLocalizedTermsOfUseDescription;
         __unsafe_unretained typeof(self) weakSelf = self;
