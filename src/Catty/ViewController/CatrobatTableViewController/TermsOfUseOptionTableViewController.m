@@ -24,6 +24,7 @@
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "Util.h"
 
 @implementation TermsOfUseOptionTableViewController
 
@@ -51,7 +52,11 @@
 
 - (void)openTermsOfUse
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
+    if (IS_OS_10_OR_LATER) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL] options:[NSDictionary dictionary] completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
+    }
 }
 
 
