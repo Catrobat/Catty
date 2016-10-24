@@ -31,9 +31,12 @@
     self.title = kLocalizedAboutPocketCode;
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
-    [self addSection:[BOTableViewSection sectionWithHeaderTitle:kLocalizedAboutPocketCode handler:^(BOTableViewSection *section) {
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
-        section.headerTitle = kLocalizedAboutPocketCodeDescription;
+        [section addCell:[BOTableViewCell cellWithTitle:kLocalizedAboutPocketCodeDescription key:nil handler:^(BOButtonTableViewCell *cell) {
+            cell.backgroundColor = [UIColor backgroundColor];
+        }]];
+        
         __unsafe_unretained typeof(self) weakSelf = self;
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedSourceCodeLicenseButtonLabel key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
