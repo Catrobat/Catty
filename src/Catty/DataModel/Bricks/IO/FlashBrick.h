@@ -20,22 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOffBrickCell.h"
+#import "Brick.h"
+#import "BrickStaticChoiceProtocol.h"
 
-@interface LedOffBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@interface FlashBrick : Brick<BrickStaticChoiceProtocol>
 
-@implementation LedOffBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-}
+@property (nonatomic) int flashChoice;
+- (id)initWithChoice:(int)choice;
 
 @end

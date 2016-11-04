@@ -53,8 +53,6 @@
 #import "SetVolumeToBrick.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
-#import "LedOnBrick.h"
-#import "LedOffBrick.h"
 #import "VibrationBrick.h"
 #import "GlideToBrick.h"
 #import "MoveNStepsBrick.h"
@@ -93,6 +91,7 @@
 #import "ChangeBrightnessByNBrick.h"
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
+#import "FlashBrick.h"
 
 // Formulas
 #import "Formula.h"

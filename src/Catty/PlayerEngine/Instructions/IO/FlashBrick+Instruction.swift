@@ -20,9 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOnBrick.h"
-#import "CBXMLNodeProtocol.h"
+extension FlashBrick: CBInstructionProtocol {
 
-@interface LedOnBrick (CBXMLHandler) <CBXMLNodeProtocol>
+    func instruction() -> CBInstruction {
 
-@end
+        let choice = self.flashChoice
+        return CBInstruction.ExecClosure { (context, _) in
+            //            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
+            if (choice == 0)
+            {
+                FlashHelper.sharedFlashHandler().turnOff()
+            }
+            else if (choice == 1)
+            {
+                FlashHelper.sharedFlashHandler().turnOn()
+            }
+            
+            context.state = .Runnable
+        }
+    }
+    
+
+}

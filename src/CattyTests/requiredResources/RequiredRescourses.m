@@ -32,8 +32,7 @@
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByNBrick.h"
 #import "VibrationBrick.h"
-#import "LedOnBrick.h"
-#import "LedOffBrick.h"
+#import "FlashBrick.h"
 #import "PointToBrick.h"
 #import "IfOnEdgeBounceBrick.h"
 #import "GlideToBrick.h"
@@ -453,19 +452,11 @@ NSString * const sensorTestStringArray[] = {
 }
 - (void)testLedOnBrickResources
 {
-    LedOnBrick *brick = [LedOnBrick new];
+    FlashBrick *brick = [FlashBrick new];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kLED, @"Resourses LedOnBrick not correctly calculated");
-}
-- (void)testLedOffBrickResources
-{
-    LedOffBrick *brick = [LedOffBrick new];
-    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
-    
-    NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kLED, @"Resourses LedOffBrick not correctly calculated");
+    XCTAssertEqual(resources, kNoResources, @"Resourses FlashBrick not correctly calculated");
 }
 #pragma mark-Motion
 

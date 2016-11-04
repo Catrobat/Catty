@@ -20,22 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOnBrickCell.h"
+#import <Foundation/Foundation.h>
 
-@interface LedOnBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@class Brick;
 
-@implementation LedOnBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-}
-
+@protocol BrickStaticChoiceProtocol <NSObject>
+- (NSString*)choiceForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setChoice:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (NSArray<NSString *>*)possibleChoicesForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 @end

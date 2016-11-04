@@ -20,9 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOffBrick.h"
-#import "CBXMLNodeProtocol.h"
 
-@interface LedOffBrick (CBXMLHandler) <CBXMLNodeProtocol>
+#import "BrickCellDataProtocol.h"
+#import "iOSCombobox.h"
+
+@interface BrickCellStaticChoiceData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
+
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 
 @end

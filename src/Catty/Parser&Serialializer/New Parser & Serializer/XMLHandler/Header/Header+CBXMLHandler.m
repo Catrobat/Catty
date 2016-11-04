@@ -70,7 +70,8 @@
 + (NSMutableArray<CBXMLPropertyMapping*>*)headerPropertiesForLanguageVersion098
 {
     NSMutableArray *headerProperties = [self defaultHeaderProperties];
-    [headerProperties addObject:[[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"landscapeMode"]];
+    [headerProperties addObject:[[CBXMLPropertyMapping alloc]
+                                 initWithClassPropertyName:@"landscapeMode" andIgnore:YES]];
     return headerProperties;
 }
 

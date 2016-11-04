@@ -255,6 +255,8 @@ let kLocalizedDownloaded = NSLocalizedString("Download sucessful", comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", comment: "")
 let kLocalizedWiFiProgramDownloads = NSLocalizedString("Download only with WiFi", comment: "")
 let kLocalizedNoWifiConnection = NSLocalizedString("Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", comment: "")
+let kLocalizedOff = NSLocalizedString("off", comment: "")
+let kLocalizedOn = NSLocalizedString("on", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -374,6 +376,7 @@ let kLocalizedChangeBrightnessByN = NSLocalizedString("Change brightness\nby %@%
 let kLocalizedClearGraphicEffect = NSLocalizedString("Clear graphic effects", comment: "")
 let kLocalizedSetColor = NSLocalizedString("Set color to %", comment: "")
 let kLocalizedChangeColorByN = NSLocalizedString("Change color by %", comment: "")
+let kLocalizedFlash = NSLocalizedString("Turn flashlight\n%", comment: "")
 
 // sound bricks
 let kLocalizedPlaySound = NSLocalizedString("Start sound\n%", comment: "")

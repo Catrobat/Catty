@@ -20,15 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension LedOffBrick: CBInstructionProtocol {
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-    func instruction() -> CBInstruction {
+@interface FlashBrickCell : BrickCell
 
-        return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
-            FlashHelper.sharedFlashHandler().turnOff()
-            context.state = .Runnable
-        }
+@property (nonatomic, weak) iOSCombobox *messageComboBoxView;
 
-    }
-}
+@end

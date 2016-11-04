@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>v0.9.10-111-geb1b919 master</applicationVersion>
+    <catrobatLanguageVersion>0.98</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>Nexus 4</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense></mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>19.0</platformVersion>
+    <programLicense></programLicense>
+    <programName>Led and Flash Bricks</programName>
+    <remixOf></remixOf>
+    <screenHeight>1184</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>768</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="FlashBrick">
+                <spinnerSelectionID>1</spinnerSelectionID>
+                <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                </spinnerValues>
+            </brick>
+            <brick type="FlashBrick">
+                <spinnerSelectionID>0</spinnerSelectionID>
+                <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                </spinnerValues>
+            </brick>
+            <brick type="LedOnBrick"/>
+            <brick type="LedOffBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

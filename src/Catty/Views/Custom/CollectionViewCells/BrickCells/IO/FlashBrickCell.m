@@ -20,8 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickCell.h"
+#import "FlashBrickCell.h"
 
-@interface LedOnBrickCell : BrickCell
+@interface FlashBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
+@implementation FlashBrickCell
+
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.controlBrickStrokeColor height:mediumBrick width:[Util screenWidth ]];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.messageComboBoxView = inlineViewSubViews[1];
+}
 
 @end

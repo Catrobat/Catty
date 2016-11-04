@@ -20,7 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import "FlashBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface LedOnBrick : Brick
+@interface FlashBrick (CBXMLHandler) <CBXMLNodeProtocol>
+
 @end
