@@ -348,6 +348,13 @@
                 <userVariable reference="../../brick[13]/userVariable"/>
                 <userVariableName>global</userVariableName>
             </brick>
+            <brick type="FlashBrick">
+                <spinnerSelectionID>1</spinnerSelectionID>
+                <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                </spinnerValues>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
