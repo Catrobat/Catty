@@ -5,7 +5,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 def available_pods
-    pod 'MXSegmentedPager', '3.0.0'
+    pod 'MXSegmentedPager'
     pod 'M13ProgressSuite', '~> 1.2.7'
     pod 'Bohr'
     pod 'Shimmer'
@@ -13,6 +13,7 @@ def available_pods
     pod 'TTTAttributedLabel'
     pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift2.3'
     pod 'LXReorderableCollectionViewFlowLayout', '~> 0.1.1'
+    pod 'UIDevice-Hardware'
 end
 
 target 'Catty' do

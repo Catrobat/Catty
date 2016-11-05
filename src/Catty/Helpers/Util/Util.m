@@ -47,6 +47,7 @@
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
 #import "OrderedDictionary.h"
+#import "UIDevice-Hardware.h"
 
 @interface Util () <CatrobatAlertViewDelegate>
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -298,7 +299,7 @@
 
 + (NSString*)deviceName
 {
-  return [[UIDevice currentDevice] model];
+    return [[UIDevice currentDevice] modelName];
 }
 
 + (NSString*)platformName
