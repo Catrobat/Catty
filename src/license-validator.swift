@@ -125,6 +125,7 @@ let license3rdPartyDict : [String : License] = [
     "MXParallaxHeader" : .MIT,
     "MXScrollView" : .MIT,
     "MXScrollViewController" : .MIT,
+    "UIDevice-Hardware" : .BSD
 ]
 
 let licenseCheckDirs : [String : License] = [
@@ -135,8 +136,8 @@ let licenseCheckDirs : [String : License] = [
     "MXSegmentedPager" : .MIT,
     "Target Support Files" : .MIT,
     "VGParallaxHeader" : .MIT,
-    "TOCropViewController" : .MIT
-    
+    "TOCropViewController" : .MIT,
+    "UIDevice-Hardware" : .BSD
 ]
 
 let checkDirs : [String] = [
@@ -147,7 +148,8 @@ let checkDirs : [String] = [
     "MXSegmentedPager",
     "Target Support Files",
     "VGParallaxHeader",
-    "TOCropViewController"
+    "TOCropViewController",
+    "UIDevice-Hardware"
 ]
 
 let compatibleLicenses : [License] = [
