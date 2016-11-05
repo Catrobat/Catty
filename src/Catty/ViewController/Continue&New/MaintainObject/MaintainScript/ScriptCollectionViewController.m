@@ -455,22 +455,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
-{
-    if (IS_OS_9_OR_LATER) {
-        [self actionSheetPresented:actionSheet];
-    }
-}
-
-- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
-{
-    if (! IS_OS_9_OR_LATER) {
-        [self actionSheetPresented:actionSheet];
-    }
-}
-
 #define kActionsheetBrickCellMarginBottom 15.0f
-- (void)actionSheetPresented:(CatrobatAlertController*)actionSheet
+- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
 {
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
     if (brickCell) {
