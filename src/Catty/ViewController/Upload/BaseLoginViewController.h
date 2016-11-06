@@ -23,5 +23,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseLoginViewController : UIViewController
+@property (weak, nonatomic) UITextField *activeField;
 -(void)setViewMovedUp:(BOOL)movedUp;
 @end

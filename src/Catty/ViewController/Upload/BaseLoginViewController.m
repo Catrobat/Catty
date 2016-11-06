@@ -56,44 +56,46 @@
 #define kOFFSET_FOR_KEYBOARD 100.0
 
 -(void)keyboardWillShow:(NSNotification*)notification {
-    if (!self.isMovedUp) {
-        self.isMovedUp = YES;
+
         NSValue *keyboardValue = (notification.userInfo[UIKeyboardFrameEndUserInfoKey]);
         CGRect keyboardRect = keyboardValue.CGRectValue;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+        UIScrollView* myScrollView;
+        for (UIView *i in self.view.subviews){
+            if([i isKindOfClass:[UIScrollView class]]){
+                myScrollView = (UIScrollView *)i;
+            }
+        }
+    
+        myScrollView.scrollEnabled = true;
+        UIEdgeInsets insets = UIEdgeInsetsMake(0.0, 0.0, keyboardRect.size.height, 0.0);
         
-        CGRect rect = self.view.frame;
-        rect.origin.y -= keyboardRect.size.height;
-        rect.size.height += keyboardRect.size.height;
-        self.view.frame = rect;
-        [UIView commitAnimations];
-    }
+        myScrollView.contentInset= insets;
+        myScrollView.scrollIndicatorInsets = insets;
+        
+        [myScrollView scrollRectToVisible:self.activeField.frame animated:YES];
 }
 
 -(void)keyboardWillHide:(NSNotification*)notification  {
-    if (self.isMovedUp) {
-        self.isMovedUp = NO;
-        NSValue *keyboardValue = (notification.userInfo[UIKeyboardFrameEndUserInfoKey]);
-        CGRect keyboardRect = keyboardValue.CGRectValue;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.3]; // if you want to slide up the view
-        
-        CGRect rect = self.view.frame;
-        rect.origin.y += keyboardRect.size.height;
-        rect.size.height -= keyboardRect.size.height;
-        self.view.frame = rect;
-        [UIView commitAnimations];
+    UIEdgeInsets insets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
+    
+    UIScrollView* myScrollView;
+    for (UIView *i in self.view.subviews){
+        if([i isKindOfClass:[UIScrollView class]]){
+            myScrollView = (UIScrollView *)i;
+        }
     }
+    
+    myScrollView.contentInset = insets;
+    myScrollView.scrollIndicatorInsets = insets;
+    [self.view endEditing:YES];
     
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)sender
+
+-(void)textFieldDidEndEditing:(UITextField *)sender
 {
-//    if  (self.view.frame.origin.y >= 0)
-//    {
-//        [self setViewMovedUp:YES];
-//    }
+    self.activeField = nil;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField
