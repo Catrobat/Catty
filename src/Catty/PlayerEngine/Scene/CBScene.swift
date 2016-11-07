@@ -108,17 +108,16 @@ final class CBScene: SKScene {
         logger?.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
         
         let location = touch.locationInNode(self)
-        var nodes = nodesAtPoint(location)
-        nodes = nodes.reverse()
-        let numberOfNodes = nodes.count
-        if numberOfNodes == 0 { return false } // needed if scene has no background image!
         
-        logger?.debug("Number of touched nodes: \(numberOfNodes)")
-        var nodeIndex = numberOfNodes - 1
+        // Get sprite nodes only (ShowTextBrick creates a SKLabelNode)
+        let nodes = nodesAtPoint(location).filter({$0 is CBSpriteNode})
+        if nodes.count == 0 { return false } // needed if scene has no background image!
+        
+        logger?.debug("Number of touched nodes: \(nodes.count)")
         
         nodes.forEach { print(">>> \($0.name)") }
-        while nodeIndex >= 0 {
-            guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
+        for node in nodes {
+            guard let currentNode = node as? CBSpriteNode
                 else { fatalError("This should not happen!") }
             if currentNode.name == nil {
                 return false
@@ -129,7 +128,7 @@ final class CBScene: SKScene {
             
             let newPosition = touch.locationInNode(currentNode)
             if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
-                print("Found sprite node: \(currentNode.name) with logical index: \(nodeIndex)")
+                print("Found sprite node: \(currentNode.name) with zPosition: \(currentNode.zPosition)")
                 return true
             } else {
                 var zPosition = currentNode.zPosition
@@ -138,9 +137,7 @@ final class CBScene: SKScene {
                     return true;
                     logger?.debug("Found Object")
                 }
-                
             }
-            nodeIndex -= 1
         }
         return true
     }
