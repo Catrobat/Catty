@@ -485,18 +485,7 @@
     [self.passwordField resignFirstResponder];
     [self setViewMovedUp:NO];
 }
-/*
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [self animateTextField: textField up: YES];
-}
 
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [self animateTextField: textField up: NO];
-}
-*/
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
     const int movementDistance = 7000; // tweak as needed
@@ -533,36 +522,5 @@
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
 }
-/*
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)keyboardWasShown:(NSNotification*)aNotification {
-    NSLog(@"Keyboard is active.");
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    scrollView.scrollIndicatorInsets = contentInsets;
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
-    }
-}
-
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
-    NSLog(@"Keyboard is hidden");
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    scrollView.contentInset = contentInsets;
-    scrollView.scrollIndicatorInsets = contentInsets;
-}*/
 
 @end

@@ -151,6 +151,7 @@
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
 
+    self.termsOfUseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
@@ -474,6 +475,16 @@
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    self.activeField = sender;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)sender
+{
+    self.activeField = nil;
 }
 
 @end

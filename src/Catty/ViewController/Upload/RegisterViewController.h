@@ -24,17 +24,24 @@
 #import "BaseLoginViewController.h"
 #import "CatrobatTableViewController.h"
 
-@interface RegisterViewController : BaseLoginViewController
+@interface RegisterViewController : BaseLoginViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) CatrobatTableViewController * catTVC;
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *termsOfUseButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
+
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;
 
