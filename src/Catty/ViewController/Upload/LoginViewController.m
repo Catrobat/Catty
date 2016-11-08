@@ -103,7 +103,6 @@
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
 
-    
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -113,7 +112,6 @@
     self.infoLabel.text = kLocalizedInfoLogin;
     [self.infoLabel sizeToFit];
 
-    
 
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder =kLocalizedUsername;
@@ -484,20 +482,6 @@
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
     [self setViewMovedUp:NO];
-}
-
-- (void) animateTextField: (UITextField*) textField up: (BOOL) up
-{
-    const int movementDistance = 7000; // tweak as needed
-    const float movementDuration = 0.3f; // tweak as needed
-    
-    int movement = (up ? -movementDistance : movementDistance);
-    
-    [UIView beginAnimations: @"anim" context: nil];
-    [UIView setAnimationBeginsFromCurrentState: YES];
-    [UIView setAnimationDuration: movementDuration];
-    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
-    [UIView commitAnimations];
 }
 
 - (void)showLoadingView
