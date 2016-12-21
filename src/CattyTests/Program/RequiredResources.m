@@ -46,11 +46,11 @@
 #import "SensorManager.h"
 #import "FormulaElement.h"
 
-@interface RequiredRescourses : XCTestCase
+@interface RequiredResources : XCTestCase
 
 @end
 
-@implementation RequiredRescourses
+@implementation RequiredResources
 
 - (void)setUp {
     [super setUp];
