@@ -60,7 +60,7 @@ The Following License Header should be used for all header and source files.
 ## License Header (for source and header files)
 <pre lang="objective-c"><code>
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
