@@ -146,6 +146,17 @@
     if (self.isEditingBrickMode) {
         [self enableUserInteractionAndResetHighlight];
     }
+    
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -1366,6 +1377,29 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                      }];
     self.editing = NO;
     self.allBricksSelected = NO;
+}
+
+
+#pragma mark Keyboard Delegates
+
+-(void)keyboardWillShow:(NSNotification *)notification {
+    NSDebug(@"Show keyboard");
+    
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+    
+    [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + keyboardFrameBeginRect.size.height) animated:YES];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+    NSDebug(@"hide keyboard");
+    
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+    
+    [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + keyboardFrameBeginRect.size.height) animated:YES];
 }
 
 @end
