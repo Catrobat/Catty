@@ -28,6 +28,26 @@
 
 @implementation NoteBrickCell
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        // register for keyboard notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    }
+    
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
@@ -42,24 +62,6 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.noteTextField = inlineViewSubViews[1];
-    
-    // register for keyboard notifications
-    // avoid multiple registrations
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
 }
 
 #pragma mark Keyboard Delegates
@@ -76,7 +78,7 @@
             [self.superview isKindOfClass:[UICollectionView class]]) {
             
             UICollectionView *parentView = (UICollectionView *)self.superview;
-            [parentView setContentOffset:CGPointMake(0, parentView.contentOffset.y + keyboardFrameBeginRect.size.height) animated:YES];
+            [parentView setContentOffset:CGPointMake(0, keyboardFrameBeginRect.size.height) animated:YES];
         }
     }
 }
