@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -88,12 +88,12 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         app.buttons["Copy"].tap()
 
         XCTAssert(app.alerts["Copy program"].exists)
-        let collectionViewsQuery = app.alerts["Copy program"].collectionViews
-        XCTAssert(collectionViewsQuery.buttons["Clear text"].exists)
-        collectionViewsQuery.buttons["Clear text"].tap()
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText("My second program")
-        XCTAssert(collectionViewsQuery.buttons["OK"].exists)
-        collectionViewsQuery.buttons["OK"].tap()
+        let alertQuery = app.alerts["Copy program"]
+        XCTAssert(alertQuery.buttons["Clear text"].exists)
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText("My second program")
+        XCTAssert(alertQuery.buttons["OK"].exists)
+        alertQuery.buttons["OK"].tap()
 
         XCTAssert(app.tables.staticTexts.count == 2)
         XCTAssert(app.tables.staticTexts["My second program"].exists)
@@ -120,12 +120,12 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         app.buttons["Copy"].tap()
 
         XCTAssert(app.alerts["Copy program"].exists)
-        let collectionViewsQuery = app.alerts["Copy program"].collectionViews
-        XCTAssert(collectionViewsQuery.buttons["Clear text"].exists)
-        collectionViewsQuery.buttons["Clear text"].tap()
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText("My second program")
-        XCTAssert(collectionViewsQuery.buttons["Cancel"].exists)
-        collectionViewsQuery.buttons["Cancel"].tap()
+        let alertQuery = app.alerts["Copy program"]
+        XCTAssert(alertQuery.buttons["Clear text"].exists)
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText("My second program")
+        XCTAssert(alertQuery.buttons["Cancel"].exists)
+        alertQuery.buttons["Cancel"].tap()
 
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
@@ -152,12 +152,12 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         app.buttons["Rename"].tap()
 
         XCTAssert(app.alerts["Rename Program"].exists)
-        let collectionViewsQuery = app.alerts["Rename Program"].collectionViews
-        XCTAssert(collectionViewsQuery.buttons["Clear text"].exists)
-        collectionViewsQuery.buttons["Clear text"].tap()
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText("My renamed program")
-        XCTAssert(collectionViewsQuery.buttons["OK"].exists)
-        collectionViewsQuery.buttons["OK"].tap()
+        let alertQuery = app.alerts["Rename Program"]
+        XCTAssert(alertQuery.buttons["Clear text"].exists)
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText("My renamed program")
+        XCTAssert(alertQuery.buttons["OK"].exists)
+        alertQuery.buttons["OK"].tap()
 
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My renamed program"].exists)
@@ -185,12 +185,12 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         app.buttons["Rename"].tap()
 
         XCTAssert(app.alerts["Rename Program"].exists)
-        let collectionViewsQuery = app.alerts["Rename Program"].collectionViews
-        XCTAssert(collectionViewsQuery.buttons["Clear text"].exists)
-        collectionViewsQuery.buttons["Clear text"].tap()
-        collectionViewsQuery.textFields["Enter your program name here..."].typeText("My renamed program")
-        XCTAssert(collectionViewsQuery.buttons["Cancel"].exists)
-        collectionViewsQuery.buttons["Cancel"].tap()
+        let alertQuery = app.alerts["Rename Program"]
+        XCTAssert(alertQuery.buttons["Clear text"].exists)
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText("My renamed program")
+        XCTAssert(alertQuery.buttons["Cancel"].exists)
+        alertQuery.buttons["Cancel"].tap()
 
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
@@ -220,11 +220,11 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
 //
 //        let descriptionText = "Yet another whack a mole program"
 //        XCTAssert(app.alerts["Set description"].exists)
-//        let collectionViewsQuery = app.alerts["Set description"].collectionViews
-//        XCTAssert(!collectionViewsQuery.buttons["Clear text"].exists) // empty description is expected by default!
-//        collectionViewsQuery.textFields["Enter your program description here..."].typeText(descriptionText)
-//        XCTAssert(collectionViewsQuery.buttons["OK"].exists)
-//        collectionViewsQuery.buttons["OK"].tap()
+//        let alertQuery = app.alerts["Set description"]
+//        XCTAssert(!alertQuery.buttons["Clear text"].exists) // empty description is expected by default!
+//        alertQuery.textFields["Enter your program description here..."].typeText(descriptionText)
+//        XCTAssert(alertQueryy.buttons["OK"].exists)
+//        alertQuery.buttons["OK"].tap()
 //
 //        // go back and forth to force reload table view!!
 //        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
@@ -236,7 +236,7 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
 //        app.buttons["More"].tap()
 //        XCTAssert(app.buttons["Description"].exists)
 //        app.buttons["Description"].tap()
-//        XCTAssert(collectionViewsQuery.textFields[descriptionText].exists)
+//        XCTAssert(alertQuery.textFields[descriptionText].exists)
 //    }
 //
 //    func testCanCancelSettingDescriptionOfMyFirstProgram() {
@@ -254,11 +254,11 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
 //
 //        let descriptionText = "Yet another whack a mole program"
 //        XCTAssert(app.alerts["Set description"].exists)
-//        let collectionViewsQuery = app.alerts["Set description"].collectionViews
-//        XCTAssert(!collectionViewsQuery.buttons["Clear text"].exists) // empty description is expected by default!
-//        collectionViewsQuery.textFields["Enter your program description here..."].typeText(descriptionText)
-//        XCTAssert(collectionViewsQuery.buttons["Cancel"].exists)
-//        collectionViewsQuery.buttons["Cancel"].tap()
+//        let alertQuery = app.alerts["Set description"]
+//        XCTAssert(!alertQuery.buttons["Clear text"].exists) // empty description is expected by default!
+//        alertQuery.textFields["Enter your program description here..."].typeText(descriptionText)
+//        XCTAssert(alertQuery.buttons["Cancel"].exists)
+//        alertQuery.buttons["Cancel"].tap()
 //
 //        // go back and forth to force reload table view!!
 //        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
@@ -270,7 +270,7 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
 //        app.buttons["More"].tap()
 //        XCTAssert(app.buttons["Description"].exists)
 //        app.buttons["Description"].tap()
-//        XCTAssert(!collectionViewsQuery.textFields[descriptionText].exists)
+//        XCTAssert(!alertQuery.textFields[descriptionText].exists)
 //    }
 
     /**

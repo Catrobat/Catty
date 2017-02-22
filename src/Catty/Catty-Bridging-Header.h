@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -53,8 +53,6 @@
 #import "SetVolumeToBrick.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
-#import "LedOnBrick.h"
-#import "LedOffBrick.h"
 #import "VibrationBrick.h"
 #import "GlideToBrick.h"
 #import "MoveNStepsBrick.h"
@@ -93,6 +91,7 @@
 #import "ChangeBrightnessByNBrick.h"
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
+#import "FlashBrick.h"
 
 // Formulas
 #import "Formula.h"

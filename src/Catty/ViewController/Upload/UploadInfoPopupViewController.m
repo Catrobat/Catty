@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -123,6 +123,9 @@ const CGFloat PADDING = 5.0f;
                            selector:@selector(uploadAction)
                                name:kReadyToUpload
                              object:nil];
+    [self.navigationController.navigationBar setTintColor:[UIColor navTintColor]];
+    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -209,18 +212,22 @@ const CGFloat PADDING = 5.0f;
         self.descriptionTextView.text = self.program.header.programDescription;
     }
     self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
+
+    self.descriptionTextView.layer.borderWidth = 1.0f;
+    self.descriptionTextView.layer.borderColor = [[UIColor textViewBorderGrayColor] CGColor];
+    self.descriptionTextView.layer.cornerRadius = 8;
 }
 
 - (void)initActionButtons
 {
     [self.uploadButton setTitle:kLocalizedUpload forState:UIControlStateNormal];
     [self.uploadButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE+4]];
-    [self.uploadButton.titleLabel setTextColor:[UIColor buttonHighlightedTintColor]];
     [self.uploadButton setBackgroundColor:[UIColor globalTintColor]];
     self.uploadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.uploadButton sizeToFit];
     self.uploadButton.frame = CGRectMake(0, self.currentHeight, self.view.frame.size.width, self.uploadButton.frame.size.height);
     [self.uploadButton addTarget:self action:@selector(checkProgramAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.uploadButton setTitleColor:[UIColor buttonHighlightedTintColor] forState: UIControlStateNormal];
 }
 
 #pragma mark Helpers
@@ -386,8 +393,8 @@ const CGFloat PADDING = 5.0f;
                     [self.program saveToDiskWithNotification:YES];
                     
                         //Set new token but when? everytime is wrong
-//                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-//                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
+                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
+                   [JNKeychain saveValue:newToken forKey:kUserLoginToken];
                     
                     [self showUploadSuccessfulView];
                     
@@ -442,7 +449,6 @@ const CGFloat PADDING = 5.0f;
     }
 }
 
-
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
     [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:enabled];
@@ -467,13 +473,25 @@ const CGFloat PADDING = 5.0f;
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:true];
+}
+
 -(void)enableUploadView
 {
-    [self.loadingView hide];
-    self.view.alpha = 1.0f;
-    self.view.userInteractionEnabled = YES;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self.loadingView hide];
+        for (UIView *view in self.view.subviews) {
+            if (![view isKindOfClass:[LoadingView class]]) {
+                view.alpha = 1.0f;
+            }
+        }
+        self.view.userInteractionEnabled = YES;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    });
 }
+
 
 
 @end

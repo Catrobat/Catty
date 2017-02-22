@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,22 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOffBrickCell.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@interface LedOffBrickCell ()
-@property (nonatomic, strong) UILabel *textLabel;
-@end
+@interface FlashBrickCell : BrickCell
 
-@implementation LedOffBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.textLabel = inlineViewSubViews[0];
-}
+@property (nonatomic, weak) iOSCombobox *messageComboBoxView;
 
 @end

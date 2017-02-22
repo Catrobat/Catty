@@ -38,7 +38,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>5</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -47,10 +47,20 @@
 	<string>0.98</string>
 	<key>CatrobatMediaLicense</key>
 	<string>http://developer.catrobat.org/ccbysa_v3</string>
+	<key>CatrobatPlatformName</key>
+	<string>iOS</string>
 	<key>CatrobatProgramLicense</key>
 	<string>http://developer.catrobat.org/agpl_v3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Communicate with your Arduino device using Blueetoth.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Import pictures from your device camera to use as Look or Background.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record your own sounds or use the microphone for screen recording.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Import pictures from your Photo Library to use as Look or Background.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

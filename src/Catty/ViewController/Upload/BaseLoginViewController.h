@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,5 +23,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseLoginViewController : UIViewController
+@property (weak, nonatomic) UITextField *activeField;
 -(void)setViewMovedUp:(BOOL)movedUp;
 @end

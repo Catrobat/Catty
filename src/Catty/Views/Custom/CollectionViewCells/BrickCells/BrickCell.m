@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 #import "BrickCellFormulaData.h"
 #import "BrickCellTextData.h"
 #import "BrickCellMessageData.h"
+#import "BrickCellStaticChoiceData.h"
 #import "BrickCellVariableData.h"
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
@@ -108,8 +109,7 @@
     @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
     @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
-    @[],                            /* turn on flashlight       */\
-    @[]                             /* turn off flashlight      */\
+    @"{STATICCHOICE}"               /* flash brick              */\
 ]
 
 // variable bricks
@@ -499,7 +499,10 @@
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
-            }  else if ([afterLabelParam rangeOfString:@"MOTOR"].location != NSNotFound) {
+            } else if ([afterLabelParam rangeOfString:@"STATICCHOICE"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellStaticChoiceData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"MOTOR"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroMotorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LIGHT"].location != NSNotFound) {
@@ -508,7 +511,7 @@
             } else if ([afterLabelParam rangeOfString:@"TONE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroToneData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
-            }else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
+            } else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroIfSensorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             }else {

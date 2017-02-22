@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -270,7 +270,7 @@
         return NO;
     }
     FileManager *fileManager = appDelegate.fileManager;
-    [fileManager downloadFileFromURL:url withProgramID:programID withName:param];
+    [fileManager downloadProgramFromURL:url withProgramID:programID andName:param];
     param = nil;
     start = [request.URL.absoluteString rangeOfString:@"download/"];
     if (start.location != NSNotFound) {
@@ -280,10 +280,6 @@
             param = [param substringToIndex:end.location];
         }
     }
-    NSString *urlString = [NSString stringWithFormat:@"https://pocketcode.org/resources/thumbnails/%@_small.png",param];
-    NSDebug(@"screenshot url is: %@", urlString);
-    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:param];
     [self.loadingView show];
     return NO;
 }

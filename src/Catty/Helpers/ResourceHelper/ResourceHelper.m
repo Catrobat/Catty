@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@class CentralManager;
 @class BluetoothPopupVC;
 
 @implementation ResourceHelper

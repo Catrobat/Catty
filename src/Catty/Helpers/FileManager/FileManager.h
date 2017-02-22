@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -56,11 +56,9 @@
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
-- (void)downloadFileFromURL:(NSURL*)url withProgramID:(NSString*)programID withName:(NSString*)name;
-- (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*)name;
-- (NSString*)fullPathForProgram:(NSString*)programName;
+- (void)downloadProgramFromURL:(NSURL*)url withProgramID:(NSString*)programID andName:(NSString*)name;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
-- (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
+- (void)stopLoading:(NSURL *)projecturl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 - (uint64_t)freeDiskspace;

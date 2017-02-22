@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -539,8 +539,7 @@
 
 -(void)takeAutomaticScreenshot
 {
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/small_screenshot.png", [self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@/screenshot.png",[self.program projectPath]],
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/screenshot.png",[self.program projectPath]],
                                [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", [self.program projectPath]],
                                [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", [self.program projectPath]]];
     BOOL fileExists = NO;
@@ -563,14 +562,6 @@
             NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
             [data writeToFile:pngFilePath atomically:YES];
             
-            ///Save small Screenshot too??
-            NSString *pngFilePathSmall = [NSString stringWithFormat:@"%@/small_screenshot.png",[self.program projectPath]];
-            UIGraphicsBeginImageContext( CGSizeMake(160, 160) );
-            [image drawInRect:CGRectMake(0,0,160,160)];
-            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            NSData *dataSmall = [NSData dataWithData:UIImagePNGRepresentation(newImage)];
-            [dataSmall writeToFile:pngFilePathSmall atomically:YES];
         });
 
     }

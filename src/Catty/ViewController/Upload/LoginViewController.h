@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,23 +24,24 @@
 #import "BaseLoginViewController.h"
 #import "CatrobatTableViewController.h"
 
-@interface LoginViewController : BaseLoginViewController
+@interface LoginViewController : BaseLoginViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) CatrobatTableViewController * catTVC;
 
-@property (nonatomic, weak) IBOutlet UITextField * usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
 
-@property (nonatomic, weak) IBOutlet UITextField * passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
-@property (nonatomic, weak) IBOutlet UIButton * forgotButton;
+@property (weak, nonatomic) IBOutlet UIButton *forgotButton;
 
 @property (nonatomic, weak) IBOutlet UILabel * titleLabel;
 
-@property (nonatomic, weak) IBOutlet UIImageView * headerImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
-@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
 @end

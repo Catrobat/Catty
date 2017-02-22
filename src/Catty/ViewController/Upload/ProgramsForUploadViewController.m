@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -170,8 +170,7 @@
     
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@small_screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
@@ -246,16 +245,16 @@
 - (void)uploadProgramAction:(id)sender
 {
     NSDebug(@"Upload program: %@", self.lastUsedProgram.header.programName);
-    NSDebug(@"Attention: Currently not working!");
+    //NSDebug(@"Attention: Currently not working!");
     
-    [Util alertWithText:kLocalizedThisFeatureIsComingSoon];
+    //[Util alertWithText:kLocalizedThisFeatureIsComingSoon];
     
     /*
      ProgramLoadingInfo *info = self.programLoadingInfos.firstObject;
      NSDebug(@"%@", info.basePath);
      */
     
-    //[self showUploadInfoView];  //Currently not working
+    [self showUploadInfoView];  //Currently not working
 }
 
 #pragma mark - Helpers

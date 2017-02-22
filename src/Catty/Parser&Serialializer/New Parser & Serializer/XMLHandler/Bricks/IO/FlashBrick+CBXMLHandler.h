@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import "FlashBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface LedOnBrick : Brick
+@interface FlashBrick (CBXMLHandler) <CBXMLNodeProtocol>
+
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,28 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOnBrick.h"
-#import "UIDefines.h"
-#import "Script.h"
-#import "SpriteObject.h"
+import ReplayKit
 
-@implementation LedOnBrick
+extension CBScene: RPPreviewViewControllerDelegate {
 
-- (NSString*)brickTitle
-{
-    return kLocalizedLedOn;
+    func previewControllerDidFinish(previewController: RPPreviewViewController) {
+        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"LedOnBrick on: %@", self.script.object.name];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kLED;
-}
-
-@end

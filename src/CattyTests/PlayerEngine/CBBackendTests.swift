@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -167,8 +167,8 @@ final class CBBackendTests: XCTestCase {
         setXBrick.script = startScript
         let ifLogicElseBrick = IfLogicElseBrick()
         ifLogicElseBrick.script = startScript
-        let ledOnBrick = LedOnBrick()
-        ledOnBrick.script = startScript
+        let flashBrick = FlashBrick()
+        flashBrick.script = startScript
         let ifLogicEndBrick = IfLogicEndBrick()
         ifLogicEndBrick.script = startScript
         let vibrationBrick = VibrationBrick()
@@ -181,7 +181,7 @@ final class CBBackendTests: XCTestCase {
         ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick
         ifLogicEndBrick.ifElseBrick = ifLogicElseBrick
         
-        startScript.brickList = [setYBrick, ifLogicBeginBrick, setXBrick, ifLogicElseBrick, ledOnBrick, ifLogicEndBrick, vibrationBrick]
+        startScript.brickList = [setYBrick, ifLogicBeginBrick, setXBrick, ifLogicElseBrick, flashBrick, ifLogicEndBrick, vibrationBrick]
         
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
         // [[CBOperationSequence] [CBIfConditionalSequence] [CBOperationSequence]]
@@ -352,10 +352,8 @@ final class CBBackendTests: XCTestCase {
         changeVariableBrick.script = whenScript
         let ifLogicEndBrick = IfLogicEndBrick()
         ifLogicEndBrick.script = whenScript
-        let ledOnBrick = LedOnBrick()
-        ledOnBrick.script = whenScript
-        let ledOffBrick = LedOffBrick()
-        ledOffBrick.script = whenScript
+        let flashBrick = FlashBrick()
+        flashBrick.script = whenScript
         let vibrationBrick = VibrationBrick()
         vibrationBrick.script = whenScript
         ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick
@@ -370,7 +368,7 @@ final class CBBackendTests: XCTestCase {
         let ifOperationSequenceBricks = [playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick]
         let elseOperationSequenceBricks = [changeVolumeByNBrick, setVolumeToBrick,
                                            setVariableBrick, changeVariableBrick]
-        let postIfElseOperationSequenceBricks = [ledOnBrick, ledOffBrick, vibrationBrick]
+        let postIfElseOperationSequenceBricks = [flashBrick, vibrationBrick]
         
         var scriptBrickList = preIfElseOperationSequenceBricks
         scriptBrickList += [ifLogicBeginBrick]
@@ -384,7 +382,7 @@ final class CBBackendTests: XCTestCase {
         let sequenceList = frontend.computeSequenceListForScript(whenScript).sequenceList
         let instructionList = backend.instructionsForSequence(sequenceList)
         
-        XCTAssertEqual(instructionList.count, 16, "Instruction list should contain sixteen instructions")
+        XCTAssertEqual(instructionList.count, 15, "Instruction list should contain fifteen instructions")
         
         switch instructionList[0] { // waitBrick
         case .WaitExecClosure(_):

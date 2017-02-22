@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,11 @@
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl {
     self = [super init];
     if (self) {
+        
+        if ([baseUrl hasPrefix:@"//"]) {
+            baseUrl = [NSString stringWithFormat:@"https:%@", baseUrl];
+        }
+        
         self.name            = [dict valueForKey:@"ProjectName"];
         self.author          = [dict valueForKey:@"Author"];
         self.projectDescription = [dict valueForKey:@"Description"];

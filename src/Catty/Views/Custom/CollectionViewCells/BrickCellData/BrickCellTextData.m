@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -57,22 +57,12 @@
         //        self.userInteractionEnabled = NO;
         self.textColor = [UIColor whiteColor];
         
-        UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 1)];
-        self.leftView = paddingView;
-        self.leftViewMode = UITextFieldViewModeAlways;
         [self sizeToFit];
         
         NSInteger availableHeightWithBorder = frame.size.height + 2 * BORDER_WIDTH;
-        if (self.frame.size.height < availableHeightWithBorder)
-        {
-            CGRect newFrame = self.frame;
-            newFrame.size.height = availableHeightWithBorder;
-            self.frame = newFrame;
-        }
         
-        if (self.frame.origin.x + self.frame.size.width + 60 > [Util screenWidth]) {
-            self.frame = CGRectMake(self.frame.origin.x,self.frame.origin.y,[Util screenWidth] - 60 - self.frame.origin.x, self.frame.size.height);
-        }
+        [self correctHeightAndWidth:availableHeightWithBorder];
+        
         [self setNeedsDisplay];
         [self drawBorder:NO];
         
@@ -83,6 +73,12 @@
     return self;
 }
 
+- (CGRect)textRectForBounds:(CGRect)bounds
+{
+    bounds.origin.x += 5;
+    bounds.size.width -= 6;
+    return bounds;
+}
 
 - (void)drawBorder:(BOOL)isActive
 {
@@ -133,15 +129,26 @@
     [self.layer addSublayer:self.border];
 }
 
+- (void)correctHeightAndWidth:(NSInteger) availableHeight
+{
+    if (self.frame.size.height < availableHeight)
+    {
+        CGRect newFrame = self.frame;
+        newFrame.size.height = availableHeight;
+        self.frame = newFrame;
+    }
+    if (self.frame.origin.x + self.frame.size.width + 60 > [Util screenWidth]) {
+        self.frame = CGRectMake(self.frame.origin.x,self.frame.origin.y,[Util screenWidth] - 60 - self.frame.origin.x, self.frame.size.height);
+    }
+}
+
 - (void)update
 {
+    CGRect frame = self.frame;
     [self sizeToFit];
-    if(self.frame.size.width > 250)
-    {
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 250, self.frame.size.height);
-    }
+    [self correctHeightAndWidth:frame.size.height];
+    [self setNeedsDisplay];
     [self drawBorder:NO];
-    
 }
 
 #pragma mark - delegates
@@ -153,8 +160,9 @@
 
 - (void)textFieldDone:(id)sender
 {
-    [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.text];
     [self resignFirstResponder];
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.text];
+    [self update];
 }
 
 # pragma mark - User interaction

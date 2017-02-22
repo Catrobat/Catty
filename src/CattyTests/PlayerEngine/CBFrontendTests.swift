@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,12 +44,11 @@ final class CBFrontendTests: XCTestCase {
         let setVolumeToBrick = SetVolumeToBrick()
         let setVariableBrick = SetVariableBrick()
         let changeVariableBrick = ChangeVariableBrick()
-        let ledOnBrick = LedOnBrick()
-        let ledOffBrick = LedOffBrick()
+        let flashBrick = FlashBrick()
         let vibrationBrick = VibrationBrick()
         whenScript.brickList = [waitBrick, noteBrick, broadcastBrick, broadcastWaitBrick,
             playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick, changeVolumeByNBrick,
-            setVolumeToBrick, setVariableBrick, changeVariableBrick, ledOnBrick, ledOffBrick,
+            setVolumeToBrick, setVariableBrick, changeVariableBrick, flashBrick,
             vibrationBrick]
 
         let scriptSequenceList = frontend.computeSequenceListForScript(whenScript)
@@ -98,8 +97,7 @@ final class CBFrontendTests: XCTestCase {
         let setVariableBrick = SetVariableBrick()
         let changeVariableBrick = ChangeVariableBrick()
         let ifLogicEndBrick = IfLogicEndBrick()
-        let ledOnBrick = LedOnBrick()
-        let ledOffBrick = LedOffBrick()
+        let flashBrick = FlashBrick()
         let vibrationBrick = VibrationBrick()
         ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick
         ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick
@@ -113,7 +111,7 @@ final class CBFrontendTests: XCTestCase {
         let ifOperationSequenceBricks = [playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick]
         let elseOperationSequenceBricks = [changeVolumeByNBrick, setVolumeToBrick,
             setVariableBrick, changeVariableBrick]
-        let postIfElseOperationSequenceBricks = [ledOnBrick, ledOffBrick, vibrationBrick]
+        let postIfElseOperationSequenceBricks = [flashBrick, vibrationBrick]
 
         var scriptBrickList = preIfElseOperationSequenceBricks
         scriptBrickList += [ifLogicBeginBrick]

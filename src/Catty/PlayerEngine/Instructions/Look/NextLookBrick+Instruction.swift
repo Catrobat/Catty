@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -44,30 +44,9 @@ extension NextLookBrick: CBInstructionProtocol {
                 guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook(look)) else { return }
                 image = imageFromDisk
             }
-            let texture = SKTexture(image: image)
-            if object.isBackground() {
-                spriteNode.currentUIImageLook = image
-            } else {
-                //        CGRect newRect = [image cropRectForImage:image];
-                //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-                //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-                //        CGImageRelease(imageRef);
-                spriteNode.currentUIImageLook = image
-            }
-            spriteNode.currentLookBrightness = 0
-            let xScale = spriteNode.xScale
-            let yScale = spriteNode.yScale
-            spriteNode.xScale = 1.0
-            spriteNode.yScale = 1.0
-            spriteNode.size = texture.size()
-            spriteNode.texture = texture
+           
             spriteNode.currentLook = look
-            if xScale != 1.0 {
-                spriteNode.xScale = CGFloat(xScale)
-            }
-            if yScale != 1.0 {
-                spriteNode.yScale = CGFloat(yScale)
-            }
+            spriteNode.executeFilter(image)
         }
     }
 

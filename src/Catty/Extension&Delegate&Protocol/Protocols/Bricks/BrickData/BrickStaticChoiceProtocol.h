@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,15 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension LedOffBrick: CBInstructionProtocol {
+#import <Foundation/Foundation.h>
 
-    func instruction() -> CBInstruction {
+@class Brick;
 
-        return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
-            FlashHelper.sharedFlashHandler().turnOff()
-            context.state = .Runnable
-        }
-
-    }
-}
+@protocol BrickStaticChoiceProtocol <NSObject>
+- (NSString*)choiceForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setChoice:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (NSArray<NSString *>*)possibleChoicesForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+@end

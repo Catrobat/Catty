@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -150,7 +150,7 @@ final class UIImageExtensionTests: XCTestCase {
             width * 4,
             CGColorSpaceCreateDeviceRGB(),
             CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue),
-            providerRef,
+            providerRef!,
             nil,
             true,
             CGColorRenderingIntent.RenderingIntentDefault

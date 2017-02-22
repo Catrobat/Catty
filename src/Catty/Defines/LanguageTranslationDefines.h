@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -255,6 +255,8 @@
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
 #define kLocalizedWiFiProgramDownloads NSLocalizedString(@"Download only with WiFi", nil)
 #define kLocalizedNoWifiConnection NSLocalizedString(@"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", nil)
+#define kLocalizedOff NSLocalizedString(@"off", nil)
+#define kLocalizedOn NSLocalizedString(@"on", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -374,6 +376,7 @@
 #define kLocalizedClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
 #define kLocalizedSetColor NSLocalizedString(@"Set color to %@", nil)
 #define kLocalizedChangeColorByN NSLocalizedString(@"Change color by %@", nil)
+#define kLocalizedFlash NSLocalizedString(@"Turn flashlight\n%@", nil)
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound\n%@", nil)
@@ -412,6 +415,7 @@
 //************************************************************************************************************
 
 #define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedLogout NSLocalizedString(@"Logout", nil)
 #define kLocalizedUsername NSLocalizedString(@"Username", nil)
 #define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)

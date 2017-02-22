@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -376,12 +376,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
     appDelegate.fileManager.delegate = self;
-    [appDelegate.fileManager downloadFileFromURL:url withProgramID:self.project.projectID withName:name];
-    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
-    NSString *urlString = self.project.screenshotSmall;
-    NSDebug(@"screenshot url is: %@", urlString);
-    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:name];
+    [appDelegate.fileManager downloadProgramFromURL:url withProgramID:self.project.projectID andName:name];
     self.project.isdownloading = YES;
     [self.projects setObject:self.project forKey:url];
     [self reloadInputViews];
@@ -460,9 +455,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    NSString *urlString = self.project.screenshotSmall;
-    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager stopLoading:url andImageURL:screenshotSmallUrl];
+    [appDelegate.fileManager stopLoading:url];
     appDelegate.fileManager.delegate = self;
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -191,11 +191,10 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeTransparencyByNBrick= 207,
     kSetBrightnessBrick        = 208,
     kChangeBrightnessByNBrick  = 209,
-    kSetColorBrick           = 210,
+    kSetColorBrick             = 210,
     kChangeColorByNBrick       = 211,
     kClearGraphicEffectBrick   = 212,
-    kLedOnBrick                = 213,
-    kLedOffBrick               = 214,
+    kFlashBrick                = 213,
 
     
     // 3xx sound bricks
@@ -335,8 +334,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"SetColorBrick"             : @(kSetColorBrick),\
     @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
-    @"LedOnBrick"                : @(kLedOnBrick),\
-    @"LedOffBrick"               : @(kLedOffBrick),\
+    @"FlashBrick"                : @(kFlashBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
@@ -419,10 +417,9 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SetBrightnessBrick"        : @(kBrickHeight2h),\
 @"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
-@"LedOnBrick"                : @(kBrickHeight1h),\
-@"LedOffBrick"               : @(kBrickHeight1h),\
 @"SetColorBrick"             : @(kBrickHeight1h),\
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
+@"FlashBrick"                : @(kBrickHeight2h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

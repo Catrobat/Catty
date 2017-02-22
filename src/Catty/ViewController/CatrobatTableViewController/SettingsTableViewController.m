@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
-
+#import "CatrobatTableViewController.h"
 
 
 @implementation SettingsTableViewController
@@ -125,6 +125,19 @@
         
     }
     
+    if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue])
+    {
+        [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+            [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedLogout key:nil handler:^(BOButtonTableViewCell *cell) {
+                cell.backgroundColor = [UIColor backgroundColor];
+                cell.mainColor = [UIColor varibaleBrickRedColor];
+                cell.actionBlock = ^{
+                    [weakSelf logoutUser];
+                    [self.navigationController popViewControllerAnimated:YES];
+                };
+            }]];
+        }]];
+    }
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
@@ -218,6 +231,13 @@
     }]];
     
     return cameraOptions;
+}
+
+- (void)logoutUser
+{
+    [[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kUserLoginToken];
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kcUsername];
 }
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -151,6 +151,7 @@
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
 
+    self.termsOfUseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
@@ -407,14 +408,10 @@
         
         //save username, password and email in keychain and token in nsuserdefaults
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-        [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
         [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
-        
-        //TODO: email to keychain?
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:self.password forKey:kcPassword];
         [JNKeychain saveValue:token forKey:kUserLoginToken];
         
         [self hideLoadingView];
@@ -478,6 +475,16 @@
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    self.activeField = sender;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)sender
+{
+    self.activeField = nil;
 }
 
 @end

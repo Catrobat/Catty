@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -85,6 +85,8 @@
     [self initView];
     [self addDoneToTextFields];
     self.shouldShowAlert = YES;
+    self.usernameField.delegate=self;
+    self.passwordField.delegate=self;
 }
 
 - (void)dealloc
@@ -101,7 +103,6 @@
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
 
-    
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -111,7 +112,6 @@
     self.infoLabel.text = kLocalizedInfoLogin;
     [self.infoLabel sizeToFit];
 
-    
 
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder =kLocalizedUsername;
@@ -183,6 +183,19 @@
     });
     
     [super viewWillDisappear:animated];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)sender
+{
+    //    if  (self.view.frame.origin.y >= 0)
+    //    {
+    //        [self setViewMovedUp:YES];
+    //    }
+    self.activeField = sender;
+}
+-(void)textFieldDidEndEditing:(UITextField *)sender
+{
+    self.activeField = nil;
 }
 
 -(void)willMoveToParentViewController:(UIViewController *)parent
@@ -412,20 +425,18 @@
         
         //save username, password and email in keychain and token in nsuserdefaults
         [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-        [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
         [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
-        
-        //TODO email to Keychain?!
         [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [JNKeychain saveValue:self.password forKey:kcPassword];
         [JNKeychain saveValue:token forKey:kUserLoginToken];
         
         [self hideLoadingView];
         [self.navigationController popViewControllerAnimated:NO];
         
     } else if ([statusCode isEqualToString:statusAuthenticationFailed]) {
+        self.loginButton.enabled = YES;
+        [self hideLoadingView];
         NSDebug(@"Error: %@", kLocalizedAuthenticationFailed);
         [Util alertWithText:kLocalizedAuthenticationFailed];
     } else {
@@ -471,31 +482,6 @@
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
     [self setViewMovedUp:NO];
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [self animateTextField: textField up: YES];
-}
-
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [self animateTextField: textField up: NO];
-}
-
-- (void) animateTextField: (UITextField*) textField up: (BOOL) up
-{
-    const int movementDistance = 80; // tweak as needed
-    const float movementDuration = 0.3f; // tweak as needed
-    
-    int movement = (up ? -movementDistance : movementDistance);
-    
-    [UIView beginAnimations: @"anim" context: nil];
-    [UIView setAnimationBeginsFromCurrentState: YES];
-    [UIView setAnimationDuration: movementDuration];
-    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
-    [UIView commitAnimations];
 }
 
 - (void)showLoadingView

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,6 +47,7 @@
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
 #import "OrderedDictionary.h"
+#import "UIDevice-Hardware.h"
 
 @interface Util () <CatrobatAlertViewDelegate>
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -298,12 +299,12 @@
 
 + (NSString*)deviceName
 {
-  return [[UIDevice currentDevice] model];
+    return [[UIDevice currentDevice] modelName];
 }
 
 + (NSString*)platformName
 {
-  return [[UIDevice currentDevice] systemName];
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatPlatformName"];
 }
 
 + (NSString*)platformVersion

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LedOnBrick.h"
-#import "CBXMLNodeProtocol.h"
+#import "Brick.h"
+#import "BrickStaticChoiceProtocol.h"
 
-@interface LedOnBrick (CBXMLHandler) <CBXMLNodeProtocol>
+@interface FlashBrick : Brick<BrickStaticChoiceProtocol>
+
+@property (nonatomic) int flashChoice;
+- (id)initWithChoice:(int)choice;
 
 @end

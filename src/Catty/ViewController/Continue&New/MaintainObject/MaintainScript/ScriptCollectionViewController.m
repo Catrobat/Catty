@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -55,6 +55,7 @@
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
+#import "BrickStaticChoiceProtocol.h"
 #import "BrickVariableProtocol.h"
 #import "BrickCellLookData.h"
 #import "BrickCellSoundData.h"
@@ -82,6 +83,7 @@
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
 #import "BrickCellPhiroIfSensorData.h"
+#import "BrickCellStaticChoiceData.h"
 #import "BrickPhiroMotorProtocol.h"
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
@@ -453,22 +455,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet
-{
-    if (IS_OS_9_OR_LATER) {
-        [self actionSheetPresented:actionSheet];
-    }
-}
-
-- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
-{
-    if (! IS_OS_9_OR_LATER) {
-        [self actionSheetPresented:actionSheet];
-    }
-}
-
 #define kActionsheetBrickCellMarginBottom 15.0f
-- (void)actionSheetPresented:(CatrobatAlertController*)actionSheet
+- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
 {
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
     if (brickCell) {
@@ -1079,7 +1067,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         block(messageName);
     }
     [self.object.program saveToDiskWithNotification:YES];
-    [self reloadData];
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -1090,7 +1077,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         block(variableName);
     }
     [self.object.program saveToDiskWithNotification:YES];
-    [self reloadData];
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -1099,6 +1085,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     NSInteger line = brickCellData.lineNumber;
     NSInteger parameter = brickCellData.parameterNumber;
     id brick = brickCellData.brickCell.scriptOrBrick;
+    
     if ([brickCellData isKindOfClass:[BrickCellLookData class]] && [brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
@@ -1108,7 +1095,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.showAddLookActionSheetAtStartForObject = NO;
             ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
-                [self reloadData];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1126,7 +1112,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.showAddSoundActionSheetAtStart = YES;
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
-                [self reloadData];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1144,7 +1129,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ptvc.showAddObjectActionSheetAtStart = YES;
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
-                [self reloadData];
                 [self.navigationController popToViewController:self animated:YES];
                 [self enableUserInteractionAndResetHighlight];
             };
@@ -1162,12 +1146,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
         [(Brick<BrickTextProtocol>*)brick setText:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     } else
+    if ([brickCellData isKindOfClass:[BrickCellStaticChoiceData class]] && [brick conformsToProtocol:@protocol(BrickStaticChoiceProtocol)]) {
+            [(Brick<BrickStaticChoiceProtocol>*)brick setChoice:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
     if ([brickCellData isKindOfClass:[BrickCellMessageData class]] && [brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
-                                          cancelAction:@selector(reloadData)
+                                          cancelAction:@selector(enableUserInteractionAndResetHighlight)
                                             withObject:(id) ^(NSString* message){
                                                 [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
                                             }
@@ -1181,6 +1168,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
+            [self enableUserInteractionAndResetHighlight];
             return;
         } else {
             [messageBrick setMessage:(NSString*)value forLineNumber:line andParameterNumber:parameter];
@@ -1205,25 +1193,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
-            
         }
-    }else
-        if ([brickCellData isKindOfClass:[BrickCellPhiroMotorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
-            Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
-            [motorBrick setMotor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
-    }else
-        if ([brickCellData isKindOfClass:[BrickCellPhiroToneData class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
-            Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
-            [toneBrick setTone:(NSString*)value forLineNumber:line andParameterNumber:parameter];
-    }else
-        if ([brickCellData isKindOfClass:[BrickCellPhiroLightData class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
-            Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
-            [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
-    }else
-        if ([brickCellData isKindOfClass:[BrickCellPhiroIfSensorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
-            Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
-            [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
-        }
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellPhiroMotorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
+        Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
+        [motorBrick setMotor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellPhiroToneData class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
+        Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
+        [toneBrick setTone:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellPhiroLightData class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
+        Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
+        [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellPhiroIfSensorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
+        Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
+        [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }
     
     [self.object.program saveToDiskWithNotification:NO];
     [self enableUserInteractionAndResetHighlight];
@@ -1253,6 +1240,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (self.collectionView.contentOffset.y > maxContentOffset) {
         [self.collectionView setContentOffset:CGPointMake(0, maxContentOffset) animated:YES];
     }
+    
+    [self reloadData];
 }
 
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -119,7 +119,7 @@ final class CBSpriteNode: SKSpriteNode {
         let cgimg = context.createCGImage(outputImage, fromRect: outputImage.extent)
         
         // 3
-        let newImage = UIImage(CGImage: cgimg)
+        let newImage = UIImage(CGImage: cgimg!)
         self.currentUIImageLook = newImage
         self.texture = SKTexture(image: newImage)
         let xScale = self.xScale

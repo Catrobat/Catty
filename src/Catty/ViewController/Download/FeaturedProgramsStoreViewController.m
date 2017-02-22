@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -232,18 +232,32 @@
     }
 
     NSError *error = nil;
+    /*
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
                                                       error:&error];
+    */
+    
+    // TODO: Quick hack to use other featured programs, REMOVE THIS!
+    
+    NSString *fakeResponse = @"{\"CatrobatProjects\":[{\"ProjectId\":719,\"ProjectName\":\"Galaxy War\",\"Author\":\"DavidR\",\"FeaturedImage\":\"resources/featured/featured_11.jpeg\"},{\"ProjectId\":821,\"ProjectName\":\"Whack a Mole\",\"Author\":\"VesnaK\",\"FeaturedImage\":\"resources/featured/featured_3.jpeg\"}],\"preHeaderMessages\":\"\",\"CatrobatInformation\":{\"BaseUrl\":\"https://share.catrob.at/\",\"TotalProjects\":\"2\",\"ProjectsExtension\":\".catrobat\"}}";
+    
+ 
+    NSData *jsonData = [fakeResponse dataUsingEncoding:NSUTF8StringEncoding];
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:&error];
+    
     NSDebug(@"array: %@", jsonObject);
     
     
     if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
         
+        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
         CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
         
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+
         
         if (catrobatProjects) {
             self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];

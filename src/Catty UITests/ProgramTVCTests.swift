@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -75,7 +75,7 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Delete"].exists)
 
         app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this object"].collectionViews.buttons["No"]
+        let yesButton = app.alerts["Delete this object"].buttons["No"]
         yesButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
     }
@@ -92,10 +92,10 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
 
         app.buttons["More"].tap()
         app.buttons["Rename"].tap()
-        let collectionViewsQuery = app.alerts["Rename object"].collectionViews
-        collectionViewsQuery.buttons["Clear text"].tap()
-        collectionViewsQuery.textFields["Enter your object name here..."].typeText("Mole 5")
-        collectionViewsQuery.buttons["OK"].tap()
+        let alertQuery = app.alerts["Rename object"]
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your object name here..."].typeText("Mole 5")
+        alertQuery.buttons["OK"].tap()
         XCTAssert(app.tables.staticTexts["Mole 5"].exists)
         
         

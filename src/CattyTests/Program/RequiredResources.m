@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,7 @@
 #import "SetVolumeToBrick.h"
 #import "ChangeVolumeByNBrick.h"
 #import "VibrationBrick.h"
-#import "LedOnBrick.h"
-#import "LedOffBrick.h"
+#import "FlashBrick.h"
 #import "PointToBrick.h"
 #import "IfOnEdgeBounceBrick.h"
 #import "GlideToBrick.h"
@@ -45,12 +44,13 @@
 #import "PhiroPlayToneBrick.h"
 #import "PhiroRGBLightBrick.h"
 #import "SensorManager.h"
+#import "FormulaElement.h"
 
-@interface RequiredRescourses : XCTestCase
+@interface RequiredResources : XCTestCase
 
 @end
 
-@implementation RequiredRescourses
+@implementation RequiredResources
 
 - (void)setUp {
     [super setUp];
@@ -61,35 +61,6 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-
-NSString * const sensorTestStringArray[] = {
-    @"X_ACCELERATION",
-    @"Y_ACCELERATION",
-    @"Z_ACCELERATION",
-    @"COMPASS_DIRECTION",
-    @"X_INCLINATION",
-    @"Y_INCLINATION",
-    @"OBJECT_X",
-    @"OBJECT_Y",
-    @"OBJECT_GHOSTEFFECT",
-    @"OBJECT_BRIGHTNESS",
-    @"OBJECT_SIZE",
-    @"OBJECT_ROTATION",
-    @"OBJECT_LAYER",
-    @"LOUDNESS",
-    @"FACE_DETECTED",
-    @"FACE_SIZE",
-    @"FACE_POSITION_X",
-    @"FACE_POSITION_Y",
-    @"front_left",
-    @"front_right",
-    @"side_left",
-    @"side_right",
-    @"bottom_left",
-    @"bottom_right",
-    @"analogPin",
-    @"digitalPin"
-};
 
 
 -(Program*)getProgramWithOneSpriteWithBrick:(Brick*)brick
@@ -136,7 +107,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetTransparencyBrick2Resources
 {
     SetTransparencyBrick *brick = [SetTransparencyBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:@"X_ACCELERATION" leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.transparency = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -157,7 +128,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetSizeBrick2Resources
 {
     SetSizeToBrick *brick = [SetSizeToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:@"Y_ACCELERATION" leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.size = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -178,7 +149,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetBrightnessBrick2Resources
 {
     SetBrightnessBrick *brick = [SetBrightnessBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[3] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:COMPASS_DIRECTION] leftChild:nil rightChild:nil parent:nil];
     brick.brightness = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -206,7 +177,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeTransparencyByNBrick2Resources
 {
     ChangeTransparencyByNBrick *brick = [ChangeTransparencyByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[4] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_INCLINATION] leftChild:nil rightChild:nil parent:nil];
     brick.changeTransparency = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -225,7 +196,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeBrightnessByNBrick2Resources
 {
     ChangeBrightnessByNBrick *brick = [ChangeBrightnessByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[5] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_INCLINATION] leftChild:nil rightChild:nil parent:nil];
     brick.changeBrightness = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -244,7 +215,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeColorByNBrick2Resources
 {
     ChangeColorByNBrick *brick = [ChangeColorByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[5] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_INCLINATION] leftChild:nil rightChild:nil parent:nil];
     brick.changeColor = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -263,7 +234,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetColorBrick2Resources
 {
     SetColorBrick *brick = [SetColorBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[5] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_INCLINATION] leftChild:nil rightChild:nil parent:nil];
     brick.color = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -284,7 +255,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testWaitBrick2Resources
 {
     WaitBrick *brick = [WaitBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick.timeToWaitInSeconds = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -303,7 +274,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testRepeatBrick2Resources
 {
     RepeatBrick *brick = [RepeatBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[14] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_POSITION_Y] leftChild:nil rightChild:nil parent:nil];
     brick.timesToRepeat = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -330,7 +301,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testIfLogicBeginBrick2Resources
 {
     IfLogicBeginBrick *brick = [IfLogicBeginBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[15] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_POSITION_X] leftChild:nil rightChild:nil parent:nil];
     brick.ifCondition = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -358,7 +329,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetVariableBrick2Resources
 {
     SetVariableBrick *brick = [SetVariableBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[16] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_DETECTED] leftChild:nil rightChild:nil parent:nil];
     brick.variableFormula = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -377,7 +348,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeVariableBrick2Resources
 {
     ChangeVariableBrick *brick = [ChangeVariableBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[17] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_SIZE] leftChild:nil rightChild:nil parent:nil];
     brick.variableFormula = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -414,7 +385,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetVolumeToBrick2Resources
 {
     SetVolumeToBrick *brick = [SetVolumeToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[18] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_bottom_left] leftChild:nil rightChild:nil parent:nil];
     brick.volume = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -433,7 +404,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeVolumeByNBrick2Resources
 {
     ChangeVolumeByNBrick *brick = [ChangeVolumeByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[19] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_front_right] leftChild:nil rightChild:nil parent:nil];
     brick.volume = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -453,19 +424,11 @@ NSString * const sensorTestStringArray[] = {
 }
 - (void)testLedOnBrickResources
 {
-    LedOnBrick *brick = [LedOnBrick new];
+    FlashBrick *brick = [FlashBrick new];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kLED, @"Resourses LedOnBrick not correctly calculated");
-}
-- (void)testLedOffBrickResources
-{
-    LedOffBrick *brick = [LedOffBrick new];
-    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
-    
-    NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kLED, @"Resourses LedOffBrick not correctly calculated");
+    XCTAssertEqual(resources, kNoResources, @"Resourses FlashBrick not correctly calculated");
 }
 #pragma mark-Motion
 
@@ -481,7 +444,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testTurnRightBrick2Resources
 {
     TurnRightBrick *brick = [TurnRightBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[20] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_front_left] leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -502,7 +465,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testTurnLeftBrick2Resources
 {
     TurnLeftBrick *brick = [TurnLeftBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[21] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_right] leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -522,7 +485,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetYBrick2Resources
 {
     SetYBrick *brick = [SetYBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[22] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -541,7 +504,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testSetXBrick2Resources
 {
     SetXBrick *brick = [SetXBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -568,7 +531,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testPointInDirectionBrick2Resources
 {
     PointInDirectionBrick *brick = [PointInDirectionBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.degrees = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -588,7 +551,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testPlaceAtBrick2Resources
 {
     PlaceAtBrick *brick = [PlaceAtBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
 
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
@@ -609,7 +572,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testMoveNStepsBrick2Resources
 {
     MoveNStepsBrick *brick = [MoveNStepsBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -636,7 +599,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testGoNStepsBackBrick2Resources
 {
     GoNStepsBackBrick *brick = [GoNStepsBackBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.steps = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -657,7 +620,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testGlideToBrick2Resources
 {
     GlideToBrick *brick = [GlideToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
@@ -677,7 +640,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeYByNBrickResources
 {
     ChangeYByNBrick *brick = [ChangeYByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.yMovement = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -706,7 +669,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeXByNBrick2Resources
 {
     ChangeXByNBrick *brick = [ChangeXByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_right] leftChild:nil rightChild:nil parent:nil];
     brick.xMovement = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -725,7 +688,7 @@ NSString * const sensorTestStringArray[] = {
 - (void)testChangeSizeByNBrick2Resources
 {
     ChangeSizeByNBrick *brick = [ChangeSizeByNBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[23] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.size = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -807,90 +770,90 @@ NSString * const sensorTestStringArray[] = {
 - (void)testNestedResources
 {
     GlideToBrick *brick = [GlideToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[24] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:arduino_analogPin] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[0] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[3] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:COMPASS_DIRECTION] leftChild:nil rightChild:nil parent:nil];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLocation,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kFaceDetection, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kLoudness, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLocation, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kLoudness, @"Resourses nested not correctly calculated");
 }
 - (void)testNested2Resources
 {
     GlideToBrick *brick = [GlideToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[14] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_DETECTED] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick.yDestination = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kFaceDetection,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothArduino, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 
 - (void)testNestedVibrationBrickResources
 {
     VibrationBrick *brick = [VibrationBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[14] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_DETECTED] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kVibration,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kFaceDetection,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kVibration, resources & kVibration, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
 }
 
 - (void)testNestedArduinoSendDigitalValueBrickResources
 {
     ArduinoSendDigitalValueBrick *brick = [ArduinoSendDigitalValueBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick.pin = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.value = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 - (void)testNestedArduinoSendPWMValueBrickResources
 {
     ArduinoSendPWMValueBrick *brick = [ArduinoSendPWMValueBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick.pin = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.value = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 
 #pragma mark-MoreScripts
@@ -916,50 +879,50 @@ NSString * const sensorTestStringArray[] = {
 - (void)testNestedResourcesTwoScripts
 {
     PlaceAtBrick *brick = [PlaceAtBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[28] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:arduino_analogPin] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[0] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
     GlideToBrick *brick1 = [GlideToBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[14] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_DETECTED] leftChild:nil rightChild:nil parent:nil];
     brick1.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.xDestination = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick1.yDestination = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray = [NSArray arrayWithObjects:brick,brick1, nil];
     WaitBrick *brick2 = [WaitBrick new];
     brick2.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
     HideBrick *brick3 = [HideBrick new];
     ArduinoSendPWMValueBrick *brick4 = [ArduinoSendPWMValueBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick4.pin = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick4.value = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
     Program *prog = [self getProgramWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kFaceDetection, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 - (void)testNestedResourcesTwoScripts2
 {
     SetXBrick *brick = [SetXBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[3] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:COMPASS_DIRECTION] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
     GlideToBrick *brick1 = [GlideToBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[0] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.xDestination = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[2] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Z_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.yDestination = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray = [NSArray arrayWithObjects:brick,brick1, nil];
     WaitBrick *brick2 = [WaitBrick new];
@@ -967,7 +930,7 @@ NSString * const sensorTestStringArray[] = {
     HideBrick *brick3 = [HideBrick new];
     
     ChangeTransparencyByNBrick *brick4 = [ChangeTransparencyByNBrick new];
-     element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+     element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick4.changeTransparency = [[Formula alloc] initWithFormulaElement:element];
 
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
@@ -975,13 +938,13 @@ NSString * const sensorTestStringArray[] = {
     Program *prog = [self getProgramWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kFaceDetection, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLocation, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 
 #pragma mark-MoreSprites
@@ -1009,51 +972,51 @@ NSString * const sensorTestStringArray[] = {
 - (void)testNestedResourcesTwoSprites
 {
     PlaceAtBrick *brick = [PlaceAtBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[28] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:phiro_side_left] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[0] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
     GlideToBrick *brick1 = [GlideToBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[14] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:FACE_DETECTED] leftChild:nil rightChild:nil parent:nil];
     brick1.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.xDestination = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick1.yDestination = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray = [NSArray arrayWithObjects:brick,brick1, nil];
     WaitBrick *brick2 = [WaitBrick new];
     brick2.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
     HideBrick *brick3 = [HideBrick new];
     ArduinoSendPWMValueBrick *brick4 = [ArduinoSendPWMValueBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick4.pin = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick4.value = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
     Program *prog = [self getProgramWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kFaceDetection, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kBluetoothPhiro, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 
 - (void)testNestedResourcesTwoSprites2
 {
     SetXBrick *brick = [SetXBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[3] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:COMPASS_DIRECTION] leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
     GlideToBrick *brick1 = [GlideToBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[0] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[1] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Y_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.xDestination = [[Formula alloc] initWithFormulaElement:element];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[2] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:Z_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick1.yDestination = [[Formula alloc] initWithFormulaElement:element];
     NSArray *brickArray = [NSArray arrayWithObjects:brick,brick1, nil];
     WaitBrick *brick2 = [WaitBrick new];
@@ -1061,7 +1024,7 @@ NSString * const sensorTestStringArray[] = {
     HideBrick *brick3 = [HideBrick new];
     
     ChangeTransparencyByNBrick *brick4 = [ChangeTransparencyByNBrick new];
-    element = [[FormulaElement alloc] initWithElementType:SENSOR value:sensorTestStringArray[13] leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LOUDNESS] leftChild:nil rightChild:nil parent:nil];
     brick4.changeTransparency = [[Formula alloc] initWithFormulaElement:element];
     
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
@@ -1069,13 +1032,13 @@ NSString * const sensorTestStringArray[] = {
     Program *prog = [self getProgramWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertGreaterThan(resources & kAccelerometer,0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLoudness,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothArduino,0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kBluetoothPhiro, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kFaceDetection, 0,@"Resourses nested not correctly calculated");
-    XCTAssertEqual(resources & kMagnetometer, 0,@"Resourses nested not correctly calculated");
-    XCTAssertGreaterThan(resources & kLocation, 0,@"Resourses nested not correctly calculated");
+    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kFaceDetection, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kLocation, resources & kLocation, @"Resourses nested not correctly calculated");
 }
 
 

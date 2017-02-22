@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2016 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "Util.h"
 
 @implementation TermsOfUseOptionTableViewController
 
@@ -31,9 +32,12 @@
     self.title = kLocalizedTermsOfUse;
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
-    [self addSection:[BOTableViewSection sectionWithHeaderTitle:kLocalizedAboutPocketCode handler:^(BOTableViewSection *section) {
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
-        section.headerTitle = kLocalizedTermsOfUseDescription;
+        [section addCell:[BOTableViewCell cellWithTitle:kLocalizedTermsOfUseDescription key:nil handler:^(BOButtonTableViewCell *cell) {
+            cell.backgroundColor = [UIColor backgroundColor];
+        }]];
+        
         __unsafe_unretained typeof(self) weakSelf = self;
         [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedTermsOfUse key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
@@ -48,7 +52,11 @@
 
 - (void)openTermsOfUse
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
+    if (IS_OS_10_OR_LATER) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL] options:[NSDictionary dictionary] completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kTermsOfUseURL]];
+    }
 }
 
 
