@@ -233,6 +233,7 @@
 #define kLocalizedMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedLists NSLocalizedString(@"Lists", nil)
 #define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)

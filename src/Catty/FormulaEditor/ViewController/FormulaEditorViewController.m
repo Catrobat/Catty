@@ -90,6 +90,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *variableSegmentedControl;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *varOrListSegmentedControl;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *calcButton;
 @property (weak, nonatomic) IBOutlet UIButton *mathbutton;
@@ -214,7 +216,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
     [self initSensorView];
-    [self initVariablePicker];
+    [self initSegmentedControls];
     [self colorFormulaEditor];
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
@@ -308,7 +310,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 #pragma mark initPickerView
 
--(void)initVariablePicker
+-(void)initSegmentedControls
 {
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
@@ -320,6 +322,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.variableSegmentedControl setTitle:kLocalizedObject forSegmentAtIndex:1];
     [self.variableSegmentedControl setTitle:kLocalizedPrograms forSegmentAtIndex:0];
     self.variableSegmentedControl.tintColor = [UIColor globalTintColor];
+    
+    
+    
+    [self.varOrListSegmentedControl setTitle:kLocalizedVariables forSegmentAtIndex:1];
+    [self.varOrListSegmentedControl setTitle:kLocalizedLists forSegmentAtIndex:0];
+    self.varOrListSegmentedControl.tintColor = [UIColor globalTintColor];
 }
 
 #pragma mark initSensorView
