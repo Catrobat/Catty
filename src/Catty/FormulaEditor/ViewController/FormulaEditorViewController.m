@@ -453,7 +453,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 {
                     [button setTitle:name forState:UIControlStateNormal];
                 }
-
             }
         }
     }
@@ -463,7 +462,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];
     [self.objectButton setTitle:kUIFEObject forState:UIControlStateNormal];
     [self.sensorButton setTitle:kUIFESensor forState:UIControlStateNormal];
-    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateNormal];
+    [self.variableButton setTitle:kUIFEVariableList forState:UIControlStateNormal];
     [self.computeButton setTitle:kUIFECompute forState:UIControlStateNormal];
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
@@ -836,12 +835,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.sensorButton setSelected:NO];
     [self.variableButton setSelected:NO];
 }
+
 - (IBAction)addNewVariable:(UIButton *)sender {
     //TODO alert with text
     [self.formulaEditorTextView resignFirstResponder];
     
-    [Util actionSheetWithTitle:kUIFEActionVar delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
-
+    [Util actionSheetWithTitle:kUIFEVarOrList delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFENewVar,kUIFENewList] tag:kChooseVarOrListActionSheetTag view:self.view];
 }
 
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -906,7 +905,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return;
             }
         }
-        
     }
     
     [self.formulaEditorTextView becomeFirstResponder];
@@ -1074,19 +1072,44 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        [self.formulaEditorTextView becomeFirstResponder];
-        return;
-    }
     
-    self.isProgramVariable = NO;
-    self.variableSegmentedControl.selectedSegmentIndex = 1;
-    if (buttonIndex == 2) {
-        self.isProgramVariable = YES;
-        self.variableSegmentedControl.selectedSegmentIndex = 0;
+    if (actionSheet.title == kUIFEVarOrList)
+    {
+        
+        if (buttonIndex == 0) {
+            [self.formulaEditorTextView becomeFirstResponder];
+            return;
+        }
+        
+        if (buttonIndex == 1) {
+            self.varOrListSegmentedControl.selectedSegmentIndex = 0;
+            [Util actionSheetWithTitle:kUIFEActionVar delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
+        }
+        if (buttonIndex == 2) {
+            self.varOrListSegmentedControl.selectedSegmentIndex = 1;
+            [Util actionSheetWithTitle:kUIFEActionList delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
+        }
+        [self.varOrListSegmentedControl setNeedsDisplay];
+        
     }
-    [self.variableSegmentedControl setNeedsDisplay];
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+
+    else if (actionSheet.title == kUIFEActionVar)
+    {
+        
+        if (buttonIndex == 0) {
+            [self.formulaEditorTextView becomeFirstResponder];
+            return;
+        }
+        
+        self.isProgramVariable = NO;
+        self.variableSegmentedControl.selectedSegmentIndex = 1;
+        if (buttonIndex == 2) {
+            self.isProgramVariable = YES;
+            self.variableSegmentedControl.selectedSegmentIndex = 0;
+        }
+        [self.variableSegmentedControl setNeedsDisplay];
+        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    }
 }
 
 
