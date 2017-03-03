@@ -107,7 +107,7 @@
 #define kLocalizedExplore NSLocalizedString(@"Explore", nil)
 #define kLocalizedDeletionMenu NSLocalizedString(@"Deletion Mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
-#define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
+#define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use and Services", @"Button title at the settings screen to get to the terms of use and services.")
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedRateUs NSLocalizedString(@"Rate Us", nil)
 #define kLocalizedPrivacySettings NSLocalizedString(@"Privacy Settings", nil)

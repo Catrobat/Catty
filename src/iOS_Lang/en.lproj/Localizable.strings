@@ -1303,8 +1303,8 @@
 /* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Tap \"+\" to add %@";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Terms of Use";
+/* Button title at the settings screen to get to the terms of use and services. */
+"Terms of Use and Services" = "Terms of Use and Services";
 
 /* paint */
 "Text" = "Text";
