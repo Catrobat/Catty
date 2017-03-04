@@ -1258,8 +1258,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
-        cell.enabled = NO;
         if (cell != brickCell) {
+            cell.enabled = NO;
             cell.alpha = kBrickCellInactiveWhileEditingOpacity;
         }
     }

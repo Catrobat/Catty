@@ -26,9 +26,11 @@
 #import "Brick.h"
 #import "BrickTextProtocol.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "ScriptCollectionViewController.h"
 
 @interface BrickCellTextData() <UITextFieldDelegate>
 @property (nonatomic, strong) CAShapeLayer *border;
+@property bool isEditing;
 @end
 
 @implementation BrickCellTextData
@@ -41,6 +43,7 @@
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
+        _isEditing = false;
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
@@ -68,9 +71,28 @@
         
         self.delegate = self;
         [self addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
-
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardDidAppear:)
+                                                     name:UIKeyboardWillChangeFrameNotification
+                                                   object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardDidAppear:(NSNotification*)notification
+{
+    if (_isEditing) {
+        NSDictionary* keyboardInfo = [notification userInfo];
+        NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+        [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:keyboardFrameBeginRect.size.height];
+    }
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds
@@ -153,9 +175,16 @@
 
 #pragma mark - delegates
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    _isEditing = true;
+}
+
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    _isEditing = false;
     [textField resignFirstResponder];
+    [self.brickCell.dataDelegate enableUserInteractionAndResetHighlight];
 }
 
 - (void)textFieldDone:(id)sender
