@@ -525,14 +525,15 @@
 }
 
 + (void)askUserForVariableNameAndPerformAction:(SEL)action
-                                         target:(id)target
-                                    promptTitle:(NSString*)title
-                                  promptMessage:(NSString*)message
-                                 minInputLength:(NSUInteger)minInputLength
-                                 maxInputLength:(NSUInteger)maxInputLength
-                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                       invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-                                andTextField:(FormulaEditorTextView *)textView
+                                        target:(id)target
+                                   promptTitle:(NSString*)title
+                                 promptMessage:(NSString*)message
+                                minInputLength:(NSUInteger)minInputLength
+                                maxInputLength:(NSUInteger)maxInputLength
+                                        isList:(BOOL)isList
+                           blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                                  andTextField:(FormulaEditorTextView *)textView
 {
     textFieldMaxInputLength = maxInputLength;
     textFieldBlockedCharacterSet = blockedCharacterSet;
@@ -545,7 +546,8 @@
                               kDTPayloadAskUserMinInputLength : @(minInputLength),
                               kDTPayloadAskUserMaxInputLength : @(maxInputLength),
                               kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-                              kDTPayloadTextView: textView
+                              kDTPayloadTextView: textView,
+                              kDTPayloadList: @((long)isList)
                               };
     CatrobatAlertController *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -884,6 +886,7 @@ replacementString:(NSString*)characters
             return;
         }
         NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
+        BOOL isList = [payload[kDTPayloadList] unsignedIntegerValue];
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         NSUInteger textFieldMaxInputLength = [payload[kDTPayloadAskUserMaxInputLength] unsignedIntegerValue];
         if ([input length] < textFieldMinInputLength) {
@@ -914,8 +917,8 @@ replacementString:(NSString*)characters
             if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
                 if (action) {
                     IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id) = (void *)imp;
-                    func(target, action, input);
+                    void (*func)(id, SEL, id, BOOL) = (void *)imp;
+                    func(target, action, input, isList);
                 }
             } else {
                 if (action) {

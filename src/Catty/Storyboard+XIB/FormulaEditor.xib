@@ -1315,6 +1315,9 @@
                                 <segment title="First"/>
                                 <segment title="Second"/>
                             </segments>
+                            <connections>
+                                <action selector="changeVariablePickerView:" destination="-1" eventType="valueChanged" id="UOV-wo-cbr"/>
+                            </connections>
                         </segmentedControl>
                     </subviews>
                     <constraints>

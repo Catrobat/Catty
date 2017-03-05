@@ -115,6 +115,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 #define kDTPayloadTextView @"DTPayloadTextView"
 #define kDTPayloadCancel @"DTPayloadCancel"
+#define kDTPayloadList @"DTPayloadList"
 
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"

@@ -514,6 +514,8 @@
 #define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+#define kUIFEListName NSLocalizedString(@"List name:", nil)
+
 #define kUIFEProgramVars NSLocalizedString(@"Program variables:", nil)
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)

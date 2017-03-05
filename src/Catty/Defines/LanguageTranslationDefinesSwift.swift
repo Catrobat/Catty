@@ -514,6 +514,8 @@ let kUIFENewList = NSLocalizedString("New List", comment: "")
 let kUIFENewVarExists = NSLocalizedString("Name already exists. Please choose another", comment: "")
 let kUIFEonly15Char = NSLocalizedString("only 15 characters allowed", comment: "")
 let kUIFEVarName = NSLocalizedString("Variable name:", comment: "")
+let kUIFEListName = NSLocalizedString("List name:", comment: "")
+
 let kUIFEProgramVars = NSLocalizedString("Program variables:", comment: "")
 let kUIFEObjectVars = NSLocalizedString("Object variables:", comment: "")
 let kUIFEDeleteVarBeingUsed = NSLocalizedString("This variable can not be deleted because it is still in use.", comment: "")

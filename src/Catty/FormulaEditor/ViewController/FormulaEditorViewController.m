@@ -324,9 +324,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variableSegmentedControl.tintColor = [UIColor globalTintColor];
     
     
-    
-    [self.varOrListSegmentedControl setTitle:kLocalizedVariables forSegmentAtIndex:1];
-    [self.varOrListSegmentedControl setTitle:kLocalizedLists forSegmentAtIndex:0];
+    [self.varOrListSegmentedControl setTitle:kLocalizedVariables forSegmentAtIndex:0];
+    [self.varOrListSegmentedControl setTitle:kLocalizedLists forSegmentAtIndex:1];
     self.varOrListSegmentedControl.tintColor = [UIColor globalTintColor];
 }
 
@@ -889,38 +888,42 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
-- (void)saveVariable:(NSString*)name
+- (void)saveVariable:(NSString*)name isList:(BOOL)isList
 {
-    if (self.isProgramVariable){
+    if (!isList){
+        NSArray* variableArray;
+        if (self.isProgramVariable){
+            variableArray = [self.object.program.variables allVariables];
+        } else {
+            variableArray = [self.object.program.variables allVariablesForObject:self.object];
+        }
         for (UserVariable* variable in [self.object.program.variables allVariables]) {
             if ([variable.name isEqualToString:name]) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters isList:NO blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
                 return;
             }
         }
-    } else {
-        for (UserVariable* variable in [self.object.program.variables allVariablesForObject:self.object]) {
-            if ([variable.name isEqualToString:name]) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-                return;
+        
+        [self.formulaEditorTextView becomeFirstResponder];
+        UserVariable* var = [UserVariable new];
+        var.name = name;
+        var.value = [NSNumber numberWithInt:0];
+        if (self.isProgramVariable) {
+            [self.object.program.variables.programVariableList addObject:var];
+        } else {
+            NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+            if (!array) {
+                array = [NSMutableArray new];
             }
+            [array addObject:var];
+            [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
         }
-    }
-    
-    [self.formulaEditorTextView becomeFirstResponder];
-    UserVariable* var = [UserVariable new];
-    var.name = name;
-    var.value = [NSNumber numberWithInt:0];
-    if (self.isProgramVariable) {
-        [self.object.program.variables.programVariableList addObject:var];
+        
     } else {
-        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+        // TODO: handle list case
+        [self.formulaEditorTextView becomeFirstResponder];
     }
+
     
     [self.object.program saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
@@ -934,7 +937,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)addNewText:(id)sender {
     [self.formulaEditorTextView resignFirstResponder];
     
-    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:kMaxNumOfProgramNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:kMaxNumOfProgramNameCharacters isList:NO blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
 }
 
 - (void)handleNewTextInput:(NSString*)text
@@ -963,14 +966,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0) {
+    BOOL forObjectOnly = self.variableSegmentedControl.selectedSegmentIndex;
+    BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
+    
+    
+    if (component == 0 && !forObjectOnly && !isList) {
         if (row < self.variableSourceProgram.count) {
             return [[self.variableSourceProgram objectAtIndex:row] title];
         }
-    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1) {
+    } else if (component == 0 && forObjectOnly && !isList) {
         if (row < self.variableSourceObject.count) {
             return [[self.variableSourceObject objectAtIndex:row] title];
         }
+    } else if (component == 0 && !forObjectOnly && isList) {
+        // TODO: handle list case
+        return @"";
+    }
+    else if (component == 0 && forObjectOnly && isList) {
+        // TODO: handle list case
+        return @"";
     }
     
     return @"";
@@ -1007,7 +1021,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
              [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
         }
     }
-   
+    
+    // TODO: handle list case
+
 }
 
 
@@ -1093,8 +1109,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
     }
 
-    else if (actionSheet.title == kUIFEActionVar)
+    else if (actionSheet.title == kUIFEActionVar || actionSheet.title == kUIFEActionList)
     {
+        BOOL isList = NO;
+        NSString* promptTitle = kUIFENewVar;
+        NSString* promptMessage = kUIFEVarName;
+        if (actionSheet.title == kUIFEActionList){
+            isList = YES;
+            promptTitle = kUIFENewList;
+            promptMessage = kUIFEListName;
+        }
+        
         
         if (buttonIndex == 0) {
             [self.formulaEditorTextView becomeFirstResponder];
@@ -1108,7 +1133,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.variableSegmentedControl.selectedSegmentIndex = 0;
         }
         [self.variableSegmentedControl setNeedsDisplay];
-        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:) target:self promptTitle:promptTitle promptMessage:promptMessage minInputLength:1 maxInputLength:15 isList:isList blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
     }
 }
 

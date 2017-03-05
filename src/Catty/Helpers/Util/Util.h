@@ -102,6 +102,7 @@
                                  promptMessage:(NSString*)message
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
+                                        isList:(BOOL)isList
                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                       invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                   andTextField:(FormulaEditorTextView *)textView;
