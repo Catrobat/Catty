@@ -42,6 +42,7 @@
 @property (nonatomic,strong)UILabel *opacityLabel;
 @property (nonatomic,strong)NSMutableArray *colorArray;
 @property (nonatomic,strong)NKOColorPickerView *colorPicker;
+@property BOOL statusBarHidden;
 @end
 
 @implementation ColorPickerViewController
@@ -63,7 +64,9 @@
   [self setupStandardColorsView];
   [self setupRGBAView];
   [self setupBrushPreview];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    _statusBarHidden = YES;
+    [self setNeedsStatusBarAppearanceUpdate];
+
   self.view.backgroundColor = [UIColor backgroundColor];
     self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
     self.toolBar.tintColor = [UIColor navTintColor];
@@ -441,11 +444,14 @@
 */
 
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-  [self.delegate closeColorPicker:self];
+    _statusBarHidden = NO;
+    [self setNeedsStatusBarAppearanceUpdate];
+    [self.delegate closeColorPicker:self];
 }
 
-- (BOOL)prefersStatusBarHidden { return YES; }
+- (BOOL)prefersStatusBarHidden {
+    return _statusBarHidden;
+}
 
 
 

@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property BOOL statusBarHidden;
 @end
 
 @implementation DescriptionViewController
@@ -49,6 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _statusBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteGrayColor];
     self.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationBar.backgroundColor = [UIColor navBarColor];
@@ -65,12 +67,19 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    _statusBarHidden = YES;
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    _statusBarHidden = NO;
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return _statusBarHidden;
 }
 
 #pragma mark Initialization

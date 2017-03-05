@@ -148,7 +148,7 @@
     if (image)
     {
         NSString *decodedFilename = [(NSString *)[self.url absoluteString] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-        decodedFilename = [decodedFilename stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        decodedFilename = [decodedFilename stringByRemovingPercentEncoding];
         
         // Success use the image
         [self.paintDelegate addMediaLibraryLoadedImage:image withName:[[decodedFilename componentsSeparatedByString:@"="] lastObject]];
@@ -158,7 +158,7 @@
         self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
         
         NSString *decodedFilename = [(NSString *)[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-        decodedFilename = [decodedFilename stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        decodedFilename = [decodedFilename stringByRemovingPercentEncoding];
         
         self.sound.fileName = fileName;
         self.sound.name = decodedFilename;

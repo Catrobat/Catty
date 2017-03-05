@@ -775,7 +775,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             // choose picture from camera roll
             if([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary])
             {
-                if (statusCameraRoll != ALAuthorizationStatusAuthorized) {
+                if (statusCameraRoll != PHAuthorizationStatusAuthorized) {
                     [self presentViewController:alertControllerCameraRoll animated:YES completion:^{
                         if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
                             if (self.afterSafeBlock) {

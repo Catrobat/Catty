@@ -37,6 +37,7 @@
 @property (nonatomic,strong) NSMutableArray *sizePickerData;
 @property (nonatomic,strong) NSMutableArray *fontPickerData;
 @property (nonatomic,assign) NSInteger selectedRow;
+@property BOOL statusBarHidden;
 @end
 
 @implementation TextInputViewController
@@ -56,7 +57,8 @@
     // Do any additional setup after loading the view.
   [self setupView];
     [self setupPickerViews];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    _statusBarHidden = true;
+    [self setNeedsStatusBarAppearanceUpdate];
     self.view.backgroundColor = [UIColor backgroundColor];
     self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
     self.toolBar.tintColor = [UIColor navTintColor];
@@ -295,16 +297,21 @@
 
     
     self.fontDictionary = dict;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    _statusBarHidden = true;
+    [self setNeedsStatusBarAppearanceUpdate];
     NSDictionary *saveDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:self.bold],@"Bold",[NSNumber numberWithBool:self.italic],@"Italic",[NSNumber numberWithBool:self.underline],@"Underline",[NSNumber numberWithInteger:self.fontSize],@"Size",[NSNumber numberWithInteger:self.fontType],@"Font", nil];
     [self.delegate closeTextInput:self andDictionary:saveDict];
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    _statusBarHidden = true;
+    [self setNeedsStatusBarAppearanceUpdate];
     [self.delegate closeTextInput:self andDictionary:nil];
 }
 
-- (BOOL)prefersStatusBarHidden { return YES; }
+- (BOOL)prefersStatusBarHidden
+{
+    return _statusBarHidden;
+}
 
 @end
