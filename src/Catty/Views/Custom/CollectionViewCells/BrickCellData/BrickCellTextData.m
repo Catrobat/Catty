@@ -30,7 +30,6 @@
 
 @interface BrickCellTextData() <UITextFieldDelegate>
 @property (nonatomic, strong) CAShapeLayer *border;
-@property bool isEditing;
 @end
 
 @implementation BrickCellTextData
@@ -43,7 +42,6 @@
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
-        _isEditing = false;
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
@@ -87,7 +85,7 @@
 
 - (void)keyboardDidAppear:(NSNotification*)notification
 {
-    if (_isEditing) {
+    if (self.isFirstResponder) {
         NSDictionary* keyboardInfo = [notification userInfo];
         NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
         CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
@@ -175,16 +173,9 @@
 
 #pragma mark - delegates
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    _isEditing = true;
-}
-
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    _isEditing = false;
     [textField resignFirstResponder];
-    [self.brickCell.dataDelegate enableUserInteractionAndResetHighlight];
 }
 
 - (void)textFieldDone:(id)sender
