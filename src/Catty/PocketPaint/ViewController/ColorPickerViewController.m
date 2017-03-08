@@ -64,12 +64,12 @@
   [self setupStandardColorsView];
   [self setupRGBAView];
   [self setupBrushPreview];
-    _statusBarHidden = YES;
-    [self setNeedsStatusBarAppearanceUpdate];
+  _statusBarHidden = YES;
+  [self setNeedsStatusBarAppearanceUpdate];
 
   self.view.backgroundColor = [UIColor backgroundColor];
-    self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-    self.toolBar.tintColor = [UIColor navTintColor];
+  self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
+  self.toolBar.tintColor = [UIColor navTintColor];
   self.toolBar.barTintColor = UIColor.navBarColor;
 }
 
