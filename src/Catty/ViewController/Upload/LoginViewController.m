@@ -154,7 +154,7 @@
 //    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
 
     self.registerButton.backgroundColor = darkColor;
-    self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:16.0f];
+    self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
@@ -184,6 +184,7 @@
     
     [super viewWillDisappear:animated];
 }
+    
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
