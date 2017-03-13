@@ -188,7 +188,7 @@
 "Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Change volume by %@";
+"Change volume by" = "Change volume by";
 
 /* No comment provided by engineer. */
 "Change X by %@" = "Change X by %@";
@@ -1220,7 +1220,7 @@
 "Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\%";
+"Set volume to" = "Set volume to";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Set X to %@";
@@ -1262,7 +1262,7 @@
 "Sounds" = "Sounds";
 
 /* No comment provided by engineer. */
-"Speak %@" = "Speak %@";
+"Speak" = "Speak";
 
 /* No comment provided by engineer. */
 "sqrt" = "sqrt";
@@ -1277,7 +1277,7 @@
 "Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
-"Start sound\n%@" = "Start sound\n%@";
+"Start sound" = "Start sound";
 
 /* No comment provided by engineer. */
 "Stop" = "Stop";

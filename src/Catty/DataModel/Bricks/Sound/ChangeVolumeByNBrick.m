@@ -55,7 +55,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeVolumeByN;
+    return [kLocalizedChangeVolumeByN stringByAppendingString:@"%@"];
 }
 
 #pragma mark - Description
