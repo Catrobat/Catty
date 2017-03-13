@@ -26,6 +26,7 @@
 #import "Brick.h"
 #import "BrickTextProtocol.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "ScriptCollectionViewController.h"
 
 @interface BrickCellTextData() <UITextFieldDelegate>
 @property (nonatomic, strong) CAShapeLayer *border;
@@ -68,9 +69,28 @@
         
         self.delegate = self;
         [self addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
-
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardDidAppear:)
+                                                     name:UIKeyboardWillChangeFrameNotification
+                                                   object:nil];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardDidAppear:(NSNotification*)notification
+{
+    if (self.isFirstResponder) {
+        NSDictionary* keyboardInfo = [notification userInfo];
+        NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+        [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:keyboardFrameBeginRect.size.height];
+    }
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds
