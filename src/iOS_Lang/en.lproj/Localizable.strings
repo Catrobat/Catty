@@ -179,7 +179,7 @@
 "Change color by %@" = "Change color by %@";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\%";
+"Change size by" = "Change size by";
 
 /* No comment provided by engineer. */
 "Change transparency\nby %@\%" = "Change transparency\nby %@\%";
@@ -1196,10 +1196,10 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Set background\n%@";
+"Set background" = "Set background";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\%";
+"Set brightness to" = "Set brightness to";
 
 /* No comment provided by engineer. */
 "Set color to %@" = "Set color to %@";
@@ -1211,7 +1211,7 @@
 "Set Phiro Light\n%@\n Red %@ Green %@ Blue %@" = "Set Phiro Light\n%@\n Red %@ Green %@ Blue %@";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\%";
+"Set size to" = "Set size to";
 
 /* No comment provided by engineer. */
 "Set transparency\nto %@\%" = "Set transparency\nto %@\%";
@@ -1295,7 +1295,7 @@
 "Sunday" = "Sunday";
 
 /* No comment provided by engineer. */
-"Switch to look\n%@" = "Switch to look\n%@";
+"Switch to look" = "Switch to look";
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
@@ -1358,7 +1358,7 @@
 "Tuesday" = "Tuesday";
 
 /* No comment provided by engineer. */
-"Turn flashlight\n%@" = "Turn flashlight\n%@";
+"Turn flashlight" = "Turn flashlight";
 
 /* No comment provided by engineer. */
 "Turn left %@°" = "Turn left %@°";
