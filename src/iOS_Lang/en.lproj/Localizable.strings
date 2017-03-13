@@ -191,10 +191,10 @@
 "Change volume by" = "Change volume by";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Change X by %@";
+"Change X by " = "Change X by ";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Change Y by %@";
+"Change Y by " = "Change Y by ";
 
 /* No comment provided by engineer. */
 "Changes discarded!" = "Changes discarded!";
@@ -884,7 +884,7 @@
 "Not enough Memory" = "Not enough Memory";
 
 /* No comment provided by engineer. */
-"Note %@" = "Note %@";
+"Note" = "Note";
 
 /* paint */
 "Nothing to crop!" = "Nothing to crop!";
@@ -1028,10 +1028,10 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Point in direction %@°";
+"Point in direction" = "Point in direction";
 
 /* No comment provided by engineer. */
-"Point towards\n%@" = "Point towards\n%@";
+"Point towards" = "Point towards";
 
 /* paint */
 "Pointer" = "Pointer";
@@ -1223,10 +1223,10 @@
 "Set volume to" = "Set volume to";
 
 /* No comment provided by engineer. */
-"Set X to %@" = "Set X to %@";
+"Set X to " = "Set X to ";
 
 /* No comment provided by engineer. */
-"Set Y to %@" = "Set Y to %@";
+"Set Y to " = "Set Y to ";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
@@ -1361,10 +1361,10 @@
 "Turn flashlight" = "Turn flashlight";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Turn left %@°";
+"Turn left" = "Turn left";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Turn right %@°";
+"Turn right" = "Turn right";
 
 /* No comment provided by engineer. */
 "Unable to load program!" = "Unable to load program!";
