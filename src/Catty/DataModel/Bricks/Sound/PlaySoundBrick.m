@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedPlaySound;
+    return [kLocalizedPlaySound stringByAppendingString:@"\n%@"];
 }
 
 #pragma mark - Copy

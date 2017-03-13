@@ -379,11 +379,11 @@
 #define kLocalizedFlash NSLocalizedString(@"Turn flashlight\n%@", nil)
 
 // sound bricks
-#define kLocalizedPlaySound NSLocalizedString(@"Start sound\n%@", nil)
+#define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
-#define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
-#define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
-#define kLocalizedSpeak NSLocalizedString(@"Speak %@", nil)
+#define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
+#define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
+#define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 
 // variable bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)

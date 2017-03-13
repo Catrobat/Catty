@@ -379,11 +379,11 @@ let kLocalizedChangeColorByN = NSLocalizedString("Change color by %", comment: "
 let kLocalizedFlash = NSLocalizedString("Turn flashlight\n%", comment: "")
 
 // sound bricks
-let kLocalizedPlaySound = NSLocalizedString("Start sound\n%", comment: "")
+let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
-let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to %@%", comment: "")
-let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by %", comment: "")
-let kLocalizedSpeak = NSLocalizedString("Speak %", comment: "")
+let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
+let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by", comment: "")
+let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 
 // variable bricks
 let kLocalizedSetVariable = NSLocalizedString("Set variable\n%@\nto %", comment: "")
