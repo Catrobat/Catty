@@ -137,10 +137,10 @@
 "brightness" = "brightness";
 
 /* No comment provided by engineer. */
-"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
+"Broadcast" = "Broadcast";
 
 /* No comment provided by engineer. */
-"Broadcast\n%@" = "Broadcast\n%@";
+"Broadcast and wait" = "Broadcast and wait";
 
 /* paint */
 "Brush" = "Brush";
@@ -1463,13 +1463,13 @@
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
-"When I receive\n%@" = "When I receive\n%@";
-
-/* No comment provided by engineer. */
 "When program started" = "When program started";
 
 /* No comment provided by engineer. */
 "When tapped" = "When tapped";
+
+/* No comment provided by engineer. */
+"When you receive" = "When you receive";
 
 /* paint */
 "Width selection" = "Width selection";
