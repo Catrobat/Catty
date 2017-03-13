@@ -22,6 +22,7 @@
                 <outlet property="multiplicationButton" destination="huL-az-i7Z" id="G1R-jS-RWu"/>
                 <outlet property="objectButton" destination="Lon-kh-Yxw" id="YPK-oR-a9o"/>
                 <outlet property="objectScrollView" destination="NiC-Qd-lpd" id="Z8t-m1-iFs"/>
+                <outlet property="varOrListSegmentedControl" destination="nzs-qF-IZo" id="8jF-Td-A9T"/>
                 <outlet property="redoButton" destination="Wxl-Bw-XuK" id="TtX-Jm-zHa"/>
                 <outlet property="sensorButton" destination="NJw-CT-Ced" id="r8N-ag-Tws"/>
                 <outlet property="sensorScrollView" destination="up0-Dt-TT0" id="Xaw-TC-og3"/>
@@ -994,43 +995,38 @@
                     </connections>
                 </button>
                 <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AR6-D2-lLT" userLabel="variableScroll">
-                    <rect key="frame" x="82" y="43.5" width="327" height="216.5"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uE-Bt-F7y" userLabel="del">
-                            <rect key="frame" x="108.5" y="0.0" width="108.5" height="43.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="del">
-                                <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="deleteVariable:" destination="-1" eventType="touchUpInside" id="mzP-Aw-M4H"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8j-Vt-p8t">
-                            <rect key="frame" x="217.5" y="0.0" width="109.5" height="43.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="take">
-                                <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="choseVariable:" destination="-1" eventType="touchUpInside" id="y14-hO-aNi"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="400" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5e-9M-JLK" userLabel="new">
-                            <rect key="frame" x="0.0" y="0.0" width="109" height="43.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="new">
-                                <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="addNewVariable:" destination="-1" eventType="touchUpInside" id="S4R-we-MVJ"/>
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aAn-6g-gNG">
-                            <rect key="frame" x="0.0" y="43.5" width="326.5" height="29"/>
                             <segments>
                                 <segment title="First"/>
                                 <segment title="Second"/>
@@ -1040,14 +1036,23 @@
                             </connections>
                         </segmentedControl>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EC0-vt-5UA">
-                            <rect key="frame" x="0.0" y="76.5" width="326.5" height="100"/>
-                            <color key="tintColor" red="0.90980392160000001" green="0.57254901960000004" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.88002991676330566" green="0.49964213371276855" blue="0.044042214751243591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="D3a-WJ-tKH"/>
                             </constraints>
                         </pickerView>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nzs-qF-IZo">
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <connections>
+                                <action selector="changeVariablePickerView:" destination="-1" eventType="valueChanged" id="UOV-wo-cbr"/>
+                            </connections>
+                        </segmentedControl>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="aAn-6g-gNG" firstAttribute="top" secondItem="nzs-qF-IZo" secondAttribute="bottom" constant="5" id="0Q5-TF-dml"/>
                         <constraint firstItem="EC0-vt-5UA" firstAttribute="top" secondItem="aAn-6g-gNG" secondAttribute="bottom" constant="5" id="CCX-vU-2h6"/>
                         <constraint firstItem="i5e-9M-JLK" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="Epv-cB-ZdQ"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" id="GVp-Nz-pIt"/>
@@ -1057,15 +1062,17 @@
                         <constraint firstItem="i5e-9M-JLK" firstAttribute="top" secondItem="AR6-D2-lLT" secondAttribute="top" id="Qib-eq-ZUR"/>
                         <constraint firstItem="aAn-6g-gNG" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="ROo-pc-hlS"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="top" secondItem="AR6-D2-lLT" secondAttribute="top" id="UXl-F9-LFF"/>
-                        <constraint firstItem="aAn-6g-gNG" firstAttribute="top" secondItem="8uE-Bt-F7y" secondAttribute="bottom" id="VRa-Lb-jiZ"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="height" secondItem="i5e-9M-JLK" secondAttribute="height" id="aaL-qw-BMd"/>
                         <constraint firstItem="EC0-vt-5UA" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="cqS-G0-li5"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" id="frP-cx-2pT"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="height" secondItem="i5e-9M-JLK" secondAttribute="height" id="gSA-Tf-x41"/>
+                        <constraint firstItem="nzs-qF-IZo" firstAttribute="top" secondItem="i5e-9M-JLK" secondAttribute="bottom" id="ltj-IL-ixa"/>
                         <constraint firstItem="L8j-Vt-p8t" firstAttribute="leading" secondItem="8uE-Bt-F7y" secondAttribute="trailing" id="m5V-zc-XsC"/>
                         <constraint firstItem="aAn-6g-gNG" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" multiplier="3" id="rDl-nD-9vJ"/>
                         <constraint firstItem="EC0-vt-5UA" firstAttribute="width" secondItem="i5e-9M-JLK" secondAttribute="width" multiplier="3" id="tNk-Pa-YQ2"/>
                         <constraint firstAttribute="bottom" secondItem="i5e-9M-JLK" secondAttribute="bottom" constant="131" id="tbA-SG-Jrq"/>
+                        <constraint firstItem="aAn-6g-gNG" firstAttribute="width" secondItem="nzs-qF-IZo" secondAttribute="width" id="x1Q-67-omV"/>
+                        <constraint firstItem="nzs-qF-IZo" firstAttribute="leading" secondItem="AR6-D2-lLT" secondAttribute="leading" id="yMa-cZ-Y0p"/>
                         <constraint firstItem="8uE-Bt-F7y" firstAttribute="leading" secondItem="i5e-9M-JLK" secondAttribute="trailing" id="zPH-0b-ivG"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>

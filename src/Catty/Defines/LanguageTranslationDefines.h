@@ -233,6 +233,7 @@
 #define kLocalizedMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedLists NSLocalizedString(@"Lists", nil)
 #define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
@@ -499,6 +500,7 @@
 #define kUIFEObject NSLocalizedString(@"Object", nil)
 #define kUIFESensor NSLocalizedString(@"Sensors", nil)
 #define kUIFEVariable NSLocalizedString(@"Variables", nil)
+#define kUIFEVariableList NSLocalizedString(@"Var/List", nil)
 #define kUIFECompute NSLocalizedString(@"Compute", nil)
 #define kUIFEDone NSLocalizedString(@"Done", nil)
 #define kUIFEError NSLocalizedString(@"Error", nil)
@@ -508,9 +510,12 @@
 #define kUIFEComputedTrue NSLocalizedString(@"Computed result is TRUE", nil)
 #define kUIFEComputedFalse NSLocalizedString(@"Computed result is FALSE", nil)
 #define kUIFENewVar NSLocalizedString(@"New Variable", nil)
+#define kUIFENewList NSLocalizedString(@"New List", nil)
 #define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+#define kUIFEListName NSLocalizedString(@"List name:", nil)
+
 #define kUIFEProgramVars NSLocalizedString(@"Program variables:", nil)
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
@@ -520,6 +525,9 @@
 #define kUIFEChangesSaved NSLocalizedString(@"Changes saved!", nil)
 #define kUIFEChangesDiscarded NSLocalizedString(@"Changes discarded!", nil)
 #define kUIFESyntaxError NSLocalizedString(@"Syntax Error!", nil)
+
+#define kUIFEVarOrList NSLocalizedString(@"Variable or List", nil)
+#define kUIFEActionList NSLocalizedString(@"List type", nil)
 
 #define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)

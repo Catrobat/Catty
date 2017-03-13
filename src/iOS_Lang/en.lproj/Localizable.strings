@@ -689,6 +689,15 @@
 "Line" = "Line";
 
 /* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Lists";
+
+/* No comment provided by engineer. */
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
@@ -816,6 +825,9 @@
 
 /* paint */
 "New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New List" = "New List";
 
 /* No comment provided by engineer. */
 "New Message" = "New Message";
@@ -1427,10 +1439,16 @@
 "v" = "v";
 
 /* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
 "Variable" = "Variable";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
 
 /* No comment provided by engineer. */
 "Variable type" = "Variable type";
