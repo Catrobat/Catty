@@ -361,6 +361,7 @@
 #define kLocalizedSteps NSLocalizedString(@"steps", nil)
 #define kLocalizedTurnLeft NSLocalizedString(@"Turn left", nil)
 #define kLocalizedTurnRight NSLocalizedString(@"Turn right", nil)
+#define kLocalizedDegrees NSLocalizedString(@"degrees", nil)
 #define kLocalizedPointInDirection NSLocalizedString(@"Point in direction", nil)
 #define kLocalizedPointTowards NSLocalizedString(@"Point towards", nil)
 #define kLocalizedGlide NSLocalizedString(@"Glide", nil)
