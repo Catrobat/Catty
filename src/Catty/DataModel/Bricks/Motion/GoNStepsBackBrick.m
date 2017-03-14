@@ -59,7 +59,14 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedGoNStepsBack;
+    int layers = [self.steps interpretIntegerForSprite:self.script.object];
+    NSString* localizedLayer;
+    if (layers == 1) {
+        localizedLayer = kLocalizedLayer;
+    } else {
+        localizedLayer = kLocalizedLayers;
+    }
+    return [kLocalizedGoBack stringByAppendingString:[@"%@ " stringByAppendingString:localizedLayer]];
 }
 
 #pragma mark - Description

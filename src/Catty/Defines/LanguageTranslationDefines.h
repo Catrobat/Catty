@@ -329,33 +329,45 @@
 // control bricks
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
-#define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
-#define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
+#define kLocalizedWait NSLocalizedString(@"Wait", nil)
+#define kLocalizedSecond NSLocalizedString(@"second ", nil)
+#define kLocalizedSeconds NSLocalizedString(@"seconds ", nil)
+#define kLocalizedVibrateFor NSLocalizedString(@"Vibrate for", nil)
 #define kLocalizedWhenYouReceive NSLocalizedString(@"When you receive", nil)
 #define kLocalizedBroadcast NSLocalizedString(@"Broadcast", nil)
 #define kLocalizedBroadcastAndWait NSLocalizedString(@"Broadcast and wait", nil)
 #define kLocalizedNote NSLocalizedString(@"Note", nil)
 #define kLocalizedForever NSLocalizedString(@"Forever", nil)
-#define kLocalizedIfIsTrueThen NSLocalizedString(@"If %@ is true then", nil)
+#define kLocalizedIfBegin NSLocalizedString(@"If", nil)
+#define kLocalizedIfBeginSecondPart NSLocalizedString(@"is true then", nil)
 #define kLocalizedElse NSLocalizedString(@"Else", nil)
 #define kLocalizedEndIf NSLocalizedString(@"End If", nil)
-#define kLocalizedRepeatNTimes NSLocalizedString(@"Repeat %@ times", nil)
+#define kLocalizedRepeat NSLocalizedString(@"Repeat", nil)
+#define kLocalizedTime NSLocalizedString(@"time", nil)
+#define kLocalizedTimes NSLocalizedString(@"times", nil)
 #define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
 
 // motion bricks
-#define kLocalizedPlaceAt NSLocalizedString(@"Place at\nX: %@ Y: %@", nil)
+#define kLocalizedPlaceAt NSLocalizedString(@"Place at ", nil)
+#define kLocalizedXLabel NSLocalizedString(@"X: ", nil)
+#define kLocalizedYLabel NSLocalizedString(@"Y: ", nil)
 #define kLocalizedSetX NSLocalizedString(@"Set X to ", nil)
 #define kLocalizedSetY NSLocalizedString(@"Set Y to ", nil)
 #define kLocalizedChangeX NSLocalizedString(@"Change X by ", nil)
 #define kLocalizedChangeY NSLocalizedString(@"Change Y by ", nil)
 #define kLocalizedIfIsTrueThenOnEdgeBounce NSLocalizedString(@"If on edge, bounce", nil)
-#define kLocalizedMoveNSteps NSLocalizedString(@"Move %@ step(s)", nil)
+#define kLocalizedMove NSLocalizedString(@"Move", nil)
+#define kLocalizedStep NSLocalizedString(@"step", nil)
+#define kLocalizedSteps NSLocalizedString(@"steps", nil)
 #define kLocalizedTurnLeft NSLocalizedString(@"Turn left", nil)
 #define kLocalizedTurnRight NSLocalizedString(@"Turn right", nil)
 #define kLocalizedPointInDirection NSLocalizedString(@"Point in direction", nil)
 #define kLocalizedPointTowards NSLocalizedString(@"Point towards", nil)
-#define kLocalizedGlideTo NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@", nil)
-#define kLocalizedGoNStepsBack NSLocalizedString(@"Go back %@ layer(s)", nil)
+#define kLocalizedGlide NSLocalizedString(@"Glide", nil)
+#define kLocalizedToX NSLocalizedString(@"to X:", nil)
+#define kLocalizedGoBack NSLocalizedString(@"Go back", nil)
+#define kLocalizedLayer NSLocalizedString(@"layer", nil)
+#define kLocalizedLayers NSLocalizedString(@"layers", nil)
 #define kLocalizedComeToFront NSLocalizedString(@"Go to front", nil)
 
 // look bricks
@@ -408,6 +420,7 @@
 // Arduino bricks
 #define kLocalizedArduinoSendDigitalValue NSLocalizedString(@"Arduino send digital\nPin:%@ Value:%@", nil)
 #define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Arduino send PWM\nPin:%@ Value:%@", nil)
+
 
 
 //************************************************************************************************************

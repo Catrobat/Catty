@@ -67,7 +67,15 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedRepeatNTimes;
+    int repeatFor = [self.timesToRepeat interpretIntegerForSprite:self.script.object];
+    NSString* repeatForStr;
+    if (repeatFor == 1.0) {
+        repeatForStr = kLocalizedTime;
+    }
+    else {
+        repeatForStr = kLocalizedTimes;
+    }
+    return [kLocalizedRepeat stringByAppendingString:[@"%@ " stringByAppendingString:repeatForStr]];
 }
 
 - (BOOL)checkCondition

@@ -563,10 +563,10 @@
 "Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+"Glide" = "Glide";
 
 /* No comment provided by engineer. */
-"Go back %@ layer(s)" = "Go back %@ layer(s)";
+"Go back" = "Go back";
 
 /* No comment provided by engineer. */
 "Go to front" = "Go to front";
@@ -594,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Hide variable\n%@" = "Hide variable\n%@";
+
+/* No comment provided by engineer. */
+"If" = "If";
 
 /* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
@@ -634,6 +637,9 @@
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
 
+/* No comment provided by engineer. */
+"is true then" = "is true then";
+
 /* paint */
 "italic" = "italic";
 
@@ -669,6 +675,9 @@
 
 /* No comment provided by engineer. */
 "layer" = "layer";
+
+/* No comment provided by engineer. */
+"layers" = "layers";
 
 /* No comment provided by engineer. */
 "LED" = "LED";
@@ -776,7 +785,7 @@
 "Motion" = "Motion";
 
 /* No comment provided by engineer. */
-"Move %@ step(s)" = "Move %@ step(s)";
+"Move" = "Move";
 
 /* No comment provided by engineer. */
 "Move Brick" = "Move Brick";
@@ -968,7 +977,7 @@
 "Pipette" = "Pipette";
 
 /* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
+"Place at " = "Place at ";
 
 /* No comment provided by engineer. */
 "Play" = "Play";
@@ -1106,7 +1115,7 @@
 "Rename sound" = "Rename sound";
 
 /* No comment provided by engineer. */
-"Repeat %@ times" = "Repeat %@ times";
+"Repeat" = "Repeat";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
@@ -1164,6 +1173,12 @@
 
 /* bluetooth */
 "Search" = "Search";
+
+/* No comment provided by engineer. */
+"second " = "second ";
+
+/* No comment provided by engineer. */
+"seconds " = "seconds ";
 
 /* No comment provided by engineer. */
 "Select All" = "Select All";
@@ -1280,6 +1295,12 @@
 "Start sound" = "Start sound";
 
 /* No comment provided by engineer. */
+"step" = "step";
+
+/* No comment provided by engineer. */
+"steps" = "steps";
+
+/* No comment provided by engineer. */
 "Stop" = "Stop";
 
 /* No comment provided by engineer. */
@@ -1341,6 +1362,15 @@
 
 /* No comment provided by engineer. */
 "TI" = "TI";
+
+/* No comment provided by engineer. */
+"time" = "time";
+
+/* No comment provided by engineer. */
+"times" = "times";
+
+/* No comment provided by engineer. */
+"to X:" = "to X:";
 
 /* No comment provided by engineer. */
 "Today" = "Today";
@@ -1442,7 +1472,7 @@
 "Version" = "Version";
 
 /* No comment provided by engineer. */
-"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+"Vibrate for" = "Vibrate for";
 
 /* No comment provided by engineer. */
 "vibration" = "vibration";
@@ -1451,7 +1481,7 @@
 "Views" = "Views";
 
 /* No comment provided by engineer. */
-"Wait %@ second(s)" = "Wait %@ second(s)";
+"Wait" = "Wait";
 
 /* No comment provided by engineer. */
 "We" = "We";
@@ -1473,6 +1503,12 @@
 
 /* paint */
 "Width selection" = "Width selection";
+
+/* No comment provided by engineer. */
+"X: " = "X: ";
+
+/* No comment provided by engineer. */
+"Y: " = "Y: ";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";

@@ -329,33 +329,45 @@ let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("P
 // control bricks
 let kLocalizedWhenProgramStarted = NSLocalizedString("When program started", comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", comment: "")
-let kLocalizedWaitNSeconds = NSLocalizedString("Wait %@ second(s)", comment: "")
-let kLocalizedVibrateNSeconds = NSLocalizedString("Vibrate %@ second(s)", comment: "")
+let kLocalizedWait = NSLocalizedString("Wait", comment: "")
+let kLocalizedSecond = NSLocalizedString("second ", comment: "")
+let kLocalizedSeconds = NSLocalizedString("seconds ", comment: "")
+let kLocalizedVibrateFor = NSLocalizedString("Vibrate for", comment: "")
 let kLocalizedWhenYouReceive = NSLocalizedString("When you receive", comment: "")
 let kLocalizedBroadcast = NSLocalizedString("Broadcast", comment: "")
 let kLocalizedBroadcastAndWait = NSLocalizedString("Broadcast and wait", comment: "")
 let kLocalizedNote = NSLocalizedString("Note", comment: "")
 let kLocalizedForever = NSLocalizedString("Forever", comment: "")
-let kLocalizedIfIsTrueThen = NSLocalizedString("If %@ is true then", comment: "")
+let kLocalizedIfBegin = NSLocalizedString("If", comment: "")
+let kLocalizedIfBeginSecondPart = NSLocalizedString("is true then", comment: "")
 let kLocalizedElse = NSLocalizedString("Else", comment: "")
 let kLocalizedEndIf = NSLocalizedString("End If", comment: "")
-let kLocalizedRepeatNTimes = NSLocalizedString("Repeat %@ times", comment: "")
+let kLocalizedRepeat = NSLocalizedString("Repeat", comment: "")
+let kLocalizedTime = NSLocalizedString("time", comment: "")
+let kLocalizedTimes = NSLocalizedString("times", comment: "")
 let kLocalizedEndOfLoop = NSLocalizedString("End of Loop", comment: "")
 
 // motion bricks
-let kLocalizedPlaceAt = NSLocalizedString("Place at\nX: %@ Y: %", comment: "")
+let kLocalizedPlaceAt = NSLocalizedString("Place at ", comment: "")
+let kLocalizedXLabel = NSLocalizedString("X: ", comment: "")
+let kLocalizedYLabel = NSLocalizedString("Y: ", comment: "")
 let kLocalizedSetX = NSLocalizedString("Set X to ", comment: "")
 let kLocalizedSetY = NSLocalizedString("Set Y to ", comment: "")
 let kLocalizedChangeX = NSLocalizedString("Change X by ", comment: "")
 let kLocalizedChangeY = NSLocalizedString("Change Y by ", comment: "")
 let kLocalizedIfIsTrueThenOnEdgeBounce = NSLocalizedString("If on edge, bounce", comment: "")
-let kLocalizedMoveNSteps = NSLocalizedString("Move %@ step(s)", comment: "")
+let kLocalizedMove = NSLocalizedString("Move", comment: "")
+let kLocalizedStep = NSLocalizedString("step", comment: "")
+let kLocalizedSteps = NSLocalizedString("steps", comment: "")
 let kLocalizedTurnLeft = NSLocalizedString("Turn left", comment: "")
 let kLocalizedTurnRight = NSLocalizedString("Turn right", comment: "")
 let kLocalizedPointInDirection = NSLocalizedString("Point in direction", comment: "")
 let kLocalizedPointTowards = NSLocalizedString("Point towards", comment: "")
-let kLocalizedGlideTo = NSLocalizedString("Glide %@ second(s)\nto X: %@ Y: %", comment: "")
-let kLocalizedGoNStepsBack = NSLocalizedString("Go back %@ layer(s)", comment: "")
+let kLocalizedGlide = NSLocalizedString("Glide", comment: "")
+let kLocalizedToX = NSLocalizedString("to X:", comment: "")
+let kLocalizedGoBack = NSLocalizedString("Go back", comment: "")
+let kLocalizedLayer = NSLocalizedString("layer", comment: "")
+let kLocalizedLayers = NSLocalizedString("layers", comment: "")
 let kLocalizedComeToFront = NSLocalizedString("Go to front", comment: "")
 
 // look bricks
@@ -408,6 +420,7 @@ let kLocalizedPhiroIfLogic = NSLocalizedString("If %@ is true then", comment: ""
 // Arduino bricks
 let kLocalizedArduinoSendDigitalValue = NSLocalizedString("Arduino send digital\nPin:%@ Value:%", comment: "")
 let kLocalizedArduinoSendPWMValue = NSLocalizedString("Arduino send PWM\nPin:%@ Value:%", comment: "")
+
 
 
 //************************************************************************************************************

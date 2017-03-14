@@ -52,7 +52,15 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedVibrateNSeconds;
+    double duration = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
+    NSString* durationStr;
+    if (duration == 1.0) {
+        durationStr = kLocalizedSecond;
+    }
+    else {
+        durationStr = kLocalizedSeconds;
+    }
+    return [kLocalizedVibrateFor stringByAppendingString:[@"%@ " stringByAppendingString:durationStr]];
 }
 
 #pragma mark - Description
