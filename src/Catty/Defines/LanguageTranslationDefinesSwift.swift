@@ -397,17 +397,25 @@ let kLocalizedMessage1 = NSLocalizedString("message 1", comment: "")
 let kLocalizedHello = NSLocalizedString("Hello !", comment: "")
 
 // phiro bricks
-let kLocalizedStopPhiroMotor = NSLocalizedString("Stop Phiro Motor\n%", comment: "")
-let kLocalizedPhiroMoveForward = NSLocalizedString("Move Phiro Motor forward\n%@\n Speed %@%", comment: "")
-let kLocalizedPhiroMoveBackward = NSLocalizedString("Move Phiro Motor backward\n%@\n Speed %@%", comment: "")
-let kLocalizedPhiroRGBLight = NSLocalizedString("Set Phiro Light\n%@\n Red %@ Green %@ Blue %", comment: "")
-let kLocalizedPhiroPlayTone = NSLocalizedString("play Phiro Tone\n%@\n Duration %@ seconds", comment: "")
-let kLocalizedPhiroIfLogic = NSLocalizedString("If %@ is true then", comment: "")
+let kLocalizedStopPhiroMotor = NSLocalizedString("Stop Phiro motor", comment: "")
+let kLocalizedPhiroSpeed = NSLocalizedString("Speed", comment: "")
+let kLocalizedPhiroMoveForward = NSLocalizedString("Move Phiro motor forward", comment: "")
+let kLocalizedPhiroMoveBackward = NSLocalizedString("Move Phiro motor backward", comment: "")
+let kLocalizedPhiroRGBLight = NSLocalizedString("Set Phiro light", comment: "")
+let kLocalizedPhiroRGBLightRed = NSLocalizedString("Red", comment: "")
+let kLocalizedPhiroRGBLightGreen = NSLocalizedString("Green", comment: "")
+let kLocalizedPhiroRGBLightBlue = NSLocalizedString("Blue", comment: "")
+let kLocalizedPhiroPlayTone = NSLocalizedString("Play Phiro music\n", comment: "")
+let kLocalizedPhiroPlayDuration = NSLocalizedString("Duration", comment: "")
+let kLocalizedPhiroSecondsToPlay = NSLocalizedString("seconds", comment: "")
+let kLocalizedPhiroIfLogic = NSLocalizedString("If", comment: "")
+let kLocalizedPhiroThenLogic = NSLocalizedString("is true then", comment: "")
 
 
 // Arduino bricks
-let kLocalizedArduinoSendDigitalValue = NSLocalizedString("Arduino send digital\nPin:%@ Value:%", comment: "")
-let kLocalizedArduinoSendPWMValue = NSLocalizedString("Arduino send PWM\nPin:%@ Value:%", comment: "")
+let kLocalizedArduinoSetDigitalValue = NSLocalizedString("Set Arduino digital pin", comment: "")
+let kLocalizedArduinoSetPinValueTo = NSLocalizedString("to", comment: "")
+let kLocalizedArduinoSendPWMValue = NSLocalizedString("Set Arduino PWM~ pin", comment: "")
 
 
 //************************************************************************************************************

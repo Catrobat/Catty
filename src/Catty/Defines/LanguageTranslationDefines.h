@@ -397,17 +397,25 @@
 #define kLocalizedHello NSLocalizedString(@"Hello !", nil)
 
 // phiro bricks
-#define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro Motor\n%@", nil)
-#define kLocalizedPhiroMoveForward NSLocalizedString(@"Move Phiro Motor forward\n%@\n Speed %@\%", nil)
-#define kLocalizedPhiroMoveBackward NSLocalizedString(@"Move Phiro Motor backward\n%@\n Speed %@\%", nil)
-#define kLocalizedPhiroRGBLight NSLocalizedString(@"Set Phiro Light\n%@\n Red %@ Green %@ Blue %@", nil)
-#define kLocalizedPhiroPlayTone NSLocalizedString(@"play Phiro Tone\n%@\n Duration %@ seconds", nil)
-#define kLocalizedPhiroIfLogic NSLocalizedString(@"If %@ is true then", nil)
+#define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro motor", nil)
+#define kLocalizedPhiroSpeed NSLocalizedString(@"Speed", nil)
+#define kLocalizedPhiroMoveForward NSLocalizedString(@"Move Phiro motor forward", nil)
+#define kLocalizedPhiroMoveBackward NSLocalizedString(@"Move Phiro motor backward", nil)
+#define kLocalizedPhiroRGBLight NSLocalizedString(@"Set Phiro light", nil)
+#define kLocalizedPhiroRGBLightRed NSLocalizedString(@"Red", nil)
+#define kLocalizedPhiroRGBLightGreen NSLocalizedString(@"Green", nil)
+#define kLocalizedPhiroRGBLightBlue NSLocalizedString(@"Blue", nil)
+#define kLocalizedPhiroPlayTone NSLocalizedString(@"Play Phiro music\n", nil)
+#define kLocalizedPhiroPlayDuration NSLocalizedString(@"Duration", nil)
+#define kLocalizedPhiroSecondsToPlay NSLocalizedString(@"seconds", nil)
+#define kLocalizedPhiroIfLogic NSLocalizedString(@"If", nil)
+#define kLocalizedPhiroThenLogic NSLocalizedString(@"is true then", nil)
 
 
 // Arduino bricks
-#define kLocalizedArduinoSendDigitalValue NSLocalizedString(@"Arduino send digital\nPin:%@ Value:%@", nil)
-#define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Arduino send PWM\nPin:%@ Value:%@", nil)
+#define kLocalizedArduinoSetDigitalValue NSLocalizedString(@"Set Arduino digital pin", nil)
+#define kLocalizedArduinoSetPinValueTo NSLocalizedString(@"to", nil)
+#define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Set Arduino PWM~ pin", nil)
 
 
 //************************************************************************************************************

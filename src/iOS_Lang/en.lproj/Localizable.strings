@@ -74,12 +74,6 @@
 "Arduino" = "Arduino";
 
 /* No comment provided by engineer. */
-"Arduino send digital\nPin:%@ Value:%@" = "Arduino send digital\nPin:%@ Value:%@";
-
-/* No comment provided by engineer. */
-"Arduino send PWM\nPin:%@ Value:%@" = "Arduino send PWM\nPin:%@ Value:%@";
-
-/* No comment provided by engineer. */
 "arduino_analog" = "arduino_analog";
 
 /* No comment provided by engineer. */
@@ -398,6 +392,9 @@
 "Draw new image" = "Draw new image";
 
 /* No comment provided by engineer. */
+"Duration" = "Duration";
+
+/* No comment provided by engineer. */
 "Edit" = "Edit";
 
 /* Action sheet menu title */
@@ -596,6 +593,9 @@
 "Hide variable\n%@" = "Hide variable\n%@";
 
 /* No comment provided by engineer. */
+"If" = "If";
+
+/* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
 
 /* No comment provided by engineer. */
@@ -633,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
+
+/* No comment provided by engineer. */
+"is true then" = "is true then";
 
 /* paint */
 "italic" = "italic";
@@ -788,10 +791,10 @@
 "Move Objects" = "Move Objects";
 
 /* No comment provided by engineer. */
-"Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
+"Move Phiro motor backward" = "Move Phiro motor backward";
 
 /* No comment provided by engineer. */
-"Move Phiro Motor forward\n%@\n Speed %@\%" = "Move Phiro Motor forward\n%@\n Speed %@\%";
+"Move Phiro motor forward" = "Move Phiro motor forward";
 
 /* No comment provided by engineer. */
 "Move Sounds" = "Move Sounds";
@@ -974,7 +977,7 @@
 "Play" = "Play";
 
 /* No comment provided by engineer. */
-"play Phiro Tone\n%@\n Duration %@ seconds" = "play Phiro Tone\n%@\n Duration %@ seconds";
+"Play Phiro music\n" = "Play Phiro music\n";
 
 /* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
 "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
@@ -1166,6 +1169,9 @@
 "Search" = "Search";
 
 /* No comment provided by engineer. */
+"seconds" = "seconds";
+
+/* No comment provided by engineer. */
 "Select All" = "Select All";
 
 /* bluetooth */
@@ -1196,6 +1202,12 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
+"Set Arduino digital pin" = "Set Arduino digital pin";
+
+/* No comment provided by engineer. */
+"Set Arduino PWM~ pin" = "Set Arduino PWM~ pin";
+
+/* No comment provided by engineer. */
 "Set background" = "Set background";
 
 /* No comment provided by engineer. */
@@ -1208,7 +1220,7 @@
 "Set description" = "Set description";
 
 /* No comment provided by engineer. */
-"Set Phiro Light\n%@\n Red %@ Green %@ Blue %@" = "Set Phiro Light\n%@\n Red %@ Green %@ Blue %@";
+"Set Phiro light" = "Set Phiro light";
 
 /* No comment provided by engineer. */
 "Set size to" = "Set size to";
@@ -1265,6 +1277,9 @@
 "Speak" = "Speak";
 
 /* No comment provided by engineer. */
+"Speed" = "Speed";
+
+/* No comment provided by engineer. */
 "sqrt" = "sqrt";
 
 /* paint */
@@ -1286,7 +1301,7 @@
 "Stop all sounds" = "Stop all sounds";
 
 /* No comment provided by engineer. */
-"Stop Phiro Motor\n%@" = "Stop Phiro Motor\n%@";
+"Stop Phiro motor" = "Stop Phiro motor";
 
 /* No comment provided by engineer. */
 "Su" = "Su";
@@ -1341,6 +1356,9 @@
 
 /* No comment provided by engineer. */
 "TI" = "TI";
+
+/* No comment provided by engineer. */
+"to" = "to";
 
 /* No comment provided by engineer. */
 "Today" = "Today";

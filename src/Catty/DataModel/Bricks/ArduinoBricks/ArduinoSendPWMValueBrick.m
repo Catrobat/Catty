@@ -26,7 +26,7 @@
 @implementation ArduinoSendPWMValueBrick
 - (NSString*)brickTitle
 {
-    return kLocalizedArduinoSendPWMValue;
+    return [[[kLocalizedArduinoSendPWMValue stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedArduinoSetPinValueTo] stringByAppendingString:@"%@"];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
