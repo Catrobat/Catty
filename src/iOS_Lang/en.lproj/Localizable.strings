@@ -79,6 +79,9 @@
 /* No comment provided by engineer. */
 "arduino_digital" = "arduino_digital";
 
+/* No comment provided by engineer. */
+"at " = "at ";
+
 /* paint */
 "Attributes:" = "Attributes:";
 
@@ -140,6 +143,9 @@
 "Brush" = "Brush";
 
 /* No comment provided by engineer. */
+"by" = "by";
+
+/* No comment provided by engineer. */
 "By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
@@ -167,19 +173,19 @@
 "ceil" = "ceil";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
+"Change brightness " = "Change brightness ";
 
 /* No comment provided by engineer. */
-"Change color by %@" = "Change color by %@";
+"Change color " = "Change color ";
 
 /* No comment provided by engineer. */
 "Change size by" = "Change size by";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
+"Change transparency " = "Change transparency ";
 
 /* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
+"Change variable" = "Change variable";
 
 /* No comment provided by engineer. */
 "Change volume by" = "Change volume by";
@@ -590,13 +596,10 @@
 "Hide Details" = "Hide Details";
 
 /* No comment provided by engineer. */
-"Hide variable\n%@" = "Hide variable\n%@";
+"Hide variable" = "Hide variable";
 
 /* No comment provided by engineer. */
 "If" = "If";
-
-/* No comment provided by engineer. */
-"If %@ is true then" = "If %@ is true then";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "If on edge, bounce";
@@ -1172,7 +1175,7 @@
 "Search" = "Search";
 
 /* No comment provided by engineer. */
-"second" = "second";
+"second " = "second ";
 
 /* No comment provided by engineer. */
 "seconds" = "seconds";
@@ -1220,10 +1223,10 @@
 "Set background" = "Set background";
 
 /* No comment provided by engineer. */
-"Set brightness to" = "Set brightness to";
+"Set brightness " = "Set brightness ";
 
 /* No comment provided by engineer. */
-"Set color to %@" = "Set color to %@";
+"Set color " = "Set color ";
 
 /* No comment provided by engineer. */
 "Set description" = "Set description";
@@ -1235,10 +1238,10 @@
 "Set size to" = "Set size to";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
+"Set transparency " = "Set transparency ";
 
 /* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
+"Set variable" = "Set variable";
 
 /* No comment provided by engineer. */
 "Set volume to" = "Set volume to";
@@ -1259,7 +1262,7 @@
 "Show Details" = "Show Details";
 
 /* No comment provided by engineer. */
-"Show variable\n%@\nx: %@ y:%@" = "Show variable\n%@\nx: %@ y:%@";
+"Show variable" = "Show variable";
 
 /* No comment provided by engineer. */
 "size" = "size";

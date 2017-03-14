@@ -381,13 +381,15 @@ let kLocalizedHide = NSLocalizedString("Hide", comment: "")
 let kLocalizedShow = NSLocalizedString("Show", comment: "")
 let kLocalizedLedOn = NSLocalizedString("Flashlight on", comment: "")
 let kLocalizedLedOff = NSLocalizedString("Flashlight off", comment: "")
-let kLocalizedSetTransparency = NSLocalizedString("Set transparency\nto %@%", comment: "")
-let kLocalizedChangeTransparencyByN = NSLocalizedString("Change transparency\nby %@%", comment: "")
-let kLocalizedSetBrightness = NSLocalizedString("Set brightness to", comment: "")
-let kLocalizedChangeBrightnessByN = NSLocalizedString("Change brightness\nby %@%", comment: "")
+let kLocalizedSetTransparency = NSLocalizedString("Set transparency ", comment: "")
+let kLocalizedChangeTransparency = NSLocalizedString("Change transparency ", comment: "")
+let kLocalizedSetBrightness = NSLocalizedString("Set brightness ", comment: "")
+let kLocalizedChangeBrightness = NSLocalizedString("Change brightness ", comment: "")
+let kLocalizedTo = NSLocalizedString("to", comment: "")
+let kLocalizedBy = NSLocalizedString("by", comment: "")
 let kLocalizedClearGraphicEffect = NSLocalizedString("Clear graphic effects", comment: "")
-let kLocalizedSetColor = NSLocalizedString("Set color to %", comment: "")
-let kLocalizedChangeColorByN = NSLocalizedString("Change color by %", comment: "")
+let kLocalizedSetColor = NSLocalizedString("Set color ", comment: "")
+let kLocalizedChangeColor = NSLocalizedString("Change color ", comment: "")
 let kLocalizedFlash = NSLocalizedString("Turn flashlight", comment: "")
 
 // sound bricks
@@ -398,10 +400,11 @@ let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by", comment: "
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 
 // variable bricks
-let kLocalizedSetVariable = NSLocalizedString("Set variable\n%@\nto %", comment: "")
-let kLocalizedChangeVariable = NSLocalizedString("Change variable\n%@\nby %", comment: "")
-let kLocalizedShowVariable = NSLocalizedString("Show variable\n%@\nx: %@ y:%", comment: "")
-let kLocalizedHideVariable = NSLocalizedString("Hide variable\n%", comment: "")
+let kLocalizedSetVariable = NSLocalizedString("Set variable", comment: "")
+let kLocalizedChangeVariable = NSLocalizedString("Change variable", comment: "")
+let kLocalizedShowVariable = NSLocalizedString("Show variable", comment: "")
+let kLocalizedAt = NSLocalizedString("at ", comment: "")
+let kLocalizedHideVariable = NSLocalizedString("Hide variable", comment: "")
 
 
 let kLocalizedAddCommentHere = NSLocalizedString("add comment here...", comment: "")

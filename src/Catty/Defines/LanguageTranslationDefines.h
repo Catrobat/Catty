@@ -381,13 +381,15 @@
 #define kLocalizedShow NSLocalizedString(@"Show", nil)
 #define kLocalizedLedOn NSLocalizedString(@"Flashlight on", nil)
 #define kLocalizedLedOff NSLocalizedString(@"Flashlight off", nil)
-#define kLocalizedSetTransparency NSLocalizedString(@"Set transparency\nto %@\%", nil)
-#define kLocalizedChangeTransparencyByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
-#define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to", nil)
-#define kLocalizedChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
+#define kLocalizedSetTransparency NSLocalizedString(@"Set transparency ", nil)
+#define kLocalizedChangeTransparency NSLocalizedString(@"Change transparency ", nil)
+#define kLocalizedSetBrightness NSLocalizedString(@"Set brightness ", nil)
+#define kLocalizedChangeBrightness NSLocalizedString(@"Change brightness ", nil)
+#define kLocalizedTo NSLocalizedString(@"to", nil)
+#define kLocalizedBy NSLocalizedString(@"by", nil)
 #define kLocalizedClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
-#define kLocalizedSetColor NSLocalizedString(@"Set color to %@", nil)
-#define kLocalizedChangeColorByN NSLocalizedString(@"Change color by %@", nil)
+#define kLocalizedSetColor NSLocalizedString(@"Set color ", nil)
+#define kLocalizedChangeColor NSLocalizedString(@"Change color ", nil)
 #define kLocalizedFlash NSLocalizedString(@"Turn flashlight", nil)
 
 // sound bricks
@@ -398,10 +400,11 @@
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 
 // variable bricks
-#define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
-#define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
-#define kLocalizedShowVariable NSLocalizedString(@"Show variable\n%@\nx: %@ y:%@", nil)
-#define kLocalizedHideVariable NSLocalizedString(@"Hide variable\n%@", nil)
+#define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)
+#define kLocalizedChangeVariable NSLocalizedString(@"Change variable", nil)
+#define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
+#define kLocalizedAt NSLocalizedString(@"at ", nil)
+#define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
 
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)

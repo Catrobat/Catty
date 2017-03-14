@@ -59,7 +59,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedSetBrightness stringByAppendingString:@"%@\%"];
+    return [kLocalizedSetBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@\%"]]];
 }
 
 - (NSString*)pathForLook:(Look*)look

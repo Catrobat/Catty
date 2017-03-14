@@ -56,7 +56,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeColorByN;
+    return [kLocalizedChangeColor stringByAppendingString:[kLocalizedBy stringByAppendingString:@"%@"]];
 }
 
 #pragma mark - Description
