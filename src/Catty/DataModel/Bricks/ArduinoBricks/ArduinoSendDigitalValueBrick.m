@@ -26,7 +26,7 @@
 @implementation ArduinoSendDigitalValueBrick
 - (NSString*)brickTitle
 {
-    return kLocalizedArduinoSendDigitalValue;
+    return [[[kLocalizedArduinoSetDigitalValue stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedArduinoSetPinValueTo] stringByAppendingString:@"%@"];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

@@ -371,24 +371,24 @@
 #define kLocalizedComeToFront NSLocalizedString(@"Go to front", nil)
 
 // look bricks
-#define kLocalizedSetLook NSLocalizedString(@"Switch to look\n%@", nil)
-#define kLocalizedSetBackground NSLocalizedString(@"Set background\n%@", nil)
+#define kLocalizedSetLook NSLocalizedString(@"Switch to look", nil)
+#define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
-#define kLocalizedSetSizeTo NSLocalizedString(@"Set size to %@\%", nil)
-#define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
+#define kLocalizedSetSizeTo NSLocalizedString(@"Set size to", nil)
+#define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by", nil)
 #define kLocalizedHide NSLocalizedString(@"Hide", nil)
 #define kLocalizedShow NSLocalizedString(@"Show", nil)
 #define kLocalizedLedOn NSLocalizedString(@"Flashlight on", nil)
 #define kLocalizedLedOff NSLocalizedString(@"Flashlight off", nil)
 #define kLocalizedSetTransparency NSLocalizedString(@"Set transparency\nto %@\%", nil)
 #define kLocalizedChangeTransparencyByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
-#define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
+#define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to", nil)
 #define kLocalizedChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
 #define kLocalizedClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
 #define kLocalizedSetColor NSLocalizedString(@"Set color to %@", nil)
 #define kLocalizedChangeColorByN NSLocalizedString(@"Change color by %@", nil)
-#define kLocalizedFlash NSLocalizedString(@"Turn flashlight\n%@", nil)
+#define kLocalizedFlash NSLocalizedString(@"Turn flashlight", nil)
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
@@ -409,17 +409,25 @@
 #define kLocalizedHello NSLocalizedString(@"Hello !", nil)
 
 // phiro bricks
-#define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro Motor\n%@", nil)
-#define kLocalizedPhiroMoveForward NSLocalizedString(@"Move Phiro Motor forward\n%@\n Speed %@\%", nil)
-#define kLocalizedPhiroMoveBackward NSLocalizedString(@"Move Phiro Motor backward\n%@\n Speed %@\%", nil)
-#define kLocalizedPhiroRGBLight NSLocalizedString(@"Set Phiro Light\n%@\n Red %@ Green %@ Blue %@", nil)
-#define kLocalizedPhiroPlayTone NSLocalizedString(@"play Phiro Tone\n%@\n Duration %@ seconds", nil)
-#define kLocalizedPhiroIfLogic NSLocalizedString(@"If %@ is true then", nil)
+#define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro motor", nil)
+#define kLocalizedPhiroSpeed NSLocalizedString(@"Speed", nil)
+#define kLocalizedPhiroMoveForward NSLocalizedString(@"Move Phiro motor forward", nil)
+#define kLocalizedPhiroMoveBackward NSLocalizedString(@"Move Phiro motor backward", nil)
+#define kLocalizedPhiroRGBLight NSLocalizedString(@"Set Phiro light", nil)
+#define kLocalizedPhiroRGBLightRed NSLocalizedString(@"Red", nil)
+#define kLocalizedPhiroRGBLightGreen NSLocalizedString(@"Green", nil)
+#define kLocalizedPhiroRGBLightBlue NSLocalizedString(@"Blue", nil)
+#define kLocalizedPhiroPlayTone NSLocalizedString(@"Play Phiro music\n", nil)
+#define kLocalizedPhiroPlayDuration NSLocalizedString(@"Duration", nil)
+#define kLocalizedPhiroSecondsToPlay NSLocalizedString(@"seconds", nil)
+#define kLocalizedPhiroIfLogic NSLocalizedString(@"If", nil)
+#define kLocalizedPhiroThenLogic NSLocalizedString(@"is true then", nil)
 
 
 // Arduino bricks
-#define kLocalizedArduinoSendDigitalValue NSLocalizedString(@"Arduino send digital\nPin:%@ Value:%@", nil)
-#define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Arduino send PWM\nPin:%@ Value:%@", nil)
+#define kLocalizedArduinoSetDigitalValue NSLocalizedString(@"Set Arduino digital pin", nil)
+#define kLocalizedArduinoSetPinValueTo NSLocalizedString(@"to", nil)
+#define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Set Arduino PWM~ pin", nil)
 
 
 

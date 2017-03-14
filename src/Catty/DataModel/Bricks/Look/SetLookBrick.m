@@ -32,7 +32,7 @@
 
 - (NSString*)brickTitle
 {
-    return ([self.script.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
+    return ([self.script.object isBackground] ? [kLocalizedSetBackground stringByAppendingString:@"\n%@"] : [kLocalizedSetLook stringByAppendingString:@"\n%@"]);
 }
 
 - (NSString*)pathForLook

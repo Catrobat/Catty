@@ -26,7 +26,7 @@
 @implementation PhiroMotorStopBrick
 - (NSString*)brickTitle
 {
-    return kLocalizedStopPhiroMotor;
+    return [kLocalizedStopPhiroMotor stringByAppendingString:@"\n%@"];
 }
 
 
