@@ -1172,7 +1172,10 @@
 "Search" = "Search";
 
 /* No comment provided by engineer. */
-"second " = "second ";
+"second" = "second";
+
+/* No comment provided by engineer. */
+"seconds" = "seconds";
 
 /* No comment provided by engineer. */
 "seconds " = "seconds ";
@@ -1374,6 +1377,9 @@
 
 /* No comment provided by engineer. */
 "times" = "times";
+
+/* No comment provided by engineer. */
+"to" = "to";
 
 /* No comment provided by engineer. */
 "to X:" = "to X:";
