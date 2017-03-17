@@ -59,9 +59,9 @@
 
 - (NSString*)brickTitle
 {
-    int layers = [self.steps interpretIntegerForSprite:self.script.object];
+    int layers = [self.steps interpretIntegerForSpriteWithoutCache:self.script.object];
     NSString* localizedLayer;
-    if (layers == 1) {
+    if ([self.steps isSingleNumberFormula] && layers == 1) {
         localizedLayer = kLocalizedLayer;
     } else {
         localizedLayer = kLocalizedLayers;

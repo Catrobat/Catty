@@ -84,9 +84,9 @@
 
 - (NSString*)brickTitle
 {
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSpriteWithoutCache:self.script.object];
     NSString* localizedSecond;
-    if (durationInSeconds == 1.0) {
+    if ([self.durationInSeconds isSingleNumberFormula] && durationInSeconds == 1.0) {
         localizedSecond = kLocalizedSecond;
     } else {
         localizedSecond = kLocalizedSeconds;

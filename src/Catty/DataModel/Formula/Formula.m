@@ -110,6 +110,16 @@
     return returnDoubleValue;
 }
 
+- (double)interpretDoubleForSpriteWithoutCache:(SpriteObject*)sprite {
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    double returnDoubleValue = 0.0f;
+    if ([returnValue isKindOfClass:[NSNumber class]]) {
+        returnDoubleValue = [returnValue doubleValue];
+    }
+    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
+    return returnDoubleValue;
+}
+
 - (float)interpretFloatForSprite:(SpriteObject*)sprite
 {
     return (float)[self interpretDoubleForSprite:sprite];
@@ -117,6 +127,10 @@
 
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite {
     return (int)[self interpretDoubleForSprite:sprite];
+}
+
+- (int)interpretIntegerForSpriteWithoutCache:(SpriteObject*)sprite {
+    return (int)[self interpretDoubleForSpriteWithoutCache:sprite];
 }
 
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite

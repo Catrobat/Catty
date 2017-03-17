@@ -67,9 +67,9 @@
 
 - (NSString*)brickTitle
 {
-    int repeatFor = [self.timesToRepeat interpretIntegerForSprite:self.script.object];
+    int repeatFor = [self.timesToRepeat interpretIntegerForSpriteWithoutCache:self.script.object];
     NSString* repeatForStr;
-    if (repeatFor == 1.0) {
+    if ([self.timesToRepeat isSingleNumberFormula] && repeatFor == 1.0) {
         repeatForStr = kLocalizedTime;
     }
     else {
