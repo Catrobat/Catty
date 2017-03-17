@@ -367,7 +367,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count])
     {
         NSString *alertTitle = title;
-        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmDeletingSelectedItemsAlertViewTag];
     }
 }
 
@@ -390,8 +390,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } 
     */
     
-    if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
-    {
+    if (alertView.tag == kConfirmDeletingSelectedItemsAlertViewTag && buttonIndex == 1) {
+        [self deleteSelectedBricks];
+        self.allBricksSelected = NO;
+    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1) {
         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForDeletion];
         [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:self.selectedIndexPathForDeletion];
     }
