@@ -98,7 +98,7 @@
         config.timeoutIntervalForRequest = 60.0;
         config.timeoutIntervalForResource = 60.0;
         
-        self.connection = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
+        self.connection = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
         
         NSURLSessionDataTask *task = [self.connection dataTaskWithURL:self.url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             self.mdata = [[NSMutableData alloc]init];
@@ -130,7 +130,9 @@
                     self.sound.fileName = fileName;
                     self.sound.name = decodedFilename;
                     [self.mdata writeToFile:self.filePath atomically:YES];
-                    [self.soundDelegate showDownloadSoundAlert:self.sound];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.soundDelegate showDownloadSoundAlert:self.sound];
+                    });
                 }
             }
             
