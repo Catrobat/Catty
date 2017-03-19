@@ -1005,6 +1005,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         UserVariable *variable = [UserVariable new];
                                         variable.name = variableName;
                                         variable.value = [NSNumber numberWithInt:0];
+                                        variable.isList = NO;
                                         if (isProgramVar) {
                                             [self.object.program.variables.programVariableList addObject:variable];
                                         } else { // object variable
@@ -1014,7 +1015,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                             [array addObject:variable];
                                             [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
                                         }
-                                        UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                        UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object isList:NO];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
@@ -1026,7 +1027,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                             [variableBrick setVariable:var forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
                                     }
                                    promptTitle:kUIFENewVar
-                                 promptMessage:kUIFEVarName
+                                 promptMessage:kUIFEOtherName
                                    promptValue:nil
                              promptPlaceholder:kLocalizedEnterYourVariableNameHere
                                 minInputLength:kMinNumOfVariableNameCharacters
@@ -1190,7 +1191,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
-            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
+            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object isList:NO];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }

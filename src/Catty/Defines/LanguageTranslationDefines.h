@@ -511,13 +511,17 @@
 #define kUIFEComputedFalse NSLocalizedString(@"Computed result is FALSE", nil)
 #define kUIFENewVar NSLocalizedString(@"New Variable", nil)
 #define kUIFENewList NSLocalizedString(@"New List", nil)
-#define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
+#define kUIFENewVarExists NSLocalizedString(@"Name already exists.", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
 #define kUIFEListName NSLocalizedString(@"List name:", nil)
+#define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
+
 
 #define kUIFEProgramVars NSLocalizedString(@"Program variables:", nil)
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
+#define kUIFEProgramLists NSLocalizedString(@"Program lists:", nil)
+#define kUIFEObjectLists NSLocalizedString(@"Object lists:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"for this object", nil)

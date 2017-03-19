@@ -511,13 +511,17 @@ let kUIFEComputedTrue = NSLocalizedString("Computed result is TRUE", comment: ""
 let kUIFEComputedFalse = NSLocalizedString("Computed result is FALSE", comment: "")
 let kUIFENewVar = NSLocalizedString("New Variable", comment: "")
 let kUIFENewList = NSLocalizedString("New List", comment: "")
-let kUIFENewVarExists = NSLocalizedString("Name already exists. Please choose another", comment: "")
+let kUIFENewVarExists = NSLocalizedString("Name already exists.", comment: "")
 let kUIFEonly15Char = NSLocalizedString("only 15 characters allowed", comment: "")
 let kUIFEVarName = NSLocalizedString("Variable name:", comment: "")
 let kUIFEListName = NSLocalizedString("List name:", comment: "")
+let kUIFEOtherName = NSLocalizedString("Please choose another name:", comment: "")
+
 
 let kUIFEProgramVars = NSLocalizedString("Program variables:", comment: "")
 let kUIFEObjectVars = NSLocalizedString("Object variables:", comment: "")
+let kUIFEProgramLists = NSLocalizedString("Program lists:", comment: "")
+let kUIFEObjectLists = NSLocalizedString("Object lists:", comment: "")
 let kUIFEDeleteVarBeingUsed = NSLocalizedString("This variable can not be deleted because it is still in use.", comment: "")
 let kUIFEActionVar = NSLocalizedString("Variable type", comment: "")
 let kUIFEActionVarObj = NSLocalizedString("for this object", comment: "")

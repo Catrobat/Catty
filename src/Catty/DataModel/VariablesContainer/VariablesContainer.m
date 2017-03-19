@@ -67,7 +67,8 @@ static pthread_mutex_t variablesLock;
     return _programVariableList;
 }
 
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
+
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite isList:(BOOL)isList
 {
     NSArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
     UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
@@ -109,6 +110,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
     return variable;
 }
+
 - (void)removeObjectUserVariableNamed:(NSString*)name inArray:(NSMutableArray*)userVariables forSpriteObject:(SpriteObject*)sprite
 {
     pthread_mutex_lock(&variablesLock);
@@ -122,6 +124,7 @@ static pthread_mutex_t variablesLock;
     }
     pthread_mutex_unlock(&variablesLock);
 }
+
 - (void)removeProgramUserVariableNamed:(NSString*)name
 {
     pthread_mutex_lock(&variablesLock);
