@@ -327,8 +327,8 @@
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
 
-    NSString *uploadUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLogin];
+    NSString *loginUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", loginUrl, (NSString*)kConnectionLogin];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];

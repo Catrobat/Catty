@@ -194,7 +194,7 @@
               forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.passwordField setReturnKeyType:UIReturnKeyNext];
     [self.passwordField addTarget:self
-                           action:@selector(registerAction)
+                           action:@selector(textFieldShouldReturn:)
                  forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.confirmPasswordField setReturnKeyType:UIReturnKeyDone];
     [self.confirmPasswordField addTarget:self
@@ -331,8 +331,8 @@
 {
     NSDebug(@"Register started with username:%@ and password:%@ and email:%@", username, password, email);
     
-    NSString *uploadUrl = [Util isProductionServerActivated] ? kRegisterUrl : kTestRegisterUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionRegister];
+    NSString *registrationUrl = [Util isProductionServerActivated] ? kRegisterUrl : kTestRegisterUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", registrationUrl, (NSString*)kConnectionRegister];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -427,7 +427,7 @@
     
     if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
         
-        NSDebug(@"Login successful");
+        NSDebug(@"Registration successful");
         NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
         NSDebug(@"Token is %@", token);
         
@@ -475,8 +475,9 @@
 
 -(void)dismissKeyboard {
     [self.usernameField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
     [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.confirmPasswordField resignFirstResponder];
 }
 
 - (void)showLoadingView
