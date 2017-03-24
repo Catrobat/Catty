@@ -24,33 +24,17 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class WaitBrickTests: XCTestCase {
-
-//    func testLongDuration() {
-////        let duration = 2.0 // 2 seconds
-////        let waitBrick = WaitBrick()
-////        waitBrick.timeToWaitInSeconds = Formula(double: duration)
-////        let instruction = waitBrick.instruction()
-////
-////        CBScriptContext(script: <#T##Script#>, spriteNode: SpriteNode())
-////
-////        switch instruction {
-////        case let .WaitExecClosure(closure):
-////            closure(context: , scheduler: TestScheduler())
-////        default: break
-////        }
-//    }
-//
+final class RepeatBrickTests: XCTestCase {
 
     func testTitleSingular() {
-        let waitBrick = WaitBrick()
-        waitBrick.timeToWaitInSeconds = Formula(double: 1)
-        XCTAssertEqual(kLocalizedWait + "%@ " + kLocalizedSecond, waitBrick.brickTitle, "Wrong brick title")
+        let repeatBrick = RepeatBrick()
+        repeatBrick.timesToRepeat = Formula(double: 1)
+        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTime, repeatBrick.brickTitle, "Wrong brick title")
     }
     
     func testTitlePlural() {
-        let waitBrick = WaitBrick()
-        waitBrick.timeToWaitInSeconds = Formula(double: 2)
-        XCTAssertEqual(kLocalizedWait + "%@ " + kLocalizedSeconds, waitBrick.brickTitle, "Wrong brick title")
+        let repeatBrick = RepeatBrick()
+        repeatBrick.timesToRepeat = Formula(double: 2)
+        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTimes, repeatBrick.brickTitle, "Wrong brick title")
     }
 }
