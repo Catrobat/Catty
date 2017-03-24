@@ -54,7 +54,7 @@
 
 - (NSString*)brickTitle
 {
-    int steps = [self.steps interpretIntegerForSpriteWithoutCache:self.script.object];
+    int steps = [self.steps interpretIntegerForSprite:self.script.object andUseCache:NO];
     NSString* localizedStep;
     if ([self.steps isSingleNumberFormula] && steps == 1) {
         localizedStep = kLocalizedStep;

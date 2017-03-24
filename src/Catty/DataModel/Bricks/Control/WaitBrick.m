@@ -54,7 +54,7 @@
 
 - (NSString*)brickTitle
 {
-    double timeToWait = [self.timeToWaitInSeconds interpretDoubleForSpriteWithoutCache:self.script.object];
+    double timeToWait = [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object andUseCache:NO];
     NSString* timeToWaitStr;
     if ([self.timeToWaitInSeconds isSingleNumberFormula] && timeToWait == 1.0) {
         timeToWaitStr = kLocalizedSecond;
