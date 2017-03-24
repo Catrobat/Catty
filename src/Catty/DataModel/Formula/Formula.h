@@ -42,8 +42,10 @@
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite;
+- (double)interpretDoubleForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache;
 - (float)interpretFloatForSprite:(SpriteObject*)sprite;
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
+- (int)interpretIntegerForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 - (NSString*)interpretString:(SpriteObject*)sprite;
 - (id)interpretVariableDataForSprite:(SpriteObject*)sprite;

@@ -54,7 +54,14 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedMoveNSteps;
+    int steps = [self.steps interpretIntegerForSprite:self.script.object andUseCache:NO];
+    NSString* localizedStep;
+    if ([self.steps isSingleNumberFormula] && steps == 1) {
+        localizedStep = kLocalizedStep;
+    } else {
+        localizedStep = kLocalizedSteps;
+    }
+    return [kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:localizedStep]];
 }
 
 - (void)performFromScript:(Script *)script

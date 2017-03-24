@@ -54,7 +54,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeX;
+    return [kLocalizedChangeX stringByAppendingString:@"%@"];
 }
 
 #pragma mark - Description

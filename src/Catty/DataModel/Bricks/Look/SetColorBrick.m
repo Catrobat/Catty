@@ -56,7 +56,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetColor;
+    return [kLocalizedSetColor stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@"]];
 }
 
 - (NSString*)pathForLook:(Look*)look

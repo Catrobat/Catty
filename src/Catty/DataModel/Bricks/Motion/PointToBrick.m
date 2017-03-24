@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedPointTowards;
+    return [kLocalizedPointTowards stringByAppendingString:@"\n%@"];
 }
 
 - (SpriteObject*) pointedObject

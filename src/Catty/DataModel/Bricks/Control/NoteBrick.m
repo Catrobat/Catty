@@ -26,7 +26,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedNote;
+    return [kLocalizedNote stringByAppendingString:@"%@"];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

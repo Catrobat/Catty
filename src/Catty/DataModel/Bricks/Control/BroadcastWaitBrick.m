@@ -29,7 +29,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedBroadcastAndWait;
+    return [kLocalizedBroadcastAndWait stringByAppendingString:@"\n%@"];
 }
 
 - (id)initWithMessage:(NSString*)message

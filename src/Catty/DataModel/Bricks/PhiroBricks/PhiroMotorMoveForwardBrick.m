@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedPhiroMoveForward;
+    return [[[kLocalizedPhiroMoveForward stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroSpeed] stringByAppendingString:@"%@\%"];
 }
 
 
