@@ -25,7 +25,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "RuntimeImageCache.h"
 #import "Look.h"
-
+#import "CustomIOSAlertView.h"
+#import <AudioToolbox/AudioServices.h>
 
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
@@ -60,6 +61,11 @@
     [self.keyboard setDelegate:self];
     
     self.inputView = self.pickerView;
+    
+    DFContinuousForceTouchGestureRecognizer* forceTouchRecognizer = [[DFContinuousForceTouchGestureRecognizer alloc] init];
+    forceTouchRecognizer.forceTouchDelegate = self;
+    forceTouchRecognizer.baseForceTouchPressure = 3.6f;
+    [self addGestureRecognizer:forceTouchRecognizer];
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -440,6 +446,46 @@
         
     }
 
+}
+
+
+/***********************************************************
+ **  FORCE TOUCH DELEGATE
+ **********************************************************/
+
+- (void) forceTouchRecognized:(DFContinuousForceTouchGestureRecognizer*)recognizer {
+    
+    [self endEditing:YES];
+    
+    _popupView = [[CustomIOSAlertView alloc] init];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:self.currentImage];
+    imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width);
+    [_popupView setButtonTitles:NULL];
+    [_popupView setContainerView:imageView];
+    [_popupView show];
+    AudioServicesPlaySystemSound(1519);
+}
+
+- (void) forceTouchRecognizer:(DFContinuousForceTouchGestureRecognizer*)recognizer didStartWithForce:(CGFloat)force maxForce:(CGFloat)maxForce {
+    printf("start with: %f, %f\n", force, maxForce);
+}
+
+- (void) forceTouchRecognizer:(DFContinuousForceTouchGestureRecognizer*)recognizer didMoveWithForce:(CGFloat)force maxForce:(CGFloat)maxForce {
+    printf("move with: %f, %f\n", force, maxForce);
+}
+
+- (void) forceTouchRecognizer:(DFContinuousForceTouchGestureRecognizer*)recognizer didCancelWithForce:(CGFloat)force maxForce:(CGFloat)maxForce {
+    printf("cancel with: %f, %f\n", force, maxForce);
+}
+
+- (void) forceTouchRecognizer:(DFContinuousForceTouchGestureRecognizer*)recognizer didEndWithForce:(CGFloat)force maxForce:(CGFloat)maxForce {
+    [_popupView close];
+    AudioServicesPlaySystemSound(1520);
+}
+
+- (void) forceTouchDidTimeout:(DFContinuousForceTouchGestureRecognizer*)recognizer {
+    [_popupView close];
+    AudioServicesPlaySystemSound(1520);
 }
 
 @end

@@ -14,6 +14,8 @@ def available_pods
     pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift2.3'
     pod 'LXReorderableCollectionViewFlowLayout', '~> 0.1.1'
     pod 'UIDevice-Hardware'
+    pod 'DFContinuousForceTouchGestureRecognizer', '~> 0.1.0'
+    pod 'CustomIOSAlertView', '~> 0.9.5'
 end
 
 target 'Catty' do

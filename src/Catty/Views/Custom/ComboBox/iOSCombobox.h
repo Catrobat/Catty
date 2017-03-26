@@ -25,12 +25,14 @@
 #import "iOSComboboxPickerView.h"
 #import "BSKeyboardControls.h"
 #import "SpriteObject.h"
+#import "DFContinuousForceTouchGestureRecognizer.h"
+#import "CustomIOSAlertView.h"
 
 #define kiOSComboboxTotalHeight 264.0f
 
 @protocol iOSComboboxDelegate;
 
-@interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate, iOSComboboxPickerViewDelegate, BSKeyboardControlsDelegate>
+@interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate, iOSComboboxPickerViewDelegate, BSKeyboardControlsDelegate, DFContinuousForceTouchDelegate>
 {
     BOOL active;
 }
@@ -46,7 +48,7 @@
 @property (nonatomic, strong) BSKeyboardControls *keyboard;
 @property (readwrite, strong) UIView *inputView;
 @property (readwrite, strong) UIView *inputAccessoryView;
-
+@property (readwrite, strong) CustomIOSAlertView *popupView;
 @end
 
 @protocol iOSComboboxDelegate <NSObject>

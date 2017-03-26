@@ -125,7 +125,9 @@ let license3rdPartyDict : [String : License] = [
     "MXParallaxHeader" : .MIT,
     "MXScrollView" : .MIT,
     "MXScrollViewController" : .MIT,
-    "UIDevice-Hardware" : .BSD
+    "UIDevice-Hardware" : .BSD,
+    "DFContinuousForceTouchGestureRecognizer" : .MIT,
+    "CustomIOSAlertView": .MIT
 ]
 
 let licenseCheckDirs : [String : License] = [
