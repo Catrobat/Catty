@@ -480,11 +480,13 @@
 
 - (void) forceTouchRecognizer:(DFContinuousForceTouchGestureRecognizer*)recognizer didEndWithForce:(CGFloat)force maxForce:(CGFloat)maxForce {
     [_popupView close];
+    [self keyboardControlsDonePressed:NULL];
     AudioServicesPlaySystemSound(1520);
 }
 
 - (void) forceTouchDidTimeout:(DFContinuousForceTouchGestureRecognizer*)recognizer {
     [_popupView close];
+    [self keyboardControlsDonePressed:NULL];
     AudioServicesPlaySystemSound(1520);
 }
 
