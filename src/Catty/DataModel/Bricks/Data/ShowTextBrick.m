@@ -81,7 +81,13 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedShowVariable;
+    return [kLocalizedShowVariable
+        stringByAppendingString:[@"\n%@\n"
+        stringByAppendingString:[kLocalizedAt
+        stringByAppendingString:[kLocalizedXLabel
+        stringByAppendingString:[@"%@ "
+        stringByAppendingString:[kLocalizedYLabel
+        stringByAppendingString:@"%@"]]]]]];
 }
 
 #pragma mark - Description

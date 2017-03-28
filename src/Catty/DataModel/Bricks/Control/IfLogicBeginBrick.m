@@ -71,7 +71,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedIfIsTrueThen;
+    return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
 - (BOOL)checkCondition

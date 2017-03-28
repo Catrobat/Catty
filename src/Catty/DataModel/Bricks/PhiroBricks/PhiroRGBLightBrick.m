@@ -28,7 +28,7 @@
 @implementation PhiroRGBLightBrick
 - (NSString*)brickTitle
 {
-    return kLocalizedPhiroRGBLight;
+    return [[[[[[[kLocalizedPhiroRGBLight stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroRGBLightRed] stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroRGBLightGreen] stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroRGBLightBlue] stringByAppendingString:@"%@"];
 }
 
 

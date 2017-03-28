@@ -29,7 +29,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedFlash;
+    return [kLocalizedFlash stringByAppendingString:@"\n%@"];
 }
 
 - (id)initWithChoice:(int)choice
