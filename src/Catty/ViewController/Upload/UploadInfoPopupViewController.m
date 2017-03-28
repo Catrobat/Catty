@@ -290,8 +290,7 @@ const CGFloat PADDING = 5.0f;
         self.program.header.userHandle = nil;
     }
     [self.program renameToProgramName:self.programNameTextField.text];
-    self.program.header.programDescription = self.descriptionTextView.text;
-    [self.program saveToDiskWithNotification:YES];
+    [self.program updateDescriptionWithText:self.descriptionTextView.text];
     if (!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
         //        _loadingView.backgroundColor = [UIColor globalTintColor];
@@ -309,7 +308,8 @@ const CGFloat PADDING = 5.0f;
 
 -(void)uploadAction
 {
-
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    self.zipFileData = [appDelegate.fileManager zipProgram:self.program];
     NSString *checksum = nil;
     if (self.zipFileData) {
         checksum = [self.zipFileData md5];
