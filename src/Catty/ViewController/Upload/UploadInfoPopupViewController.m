@@ -308,8 +308,15 @@ const CGFloat PADDING = 5.0f;
 
 -(void)uploadAction
 {
+    //This is to prevent uploading the program twice, since the notification for uploading is received twice
+    if(self.dataTask) {
+        return;
+    }
+    
+    //Program might have changed, update zip file accordingly
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     self.zipFileData = [appDelegate.fileManager zipProgram:self.program];
+    
     NSString *checksum = nil;
     if (self.zipFileData) {
         checksum = [self.zipFileData md5];
