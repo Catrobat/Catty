@@ -20,32 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ArduinoSendPWMValueBrickCell.h"
-#import "Util.h"
+import XCTest
 
-@interface ArduinoSendPWMValueBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
-@property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
-@end
+@testable import Pocket_Code
 
-@implementation ArduinoSendPWMValueBrickCell
+final class VibrationBrickTests: XCTestCase {
 
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:[UIColor ArduinoBrickColor] strokeColor:[UIColor ArduinoBrickStrokeColor] height:mediumBrick width:[Util screenWidth]];
+    func testTitleSingular() {
+        let vibrationBrick = VibrationBrick()
+        vibrationBrick.durationInSeconds = Formula(double: 1)
+        XCTAssertEqual(kLocalizedVibrateFor + "%@ " + kLocalizedSecond, vibrationBrick.brickTitle, "Wrong brick title")
+    }
+    
+    func testTitlePlural() {
+        let vibrationBrick = VibrationBrick()
+        vibrationBrick.durationInSeconds = Formula(double: 2)
+        XCTAssertEqual(kLocalizedVibrateFor + "%@ " + kLocalizedSeconds, vibrationBrick.brickTitle, "Wrong brick title")
+    }
 }
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.pinTextField = inlineViewSubViews[1];
-    self.secondRowLeftTextLabel = inlineViewSubViews[2];
-    self.valueTextField = inlineViewSubViews[3];
-}
-
-@end

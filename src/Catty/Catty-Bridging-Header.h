@@ -92,6 +92,7 @@
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
 #import "FlashBrick.h"
+#import "RepeatBrick.h"
 
 // Formulas
 #import "Formula.h"

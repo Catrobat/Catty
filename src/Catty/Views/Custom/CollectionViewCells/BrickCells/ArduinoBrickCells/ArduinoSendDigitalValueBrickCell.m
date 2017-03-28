@@ -26,7 +26,6 @@
 @interface ArduinoSendDigitalValueBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
 @property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
-@property (nonatomic, strong) UILabel *secondRowRightTextLabel;
 @end
 
 @implementation ArduinoSendDigitalValueBrickCell
@@ -44,10 +43,9 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
     self.firstRowTextLabel = inlineViewSubViews[0];
-    self.secondRowLeftTextLabel = inlineViewSubViews[1];
-    self.pinTextField = inlineViewSubViews[2];
-    self.secondRowRightTextLabel = inlineViewSubViews[3];
-    self.valueTextField = inlineViewSubViews[4];
+    self.pinTextField = inlineViewSubViews[1];
+    self.secondRowLeftTextLabel = inlineViewSubViews[2];
+    self.valueTextField = inlineViewSubViews[3];
 }
 
 @end

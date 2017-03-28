@@ -56,7 +56,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeTransparencyByN;
+    return [kLocalizedChangeTransparency stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@"%@\%"]]];
 }
 
 #pragma mark - Description
