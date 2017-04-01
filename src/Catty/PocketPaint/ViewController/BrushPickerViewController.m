@@ -21,10 +21,8 @@
  */
 
 #import "BrushPickerViewController.h"
-#import "UIViewController+KNSemiModal.h"
 #import "PaintViewController.h"
 #import "UIImage+Rotate.h"
-#import "LanguageTranslationDefines.h"
 #import "CatrobatUISlider.h"
 
 @interface BrushPickerViewController ()

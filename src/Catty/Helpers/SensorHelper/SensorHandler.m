@@ -22,11 +22,8 @@
 
 
 #import "SensorHandler.h"
-#import <CoreMotion/CoreMotion.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Util.h"
-#import <AVFoundation/AVFoundation.h>
-#import <CoreAudio/CoreAudioTypes.h>
 #import "Pocket_Code-Swift.h"
 #import "FaceDetection.h"
 

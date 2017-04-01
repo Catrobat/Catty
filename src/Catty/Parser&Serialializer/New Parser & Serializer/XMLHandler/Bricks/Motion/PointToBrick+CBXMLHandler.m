@@ -27,7 +27,6 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
-#import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
 #import "Script.h"

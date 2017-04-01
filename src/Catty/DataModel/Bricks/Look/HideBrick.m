@@ -21,7 +21,6 @@
  */
 
 #import "Hidebrick.h"
-#import "Script.h"
 
 @implementation HideBrick
 

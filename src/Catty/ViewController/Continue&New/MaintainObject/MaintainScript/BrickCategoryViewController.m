@@ -22,9 +22,6 @@
 
 #import "BrickCategoryViewController.h"
 #import "BrickManager.h"
-#import "BrickCell.h"
-#import "BrickProtocol.h"
-#import "Brick.h"
 
 @interface BrickCategoryViewController ()
 @property (nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;

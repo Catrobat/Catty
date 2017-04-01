@@ -22,15 +22,9 @@
 
 
 #import "BrickCellStaticChoiceData.h"
-#import "iOSCombobox.h"
 #import "BrickCell.h"
 #import "Brick.h"
 #import "BrickStaticChoiceProtocol.h"
-#import "LooksTableViewController.h"
-#import "LanguageTranslationDefines.h"
-#import "FlashBrick.h"
-
-
 
 
 @implementation BrickCellStaticChoiceData

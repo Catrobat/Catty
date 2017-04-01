@@ -21,24 +21,18 @@
  */
 
 #import "ProgramDetailStoreViewController.h"
-#import "CatrobatProgram.h"
 #import "AppDelegate.h"
-#import "TableUtil.h"
 #import "ButtonTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
 #import "ProgramTableViewController.h"
-#import "ProgramLoadingInfo.h"
 #import "Util.h"
 #import "NetworkDefines.h"
-#import "Program.h"
 #import "LoadingView.h"
 #import "EVCircularProgressView.h"
-#import "LanguageTranslationDefines.h"
 #import "CreateView.h"
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
-#import "UIDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 
 

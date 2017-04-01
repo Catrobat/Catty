@@ -23,9 +23,7 @@
 #import "TextInputViewController.h"
 #import "LanguageTranslationDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "CatrobatUISlider.h"
 #import "Util.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface TextInputViewController () <UIPickerViewDelegate,UIPickerViewDataSource>
 @property (nonatomic,strong) UITextField *textField;

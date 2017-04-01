@@ -21,8 +21,6 @@
  */
 
 #import "PhiroRGBLightBrick.h"
-#import "BrickFormulaProtocol.h"
-#import "Script.h"
 #import "PhiroHelper.h"
 
 @implementation PhiroRGBLightBrick

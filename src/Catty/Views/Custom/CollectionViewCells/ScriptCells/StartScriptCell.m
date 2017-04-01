@@ -21,8 +21,6 @@
  */
 
 #import "StartScriptCell.h"
-#import "BrickCellInlineView.h"
-#import "UIUtil.h"
 
 @interface StartScriptCell ()
 @property (strong, nonatomic) UILabel *textLabel;

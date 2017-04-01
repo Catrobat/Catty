@@ -21,22 +21,14 @@
  */
 
 #import "LoginViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
-#import "ProgramDefines.h"
-#import "SegueDefines.h"
 #import "Util.h"
 #import "JNKeychain.h"
-#import "CatrobatTableViewController.h"
 #import "RegisterViewController.h"
 #import "LoadingView.h"
 
-#import "NetworkDefines.h"
-#import "ProgramDefines.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 
 #define usernameTag @"registrationUsername"

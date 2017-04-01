@@ -22,8 +22,6 @@
 
 #import "NextLookBrick.h"
 #import "Look.h"
-#import "ProgramDefines.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 

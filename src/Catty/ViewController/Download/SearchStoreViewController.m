@@ -32,7 +32,6 @@
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
 #import "Util.h"
-#import "LanguageTranslationDefines.h"
 
 @interface SearchStoreViewController ()
 

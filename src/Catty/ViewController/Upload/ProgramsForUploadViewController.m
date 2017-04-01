@@ -22,7 +22,6 @@
 
 #import "ProgramsForUploadViewController.h"
 #import "LanguageTranslationDefines.h"
-#import "Program.h"
 #import "CellTagDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "CatrobatImageCell.h"

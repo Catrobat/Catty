@@ -21,7 +21,6 @@
  */
 
 #import "ArduinoSendDigitalValueBrickCell.h"
-#import "Util.h"
 
 @interface ArduinoSendDigitalValueBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;

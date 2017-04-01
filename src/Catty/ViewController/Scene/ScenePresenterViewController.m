@@ -21,35 +21,15 @@
  */
 
 #import "ScenePresenterViewController.h"
-#import "ProgramLoadingInfo.h"
-#import "Parser.h"
-#import "ProgramDefines.h"
-#import "Program+CustomExtensions.h"
 #import "Util.h"
 #import "Script.h"
-#import "SpriteObject.h"
-#import "SpriteManagerDelegate.h"
-#import "Brick.h"
 #import "AudioManager.h"
-#import "ProgramVariablesManager.h"
 #import "SensorHandler.h"
-#import <AVFoundation/AVFoundation.h>
-#import <CoreImage/CoreImage.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <Accelerate/Accelerate.h>
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "Util.h"
 #import "SaveToProjectActivity.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
 #import "LoadingView.h"
-#import "UIDefines.h"
 #import "FlashHelper.h"
 #import "CatrobatLanguageDefines.h"
-#import "BaseTableViewController.h"
 #import "Pocket_Code-Swift.h"
-#import "FileManager.h"
-#import "AppDelegate.h"
 #import "CatrobatAlertController.h"
 #import "ActionSheetAlertViewTags.h"
 #import "RuntimeImageCache.h"

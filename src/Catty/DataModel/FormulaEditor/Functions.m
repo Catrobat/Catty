@@ -21,7 +21,6 @@
  */
 
 #import "Functions.h"
-#import "InternFormulaParserException.h"
 
 @implementation Functions
 

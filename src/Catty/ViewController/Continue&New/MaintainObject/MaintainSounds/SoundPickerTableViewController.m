@@ -23,13 +23,10 @@
 #import "SoundPickerTableViewController.h"
 #import "AppDelegate.h"
 #import "CatrobatImageCell.h"
-#import "FileManager.h"
 #import "Sound.h"
 #import "AudioManager.h"
 #import "TableUtil.h"
 #import "UIDefines.h"
-#import <AVFoundation/AVFoundation.h>
-#import "LanguageTranslationDefines.h"
 #import "RuntimeImageCache.h"
 #import "Util.h"
 #import "SharkfoodMuteSwitchDetector.h"

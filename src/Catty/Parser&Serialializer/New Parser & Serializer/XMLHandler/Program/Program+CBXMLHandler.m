@@ -28,10 +28,8 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "Header+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
 #import "Script.h"
 #import "BrickFormulaProtocol.h"
-#import "UserVariable.h"
 #import "OrderedMapTable.h"
 
 @implementation Program (CBXMLHandler)

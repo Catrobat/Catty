@@ -22,13 +22,10 @@
 
 
 #import "BrickCellVariableData.h"
-#import "iOSCombobox.h"
 #import "BrickCell.h"
-#import "UserVariable.h"
 #import "Script.h"
 #import "Brick.h"
 #import "BrickVariableProtocol.h"
-#import "LanguageTranslationDefines.h"
 
 @implementation BrickCellVariableData
 

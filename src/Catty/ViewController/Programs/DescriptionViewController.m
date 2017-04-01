@@ -23,7 +23,6 @@
 #import "DescriptionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
-#import <QuartzCore/QuartzCore.h>
 #import "MyProgramsViewController.h"
 #import "ProgramTableViewController.h"
 

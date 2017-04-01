@@ -22,9 +22,6 @@
 
 #import "TableUtil.h"
 #import "Util.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "CatrobatBaseCell.h"
-#import "LanguageTranslationDefines.h"
 
 #define kFeaturedProgramsBannerHeight  400.0f
 #define kFeaturedProgramsBannerWidth   1024.0f

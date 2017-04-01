@@ -21,7 +21,6 @@
  */
 
 #import "SetSizeToBrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @implementation SetSizeToBrick

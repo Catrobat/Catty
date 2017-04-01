@@ -22,10 +22,6 @@
 
 #import "HideTextBrick.h"
 #import "Formula.h"
-#import "UserVariable.h"
-#import "Program.h"
-#import "VariablesContainer.h"
-#import "Script.h"
 
 @implementation HideTextBrick
 

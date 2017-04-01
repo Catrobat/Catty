@@ -22,14 +22,10 @@
 
 
 #import "BrickCellObjectData.h"
-#import "iOSCombobox.h"
 #import "BrickCell.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
 #import "BrickObjectProtocol.h"
-#import "LooksTableViewController.h"
-#import "LanguageTranslationDefines.h"
 
 @implementation BrickCellObjectData
 

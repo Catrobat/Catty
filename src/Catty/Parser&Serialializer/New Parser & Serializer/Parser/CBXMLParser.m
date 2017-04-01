@@ -22,7 +22,6 @@
 
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
-#import "CatrobatLanguageDefines.h"
 #import "Program+CBXMLHandler.h"
 #import "Program+CustomExtensions.h"
 #import "CBXMLParserContext.h"
