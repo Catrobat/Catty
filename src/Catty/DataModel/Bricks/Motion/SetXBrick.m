@@ -22,8 +22,6 @@
 
 
 #import "SetXBrick.h"
-#import "Formula.h"
-#import "Logger.h"
 #import "Script.h"
 
 @implementation SetXBrick

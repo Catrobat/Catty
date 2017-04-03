@@ -21,7 +21,6 @@
  */
 
 #import "ArduinoSendPWMValueBrickCell.h"
-#import "Util.h"
 
 @interface ArduinoSendPWMValueBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;

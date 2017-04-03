@@ -21,10 +21,6 @@
  */
 
 #import "SetLookBrick.h"
-#import "SpriteObject.h"
-#import "ProgramDefines.h"
-#import <SpriteKit/SpriteKit.h>
-#import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
 #import "CBMutableCopyContext.h"
 

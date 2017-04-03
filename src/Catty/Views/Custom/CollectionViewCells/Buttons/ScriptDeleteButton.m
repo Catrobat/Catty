@@ -22,7 +22,6 @@
 
 
 #import "ScriptDeleteButton.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation ScriptDeleteButton
 

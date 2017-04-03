@@ -21,11 +21,9 @@
  */
 
 #import "Parser.h"
-#import "GDataXMLNode.h"
 #import "ProjectParser.h"
 #import "SpriteObject.h"
 #import "Script.h"
-#import "Brick.h"
 #import "Program+CustomExtensions.h"
 
 @implementation Parser

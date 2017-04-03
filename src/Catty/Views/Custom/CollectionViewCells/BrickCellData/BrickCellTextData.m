@@ -25,8 +25,6 @@
 #import "BrickCell.h"
 #import "Brick.h"
 #import "BrickTextProtocol.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "ScriptCollectionViewController.h"
 
 @interface BrickCellTextData() <UITextFieldDelegate>
 @property (nonatomic, strong) CAShapeLayer *border;

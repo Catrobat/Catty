@@ -7,7 +7,6 @@
 //
 
 #import "UIViewController+KNSemiModal.h"
-#import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
 const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
@@ -422,7 +421,6 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 //  NSObject+YMOptionsAndDefaults
 //  Created by YangMeyer on 08.10.12.
 //  Copyright (c) 2012 Yang Meyer. All rights reserved.
-#import <objc/runtime.h>
 
 @implementation NSObject (YMOptionsAndDefaults)
 

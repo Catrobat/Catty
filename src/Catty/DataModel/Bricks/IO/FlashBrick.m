@@ -21,9 +21,6 @@
  */
 
 #import "FlashBrick.h"
-#import "Script.h"
-#import "Util.h"
-#import "LanguageTranslationDefines.h"
 
 @implementation FlashBrick
 

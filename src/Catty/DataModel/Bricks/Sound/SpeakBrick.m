@@ -22,7 +22,6 @@
 
 #import "SpeakBrick.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "Sound.h"
 
 @implementation SpeakBrick
 

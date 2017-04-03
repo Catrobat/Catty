@@ -22,9 +22,6 @@
 
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "DownloadImageCache.h"
-#import "RGBAHelper.h"
-#import "ImageHelper.h"
-#import <CoreImage/CoreImage.h>
 
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
 

@@ -21,9 +21,7 @@
  */
 
 #import "ChangeColorByNBrick.h"
-#import "Formula.h"
 #import "Look.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 

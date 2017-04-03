@@ -23,14 +23,8 @@
 #import "FileManager.h"
 #import "Util.h"
 #import "SSZipArchive.h"
-#import "Logger.h"
-#import "ProgramDetailStoreViewController.h"
-#import "ProgramDefines.h"
-#import "AppDelegate.h"
 #import "Sound.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "LanguageTranslationDefines.h"
-#import "UIDefines.h"
 #import "NetworkDefines.h"
 #import "HelpWebViewController.h"
 

@@ -21,11 +21,8 @@
  */
 
 #import "LookImageViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "TableUtil.h"
 #import "RuntimeImageCache.h"
-#import "ProgramDefines.h"
-#import "LanguageTranslationDefines.h"
 
 @interface LookImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

@@ -56,14 +56,10 @@
 #include "unzip.h"
 
 #ifdef STDC
-#  include <stddef.h>
-#  include <string.h>
-#  include <stdlib.h>
 #endif
 #ifdef NO_ERRNO_H
 extern int errno;
 #else
-#   include <errno.h>
 #endif
 
 

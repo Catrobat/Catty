@@ -21,10 +21,7 @@
  */
 
 #import "DownloadTabBarController.h"
-#import "TableUtil.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import <QuartzCore/QuartzCore.h>
 #import "LanguageTranslationDefines.h"
 
 @interface DownloadTabBarController ()

@@ -21,7 +21,6 @@
  */
 
 #import "PointToBrick.h"
-#import "Util.h"
 #import "Script.h"
 
 @implementation PointToBrick

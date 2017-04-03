@@ -26,8 +26,6 @@
 #import "UIDefines.h"
 #import "Util.h"
 #import "ActionSheetAlertViewTags.h"
-#import "LanguageTranslationDefines.h"
-#import <tgmath.h>
 #import "CatrobatAlertController.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
@@ -36,8 +34,6 @@
 #import "ResourceHelper.h"
 #import "Reachability.h"
 #import "MediaLibraryViewController.h"
-#import "SegueDefines.h"
-#import <CoreBluetooth/CoreBluetooth.h>
 
 @class BluetoothPopupVC;
 

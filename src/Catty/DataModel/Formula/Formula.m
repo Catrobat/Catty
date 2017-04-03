@@ -21,10 +21,7 @@
  */
 
 #import "Formula.h"
-#import "FormulaElement.h"
 #import "Pocket_Code-Swift.h"
-#import "Operators.h"
-#import "ProgramDefines.h"
 
 @interface Formula()
 @property (nonatomic, strong, readwrite) NSNumber *lastResult;

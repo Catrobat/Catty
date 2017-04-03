@@ -22,7 +22,6 @@
 
 #import "RecentProgramsStoreViewController.h"
 #import "CatrobatInformation.h"
-#import "CatrobatProgram.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "TableUtil.h"
@@ -33,8 +32,6 @@
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "LanguageTranslationDefines.h"
 
 @interface RecentProgramsStoreViewController ()
 

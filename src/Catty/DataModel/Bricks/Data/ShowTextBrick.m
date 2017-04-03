@@ -21,10 +21,6 @@
  */
 
 #import "ShowTextBrick.h"
-#import "Formula.h"
-#import "UserVariable.h"
-#import "Program.h"
-#import "VariablesContainer.h"
 #import "Script.h"
 
 @implementation ShowTextBrick

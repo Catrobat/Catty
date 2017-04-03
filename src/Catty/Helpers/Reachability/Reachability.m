@@ -46,12 +46,7 @@
  */
 
 #import <arpa/inet.h>
-#import <ifaddrs.h>
-#import <netdb.h>
-#import <sys/socket.h>
 
-
-#import <CoreFoundation/CoreFoundation.h>
 
 #import "Reachability.h"
 
