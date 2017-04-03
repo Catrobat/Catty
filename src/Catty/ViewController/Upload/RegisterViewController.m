@@ -118,20 +118,18 @@
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
 
-    
     self.emailField.backgroundColor = [UIColor whiteColor];
     self.emailField.placeholder =kLocalizedEmail;
     self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
     self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.emailField.layer.borderWidth = 1.0f;
-    self.emailField.tag = 3;
+    self.emailField.tag = 2;
 
     UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView3.image = [UIImage imageNamed:@"email"];
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
     self.emailField.leftView = leftView3;
 
-    
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder = kLocalizedPassword;
     if (self.password) {
@@ -141,11 +139,28 @@
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
-    self.passwordField.tag = 2;
+    self.passwordField.tag = 3;
+    
+    UIImageView* leftView4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftView4.image = [UIImage imageNamed:@"password"];
+    self.confirmPasswordField.leftViewMode = UITextFieldViewModeAlways;
+    self.confirmPasswordField.leftView = leftView4;  //Tried to reuse leftView2, but that led to problems
+    
+    self.confirmPasswordField.backgroundColor = [UIColor whiteColor];
+    self.confirmPasswordField.placeholder = kLocalizedConfirmPassword;
+    //    if (self.password) {
+    //        self.passwordConfirmationField.text = self.password;
+    //    }
+    [self.confirmPasswordField setSecureTextEntry:YES];
+    self.confirmPasswordField.font = [UIFont fontWithName:fontName size:16.0f];
+    self.confirmPasswordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
+    self.confirmPasswordField.layer.borderWidth = 1.0f;
+    self.confirmPasswordField.tag = 4;
 
     self.termsOfUseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
+    self.termsOfUseButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
@@ -165,14 +180,18 @@
     [self.usernameField addTarget:self
                        action:@selector(textFieldShouldReturn:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.passwordField setReturnKeyType:UIReturnKeyDone];
-    [self.passwordField addTarget:self
-                           action:@selector(registerAction)
-              forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.emailField setReturnKeyType:UIReturnKeyNext];
     [self.emailField addTarget:self
                         action:@selector(textFieldShouldReturn:)
               forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.passwordField setReturnKeyType:UIReturnKeyNext];
+    [self.passwordField addTarget:self
+                           action:@selector(textFieldShouldReturn:)
+                 forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.confirmPasswordField setReturnKeyType:UIReturnKeyDone];
+    [self.confirmPasswordField addTarget:self
+                                       action:@selector(registerAction)
+                             forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -189,12 +208,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
-{
-    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
-    lineView.backgroundColor = [UIColor utilityTintColor];
-    [view addSubview:lineView];
-}
+
+//- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
+//{
+//    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
+//    lineView.backgroundColor = [UIColor utilityTintColor];
+//    [view addSubview:lineView];
+//}
 
 
 -(BOOL)stringContainsSpace:(NSString *)checkString
@@ -278,14 +298,19 @@
     if ([self.usernameField.text isEqualToString:@""]) {
         [Util alertWithText:kLocalizedLoginUsernameNecessary];
         return;
-    } else if (![self validPassword:self.passwordField.text]) {
-        [Util alertWithText:kLocalizedLoginPasswordNotValid];
-        return;
     } else if ([self.emailField.text isEqualToString:@""] || ![self NSStringIsValidEmail:self.emailField.text]) {
         [Util alertWithText:kLocalizedLoginEmailNotValid];
         return;
+    } else if (![self validPassword:self.passwordField.text]) {
+        [Util alertWithText:kLocalizedLoginPasswordNotValid];
+        return;
     } else if ([self stringContainsSpace:self.usernameField.text] || [self stringContainsSpace:self.passwordField.text]) {
         [Util alertWithText:kLocalizedNoWhitespaceAllowed];
+        return;
+    } else if ([self.confirmPasswordField.text isEqualToString:@""] ||
+               ![self.confirmPasswordField.text isEqualToString:self.passwordField.text]) {
+        [Util alertWithText:kLocalizedRegisterPasswordConfirmationNoMatch];
+        self.confirmPasswordField.text = @"";
         return;
     }
     
@@ -298,8 +323,8 @@
 {
     NSDebug(@"Register started with username:%@ and password:%@ and email:%@", username, password, email);
     
-    NSString *uploadUrl = [Util isProductionServerActivated] ? kRegisterUrl : kTestRegisterUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionRegister];
+    NSString *registrationUrl = [Util isProductionServerActivated] ? kRegisterUrl : kTestRegisterUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", registrationUrl, (NSString*)kConnectionRegister];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -394,7 +419,7 @@
     
     if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
         
-        NSDebug(@"Login successful");
+        NSDebug(@"Registration successful");
         NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
         NSDebug(@"Token is %@", token);
         
@@ -442,8 +467,9 @@
 
 -(void)dismissKeyboard {
     [self.usernameField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
     [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.confirmPasswordField resignFirstResponder];
 }
 
 - (void)showLoadingView
