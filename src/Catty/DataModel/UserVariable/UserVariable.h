@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) id value;
 @property (nonatomic, strong) SKLabelNode *textLabel;
+@property (nonatomic) BOOL isList;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 
