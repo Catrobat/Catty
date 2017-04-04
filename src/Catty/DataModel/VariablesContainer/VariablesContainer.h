@@ -31,10 +31,11 @@
 
 // Map<Sprite, List<UserVariable>
 @property (nonatomic, strong) OrderedMapTable *objectVariableList;
+@property (nonatomic, strong) OrderedMapTable *objectListOfLists;
 
-// List<UserVariable> projectVariables;
+// List<UserVariable>
 @property (nonatomic, strong) NSMutableArray *programVariableList;
-
+@property (nonatomic, strong) NSMutableArray *programListOfLists;
 
 - (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite isList:(BOOL)isList;
 

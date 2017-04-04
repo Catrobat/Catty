@@ -59,12 +59,28 @@ static pthread_mutex_t variablesLock;
     return _objectVariableList;
 }
 
+- (OrderedMapTable*)objectListOfLists
+{
+    // lazy instantiation
+    if (! _objectListOfLists)
+        _objectListOfLists = [OrderedMapTable weakToStrongObjectsMapTable];
+    return _objectListOfLists;
+}
+
 - (NSMutableArray*)programVariableList
 {
     // lazy instantiation
     if (! _programVariableList)
         _programVariableList = [NSMutableArray array];
     return _programVariableList;
+}
+
+- (NSMutableArray*)programListOfLists
+{
+    // lazy instantiation
+    if (! _programListOfLists)
+        _programListOfLists = [NSMutableArray array];
+    return _programListOfLists;
 }
 
 
