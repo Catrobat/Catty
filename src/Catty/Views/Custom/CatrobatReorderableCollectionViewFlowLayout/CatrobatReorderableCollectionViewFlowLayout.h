@@ -24,4 +24,13 @@
 
 @interface CatrobatReorderableCollectionViewFlowLayout : LXReorderableCollectionViewFlowLayout
 
+@property (strong, nonatomic) NSIndexPath *selectedItemIndexPath;
+@property (strong, nonatomic) UIView *currentView;
+@property (assign, nonatomic) CGPoint currentViewCenter;
+@property (assign, nonatomic) CGPoint panTranslationInCollectionView;
+@property (strong, nonatomic) CADisplayLink *displayLink;
+
+@property (assign, nonatomic, readonly) id<LXReorderableCollectionViewDataSource> dataSource;
+@property (assign, nonatomic, readonly) id<LXReorderableCollectionViewDelegateFlowLayout> delegate;
+
 @end
