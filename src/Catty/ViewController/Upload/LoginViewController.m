@@ -21,22 +21,14 @@
  */
 
 #import "LoginViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
-#import "ProgramDefines.h"
-#import "SegueDefines.h"
 #import "Util.h"
 #import "JNKeychain.h"
-#import "CatrobatTableViewController.h"
 #import "RegisterViewController.h"
 #import "LoadingView.h"
 
-#import "NetworkDefines.h"
-#import "ProgramDefines.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 
 #define usernameTag @"registrationUsername"
@@ -154,7 +146,7 @@
 //    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
 
     self.registerButton.backgroundColor = darkColor;
-    self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:16.0f];
+    self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
@@ -184,6 +176,7 @@
     
     [super viewWillDisappear:animated];
 }
+    
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
@@ -326,8 +319,8 @@
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
 
-    NSString *uploadUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLogin];
+    NSString *loginUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", loginUrl, (NSString*)kConnectionLogin];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];

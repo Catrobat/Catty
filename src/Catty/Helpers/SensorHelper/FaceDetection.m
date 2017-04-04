@@ -21,10 +21,6 @@
  */
 
 #import "FaceDetection.h"
-#import <CoreImage/CoreImage.h>
-#import <ImageIO/ImageIO.h>
-#import <AssertMacros.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "KeychainUserDefaultsDefines.h"
 
 

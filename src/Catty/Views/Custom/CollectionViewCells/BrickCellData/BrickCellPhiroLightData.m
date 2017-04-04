@@ -22,14 +22,11 @@
 
 
 #import "BrickCellPhiroLightData.h"
-#import "iOSCombobox.h"
 #import "BrickCell.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
 #import "BrickPhiroLightProtocol.h"
 #import "PhiroHelper.h"
-#import "LanguageTranslationDefines.h"
 
 
 @implementation BrickCellPhiroLightData

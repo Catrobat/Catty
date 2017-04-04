@@ -21,7 +21,6 @@
  */
 
 #import "PlaceAtBrickCell.h"
-#import "Util.h"
 
 @interface PlaceAtBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;

@@ -26,7 +26,6 @@
 #import "AppDelegate.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "NetworkDefines.h"
 
 @interface MediaLibraryViewController ()

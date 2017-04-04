@@ -21,7 +21,6 @@
  */
 
 #import "Repeatbrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @interface RepeatBrick()

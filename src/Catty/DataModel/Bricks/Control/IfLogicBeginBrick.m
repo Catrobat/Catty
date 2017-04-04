@@ -21,7 +21,6 @@
  */
 
 #import "IfLogicBeginBrick.h"
-#import "Formula.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "Util.h"

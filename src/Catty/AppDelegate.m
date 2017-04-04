@@ -21,13 +21,10 @@
  */
 
 #import "AppDelegate.h"
-#import "FileManager.h"
 #import "Util.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
 #import "Pocket_Code-Swift.h"
-#import "NetworkDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatTableViewController.h"
 

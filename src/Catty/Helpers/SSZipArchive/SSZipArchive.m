@@ -8,10 +8,6 @@
 
 #import "SSZipArchive.h"
 #include "zip.h"
-#import "zlib.h"
-#import "zconf.h"
-
-#include <sys/stat.h>
 
 #define CHUNK 16384
 

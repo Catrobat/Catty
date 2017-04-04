@@ -21,12 +21,6 @@
  */
 
 #import "FormulaEditorTextView.h"
-#import "FormulaEditorViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "BrickCell.h"
-#import "BrickFormulaProtocol.h"
-#import "Formula.h"
-#import <UIKit/UIKit.h>
 
 @interface FormulaEditorTextView ()
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;

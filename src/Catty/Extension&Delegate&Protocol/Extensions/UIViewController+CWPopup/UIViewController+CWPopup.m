@@ -8,10 +8,7 @@
 
 #import "UIViewController+CWPopup.h"
 #import <objc/runtime.h>
-#import <QuartzCore/QuartzCore.h>
-#import <float.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "UIDefines.h"
 
 
 @import Accelerate;

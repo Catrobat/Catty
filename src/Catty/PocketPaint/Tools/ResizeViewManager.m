@@ -21,9 +21,6 @@
  */
 
 #import "ResizeViewManager.h"
-#import "RGBAHelper.h"
-#import "YKImageCropperOverlayView.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "BDKNotifyHUD.h"
 #import "UndoManager.h"
 

@@ -27,7 +27,6 @@
 #import "Util.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
-#import "CatrobatImageCell.h"
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
@@ -35,7 +34,6 @@
 #import "DarkBlueGradientFeaturedCell.h"
 
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
 
 #define kFeaturedProgramsMaxResults 10
 
