@@ -35,6 +35,7 @@
 
 @implementation CatrobatReorderableCollectionViewFlowLayout
 
+@dynamic selectedItemIndexPath;
 @dynamic currentView;
 @dynamic dataSource;
 
