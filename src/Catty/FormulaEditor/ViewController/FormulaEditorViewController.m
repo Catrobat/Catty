@@ -142,7 +142,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
-
 {
     self.brickCellData = brickCellData;
     self.delegate = brickCellData;
@@ -867,6 +866,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.listSourceProgram  removeAllObjects];
     [self.listSourceObject  removeAllObjects];
     
+    // ------------------
+    // Program Variables
+    // ------------------
     if([variables.programVariableList count] > 0){
         [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramVars]];
     }
@@ -874,16 +876,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
     for(UserVariable *userVariable in variables.programVariableList) {
         VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
         [pickerData setIsProgramVariable:YES];
-        if(userVariable.isList){
-            [self.listSource addObject:pickerData];
-            [self.listSourceProgram addObject:pickerData];
-
-        }else{
-            [self.variableSource addObject:pickerData];
-            [self.variableSourceProgram addObject:pickerData];
-        }
+        [self.variableSource addObject:pickerData];
+        [self.variableSourceProgram addObject:pickerData];
     }
     
+    
+    // ------------------
+    // Program Lists
+    // ------------------
+    if([variables.programListOfLists count] > 0){
+        [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramLists]];
+    }
+    
+    for(UserVariable *userVariable in variables.programListOfLists) {
+        VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
+        [pickerData setIsProgramVariable:YES];
+        [self.listSource addObject:pickerData];
+        [self.listSourceProgram addObject:pickerData];
+    }
+    
+  
+    // ------------------
+    // Object Variables
+    // ------------------
     NSArray *array = [variables.objectVariableList objectForKey:self.object];
     if (array) {
         if([array count] > 0)
@@ -892,15 +907,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
         for (UserVariable *var in array) {
             VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
             [pickerData setIsProgramVariable:NO];
-            
-            if(var.isList){
-                [self.listSource addObject:pickerData];
-                [self.listSourceObject addObject:pickerData];
-                
-            }else{
-                [self.variableSource addObject:pickerData];
-                [self.variableSourceObject addObject:pickerData];
-            }
+            [self.variableSource addObject:pickerData];
+            [self.variableSourceObject addObject:pickerData];
+        }
+    }
+    
+    
+    // ------------------
+    // Object Lists
+    // ------------------
+    array = [variables.objectListOfLists objectForKey:self.object];
+    if (array) {
+        if([array count] > 0)
+            [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectLists]];
+        
+        for (UserVariable *var in array) {
+            VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
+            [pickerData setIsProgramVariable:NO];
+            [self.listSource addObject:pickerData];
+            [self.listSourceObject addObject:pickerData];
         }
     }
   
@@ -911,13 +936,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)saveVariable:(NSString*)name isList:(BOOL)isList
 {
-        NSArray* variableArray;
-        if (self.isProgramVariable){
-            variableArray = [self.object.program.variables allVariables];
-        } else {
-            variableArray = [self.object.program.variables allVariablesForObject:self.object];
-        }
-        for (UserVariable* variable in [self.object.program.variables allVariables]) {
+
+        for (UserVariable* variable in [self.object.program.variables allVariablesAndLists]) {
             if ([variable.name isEqualToString:name] && (isList == variable.isList)) {
                 [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEOtherName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters isList:isList blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
                 return;
@@ -936,15 +956,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
         var.isList = isList;
         
-        if (self.isProgramVariable) {
+        if (self.isProgramVariable && !isList) {
             [self.object.program.variables.programVariableList addObject:var];
-        } else {
+        } else if (self.isProgramVariable && isList){
+            [self.object.program.variables.programListOfLists addObject:var];
+        } else if (!self.isProgramVariable && !isList) {
             NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
             if (!array) {
                 array = [NSMutableArray new];
             }
             [array addObject:var];
             [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+        } else if (!self.isProgramVariable && isList) {
+            NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
+            if (!array) {
+                array = [NSMutableArray new];
+            }
+            [array addObject:var];
+            [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
         }
 
     

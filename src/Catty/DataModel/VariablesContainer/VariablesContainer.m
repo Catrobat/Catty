@@ -185,7 +185,7 @@ static pthread_mutex_t variablesLock;
     return vars;
 }
 
-- (NSArray*)allVariables
+- (NSMutableArray*)allVariables
 {
     NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
     for(NSUInteger index = 0; index < [self.objectVariableList count]; index++) {
@@ -193,6 +193,28 @@ static pthread_mutex_t variablesLock;
         if([variableList count] > 0)
             [vars addObjectsFromArray:variableList];
     }
+    return vars;
+}
+
+- (NSMutableArray*)allLists
+{
+    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programListOfLists];
+    for(NSUInteger index = 0; index < [self.objectListOfLists count]; index++) {
+        NSMutableArray *listOfLists = [self.objectListOfLists objectAtIndex:index];
+        if([listOfLists count] > 0)
+            [vars addObjectsFromArray:listOfLists];
+    }
+    return vars;
+}
+
+- (NSMutableArray*)allVariablesAndLists
+{
+    NSMutableArray *vars = [self allVariables ];
+    NSMutableArray *lists = [self allLists ];
+    if([vars count] > 0){
+        [vars addObjectsFromArray:lists];
+    }
+    
     return vars;
 }
 
