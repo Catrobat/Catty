@@ -73,8 +73,15 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
-                                                           context:context]; // needed here for stack
+    GDataXMLElement *xmlElement;
+    if(!self.isList){
+        xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
+                                              context:context]; // needed here for stack
+    }else{
+        xmlElement = [GDataXMLElement elementWithName:@"userList" stringValue:self.name
+                                              context:context]; // needed here for stack
+    }
+
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
     // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
@@ -91,8 +98,12 @@
             if (positionStackOfUserVariable) {
                 // already serialized
                 [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
-                GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable"
-                                                                       context:context]; // add new one without stringValue!
+                GDataXMLElement *xmlElement;
+                if(!self.isList){
+                    xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
+                }else{
+                    xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
+                }
                 NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                                      toDestinationPositionStack:positionStackOfUserVariable];
                 [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
@@ -117,8 +128,12 @@
     if (positionStackOfUserVariable) {
         // already serialized
         [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
-        GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable"
-                                                               context:context]; // add new one without stringValue!
+        GDataXMLElement *xmlElement;
+        if(!self.isList){
+            xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
+        } else{
+            xmlElement = [GDataXMLElement elementWithName:@"userList" context:context]; // add new one without stringValue!
+        }
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfUserVariable];
         [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];

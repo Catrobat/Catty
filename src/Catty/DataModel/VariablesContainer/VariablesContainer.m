@@ -231,12 +231,27 @@ static pthread_mutex_t variablesLock;
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
 {
-    for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
-        SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
-        NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
-        for (UserVariable *userVariableToCompare in userVariableList) {
-            if (userVariableToCompare == userVariable) {
-                return spriteObject;
+    if (!userVariable.isList)
+    {
+        for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
+            SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
+            NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
+            for (UserVariable *userVariableToCompare in userVariableList) {
+                if (userVariableToCompare == userVariable) {
+                    return spriteObject;
+                }
+            }
+        }
+    }
+    if (userVariable.isList)
+    {
+        for (NSUInteger index = 0; index < [self.objectListOfLists count]; ++index) {
+            SpriteObject *spriteObject = [self.objectListOfLists keyAtIndex:index];
+            NSMutableArray *userListOfLists = [self.objectListOfLists objectAtIndex:index];
+            for (UserVariable *userListToCompare in userListOfLists) {
+                if (userListToCompare == userVariable) {
+                    return spriteObject;
+                }
             }
         }
     }
@@ -265,6 +280,11 @@ static pthread_mutex_t variablesLock;
 {
     for (UserVariable *userVariableToCompare in self.programVariableList) {
         if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
+            return YES;
+        }
+    }
+    for (UserVariable *userListToCompare in self.programListOfLists) {
+        if ([userListToCompare.name isEqualToString:userVariable.name]) {
             return YES;
         }
     }

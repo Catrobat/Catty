@@ -166,6 +166,65 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"data" context:context];
+    
+    
+    
+    
+    
+    
+    
+    //------------------
+    // Object Lists
+    //------------------
+    GDataXMLElement *objectListOfListXmlElement = [GDataXMLElement elementWithName:@"objectListOfList" context:context];
+    NSUInteger totalNumOfObjectLists = [self.objectListOfLists count];
+    
+    for (NSUInteger index = 0; index < totalNumOfObjectLists; ++index) {
+        id spriteObject = [self.objectListOfLists keyAtIndex:index];
+        [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
+                      message:@"Instance in objectListOfLists at index: %lu is no SpriteObject", (unsigned long)index];
+        if (![context.spriteObjectList containsObject:spriteObject]) {
+            NSWarn(@"Error while serializing object list for object '%@': object does not exists!", ((SpriteObject*)spriteObject).name);
+            continue;
+        }
+        
+        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
+        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
+        CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
+        CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                             toDestinationPositionStack:positionStackOfSpriteObject];
+        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference"
+                                                                              stringValue:refPath]];
+        [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
+        
+        GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
+        NSArray *lists = [self.objectListOfLists objectAtIndex:index];
+        for (id list in lists) {
+            [XMLError exceptionIf:[list isKindOfClass:[UserVariable class]] equals:NO
+                          message:@"Invalid user variable instance given"];
+            GDataXMLElement *userListXmlElement = [(UserVariable*)list xmlElementWithContext:context];
+            [listXmlElement addChild:userListXmlElement context:context];
+        }
+        [entryXmlElement addChild:listXmlElement context:context];
+        [objectListOfListXmlElement addChild:entryXmlElement context:context];
+    }
+    
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:objectListOfListXmlElement context:context];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //------------------
+    // Object Variables
+    //------------------
     GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList" context:context];
     NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
 
@@ -200,8 +259,7 @@
         [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
     
-    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"objectListOfList" context:context] context:context];
+
 
     [xmlElement addChild:objectVariableListXmlElement context:context];
     
