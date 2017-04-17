@@ -36,7 +36,19 @@
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    UserVariable *userVariableOrUserList = nil;
+    if ([xmlElement.name  isEqual: @"userVariable"]){
+        userVariableOrUserList = [self parseUserVariable: xmlElement withContext: context];
+    } else if ([xmlElement.name  isEqual: @"userList"]){
+        userVariableOrUserList = [self parseUserList: xmlElement withContext: context];
+    } else{
+        [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    }
+    return userVariableOrUserList;
+}
+
++ (instancetype)parseUserVariable:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
+{
     if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
         GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
         NSString *xPath = [referenceAttribute stringValue];
@@ -67,8 +79,56 @@
     // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
     userVariable = [UserVariable new];
     userVariable.name = userVariableName;
+    userVariable.isList = false;
     return userVariable;
 }
+
+
++ (instancetype)parseUserList:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
+{
+    if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
+        GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
+        NSString *xPath = [referenceAttribute stringValue];
+        xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
+        [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserList!"];
+    }
+    NSString *userListName = [xmlElement stringValue];
+    
+    [XMLError exceptionIfNil:userListName message:@"No name for user list given"];
+    UserVariable *userList = nil;
+    
+    SpriteObject *spriteObject = context.spriteObject;
+    if (spriteObject) {
+        [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
+        NSMutableArray *objectUserLists = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
+        for (UserVariable *userListToCompare in objectUserLists) {
+            if ([userListToCompare.name isEqualToString:userListName]) {
+                return userListToCompare;
+            }
+        }
+    }
+    userList = [CBXMLParserHelper findUserVariableInArray:context.programListOfLists
+                                                     withName:userListName];
+    if (userList) {
+        return userList;
+    }
+    
+    // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
+    userList = [UserVariable new];
+    userList.name = userListName;
+    userList.isList = true;
+    return userList;
+}
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

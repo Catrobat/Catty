@@ -71,6 +71,7 @@
 
 - (void)setObject:(id)anObject forKey:(id)aKey
 {
+    hier schauen ob key schon in mapTable vorhanden ist. Wenn ja, muss keyIndexArray nicht neu gesetzt werden!
     [self.mapTable setObject:anObject forKey:aKey];
     [self.keyIndexArray addObject:aKey];
 }
