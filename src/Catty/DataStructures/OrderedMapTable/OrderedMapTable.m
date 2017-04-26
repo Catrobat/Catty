@@ -72,7 +72,11 @@
 - (void)setObject:(id)anObject forKey:(id)aKey
 {
     [self.mapTable setObject:anObject forKey:aKey];
-    [self.keyIndexArray addObject:aKey];
+    if (![self.keyIndexArray containsObject:aKey])
+    {
+        [self.keyIndexArray addObject:aKey];
+    }
+
 }
 
 - (void)removeObjectForKey:(id)aKey
