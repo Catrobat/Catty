@@ -92,7 +92,7 @@
         xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserList!"];
     }
-    NSString *userListName = [xmlElement stringValue];
+    NSString *userListName = [[xmlElement childWithElementName:@"name"] stringValue];
     
     [XMLError exceptionIfNil:userListName message:@"No name for user list given"];
     UserVariable *userList = nil;
@@ -138,8 +138,10 @@
         xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
                                               context:context]; // needed here for stack
     }else{
-        xmlElement = [GDataXMLElement elementWithName:@"userList" stringValue:self.name
-                                              context:context]; // needed here for stack
+        xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
+        GDataXMLElement *nameElement = [GDataXMLElement elementWithName:@"name" stringValue:self.name
+                                                          context:context];
+        [xmlElement addChild:nameElement context:context];
     }
 
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
