@@ -31,8 +31,6 @@
 #import "Sound+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "CatrobatLanguageDefines.h"
-#import "OrderedMapTable.h"
 #import <objc/runtime.h>
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."

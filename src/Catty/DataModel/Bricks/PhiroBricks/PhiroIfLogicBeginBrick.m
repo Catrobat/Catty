@@ -27,7 +27,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedPhiroIfLogic;
+    return [[kLocalizedPhiroIfLogic stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroThenLogic];
 }
 
 

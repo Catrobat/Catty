@@ -24,8 +24,6 @@
 #import "LoadingView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIDefines.h"
-#import <QuartzCore/QuartzCore.h>
-#import "LanguageTranslationDefines.h"
 
 #define kLoadingBackgroundHeight 100
 #define kLoadingBackgroundWidth 200

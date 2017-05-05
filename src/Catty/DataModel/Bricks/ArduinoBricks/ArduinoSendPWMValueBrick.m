@@ -26,14 +26,14 @@
 @implementation ArduinoSendPWMValueBrick
 - (NSString*)brickTitle
 {
-    return kLocalizedArduinoSendPWMValue;
+    return [[[kLocalizedArduinoSendPWMValue stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedArduinoSetPinValueTo] stringByAppendingString:@"%@"];
 }
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    if(paramNumber == 0)
+    if(lineNumber == 0)
         return self.pin;
-    else if(paramNumber == 1)
+    else if(lineNumber == 1)
         return self.value;
     
     return nil;
@@ -41,9 +41,9 @@
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    if(paramNumber == 0)
+    if(lineNumber == 0)
         self.pin = formula;
-    else if(paramNumber == 1)
+    else if(lineNumber == 1)
         self.value = formula;
 }
 

@@ -21,7 +21,6 @@
  */
 
 #import "Repeatbrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @interface RepeatBrick()
@@ -67,7 +66,15 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedRepeatNTimes;
+    int repeatFor = [self.timesToRepeat interpretIntegerForSprite:self.script.object andUseCache:NO];
+    NSString* repeatForStr;
+    if ([self.timesToRepeat isSingleNumberFormula] && repeatFor == 1.0) {
+        repeatForStr = kLocalizedTime;
+    }
+    else {
+        repeatForStr = kLocalizedTimes;
+    }
+    return [kLocalizedRepeat stringByAppendingString:[@"%@ " stringByAppendingString:repeatForStr]];
 }
 
 - (BOOL)checkCondition

@@ -23,13 +23,9 @@
 #import "HelpWebViewController.h"
 #import "UIDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import <tgmath.h>
 #import "AppDelegate.h"
 #import "Util.h"
-#import "ProgramDefines.h"
 #import "LoadingView.h"
-#import "Program.h"
-#import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
 #import "BDKNotifyHUD.h"
 

@@ -26,7 +26,6 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
-#import "LoopEndBrick.h"
 #import "ForeverBrick.h"
 #import "BrickCell.h"
 

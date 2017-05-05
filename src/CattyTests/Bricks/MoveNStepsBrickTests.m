@@ -187,4 +187,18 @@
     XCTAssertEqualWithAccuracy(position.y, self.spriteNode.scenePosition.y, EPSILON, @"Wrong y after MoveNStepsBrick");
 }
 
+- (void)testTitleSingular
+{
+    MoveNStepsBrick* brick = [[MoveNStepsBrick alloc] init];
+    brick.steps = [[Formula alloc] initWithDouble:1];
+    XCTAssertTrue([[kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedStep]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
+}
+
+- (void)testTitlePlural
+{
+    MoveNStepsBrick* brick = [[MoveNStepsBrick alloc] init];
+    brick.steps = [[Formula alloc] initWithDouble:2];
+    XCTAssertTrue([[kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedSteps]] isEqualToString:[brick brickTitle]], @"Wrong brick title");
+}
+
 @end

@@ -28,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedWhenIReceive;
+    return [kLocalizedWhenYouReceive stringByAppendingString:@"\n%@"];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject

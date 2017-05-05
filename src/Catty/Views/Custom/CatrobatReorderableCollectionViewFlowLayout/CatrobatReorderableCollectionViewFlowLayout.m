@@ -27,9 +27,17 @@
 @property (strong, nonatomic) UILongPressGestureRecognizer *customLongPressGestureRecognizer;
 @property (strong, nonatomic) UIPanGestureRecognizer *customPanGestureRecognizer;
 
+@property (strong, nonatomic) NSIndexPath *selectedItemIndexPath;
+@property (strong, nonatomic) UIView *currentView;
+@property (assign, nonatomic, readonly) id<LXReorderableCollectionViewDataSource> dataSource;
+
 @end
 
 @implementation CatrobatReorderableCollectionViewFlowLayout
+
+@dynamic selectedItemIndexPath;
+@dynamic currentView;
+@dynamic dataSource;
 
 - (void)setupCollectionView {
     if (![self.collectionView.gestureRecognizers containsObject:self.longPressGestureRecognizer]) {
@@ -85,6 +93,47 @@
 - (UIPanGestureRecognizer*)panGestureRecognizer
 {
     return self.customPanGestureRecognizer;
+}
+
+- (void)invalidateLayoutIfNecessary {
+    NSIndexPath *newIndexPath = [self.collectionView indexPathForItemAtPoint:self.currentView.center];
+    NSIndexPath *previousIndexPath = self.selectedItemIndexPath;
+    
+    if ((newIndexPath == nil) || [newIndexPath isEqual:previousIndexPath]) {
+        return;
+    }
+    
+    if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:canMoveToIndexPath:)] &&
+        ![self.dataSource collectionView:self.collectionView itemAtIndexPath:previousIndexPath canMoveToIndexPath:newIndexPath]) {
+        return;
+    }
+    
+    self.selectedItemIndexPath = newIndexPath;
+    
+    if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:willMoveToIndexPath:)]) {
+        [self.dataSource collectionView:self.collectionView itemAtIndexPath:previousIndexPath willMoveToIndexPath:newIndexPath];
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [self.collectionView performBatchUpdates:^{
+        __strong typeof(self) strongSelf = weakSelf;
+        if (strongSelf) {
+ 
+            if([strongSelf.collectionView numberOfItemsInSection:previousIndexPath.section] == 1) {
+                [strongSelf.collectionView deleteSections:[NSIndexSet indexSetWithIndex:previousIndexPath.section]];
+                [strongSelf.collectionView insertSections:[NSIndexSet indexSetWithIndex:newIndexPath.section]];
+            }
+            else {
+                [strongSelf.collectionView deleteItemsAtIndexPaths:@[ previousIndexPath ]];
+                [strongSelf.collectionView insertItemsAtIndexPaths:@[ newIndexPath ]];
+            }
+        }
+    } completion:^(BOOL finished) {
+        __strong typeof(self) strongSelf = weakSelf;
+        if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
+            [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPath:previousIndexPath didMoveToIndexPath:newIndexPath];
+        }
+    }];
 }
 
 @end

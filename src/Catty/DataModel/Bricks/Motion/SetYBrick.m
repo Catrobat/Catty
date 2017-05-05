@@ -21,7 +21,6 @@
  */
 
 #import "SetYBrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @implementation SetYBrick
@@ -53,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetY;
+    return [kLocalizedSetY stringByAppendingString:@"%@"];
 }
 
 #pragma mark - Description

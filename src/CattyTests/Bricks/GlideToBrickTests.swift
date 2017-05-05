@@ -20,32 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseLoginViewController.h"
-#import "CatrobatTableViewController.h"
+import XCTest
 
-@interface RegisterViewController : BaseLoginViewController<UITextFieldDelegate>
+@testable import Pocket_Code
 
-@property (nonatomic, weak) CatrobatTableViewController * catTVC;
+final class GlideToBrickTests: XCTestCase {
 
-@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
-
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *termsOfUseButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *registerButton;
-
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
-
-@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
-
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *password;
-
-
-@end
+    func testTitleSingular() {
+        let glideToBrick = GlideToBrick()
+        glideToBrick.durationInSeconds = Formula(double: 1)
+        let translation = kLocalizedGlide + "%@ " + kLocalizedSecond + "\n" + kLocalizedToX + "%@ " + kLocalizedYLabel + "%@"
+        XCTAssertEqual(translation, glideToBrick.brickTitle, "Wrong brick title")
+    }
+    
+    func testTitlePlural() {
+        let glideToBrick = GlideToBrick()
+        glideToBrick.durationInSeconds = Formula(double: 2)
+        let translation = kLocalizedGlide + "%@ " + kLocalizedSeconds + "\n" + kLocalizedToX + "%@ " + kLocalizedYLabel + "%@"
+        XCTAssertEqual(translation, glideToBrick.brickTitle, "Wrong brick title")
+    }
+}

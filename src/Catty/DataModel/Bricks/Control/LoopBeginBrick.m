@@ -21,7 +21,6 @@
  */
 
 #import "LoopBeginBrick.h"
-#import "LoopEndBrick.h"
 #import "Util.h"
 
 @implementation LoopBeginBrick

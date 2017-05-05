@@ -21,20 +21,8 @@
  */
 
 #import "PaintViewController.h"
-#import "ColorPickerViewController.h"
-#import "BrushPickerViewController.h"
 #import "YKImageCropperView.h"
-#import "LCTableViewPickerControl.h"
-#import "UIImage+Rotate.h"
-#import "ImageHelper.h"
 #import "UIViewController+KNSemiModal.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "Util.h"
-#import "LanguageTranslationDefines.h"
-#import "QuartzCore/QuartzCore.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <AVFoundation/AVFoundation.h>
-#import "CatrobatAlertController.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BDKNotifyHUD.h"
 
@@ -51,7 +39,6 @@
 #import "HandTool.h"
 #import "ResizeViewManager.h"
 #import "PointerTool.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 
 

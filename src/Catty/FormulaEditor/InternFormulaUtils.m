@@ -21,7 +21,6 @@
  */
 
 #import "InternFormulaUtils.h"
-#import "InternToken.h"
 #import "InternFormulaParser.h"
 #import "NSMutableArray+Reverse.h"
 #import "InternFormulaParserException.h"

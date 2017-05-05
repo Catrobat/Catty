@@ -21,15 +21,12 @@
  */
 
 #import "FlashBrick.h"
-#import "Script.h"
-#import "Util.h"
-#import "LanguageTranslationDefines.h"
 
 @implementation FlashBrick
 
 - (NSString*)brickTitle
 {
-    return kLocalizedFlash;
+    return [kLocalizedFlash stringByAppendingString:@"\n%@"];
 }
 
 - (id)initWithChoice:(int)choice

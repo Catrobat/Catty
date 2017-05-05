@@ -21,7 +21,6 @@
  */
 
 #import "SetSizeToBrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @implementation SetSizeToBrick
@@ -53,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetSizeTo;
+    return [kLocalizedSetSizeTo stringByAppendingString:@"%@\%"];
 }
 
 #pragma mark - Description

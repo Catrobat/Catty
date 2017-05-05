@@ -20,32 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseLoginViewController.h"
-#import "CatrobatTableViewController.h"
+import XCTest
 
-@interface RegisterViewController : BaseLoginViewController<UITextFieldDelegate>
+@testable import Pocket_Code
 
-@property (nonatomic, weak) CatrobatTableViewController * catTVC;
+final class RepeatBrickTests: XCTestCase {
 
-@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
-
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *termsOfUseButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *registerButton;
-
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-
-@property (weak, nonatomic) IBOutlet UITextField *usernameField;
-
-@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
-
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *password;
-
-
-@end
+    func testTitleSingular() {
+        let repeatBrick = RepeatBrick()
+        repeatBrick.timesToRepeat = Formula(double: 1)
+        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTime, repeatBrick.brickTitle, "Wrong brick title")
+    }
+    
+    func testTitlePlural() {
+        let repeatBrick = RepeatBrick()
+        repeatBrick.timesToRepeat = Formula(double: 2)
+        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTimes, repeatBrick.brickTitle, "Wrong brick title")
+    }
+}

@@ -1,7 +1,5 @@
 #import "BDKNotifyHUD.h"
 
-#import <QuartzCore/QuartzCore.h>
-
 #define kBDKNotifyHUDDefaultRoundness    10.0f
 #define kBDKNotifyHUDDefaultOpacity      0.75f
 #define kBDKNotifyHUDDefaultPadding      10.0f

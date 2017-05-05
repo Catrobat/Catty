@@ -21,9 +21,7 @@
  */
 
 #import "CBXMLSerializerHelper.h"
-#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLParserContext.h"
-#import "CBXMLSerializerContext.h"
 #import "CBXMLPositionStack.h"
 
 @implementation CBXMLSerializerHelper

@@ -22,9 +22,6 @@
 
 #import "BrickCategoryViewController.h"
 #import "BrickManager.h"
-#import "BrickCell.h"
-#import "BrickProtocol.h"
-#import "Brick.h"
 
 @interface BrickCategoryViewController ()
 @property (nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;
@@ -91,6 +88,19 @@
     self.view.backgroundColor = [UIColor clearColor];
 }
 
+-(void)reloadData {
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self.collectionView reloadData];
+        [self.collectionView setNeedsDisplay];
+    });
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [self reloadData];
+}
+
 #pragma mark - Collection View Data Source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
@@ -115,6 +125,8 @@
     brickCell.scriptOrBrick = self.bricks[indexPath.item];
     [brickCell.scriptOrBrick setDefaultValuesForObject:self.spriteObject];
     [brickCell setupBrickCell];
+    [brickCell setNeedsDisplay];
+    
     for (id subview in brickCell.subviews) {
         if ([subview isKindOfClass:[UIView class]]) {
             [(UIView*)subview setUserInteractionEnabled:NO];

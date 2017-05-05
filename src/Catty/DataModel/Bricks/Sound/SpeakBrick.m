@@ -22,7 +22,6 @@
 
 #import "SpeakBrick.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "Sound.h"
 
 @implementation SpeakBrick
 
@@ -36,7 +35,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSpeak;
+    return [kLocalizedSpeak stringByAppendingString:@"%@"];
 }
 
 - (BOOL)allowsStringFormula

@@ -21,7 +21,6 @@
  */
 
 #import "iOSCombobox.h"
-#import "BSKeyboardControls.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "RuntimeImageCache.h"
 #import "Look.h"

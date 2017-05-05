@@ -23,7 +23,6 @@
 #import "DownloadImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "AppDelegate.h"
-#import "FileManager.h"
 
 #define kOneWeekImageCacheAge 60 * 60 * 24 * 7;
 #define kImageCacheDirectory @"at.tugraz.ist.catrobat.ImageCache"

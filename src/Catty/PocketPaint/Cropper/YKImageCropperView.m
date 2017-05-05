@@ -6,9 +6,8 @@
 #import "YKImageCropperView.h"
 
 #import "YKImageCropperOverlayView.h"
-#import "ImageHelper.h"
 
-typedef NS_ENUM(NSUInteger, OverlayViewPanningMode) {
+    typedef NS_ENUM(NSUInteger, OverlayViewPanningMode) {
     OverlayViewPanningModeNone     = 0,
     OverlayViewPanningModeLeft     = 1 << 0,
     OverlayViewPanningModeRight    = 1 << 1,

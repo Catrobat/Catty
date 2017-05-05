@@ -21,10 +21,6 @@
  */
 
 #import "SetVariableBrick.h"
-#import "Formula.h"
-#import "UserVariable.h"
-#import "Program.h"
-#import "VariablesContainer.h"
 #import "Script.h"
 
 @implementation SetVariableBrick
@@ -68,7 +64,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetVariable;
+    return [kLocalizedSetVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@"]]];
 }
 
 - (BOOL)allowsStringFormula

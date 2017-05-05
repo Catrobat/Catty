@@ -21,8 +21,6 @@
  */
 
 #import "Turnrightbrick.h"
-#import "Formula.h"
-#import "Util.h"
 #import "Script.h"
 
 @implementation TurnRightBrick
@@ -54,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedTurnRight;
+    return [kLocalizedTurnRight stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedDegrees]];
 }
 
 #pragma mark - Description
