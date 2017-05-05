@@ -33,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
-@property BOOL statusBarHidden;
 @end
 
 @implementation DescriptionViewController
@@ -50,10 +49,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _statusBarHidden = YES;
     self.view.backgroundColor = [UIColor whiteGrayColor];
     self.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationBar.backgroundColor = [UIColor navBarColor];
+    
+    self.navigationBar.translucent = false;
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
+    statusBarView.backgroundColor  =  UIColor.navBarColor;
+    [self.view addSubview:statusBarView];
+    
     [self initHeader];
     [self initTextView];
 }
@@ -63,23 +68,6 @@
     [super viewDidAppear:animated];
     [self.descriptionTextView becomeFirstResponder];
     [self.descriptionTextView setSelectedTextRange:[self.descriptionTextView textRangeFromPosition:self.descriptionTextView.beginningOfDocument toPosition:self.descriptionTextView.endOfDocument]];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    _statusBarHidden = YES;
-    [self setNeedsStatusBarAppearanceUpdate];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    _statusBarHidden = NO;
-    [self setNeedsStatusBarAppearanceUpdate];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return _statusBarHidden;
 }
 
 #pragma mark Initialization
