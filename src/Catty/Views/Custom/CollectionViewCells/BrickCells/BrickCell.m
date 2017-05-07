@@ -40,6 +40,7 @@
 #import "BrickCellMessageData.h"
 #import "BrickCellStaticChoiceData.h"
 #import "BrickCellVariableData.h"
+#import "BrickCellListData.h"
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
@@ -112,12 +113,13 @@
     @"{STATICCHOICE}"               /* flash brick              */\
 ]
 
-// variable bricks
+// variable and list bricks
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* change size by N         */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
-    @[@"{VARIABLE}"]     /* hide Text        */\
+    @[@"{VARIABLE}"],     /* hide Text        */\
+    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"]    /* set size to              */\
 ]
 
 // arduino bricks
@@ -499,6 +501,9 @@
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"LIST"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellListData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"STATICCHOICE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellStaticChoiceData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];

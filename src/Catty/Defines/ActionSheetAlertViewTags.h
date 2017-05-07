@@ -35,6 +35,7 @@
 #define kVariabletypeActionSheetTag 12
 #define kPocketPaintActionSheetTag 13
 #define kChooseVarOrListActionSheetTag 14
+#define kListTypeActionSheetTag 15
 
 // Alert view tags
 #define kAskUserForUniqueNameAlertViewTag 100

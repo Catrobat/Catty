@@ -57,12 +57,14 @@
 #import "BrickMessageProtocol.h"
 #import "BrickStaticChoiceProtocol.h"
 #import "BrickVariableProtocol.h"
+#import "BrickListProtocol.h"
 #import "BrickCellLookData.h"
 #import "BrickCellSoundData.h"
 #import "BrickCellObjectData.h"
 #import "BrickCellTextData.h"
 #import "BrickCellMessageData.h"
 #import "BrickCellVariableData.h"
+#import "BrickCellListData.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 #import "ProgramTableViewController.h"
@@ -452,6 +454,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             isProgramVar = YES;
         }
         [self addVariableForBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
+    } else if (actionSheet.tag == kListTypeActionSheetTag){
+        CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
+        CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
+        CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
+        BOOL isProgramList = NO;
+        if (buttonIndex == 1) {
+            isProgramList = YES;
+        }
+        [self addListForBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath andIsProgramList:isProgramList];
     }
 }
 
@@ -1015,7 +1026,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                             [array addObject:variable];
                                             [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
                                         }
-                                        UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object isList:NO];
+                                        UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
                                         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
@@ -1037,6 +1048,64 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                       invalidInputAlertMessage:kUIFENewVarExists
                                  existingNames:allVariableNames];
 }
+
+#pragma mark - Add new List
+- (void)addListForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProgramList:(BOOL)isProgramList
+{
+
+    NSMutableArray *allListNames = [NSMutableArray new];
+    if (isProgramList) {
+        for(UserVariable *list in [self.object.program.variables allLists]) {
+            [allListNames addObject:list.name];
+        }
+    } else {
+        for(UserVariable *list in [self.object.program.variables allListsForObject:self.object]) {
+            [allListNames addObject:list.name];
+        }
+    }
+    
+    self.variableIndexPath = indexPath;
+    
+    [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
+                                        target:self
+                                  cancelAction:@selector(reloadData)
+                                    withObject:(id) ^(NSString* listName) {
+                                        UserVariable *list = [UserVariable new];
+                                        list.name = listName;
+                                        list.value = [[NSMutableArray alloc] init];
+                                        list.isList = YES;
+                                        if (isProgramList) {
+                                            [self.object.program.variables.programListOfLists addObject:list];
+                                        } else { // object list
+                                            NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
+                                            if (!array)
+                                                array = [NSMutableArray new];
+                                            [array addObject:list];
+                                            [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
+                                        }
+                                        UserVariable *listToSet = [self.object.program.variables getUserListNamed:(NSString*)listName forSpriteObject:self.object];
+                                        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
+                                        Brick * brick = (Brick*)brickCell.scriptOrBrick;
+                                        Brick<BrickListProtocol> *listBrick;
+                                        if ([brick conformsToProtocol:@protocol(BrickListProtocol)]) {
+                                            listBrick = (Brick<BrickListProtocol>*)brick;
+                                        }
+                                        
+                                        if(listToSet)
+                                            [listBrick setList:listToSet forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
+                                    }
+                                   promptTitle:kUIFENewList
+                                 promptMessage:kUIFEOtherName
+                                   promptValue:nil
+                             promptPlaceholder:kLocalizedEnterYourListNameHere
+                                minInputLength:kMinNumOfVariableNameCharacters
+                                maxInputLength:kMaxNumOfVariableNameCharacters
+                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                invertedSet]
+                      invalidInputAlertMessage:kUIFENewVarExists
+                                 existingNames:allListNames];
+}
+
 
 #pragma mark - Setup
 - (void)setupCollectionView
@@ -1191,9 +1260,30 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
-            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object isList:NO];
+            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
+        }
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellListData class]] && [brick conformsToProtocol:@protocol(BrickListProtocol)]) {
+        Brick<BrickListProtocol> *listBrick = (Brick<BrickListProtocol>*)brick;
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
+            NSIndexPath *path = [self.collectionView indexPathForCell:(UICollectionViewCell*)brickCellData.brickCell];
+            CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kUIFEActionList
+                                                                     delegate:self
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@[kUIFEActionVarPro,kUIFEActionVarObj]
+                                                                          tag:kListTypeActionSheetTag
+                                                                         view:self.navigationController.view];
+            actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
+                                                                                withPayload:@{ kDTPayloadCellIndexPath : path}];
+                
+            [self enableUserInteractionAndResetHighlight];
+            return;
+        } else {
+            UserVariable *list = [self.object.program.variables getUserListNamed:(NSString*)value forSpriteObject:self.object];
+            if(list)
+                [listBrick setList:list forLineNumber:line andParameterNumber:parameter];
         }
     } else
     if ([brickCellData isKindOfClass:[BrickCellPhiroMotorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {

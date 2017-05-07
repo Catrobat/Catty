@@ -41,11 +41,15 @@ static pthread_mutex_t variablesLock;
 
 - (void)dealloc
 {
-    NSDebug(@"Dealloc Variables");
+    NSDebug(@"Dealloc Variables and Lists");
     [self.objectVariableList removeAllObjects];
     [self.programVariableList removeAllObjects];
+    [self.objectListOfLists removeAllObjects];
+    [self.programListOfLists removeAllObjects];
     self.programVariableList = nil;
     self.objectVariableList = nil;
+    self.programListOfLists = nil;
+    self.objectListOfLists = nil;
     pthread_mutex_destroy(&variablesLock);
 }
 
@@ -84,7 +88,7 @@ static pthread_mutex_t variablesLock;
 }
 
 
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite isList:(BOOL)isList
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
 {
     NSArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
     UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
@@ -93,6 +97,17 @@ static pthread_mutex_t variablesLock;
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
     }
     return variable;
+}
+
+- (UserVariable*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
+{
+    NSArray *objectUserLists = [self.objectListOfLists objectForKey:sprite];
+    UserVariable *list = [self findUserVariableNamed:name inArray:objectUserLists];
+    
+    if (! list) {
+        list = [self findUserVariableNamed:name inArray:self.programListOfLists];
+    }
+    return list;
 }
 
 - (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
@@ -169,6 +184,31 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
+- (void)addToUserList:(UserVariable*)userList value:(id)value
+{
+    pthread_mutex_lock(&variablesLock);
+    if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
+        NSError(@"Found a UserList that is not of class NSMutableArray.");
+    }
+    
+    NSMutableArray *array;
+    if(userList.value == nil){
+        array = [[NSMutableArray alloc] init];
+    } else {
+        array = (NSMutableArray*)userList.value;
+    }
+    
+    if([value isKindOfClass:[NSString class]]){
+        [array addObject:(NSString*)value];
+    } else if([value isKindOfClass:[NSNumber class]]){
+        [array addObject:(NSNumber*)value];
+    } else {
+        [array addObject:[NSNumber numberWithInt:0]];
+    }
+    userList.value = array;
+    pthread_mutex_unlock(&variablesLock);
+}
+
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);
@@ -183,6 +223,13 @@ static pthread_mutex_t variablesLock;
     NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
     [vars addObjectsFromArray:[self objectVariablesForObject:spriteObject]];
     return vars;
+}
+
+- (NSArray*)allListsForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *lists = [NSMutableArray arrayWithArray:self.programListOfLists];
+    [lists addObjectsFromArray:[self objectListsForObject:spriteObject]];
+    return lists;
 }
 
 - (NSMutableArray*)allVariables
@@ -227,6 +274,17 @@ static pthread_mutex_t variablesLock;
         }
     }
     return vars;
+}
+
+- (NSArray*)objectListsForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *lists = [NSMutableArray new];
+    if([self.objectListOfLists objectForKey:spriteObject]) {
+        for(UserVariable *list in [self.objectListOfLists objectForKey:spriteObject]) {
+            [lists addObject:list];
+        }
+    }
+    return lists;
 }
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
@@ -373,6 +431,9 @@ static pthread_mutex_t variablesLock;
     VariablesContainer *copiedVariablesContainer = [VariablesContainer new];
     copiedVariablesContainer.objectVariableList = [self.objectVariableList mutableCopy];
     copiedVariablesContainer.programVariableList = [self.programVariableList mutableCopy];
+    copiedVariablesContainer.objectListOfLists = [self.objectListOfLists mutableCopy];
+    copiedVariablesContainer.programListOfLists = [self.programListOfLists mutableCopy];
+
     return copiedVariablesContainer;
 }
 

@@ -20,38 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserVariable.h"
-#import "Program.h"
-#import "Util.h"
-#import "CBMutableCopyContext.h"
 
-@implementation UserVariable
+#import "BrickCellDataProtocol.h"
+#import "iOSCombobox.h"
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
-}
+@interface BrickCellListData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
 
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
-{
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value] &&
-        [Util isEqual:self.isList toObject:userVariable.isList])
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    if (!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
-    UserVariable *variable = [[self class] new];
-    variable.name = [NSString stringWithString:self.name];
-    variable.value = [self.value copy];
-    variable.isList = self.isList;
-    
-    [context updateReference:self WithReference:variable];
-    return variable;
-}
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 
 @end

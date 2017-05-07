@@ -23,6 +23,9 @@
 "acceleration_z" = "acceleration_z";
 
 /* No comment provided by engineer. */
+"Add %@ to list\n%@" = "Add %@ to list\n%@";
+
+/* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
@@ -459,6 +462,9 @@
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
 
 /* Placeholder for message input field */
 "Enter your message here..." = "Enter your message here...";

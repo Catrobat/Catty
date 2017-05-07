@@ -1005,6 +1005,8 @@ replacementString:(NSString*)characters
             return YES;
     }
     
+    hier muss man das NSMutableArray dautun
+    
     return NO;
 }
 

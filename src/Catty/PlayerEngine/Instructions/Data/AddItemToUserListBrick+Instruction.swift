@@ -20,36 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetVariableBrick: CBInstructionProtocol {
+extension AddItemToUserListBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
+              let variablesContainer = spriteObject.program?.variables
         else { fatalError("This should never happen!") }
 
-        let userVariable = self.userVariable
-        let variableFormula = self.variableFormula
+        let userList = self.userList
+        let listFormula = self.listFormula
 
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: SetVariableBrick")
-            if (userVariable != nil)
-            {
-                let result = variableFormula.interpretVariableDataForSprite(spriteObject)
-                variables.setUserVariable(userVariable, toValue: result)
-                
-                //update visible userVariable
-                var value = ""
-                if userVariable.value is NSNumber{
-                    let number:NSNumber = (userVariable.value as? NSNumber)!
-                    value = number.stringValue
-                } else if userVariable.value is NSString {
-                    let string:NSString = userVariable.value as! NSString
-                    value = string as String
-                } else {
-                    value = ""
-                }
-                userVariable.textLabel.text = value
+//            self.logger.debug("Performing: AddItemToUserListBrick")
+            if (userList != nil){
+                let result = listFormula.interpretVariableDataForSprite(spriteObject)
+                variablesContainer.addToUserList(userList, value: result)
             }
             context.state = .Runnable
         }
