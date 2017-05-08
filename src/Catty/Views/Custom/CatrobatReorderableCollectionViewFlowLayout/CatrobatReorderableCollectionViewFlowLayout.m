@@ -27,18 +27,17 @@
 @property (strong, nonatomic) UILongPressGestureRecognizer *customLongPressGestureRecognizer;
 @property (strong, nonatomic) UIPanGestureRecognizer *customPanGestureRecognizer;
 
+@property (strong, nonatomic) NSIndexPath *selectedItemIndexPath;
+@property (strong, nonatomic) UIView *currentView;
+@property (assign, nonatomic, readonly) id<LXReorderableCollectionViewDataSource> dataSource;
+
 @end
 
 @implementation CatrobatReorderableCollectionViewFlowLayout
 
 @dynamic selectedItemIndexPath;
 @dynamic currentView;
-@dynamic currentViewCenter;
-@dynamic panTranslationInCollectionView;
-@dynamic displayLink;
-
 @dynamic dataSource;
-@dynamic delegate;
 
 - (void)setupCollectionView {
     if (![self.collectionView.gestureRecognizers containsObject:self.longPressGestureRecognizer]) {
