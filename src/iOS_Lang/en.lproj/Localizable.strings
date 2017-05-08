@@ -235,6 +235,9 @@
 /* No comment provided by engineer. */
 "Computed result is TRUE" = "Computed result is TRUE";
 
+/* No comment provided by engineer. */
+"Confirm Password" = "Confirm Password";
+
 /* bluetooth */
 "Connection failed" = "Connection failed";
 
@@ -450,9 +453,6 @@
 
 /* No comment provided by engineer. */
 "Email" = "Email";
-
-/* No comment provided by engineer. */
-"Email is not valid!" = "Email is not valid!";
 
 /* No comment provided by engineer. */
 "End If" = "End If";
@@ -954,6 +954,9 @@
 
 /* No comment provided by engineer. */
 "Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+
+/* No comment provided by engineer. */
+"Passwords do not match" = "Passwords do not match";
 
 /* No comment provided by engineer. */
 "Phiro" = "Phiro";
@@ -1469,7 +1472,7 @@
 "Username" = "Username";
 
 /* No comment provided by engineer. */
-"Username is necessary!" = "Username is necessary!";
+"Username must not be blank" = "Username must not be blank";
 
 /* No comment provided by engineer. */
 "v" = "v";
@@ -1539,6 +1542,9 @@
 
 /* No comment provided by engineer. */
 "You have already downloaded this program!" = "You have already downloaded this program!";
+
+/* No comment provided by engineer. */
+"Your email seems to be invalid" = "Your email seems to be invalid";
 
 /* paint */
 "Zoom" = "Zoom";
