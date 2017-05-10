@@ -699,6 +699,15 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
+		BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB591EC382DB00796056 /* BrickCellListData.m */; };
+		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
+		BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */; };
+		BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */; };
+		BA9CAB691EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
+		BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
+		BA9CAB6B1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
+		BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */; };
 		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -2066,6 +2075,18 @@
 		B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrick.h; sourceTree = "<group>"; };
+		BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrick.m; sourceTree = "<group>"; };
+		BA9CAB571EC3811400796056 /* BrickListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickListProtocol.h; sourceTree = "<group>"; };
+		BA9CAB581EC382DB00796056 /* BrickCellListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellListData.h; sourceTree = "<group>"; };
+		BA9CAB591EC382DB00796056 /* BrickCellListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellListData.m; sourceTree = "<group>"; };
+		BA9CAB5B1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AddItemToUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/AddItemToUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AddItemToUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/AddItemToUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		BA9CAB5E1EC383E800796056 /* AddItemToUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrickCell.h; sourceTree = "<group>"; };
+		BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrickCell.m; sourceTree = "<group>"; };
+		BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AddItemToUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/AddItemToUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
@@ -2360,6 +2381,7 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB741EC391C900796056 /* AddItemToUserListBrick */,
 				CAE3E4ED1B4C50B300CC88BD /* Air_fight_0.5 */,
 				CAE3E4F01B4C50B300CC88BD /* Airplane_with_shadow */,
 				CAE3E4F31B4C50B300CC88BD /* Compass_0.1 */,
@@ -2576,6 +2598,7 @@
 		4C5517D31ABC6A8100A52FF4 /* BrickData */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB571EC3811400796056 /* BrickListProtocol.h */,
 				4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */,
 				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
 				4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */,
@@ -2905,6 +2928,8 @@
 		4C724DF71B4D3E8C00E27479 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB5B1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.h */,
+				BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */,
 				9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */,
 				9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */,
 				9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */,
@@ -3124,6 +3149,7 @@
 		4CC85CE01B9C717C0097E470 /* ValidProgramAllBricks */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */,
 				4C6D15FF1D7AC65400CE53CD /* ValidProgramAllBricks093.xml */,
 				4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */,
 				4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */,
@@ -4888,6 +4914,7 @@
 		AA74EDDB1BC051FB00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */,
 				9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */,
 				9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */,
 				AA74EE241BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift */,
@@ -4990,6 +5017,8 @@
 		AA74EF961BC05B5F00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */,
+				BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */,
 				9200C2C51C808006002F5CA4 /* HideTextBrick.h */,
 				9200C2C61C808006002F5CA4 /* HideTextBrick.m */,
 				9200C2C71C808006002F5CA4 /* ShowTextBrick.h */,
@@ -5105,6 +5134,8 @@
 		AA74F00F1BC05FCE00D1E954 /* BrickCellData */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB581EC382DB00796056 /* BrickCellListData.h */,
+				BA9CAB591EC382DB00796056 /* BrickCellListData.m */,
 				AA74F0101BC05FCE00D1E954 /* BrickCellFormulaData.h */,
 				AA74F0111BC05FCE00D1E954 /* BrickCellFormulaData.m */,
 				AA74F0121BC05FCE00D1E954 /* BrickCellLookData.h */,
@@ -5189,6 +5220,8 @@
 		AA74F03D1BC05FCE00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BA9CAB5E1EC383E800796056 /* AddItemToUserListBrickCell.h */,
+				BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */,
 				9200C2D11C8082EF002F5CA4 /* HideTextBrickCell.h */,
 				9200C2D21C8082EF002F5CA4 /* HideTextBrickCell.m */,
 				9200C2D31C8082EF002F5CA4 /* ShowTextBrickCell.h */,
@@ -5455,6 +5488,14 @@
 				92FF2E081A24C5A700093DA7 /* Extensions */,
 			);
 			name = "Extensions & Delegates & Protocols";
+			sourceTree = "<group>";
+		};
+		BA9CAB741EC391C900796056 /* AddItemToUserListBrick */ = {
+			isa = PBXGroup;
+			children = (
+				BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */,
+			);
+			name = AddItemToUserListBrick;
 			sourceTree = "<group>";
 		};
 		C34B44FB17F3403400624730 /* Extensions */ = {
@@ -6152,6 +6193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9CAB6B1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6265,7 +6307,9 @@
 				4C2EE3F71B55577C006DE9B8 /* Galaxy_War_095.xml in Resources */,
 				4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */,
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
+				BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
+				BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
@@ -6329,6 +6373,7 @@
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
+				BA9CAB691EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
@@ -7000,6 +7045,7 @@
 				AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */,
 				921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
+				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
@@ -7029,6 +7075,7 @@
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
 				92FF2EBD1A24C8A700093DA7 /* DataTransferMessage.m in Sources */,
 				929CC0F91BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift in Sources */,
+				BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */,
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
@@ -7056,6 +7103,7 @@
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
+				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
@@ -7134,6 +7182,7 @@
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
+				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,
 				92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */,
 				99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */,
@@ -7187,6 +7236,7 @@
 				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
+				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,

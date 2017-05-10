@@ -80,7 +80,7 @@
 - (NSString*)description
 {
     double result = [self.listFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userList, result];
+    return [NSString stringWithFormat:@"Add Item TO User List Brick: Userlist: %@, item: %f", self.userList, result];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
