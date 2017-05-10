@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "Util.h"
 #import "SearchStoreViewControllerTests.h"
 #import "CatrobatProgram.h"
 
@@ -77,6 +78,7 @@
         XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
         XCTAssertTrue([catrobatProject.version length] > 0, @"Invalid version");
         XCTAssertTrue(catrobatProject.uploaded > 0, @"Invalid uploaded date");
+        XCTAssertTrue([catrobatProject.version floatValue] <= [[Util catrobatLanguageVersion] floatValue], @"Version not supported yet");
     }
 }
 

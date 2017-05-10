@@ -273,15 +273,15 @@
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%.2f", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, kCurrentVersion]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%@", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
             
             break;
         case 1:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%@", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
             
             break;
         case 2:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%.2f", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, kCurrentVersion]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%@", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
             
             break;
             

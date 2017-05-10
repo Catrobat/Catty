@@ -353,7 +353,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
     if (self.dataTask) {
         [self.dataTask cancel];
     }
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i&%@%.2f", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, kCurrentVersion];
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, [Util catrobatLanguageVersion]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:queryString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -400,7 +400,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
 }
 
 - (NSURL *)urlForQuery:(NSString *)query {
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i&%@%.2f", kConnectionHost, kConnectionSearch, [query stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, kCurrentVersion];
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, [query stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, [Util catrobatLanguageVersion]];
     NSDebug(@"Query string: %@", queryString);
     return [NSURL URLWithString:queryString];
 }

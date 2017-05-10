@@ -25,6 +25,7 @@
 #import "CatrobatInformation.h"
 #import "CatrobatProgram.h"
 #import "LanguageTranslationDefines.h"
+#import "Util.h"
 
 #define CONNECTION_TIMEOUT 10
 
@@ -88,6 +89,7 @@
         XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
         XCTAssertTrue([catrobatProject.version length] > 0, @"Invalid version");
         XCTAssertTrue(catrobatProject.uploaded > 0, @"Invalid uploaded date");
+        XCTAssertTrue([catrobatProject.version floatValue] <= [[Util catrobatLanguageVersion] floatValue], @"Version not supported yet");
     }
 }
 
@@ -106,6 +108,7 @@
     for(CatrobatProgram *catrobatProject in self.recentProgramsStoreViewController.mostViewedProjects) {
         XCTAssertTrue([catrobatProject.projectName length] > 0, @"Invalid projectName");
         XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
+        XCTAssertTrue([catrobatProject.version floatValue] <= [[Util catrobatLanguageVersion] floatValue], @"Version not supported yet");
     }
 }
 
@@ -124,6 +127,7 @@
     for(CatrobatProgram *catrobatProject in self.recentProgramsStoreViewController.mostRecentProjects) {
         XCTAssertTrue([catrobatProject.projectName length] > 0, @"Invalid projectName");
         XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
+        XCTAssertTrue([catrobatProject.version floatValue] <= [[Util catrobatLanguageVersion] floatValue], @"Version not supported yet");
     }
 }
 
