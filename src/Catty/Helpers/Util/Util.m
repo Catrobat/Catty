@@ -1003,17 +1003,10 @@ replacementString:(NSString*)characters
     } else if([object isKindOfClass:[SpriteObject class]]) {
         if([(SpriteObject*)object isEqualToSpriteObject:(SpriteObject*)objectToCompare])
             return YES;
+    } else if([object isKindOfClass:[NSMutableArray class]]) {
+        if([(NSMutableArray*)object isEqualToArray:(NSMutableArray*)objectToCompare])
+            return YES;
     }
-    
-    // TODO: hier muss man das NSMutableArray dazutun
-    
-    
-    
-    
-    
-    
-    
-    
     return NO;
 }
 
