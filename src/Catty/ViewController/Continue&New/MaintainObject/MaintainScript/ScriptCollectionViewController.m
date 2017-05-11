@@ -1283,8 +1283,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-        [self reloadData];
-}
+    [self reloadData];
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
+             NSMutableArray<Script*>* scriptlist = [self object].scriptList;
+             for (int section = 0; section < scriptlist.count; section++) {
+                 for (int row = 0; row < scriptlist[section].brickList.count; row++) {
+                     if (scriptlist[section].brickList[row].animateInsertBrick) {
+                         [self.collectionView scrollToItemAtIndexPath: [NSIndexPath indexPathForRow:row inSection:section]
+                                                     atScrollPosition:UICollectionViewScrollPositionCenteredVertically
+                                                             animated:NO];
+                         return;
+                    }
+                 }
+             }
+         }
+        }];
+    }
 
 
 - (void)selectAllRows:(id)sender
