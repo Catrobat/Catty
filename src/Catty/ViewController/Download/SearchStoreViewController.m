@@ -103,7 +103,7 @@
 //    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightTextTintColor]];
 // [iOS9] DO NOT REMOVE!!!
 // [iOS8] DO NOT REMOVE!!!
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor textTintColor]];
+    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor textTintColor]];
 // [iOS8] DO NOT REMOVE!!!
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);

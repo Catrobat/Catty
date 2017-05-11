@@ -33,7 +33,7 @@
     @property (strong, nonatomic) LoadingView *loadingView;
     @property (nonatomic,strong)NSString *filePath;
     @property (nonatomic, strong)NSMutableData * mdata;
-    @property (strong, nonatomic)NSURLConnection *connection;
+    @property (strong, nonatomic)NSURLSession *connection;
 @end
 
 @implementation MediaLibraryViewController
@@ -91,11 +91,56 @@
     if([[[request URL] absoluteString] containsString:@"https://share.catrob.at/pocketcode/download-media/"])
     {
         self.url = [request URL];
-        NSURLRequest *datarequest = [NSURLRequest requestWithURL:self.url
-                                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                 timeoutInterval:60.0];
         
-        self.connection = [[NSURLConnection alloc] initWithRequest:datarequest delegate:self];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.requestCachePolicy = NSURLRequestUseProtocolCachePolicy;
+        config.timeoutIntervalForRequest = 60.0;
+        config.timeoutIntervalForResource = 60.0;
+        
+        self.connection = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+        
+        NSURLSessionDataTask *task = [self.connection dataTaskWithURL:self.url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            self.mdata = [[NSMutableData alloc]init];
+            [self.mdata appendData:data];
+            if (error == nil)
+            {
+                UIImage * image = [UIImage imageWithData:self.mdata];
+                NSString *fileName =[[NSString uuid] stringByAppendingString:@".mpga"];
+                AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                
+                
+                if (image)
+                {
+                    NSString *decodedFilename = [(NSString *)[self.url absoluteString] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+                    decodedFilename = [decodedFilename stringByRemovingPercentEncoding];
+                    
+                    // Success use the image
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.paintDelegate addMediaLibraryLoadedImage:image withName:[[decodedFilename componentsSeparatedByString:@"="] lastObject]];
+                    });
+                }
+                else
+                {
+                    self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
+                    
+                    NSString *decodedFilename = [(NSString *)[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+                    decodedFilename = [decodedFilename stringByRemovingPercentEncoding];
+                    
+                    self.sound.fileName = fileName;
+                    self.sound.name = decodedFilename;
+                    [self.mdata writeToFile:self.filePath atomically:YES];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.soundDelegate showDownloadSoundAlert:self.sound];
+                    });
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.loadingView hide];
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }];
+        [task resume];
         
         return NO;
     }
@@ -118,7 +163,6 @@
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    
     [self.webView setHidden:YES];
 }
 
@@ -131,61 +175,6 @@
     if ([Util isNetworkError:error]) {
         [Util defaultAlertForNetworkError];
     }
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-#pragma mark - NSURLDelegate
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    UIImage * image = [UIImage imageWithData:self.mdata];
-    NSString *fileName =[[NSString uuid] stringByAppendingString:@".mpga"];
-    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    
-    if (image)
-    {
-        NSString *decodedFilename = [(NSString *)[self.url absoluteString] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-        decodedFilename = [decodedFilename stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        // Success use the image
-        [self.paintDelegate addMediaLibraryLoadedImage:image withName:[[decodedFilename componentsSeparatedByString:@"="] lastObject]];
-    }
-    else
-    {
-        self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
-        
-        NSString *decodedFilename = [(NSString *)[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-        decodedFilename = [decodedFilename stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        self.sound.fileName = fileName;
-        self.sound.name = decodedFilename;
-        [self.mdata writeToFile:self.filePath atomically:YES];
-        [self.soundDelegate showDownloadSoundAlert:self.sound];
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loadingView hide];
-    });
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    self.mdata = [[NSMutableData alloc]init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.mdata appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.loadingView hide];
-    });
     [self.navigationController popViewControllerAnimated:YES];
 }
 

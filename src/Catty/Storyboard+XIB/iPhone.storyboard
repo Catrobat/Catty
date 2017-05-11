@@ -98,7 +98,7 @@
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="FDX-u4-k9j" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="56" width="375" height="79"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FDX-u4-k9j" id="F2U-Ls-6N6">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="79"/>
@@ -139,7 +139,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DetailImageCell" rowHeight="79" id="2Ur-m3-SrP" customClass="DarkBlueGradientImageDetailCell">
-                                <rect key="frame" x="0.0" y="135" width="375" height="79"/>
+                                <rect key="frame" x="0.0" y="134.5" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ur-m3-SrP" id="JAJ-4G-CwQ">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="79"/>
@@ -1940,7 +1940,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-ev-MwB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cvB-xo-J4Z"/>
                                     <barButtonItem style="done" systemItem="done" id="twD-NE-NiM">
@@ -1959,9 +1959,6 @@
                             <constraint firstAttribute="trailing" secondItem="0ye-ev-MwB" secondAttribute="trailing" id="ar9-KG-4Gz"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="toolBar" destination="0ye-ev-MwB" id="9lW-8k-Rxv"/>
                     </connections>
@@ -2523,7 +2520,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubs-nM-X8u">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <barButtonItem systemItem="cancel" id="Xh6-4D-IE6">
                                         <connections>
@@ -2547,9 +2544,6 @@
                             <constraint firstAttribute="trailing" secondItem="ubs-nM-X8u" secondAttribute="trailing" id="uG6-8b-Ti7"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="toolBar" destination="ubs-nM-X8u" id="IWq-Ql-H85"/>
                     </connections>

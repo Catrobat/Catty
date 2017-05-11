@@ -52,9 +52,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-  [self setupView];
+    [self setupView];
     [self setupPickerViews];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     self.view.backgroundColor = [UIColor backgroundColor];
     self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
     self.toolBar.tintColor = [UIColor navTintColor];
@@ -77,11 +76,17 @@
     }
     
     self.selectedRow = self.fontType;
+    
+    self.toolBar.translucent = false;
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
+    statusBarView.backgroundColor  =  UIColor.navBarColor;
+    [self.view addSubview:statusBarView];
 }
 
 - (void)setupView
 {
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20, self.toolBar.frame.size.height + 30, self.view.frame.size.width-40, self.view.frame.size.height * 0.25)];
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(self.toolBar.frame) + 30, self.view.frame.size.width-40, self.view.frame.size.height * 0.25)];
     self.textField.textColor = [UIColor textTintColor];
     self.textField.layer.cornerRadius=0.0f;
     self.textField.layer.masksToBounds=YES;
@@ -91,18 +96,18 @@
     self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     [self.textField becomeFirstResponder];
     
-    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.toolBar.frame.size.height + 10, 100, 20)];
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.toolBar.frame) + 10, 100, 20)];
     textLabel.text = kLocalizedPaintText;
     textLabel.textColor = [UIColor globalTintColor];
     
     
-    UILabel *attributesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height * 0.25 + 30 + self.toolBar.frame.size.height, 100, 20)];
+    UILabel *attributesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height * 0.25 + 30 + CGRectGetMaxY(self.toolBar.frame), 100, 20)];
     attributesLabel.text = kLocalizedPaintAttributes;
     attributesLabel.textColor = [UIColor globalTintColor];
     
     
-    self.fontPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height * 0.25 + 40 +self.toolBar.frame.size.height, (self.view.frame.size.width-40) / 2.0 - 5, 100)];
-    self.sizePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20+(self.view.frame.size.width-40) / 2.0 + 5 , self.view.frame.size.height * 0.25 + 40+self.toolBar.frame.size.height, (self.view.frame.size.width-40) / 2.0 - 5, 100)];
+    self.fontPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
+    self.sizePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20+(self.view.frame.size.width-40) / 2.0 + 5 , self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
 
     self.boldButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.boldButton.frame = CGRectMake(20, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
@@ -293,16 +298,12 @@
 
     
     self.fontDictionary = dict;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     NSDictionary *saveDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:self.bold],@"Bold",[NSNumber numberWithBool:self.italic],@"Italic",[NSNumber numberWithBool:self.underline],@"Underline",[NSNumber numberWithInteger:self.fontSize],@"Size",[NSNumber numberWithInteger:self.fontType],@"Font", nil];
     [self.delegate closeTextInput:self andDictionary:saveDict];
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [self.delegate closeTextInput:self andDictionary:nil];
 }
-
-- (BOOL)prefersStatusBarHidden { return YES; }
 
 @end
