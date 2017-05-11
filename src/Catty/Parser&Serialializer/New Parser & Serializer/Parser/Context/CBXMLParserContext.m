@@ -59,6 +59,14 @@
     return _programVariableList;
 }
 
+- (NSMutableArray*)programListOfLists
+{
+    if (! _programListOfLists) {
+        _programListOfLists = [NSMutableArray array];
+    }
+    return _programListOfLists;
+}
+
 - (NSMutableDictionary*)spriteObjectNameVariableList
 {
     if (! _spriteObjectNameVariableList) {
@@ -85,6 +93,7 @@
 {
     CBXMLParserContext *copiedContext = [super mutableCopy];
     copiedContext.programVariableList = [self.programVariableList mutableCopy];
+    copiedContext.programListOfLists = [self.programVariableList mutableCopy];
     copiedContext.formulaVariableNameList = [self.formulaVariableNameList mutableCopy];
     copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
     [copiedContext setLanguageVersion:self.languageVersion];

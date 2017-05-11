@@ -59,12 +59,28 @@ static pthread_mutex_t variablesLock;
     return _objectVariableList;
 }
 
+- (OrderedMapTable*)objectListOfLists
+{
+    // lazy instantiation
+    if (! _objectListOfLists)
+        _objectListOfLists = [OrderedMapTable weakToStrongObjectsMapTable];
+    return _objectListOfLists;
+}
+
 - (NSMutableArray*)programVariableList
 {
     // lazy instantiation
     if (! _programVariableList)
         _programVariableList = [NSMutableArray array];
     return _programVariableList;
+}
+
+- (NSMutableArray*)programListOfLists
+{
+    // lazy instantiation
+    if (! _programListOfLists)
+        _programListOfLists = [NSMutableArray array];
+    return _programListOfLists;
 }
 
 
@@ -169,7 +185,7 @@ static pthread_mutex_t variablesLock;
     return vars;
 }
 
-- (NSArray*)allVariables
+- (NSMutableArray*)allVariables
 {
     NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
     for(NSUInteger index = 0; index < [self.objectVariableList count]; index++) {
@@ -177,6 +193,28 @@ static pthread_mutex_t variablesLock;
         if([variableList count] > 0)
             [vars addObjectsFromArray:variableList];
     }
+    return vars;
+}
+
+- (NSMutableArray*)allLists
+{
+    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programListOfLists];
+    for(NSUInteger index = 0; index < [self.objectListOfLists count]; index++) {
+        NSMutableArray *listOfLists = [self.objectListOfLists objectAtIndex:index];
+        if([listOfLists count] > 0)
+            [vars addObjectsFromArray:listOfLists];
+    }
+    return vars;
+}
+
+- (NSMutableArray*)allVariablesAndLists
+{
+    NSMutableArray *vars = [self allVariables ];
+    NSMutableArray *lists = [self allLists ];
+    if([vars count] > 0){
+        [vars addObjectsFromArray:lists];
+    }
+    
     return vars;
 }
 
@@ -193,12 +231,27 @@ static pthread_mutex_t variablesLock;
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
 {
-    for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
-        SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
-        NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
-        for (UserVariable *userVariableToCompare in userVariableList) {
-            if (userVariableToCompare == userVariable) {
-                return spriteObject;
+    if (!userVariable.isList)
+    {
+        for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
+            SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
+            NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
+            for (UserVariable *userVariableToCompare in userVariableList) {
+                if (userVariableToCompare == userVariable) {
+                    return spriteObject;
+                }
+            }
+        }
+    }
+    if (userVariable.isList)
+    {
+        for (NSUInteger index = 0; index < [self.objectListOfLists count]; ++index) {
+            SpriteObject *spriteObject = [self.objectListOfLists keyAtIndex:index];
+            NSMutableArray *userListOfLists = [self.objectListOfLists objectAtIndex:index];
+            for (UserVariable *userListToCompare in userListOfLists) {
+                if (userListToCompare == userVariable) {
+                    return spriteObject;
+                }
             }
         }
     }
@@ -227,6 +280,11 @@ static pthread_mutex_t variablesLock;
 {
     for (UserVariable *userVariableToCompare in self.programVariableList) {
         if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
+            return YES;
+        }
+    }
+    for (UserVariable *userListToCompare in self.programListOfLists) {
+        if ([userListToCompare.name isEqualToString:userVariable.name]) {
             return YES;
         }
     }

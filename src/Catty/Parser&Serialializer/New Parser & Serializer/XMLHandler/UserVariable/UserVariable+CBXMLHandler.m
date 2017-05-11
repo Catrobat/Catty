@@ -36,7 +36,19 @@
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    UserVariable *userVariableOrUserList = nil;
+    if ([xmlElement.name  isEqual: @"userVariable"]){
+        userVariableOrUserList = [self parseUserVariable: xmlElement withContext: context];
+    } else if ([xmlElement.name  isEqual: @"userList"]){
+        userVariableOrUserList = [self parseUserList: xmlElement withContext: context];
+    } else{
+        [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    }
+    return userVariableOrUserList;
+}
+
++ (instancetype)parseUserVariable:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
+{
     if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
         GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
         NSString *xPath = [referenceAttribute stringValue];
@@ -67,14 +79,71 @@
     // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
     userVariable = [UserVariable new];
     userVariable.name = userVariableName;
+    userVariable.isList = false;
     return userVariable;
 }
+
+
++ (instancetype)parseUserList:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
+{
+    if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
+        GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
+        NSString *xPath = [referenceAttribute stringValue];
+        xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
+        [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserList!"];
+    }
+    NSString *userListName = [[xmlElement childWithElementName:@"name"] stringValue];
+    
+    [XMLError exceptionIfNil:userListName message:@"No name for user list given"];
+    UserVariable *userList = nil;
+    
+    SpriteObject *spriteObject = context.spriteObject;
+    if (spriteObject) {
+        [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
+        NSMutableArray *objectUserLists = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
+        for (UserVariable *userListToCompare in objectUserLists) {
+            if ([userListToCompare.name isEqualToString:userListName]) {
+                return userListToCompare;
+            }
+        }
+    }
+    userList = [CBXMLParserHelper findUserVariableInArray:context.programListOfLists
+                                                     withName:userListName];
+    if (userList) {
+        return userList;
+    }
+    
+    // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
+    userList = [UserVariable new];
+    userList.name = userListName;
+    userList.isList = true;
+    return userList;
+}
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
-                                                           context:context]; // needed here for stack
+    GDataXMLElement *xmlElement;
+    if(!self.isList){
+        xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
+                                              context:context]; // needed here for stack
+    }else{
+        xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
+        GDataXMLElement *nameElement = [GDataXMLElement elementWithName:@"name" stringValue:self.name
+                                                          context:context];
+        [xmlElement addChild:nameElement context:context];
+    }
+
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
     // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
@@ -91,8 +160,12 @@
             if (positionStackOfUserVariable) {
                 // already serialized
                 [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
-                GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable"
-                                                                       context:context]; // add new one without stringValue!
+                GDataXMLElement *xmlElement;
+                if(!self.isList){
+                    xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
+                }else{
+                    xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
+                }
                 NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                                      toDestinationPositionStack:positionStackOfUserVariable];
                 [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
@@ -117,8 +190,12 @@
     if (positionStackOfUserVariable) {
         // already serialized
         [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
-        GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable"
-                                                               context:context]; // add new one without stringValue!
+        GDataXMLElement *xmlElement;
+        if(!self.isList){
+            xmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context]; // add new one without stringValue!
+        } else{
+            xmlElement = [GDataXMLElement elementWithName:@"userList" context:context]; // add new one without stringValue!
+        }
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfUserVariable];
         [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
