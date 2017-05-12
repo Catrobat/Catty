@@ -172,6 +172,7 @@
             [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
             [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
             [currentObject.program.variables removeObjectVariablesForSpriteObject:currentObject];
+            [currentObject.program.variables removeObjectListsForSpriteObject:currentObject];
             currentObject.program = nil;
             [self.objectList removeObjectAtIndex:index];
             break;
