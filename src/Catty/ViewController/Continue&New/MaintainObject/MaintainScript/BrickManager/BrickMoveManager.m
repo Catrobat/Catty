@@ -101,7 +101,7 @@
             return (toIndexPath.item != 0);
         }
     } else {
-        return [self handleMovementToOtherScriptwithIndexPath:toIndexPath andObject:object];
+        return [self handleMovementToOtherScriptwithIndexPath:toIndexPath fromBrick:fromBrick andObject:object];
     }
 }
 
@@ -121,8 +121,11 @@
     return YES;
 }
 
--(BOOL)handleMovementToOtherScriptwithIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
+-(BOOL)handleMovementToOtherScriptwithIndexPath:(NSIndexPath*)toIndexPath fromBrick:(Brick*)brick andObject:(SpriteObject*)object
 {
+    if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[LoopBeginBrick class]] || [brick isKindOfClass:[LoopEndBrick class]]) {
+        return NO;
+    }
     Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
     self.moveToOtherScript = YES;
     if ([toScript.brickList count] == 0) {
@@ -130,7 +133,7 @@
     } else {
         return NO;
     }
- 
+    
 }
 
 -(BOOL)handleMovementToForeverBrick:(LoopEndBrick*)loopEndBrick fromIndexPath:(NSIndexPath*)fromIndexPath toIndexPath:(NSIndexPath*)toIndexPath fromBrick:(Brick*)fromBrick andScript:(Script*)script

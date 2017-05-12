@@ -54,6 +54,8 @@
     
     self.startScript = [[StartScript alloc] init];
     self.startScript.object = self.spriteObject;
+    self.whenScript = [[WhenScript alloc] init];
+    self.whenScript.object = self.spriteObject;
     
     [self.spriteObject.scriptList addObject:self.startScript];
     
