@@ -222,6 +222,29 @@
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
             
+        case NUMBEROFITEMS:
+            return [self buildSingleParameterFunction:NUMBEROFITEMS
+                               withFirstParameterType:TOKEN_TYPE_USER_LIST
+                                    andParameterValue:[NSString stringWithFormat:@"list name"]];
+            break;
+            
+        case ELEMENT:
+            return [self buildDoubleParameterFunction:ELEMENT
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]
+                              withSecondParameterType:TOKEN_TYPE_USER_LIST
+                              andSecondParameterValue:[NSString stringWithFormat:@"list name"]];
+            break;
+            
+        case CONTAINS:
+            return [self buildDoubleParameterFunction:CONTAINS
+                               withFirstParameterType:TOKEN_TYPE_USER_LIST
+                                    andParameterValue:[NSString stringWithFormat:@"list name"]
+                              withSecondParameterType:TOKEN_TYPE_NUMBER
+                              andSecondParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+
+            
         //PERIOD
             
         case DECIMAL_MARK:
