@@ -85,7 +85,8 @@
                                              BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate,
                                              CatrobatAlertViewDelegate,
-                                             BluetoothSelection>
+                                             BluetoothSelection,
+                                             UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
@@ -126,6 +127,22 @@
     
     if (self.isEditingBrickMode) {
         [self enableUserInteractionAndResetHighlight];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
 }
 
@@ -1283,8 +1300,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-        [self reloadData];
-}
+    [self reloadData];
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
+             NSMutableArray<Script*>* scriptlist = [self object].scriptList;
+             for (int section = 0; section < scriptlist.count; section++) {
+                 for (int row = 0; row < scriptlist[section].brickList.count; row++) {
+                     if (scriptlist[section].brickList[row].animateInsertBrick) {
+                         [self.collectionView scrollToItemAtIndexPath: [NSIndexPath indexPathForRow:row inSection:section]
+                                                     atScrollPosition:UICollectionViewScrollPositionCenteredVertically
+                                                             animated:NO];
+                         return;
+                    }
+                 }
+             }
+         }
+        }];
+    }
 
 
 - (void)selectAllRows:(id)sender
@@ -1349,6 +1382,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                      }];
     self.editing = NO;
     self.allBricksSelected = NO;
+}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return NO;
 }
 
 @end

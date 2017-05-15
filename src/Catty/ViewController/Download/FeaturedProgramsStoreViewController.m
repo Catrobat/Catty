@@ -195,7 +195,7 @@
 - (void)loadFeaturedProjects
 {
     //self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%@", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
 
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

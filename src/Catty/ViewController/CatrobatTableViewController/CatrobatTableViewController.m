@@ -183,11 +183,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSString *message = [NSString stringWithFormat:@"%@\n\n-------------------\n\nBuild version:\n\n%@",
                          kLocalizedStartedInDebugMode, [Util appBuildVersion]];
-    [[[UIAlertView alloc] initWithTitle:kLocalizedDebugModeTitle
-                                message:message
-                               delegate:nil
-                      cancelButtonTitle:kLocalizedOK
-                      otherButtonTitles:nil] show];
+    [Util alertWithTitle:kLocalizedDebugModeTitle andText:message];
 }
 #endif
 
