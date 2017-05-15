@@ -13,6 +13,7 @@
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
+		4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
@@ -872,6 +873,7 @@
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
+		4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
 		4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
@@ -2229,7 +2231,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		29B97314FDCFA39411CA2CEA = {
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
 				CD0CCE54170CB39600B70036 /* Catty */,
@@ -2351,6 +2353,15 @@
 			name = Sounds;
 			path = CattyTests/Resources/Sounds;
 			sourceTree = SOURCE_ROOT;
+		};
+		4C14CF1A1EC991DA00E53B25 /* UserVariable */ = {
+			isa = PBXGroup;
+			children = (
+				4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */,
+			);
+			name = UserVariable;
+			path = Formula/UserVariable;
+			sourceTree = "<group>";
 		};
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
@@ -2515,6 +2526,7 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
+				4C14CF1A1EC991DA00E53B25 /* UserVariable */,
 				4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
 				4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */,
@@ -6121,7 +6133,7 @@
 				vi,
 				zh,
 			);
-			mainGroup = 29B97314FDCFA39411CA2CEA;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -6674,6 +6686,7 @@
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
+				4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
 				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
@@ -7505,7 +7518,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SDKROOT/usr/include/libxml2",
+					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -7551,7 +7564,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SDKROOT/usr/include/libxml2",
+					$SDKROOT/usr/include/libxml2,
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
@@ -7588,7 +7601,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "$SDKROOT/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -7632,7 +7645,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "$SDKROOT/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
