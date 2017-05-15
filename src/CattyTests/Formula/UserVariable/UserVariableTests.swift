@@ -20,28 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserVariable.h"
-#import "Util.h"
-#import "CBMutableCopyContext.h"
+import XCTest
 
-@implementation UserVariable
+@testable import Pocket_Code
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
+final class UserVariableTests: XCTestCase {
+    
+    func testMutableCopyWithContext() {
+        let userVariable = UserVariable()
+        userVariable.name = "userVar"
+        
+        let userVariableCopy = userVariable.mutableCopyWithContext(CBMutableCopyContext())
+        
+        XCTAssertEqual(userVariable.name, userVariableCopy.name, "mutableCopyWithContext not working")
+        XCTAssertTrue(userVariable === userVariableCopy, "mutableCopyWithContext not working")
+    }
 }
-
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
-{
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return self;
-}
-
-@end
