@@ -131,7 +131,7 @@
         }
         
         for(NSString *variableName in variableList) {
-            if(![variablesContainer getUserVariableNamed:variableName forSpriteObject:object isList:NO]) {
+            if(![variablesContainer getUserVariableNamed:variableName forSpriteObject:object]) {
                 NSMutableArray *objectVariableList = [variablesContainer.objectVariableList
                                                       objectForKey:object];
                 if(!objectVariableList)

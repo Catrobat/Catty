@@ -20,30 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserVariable.h"
-#import "Program.h"
-#import "Util.h"
-#import "CBMutableCopyContext.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@implementation UserVariable
+@interface AddItemToUserListBrickCell : BrickCell
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
-}
-
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
-{
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value] &&
-        (self.isList == userVariable.isList))
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return self;
-}
+@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
+@property (nonatomic, weak) UITextField *valueTextField;
 
 @end

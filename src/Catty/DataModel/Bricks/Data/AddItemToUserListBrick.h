@@ -20,30 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserVariable.h"
-#import "Program.h"
-#import "Util.h"
-#import "CBMutableCopyContext.h"
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "BrickListProtocol.h"
 
-@implementation UserVariable
+@class UserVariable;
+@class Formula;
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
-}
+@interface AddItemToUserListBrick : Brick<BrickFormulaProtocol, BrickListProtocol>
 
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
-{
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value] &&
-        (self.isList == userVariable.isList))
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return self;
-}
+@property (nonatomic, strong) UserVariable *userList;
+@property (nonatomic, strong) Formula *listFormula;
 
 @end

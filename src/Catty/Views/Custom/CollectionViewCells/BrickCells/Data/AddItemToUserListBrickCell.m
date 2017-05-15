@@ -20,30 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserVariable.h"
-#import "Program.h"
-#import "Util.h"
-#import "CBMutableCopyContext.h"
+#import "AddItemToUserListBrickCell.h"
 
-@implementation UserVariable
+@interface AddItemToUserListBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel;
+@end
 
-- (NSString*)description
+@implementation AddItemToUserListBrickCell
+
+- (void)drawRect:(CGRect)rect
 {
-    return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
 }
 
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
++ (CGFloat)cellHeight
 {
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value] &&
-        (self.isList == userVariable.isList))
-        return YES;
-    return NO;
+    return kBrickHeight2h;
 }
 
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    return self;
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+    self.thirdRowTextLabel = inlineViewSubViews[2];
+    self.valueTextField = inlineViewSubViews[3];
 }
 
 @end

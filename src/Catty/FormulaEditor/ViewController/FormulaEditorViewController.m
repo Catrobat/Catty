@@ -1090,18 +1090,36 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         VariablePickerData *pickerData;
-        if (self.variableSegmentedControl.selectedSegmentIndex == 0) {
+        if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
+            && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
             if (row < self.variableSourceProgram.count) {
                 pickerData = [self.variableSourceProgram objectAtIndex:row];
             }
-        } else {
+        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
+                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
             if (row < self.variableSourceObject.count) {
                 pickerData = [self.variableSourceObject objectAtIndex:row];
+            }
+        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
+                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
+            if (row < self.listSourceProgram.count) {
+                pickerData = [self.listSourceProgram objectAtIndex:row];
+            }
+        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
+                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
+            if (row < self.listSourceObject.count) {
+                pickerData = [self.listSourceObject objectAtIndex:row];
             }
         }
         if (pickerData) {
             if(![self isVariableBeingUsed:pickerData.userVariable]) {
-                BOOL removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                
+                BOOL removed = NO;
+                if (!pickerData.userVariable.isList) {
+                    removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                } else {
+                    removed = [self.object.program.variables removeUserListNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                }
                 if (removed) {
                     [self.variableSource removeObjectAtIndex:row];
                     [self.object.program saveToDiskWithNotification:YES];
@@ -1116,7 +1134,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (BOOL)isVariableBeingUsed:(UserVariable*)variable
 {
-    if([self.object.program.variables isProgramVariable:variable]) {
+    //TODO: Make it work for lists
+    if([self.object.program.variables isProgramVariableOrList:variable]) {
         for(SpriteObject *spriteObject in self.object.program.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {

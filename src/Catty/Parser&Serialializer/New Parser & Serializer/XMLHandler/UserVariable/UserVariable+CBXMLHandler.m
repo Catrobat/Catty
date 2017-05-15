@@ -182,7 +182,7 @@
     }
 
     // it must be a program variable!
-    if (! [context.variables isProgramVariable:self]) {
+    if (! [context.variables isProgramVariableOrList:self]) {
         [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor programVariable"];
     }
 

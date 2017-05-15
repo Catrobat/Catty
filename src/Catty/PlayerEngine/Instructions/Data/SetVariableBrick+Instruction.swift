@@ -23,16 +23,17 @@
 extension SetVariableBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
-
+        
         guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
-
+            let variables = spriteObject.program?.variables
+            else { fatalError("This should never happen!") }
+        
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
-
+        
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: SetVariableBrick")
+            //            self.logger.debug("Performing: SetVariableBrick")
+            
             let result = variableFormula.interpretVariableDataForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
             
@@ -50,6 +51,6 @@ extension SetVariableBrick: CBInstructionProtocol {
             userVariable.textLabel.text = value
             context.state = .Runnable
         }
-
+        
     }
 }

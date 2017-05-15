@@ -20,30 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "UserVariable.h"
-#import "Program.h"
-#import "Util.h"
-#import "CBMutableCopyContext.h"
+extension AddItemToUserListBrick: CBInstructionProtocol {
+    
+    func instruction() -> CBInstruction {
 
-@implementation UserVariable
+        guard let spriteObject = self.script?.object,
+              let variablesContainer = spriteObject.program?.variables
+        else { fatalError("This should never happen!") }
 
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
+        let userList = self.userList
+        let listFormula = self.listFormula
+
+        return CBInstruction.ExecClosure { (context, _) in
+//            self.logger.debug("Performing: AddItemToUserListBrick")
+            if (userList != nil){
+                let result = listFormula.interpretVariableDataForSprite(spriteObject)
+                variablesContainer.addToUserList(userList, value: result)
+            }
+            context.state = .Runnable
+        }
+
+    }
 }
-
-- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
-{
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value] &&
-        (self.isList == userVariable.isList))
-        return YES;
-    return NO;
-}
-
-#pragma mark - Copy
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
-{
-    return self;
-}
-
-@end

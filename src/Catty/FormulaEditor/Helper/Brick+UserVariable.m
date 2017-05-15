@@ -33,6 +33,7 @@
 #define BRICK_MAX_PARAM_NUMBER 3
 - (BOOL)isVariableBeingUsed:(UserVariable*)variable
 {
+    //TODO: Make it work for lists
     if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
        return NO;
     

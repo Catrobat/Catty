@@ -37,16 +37,24 @@
 @property (nonatomic, strong) NSMutableArray *programVariableList;
 @property (nonatomic, strong) NSMutableArray *programListOfLists;
 
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite isList:(BOOL)isList;
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+- (UserVariable*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+
 
 - (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+- (BOOL)removeUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
+
 
 - (void)setUserVariable:(UserVariable*)userVariable toValue:(id)value;
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
+- (void)addToUserList:(UserVariable*)userList value:(id)value;
+
+
 // Array of UserVariable
 - (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject;
+- (NSArray*)allListsForObject:(SpriteObject*)spriteObject;
 
 // Array of Variables
 - (NSMutableArray*)allVariables;
@@ -57,14 +65,16 @@
 
 // Array of UserVariable
 - (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject;
+- (NSArray*)objectListsForObject:(SpriteObject*)spriteObject;
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;
 
 - (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable;
 
-- (BOOL)isProgramVariable:(UserVariable*)userVariable;
+- (BOOL)isProgramVariableOrList:(UserVariable*)userVariable;
 
 - (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;
+- (void)removeObjectListsForSpriteObject:(SpriteObject*)object;
 
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
 

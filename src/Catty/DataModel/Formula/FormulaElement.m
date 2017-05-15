@@ -116,7 +116,7 @@
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
             VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-            UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite isList:NO];
+            UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
             if (var.value == nil) {
                 return [NSNumber numberWithInt:0];
@@ -542,7 +542,7 @@
 {
 //    ProgramManager *programManager = [ProgramManager sharedProgramManager];
     VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-    UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite isList:NO];
+    UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     
     id userVariableVvalue = [userVariable value];
     if([userVariableVvalue isKindOfClass:[NSString class]])

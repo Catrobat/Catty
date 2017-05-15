@@ -41,11 +41,15 @@ static pthread_mutex_t variablesLock;
 
 - (void)dealloc
 {
-    NSDebug(@"Dealloc Variables");
+    NSDebug(@"Dealloc Variables and Lists");
     [self.objectVariableList removeAllObjects];
     [self.programVariableList removeAllObjects];
+    [self.objectListOfLists removeAllObjects];
+    [self.programListOfLists removeAllObjects];
     self.programVariableList = nil;
     self.objectVariableList = nil;
+    self.programListOfLists = nil;
+    self.objectListOfLists = nil;
     pthread_mutex_destroy(&variablesLock);
 }
 
@@ -84,7 +88,7 @@ static pthread_mutex_t variablesLock;
 }
 
 
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite isList:(BOOL)isList
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
 {
     NSArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
     UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
@@ -93,6 +97,17 @@ static pthread_mutex_t variablesLock;
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
     }
     return variable;
+}
+
+- (UserVariable*)getUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
+{
+    NSArray *objectUserLists = [self.objectListOfLists objectForKey:sprite];
+    UserVariable *list = [self findUserVariableNamed:name inArray:objectUserLists];
+    
+    if (! list) {
+        list = [self findUserVariableNamed:name inArray:self.programListOfLists];
+    }
+    return list;
 }
 
 - (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
@@ -106,6 +121,23 @@ static pthread_mutex_t variablesLock;
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
         if (variable) {
                 [self removeProgramUserVariableNamed:name];
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)removeUserListNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
+{
+    NSMutableArray *objectUserLists = [self.objectListOfLists objectForKey:sprite];
+    UserVariable *list = [self findUserVariableNamed:name inArray:objectUserLists];
+    if (list) {
+        [self removeObjectUserListNamed:name inArray:objectUserLists forSpriteObject:sprite];
+        return YES;
+    } else {
+        list = [self findUserVariableNamed:name inArray:self.programListOfLists];
+        if (list) {
+            [self removeProgramUserListNamed:name];
             return YES;
         }
     }
@@ -141,6 +173,20 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
+- (void)removeObjectUserListNamed:(NSString*)name inArray:(NSMutableArray*)userLists forSpriteObject:(SpriteObject*)sprite
+{
+    pthread_mutex_lock(&variablesLock);
+    for (int i = 0; i < [userLists count]; ++i) {
+        UserVariable *list = [userLists objectAtIndex:i];
+        if ([list.name isEqualToString:name]) {
+            [userLists removeObjectAtIndex:i];
+            [self.objectListOfLists setObject:userLists forKey:sprite];
+            break;
+        }
+    }
+    pthread_mutex_unlock(&variablesLock);
+}
+
 - (void)removeProgramUserVariableNamed:(NSString*)name
 {
     pthread_mutex_lock(&variablesLock);
@@ -148,6 +194,19 @@ static pthread_mutex_t variablesLock;
         UserVariable *var = [self.programVariableList objectAtIndex:i];
         if ([var.name isEqualToString:name]) {
             [self.programVariableList removeObjectAtIndex:i];
+            break;
+        }
+    }
+    pthread_mutex_unlock(&variablesLock);
+}
+
+- (void)removeProgramUserListNamed:(NSString*)name
+{
+    pthread_mutex_lock(&variablesLock);
+    for (int i = 0; i < [self.programListOfLists count]; ++i) {
+        UserVariable *list = [self.programListOfLists objectAtIndex:i];
+        if ([list.name isEqualToString:name]) {
+            [self.programListOfLists removeObjectAtIndex:i];
             break;
         }
     }
@@ -169,6 +228,31 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
+- (void)addToUserList:(UserVariable*)userList value:(id)value
+{
+    pthread_mutex_lock(&variablesLock);
+    if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
+        NSError(@"Found a UserList that is not of class NSMutableArray.");
+    }
+    
+    NSMutableArray *array;
+    if(userList.value == nil){
+        array = [[NSMutableArray alloc] init];
+    } else {
+        array = (NSMutableArray*)userList.value;
+    }
+    
+    if([value isKindOfClass:[NSString class]]){
+        [array addObject:(NSString*)value];
+    } else if([value isKindOfClass:[NSNumber class]]){
+        [array addObject:(NSNumber*)value];
+    } else {
+        [array addObject:[NSNumber numberWithInt:0]];
+    }
+    userList.value = array;
+    pthread_mutex_unlock(&variablesLock);
+}
+
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);
@@ -183,6 +267,13 @@ static pthread_mutex_t variablesLock;
     NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
     [vars addObjectsFromArray:[self objectVariablesForObject:spriteObject]];
     return vars;
+}
+
+- (NSArray*)allListsForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *lists = [NSMutableArray arrayWithArray:self.programListOfLists];
+    [lists addObjectsFromArray:[self objectListsForObject:spriteObject]];
+    return lists;
 }
 
 - (NSMutableArray*)allVariables
@@ -227,6 +318,17 @@ static pthread_mutex_t variablesLock;
         }
     }
     return vars;
+}
+
+- (NSArray*)objectListsForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *lists = [NSMutableArray new];
+    if([self.objectListOfLists objectForKey:spriteObject]) {
+        for(UserVariable *list in [self.objectListOfLists objectForKey:spriteObject]) {
+            [lists addObject:list];
+        }
+    }
+    return lists;
 }
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
@@ -276,7 +378,7 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
-- (BOOL)isProgramVariable:(UserVariable*)userVariable
+- (BOOL)isProgramVariableOrList:(UserVariable*)userVariable
 {
     for (UserVariable *userVariableToCompare in self.programVariableList) {
         if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
@@ -296,74 +398,97 @@ static pthread_mutex_t variablesLock;
     [self.objectVariableList removeObjectForKey:object];
 }
 
+- (void)removeObjectListsForSpriteObject:(SpriteObject*)object
+{
+    [self.objectListOfLists removeObjectForKey:object];
+}
+
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer
 {
     //----------------------------------------------------------------------------------------------------
-    // objectVariableList
+    // objectVariableList and objectListOfLists
     //----------------------------------------------------------------------------------------------------
-    if ([self.objectVariableList count] != [variablesContainer.objectVariableList count])
-        return NO;
+    NSMutableArray *objVarsAndLists = [[NSMutableArray alloc] initWithCapacity: 2];
+    [objVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.objectVariableList,variablesContainer.objectVariableList, nil] atIndex:0];
+    [objVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.objectListOfLists,variablesContainer.objectListOfLists, nil] atIndex:1];
     
-    NSUInteger index;
-    for(index = 0; index < [self.objectVariableList count]; ++index) {
-        //----------------------------------------------------------------------------------------------------
-        // 1) compare keys (sprite object of both object variables)
-        //----------------------------------------------------------------------------------------------------
-        SpriteObject *firstObject = [self.objectVariableList keyAtIndex:index];
-        SpriteObject *secondObject = nil;
-        NSUInteger idx;
-        // look for object with same name (order in variable list can differ)
-        for (idx = 0; idx < [variablesContainer.objectVariableList count]; ++idx) {
-            SpriteObject *spriteObject = [variablesContainer.objectVariableList keyAtIndex:idx];
-            if ([spriteObject.name isEqualToString:firstObject.name]) {
-                secondObject = spriteObject;
-                break;
+    for (NSMutableArray *varsOrLists in objVarsAndLists) {
+        OrderedMapTable *thisVarsOrLists = [varsOrLists objectAtIndex:0];
+        OrderedMapTable *otherVarsOrLists = [varsOrLists objectAtIndex:1];
+        
+        if ([thisVarsOrLists count] != [otherVarsOrLists count])
+            return NO;
+        
+        NSUInteger index;
+        for(index = 0; index < [thisVarsOrLists count]; ++index) {
+            //----------------------------------------------------------------------------------------------------
+            // 1) compare keys (sprite object of both object variables/lists)
+            //----------------------------------------------------------------------------------------------------
+            SpriteObject *firstObject = [thisVarsOrLists keyAtIndex:index];
+            SpriteObject *secondObject = nil;
+            NSUInteger idx;
+            // look for object with same name (order in VariableList/ListOfLists can differ)
+            for (idx = 0; idx < [otherVarsOrLists count]; ++idx) {
+                SpriteObject *spriteObject = [otherVarsOrLists keyAtIndex:idx];
+                if ([spriteObject.name isEqualToString:firstObject.name]) {
+                    secondObject = spriteObject;
+                    break;
+                }
+            }
+            if (secondObject == nil || (! [firstObject isEqualToSpriteObject:secondObject]))
+                return NO;
+            
+            //----------------------------------------------------------------------------------------------------
+            // 2) compare values (all user variables/lists of both object variables)
+            //----------------------------------------------------------------------------------------------------
+            NSMutableArray *firstUserVariableList = [thisVarsOrLists objectAtIndex:index];
+            NSMutableArray *secondUserVariableList = [otherVarsOrLists objectAtIndex:idx];
+            
+            if ([firstUserVariableList count] != [secondUserVariableList count])
+                return NO;
+            
+            for (UserVariable *firstVariable in firstUserVariableList) {
+                UserVariable *secondVariable = nil;
+                // look for variable with same name (order in VariableList/ListOfLists can differ)
+                for (UserVariable *variable in secondUserVariableList) {
+                    if ([firstVariable.name isEqualToString:variable.name]) {
+                        secondVariable = variable;
+                        break;
+                    }
+                }
+                
+                if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
+                    return NO;
             }
         }
-        if (secondObject == nil || (! [firstObject isEqualToSpriteObject:secondObject]))
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    // programVariableList and programListOfLists
+    //----------------------------------------------------------------------------------------------------
+    NSMutableArray *progVarsAndLists = [[NSMutableArray alloc] initWithCapacity: 2];
+    [progVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.programVariableList,variablesContainer.programVariableList, nil] atIndex:0];
+    [progVarsAndLists insertObject:[NSMutableArray arrayWithObjects:self.programListOfLists,variablesContainer.programListOfLists, nil] atIndex:1];
+    
+    for (NSMutableArray *varsOrLists in progVarsAndLists) {
+        NSMutableArray *thisVarsOrLists = [varsOrLists objectAtIndex:0];
+        NSMutableArray *otherVarsOrLists = [varsOrLists objectAtIndex:1];
+        
+        if ([thisVarsOrLists count] != [otherVarsOrLists count])
             return NO;
-
-        //----------------------------------------------------------------------------------------------------
-        // 2) compare values (all user variables of both object variables)
-        //----------------------------------------------------------------------------------------------------
-        NSMutableArray *firstUserVariableList = [self.objectVariableList objectAtIndex:index];
-        NSMutableArray *secondUserVariableList = [variablesContainer.objectVariableList objectAtIndex:idx];
-
-        if ([firstUserVariableList count] != [secondUserVariableList count])
-            return NO;
-
-        for (UserVariable *firstVariable in firstUserVariableList) {
+        
+        for (UserVariable *firstVariable in thisVarsOrLists) {
             UserVariable *secondVariable = nil;
             // look for variable with same name (order in variable list can differ)
-            for (UserVariable *variable in secondUserVariableList) {
+            for (UserVariable *variable in otherVarsOrLists) {
                 if ([firstVariable.name isEqualToString:variable.name]) {
                     secondVariable = variable;
                     break;
                 }
             }
-
             if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
                 return NO;
         }
-    }
-
-    //----------------------------------------------------------------------------------------------------
-    // programVariableList
-    //----------------------------------------------------------------------------------------------------
-    if ([self.programVariableList count] != [variablesContainer.programVariableList count])
-        return NO;
-
-    for (UserVariable *firstVariable in self.programVariableList) {
-        UserVariable *secondVariable = nil;
-        // look for variable with same name (order in variable list can differ)
-        for (UserVariable *variable in variablesContainer.programVariableList) {
-            if ([firstVariable.name isEqualToString:variable.name]) {
-                secondVariable = variable;
-                break;
-            }
-        }
-        if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
-            return NO;
     }
     return YES;
 }
@@ -373,6 +498,9 @@ static pthread_mutex_t variablesLock;
     VariablesContainer *copiedVariablesContainer = [VariablesContainer new];
     copiedVariablesContainer.objectVariableList = [self.objectVariableList mutableCopy];
     copiedVariablesContainer.programVariableList = [self.programVariableList mutableCopy];
+    copiedVariablesContainer.objectListOfLists = [self.objectListOfLists mutableCopy];
+    copiedVariablesContainer.programListOfLists = [self.programListOfLists mutableCopy];
+
     return copiedVariablesContainer;
 }
 

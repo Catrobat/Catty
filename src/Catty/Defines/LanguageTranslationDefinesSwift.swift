@@ -296,6 +296,7 @@ let kLocalizedEnterNameForImportedProgramTitle = NSLocalizedString("Import File"
 let kLocalizedEnterYourProgramDescriptionHere = NSLocalizedString("Enter your program description here...", comment: "Placeholder for program-description input field")
 let kLocalizedEnterYourMessageHere = NSLocalizedString("Enter your message here...", comment: "Placeholder for message input field")
 let kLocalizedEnterYourVariableNameHere = NSLocalizedString("Enter your variable name here...", comment: "Placeholder for variable input field")
+let kLocalizedEnterYourListNameHere = NSLocalizedString("Enter your list name here...", comment: "Placeholder for list input field")
 let kLocalizedEnterYourObjectNameHere = NSLocalizedString("Enter your object name here...", comment: "Placeholder for add object-name input field")
 let kLocalizedEnterYourImageNameHere = NSLocalizedString("Enter your image name here...", comment: "Placeholder for add image-name input field")
 let kLocalizedEnterYourSoundNameHere = NSLocalizedString("Enter your sound name here...", comment: "Placeholder for add sound-name input field")
@@ -386,11 +387,12 @@ let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to %@%", comment: "")
 let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by %", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak %", comment: "")
 
-// variable bricks
+// variable and list bricks
 let kLocalizedSetVariable = NSLocalizedString("Set variable\n%@\nto %", comment: "")
 let kLocalizedChangeVariable = NSLocalizedString("Change variable\n%@\nby %", comment: "")
 let kLocalizedShowVariable = NSLocalizedString("Show variable\n%@\nx: %@ y:%", comment: "")
 let kLocalizedHideVariable = NSLocalizedString("Hide variable\n%", comment: "")
+let kLocalizedAddItemToUserList = NSLocalizedString("Add %@ to list\n%", comment: "")
 
 
 let kLocalizedAddCommentHere = NSLocalizedString("add comment here...", comment: "")
@@ -524,6 +526,7 @@ let kUIFEProgramLists = NSLocalizedString("Program lists:", comment: "")
 let kUIFEObjectLists = NSLocalizedString("Object lists:", comment: "")
 let kUIFEDeleteVarBeingUsed = NSLocalizedString("This variable can not be deleted because it is still in use.", comment: "")
 let kUIFEActionVar = NSLocalizedString("Variable type", comment: "")
+let kUIFEActionList = NSLocalizedString("List type", comment: "")
 let kUIFEActionVarObj = NSLocalizedString("for this object", comment: "")
 let kUIFEActionVarPro = NSLocalizedString("for all objects", comment: "")
 let kUIFEChangesSaved = NSLocalizedString("Changes saved!", comment: "")
@@ -531,7 +534,6 @@ let kUIFEChangesDiscarded = NSLocalizedString("Changes discarded!", comment: "")
 let kUIFESyntaxError = NSLocalizedString("Syntax Error!", comment: "")
 
 let kUIFEVarOrList = NSLocalizedString("Variable or List", comment: "")
-let kUIFEActionList = NSLocalizedString("List type", comment: "")
 
 let kUIFEFunctionSqrt = NSLocalizedString("sqrt", comment: "")
 let kUIFEFunctionTrue = NSLocalizedString("true", comment: "")
