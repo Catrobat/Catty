@@ -33,6 +33,13 @@
         return [self buildUserVariable:name];
     }
     
+    //USER LISTS
+    
+    if((resource==11) && [name length]!=0)
+    {
+        return [self buildUserList:name];
+    }
+    
     //STRING
     
     if(resource == TOKEN_TYPE_STRING)
@@ -405,6 +412,13 @@
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_USER_VARIABLE AndValue:name]];
+    return returnList;
+}
+
+- (NSMutableArray *)buildUserList:(NSString *)name
+{
+    NSMutableArray *returnList = [[NSMutableArray alloc]init];
+    [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_USER_LIST AndValue:name]];
     return returnList;
 }
 

@@ -89,6 +89,7 @@ typedef enum KeyboardNumbers
 - (BOOL)isSensor;
 - (BOOL)isEndOfFileToken;
 - (BOOL)isUserVariable;
+- (BOOL)isUserList;
 - (BOOL)isString;
 - (void)appendToTokenStringValue:(NSString*)stringToAppend;
 - (void)appendToTokenStringValueWithArray:(NSArray*)internTokensToAppend;

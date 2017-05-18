@@ -821,6 +821,9 @@
         case USER_VARIABLE:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_USER_VARIABLE AndValue:self.value]];
             break;
+        case USER_LIST:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_USER_LIST AndValue:self.value]];
+            break;
         case NUMBER:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:self.value]];
             break;

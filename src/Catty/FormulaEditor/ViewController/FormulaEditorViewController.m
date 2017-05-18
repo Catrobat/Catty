@@ -1062,27 +1062,35 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 }
 
-- (IBAction)choseVariable:(UIButton *)sender {
+- (IBAction)choseVariableOrList:(UIButton *)sender {
 
  NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
+        int buttonType = 0;
         VariablePickerData *pickerData;
-        if (self.variableSegmentedControl.selectedSegmentIndex == 0) {
+        if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
             if (row < self.variableSourceProgram.count) {
                pickerData = [self.variableSourceProgram objectAtIndex:row];
             }
-        } else {
+        } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0){
             if (row < self.variableSourceObject.count) {
                 pickerData = [self.variableSourceObject objectAtIndex:row];
             }
+        } else if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
+            if (row < self.listSourceProgram.count) {
+                pickerData = [self.listSourceProgram objectAtIndex:row];
+                buttonType = 11;
+            }
+        } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
+            if (row < self.listSourceObject.count) {
+                pickerData = [self.listSourceObject objectAtIndex:row];
+                buttonType = 11;
+            }
         }
         if (pickerData) {
-             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
+             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
         }
     }
-    
-    // TODO: handle list case
-
 }
 
 

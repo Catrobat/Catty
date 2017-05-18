@@ -48,7 +48,7 @@ extension FormulaElement {
             return true
         }
 
-        if (type == .USER_VARIABLE) || (type == .SENSOR) || (type == .STRING) {
+        if (type == .USER_LIST) || (type == .USER_VARIABLE) || (type == .SENSOR) || (type == .STRING) {
             idempotenceState = .NOT_IDEMPOTENT // cache result!
             return false
         }
