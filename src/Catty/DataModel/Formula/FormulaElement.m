@@ -125,6 +125,31 @@
             break;
         }
 
+        case USER_LIST: {
+            //NSDebug(@"User List");
+            VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+            UserVariable *list = [lists getUserListNamed:self.value forSpriteObject:sprite];
+            //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
+            if (list.value == nil) {
+                return [NSNumber numberWithInt:0];
+            }
+            NSString *allListElements = @"";
+            NSMutableArray *listContent = (NSMutableArray*) list.value;
+            for (int i = 0; i < [listContent count]; i++) {
+                id element = [listContent objectAtIndex: i];
+                if ([element isKindOfClass:[NSString class]]) {
+                    allListElements = [allListElements stringByAppendingString: (NSString*) element];
+                } else if ([element isKindOfClass:[NSNumber class]]) {
+                    allListElements = [allListElements stringByAppendingString: [((NSNumber*) element) stringValue]];
+                }
+                if (i < ([listContent count] - 1)) {
+                    allListElements = [allListElements stringByAppendingString: @" "];
+                }
+            }
+            result = allListElements;
+            break;
+        }
+            
         case SENSOR: {
             //NSDebug(@"SENSOR");
             Sensor sensor = [SensorManager sensorForString:self.value];
@@ -429,6 +454,10 @@
             result = [NSNumber numberWithInteger:ceil(left)];
             break;
         }
+        case ELEMENT : {
+            result = [self interpretFunctionELEMENT:sprite];
+            break;
+        }
         default:
             //abort();
             [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];
@@ -437,6 +466,43 @@
     return result;
     
 }
+
+- (id)interpretFunctionELEMENT:(SpriteObject *)sprite
+{
+    NSNumber *fallback = [NSNumber numberWithInt:0];
+    UserVariable *list = nil;
+    if (self.rightChild.type == USER_LIST) {
+        VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+        list = [lists getUserListNamed:self.rightChild.value forSpriteObject:sprite];
+        if (list.value == nil) {
+            return fallback;
+        }
+    } else {
+        return fallback;
+    }
+    
+    NSMutableArray *listContent = (NSMutableArray*) list.value;
+    if (!([listContent count] > 0)) {
+        return fallback;
+    }
+    
+    NSNumber *index = nil;
+    id value = [self.leftChild interpretRecursiveForSprite:sprite];
+    if ([value isKindOfClass:[NSNumber class]]) {
+        index = [NSNumber numberWithUnsignedInteger:[value unsignedIntegerValue]];
+    } else if ([value isKindOfClass:[NSString class]]) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        index = [formatter numberFromString:(NSString*) value];
+    }
+
+    if (index == nil) {
+        return fallback;
+    } else {
+        return [listContent objectAtIndex:[index unsignedIntegerValue] - 1];
+    }
+}
+
 
 - (NSString*)interpretFunctionJOIN:(SpriteObject *)sprite
 {

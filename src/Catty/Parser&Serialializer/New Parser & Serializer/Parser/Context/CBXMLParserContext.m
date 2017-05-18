@@ -93,7 +93,7 @@
 {
     CBXMLParserContext *copiedContext = [super mutableCopy];
     copiedContext.programVariableList = [self.programVariableList mutableCopy];
-    copiedContext.programListOfLists = [self.programVariableList mutableCopy];
+    copiedContext.programListOfLists = [self.programListOfLists mutableCopy];
     copiedContext.formulaVariableNameList = [self.formulaVariableNameList mutableCopy];
     copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
     [copiedContext setLanguageVersion:self.languageVersion];

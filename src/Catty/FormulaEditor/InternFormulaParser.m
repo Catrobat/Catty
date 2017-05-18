@@ -231,6 +231,11 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             [currentElement replaceElement:[self userVariableForSpriteObject:object]];
             break;
         }
+            
+        case TOKEN_TYPE_USER_LIST: {
+            [currentElement replaceElement:[self userListForSpriteObject:object]];
+            break;
+        }
          
         default: {
             [InternFormulaParserException raise:@"Parse Error" format:@""];
@@ -247,6 +252,14 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     
 //    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
 //    @throw exception;
+    [self getNextToken];
+    return formulaTree;
+}
+
+- (FormulaElement*)userListForSpriteObject:(SpriteObject*)object
+{
+    FormulaElement *formulaTree = [[FormulaElement alloc]initWithElementType:USER_LIST value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
+    
     [self getNextToken];
     return formulaTree;
 }
