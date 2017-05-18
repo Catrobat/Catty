@@ -24,16 +24,10 @@
 #import "ScriptCollectionViewController.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
-#import "SpriteObject.h"
-#import "ProgramDefines.h"
-#import "UIDefines.h"
 #import "SegueDefines.h"
 #import "TableUtil.h"
 #import "CatrobatImageCell.h"
-#import "ScenePresenterViewController.h"
-#import "LanguageTranslationDefines.h"
 #import "Util.h"
-#import "ProgramLoadingInfo.h"
 
 @interface ObjectTableViewController ()
 

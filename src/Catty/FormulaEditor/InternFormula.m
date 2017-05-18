@@ -21,7 +21,6 @@
  */
 
 #import "InternFormula.h"
-#import "InternFormulaUtils.h"
 
 @interface InternFormula()
 

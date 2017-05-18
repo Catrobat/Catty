@@ -66,3 +66,4 @@
 
 #define kProgramsOffset @"offset="
 #define kProgramsLimit @"limit="
+#define kMaxVersion @"max_version="

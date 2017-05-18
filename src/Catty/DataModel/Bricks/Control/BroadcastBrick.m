@@ -21,15 +21,13 @@
  */
 
 #import "BroadcastBrick.h"
-#import "Script.h"
 #import "Util.h"
-#import "LanguageTranslationDefines.h"
 
 @implementation BroadcastBrick
 
 - (NSString*)brickTitle
 {
-    return kLocalizedBroadcast;
+    return [kLocalizedBroadcast stringByAppendingString:@"\n%@"];
 }
 
 - (id)initWithMessage:(NSString *)message

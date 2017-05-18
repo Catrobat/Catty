@@ -23,10 +23,6 @@
 #import "BrickTransition.h"
 #import "ScriptCollectionViewController.h"
 #import "FXBlurView.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "BrickCell.h"
-#import "FXBlurView.h"
-#import "math.h"
 
 
 @interface BrickTransition ()

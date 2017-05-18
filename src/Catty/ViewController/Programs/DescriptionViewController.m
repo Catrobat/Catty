@@ -23,7 +23,6 @@
 #import "DescriptionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
-#import <QuartzCore/QuartzCore.h>
 #import "MyProgramsViewController.h"
 #import "ProgramTableViewController.h"
 
@@ -52,6 +51,13 @@
     self.view.backgroundColor = [UIColor whiteGrayColor];
     self.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationBar.backgroundColor = [UIColor navBarColor];
+    
+    self.navigationBar.translucent = false;
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
+    statusBarView.backgroundColor  =  UIColor.navBarColor;
+    [self.view addSubview:statusBarView];
+    
     [self initHeader];
     [self initTextView];
 }
@@ -61,16 +67,6 @@
     [super viewDidAppear:animated];
     [self.descriptionTextView becomeFirstResponder];
     [self.descriptionTextView setSelectedTextRange:[self.descriptionTextView textRangeFromPosition:self.descriptionTextView.beginningOfDocument toPosition:self.descriptionTextView.endOfDocument]];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 #pragma mark Initialization

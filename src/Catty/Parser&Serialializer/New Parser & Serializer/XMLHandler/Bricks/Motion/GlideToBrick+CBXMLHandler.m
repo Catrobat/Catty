@@ -21,7 +21,6 @@
  */
 
 #import "GlideToBrick+CBXMLHandler.h"
-#import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"

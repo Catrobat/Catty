@@ -93,11 +93,15 @@
 #import "HideTextBrick.h"
 #import "FlashBrick.h"
 #import "AddItemToUserListBrick.h"
+#import "RepeatBrick.h"
 
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "Functions.h"
+
+// UserVariable
+#import "UserVariable.h"
 
 // Assets
 #import "Look.h"
@@ -121,6 +125,7 @@
 #import "LoadingView.h"
 #import "CatrobatAlertController.h"
 #import "RuntimeImageCache.h"
+#import "CBMutableCopyContext.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes

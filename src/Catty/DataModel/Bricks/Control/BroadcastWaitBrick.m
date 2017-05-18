@@ -21,7 +21,6 @@
  */
 
 #import "BroadcastWaitBrick.h"
-#import "Script.h"
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 
@@ -29,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedBroadcastAndWait;
+    return [kLocalizedBroadcastAndWait stringByAppendingString:@"\n%@"];
 }
 
 - (id)initWithMessage:(NSString*)message

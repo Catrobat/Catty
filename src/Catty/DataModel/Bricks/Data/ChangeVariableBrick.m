@@ -21,11 +21,6 @@
  */
 
 #import "ChangeVariableBrick.h"
-#import "Formula.h"
-#import "Program.h"
-#import "VariablesContainer.h"
-#import "UserVariable.h"
-#import "Script.h"
 
 @implementation ChangeVariableBrick
 
@@ -69,7 +64,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeVariable;
+    return [kLocalizedChangeVariable stringByAppendingString:[@"\n%@\n" stringByAppendingString:[kLocalizedBy stringByAppendingString:@"%@"]]];
 }
 
 - (BOOL)allowsStringFormula

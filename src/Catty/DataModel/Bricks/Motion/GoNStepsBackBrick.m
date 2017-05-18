@@ -21,7 +21,6 @@
  */
 
 #import "GoNStepsBackBrick.h"
-#import "Formula.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
@@ -59,7 +58,14 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedGoNStepsBack;
+    int layers = [self.steps interpretIntegerForSprite:self.script.object andUseCache:NO];
+    NSString* localizedLayer;
+    if ([self.steps isSingleNumberFormula] && layers == 1) {
+        localizedLayer = kLocalizedLayer;
+    } else {
+        localizedLayer = kLocalizedLayers;
+    }
+    return [kLocalizedGoBack stringByAppendingString:[@"%@ " stringByAppendingString:localizedLayer]];
 }
 
 #pragma mark - Description

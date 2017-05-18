@@ -22,7 +22,6 @@
 
 #import "DarkBlueGradientFeaturedCell.h"
 #import "Util.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation DarkBlueGradientFeaturedCell
 

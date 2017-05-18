@@ -21,10 +21,7 @@
  */
 
 #import "Formula.h"
-#import "FormulaElement.h"
 #import "Pocket_Code-Swift.h"
-#import "Operators.h"
-#import "ProgramDefines.h"
 
 @interface Formula()
 @property (nonatomic, strong, readwrite) NSNumber *lastResult;
@@ -90,7 +87,11 @@
 }
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite {
-    if (self.bufferedResult) {
+    return [self interpretDoubleForSprite:sprite andUseCache:YES];
+}
+
+- (double)interpretDoubleForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache {
+    if (useCache && self.bufferedResult) {
         double bufferedResult = 0;
         if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
             bufferedResult = [self.bufferedResult doubleValue];
@@ -98,9 +99,10 @@
         self.bufferedResult = nil;
         return bufferedResult;
     }
-    if (self.lastResult) {
+    if (useCache && self.lastResult) {
         return self.lastResult.doubleValue;
     }
+    
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     double returnDoubleValue = 0.0f;
     if ([returnValue isKindOfClass:[NSNumber class]]) {
@@ -117,6 +119,10 @@
 
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite {
     return (int)[self interpretDoubleForSprite:sprite];
+}
+
+- (int)interpretIntegerForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache {
+    return (int)[self interpretDoubleForSprite:sprite andUseCache:useCache];
 }
 
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite

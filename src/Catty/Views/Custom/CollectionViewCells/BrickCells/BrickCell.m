@@ -21,16 +21,12 @@
  */
 
 #import "BrickCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "Brick.h"
 #import "BrickCellInlineView.h"
 #import "UIUtil.h"
 #import "iOSCombobox.h"
 #import "BrickManager.h"
-#import "BrickProtocol.h"
 #import "Script.h"
-#import "NoteBrick.h"
-#import "SpeakBrick.h"
 #import "BrickCellDataProtocol.h"
 #import "BrickCellLookData.h"
 #import "BrickCellSoundData.h"
@@ -46,7 +42,6 @@
 #import "BrickCellPhiroToneData.h"
 #import "BrickCellPhiroIfSensorData.h"
 #import "LoopEndBrickCell.h"
-#import "BrickManager.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0

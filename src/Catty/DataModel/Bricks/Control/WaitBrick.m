@@ -23,7 +23,6 @@
 
 #import "WaitBrick.h"
 #import "Script.h"
-#import "Formula.h"
 
 @implementation WaitBrick
 
@@ -54,7 +53,15 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedWaitNSeconds;
+    double timeToWait = [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object andUseCache:NO];
+    NSString* timeToWaitStr;
+    if ([self.timeToWaitInSeconds isSingleNumberFormula] && timeToWait == 1.0) {
+        timeToWaitStr = kLocalizedSecond;
+    }
+    else {
+        timeToWaitStr = kLocalizedSeconds;
+    }
+    return [kLocalizedWait stringByAppendingString:[@"%@ " stringByAppendingString:timeToWaitStr]];
 }
 
 #pragma mark - Description

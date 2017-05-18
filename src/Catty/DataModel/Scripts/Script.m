@@ -24,11 +24,9 @@
 #import "Brick.h"
 #import "BrickManager.h"
 #import "CBMutableCopyContext.h"
-#import "Util.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "BroadcastScript.h"
 #import "WhenScript.h"
-#import "LoopBeginBrick.h"
 
 @interface Script()
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;

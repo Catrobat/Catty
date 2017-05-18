@@ -27,7 +27,7 @@
 @implementation PhiroPlayToneBrick
 - (NSString*)brickTitle
 {
-    return kLocalizedPhiroPlayTone;
+    return [[[[kLocalizedPhiroPlayTone stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedPhiroPlayDuration] stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroSecondsToPlay];
 }
 
 

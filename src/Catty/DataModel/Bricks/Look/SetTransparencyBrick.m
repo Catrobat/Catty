@@ -21,7 +21,6 @@
  */
 
 #import "SetTransparencyBrick.h"
-#import "Formula.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
@@ -56,7 +55,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetTransparency;
+    return [kLocalizedSetTransparency stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@\%"]]];
 }
 
 #pragma mark - Description

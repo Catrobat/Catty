@@ -22,9 +22,7 @@
 
 #import "BrickManager.h"
 #import "BrickProtocol.h"
-#import "Util.h"
 #import "BrickFormulaProtocol.h"
-#import "Formula.h"
 #import "WhenScript.h"
 #import "LoopEndBrick.h"
 #import "LoopBeginBrick.h"
@@ -32,7 +30,6 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "CBMutableCopyContext.h"
-#import "BrickCell.h"
 #import "ForeverBrick.h"
 
 @implementation BrickManager {

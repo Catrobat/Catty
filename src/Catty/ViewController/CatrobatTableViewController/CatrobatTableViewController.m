@@ -29,25 +29,13 @@
 #import "CatrobatImageCell.h"
 #import "DownloadTabBarController.h"
 #import "ProgramDetailStoreViewController.h"
-#import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
-#import "SpriteObject.h"
 #import "Script.h"
-#import "Brick.h"
-#import "ScenePresenterViewController.h"
 #import "ProgramTableViewController.h"
-#import "ProgramDefines.h"
-#import "UIDefines.h"
-#import "ActionSheetAlertViewTags.h"
 #import "Reachability.h"
-#import "LanguageTranslationDefines.h"
 #import "HelpWebViewController.h"
-#import "NetworkDefines.h"
-#import "DataTransferMessage.h"
 #import "MYBlurIntroductionView.h"
 #import "ProgramsForUploadViewController.h"
-#import "Util.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
 
@@ -195,11 +183,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSString *message = [NSString stringWithFormat:@"%@\n\n-------------------\n\nBuild version:\n\n%@",
                          kLocalizedStartedInDebugMode, [Util appBuildVersion]];
-    [[[UIAlertView alloc] initWithTitle:kLocalizedDebugModeTitle
-                                message:message
-                               delegate:nil
-                      cancelButtonTitle:kLocalizedOK
-                      otherButtonTitles:nil] show];
+    [Util alertWithTitle:kLocalizedDebugModeTitle andText:message];
 }
 #endif
 

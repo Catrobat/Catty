@@ -23,22 +23,15 @@
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Util.h"
-#import "SpriteObject.h"
 #import "AppDelegate.h"
-#import "FileManager.h"
-#import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "Script.h"
 #import "Brick.h"
-#import "LanguageTranslationDefines.h"
-#import "UserVariable.h"
-#import "OrderedMapTable.h"
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
 #import "Pocket_Code-Swift.h"
-#import "ProgramDefines.h"
 
 @implementation Program
 

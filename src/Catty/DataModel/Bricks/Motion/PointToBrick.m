@@ -21,14 +21,13 @@
  */
 
 #import "PointToBrick.h"
-#import "Util.h"
 #import "Script.h"
 
 @implementation PointToBrick
 
 - (NSString*)brickTitle
 {
-    return kLocalizedPointTowards;
+    return [kLocalizedPointTowards stringByAppendingString:@"\n%@"];
 }
 
 - (SpriteObject*) pointedObject

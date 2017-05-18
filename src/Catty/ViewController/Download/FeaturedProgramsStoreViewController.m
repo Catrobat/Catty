@@ -27,7 +27,6 @@
 #import "Util.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
-#import "CatrobatImageCell.h"
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "SegueDefines.h"
@@ -35,7 +34,6 @@
 #import "DarkBlueGradientFeaturedCell.h"
 
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
 
 #define kFeaturedProgramsMaxResults 10
 
@@ -197,7 +195,7 @@
 - (void)loadFeaturedProjects
 {
     //self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%@", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
 
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
