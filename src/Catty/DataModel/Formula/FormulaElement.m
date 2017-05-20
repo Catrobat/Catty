@@ -37,6 +37,10 @@
 #import "Pocket_Code-Swift.h"
 
 #define ARC4RANDOM_MAX 0x100000000
+#define kEmptyStringFallback @""
+#define kZeroFallback 0
+
+
 
 @implementation FormulaElement
 
@@ -458,6 +462,14 @@
             result = [self interpretFunctionELEMENT:sprite];
             break;
         }
+        case NUMBEROFITEMS : {
+            result = [self interpretFunctionNUMBEROFITEMS:sprite];
+            break;
+        }
+        case CONTAINS : {
+            result = [self interpretFunctionCONTAINS:sprite];
+            break;
+        }
         default:
             //abort();
             [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];
@@ -467,40 +479,132 @@
     
 }
 
-- (id)interpretFunctionELEMENT:(SpriteObject *)sprite
+
+- (id)interpretFunctionNUMBEROFITEMS:(SpriteObject *)sprite
 {
-    NSNumber *fallback = [NSNumber numberWithInt:0];
     UserVariable *list = nil;
-    if (self.rightChild.type == USER_LIST) {
+    if (self.leftChild.type == USER_LIST) {
         VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-        list = [lists getUserListNamed:self.rightChild.value forSpriteObject:sprite];
-        if (list.value == nil) {
-            return fallback;
+        list = [lists getUserListNamed:self.leftChild.value forSpriteObject:sprite];
+        if (list == nil) {
+            return kEmptyStringFallback;;
+        } else if (list.value == nil) {
+            return [NSNumber numberWithUnsignedInteger:kZeroFallback];
         }
     } else {
-        return fallback;
+        return kEmptyStringFallback;
+    }
+    
+    NSMutableArray *listContent = (NSMutableArray*) list.value;
+    return [NSNumber numberWithUnsignedInteger:[listContent count]];
+}
+
+- (id)interpretFunctionCONTAINS:(SpriteObject *)sprite
+{
+    NSMutableArray *listContent = [self interpretFunctionUserListParameter:self.leftChild withSprite: sprite];
+    if ((listContent == nil) || ([listContent count] <= 0)) {
+        return kEmptyStringFallback;
+    }
+    bool match = false;
+    
+    id value = [self.rightChild interpretRecursiveForSprite:sprite];
+    if ([value isKindOfClass:[NSNumber class]]) {
+        double compare = [value doubleValue];
+        for (id element in listContent) {
+            match = [self compareNumber:compare withNumberOrString:element];
+            if (match) {
+                break;
+            }
+        }
+    } else if ([value isKindOfClass:[NSString class]]) {
+        NSString *compare = (NSString *) value;
+        NSNumber *compareNumber = [self getNumberFromString:(NSString *) value];
+        for (id element in listContent) {
+            if (compareNumber != nil) {
+                match = [self compareNumber:[compareNumber doubleValue] withNumberOrString:element];
+            } else {
+                match = [compare isEqualToString:(NSString *) element];
+            }
+            if (match) {
+                break;
+            }
+        }
+    }
+    if (match) {
+        return [NSNumber numberWithInt:1];
+    }
+    
+    return [NSNumber numberWithInt:0];
+}
+
+
+- (NSNumber*)getNumberFromString:(NSString *) numberString
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    return [formatter numberFromString:numberString];
+}
+
+- (bool)compareNumber:(double) number withNumberOrString:(id) numberOrString{
+    bool match = false;
+    if ([numberOrString isKindOfClass:[NSNumber class]]) {
+        match = (number == [numberOrString doubleValue]);
+    } else if ([numberOrString isKindOfClass:[NSString class]]) {
+        NSNumber *numberFromString = [self getNumberFromString:(NSString *) numberOrString];
+        match = (number == [numberFromString doubleValue]);
+    }
+    return match;
+}
+
+
+- (id)interpretFunctionELEMENT:(SpriteObject *)sprite
+{
+    
+    NSMutableArray *listContent = [self interpretFunctionUserListParameter:self.rightChild withSprite: sprite];
+    if (listContent == nil) {
+        return kEmptyStringFallback;
+    }
+    
+    NSNumber *index = nil;
+    NSUInteger intIndex = 0;
+    id value = [self.leftChild interpretRecursiveForSprite:sprite];
+    if ([value isKindOfClass:[NSNumber class]]) {
+        intIndex = [value unsignedIntegerValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
+        index = [self getNumberFromString:(NSString *) value];
+        if (index == nil) {
+            return kEmptyStringFallback;
+        } else {
+            intIndex = [index unsignedIntegerValue];
+        }
+    }
+    
+    if ((intIndex < 1) || (intIndex > [listContent count]) ) {
+        return kEmptyStringFallback;
+    } else {
+        return [listContent objectAtIndex:intIndex - 1];
+    }
+}
+
+- (NSMutableArray *)interpretFunctionUserListParameter:(FormulaElement *)child withSprite:(SpriteObject *)sprite
+{
+    UserVariable *list = nil;
+    if (child.type == USER_LIST) {
+        VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+        list = [lists getUserListNamed:child.value forSpriteObject:sprite];
+        if (list.value == nil) {
+            return nil;
+        }
+    } else {
+        return nil;
     }
     
     NSMutableArray *listContent = (NSMutableArray*) list.value;
     if (!([listContent count] > 0)) {
-        return fallback;
+        return nil;
     }
     
-    NSNumber *index = nil;
-    id value = [self.leftChild interpretRecursiveForSprite:sprite];
-    if ([value isKindOfClass:[NSNumber class]]) {
-        index = [NSNumber numberWithUnsignedInteger:[value unsignedIntegerValue]];
-    } else if ([value isKindOfClass:[NSString class]]) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        formatter.numberStyle = NSNumberFormatterDecimalStyle;
-        index = [formatter numberFromString:(NSString*) value];
-    }
-
-    if (index == nil) {
-        return fallback;
-    } else {
-        return [listContent objectAtIndex:[index unsignedIntegerValue] - 1];
-    }
+    return listContent;
 }
 
 
@@ -790,8 +894,6 @@
     NSError(@"Unknown Type: %@", type);
     return nil;
 }
-
-
 
 - (NSString*)description
 {

@@ -950,7 +950,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         if (isList) {
             var.value = [[NSMutableArray alloc] init];
-            [var.value addObject: [NSNumber numberWithInt: 0]];
         } else{
             var.value = [NSNumber numberWithInt:0];
         }

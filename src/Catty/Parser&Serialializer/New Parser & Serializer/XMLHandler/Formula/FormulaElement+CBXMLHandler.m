@@ -66,6 +66,10 @@
         [formulaVariableList addObject:formulaTree.value];
         [context.formulaVariableNameList setObject:formulaVariableList forKey:context.spriteObject.name];
     }
+    
+    if(formulaTree.type == USER_LIST && context && context.spriteObject) {
+       
+    }
         
     return formulaTree;
 }
