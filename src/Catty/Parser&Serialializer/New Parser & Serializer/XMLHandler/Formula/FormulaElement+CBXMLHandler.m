@@ -68,7 +68,11 @@
     }
     
     if(formulaTree.type == USER_LIST && context && context.spriteObject) {
-       
+        NSMutableArray *formulaListOfLists = [context.formulaListNameList objectForKey:context.spriteObject.name];
+        if(!formulaListOfLists)
+            formulaListOfLists = [NSMutableArray new];
+        [formulaListOfLists addObject:formulaTree.value];
+        [context.formulaListNameList setObject:formulaListOfLists forKey:context.spriteObject.name];
     }
         
     return formulaTree;

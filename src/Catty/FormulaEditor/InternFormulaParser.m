@@ -27,6 +27,7 @@
 #import "SensorManager.h"
 #import "InternFormulaParserException.h"
 #import "InternFormulaParserEmptyStackException.h"
+#import "ProgramVariablesManager.h"
 
 @implementation InternFormulaParser
 
@@ -233,7 +234,17 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
             
         case TOKEN_TYPE_USER_LIST: {
-            [currentElement replaceElement:[self userListForSpriteObject:object]];
+            VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+            UserVariable *list = [lists getUserListNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            
+            if (list == nil) {
+                self.errorTokenIndex = self.currentTokenParseIndex;
+                InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Parse Error, List does not exist" reason:nil userInfo:nil];
+                @throw exception;
+            } else {
+                [currentElement replaceElement:[self userListForSpriteObject:object]];
+            }
+            
             break;
         }
          

@@ -47,7 +47,7 @@
     program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     
-    [self addMissingVariablesToVariablesContainer:program.variables withContext:context];
+    [self addMissingVariablesAndListsToVariablesContainer:program.variables withContext:context];
     return program;
 }
 
@@ -113,39 +113,75 @@
     return [context parseFromElement:programElement withClass:[VariablesContainer class]];
 }
 
-+ (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer
++ (void)addMissingVariablesAndListsToVariablesContainer:(VariablesContainer*)varAndListContainer
                                     withContext:(CBXMLParserContext*)context
 {
     for(NSString *objectName in context.formulaVariableNameList) {
         NSArray *variableList = [context.formulaVariableNameList objectForKey:objectName];
-        SpriteObject *object = nil;
-        for(SpriteObject *spriteObject in context.spriteObjectList) {
-            if([spriteObject.name isEqualToString:objectName]) {
-                object = spriteObject;
-                break;
-            }
-        }
+         SpriteObject *object = [self getSpriteObject:objectName withContext:context];
         if(!object) {
             NSWarn(@"SpriteObject with name %@ is not found in object list", objectName);
             return;
         }
         
         for(NSString *variableName in variableList) {
-            if(![variablesContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                NSMutableArray *objectVariableList = [variablesContainer.objectVariableList
+            if(![varAndListContainer getUserVariableNamed:variableName forSpriteObject:object]) {
+                NSMutableArray *objectVariableList = [varAndListContainer.objectVariableList
                                                       objectForKey:object];
                 if(!objectVariableList)
                     objectVariableList = [NSMutableArray new];
                 UserVariable *userVariable = [UserVariable new];
                 userVariable.name = variableName;
+                userVariable.isList = false;
                 [objectVariableList addObject:userVariable];
-                [variablesContainer.objectVariableList setObject:objectVariableList forKey:object];
+                [varAndListContainer.objectVariableList setObject:objectVariableList forKey:object];
                 NSDebug(@"Added UserVariable with name %@ to global object "\
                         "variable list with object %@", variableName, object.name);
             }
         }
     }
+    
+    for(NSString *objectName in context.formulaListNameList) {
+        NSArray *listOfLists = [context.formulaListNameList objectForKey:objectName];
+        SpriteObject *object = [self getSpriteObject:objectName withContext:context];
+        
+        if(!object) {
+            NSWarn(@"SpriteObject with name %@ is not found in object list", objectName);
+            return;
+        }
+        
+        for(NSString *listName in listOfLists) {
+            if(![varAndListContainer getUserListNamed:listName forSpriteObject:object]) {
+                NSMutableArray *objectListOfLists = [varAndListContainer.objectListOfLists
+                                                     objectForKey:object];
+                if(!objectListOfLists)
+                    objectListOfLists = [NSMutableArray new];
+                UserVariable *userList = [UserVariable new];
+                userList.name = listName;
+                userList.isList = true;
+                [objectListOfLists addObject:userList];
+                [varAndListContainer.objectListOfLists setObject:objectListOfLists forKey:object];
+                NSDebug(@"Added a user list with name %@ to global object "\
+                        "list of lists with object %@", listName, object.name);
+            }
+        }
+    }
 }
+
++ (SpriteObject *)getSpriteObject:(NSString*)spriteName withContext:(CBXMLParserContext*)context
+{
+    SpriteObject *object = nil;
+    for(SpriteObject *spriteObject in context.spriteObjectList) {
+        if([spriteObject.name isEqualToString:spriteName]) {
+            object = spriteObject;
+            break;
+        }
+    }
+    
+    return object;
+}
+
+
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
