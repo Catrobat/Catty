@@ -20,21 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Alert view tags
-#define kAskUserForUniqueNameAlertViewTag 100
-#define kInvalidNameWarningAlertViewTag 101
-#define kNoInternetConnection 102
-#define kAskUserForReportMessageAlertViewTag 103
-
-#define kAskUserForVariableNameAlertViewTag 104
-#define kLostBluetoothConnectionTag 105
+import Foundation
 
 
-#define kConfirmAlertViewTag 200
-#define kResourcesAlertView 201
+public final class AlertControllerBuilder: NSObject {
+    public static func alertWithTitle(title: String?, message: String?) -> AlertActionAdding {
+        return AlertController(title: title, message: message, style: .Alert)
+    }
 
-#define kConfirmDeletingSelectedItemsAlertViewTag 300
-
-// Alert view button indexes
-#define kAlertViewButtonOK 1
-#define kAlertViewCancel 0
+    public static func actionSheetWithTitle(title: String) -> AlertActionAdding {
+        return AlertController(title: title, message: nil, style: .ActionSheet)
+    }
+}

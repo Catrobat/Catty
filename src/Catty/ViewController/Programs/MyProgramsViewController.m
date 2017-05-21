@@ -31,18 +31,17 @@
 #import "CatrobatImageCell.h"
 #import "SegueDefines.h"
 #import "ProgramUpdateDelegate.h"
-#import "ActionSheetAlertViewTags.h"
 #import "DarkBlueGradientImageDetailCell.h"
 #import "NSDate+CustomExtensions.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "CatrobatAlertController.h"
-#import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIUtil.h"
 #import "DescriptionViewController.h"
+#import "Pocket_Code-Swift.h"
 
-@interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
+@interface MyProgramsViewController () <ProgramUpdateDelegate,
 CatrobatAlertViewDelegate, UITextFieldDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
@@ -118,22 +117,40 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    NSMutableArray *options = [NSMutableArray array];
-    NSString * destructive = nil;
+    
+    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditPrograms]
+                                               addCancelActionWithTitle:kLocalizedCancel handler:nil];
+    
     if (self.programsCounter) {
-        destructive = kLocalizedDeletePrograms;
+        [actionSheet addDestructiveActionWithTitle:kLocalizedDeletePrograms handler:^{
+            [self setupEditingToolBar];
+            [super changeToEditingMode:sender];
+        }];
     }
-    if (self.useDetailCells) {
-        [options addObject:kLocalizedHideDetails];
+    
+    NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
+    [[[actionSheet
+     addDefaultActionWithTitle:detailActionTitle handler:^{
+         [self toggleDetailCellsMode];
+     }] build]
+     showWithController:self];
+}
+
+- (void)toggleDetailCellsMode {
+    self.useDetailCells = !self.useDetailCells;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+    NSMutableDictionary *showDetailsMutable = nil;
+    if (! showDetails) {
+        showDetailsMutable = [NSMutableDictionary dictionary];
     } else {
-        [options addObject:kLocalizedShowDetails];
+        showDetailsMutable = [showDetails mutableCopy];
     }
-    [Util actionSheetWithTitle:kLocalizedEditPrograms
-                                                         delegate:self
-                                           destructiveButtonTitle:destructive
-                                                otherButtonTitles:options
-                                                              tag:kEditProgramsActionSheetTag
-                                                             view:self.navigationController.view];
+    [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                           forKey:kUserDetailsShowDetailsProgramsKey];
+    [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+    [defaults synchronize];
+    [self reloadTableView];
 }
 
 - (void)addProgramAction:(id)sender
@@ -365,20 +382,57 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename,
-                             kLocalizedDescription/*, kLocalizedUpload*/];
         NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
         NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
-        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditProgramActionSheetTag
-                                                                 view:self.navigationController.view];
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
-                                                                        withPayload:@{
-                                                                                      kDTPayloadProgramLoadingInfo : sectionInfos[indexPath.row]
-                                                                                      }];
+        ProgramLoadingInfo *info = sectionInfos[indexPath.row];
+        
+        [[[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditProgram]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedCopy handler:^{
+             [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:
+                                                                  sourceProgramLoadingInfo:)
+                                                 target:self
+                                           cancelAction:nil
+                                             withObject:info
+                                            promptTitle:kLocalizedCopyProgram
+                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                            promptValue:info.visibleName
+                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                         minInputLength:kMinNumOfProgramNameCharacters
+                                         maxInputLength:kMaxNumOfProgramNameCharacters
+                                    blockedCharacterSet:[self blockedCharacterSet]
+                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                          existingNames:[Program allProgramNames]];
+         }]
+         addDefaultActionWithTitle:kLocalizedRename handler:^{
+             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+             [unavailableNames removeString:info.visibleName];
+             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
+                                                 target:self
+                                           cancelAction:nil
+                                             withObject:info
+                                            promptTitle:kLocalizedRenameProgram
+                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                            promptValue:info.visibleName
+                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                         minInputLength:kMinNumOfProgramNameCharacters
+                                         maxInputLength:kMaxNumOfProgramNameCharacters
+                                    blockedCharacterSet:[self blockedCharacterSet]
+                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                          existingNames:unavailableNames];
+         }]
+         addDefaultActionWithTitle:kLocalizedDescription handler:^{
+             Program *program = [Program programWithLoadingInfo:info];
+             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+             DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+             dViewController.delegate = self;
+             self.selectedProgram = program;
+             [self.navigationController presentViewController:dViewController animated:YES completion:nil];
+         }] build]
+         viewWillDisappear:^{
+             [self.tableView setEditing:false animated:YES];
+         }]
+         showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
@@ -551,85 +605,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
         programTableViewController.delegate = self;
         programTableViewController.program = self.defaultProgram;
-    }
-}
-
-#pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self.tableView setEditing:false animated:YES];
-    if (actionSheet.tag == kEditProgramsActionSheetTag) {
-        if ((buttonIndex == 1) && self.programsCounter) {
-            // Delete Programs button
-            [self setupEditingToolBar];
-            [super changeToEditingMode:actionSheet];
-        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && self.programsCounter)) {
-            // Show/Hide Details button
-            self.useDetailCells = (! self.useDetailCells);
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
-            NSMutableDictionary *showDetailsMutable = nil;
-            if (! showDetails) {
-                showDetailsMutable = [NSMutableDictionary dictionary];
-            } else {
-                showDetailsMutable = [showDetails mutableCopy];
-            }
-            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
-                                   forKey:kUserDetailsShowDetailsProgramsKey];
-            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
-            [defaults synchronize];
-            [self reloadTableView];
-        }
-    } else if (actionSheet.tag == kEditProgramActionSheetTag) {
-        if (buttonIndex == 1) {
-            // Copy button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
-            [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:sourceProgramLoadingInfo:)
-                                                target:self
-                                          cancelAction:nil
-                                            withObject:info
-                                           promptTitle:kLocalizedCopyProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                           promptValue:info.visibleName
-                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                        minInputLength:kMinNumOfProgramNameCharacters
-                                        maxInputLength:kMaxNumOfProgramNameCharacters
-                                   blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                         existingNames:[Program allProgramNames]];
-        } else if (buttonIndex == 2) {
-            // Rename button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
-            NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-            [unavailableNames removeString:info.visibleName];
-            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
-                                                target:self
-                                          cancelAction:nil
-                                            withObject:info
-                                           promptTitle:kLocalizedRenameProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                           promptValue:info.visibleName
-                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                        minInputLength:kMinNumOfProgramNameCharacters
-                                        maxInputLength:kMaxNumOfProgramNameCharacters
-                                   blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                         existingNames:unavailableNames];
-        } else if (buttonIndex == 3) {
-            // Description button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
-            Program *program = [Program programWithLoadingInfo:info];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-            DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
-            dViewController.delegate = self;
-            self.selectedProgram = program;
-            [self.navigationController presentViewController:dViewController animated:YES completion:nil];
-            //        } else if (buttonIndex == 3) {
-            //            // Upload button
-        }
     }
 }
 

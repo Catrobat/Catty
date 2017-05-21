@@ -28,7 +28,6 @@
 #import "BrickFormulaProtocol.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "OrderedMapTable.h"
-#import "ActionSheetAlertViewTags.h"
 #import "Script.h"
 #import "BrickCellFormulaData.h"
 #import "VariablePickerData.h"
@@ -37,6 +36,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatAlertController.h"
 #import "ShapeButton.h"
+#import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -46,7 +46,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCancel = 4
 };
 
-@interface FormulaEditorViewController () <CatrobatActionSheetDelegate>
+@interface FormulaEditorViewController ()
 
 
 @property (weak, nonatomic) Formula *formula;
@@ -809,12 +809,38 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.sensorButton setSelected:NO];
     [self.variableButton setSelected:NO];
 }
+
+- (void)addNewProgramVariable {
+    [self addNewVariableProgramVariable:YES];
+}
+
+- (void)addNewObjectVariable {
+    [self addNewVariableProgramVariable:NO];
+}
+
+- (void)addNewVariableProgramVariable:(BOOL)isProgramVariable {
+    self.isProgramVariable = isProgramVariable;
+    self.variableSegmentedControl.selectedSegmentIndex = isProgramVariable ? 0 : 1;
+    [self.variableSegmentedControl setNeedsDisplay];
+
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+}
+
 - (IBAction)addNewVariable:(UIButton *)sender {
     //TODO alert with text
     [self.formulaEditorTextView resignFirstResponder];
-    
-    [Util actionSheetWithTitle:kUIFEActionVar delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
 
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionVar]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self.formulaEditorTextView becomeFirstResponder];
+     }]
+     addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
+         [self addNewObjectVariable];
+     }]
+     addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
+         [self addNewProgramVariable];
+     }] build]
+     showWithController:self];
 }
 
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -1042,26 +1068,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)changeVariablePickerView:(id)sender {
     [self.variablePicker reloadAllComponents];
 }
-
-
-#pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self.formulaEditorTextView becomeFirstResponder];
-        return;
-    }
-    
-    self.isProgramVariable = NO;
-    self.variableSegmentedControl.selectedSegmentIndex = 1;
-    if (buttonIndex == 2) {
-        self.isProgramVariable = YES;
-        self.variableSegmentedControl.selectedSegmentIndex = 0;
-    }
-    [self.variableSegmentedControl setNeedsDisplay];
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-}
-
 
 - (void)showNotification:(NSString*)text andDuration:(CGFloat)duration
 {

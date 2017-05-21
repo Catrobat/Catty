@@ -23,8 +23,8 @@
 #import "PaintViewController.h"
 #import "YKImageCropperView.h"
 #import "UIViewController+KNSemiModal.h"
-#import "ActionSheetAlertViewTags.h"
 #import "BDKNotifyHUD.h"
+#import "Pocket_Code-Swift.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -329,10 +329,15 @@
 
 - (void)editAction
 {
-   
-    NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintNewCanvas];
-    [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.navigationController.view];
-    
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedPaintSelect]
+      addCancelActionWithTitle:kLocalizedCancel handler:nil]
+      addDefaultActionWithTitle:kLocalizedPaintSave handler:^{
+          [self saveAction];
+      }]
+      addDefaultActionWithTitle:kLocalizedPaintNewCanvas handler:^{
+          [self newCanvasAction];
+      }] build]
+      showWithController:self];
 }
 
 - (void)setupUndoManager
@@ -1001,24 +1006,6 @@
     self.fillTool = nil;
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
-}
-
-
-#pragma mark actionsheet delegate
-
--(void)actionSheet:(CatrobatAlertController *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (actionSheet.tag == kPocketPaintActionSheetTag) {
-        switch (buttonIndex) {
-            case 1:
-                [self saveAction];
-                break;
-            case 2:
-                [self newCanvasAction];
-            default:
-                break;
-        }
-    }
 }
 
 

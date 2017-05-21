@@ -64,6 +64,16 @@
 
 }
 
++ (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController {
+    UIViewController *result = viewController;
+
+    while (result.presentedViewController) {
+        result = result.presentedViewController;
+    }
+
+    return result;
+}
+
 + (void)showComingSoonAlertView
 {
     CatrobatAlertController *alert = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
@@ -212,43 +222,6 @@
         }
     }
     return alertView;
-}
-
-+ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
-                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
-                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                           otherButtonTitles:(NSArray*)otherButtonTitles
-                                         tag:(NSInteger)tag
-                                        view:(UIView*)view
-{
-    CatrobatAlertController *actionSheet = [[CatrobatAlertController alloc] initActionSheetWithTitle:title
-                                                                         delegate:delegate
-                                                                cancelButtonTitle:kLocalizedCancel
-                                                           destructiveButtonTitle:destructiveButtonTitle
-                                                           otherButtonTitlesArray:otherButtonTitles];
-//    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
-//    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
-
-//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
-//    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
-//    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    
-
-//    if (destructiveButtonTitle) {
-//        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
-//    }
-//    for (id otherButtonTitle in otherButtonTitles) {
-//        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
-//            [actionSheet addButtonWithTitle:otherButtonTitle];
-//        }
-//    }
-//    [actionSheet addCancelButtonWithTitle:kLocalizedCancel];
-
-    actionSheet.tag = tag;
-    if (! [self activateTestMode:NO]) {
-        [actionSheet show:YES];
-    }
-    return actionSheet;
 }
 
 + (NSString*)appName
