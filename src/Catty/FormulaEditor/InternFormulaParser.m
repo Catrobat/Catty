@@ -229,7 +229,16 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
          
         case TOKEN_TYPE_USER_VARIABLE: {
-            [currentElement replaceElement:[self userVariableForSpriteObject:object]];
+            VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+            UserVariable *variable = [variables getUserVariableNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            
+            if (variable == nil) {
+                self.errorTokenIndex = self.currentTokenParseIndex;
+                InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Parse Error, Variable does not exist" reason:nil userInfo:nil];
+                @throw exception;
+            } else {
+                [currentElement replaceElement:[self userVariableForSpriteObject:object]];
+            }
             break;
         }
             

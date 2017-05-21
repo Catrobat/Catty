@@ -1119,16 +1119,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
         if (pickerData) {
-            if(![self isVariableBeingUsed:pickerData.userVariable]) {
+            if(![self isVarOrListBeingUsed:pickerData.userVariable]) {
                 
                 BOOL removed = NO;
-                if (!pickerData.userVariable.isList) {
+                BOOL isList = pickerData.userVariable.isList;
+                if (!isList) {
                     removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
                 } else {
                     removed = [self.object.program.variables removeUserListNamed:pickerData.userVariable.name forSpriteObject:self.object];
                 }
                 if (removed) {
-                    [self.variableSource removeObjectAtIndex:row];
+                    if (!isList) {
+                        [self.variableSource removeObjectAtIndex:row];
+                    } else {
+                        [self.listSource removeObjectAtIndex:row];
+                    }
                     [self.object.program saveToDiskWithNotification:YES];
                     [self updateVariablePickerData];
                 }
@@ -1139,14 +1144,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
 {
     //TODO: Make it work for lists
     if([self.object.program.variables isProgramVariableOrList:variable]) {
         for(SpriteObject *spriteObject in self.object.program.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
                         return YES;
                     }
                 }
@@ -1155,7 +1160,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         for(Script *script in self.object.scriptList) {
             for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
                     return YES;
                 }
             }
