@@ -55,7 +55,6 @@
 #import "Look.h"
 #import "Sound.h"
 #import "ActionSheetAlertViewTags.h"
-#import "DataTransferMessage.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
 #import "OrderedMapTable.h"
@@ -83,15 +82,12 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             CatrobatActionSheetDelegate,
-                                             CatrobatAlertViewDelegate,
                                              BluetoothSelection,
                                              UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
-@property (nonatomic, strong) NSIndexPath *selectedIndexPathForDeletion;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic,strong) Script *moveHelperScript;
@@ -285,39 +281,69 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return;
     }
 
-    BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
-    NSMutableArray *buttonTitles = [NSMutableArray array];
-    if (isBrick) {
-        [buttonTitles addObject:kLocalizedCopyBrick];
-        [buttonTitles addObject:kLocalizedMoveBrick];
-    }
-
-    if ([brickCell.scriptOrBrick isAnimateable]) {
-        [buttonTitles addObject:kLocalizedAnimateBrick];
-    }
-    if (isBrick && [(Brick*)brickCell.scriptOrBrick isFormulaBrick]) {
-        [buttonTitles addObject:kLocalizedEditFormula];
-    }
-
-    // determine destructive title dependend on type of selected Brick/Script
-    NSString *title = kLocalizedEditScript;
-    NSString *destructiveTitle = kLocalizedDeleteScript;
+    id<AlertControllerBuilding> actionSheet;
     if ([brickCell.scriptOrBrick isKindOfClass:[Brick class]]) {
         Brick *brick = (Brick*)brickCell.scriptOrBrick;
-        title = kLocalizedEditBrick;
-        destructiveTitle = ([brick isIfLogicBrick]
-                            ? kLocalizedDeleteCondition
-                            : ([brick isLoopBrick]) ? kLocalizedDeleteLoop : kLocalizedDeleteBrick);
+        NSString *destructiveTitle = ([brick isIfLogicBrick] ? kLocalizedDeleteCondition
+                                      : ([brick isLoopBrick]) ? kLocalizedDeleteLoop
+                                      : kLocalizedDeleteBrick);
+        
+        actionSheet = [[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
+                       addCancelActionWithTitle:kLocalizedCancel handler:nil]
+                       addDestructiveActionWithTitle:destructiveTitle handler:^{
+                           [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+                       }]
+                       addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
+                           [self copyBrick:brick atIndexPath:indexPath];
+                       }]
+                       addDefaultActionWithTitle:kLocalizedMoveBrick handler:^{
+                           brick.animateInsertBrick = YES;
+                           brick.animateMoveBrick = YES;
+                           [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
+                           [self turnOnInsertingBrickMode];
+                           [self reloadData];
+                       }];
+        
+        if (brick.isAnimateable) {
+            [actionSheet addDefaultActionWithTitle:kLocalizedAnimateBrick handler:^{
+                [self animate:indexPath brickCell:brickCell];
+            }];
+        }
+        if (brick.isFormulaBrick) {
+            [actionSheet addDefaultActionWithTitle:kLocalizedEditFormula handler:^{
+                [self openFormulaEditorWithFormulaAtIndexPath:indexPath withEvent:nil];
+            }];
+        }
+    } else {
+        actionSheet = [[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditScript]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDestructiveActionWithTitle:kLocalizedDeleteScript handler:^{
+             NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
+             if (numberOfBricksInSection > 1) {
+                 [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisScript
+                                                    message:kLocalizedThisActionCannotBeUndone]
+                  addCancelActionWithTitle:kLocalizedCancel handler:nil]
+                  addDefaultActionWithTitle:kLocalizedYes handler:^{
+                      [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+                  }] build]
+                  showWithController:self];
+             } else {
+                 [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+             }
+         }];
     }
-    CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:title
-                                                         delegate:self
-                                           destructiveButtonTitle:destructiveTitle
-                                                otherButtonTitles:buttonTitles
-                                                              tag:kEditBrickActionSheetTag
-                                                             view:self.navigationController.view];
-    actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
-                                                                    withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
-//    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    
+    [[[[actionSheet build]
+     viewDidAppear:^(UIView *view) {
+         const float kActionSheetBrickCellMarginBottom = 15.0f;
+         [self disableUserInteractionAndHighlight:brickCell withMarginBottom:view.frame.size.height + kActionSheetBrickCellMarginBottom];
+     }]
+     viewWillDisappear:^{
+         if (self.isEditingBrickMode) {
+             [self enableUserInteractionAndResetHighlight];
+         }
+     }]
+     showWithController:self];
 }
 
 - (void)deleteAlertView
@@ -365,109 +391,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count])
     {
         NSString *alertTitle = title;
-        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmDeletingSelectedItemsAlertViewTag];
-    }
-}
-
-#pragma mark- CatrobatAlertViewDelegate
-- (void)alertView:(CatrobatAlertController *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    /* previous but unused implementation
-    if (alertView.tag == kResourcesAlertView) {
-        // check if user agreed
-        if (buttonIndex != 0) {
-            [self startSceneWithVC:self.scenePresenterViewController];
-            return;
-        } else {
-            return;
-        }
-    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
-    {
-        [self deleteSelectedBricks];
-        self.allBricksSelected = NO;
-    } 
-    */
-    
-    if (alertView.tag == kConfirmDeletingSelectedItemsAlertViewTag && buttonIndex == 1) {
-        [self deleteSelectedBricks];
-        self.allBricksSelected = NO;
-    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1) {
-        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForDeletion];
-        [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:self.selectedIndexPathForDeletion];
-    }
-
-}
-
-#pragma mark - CatrobatActionSheetDelegate
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-    NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    
-    if (buttonIndex == 0) {
-        return;
-    } else if (actionSheet.tag == kEditBrickActionSheetTag) {
-        CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
-        CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
-        
-        if (buttonIndex == 1) {
-            // delete script or brick action
-            self.selectedIndexPathForDeletion = indexPath;
-            NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
-            if ([brickCell isScriptBrick] && (numberOfBricksInSection > 1))
-            {
-                [Util confirmAlertWithTitle:kLocalizedDeleteThisScript message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
-            } else {
-                [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
-            }
-        } else if (buttonIndex == 2) {
-            // copy brick action
-            CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
-            [self copyBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath];
-        } else if ((buttonIndex == 5 && actionSheet.actions.count == 6)|| (buttonIndex == 4 && actionSheet.actions.count == 5 && [(Brick*)brickCell.scriptOrBrick isFormulaBrick])) {
-            // edit formula
-            BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
-            [self openFormulaEditor:formulaData withEvent:nil];
-        } else if ((buttonIndex == 4 && actionSheet.actions.count == 6)||(buttonIndex == 4 && actionSheet.actions.count == 5 && [brickCell.scriptOrBrick isAnimateable])) {
-            // animate brick
-            CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
-            [self animate:indexPath brickCell:brickCell];
-        } else if (buttonIndex == 3) {
-            // move Brick
-            CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
-            Brick *brick = (Brick*)brickCell.scriptOrBrick;
-            brick.animateInsertBrick = YES;
-            brick.animateMoveBrick = YES;
-            [[BrickInsertManager sharedInstance] setBrickMoveMode:YES];
-            [self turnOnInsertingBrickMode];
-            [self reloadData];
-        }
-    } else if (actionSheet.tag == kVariabletypeActionSheetTag){
-        CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
-        CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
-        CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
-        BOOL isProgramVar = NO;
-        if (buttonIndex == 1) {
-            isProgramVar = YES;
-        }
-        [self addVariableForBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
-    }
-}
-
-#define kActionsheetBrickCellMarginBottom 15.0f
-- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet
-{
-    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.collectionView.indexPathsForSelectedItems.firstObject];
-    if (brickCell) {
-        [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.view.frame.size.height + kActionsheetBrickCellMarginBottom];
-    }
-}
-
-- (void)actionSheetWillDisappear:(CatrobatAlertController*)actionSheet
-{
-    if (self.isEditingBrickMode) {
-        [self enableUserInteractionAndResetHighlight];
+        [[[[[AlertControllerBuilder alertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteSelectedBricks];
+             self.allBricksSelected = NO;
+         }] build]
+         showWithController:self];
     }
 }
 
@@ -777,8 +707,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
+- (void)openFormulaEditorWithFormulaAtIndexPath:(NSIndexPath*)indexPath withEvent:(UIEvent*)event
 {
+    BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
+    
     if (self.isEditingBrickMode && event) {
         return;
     }
@@ -1175,21 +1108,26 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     } else
     if ([brickCellData isKindOfClass:[BrickCellVariableData class]] && [brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-        Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
+            CBAssert([brickCellData.brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
+            
             NSIndexPath *path = [self.collectionView indexPathForCell:(UICollectionViewCell*)brickCellData.brickCell];
-            CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kUIFEActionVar
-                                                                 delegate:self
-                                                   destructiveButtonTitle:nil
-                                                        otherButtonTitles:@[kUIFEActionVarPro,kUIFEActionVarObj]
-                                                                      tag:kVariabletypeActionSheetTag
-                                                                     view:self.navigationController.view];
-            actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
-                                                                            withPayload:@{ kDTPayloadCellIndexPath : path}];
+            Brick *brick = (Brick*)brickCellData.brickCell.scriptOrBrick;
+            [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionVar]
+             addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
+                 [self addVariableForBrick:brick atIndexPath:path andIsProgramVariable:YES];
+             }]
+             addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
+                 [self addVariableForBrick:brick atIndexPath:path andIsProgramVariable:NO];
+             }]
+             build]
+             showWithController:self];
             
             [self enableUserInteractionAndResetHighlight];
             return;
         } else {
+            Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];

@@ -91,77 +91,6 @@
 
 }
 
-#pragma mark - ActionSheet initialization
-- (id)initActionSheetWithTitle:(NSString*)title
-           delegate:(id<CatrobatActionSheetDelegate>)delegate
-  cancelButtonTitle:(NSString*)cancelTitle
-destructiveButtonTitle:(NSString*)destructiveTitle
-  otherButtonTitles:(NSString*)otherTitles, ... NS_REQUIRES_NIL_TERMINATION
-{
-    NSMutableArray *titles = [[NSMutableArray alloc] init];
-    if (otherTitles) {
-        va_list args;
-        va_start(args, otherTitles);
-        for (NSString *arg = otherTitles; arg != nil; arg = va_arg(args, NSString* )) {
-            [titles addObject:arg];
-        }
-        va_end(args);
-    }
-
-    return [self initActionSheetWithTitle:title delegate:delegate cancelButtonTitle:cancelTitle destructiveButtonTitle:destructiveTitle otherButtonTitlesArray:titles];
-}
-
-- (id)initActionSheetWithTitle:(NSString *)title
-           delegate:(id<CatrobatActionSheetDelegate>)delegate
-  cancelButtonTitle:(NSString *)cancelTitle
-destructiveButtonTitle:(NSString *)destructiveTitle
-otherButtonTitlesArray:(NSArray *)otherTitlesArray
-{
-    
-    CatrobatAlertController *actionSheet = [CatrobatAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    NSInteger i = 0;
-    if (![cancelTitle isEqualToString:@""] && cancelTitle != nil) {
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                                       {
-                                           [delegate actionSheet:actionSheet clickedButtonAtIndex:0];
-                                           
-                                       }];
-        i++;
-        [actionSheet addAction:cancelAction];
-    }
-    if (![destructiveTitle isEqualToString:@""] && destructiveTitle != nil) {
-        UIAlertAction *destructiveAction = [UIAlertAction actionWithTitle:destructiveTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action)
-                                            {
-                                                [delegate actionSheet:actionSheet clickedButtonAtIndex:1];
-                                                
-                                            }];
-        i++;
-        [actionSheet addAction:destructiveAction];
-    }
-    
-
-    for (NSString * title in otherTitlesArray) {
-        if(title != nil){
-            UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                     {
-                                         [delegate actionSheet:actionSheet clickedButtonAtIndex:i];
-                                         
-                                     }];
-            
-            [actionSheet addAction:action];
-            i++;
-        }
-    }
-    
-    actionSheet.delegate = delegate;
-    actionSheet.view.tintColor = [UIColor globalTintColor];
-    actionSheet.view.backgroundColor = [UIColor clearColor];
-    return actionSheet;
-}
-
-
-
 - (BOOL)textFieldShouldReturn:(UITextField*)textField
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -186,9 +115,6 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
-        [self.delegate willPresentActionSheet:self];
-    }
     if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(willPresentAlertView:)]) {
         [self.delegate willPresentAlertView:self];
     }
@@ -197,9 +123,6 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
-        [self.delegate didPresentActionSheet:self];
-    }
     if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(didPresentAlertView:)]) {
         [self.delegate didPresentAlertView:self];
     }
@@ -209,10 +132,6 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 {
     self.alertWindow.hidden = true;
     [super viewWillDisappear:animated];
-    
-    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(actionSheetWillDisappear:)]) {
-        [self.delegate actionSheetWillDisappear:self];
-    }
     if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(alertViewWillDisappear:)]) {
         [self.delegate alertViewWillDisappear:self];
     }
@@ -221,9 +140,6 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    if ([self.delegate conformsToProtocol:@protocol(CatrobatActionSheetDelegate)] && [self.delegate respondsToSelector:@selector(actionSheetDidDisappear:)]) {
-        [self.delegate actionSheetDidDisappear:self];
-    }
     if ([self.delegate conformsToProtocol:@protocol(CatrobatAlertViewDelegate)] && [self.delegate respondsToSelector:@selector(alertViewDidDisappear:)]) {
         [self.delegate alertViewDidDisappear:self];
     }

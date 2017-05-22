@@ -20,22 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "Pocket_Code-Swift.h"
-#import "ScenePresenterViewController.h"
+import Foundation
 
-@class PlaceHolderView;
-@class BluetoothPopupVC;
-@interface BaseCollectionViewController : UICollectionViewController <BluetoothSelection>
 
-@property (nonatomic, strong) PlaceHolderView *placeHolderView;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
-@property (nonatomic, assign) BOOL allBricksSelected;
+public final class AlertControllerBuilder: NSObject {
+    public static func alertWithTitle(title: String?, message: String?) -> AlertActionAdding {
+        return AlertController(title: title, message: message, style: .Alert)
+    }
 
-- (void)showPlaceHolder:(BOOL)show;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
-- (void)setupToolBar;
-- (void)showLoadingView;
-- (void)hideLoadingView;
-
-@end
+    public static func actionSheetWithTitle(title: String) -> AlertActionAdding {
+        return AlertController(title: title, message: nil, style: .ActionSheet)
+    }
+}

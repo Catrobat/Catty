@@ -39,6 +39,7 @@
 #import <objc/runtime.h>
 #import "OrderedDictionary.h"
 #import "UIDevice-Hardware.h"
+#import "Pocket_Code-Swift.h"
 
 @interface Util () <CatrobatAlertViewDelegate>
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -64,17 +65,16 @@
 
 }
 
-+ (void)showComingSoonAlertView
-{
-    CatrobatAlertController *alert = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedThisFeatureIsComingSoon
-                                                               delegate:nil
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-    if (! [self activateTestMode:NO]) {
-        [ROOTVIEW presentViewController:alert animated:YES completion:^{}];
++ (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController {
+    UIViewController *result = viewController;
+
+    while (result.presentedViewController) {
+        result = result.presentedViewController;
     }
+
+    return result;
 }
+
 
 + (void)showIntroductionScreenInView:(UIView *)view delegate:(id<MYIntroductionDelegate>)delegate
 {
@@ -106,51 +106,29 @@
     [view addSubview:introductionView];
 }
 
-+ (CatrobatAlertController*)alertWithText:(NSString*)text
++ (void)alertWithText:(NSString*)text
 {
-    return [self alertWithText:text delegate:nil tag:0];
+    [Util alertWithTitle:kLocalizedPocketCode andText:text];
 }
 
-+(CatrobatAlertController *)alertWithTitle:(NSString *)title
-                             andText:(NSString *)text
++ (void)alertWithTitle:(NSString *)title andText:(NSString *)text
 {
-    CatrobatAlertController* alertView = [self alertWithText:text];
-    alertView.title = title;
-    return alertView;
+    [[[[AlertControllerBuilder alertWithTitle:title message:text]
+     addCancelActionWithTitle:kLocalizedOK handler:nil]
+     build]
+     showWithController:[Util topViewControllerInViewController:ROOTVIEW]];
+
 }
 
 + (CatrobatAlertController*)alertWithText:(NSString*)text
-                           delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                tag:(NSInteger)tag
+                                 delegate:(id<CatrobatAlertViewDelegate>)delegate
+                                      tag:(NSInteger)tag
 {
     CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
                                                                     message:text
                                                                    delegate:delegate
                                                           cancelButtonTitle:kLocalizedOK
                                                           otherButtonTitles:nil];
-    alertView.tag = tag;
-    if (! [self activateTestMode:NO]) {
-        [alertView show:YES];
-    }
-    return alertView;
-}
-
-+ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
-                                    message:(NSString*)message
-                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                        tag:(NSInteger)tag
-{
-    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:title
-                                                                    message:message
-                                                                   delegate:delegate
-                                                          cancelButtonTitle:kLocalizedNo
-                                                          otherButtonTitles:nil];
-    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:kLocalizedYes style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                   {
-                                       [delegate alertView:alertView clickedButtonAtIndex:1];
-                                   }];
-    
-    [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show:YES];
@@ -212,43 +190,6 @@
         }
     }
     return alertView;
-}
-
-+ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
-                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
-                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                           otherButtonTitles:(NSArray*)otherButtonTitles
-                                         tag:(NSInteger)tag
-                                        view:(UIView*)view
-{
-    CatrobatAlertController *actionSheet = [[CatrobatAlertController alloc] initActionSheetWithTitle:title
-                                                                         delegate:delegate
-                                                                cancelButtonTitle:kLocalizedCancel
-                                                           destructiveButtonTitle:destructiveButtonTitle
-                                                           otherButtonTitlesArray:otherButtonTitles];
-//    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
-//    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
-
-//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
-//    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
-//    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    
-
-//    if (destructiveButtonTitle) {
-//        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
-//    }
-//    for (id otherButtonTitle in otherButtonTitles) {
-//        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
-//            [actionSheet addButtonWithTitle:otherButtonTitle];
-//        }
-//    }
-//    [actionSheet addCancelButtonWithTitle:kLocalizedCancel];
-
-    actionSheet.tag = tag;
-    if (! [self activateTestMode:NO]) {
-        [actionSheet show:YES];
-    }
-    return actionSheet;
 }
 
 + (NSString*)appName

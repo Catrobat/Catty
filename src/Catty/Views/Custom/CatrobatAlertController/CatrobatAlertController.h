@@ -45,23 +45,6 @@
 
 @end
 
-@protocol CatrobatActionSheetDelegate <NSObject>
-
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
-
-@optional
-- (void)willPresentActionSheet:(CatrobatAlertController*)actionSheet;  // before animation and showing view
-
-@optional
-- (void)didPresentActionSheet:(CatrobatAlertController*)actionSheet;  // after animation
-
-@optional
-- (void)actionSheetWillDisappear:(CatrobatAlertController*)actionSheet;  // before animation
-
-@optional
-- (void)actionSheetDidDisappear:(CatrobatAlertController*)actionSheet;  // after animation
-
-@end
 
 @interface CatrobatAlertController : UIAlertController <UITextFieldDelegate>
 
@@ -74,18 +57,6 @@
            delegate:(id<CatrobatAlertViewDelegate>)delegate
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
-
-- (id)initActionSheetWithTitle:(NSString*)title
-                      delegate:(id<CatrobatActionSheetDelegate>)delegate
-             cancelButtonTitle:(NSString*)cancelTitle
-        destructiveButtonTitle:(NSString*)destructiveTitle
-             otherButtonTitles:(NSString*)otherTitles, ... NS_REQUIRES_NIL_TERMINATION;
-- (id)initActionSheetWithTitle:(NSString *)title
-                      delegate:(id<CatrobatActionSheetDelegate>)delegate
-             cancelButtonTitle:(NSString *)cancelTitle
-        destructiveButtonTitle:(NSString *)destructiveTitle
-        otherButtonTitlesArray:(NSArray *)otherTitlesArray;
-
 
 - (void)show:(BOOL)animated;
 

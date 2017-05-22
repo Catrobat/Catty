@@ -20,21 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// Action sheet
-#define kEditProgramsActionSheetTag 1
-#define kEditProgramActionSheetTag 2
-#define kEditObjectActionSheetTag 3
-#define kAddLookActionSheetTag 4
-#define kEditLooksActionSheetTag 5
-#define kEditLookActionSheetTag 6
-#define kAddSoundActionSheetTag 7
-#define kEditSoundsActionSheetTag 8
-#define kEditSoundActionSheetTag 9
-#define kAddNewVarActionSheetTag 10
-#define kEditBrickActionSheetTag 11
-#define kVariabletypeActionSheetTag 12
-#define kPocketPaintActionSheetTag 13
-
 // Alert view tags
 #define kAskUserForUniqueNameAlertViewTag 100
 #define kInvalidNameWarningAlertViewTag 101

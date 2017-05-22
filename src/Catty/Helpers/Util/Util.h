@@ -40,13 +40,17 @@
 #define IS_OS_9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 #define IS_OS_10_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 
+#define SAFE_BLOCK_CALL(__functor, ...)   \
+do {    \
+if (__functor) __functor(__VA_ARGS__);  \
+} while (0)
+
 #define TIMEOUT 30.0f
 
 @protocol MYIntroductionDelegate;
 @class SceneViewController;
 @class CatrobatAlertController;
 @protocol CatrobatAlertViewDelegate;
-@protocol CatrobatActionSheetDelegate;
 @class ProgramLoadingInfo;
 
 @interface Util : NSObject
@@ -57,23 +61,13 @@
 
 + (NSString*)applicationDocumentsDirectory;
 
-+ (void)showComingSoonAlertView;
++ (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController;
 
 + (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
-+ (CatrobatAlertController*)alertWithText:(NSString*)text;
++ (void)alertWithText:(NSString*)text;
 
-+ (CatrobatAlertController*)alertWithTitle:(NSString*)title
-                             andText:(NSString*)text;
-
-+ (CatrobatAlertController*)alertWithText:(NSString*)text
-                           delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                tag:(NSInteger)tag;
-
-+ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
-                                    message:(NSString*)message
-                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                        tag:(NSInteger)tag;
++ (void)alertWithTitle:(NSString*)title andText:(NSString*)text;
 
 + (CatrobatAlertController*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
@@ -88,13 +82,6 @@
                                   tag:(NSInteger)tag
                                 value:(NSString*)value
                                target:(id)target;
-
-+ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
-                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
-                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                           otherButtonTitles:(NSArray*)otherButtonTitles
-                                         tag:(NSInteger)tag
-                                        view:(UIView*)view;
 
 + (void)askUserForVariableNameAndPerformAction:(SEL)action
                                         target:(id)target

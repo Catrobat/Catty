@@ -24,7 +24,7 @@
 #import "PaintViewController.h"
 #import "SpriteObject.h"
 
-@interface LookImageViewController : UIViewController <PaintDelegate,CatrobatAlertViewDelegate>
+@interface LookImageViewController : UIViewController <PaintDelegate>
 
 @property (nonatomic, strong) NSString *imageName;
 @property (nonatomic, strong) NSString *imagePath;
