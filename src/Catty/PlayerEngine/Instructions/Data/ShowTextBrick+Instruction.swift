@@ -37,22 +37,24 @@ extension ShowTextBrick: CBInstructionProtocol {
             let xResult = xFormula.interpretDoubleForSprite(spriteObject)
             let yResult = yFormula.interpretDoubleForSprite(spriteObject)
             var value = ""
-            if userVariable.value is NSNumber{
-                let number:NSNumber = (userVariable.value as? NSNumber)!
-                value = number.stringValue
-            } else if userVariable.value is NSString {
-                let string:NSString = userVariable.value as! NSString
-                value = string as String
-            } else {
-                value = ""
+            if userVariable != nil {
+                if userVariable.value is NSNumber{
+                    let number:NSNumber = (userVariable.value as? NSNumber)!
+                    value = number.stringValue
+                } else if userVariable.value is NSString {
+                    let string:NSString = userVariable.value as! NSString
+                    value = string as String
+                } else {
+                    value = ""
+                }
+                userVariable.textLabel.text = value
+                
+                guard let scene = userVariable.textLabel.scene else {
+                    fatalError("This should never happen!")
+                }
+                userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
+                userVariable.textLabel.hidden = false
             }
-            userVariable.textLabel.text = value
-            
-            guard let scene = userVariable.textLabel.scene else {
-                fatalError("This should never happen!")
-            }
-            userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
-            userVariable.textLabel.hidden = false
             context.state = .Runnable
         }
 
