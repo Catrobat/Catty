@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) SpriteObject *spriteObject;
 @property (nonatomic, strong) StartScript *startScript;
+@property (nonatomic, strong) WhenScript *whenScript;
 @property (nonatomic, strong) ScriptCollectionViewController *viewController;
 
 - (NSUInteger)addForeverLoopWithWaitBrickToScript:(Script*)script;

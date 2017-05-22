@@ -99,6 +99,9 @@
 #import "FormulaElement.h"
 #import "Functions.h"
 
+// UserVariable
+#import "UserVariable.h"
+
 // Assets
 #import "Look.h"
 #import "Sound.h"
@@ -121,6 +124,7 @@
 #import "LoadingView.h"
 #import "CatrobatAlertController.h"
 #import "RuntimeImageCache.h"
+#import "CBMutableCopyContext.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes

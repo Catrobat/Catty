@@ -82,7 +82,8 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             BluetoothSelection>
+                                             BluetoothSelection,
+                                             UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
@@ -122,6 +123,22 @@
     
     if (self.isEditingBrickMode) {
         [self enableUserInteractionAndResetHighlight];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
 }
 
@@ -1303,6 +1320,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                      }];
     self.editing = NO;
     self.allBricksSelected = NO;
+}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return NO;
 }
 
 @end
