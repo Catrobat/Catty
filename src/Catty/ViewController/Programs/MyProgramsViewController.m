@@ -35,14 +35,12 @@
 #import "NSDate+CustomExtensions.h"
 #import "RuntimeImageCache.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "CatrobatAlertController.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIUtil.h"
 #import "DescriptionViewController.h"
 #import "Pocket_Code-Swift.h"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate,
-CatrobatAlertViewDelegate, UITextFieldDelegate, SetDescriptionDelegate>
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UITextFieldDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
@@ -437,12 +435,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
-        [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisProgram
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisProgram message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteProgramForIndexPath:indexPath];
+         }] build]
+         showWithController:self];
     }];
     return @[deleteAction, moreAction];
 }

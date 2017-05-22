@@ -46,11 +46,9 @@
 #import "Pocket_Code-Swift.h"
 
 @interface LooksTableViewController () <UIImagePickerControllerDelegate,
-                                        UINavigationControllerDelegate, CatrobatAlertViewDelegate,
+                                        UINavigationControllerDelegate,
                                         UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic,strong)UIImage* paintImage;
-@property (nonatomic,strong)NSString* paintImagePath;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
 @property (nonatomic, assign) BOOL deletionMode;
 @property (nonatomic, assign) BOOL copyMode;
@@ -450,12 +448,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
-        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:(self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook)
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+        NSString *alertTitle = (self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook);
+        [[[[[AlertControllerBuilder alertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteLookForIndexPath:indexPath];
+         }] build]
+         showWithController:self];
     }];
     return @[deleteAction, moreAction];
 }
@@ -778,24 +777,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
-    self.paintImage = image;
-    self.paintImagePath = path;
-    [self performActionOnConfirmation:@selector(savePaintImage)
-                       canceledAction:@selector(cancelPaintSave)
-                               target:self
-                         confirmTitle:kLocalizedSaveToPocketCode
-                       confirmMessage:kLocalizedPaintSaveChanges];
+    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self cancelPaintSave];
+     }]
+     addDefaultActionWithTitle:kLocalizedYes handler:^{
+         [self savePaintImage:image andPath:path];
+     }] build]
+     showWithController:self];
 }
 
 
-- (void)savePaintImage
+- (void)savePaintImage:(UIImage *)image andPath:(NSString *)path
 {
-    if (self.paintImage) {
-        [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+    if (image) {
+        [self addPaintedImage:image andPath:path];
     } else if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
-        if (self.afterSafeBlock) {
-            self.afterSafeBlock(nil);
-        }
+        SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
     }
 }
 
@@ -809,7 +807,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.filePath && [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NO]) {
         [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     }
-    
 }
 
 - (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName

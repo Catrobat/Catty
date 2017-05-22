@@ -509,12 +509,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if (indexPath.section != kObjectSectionIndex) {
             return;
         }
-        [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisObject
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisObject message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteObjectForIndexPath:indexPath];
+         }] build]
+         showWithController:self];
     }];
     return @[deleteAction, moreAction];
 }

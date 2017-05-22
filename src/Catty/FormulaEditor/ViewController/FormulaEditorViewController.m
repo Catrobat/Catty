@@ -34,7 +34,6 @@
 #import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
-#import "CatrobatAlertController.h"
 #import "ShapeButton.h"
 #import "Pocket_Code-Swift.h"
 

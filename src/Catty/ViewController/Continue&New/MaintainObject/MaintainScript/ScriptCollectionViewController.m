@@ -82,13 +82,11 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             CatrobatAlertViewDelegate,
                                              BluetoothSelection>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
-@property (nonatomic, strong) NSIndexPath *selectedIndexPathForDeletion;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic,strong) Script *moveHelperScript;
@@ -276,7 +274,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         actionSheet = [[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
                        addCancelActionWithTitle:kLocalizedCancel handler:nil]
                        addDestructiveActionWithTitle:destructiveTitle handler:^{
-                           self.selectedIndexPathForDeletion = indexPath;
                            [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
                        }]
                        addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
@@ -302,16 +299,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     } else {
         actionSheet = [[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditScript]
-                       addCancelActionWithTitle:kLocalizedCancel handler:nil]
-                       addDestructiveActionWithTitle:kLocalizedDeleteScript handler:^{
-                           NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
-                           if (numberOfBricksInSection > 1) {
-                               self.selectedIndexPathForDeletion = indexPath;
-                               [Util confirmAlertWithTitle:kLocalizedDeleteThisScript message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
-                           } else {
-                               [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
-                           }
-                       }];
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDestructiveActionWithTitle:kLocalizedDeleteScript handler:^{
+             NSInteger numberOfBricksInSection = [self.collectionView numberOfItemsInSection:indexPath.section];
+             if (numberOfBricksInSection > 1) {
+                 [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisScript
+                                                    message:kLocalizedThisActionCannotBeUndone]
+                  addCancelActionWithTitle:kLocalizedCancel handler:nil]
+                  addDefaultActionWithTitle:kLocalizedYes handler:^{
+                      [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+                  }] build]
+                  showWithController:self];
+             } else {
+                 [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+             }
+         }];
     }
     
     [[[[actionSheet build]
@@ -372,37 +374,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count])
     {
         NSString *alertTitle = title;
-        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmDeletingSelectedItemsAlertViewTag];
+        [[[[[AlertControllerBuilder alertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteSelectedBricks];
+             self.allBricksSelected = NO;
+         }] build]
+         showWithController:self];
     }
-}
-
-#pragma mark- CatrobatAlertViewDelegate
-- (void)alertView:(CatrobatAlertController *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    /* previous but unused implementation
-    if (alertView.tag == kResourcesAlertView) {
-        // check if user agreed
-        if (buttonIndex != 0) {
-            [self startSceneWithVC:self.scenePresenterViewController];
-            return;
-        } else {
-            return;
-        }
-    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
-    {
-        [self deleteSelectedBricks];
-        self.allBricksSelected = NO;
-    } 
-    */
-    
-    if (alertView.tag == kConfirmDeletingSelectedItemsAlertViewTag && buttonIndex == 1) {
-        [self deleteSelectedBricks];
-        self.allBricksSelected = NO;
-    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1) {
-        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForDeletion];
-        [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:self.selectedIndexPathForDeletion];
-    }
-
 }
 
 #pragma mark - Reorderable Cells Delegate

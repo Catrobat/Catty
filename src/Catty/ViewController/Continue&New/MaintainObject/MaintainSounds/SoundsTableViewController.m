@@ -481,12 +481,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
-        [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisSound
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisSound message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteSoundForIndexPath:indexPath];
+         }] build]
+         showWithController:self];
     }];
     return @[deleteAction, moreAction];
 }
@@ -825,22 +825,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)showDownloadSoundAlert:(Sound *)sound
 {
     self.sound = sound;
-//    [self performActionOnConfirmation:@selector(saveSound)
-//                       canceledAction:@selector(cancelPaintSave)
-//                               target:self
-//                         confirmTitle:kLocalizedSaveToPocketCode
-//                       confirmMessage:@"Do you want to save the sound"];
     [self saveSound];
 }
 
 - (void)showSaveSoundAlert:(Sound *)sound
 {
     self.sound = sound;
-    [self performActionOnConfirmation:@selector(saveSound)
-                       canceledAction:@selector(cancelPaintSave)
-                               target:self
-                         confirmTitle:kLocalizedSaveToPocketCode
-                       confirmMessage:kLocalizedPaintSaveChanges];
+    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self cancelPaintSave];
+     }]
+     addDefaultActionWithTitle:kLocalizedYes handler:^{
+         [self saveSound];
+     }] build]
+     showWithController:self];
 }
 
 

@@ -63,23 +63,11 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController;
 
-+ (void)showComingSoonAlertView;
-
 + (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
-+ (CatrobatAlertController*)alertWithText:(NSString*)text;
++ (void)alertWithText:(NSString*)text;
 
-+ (CatrobatAlertController*)alertWithTitle:(NSString*)title
-                             andText:(NSString*)text;
-
-+ (CatrobatAlertController*)alertWithText:(NSString*)text
-                           delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                tag:(NSInteger)tag;
-
-+ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
-                                    message:(NSString*)message
-                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                        tag:(NSInteger)tag;
++ (void)alertWithTitle:(NSString*)title andText:(NSString*)text;
 
 + (CatrobatAlertController*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
