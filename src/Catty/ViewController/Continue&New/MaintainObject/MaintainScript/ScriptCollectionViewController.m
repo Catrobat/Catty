@@ -592,6 +592,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     return brickCell;
 }
 
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.isEditing && [cell isKindOfClass:[BrickCell class]]) {
+        BrickCell* brickCell = (BrickCell*)cell;
+        brickCell.center = CGPointMake(self.view.center.x, brickCell.center.y);
+        brickCell.selectButton.alpha = 0.0f;
+        brickCell.selectButton.selected = NO;
+        brickCell.enabled = YES;
+    }
+    return;
+}
 
 #pragma mark - BrickCategoryViewController delegates
 - (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
