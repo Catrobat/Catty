@@ -122,7 +122,6 @@
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
 #import "LoadingView.h"
-#import "CatrobatAlertController.h"
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
 

@@ -116,7 +116,7 @@
          addDefaultActionWithTitle:kLocalizedYes handler:^{
              [delegate userAgreedToContinueAnyway];
          }] build]
-         showWithController:[Util topViewControllerInViewController:[UIApplication sharedApplication].keyWindow.rootViewController]];
+         showWithController:[Util topmostViewController]];
         
         return NO;
     }

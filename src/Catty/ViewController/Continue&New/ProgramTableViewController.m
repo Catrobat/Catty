@@ -111,7 +111,32 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)addObjectAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCancel:@selector(cancelAddingObjectFromScriptEditor) withCompletion:nil];
+    
+    [[[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+     placeholder:kLocalizedEnterYourObjectNameHere]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self cancelAddingObjectFromScriptEditor];
+     }]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+         [self addObjectActionWithName:name];
+     }]
+     characterValidator:^BOOL(NSString *character) {
+         return [kTextFieldAllowedCharacters containsString:character];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         if (name.length < kMinNumOfObjectNameCharacters) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:
+                     [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, kMinNumOfObjectNameCharacters]];
+         } else if (name.length > kMaxNumOfObjectNameCharacters) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:
+                     [NSString stringWithFormat:kLocalizedTooLongInputDescription, kMaxNumOfObjectNameCharacters]];
+         } else if ([[self.program allObjectNames] containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+         } else {
+             return [InputValidationResult validInput];
+         }
+     }] build]
+     showWithController:self];
 }
 
 -(void)cancelAddingObjectFromScriptEditor

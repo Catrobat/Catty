@@ -822,7 +822,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variableSegmentedControl.selectedSegmentIndex = isProgramVariable ? 0 : 1;
     [self.variableSegmentedControl setNeedsDisplay];
 
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
+                                          target:self
+                                     promptTitle:kUIFENewVar
+                                   promptMessage:kUIFEVarName
+                                  minInputLength:kMinNumOfVariableNameCharacters
+                                  maxInputLength:kMaxNumOfVariableNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                                    andTextField:self.formulaEditorTextView];
 }
 
 - (IBAction)addNewVariable:(UIButton *)sender {
@@ -893,14 +900,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.isProgramVariable){
         for (UserVariable* variable in [self.object.program.variables allVariables]) {
             if ([variable.name isEqualToString:name]) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
+                                                      target:self
+                                                 promptTitle:kUIFENewVarExists
+                                               promptMessage:kUIFEVarName
+                                              minInputLength:kMinNumOfVariableNameCharacters
+                                              maxInputLength:kMaxNumOfVariableNameCharacters
+                                         blockedCharacterSet:[self blockedCharacterSet]
+                                                andTextField:self.formulaEditorTextView];
                 return;
             }
         }
     } else {
         for (UserVariable* variable in [self.object.program.variables allVariablesForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
+                                                      target:self
+                                                 promptTitle:kUIFENewVarExists
+                                               promptMessage:kUIFEVarName
+                                              minInputLength:kMinNumOfVariableNameCharacters
+                                              maxInputLength:kMaxNumOfVariableNameCharacters
+                                         blockedCharacterSet:[self blockedCharacterSet]
+                                                andTextField:self.formulaEditorTextView];
                 return;
             }
         }
@@ -934,7 +955,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)addNewText:(id)sender {
     [self.formulaEditorTextView resignFirstResponder];
     
-    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:kMaxNumOfProgramNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
+                                          target:self
+                                     promptTitle:kUIFENewText
+                                   promptMessage:kUIFETextMessage
+                                  minInputLength:kMinNumOfProgramNameCharacters
+                                  maxInputLength:kMaxNumOfProgramNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                                    andTextField:self.formulaEditorTextView];
 }
 
 - (void)handleNewTextInput:(NSString*)text
