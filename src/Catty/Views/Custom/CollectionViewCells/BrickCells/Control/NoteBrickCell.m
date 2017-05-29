@@ -28,6 +28,26 @@
 
 @implementation NoteBrickCell
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        // register for keyboard notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillShow:)
+                                                     name:UIKeyboardWillShowNotification
+                                                   object:nil];
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyboardWillHide:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    }
+    
+    return self;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
@@ -42,6 +62,37 @@
 {
     self.textLabel = inlineViewSubViews[0];
     self.noteTextField = inlineViewSubViews[1];
+}
+
+#pragma mark Keyboard Delegates
+
+-(void)keyboardWillShow:(NSNotification *)notification {
+    
+    if ([self.noteTextField isFirstResponder]) {
+        
+        NSDictionary* keyboardInfo = [notification userInfo];
+        NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+        
+        if (self.frame.origin.y > (keyboardFrameBeginRect.origin.y - keyboardFrameBeginRect.size.height) &&
+            [self.superview isKindOfClass:[UICollectionView class]]) {
+            
+            UICollectionView *parentView = (UICollectionView *)self.superview;
+            [parentView setContentOffset:CGPointMake(0, keyboardFrameBeginRect.size.height) animated:YES];
+        }
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+    
+    if ([self.noteTextField isFirstResponder]) {
+        
+        if ([self.superview isKindOfClass:[UICollectionView class]]) {
+            
+            UICollectionView *parentView = (UICollectionView *)self.superview;
+            [parentView setContentOffset:CGPointMake(0, 0) animated:YES];
+        }
+    }
 }
 
 @end
