@@ -110,6 +110,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
++ validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                  promptTitle:(NSString*)title

@@ -124,17 +124,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
          return [kTextFieldAllowedCharacters containsString:character];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
-         if (name.length < kMinNumOfObjectNameCharacters) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:
-                     [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, kMinNumOfObjectNameCharacters]];
-         } else if (name.length > kMaxNumOfObjectNameCharacters) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:
-                     [NSString stringWithFormat:kLocalizedTooLongInputDescription, kMaxNumOfObjectNameCharacters]];
-         } else if ([[self.program allObjectNames] containsObject:name]) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
-         } else {
-             return [InputValidationResult validInput];
+         InputValidationResult *result = [Util validationResultWithName:name
+                                                              minLength:kMinNumOfObjectNameCharacters
+                                                              maxlength:kMaxNumOfObjectNameCharacters];
+         if (!result.valid) {
+             return result;
          }
+         if ([[self.program allObjectNames] containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+         }
+         return [InputValidationResult validInput];
      }] build]
      showWithController:self];
 }

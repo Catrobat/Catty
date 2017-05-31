@@ -1137,7 +1137,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                  [self addVariableForBrick:brick atIndexPath:path andIsProgramVariable:NO];
              }]
              build]
-             showWithController:self];
+             showWithController:[Util topmostViewController]];
             
             [self enableUserInteractionAndResetHighlight];
             return;

@@ -232,6 +232,24 @@
     [userDefaults synchronize];
 }
 
++ validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength {
+    NSString *invalidNameMessage = nil;
+    if (name.length < minLength) {
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minLength];
+    } else if (name.length > maxLength) {
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxLength];
+    } else if ([name stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0) { // at least one non-space
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedSpaceInputDescription formatParameter:minLength];
+    } else if ([name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"./\\~"]].length == 0) { // not only special characters
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedSpecialCharInputDescription formatParameter:minLength];
+    } else {
+        return [InputValidationResult validInput];
+    }
+    
+    NSAssert(invalidNameMessage != nil, @"This case should already be handled");
+    return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
+}
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                  promptTitle:(NSString*)title
@@ -303,25 +321,18 @@
          return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
      }]
      valueValidator:^InputValidationResult *(NSString *name) {
-         NSString *invalidNameMessage = nil;
-         if (name.length < minInputLength) {
-             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minInputLength];
-         } else if (name.length > maxInputLength) {
-             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxInputLength];
-         } else if ([name isEqualToString:kLocalizedNewElement]) {
-             invalidNameMessage = kLocalizedInvalidInputDescription;
-         } else if ([existingNames containsObject:name]) {
-             invalidNameMessage = invalidInputAlertMessage;
-         } else if ([name stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0) { // at least one non-space
-             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedSpaceInputDescription formatParameter:minInputLength];
-         } else if ([name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"./\\~"]].length == 0) { // not only special characters
-             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedSpecialCharInputDescription formatParameter:minInputLength];
-         } else {
-             return [InputValidationResult validInput];
-         }
+         InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
          
-         NSAssert(invalidNameMessage != nil, @"This case should already be handled");
-         return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
+         if (!result.valid) {
+             return result;
+         }
+         if ([name isEqualToString:kLocalizedNewElement]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedInvalidInputDescription];
+         }
+         if ([existingNames containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:invalidInputAlertMessage];
+         }
+         return [InputValidationResult validInput];
      }] build]
      showWithController:[self topmostViewController]];
 }
