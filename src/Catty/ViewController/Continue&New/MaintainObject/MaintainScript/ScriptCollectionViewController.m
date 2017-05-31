@@ -716,12 +716,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self reloadData];
 }
 
-#pragma mark - Open Formula Editor
+
 - (void)openFormulaEditorWithFormulaAtIndexPath:(NSIndexPath*)indexPath withEvent:(UIEvent*)event
 {
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
-    
+    [self openFormulaEditor:formulaData withEvent:event];
+}
+
+#pragma mark - Open Formula Editor
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
+{
     if (self.isEditingBrickMode && event) {
         return;
     }
