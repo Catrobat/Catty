@@ -128,8 +128,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
 //            scheduler?.runNextInstructionOfContext(senderContext)
             senderContext.state = .Runnable
         } else if broadcastType == .BroadcastWait {
-//            scheduler?.runNextInstructionsGroup()
-            
+            scheduler?.runNextInstructionsGroup()
         }
         
         // finally schedule all other (!) (collected) listening broadcast scripts
