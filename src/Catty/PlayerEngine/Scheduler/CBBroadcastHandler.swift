@@ -121,9 +121,6 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
             _broadcastWaitingContexts[senderContext.id] = senderContext
         }
 
-        // finally schedule all other (!) (collected) listening broadcast scripts
-        scheduler?.startBroadcastContexts(recipientContexts)
-
         if isSelfBroadcast {
             // launch self (!) listening broadcast script
             _performSelfBroadcastForContext(senderContext as! CBBroadcastScriptContext)
@@ -132,6 +129,9 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         } else if broadcastType == .BroadcastWait {
             scheduler?.runNextInstructionsGroup()
         }
+        
+        // finally schedule all other (!) (collected) listening broadcast scripts
+        scheduler?.startBroadcastContexts(recipientContexts)
     }
 
     private func _performSelfBroadcastForContext(context: CBBroadcastScriptContextProtocol) {
