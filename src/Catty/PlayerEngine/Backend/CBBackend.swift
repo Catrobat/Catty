@@ -134,13 +134,15 @@ final class CBBackend: CBBackendProtocol {
                     // now switch back to the main queue for executing the sequence!
                     dispatch_async(dispatch_get_main_queue(), {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
-                        scheduler.runNextInstructionOfContext(context)
+//                        scheduler.runNextInstructionOfContext(context)
+                        context.state = .Runnable
                     });
                 });
             } else {
                 // now switch back to the main queue for executing the sequence!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
-                scheduler.runNextInstructionOfContext(context)
+//                scheduler.runNextInstructionOfContext(context)
+                context.state = .Runnable
             }
         }
 
