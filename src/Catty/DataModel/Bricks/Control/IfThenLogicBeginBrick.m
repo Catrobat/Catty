@@ -20,13 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IfLogicBeginBrick.h"
-#import "IfLogicElseBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicEndBrick.h"
 #import "Util.h"
 #import "Script.h"
 
-@implementation IfLogicBeginBrick
+@implementation IfThenLogicBeginBrick
 
 - (BOOL)isAnimateable
 {
@@ -70,7 +69,7 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
+    return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
 - (BOOL)checkCondition
@@ -92,11 +91,9 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![Util isEqual:self.ifElseBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifElseBrick.brickTitle])
+    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfThenLogicBeginBrick*)brick).ifEndBrick.brickTitle])
         return NO;
-    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifEndBrick.brickTitle])
-        return NO;
-    if(![self.ifCondition isEqualToFormula:((IfLogicBeginBrick*)brick).ifCondition])
+    if(![self.ifCondition isEqualToFormula:((IfThenLogicBeginBrick*)brick).ifCondition])
         return NO;
     return YES;
 }
