@@ -59,7 +59,8 @@
     @[],                            /* else            */\
     @[],                            /* if end          */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
-    @[]                             /* loop end        */\
+    @[],                             /* loop end        */\
+    @"{FLOAT;range=(-inf,inf)}"    /* if then         */\
 ]
 // motion bricks
 #define kMotionBrickNameParams @[\

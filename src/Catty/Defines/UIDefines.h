@@ -162,6 +162,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kIfEndBrick                =  10,
     kRepeatBrick               =  11,
     kLoopEndBrick              =  12,
+    kIfThenBrick               =  13,
 
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
@@ -291,6 +292,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"NoteBrick"                 : @(kNoteBrick),\
     @"ForeverBrick"              : @(kForeverBrick),\
     @"IfLogicBeginBrick"         : @(kIfBrick),\
+    @"IfThenLogicBeginBrick"     : @(kIfThenBrick),\
     @"IfLogicElseBrick"          : @(kIfElseBrick),\
     @"IfLogicEndBrick"           : @(kIfEndBrick),\
     @"RepeatBrick"               : @(kRepeatBrick),\
