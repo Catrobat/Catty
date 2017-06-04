@@ -50,6 +50,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 @protocol MYIntroductionDelegate;
 @class SceneViewController;
 @class ProgramLoadingInfo;
+@class InputValidationResult;
 
 @interface Util : NSObject
 
@@ -110,7 +111,7 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
-+ validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
++ (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target

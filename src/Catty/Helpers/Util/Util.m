@@ -232,7 +232,7 @@
     [userDefaults synchronize];
 }
 
-+ validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength {
++ (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength {
     NSString *invalidNameMessage = nil;
     if (name.length < minLength) {
         invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minLength];
