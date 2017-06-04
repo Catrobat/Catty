@@ -31,4 +31,8 @@ public final class AlertControllerBuilder: NSObject {
     public static func actionSheetWithTitle(title: String) -> AlertActionAdding {
         return AlertController(title: title, message: nil, style: .ActionSheet)
     }
+    
+    public static func textFieldedAlertWithTitle(title: String?, message: String?) -> TextFieldedAlertDefining {
+        return TextFieldedAlertController(title: title, message: message)
+    }
 }

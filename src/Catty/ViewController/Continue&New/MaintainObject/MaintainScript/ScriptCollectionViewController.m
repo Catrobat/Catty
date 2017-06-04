@@ -54,7 +54,6 @@
 #import "ViewControllerDefines.h"
 #import "Look.h"
 #import "Sound.h"
-#import "ActionSheetAlertViewTags.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
 #import "OrderedMapTable.h"
@@ -717,12 +716,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self reloadData];
 }
 
-#pragma mark - Open Formula Editor
+
 - (void)openFormulaEditorWithFormulaAtIndexPath:(NSIndexPath*)indexPath withEvent:(UIEvent*)event
 {
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
-    
+    [self openFormulaEditor:formulaData withEvent:event];
+}
+
+#pragma mark - Open Formula Editor
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
+{
     if (self.isEditingBrickMode && event) {
         return;
     }
@@ -1133,7 +1137,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                  [self addVariableForBrick:brick atIndexPath:path andIsProgramVariable:NO];
              }]
              build]
-             showWithController:self];
+             showWithController:[Util topmostViewController]];
             
             [self enableUserInteractionAndResetHighlight];
             return;

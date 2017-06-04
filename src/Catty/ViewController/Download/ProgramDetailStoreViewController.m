@@ -34,6 +34,7 @@
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
 
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
@@ -238,10 +239,28 @@
     NSDebug(@"report");
     BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
     if (isLoggedIn) {
-    
-        [Util askUserForReportMessageAndPerformAction:@selector(sendReportWithMessage:) target:self promptTitle:kLocalizedReportProgram promptMessage:kLocalizedEnterReason minInputLength:1 maxInputLength:10 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kLocalizedBlockedCharInputDescription];
-        
-
+        [[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:kLocalizedReportProgram message:kLocalizedEnterReason]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *report) {
+             [self sendReportWithMessage:report];
+         }]
+         characterValidator:^BOOL(NSString *character) {
+             return ![[self blockedCharacterSet] characterIsMember:[character characterAtIndex:0]];
+         }]
+         valueValidator:^InputValidationResult *(NSString *report) {
+             int minInputLength = 1;
+             int maxInputLength = 10;
+             if (report.length < minInputLength) {
+                 return [InputValidationResult invalidInputWithLocalizedMessage:
+                         [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, minInputLength]];
+             } else if (report.length > maxInputLength) {
+                 return [InputValidationResult invalidInputWithLocalizedMessage:
+                         [NSString stringWithFormat:kLocalizedTooLongInputDescription, maxInputLength]];
+             } else {
+                 return [InputValidationResult validInput];
+             }
+         }] build]
+         showWithController:self];
     } else {
         [Util alertWithText:kLocalizedLoginToReport];
     }

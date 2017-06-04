@@ -111,7 +111,31 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)addObjectAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCancel:@selector(cancelAddingObjectFromScriptEditor) withCompletion:nil];
+    
+    [[[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+     placeholder:kLocalizedEnterYourObjectNameHere]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self cancelAddingObjectFromScriptEditor];
+     }]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+         [self addObjectActionWithName:name];
+     }]
+     characterValidator:^BOOL(NSString *character) {
+         return [kTextFieldAllowedCharacters containsString:character];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         InputValidationResult *result = [Util validationResultWithName:name
+                                                              minLength:kMinNumOfObjectNameCharacters
+                                                              maxlength:kMaxNumOfObjectNameCharacters];
+         if (!result.valid) {
+             return result;
+         }
+         if ([[self.program allObjectNames] containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+         }
+         return [InputValidationResult validInput];
+     }] build]
+     showWithController:self];
 }
 
 -(void)cancelAddingObjectFromScriptEditor

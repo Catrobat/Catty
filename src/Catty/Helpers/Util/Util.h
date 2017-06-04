@@ -49,8 +49,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 @protocol MYIntroductionDelegate;
 @class SceneViewController;
-@class CatrobatAlertController;
-@protocol CatrobatAlertViewDelegate;
 @class ProgramLoadingInfo;
 
 @interface Util : NSObject
@@ -63,25 +61,13 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController;
 
++ (UIViewController *)topmostViewController;
+
 + (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
 + (void)alertWithText:(NSString*)text;
 
 + (void)alertWithTitle:(NSString*)title andText:(NSString*)text;
-
-+ (CatrobatAlertController*)promptWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<CatrobatAlertViewDelegate>)delegate
-                          placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag;
-
-+ (CatrobatAlertController*)promptWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<CatrobatAlertViewDelegate>)delegate
-                          placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag
-                                value:(NSString*)value
-                               target:(id)target;
 
 + (void)askUserForVariableNameAndPerformAction:(SEL)action
                                         target:(id)target
@@ -90,17 +76,7 @@ if (__functor) __functor(__VA_ARGS__);  \
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                   andTextField:(FormulaEditorTextView *)textView;
-
-+ (void)askUserForReportMessageAndPerformAction:(SEL)action
-                                         target:(id)target
-                                    promptTitle:(NSString*)title
-                                  promptMessage:(NSString*)message
-                                 minInputLength:(NSUInteger)minInputLength
-                                 maxInputLength:(NSUInteger)maxInputLength
-                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                       invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
 
 + (NSString*)appName;
 
@@ -134,6 +110,8 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
++ validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                  promptTitle:(NSString*)title
@@ -162,17 +140,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
-                           promptTitle:(NSString*)title
-                         promptMessage:(NSString*)message
-                           promptValue:(NSString*)value
-                     promptPlaceholder:(NSString*)placeholder
-                        minInputLength:(NSUInteger)minInputLength
-                        maxInputLength:(NSUInteger)maxInputLength
-                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
-
-+ (void)askUserForTextAndPerformAction:(SEL)action
-                                target:(id)target
                           cancelAction:(SEL)cancelAction
                             withObject:(id)passingObject
                            promptTitle:(NSString*)title
@@ -183,8 +150,6 @@ if (__functor) __functor(__VA_ARGS__);  \
                         maxInputLength:(NSUInteger)maxInputLength
                    blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
-
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCancel:(SEL)cancel withCompletion:(void(^)(NSString*))completion;
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
@@ -205,8 +170,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 + (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object;
 
 + (NSArray*)allMessagesForProgram:(Program*)program;
-
-+ (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)index;
 
 + (BOOL)isNetworkError:(NSError*)error;
 
