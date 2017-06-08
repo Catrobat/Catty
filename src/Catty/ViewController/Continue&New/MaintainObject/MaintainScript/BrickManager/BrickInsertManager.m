@@ -24,6 +24,7 @@
 #import "Script.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "ForeverBrick.h"
@@ -182,6 +183,15 @@
         ifEndBrick.script = targetScript;
         [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex==0?1:insertionIndex];
         [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex==0?1:insertionIndex];
+    } else if ([brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
+        //ELSE&END ALWAYS right after IFBEGIN
+        //        NSInteger insertionIndex = path.row;
+        IfThenLogicBeginBrick *ifBeginBrick = (IfThenLogicBeginBrick*)brick;
+        IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
+        ifBeginBrick.ifEndBrick = ifEndBrick;
+        ifEndBrick.ifBeginBrick = (IfLogicBeginBrick*)ifBeginBrick;
+        ifEndBrick.script = targetScript;
+        [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex==0?1:insertionIndex];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];

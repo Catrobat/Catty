@@ -386,6 +386,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"NoteBrick"                 : @(kBrickHeight2h),\
 @"ForeverBrick"              : @(kBrickHeight1h),\
 @"IfLogicBeginBrick"         : @(kBrickHeight1h),\
+@"IfThenLogicBeginBrick"     : @(kBrickHeight1h),\
 @"IfLogicElseBrick"          : @(kBrickHeight1h),\
 @"IfLogicEndBrick"           : @(kBrickHeight1h),\
 @"RepeatBrick"               : @(kBrickHeight1h),\
