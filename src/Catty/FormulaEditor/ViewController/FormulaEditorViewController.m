@@ -268,10 +268,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake && [self.history undoIsPossible]) {
+        [self.formulaEditorTextView resignFirstResponder];
+        
         [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoTypingDescription]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
          addDefaultActionWithTitle:kLocalizedUndo handler:^{
              [self undo];
+             [self.formulaEditorTextView becomeFirstResponder];
          }] build]
          showWithController:self];
     }
