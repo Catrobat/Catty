@@ -248,6 +248,7 @@
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
 		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
 		4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */; };
+		4D97AB7F1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -1196,6 +1197,8 @@
 		4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
 		4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrickCell.m; sourceTree = "<group>"; };
 		4D6E0C921EE14039008FED9F /* IfThenLogicBeginBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrickCell.h; sourceTree = "<group>"; };
+		4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfThenLogicBeginBrick+CBXMLHandler.m"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4D97AB821EE80CEA003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IfThenLogicBeginBrick+CBXMLHandler.h"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2817,6 +2820,8 @@
 				AA74EECA1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m */,
 				AA74EECB1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.h */,
 				AA74EECC1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m */,
+				4D97AB821EE80CEA003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.h */,
+				4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */,
 				AA74EECD1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.h */,
 				AA74EECE1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m */,
 				AA74EECF1BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.h */,
@@ -7043,6 +7048,7 @@
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
+				4D97AB7F1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
 				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
