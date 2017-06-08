@@ -37,6 +37,7 @@
 #import "Brick.h"
 #import "BrickConditionalBranchProtocol.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "LoopBeginBrick.h"
