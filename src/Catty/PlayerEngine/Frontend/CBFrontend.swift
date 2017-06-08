@@ -48,6 +48,7 @@ final class CBFrontend: CBFrontendProtocol {
 
             switch brick {
             case _ as IfLogicBeginBrick,
+                 _ as IfThenLogicBeginBrick,
                  _ as IfLogicElseBrick,
                  _ as IfLogicEndBrick,
                  _ as LoopBeginBrick,
@@ -69,6 +70,13 @@ final class CBFrontend: CBFrontendProtocol {
                 currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
 
+            case is IfThenLogicBeginBrick:
+                // preserve currentSequenceList and push it to stack
+                sequenceStack.push(currentSequenceList)
+                // new sequence list for If
+                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
+                currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
+                
             case is IfLogicElseBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
