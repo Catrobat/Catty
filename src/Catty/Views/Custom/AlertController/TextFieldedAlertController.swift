@@ -23,16 +23,16 @@
 import Foundation
 
 @objc public protocol TextFieldInitialStateDefiner {
-    func initialText(text: String) -> TextFieldedAlertDefining
-    func placeholder(placeholder: String) -> TextFieldedAlertDefining
+    func initialText(text: String) -> TextFieldAlertDefining
+    func placeholder(placeholder: String) -> TextFieldAlertDefining
 }
 
-@objc public protocol TextFieldedAlertActionAdding {
-    func addDefaultActionWithTitle(title: String, handler: ((String) -> Void)?) -> TextFieldedAlertControllerBuilding
-    func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> TextFieldedAlertControllerBuilding
+@objc public protocol TextFieldAlertActionAdding {
+    func addDefaultActionWithTitle(title: String, handler: ((String) -> Void)?) -> TextFieldAlertControllerBuilding
+    func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding
 }
 
-@objc public protocol TextFieldedAlertDefining : TextFieldInitialStateDefiner, TextFieldedAlertActionAdding {}
+@objc public protocol TextFieldAlertDefining : TextFieldInitialStateDefiner, TextFieldAlertActionAdding {}
 
 public final class InputValidationResult : NSObject {
     let valid: Bool
@@ -60,10 +60,10 @@ public final class InputValidationResult : NSObject {
 
 @objc public protocol TextFieldInputValidating : TextFieldInputValidator, BuilderProtocol { }
 
-@objc public protocol TextFieldedAlertControllerBuilding : TextFieldedAlertActionAdding, BuilderProtocol, TextFieldInputValidating { }
+@objc public protocol TextFieldAlertControllerBuilding : TextFieldAlertActionAdding, BuilderProtocol, TextFieldInputValidating { }
 
 
-final class TextFieldedAlertController : BaseAlertController, TextFieldedAlertDefining, TextFieldedAlertControllerBuilding, UITextFieldDelegate {
+final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefining, TextFieldAlertControllerBuilding, UITextFieldDelegate {
     private var characterValidator: ((String) -> Bool)?
     private var valueValidator: ((String) -> InputValidationResult)?
     private let initialMessage: String?
@@ -82,17 +82,17 @@ final class TextFieldedAlertController : BaseAlertController, TextFieldedAlertDe
         }
     }
     
-    func initialText(text: String) -> TextFieldedAlertDefining {
+    func initialText(text: String) -> TextFieldAlertDefining {
         alertController.textFields?[0].text = text
         return self
     }
     
-    func placeholder(placeholder: String) -> TextFieldedAlertDefining {
+    func placeholder(placeholder: String) -> TextFieldAlertDefining {
         alertController.textFields?[0].placeholder = placeholder
         return self
     }
     
-    @objc func addDefaultActionWithTitle(title: String, handler: ((String) -> Void)?) -> TextFieldedAlertControllerBuilding {
+    @objc func addDefaultActionWithTitle(title: String, handler: ((String) -> Void)?) -> TextFieldAlertControllerBuilding {
         let action = UIAlertAction(title: title, style: .Default) { [weak self] _ in
             guard let `self` = self else { return }
             
@@ -116,7 +116,7 @@ final class TextFieldedAlertController : BaseAlertController, TextFieldedAlertDe
             .showWithController(Util.topmostViewController())
     }
     
-    @objc func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> TextFieldedAlertControllerBuilding {
+    @objc func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding {
         alertController.addAction(UIAlertAction(title: title, style: .Cancel) {_ in handler?() })
         return self
     }

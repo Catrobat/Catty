@@ -112,7 +112,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
      placeholder:kLocalizedEnterYourObjectNameHere]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [self cancelAddingObjectFromScriptEditor];

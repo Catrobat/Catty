@@ -239,7 +239,7 @@
     NSDebug(@"report");
     BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
     if (isLoggedIn) {
-        [[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:kLocalizedReportProgram message:kLocalizedEnterReason]
+        [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedReportProgram message:kLocalizedEnterReason]
          addCancelActionWithTitle:kLocalizedCancel handler:nil]
          addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *report) {
              [self sendReportWithMessage:report];
