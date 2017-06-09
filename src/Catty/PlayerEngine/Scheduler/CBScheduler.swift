@@ -193,8 +193,11 @@ final class CBScheduler: CBSchedulerProtocol {
                     self._availableWaitQueues += queue!
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
-//                            self.runNextInstructionOfContext(context)
-                            context.state = .Runnable
+                            self.runNextInstructionOfContext(context)
+                            if self._hasNewBroadcastContextBeenScheduled {
+                                self._hasNewBroadcastContextBeenScheduled = false;
+                                self.runNextInstructionsGroup()
+                            }
                         }
                     }
                 })
@@ -225,8 +228,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     }
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
-//                            self.runNextInstructionOfContext(context)
-                            context.state = .Runnable
+                            self.runNextInstructionOfContext(context)
                         }
                     }
                 })
@@ -249,8 +251,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     }
                     if index == context.index {
                         dispatch_async(dispatch_get_main_queue()) {
-//                            self.runNextInstructionOfContext(context)
-                            context.state = .Runnable
+                            self.runNextInstructionOfContext(context)
                         }
                     }
                 })
