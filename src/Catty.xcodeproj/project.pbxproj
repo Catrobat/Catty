@@ -184,6 +184,7 @@
 		4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */; };
 		4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56D1E0AD71800FD021C /* ProgramTests.m */; };
 		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
+		4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
 		4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */; };
 		4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22321B95E47500B3BE2F /* BrickMoveManagerLogicTests.m */; };
@@ -708,7 +709,6 @@
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; };
-		C64BD3901EDACBB4001044A5 /* TextFieldedAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64BD38F1EDACBB4001044A5 /* TextFieldedAlertController.swift */; };
 		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1123,6 +1123,7 @@
 		4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks097.xml; sourceTree = "<group>"; };
 		4CE5C56D1E0AD71800FD021C /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
+		4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlertController.swift; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
 		4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerForeverTests.m; sourceTree = "<group>"; };
@@ -2082,7 +2083,6 @@
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C64BD38F1EDACBB4001044A5 /* TextFieldedAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldedAlertController.swift; sourceTree = "<group>"; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA2D44401B122E8500A3B53D /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
@@ -3343,7 +3343,7 @@
 				91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */,
 				91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */,
 				91FC8B8C0B21945B560F7272 /* AlertController.swift */,
-				C64BD38F1EDACBB4001044A5 /* TextFieldedAlertController.swift */,
+				4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */,
 			);
 			path = AlertController;
 			sourceTree = "<group>";
@@ -6873,7 +6873,6 @@
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
-				C64BD3901EDACBB4001044A5 /* TextFieldedAlertController.swift in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				AA74EE271BC0540D00D1E954 /* SetVariableBrick+Instruction.swift in Sources */,
 				9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */,
@@ -6941,6 +6940,7 @@
 				AA74EE2D1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift in Sources */,
 				9218B2091CC4AB75007B4C60 /* UIImage+Rotate.m in Sources */,
 				9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */,
+				4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,
