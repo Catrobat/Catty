@@ -268,21 +268,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake && [self.history undoIsPossible]) {
+        [self.formulaEditorTextView resignFirstResponder];
         
-        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
-                                                                           message:kLocalizedUndoTypingDescription
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) { }];
-        [undoAlert addAction:cancelAction];
-        
-        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction *action) { [self undo]; }];
-        [undoAlert addAction:undoAction];
-        [self presentViewController:undoAlert animated:YES completion:nil];
+        [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoTypingDescription]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
+         addDefaultActionWithTitle:kLocalizedUndo handler:^{
+             [self undo];
+             [self.formulaEditorTextView becomeFirstResponder];
+         }] build]
+         showWithController:self];
     }
 }
 

@@ -32,7 +32,7 @@ public final class AlertControllerBuilder: NSObject {
         return AlertController(title: title, message: nil, style: .ActionSheet)
     }
     
-    public static func textFieldedAlertWithTitle(title: String?, message: String?) -> TextFieldedAlertDefining {
-        return TextFieldedAlertController(title: title, message: message)
+    public static func textFieldAlertWithTitle(title: String?, message: String?) -> TextFieldAlertDefining {
+        return TextFieldAlertController(title: title, message: message)
     }
 }

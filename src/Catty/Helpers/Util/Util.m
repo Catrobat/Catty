@@ -295,7 +295,7 @@
                          blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames {
-    [[[[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:title message:message]
+    [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
      placeholder:placeholder]
      initialText:value]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
@@ -374,7 +374,7 @@
                             blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                                 andTextField:(FormulaEditorTextView *)textView
 {
-    [[[[[[[AlertControllerBuilder textFieldedAlertWithTitle:title message:message]
+    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          [textView becomeFirstResponder];
      }]
