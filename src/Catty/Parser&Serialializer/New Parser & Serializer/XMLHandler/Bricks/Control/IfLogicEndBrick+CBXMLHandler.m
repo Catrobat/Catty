@@ -28,6 +28,7 @@
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLParserHelper.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "CBXMLSerializerHelper.h"
 
@@ -48,6 +49,10 @@
         }
         ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
         ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
+    } else if ([openingNestingBrick isKindOfClass:[IfThenLogicBeginBrick class]]) {
+        IfThenLogicBeginBrick *ifLogicBeginBrick = (IfThenLogicBeginBrick*)openingNestingBrick;
+        ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
+        ifLogicEndBrick.ifBeginBrick = (IfLogicBeginBrick*)ifLogicBeginBrick;
     } else if ([openingNestingBrick isKindOfClass:[IfLogicElseBrick class]]) {
         IfLogicElseBrick *ifLogicElseBrick = (IfLogicElseBrick*)openingNestingBrick;
         [XMLError exceptionIfNil:ifLogicElseBrick.ifBeginBrick
@@ -93,6 +98,15 @@
              is not equal to current IfLogicEndBrick"];
         }
         if (self.ifBeginBrick != ifLogicBeginBrick) {
+            [XMLError exceptionWithMessage:@"IfLogicEndBrick must not contain a reference to an ifElseBrick at this point"];
+        }
+    } else if ([openingNestingBrick isKindOfClass:[IfThenLogicBeginBrick class]]) {
+        IfThenLogicBeginBrick *ifLogicBeginBrick = (IfThenLogicBeginBrick*)openingNestingBrick;
+        if (ifLogicBeginBrick.ifEndBrick != self) {
+            [XMLError exceptionWithMessage:@"IfLogicBeginBrick contains a reference to an ifEndBrick that \
+             is not equal to current IfLogicEndBrick"];
+        }
+        if (self.ifBeginBrick != (IfLogicBeginBrick*)ifLogicBeginBrick) {
             [XMLError exceptionWithMessage:@"IfLogicEndBrick must not contain a reference to an ifElseBrick at this point"];
         }
     } else if ([openingNestingBrick isKindOfClass:[IfLogicElseBrick class]]) {
