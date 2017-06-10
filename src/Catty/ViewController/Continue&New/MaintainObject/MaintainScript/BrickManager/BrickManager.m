@@ -506,6 +506,8 @@
             NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
             NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 2) inSection:indexPath.section];
             return @[ifLogicBeginIndexPath, ifLogicEndIndexPath];
+        } else {
+            return @[];
         }
     } else {
         // normal brick

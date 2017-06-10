@@ -70,7 +70,12 @@
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
+    return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
+}
+
+- (NSString*)brickTitleForBrickSelection
+{
+        return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
 }
 
 - (BOOL)checkCondition
