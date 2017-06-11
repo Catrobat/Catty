@@ -362,7 +362,7 @@
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
-    NSString *brickTitle = self.scriptOrBrick.brickTitle;
+    NSString *brickTitle = self.scriptOrBrick.brickTitleForBrickSelection;
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;

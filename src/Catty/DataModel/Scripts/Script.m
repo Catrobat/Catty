@@ -73,6 +73,11 @@
                                  userInfo:nil];
 }
 
+- (NSString*)brickTitleForBrickSelection
+{
+    return self.brickTitle;
+}
+
 - (NSMutableArray*)brickList
 {
     if (! _brickList) {
