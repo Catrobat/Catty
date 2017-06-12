@@ -171,6 +171,12 @@
 
 - (void)setupBrickCell
 {
+    [self setupBrickCellinSelectionView:false];
+}
+
+- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView
+{
+    self.brickTitle = inSelectionView ? self.scriptOrBrick.brickTitleForBrickSelection : self.scriptOrBrick.brickTitle;
     if ([self isKindOfClass:[LoopEndBrickCell class]]) {
         LoopEndBrickCell* cell = (LoopEndBrickCell*)self;
         cell.type = [[BrickManager sharedBrickManager] checkEndLoopBrickTypeForDrawing:cell];
@@ -362,7 +368,7 @@
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
-    NSString *brickTitle = self.scriptOrBrick.brickTitleForBrickSelection;
+    NSString *brickTitle = self.brickTitle;
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;

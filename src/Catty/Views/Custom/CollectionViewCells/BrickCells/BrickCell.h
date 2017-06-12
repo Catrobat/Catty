@@ -52,6 +52,7 @@
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) BOOL isInserting;
 @property (nonatomic, strong) SelectButton *selectButton;
+@property (nonatomic) NSString* brickTitle;
 
 - (kBrickShapeType)brickShapeType;
 - (CGFloat)inlineViewHeight;
@@ -64,6 +65,7 @@
 - (void)animate:(BOOL)animate;
 - (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
+- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView;
 
 - (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 - (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;
