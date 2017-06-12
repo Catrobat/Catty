@@ -32,7 +32,6 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, strong, readonly) NSString *brickTitleForBrickSelection;
 @property (nonatomic, weak) Script *script;
 @property (nonatomic, getter=isAnimated) BOOL animate;
 @property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
@@ -50,6 +49,8 @@
 - (BOOL)isPhiroBrick;
 
 - (BOOL)isArduinoBrick;
+
+- (NSString*)brickTitleForBrickSelection;
 
 - (NSString*)description;
 

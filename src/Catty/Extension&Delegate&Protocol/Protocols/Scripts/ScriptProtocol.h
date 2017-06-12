@@ -32,12 +32,12 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, strong, readonly) NSString *brickTitleForBrickSelection;
 @property (nonatomic, getter=isAnimated) BOOL animate;
 @property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
 @property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
 - (BOOL)isSelectableForObject;
 - (BOOL)isAnimateable;
+- (NSString*)brickTitleForBrickSelection;
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
 
 @end

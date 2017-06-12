@@ -124,7 +124,7 @@
     brickCell.isInserting = YES;
     brickCell.scriptOrBrick = self.bricks[indexPath.item];
     [brickCell.scriptOrBrick setDefaultValuesForObject:self.spriteObject];
-    [brickCell setupBrickCell];
+    [brickCell setupBrickCellinSelectionView:true];
     [brickCell setNeedsDisplay];
     
     for (id subview in brickCell.subviews) {
