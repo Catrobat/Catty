@@ -56,11 +56,11 @@
     @"{TEXT}",                      /* note            */\
     @[],                            /* forever         */\
     @"{FLOAT;range=(-inf,inf)}",    /* if              */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if then         */\
     @[],                            /* else            */\
     @[],                            /* if end          */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
-    @[],                             /* loop end        */\
-    @"{FLOAT;range=(-inf,inf)}"    /* if then         */\
+    @[]                             /* loop end        */\
 ]
 // motion bricks
 #define kMotionBrickNameParams @[\
