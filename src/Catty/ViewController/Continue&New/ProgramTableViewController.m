@@ -30,21 +30,20 @@
 #import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
 #import "UIUtil.h"
-#import "ActionSheetAlertViewTags.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "ProgramUpdateDelegate.h"
 #import "CellTagDefines.h"
 #import "ProgramTableHeaderView.h"
 #import "RuntimeImageCache.h"
-#import "CatrobatAlertController.h"
-#import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
 #import "DescriptionViewController.h"
 #import "PlaceHolderView.h"
+#import "Pocket_Code-Swift.h"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SetDescriptionDelegate>
+
+@interface ProgramTableViewController () <UINavigationBarDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @end
@@ -112,7 +111,31 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)addObjectAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCancel:@selector(cancelAddingObjectFromScriptEditor) withCompletion:nil];
+    
+    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedAddObject message:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]]
+     placeholder:kLocalizedEnterYourObjectNameHere]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self cancelAddingObjectFromScriptEditor];
+     }]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+         [self addObjectActionWithName:name];
+     }]
+     characterValidator:^BOOL(NSString *character) {
+         return [kTextFieldAllowedCharacters containsString:character];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         InputValidationResult *result = [Util validationResultWithName:name
+                                                              minLength:kMinNumOfObjectNameCharacters
+                                                              maxlength:kMaxNumOfObjectNameCharacters];
+         if (!result.valid) {
+             return result;
+         }
+         if ([[self.program allObjectNames] containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
+         }
+         return [InputValidationResult validInput];
+     }] build]
+     showWithController:self];
 }
 
 -(void)cancelAddingObjectFromScriptEditor
@@ -206,28 +229,71 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    NSMutableArray *options = [NSMutableArray array];
-    NSString *destructive = nil;
+
+    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditProgram]
+                                               addCancelActionWithTitle:kLocalizedCancel handler:nil];
+    
+
     if ([self.program numberOfNormalObjects]) {
-        destructive =kLocalizedDeleteObjects;
+        [actionSheet addDestructiveActionWithTitle:kLocalizedDeleteObjects handler:^{
+            self.deletionMode = YES;
+            [self setupEditingToolBar];
+            [super changeToEditingMode:sender];
+        }];
     }
     if ([self.program numberOfNormalObjects] >= 2) {
-        [options addObject:kLocalizedMoveObjects];
+        [actionSheet addDefaultActionWithTitle:kLocalizedMoveObjects handler:^{
+            self.deletionMode = NO;
+            [super changeToMoveMode:sender];
+        }];
     }
-    [options addObject:kLocalizedRenameProgram];
-    if (self.useDetailCells) {
-        [options addObject:kLocalizedHideDetails];
-    } else {
-        [options addObject:kLocalizedShowDetails];
-    }
-    [options addObject:kLocalizedDescription];
-    [Util actionSheetWithTitle:kLocalizedEditProgram
-                                                         delegate:self
-                                           destructiveButtonTitle:destructive
-                                                otherButtonTitles:options
-                                                              tag:kEditProgramActionSheetTag
-                                                             view:self.navigationController.view];
 
+    NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
+    
+    [[[[[actionSheet
+     addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
+         NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+         [unavailableNames removeString:self.program.header.programName];
+         [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
+                                             target:self
+                                        promptTitle:kLocalizedRenameProgram
+                                      promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                        promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
+                                                     ? self.program.header.programName : nil)
+                                  promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                     minInputLength:kMinNumOfProgramNameCharacters
+                                     maxInputLength:kMaxNumOfProgramNameCharacters
+                                blockedCharacterSet:[self blockedCharacterSet]
+                           invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                      existingNames:unavailableNames];
+    }]
+    addDefaultActionWithTitle:detailActionTitle handler:^{
+        [self toggleDetailCellsMode];
+    }]
+    addDefaultActionWithTitle:kLocalizedDescription handler:^{
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+        dViewController.delegate = self;
+        [self.navigationController presentViewController:dViewController animated:YES completion:nil];
+    }] build]
+    showWithController:self];
+}
+
+- (void)toggleDetailCellsMode {
+    self.useDetailCells = !self.useDetailCells;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+    NSMutableDictionary *showDetailsMutable = nil;
+    if (! showDetails) {
+        showDetailsMutable = [NSMutableDictionary dictionary];
+    } else {
+        showDetailsMutable = [showDetails mutableCopy];
+    }
+    [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                           forKey:kUserDetailsShowDetailsObjectsKey];
+    [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+    [defaults synchronize];
+    [self.tableView reloadData];
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -429,16 +495,36 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditObjectActionSheetTag
-                                                                 view:self.navigationController.view];
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditObject
-                                                                        withPayload:@{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] }];
+        
+        SpriteObject *spriteObject = [self.program.objectList objectAtIndex:spriteObjectIndex];
+        
+        [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditObject]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedCopy handler:^{
+             [self copyObjectActionWithSourceObject:spriteObject];
+         }]
+         addDefaultActionWithTitle:kLocalizedRename handler:^{
+             NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
+             [unavailableNames removeString:spriteObject.name];
+             [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
+                                                 target:self
+                                           cancelAction:nil
+                                             withObject:spriteObject
+                                            promptTitle:kLocalizedRenameObject
+                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                            promptValue:spriteObject.name
+                                      promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                         minInputLength:kMinNumOfObjectNameCharacters
+                                         maxInputLength:kMaxNumOfObjectNameCharacters
+                                    blockedCharacterSet:[self blockedCharacterSet]
+                               invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                          existingNames:unavailableNames];
+         }] build]
+         viewWillDisappear:^{
+             [self.tableView setEditing:false animated:YES];
+         }]
+         showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
@@ -447,12 +533,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if (indexPath.section != kObjectSectionIndex) {
             return;
         }
-        [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisObject
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisObject message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteObjectForIndexPath:indexPath];
+         }] build]
+         showWithController:self];
     }];
     return @[deleteAction, moreAction];
 }
@@ -520,86 +606,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }
-        }
-    }
-}
-
-#pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self.tableView setEditing:false animated:YES];
-    if (actionSheet.tag == kEditProgramActionSheetTag) {
-        if ((buttonIndex == 1) && [self.program numberOfNormalObjects]) {
-            // Delete objects button
-            self.deletionMode = YES;
-            [self setupEditingToolBar];
-            [super changeToEditingMode:actionSheet];
-        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects] >= 2){
-            self.deletionMode = NO;
-            [super changeToMoveMode:actionSheet];
-        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])|| ((buttonIndex == 3) && [self.program numberOfNormalObjects] >= 2)) {
-            // Rename program button
-            NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-            [unavailableNames removeString:self.program.header.programName];
-            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
-                                                target:self
-                                           promptTitle:kLocalizedRenameProgram
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                           promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
-                                                        ? self.program.header.programName : nil)
-                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                        minInputLength:kMinNumOfProgramNameCharacters
-                                        maxInputLength:kMaxNumOfProgramNameCharacters
-                                   blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                         existingNames:unavailableNames];
-        } else if ((buttonIndex == 2) || ((buttonIndex == 3) && [self.program numberOfNormalObjects])|| ((buttonIndex == 4) && [self.program numberOfNormalObjects] >= 2)) {
-            // Show/Hide details button
-            self.useDetailCells = (! self.useDetailCells);
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
-            NSMutableDictionary *showDetailsMutable = nil;
-            if (! showDetails) {
-                showDetailsMutable = [NSMutableDictionary dictionary];
-            } else {
-                showDetailsMutable = [showDetails mutableCopy];
-            }
-            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
-                                   forKey:kUserDetailsShowDetailsObjectsKey];
-            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
-            [defaults synchronize];
-            [self.tableView reloadData];
-        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])|| ((buttonIndex == 5) && [self.program numberOfNormalObjects] >= 2)) {
-            //description
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-            DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
-            dViewController.delegate = self;
-            [self.navigationController presentViewController:dViewController animated:YES completion:nil];
-        }
-    } else if (actionSheet.tag == kEditObjectActionSheetTag) {
-        if (buttonIndex == 1) {
-            // Copy object button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            [self copyObjectActionWithSourceObject:(SpriteObject*)payload[kDTPayloadSpriteObject]];
-        } else if (buttonIndex == 2) {
-            // Rename object button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            SpriteObject *spriteObject = (SpriteObject*)payload[kDTPayloadSpriteObject];
-            NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
-            [unavailableNames removeString:spriteObject.name];
-            [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
-                                                target:self
-                                          cancelAction:nil
-                                            withObject:spriteObject
-                                           promptTitle:kLocalizedRenameObject
-                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                           promptValue:spriteObject.name
-                                     promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                        minInputLength:kMinNumOfObjectNameCharacters
-                                        maxInputLength:kMaxNumOfObjectNameCharacters
-                                   blockedCharacterSet:[self blockedCharacterSet]
-                              invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                         existingNames:unavailableNames];
         }
     }
 }

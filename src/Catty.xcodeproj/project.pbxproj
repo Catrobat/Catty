@@ -184,6 +184,7 @@
 		4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */; };
 		4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56D1E0AD71800FD021C /* ProgramTests.m */; };
 		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
+		4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
 		4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */; };
 		4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22321B95E47500B3BE2F /* BrickMoveManagerLogicTests.m */; };
@@ -249,6 +250,8 @@
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
+		91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */; };
+		91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */; };
 		9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2C61C808006002F5CA4 /* HideTextBrick.m */; };
 		9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2C81C808006002F5CA4 /* ShowTextBrick.m */; };
 		9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */; };
@@ -258,7 +261,6 @@
 		9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */; };
 		9200C2DC1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */; };
 		920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F16DC1BE7467D000D18BE /* ResourceHelper.m */; };
-		921670FC1C182F9300144D6E /* CatrobatAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921670FB1C182F9300144D6E /* CatrobatAlertController.m */; };
 		9218B1FC1CC4AB75007B4C60 /* nko_brightness_guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 9218B1C41CC4AB75007B4C60 /* nko_brightness_guide.png */; };
 		9218B1FD1CC4AB75007B4C60 /* nko_brightness_guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9218B1C51CC4AB75007B4C60 /* nko_brightness_guide@2x.png */; };
 		9218B1FE1CC4AB75007B4C60 /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = 9218B1C61CC4AB75007B4C60 /* nko_colormap.png */; };
@@ -432,7 +434,6 @@
 		92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E871A24C7D800093DA7 /* TableUtil.m */; };
 		92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E891A24C7D800093DA7 /* UIUtil.m */; };
 		92FF2EA41A24C7D800093DA7 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E8B1A24C7D800093DA7 /* Util.m */; };
-		92FF2EBD1A24C8A700093DA7 /* DataTransferMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EAB1A24C8A700093DA7 /* DataTransferMessage.m */; };
 		92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EAF1A24C8A700093DA7 /* CatrobatInformation.m */; };
 		92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB21A24C8A700093DA7 /* CatrobatProgram.m */; };
 		92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB51A24C8A700093DA7 /* OrderedDictionary.m */; };
@@ -708,6 +709,7 @@
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; };
+		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1121,6 +1123,7 @@
 		4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks097.xml; sourceTree = "<group>"; };
 		4CE5C56D1E0AD71800FD021C /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
+		4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlertController.swift; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
 		4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerForeverTests.m; sourceTree = "<group>"; };
@@ -1203,6 +1206,9 @@
 		81D46EA21CC29E3000653EAB /* ShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeButton.h; sourceTree = "<group>"; };
 		81D46EA31CC29E3000653EAB /* ShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeButton.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilder.swift; sourceTree = "<group>"; };
+		91FC8B8C0B21945B560F7272 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAlertController.swift; sourceTree = "<group>"; };
 		9200C2C51C808006002F5CA4 /* HideTextBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideTextBrick.h; sourceTree = "<group>"; };
 		9200C2C61C808006002F5CA4 /* HideTextBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideTextBrick.m; sourceTree = "<group>"; };
 		9200C2C71C808006002F5CA4 /* ShowTextBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTextBrick.h; sourceTree = "<group>"; };
@@ -1219,8 +1225,6 @@
 		9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ShowTextBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ShowTextBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		920F16DB1BE7467D000D18BE /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceHelper.h; path = ResourceHelper/ResourceHelper.h; sourceTree = "<group>"; };
 		920F16DC1BE7467D000D18BE /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceHelper.m; path = ResourceHelper/ResourceHelper.m; sourceTree = "<group>"; };
-		921670FA1C182F9300144D6E /* CatrobatAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertController.h; sourceTree = "<group>"; };
-		921670FB1C182F9300144D6E /* CatrobatAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertController.m; sourceTree = "<group>"; };
 		9218B1C41CC4AB75007B4C60 /* nko_brightness_guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nko_brightness_guide.png; sourceTree = "<group>"; };
 		9218B1C51CC4AB75007B4C60 /* nko_brightness_guide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nko_brightness_guide@2x.png"; sourceTree = "<group>"; };
 		9218B1C61CC4AB75007B4C60 /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nko_colormap.png; sourceTree = "<group>"; };
@@ -1492,7 +1496,6 @@
 		92F6C5201CB135F3008BE0C4 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
 		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
-		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
 		92FF2E001A24C3BE00093DA7 /* ButtonTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTags.h; sourceTree = "<group>"; };
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
 		92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTagDefines.h; sourceTree = "<group>"; };
@@ -1579,8 +1582,6 @@
 		92FF2E891A24C7D800093DA7 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
 		92FF2E8A1A24C7D800093DA7 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		92FF2E8B1A24C7D800093DA7 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
-		92FF2EAA1A24C8A700093DA7 /* DataTransferMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataTransferMessage.h; sourceTree = "<group>"; };
-		92FF2EAB1A24C8A700093DA7 /* DataTransferMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataTransferMessage.m; sourceTree = "<group>"; };
 		92FF2EAE1A24C8A700093DA7 /* CatrobatInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatInformation.h; sourceTree = "<group>"; };
 		92FF2EAF1A24C8A700093DA7 /* CatrobatInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatInformation.m; sourceTree = "<group>"; };
 		92FF2EB11A24C8A700093DA7 /* CatrobatProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatProgram.h; sourceTree = "<group>"; };
@@ -1672,8 +1673,6 @@
 		92FF31801A24E2F400093DA7 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		92FF31811A24E2F400093DA7 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_FXBlurView; sourceTree = "<group>"; };
-		92FF31A71A24E2F400093DA7 /* CatrobatAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertController.h; sourceTree = "<group>"; };
-		92FF31A81A24E2F400093DA7 /* CatrobatAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAlertController.m; sourceTree = "<group>"; };
 		92FF322A1A24E2F400093DA7 /* CreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateView.h; sourceTree = "<group>"; };
 		92FF322B1A24E2F400093DA7 /* CreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateView.m; sourceTree = "<group>"; };
 		92FF322C1A24E2F400093DA7 /* RoundBorderedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundBorderedButton.h; sourceTree = "<group>"; };
@@ -3338,13 +3337,15 @@
 			path = CatrobatReorderableCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
-		921670F91C182F9300144D6E /* CatrobatAlertController */ = {
+		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
 			isa = PBXGroup;
 			children = (
-				921670FA1C182F9300144D6E /* CatrobatAlertController.h */,
-				921670FB1C182F9300144D6E /* CatrobatAlertController.m */,
+				91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */,
+				91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */,
+				91FC8B8C0B21945B560F7272 /* AlertController.swift */,
+				4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */,
 			);
-			path = CatrobatAlertController;
+			path = AlertController;
 			sourceTree = "<group>";
 		};
 		9218B1C31CC4AB75007B4C60 /* ColorPicker */ = {
@@ -3888,7 +3889,6 @@
 			isa = PBXGroup;
 			children = (
 				929CC0E11BC39B7B0027DEC0 /* PhiroDefines.h */,
-				92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */,
 				92FF2E001A24C3BE00093DA7 /* ButtonTags.h */,
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
 				92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */,
@@ -4270,7 +4270,6 @@
 				CA3E72E91B0C00C200D6B184 /* 3rdParty */,
 				CAD740E01AF2D2DA00C32937 /* CBStack */,
 				4C2650671A6538470050775B /* CBCopyContext */,
-				92FF2EA91A24C8A700093DA7 /* DataTransferMessage */,
 				92FF2EAC1A24C8A700093DA7 /* JSON */,
 				92FF2EB31A24C8A700093DA7 /* OrderedDictionary */,
 				92FF2EB61A24C8A700093DA7 /* OrderedMapTable */,
@@ -4278,15 +4277,6 @@
 				4C2EE4141B555B55006DE9B8 /* Parser & Serializer */,
 			);
 			path = DataStructures;
-			sourceTree = "<group>";
-		};
-		92FF2EA91A24C8A700093DA7 /* DataTransferMessage */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2EAA1A24C8A700093DA7 /* DataTransferMessage.h */,
-				92FF2EAB1A24C8A700093DA7 /* DataTransferMessage.m */,
-			);
-			path = DataTransferMessage;
 			sourceTree = "<group>";
 		};
 		92FF2EAC1A24C8A700093DA7 /* JSON */ = {
@@ -4703,11 +4693,8 @@
 		92FF31A21A24E2F400093DA7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				921670F91C182F9300144D6E /* CatrobatAlertController */,
 				4CFC3BF41CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout */,
 				92289A441A42F2A3008C771A /* ComboBox */,
-				92FF31A31A24E2F400093DA7 /* CatrobatActionSheet */,
-				92FF31A61A24E2F400093DA7 /* CatrobatAlertController */,
 				92FF31A91A24E2F400093DA7 /* CollectionViewCells */,
 				92FF32291A24E2F400093DA7 /* CreateView */,
 				92FF322E1A24E2F400093DA7 /* LoadingView */,
@@ -4716,25 +4703,9 @@
 				92FF32371A24E2F400093DA7 /* TableView */,
 				92FF324F1A24E2F400093DA7 /* ViewControllerTransitions */,
 				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
+				91FC81FA01E91B5CF3266F79 /* AlertController */,
 			);
 			path = Custom;
-			sourceTree = "<group>";
-		};
-		92FF31A31A24E2F400093DA7 /* CatrobatActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CatrobatActionSheet;
-			sourceTree = "<group>";
-		};
-		92FF31A61A24E2F400093DA7 /* CatrobatAlertController */ = {
-			isa = PBXGroup;
-			children = (
-				92FF31A71A24E2F400093DA7 /* CatrobatAlertController.h */,
-				92FF31A81A24E2F400093DA7 /* CatrobatAlertController.m */,
-			);
-			name = CatrobatAlertController;
-			path = CatrobatAlertView;
 			sourceTree = "<group>";
 		};
 		92FF31A91A24E2F400093DA7 /* CollectionViewCells */ = {
@@ -6407,7 +6378,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		10DE512E761C3D1602E05656 /* [CP] Check Pods Manifest.lock */ = {
@@ -6422,7 +6393,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1CAB9D66718A42AFF93E08C1 /* [CP] Copy Pods Resources */ = {
@@ -6496,7 +6467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		922123C81BCAB51E008AAE45 /* Todo/Fixme check */ = {
@@ -6777,7 +6748,6 @@
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
-				921670FC1C182F9300144D6E /* CatrobatAlertController.m in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
@@ -6970,6 +6940,7 @@
 				AA74EE2D1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift in Sources */,
 				9218B2091CC4AB75007B4C60 /* UIImage+Rotate.m in Sources */,
 				9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */,
+				4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,
@@ -7068,7 +7039,6 @@
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
 				929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */,
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
-				92FF2EBD1A24C8A700093DA7 /* DataTransferMessage.m in Sources */,
 				929CC0F91BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift in Sources */,
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
@@ -7163,6 +7133,7 @@
 				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
 				921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
+				C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				AA74F00D1BC05B5F00D1E954 /* SpeakBrick.m in Sources */,
 				AA74EEDE1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
@@ -7244,6 +7215,8 @@
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
+				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
+				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

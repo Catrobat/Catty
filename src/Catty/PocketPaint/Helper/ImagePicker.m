@@ -24,6 +24,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <Photos/Photos.h>
 #import "UIImage+Rotate.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ImagePicker
 
@@ -37,92 +38,53 @@
   return self;
 }
 
-- (void)cameraImagePickerAction
-{
-  AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-  UIAlertController *alertControllerCamera = [UIAlertController
-                                              alertControllerWithTitle:nil
-                                              message:kLocalizedNoAccesToCameraCheckSettingsDescription
-                                              preferredStyle:UIAlertControllerStyleAlert];
-    
-  UIAlertAction *cancelAction = [UIAlertAction
-                                 actionWithTitle:kLocalizedCancel
-                                 style:UIAlertActionStyleCancel
-                                 handler:nil];
-    
-  UIAlertAction *settingsAction = [UIAlertAction
-                                   actionWithTitle:kLocalizedSettings
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       if ([self.canvas.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-                                           if (self.canvas.editingPath) {
-                                               [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:self.canvas.editingPath];
-                                           } else {
-                                               [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:@"settings"];
-                                           }
-                                       }
-                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                   }];
-    
-    
-  [alertControllerCamera addAction:cancelAction];
-  [alertControllerCamera addAction:settingsAction];
-    
-  //IMAGEPICKER CAMERA
-    if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera]) {
-        if(authStatus == AVAuthorizationStatusAuthorized)
-        {
-            [self openPicker:UIImagePickerControllerSourceTypeCamera];
-        }
-        else{
-            [self.canvas presentViewController:alertControllerCamera animated:YES completion:nil];
+- (void)settingsActionTapped {
+    if ([self.canvas.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+        if (self.canvas.editingPath) {
+            [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:self.canvas.editingPath];
+        } else {
+            [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:@"settings"];
         }
     }
-  
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+}
+
+- (void)cameraImagePickerAction
+{
+    //IMAGEPICKER CAMERA
+    if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera]) {
+        if([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusAuthorized){
+            [self openPicker:UIImagePickerControllerSourceTypeCamera];
+        }
+        else {
+            [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToCameraCheckSettingsDescription]
+             addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                 [self settingsActionTapped];
+             }] build]
+             showWithController:self.canvas];
+        }
+    }
 }
 
 - (void)imagePickerAction
 {
-  PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
-  UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                              alertControllerWithTitle:nil
-                                              message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                              preferredStyle:UIAlertControllerStyleAlert];
-  
-  UIAlertAction *cancelAction = [UIAlertAction
-                                 actionWithTitle:kLocalizedCancel
-                                 style:UIAlertActionStyleCancel
-                                 handler:nil];
-  
-  UIAlertAction *settingsAction = [UIAlertAction
-                                   actionWithTitle:kLocalizedSettings
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       if ([self.canvas.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-                                           if (self.canvas.editingPath) {
-                                               [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:self.canvas.editingPath];
-                                           } else {
-                                               [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:@"settings"];
-                                           }
-                                       }
-                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                   }];
-    
-  [alertControllerCameraRoll addAction:cancelAction];
-  [alertControllerCameraRoll addAction:settingsAction];
-
     //IMAGEPICKER CameraRoll
     if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        if (statusCameraRoll == PHAuthorizationStatusAuthorized) {
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             [self openPicker:UIImagePickerControllerSourceTypePhotoLibrary];
-        }else
-        {
-            [self.canvas presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+        }
+        else {
+            [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
+             addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                 [self settingsActionTapped];
+             }] build]
+             showWithController:self.canvas];
         }
     }
 }
+
 #pragma mark imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   

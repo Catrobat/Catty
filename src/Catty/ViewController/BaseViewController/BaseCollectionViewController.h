@@ -21,13 +21,12 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "CatrobatAlertController.h"
 #import "Pocket_Code-Swift.h"
 #import "ScenePresenterViewController.h"
 
 @class PlaceHolderView;
 @class BluetoothPopupVC;
-@interface BaseCollectionViewController : UICollectionViewController <CatrobatAlertViewDelegate,BluetoothSelection>
+@interface BaseCollectionViewController : UICollectionViewController <BluetoothSelection>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
