@@ -82,7 +82,7 @@
                 return [self handleMovementToForeverBrick:loopEndBrick fromIndexPath:fromIndexPath toIndexPath:toIndexPath fromBrick:fromBrick andScript:script];
             }
         }
-        if ([fromBrick isKindOfClass:[LoopBeginBrick class]] || [fromBrick isKindOfClass:[LoopEndBrick class]] || [fromBrick isKindOfClass:[IfLogicBeginBrick class]] || [fromBrick isKindOfClass:[IfLogicElseBrick class]] || [fromBrick isKindOfClass:[IfLogicEndBrick class]]){
+        if ([fromBrick isKindOfClass:[LoopBeginBrick class]] || [fromBrick isKindOfClass:[LoopEndBrick class]] || [fromBrick isKindOfClass:[IfLogicBeginBrick class]] || [fromBrick isKindOfClass:[IfThenLogicBeginBrick class]] || [fromBrick isKindOfClass:[IfLogicElseBrick class]] || [fromBrick isKindOfClass:[IfLogicEndBrick class]]){
             return [self checkNestedBrickToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
         } else {
             //From Below
@@ -110,7 +110,7 @@
 
 -(BOOL)checkMoveToForeverLoopEndBrickfromBrick:(Brick*)fromBrick fromIndexPath:(NSIndexPath*)fromIndexPath andToIndexPath:(NSIndexPath*)toIndexPath
 {
-    if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]||[fromBrick isKindOfClass:[IfLogicElseBrick class]]||[fromBrick isKindOfClass:[IfLogicEndBrick class]]||[fromBrick isKindOfClass:[LoopEndBrick class]]||[fromBrick isKindOfClass:[LoopBeginBrick class]]) {
+    if ([fromBrick isKindOfClass:[IfThenLogicBeginBrick class]]||[fromBrick isKindOfClass:[IfLogicBeginBrick class]]||[fromBrick isKindOfClass:[IfLogicElseBrick class]]||[fromBrick isKindOfClass:[IfLogicEndBrick class]]||[fromBrick isKindOfClass:[LoopEndBrick class]]||[fromBrick isKindOfClass:[LoopBeginBrick class]]) {
         if (toIndexPath.item < fromIndexPath.item) {
             self.higherRankBrick = toIndexPath;
         } else {
@@ -124,7 +124,7 @@
 
 -(BOOL)handleMovementToOtherScriptwithIndexPath:(NSIndexPath*)toIndexPath fromBrick:(Brick*)brick andObject:(SpriteObject*)object
 {
-    if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[LoopBeginBrick class]] || [brick isKindOfClass:[LoopEndBrick class]]) {
+    if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[LoopBeginBrick class]] || [brick isKindOfClass:[LoopEndBrick class]]) {
         return NO;
     }
     Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
@@ -184,7 +184,7 @@
             if (self.upperBorder == nil) {
                 Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
                 Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-                if([toBrick isKindOfClass:[LoopBeginBrick class]] || [toBrick isKindOfClass:[LoopEndBrick class]] || [toBrick isKindOfClass:[IfLogicBeginBrick class]] || [toBrick isKindOfClass:[IfLogicElseBrick class]] || [toBrick isKindOfClass:[IfLogicEndBrick class]]) {
+                if([toBrick isKindOfClass:[LoopBeginBrick class]] || [toBrick isKindOfClass:[LoopEndBrick class]] || [toBrick isKindOfClass:[IfLogicBeginBrick class]] || [toBrick isKindOfClass:[IfThenLogicBeginBrick class]] || [toBrick isKindOfClass:[IfLogicElseBrick class]] || [toBrick isKindOfClass:[IfLogicEndBrick class]]) {
                     self.upperBorder = toIndexPath;
                     return NO;
                 } else {
@@ -199,7 +199,7 @@
             if (self.lowerBorder == nil) {
                 Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
                 Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-                if([toBrick isKindOfClass:[LoopBeginBrick class]] || [toBrick isKindOfClass:[LoopEndBrick class]] || [toBrick isKindOfClass:[IfLogicBeginBrick class]] || [toBrick isKindOfClass:[IfLogicElseBrick class]] || [toBrick isKindOfClass:[IfLogicEndBrick class]]) {
+                if([toBrick isKindOfClass:[LoopBeginBrick class]] || [toBrick isKindOfClass:[LoopEndBrick class]] || [toBrick isKindOfClass:[IfLogicBeginBrick class]] || [toBrick isKindOfClass:[IfThenLogicBeginBrick class]] || [toBrick isKindOfClass:[IfLogicElseBrick class]] || [toBrick isKindOfClass:[IfLogicEndBrick class]]) {
                     self.lowerBorder = toIndexPath;
                     return NO;
                 } else {

@@ -158,11 +158,11 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kNoteBrick                 =   6,
     kForeverBrick              =   7,
     kIfBrick                   =   8,
-    kIfElseBrick               =   9,
-    kIfEndBrick                =  10,
-    kRepeatBrick               =  11,
-    kLoopEndBrick              =  12,
-    kIfThenBrick               =  13,
+    kIfThenBrick               =   9,
+    kIfElseBrick               =  10,
+    kIfEndBrick                =  11,
+    kRepeatBrick               =  12,
+    kLoopEndBrick              =  13,
 
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
