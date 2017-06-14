@@ -20,16 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 #import "Brick.h"
+#import "IfLogicBeginBrick.h"
 #import "BrickFormulaProtocol.h"
 #import "BrickConditionalBranchProtocol.h"
 
 @class Formula;
 @class IfLogicEndBrick;
 
-@interface IfThenLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
-
-@property (nonatomic, strong) Formula *ifCondition;
-@property (nonatomic, weak) IfLogicEndBrick *ifEndBrick;
+@interface IfThenLogicBeginBrick : IfLogicBeginBrick
 
 - (BOOL)checkCondition;
 - (void)resetCondition;
