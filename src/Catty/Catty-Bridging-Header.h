@@ -87,6 +87,7 @@
 #import "SetColorBrick.h"
 #import "ChangeColorByNBrick.h"
 #import "NextLookBrick.h"
+#import "PreviousLookBrick.h"
 #import "ClearGraphicEffectBrick.h"
 #import "ChangeTransparencyByNBrick.h"
 #import "ChangeBrightnessByNBrick.h"

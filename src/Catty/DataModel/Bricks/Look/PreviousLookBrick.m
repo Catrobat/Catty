@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,14 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick.h"
+#import "PreviousLookBrick.h"
 #import "ObjectTableViewController.h"
 #import "Look.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation NextLookBrick
-
+@implementation PreviousLookBrick
 
 - (NSString*)brickTitle
 {
@@ -40,25 +39,25 @@
             break;
         }
     }
-    
+
     if (programVC != nil) {
         BOOL isBackground = [[programVC object] isBackground];
-        return isBackground ? kLocalizedNextBackground : kLocalizedNextLook;
+        return isBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
     }
     else {
-        return [self.script.object isBackground] ? kLocalizedNextBackground : kLocalizedNextLook;
+        return [self.script.object isBackground] ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
     }
 }
 
 - (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Nextlookbrick"];
+    return [NSString stringWithFormat:@"Previouslookbrick"];
 }
 
 #pragma mark - Resources

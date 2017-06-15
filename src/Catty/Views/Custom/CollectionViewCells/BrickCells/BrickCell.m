@@ -95,6 +95,7 @@
 #define kLookBrickNameParams @[\
     @"{LOOK}",                      /* set background           */\
     @[],                            /* next background          */\
+    @[],                            /* previous background      */\
     @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
     @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
     @[],                            /* hide                     */\

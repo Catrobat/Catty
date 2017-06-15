@@ -184,18 +184,19 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     // 2xx look bricks
     kSetLookBrick              = 200,
     kNextLookBrick             = 201,
-    kSetSizeToBrick            = 202,
-    kChangeSizeByNBrick        = 203,
-    kHideBrick                 = 204,
-    kShowBrick                 = 205,
-    kSetTransparencyBrick      = 206,
-    kChangeTransparencyByNBrick= 207,
-    kSetBrightnessBrick        = 208,
-    kChangeBrightnessByNBrick  = 209,
-    kSetColorBrick             = 210,
-    kChangeColorByNBrick       = 211,
-    kClearGraphicEffectBrick   = 212,
-    kFlashBrick                = 213,
+    kPreviousLookBrick         = 202,
+    kSetSizeToBrick            = 203,
+    kChangeSizeByNBrick        = 204,
+    kHideBrick                 = 205,
+    kShowBrick                 = 206,
+    kSetTransparencyBrick      = 207,
+    kChangeTransparencyByNBrick= 208,
+    kSetBrightnessBrick        = 209,
+    kChangeBrightnessByNBrick  = 210,
+    kSetColorBrick             = 211,
+    kChangeColorByNBrick       = 212,
+    kClearGraphicEffectBrick   = 213,
+    kFlashBrick                = 214,
 
     
     // 3xx sound bricks
@@ -329,6 +330,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     /* look bricks */\
     @"SetLookBrick"              : @(kSetLookBrick),\
     @"NextLookBrick"             : @(kNextLookBrick),\
+    @"PreviousLookBrick"         : @(kPreviousLookBrick),\
     @"SetSizeToBrick"            : @(kSetSizeToBrick),\
     @"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
     @"HideBrick"                 : @(kHideBrick),\
@@ -419,6 +421,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 /* look bricks */\
 @"SetLookBrick"              : @(kBrickHeight2h),\
 @"NextLookBrick"             : @(kBrickHeight1h),\
+@"PreviousLookBrick"         : @(kBrickHeight1h),\
 @"SetSizeToBrick"            : @(kBrickHeight1h),\
 @"ChangeSizeByNBrick"        : @(kBrickHeight1h),\
 @"HideBrick"                 : @(kBrickHeight1h),\
