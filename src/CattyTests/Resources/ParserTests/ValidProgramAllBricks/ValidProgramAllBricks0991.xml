@@ -352,6 +352,58 @@
                 <string>on</string>
               </spinnerValues>
             </brick>
+            <brick type="IfThenLogicBeginBrick">
+                <formulaList>
+                    <formula category="IF_CONDITION">
+                        <leftChild>
+                            <type>NUMBER</type>
+                            <value>1</value>
+                        </leftChild>
+                        <rightChild>
+                            <type>NUMBER</type>
+                            <value>2</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>SMALLER_THAN</value>
+                    </formula>
+                </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+                <formulaList>
+                    <formula category="TIME_TO_WAIT_IN_SECONDS">
+                        <type>NUMBER</type>
+                        <value>1.0</value>
+                    </formula>
+                </formulaList>
+            </brick>
+            <brick type="IfThenLogicEndBrick"/>
+            <brick type="IfLogicBeginBrick">
+                <formulaList>
+                    <formula category="IF_CONDITION">
+                        <leftChild>
+                            <type>NUMBER</type>
+                            <value>1</value>
+                        </leftChild>
+                        <rightChild>
+                            <type>NUMBER</type>
+                            <value>2</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>SMALLER_THAN</value>
+                    </formula>
+                </formulaList>
+            </brick>
+            <brick type="NoteBrick">
+                <formulaList>
+                    <formula category="NOTE">
+                        <type>STRING</type>
+                        <value>add comment here…</value>
+                    </formula>
+                </formulaList>
+            </brick>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="NextLookBrick"/>
+            <brick type="IfLogicEndBrick"/>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>

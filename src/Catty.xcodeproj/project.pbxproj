@@ -90,6 +90,7 @@
 		4C5D11151EF51FC6003FFC72 /* XMLParserTests0991.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D110E1EF51FC6003FFC72 /* XMLParserTests0991.m */; };
 		4C5D11161EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D11111EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m */; };
 		4C5D11171EF51FC6003FFC72 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D11131EF51FC6003FFC72 /* XMLSerializerTests.m */; };
+		4C5D111F1EF537E5003FFC72 /* LogicBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D111E1EF537E5003FFC72 /* LogicBricks_0991.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
 		4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */; };
@@ -1020,6 +1021,7 @@
 		4C5D110E1EF51FC6003FFC72 /* XMLParserTests0991.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests0991.m; sourceTree = "<group>"; };
 		4C5D11111EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
 		4C5D11131EF51FC6003FFC72 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
+		4C5D111E1EF537E5003FFC72 /* LogicBricks_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LogicBricks_0991.xml; path = CattyTests/Resources/ParserTests/LogicBricks/LogicBricks_0991.xml; sourceTree = SOURCE_ROOT; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_098.xml; path = CattyTests/Resources/ParserTests/Air_fight_0.5/Air_fight_0.5_098.xml; sourceTree = SOURCE_ROOT; };
@@ -2475,6 +2477,7 @@
 				CAE3E5021B4C50B300CC88BD /* Galaxy_War */,
 				CAE3E5051B4C50B300CC88BD /* Gossip_Girl */,
 				4C7A84841DCCE270000F366B /* LedFlashBrick */,
+				4C5D111B1EF534ED003FFC72 /* LogicBricks */,
 				CAE3E5081B4C50B300CC88BD /* Memory */,
 				CAE3E50B1B4C50B300CC88BD /* Minecraft_Work_In_Progress */,
 				CAE3E50E1B4C50B300CC88BD /* Minions_ */,
@@ -2768,6 +2771,14 @@
 				4C5D11131EF51FC6003FFC72 /* XMLSerializerTests.m */,
 			);
 			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		4C5D111B1EF534ED003FFC72 /* LogicBricks */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D111E1EF537E5003FFC72 /* LogicBricks_0991.xml */,
+			);
+			path = LogicBricks;
 			sourceTree = "<group>";
 		};
 		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
@@ -6394,6 +6405,7 @@
 				CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */,
 				4CE2D4191C29509400938B5E /* X_Ray_phone_097.xml in Resources */,
 				4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */,
+				4C5D111F1EF537E5003FFC72 /* LogicBricks_0991.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,

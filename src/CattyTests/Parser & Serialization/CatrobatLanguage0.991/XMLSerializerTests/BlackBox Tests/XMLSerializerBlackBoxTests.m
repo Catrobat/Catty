@@ -144,4 +144,9 @@
     [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks0991"];
 }
 
+- (void)testLogicBricks
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"LogicBricks_0991.xml"];
+}
+
 @end
