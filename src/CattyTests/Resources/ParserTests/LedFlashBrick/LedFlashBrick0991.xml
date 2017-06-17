@@ -44,22 +44,8 @@
                 <string>on</string>
               </spinnerValues>
             </brick>
-            <brick type="TurnRightSpeedBrick">
-              <formulaList>
-                <formula category="PHYSICS_TURN_RIGHT_SPEED">
-                  <type>NUMBER</type>
-                  <value>0</value>
-                </formula>
-              </formulaList>
-            </brick>
-            <brick type="TurnRightSpeedBrick">
-              <formulaList>
-                <formula category="PHYSICS_TURN_RIGHT_SPEED">
-                  <type>NUMBER</type>
-                  <value>0</value>
-                </formula>
-              </formulaList>
-            </brick>
+            <brick type="LedOnBrick"/>
+            <brick type="LedOffBrick"/>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
