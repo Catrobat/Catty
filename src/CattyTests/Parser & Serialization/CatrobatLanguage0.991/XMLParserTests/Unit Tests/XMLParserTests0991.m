@@ -72,5 +72,25 @@
     XCTAssertEqual(0, flashBrick.flashChoice, @"Invalid flash choice");
 }
 
+- (void)testIfThenLogicBeginBrick
+{
+    Program *program = [self getProgramForXML:@"LogicBricks_0991"];
+    
+    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
+    SpriteObject *object = [program.objectList objectAtIndex:0];
+    
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    Script *script = [object.scriptList objectAtIndex:0];
+    
+    XCTAssertEqual(8, [script.brickList count], "Invalid brick list");
+    
+    // TODO add tests for IfThenLogicBeginBrick
+    //IfThenLogicBeginBrick *ifThenLogicBeginBrick = (IfThenLogicBeginBrick*)[script.brickList objectAtIndex:0];
+    
+    // TODO e.g. check if condition is not null
+    // TODO e.g. check if else brick and end brick exists...
+    
+}
+
 @end
 
