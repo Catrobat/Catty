@@ -73,12 +73,9 @@
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"HideTextBrick"]];
 
-
-    // add pseudo <inUserBrick> element to produce a Catroid equivalent XML (unused at the moment)
-    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context] context:context];
-
     if (self.userVariable)
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+    
     return brick;
 }
 

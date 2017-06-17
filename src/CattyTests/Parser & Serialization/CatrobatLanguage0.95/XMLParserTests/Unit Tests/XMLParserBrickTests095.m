@@ -53,9 +53,6 @@
     
     XCTAssertNotNil(xmlElement, @"GDataXMLElement must not be nil");
     
-    GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-    XCTAssertNotNil(inUserBrickElement, @"No inUserBrickElement element found");
-    
     SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedSetVariableBrick, @"Could not parse SetVariableBrick");
@@ -69,13 +66,6 @@
     GDataXMLElement *xmlElement = [setVariableBrick xmlElementWithContext:self.serializerContext];
     
     XCTAssertNotNil(xmlElement, @"GDataXMLElement must not be nil");
-    
-    GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-    XCTAssertNotNil(inUserBrickElement, @"No inUserBrickElement element found");
-    
-    [xmlElement removeChild:inUserBrickElement];
-    
-    XCTAssertNil([xmlElement childWithElementName:@"inUserBrick"], @"inUserBrickElement element not removed");
     
     SetVariableBrick *parsedSetVariableBrick = [SetVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
@@ -120,9 +110,6 @@
     
     XCTAssertNotNil(xmlElement, @"GDataXMLElement must not be nil");
     
-    GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-    XCTAssertNotNil(inUserBrickElement, @"No inUserBrickElement element found");
-    
     ChangeVariableBrick *parsedChangeVariableBrick = [ChangeVariableBrick parseFromElement:xmlElement withContext:self.parserContext];
     
     XCTAssertNotNil(parsedChangeVariableBrick, @"Could not parse ChangeVariableBrick");
@@ -136,11 +123,6 @@
     GDataXMLElement *xmlElement = [changeVariableBrick xmlElementWithContext:self.serializerContext];
     
     XCTAssertNotNil(xmlElement, @"GDataXMLElement must not be nil");
-    
-    GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-    XCTAssertNotNil(inUserBrickElement, @"No inUserBrickElement element found");
-    
-    [xmlElement removeChild:inUserBrickElement];
     
     XCTAssertNil([xmlElement childWithElementName:@"inUserBrick"], @"inUserBrickElement element not removed");
     

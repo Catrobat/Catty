@@ -67,6 +67,11 @@
     return headerProperties;
 }
 
++ (NSMutableArray<CBXMLPropertyMapping*>*)headerPropertiesForLanguageVersion097
+{
+    return [self defaultHeaderProperties];
+}
+
 + (NSMutableArray<CBXMLPropertyMapping*>*)headerPropertiesForLanguageVersion098
 {
     NSMutableArray *headerProperties = [self defaultHeaderProperties];
@@ -82,12 +87,14 @@
     
     NSArray<CBXMLPropertyMapping*> *headerProperties;
     
-    if (context.languageVersion == 0.95f || context.languageVersion == 0.96f) {
-        headerProperties = [self headerPropertiesForLanguageVersion095];
-    } else if (context.languageVersion == 0.98f) {
-        headerProperties = [self headerPropertiesForLanguageVersion098];
-    } else {
+    if (context.languageVersion <= 0.94f) {
         headerProperties = [self defaultHeaderProperties];
+    } else if (context.languageVersion == 0.95f || context.languageVersion == 0.96f) {
+        headerProperties = [self headerPropertiesForLanguageVersion095];
+    } else if (context.languageVersion == 0.97f) {
+        headerProperties = [self headerPropertiesForLanguageVersion097];
+    } else {
+        headerProperties = [self headerPropertiesForLanguageVersion098];
     }
     
     Header *header = [self getHeaderFromElement:xmlElement withContext:context andProperties:headerProperties];
