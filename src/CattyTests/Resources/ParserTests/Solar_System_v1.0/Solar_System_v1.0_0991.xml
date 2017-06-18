@@ -1,0 +1,1150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.4</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Hello there! 
+Interested in some space facts with cool animations and all the planets orbiting right in front of you? 
+
+Well go ahead and check it out! 
+
+V0.01
+Just a simple earth and Mars going in circles around the sun. 
+V0.02
+Math! Yes I added equations now the planets go in orbits around the sun and around their selfs. 
+And made a cooler looking sun. 
+V0.1
+Major new look elliptical orbits. 
+Much better and cleaner and faster orbiting planets. 
+The planets move at a emulated speed from the real ones! Earth does 30 km/sec well it does the same here, The orbits are calculated by earth year timing.
+Only the planets befor the asteroid belt have been added. 
+*soon i will add to planet zoom in, and info. 
+Stay tuned for more, updates! </description>
+    <deviceName>iPhone</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>iPhone OS</platform>
+    <platformVersion>9.3</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>solar system v1.0_saved</programName>
+    <remixOf>http://pocketcode.org/details/2222</remixOf>
+    <screenHeight>854</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>480</screenWidth>
+    <tags></tags>
+    <url>http://pocketcode.org/details/2222</url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList>
+        <look name="1417097038359">
+          <fileName>e32580ecd882f7af205fdf38edc04cc3_1417097038359.jpg</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>175</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>120</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ForeverBrick"/>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>120</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>NUMBER</type>
+                  <value>120</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="sun">
+      <lookList>
+        <look name="sun">
+          <fileName>b4863239faa9f6cac829d256600c131b_1416754489379.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="GoNStepsBackBrick">
+              <formulaList>
+                <formula category="STEPS">
+                  <type>NUMBER</type>
+                  <value>4</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <receivedMessage>zoom in earth</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="venues">
+      <lookList>
+        <look name="1417347618444">
+          <fileName>8f36b0f02d7d7973b001446965f1f5b1_1417347618444.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>12</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formula>
+              </formulaList>
+              <userVariable>Mars number of laps</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>Mars number of laps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formula>
+              </formulaList>
+              <userVariable>MNOL sin</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>Mars number of laps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formula>
+              </formulaList>
+              <userVariable>MNOL cos</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>129</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>MNOL sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>Mx</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>23</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>MNOL cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>My</userVariable>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>My</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>Mx</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>My</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>21.5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="ShowBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="Mercury">
+      <lookList>
+        <look name="1417356344467">
+          <fileName>c54cbf565e6af2a7029b0fb914a296ec_1417356344467.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formula>
+              </formulaList>
+              <userVariable>EMNOL </userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL </value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formula>
+              </formulaList>
+              <userVariable>EMNOL sin</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL </value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formula>
+              </formulaList>
+              <userVariable>EMNOL cos</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>100</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>EMX</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>17</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMNOL cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>EMY</userVariable>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.0000001</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>EMY</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>EMX</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>EMY</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>15</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="ShowBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="orbit 1">
+      <lookList>
+        <look name="1417165285791">
+          <fileName>5770b07dcddddd79dc6a179658f4d0aa_1417165285791.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>46</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetLookBrick">
+              <look reference="../../../../../lookList/look"/>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="orbit 2">
+      <lookList>
+        <look name="mars orbit">
+          <fileName>99fe79bb8392f07a33f5f6f7c574e365_1417165285791.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>60.0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="orbit 3">
+      <lookList>
+        <look name="orbit 3">
+          <fileName>fb3c0fc431ece2c7be76b90f6d34a3a0_1417165285791.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>76</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="Earth">
+      <lookList>
+        <look name="1416595467754">
+          <fileName>cd003c6b948c3170f14c0f4756e64084_1416595467754.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>12</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1.6</value>
+                </formula>
+              </formulaList>
+              <userVariable>v number of lsps</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>v number of lsps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formula>
+              </formulaList>
+              <userVariable>vnol sin</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>v number of lsps</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formula>
+              </formulaList>
+              <userVariable>vnol cos</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>164</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>vnol sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>vx</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>28</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>vnol cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>vy</userVariable>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>vy</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>vx</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="ForeverBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>vy</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>27.2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="ShowBrick"/>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="orbit 4">
+      <lookList>
+        <look name="orbit 4">
+          <fileName>e6e2ae67c2ed2001f113becd0d5f6f72_1417165285791.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>110</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="mars">
+      <lookList>
+        <look name="1416640839441">
+          <fileName>4774c7be2ae3bcee34e2e3b3abbf3116_1416640839441.png</fileName>
+        </look>
+      </lookList>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PlaceAtBrick">
+              <formulaList>
+                <formula category="Y_POSITION">
+                  <type>NUMBER</type>
+                  <value>210</value>
+                </formula>
+                <formula category="X_POSITION">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="SetSizeToBrick">
+              <formulaList>
+                <formula category="SIZE">
+                  <type>NUMBER</type>
+                  <value>16</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>zoom in earth</broadcastMessage>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formula>
+              </formulaList>
+              <userVariable>hide planet 1</userVariable>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ChangeVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE_CHANGE">
+                  <type>NUMBER</type>
+                  <value>1.4</value>
+                </formula>
+              </formulaList>
+              <userVariable>s</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>SIN</value>
+                </formula>
+              </formulaList>
+              <userVariable>s sin</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>COS</value>
+                </formula>
+              </formulaList>
+              <userVariable>s cos</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>237</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s sin</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>x</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>43</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>s cos</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MULT</value>
+                </formula>
+              </formulaList>
+              <userVariable>y</userVariable>
+            </brick>
+            <brick type="GlideToBrick">
+              <formulaList>
+                <formula category="DURATION_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formula>
+                <formula category="Y_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>y</value>
+                </formula>
+                <formula category="X_DESTINATION">
+                  <type>USER_VARIABLE</type>
+                  <value>x</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="StartScript">
+          <brickList>
+            <brick type="ForeverBrick"/>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="TurnRightBrick">
+              <formulaList>
+                <formula category="TURN_RIGHT_DEGREES">
+                  <type>NUMBER</type>
+                  <value>5</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <type>NUMBER</type>
+                  <value>0.01</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="LoopEndlessBrick"/>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+        <script type="BroadcastScript">
+          <brickList>
+            <brick type="ComeToFrontBrick"/>
+            <brick type="IfLogicBeginBrick">
+              <formulaList>
+                <formula category="IF_CONDITION">
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>y</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>42.6</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formula>
+              </formulaList>
+            </brick>
+            <brick type="HideBrick"/>
+            <brick type="IfLogicElseBrick"/>
+            <brick type="ShowBrick"/>
+            <brick type="BroadcastBrick">
+              <broadcastMessage>zoom in earth</broadcastMessage>
+            </brick>
+            <brick type="IfLogicEndBrick"/>
+            <brick type="ShowBrick"/>
+          </brickList>
+          <receivedMessage>zoom in earth</receivedMessage>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[10]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists/>
+    <programVariableList>
+      <userVariable>earth main x</userVariable>
+      <userVariable>earth main y</userVariable>
+      <userVariable>B 360 turn</userVariable>
+      <userVariable>B sin</userVariable>
+      <userVariable>B cos</userVariable>
+      <userVariable reference="../../../objectList/object[10]/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/script[2]/brickList/brick[6]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/script[2]/brickList/brick[6]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+      <userVariable reference="../../../objectList/object[4]/scriptList/script[2]/brickList/brick[6]/userVariable"/>
+      <userVariable>zoom earth</userVariable>
+      <userVariable>ERR</userVariable>
+      <userVariable>moon h/s</userVariable>
+      <userVariable reference="../../../objectList/object[8]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/script[2]/brickList/brick[4]/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/script[2]/brickList/brick[5]/userVariable"/>
+      <userVariable reference="../../../objectList/object[8]/scriptList/script[2]/brickList/brick[6]/userVariable"/>
+      <userVariable reference="../../../objectList/object[10]/scriptList/script/brickList/brick[5]/userVariable"/>
+    </programVariableList>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
