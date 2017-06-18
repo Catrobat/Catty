@@ -107,7 +107,7 @@
     Program *program = nil;
     @try {
         CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
-        NSInfo(@"Parsing Program with CatrobatLanguageVersion %.2f...", languageVersion);
+        NSInfo(@"Parsing Program with CatrobatLanguageVersion %g...", languageVersion);
         CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
                                              initWithLanguageVersion:languageVersion];
         program = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Program class]];

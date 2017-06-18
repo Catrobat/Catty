@@ -25,8 +25,6 @@
 #import "TableUtil.h"
 #import "UIDefines.h"
 #import "Util.h"
-#import "ActionSheetAlertViewTags.h"
-#import "CatrobatAlertController.h"
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
@@ -44,14 +42,10 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <CatrobatAlertViewDelegate,BluetoothSelection>
+@interface BaseTableViewController () <BluetoothSelection, ResourceNotAvailableDelegate>
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic) SEL confirmedAction;
-@property (nonatomic) SEL canceledAction;
-@property (nonatomic, strong) id target;
-@property (nonatomic, strong) id passingObject;
 @property (nonatomic, strong) Reachability *reachability;
 @end
 
@@ -436,37 +430,6 @@
     }
 }
 
-- (void)performActionOnConfirmation:(SEL)confirmedAction
-                     canceledAction:(SEL)canceledAction
-                         withObject:(id)object
-                             target:(id)target
-                       confirmTitle:(NSString*)confirmTitle
-                     confirmMessage:(NSString*)confirmMessage
-{
-    [Util confirmAlertWithTitle:confirmTitle
-                        message:confirmMessage
-                       delegate:self
-                            tag:kConfirmAlertViewTag];
-    self.confirmedAction = confirmedAction;
-    self.canceledAction = canceledAction;
-    self.target = target;
-    self.passingObject = object;
-}
-
-- (void)performActionOnConfirmation:(SEL)confirmedAction
-                     canceledAction:(SEL)canceledAction
-                             target:(id)target
-                       confirmTitle:(NSString*)confirmTitle
-                     confirmMessage:(NSString*)confirmMessage
-{
-    [self performActionOnConfirmation:confirmedAction
-                       canceledAction:canceledAction
-                           withObject:nil
-                               target:target
-                         confirmTitle:confirmTitle
-                       confirmMessage:confirmMessage];
-}
-
 - (void)playSceneAction:(id)sender
 {
     [self showLoadingView];
@@ -489,50 +452,16 @@
     }
 }
 
+-(void)userAgreedToContinueAnyway {
+    [self startSceneWithVC:self.scenePresenterViewController];
+}
+
 -(void)startSceneWithVC:(ScenePresenterViewController*)vc
 {
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-#pragma mark - alert view delegate handlers
-- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == kConfirmAlertViewTag) {
-        // check if user agreed
-        if (buttonIndex != 0) {
-            // XXX: hack to avoid compiler warning
-            // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-            SEL selector = self.confirmedAction;
-            if (selector) {
-                IMP imp = [self.target methodForSelector:selector];
-                if (! self.passingObject) {
-                    void (*func)(id, SEL) = (void *)imp;
-                    func(self.target, selector);
-                } else {
-                    void (*func)(id, SEL, id) = (void *)imp;
-                    func(self.target, selector, self.passingObject);
-                }
-            }
-        } else {
-            SEL selector = self.canceledAction;
-            if (selector) {
-                IMP imp = [self.target methodForSelector:selector];
-                void (*func)(id, SEL) = (void *)imp;
-                func(self.target, selector);
-            }
-        }
-    }
-    if (alertView.tag == kResourcesAlertView) {
-        // check if user agreed
-        if (buttonIndex != 0) {
-            [self startSceneWithVC:self.scenePresenterViewController];
-        } else {
-            
-        }
-    }
 }
 
 - (void)showLoadingView

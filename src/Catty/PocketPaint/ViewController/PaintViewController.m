@@ -23,8 +23,8 @@
 #import "PaintViewController.h"
 #import "YKImageCropperView.h"
 #import "UIViewController+KNSemiModal.h"
-#import "ActionSheetAlertViewTags.h"
 #import "BDKNotifyHUD.h"
+#import "Pocket_Code-Swift.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -159,21 +159,12 @@
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake && self.undoManager.canUndo) {
-    
-        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
-                                                                           message:kLocalizedUndoDrawingDescription
-                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) { }];
-        [undoAlert addAction:cancelAction];
-        
-        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction *action) { [self undoAction]; }];
-        [undoAlert addAction:undoAction];
-        [self presentViewController:undoAlert animated:YES completion:nil];
+        [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoDrawingDescription]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedUndo handler:^{
+             [self undoAction];
+         }] build]
+         showWithController:self];
     }
 }
 
@@ -329,10 +320,15 @@
 
 - (void)editAction
 {
-   
-    NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintNewCanvas];
-    [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.navigationController.view];
-    
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedPaintSelect]
+      addCancelActionWithTitle:kLocalizedCancel handler:nil]
+      addDefaultActionWithTitle:kLocalizedPaintSave handler:^{
+          [self saveAction];
+      }]
+      addDefaultActionWithTitle:kLocalizedPaintNewCanvas handler:^{
+          [self newCanvasAction];
+      }] build]
+      showWithController:self];
 }
 
 - (void)setupUndoManager
@@ -641,14 +637,7 @@
             recognizer.enabled = NO;
         }
     } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedInformation message:kLocalizedPaintNoCrop preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        }];
-        [alert addAction:cancelAction];
-        
-    
-        [self presentViewController:alert animated:YES completion:nil];
+        [Util alertWithTitle:kLocalizedInformation andText:kLocalizedPaintNoCrop];
     }
     
 }
@@ -875,35 +864,6 @@
 
 - (void)saveAction
 {
-    UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                                    alertControllerWithTitle:nil
-                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                                    preferredStyle:UIAlertControllerStyleAlert];
-    
-    
-    UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:kLocalizedCancel
-                                   style:UIAlertActionStyleCancel
-                                   handler:nil];
-    
-    UIAlertAction *settingsAction = [UIAlertAction
-                                     actionWithTitle:kLocalizedSettings
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction *action)
-                                     {
-                                         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-                                             if (self.editingPath) {
-                                                 [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-                                             } else {
-                                                 [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
-                                             }
-                                         }
-                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                     }];
-    
-    [alertControllerCameraRoll addAction:cancelAction];
-    [alertControllerCameraRoll addAction:settingsAction];
-    
     //Check user authorisation and save if authorised
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -914,7 +874,19 @@
                     NSDebug(@"saved to Camera Roll");
                 });
             } else {
-                [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+                [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
+                 addCancelActionWithTitle:kLocalizedCancel handler:nil]
+                 addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                     if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                         if (self.editingPath) {
+                             [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                         } else {
+                             [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
+                         }
+                     }
+                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                 }] build]
+                 showWithController:self];
             }
         }];
     });
@@ -937,25 +909,16 @@
 
 - (void)newCanvasAction
 {
-   
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPaintNewCanvas message:kLocalizedPaintAskNewCanvas preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:kLocalizedYes style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        self.saveView.image = blank;
-        self.editingImage = blank;
-    }];
-    
-    UIAlertAction *noAction = [UIAlertAction actionWithTitle:kLocalizedNo style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
-    
-        // Add actions to the controller so they will appear
-    [alert addAction:yesAction];
-    [alert addAction:noAction];
-    
-     [self presentViewController:alert animated:YES completion:nil];
+    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedPaintNewCanvas message:kLocalizedPaintAskNewCanvas]
+     addCancelActionWithTitle:kLocalizedNo handler:nil]
+     addDefaultActionWithTitle:kLocalizedYes handler:^{
+         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+         UIGraphicsEndImageContext();
+         self.saveView.image = blank;
+         self.editingImage = blank;
+     }] build]
+     showWithController:self];
 }
 
 
@@ -1001,24 +964,6 @@
     self.fillTool = nil;
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
-}
-
-
-#pragma mark actionsheet delegate
-
--(void)actionSheet:(CatrobatAlertController *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (actionSheet.tag == kPocketPaintActionSheetTag) {
-        switch (buttonIndex) {
-            case 1:
-                [self saveAction];
-                break;
-            case 2:
-                [self newCanvasAction];
-            default:
-                break;
-        }
-    }
 }
 
 

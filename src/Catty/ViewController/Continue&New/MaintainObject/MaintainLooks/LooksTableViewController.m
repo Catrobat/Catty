@@ -31,13 +31,11 @@
 #import "DarkBlueGradientImageDetailCell.h"
 #import "Look.h"
 #import "SpriteObject.h"
-#import "ActionSheetAlertViewTags.h"
 #import "LookImageViewController.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "NSData+Hashes.h"
 #import "AppDelegate.h"
 #import "RuntimeImageCache.h"
-#import "DataTransferMessage.h"
 #import "PlaceHolderView.h"
 #import "UIImage+Rotate.h"
 #import "ViewControllerDefines.h"
@@ -45,13 +43,12 @@
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "MediaLibraryViewController.h"
+#import "Pocket_Code-Swift.h"
 
-@interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
-                                        UINavigationControllerDelegate, CatrobatAlertViewDelegate,
+@interface LooksTableViewController () <UIImagePickerControllerDelegate,
+                                        UINavigationControllerDelegate,
                                         UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic,strong)UIImage* paintImage;
-@property (nonatomic,strong)NSString* paintImagePath;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
 @property (nonatomic, assign) BOOL deletionMode;
 @property (nonatomic, assign) BOOL copyMode;
@@ -115,30 +112,59 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     [self.tableView setEditing:false animated:YES];
-    NSMutableArray *options = [NSMutableArray array];
-    NSString *destructive = nil;
+    
+    NSString *actionSheetTitle = self.object.isBackground ? kLocalizedEditBackgrounds : kLocalizedEditLooks;
+    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:actionSheetTitle]
+                                               addCancelActionWithTitle:kLocalizedCancel handler:nil];
+    
     if (self.object.lookList.count) {
-        destructive = (self.object.isBackground
-                       ? kLocalizedDeleteBackgrounds
-                       : kLocalizedDeleteLooks);
-        [options addObject:kLocalizedCopyLooks];
+        NSString *destructiveActionTitle = self.object.isBackground ? kLocalizedDeleteBackgrounds : kLocalizedDeleteLooks;
+        [[actionSheet
+         addDestructiveActionWithTitle:destructiveActionTitle handler:^{
+             self.deletionMode = YES;
+             self.copyMode = NO;
+             [self setupEditingToolBar];
+             [super changeToEditingMode:sender];
+         }]
+         addDefaultActionWithTitle:kLocalizedCopyLooks handler:^{
+             self.deletionMode = NO;
+             self.copyMode = YES;
+             [self setupEditingToolBar];
+             [super changeToEditingMode:sender];
+         }];
+
     }
     if (self.object.lookList.count >= 2) {
-        [options addObject:kLocalizedMoveLooks];
+        [actionSheet addDefaultActionWithTitle:kLocalizedMoveLooks handler:^{
+            self.deletionMode = NO;
+            self.copyMode = NO;
+            [super changeToMoveMode:sender];
+        }];
     }
-    if (self.useDetailCells) {
-        [options addObject:kLocalizedHideDetails];
+    
+    NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
+    [[[actionSheet
+     addDefaultActionWithTitle:detailActionTitle handler:^{
+         [self toggleDetailCellsMode];
+     }] build]
+     showWithController:self];
+}
+
+- (void)toggleDetailCellsMode {
+    self.useDetailCells = !self.useDetailCells;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
+    NSMutableDictionary *showDetailsMutable = nil;
+    if (! showDetails) {
+        showDetailsMutable = [NSMutableDictionary dictionary];
     } else {
-        [options addObject:kLocalizedShowDetails];
+        showDetailsMutable = [showDetails mutableCopy];
     }
-    
-    [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackgrounds : kLocalizedEditLooks)
-                      delegate:self
-        destructiveButtonTitle:destructive
-             otherButtonTitles:options
-                           tag:kEditLooksActionSheetTag
-                          view:self.navigationController.view];
-    
+    [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
+                           forKey:kUserDetailsShowDetailsLooksKey];
+    [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
+    [defaults synchronize];
+    [self reloadData];
 }
 
 - (void)addLookAction:(id)sender
@@ -392,26 +418,43 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatAlertController *actionSheet = [Util actionSheetWithTitle:(self.object.isBackground ? kLocalizedEditBackground : kLocalizedEditLook)
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditLookActionSheetTag
-                                                                 view:self.navigationController.view];
-        NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditLook
-                                                                        withPayload:payload];
+        NSString *actionSheetTitle = self.object.isBackground ? kLocalizedEditBackground : kLocalizedEditLook;
+        
+        [[[[[[[AlertControllerBuilder actionSheetWithTitle:actionSheetTitle]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedCopy handler:^{
+             [self copyLooksActionWithSourceLooks:@[[self.object.lookList objectAtIndex:indexPath.row]]];
+         }]
+         addDefaultActionWithTitle:kLocalizedRename handler:^{
+             Look *look = [self.object.lookList objectAtIndex:indexPath.row];
+             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
+                                           target:self
+                                     cancelAction:nil
+                                       withObject:look
+                                      promptTitle:kLocalizedRenameImage
+                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                      promptValue:look.name
+                                promptPlaceholder:kLocalizedEnterYourImageNameHere
+                                   minInputLength:kMinNumOfLookNameCharacters
+                                   maxInputLength:kMaxNumOfLookNameCharacters
+                              blockedCharacterSet:[self blockedCharacterSet]
+                         invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+         }] build]
+         viewWillDisappear:^{
+             [tableView setEditing:false animated:YES];
+         }]
+         showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
-        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:(self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook)
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+        NSString *alertTitle = (self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook);
+        [[[[[AlertControllerBuilder alertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [self deleteLookForIndexPath:indexPath];
+         }] build]
+         showWithController:self];
     }];
     return @[deleteAction, moreAction];
 }
@@ -595,254 +638,92 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return ([characters rangeOfCharacterFromSet:self.blockedCharacterSet].location == NSNotFound);
 }
 
-#pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self.tableView setEditing:false animated:YES];
-    if (actionSheet.tag == kEditLooksActionSheetTag) {
-        BOOL showHideSelected = NO;
-        if ([self.object.lookList count]) {
-            if (buttonIndex == 1) {
-                // Delete Looks button
-                self.deletionMode = YES;
-                self.copyMode = NO;
-                [self setupEditingToolBar];
-                [super changeToEditingMode:actionSheet];
-            }
-            else if (buttonIndex == 2) {
-                // Copy Looks button
-                self.deletionMode = NO;
-                self.copyMode = YES;
-                [self setupEditingToolBar];
-                [super changeToEditingMode:actionSheet];
-            }
-            else if (([self.object.lookList count] >= 2)) {
-                if (buttonIndex == 3) {
-                    self.deletionMode = NO;
-                    self.copyMode = NO;
-                    [super changeToMoveMode:actionSheet];
-                } else if (buttonIndex == 4) {
-                    showHideSelected = YES;
-                }
-            } else if (buttonIndex == 3){
-               showHideSelected = YES;
-            }
-        } else if (buttonIndex == 0) {
-            showHideSelected = YES;
-        }
-        if (showHideSelected) {
-            // Show/Hide Details button
-            self.useDetailCells = (! self.useDetailCells);
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSDictionary *showDetails = [defaults objectForKey:kUserDetailsShowDetailsKey];
-            NSMutableDictionary *showDetailsMutable = nil;
-            if (! showDetails) {
-                showDetailsMutable = [NSMutableDictionary dictionary];
-            } else {
-                showDetailsMutable = [showDetails mutableCopy];
-            }
-            [showDetailsMutable setObject:[NSNumber numberWithBool:self.useDetailCells]
-                                   forKey:kUserDetailsShowDetailsLooksKey];
-            [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
-            [defaults synchronize];
-            [self reloadData];
-        }
-    } else if (actionSheet.tag == kEditLookActionSheetTag) {
-        if (buttonIndex == 1) {
-            // Copy look button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            NSMutableArray *lookToCopy = [NSMutableArray arrayWithCapacity:1];
-            [lookToCopy addObject:(Look*)payload[kDTPayloadLook]];
-            [self copyLooksActionWithSourceLooks:lookToCopy];
-        } else if (buttonIndex == 2) {
-            // Rename look button
-            NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
-            Look *look = (Look*)payload[kDTPayloadLook];
-            [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
-                                          target:self
-                                    cancelAction:nil
-                                      withObject:look
-                                     promptTitle:kLocalizedRenameImage
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
-                                     promptValue:look.name
-                               promptPlaceholder:kLocalizedEnterYourImageNameHere
-                                  minInputLength:kMinNumOfLookNameCharacters
-                                  maxInputLength:kMaxNumOfLookNameCharacters
-                             blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
-        }
-    } else if (actionSheet.tag == kAddLookActionSheetTag) {
-
-        PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
-        //status for camera
-        AVAuthorizationStatus statusCamera = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        
-        UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                              alertControllerWithTitle:nil
-                                              message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertController *alertControllerCamera = [UIAlertController
-                                                    alertControllerWithTitle:nil
-                                                    message:kLocalizedNoAccesToCameraCheckSettingsDescription
-                                                    preferredStyle:UIAlertControllerStyleAlert];
-        
-        
-        UIAlertAction *cancelActionCamera = [UIAlertAction
-                                       actionWithTitle:kLocalizedCancel
-                                       style:UIAlertActionStyleCancel
-                                       handler:nil];
-        
-        UIAlertAction *settingsActionCamera = [UIAlertAction
-                                       actionWithTitle:kLocalizedSettings
-                                       style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           NSDebug(@"Settings Action");
-                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                       }];
-        
-        UIAlertAction *cancelActionCameraRoll = [UIAlertAction
-                                             actionWithTitle:kLocalizedCancel
-                                             style:UIAlertActionStyleCancel
-                                             handler:nil];
-        
-        UIAlertAction *settingsActionCameraRoll = [UIAlertAction
-                                               actionWithTitle:kLocalizedSettings
-                                               style:UIAlertActionStyleDefault
-                                               handler:^(UIAlertAction *action)
-                                               {
-                                                   NSDebug(@"Settings Action");
-                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                               }];
-        
-        
-        [alertControllerCameraRoll addAction:cancelActionCameraRoll];
-        [alertControllerCameraRoll addAction:settingsActionCameraRoll];
-        [alertControllerCamera addAction:cancelActionCamera];
-        [alertControllerCamera addAction:settingsActionCamera];
-        
-        NSInteger importFromCameraIndex = NSIntegerMin;
-        NSInteger chooseImageIndex = NSIntegerMin;
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-            if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                importFromCameraIndex = 1;
-            }
-        }
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-            NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-            if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                chooseImageIndex = ((importFromCameraIndex == 1) ? 2 : 1);
-            }
-        }
-
-        if (buttonIndex == importFromCameraIndex) {
-            // take picture from camera
-            if([self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera])
-            {
-                if(statusCamera == AVAuthorizationStatusAuthorized)
-                {
-                    [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
-                }else{
-                    [self presentViewController:alertControllerCamera animated:YES completion:^{
-                        if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
-                            if (self.afterSafeBlock) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    self.afterSafeBlock(nil);
-                                });
-                            }
-                        }
-
-                    }];
-
-                }
-            }
-            
-        } else if (buttonIndex == chooseImageIndex) {
-            // choose picture from camera roll
-            if([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary])
-            {
-                if (statusCameraRoll != PHAuthorizationStatusAuthorized) {
-                    [self presentViewController:alertControllerCameraRoll animated:YES completion:^{
-                        if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
-                            if (self.afterSafeBlock) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    self.afterSafeBlock(nil);
-                                });
-                            }
-                        }
-                    }];
-                    
-                }else{
-                    [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-                }
-            }
-        } else if (chooseImageIndex+1 == buttonIndex) {
-            // draw new image
-            NSDebug(@"Draw new image");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
-                vc.delegate = self;
-                vc.editingPath = nil;
-                vc.programHeight = self.object.program.header.screenHeight.floatValue;
-                vc.programWidth = self.object.program.header.screenWidth.floatValue;
-                NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-                [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-                [self.navigationController pushViewController:vc animated:YES];
-            });
-
-        }else if(buttonIndex != 0)
-        {
-            //media library
-            NSDebug(@"Media library");
-            dispatch_async(dispatch_get_main_queue(), ^{
-                MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
-                vc.paintDelegate = self;
-                
-                vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
-             
-                [self.navigationController pushViewController:vc animated:YES];
-                
-            });
-        }else {
-            if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
-                if (self.afterSafeBlock) {
-                    self.afterSafeBlock(nil);
-                }
-            }
-        }
-    }
-}
-
 #pragma mark - action sheet
 - (void)showAddLookActionSheet
 {
-    NSMutableArray *buttonTitles = [NSMutableArray array];
+    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddLook]
+                                               addCancelActionWithTitle:kLocalizedCancel handler:^{
+                                                   if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
+                                                       SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
+                                                   }
+                                               }];
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-            [buttonTitles addObject:kLocalizedFromCamera];
+            [actionSheet addDefaultActionWithTitle:kLocalizedFromCamera handler:^{
+                if (![self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera]) {
+                    return;
+                }
+                // Authorization status determined
+                if ([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusAuthorized) {
+                    [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+                } else {
+                    [self suggestToOpenSettingsAppWithMessage:kLocalizedNoAccesToCameraCheckSettingsDescription];
+                }
+            }];
         }
     }
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
         NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
         if ([availableMediaTypes containsObject:(NSString *)kUTTypeImage]) {
-            [buttonTitles addObject:kLocalizedChooseImage];
+            [actionSheet addDefaultActionWithTitle:kLocalizedChooseImage handler:^{
+                if (![self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                    return;
+                }
+                // Authorization status determined
+                if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
+                    [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+                } else {
+                    [self suggestToOpenSettingsAppWithMessage:kLocalizedNoAccesToImagesCheckSettingsDescription];
+                }
+            }];
         }
     }
     
-    
-    
-    [buttonTitles addObject:kLocalizedDrawNewImage];
+    [[[[actionSheet
+     addDefaultActionWithTitle:kLocalizedDrawNewImage handler:^{
+         dispatch_async(dispatch_get_main_queue(), ^{
+             PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
+             vc.delegate = self;
+             vc.editingPath = nil;
+             vc.programHeight = self.object.program.header.screenHeight.floatValue;
+             vc.programWidth = self.object.program.header.screenWidth.floatValue;
+             NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+             [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+             [self.navigationController pushViewController:vc animated:YES];
+         });
+     }]
+     addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
+         dispatch_async(dispatch_get_main_queue(), ^{
+             MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
+             vc.paintDelegate = self;
+             
+             vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
+             
+             [self.navigationController pushViewController:vc animated:YES];
+         });
+    }] build]
+    showWithController:self];
+}
 
-    [buttonTitles addObject:kLocalizedMediaLibrary];
-    
-    [Util actionSheetWithTitle:kLocalizedAddLook
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:buttonTitles
-                           tag:kAddLookActionSheetTag
-                          view:self.navigationController.view];
+- (void)suggestToOpenSettingsAppWithMessage:(NSString *)message {
+    [[[[[AlertControllerBuilder alertWithTitle:nil message:message]
+     addCancelActionWithTitle:kLocalizedCancel handler:nil]
+     addDefaultActionWithTitle:kLocalizedSettings handler:^{
+           NSDebug(@"Settings Action");
+           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+     }] build]
+     showWithController:self completion: ^{
+         if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
+             if (self.afterSafeBlock) {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     self.afterSafeBlock(nil);
+                 });
+             }
+         }
+     }];
 }
 
 #pragma mark - helpers
@@ -896,24 +777,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
-    self.paintImage = image;
-    self.paintImagePath = path;
-    [self performActionOnConfirmation:@selector(savePaintImage)
-                       canceledAction:@selector(cancelPaintSave)
-                               target:self
-                         confirmTitle:kLocalizedSaveToPocketCode
-                       confirmMessage:kLocalizedPaintSaveChanges];
+    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [self cancelPaintSave];
+     }]
+     addDefaultActionWithTitle:kLocalizedYes handler:^{
+         [self savePaintImage:image andPath:path];
+     }] build]
+     showWithController:self];
 }
 
 
-- (void)savePaintImage
+- (void)savePaintImage:(UIImage *)image andPath:(NSString *)path
 {
-    if (self.paintImage) {
-        [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+    if (image) {
+        [self addPaintedImage:image andPath:path];
     } else if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
-        if (self.afterSafeBlock) {
-            self.afterSafeBlock(nil);
-        }
+        SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
     }
 }
 
@@ -927,7 +807,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.filePath && [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NO]) {
         [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     }
-    
 }
 
 - (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName
