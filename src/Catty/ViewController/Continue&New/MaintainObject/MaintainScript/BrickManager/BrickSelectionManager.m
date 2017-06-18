@@ -24,6 +24,7 @@
 #import "Script.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 
@@ -101,7 +102,7 @@
                 [self selectLoopBeginWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
                 [self selectLoopEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
-            } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+            } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
                 [self selectLogicBeginWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
                 [self selectLogicEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
@@ -183,11 +184,13 @@
     NSInteger countEnd = 0;
     BOOL foundElse = NO;
     for (Brick *checkBrick in script.brickList) {
-        if (! foundElse) {
-            if ([checkBrick isEqual:beginBrick.ifElseBrick]) {
-                foundElse = YES;
-            } else {
-                ++countElse;
+        if (brick.class == [IfLogicBeginBrick class]) {
+            if (! foundElse) {
+                if ([checkBrick isEqual:beginBrick.ifElseBrick]) {
+                    foundElse = YES;
+                } else {
+                    ++countElse;
+                }
             }
         }
         if ([checkBrick isEqual:beginBrick.ifEndBrick]) {
@@ -196,25 +199,29 @@
             ++countEnd;
         }
     }
-    NSIndexPath *elsePath =[NSIndexPath indexPathForItem:(countElse+1) inSection:indexPath.section];
+    
+    if (brick.class == [IfLogicBeginBrick class]) {
+        NSIndexPath *elsePath =[NSIndexPath indexPathForItem:(countElse+1) inSection:indexPath.section];
+        Brick *elseBrick =[script.brickList objectAtIndex:elsePath.item - 1];
+        
+        elseBrick.isSelected = !selectButton.selected;
+        selectButton.selected ? [self.selectedIndexPaths removeObject:elsePath] : [self.selectedIndexPaths addObject:elsePath];
+        
+    }
+    
     NSIndexPath *endPath =[NSIndexPath indexPathForItem:(countEnd+1) inSection:indexPath.section];
-    Brick *elseBrick =[script.brickList objectAtIndex:elsePath.item - 1];
     Brick *endBrick =[script.brickList objectAtIndex:endPath.item - 1];
     if (selectButton.selected) {
         selectButton.selected = NO;
         endBrick.isSelected = NO;
-        elseBrick.isSelected = NO;
         beginBrick.isSelected = NO;
         [self.selectedIndexPaths removeObject:indexPath];
-        [self.selectedIndexPaths removeObject:elsePath];
         [self.selectedIndexPaths removeObject:endPath];
     } else {
         selectButton.selected = selectButton.touchInside;
         endBrick.isSelected = YES;
-        elseBrick.isSelected = YES;
         beginBrick.isSelected = YES;
         [self.selectedIndexPaths addObject:indexPath];
-        [self.selectedIndexPaths addObject:elsePath];
         [self.selectedIndexPaths addObject:endPath];
     }
 }
@@ -284,25 +291,27 @@
         }
     }
     NSIndexPath *beginPath =[NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
-    NSIndexPath *elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
     Brick *beginBrick =[script.brickList objectAtIndex:beginPath.item - 1];
-    Brick *elseBrick =[script.brickList objectAtIndex:elsePath.item - 1];
+
+    if (endBrick.ifElseBrick != nil) {
+        NSIndexPath *elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
+        Brick *elseBrick =[script.brickList objectAtIndex:elsePath.item - 1];
+        elseBrick.isSelected = !selectButton.selected;
+        selectButton.selected ? [self.selectedIndexPaths removeObject:elsePath] : [self.selectedIndexPaths addObject:elsePath];
+    }
     if (! selectButton.selected) {
         selectButton.selected = selectButton.touchInside;
-        elseBrick.isSelected = YES;
+        
         beginBrick.isSelected = YES;
         endBrick.isSelected = YES;
         [self.selectedIndexPaths addObject:indexPath];
         [self.selectedIndexPaths addObject:beginPath];
-        [self.selectedIndexPaths addObject:elsePath];
     } else {
         selectButton.selected = NO;
-        elseBrick.isSelected = NO;
         beginBrick.isSelected = NO;
         endBrick.isSelected = NO;
         [self.selectedIndexPaths removeObject:indexPath];
         [self.selectedIndexPaths removeObject:beginPath];
-        [self.selectedIndexPaths removeObject:elsePath];
     }
 }
 

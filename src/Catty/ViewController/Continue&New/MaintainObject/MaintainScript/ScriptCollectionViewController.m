@@ -31,6 +31,7 @@
 #import "BroadcastScriptCell.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "BrickCellFormulaData.h"
@@ -242,7 +243,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [[BrickSelectionManager sharedInstance] selectLoopBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
         } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
             [[BrickSelectionManager sharedInstance] selectLoopEndWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
-        } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
             [[BrickSelectionManager sharedInstance] selectLogicBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
         } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
             [[BrickSelectionManager sharedInstance] selectLogicEndWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];

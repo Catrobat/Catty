@@ -97,6 +97,11 @@
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
 }
 
+- (NSString*)brickTitleForBrickSelection
+{
+    return self.brickTitle;
+}
+
 - (void)performFromScript:(Script*)script
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException

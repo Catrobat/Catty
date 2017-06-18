@@ -73,6 +73,11 @@
     return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
+- (NSString*)brickTitleForBrickSelection
+{
+        return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
+}
+
 - (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);

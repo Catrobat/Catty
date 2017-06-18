@@ -37,6 +37,7 @@
 @property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
 - (BOOL)isSelectableForObject;
 - (BOOL)isAnimateable;
+- (NSString*)brickTitleForBrickSelection;
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
 
 @end
