@@ -59,11 +59,41 @@
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
 		4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */; };
+		4C5D10D21EF51DA0003FFC72 /* Air_fight_0.5_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10D11EF51DA0003FFC72 /* Air_fight_0.5_0991.xml */; };
+		4C5D10D61EF51DBA003FFC72 /* Airplane_with_shadow_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10D51EF51DBA003FFC72 /* Airplane_with_shadow_0991.xml */; };
+		4C5D10D81EF51DC2003FFC72 /* Compass_0.1_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10D71EF51DC2003FFC72 /* Compass_0.1_0991.xml */; };
+		4C5D10DA1EF51DCC003FFC72 /* Demonstration_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10D91EF51DCC003FFC72 /* Demonstration_0991.xml */; };
+		4C5D10DC1EF51DD5003FFC72 /* Drink_more_water_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10DB1EF51DD5003FFC72 /* Drink_more_water_0991.xml */; };
+		4C5D10DE1EF51DDE003FFC72 /* Encapsulated_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10DD1EF51DDE003FFC72 /* Encapsulated_0991.xml */; };
+		4C5D10E01EF51DEA003FFC72 /* Flap_Pac_Man_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10DF1EF51DEA003FFC72 /* Flap_Pac_Man_0991.xml */; };
+		4C5D10E21EF51DF4003FFC72 /* Flappy_v3.0_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10E11EF51DF4003FFC72 /* Flappy_v3.0_0991.xml */; };
+		4C5D10E41EF51DFD003FFC72 /* Galaxy_War_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10E31EF51DFD003FFC72 /* Galaxy_War_0991.xml */; };
+		4C5D10E61EF51E05003FFC72 /* Gossip_Girl_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10E51EF51E05003FFC72 /* Gossip_Girl_0991.xml */; };
+		4C5D10E81EF51E15003FFC72 /* Memory_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10E71EF51E15003FFC72 /* Memory_0991.xml */; };
+		4C5D10EA1EF51EB8003FFC72 /* LedFlashBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10E91EF51EB8003FFC72 /* LedFlashBrick0991.xml */; };
+		4C5D10EC1EF51ECC003FFC72 /* Minecraft_Work_In_Progress_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10EB1EF51ECC003FFC72 /* Minecraft_Work_In_Progress_0991.xml */; };
+		4C5D10EE1EF51ED5003FFC72 /* Minions__0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10ED1EF51ED5003FFC72 /* Minions__0991.xml */; };
+		4C5D10F01EF51EDD003FFC72 /* Nyancat_1.0_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10EF1EF51EDD003FFC72 /* Nyancat_1.0_0991.xml */; };
+		4C5D10F21EF51EE4003FFC72 /* Piano_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10F11EF51EE4003FFC72 /* Piano_0991.xml */; };
+		4C5D10F41EF51EEE003FFC72 /* Pong_Starter_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10F31EF51EEE003FFC72 /* Pong_Starter_0991.xml */; };
+		4C5D10F61EF51EF4003FFC72 /* Pythagorean_Theorem_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10F51EF51EF4003FFC72 /* Pythagorean_Theorem_0991.xml */; };
+		4C5D10F81EF51EFC003FFC72 /* Rock_paper_scissors_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10F71EF51EFC003FFC72 /* Rock_paper_scissors_0991.xml */; };
+		4C5D10FA1EF51F03003FFC72 /* Skydiving_Steve_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10F91EF51F03003FFC72 /* Skydiving_Steve_0991.xml */; };
+		4C5D10FC1EF51F0D003FFC72 /* Solar_System_v1.0_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10FB1EF51F0D003FFC72 /* Solar_System_v1.0_0991.xml */; };
+		4C5D10FE1EF51F13003FFC72 /* Tic_Tac_Toe_Master_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10FD1EF51F13003FFC72 /* Tic_Tac_Toe_Master_0991.xml */; };
+		4C5D11001EF51F1B003FFC72 /* Word_balloon_demo_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D10FF1EF51F1B003FFC72 /* Word_balloon_demo_0991.xml */; };
+		4C5D11021EF51F25003FFC72 /* X_Ray_phone_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D11011EF51F25003FFC72 /* X_Ray_phone_0991.xml */; };
+		4C5D11041EF51F2E003FFC72 /* ValidHeader0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D11031EF51F2E003FFC72 /* ValidHeader0991.xml */; };
+		4C5D11061EF51F36003FFC72 /* ValidProgram0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D11051EF51F36003FFC72 /* ValidProgram0991.xml */; };
+		4C5D11081EF51F3E003FFC72 /* ValidProgramAllBricks0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D11071EF51F3E003FFC72 /* ValidProgramAllBricks0991.xml */; };
+		4C5D11141EF51FC6003FFC72 /* XMLParserBlackBoxTests0991.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D110C1EF51FC6003FFC72 /* XMLParserBlackBoxTests0991.m */; };
+		4C5D11151EF51FC6003FFC72 /* XMLParserTests0991.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D110E1EF51FC6003FFC72 /* XMLParserTests0991.m */; };
+		4C5D11161EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D11111EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m */; };
+		4C5D11171EF51FC6003FFC72 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5D11131EF51FC6003FFC72 /* XMLSerializerTests.m */; };
+		4C5D111F1EF537E5003FFC72 /* LogicBricks_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C5D111E1EF537E5003FFC72 /* LogicBricks_0991.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
 		4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */; };
-		4C647C8B1D48E1F70060E70D /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C871D48E1F70060E70D /* XMLSerializerBlackBoxTests.m */; };
-		4C647C8C1D48E1F70060E70D /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C891D48E1F70060E70D /* XMLSerializerTests.m */; };
 		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
 		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
 		4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */; };
@@ -247,6 +277,14 @@
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
+		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
+		4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */; };
+		4D97AB7F1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */; };
+		4DB4FAC71EF2282F00576677 /* PreviousLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */; };
+		4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */; };
+		4DB4FACD1EF2324100576677 /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FACC1EF2324100576677 /* NextLookBrick+CBXMLHandler.m */; };
+		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
+		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -952,12 +990,42 @@
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
 		4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchStoreViewControllerTests.m; path = Download/SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C5B27FF1B3C194900509FDB /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchStoreViewControllerTests.h; path = Download/SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
+		4C5D10D11EF51DA0003FFC72 /* Air_fight_0.5_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_0991.xml; sourceTree = "<group>"; };
+		4C5D10D51EF51DBA003FFC72 /* Airplane_with_shadow_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_0991.xml; sourceTree = "<group>"; };
+		4C5D10D71EF51DC2003FFC72 /* Compass_0.1_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_0991.xml; sourceTree = "<group>"; };
+		4C5D10D91EF51DCC003FFC72 /* Demonstration_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Demonstration_0991.xml; sourceTree = "<group>"; };
+		4C5D10DB1EF51DD5003FFC72 /* Drink_more_water_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Drink_more_water_0991.xml; sourceTree = "<group>"; };
+		4C5D10DD1EF51DDE003FFC72 /* Encapsulated_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_0991.xml; sourceTree = "<group>"; };
+		4C5D10DF1EF51DEA003FFC72 /* Flap_Pac_Man_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flap_Pac_Man_0991.xml; sourceTree = "<group>"; };
+		4C5D10E11EF51DF4003FFC72 /* Flappy_v3.0_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flappy_v3.0_0991.xml; sourceTree = "<group>"; };
+		4C5D10E31EF51DFD003FFC72 /* Galaxy_War_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Galaxy_War_0991.xml; sourceTree = "<group>"; };
+		4C5D10E51EF51E05003FFC72 /* Gossip_Girl_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Gossip_Girl_0991.xml; sourceTree = "<group>"; };
+		4C5D10E71EF51E15003FFC72 /* Memory_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Memory_0991.xml; sourceTree = "<group>"; };
+		4C5D10E91EF51EB8003FFC72 /* LedFlashBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = LedFlashBrick0991.xml; sourceTree = "<group>"; };
+		4C5D10EB1EF51ECC003FFC72 /* Minecraft_Work_In_Progress_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minecraft_Work_In_Progress_0991.xml; sourceTree = "<group>"; };
+		4C5D10ED1EF51ED5003FFC72 /* Minions__0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minions__0991.xml; sourceTree = "<group>"; };
+		4C5D10EF1EF51EDD003FFC72 /* Nyancat_1.0_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_0991.xml; sourceTree = "<group>"; };
+		4C5D10F11EF51EE4003FFC72 /* Piano_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano_0991.xml; sourceTree = "<group>"; };
+		4C5D10F31EF51EEE003FFC72 /* Pong_Starter_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pong_Starter_0991.xml; sourceTree = "<group>"; };
+		4C5D10F51EF51EF4003FFC72 /* Pythagorean_Theorem_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_0991.xml; sourceTree = "<group>"; };
+		4C5D10F71EF51EFC003FFC72 /* Rock_paper_scissors_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_0991.xml; sourceTree = "<group>"; };
+		4C5D10F91EF51F03003FFC72 /* Skydiving_Steve_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_0991.xml; sourceTree = "<group>"; };
+		4C5D10FB1EF51F0D003FFC72 /* Solar_System_v1.0_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_0991.xml; sourceTree = "<group>"; };
+		4C5D10FD1EF51F13003FFC72 /* Tic_Tac_Toe_Master_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_0991.xml; sourceTree = "<group>"; };
+		4C5D10FF1EF51F1B003FFC72 /* Word_balloon_demo_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_0991.xml; sourceTree = "<group>"; };
+		4C5D11011EF51F25003FFC72 /* X_Ray_phone_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_0991.xml; sourceTree = "<group>"; };
+		4C5D11031EF51F2E003FFC72 /* ValidHeader0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidHeader0991.xml; sourceTree = "<group>"; };
+		4C5D11051EF51F36003FFC72 /* ValidProgram0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram0991.xml; sourceTree = "<group>"; };
+		4C5D11071EF51F3E003FFC72 /* ValidProgramAllBricks0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks0991.xml; sourceTree = "<group>"; };
+		4C5D110C1EF51FC6003FFC72 /* XMLParserBlackBoxTests0991.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests0991.m; sourceTree = "<group>"; };
+		4C5D110E1EF51FC6003FFC72 /* XMLParserTests0991.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests0991.m; sourceTree = "<group>"; };
+		4C5D11111EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
+		4C5D11131EF51FC6003FFC72 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
+		4C5D111E1EF537E5003FFC72 /* LogicBricks_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LogicBricks_0991.xml; path = CattyTests/Resources/ParserTests/LogicBricks/LogicBricks_0991.xml; sourceTree = SOURCE_ROOT; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_098.xml; path = CattyTests/Resources/ParserTests/Air_fight_0.5/Air_fight_0.5_098.xml; sourceTree = SOURCE_ROOT; };
 		4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests098.m; sourceTree = "<group>"; };
-		4C647C871D48E1F70060E70D /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
-		4C647C891D48E1F70060E70D /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaEditorUtilTests.m; path = Formula/FormulaEditorUtilTests.m; sourceTree = "<group>"; };
 		4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementTest.m; path = Formula/FormulaElementTest.m; sourceTree = "<group>"; };
 		4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaFunctionsTest.m; path = Formula/FormulaFunctionsTest.m; sourceTree = "<group>"; };
@@ -1193,6 +1261,20 @@
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		4CFC3BF51CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		4D6E0C8B1EE07201008FED9F /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
+		4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
+		4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrickCell.m; sourceTree = "<group>"; };
+		4D6E0C921EE14039008FED9F /* IfThenLogicBeginBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrickCell.h; sourceTree = "<group>"; };
+		4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfThenLogicBeginBrick+CBXMLHandler.m"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4D97AB821EE80CEA003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IfThenLogicBeginBrick+CBXMLHandler.h"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DB4FAC31EF2281600576677 /* PreviousLookBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrickCell.h; sourceTree = "<group>"; };
+		4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickCell.m; sourceTree = "<group>"; };
+		4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrick.h; sourceTree = "<group>"; };
+		4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrick.m; sourceTree = "<group>"; };
+		4DB4FACB1EF2323700576677 /* NextLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NextLookBrick+CBXMLHandler.h"; path = "Catty/DataModel/Bricks/Look/NextLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DB4FACC1EF2324100576677 /* NextLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NextLookBrick+CBXMLHandler.m"; path = "Catty/DataModel/Bricks/Look/NextLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
 		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2395,6 +2477,7 @@
 				CAE3E5021B4C50B300CC88BD /* Galaxy_War */,
 				CAE3E5051B4C50B300CC88BD /* Gossip_Girl */,
 				4C7A84841DCCE270000F366B /* LedFlashBrick */,
+				4C5D111B1EF534ED003FFC72 /* LogicBricks */,
 				CAE3E5081B4C50B300CC88BD /* Memory */,
 				CAE3E50B1B4C50B300CC88BD /* Minecraft_Work_In_Progress */,
 				CAE3E50E1B4C50B300CC88BD /* Minions_ */,
@@ -2630,6 +2713,74 @@
 			name = Download;
 			sourceTree = "<group>";
 		};
+		4C5D11091EF51FC6003FFC72 /* CatrobatLanguage0.991 */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D110A1EF51FC6003FFC72 /* XMLParserTests */,
+				4C5D110F1EF51FC6003FFC72 /* XMLSerializerTests */,
+			);
+			name = CatrobatLanguage0.991;
+			path = "Parser & Serialization/CatrobatLanguage0.991";
+			sourceTree = "<group>";
+		};
+		4C5D110A1EF51FC6003FFC72 /* XMLParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D110B1EF51FC6003FFC72 /* BlackBox Tests */,
+				4C5D110D1EF51FC6003FFC72 /* Unit Tests */,
+			);
+			path = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4C5D110B1EF51FC6003FFC72 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D110C1EF51FC6003FFC72 /* XMLParserBlackBoxTests0991.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C5D110D1EF51FC6003FFC72 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D110E1EF51FC6003FFC72 /* XMLParserTests0991.m */,
+			);
+			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		4C5D110F1EF51FC6003FFC72 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D11101EF51FC6003FFC72 /* BlackBox Tests */,
+				4C5D11121EF51FC6003FFC72 /* Unit Tests */,
+			);
+			path = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		4C5D11101EF51FC6003FFC72 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D11111EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C5D11121EF51FC6003FFC72 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D11131EF51FC6003FFC72 /* XMLSerializerTests.m */,
+			);
+			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		4C5D111B1EF534ED003FFC72 /* LogicBricks */ = {
+			isa = PBXGroup;
+			children = (
+				4C5D111E1EF537E5003FFC72 /* LogicBricks_0991.xml */,
+			);
+			path = LogicBricks;
+			sourceTree = "<group>";
+		};
 		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2644,7 +2795,6 @@
 			isa = PBXGroup;
 			children = (
 				4C647C821D48E1F70060E70D /* XMLParserTests */,
-				4C647C851D48E1F70060E70D /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.98;
 			path = "Parser & Serialization/CatrobatLanguage0.98";
@@ -2665,31 +2815,6 @@
 				4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */,
 			);
 			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4C647C851D48E1F70060E70D /* XMLSerializerTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C647C861D48E1F70060E70D /* BlackBox Tests */,
-				4C647C881D48E1F70060E70D /* Unit Tests */,
-			);
-			path = XMLSerializerTests;
-			sourceTree = "<group>";
-		};
-		4C647C861D48E1F70060E70D /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C647C871D48E1F70060E70D /* XMLSerializerBlackBoxTests.m */,
-			);
-			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4C647C881D48E1F70060E70D /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C647C891D48E1F70060E70D /* XMLSerializerTests.m */,
-			);
-			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		4C6A64B31AF7CC5A00D04559 /* Images */ = {
@@ -2842,6 +2967,8 @@
 				AA74EEED1BC057C900D1E954 /* HideBrick+CBXMLHandler.m */,
 				AA74EEEE1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.h */,
 				AA74EEEF1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m */,
+				4DB4FACB1EF2323700576677 /* NextLookBrick+CBXMLHandler.h */,
+				4DB4FACC1EF2324100576677 /* NextLookBrick+CBXMLHandler.m */,
 				AA74EEF01BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.h */,
 				AA74EEF11BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m */,
 				4CB2CFA41D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.h */,
@@ -3053,6 +3180,7 @@
 			isa = PBXGroup;
 			children = (
 				4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */,
+				4C5D10E91EF51EB8003FFC72 /* LedFlashBrick0991.xml */,
 			);
 			name = LedFlashBrick;
 			path = CattyTests/Resources/ParserTests/LedFlashBrick;
@@ -3064,6 +3192,7 @@
 				4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */,
 				4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */,
 				4C6D15F11D7AC61C00CE53CD /* Solar_System_v1.0_098.xml */,
+				4C5D10FB1EF51F0D003FFC72 /* Solar_System_v1.0_0991.xml */,
 			);
 			name = Solar_System_v1.0;
 			path = CattyTests/Resources/ParserTests/Solar_System_v1.0;
@@ -3128,6 +3257,7 @@
 				4CC85CDB1B9C717C0097E470 /* ValidHeader096.xml */,
 				4CE2D41A1C2950A200938B5E /* ValidHeader097.xml */,
 				4C6D15F91D7AC63400CE53CD /* ValidHeader098.xml */,
+				4C5D11031EF51F2E003FFC72 /* ValidHeader0991.xml */,
 			);
 			name = ValidHeader;
 			path = CattyTests/Resources/ParserTests/ValidHeader;
@@ -3141,6 +3271,7 @@
 				4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */,
 				4CE2D41C1C2950AB00938B5E /* ValidProgram097.xml */,
 				4C6D15FB1D7AC63A00CE53CD /* ValidProgram098.xml */,
+				4C5D11051EF51F36003FFC72 /* ValidProgram0991.xml */,
 			);
 			name = ValidProgram;
 			path = CattyTests/Resources/ParserTests/ValidProgram;
@@ -3154,6 +3285,7 @@
 				4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */,
 				4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */,
 				4C6D15FD1D7AC64000CE53CD /* ValidProgramAllBricks098.xml */,
+				4C5D11071EF51F3E003FFC72 /* ValidProgramAllBricks0991.xml */,
 			);
 			name = ValidProgramAllBricks;
 			path = CattyTests/Resources/ParserTests/ValidProgramAllBricks;
@@ -3169,6 +3301,7 @@
 				4CEF0CE71B9C655B003C9B20 /* CatrobatLanguage0.96 */,
 				4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */,
 				4C647C811D48E1F70060E70D /* CatrobatLanguage0.98 */,
+				4C5D11091EF51FC6003FFC72 /* CatrobatLanguage0.991 */,
 			);
 			name = "Parser & Serialization";
 			sourceTree = "<group>";
@@ -3229,6 +3362,7 @@
 				4CEB223F1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m */,
 				4CEB22401B95E47500B3BE2F /* MoveNStepsBrickTests.m */,
 				4CEB22411B95E47500B3BE2F /* NextLookBrickTests.m */,
+				4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */,
 				4CEB22421B95E47500B3BE2F /* PlaceAtBrickTests.m */,
 				4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */,
 				4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */,
@@ -4849,6 +4983,7 @@
 			children = (
 				4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */,
 				4C6D15D51D7AC5C500CE53CD /* Encapsulated_098.xml */,
+				4C5D10DD1EF51DDE003FFC72 /* Encapsulated_0991.xml */,
 			);
 			name = Encapsulated;
 			path = CattyTests/Resources/ParserTests/Encapsulated;
@@ -4951,6 +5086,7 @@
 				921D46821BDF698A0086AD20 /* ChangeTransparencyBrick+Instruction.swift */,
 				921D46831BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift */,
 				921D46841BDF698A0086AD20 /* NextLookBrick+Instruction.swift */,
+				4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */,
 				921D46851BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift */,
 				4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */,
 				921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */,
@@ -5035,6 +5171,8 @@
 				AA74EFA91BC05B5F00D1E954 /* HideBrick.h */,
 				AA74EFAA1BC05B5F00D1E954 /* HideBrick.m */,
 				AA74EFAB1BC05B5F00D1E954 /* NextLookBrick.h */,
+				4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */,
+				4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */,
 				AA74EFAC1BC05B5F00D1E954 /* NextLookBrick.m */,
 				AA74EFAD1BC05B5F00D1E954 /* SetBrightnessBrick.h */,
 				AA74EFAE1BC05B5F00D1E954 /* SetBrightnessBrick.m */,
@@ -5231,6 +5369,8 @@
 				AA74F04D1BC05FCE00D1E954 /* HideBrickCell.m */,
 				AA74F04E1BC05FCE00D1E954 /* NextLookBrickCell.h */,
 				AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */,
+				4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */,
+				4DB4FAC31EF2281600576677 /* PreviousLookBrickCell.h */,
 				AA74F0501BC05FCE00D1E954 /* SetBrightnessBrickCell.h */,
 				AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */,
 				4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */,
@@ -5608,6 +5748,7 @@
 				4CEF0CBF1B9C6360003C9B20 /* Air_fight_0.5_096.xml */,
 				4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */,
 				4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */,
+				4C5D10D11EF51DA0003FFC72 /* Air_fight_0.5_0991.xml */,
 			);
 			name = Air_fight_0.5;
 			path = CattyTests/Resources/ParserTests/Air_fight_0.5;
@@ -5622,6 +5763,7 @@
 				4CEF0CC11B9C636A003C9B20 /* Airplane_with_shadow_096.xml */,
 				4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */,
 				4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */,
+				4C5D10D51EF51DBA003FFC72 /* Airplane_with_shadow_0991.xml */,
 			);
 			name = Airplane_with_shadow;
 			path = CattyTests/Resources/ParserTests/Airplane_with_shadow;
@@ -5636,6 +5778,7 @@
 				4CEF0CC31B9C6373003C9B20 /* Compass_0.1_096.xml */,
 				4CE2D3F41C294F2000938B5E /* Compass_0.1_097.xml */,
 				4C6D15CF1D7AC5A500CE53CD /* Compass_0.1_098.xml */,
+				4C5D10D71EF51DC2003FFC72 /* Compass_0.1_0991.xml */,
 			);
 			name = Compass_0.1;
 			path = CattyTests/Resources/ParserTests/Compass_0.1;
@@ -5650,6 +5793,7 @@
 				4CEF0CC51B9C637D003C9B20 /* Demonstration_096.xml */,
 				4CE2D3F61C294F2900938B5E /* Demonstration_097.xml */,
 				4C6D15D11D7AC5B600CE53CD /* Demonstration_098.xml */,
+				4C5D10D91EF51DCC003FFC72 /* Demonstration_0991.xml */,
 			);
 			name = Demonstration;
 			path = CattyTests/Resources/ParserTests/Demonstration;
@@ -5664,6 +5808,7 @@
 				4CEF0CC71B9C63A2003C9B20 /* Drink_more_water_096.xml */,
 				4CE2D3F81C294F3300938B5E /* Drink_more_water_097.xml */,
 				4C6D15D31D7AC5BD00CE53CD /* Drink_more_water_098.xml */,
+				4C5D10DB1EF51DD5003FFC72 /* Drink_more_water_0991.xml */,
 			);
 			name = Drink_more_water;
 			path = CattyTests/Resources/ParserTests/Drink_more_water;
@@ -5678,6 +5823,7 @@
 				4CEF0CC91B9C63AD003C9B20 /* Flap_Pac_Man_096.xml */,
 				4CE2D3FA1C294FFE00938B5E /* Flap_Pac_Man_097.xml */,
 				4C6D15D71D7AC5CB00CE53CD /* Flap_Pac_Man_098.xml */,
+				4C5D10DF1EF51DEA003FFC72 /* Flap_Pac_Man_0991.xml */,
 			);
 			name = Flap_Pac_Man;
 			path = CattyTests/Resources/ParserTests/Flap_Pac_Man;
@@ -5692,6 +5838,7 @@
 				4CEF0CCB1B9C63BA003C9B20 /* Flappy_v3.0_096.xml */,
 				4CE2D3FC1C29500700938B5E /* Flappy_v3.0_097.xml */,
 				4C6D15D91D7AC5D300CE53CD /* Flappy_v3.0_098.xml */,
+				4C5D10E11EF51DF4003FFC72 /* Flappy_v3.0_0991.xml */,
 			);
 			name = Flappy_v3.0;
 			path = CattyTests/Resources/ParserTests/Flappy_v3.0;
@@ -5706,6 +5853,7 @@
 				4CEF0CCD1B9C63C2003C9B20 /* Galaxy_War_096.xml */,
 				4CE2D3FE1C29500F00938B5E /* Galaxy_War_097.xml */,
 				4C6D15DB1D7AC5D900CE53CD /* Galaxy_War_098.xml */,
+				4C5D10E31EF51DFD003FFC72 /* Galaxy_War_0991.xml */,
 			);
 			name = Galaxy_War;
 			path = CattyTests/Resources/ParserTests/Galaxy_War;
@@ -5720,6 +5868,7 @@
 				4CEF0CCF1B9C63DB003C9B20 /* Gossip_Girl_096.xml */,
 				4CE2D4001C29501800938B5E /* Gossip_Girl_097.xml */,
 				4C6D15DD1D7AC5E200CE53CD /* Gossip_Girl_098.xml */,
+				4C5D10E51EF51E05003FFC72 /* Gossip_Girl_0991.xml */,
 			);
 			name = Gossip_Girl;
 			path = CattyTests/Resources/ParserTests/Gossip_Girl;
@@ -5734,6 +5883,7 @@
 				4CEF0CD11B9C63E7003C9B20 /* Memory_096.xml */,
 				4CE2D4021C29502300938B5E /* Memory_097.xml */,
 				4C6D15DF1D7AC5E700CE53CD /* Memory_098.xml */,
+				4C5D10E71EF51E15003FFC72 /* Memory_0991.xml */,
 			);
 			name = Memory;
 			path = CattyTests/Resources/ParserTests/Memory;
@@ -5748,6 +5898,7 @@
 				4CEF0CD31B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml */,
 				4CE2D4041C29502C00938B5E /* Minecraft_Work_In_Progress_097.xml */,
 				4C6D15E11D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml */,
+				4C5D10EB1EF51ECC003FFC72 /* Minecraft_Work_In_Progress_0991.xml */,
 			);
 			name = Minecraft_Work_In_Progress;
 			path = CattyTests/Resources/ParserTests/Minecraft_Work_In_Progress;
@@ -5762,6 +5913,7 @@
 				4CEF0CD51B9C6406003C9B20 /* Minions__096.xml */,
 				4CE2D4061C29503300938B5E /* Minions__097.xml */,
 				4C6D15E31D7AC5F300CE53CD /* Minions__098.xml */,
+				4C5D10ED1EF51ED5003FFC72 /* Minions__0991.xml */,
 			);
 			name = Minions_;
 			path = CattyTests/Resources/ParserTests/Minions_;
@@ -5775,6 +5927,7 @@
 				4CEF0CD71B9C6413003C9B20 /* Nyancat_1.0_096.xml */,
 				4CE2D4081C29503B00938B5E /* Nyancat_1.0_097.xml */,
 				4C6D15E51D7AC5F900CE53CD /* Nyancat_1.0_098.xml */,
+				4C5D10EF1EF51EDD003FFC72 /* Nyancat_1.0_0991.xml */,
 			);
 			name = Nyancat_1.0;
 			path = CattyTests/Resources/ParserTests/Nyancat_1.0;
@@ -5788,6 +5941,7 @@
 				4CEF0CD91B9C641E003C9B20 /* Piano_096.xml */,
 				4CE2D40A1C29504300938B5E /* Piano_097.xml */,
 				4C6D15E71D7AC5FE00CE53CD /* Piano_098.xml */,
+				4C5D10F11EF51EE4003FFC72 /* Piano_0991.xml */,
 			);
 			name = Piano;
 			path = CattyTests/Resources/ParserTests/Piano;
@@ -5811,6 +5965,7 @@
 				4CEF0CDB1B9C642A003C9B20 /* Pong_Starter_096.xml */,
 				4CE2D40C1C29505000938B5E /* Pong_Starter_097.xml */,
 				4C6D15E91D7AC60500CE53CD /* Pong_Starter_098.xml */,
+				4C5D10F31EF51EEE003FFC72 /* Pong_Starter_0991.xml */,
 			);
 			name = Pong_Starter;
 			path = CattyTests/Resources/ParserTests/Pong_Starter;
@@ -5825,6 +5980,7 @@
 				4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */,
 				4CE2D40E1C29505A00938B5E /* Pythagorean_Theorem_097.xml */,
 				4C6D15EB1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml */,
+				4C5D10F51EF51EF4003FFC72 /* Pythagorean_Theorem_0991.xml */,
 			);
 			name = Pythagorean_Theorem;
 			path = CattyTests/Resources/ParserTests/Pythagorean_Theorem;
@@ -5839,6 +5995,7 @@
 				4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */,
 				4CE2D4101C29506600938B5E /* Rock_paper_scissors_097.xml */,
 				4C6D15ED1D7AC61000CE53CD /* Rock_paper_scissors_098.xml */,
+				4C5D10F71EF51EFC003FFC72 /* Rock_paper_scissors_0991.xml */,
 			);
 			name = Rock_paper_scissors;
 			path = CattyTests/Resources/ParserTests/Rock_paper_scissors;
@@ -5853,6 +6010,7 @@
 				4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */,
 				4CE2D4121C29506E00938B5E /* Skydiving_Steve_097.xml */,
 				4C6D15EF1D7AC61600CE53CD /* Skydiving_Steve_098.xml */,
+				4C5D10F91EF51F03003FFC72 /* Skydiving_Steve_0991.xml */,
 			);
 			name = Skydiving_Steve;
 			path = CattyTests/Resources/ParserTests/Skydiving_Steve;
@@ -5877,6 +6035,7 @@
 				4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */,
 				4CE2D4141C29507F00938B5E /* Tic_Tac_Toe_Master_097.xml */,
 				4C6D15F31D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml */,
+				4C5D10FD1EF51F13003FFC72 /* Tic_Tac_Toe_Master_0991.xml */,
 			);
 			name = Tic_Tac_Toe_Master;
 			path = CattyTests/Resources/ParserTests/Tic_Tac_Toe_Master;
@@ -5891,6 +6050,7 @@
 				4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */,
 				4CE2D4161C29508A00938B5E /* Word_balloon_demo_097.xml */,
 				4C6D15F51D7AC62800CE53CD /* Word_balloon_demo_098.xml */,
+				4C5D10FF1EF51F1B003FFC72 /* Word_balloon_demo_0991.xml */,
 			);
 			name = Word_balloon_demo;
 			path = CattyTests/Resources/ParserTests/Word_balloon_demo;
@@ -5905,6 +6065,7 @@
 				4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */,
 				4CE2D4181C29509400938B5E /* X_Ray_phone_097.xml */,
 				4C6D15F71D7AC62E00CE53CD /* X_Ray_phone_098.xml */,
+				4C5D11011EF51F25003FFC72 /* X_Ray_phone_0991.xml */,
 			);
 			name = X_Ray_phone;
 			path = CattyTests/Resources/ParserTests/X_Ray_phone;
@@ -6174,22 +6335,29 @@
 				4C2EE3F11B555740006DE9B8 /* Drink_more_water_095.xml in Resources */,
 				4C2EE3FB1B55579D006DE9B8 /* Memory_095.xml in Resources */,
 				4C2EE3FF1B5557BF006DE9B8 /* Minions__095.xml in Resources */,
+				4C5D10D81EF51DC2003FFC72 /* Compass_0.1_0991.xml in Resources */,
 				4CE2D3F51C294F2000938B5E /* Compass_0.1_097.xml in Resources */,
 				CAE3E5391B4C50B300CC88BD /* Airplane_with_shadow_091.xml in Resources */,
+				4C5D10EE1EF51ED5003FFC72 /* Minions__0991.xml in Resources */,
 				CAE3E53E1B4C50B300CC88BD /* Demonstration_093.xml in Resources */,
 				4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */,
 				4C2EE3F91B55578C006DE9B8 /* Gossip_Girl_095.xml in Resources */,
 				4C2EE40B1B55583F006DE9B8 /* Skydiving_Steve_095.xml in Resources */,
 				4CEF0CC01B9C6360003C9B20 /* Air_fight_0.5_096.xml in Resources */,
 				4C2EE3E91B5556FC006DE9B8 /* Air_fight_0.5_095.xml in Resources */,
+				4C5D11081EF51F3E003FFC72 /* ValidProgramAllBricks0991.xml in Resources */,
 				4CEF0CD21B9C63E7003C9B20 /* Memory_096.xml in Resources */,
 				4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */,
+				4C5D10FA1EF51F03003FFC72 /* Skydiving_Steve_0991.xml in Resources */,
 				CAE3E5381B4C50B300CC88BD /* Air_fight_0.5_093.xml in Resources */,
 				4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */,
 				4C6D15E41D7AC5F300CE53CD /* Minions__098.xml in Resources */,
 				4C6D15F01D7AC61600CE53CD /* Skydiving_Steve_098.xml in Resources */,
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
+				4C5D10E21EF51DF4003FFC72 /* Flappy_v3.0_0991.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
+				4C5D10E41EF51DFD003FFC72 /* Galaxy_War_0991.xml in Resources */,
+				4C5D10F81EF51EFC003FFC72 /* Rock_paper_scissors_0991.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
 				4C6D15D21D7AC5B600CE53CD /* Demonstration_098.xml in Resources */,
@@ -6201,6 +6369,7 @@
 				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
 				4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */,
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
+				4C5D10E61EF51E05003FFC72 /* Gossip_Girl_0991.xml in Resources */,
 				4C6D15FC1D7AC63A00CE53CD /* ValidProgram098.xml in Resources */,
 				4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */,
 				CAE3E5411B4C50B300CC88BD /* Flap_Pac_Man_091.xml in Resources */,
@@ -6208,6 +6377,8 @@
 				4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */,
 				CAE3E53A1B4C50B300CC88BD /* Airplane_with_shadow_093.xml in Resources */,
 				CAE3E5561B4C50B300CC88BD /* Pythagorean_Theorem_092.xml in Resources */,
+				4C5D10F21EF51EE4003FFC72 /* Piano_0991.xml in Resources */,
+				4C5D10DA1EF51DCC003FFC72 /* Demonstration_0991.xml in Resources */,
 				CAE3E5491B4C50B300CC88BD /* Memory_09.xml in Resources */,
 				4CE2D3FF1C29500F00938B5E /* Galaxy_War_097.xml in Resources */,
 				4C6D15FA1D7AC63400CE53CD /* ValidHeader098.xml in Resources */,
@@ -6224,21 +6395,26 @@
 				4CE2D4031C29502300938B5E /* Memory_097.xml in Resources */,
 				4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */,
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
+				4C5D10E81EF51E15003FFC72 /* Memory_0991.xml in Resources */,
 				4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */,
 				4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */,
 				4C6D15F41D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml in Resources */,
+				4C5D11041EF51F2E003FFC72 /* ValidHeader0991.xml in Resources */,
 				CAE3E54F1B4C50B300CC88BD /* Nyancat_1.0_091.xml in Resources */,
 				4CEF0CC81B9C63A2003C9B20 /* Drink_more_water_096.xml in Resources */,
 				CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */,
 				4CE2D4191C29509400938B5E /* X_Ray_phone_097.xml in Resources */,
 				4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */,
+				4C5D111F1EF537E5003FFC72 /* LogicBricks_0991.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
 				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
 				CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */,
+				4C5D11021EF51F25003FFC72 /* X_Ray_phone_0991.xml in Resources */,
 				4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */,
+				4C5D10EC1EF51ECC003FFC72 /* Minecraft_Work_In_Progress_0991.xml in Resources */,
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
 				4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */,
 				4CE2D4051C29502C00938B5E /* Minecraft_Work_In_Progress_097.xml in Resources */,
@@ -6266,6 +6442,7 @@
 				CAE3E5481B4C50B300CC88BD /* Gossip_Girl_093.xml in Resources */,
 				4C2EE4071B555811006DE9B8 /* Pythagorean_Theorem_095.xml in Resources */,
 				CAE3E5601B4C50B300CC88BD /* Word_balloon_demo_09.xml in Resources */,
+				4C5D10FC1EF51F0D003FFC72 /* Solar_System_v1.0_0991.xml in Resources */,
 				4C2EE3F71B55577C006DE9B8 /* Galaxy_War_095.xml in Resources */,
 				4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */,
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
@@ -6273,19 +6450,28 @@
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
+				4C5D10E01EF51DEA003FFC72 /* Flap_Pac_Man_0991.xml in Resources */,
+				4C5D10F01EF51EDD003FFC72 /* Nyancat_1.0_0991.xml in Resources */,
+				4C5D10EA1EF51EB8003FFC72 /* LedFlashBrick0991.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
+				4C5D11061EF51F36003FFC72 /* ValidProgram0991.xml in Resources */,
 				CAE3E5591B4C50B300CC88BD /* Rock_paper_scissors_093.xml in Resources */,
 				4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */,
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
+				4C5D10F61EF51EF4003FFC72 /* Pythagorean_Theorem_0991.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
+				4C5D11001EF51F1B003FFC72 /* Word_balloon_demo_0991.xml in Resources */,
 				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
 				4C6D15F21D7AC61C00CE53CD /* Solar_System_v1.0_098.xml in Resources */,
+				4C5D10DE1EF51DDE003FFC72 /* Encapsulated_0991.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				4C6D15F61D7AC62800CE53CD /* Word_balloon_demo_098.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
 				4CE2D40D1C29505000938B5E /* Pong_Starter_097.xml in Resources */,
 				4C6D15DE1D7AC5E200CE53CD /* Gossip_Girl_098.xml in Resources */,
+				4C5D10DC1EF51DD5003FFC72 /* Drink_more_water_0991.xml in Resources */,
 				4CE2D3FD1C29500700938B5E /* Flappy_v3.0_097.xml in Resources */,
+				4C5D10F41EF51EEE003FFC72 /* Pong_Starter_0991.xml in Resources */,
 				CAE3E53B1B4C50B300CC88BD /* Compass_0.1_091.xml in Resources */,
 				CAE3E54E1B4C50B300CC88BD /* Minions__093.xml in Resources */,
 				4C2EE4111B555882006DE9B8 /* X_Ray_phone_095.xml in Resources */,
@@ -6301,16 +6487,19 @@
 				4C6D15EC1D7AC60B00CE53CD /* Pythagorean_Theorem_098.xml in Resources */,
 				CAE3E5421B4C50B300CC88BD /* Flap_Pac_Man_093.xml in Resources */,
 				CAE3E5581B4C50B300CC88BD /* Rock_paper_scissors_091.xml in Resources */,
+				4C5D10D61EF51DBA003FFC72 /* Airplane_with_shadow_0991.xml in Resources */,
 				CAE3E5461B4C50B300CC88BD /* Galaxy_War_093.xml in Resources */,
 				CAE3E5401B4C50B300CC88BD /* Drink_more_water_093.xml in Resources */,
 				CAE3E5431B4C50B300CC88BD /* Flappy_v3.0_092.xml in Resources */,
 				4CE2D40F1C29505A00938B5E /* Pythagorean_Theorem_097.xml in Resources */,
+				4C5D10D21EF51DA0003FFC72 /* Air_fight_0.5_0991.xml in Resources */,
 				4CEF0CD61B9C6406003C9B20 /* Minions__096.xml in Resources */,
 				4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */,
 				4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */,
 				4C2EE3EB1B55570C006DE9B8 /* Airplane_with_shadow_095.xml in Resources */,
 				CAE3E5531B4C50B300CC88BD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				4C2EE3F31B555754006DE9B8 /* Flap_Pac_Man_095.xml in Resources */,
+				4C5D10FE1EF51F13003FFC72 /* Tic_Tac_Toe_Master_0991.xml in Resources */,
 				CAE3E5541B4C50B300CC88BD /* Pong_Starter_09.xml in Resources */,
 				CAE3E5451B4C50B300CC88BD /* Galaxy_War_092.xml in Resources */,
 				CAE3E55C1B4C50B300CC88BD /* SKYPASCAL_08.xml in Resources */,
@@ -6622,6 +6811,7 @@
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
+				4C5D11171EF51FC6003FFC72 /* XMLSerializerTests.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
@@ -6644,6 +6834,7 @@
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
+				4C5D11151EF51FC6003FFC72 /* XMLParserTests0991.m in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
 				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
@@ -6663,6 +6854,7 @@
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
+				4C5D11141EF51FC6003FFC72 /* XMLParserBlackBoxTests0991.m in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
@@ -6688,11 +6880,11 @@
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
 				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
 				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
-				4C647C8C1D48E1F70060E70D /* XMLSerializerTests.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
+				4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
@@ -6701,7 +6893,6 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
-				4C647C8B1D48E1F70060E70D /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
@@ -6715,6 +6906,7 @@
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
+				4C5D11161EF51FC6003FFC72 /* XMLSerializerBlackBoxTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6925,6 +7117,7 @@
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
+				4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
@@ -6968,6 +7161,8 @@
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
+				4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */,
+				4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
@@ -7097,6 +7292,7 @@
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
+				4DB4FACD1EF2324100576677 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
 				AAAF228A1BC0D0630076F11E /* TurnRightBrick+Instruction.swift in Sources */,
@@ -7153,6 +7349,7 @@
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
 				AA74EF4C1BC0586F00D1E954 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
+				4DB4FAC71EF2282F00576677 /* PreviousLookBrickCell.m in Sources */,
 				AA74F0CA1BC05FCE00D1E954 /* ScriptDeleteButton.m in Sources */,
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
