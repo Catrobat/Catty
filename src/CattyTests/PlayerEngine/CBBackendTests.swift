@@ -243,7 +243,7 @@ final class CBBackendTests: XCTestCase {
         setXBrick.script = startScript
         let flashBrick = FlashBrick()
         flashBrick.script = startScript
-        let ifLogicEndBrick = IfLogicEndBrick()
+        let ifLogicEndBrick = IfThenLogicEndBrick()
         ifLogicEndBrick.script = startScript
         let vibrationBrick = VibrationBrick()
         vibrationBrick.script = startScript

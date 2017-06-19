@@ -19,19 +19,23 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
-#import "BrickConditionalBranchProtocol.h"
 
-@class Formula;
-@class IfThenLogicEndBrick;
+#import "IfThenLogicEndBrickCell.h"
 
-@interface IfThenLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
+@interface IfThenLogicEndBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@property (nonatomic, strong) Formula *ifCondition;
-@property (nonatomic, weak) IfThenLogicEndBrick *ifEndBrick;
+@implementation IfThenLogicEndBrickCell
 
-- (BOOL)checkCondition;
-- (void)resetCondition;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 @end

@@ -21,7 +21,7 @@
  */
 
 #import "IfThenLogicBeginBrick.h"
-#import "IfLogicEndBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "Util.h"
 #import "Script.h"
 

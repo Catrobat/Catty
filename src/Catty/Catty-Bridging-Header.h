@@ -40,6 +40,7 @@
 #import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "NoteBrick.h"

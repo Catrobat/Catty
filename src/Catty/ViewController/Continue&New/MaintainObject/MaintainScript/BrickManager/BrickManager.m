@@ -27,6 +27,7 @@
 #import "LoopEndBrick.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
@@ -293,7 +294,7 @@
 {
     if ([brick isKindOfClass:[LoopBeginBrick class]] || [brick isKindOfClass:[LoopEndBrick class]]) {
         return [self loopBrickForAnimationIndexPath:path Script:script andBrick:brick];
-    } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]) {
+    } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]  || [brick isKindOfClass:[IfThenLogicEndBrick class]]) {
         return [self ifBrickForAnimationIndexPath:path Script:script andBrick:brick];
     } else {
         return nil;
@@ -393,7 +394,7 @@
         elseBrick.ifBeginBrick.animate = YES;
         elseBrick.ifEndBrick.animate = YES;
         return @[[NSNumber numberWithInteger:begincount+1],[NSNumber numberWithInteger:endcount+1]];
-    } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+    } else if ([brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[IfThenLogicEndBrick class]]) {
         IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
         NSInteger elsecount = 0;
         NSInteger begincount = 0;
@@ -453,12 +454,13 @@
     } else if ([brick isIfLogicBrick]) {
         // if brick
         IfThenLogicBeginBrick *ifThenLogicBeginBrick = nil;
+        IfThenLogicEndBrick *ifThenLogicEndBrick = nil;
         IfLogicBeginBrick *ifLogicBeginBrick = nil;
         IfLogicElseBrick *ifLogicElseBrick = nil;
         IfLogicEndBrick *ifLogicEndBrick = nil;
         if ([brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
             ifThenLogicBeginBrick = ((IfThenLogicBeginBrick*)brick);
-            ifLogicEndBrick = ifThenLogicBeginBrick.ifEndBrick;
+            ifThenLogicEndBrick = ifThenLogicBeginBrick.ifEndBrick;
         } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
             ifLogicBeginBrick = ((IfLogicBeginBrick*)brick);
             ifLogicElseBrick = ifLogicBeginBrick.ifElseBrick;
@@ -467,6 +469,9 @@
             ifLogicElseBrick = ((IfLogicElseBrick*)brick);
             ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
             ifLogicEndBrick = ifLogicElseBrick.ifEndBrick;
+        } else if ([brick isKindOfClass:[IfThenLogicEndBrick class]]) {
+            ifThenLogicEndBrick = ((IfThenLogicEndBrick*)brick);
+            ifThenLogicBeginBrick = ifThenLogicEndBrick.ifBeginBrick;
         } else {
             CBAssert([brick isKindOfClass:[IfLogicEndBrick class]]);
             ifLogicEndBrick = ((IfLogicEndBrick*)brick);
@@ -495,11 +500,11 @@
             NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 3) inSection:indexPath.section];
             return @[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath];
         } else if(ifThenLogicBeginBrick != nil){
-            CBAssert((ifThenLogicBeginBrick != nil) && (ifLogicElseBrick == nil) && (ifLogicEndBrick != nil));
+            CBAssert((ifThenLogicBeginBrick != nil) && (ifLogicElseBrick == nil) && (ifThenLogicEndBrick != nil));
             NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifThenLogicBeginBrick];
             NSUInteger ifLogicEndIndex = (ifLogicBeginIndex + 1);
-            IfLogicBeginBrick *copiedIfLogicBeginBrick = [ifThenLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
-            IfLogicEndBrick *copiedIfLogicEndBrick = [ifThenLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+            IfThenLogicBeginBrick *copiedIfLogicBeginBrick = [ifThenLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+            IfThenLogicEndBrick *copiedIfLogicEndBrick = [ifThenLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
             copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
             copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
             [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];

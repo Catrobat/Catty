@@ -212,12 +212,12 @@ final class CBFrontendTests: XCTestCase {
         let setVolumeToBrick = SetVolumeToBrick()
         let setVariableBrick = SetVariableBrick()
         let changeVariableBrick = ChangeVariableBrick()
-        let ifLogicEndBrick = IfLogicEndBrick()
+        let ifLogicEndBrick = IfThenLogicEndBrick()
         let flashBrick = FlashBrick()
         let vibrationBrick = VibrationBrick()
         
         ifThenLogicBeginBrick.ifEndBrick = ifLogicEndBrick
-        ifLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick as IfLogicBeginBrick
+        ifLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick
         
         let preIfThenOperationSequenceBricks = [waitBrick, noteBrick, broadcastBrick,
                                                 broadcastWaitBrick, changeVariableBrick]

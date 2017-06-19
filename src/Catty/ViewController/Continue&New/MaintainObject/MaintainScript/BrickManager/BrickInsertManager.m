@@ -25,6 +25,7 @@
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
 #import "IfThenLogicBeginBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "ForeverBrick.h"
@@ -112,7 +113,7 @@
                         //from above
                         if (toIndexPath.item > fromIndexPath.item) {
                             Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
-                            if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
+                            if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]] || [checkafterEndBrick isKindOfClass:[IfThenLogicEndBrick class]]) {
                                 return NO;
                             } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
                                 LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
@@ -129,7 +130,7 @@
             }
             //From Below
                 if (toIndexPath.item < fromIndexPath.item) {
-                    if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
+                    if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[IfThenLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
                         Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
                         if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
                             return NO;
@@ -187,9 +188,9 @@
         //ELSE&END ALWAYS right after IFBEGIN
         //        NSInteger insertionIndex = path.row;
         IfThenLogicBeginBrick *ifBeginBrick = (IfThenLogicBeginBrick*)brick;
-        IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
+        IfThenLogicEndBrick *ifEndBrick = [IfThenLogicEndBrick new];
         ifBeginBrick.ifEndBrick = ifEndBrick;
-        ifEndBrick.ifBeginBrick = (IfLogicBeginBrick*)ifBeginBrick;
+        ifEndBrick.ifBeginBrick = ifBeginBrick;
         ifEndBrick.script = targetScript;
         [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex==0?1:insertionIndex];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
@@ -280,11 +281,11 @@
     Brick* checkBrick;
     for (NSInteger counter = 0;counter<path.row;counter++) {
         Brick *brick = [targetScript.brickList objectAtIndex:counter];
-        if (([brick isKindOfClass:[IfLogicBeginBrick class]])) {
+        if (([brick isKindOfClass:[IfLogicBeginBrick class]]) || [brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
             checkBrick = brick;
         } else if ([brick isKindOfClass:[IfLogicElseBrick class]]){
             checkBrick = brick;
-        } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+        } else if ([brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[IfThenLogicEndBrick class]]) {
             checkBrick  = nil;
         }
     }

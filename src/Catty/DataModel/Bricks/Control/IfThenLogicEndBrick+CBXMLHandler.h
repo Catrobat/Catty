@@ -19,19 +19,10 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
-#import "BrickConditionalBranchProtocol.h"
 
-@class Formula;
-@class IfThenLogicEndBrick;
+#import "IfThenLogicEndBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface IfThenLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
-
-@property (nonatomic, strong) Formula *ifCondition;
-@property (nonatomic, weak) IfThenLogicEndBrick *ifEndBrick;
-
-- (BOOL)checkCondition;
-- (void)resetCondition;
+@interface IfThenLogicEndBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

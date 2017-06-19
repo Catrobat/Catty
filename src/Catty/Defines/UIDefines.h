@@ -161,8 +161,9 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kIfThenBrick               =   9,
     kIfElseBrick               =  10,
     kIfEndBrick                =  11,
-    kRepeatBrick               =  12,
-    kLoopEndBrick              =  13,
+    kIfThenEndBrick            =  12,
+    kRepeatBrick               =  13,
+    kLoopEndBrick              =  14,
 
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
@@ -300,6 +301,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"IfThenLogicBeginBrick"     : @(kIfThenBrick),\
     @"IfLogicElseBrick"          : @(kIfElseBrick),\
     @"IfLogicEndBrick"           : @(kIfEndBrick),\
+    @"IfThenLogicEndBrick"       : @(kIfThenEndBrick),\
     @"RepeatBrick"               : @(kRepeatBrick),\
     @"LoopEndBrick"              : @(kLoopEndBrick),\
 \
@@ -391,6 +393,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"IfThenLogicBeginBrick"     : @(kBrickHeight1h),\
 @"IfLogicElseBrick"          : @(kBrickHeight1h),\
 @"IfLogicEndBrick"           : @(kBrickHeight1h),\
+@"IfThenLogicEndBrick"       : @(kBrickHeight1h),\
 @"RepeatBrick"               : @(kBrickHeight1h),\
 @"LoopEndBrick"              : @(kBrickHeight1h),\
 \
@@ -454,8 +457,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"PhiroMotorMoveForwardBrick"   : @(kBrickHeight3h),\
 @"PhiroMotorMoveBackwardBrick"  : @(kBrickHeight3h),\
 @"PhiroPlayToneBrick"           : @(kBrickHeight3h),\
-@"PhiroRGBLightBrick"          : @(kBrickHeight3h),\
-@"PhiroIfLogicBeginBrick"          : @(kBrickHeight1h)\
+@"PhiroRGBLightBrick"           : @(kBrickHeight3h),\
+@"PhiroIfLogicBeginBrick"       : @(kBrickHeight1h)\
 }
 
 // brick heights
