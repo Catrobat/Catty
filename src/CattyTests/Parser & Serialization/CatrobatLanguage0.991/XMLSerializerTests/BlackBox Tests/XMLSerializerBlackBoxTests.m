@@ -146,7 +146,7 @@
 
 - (void)testLogicBricks
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"LogicBricks_0991.xml"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"LogicBricks_0991"];
 }
 
 @end

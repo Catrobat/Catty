@@ -59,6 +59,7 @@
     @"{FLOAT;range=(-inf,inf)}",    /* if then         */\
     @[],                            /* else            */\
     @[],                            /* if end          */\
+    @[],                            /* if then end     */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
     @[]                             /* loop end        */\
 ]

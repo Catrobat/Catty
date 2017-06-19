@@ -25,6 +25,7 @@
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
 #import "IfThenLogicBeginBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 
@@ -104,7 +105,7 @@
                 [self selectLoopEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
                 [self selectLogicBeginWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
-            } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+            } else if ([brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]) {
                 [self selectLogicEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
                 [self selectLogicElseWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
