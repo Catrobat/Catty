@@ -23,12 +23,11 @@
 #import "LookImageViewController.h"
 #import "TableUtil.h"
 #import "RuntimeImageCache.h"
+#import "Pocket_Code-Swift.h"
 
 @interface LookImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (nonatomic,strong)UIImage* paintImage;
-@property (nonatomic,strong)NSString* paintImagePath;
 @end
 
 @implementation LookImageViewController
@@ -134,19 +133,14 @@
 
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
-    self.paintImage = image;
-    self.paintImagePath = path;
-    [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
-}
-#pragma mark - alert delegate
-- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != 0) {
-            //        NSDebug(@"yes");
-        if (self.paintImagePath && self.paintImage) {
-            [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
-        }
-    }
+    [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
+     addCancelActionWithTitle:kLocalizedCancel handler:nil]
+     addDefaultActionWithTitle:kLocalizedYes handler:^{
+         if (path && image) {
+             [self addPaintedImage:image andPath:path];
+         }
+     }]
+     build] showWithController:self];
 }
 
 #pragma mark paintDelegate

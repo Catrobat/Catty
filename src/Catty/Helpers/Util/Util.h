@@ -40,14 +40,17 @@
 #define IS_OS_9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 #define IS_OS_10_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 
+#define SAFE_BLOCK_CALL(__functor, ...)   \
+do {    \
+if (__functor) __functor(__VA_ARGS__);  \
+} while (0)
+
 #define TIMEOUT 30.0f
 
 @protocol MYIntroductionDelegate;
 @class SceneViewController;
-@class CatrobatAlertController;
-@protocol CatrobatAlertViewDelegate;
-@protocol CatrobatActionSheetDelegate;
 @class ProgramLoadingInfo;
+@class InputValidationResult;
 
 @interface Util : NSObject
 
@@ -57,44 +60,15 @@
 
 + (NSString*)applicationDocumentsDirectory;
 
-+ (void)showComingSoonAlertView;
++ (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController;
+
++ (UIViewController *)topmostViewController;
 
 + (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
-+ (CatrobatAlertController*)alertWithText:(NSString*)text;
++ (void)alertWithText:(NSString*)text;
 
-+ (CatrobatAlertController*)alertWithTitle:(NSString*)title
-                             andText:(NSString*)text;
-
-+ (CatrobatAlertController*)alertWithText:(NSString*)text
-                           delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                tag:(NSInteger)tag;
-
-+ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
-                                    message:(NSString*)message
-                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                        tag:(NSInteger)tag;
-
-+ (CatrobatAlertController*)promptWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<CatrobatAlertViewDelegate>)delegate
-                          placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag;
-
-+ (CatrobatAlertController*)promptWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<CatrobatAlertViewDelegate>)delegate
-                          placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag
-                                value:(NSString*)value
-                               target:(id)target;
-
-+ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
-                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
-                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                           otherButtonTitles:(NSArray*)otherButtonTitles
-                                         tag:(NSInteger)tag
-                                        view:(UIView*)view;
++ (void)alertWithTitle:(NSString*)title andText:(NSString*)text;
 
 + (void)askUserForVariableNameAndPerformAction:(SEL)action
                                         target:(id)target
@@ -103,17 +77,7 @@
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                   andTextField:(FormulaEditorTextView *)textView;
-
-+ (void)askUserForReportMessageAndPerformAction:(SEL)action
-                                         target:(id)target
-                                    promptTitle:(NSString*)title
-                                  promptMessage:(NSString*)message
-                                 minInputLength:(NSUInteger)minInputLength
-                                 maxInputLength:(NSUInteger)maxInputLength
-                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                       invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
 
 + (NSString*)appName;
 
@@ -147,6 +111,8 @@
 
 + (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
++ (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                  promptTitle:(NSString*)title
@@ -175,17 +141,6 @@
 
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
-                           promptTitle:(NSString*)title
-                         promptMessage:(NSString*)message
-                           promptValue:(NSString*)value
-                     promptPlaceholder:(NSString*)placeholder
-                        minInputLength:(NSUInteger)minInputLength
-                        maxInputLength:(NSUInteger)maxInputLength
-                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
-
-+ (void)askUserForTextAndPerformAction:(SEL)action
-                                target:(id)target
                           cancelAction:(SEL)cancelAction
                             withObject:(id)passingObject
                            promptTitle:(NSString*)title
@@ -196,8 +151,6 @@
                         maxInputLength:(NSUInteger)maxInputLength
                    blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
-
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCancel:(SEL)cancel withCompletion:(void(^)(NSString*))completion;
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
@@ -218,8 +171,6 @@
 + (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object;
 
 + (NSArray*)allMessagesForProgram:(Program*)program;
-
-+ (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)index;
 
 + (BOOL)isNetworkError:(NSError*)error;
 

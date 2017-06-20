@@ -26,14 +26,13 @@
 #import "LanguageTranslationDefines.h"
 #import "FlashHelper.h"
 #import "Pocket_Code-Swift.h"
-#import "ActionSheetAlertViewTags.h"
 #import "BaseCollectionViewController.h"
 
 @class BluetoothPopupVC;
 
 @implementation ResourceHelper
 
-+(BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,CatrobatAlertViewDelegate>)delegate
++(BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,ResourceNotAvailableDelegate>)delegate
 {
     NSString *notAvailable = @"";
     NSMutableArray *bluetoothArray = [NSMutableArray new];
@@ -111,7 +110,14 @@
     }
     if (![notAvailable isEqualToString:@""]) {
         notAvailable = [NSString stringWithFormat:@"%@ %@",notAvailable,kLocalizedNotAvailable];
-        [Util confirmAlertWithTitle:kLocalizedPocketCode message:notAvailable delegate:delegate tag:kResourcesAlertView];
+        
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedPocketCode message:notAvailable]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedYes handler:^{
+             [delegate userAgreedToContinueAnyway];
+         }] build]
+         showWithController:[Util topmostViewController]];
+        
         return NO;
     }
     //CheckBluetooth

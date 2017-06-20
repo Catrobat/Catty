@@ -26,6 +26,7 @@
 #import "LoadingView.h"
 #import "PlaceHolderView.h"
 #import "ResourceHelper.h"
+#import "ResourceHelper.h"
 
 
 // tags
@@ -34,7 +35,7 @@
 
 @class BluetoothPopupVC;
 
-@interface BaseCollectionViewController ()
+@interface BaseCollectionViewController () <ResourceNotAvailableDelegate>
 @property (nonatomic, strong) LoadingView* loadingView;
 
 @end
@@ -122,7 +123,7 @@
     [self playSceneAction:sender animated:YES];
 }
 
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
+- (void)playSceneAction:(id)sender animated:(BOOL)animated
 {
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
@@ -211,6 +212,10 @@
     self.navigationController.toolbar.userInteractionEnabled = YES;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self.loadingView hide];
+}
+
+- (void)userAgreedToContinueAnyway {
+    [self startSceneWithVC:self.scenePresenterViewController];
 }
 
 -(LoadingView*)loadingView

@@ -23,7 +23,6 @@
 #import <UIKit/UIKit.h>
 #import "ScenePresenterViewController.h"
 @class PlaceHolderView;
-@class CatrobatAlertController;
 
 @interface BaseTableViewController : UITableViewController
 @property (nonatomic, strong) NSMutableDictionary *dataCache;
@@ -44,18 +43,6 @@
 - (void)changeToEditingMode:(id)sender;
 - (void)changeToMoveMode:(id)sender;
 - (void)exitEditingMode;
-- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
-- (void)performActionOnConfirmation:(SEL)confirmedAction
-                     canceledAction:(SEL)canceledAction
-                         withObject:(id)object
-                             target:(id)target
-                       confirmTitle:(NSString*)confirmTitle
-                     confirmMessage:(NSString*)confirmMessage;
-- (void)performActionOnConfirmation:(SEL)confirmedAction
-                     canceledAction:(SEL)canceledAction
-                             target:(id)target
-                       confirmTitle:(NSString*)confirmTitle
-                     confirmMessage:(NSString*)confirmMessage;
 - (void)playSceneAction:(id)sender;
 - (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)showLoadingView;

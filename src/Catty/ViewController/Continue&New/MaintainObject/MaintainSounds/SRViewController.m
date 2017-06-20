@@ -27,6 +27,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "TimerLabel.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "Util.h"
 
 
 @interface SRViewController ()
@@ -169,13 +170,7 @@
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
     if (!flag) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Not enough Memory" preferredStyle:UIAlertControllerStyleAlert];
-                                    
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [Util alertWithTitle:kLocalizedError andText:kLocalizedMemoryWarning];
     }
     [self.record setTitle:kLocalizedRecording forState:UIControlStateNormal];
 }
