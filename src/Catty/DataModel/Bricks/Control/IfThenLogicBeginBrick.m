@@ -86,7 +86,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"If Logic Begin Brick"];
+    return [NSString stringWithFormat:@"If Then Logic Begin Brick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
