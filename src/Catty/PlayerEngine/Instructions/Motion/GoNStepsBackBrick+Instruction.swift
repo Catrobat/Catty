@@ -38,7 +38,7 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
             let steps = stepsFormula.interpretDoubleForSprite(object)
             spriteNode.zPosition = max(1, zValue - CGFloat(steps))
             for obj in objectList {
-                guard let objSpriteNode = obj.spriteNode! else {
+                guard let objSpriteNode = obj.spriteNode else {
                     continue
                 }
                 if(objSpriteNode.zPosition < zValue) && (objSpriteNode.zPosition >= object.spriteNode?.zPosition) && (obj as! SpriteObject != object){
