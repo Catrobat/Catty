@@ -105,7 +105,7 @@
                 [self selectLoopEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfThenLogicBeginBrick class]]) {
                 [self selectLogicBeginWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
-            } else if ([brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]) {
+            } else if ([brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[IfThenLogicEndBrick class]]) {
                 [self selectLogicEndWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
             } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
                 [self selectLogicElseWithBrick:brick Script:script IndexPath:indexPath andSelectButton:selectButton];
@@ -274,6 +274,7 @@
 - (void)selectLogicEndWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton*)selectButton
 {
     IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
+    BOOL isIfThen = [brick isKindOfClass: [IfThenLogicEndBrick class]];
     NSInteger countElse = 0;
     NSInteger countbegin = 0;
     BOOL foundIf = NO;
@@ -285,16 +286,16 @@
                 ++countbegin;
             }
         }
-        if ([checkBrick isEqual:endBrick.ifElseBrick]) {
+        if (!isIfThen && [checkBrick isEqual:endBrick.ifElseBrick]) {
             break;
         } else {
             ++countElse;
         }
     }
-    NSIndexPath *beginPath =[NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
-    Brick *beginBrick =[script.brickList objectAtIndex:beginPath.item - 1];
+    NSIndexPath *beginPath = [NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
+    Brick *beginBrick = [script.brickList objectAtIndex:beginPath.item - 1];
 
-    if (endBrick.ifElseBrick != nil) {
+    if (!isIfThen && endBrick.ifElseBrick != nil) {
         NSIndexPath *elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
         Brick *elseBrick =[script.brickList objectAtIndex:elsePath.item - 1];
         elseBrick.isSelected = !selectButton.selected;
