@@ -22,9 +22,6 @@
 
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "CatrobatAlertController.h"
-#import "ActionSheetAlertViewTags.h"
-#import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <MYBlurIntroductionView/MYBlurIntroductionView.h>
 #import "CatrobatLanguageDefines.h"
@@ -39,8 +36,9 @@
 #import <objc/runtime.h>
 #import "OrderedDictionary.h"
 #import "UIDevice-Hardware.h"
+#import "Pocket_Code-Swift.h"
 
-@interface Util () <CatrobatAlertViewDelegate>
+@interface Util ()
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 @end
@@ -64,17 +62,20 @@
 
 }
 
-+ (void)showComingSoonAlertView
-{
-    CatrobatAlertController *alert = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedThisFeatureIsComingSoon
-                                                               delegate:nil
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-    if (! [self activateTestMode:NO]) {
-        [ROOTVIEW presentViewController:alert animated:YES completion:^{}];
++ (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController {
+    UIViewController *result = viewController;
+
+    while (result.presentedViewController) {
+        result = result.presentedViewController;
     }
+
+    return result;
 }
+
++ (UIViewController *)topmostViewController {
+    return [self topViewControllerInViewController:ROOTVIEW];
+}
+
 
 + (void)showIntroductionScreenInView:(UIView *)view delegate:(id<MYIntroductionDelegate>)delegate
 {
@@ -106,149 +107,18 @@
     [view addSubview:introductionView];
 }
 
-+ (CatrobatAlertController*)alertWithText:(NSString*)text
++ (void)alertWithText:(NSString*)text
 {
-    return [self alertWithText:text delegate:nil tag:0];
+    [Util alertWithTitle:kLocalizedPocketCode andText:text];
 }
 
-+(CatrobatAlertController *)alertWithTitle:(NSString *)title
-                             andText:(NSString *)text
++ (void)alertWithTitle:(NSString *)title andText:(NSString *)text
 {
-    CatrobatAlertController* alertView = [self alertWithText:text];
-    alertView.title = title;
-    return alertView;
-}
+    [[[[AlertControllerBuilder alertWithTitle:title message:text]
+     addCancelActionWithTitle:kLocalizedOK handler:nil]
+     build]
+     showWithController:[Util topmostViewController]];
 
-+ (CatrobatAlertController*)alertWithText:(NSString*)text
-                           delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                tag:(NSInteger)tag
-{
-    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:kLocalizedPocketCode
-                                                                    message:text
-                                                                   delegate:delegate
-                                                          cancelButtonTitle:kLocalizedOK
-                                                          otherButtonTitles:nil];
-    alertView.tag = tag;
-    if (! [self activateTestMode:NO]) {
-        [alertView show:YES];
-    }
-    return alertView;
-}
-
-+ (CatrobatAlertController*)confirmAlertWithTitle:(NSString*)title
-                                    message:(NSString*)message
-                                   delegate:(id<CatrobatAlertViewDelegate>)delegate
-                                        tag:(NSInteger)tag
-{
-    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:title
-                                                                    message:message
-                                                                   delegate:delegate
-                                                          cancelButtonTitle:kLocalizedNo
-                                                          otherButtonTitles:nil];
-    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:kLocalizedYes style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                   {
-                                       [delegate alertView:alertView clickedButtonAtIndex:1];
-                                   }];
-    
-    [alertView addAction:yesAction];
-    alertView.tag = tag;
-    if (! [self activateTestMode:NO]) {
-        [alertView show:YES];
-    }
-    return alertView;
-}
-
-+ (CatrobatAlertController*)promptWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<CatrobatAlertViewDelegate>)delegate
-                          placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag
-{
-    return [Util promptWithTitle:title
-                         message:message
-                        delegate:delegate
-                     placeholder:placeholder
-                             tag:tag
-                           value:nil
-                          target:nil];
-}
-
-+ (CatrobatAlertController*)promptWithTitle:(NSString*)title
-                              message:(NSString*)message
-                             delegate:(id<CatrobatAlertViewDelegate>)delegate
-                          placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag
-                                value:(NSString*)value
-                               target:(id)target
-{
-    CatrobatAlertController *alertView = [[CatrobatAlertController alloc] initAlertViewWithTitle:title
-                                                                    message:message
-                                                                   delegate:delegate
-                                                          cancelButtonTitle:kLocalizedCancel
-                                                          otherButtonTitles:kLocalizedOK, nil];
-    alertView.tag = tag;
-//    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-//    UITextField *textField = [alertView textFieldAtIndex:0];
-//    textField.placeholder = placeholder;
-//    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-//    textField.text = value;
-//    textField.delegate = alertView;
-//    textField.returnKeyType = UIReturnKeyDone;
-//    [textField becomeFirstResponder];
-    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = placeholder;
-        textField.keyboardType = UIKeyboardTypeDefault;
-        [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-        textField.text = value;
-        textField.returnKeyType = UIReturnKeyDone;
-        [textField becomeFirstResponder];
-    }];
-
-    if (! [self activateTestMode:NO]) {
-        if (target != nil) {
-            [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
-        } else {
-            [alertView show:YES];
-        }
-    }
-    return alertView;
-}
-
-+ (CatrobatAlertController*)actionSheetWithTitle:(NSString*)title
-                                    delegate:(id<CatrobatActionSheetDelegate>)delegate
-                      destructiveButtonTitle:(NSString*)destructiveButtonTitle
-                           otherButtonTitles:(NSArray*)otherButtonTitles
-                                         tag:(NSInteger)tag
-                                        view:(UIView*)view
-{
-    CatrobatAlertController *actionSheet = [[CatrobatAlertController alloc] initActionSheetWithTitle:title
-                                                                         delegate:delegate
-                                                                cancelButtonTitle:kLocalizedCancel
-                                                           destructiveButtonTitle:destructiveButtonTitle
-                                                           otherButtonTitlesArray:otherButtonTitles];
-//    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
-//    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
-
-//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
-//    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
-//    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    
-
-//    if (destructiveButtonTitle) {
-//        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
-//    }
-//    for (id otherButtonTitle in otherButtonTitles) {
-//        if ([otherButtonTitle isKindOfClass:[NSString class]]) {
-//            [actionSheet addButtonWithTitle:otherButtonTitle];
-//        }
-//    }
-//    [actionSheet addCancelButtonWithTitle:kLocalizedCancel];
-
-    actionSheet.tag = tag;
-    if (! [self activateTestMode:NO]) {
-        [actionSheet show:YES];
-    }
-    return actionSheet;
 }
 
 + (NSString*)appName
@@ -362,6 +232,24 @@
     [userDefaults synchronize];
 }
 
++ (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength {
+    NSString *invalidNameMessage = nil;
+    if (name.length < minLength) {
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minLength];
+    } else if (name.length > maxLength) {
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxLength];
+    } else if ([name stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet].length == 0) { // at least one non-space
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedSpaceInputDescription formatParameter:minLength];
+    } else if ([name stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"./\\~"]].length == 0) { // not only special characters
+        invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedSpecialCharInputDescription formatParameter:minLength];
+    } else {
+        return [InputValidationResult validInput];
+    }
+    
+    NSAssert(invalidNameMessage != nil, @"This case should already be handled");
+    return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
+}
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                  promptTitle:(NSString*)title
@@ -389,6 +277,11 @@
                                  existingNames:existingNames];
 }
 
++ (NSString *)normalizedDescriptionWithFormat:(NSString *)descriptionFormat formatParameter:(NSUInteger)formatParameter {
+    NSString *desc = [NSString stringWithFormat:descriptionFormat, formatParameter];
+    return formatParameter != 1 ? [Util pluralString:desc] : [Util singularString:desc];
+}
+
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
                                 cancelAction:(SEL)cancelAction
@@ -401,90 +294,47 @@
                               maxInputLength:(NSUInteger)maxInputLength
                          blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-                               existingNames:(NSArray*)existingNames;
-{
-    textFieldMaxInputLength = maxInputLength;
-    textFieldBlockedCharacterSet = blockedCharacterSet;
-
-    NSDictionary *payload = @{
-        kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
-        kDTPayloadAskUserTarget : target,
-        kDTPayloadAskUserObject : (passingObject ? passingObject : [NSNull null]),
-        kDTPayloadAskUserPromptTitle : title,
-        kDTPayloadAskUserPromptMessage : message,
-        kDTPayloadAskUserPromptValue : (value ? value : [NSNull null]),
-        kDTPayloadAskUserPromptPlaceholder : placeholder,
-        kDTPayloadAskUserMinInputLength : @(minInputLength),
-        kDTPayloadAskUserMaxInputLength : @(maxInputLength),
-        kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
-        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:@""])
-    };
-    CatrobatAlertController *alertView = [[self class] promptWithTitle:title
-                                                         message:message
-                                                        delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:placeholder
-                                                             tag:kAskUserForUniqueNameAlertViewTag
-                                                           value:value
-                                                          target:target];
-    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
-                                                                  withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
-}
-
-+ (void)askUserForReportMessageAndPerformAction:(SEL)action
-                                      target:(id)target
-                                 promptTitle:(NSString*)title
-                               promptMessage:(NSString*)message
-                              minInputLength:(NSUInteger)minInputLength
-                              maxInputLength:(NSUInteger)maxInputLength
-                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-{
-    textFieldMaxInputLength = maxInputLength;
-    textFieldBlockedCharacterSet = blockedCharacterSet;
-    
-    NSDictionary *payload = @{
-                              kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
-                              kDTPayloadAskUserTarget : target,
-                              kDTPayloadAskUserPromptTitle : title,
-                              kDTPayloadAskUserPromptMessage : message,
-                              kDTPayloadAskUserMinInputLength : @(minInputLength),
-                              kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-                              };
-    CatrobatAlertController *alertView = [[self class] promptWithTitle:title
-                                                         message:message
-                                                        delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:@""
-                                                             tag:kAskUserForReportMessageAlertViewTag
-                                                           value:@""
-                                                          target:target];
-    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
-                                                                  withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
-}
-
-+ (void)askUserForTextAndPerformAction:(SEL)action
-                                target:(id)target
-                           promptTitle:(NSString*)title
-                         promptMessage:(NSString*)message
-                           promptValue:(NSString*)value
-                     promptPlaceholder:(NSString*)placeholder
-                        minInputLength:(NSUInteger)minInputLength
-                        maxInputLength:(NSUInteger)maxInputLength
-                   blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-              invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
-{
-    [self askUserForTextAndPerformAction:action
-                                  target:target
-                            cancelAction:nil
-                              withObject:nil
-                             promptTitle:title
-                           promptMessage:message
-                             promptValue:value
-                       promptPlaceholder:placeholder
-                          minInputLength:minInputLength
-                          maxInputLength:maxInputLength
-                     blockedCharacterSet:blockedCharacterSet
-                invalidInputAlertMessage:invalidInputAlertMessage];
+                               existingNames:(NSArray*)existingNames {
+    [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+     placeholder:placeholder]
+     initialText:value]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         if (target && cancelAction) {
+             IMP imp = [target methodForSelector:cancelAction];
+             void (*func)(id, SEL) = (void *)imp;
+             func(target, cancelAction);
+         }
+     }]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+         IMP imp = [target methodForSelector:action];
+         if (target && action) {
+             if (passingObject) {
+                 void (*func)(id, SEL, id, id) = (void *)imp;
+                 func(target, action, name, passingObject);
+             } else {
+                 void (*func)(id, SEL, id) = (void *)imp;
+                 func(target, action, name);
+             }
+         }
+     }]
+     characterValidator:^BOOL(NSString *symbol) {
+         return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
+         
+         if (!result.valid) {
+             return result;
+         }
+         if ([name isEqualToString:kLocalizedNewElement]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedInvalidInputDescription];
+         }
+         if ([existingNames containsObject:name]) {
+             return [InputValidationResult invalidInputWithLocalizedMessage:invalidInputAlertMessage];
+         }
+         return [InputValidationResult validInput];
+     }] build]
+     showWithController:[self topmostViewController]];
 }
 
 + (void)askUserForTextAndPerformAction:(SEL)action
@@ -522,50 +372,36 @@
                                  minInputLength:(NSUInteger)minInputLength
                                  maxInputLength:(NSUInteger)maxInputLength
                             blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                       invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                 andTextField:(FormulaEditorTextView *)textView
 {
-    textFieldMaxInputLength = maxInputLength;
-    textFieldBlockedCharacterSet = blockedCharacterSet;
-    
-    NSDictionary *payload = @{
-                              kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
-                              kDTPayloadAskUserTarget : target,
-                              kDTPayloadAskUserPromptTitle : title,
-                              kDTPayloadAskUserPromptMessage : message,
-                              kDTPayloadAskUserMinInputLength : @(minInputLength),
-                              kDTPayloadAskUserMaxInputLength : @(maxInputLength),
-                              kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-                              kDTPayloadTextView: textView
-                              };
-    CatrobatAlertController *alertView = [[self class] promptWithTitle:title
-                                                         message:message
-                                                        delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:@""
-                                                             tag:kAskUserForVariableNameAlertViewTag
-                                                           value:@""
-                                                          target:target];
-    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
-                                                                  withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
-}
-
-
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCancel:(SEL)cancel withCompletion:(void(^)(NSString*))completion
-{
-    [self askUserForUniqueNameAndPerformAction:action
-                                        target:target
-                                  cancelAction:cancel
-                                    withObject:(id)completion
-                                   promptTitle:kLocalizedAddObject
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                minInputLength:kMinNumOfObjectNameCharacters
-                                maxInputLength:kMaxNumOfObjectNameCharacters
-                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                invertedSet]
-                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                 existingNames:[[program allObjectNames] mutableCopy]];
+    [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
+     addCancelActionWithTitle:kLocalizedCancel handler:^{
+         [textView becomeFirstResponder];
+     }]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+         if (target && action) {
+             IMP imp = [target methodForSelector:action];
+             void (*func)(id, SEL, id) = (void *)imp;
+             func(target, action, name);
+         }
+     }]
+     characterValidator:^BOOL(NSString *symbol) {
+         return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         NSString *invalidNameMessage = nil;
+         if (name.length < minInputLength) {
+             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minInputLength];
+         } else if (name.length > maxInputLength) {
+             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxInputLength];
+         } else {
+             return [InputValidationResult validInput];
+         }
+         
+         NSAssert(invalidNameMessage != nil, @"This case should already be handled");
+         return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
+     }] build]
+     showWithController:[Util topmostViewController]];
 }
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
@@ -684,241 +520,6 @@
     return temp;
 }
 
-#pragma mark - text field delegates
-static NSCharacterSet *textFieldBlockedCharacterSet = nil;
-
-static NSUInteger textFieldMaxInputLength = 0;
-
-+ (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range
-replacementString:(NSString*)characters
-{
-    if ([characters length] > textFieldMaxInputLength) {
-        return false;
-    }
-    return ([characters rangeOfCharacterFromSet:textFieldBlockedCharacterSet].location == NSNotFound);
-}
-
-#pragma mark - alert view delegates
-+ (void)alertView:(CatrobatAlertController *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
-    if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
-        if ((buttonIndex == kAlertViewCancel) || (buttonIndex != kAlertViewButtonOK)) {
-            SEL action = NULL;
-            if (((NSValue*)payload[kDTPayloadCancel]).pointerValue != @"") {
-                action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
-            }
-            id target = payload[kDTPayloadAskUserTarget];
-            if (action && target) {
-                IMP imp = [target methodForSelector:action];
-                void (*func)(id, SEL) = (void *)imp;
-                func(target, action);
-            }
-            return;
-        }
-
-        NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
-        id existingNamesObject = payload[kDTPayloadAskUserExistingNames];
-        BOOL nameAlreadyExists = NO;
-        if ([existingNamesObject isKindOfClass:[NSArray class]]) {
-            NSArray *existingNames = (NSArray*)existingNamesObject;
-            for (NSString *existingName in existingNames) {
-                if ([existingName isEqualToString:input]) {
-                    nameAlreadyExists = YES;
-                }
-            }
-        }
-        
-        bool atLeastOneNotspace = NO;
-        bool notOnlySpecialCharacters = NO;
-        for(int i =0; i < input.length; i++){
-            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
-            if(!([newString  isEqual: @" "])){
-                atLeastOneNotspace = YES;
-                break;
-            }
-        }
-        for(int i =0; i < input.length; i++){
-            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
-            if(!([newString  isEqual: @"."])&&!([newString  isEqual: @"/"])&&!([newString  isEqual: @"\\"])&&!([newString  isEqual: @"~"])){
-                notOnlySpecialCharacters = YES;
-                break;
-            }
-        }
-        
-        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
-        NSUInteger textFieldMaxInputLength = [payload[kDTPayloadAskUserMaxInputLength] unsignedIntegerValue];
-        if ([input isEqualToString:kLocalizedNewElement]) {
-            CatrobatAlertController *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if (nameAlreadyExists) {
-            CatrobatAlertController *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if ([input length] < textFieldMinInputLength) {
-            NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
-                                   textFieldMinInputLength];
-            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
-                                                        : [[self class] singularString:alertText]);
-            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if ([input length] > textFieldMaxInputLength) {
-            NSString *alertText = [NSString stringWithFormat:kLocalizedTooLongInputDescription,
-                                   textFieldMaxInputLength];
-            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else if(!atLeastOneNotspace ||!notOnlySpecialCharacters){
-            NSString *alertText;
-            if (!atLeastOneNotspace) {
-                alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
-                             textFieldMinInputLength];
-            } else if (!notOnlySpecialCharacters) {
-                alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
-                             textFieldMinInputLength];
-            } 
-            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
-                         : [[self class] singularString:alertText]);
-            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else {
-            // no name duplicate => call action on target
-            SEL action = NULL;
-            if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
-                action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
-            }
-            id target = payload[kDTPayloadAskUserTarget];
-            id passingObject = payload[kDTPayloadAskUserObject];
-            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
-                if (action) {
-                    IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id) = (void *)imp;
-                    func(target, action, input);
-                }
-            } else {
-                if (action) {
-                    IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id, id) = (void *)imp;
-                    func(target, action, input, passingObject);
-                }
-            }
-        }
-    } else if (alertView.tag == kInvalidNameWarningAlertViewTag) {
-        // title of cancel button is "OK"
-        if (buttonIndex == kAlertViewCancel) {
-            id value = payload[kDTPayloadAskUserPromptValue];
-            CatrobatAlertController *newAlertView = [Util promptWithTitle:payload[kDTPayloadAskUserPromptTitle]
-                                                            message:payload[kDTPayloadAskUserPromptMessage]
-                                                           delegate:(id<CatrobatAlertViewDelegate>)self
-                                                        placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
-                                                                tag:kAskUserForUniqueNameAlertViewTag
-                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
-                                                             target:nil];
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        }
-    } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){
-        if ((buttonIndex == kAlertViewCancel) || (buttonIndex != kAlertViewButtonOK)) {
-            return;
-        }
-        NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
-        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
-        if ([input length] < textFieldMinInputLength) {
-            NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
-                                   textFieldMinInputLength];
-            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
-                         : [[self class] singularString:alertText]);
-            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else {
-                // no name duplicate => call action on target
-            SEL action = NULL;
-            if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
-                action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
-            }
-            id target = payload[kDTPayloadAskUserTarget];
-            id passingObject = payload[kDTPayloadAskUserObject];
-            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
-                if (action) {
-                    IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id) = (void *)imp;
-                    func(target, action, input);
-                }
-            } else {
-                if (action) {
-                    IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id, id) = (void *)imp;
-                    func(target, action, input, passingObject);
-                }
-            }
-        }
-
-    }else if (alertView.tag == kAskUserForVariableNameAlertViewTag) {
-        if ((buttonIndex == kAlertViewCancel) || (buttonIndex != kAlertViewButtonOK)) {
-            FormulaEditorTextView *textView = (FormulaEditorTextView*)payload[kDTPayloadTextView];
-            [textView becomeFirstResponder];
-            return;
-        }
-        NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
-        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
-        NSUInteger textFieldMaxInputLength = [payload[kDTPayloadAskUserMaxInputLength] unsignedIntegerValue];
-        if ([input length] < textFieldMinInputLength) {
-            NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
-                                   textFieldMinInputLength];
-            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
-                         : [[self class] singularString:alertText]);
-            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        }else if ([input length] > textFieldMaxInputLength) {
-            NSString *alertText = [NSString stringWithFormat:kLocalizedTooLongInputDescription,
-                                   textFieldMaxInputLength];
-            CatrobatAlertController *newAlertView = [Util alertWithText:alertText
-                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                              tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
-            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else {
-            SEL action = NULL;
-            if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
-                action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
-            }
-            id target = payload[kDTPayloadAskUserTarget];
-            id passingObject = payload[kDTPayloadAskUserObject];
-            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
-                if (action) {
-                    IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id) = (void *)imp;
-                    func(target, action, input);
-                }
-            } else {
-                if (action) {
-                    IMP imp = [target methodForSelector:action];
-                    void (*func)(id, SEL, id, id) = (void *)imp;
-                    func(target, action, input, passingObject);
-                }
-            }
-        }
-    }
-}
-//
 + (NSString*)singularString:(NSString*)string
 {
     NSMutableString *mutableString = [string mutableCopy];

@@ -20,14 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "ProgramDefines.h"
+import Foundation
 
-@interface DataTransferMessage : NSObject
 
-@property (nonatomic, readonly) kDTMActionType actionType;
-@property (nonatomic, strong, readonly) id payload;
+public final class AlertControllerBuilder: NSObject {
+    public static func alertWithTitle(title: String?, message: String?) -> AlertActionAdding {
+        return AlertController(title: title, message: message, style: .Alert)
+    }
 
-+ (DataTransferMessage*)messageForActionType:(kDTMActionType)actionType withPayload:(id)payload;
-
-@end
+    public static func actionSheetWithTitle(title: String) -> AlertActionAdding {
+        return AlertController(title: title, message: nil, style: .ActionSheet)
+    }
+    
+    public static func textFieldAlertWithTitle(title: String?, message: String?) -> TextFieldAlertDefining {
+        return TextFieldAlertController(title: title, message: message)
+    }
+}

@@ -21,14 +21,17 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "CatrobatAlertController.h"
 #import "Pocket_Code-Swift.h"
 
 #import <CoreBluetooth/CoreBluetooth.h>
 @class BluetoothPopupVC;
 
+@protocol ResourceNotAvailableDelegate <NSObject>
+-(void)userAgreedToContinueAnyway;
+@end
+
 @interface ResourceHelper : NSObject
 
-+ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,CatrobatAlertViewDelegate>)delegate;
++ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,ResourceNotAvailableDelegate>)delegate;
 
 @end

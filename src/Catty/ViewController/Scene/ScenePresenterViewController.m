@@ -30,11 +30,9 @@
 #import "FlashHelper.h"
 #import "CatrobatLanguageDefines.h"
 #import "Pocket_Code-Swift.h"
-#import "CatrobatAlertController.h"
-#import "ActionSheetAlertViewTags.h"
 #import "RuntimeImageCache.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate, CatrobatAlertViewDelegate, CBScreenRecordingDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -403,7 +401,14 @@
     [[FlashHelper sharedFlashHandler] reset];
     previousScene.userInteractionEnabled = YES;
     [self.loadingView hide];
-    [Util alertWithText:@"Lost Bluetooth Connection" delegate:self tag:kLostBluetoothConnectionTag];
+    
+    [[[[AlertControllerBuilder alertWithTitle:@"Lost Bluetooth Connection" message:kLocalizedPocketCode]
+     addCancelActionWithTitle:kLocalizedOK handler:^{
+         [self.parentViewController.navigationController setToolbarHidden:NO];
+         [self.parentViewController.navigationController setNavigationBarHidden:NO];
+         [self.navigationController popViewControllerAnimated:YES];
+     }] build]
+     showWithController:self];
 }
 
 - (void)restartProgramAction:(UIButton*)sender
@@ -771,14 +776,6 @@
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
-}
-
-- (void)alertView:(CatrobatAlertController*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == kLostBluetoothConnectionTag) {
-        [self.parentViewController.navigationController setToolbarHidden:NO];
-        [self.parentViewController.navigationController setNavigationBarHidden:NO];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 #pragma mark - CBScreenRecordingDelegate
