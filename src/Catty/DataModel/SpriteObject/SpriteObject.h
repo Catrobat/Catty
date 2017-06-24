@@ -64,9 +64,10 @@
 
 // actions
 - (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeLooks:(NSArray<Look *> *)looks AndSaveToDisk:(BOOL)save;
+- (void)removeFromProgram;
+- (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;
 - (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeSounds:(NSArray<Sound *> *)sounds AndSaveToDisk:(BOOL)save;
+- (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save;
 - (void)removeSound:(Sound*)sound AndSaveToDisk:(BOOL)save;
 - (void)renameLook:(Look*)look toName:(NSString*)newLookName AndSaveToDisk:(BOOL)save;
 - (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName AndSaveToDisk:(BOOL)save;

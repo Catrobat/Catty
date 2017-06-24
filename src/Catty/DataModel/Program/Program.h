@@ -30,17 +30,17 @@
 @interface Program : NSObject
 
 @property (nonatomic, strong, nonnull) Header *header;
-@property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject *> *objectList;
+@property (nonatomic, strong, nonnull) NSMutableArray *objectList;
 @property (nonatomic, strong, nonnull) VariablesContainer *variables;
 @property (nonatomic) BOOL requiresBluetooth;
 
+- (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;
 - (SpriteObject* _Nonnull)addObjectWithName:(NSString* _Nonnull)objectName;
 - (void)removeObjects:(NSArray* _Nonnull)objects;
 - (void)removeObject:(SpriteObject* _Nonnull)object;
 - (void)removeObjectFromList:(SpriteObject* _Nonnull)object;
-- (void)moveObjectFromIndex:(NSInteger)originIndex toIndex:(NSInteger)destinationIndex;
 - (NSString* _Nonnull)projectPath;
 - (void)removeFromDisk;
 - (void)removeReferences;
