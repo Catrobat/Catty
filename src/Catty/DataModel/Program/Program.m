@@ -25,19 +25,17 @@
 #import "Util.h"
 #import "AppDelegate.h"
 #import "Parser.h"
+#import "Script.h"
 #import "Brick.h"
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
-#import "Scene.h"
 #import "Pocket_Code-Swift.h"
 
-@interface Program ()
-@property (nonatomic) Scene *sceneModel;
-@end
-
 @implementation Program
+
+@synthesize objectList = _objectList;
 
 # pragma mark - factories
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID
@@ -152,16 +150,27 @@
 
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
-    [self.sceneModel addObject:object];
-    
+    [self.objectList addObject:object];
     [self saveToDiskWithNotification:YES];
     return object;
 }
 
 - (void)removeObjectFromList:(SpriteObject*)object
 {
-    [self.sceneModel removeObject:object];
-    [self.variables removeObjectVariablesForSpriteObject:object];
+    // do not use NSArray's removeObject here
+    // => if isEqual is overriden this would lead to wrong results
+    NSUInteger index = 0;
+    for (SpriteObject *currentObject in self.objectList) {
+        if (currentObject == object) {
+            [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
+            [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
+            [currentObject.program.variables removeObjectVariablesForSpriteObject:currentObject];
+            currentObject.program = nil;
+            [self.objectList removeObjectAtIndex:index];
+            break;
+        }
+        ++index;
+    }
 }
 
 - (void)removeObject:(SpriteObject*)object
@@ -170,7 +179,7 @@
     [self saveToDiskWithNotification:YES];
 }
 
-- (void)removeObjects:(NSArray<SpriteObject *> *)objects
+- (void)removeObjects:(NSArray*)objects
 {
     for (id object in objects) {
         if ([object isKindOfClass:[SpriteObject class]]) {
@@ -178,10 +187,6 @@
         }
     }
     [self saveToDiskWithNotification:YES];
-}
-
-- (void)moveObjectFromIndex:(NSInteger)originIndex toIndex:(NSInteger)destinationIndex {
-    [self.sceneModel moveObjectFromIndex:originIndex toIndex:destinationIndex];
 }
 
 - (BOOL)objectExistsWithName:(NSString*)objectName
@@ -194,26 +199,23 @@
     return NO;
 }
 
-- (Scene *)sceneModel {
-    if (_sceneModel == nil) {
-        _sceneModel = [[Scene alloc] initWithName:@"Scene 1" objects:[NSMutableArray array]];
-    }
-    return _sceneModel;
-}
-
 #pragma mark - Custom getter and setter
-- (NSMutableArray<SpriteObject *> *)objectList
+- (NSMutableArray*)objectList
 {
-    return [self.sceneModel allObjects];
+    if (! _objectList) {
+         _objectList = [NSMutableArray array];
+    }
+    return _objectList;
 }
 
-- (void)setObjectList:(NSMutableArray<SpriteObject *> *)objectList
+- (void)setObjectList:(NSMutableArray*)objectList
 {
-    self.sceneModel.allObjects = objectList;
-    
-    for (SpriteObject *object in objectList) {
-        object.program = self;
+    for (id object in objectList) {
+        if ([object isKindOfClass:[SpriteObject class]]) {
+            ((SpriteObject*)object).program = self;
+        }
     }
+    _objectList = objectList;
 }
 
 - (VariablesContainer*)variables
@@ -387,7 +389,7 @@
     CBMutableCopyContext *context = [CBMutableCopyContext new];
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
-    [self.sceneModel addObject:copiedObject];
+    [self.objectList addObject:copiedObject];
     [self saveToDiskWithNotification:YES];
     return copiedObject;
 }
