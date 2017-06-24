@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick+CBXMLHandler.h"
+#import "PreviousLookBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLParserContext.h"
