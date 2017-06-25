@@ -946,6 +946,553 @@
     
 }
 
+- (void)testMoveWaitBrickFromNestedIfThenStructureWithForeverLoopsToAnother {
+    
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA           <---
+     5          foreverEndA
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD           --->
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:18 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
+    
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick from one if-else structure to another");
+}
+
+- (void)testMoveWaitBrickFromNestedIfThenStructureWithForeverLoopsToAnotherIndependentIfThenStructure {
+    
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA          <---
+     5          foreverEndA
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         foreverBeginG
+     25              waitG
+     26          foreverEndG
+     27      elseE
+     28          foreverBeginH
+     29              waitH
+     30          foreverEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          foreverBeginI
+     35              waitI
+     36          foreverEndI
+     37      elseF
+     38          foreverBeginJ
+     39              waitJ          --->
+     40          foreverEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:39 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
+    
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick from one if-else structure to another");
+}
+
+- (void)testMoveIfBeginInNestedIfThenStructWithForeverLoopsToInvalidDestination {
+    //DUPLICATE: Only one case of failing from test below!!!
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA
+     5          foreverEndA        <---
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC               --->
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         foreverBeginG
+     25              waitG
+     26          foreverEndG
+     27      elseE
+     28          foreverBeginH
+     29              waitH
+     30          foreverEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          foreverBeginI
+     35              waitI
+     36          foreverEndI
+     37      elseF
+     38          foreverBeginJ
+     39              waitJ
+     40          foreverEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:12 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:5 inSection:0];
+    
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move IfBegin to here!");
+}
+
+- (void)testMoveIfBrickInNestedIfThenStructureWithForeverLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA
+     5          foreverEndA
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC                   --->
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         foreverBeginG
+     25              waitG
+     26          foreverEndG
+     27      elseE
+     28          foreverBeginH
+     29              waitH
+     30          foreverEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          foreverBeginI
+     35              waitI
+     36          foreverEndI
+     37      elseF
+     38          foreverBeginJ
+     39              waitJ
+     40          foreverEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    [[BrickMoveManager sharedInstance] setLowerBorder:[NSIndexPath indexPathForRow:13 inSection:0]];
+    [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:11 inSection:0]];
+    
+    NSUInteger sourceIDX = 12;
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if(testedDestination != sourceIDX) {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            [[BrickMoveManager sharedInstance] reset];
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+}
+
+- (void)testMoveElseBrickInNestedIfThenStructureWithForeverLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA
+     5          foreverEndA
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         foreverBeginG
+     25              waitG
+     26          foreverEndG
+     27      elseE                      --->
+     28          foreverBeginH
+     29              waitH
+     30          foreverEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          foreverBeginI
+     35              waitI
+     36          foreverEndI
+     37      elseF
+     38          foreverBeginJ
+     39              waitJ
+     40          foreverEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    
+    NSUInteger sourceIDX = 27;
+    NSUInteger addedBricks = 1;
+    [[BrickMoveManager sharedInstance] setLowerBorder:[NSIndexPath indexPathForRow:28 inSection:0]];
+    [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:26 inSection:0]];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if(testedDestination != sourceIDX) {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            [[BrickMoveManager sharedInstance] reset];
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+}
+
+- (void)testMoveIfBrickInNestedIfThenStructureWithRepeatLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA
+     2      ifBeginB
+     3          repeatBeginA
+     4              waitA
+     5          repeatEndA
+     6      elseB
+     7          repeatBeginB
+     8              waitB
+     9          repeatEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC                   --->
+     13          repeatBeginC
+     14              waitC
+     15          repeatEndC                 (not valid)
+     16      elseC
+     17          repeatBeginD
+     18              waitD
+     19          repeatEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         repeatBeginG
+     25              waitG
+     26          repeatEndG
+     27      elseE
+     28          repeatBeginH
+     29              waitH
+     30          repeatEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          repeatBeginI
+     35              waitI
+     36          repeatEndI
+     37      elseF
+     38          repeatBeginJ
+     39              waitJ
+     40          repeatEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    [[BrickMoveManager sharedInstance] setLowerBorder:[NSIndexPath indexPathForRow:13 inSection:0]];
+    [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:11 inSection:0]];
+    NSUInteger sourceIDX = 12;
+    NSUInteger validIDX = 15;
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricksToScript:self.startScript];
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if(testedDestination != validIDX && testedDestination != sourceIDX) {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            [[BrickMoveManager sharedInstance] reset];
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+    
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX inSection:0];
+    [[BrickMoveManager sharedInstance] reset];
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)validIDX);
+}
+
+- (void)testMoveElseBrickInNestedIfThenStructureWithRepeatLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA
+     2      ifBeginB
+     3          repeatBeginA
+     4              waitA
+     5          repeatEndA
+     6      elseB
+     7          repeatBeginB
+     8              waitB
+     9          repeatEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC
+     13          repeatBeginC
+     14              waitC
+     15          repeatEndC
+     16      elseC
+     17          repeatBeginD
+     18              waitD
+     19          repeatEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         repeatBeginG                ( not valid)
+     25              waitG
+     26          repeatEndG
+     27      elseE                      --->
+     28          repeatBeginH
+     29              waitH
+     30          repeatEndH                 ( not valid)
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          repeatBeginI
+     35              waitI
+     36          repeatEndI
+     37      elseF
+     38          repeatBeginJ
+     39              waitJ
+     40          repeatEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger sourceIDX = 27;
+    NSUInteger validIDX1 = 24;
+    NSUInteger validIDX2 = 30;
+    NSUInteger addedBricks = 1;
+    [[BrickMoveManager sharedInstance] setLowerBorder:[NSIndexPath indexPathForRow:28 inSection:0]];
+    [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:26 inSection:0]];
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricksToScript:self.startScript];
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricksToScript:self.startScript];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if( (testedDestination != validIDX1)  && (testedDestination != validIDX2) && testedDestination != sourceIDX) {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+    
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX1 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        
+        XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)validIDX1);
+    }
+    
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX2 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        
+        XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)validIDX2);
+    }
+    
+}
+
+
 - (void) testMoveIfBricksToOtherEmptyScript {
     [self.viewController.collectionView reloadData];
     [self.spriteObject.scriptList addObject:self.whenScript];
