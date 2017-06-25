@@ -33,6 +33,9 @@ typedef enum {
     OBJECT_Y,
     OBJECT_GHOSTEFFECT,
     OBJECT_BRIGHTNESS,
+    OBJECT_COLOR,
+    OBJECT_LOOK_NUMBER,
+    OBJECT_LOOK_NAME,
     OBJECT_SIZE,
     OBJECT_ROTATION,
     OBJECT_LAYER,
@@ -58,6 +61,8 @@ typedef enum {
 + (NSString*) stringForSensor:(Sensor)sensor;
 
 + (BOOL) isObjectSensor:(Sensor)sensor;
+
++ (BOOL) isStringSensor:(Sensor)sensor;
 
 + (NSString *)getExternName:(NSString *)sensorName;
 

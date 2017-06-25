@@ -124,7 +124,11 @@
             //NSDebug(@"SENSOR");
             Sensor sensor = [SensorManager sensorForString:self.value];
             if([SensorManager isObjectSensor:sensor]) {
-                result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];
+                if([SensorManager isStringSensor:sensor]){
+                    result = [self interpretLookStringSensor:sensor forSprite:sprite];
+                } else{
+                    result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];
+                }
             } else {
                 result = [NSNumber numberWithDouble:[[SensorHandler sharedSensorHandler] valueForSensor:sensor]];
             }
@@ -654,6 +658,24 @@
 }
 
 
+- (NSString*) interpretLookStringSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
+{
+    NSString* result = @"";
+    
+    switch (sensor){
+        case OBJECT_LOOK_NAME: {
+            result = sprite.spriteNode.currentLook.name;
+            break;
+        }
+        default: {
+            abort();
+            break;
+        }
+    }
+    
+    return result;
+}
+
 - (double) interpretLookSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
 {
     double result = 0;
@@ -674,6 +696,16 @@
         }
         case OBJECT_BRIGHTNESS: {
             result = sprite.spriteNode.brightness;
+            break;
+        }
+        case OBJECT_COLOR: {
+            result = sprite.spriteNode.colorValue;
+            break;
+        }
+        case OBJECT_LOOK_NUMBER: {
+            if (sprite.spriteNode.currentLook != nil && sprite.lookList.count > 0){
+                result = [sprite.lookList indexOfObject:sprite.spriteNode.currentLook] + 1;
+            }
             break;
         }
         case OBJECT_SIZE: {

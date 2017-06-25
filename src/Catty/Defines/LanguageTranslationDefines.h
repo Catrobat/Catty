@@ -563,6 +563,9 @@
 
 #define kUIFEObjectTransparency NSLocalizedString(@"transparency", nil)
 #define kUIFEObjectBrightness NSLocalizedString(@"brightness", nil)
+#define kUIFEObjectColor NSLocalizedString(@"color", nil)
+#define kUIFEObjectLookNumber NSLocalizedString(@"look_number", nil)
+#define kUIFEObjectLookName NSLocalizedString(@"look_name", nil)
 #define kUIFEObjectSize NSLocalizedString(@"size", nil)
 #define kUIFEObjectDirection NSLocalizedString(@"direction", nil)
 #define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
