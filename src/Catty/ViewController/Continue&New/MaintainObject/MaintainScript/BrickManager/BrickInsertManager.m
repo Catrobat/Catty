@@ -237,6 +237,17 @@
                             }
                             counter++;
                         }
+                    } else if ([foreverInsideBrick isKindOfClass:[IfThenLogicBeginBrick class]]) {
+                        IfThenLogicBeginBrick* logicBeginBrick = (IfThenLogicBeginBrick*) foreverInsideBrick;
+                        NSInteger counter = 0;
+                        for (Brick* checkBrick in targetScript.brickList) {
+                            if ([checkBrick isKindOfClass:[IfThenLogicEndBrick class]]) {
+                                if (checkBrick == logicBeginBrick.ifEndBrick) {
+                                    insertionIndex = counter;
+                                }
+                            }
+                            counter++;
+                        }
                     } else if ([foreverInsideBrick isKindOfClass:[IfLogicElseBrick class]]){
                         IfLogicElseBrick* logicBeginBrick = (IfLogicElseBrick*) foreverInsideBrick;
                         NSInteger counter = 0;
