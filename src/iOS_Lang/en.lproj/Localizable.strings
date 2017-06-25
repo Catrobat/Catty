@@ -227,6 +227,9 @@
 "Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
+"color" = "color";
+
+/* No comment provided by engineer. */
 "compass" = "compass";
 
 /* No comment provided by engineer. */
@@ -762,6 +765,12 @@
 
 /* LOOK */
 "look" = "look";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
 
 /* No comment provided by engineer. */
 "Looks" = "Looks";

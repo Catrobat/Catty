@@ -321,6 +321,15 @@
         case OBJECT_BRIGHTNESS:
             return [self buildSensor:OBJECT_BRIGHTNESS];
             break;
+        case OBJECT_COLOR:
+            return [self buildSensor:OBJECT_COLOR];
+            break;
+        case OBJECT_LOOK_NUMBER:
+            return [self buildSensor:OBJECT_LOOK_NUMBER];
+            break;
+        case OBJECT_LOOK_NAME:
+            return [self buildSensor:OBJECT_LOOK_NAME];
+            break;
         case OBJECT_GHOSTEFFECT:
             return [self buildSensor:OBJECT_GHOSTEFFECT];
             break;
