@@ -75,7 +75,7 @@
 #import "NextLookBrick.h"
 
 
-@interface BrickTests : XCTestCase
+@interface AbstractBrickTests : XCTestCase
 
 @property (strong, nonatomic) NSMutableArray* programs;
 @property (strong, nonatomic) SKView *skView;

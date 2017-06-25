@@ -22,7 +22,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "BrickTests.h"
+#import "AbstractBrickTests.h"
 #import "WaitBrick.h"
 #import "RepeatBrick.h"
 #import "BroadcastBrick.h"

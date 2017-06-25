@@ -15,6 +15,7 @@
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
 		4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
+		4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */; };
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
@@ -130,6 +131,7 @@
 		4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79541CB141AA001231F1 /* Solar_System_v1.0_092.xml */; };
 		4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
+		4C968C401F00288500355C0D /* BrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968C3F1F00288500355C0D /* BrickTests.swift */; };
 		4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */; };
 		4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
@@ -191,7 +193,6 @@
 		4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22331B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m */; };
 		4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22341B95E47500B3BE2F /* BrickMoveManagerTests.m */; };
 		4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */; };
-		4CEB22541B95E47500B3BE2F /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22371B95E47500B3BE2F /* BrickTests.m */; };
 		4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */; };
 		4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22391B95E47500B3BE2F /* ChangeSizeByNBrickTests.m */; };
 		4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB223A1B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m */; };
@@ -881,6 +882,8 @@
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
+		4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBrickTests.h; sourceTree = "<group>"; };
+		4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBrickTests.m; sourceTree = "<group>"; };
 		4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
@@ -1047,6 +1050,7 @@
 		4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Solar_System_v1.0_097.xml; sourceTree = "<group>"; };
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
+		4C968C3F1F00288500355C0D /* BrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickTests.swift; sourceTree = "<group>"; };
 		4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSceneHelper.swift; sourceTree = "<group>"; };
 		4C9E07731CD9DB0A00B14B2F /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -1131,8 +1135,6 @@
 		4CEB22331B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerRepeatTests.m; sourceTree = "<group>"; };
 		4CEB22341B95E47500B3BE2F /* BrickMoveManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerTests.m; sourceTree = "<group>"; };
 		4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMutableCopyTests.m; sourceTree = "<group>"; };
-		4CEB22361B95E47500B3BE2F /* BrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTests.h; sourceTree = "<group>"; };
-		4CEB22371B95E47500B3BE2F /* BrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTests.m; sourceTree = "<group>"; };
 		4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrickTests.m; sourceTree = "<group>"; };
 		4CEB22391B95E47500B3BE2F /* ChangeSizeByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrickTests.m; sourceTree = "<group>"; };
 		4CEB223A1B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyByNBrickTests.m; sourceTree = "<group>"; };
@@ -2370,6 +2372,15 @@
 			path = Formula/UserVariable;
 			sourceTree = "<group>";
 		};
+		4C16042D1F0025F6004525A5 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */,
+				4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
 		4C1608A31A095480002C7032 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3210,11 +3221,11 @@
 		4CEB222C1B95E47500B3BE2F /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				4C16042D1F0025F6004525A5 /* Abstract */,
 				4CEB222D1B95E47500B3BE2F /* BrickMoveManager */,
 				4CEB226B1B95E4BC00B3BE2F /* BrickInsertManager */,
 				4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */,
-				4CEB22361B95E47500B3BE2F /* BrickTests.h */,
-				4CEB22371B95E47500B3BE2F /* BrickTests.m */,
+				4C968C3F1F00288500355C0D /* BrickTests.swift */,
 				4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */,
 				99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */,
 				4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */,
@@ -6628,10 +6639,10 @@
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
+				4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
-				4CEB22541B95E47500B3BE2F /* BrickTests.m in Sources */,
 				4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
@@ -6663,6 +6674,7 @@
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
+				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
