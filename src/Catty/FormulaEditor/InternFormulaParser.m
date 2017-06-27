@@ -25,7 +25,7 @@
 #import "SensorManager.h"
 #import "InternFormulaParserException.h"
 #import "InternFormulaParserEmptyStackException.h"
-#import "ProgramVariablesManager.h"
+#import "SpriteObject.h"
 
 @implementation InternFormulaParser
 
@@ -227,8 +227,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
          
         case TOKEN_TYPE_USER_VARIABLE: {
-            VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-            UserVariable *variable = [variables getUserVariableNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            UserVariable *variable = [object.program.variables getUserVariableNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
             
             if (variable == nil) {
                 self.errorTokenIndex = self.currentTokenParseIndex;
@@ -241,8 +240,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
             
         case TOKEN_TYPE_USER_LIST: {
-            VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-            UserVariable *list = [lists getUserListNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            UserVariable *list = [object.program.variables getUserListNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
             
             if (list == nil) {
                 self.errorTokenIndex = self.currentTokenParseIndex;

@@ -192,7 +192,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.object.program.variables];
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
     [self initSensorView];

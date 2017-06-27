@@ -33,8 +33,10 @@
 
 - (void)testNumberOfItems
 {
+    Program *program = [Program new];
+    
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:@"123"];
+    object.program = program;
     
     UserVariable* var = [UserVariable new];
     var.name = @"TestList";
@@ -45,18 +47,13 @@
     [var.value addObject:[NSNumber numberWithInt:0]];
     [program.variables.programListOfLists addObject:var];
     
-    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
-    object.spriteNode = spriteNode;
-    object.program = program;
-    
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"NUMBEROFITEMS" leftChild:leftChild rightChild:nil parent:nil];
     formulaTree = formulaTree;
     
-    double numberOfItems = [[formulaTree interpretRecursiveForSprite:object]doubleValue];
+    double numberOfItems = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
     
-    XCTAssertEqual(spriteNode.brightness, 3, @"Wrong number of Items");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
+    XCTAssertEqual(numberOfItems, 3, @"Wrong number of Items");
 }
 
 @end

@@ -21,7 +21,6 @@
  */
 
 #import "FormulaElement.h"
-#import "ProgramVariablesManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
@@ -114,8 +113,7 @@
 
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-            UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            UserVariable *var = [sprite.program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
             if (var.value == nil) {
                 return [NSNumber numberWithInt:0];
@@ -126,8 +124,7 @@
 
         case USER_LIST: {
             //NSDebug(@"User List");
-            VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-            UserVariable *list = [lists getUserListNamed:self.value forSpriteObject:sprite];
+            UserVariable *list = [sprite.program.variables getUserListNamed:self.value forSpriteObject:sprite];
             //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
             if (list.value == nil) {
                 return [NSNumber numberWithInt:0];
@@ -479,8 +476,7 @@
 {
     UserVariable *list = nil;
     if (self.leftChild.type == USER_LIST) {
-        VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-        list = [lists getUserListNamed:self.leftChild.value forSpriteObject:sprite];
+        list = [sprite.program.variables getUserListNamed:self.leftChild.value forSpriteObject:sprite];
         if (list == nil) {
             return kEmptyStringFallback;;
         } else if (list.value == nil) {
@@ -585,8 +581,7 @@
 {
     UserVariable *list = nil;
     if (child.type == USER_LIST) {
-        VariablesContainer *lists = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-        list = [lists getUserListNamed:child.value forSpriteObject:sprite];
+        list = [sprite.program.variables getUserListNamed:child.value forSpriteObject:sprite];
         if (list.value == nil) {
             return nil;
         }
@@ -706,8 +701,7 @@
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
 {
 //    ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-    UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
+    UserVariable *userVariable = [sprite.program.variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     
     id userVariableVvalue = [userVariable value];
     if([userVariableVvalue isKindOfClass:[NSString class]])
