@@ -25,18 +25,14 @@
 #import "Program.h"
 #import "VariablesContainer.h"
 #import <objc/runtime.h>
-#import <Foundation/NSObjCRuntime.h>
 #import "Sound.h"
 #import "Formula.h"
-#import "FormulaElement.h"
 #import "Script.h"
-#import "UserVariable.h"
 #import "XMLObjectReference.h"
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
 #import "NoteBrick.h"
-#import "GDataXMLElement+CustomExtensions.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"

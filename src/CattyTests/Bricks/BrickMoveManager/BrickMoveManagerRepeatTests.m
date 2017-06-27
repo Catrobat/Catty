@@ -901,5 +901,29 @@
     }
 }
 
+- (void) testMoveRepeatBricksToOtherEmptyScript {
+    [self.viewController.collectionView reloadData];
+    [self.spriteObject.scriptList addObject:self.whenScript];
+    
+    NSUInteger addedBricks = 1;
+    addedBricks += [self addEmptyRepeatLoopToScript:self.startScript];
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:1];
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move RepeatBeginBrick to another script");
+    
+    indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
+    indexPathTo = [NSIndexPath indexPathForRow:1 inSection:1];
+    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                             itemAtIndexPath:indexPathFrom
+                                                          canMoveToIndexPath:indexPathTo
+                                                                   andObject:self.spriteObject];
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move LoopEndBrick to another script");
+}
 
 @end

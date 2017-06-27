@@ -21,7 +21,6 @@
  */
 
 #import "SetColorBrick.h"
-#import "Formula.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
@@ -56,7 +55,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetColor;
+    return [kLocalizedSetColor stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@"]];
 }
 
 - (NSString*)pathForLook:(Look*)look

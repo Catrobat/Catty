@@ -21,9 +21,7 @@
  */
 
 #import "CBXMLSerializerContext.h"
-#import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLPositionStack.h"
-#import "VariablesContainer.h"
 
 @implementation CBXMLSerializerContext
 

@@ -22,7 +22,6 @@
 
 #import "GlideToBrick.h"
 #import "Script.h"
-#import "Formula.h"
 #import "CBMutableCopyContext.h"
 #import "Pocket_Code-Swift.h"
 
@@ -84,7 +83,18 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedGlideTo;
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object andUseCache:NO];
+    NSString* localizedSecond;
+    if ([self.durationInSeconds isSingleNumberFormula] && durationInSeconds == 1.0) {
+        localizedSecond = kLocalizedSecond;
+    } else {
+        localizedSecond = kLocalizedSeconds;
+    }
+    return [kLocalizedGlide stringByAppendingString:[@"%@ " stringByAppendingString:[localizedSecond stringByAppendingString:[@"\n"
+        stringByAppendingString:[kLocalizedToX
+        stringByAppendingString:[@"%@ "
+        stringByAppendingString:[kLocalizedYLabel
+        stringByAppendingString:@"%@"]]]]]]];
 }
 
 #pragma mark - Description

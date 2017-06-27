@@ -57,17 +57,23 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  // Do any additional setup after loading the view.
   [self setupViews];
   [self setupStandardColorsView];
   [self setupRGBAView];
   [self setupBrushPreview];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+  
   self.view.backgroundColor = [UIColor backgroundColor];
-    self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-    self.toolBar.tintColor = [UIColor navTintColor];
+  self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
+  self.toolBar.tintColor = [UIColor navTintColor];
   self.toolBar.barTintColor = UIColor.navBarColor;
+    self.toolBar.translucent = NO;
+  
+  CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+  UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, statusBarHeight)];
+  statusBarView.backgroundColor  =  UIColor.navBarColor;
+  [self.view addSubview:statusBarView];
 }
 
 - (void)setupViews
@@ -76,7 +82,7 @@
                         [UIImage imageNamed:@"sliderColors"],
                         [UIImage imageNamed:@"standardColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
-  self.viewChanger.frame =CGRectMake(0, self.toolBar.frame.size.height, self.view.frame.size.width, 40);
+  self.viewChanger.frame =CGRectMake(0, CGRectGetMaxY(self.toolBar.frame), self.view.frame.size.width, 40);
   self.viewChanger.selectedSegmentIndex = 0;
   self.viewChanger.layer.cornerRadius = 0.0;
   self.viewChanger.layer.borderColor = [UIColor globalTintColor].CGColor;
@@ -88,9 +94,9 @@
                     forControlEvents:UIControlEventValueChanged];
 
   [self.view addSubview:self.viewChanger];
-  self.rgbaView = [[UIView alloc] initWithFrame:CGRectMake(0, 80,self.view.frame.size.width , self.view.frame.size.height *0.45f)];
-  self.rgbaSliderView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height *0.55f,self.view.frame.size.width , self.view.frame.size.height *0.55f)];
-  self.standardColors =[[UIView alloc] initWithFrame:CGRectMake(0, 60,self.view.frame.size.width , self.view.frame.size.height)];
+  self.rgbaView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.toolBar.frame) + 80,self.view.frame.size.width , self.view.frame.size.height *0.40f)];
+  self.rgbaSliderView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.rgbaView.frame),self.view.frame.size.width , self.view.frame.size.height *0.55f)];
+  self.standardColors =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.toolBar.frame) + 60, self.view.frame.size.width , self.view.frame.size.height)];
   [self.view addSubview:self.rgbaView];
   [self.view addSubview:self.rgbaSliderView];
   [self.view addSubview:self.standardColors];
@@ -292,7 +298,7 @@
 
 - (void)setupBrushPreview
 {
-  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 87.5, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, CGRectGetMinY(self.toolBar.frame) + 87.5, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
   self.brushView.layer.cornerRadius = 10.0f;
   [self updatePreview];
   [self.view addSubview:self.brushView];
@@ -441,11 +447,8 @@
 */
 
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-  [self.delegate closeColorPicker:self];
+    [self.delegate closeColorPicker:self];
 }
-
-- (BOOL)prefersStatusBarHidden { return YES; }
 
 
 

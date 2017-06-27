@@ -20,12 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <QuartzCore/QuartzCore.h>
 #import "CreateView.h"
 #import "CatrobatProgram.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "ImageCache.h"
-#import "CAGradientLayer+CatrobatCAGradientExtensions.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "ButtonTags.h"
@@ -34,8 +32,6 @@
 #import "LanguageTranslationDefines.h"
 #import "RoundBorderedButton.h"
 #import "Util.h"
-#import "UIDefines.h"
-#import "DownloadImageCache.h"
 
 #define kHTMLATagPattern @"(?i)<a([^>]+)>(.+?)</a>"
 #define kHTMLAHrefTagPattern @"href=\"(.*?)\""

@@ -21,9 +21,6 @@
  */
 
 #import "CBXMLParserContext.h"
-#import "CBXMLOpenedNestingBricksStack.h"
-#import "CBXMLPositionStack.h"
-#import "VariablesContainer.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLNodeProtocol.h"
 

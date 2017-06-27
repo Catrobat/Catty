@@ -22,7 +22,6 @@
 
 #import "VariablesContainer+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
-#import "VariablesContainer.h"
 #import "CBXMLValidator.h"
 #import "OrderedMapTable.h"
 #import "CBXMLParserHelper.h"

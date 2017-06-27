@@ -22,10 +22,6 @@
 
 #import "HideTextBrick.h"
 #import "Formula.h"
-#import "UserVariable.h"
-#import "Program.h"
-#import "VariablesContainer.h"
-#import "Script.h"
 
 @implementation HideTextBrick
 
@@ -54,7 +50,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedHideVariable;
+    return [kLocalizedHideVariable stringByAppendingString:@"\n%@"];
 }
 
 #pragma mark - Description

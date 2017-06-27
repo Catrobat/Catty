@@ -50,6 +50,8 @@
 #define kConfirmAlertViewTag 200
 #define kResourcesAlertView 201
 
+#define kConfirmDeletingSelectedItemsAlertViewTag 300
+
 // Alert view button indexes
 #define kAlertViewButtonOK 1
 #define kAlertViewCancel 0

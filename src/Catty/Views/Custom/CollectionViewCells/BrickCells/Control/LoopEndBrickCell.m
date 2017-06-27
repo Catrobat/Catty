@@ -22,9 +22,6 @@
 
 #import "LoopEndBrickCell.h"
 #import "Brick.h"
-#import "Script.h"
-#import "LoopEndBrick.h"
-#import "ForeverBrick.h"
 
 @interface LoopEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;

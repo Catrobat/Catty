@@ -21,10 +21,6 @@
  */
 
 #import "SetLookBrick.h"
-#import "SpriteObject.h"
-#import "ProgramDefines.h"
-#import <SpriteKit/SpriteKit.h>
-#import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
 #import "CBMutableCopyContext.h"
 
@@ -32,7 +28,7 @@
 
 - (NSString*)brickTitle
 {
-    return ([self.script.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
+    return ([self.script.object isBackground] ? [kLocalizedSetBackground stringByAppendingString:@"\n%@"] : [kLocalizedSetLook stringByAppendingString:@"\n%@"]);
 }
 
 - (NSString*)pathForLook

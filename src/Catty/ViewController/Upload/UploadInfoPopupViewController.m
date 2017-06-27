@@ -25,18 +25,10 @@
 #import "UploadInfoPopupViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
-#import <QuartzCore/QuartzCore.h>
 #import "NetworkDefines.h"
-#import "ProgramDefines.h"
-#import "SegueDefines.h"
 #import "Util.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
-#import "CatrobatAlertController.h"
-#import "NetworkDefines.h"
-#import "ProgramDefines.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import "LanguageTranslationDefines.h"
 #import "NSData+Hashes.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "JNKeychain.h"
@@ -290,8 +282,7 @@ const CGFloat PADDING = 5.0f;
         self.program.header.userHandle = nil;
     }
     [self.program renameToProgramName:self.programNameTextField.text];
-    self.program.header.programDescription = self.descriptionTextView.text;
-    [self.program saveToDiskWithNotification:YES];
+    [self.program updateDescriptionWithText:self.descriptionTextView.text];
     if (!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
         //        _loadingView.backgroundColor = [UIColor globalTintColor];
@@ -309,7 +300,15 @@ const CGFloat PADDING = 5.0f;
 
 -(void)uploadAction
 {
-
+    //This is to prevent uploading the program twice, since the notification for uploading is received twice
+    if(self.dataTask) {
+        return;
+    }
+    
+    //Program might have changed, update zip file accordingly
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    self.zipFileData = [appDelegate.fileManager zipProgram:self.program];
+    
     NSString *checksum = nil;
     if (self.zipFileData) {
         checksum = [self.zipFileData md5];

@@ -31,10 +31,7 @@
 #import "StartScript.h"
 #import "WhenScript.h"
 #import "Brick.h"
-#import "SpriteObject.h"
 #import "CBXMLSerializerHelper.h"
-#import "UIDefines.h"
-#import "StartScript.h"
 
 @implementation Script (CBXMLHandler)
 

@@ -21,7 +21,6 @@
  */
 
 #import "SetVolumeToBrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @implementation SetVolumeToBrick
@@ -53,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetVolumeTo;
+    return [kLocalizedSetVolumeTo stringByAppendingString:@"%@\%"];
 }
 
 #pragma mark - Description

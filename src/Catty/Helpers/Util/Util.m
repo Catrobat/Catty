@@ -21,31 +21,22 @@
  */
 
 #import "Util.h"
-#import "ScenePresenterViewController.h"
-#import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
-#import "UIDefines.h"
-#import "LanguageTranslationDefines.h"
 #import "CatrobatAlertController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <MYBlurIntroductionView/MYBlurIntroductionView.h>
-#import "FormulaEditorTextView.h"
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "Formula.h"
 #import "Sound.h"
 #import "Look.h"
 #import "Script.h"
 #import "BroadcastWaitBrick.h"
 #import "BroadcastBrick.h"
 #import "BroadcastScript.h"
-#import "SpriteObject.h"
 #import "KeychainUserDefaultsDefines.h"
 #import <objc/runtime.h>
-#import <sys/sysctl.h>
 #import "OrderedDictionary.h"
 #import "UIDevice-Hardware.h"
 

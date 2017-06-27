@@ -22,8 +22,6 @@
 
 #import "InternFormulaParser.h"
 #import "InternFormulaUtils.h"
-#import "Operators.h"
-#import "Functions.h"
 #import "SensorManager.h"
 #import "InternFormulaParserException.h"
 #import "InternFormulaParserEmptyStackException.h"

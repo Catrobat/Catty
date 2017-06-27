@@ -21,8 +21,6 @@
  */
 
 #import "WhenScriptCell.h"
-#import "BrickCellInlineView.h"
-#import "UIUtil.h"
 
 @interface WhenScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;

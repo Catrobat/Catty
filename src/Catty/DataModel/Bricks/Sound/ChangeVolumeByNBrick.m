@@ -21,7 +21,6 @@
  */
 
 #import "ChangeVolumeByNBrick.h"
-#import "Formula.h"
 #import "Script.h"
 
 @implementation ChangeVolumeByNBrick
@@ -55,7 +54,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeVolumeByN;
+    return [kLocalizedChangeVolumeByN stringByAppendingString:@"%@"];
 }
 
 #pragma mark - Description

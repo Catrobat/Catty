@@ -21,7 +21,6 @@
  */
 
 #import "SaveToProjectActivity.h"
-#import "Program.h"
 #import "LanguageTranslationDefines.h"
 
 @implementation SaveToProjectActivity

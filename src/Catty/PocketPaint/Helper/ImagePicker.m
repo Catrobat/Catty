@@ -22,10 +22,8 @@
 
 #import "ImagePicker.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
-#import <AVFoundation/AVFoundation.h>
-#import "UIImage+Rotate.h"  
+#import "UIImage+Rotate.h"
 
 @implementation ImagePicker
 

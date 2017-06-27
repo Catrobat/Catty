@@ -26,7 +26,6 @@
 #import "BrickFormulaProtocol.h"
 #import "PlaceAtBrickCell.h"
 #import "GlideToBrickCell.h"
-#import "LanguageTranslationDefines.h"
 
 @interface BrickCellFormulaData()
 @property (nonatomic, strong) CAShapeLayer *border;

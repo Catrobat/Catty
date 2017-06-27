@@ -26,13 +26,8 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "SensorHandler.h"
-#import "SensorManager.h"
 #import "SpriteObject.h"
 #import "Util.h"
-#import "Operators.h"
-#import "Functions.h"
-#import "InternToken.h"
-#import "Operators.h"
 #import "InternFormulaParserException.h"
 #import "Pocket_Code-Swift.h"
 

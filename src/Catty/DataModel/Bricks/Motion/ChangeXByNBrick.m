@@ -21,7 +21,6 @@
  */
 
 #import "ChangeXByNBrick.h"
-#import "Formula.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
@@ -54,7 +53,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeX;
+    return [kLocalizedChangeX stringByAppendingString:@"%@"];
 }
 
 #pragma mark - Description

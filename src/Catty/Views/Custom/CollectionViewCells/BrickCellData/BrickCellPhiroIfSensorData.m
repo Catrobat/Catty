@@ -22,14 +22,10 @@
 
 
 #import "BrickCellPhiroIfSensorData.h"
-#import "iOSCombobox.h"
 #import "BrickCell.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
 #import "BrickPhiroIfSensorProtocol.h"
-#import "LanguageTranslationDefines.h"
-#import "PhiroHelper.h"
 
 @implementation BrickCellPhiroIfSensorData
 

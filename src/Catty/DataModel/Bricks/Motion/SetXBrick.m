@@ -22,8 +22,6 @@
 
 
 #import "SetXBrick.h"
-#import "Formula.h"
-#import "Logger.h"
 #import "Script.h"
 
 @implementation SetXBrick
@@ -55,7 +53,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetX;
+    return [kLocalizedSetX stringByAppendingString:@"%@"];
 }
 
 #pragma mark - Description

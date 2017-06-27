@@ -32,7 +32,6 @@
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
 #import "Util.h"
-#import "LanguageTranslationDefines.h"
 
 @interface SearchStoreViewController ()
 
@@ -104,7 +103,7 @@
 //    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightTextTintColor]];
 // [iOS9] DO NOT REMOVE!!!
 // [iOS8] DO NOT REMOVE!!!
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor textTintColor]];
+    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor textTintColor]];
 // [iOS8] DO NOT REMOVE!!!
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
@@ -354,7 +353,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
     if (self.dataTask) {
         [self.dataTask cancel];
     }
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0];
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, [Util catrobatLanguageVersion]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:queryString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -401,7 +400,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGe
 }
 
 - (NSURL *)urlForQuery:(NSString *)query {
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [query stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0];
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, [query stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, [Util catrobatLanguageVersion]];
     NSDebug(@"Query string: %@", queryString);
     return [NSURL URLWithString:queryString];
 }

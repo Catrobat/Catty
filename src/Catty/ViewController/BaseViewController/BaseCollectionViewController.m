@@ -21,21 +21,12 @@
  */
 
 #import "BaseCollectionViewController.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "TableUtil.h"
 #import "UIDefines.h"
 #import "Util.h"
-#import "ActionSheetAlertViewTags.h"
-#import "LanguageTranslationDefines.h"
-#import <tgmath.h>
-#import "CatrobatAlertController.h"
 #import "LoadingView.h"
-#import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
 #import "ResourceHelper.h"
 
-
-#import <CoreBluetooth/CoreBluetooth.h>
 
 // tags
 #define kSelectAllItemsTag 0

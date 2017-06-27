@@ -22,7 +22,6 @@
 
 #import "RecentProgramsStoreViewController.h"
 #import "CatrobatInformation.h"
-#import "CatrobatProgram.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "TableUtil.h"
@@ -33,8 +32,6 @@
 #import "SegueDefines.h"
 #import "ProgramDetailStoreViewController.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "LanguageTranslationDefines.h"
 
 @interface RecentProgramsStoreViewController ()
 
@@ -276,15 +273,15 @@
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%@", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
             
             break;
         case 1:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%@", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
             
             break;
         case 2:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i&%@%@", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
             
             break;
             

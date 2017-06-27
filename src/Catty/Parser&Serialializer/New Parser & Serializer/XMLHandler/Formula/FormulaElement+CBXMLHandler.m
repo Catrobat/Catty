@@ -25,7 +25,6 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
-#import "UserVariable.h"
 #import "SpriteObject.h"
 
 @implementation FormulaElement (CBXMLHandler)

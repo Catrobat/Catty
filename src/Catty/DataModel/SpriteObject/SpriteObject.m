@@ -22,18 +22,14 @@
 
 #import "SpriteObject.h"
 #import "StartScript.h"
-#import "WhenScript.h"
 #import "Look.h"
 #import "Sound.h"
 #import "Util.h"
 #import "Brick.h"
-#import "SetLookBrick.h"
 #import "FileManager.h"
-#import "UIDefines.h"
 #import "AudioManager.h"
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
-#import "ProgramDefines.h"
 #import "CBMutableCopyContext.h"
 
 @implementation SpriteObject

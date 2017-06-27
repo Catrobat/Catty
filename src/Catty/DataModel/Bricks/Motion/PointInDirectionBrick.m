@@ -21,8 +21,6 @@
  */
 
 #import "PointInDirectionBrick.h"
-#import "Formula.h"
-#import "Util.h"
 #import "Script.h"
 
 @implementation PointInDirectionBrick
@@ -54,7 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedPointInDirection;
+    return [kLocalizedPointInDirection stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedDegrees]];
 }
 
 #pragma mark - Description

@@ -21,8 +21,6 @@
  */
 
 #import "BroadcastScriptCell.h"
-#import "BrickCellInlineView.h"
-#import "UIUtil.h"
 
 @interface BroadcastScriptCell ()
 @property (nonatomic, strong) UILabel *textLabel;

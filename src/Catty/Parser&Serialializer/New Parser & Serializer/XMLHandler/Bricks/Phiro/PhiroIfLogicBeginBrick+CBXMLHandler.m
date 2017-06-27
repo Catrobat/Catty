@@ -22,8 +22,6 @@
 
 #import "PhiroIfLogicBeginBrick+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
-#import "CBXMLValidator.h"
-#import "CBXMLParser.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"

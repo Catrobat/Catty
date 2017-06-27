@@ -21,39 +21,24 @@
  */
 
 #import "ScriptCollectionViewController.h"
-#import "UIDefines.h"
-#import "SpriteObject.h"
-#import "SegueDefines.h"
-#import "ScenePresenterViewController.h"
 #import "BrickCell.h"
 #import "Script.h"
 #import "StartScript.h"
-#import "Brick.h"
 #import "CatrobatReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
-#import "StartScriptCell.h"
 #import "BrickTransition.h"
-#import "WhenScriptCell.h"
-#import "LanguageTranslationDefines.h"
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
-#import "BrickManager.h"
-#import "Util.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
-#import "LoopEndBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
-#import "UIUtil.h"
 #import "BrickCellFormulaData.h"
 #import "NoteBrick.h"
 #import "BrickSelectionViewController.h"
-#import "BrickCellDataProtocol.h"
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
-#import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
 #import "BrickStaticChoiceProtocol.h"
 #import "BrickVariableProtocol.h"
@@ -72,7 +57,6 @@
 #import "Look.h"
 #import "Sound.h"
 #import "ActionSheetAlertViewTags.h"
-#import "CatrobatAlertController.h"
 #import "DataTransferMessage.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
@@ -80,7 +64,6 @@
 #import "BrickInsertManager.h"
 #import "BrickMoveManager.h"
 #import "BrickSelectionManager.h"
-#import "PhiroHelper.h"
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
@@ -90,9 +73,7 @@
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
 #import "BrickPhiroIfSensorProtocol.h"
-#import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
-#import <CoreBluetooth/CoreBluetooth.h>
 
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
@@ -106,7 +87,8 @@
                                              BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate,
                                              CatrobatAlertViewDelegate,
-                                             BluetoothSelection>
+                                             BluetoothSelection,
+                                             UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
@@ -147,6 +129,22 @@
     
     if (self.isEditingBrickMode) {
         [self enableUserInteractionAndResetHighlight];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
 }
 
@@ -369,7 +367,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count])
     {
         NSString *alertTitle = title;
-        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmDeletingSelectedItemsAlertViewTag];
     }
 }
 
@@ -392,8 +390,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } 
     */
     
-    if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1)
-    {
+    if (alertView.tag == kConfirmDeletingSelectedItemsAlertViewTag && buttonIndex == 1) {
+        [self deleteSelectedBricks];
+        self.allBricksSelected = NO;
+    } else if (alertView.tag == kConfirmAlertViewTag && buttonIndex == 1) {
         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForDeletion];
         [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:self.selectedIndexPathForDeletion];
     }
@@ -1349,8 +1349,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
-        cell.enabled = NO;
         if (cell != brickCell) {
+            cell.enabled = NO;
             cell.alpha = kBrickCellInactiveWhileEditingOpacity;
         }
     }
@@ -1391,8 +1391,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
-        [self reloadData];
-}
+    [self reloadData];
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
+             NSMutableArray<Script*>* scriptlist = [self object].scriptList;
+             for (int section = 0; section < scriptlist.count; section++) {
+                 for (int row = 0; row < scriptlist[section].brickList.count; row++) {
+                     if (scriptlist[section].brickList[row].animateInsertBrick) {
+                         [self.collectionView scrollToItemAtIndexPath: [NSIndexPath indexPathForRow:row inSection:section]
+                                                     atScrollPosition:UICollectionViewScrollPositionCenteredVertically
+                                                             animated:NO];
+                         return;
+                    }
+                 }
+             }
+         }
+        }];
+    }
 
 
 - (void)selectAllRows:(id)sender
@@ -1457,6 +1473,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                      }];
     self.editing = NO;
     self.allBricksSelected = NO;
+}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return NO;
 }
 
 @end

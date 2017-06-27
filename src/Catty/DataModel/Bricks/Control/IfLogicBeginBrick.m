@@ -21,7 +21,6 @@
  */
 
 #import "IfLogicBeginBrick.h"
-#import "Formula.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "Util.h"
@@ -71,7 +70,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedIfIsTrueThen;
+    return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
 - (BOOL)checkCondition

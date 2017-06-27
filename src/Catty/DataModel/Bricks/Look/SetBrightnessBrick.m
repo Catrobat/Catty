@@ -22,11 +22,7 @@
 
 
 #import "Setbrightnessbrick.h"
-#import "Formula.h"
 #import "Look.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import <CoreImage/CoreImage.h>
-#import <AssetsLibrary/AssetsLibrary.h>
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
@@ -59,7 +55,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetBrightness;
+    return [kLocalizedSetBrightness stringByAppendingString:[@"\n" stringByAppendingString:[kLocalizedTo stringByAppendingString:@"%@\%"]]];
 }
 
 - (NSString*)pathForLook:(Look*)look
