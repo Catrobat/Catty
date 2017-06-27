@@ -56,4 +56,56 @@
     XCTAssertEqual(numberOfItems, 3, @"Wrong number of Items");
 }
 
+- (void)testElement
+{
+    Program *program = [Program new];
+    
+    SpriteObject *object = [[SpriteObject alloc] init];
+    object.program = program;
+    
+    UserVariable* var = [UserVariable new];
+    var.name = @"TestList";
+    var.isList = YES;
+    var.value = [[NSMutableArray alloc] init];
+    [var.value addObject:[NSNumber numberWithInt:0]];
+    [var.value addObject:[NSNumber numberWithInt:4]];
+    [var.value addObject:[NSNumber numberWithInt:8]];
+    [program.variables.programListOfLists addObject:var];
+    
+    FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"2" leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *rightChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"ELEMENT" leftChild:leftChild rightChild:rightChild parent:nil];
+    formulaTree = formulaTree;
+    
+    double element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    
+    XCTAssertEqual(element, 4, @"Should be Element of List but is not");
+}
+
+- (void)testContains
+{
+    Program *program = [Program new];
+    
+    SpriteObject *object = [[SpriteObject alloc] init];
+    object.program = program;
+    
+    UserVariable* var = [UserVariable new];
+    var.name = @"TestList";
+    var.isList = YES;
+    var.value = [[NSMutableArray alloc] init];
+    [var.value addObject:[NSNumber numberWithInt:0]];
+    [var.value addObject:[NSNumber numberWithInt:4]];
+    [var.value addObject:[NSNumber numberWithInt:8]];
+    [program.variables.programListOfLists addObject:var];
+    
+    FormulaElement *rightChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"4" leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"CONTAINS" leftChild:leftChild rightChild:rightChild parent:nil];
+    formulaTree = formulaTree;
+    
+    BOOL contains = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    
+    XCTAssertEqual(contains, YES, @"Should be Element of List but is not");
+}
+
 @end
