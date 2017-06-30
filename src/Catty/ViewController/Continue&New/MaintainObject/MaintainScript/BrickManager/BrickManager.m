@@ -345,7 +345,7 @@
         }
         begin.animate = YES;
         begin.ifEndBrick.animate = YES;
-        return @[[NSNumber numberWithInteger:1],[NSNumber numberWithInteger:endcount+1]];
+        return @[[NSNumber numberWithInteger:endcount+1]];
     }
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
         IfLogicBeginBrick *begin = (IfLogicBeginBrick*)brick;
@@ -394,7 +394,7 @@
         elseBrick.ifBeginBrick.animate = YES;
         elseBrick.ifEndBrick.animate = YES;
         return @[[NSNumber numberWithInteger:begincount+1],[NSNumber numberWithInteger:endcount+1]];
-    } else if ([brick isKindOfClass:[IfLogicEndBrick class]] || [brick isKindOfClass:[IfThenLogicEndBrick class]]) {
+    } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
         NSInteger elsecount = 0;
         NSInteger begincount = 0;
@@ -418,6 +418,22 @@
         endBrick.ifElseBrick.animate = YES;
         endBrick.ifBeginBrick.animate = YES;
         return @[[NSNumber numberWithInteger:elsecount+1],[NSNumber numberWithInteger:begincount+1]];
+    } else if ([brick isKindOfClass:[IfThenLogicEndBrick class]]) {
+        IfThenLogicEndBrick *endBrick = (IfThenLogicEndBrick*)brick;
+        NSInteger begincount = 0;
+        BOOL found = NO;
+        for (Brick *checkBrick in script.brickList) {
+            if (! found) {
+                if ([checkBrick isEqual:endBrick.ifBeginBrick]) {
+                    found = YES;
+                } else {
+                    ++begincount;
+                }
+            }
+        }
+        endBrick.animate = YES;
+        endBrick.ifBeginBrick.animate = YES;
+        return @[[NSNumber numberWithInteger:begincount+1]];
     }
     return nil;
 }
