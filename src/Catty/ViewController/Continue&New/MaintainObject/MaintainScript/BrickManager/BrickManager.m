@@ -640,7 +640,7 @@
             NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
             
             ifThenLogicBeginBrick = ifThenLogicEndBrick.ifBeginBrick;
-            NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
+            NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifThenLogicBeginBrick];
             NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
             
             [ifThenLogicBeginBrick removeFromScript];
