@@ -25,11 +25,11 @@
 #import "SensorHandler.h"
 #import "SensorManager.h"
 
-@interface SensorHandlerTests : XCTestCase
+@interface SensorHandlerDeviceTests : XCTestCase
 
 @end
 
-@implementation SensorHandlerTests
+@implementation SensorHandlerDeviceTests
 
 #if !(TARGET_IPHONE_SIMULATOR)
 - (void)setUp
