@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>1</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.4</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>iPhone</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>iPhone OS</platform>
+    <platformVersion>9.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Encapsulated</programName>
+    <remixOf></remixOf>
+    <screenHeight>1280</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>800</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object name="Hintergrund">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="PointToBrick">
+              <pointedObject name="test1">
+                <lookList>
+                  <look name="test1">
+                    <fileName>1ac87f222ba4a7fc071b6bdb6b8729cc_automatic_screenshot.png</fileName>
+                  </look>
+                </lookList>
+                <soundList/>
+                <scriptList>
+                  <script type="StartScript">
+                    <brickList>
+                      <brick type="PointToBrick">
+                        <pointedObject name="test2">
+                          <lookList>
+                            <look name="test2">
+                              <fileName>035d2cf8aff4aef232c495e25e4cac41_automatic_screenshot.png</fileName>
+                            </look>
+                          </lookList>
+                          <soundList/>
+                          <scriptList>
+                            <script type="StartScript">
+                              <brickList>
+                                <brick type="PointToBrick">
+                                  <pointedObject reference="../../../../../../../../../.."/>
+                                </brick>
+                                <brick type="PointToBrick">
+                                  <pointedObject name="test3">
+                                    <lookList>
+                                      <look name="test3">
+                                        <fileName>1118e901aac857c901d662d5f2830bf3_automatic_screenshot.png</fileName>
+                                      </look>
+                                    </lookList>
+                                    <soundList/>
+                                    <scriptList>
+                                      <script type="StartScript">
+                                        <brickList>
+                                          <brick type="PointToBrick">
+                                            <pointedObject reference="../../../../../../../../../../../../../../.."/>
+                                          </brick>
+                                        </brickList>
+                                        <isUserScript>false</isUserScript>
+                                      </script>
+                                    </scriptList>
+                                    <userBricks/>
+                                    <nfcTagList/>
+                                  </pointedObject>
+                                </brick>
+                                <brick type="TurnLeftBrick">
+                                  <formulaList>
+                                    <formula category="TURN_LEFT_DEGREES">
+                                      <type>NUMBER</type>
+                                      <value>15.0</value>
+                                    </formula>
+                                  </formulaList>
+                                </brick>
+                              </brickList>
+                              <isUserScript>false</isUserScript>
+                            </script>
+                          </scriptList>
+                          <userBricks/>
+                          <nfcTagList/>
+                        </pointedObject>
+                      </brick>
+                    </brickList>
+                    <isUserScript>false</isUserScript>
+                  </script>
+                </scriptList>
+                <userBricks/>
+                <nfcTagList/>
+              </pointedObject>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object reference="../object/scriptList/script/brickList/brick/pointedObject"/>
+    <object reference="../object/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/pointedObject"/>
+    <object reference="../object/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick[2]/pointedObject"/>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists/>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
