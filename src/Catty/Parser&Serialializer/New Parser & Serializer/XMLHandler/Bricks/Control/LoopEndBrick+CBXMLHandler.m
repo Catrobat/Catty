@@ -28,6 +28,7 @@
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "ForeverBrick.h"
 #import "RepeatBrick.h"
+#import "RepeatUntilBrick.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 
@@ -72,7 +73,7 @@
     NSString *brickXmlElementTypeName = nil;
     if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
         brickXmlElementTypeName = @"LoopEndlessBrick";
-    } else if ([loopBeginBrick isKindOfClass:[RepeatBrick class]]) {
+    } else if ([loopBeginBrick isKindOfClass:[RepeatBrick class]] || [loopBeginBrick isKindOfClass:[RepeatUntilBrick class]]) {
         brickXmlElementTypeName = @"LoopEndBrick";
     } else {
         [XMLError exceptionWithMessage:@"Found unsupported referenced LoopBeginBrick brick type in LoopEndBrick"];

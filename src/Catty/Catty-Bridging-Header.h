@@ -100,6 +100,7 @@
 #import "InsertItemIntoUserListBrick.h"
 #import "ReplaceItemInUserListBrick.h"
 #import "RepeatBrick.h"
+#import "RepeatUntilBrick.h"
 
 // Formulas
 #import "Formula.h"

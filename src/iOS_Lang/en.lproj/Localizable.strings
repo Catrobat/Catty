@@ -1196,6 +1196,9 @@
 "Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";
 
 /* No comment provided by engineer. */
+"Repeat Until" = "Repeat Until";
+
+/* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
 
 /* paint */
