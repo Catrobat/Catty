@@ -36,8 +36,7 @@ final class HideTextBrickTests: XCTestCase {
         object.spriteNode = spriteNode;
         object.program = program;
         
-        let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
+        object.program.programVariableList = NSMutableArray()
         
         let brick = HideTextBrick();
         

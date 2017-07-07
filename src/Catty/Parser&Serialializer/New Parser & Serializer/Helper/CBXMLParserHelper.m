@@ -184,4 +184,11 @@
     return nil;
 }
 
++ (GDataXMLElement *)onlyChildOfElement:(GDataXMLElement *)xmlElement withName:(NSString *)childName {
+    NSArray *children = [xmlElement elementsForName:childName];
+    [XMLError exceptionIf:[children count] notEquals:1 message:@"One %@ element is expected", childName];
+    
+    return [children firstObject];
+}
+
 @end

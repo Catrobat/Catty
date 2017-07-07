@@ -27,4 +27,10 @@
 
 @interface VariablesContainer (CBXMLHandler) <CBXMLNodeProtocol>
 
++ (NSMutableArray<UserVariable *> *)parseProgramVariableListFromElement:(GDataXMLElement *)programVariableListElement
+                                                            withContext:(CBXMLParserContext *)context;
+
++ (OrderedMapTable *)parseObjectVariableListFromElement:(GDataXMLElement *)objectVarListElement
+                                            withContext:(CBXMLParserContext *)context;
+
 @end

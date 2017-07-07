@@ -34,7 +34,7 @@
 
 @implementation SpriteObject
 
-- (NSMutableArray*)lookList
+- (NSMutableArray<Look *> *)lookList
 {
     // lazy instantiation
     if (! _lookList)
@@ -42,7 +42,7 @@
     return _lookList;
 }
 
-- (NSMutableArray*)soundList
+- (NSMutableArray<Sound *> *)soundList
 {
     // lazy instantiation
     if (! _soundList)
@@ -50,7 +50,7 @@
     return _soundList;
 }
 
-- (NSMutableArray*)scriptList
+- (NSMutableArray<Script *> *)scriptList
 {
     // lazy instantiation
     if (! _scriptList)
@@ -187,20 +187,6 @@
         [self.program saveToDiskWithNotification:YES];
     }
     return;
-}
-
-- (void)removeFromProgram
-{
-    CBAssert(self.program);
-    NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.program.objectList) {
-        if (spriteObject == self) {
-            [self.program.objectList removeObjectAtIndex:index];
-            self.program = nil;
-            break;
-        }
-        ++index;
-    }
 }
 
 - (void)removeLookFromList:(Look*)look
@@ -371,6 +357,16 @@
     [mutableString appendFormat:@"Sounds: %@\r", self.soundList];
     return [mutableString copy];
 }
+
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (![[other class] isEqual:[self class]])
+        return NO;
+    
+    return [self isEqualToSpriteObject:other];
+}
+
 
 #pragma mark - Compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject

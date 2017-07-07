@@ -31,7 +31,7 @@
 
 @implementation OrderedMapTable
 
-+ (id)strongToStrongObjectsMapTable
++ (instancetype)strongToStrongObjectsMapTable
 {
     OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable strongToStrongObjectsMapTable];
@@ -39,28 +39,28 @@
 }
 
 
-+ (id)weakToStrongObjectsMapTable
++ (instancetype)weakToStrongObjectsMapTable
 {
     OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable weakToStrongObjectsMapTable];
     return orderedMapTable;
 }
 
-+ (id)weakToWeakObjectsMapTable
++ (instancetype)weakToWeakObjectsMapTable
 {
     OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable weakToWeakObjectsMapTable];
     return orderedMapTable;
 }
 
-+ (id)strongToWeakObjectsMapTable
++ (instancetype)strongToWeakObjectsMapTable
 {
     OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable strongToWeakObjectsMapTable];
     return orderedMapTable;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if(self) {
@@ -111,9 +111,42 @@
     return [self.mapTable count];
 }
 
-- (NSString*)description
+- (BOOL)isEqual:(id)other
 {
-    return [NSString stringWithFormat:@"OrderedMapTable: %@", self.mapTable];
+    if (other == self)
+        return YES;
+    if (![[other class] isEqual:[self class]])
+        return NO;
+    
+    return [self isEqualToOrderedMapTable:other];
+}
+
+- (BOOL)isEqualToOrderedMapTable:(OrderedMapTable *)orderedMapTable
+{
+    if (self.count != orderedMapTable.count)
+        return NO;
+    
+    for (id key in self.keyIndexArray) {
+        NSUInteger index = [orderedMapTable.keyIndexArray indexOfObject:key];
+        id selfObject = [self.mapTable objectForKey:key];
+        id orderedMapTableObject = [orderedMapTable objectAtIndex:index];
+        
+        if (![selfObject isEqual:orderedMapTableObject])
+            return NO;
+    }
+    
+    return YES;
+}
+
+- (NSString *)description
+{
+    NSMutableString *desc = [NSMutableString stringWithString:@"OrderedMapTable: {"];
+    for (id key in self.keyIndexArray) {
+        [desc appendString:[NSString stringWithFormat:@"%@ = %@; ", key, [self objectForKey:key]]];
+    }
+    [desc appendString:@"}"];
+    
+    return desc;
 }
 
 - (id)mutableCopy

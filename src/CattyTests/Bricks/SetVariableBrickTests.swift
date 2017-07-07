@@ -42,9 +42,8 @@ final class SetVariableBrickTests: XCTestCase {
         formulaTree.type = ElementType.NUMBER;
         formulaTree.value = "0";
         formula.formulaTree = formulaTree;
-
-        let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
+        
+        object.program.programVariableList = NSMutableArray()
         
         let brick = SetVariableBrick();
         brick.variableFormula = formula;

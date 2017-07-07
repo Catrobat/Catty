@@ -37,8 +37,7 @@ final class ShowTextBrickTests: XCTestCase {
         spriteNode.position = CGPoint(x: 0, y: 0);
         object.program = program;
         
-        let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
+        object.program.programVariableList = NSMutableArray()
         
         let brick = ShowTextBrick();
         

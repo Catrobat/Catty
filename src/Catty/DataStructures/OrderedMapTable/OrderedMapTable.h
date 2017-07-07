@@ -23,30 +23,32 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OrderedMapTable : NSObject
+@interface OrderedMapTable<KeyType, ObjectType> : NSObject
 
-+ (id)strongToStrongObjectsMapTable;
++ (instancetype)strongToStrongObjectsMapTable;
 
-+ (id)weakToStrongObjectsMapTable;
++ (instancetype)weakToStrongObjectsMapTable;
 
-+ (id)weakToWeakObjectsMapTable;
++ (instancetype)weakToWeakObjectsMapTable;
 
-+ (id)strongToWeakObjectsMapTable;
++ (instancetype)strongToWeakObjectsMapTable;
 
-- (void)setObject:(id)anObject forKey:(id)aKey;
+- (void)setObject:(ObjectType)anObject forKey:(KeyType)aKey;
 
-- (id)objectForKey:(id)aKey;
+- (ObjectType)objectForKey:(KeyType)aKey;
 
-- (void)removeObjectForKey:(id)aKey;
+- (void)removeObjectForKey:(KeyType)aKey;
 
 - (void)removeAllObjects;
 
 - (NSUInteger)count;
 
-- (id)objectAtIndex:(NSUInteger)index;
+- (ObjectType)objectAtIndex:(NSUInteger)index;
 
-- (id)keyAtIndex:(NSUInteger)index;
+- (KeyType)keyAtIndex:(NSUInteger)index;
 
-- (id)mutableCopy;
+- (BOOL)isEqualToOrderedMapTable:(OrderedMapTable<KeyType, ObjectType> *)orderedMapTable;
+
+- (instancetype)mutableCopy;
 
 @end

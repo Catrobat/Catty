@@ -31,6 +31,15 @@
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
 }
 
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (![[other class] isEqual:[self class]])
+        return NO;
+    
+    return [self isEqualToUserVariable:other];
+}
+
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
 {
     if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
