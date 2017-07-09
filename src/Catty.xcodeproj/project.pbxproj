@@ -712,10 +712,11 @@
 		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
 		BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */; };
 		BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */; };
-		BA9CAB691EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
-		BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
 		BA9CAB6B1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
-		BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */; };
+		BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
+		BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
+		BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
+		BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
 		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -2105,7 +2106,8 @@
 		BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrickCell.m; sourceTree = "<group>"; };
 		BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AddItemToUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/AddItemToUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
 		BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
-		BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
@@ -2409,7 +2411,7 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				BA9CAB741EC391C900796056 /* AddItemToUserListBrick */,
+				BAD47DC01F12935F001C38BC /* ListBricks */,
 				CAE3E4ED1B4C50B300CC88BD /* Air_fight_0.5 */,
 				CAE3E4F01B4C50B300CC88BD /* Airplane_with_shadow */,
 				CAE3E4F31B4C50B300CC88BD /* Compass_0.1 */,
@@ -5529,12 +5531,13 @@
 			name = "Extensions & Delegates & Protocols";
 			sourceTree = "<group>";
 		};
-		BA9CAB741EC391C900796056 /* AddItemToUserListBrick */ = {
+		BAD47DC01F12935F001C38BC /* ListBricks */ = {
 			isa = PBXGroup;
 			children = (
-				BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */,
+				BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */,
+				BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */,
 			);
-			name = AddItemToUserListBrick;
+			name = ListBricks;
 			sourceTree = "<group>";
 		};
 		C34B44FB17F3403400624730 /* Extensions */ = {
@@ -6243,6 +6246,7 @@
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
+				BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
@@ -6346,9 +6350,7 @@
 				4C2EE3F71B55577C006DE9B8 /* Galaxy_War_095.xml in Resources */,
 				4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */,
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
-				BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
-				BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
@@ -6397,6 +6399,7 @@
 				CAE3E53C1B4C50B300CC88BD /* Compass_0.1_093.xml in Resources */,
 				CAE3E5521B4C50B300CC88BD /* Piano_093.xml in Resources */,
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
+				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6411,8 +6414,8 @@
 				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
+				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
-				BA9CAB691EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
@@ -6424,6 +6427,7 @@
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
 				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
+				BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
