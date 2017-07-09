@@ -23,7 +23,8 @@
 #import "InsertItemIntoUserListBrickCell.h"
 
 @interface InsertItemIntoUserListBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *firstRowTextLabel1;
+@property (nonatomic, strong) UILabel *firstRowTextLabel2;
 @property (nonatomic, strong) UILabel *thirdRowTextLabel;
 @end
 
@@ -31,20 +32,22 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:largeBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight2h;
+    return kBrickHeight3h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.variableComboBoxView = inlineViewSubViews[1];
-    self.thirdRowTextLabel = inlineViewSubViews[2];
-    self.valueTextField = inlineViewSubViews[3];
+    self.firstRowTextLabel1 = inlineViewSubViews[0];
+    self.valueTextField = inlineViewSubViews[1];
+    self.firstRowTextLabel2 = inlineViewSubViews[2];
+    self.listComboBoxView = inlineViewSubViews[3];
+    self.thirdRowTextLabel = inlineViewSubViews[4];
+    self.positionTextField = inlineViewSubViews[5];
 }
 
 @end

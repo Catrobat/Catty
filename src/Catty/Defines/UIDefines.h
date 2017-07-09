@@ -432,7 +432,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ShowTextBrick"                : @(kBrickHeight3h),\
 @"HideTextBrick"                : @(kBrickHeight2h),\
 @"AddItemToUserListBrick"       : @(kBrickHeight2h),\
-@"InsertItemIntoUserListBrick"  : @(kBrickHeight2h),\
+@"InsertItemIntoUserListBrick"  : @(kBrickHeight3h),\
 \
 /* arduino bricks */\
 @"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\

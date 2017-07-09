@@ -25,7 +25,9 @@
 
 @interface InsertItemIntoUserListBrickCell : BrickCell
 
-@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
+@property (nonatomic, weak) iOSCombobox *listComboBoxView;
 @property (nonatomic, weak) UITextField *valueTextField;
+@property (nonatomic, weak) UITextField *positionTextField;
+
 
 @end

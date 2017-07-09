@@ -29,13 +29,16 @@ extension InsertItemIntoUserListBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         let userList = self.userList
-        let listFormula = self.listFormula
+        let elementFormula = self.elementFormula
+        let position = self.index
+
 
         return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: InsertItemIntoUserListBrick")
             if (userList != nil){
-                let result = listFormula.interpretVariableDataForSprite(spriteObject)
-                variablesContainer.addToUserList(userList, value: result)
+                let valueResult = elementFormula.interpretVariableDataForSprite(spriteObject)
+                let positionResult = position.interpretVariableDataForSprite(spriteObject)
+                variablesContainer.insertToUserList(userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .Runnable
         }

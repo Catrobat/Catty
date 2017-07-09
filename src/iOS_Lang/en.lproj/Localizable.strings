@@ -638,7 +638,7 @@
 "Information" = "Information";
 
 /* No comment provided by engineer. */
-"Insert %@ to list\n%@" = "Insert %@ to list\n%@";
+"Insert%@to list\n%@\n at position%@" = "Insert%@to list\n%@\n at position%@";
 
 /* paint */
 "Inserted" = "Inserted";

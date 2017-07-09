@@ -2957,16 +2957,16 @@
 		4C724DF71B4D3E8C00E27479 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */,
-				BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */,
 				BA9CAB5B1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.h */,
 				BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */,
-				9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */,
-				9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */,
-				9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */,
-				9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */,
 				AA74EF731BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.h */,
 				AA74EF741BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m */,
+				9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */,
+				9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */,
+				BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */,
+				BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */,
+				9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */,
+				9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */,
 				AA74EF751BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.h */,
 				AA74EF761BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m */,
 			);

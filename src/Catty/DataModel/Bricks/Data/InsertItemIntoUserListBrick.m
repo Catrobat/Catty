@@ -31,12 +31,20 @@
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.listFormula;
+    if(lineNumber == 0)
+        return self.elementFormula;
+    else if(lineNumber == 2)
+        return self.index;
+    
+    return nil;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.listFormula = formula;
+    if(lineNumber == 0)
+        self.elementFormula = formula;
+    else if(lineNumber == 2)
+        self.index = formula;
 }
 
 - (UserVariable*)listForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
@@ -51,12 +59,13 @@
 
 - (NSArray*)getFormulas
 {
-    return @[self.listFormula];
+    return @[self.elementFormula,self.index];
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.listFormula = [[Formula alloc] initWithZero];
+    self.elementFormula = [[Formula alloc] initWithInteger:1];
+    self.index = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
         NSArray *lists = [spriteObject.program.variables allListsForObject:spriteObject];
         if([lists count] > 0)
@@ -79,15 +88,18 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.listFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Insert Item Into User List Brick: Userlist: %@, item: %f", self.userList, result];
+    double result = [self.elementFormula interpretDoubleForSprite:self.script.object];
+    int index = [self.index interpretIntegerForSprite:self.script.object];
+    return [NSString stringWithFormat:@"Insert Item Into User List Brick: Userlist: %@, item: %f, position: %i", self.userList, result, index];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if (! [self.userList isEqualToUserVariable:((InsertItemIntoUserListBrick*)brick).userList])
         return NO;
-    if (! [self.listFormula isEqualToFormula:((InsertItemIntoUserListBrick*)brick).listFormula])
+    if (! [self.elementFormula isEqualToFormula:((InsertItemIntoUserListBrick*)brick).elementFormula])
+        return NO;
+    if (! [self.index isEqualToFormula:((InsertItemIntoUserListBrick*)brick).index])
         return NO;
     return YES;
 }
@@ -95,7 +107,7 @@
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return [self.listFormula getRequiredResources];
+    return [self.elementFormula getRequiredResources]|[self.index getRequiredResources];
 }
 
 @end

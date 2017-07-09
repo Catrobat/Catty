@@ -30,6 +30,7 @@
 @interface InsertItemIntoUserListBrick : Brick<BrickFormulaProtocol, BrickListProtocol>
 
 @property (nonatomic, strong) UserVariable *userList;
-@property (nonatomic, strong) Formula *listFormula;
+@property (nonatomic, strong) Formula *elementFormula;
+@property (nonatomic, strong) Formula *index;
 
 @end

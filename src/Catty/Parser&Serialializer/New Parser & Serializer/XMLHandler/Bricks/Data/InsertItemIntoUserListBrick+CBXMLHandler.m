@@ -38,15 +38,19 @@
 {
     GDataXMLElement *userListElement = nil;
     
-    [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:1];
+    [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:2];
     
     userListElement = [xmlElement childWithElementName:@"userList"];
 
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"LIST_INSERT_ITEM" withContext:context];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"INSERT_ITEM_INTO_USERLIST_VALUE" withContext:context];
+    Formula *index = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"INSERT_ITEM_INTO_USERLIST_INDEX" withContext:context];
+
     [XMLError exceptionIfNil:formula message:@"No formula element found..."];
     
     InsertItemIntoUserListBrick *insertItemIntoUserListBrick = [self new];
-    insertItemIntoUserListBrick.listFormula = formula;
+    insertItemIntoUserListBrick.elementFormula = formula;
+    insertItemIntoUserListBrick.index = index;
+
     
     if (userListElement != nil) {
         UserVariable *userList = [context parseFromElement:userListElement withClass:[UserVariable class]];
@@ -63,9 +67,15 @@
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"InsertItemIntoUserListBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.listFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"LIST_INSERT_ITEM"]];
+    GDataXMLElement *formula = [self.elementFormula xmlElementWithContext:context];
+    GDataXMLElement *index = [self.index xmlElementWithContext:context];
+
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_VALUE"]];
+    [index addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_INDEX"]];
+
     [formulaList addChild:formula context:context];
+    [formulaList addChild:index context:context];
+
     [brick addChild:formulaList context:context];
 
     if (self.userList)
