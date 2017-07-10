@@ -134,5 +134,43 @@
     XCTAssertEqual(ifLogicElseBrick.ifEndBrick, ifLogicEndBrick, "IfLogicEndBrick associated to IfLogicElseBrick does not match.");
 }
 
+- (void)testObjectLookSensors
+{
+    Program *program = [self getProgramForXML:@"ObjectLookSensors_0991"];
+    
+    XCTAssertEqual(2, [program.objectList count], "Invalid object list");
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    SpriteObject *object = [program.objectList objectAtIndex:1];
+    
+    XCTAssertEqual(1, [background.scriptList count], "Invalid script list");
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *backgroundScript = [object.scriptList objectAtIndex:0];
+    Script *objectScript = [object.scriptList objectAtIndex:0];
+    
+    XCTAssertEqual(2, [backgroundScript.brickList count], "Invalid brick list");
+    XCTAssertEqual(2, [objectScript.brickList count], "Invalid brick list");
+    
+    SetVariableBrick *backgroundSetVariableBrickName = (SetVariableBrick*)[backgroundScript.brickList objectAtIndex:0];
+    SetVariableBrick *backgroundSetVariableBrickNumber = (SetVariableBrick*)[backgroundScript.brickList objectAtIndex:1];
+    
+    XCTAssertEqual(SENSOR, backgroundSetVariableBrickName.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, backgroundSetVariableBrickNumber.variableFormula.formulaTree.type);
+    
+    // Uncomment
+    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NAME], backgroundSetVariableBrickName.variableFormula.formulaTree.value);
+    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NUMBER], backgroundSetVariableBrickNumber.variableFormula.formulaTree.value);
+    
+    SetVariableBrick *objectSetVariableBrickName = (SetVariableBrick*)[objectScript.brickList objectAtIndex:0];
+    SetVariableBrick *objectSetVariableBrickNumber = (SetVariableBrick*)[objectScript.brickList objectAtIndex:1];
+    
+    XCTAssertEqual(SENSOR, objectSetVariableBrickName.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, objectSetVariableBrickNumber.variableFormula.formulaTree.type);
+    
+    // Uncomment
+    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_LOOK_NAME], objectSetVariableBrickName.variableFormula.formulaTree.value);
+    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_LOOK_NUMBER], objectSetVariableBrickNumber.variableFormula.formulaTree.value);
+}
+
 @end
 
