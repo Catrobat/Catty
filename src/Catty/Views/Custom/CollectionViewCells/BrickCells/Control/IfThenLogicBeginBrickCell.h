@@ -20,24 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "BrickCell.h"
 
-@class SpriteObject;
+@interface IfThenLogicBeginBrickCell : BrickCell
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
-
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (NSString*)brickTitleForBrickSelection;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+@property (nonatomic, weak) UITextField *expressionTextField;
 
 @end

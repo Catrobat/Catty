@@ -20,24 +20,55 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "IfThenLogicEndBrick.h"
+#import "IfThenLogicBeginBrick.h"
+#import "Util.h"
 
-@class SpriteObject;
+@implementation IfThenLogicEndBrick
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+- (BOOL)isSelectableForObject
+{
+    return NO;
+}
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (NSString*)brickTitleForBrickSelection;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
+- (BOOL)isIfLogicBrick
+{
+    return YES;
+}
+
+- (NSString*)brickTitle
+{
+    return kLocalizedEndIf;
+}
+
+- (void)performFromScript:(Script*)script
+{
+    
+}
+
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"If Then Logic End Brick"];
+}
+
+#pragma mark - Compare
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfThenLogicEndBrick*)brick).ifBeginBrick.brickTitle])
+        return NO;
+    return YES;
+}
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
 
 @end

@@ -279,6 +279,12 @@
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
+		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
+		4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */; };
+		4D91FEAB1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEAA1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m */; };
+		4D91FEAE1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEAD1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m */; };
+		4D91FEB11EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEB01EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m */; };
+		4D97AB7F1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -1256,6 +1262,18 @@
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		4CFC3BF51CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		4D6E0C8B1EE07201008FED9F /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
+		4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
+		4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrickCell.m; sourceTree = "<group>"; };
+		4D6E0C921EE14039008FED9F /* IfThenLogicBeginBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrickCell.h; sourceTree = "<group>"; };
+		4D91FEA71EF7C70200CC8FE0 /* IfThenLogicEndBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicEndBrickCell.h; sourceTree = "<group>"; };
+		4D91FEAA1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicEndBrickCell.m; sourceTree = "<group>"; };
+		4D91FEAC1EF7C78900CC8FE0 /* IfThenLogicEndBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicEndBrick.h; sourceTree = "<group>"; };
+		4D91FEAD1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicEndBrick.m; sourceTree = "<group>"; };
+		4D91FEAF1EF7C9E000CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IfThenLogicEndBrick+CBXMLHandler.h"; path = "Catty/DataModel/Bricks/Control/IfThenLogicEndBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4D91FEB01EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfThenLogicEndBrick+CBXMLHandler.m"; path = "Catty/DataModel/Bricks/Control/IfThenLogicEndBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfThenLogicBeginBrick+CBXMLHandler.m"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4D97AB821EE80CEA003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IfThenLogicBeginBrick+CBXMLHandler.h"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2915,10 +2933,14 @@
 				AA74EECA1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m */,
 				AA74EECB1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.h */,
 				AA74EECC1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m */,
+				4D97AB821EE80CEA003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.h */,
+				4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */,
 				AA74EECD1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.h */,
 				AA74EECE1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m */,
 				AA74EECF1BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.h */,
 				AA74EED01BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.m */,
+				4D91FEAF1EF7C9E000CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.h */,
+				4D91FEB01EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m */,
 				AA74EED31BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.h */,
 				AA74EED41BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m */,
 				AA74EED51BC057B900D1E954 /* NoteBrick+CBXMLHandler.h */,
@@ -5085,10 +5107,14 @@
 				AA74EF851BC05B5F00D1E954 /* ForeverBrick.m */,
 				AA74EF861BC05B5F00D1E954 /* IfLogicBeginBrick.h */,
 				AA74EF871BC05B5F00D1E954 /* IfLogicBeginBrick.m */,
+				4D6E0C8B1EE07201008FED9F /* IfThenLogicBeginBrick.h */,
+				4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */,
 				AA74EF881BC05B5F00D1E954 /* IfLogicElseBrick.h */,
 				AA74EF891BC05B5F00D1E954 /* IfLogicElseBrick.m */,
 				AA74EF8A1BC05B5F00D1E954 /* IfLogicEndBrick.h */,
 				AA74EF8B1BC05B5F00D1E954 /* IfLogicEndBrick.m */,
+				4D91FEAC1EF7C78900CC8FE0 /* IfThenLogicEndBrick.h */,
+				4D91FEAD1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m */,
 				AA74EF8C1BC05B5F00D1E954 /* LoopBeginBrick.h */,
 				AA74EF8D1BC05B5F00D1E954 /* LoopBeginBrick.m */,
 				AA74EF8E1BC05B5F00D1E954 /* LoopEndBrick.h */,
@@ -5286,10 +5312,14 @@
 				AA74F02A1BC05FCE00D1E954 /* ForeverBrickCell.m */,
 				AA74F02B1BC05FCE00D1E954 /* IfLogicBeginBrickCell.h */,
 				AA74F02C1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m */,
+				4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */,
+				4D6E0C921EE14039008FED9F /* IfThenLogicBeginBrickCell.h */,
 				AA74F02D1BC05FCE00D1E954 /* IfLogicElseBrickCell.h */,
 				AA74F02E1BC05FCE00D1E954 /* IfLogicElseBrickCell.m */,
 				AA74F02F1BC05FCE00D1E954 /* IfLogicEndBrickCell.h */,
 				AA74F0301BC05FCE00D1E954 /* IfLogicEndBrickCell.m */,
+				4D91FEA71EF7C70200CC8FE0 /* IfThenLogicEndBrickCell.h */,
+				4D91FEAA1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m */,
 				AA74F0351BC05FCE00D1E954 /* LoopEndBrickCell.h */,
 				AA74F0361BC05FCE00D1E954 /* LoopEndBrickCell.m */,
 				AA74F0371BC05FCE00D1E954 /* NoteBrickCell.h */,
@@ -6916,6 +6946,7 @@
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
+				4D91FEB11EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
@@ -6938,6 +6969,7 @@
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */,
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
+				4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */,
 				CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */,
 				AA74EEFE1BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
@@ -7133,9 +7165,11 @@
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
+				4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
+				4D91FEAB1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
@@ -7167,6 +7201,7 @@
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
+				4D97AB7F1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
 				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
@@ -7245,6 +7280,7 @@
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
+				4D91FEAE1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,

@@ -19,25 +19,19 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "BrickConditionalBranchProtocol.h"
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+@class Formula;
+@class IfThenLogicEndBrick;
 
-@class SpriteObject;
+@interface IfThenLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+@property (nonatomic, strong) Formula *ifCondition;
+@property (nonatomic, weak) IfThenLogicEndBrick *ifEndBrick;
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (NSString*)brickTitleForBrickSelection;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+- (BOOL)checkCondition;
+- (void)resetCondition;
 
 @end

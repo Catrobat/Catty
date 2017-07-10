@@ -219,8 +219,77 @@ final class CBBackendTests: XCTestCase {
                 XCTFail("Wrong instruction type for \(counter)")
             }
         }
+    }
+    
+    func testIfThenInstruction() {
+        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let backend = CBBackend(logger: self.logger)
+        
+        let startScript = StartScript()
+        let spriteObject = SpriteObject()
+        let spriteNode = CBSpriteNode()
+        spriteNode.name = "SpriteNodeName"
+        spriteNode.spriteObject = spriteObject
+        spriteObject.name = "SpriteObjectName"
+        spriteObject.spriteNode = spriteNode
+        startScript.object = spriteObject
+        
+        let setYBrick = SetYBrick()
+        setYBrick.script = startScript
+        let ifThenLogicBeginBrick = IfThenLogicBeginBrick()
+        ifThenLogicBeginBrick.script = startScript
+        ifThenLogicBeginBrick.ifCondition = Formula(integer: 1)
+        let setXBrick = SetXBrick()
+        setXBrick.script = startScript
+        let flashBrick = FlashBrick()
+        flashBrick.script = startScript
+        let ifLogicEndBrick = IfThenLogicEndBrick()
+        ifLogicEndBrick.script = startScript
+        let vibrationBrick = VibrationBrick()
+        vibrationBrick.script = startScript
+        vibrationBrick.durationInSeconds = Formula(integer: 3)
+        
+        ifThenLogicBeginBrick.ifEndBrick = ifLogicEndBrick
+        ifLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick
+        
+        startScript.brickList = [setYBrick, ifThenLogicBeginBrick, setXBrick, flashBrick, ifLogicEndBrick, vibrationBrick]
+        
+        let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
+        // [[CBOperationSequence] [CBIfConditionalSequence] [CBOperationSequence]]
+        let instructionList = backend.instructionsForSequence(sequenceList)
         
         
+        XCTAssertEqual(instructionList.count, 5, "Instruction list should contain five instructions")
+        
+        switch instructionList[0] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[1] {
+        case .ExecClosure(_):
+            break;
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        switch instructionList[2] {
+        case let .Action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
+        }
+        
+        for counter in 3...(instructionList.count - 1) {
+            switch instructionList[counter] {
+            case .ExecClosure(_):
+                break;
+            default:
+                XCTFail("Wrong instruction type for \(counter)")
+            }
+        }
     }
     
     func testLoopInstruction() {
