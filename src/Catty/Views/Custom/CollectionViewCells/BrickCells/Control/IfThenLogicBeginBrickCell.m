@@ -20,24 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "IfThenLogicBeginBrickCell.h"
 
-@class SpriteObject;
+@interface IfThenLogicBeginBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+@implementation IfThenLogicBeginBrickCell
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (NSString*)brickTitleForBrickSelection;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.expressionTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
 
 @end
