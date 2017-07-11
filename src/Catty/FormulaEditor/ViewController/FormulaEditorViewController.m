@@ -689,7 +689,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     BrickCell *brickCell = self.brickCellData.brickCell;
     NSInteger line = self.brickCellData.lineNumber;
     NSInteger parameter = self.brickCellData.parameterNumber;
-    [self.brickCellData.brickCell setupBrickCell];
+    [self.brickCellData.brickCell setupBrickCellinSelectionView:false inBackground:self.object.isBackground];
     self.brickCellData = (BrickCellFormulaData*)([brickCell dataSubviewForLineNumber:line andParameterNumber:parameter]);
     [self.brickCellData drawBorder:YES];
     

@@ -65,7 +65,7 @@
 - (void)animate:(BOOL)animate;
 - (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
-- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView;
+- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView inBackground:(BOOL)inBackground;
 
 - (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 - (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;

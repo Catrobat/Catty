@@ -73,9 +73,13 @@
     return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
-- (NSString*)brickTitleForBrickSelection
+- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
+    if (inSelection) {
         return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
+    } else {
+        return self.brickTitle;
+    }
 }
 
 - (BOOL)checkCondition

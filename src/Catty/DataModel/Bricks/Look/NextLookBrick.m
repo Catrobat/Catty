@@ -28,26 +28,9 @@
 
 @implementation NextLookBrick
 
-
-- (NSString*)brickTitle
+- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
-    NSEnumerator *vcStack = [[[[[UIApplication sharedApplication] keyWindow] rootViewController] childViewControllers] reverseObjectEnumerator];
-    ObjectTableViewController *programVC;
-    
-    for (UIViewController *vc in vcStack) {
-        if ([vc isKindOfClass:[ObjectTableViewController class]]) {
-            programVC = (ObjectTableViewController*)vc;
-            break;
-        }
-    }
-    
-    if (programVC != nil) {
-        BOOL isBackground = [[programVC object] isBackground];
-        return isBackground ? kLocalizedNextBackground : kLocalizedNextLook;
-    }
-    else {
-        return [self.script.object isBackground] ? kLocalizedNextBackground : kLocalizedNextLook;
-    }
+    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
 }
 
 - (NSString*)pathForLook:(Look*)look
