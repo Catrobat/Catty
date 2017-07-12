@@ -407,8 +407,8 @@ let kLocalizedSetVariable = NSLocalizedString("Set variable", comment: "")
 let kLocalizedChangeVariable = NSLocalizedString("Change variable", comment: "")
 let kLocalizedShowVariable = NSLocalizedString("Show variable", comment: "")
 let kLocalizedHideVariable = NSLocalizedString("Hide variable", comment: "")
-let kLocalizedAt = NSLocalizedString("at ", comment: "")
 let kLocalizedAddItemToUserList = NSLocalizedString("Add %@ to list\n%", comment: "")
+let kLocalizedAt = NSLocalizedString("at ", comment: "")
 
 
 let kLocalizedAddCommentHere = NSLocalizedString("add comment here...", comment: "")

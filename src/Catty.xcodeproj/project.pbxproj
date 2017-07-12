@@ -2957,10 +2957,10 @@
 		4C724DF71B4D3E8C00E27479 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BAEE49E11F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.h */,
-				BAEE49E21F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m */,
 				BA9CAB5B1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.h */,
 				BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */,
+				BAEE49E11F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.h */,
+				BAEE49E21F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m */,
 				9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */,
 				9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */,
 				9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */,

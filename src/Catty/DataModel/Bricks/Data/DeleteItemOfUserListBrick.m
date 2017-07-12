@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "AddItemToUserListBrick.h"
+#import "DeleteItemOfUserListBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Script.h"
 
-@implementation AddItemToUserListBrick
+@implementation DeleteItemOfUserListBrick
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
@@ -85,9 +85,9 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userList isEqualToUserVariable:((AddItemToUserListBrick*)brick).userList])
+    if (! [self.userList isEqualToUserVariable:((DeleteItemOfUserListBrick*)brick).userList])
         return NO;
-    if (! [self.listFormula isEqualToFormula:((AddItemToUserListBrick*)brick).listFormula])
+    if (! [self.listFormula isEqualToFormula:((DeleteItemOfUserListBrick*)brick).listFormula])
         return NO;
     return YES;
 }

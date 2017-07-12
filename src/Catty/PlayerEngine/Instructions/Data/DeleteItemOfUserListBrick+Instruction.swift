@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension AddItemToUserListBrick: CBInstructionProtocol {
+extension DeleteItemOfUserListBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
 

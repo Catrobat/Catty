@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "AddItemToUserListBrick+CBXMLHandler.h"
+#import "DeleteItemOfUserListBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
@@ -32,7 +32,7 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 
-@implementation AddItemToUserListBrick (CBXMLHandler)
+@implementation DeleteItemOfUserListBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
@@ -45,16 +45,16 @@
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"LIST_ADD_ITEM" withContext:context];
     [XMLError exceptionIfNil:formula message:@"No formula element found..."];
     
-    AddItemToUserListBrick *addItemToUserListBrick = [self new];
-    addItemToUserListBrick.listFormula = formula;
+    DeleteItemOfUserListBrick *deleteItemOfUserListBrick = [self new];
+    deleteItemOfUserListBrick.listFormula = formula;
     
     if (userListElement != nil) {
         UserVariable *userList = [context parseFromElement:userListElement withClass:[UserVariable class]];
         [XMLError exceptionIfNil:userList message:@"Unable to parse userList..."];
-        addItemToUserListBrick.userList = userList;
+        deleteItemOfUserListBrick.userList = userList;
     }
     
-    return addItemToUserListBrick;
+    return deleteItemOfUserListBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

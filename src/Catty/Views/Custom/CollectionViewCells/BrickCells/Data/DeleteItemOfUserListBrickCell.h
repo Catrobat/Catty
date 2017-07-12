@@ -23,7 +23,7 @@
 #import "BrickCell.h"
 #import "iOSCombobox.h"
 
-@interface AddItemToUserListBrickCell : BrickCell
+@interface DeleteItemOfUserListBrickCell : BrickCell
 
 @property (nonatomic, weak) iOSCombobox *variableComboBoxView;
 @property (nonatomic, weak) UITextField *valueTextField;
