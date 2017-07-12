@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "AddItemToUserListBrick.h"
+#import "InsertItemIntoUserListBrick.h"
 #import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface AddItemToUserListBrick (CBXMLHandler) <CBXMLNodeProtocol>
+@interface InsertItemIntoUserListBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end
