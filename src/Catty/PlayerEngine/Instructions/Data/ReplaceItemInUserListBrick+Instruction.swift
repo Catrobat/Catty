@@ -38,7 +38,7 @@ extension ReplaceItemInUserListBrick: CBInstructionProtocol {
             if (userList != nil){
                 let valueResult = elementFormula.interpretVariableDataForSprite(spriteObject)
                 let positionResult = position.interpretVariableDataForSprite(spriteObject)
-                variablesContainer.insertToUserList(userList, value: valueResult, atIndex: positionResult)
+                //variablesContainer.insertToUserList(userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .Runnable
         }
