@@ -408,6 +408,7 @@
 #define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
 #define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
 #define kLocalizedAddItemToUserList NSLocalizedString(@"Add %@ to list\n%@", nil)
+#define kLocalizedReplaceItemInUserList NSLocalizedString(@"Replace Item at Position%@in list\n%@\n with%@", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
 
 

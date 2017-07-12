@@ -212,7 +212,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kShowTextBrick                  = 402,
     kHideTextBrick                  = 403,
     kAddItemToUserListBrick         = 404,
-    kReplaceItemInUserListBrick     = 406,
+    kReplaceItemInUserListBrick     = 405,
     
     // 5xx arduino bricks
     kArduinoSendDigitalValueBrick  = 500,
