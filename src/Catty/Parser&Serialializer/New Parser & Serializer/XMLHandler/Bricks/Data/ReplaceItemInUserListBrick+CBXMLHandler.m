@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "AddItemToUserListBrick+CBXMLHandler.h"
+#import "InsertItemIntoUserListBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "GDataXMLNode+CustomExtensions.h"
@@ -32,42 +32,52 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 
-@implementation AddItemToUserListBrick (CBXMLHandler)
+@implementation InsertItemIntoUserListBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     GDataXMLElement *userListElement = nil;
     
-    [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:1];
+    [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:2];
     
     userListElement = [xmlElement childWithElementName:@"userList"];
-
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"LIST_ADD_ITEM" withContext:context];
+    
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"INSERT_ITEM_INTO_USERLIST_VALUE" withContext:context];
+    Formula *index = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"INSERT_ITEM_INTO_USERLIST_INDEX" withContext:context];
+    
     [XMLError exceptionIfNil:formula message:@"No formula element found..."];
     
-    AddItemToUserListBrick *addItemToUserListBrick = [self new];
-    addItemToUserListBrick.listFormula = formula;
+    InsertItemIntoUserListBrick *insertItemIntoUserListBrick = [self new];
+    insertItemIntoUserListBrick.elementFormula = formula;
+    insertItemIntoUserListBrick.index = index;
+    
     
     if (userListElement != nil) {
         UserVariable *userList = [context parseFromElement:userListElement withClass:[UserVariable class]];
         [XMLError exceptionIfNil:userList message:@"Unable to parse userList..."];
-        addItemToUserListBrick.userList = userList;
+        insertItemIntoUserListBrick.userList = userList;
     }
     
-    return addItemToUserListBrick;
+    return insertItemIntoUserListBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"AddItemToUserListBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"InsertItemIntoUserListBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.listFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"LIST_ADD_ITEM"]];
+    GDataXMLElement *formula = [self.elementFormula xmlElementWithContext:context];
+    GDataXMLElement *index = [self.index xmlElementWithContext:context];
+    
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_VALUE"]];
+    [index addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_INDEX"]];
+    
     [formulaList addChild:formula context:context];
+    [formulaList addChild:index context:context];
+    
     [brick addChild:formulaList context:context];
-
+    
     if (self.userList)
         [brick addChild:[self.userList xmlElementWithContext:context] context:context];
     return brick;
