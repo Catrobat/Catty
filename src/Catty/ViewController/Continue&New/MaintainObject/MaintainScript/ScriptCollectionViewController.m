@@ -543,7 +543,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     brickCell.scriptOrBrick = ((indexPath.item == 0) ? script : brick);
     brickCell.enabled = YES;
-    [brickCell setupBrickCell];
+    [brickCell setupBrickCellinSelectionView:false inBackground:self.object.isBackground];
     brickCell.delegate = self;
     brickCell.dataDelegate = self;
     [brickCell setNeedsDisplay];

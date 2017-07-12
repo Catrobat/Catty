@@ -280,6 +280,11 @@
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
+		4DB4FAC71EF2282F00576677 /* PreviousLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */; };
+		4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */; };
+		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
+		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
+		4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */; };
 		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
 		4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */; };
 		4D91FEAB1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEAA1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m */; };
@@ -1264,6 +1269,14 @@
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		4CFC3BF51CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		4DB4FAC31EF2281600576677 /* PreviousLookBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrickCell.h; sourceTree = "<group>"; };
+		4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickCell.m; sourceTree = "<group>"; };
+		4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrick.h; sourceTree = "<group>"; };
+		4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrick.m; sourceTree = "<group>"; };
+		4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
+		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D6E0C8B1EE07201008FED9F /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
 		4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
 		4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrickCell.m; sourceTree = "<group>"; };
@@ -2981,6 +2994,8 @@
 				AA74EEED1BC057C900D1E954 /* HideBrick+CBXMLHandler.m */,
 				AA74EEEE1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.h */,
 				AA74EEEF1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m */,
+				4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */,
+				4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */,
 				AA74EEF01BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.h */,
 				AA74EEF11BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m */,
 				4CB2CFA41D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.h */,
@@ -3374,6 +3389,7 @@
 				4CEB223F1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m */,
 				4CEB22401B95E47500B3BE2F /* MoveNStepsBrickTests.m */,
 				4CEB22411B95E47500B3BE2F /* NextLookBrickTests.m */,
+				4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */,
 				4CEB22421B95E47500B3BE2F /* PlaceAtBrickTests.m */,
 				4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */,
 				4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */,
@@ -5097,6 +5113,7 @@
 				921D46821BDF698A0086AD20 /* ChangeTransparencyBrick+Instruction.swift */,
 				921D46831BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift */,
 				921D46841BDF698A0086AD20 /* NextLookBrick+Instruction.swift */,
+				4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */,
 				921D46851BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift */,
 				4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */,
 				921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */,
@@ -5185,6 +5202,8 @@
 				AA74EFA91BC05B5F00D1E954 /* HideBrick.h */,
 				AA74EFAA1BC05B5F00D1E954 /* HideBrick.m */,
 				AA74EFAB1BC05B5F00D1E954 /* NextLookBrick.h */,
+				4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */,
+				4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */,
 				AA74EFAC1BC05B5F00D1E954 /* NextLookBrick.m */,
 				AA74EFAD1BC05B5F00D1E954 /* SetBrightnessBrick.h */,
 				AA74EFAE1BC05B5F00D1E954 /* SetBrightnessBrick.m */,
@@ -5385,6 +5404,8 @@
 				AA74F04D1BC05FCE00D1E954 /* HideBrickCell.m */,
 				AA74F04E1BC05FCE00D1E954 /* NextLookBrickCell.h */,
 				AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */,
+				4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */,
+				4DB4FAC31EF2281600576677 /* PreviousLookBrickCell.h */,
 				AA74F0501BC05FCE00D1E954 /* SetBrightnessBrickCell.h */,
 				AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */,
 				4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */,
@@ -6901,6 +6922,7 @@
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
+				4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
@@ -7135,6 +7157,7 @@
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
+				4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
@@ -7165,6 +7188,7 @@
 				AA74F0C01BC05FCE00D1E954 /* SetXBrickCell.m in Sources */,
 				AA74EEF81BC057C900D1E954 /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */,
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
+				4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */,
 				4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */,
@@ -7178,6 +7202,7 @@
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
+				4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */,
 				4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */,
@@ -7367,6 +7392,7 @@
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
 				AA74EF4C1BC0586F00D1E954 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				AA74EF6E1BC0588A00D1E954 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
+				4DB4FAC71EF2282F00576677 /* PreviousLookBrickCell.m in Sources */,
 				AA74F0CA1BC05FCE00D1E954 /* ScriptDeleteButton.m in Sources */,
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,

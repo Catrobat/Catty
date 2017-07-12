@@ -20,33 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick.h"
-#import "ObjectTableViewController.h"
-#import "Look.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+#import "PreviousLookBrick+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
+#import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLParserContext.h"
+#import "CBXMLSerializerContext.h"
+#import "CBXMLSerializerHelper.h"
 
-@implementation NextLookBrick
+@implementation PreviousLookBrick (CBXMLHandler)
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+    return [self new]; // nothing else to do!
 }
 
-- (NSString*)pathForLook:(Look*)look
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PreviousLookBrick"]];
+    return brick;
 }
 
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Nextlookbrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
 @end
