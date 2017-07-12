@@ -663,8 +663,12 @@
     NSString* result = @"";
     
     switch (sensor){
-        case OBJECT_LOOK_NAME: {
-            result = sprite.spriteNode.currentLook.name;
+        case OBJECT_LOOK_NAME:
+//        case OBJECT_BACKGROUND_NAME:
+        {
+            if (sprite.spriteNode.currentLook.name != nil){
+                result = sprite.spriteNode.currentLook.name;
+            }
             break;
         }
         default: {
@@ -703,6 +707,7 @@
             break;
         }
         case OBJECT_LOOK_NUMBER: {
+            result = 1;
             if (sprite.spriteNode.currentLook != nil && sprite.lookList.count > 0){
                 result = [sprite.lookList indexOfObject:sprite.spriteNode.currentLook] + 1;
             }

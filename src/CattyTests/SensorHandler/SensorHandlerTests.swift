@@ -107,4 +107,45 @@ final class SensorHandlerTests: XCTestCase {
         
         Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
     }
+    
+    func testObjectColor() {
+        let object = SpriteObject()
+        let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let filePath: String? = bundle.pathForResource("test.png", ofType: nil)
+        let imageData: NSData? = UIImagePNGRepresentation(UIImage(contentsOfFile: filePath!)!)
+        
+        let look = Look(name: "test", andPath: "test.png")
+        imageData?.writeToFile("\(object.projectPath())/\("images")/\("test.png")", atomically: true)
+        
+        let script = WhenScript()
+        script.object = object
+        
+        object.lookList.addObject(look)
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(OBJECT_COLOR), leftChild: nil, rightChild: nil, parent: nil)
+        let formula = Formula(formulaElement: element)
+        
+        spriteNode.currentLook = look
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? Int, 0)
+        
+        let changeColorByNBrick = ChangeColorByNBrick()
+        changeColorByNBrick.script = script
+        changeColorByNBrick.changeColor = Formula(double: 25)
+        
+        let action = changeColorByNBrick.actionBlock()
+        action!()
+        
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? Int, 25)
+        
+        
+        Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
+    }
 }
