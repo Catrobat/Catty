@@ -712,6 +712,10 @@
 		BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
 		BA9CAB6B1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
 		BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */; };
+		BAEE49D61F166B8300F06741 /* DeleteItemOfUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49D51F166B8300F06741 /* DeleteItemOfUserListBrickCell.m */; };
+		BAEE49DB1F166B9700F06741 /* DeleteItemOfUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49DA1F166B9700F06741 /* DeleteItemOfUserListBrick.m */; };
+		BAEE49DD1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49DC1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift */; };
+		BAEE49E31F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49E21F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m */; };
 		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -2095,6 +2099,13 @@
 		BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AddItemToUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/AddItemToUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
 		BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BAEE49D41F166B8300F06741 /* DeleteItemOfUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteItemOfUserListBrickCell.h; sourceTree = "<group>"; };
+		BAEE49D51F166B8300F06741 /* DeleteItemOfUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteItemOfUserListBrickCell.m; sourceTree = "<group>"; };
+		BAEE49D91F166B9700F06741 /* DeleteItemOfUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteItemOfUserListBrick.h; sourceTree = "<group>"; };
+		BAEE49DA1F166B9700F06741 /* DeleteItemOfUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteItemOfUserListBrick.m; sourceTree = "<group>"; };
+		BAEE49DC1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DeleteItemOfUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/DeleteItemOfUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BAEE49E11F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DeleteItemOfUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/DeleteItemOfUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		BAEE49E21F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DeleteItemOfUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/DeleteItemOfUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C52A0C3ABBED344E2C76956E /* Pods_Catty_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
@@ -2946,6 +2957,8 @@
 		4C724DF71B4D3E8C00E27479 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BAEE49E11F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.h */,
+				BAEE49E21F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m */,
 				BA9CAB5B1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.h */,
 				BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */,
 				9200C2D71C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.h */,
@@ -4935,6 +4948,7 @@
 		AA74EDDB1BC051FB00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BAEE49DC1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift */,
 				BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */,
 				9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */,
 				9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */,
@@ -5040,6 +5054,8 @@
 			children = (
 				BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */,
 				BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */,
+				BAEE49D91F166B9700F06741 /* DeleteItemOfUserListBrick.h */,
+				BAEE49DA1F166B9700F06741 /* DeleteItemOfUserListBrick.m */,
 				9200C2C51C808006002F5CA4 /* HideTextBrick.h */,
 				9200C2C61C808006002F5CA4 /* HideTextBrick.m */,
 				9200C2C71C808006002F5CA4 /* ShowTextBrick.h */,
@@ -5243,6 +5259,8 @@
 			children = (
 				BA9CAB5E1EC383E800796056 /* AddItemToUserListBrickCell.h */,
 				BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */,
+				BAEE49D41F166B8300F06741 /* DeleteItemOfUserListBrickCell.h */,
+				BAEE49D51F166B8300F06741 /* DeleteItemOfUserListBrickCell.m */,
 				9200C2D11C8082EF002F5CA4 /* HideTextBrickCell.h */,
 				9200C2D21C8082EF002F5CA4 /* HideTextBrickCell.m */,
 				9200C2D31C8082EF002F5CA4 /* ShowTextBrickCell.h */,
@@ -6979,6 +6997,7 @@
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
+				BAEE49DB1F166B9700F06741 /* DeleteItemOfUserListBrick.m in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
@@ -7025,6 +7044,7 @@
 				AA74F0CB1BC05FCE00D1E954 /* SelectButton.m in Sources */,
 				AA74F0A51BC05FCE00D1E954 /* NoteBrickCell.m in Sources */,
 				AA74EF521BC0586F00D1E954 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
+				BAEE49DD1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */,
 				921D467E1BDF61350086AD20 /* GoNStepsBackBrick+Instruction.swift in Sources */,
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				AAB2B7281C6D086100ED0664 /* MediaLibraryViewController.m in Sources */,
@@ -7152,6 +7172,7 @@
 				AA74EFFD1BC05B5F00D1E954 /* ChangeYByNBrick.m in Sources */,
 				4C724E271B4D3E8C00E27479 /* CBXMLSerializer.m in Sources */,
 				9200C2DC1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m in Sources */,
+				BAEE49D61F166B8300F06741 /* DeleteItemOfUserListBrickCell.m in Sources */,
 				9218B2041CC4AB75007B4C60 /* LCTableViewPickerControl.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
@@ -7174,6 +7195,7 @@
 				9218B2161CC4AB75007B4C60 /* PaintViewController.m in Sources */,
 				9218B2031CC4AB75007B4C60 /* ImagePicker.m in Sources */,
 				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
+				BAEE49E31F166D0700F06741 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,
