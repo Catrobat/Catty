@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "InsertItemIntoUserListBrickCell.h"
+#import "ReplaceItemInUserListBrickCell.h"
 
-@interface InsertItemIntoUserListBrickCell ()
+@interface ReplaceItemInUserListBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel1;
 @property (nonatomic, strong) UILabel *firstRowTextLabel2;
 @property (nonatomic, strong) UILabel *thirdRowTextLabel;
 @end
 
-@implementation InsertItemIntoUserListBrickCell
+@implementation ReplaceItemInUserListBrickCell
 
 - (void)drawRect:(CGRect)rect
 {

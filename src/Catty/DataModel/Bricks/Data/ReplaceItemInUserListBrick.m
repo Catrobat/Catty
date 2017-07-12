@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "InsertItemIntoUserListBrick.h"
+#import "ReplaceItemInUserListBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Script.h"
 
-@implementation InsertItemIntoUserListBrick
+@implementation ReplaceItemInUserListBrick
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
@@ -77,7 +77,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedInsertItemIntoUserList;
+    return kLocalizedReplaceItemInUserList;
 }
 
 - (BOOL)allowsStringFormula
@@ -95,11 +95,11 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if (! [self.userList isEqualToUserVariable:((InsertItemIntoUserListBrick*)brick).userList])
+    if (! [self.userList isEqualToUserVariable:((ReplaceItemInUserListBrick*)brick).userList])
         return NO;
-    if (! [self.elementFormula isEqualToFormula:((InsertItemIntoUserListBrick*)brick).elementFormula])
+    if (! [self.elementFormula isEqualToFormula:((ReplaceItemInUserListBrick*)brick).elementFormula])
         return NO;
-    if (! [self.index isEqualToFormula:((InsertItemIntoUserListBrick*)brick).index])
+    if (! [self.index isEqualToFormula:((ReplaceItemInUserListBrick*)brick).index])
         return NO;
     return YES;
 }
