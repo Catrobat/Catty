@@ -95,6 +95,7 @@
 #define kLookBrickNameParams @[\
     @"{LOOK}",                      /* set background           */\
     @[],                            /* next background          */\
+    @[],                            /* previous background      */\
     @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
     @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
     @[],                            /* hide                     */\
@@ -172,12 +173,12 @@
 
 - (void)setupBrickCell
 {
-    [self setupBrickCellinSelectionView:false];
+    [self setupBrickCellinSelectionView:false inBackground:false];
 }
 
-- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView
+- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView inBackground:(BOOL)inBackground
 {
-    self.brickTitle = inSelectionView ? self.scriptOrBrick.brickTitleForBrickSelection : self.scriptOrBrick.brickTitle;
+    self.brickTitle = [self.scriptOrBrick brickTitleForBrickinSelection:inSelectionView inBackground:inBackground];
     if ([self isKindOfClass:[LoopEndBrickCell class]]) {
         LoopEndBrickCell* cell = (LoopEndBrickCell*)self;
         cell.type = [[BrickManager sharedBrickManager] checkEndLoopBrickTypeForDrawing:cell];
