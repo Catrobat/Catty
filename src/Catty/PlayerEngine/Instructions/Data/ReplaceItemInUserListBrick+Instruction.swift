@@ -20,25 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension AddItemToUserListBrick: CBInstructionProtocol {
+extension InsertItemIntoUserListBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
-
+        
         guard let spriteObject = self.script?.object,
-              let variablesContainer = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
-
+            let variablesContainer = spriteObject.program?.variables
+            else { fatalError("This should never happen!") }
+        
         let userList = self.userList
-        let listFormula = self.listFormula
-
+        let elementFormula = self.elementFormula
+        let position = self.index
+        
+        
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: AddItemToUserListBrick")
+            //            self.logger.debug("Performing: InsertItemIntoUserListBrick")
             if (userList != nil){
-                let result = listFormula.interpretVariableDataForSprite(spriteObject)
-                variablesContainer.addToUserList(userList, value: result)
+                let valueResult = elementFormula.interpretVariableDataForSprite(spriteObject)
+                let positionResult = position.interpretVariableDataForSprite(spriteObject)
+                variablesContainer.insertToUserList(userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .Runnable
         }
-
+        
     }
 }
