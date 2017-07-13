@@ -253,7 +253,7 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
-- (void)deleteFromUserList:(UserVariable*)userList atIndex:(id)index
+- (void)deleteFromUserList:(UserVariable*)userList atIndex:(id)position
 {
     pthread_mutex_lock(&variablesLock);
     if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
@@ -267,6 +267,13 @@ static pthread_mutex_t variablesLock;
         array = (NSMutableArray*)userList.value;
     }
     
+    NSUInteger size = [array count];
+    int castedPosition = (int) position;
+    
+    if ((castedPosition > size) || (castedPosition < 1)) {
+        return;
+    }
+    [array removeObjectAtIndex:castedPosition];
     
     userList.value = array;
     pthread_mutex_unlock(&variablesLock);

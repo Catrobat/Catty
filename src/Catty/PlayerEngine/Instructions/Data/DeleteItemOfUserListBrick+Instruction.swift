@@ -35,7 +35,7 @@ extension DeleteItemOfUserListBrick: CBInstructionProtocol {
 //            self.logger.debug("Performing: DeleteItemOfUserListBrick")
             if (userList != nil){
                 let result = listFormula.interpretVariableDataForSprite(spriteObject)
-                variablesContainer.addToUserList(userList, value: result)
+                variablesContainer.deleteFromUserList(userList, atIndex: result)
             }
             context.state = .Runnable
         }

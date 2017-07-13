@@ -42,7 +42,7 @@
     
     userListElement = [xmlElement childWithElementName:@"userList"];
 
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"LIST_ADD_ITEM" withContext:context];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"LIST_DELETE_ITEM" withContext:context];
     [XMLError exceptionIfNil:formula message:@"No formula element found..."];
     
     DeleteItemOfUserListBrick *deleteItemOfUserListBrick = [self new];

@@ -4948,8 +4948,8 @@
 		AA74EDDB1BC051FB00D1E954 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BAEE49DC1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift */,
 				BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */,
+				BAEE49DC1F166BBC00F06741 /* DeleteItemOfUserListBrick+Instruction.swift */,
 				9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */,
 				9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */,
 				AA74EE241BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift */,
