@@ -303,6 +303,7 @@ final class CBScheduler: CBSchedulerProtocol {
         if let contexts = _scheduledContexts[spriteName]{
             if !contexts.contains(context) {
                 _scheduledContexts[spriteName]! += context
+                _hasNewBroadcastContextBeenScheduled = true
             }
         }
 
@@ -321,12 +322,8 @@ final class CBScheduler: CBSchedulerProtocol {
         // TODO: use Set-datastructure instead...
         if _scheduledContexts[spriteName] == nil || _scheduledContexts[spriteName]?.count == 0 {
             _scheduledContexts[spriteName] = [CBScriptContext]()
-            if let contexts = _scheduledContexts[spriteName]{
-                if !contexts.contains(context) {
-                    _scheduledContexts[spriteName]! += context
-                    _hasNewBroadcastContextBeenScheduled = true
-                }
-            }
+            _scheduledContexts[spriteName]! += context
+            _hasNewBroadcastContextBeenScheduled = true
             return;
         }
         
@@ -349,7 +346,10 @@ final class CBScheduler: CBSchedulerProtocol {
             scheduleContext(context)
         }
 
-        runNextInstructionsGroup()
+        while _hasNewBroadcastContextBeenScheduled {
+            _hasNewBroadcastContextBeenScheduled = false;
+            runNextInstructionsGroup()
+        }
     }
 
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
