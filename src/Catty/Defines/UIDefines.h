@@ -344,7 +344,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ShowTextBrick"             : @(kShowTextBrick),\
     @"HideTextBrick"             : @(kHideTextBrick),\
     @"AddItemToUserListBrick"    : @(kAddItemToUserListBrick),\
-    @"DeleteItemOfUserListBrick" : @(kAddItemToUserListBrick),\
+    @"DeleteItemOfUserListBrick" : @(kDeleteItemOfUserListBrick),\
 \
     /* arduino bricks */\
     @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
@@ -431,7 +431,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ShowTextBrick"             : @(kBrickHeight3h),\
 @"HideTextBrick"             : @(kBrickHeight2h),\
 @"AddItemToUserListBrick"    : @(kBrickHeight2h),\
-@"DeleteItemOfUserListBrick" : @(kBrickHeight2h),\
+@"DeleteItemOfUserListBrick" : @(kBrickHeight3h),\
 \
 /* arduino bricks */\
 @"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\

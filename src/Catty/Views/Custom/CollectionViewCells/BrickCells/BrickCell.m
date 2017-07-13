@@ -115,7 +115,7 @@
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
     @[@"{VARIABLE}"],     /* hide Text        */\
     @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],    /* add item to user list              */\
-    @[@"{INT;range=(1,inf)}",@"{LIST}"]    /* delete item of user list              */\
+    @[@"LIST",@"{INT;range=(1,inf)}"],    /* delete item of user list              */\
 ]
 
 // arduino bricks

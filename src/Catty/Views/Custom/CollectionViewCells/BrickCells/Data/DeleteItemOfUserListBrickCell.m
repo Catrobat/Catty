@@ -31,12 +31,12 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:largeBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight
 {
-    return kBrickHeight2h;
+    return kBrickHeight3h;
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

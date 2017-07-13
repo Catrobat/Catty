@@ -302,6 +302,9 @@
 "Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
+"Delete item from list\n%@\n at position%@" = "Delete item from list\n%@\n at position%@";
+
+/* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
 
 /* No comment provided by engineer. */

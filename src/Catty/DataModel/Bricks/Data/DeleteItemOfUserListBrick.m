@@ -68,7 +68,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedAddItemToUserList;
+    return kLocalizedDeleteItemOfUserList;
 }
 
 - (BOOL)allowsStringFormula
