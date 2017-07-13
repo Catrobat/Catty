@@ -1151,7 +1151,7 @@
 "Repeat" = "Repeat";
 
 /* No comment provided by engineer. */
-"Replace Item at Position%@in list\n%@\n with%@" = "Replace Item at Position%@in list\n%@\n with%@";
+"Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
