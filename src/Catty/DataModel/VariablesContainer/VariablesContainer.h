@@ -51,7 +51,7 @@
 
 - (void)addToUserList:(UserVariable*)userList value:(id)value;
 
-- (void)replaceItemInUserList:(UserVariable*)userList value:(id)value;
+- (void)replaceItemInUserList:(UserVariable*)userList value:(id)value atIndex:(id)position;
 
 
 
