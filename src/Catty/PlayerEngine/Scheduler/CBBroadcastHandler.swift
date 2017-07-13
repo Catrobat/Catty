@@ -125,7 +125,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
             // launch self (!) listening broadcast script
             _performSelfBroadcastForContext(senderContext as! CBBroadcastScriptContext)
         } else if broadcastType == .Broadcast {
-//            scheduler?.runNextInstructionOfContext(senderContext)
+            // Sender should be runnable again after broadcasting, but do not run next instruction of this context or all broadcasts will be made first
             senderContext.state = .Runnable
         } else if broadcastType == .BroadcastWait {
             scheduler?.runNextInstructionsGroup()
