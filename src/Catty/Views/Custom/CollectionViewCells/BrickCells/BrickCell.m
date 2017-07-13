@@ -114,7 +114,7 @@
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* change size by N         */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
     @[@"{VARIABLE}"],     /* hide Text        */\
-    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],    /* set size to              */\
+    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],    /* add item to user list             */\
     @[@"{LIST}",@"{INT;range=(1,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* insert item into user list   */\
 ]
 
@@ -377,11 +377,11 @@
         return nil;
     }
 
+    NSUInteger numberOfPreviousLineParams = 0;
     if (numberOfLines > 1) {
         // determine number of params per line
         NSUInteger totalNumberOfParams = [brickParams count];
         NSMutableArray *paramsOfLines = [NSMutableArray arrayWithCapacity:numberOfLines];
-        NSUInteger numberOfPreviousLineParams = 0;
         NSUInteger numberOfLinesWithParams = 0;
         for (NSInteger lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
             NSString *currentLine = [lines objectAtIndex:lineIndex];
@@ -397,7 +397,7 @@
                     ++numberOfLinesWithParams;
                 }
             }
-            numberOfPreviousLineParams = numberOfCurrentLineParams;
+            numberOfPreviousLineParams = numberOfPreviousLineParams + numberOfCurrentLineParams;
             [paramsOfLines addObject:currentLineParams];
         }
 

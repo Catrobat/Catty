@@ -42,8 +42,8 @@
     
     userListElement = [xmlElement childWithElementName:@"userList"];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"INSERT_ITEM_INTO_USERLIST_VALUE" withContext:context];
-    Formula *index = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"INSERT_ITEM_INTO_USERLIST_INDEX" withContext:context];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"REPLACE_ITEM_IN_USERLIST_VALUE" withContext:context];
+    Formula *index = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"REPLACE_ITEM_IN_USERLIST_INDEX" withContext:context];
     
     [XMLError exceptionIfNil:formula message:@"No formula element found..."];
     
@@ -65,13 +65,13 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"InsertItemIntoUserListBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ReplaceItemInUserListBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.elementFormula xmlElementWithContext:context];
     GDataXMLElement *index = [self.index xmlElementWithContext:context];
     
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_VALUE"]];
-    [index addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_INDEX"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"REPLACE_ITEM_IN_USERLIST_VALUE"]];
+    [index addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"REPLACE_ITEM_IN_USERLIST_INDEX"]];
     
     [formulaList addChild:formula context:context];
     [formulaList addChild:index context:context];

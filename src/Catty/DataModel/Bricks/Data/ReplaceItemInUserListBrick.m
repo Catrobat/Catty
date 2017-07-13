@@ -31,20 +31,20 @@
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    if(lineNumber == 0)
-        return self.elementFormula;
-    else if(lineNumber == 2)
+    if(lineNumber == 2 && paramNumber == 0)
         return self.index;
+    else if(lineNumber == 2 && paramNumber == 1)
+        return self.elementFormula;
     
     return nil;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    if(lineNumber == 0)
-        self.elementFormula = formula;
-    else if(lineNumber == 2)
+    if(lineNumber == 2 && paramNumber == 0)
         self.index = formula;
+    else if(lineNumber == 2 && paramNumber == 1)
+        self.elementFormula = formula;
 }
 
 - (UserVariable*)listForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
@@ -90,7 +90,7 @@
 {
     double result = [self.elementFormula interpretDoubleForSprite:self.script.object];
     int index = [self.index interpretIntegerForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Insert Item Into User List Brick: Userlist: %@, item: %f, position: %i", self.userList, result, index];
+    return [NSString stringWithFormat:@"Replace Item In User List Brick: Userlist: %@, item: %f, position: %i", self.userList, result, index];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

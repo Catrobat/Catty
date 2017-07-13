@@ -23,9 +23,9 @@
 #import "ReplaceItemInUserListBrickCell.h"
 
 @interface ReplaceItemInUserListBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel1;
-@property (nonatomic, strong) UILabel *firstRowTextLabel2;
-@property (nonatomic, strong) UILabel *thirdRowTextLabel;
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel1;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel2;
 @end
 
 @implementation ReplaceItemInUserListBrickCell
@@ -42,12 +42,12 @@
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    self.firstRowTextLabel1 = inlineViewSubViews[0];
-    self.valueTextField = inlineViewSubViews[1];
-    self.firstRowTextLabel2 = inlineViewSubViews[2];
-    self.listComboBoxView = inlineViewSubViews[3];
-    self.thirdRowTextLabel = inlineViewSubViews[4];
-    self.positionTextField = inlineViewSubViews[5];
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.listComboBoxView = inlineViewSubViews[1];
+    self.thirdRowTextLabel1 = inlineViewSubViews[2];
+    self.positionTextField = inlineViewSubViews[3];
+    self.thirdRowTextLabel2 = inlineViewSubViews[4];
+    self.valueTextField = inlineViewSubViews[5];
 }
 
 @end
