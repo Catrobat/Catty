@@ -32,7 +32,7 @@ extension DeleteItemOfUserListBrick: CBInstructionProtocol {
         let listFormula = self.listFormula
 
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: AddItemToUserListBrick")
+//            self.logger.debug("Performing: DeleteItemOfUserListBrick")
             if (userList != nil){
                 let result = listFormula.interpretVariableDataForSprite(spriteObject)
                 variablesContainer.addToUserList(userList, value: result)

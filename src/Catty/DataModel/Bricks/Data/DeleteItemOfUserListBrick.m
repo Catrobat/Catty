@@ -56,7 +56,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.listFormula = [[Formula alloc] initWithZero];
+    self.listFormula = [[Formula alloc] initWithInteger:1];
     if(spriteObject) {
         NSArray *lists = [spriteObject.program.variables allListsForObject:spriteObject];
         if([lists count] > 0)
@@ -80,7 +80,7 @@
 - (NSString*)description
 {
     double result = [self.listFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Add Item TO User List Brick: Userlist: %@, item: %f", self.userList, result];
+    return [NSString stringWithFormat:@"Delete Item From User List Brick: Userlist: %@, item: %f", self.userList, result];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
