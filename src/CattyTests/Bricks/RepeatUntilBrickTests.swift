@@ -25,16 +25,13 @@ import XCTest
 @testable import Pocket_Code
 
 final class RepeatUntilBrickTests: XCTestCase {
-    
-//    func testTitleSingular() {
-//        let repeatBrick = RepeatBrick()
-//        repeatBrick.timesToRepeat = Formula(double: 1)
-//        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTime, repeatBrick.brickTitle, "Wrong brick title")
-//    }
-//    
-//    func testTitlePlural() {
-//        let repeatBrick = RepeatBrick()
-//        repeatBrick.timesToRepeat = Formula(double: 2)
-//        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTimes, repeatBrick.brickTitle, "Wrong brick title")
-//    }
+
+    /*func testRepeatUntil() {
+        let repeatUntilBrick = RepeatUntilBrick()
+        repeatUntilBrick.repeatCondition = Formula(double: 0)
+        XCTAssertTrue(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
+        
+        repeatUntilBrick.repeatCondition = Formula(double: 1)
+        XCTAssertFalse(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
+    }*/
 }
