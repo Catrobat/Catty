@@ -32,6 +32,7 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "PreviousLookBrick.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
 
@@ -170,6 +171,18 @@
     // Uncomment
     //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_LOOK_NAME], objectSetVariableBrickName.variableFormula.formulaTree.value);
     //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_LOOK_NUMBER], objectSetVariableBrickNumber.variableFormula.formulaTree.value);
+}
+
+- (void)testPreviousLookBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 26, "Invalid brick list");
+    
+    Brick *previousLookBrick = (PreviousLookBrick*)[backgroundScript.brickList objectAtIndex:26];
+    XCTAssertTrue([previousLookBrick isKindOfClass:[PreviousLookBrick class]], "Invalid brick type");
 }
 
 @end

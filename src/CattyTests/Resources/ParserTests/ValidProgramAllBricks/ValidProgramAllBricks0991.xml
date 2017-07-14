@@ -404,6 +404,7 @@
             <brick type="IfLogicElseBrick"/>
             <brick type="NextLookBrick"/>
             <brick type="IfLogicEndBrick"/>
+            <brick type="PreviousLookBrick"/>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
