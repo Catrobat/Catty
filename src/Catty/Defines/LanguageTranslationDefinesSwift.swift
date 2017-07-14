@@ -346,6 +346,7 @@ let kLocalizedRepeat = NSLocalizedString("Repeat", comment: "")
 let kLocalizedRepeatUntil = NSLocalizedString("Repeat Until", comment: "")
 let kLocalizedTime = NSLocalizedString("time", comment: "")
 let kLocalizedTimes = NSLocalizedString("times", comment: "")
+let kLocalizedIsTrue = NSLocalizedString("is true", comment: "")
 let kLocalizedEndOfLoop = NSLocalizedString("End of Loop", comment: "")
 
 // motion bricks

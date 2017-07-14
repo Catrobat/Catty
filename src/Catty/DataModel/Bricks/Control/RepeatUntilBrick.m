@@ -24,7 +24,6 @@
 #import "Script.h"
 
 @interface RepeatUntilBrick()
-@property (nonatomic, assign) int loopCount;
 @end
 
 @implementation RepeatUntilBrick
@@ -66,27 +65,17 @@
 
 - (NSString*)brickTitle
 {
-    int repeatFor = [self.repeatCondition interpretIntegerForSprite:self.script.object andUseCache:NO];
-    NSString* repeatForStr;
-    if ([self.repeatCondition isSingleNumberFormula] && repeatFor == 1.0) {
-        repeatForStr = kLocalizedTime;
-    }
-    else {
-        repeatForStr = kLocalizedTimes;
-    }
-    return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:repeatForStr]];
+    return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIsTrue]];
 }
 
 - (BOOL)checkCondition
 {
-    NSDebug(@"Loop Count: %d", self.loopCount);
     return [self.repeatCondition interpretBOOLForSprite:self.script.object];
 }
 
-//- (void)resetCondition
-//{
-//    self.loopCount = 0;
-//}
+- (void)resetCondition
+{
+}
 
 #pragma mark - Description
 - (NSString*)description
@@ -98,7 +87,6 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     RepeatUntilBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
-    brick.loopCount = self.loopCount;
     return brick;
 }
 
