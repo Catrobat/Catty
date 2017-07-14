@@ -178,6 +178,7 @@
 		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CC545D61F18A0DC00FB2D36 /* RepeatUntilBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC545D51F18A0DC00FB2D36 /* RepeatUntilBrickTests.swift */; };
 		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
 		4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */; };
 		4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */; };
@@ -280,17 +281,17 @@
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
-		4DB4FAC71EF2282F00576677 /* PreviousLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */; };
-		4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */; };
-		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
-		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
-		4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */; };
 		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
 		4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */; };
 		4D91FEAB1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEAA1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m */; };
 		4D91FEAE1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEAD1EF7C79800CC8FE0 /* IfThenLogicEndBrick.m */; };
 		4D91FEB11EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEB01EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m */; };
 		4D97AB7F1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */; };
+		4DB4FAC71EF2282F00576677 /* PreviousLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */; };
+		4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */; };
+		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
+		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
+		4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -1159,6 +1160,7 @@
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CC545D51F18A0DC00FB2D36 /* RepeatUntilBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatUntilBrickTests.swift; sourceTree = "<group>"; };
 		4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_096.xml; sourceTree = "<group>"; };
 		4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_096.xml; sourceTree = "<group>"; };
 		4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_096.xml; sourceTree = "<group>"; };
@@ -1269,14 +1271,6 @@
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		4CFC3BF51CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
-		4DB4FAC31EF2281600576677 /* PreviousLookBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrickCell.h; sourceTree = "<group>"; };
-		4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickCell.m; sourceTree = "<group>"; };
-		4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrick.h; sourceTree = "<group>"; };
-		4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrick.m; sourceTree = "<group>"; };
-		4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
-		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
-		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D6E0C8B1EE07201008FED9F /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
 		4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
 		4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrickCell.m; sourceTree = "<group>"; };
@@ -1289,6 +1283,14 @@
 		4D91FEB01EF7C9F100CC8FE0 /* IfThenLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfThenLogicEndBrick+CBXMLHandler.m"; path = "Catty/DataModel/Bricks/Control/IfThenLogicEndBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D97AB7E1EE80CE1003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfThenLogicBeginBrick+CBXMLHandler.m"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D97AB821EE80CEA003E9351 /* IfThenLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IfThenLogicBeginBrick+CBXMLHandler.h"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Control/IfThenLogicBeginBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DB4FAC31EF2281600576677 /* PreviousLookBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrickCell.h; sourceTree = "<group>"; };
+		4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickCell.m; sourceTree = "<group>"; };
+		4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrick.h; sourceTree = "<group>"; };
+		4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrick.m; sourceTree = "<group>"; };
+		4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
+		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3394,6 +3396,7 @@
 				4CEB22431B95E47500B3BE2F /* PointInDirectionBrickTests.m */,
 				4CEB22441B95E47500B3BE2F /* PointToBrickTests.m */,
 				4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */,
+				4CC545D51F18A0DC00FB2D36 /* RepeatUntilBrickTests.swift */,
 				4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */,
 				4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */,
 				4CEB22461B95E47500B3BE2F /* SetLookBrickTests.m */,
@@ -6891,6 +6894,7 @@
 				4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
+				4CC545D61F18A0DC00FB2D36 /* RepeatUntilBrickTests.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4C5D11141EF51FC6003FFC72 /* XMLParserBlackBoxTests0991.m in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
