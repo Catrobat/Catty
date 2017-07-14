@@ -20,33 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick.h"
-#import "ObjectTableViewController.h"
-#import "Look.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+#import "PreviousLookBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@implementation NextLookBrick
+@interface PreviousLookBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
-{
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
-}
-
-- (NSString*)pathForLook:(Look*)look
-{
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Nextlookbrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
 @end

@@ -20,28 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick.h"
+#import "PreviousLookBrick.h"
 #import "ObjectTableViewController.h"
 #import "Look.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation NextLookBrick
+@implementation PreviousLookBrick
 
 - (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
+        return inBackground ? kLocalizedPreviousBackground : kLocalizedPreviousLook;
 }
 
 - (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Nextlookbrick"];
+    return [NSString stringWithFormat:@"Previouslookbrick"];
 }
 
 #pragma mark - Resources

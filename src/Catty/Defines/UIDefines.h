@@ -158,11 +158,13 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kNoteBrick                 =   6,
     kForeverBrick              =   7,
     kIfBrick                   =   8,
-    kIfElseBrick               =   9,
-    kIfEndBrick                =  10,
-    kRepeatBrick               =  11,
-    kRepeatUntilBrick          =  12,
-    kLoopEndBrick              =  13,
+    kIfThenBrick               =   9,
+    kIfElseBrick               =  10,
+    kIfEndBrick                =  11,
+    kIfThenEndBrick            =  12,
+    kRepeatBrick               =  13,
+    kRepeatUntilBrick          =  14,
+    kLoopEndBrick              =  15,
 
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
@@ -184,18 +186,19 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     // 2xx look bricks
     kSetLookBrick              = 200,
     kNextLookBrick             = 201,
-    kSetSizeToBrick            = 202,
-    kChangeSizeByNBrick        = 203,
-    kHideBrick                 = 204,
-    kShowBrick                 = 205,
-    kSetTransparencyBrick      = 206,
-    kChangeTransparencyByNBrick= 207,
-    kSetBrightnessBrick        = 208,
-    kChangeBrightnessByNBrick  = 209,
-    kSetColorBrick             = 210,
-    kChangeColorByNBrick       = 211,
-    kClearGraphicEffectBrick   = 212,
-    kFlashBrick                = 213,
+    kPreviousLookBrick         = 202,
+    kSetSizeToBrick            = 203,
+    kChangeSizeByNBrick        = 204,
+    kHideBrick                 = 205,
+    kShowBrick                 = 206,
+    kSetTransparencyBrick      = 207,
+    kChangeTransparencyByNBrick= 208,
+    kSetBrightnessBrick        = 209,
+    kChangeBrightnessByNBrick  = 210,
+    kSetColorBrick             = 211,
+    kChangeColorByNBrick       = 212,
+    kClearGraphicEffectBrick   = 213,
+    kFlashBrick                = 214,
 
     
     // 3xx sound bricks
@@ -292,8 +295,10 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"NoteBrick"                 : @(kNoteBrick),\
     @"ForeverBrick"              : @(kForeverBrick),\
     @"IfLogicBeginBrick"         : @(kIfBrick),\
+    @"IfThenLogicBeginBrick"     : @(kIfThenBrick),\
     @"IfLogicElseBrick"          : @(kIfElseBrick),\
     @"IfLogicEndBrick"           : @(kIfEndBrick),\
+    @"IfThenLogicEndBrick"       : @(kIfThenEndBrick),\
     @"RepeatBrick"               : @(kRepeatBrick),\
     @"RepeatUntilBrick"          : @(kRepeatUntilBrick),\
     @"LoopEndBrick"              : @(kLoopEndBrick),\
@@ -325,6 +330,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     /* look bricks */\
     @"SetLookBrick"              : @(kSetLookBrick),\
     @"NextLookBrick"             : @(kNextLookBrick),\
+    @"PreviousLookBrick"         : @(kPreviousLookBrick),\
     @"SetSizeToBrick"            : @(kSetSizeToBrick),\
     @"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
     @"HideBrick"                 : @(kHideBrick),\
@@ -378,8 +384,10 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"NoteBrick"                 : @(kBrickHeight2h),\
 @"ForeverBrick"              : @(kBrickHeight1h),\
 @"IfLogicBeginBrick"         : @(kBrickHeight1h),\
+@"IfThenLogicBeginBrick"     : @(kBrickHeight1h),\
 @"IfLogicElseBrick"          : @(kBrickHeight1h),\
 @"IfLogicEndBrick"           : @(kBrickHeight1h),\
+@"IfThenLogicEndBrick"       : @(kBrickHeight1h),\
 @"RepeatBrick"               : @(kBrickHeight1h),\
 @"RepeatUntilBrick"          : @(kBrickHeight1h),\
 @"LoopEndBrick"              : @(kBrickHeight1h),\
@@ -411,6 +419,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 /* look bricks */\
 @"SetLookBrick"              : @(kBrickHeight2h),\
 @"NextLookBrick"             : @(kBrickHeight1h),\
+@"PreviousLookBrick"         : @(kBrickHeight1h),\
 @"SetSizeToBrick"            : @(kBrickHeight1h),\
 @"ChangeSizeByNBrick"        : @(kBrickHeight1h),\
 @"HideBrick"                 : @(kBrickHeight1h),\
@@ -439,8 +448,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"PhiroMotorMoveForwardBrick"   : @(kBrickHeight3h),\
 @"PhiroMotorMoveBackwardBrick"  : @(kBrickHeight3h),\
 @"PhiroPlayToneBrick"           : @(kBrickHeight3h),\
-@"PhiroRGBLightBrick"          : @(kBrickHeight3h),\
-@"PhiroIfLogicBeginBrick"          : @(kBrickHeight1h)\
+@"PhiroRGBLightBrick"           : @(kBrickHeight3h),\
+@"PhiroIfLogicBeginBrick"       : @(kBrickHeight1h)\
 }
 
 // brick heights

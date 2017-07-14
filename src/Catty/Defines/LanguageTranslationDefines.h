@@ -377,6 +377,8 @@
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
+#define kLocalizedPreviousLook NSLocalizedString(@"Previous look", nil)
+#define kLocalizedPreviousBackground NSLocalizedString(@"Previous background", nil)
 #define kLocalizedSetSizeTo NSLocalizedString(@"Set size to", nil)
 #define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by", nil)
 #define kLocalizedHide NSLocalizedString(@"Hide", nil)

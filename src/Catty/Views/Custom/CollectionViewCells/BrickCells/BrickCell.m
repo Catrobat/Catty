@@ -56,8 +56,10 @@
     @"{TEXT}",                      /* note            */\
     @[],                            /* forever         */\
     @"{FLOAT;range=(-inf,inf)}",    /* if              */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if then         */\
     @[],                            /* else            */\
     @[],                            /* if end          */\
+    @[],                            /* if then end     */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
     @"{FLOAT;range=(-inf,inf)}",    /* repeat until    */\
     @[]                             /* loop end        */\
@@ -94,6 +96,7 @@
 #define kLookBrickNameParams @[\
     @"{LOOK}",                      /* set background           */\
     @[],                            /* next background          */\
+    @[],                            /* previous background      */\
     @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
     @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
     @[],                            /* hide                     */\
@@ -171,6 +174,12 @@
 
 - (void)setupBrickCell
 {
+    [self setupBrickCellinSelectionView:false inBackground:false];
+}
+
+- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView inBackground:(BOOL)inBackground
+{
+    self.brickTitle = [self.scriptOrBrick brickTitleForBrickinSelection:inSelectionView inBackground:inBackground];
     if ([self isKindOfClass:[LoopEndBrickCell class]]) {
         LoopEndBrickCell* cell = (LoopEndBrickCell*)self;
         cell.type = [[BrickManager sharedBrickManager] checkEndLoopBrickTypeForDrawing:cell];
@@ -362,7 +371,7 @@
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
-    NSString *brickTitle = self.scriptOrBrick.brickTitle;
+    NSString *brickTitle = self.brickTitle;
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;

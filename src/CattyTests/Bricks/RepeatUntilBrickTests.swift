@@ -26,15 +26,51 @@ import XCTest
 
 final class RepeatUntilBrickTests: XCTestCase {
     
-//    func testTitleSingular() {
-//        let repeatBrick = RepeatBrick()
-//        repeatBrick.timesToRepeat = Formula(double: 1)
-//        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTime, repeatBrick.brickTitle, "Wrong brick title")
-//    }
-//    
-//    func testTitlePlural() {
-//        let repeatBrick = RepeatBrick()
-//        repeatBrick.timesToRepeat = Formula(double: 2)
-//        XCTAssertEqual(kLocalizedRepeat + "%@ " + kLocalizedTimes, repeatBrick.brickTitle, "Wrong brick title")
-//    }
+    func testRepeatUntil() {
+        let object = SpriteObject()
+        let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let filePath: String? = bundle.pathForResource("test.png", ofType: nil)
+        let imageData: NSData? = UIImagePNGRepresentation(UIImage(contentsOfFile: filePath!)!)
+        
+        let look = Look(name: "test", andPath: "test.png")
+        imageData?.writeToFile("\(object.projectPath())/\("images")/\("test.png")", atomically: true)
+        
+        let varContainer = VariablesContainer();
+        object.program.variables = varContainer;
+        
+        let script = WhenScript()
+        script.object = object
+        
+        object.lookList.addObject(look)
+        
+        spriteNode.currentLook = look
+
+        let repeatUntilBrick = RepeatUntilBrick()
+        
+        
+        let variableC = UserVariable()
+        variableC.name = "c"
+        variableC.value = 0
+        
+        object.program.variables.programVariableList.addObject(variableC)
+
+        repeatUntilBrick.repeatCondition = Formula(formulaElement: FormulaElement(elementType: .OPERATOR, value: "GREATER_THAN", leftChild: nil , rightChild: nil, parent: nil))
+        let timesToRepeat = FormulaElement(elementType: .NUMBER, value: "5", leftChild: nil, rightChild: nil, parent: repeatUntilBrick.repeatCondition.formulaTree)
+        let variableElement = FormulaElement(elementType: .USER_VARIABLE, value: variableC.name, leftChild: nil, rightChild: nil, parent: repeatUntilBrick.repeatCondition.formulaTree)
+        
+        repeatUntilBrick.repeatCondition.formulaTree.leftChild = variableElement
+        repeatUntilBrick.repeatCondition.formulaTree.rightChild = timesToRepeat
+        
+        let setVarBrick = SetVariableBrick()
+        setVarBrick.variableFormula = Formula(formulaElement: variableElement)
+        
+        script.addBrick(repeatUntilBrick, atIndex: 1)
+        script.addBrick(setVarBrick, atIndex: 2)
+        
+        Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
+    }
 }

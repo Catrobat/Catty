@@ -192,5 +192,100 @@ final class CBFrontendTests: XCTestCase {
             index += 1
         }
     }
+    
+    func testComputeIfThenConditionalSequence() {
+        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let whenScript = WhenScript()
+        whenScript.action = kWhenScriptDefaultAction
+        let waitBrick = WaitBrick()
+        waitBrick.timeToWaitInSeconds = Formula(integer: 2)
+        let noteBrick = NoteBrick()
+        let broadcastBrick = BroadcastBrick()
+        let broadcastWaitBrick = BroadcastWaitBrick()
+        let ifThenLogicBeginBrick = IfThenLogicBeginBrick()
+        ifThenLogicBeginBrick.ifCondition = Formula(integer: 1)
+        let playSoundBrick = PlaySoundBrick()
+        let stopAllSoundsBrick = StopAllSoundsBrick()
+        let speakBrick = SpeakBrick()
+        let changeVolumeByNBrick = ChangeVolumeByNBrick()
+        let setVolumeToBrick = SetVolumeToBrick()
+        let setVariableBrick = SetVariableBrick()
+        let changeVariableBrick = ChangeVariableBrick()
+        let ifLogicEndBrick = IfThenLogicEndBrick()
+        let flashBrick = FlashBrick()
+        let vibrationBrick = VibrationBrick()
+        
+        ifThenLogicBeginBrick.ifEndBrick = ifLogicEndBrick
+        ifLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick
+        
+        let preIfThenOperationSequenceBricks = [waitBrick, noteBrick, broadcastBrick,
+                                                broadcastWaitBrick, changeVariableBrick]
+        let ifOperationSequenceBricks = [playSoundBrick, speakBrick, stopAllSoundsBrick, speakBrick, changeVolumeByNBrick]
+        let postIfThenOperationSequenceBricks = [flashBrick, vibrationBrick, setVolumeToBrick, setVariableBrick]
+        
+        var scriptBrickList = preIfThenOperationSequenceBricks
+        scriptBrickList += [ifThenLogicBeginBrick]
+        scriptBrickList += ifOperationSequenceBricks
+        scriptBrickList += [ifLogicEndBrick]
+        scriptBrickList += postIfThenOperationSequenceBricks
+        whenScript.brickList = NSMutableArray(array: scriptBrickList)
+        
+        let scriptSequenceList = frontend.computeSequenceListForScript(whenScript)
+        XCTAssertTrue(scriptSequenceList.script === whenScript)
+        XCTAssertEqual(scriptSequenceList.count, 3, "Sequence list should look like this: [CBOperationSequence, CBIfConditionalSequence, CBOperationSequence]")
+        let sequenceList = scriptSequenceList.sequenceList
+        XCTAssertNotNil(sequenceList.rootSequenceList)
+        XCTAssertTrue(sequenceList.rootSequenceList! === scriptSequenceList)
+        XCTAssertEqual(sequenceList.count, 3, "Sequence list should look like this: [CBOperationSequence, CBIfConditionalSequence, CBOperationSequence]")
+        XCTAssertFalse(sequenceList.isEmpty(), "WTH!!! Sequence list is empty!")
+        
+        let firstSequence = sequenceList.sequenceList[0]
+        XCTAssertTrue(firstSequence is CBOperationSequence)
+        let operationSequence = firstSequence as! CBOperationSequence
+        XCTAssertTrue(operationSequence.rootSequenceList! === scriptSequenceList)
+        XCTAssertFalse(operationSequence.isEmpty())
+        // WhenScript contains 1 NoteBrick => NoteBricks are ommited => therefore "- 1"
+        XCTAssertEqual(operationSequence.operationList.count, (preIfThenOperationSequenceBricks.count - 1))
+        var index = 0
+        for brick in preIfThenOperationSequenceBricks {
+            if brick is NoteBrick {
+                continue // NoteBricks are ommited
+            }
+            XCTAssertTrue(operationSequence.operationList[index].brick === brick)
+            index += 1
+        }
+        
+        let secondSequence = sequenceList.sequenceList[1]
+        XCTAssertTrue(secondSequence is CBIfConditionalSequence)
+        let ifConditionalSequence = secondSequence as! CBIfConditionalSequence
+        XCTAssertTrue(ifConditionalSequence.rootSequenceList! === scriptSequenceList)
+        XCTAssertFalse(ifConditionalSequence.isEmpty())
+        XCTAssertTrue(ifConditionalSequence.sequenceList.rootSequenceList! === scriptSequenceList)
+        let ifSequenceList = ifConditionalSequence.sequenceList.sequenceList
+        XCTAssertEqual(ifSequenceList.count, 1) // 1 operation list!
+        XCTAssertTrue(ifSequenceList.first is CBOperationSequence)
+        let ifOperationSequence = ifSequenceList.first as! CBOperationSequence
+        XCTAssertTrue(ifOperationSequence.rootSequenceList! === scriptSequenceList)
+        XCTAssertFalse(ifOperationSequence.isEmpty())
+        XCTAssertEqual(ifOperationSequence.operationList.count, ifOperationSequenceBricks.count)
+        index = 0
+        for brick in ifOperationSequenceBricks {
+            XCTAssertTrue(ifOperationSequence.operationList[index].brick === brick)
+            index += 1
+        }
+        index = 0
+        
+        let thirdSequence = sequenceList.sequenceList[2]
+        XCTAssertTrue(thirdSequence is CBOperationSequence)
+        let postOperationSequence = thirdSequence as! CBOperationSequence
+        XCTAssertTrue(postOperationSequence.rootSequenceList! === scriptSequenceList)
+        XCTAssertFalse(postOperationSequence.isEmpty())
+        XCTAssertEqual(postOperationSequence.operationList.count, postIfThenOperationSequenceBricks.count)
+        index = 0
+        for brick in postIfThenOperationSequenceBricks {
+            XCTAssertTrue(postOperationSequence.operationList[index].brick === brick)
+            index += 1
+        }
+    }
 
 }

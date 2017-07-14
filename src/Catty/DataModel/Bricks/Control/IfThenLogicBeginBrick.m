@@ -20,13 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IfLogicBeginBrick.h"
-#import "IfLogicElseBrick.h"
-#import "IfLogicEndBrick.h"
+#import "IfThenLogicBeginBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "Util.h"
 #import "Script.h"
 
-@implementation IfLogicBeginBrick
+@implementation IfThenLogicBeginBrick
 
 - (BOOL)isAnimateable
 {
@@ -73,15 +72,6 @@
     return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
 }
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
-{
-    if (inSelection) {
-        return [kLocalizedIfBegin stringByAppendingString:[[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart] stringByAppendingString:[[@" ... " stringByAppendingString:kLocalizedElse] stringByAppendingString:@" ..."]]];
-    } else {
-        return self.brickTitle;
-    }
-}
-
 - (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
@@ -96,16 +86,14 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"If Logic Begin Brick"];
+    return [NSString stringWithFormat:@"If Then Logic Begin Brick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![Util isEqual:self.ifElseBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifElseBrick.brickTitle])
+    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfThenLogicBeginBrick*)brick).ifEndBrick.brickTitle])
         return NO;
-    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifEndBrick.brickTitle])
-        return NO;
-    if(![self.ifCondition isEqualToFormula:((IfLogicBeginBrick*)brick).ifCondition])
+    if(![self.ifCondition isEqualToFormula:((IfThenLogicBeginBrick*)brick).ifCondition])
         return NO;
     return YES;
 }

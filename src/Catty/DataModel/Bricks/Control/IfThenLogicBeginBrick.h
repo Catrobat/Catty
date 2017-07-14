@@ -19,34 +19,19 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "BrickConditionalBranchProtocol.h"
 
-#import "NextLookBrick.h"
-#import "ObjectTableViewController.h"
-#import "Look.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+@class Formula;
+@class IfThenLogicEndBrick;
 
-@implementation NextLookBrick
+@interface IfThenLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
-{
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
-}
+@property (nonatomic, strong) Formula *ifCondition;
+@property (nonatomic, weak) IfThenLogicEndBrick *ifEndBrick;
 
-- (NSString*)pathForLook:(Look*)look
-{
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
-}
+- (BOOL)checkCondition;
+- (void)resetCondition;
 
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Nextlookbrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
 @end

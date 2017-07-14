@@ -20,33 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick.h"
-#import "ObjectTableViewController.h"
-#import "Look.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+#import "IfThenLogicBeginBrickCell.h"
 
-@implementation NextLookBrick
+@interface IfThenLogicBeginBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
+@implementation IfThenLogicBeginBrickCell
+
+- (void)drawRect:(CGRect)rect
 {
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
 }
 
-- (NSString*)pathForLook:(Look*)look
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.expressionTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
 }
 
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Nextlookbrick"];
-}
-
-#pragma mark - Resources
-- (NSInteger)getRequiredResources
-{
-    return kNoResources;
-}
 @end

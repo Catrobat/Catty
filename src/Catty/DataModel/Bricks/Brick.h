@@ -50,6 +50,8 @@
 
 - (BOOL)isArduinoBrick;
 
+- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
+
 - (NSString*)description;
 
 - (BOOL)isEqualToBrick:(Brick*)brick;

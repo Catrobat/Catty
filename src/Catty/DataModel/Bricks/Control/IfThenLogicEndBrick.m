@@ -20,28 +20,49 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NextLookBrick.h"
-#import "ObjectTableViewController.h"
-#import "Look.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+#import "IfThenLogicEndBrick.h"
+#import "IfThenLogicBeginBrick.h"
+#import "Util.h"
 
-@implementation NextLookBrick
+@implementation IfThenLogicEndBrick
 
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
+- (BOOL)isSelectableForObject
 {
-    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
+    return NO;
 }
 
-- (NSString*)pathForLook:(Look*)look
+- (BOOL)isAnimateable
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
+    return YES;
+}
+
+- (BOOL)isIfLogicBrick
+{
+    return YES;
+}
+
+- (NSString*)brickTitle
+{
+    return kLocalizedEndIf;
+}
+
+- (void)performFromScript:(Script*)script
+{
+    
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Nextlookbrick"];
+    return [NSString stringWithFormat:@"If Then Logic End Brick"];
+}
+
+#pragma mark - Compare
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfThenLogicEndBrick*)brick).ifBeginBrick.brickTitle])
+        return NO;
+    return YES;
 }
 
 #pragma mark - Resources
@@ -49,4 +70,5 @@
 {
     return kNoResources;
 }
+
 @end
