@@ -110,6 +110,12 @@
 "Background" = "Background";
 
 /* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
+
+/* No comment provided by engineer. */
 "Backgrounds" = "Backgrounds";
 
 /* paint */
