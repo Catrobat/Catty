@@ -828,7 +828,7 @@
     
     switch (sensor){
         case OBJECT_LOOK_NAME:
-//        case OBJECT_BACKGROUND_NAME:
+        case OBJECT_BACKGROUND_NAME:
         {
             if (sprite.spriteNode.currentLook.name != nil){
                 result = sprite.spriteNode.currentLook.name;
@@ -870,7 +870,8 @@
             result = sprite.spriteNode.colorValue;
             break;
         }
-        case OBJECT_LOOK_NUMBER: {
+        case OBJECT_LOOK_NUMBER:
+        case OBJECT_BACKGROUND_NUMBER: {
             result = 1;
             if (sprite.spriteNode.currentLook != nil && sprite.lookList.count > 0){
                 result = [sprite.lookList indexOfObject:sprite.spriteNode.currentLook] + 1;

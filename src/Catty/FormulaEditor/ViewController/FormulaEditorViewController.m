@@ -361,8 +361,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)addStandardSensorViewButton:(NSInteger)tag
 {
     UIButton *button = [self getSensorButton:tag];
-    if (tag >5) {
-        button.tag = 900+tag+7;
+    if (tag > 5) {
+        button.tag = 900+tag+12;
     } else {
         button.tag = 900+tag;
     }
@@ -370,13 +370,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)addFaceDetectionSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
-    button.tag = 914+tag;
+    button.tag = 919+tag;
 
 }
 -(void)addPhiroSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
-    button.tag = 918+tag;
+    button.tag = 923+tag;
     
 }
 
@@ -672,6 +672,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)update
 {
+    
+    for (UIButton *button in self.normalTypeButton) {
+        if (button.tag == OBJECT_LOOK_NAME || button.tag == OBJECT_LOOK_NUMBER) {
+            if (self.object.isBackground) {
+                button.tag += 2;        //Because OBJECT_BACKGROUN_NAME and NUMBER sensors are placed 2 ahead of their respective OBJECT_LOOK_ sensors
+            }
+        }
+    }
+    
     [self.formulaEditorTextView update];
     [self updateFormula];
     [self.undoButton setEnabled:[self.history undoIsPossible]];

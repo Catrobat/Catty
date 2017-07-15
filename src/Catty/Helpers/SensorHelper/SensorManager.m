@@ -38,6 +38,8 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_COLOR",
     @"OBJECT_LOOK_NUMBER",
     @"OBJECT_LOOK_NAME",
+    @"OBJECT_BACKGROUND_NUMBER",
+    @"OBJECT_BACKGROUND_NAME",
     @"OBJECT_SIZE",
     @"OBJECT_ROTATION",
     @"OBJECT_LAYER",
@@ -96,6 +98,12 @@ NSString * const sensorStringArray[] = {
     }
     if([sensor isEqualToString:@"OBJECT_LOOK_NAME"]) {
         return OBJECT_LOOK_NAME;
+    }
+    if([sensor isEqualToString:@"OBJECT_BACKGROUND_NUMBER"]) {
+        return OBJECT_BACKGROUND_NUMBER;
+    }
+    if([sensor isEqualToString:@"OBJECT_BACKGROUND_NAME"]) {
+        return OBJECT_BACKGROUND_NAME;
     }
     if([sensor isEqualToString:@"OBJECT_SIZE"]) {
         return OBJECT_SIZE;
@@ -169,7 +177,7 @@ NSString * const sensorStringArray[] = {
 
 + (BOOL)isStringSensor:(Sensor)sensor
 {
-    return sensor == OBJECT_LOOK_NAME ? YES : NO;
+    return (sensor == OBJECT_LOOK_NAME || sensor == OBJECT_BACKGROUND_NAME) ? YES : NO;
 }
 
 + (BOOL)isArduinoSensor:(Sensor)sensor
@@ -198,6 +206,12 @@ NSString * const sensorStringArray[] = {
             break;
         case OBJECT_LOOK_NAME:
             name = kUIFEObjectLookName;
+            break;
+        case OBJECT_BACKGROUND_NUMBER:
+            name = kUIFEObjectBackgroundNumber;
+            break;
+        case OBJECT_BACKGROUND_NAME:
+            name = kUIFEObjectBackgroundName;
             break;
         case OBJECT_GHOSTEFFECT:
             name = kUIFEObjectTransparency;
