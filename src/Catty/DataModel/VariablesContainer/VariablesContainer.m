@@ -268,9 +268,11 @@ static pthread_mutex_t variablesLock;
     }
     
     NSUInteger size = [array count];
-    int castedPosition = (int) position;
+    NSUInteger castedPosition = [(NSNumber*)position unsignedIntegerValue];
+    
     
     if ((castedPosition > (size + 1)) || (castedPosition < 1)) {
+        pthread_mutex_unlock(&variablesLock);
         return;
     }
     
