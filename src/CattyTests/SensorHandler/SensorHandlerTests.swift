@@ -108,6 +108,42 @@ final class SensorHandlerTests: XCTestCase {
         Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
     }
     
+    func testObjectLookNumberDefaultValue() {
+        let program = Program()
+        let object = SpriteObject()
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        
+        let script = WhenScript()
+        script.object = object
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(OBJECT_LOOK_NUMBER), leftChild: nil, rightChild: nil, parent: nil)
+        let formula = Formula(formulaElement: element)
+        
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(1, formula.bufferedResult as? Int, "Invalid default value for OBJECT_LOOK_NUMBER")
+    }
+    
+    func testObjectLookNameDefaultValue() {
+        let program = Program()
+        let object = SpriteObject()
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        
+        let script = WhenScript()
+        script.object = object
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(OBJECT_LOOK_NAME), leftChild: nil, rightChild: nil, parent: nil)
+        let formula = Formula(formulaElement: element)
+        
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual("", formula.bufferedResult as? String, "Invalid default value for OBJECT_LOOK_NAME")
+    }
+    
     func testObjectColor() {
         let object = SpriteObject()
         let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
