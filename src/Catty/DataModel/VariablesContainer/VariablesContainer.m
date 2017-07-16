@@ -268,18 +268,17 @@ static pthread_mutex_t variablesLock;
     }
     
     NSUInteger size = [array count];
-    int castedPosition = (int) position;
+    NSUInteger castedPosition = [(NSNumber*) position unsignedIntegerValue];
     
     if ((castedPosition > size) || (castedPosition < 1)) {
+        pthread_mutex_unlock(&variablesLock);
         return;
     }
     
     if([value isKindOfClass:[NSString class]]){
-        [array replaceObjectAtIndex:castedPosition withObject:(NSString*)value];
+        [array replaceObjectAtIndex:castedPosition - 1 withObject:(NSString*)value];
     } else if([value isKindOfClass:[NSNumber class]]){
-        [array replaceObjectAtIndex:castedPosition withObject:(NSNumber*)value];
-    } else {
-        [array insertObject:[NSNumber numberWithInt:0] atIndex:castedPosition];
+        [array replaceObjectAtIndex:castedPosition - 1 withObject:(NSNumber*)value];
     }
     userList.value = array;
     pthread_mutex_unlock(&variablesLock);
