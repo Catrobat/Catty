@@ -70,7 +70,7 @@
 
 - (BOOL)checkCondition
 {
-    return [self.repeatCondition interpretBOOLForSprite:self.script.object];
+    return ! [self.repeatCondition interpretBOOLForSprite:self.script.object];
 }
 
 - (void)resetCondition

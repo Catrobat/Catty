@@ -405,6 +405,15 @@
             <brick type="NextLookBrick"/>
             <brick type="IfLogicEndBrick"/>
             <brick type="PreviousLookBrick"/>
+            <brick type="RepeatUntilBrick">
+                <formulaList>
+                    <formula category="REPEAT_UNTIL_CONDITION">
+                        <type>NUMBER</type>
+                        <value>1</value>
+                    </formula>
+                </formulaList>
+            </brick>
+            <brick type="LoopEndBrick" />
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
