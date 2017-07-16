@@ -268,12 +268,13 @@ static pthread_mutex_t variablesLock;
     }
     
     NSUInteger size = [array count];
-    int castedPosition = (int) position;
+    NSUInteger castedPosition = [(NSNumber*)position unsignedIntegerValue];
     
     if ((castedPosition > size) || (castedPosition < 1)) {
+        pthread_mutex_unlock(&variablesLock);
         return;
     }
-    [array removeObjectAtIndex:castedPosition];
+    [array removeObjectAtIndex:castedPosition - 1];
     
     userList.value = array;
     pthread_mutex_unlock(&variablesLock);
