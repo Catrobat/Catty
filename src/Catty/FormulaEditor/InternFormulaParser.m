@@ -25,6 +25,7 @@
 #import "SensorManager.h"
 #import "InternFormulaParserException.h"
 #import "InternFormulaParserEmptyStackException.h"
+#import "SpriteObject.h"
 
 @implementation InternFormulaParser
 
@@ -226,7 +227,29 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
          
         case TOKEN_TYPE_USER_VARIABLE: {
-            [currentElement replaceElement:[self userVariableForSpriteObject:object]];
+            UserVariable *variable = [object.program.variables getUserVariableNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            
+            if (variable == nil) {
+                self.errorTokenIndex = self.currentTokenParseIndex;
+                InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Parse Error, Variable does not exist" reason:nil userInfo:nil];
+                @throw exception;
+            } else {
+                [currentElement replaceElement:[self userVariableForSpriteObject:object]];
+            }
+            break;
+        }
+            
+        case TOKEN_TYPE_USER_LIST: {
+            UserVariable *list = [object.program.variables getUserListNamed:[self.currentToken getTokenStringValue] forSpriteObject:object];
+            
+            if (list == nil) {
+                self.errorTokenIndex = self.currentTokenParseIndex;
+                InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Parse Error, List does not exist" reason:nil userInfo:nil];
+                @throw exception;
+            } else {
+                [currentElement replaceElement:[self userListForSpriteObject:object]];
+            }
+            
             break;
         }
          
@@ -245,6 +268,14 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     
 //    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
 //    @throw exception;
+    [self getNextToken];
+    return formulaTree;
+}
+
+- (FormulaElement*)userListForSpriteObject:(SpriteObject*)object
+{
+    FormulaElement *formulaTree = [[FormulaElement alloc]initWithElementType:USER_LIST value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
+    
     [self getNextToken];
     return formulaTree;
 }

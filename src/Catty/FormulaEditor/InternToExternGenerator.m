@@ -187,6 +187,15 @@
             
             return returnValue;
             break;
+        case TOKEN_TYPE_USER_LIST:
+            
+            returnValue = [NSString stringWithFormat:@"*"];
+            
+            returnValue = [returnValue stringByAppendingString:[internToken getTokenStringValue]];
+            returnValue = [returnValue stringByAppendingString:@"*"];
+            
+            return returnValue;
+            break;
         case TOKEN_TYPE_STRING:
             returnValue = [NSString stringWithFormat:@"\'"];
             

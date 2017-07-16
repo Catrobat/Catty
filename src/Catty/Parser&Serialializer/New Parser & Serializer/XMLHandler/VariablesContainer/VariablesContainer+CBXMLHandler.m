@@ -121,7 +121,7 @@
         NSMutableDictionary *objectListMap = [[self class] parseAndCreateObjectLists:objectListOfListsElement
                                                                         spriteObjectElements:spriteObjectElementMap
                                                                                  withContext:context];
-        context.spriteObjectNameVariableList = objectListMap; // needed to correctly parse SpriteObjects
+        context.spriteObjectNameListOfLists = objectListMap; // needed to correctly parse SpriteObjects
         
         // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
         OrderedMapTable *objectListOfLists = [OrderedMapTable weakToStrongObjectsMapTable];

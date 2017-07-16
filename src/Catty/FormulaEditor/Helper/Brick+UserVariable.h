@@ -26,6 +26,6 @@
 
 @interface Brick (UserVariable)
 
-- (BOOL)isVariableBeingUsed:(UserVariable*)variable;
+- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable;
 
 @end

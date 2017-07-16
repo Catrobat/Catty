@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, ElementType) {
     NUMBER,
     SENSOR,
     USER_VARIABLE,
+    USER_LIST,
     BRACKET,
     STRING
 };
@@ -48,6 +49,7 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 @"NUMBER"                 : @(NUMBER),\
 @"SENSOR"           : @(SENSOR),\
 @"USER_VARIABLE"            : @(USER_VARIABLE),\
+@"USER_LIST"            : @(USER_LIST),\
 @"BRACKET"        : @(BRACKET),\
 @"STRING"                 : @(STRING)\
 }
@@ -58,6 +60,7 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 @(NUMBER)                 : @"NUMBER",\
 @(SENSOR)           : @"SENSOR",\
 @(USER_VARIABLE)            : @"USER_VARIABLE",\
+@(USER_LIST)            : @"USER_LIST",\
 @(BRACKET)       : @"BRACKET",\
 @(STRING)                 : @"STRING"\
 }

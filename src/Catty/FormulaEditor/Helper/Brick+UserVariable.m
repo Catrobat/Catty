@@ -26,37 +26,91 @@
 #import "FormulaElement+UserVariable.h"
 #import "SetVariableBrick.h"
 #import "ChangeVariableBrick.h"
+#import "ShowTextBrick.h"
+#import "HideTextBrick.h"
+#import "AddItemToUserListBrick.h"
+
+//TODO: uncomment as soon as classes exist
+/*
+#import "ReplaceItemInUserListBrick.h"
+#import "DeleteItemOfUserListBrick.h"
+#import "InsertItemIntoUserListBrick.h"
+*/
 
 @implementation Brick (UserVariable)
 
 #define BRICK_MAX_LINE_NUMBER 3
 #define BRICK_MAX_PARAM_NUMBER 3
-- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+- (BOOL)isVarOrListBeingUsed:(UserVariable*)varOrList
 {
-    //TODO: Make it work for lists
-    if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
-       return NO;
-    
     if([self conformsToProtocol:@protocol(BrickVariableProtocol)]){
+        
         if ([self isKindOfClass:[SetVariableBrick class]]) {
             SetVariableBrick* varBrick = (SetVariableBrick*) self;
-            if ([variable isEqualToUserVariable:varBrick.userVariable]) {
+            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
                 return YES;
             }
         } else if ([self isKindOfClass:[ChangeVariableBrick class]]) {
             ChangeVariableBrick* varBrick = (ChangeVariableBrick*) self;
-            if ([variable isEqualToUserVariable:varBrick.userVariable]) {
+            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
+                return YES;
+            }
+        }
+        else if ([self isKindOfClass:[ShowTextBrick class]]) {
+            ShowTextBrick* varBrick = (ShowTextBrick*) self;
+            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
+                return YES;
+            }
+        }
+        else if ([self isKindOfClass:[HideTextBrick class]]) {
+            HideTextBrick* varBrick = (HideTextBrick*) self;
+            if ([varOrList isEqualToUserVariable:varBrick.userVariable]) {
                 return YES;
             }
         }
     }
+    
+    if([self conformsToProtocol:@protocol(BrickListProtocol)]){
+        
+        if ([self isKindOfClass:[AddItemToUserListBrick class]]) {
+            AddItemToUserListBrick* listBrick = (AddItemToUserListBrick*) self;
+            if ([varOrList isEqualToUserVariable:listBrick.userList]) {
+                return YES;
+            }
+        }
+        
+        
+        // TODO: Implement following bricks, uncomment afterwards
+        /*
+         else if ([self isKindOfClass:[ReplaceItemInUserListBrick class]]) {
+         ReplaceItemInUserListBrick* listBrick = (ReplaceItemInUserListBrick*) self;
+         if ([varOrList isEqualToUserVariable:listBrick.userList]) {
+         return YES;
+         }
+         }
+         else if ([self isKindOfClass:[DeleteItemOfUserListBrick class]]) {
+         DeleteItemOfUserListBrick* listBrick = (DeleteItemOfUserListBrick*) self;
+         if ([varOrList isEqualToUserVariable:listBrick.userList]) {
+         return YES;
+         }
+         }
+         else if ([self isKindOfClass:[InsertItemIntoUserListBrick class]]) {
+         InsertItemIntoUserListBrick* listBrick = (InsertItemIntoUserListBrick*) self;
+         if ([varOrList isEqualToUserVariable:listBrick.userList]) {
+         return YES;
+         }
+         }
+         */
+    }
 
+    if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
+        return NO;
     
     for(int line = 0; line <= BRICK_MAX_LINE_NUMBER; line++) {
         for(int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
             id<BrickFormulaProtocol> formulaBrick = (id<BrickFormulaProtocol>)self;
             Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:param];
-            if(formula && [formula.formulaTree isVariableBeingUsed:variable])
+            if(formula && [formula.formulaTree isVarOrListBeingUsed:varOrList])
                 return YES;
         }
     }
