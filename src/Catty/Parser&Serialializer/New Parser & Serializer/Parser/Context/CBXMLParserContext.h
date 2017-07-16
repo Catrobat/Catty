@@ -42,7 +42,9 @@
 @property (nonatomic, strong) NSMutableArray *programListOfLists; // (used for parsing only)
 
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameListOfLists; // (used for parsing only)
 @property (nonatomic, strong) NSMutableDictionary *formulaVariableNameList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *formulaListNameList; // (used for parsing only)
 
 - (id)initWithLanguageVersion:(CGFloat)languageVersion;
 - (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass;

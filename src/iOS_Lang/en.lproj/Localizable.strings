@@ -251,6 +251,9 @@
 "Connection not possible" = "Connection not possible";
 
 /* No comment provided by engineer. */
+"contains" = "contains";
+
+/* No comment provided by engineer. */
 "Continue" = "Continue";
 
 /* No comment provided by engineer. */
@@ -447,6 +450,9 @@
 
 /* Action sheet menu title */
 "Edit Sounds" = "Edit Sounds";
+
+/* No comment provided by engineer. */
+"element" = "element";
 
 /* paint */
 "Ellipse / Circle" = "Ellipse / Circle";
@@ -924,6 +930,9 @@
 
 /* No comment provided by engineer. */
 "November" = "November";
+
+/* No comment provided by engineer. */
+"number_of_items" = "number_of_items";
 
 /* No comment provided by engineer. */
 "Numbers" = "Numbers";

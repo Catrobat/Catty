@@ -25,13 +25,15 @@
 
 @implementation FormulaElement (UserVariable)
 
-- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+- (BOOL)isVarOrListBeingUsed:(UserVariable*)varOrList
 {
-    if(self.type == USER_VARIABLE && [self.value isEqualToString:variable.name])
+    if(!varOrList.isList && self.type == USER_VARIABLE && [self.value isEqualToString:varOrList.name])
         return YES;
-    if(self.rightChild && [self.rightChild isVariableBeingUsed:variable])
+    if(varOrList.isList && self.type == USER_LIST && [self.value isEqualToString:varOrList.name])
         return YES;
-    if(self.leftChild && [self.leftChild isVariableBeingUsed:variable])
+    if(self.rightChild && [self.rightChild isVarOrListBeingUsed:varOrList])
+        return YES;
+    if(self.leftChild && [self.leftChild isVarOrListBeingUsed:varOrList])
         return YES;
     return NO;
 }

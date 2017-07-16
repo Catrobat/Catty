@@ -112,7 +112,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
        && ([self getFirstLeftInternToken:externCursorPosition-1] == self.cursorPositionInternToken || [self.cursorPositionInternToken isFunctionParameterBracketOpen])
        && (([self.cursorPositionInternToken isFunctionName])
            || ([self.cursorPositionInternToken isFunctionParameterBracketOpen] && self.cursorTokenPosition == LEFT)
-           || ([self.cursorPositionInternToken isSensor]) || ([self.cursorPositionInternToken isUserVariable]) || ([self.cursorPositionInternToken isString]))))
+           || ([self.cursorPositionInternToken isSensor]) || ([self.cursorPositionInternToken isUserVariable]) || ([self.cursorPositionInternToken isString]) || ([self.cursorPositionInternToken isUserList]))))
     {
         [self selectCursorPositionInternToken:USER_SELECTION];
     }
