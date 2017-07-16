@@ -33,38 +33,31 @@
 
 + (instancetype)strongToStrongObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable strongToStrongObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
 }
 
 
 + (instancetype)weakToStrongObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable weakToStrongObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable weakToStrongObjectsMapTable]];
 }
 
 + (instancetype)weakToWeakObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable weakToWeakObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable weakToWeakObjectsMapTable]];
 }
 
 + (instancetype)strongToWeakObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable strongToWeakObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable strongToWeakObjectsMapTable]];
 }
 
-- (instancetype)init
+- (instancetype)initWithMapTable:(NSMapTable *)mapTable
 {
     self = [super init];
     if(self) {
-        self.keyIndexArray = [[NSMutableArray alloc] init];
+        _keyIndexArray = [[NSMutableArray alloc] init];
+        _mapTable = mapTable;
     }
     return self;
 }
@@ -151,7 +144,7 @@
 
 - (id)mutableCopy
 {
-    OrderedMapTable *orderedMapTable = [OrderedMapTable new];
+    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] initWithMapTable:nil];
     orderedMapTable.keyIndexArray = [self.keyIndexArray mutableCopy];
     orderedMapTable.mapTable = [self.mapTable mutableCopy];
     return orderedMapTable;

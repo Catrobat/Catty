@@ -196,7 +196,7 @@
     if (self.scenes == nil) {
         self.scenes = [NSArray arrayWithObject:[[Scene alloc] initWithName:@"Scene 1"
                                                                 objectList:[NSMutableArray array]
-                                                        objectVariableList:[[OrderedMapTable alloc] init]
+                                                        objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
                                                              originalWidth:[self.header.screenWidth stringValue] ?: @"768"
                                                             originalHeight:[self.header.screenHeight stringValue] ?: @"1184"]];
     }
@@ -216,8 +216,16 @@
     self.sceneModel.objectList = objectList;
 }
 
+- (NSMutableArray<UserVariable *> *)programVariableList {
+    if (!_programVariableList) {
+        _programVariableList = [NSMutableArray array];
+    }
+    return _programVariableList;
+}
 - (VariablesContainer *)variables
 {
+    NSAssert(self.programVariableList != nil && self.sceneModel.objectVariableList != nil, @"Should be nonnil");
+    
     VariablesContainer *variables = [[VariablesContainer alloc] init];
     variables.programVariableList = self.programVariableList;
     variables.objectVariableList = self.sceneModel.objectVariableList;

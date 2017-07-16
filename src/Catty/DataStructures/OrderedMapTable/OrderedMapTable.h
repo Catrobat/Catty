@@ -25,6 +25,9 @@
 
 @interface OrderedMapTable<KeyType, ObjectType> : NSObject
 
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+
 + (instancetype)strongToStrongObjectsMapTable;
 
 + (instancetype)weakToStrongObjectsMapTable;
