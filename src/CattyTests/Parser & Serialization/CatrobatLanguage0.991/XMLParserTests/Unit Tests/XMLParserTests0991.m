@@ -146,11 +146,11 @@
     XCTAssertEqual(1, [background.scriptList count], "Invalid script list");
     XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
     
-    Script *backgroundScript = [object.scriptList objectAtIndex:0];
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
     Script *objectScript = [object.scriptList objectAtIndex:0];
     
     XCTAssertEqual(2, [backgroundScript.brickList count], "Invalid brick list");
-    XCTAssertEqual(2, [objectScript.brickList count], "Invalid brick list");
+    XCTAssertEqual(3, [objectScript.brickList count], "Invalid brick list");
     
     SetVariableBrick *backgroundSetVariableBrickName = (SetVariableBrick*)[backgroundScript.brickList objectAtIndex:0];
     SetVariableBrick *backgroundSetVariableBrickNumber = (SetVariableBrick*)[backgroundScript.brickList objectAtIndex:1];
@@ -158,9 +158,8 @@
     XCTAssertEqual(SENSOR, backgroundSetVariableBrickName.variableFormula.formulaTree.type);
     XCTAssertEqual(SENSOR, backgroundSetVariableBrickNumber.variableFormula.formulaTree.type);
     
-    // Uncomment
-    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NAME], backgroundSetVariableBrickName.variableFormula.formulaTree.value);
-    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NUMBER], backgroundSetVariableBrickNumber.variableFormula.formulaTree.value);
+    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NAME] isEqualToString:backgroundSetVariableBrickName.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NUMBER] isEqualToString: backgroundSetVariableBrickNumber.variableFormula.formulaTree.value], "Invalid sensor");
     
     SetVariableBrick *objectSetVariableBrickName = (SetVariableBrick*)[objectScript.brickList objectAtIndex:0];
     SetVariableBrick *objectSetVariableBrickNumber = (SetVariableBrick*)[objectScript.brickList objectAtIndex:1];
@@ -168,9 +167,12 @@
     XCTAssertEqual(SENSOR, objectSetVariableBrickName.variableFormula.formulaTree.type);
     XCTAssertEqual(SENSOR, objectSetVariableBrickNumber.variableFormula.formulaTree.type);
     
-    // Uncomment
-    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_LOOK_NAME], objectSetVariableBrickName.variableFormula.formulaTree.value);
-    //XCTAssertEqual([[SensorManager class] stringForSensor:OBJECT_LOOK_NUMBER], objectSetVariableBrickNumber.variableFormula.formulaTree.value);
+    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_LOOK_NAME] isEqualToString: objectSetVariableBrickName.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_LOOK_NUMBER] isEqualToString: objectSetVariableBrickNumber.variableFormula.formulaTree.value], "Invalid sensor");
+    
+    SetVariableBrick *objectSetVariableBrickColor = (SetVariableBrick*)[objectScript.brickList objectAtIndex:2];
+    XCTAssertEqual(SENSOR, objectSetVariableBrickColor.variableFormula.formulaTree.type);
+    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_COLOR] isEqualToString: objectSetVariableBrickColor.variableFormula.formulaTree.value], "Invalid sensor");
 }
 
 - (void)testPreviousLookBrick

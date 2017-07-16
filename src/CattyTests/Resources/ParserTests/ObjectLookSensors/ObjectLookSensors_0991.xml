@@ -79,6 +79,15 @@
               </formulaList>
               <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
+            <brick type="SetVariableBrick">
+                <formulaList>
+                    <formula category="VARIABLE">
+                        <type>SENSOR</type>
+                        <value>OBJECT_COLOR</value>
+                    </formula>
+                </formulaList>
+                <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
