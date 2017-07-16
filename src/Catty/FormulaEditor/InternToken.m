@@ -98,6 +98,11 @@
     return self.internTokenType == TOKEN_TYPE_USER_VARIABLE;
 }
 
+- (BOOL)isUserList
+{
+    return self.internTokenType == TOKEN_TYPE_USER_LIST;
+}
+
 - (BOOL)isString
 {
     return self.internTokenType == TOKEN_TYPE_STRING;

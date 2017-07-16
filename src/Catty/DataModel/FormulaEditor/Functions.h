@@ -58,6 +58,9 @@ typedef NS_ENUM(NSInteger, Function) {
     ARDUINOANALOG,
     FLOOR,
     CEIL,
+    NUMBEROFITEMS,
+    ELEMENT,
+    CONTAINS,
     NO_FUNCTION = -1
 };
 

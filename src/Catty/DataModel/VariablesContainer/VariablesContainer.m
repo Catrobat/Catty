@@ -410,16 +410,19 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
-- (BOOL)isProgramVariableOrList:(UserVariable*)userVariable
+- (BOOL)isProgramVariableOrList:(UserVariable*)userVarOrList
 {
-    for (UserVariable *userVariableToCompare in self.programVariableList) {
-        if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
-            return YES;
+    if (!userVarOrList.isList) {
+        for (UserVariable *userVariableToCompare in self.programVariableList) {
+            if ([userVariableToCompare.name isEqualToString:userVarOrList.name]) {
+                return YES;
+            }
         }
-    }
-    for (UserVariable *userListToCompare in self.programListOfLists) {
-        if ([userListToCompare.name isEqualToString:userVariable.name]) {
-            return YES;
+    } else {
+        for (UserVariable *userListToCompare in self.programListOfLists) {
+            if ([userListToCompare.name isEqualToString:userVarOrList.name]) {
+                return YES;
+            }
         }
     }
     return NO;

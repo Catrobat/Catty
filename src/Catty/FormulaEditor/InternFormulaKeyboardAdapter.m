@@ -33,6 +33,13 @@
         return [self buildUserVariable:name];
     }
     
+    //USER LISTS
+    
+    if((resource==11) && [name length]!=0)
+    {
+        return [self buildUserList:name];
+    }
+    
     //STRING
     
     if(resource == TOKEN_TYPE_STRING)
@@ -222,6 +229,29 @@
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
             
+        case NUMBEROFITEMS:
+            return [self buildSingleParameterFunction:NUMBEROFITEMS
+                               withFirstParameterType:TOKEN_TYPE_USER_LIST
+                                    andParameterValue:[NSString stringWithFormat:@"list name"]];
+            break;
+            
+        case ELEMENT:
+            return [self buildDoubleParameterFunction:ELEMENT
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]
+                              withSecondParameterType:TOKEN_TYPE_USER_LIST
+                              andSecondParameterValue:[NSString stringWithFormat:@"list name"]];
+            break;
+            
+        case CONTAINS:
+            return [self buildDoubleParameterFunction:CONTAINS
+                               withFirstParameterType:TOKEN_TYPE_USER_LIST
+                                    andParameterValue:[NSString stringWithFormat:@"list name"]
+                              withSecondParameterType:TOKEN_TYPE_NUMBER
+                              andSecondParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+
+            
         //PERIOD
             
         case DECIMAL_MARK:
@@ -382,6 +412,13 @@
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_USER_VARIABLE AndValue:name]];
+    return returnList;
+}
+
+- (NSMutableArray *)buildUserList:(NSString *)name
+{
+    NSMutableArray *returnList = [[NSMutableArray alloc]init];
+    [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_USER_LIST AndValue:name]];
     return returnList;
 }
 

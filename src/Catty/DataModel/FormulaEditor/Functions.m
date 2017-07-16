@@ -92,6 +92,12 @@
         return FLOOR;
     if([value isEqualToString:@"CEIL"])
         return CEIL;
+    if([value isEqualToString:@"NUMBEROFITEMS"])
+        return NUMBEROFITEMS;
+    if([value isEqualToString:@"ELEMENT"])
+        return ELEMENT;
+    if([value isEqualToString:@"CONTAINS"])
+        return CONTAINS;
     
     return NO_FUNCTION;
 }
@@ -179,6 +185,15 @@
             break;
         case CEIL:
             return @"CEIL";
+            break;
+        case NUMBEROFITEMS:
+            return @"NUMBEROFITEMS";
+            break;
+        case ELEMENT:
+            return @"ELEMENT";
+            break;
+        case CONTAINS:
+            return @"CONTAINS";
             break;
         default:
             return nil;
@@ -274,6 +289,15 @@
             break;
         case CEIL:
             return kUIFEFunctionCeil;
+            break;
+        case NUMBEROFITEMS:
+            return kUIFEFunctionNumberOfItems;
+            break;
+        case ELEMENT:
+            return kUIFEFunctionElement;
+            break;
+        case CONTAINS:
+            return kUIFEFunctionContains;
             break;
         default:
             return @"";
