@@ -20,19 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
+#import "BrickCell.h"
 
-@testable import Pocket_Code
+@interface RepeatUntilBrickCell : BrickCell
 
-final class RepeatUntilBrickTests: XCTestCase {
-    
-    func testRepeatUntil() {
-        let repeatUntilBrick = RepeatUntilBrick()
-        repeatUntilBrick.repeatCondition = Formula(double: 0)
-        XCTAssertTrue(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
-        
-        repeatUntilBrick.repeatCondition = Formula(double: 1)
-        XCTAssertFalse(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
-    }
+@property (nonatomic, weak) UITextField *numberOfLoopsTextField;
 
-}
+@end

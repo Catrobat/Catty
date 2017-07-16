@@ -20,19 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
+#import "RepeatUntilBrickCell.h"
 
-@testable import Pocket_Code
+@interface RepeatUntilBrickCell ()
+@property (nonatomic, strong) UILabel *leftTextLabel;
+@property (nonatomic, strong) UILabel *rightTextLabel;
+@end
 
-final class RepeatUntilBrickTests: XCTestCase {
-    
-    func testRepeatUntil() {
-        let repeatUntilBrick = RepeatUntilBrick()
-        repeatUntilBrick.repeatCondition = Formula(double: 0)
-        XCTAssertTrue(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
-        
-        repeatUntilBrick.repeatCondition = Formula(double: 1)
-        XCTAssertFalse(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
-    }
+@implementation RepeatUntilBrickCell
 
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
 }
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.leftTextLabel = inlineViewSubViews[0];
+    self.numberOfLoopsTextField = inlineViewSubViews[1];
+    self.rightTextLabel = inlineViewSubViews[2];
+}
+
+@end
