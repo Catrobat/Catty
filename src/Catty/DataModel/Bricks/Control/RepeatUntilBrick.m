@@ -24,7 +24,6 @@
 #import "Script.h"
 
 @interface RepeatUntilBrick()
-@property (nonatomic, assign) int loopCount;
 @end
 
 @implementation RepeatUntilBrick
@@ -79,14 +78,12 @@
 
 - (BOOL)checkCondition
 {
-    NSDebug(@"Loop Count: %d", self.loopCount);
-    return [self.repeatCondition interpretBOOLForSprite:self.script.object];
+    return ! [self.repeatCondition interpretBOOLForSprite:self.script.object];
 }
 
-//- (void)resetCondition
-//{
-//    self.loopCount = 0;
-//}
+- (void)resetCondition
+{
+}
 
 #pragma mark - Description
 - (NSString*)description
@@ -98,7 +95,6 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     RepeatUntilBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
-    brick.loopCount = self.loopCount;
     return brick;
 }
 
