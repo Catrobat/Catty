@@ -31,6 +31,121 @@ final class SensorHandlerTests: XCTestCase {
     }
     
     func testObjectLookName() {
-        XCTAssertTrue(false)
+        let object = SpriteObject()
+        let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let filePath: String? = bundle.pathForResource("test.png", ofType: nil)
+        let imageData: NSData? = UIImagePNGRepresentation(UIImage(contentsOfFile: filePath!)!)
+        
+        let look = Look(name: "test", andPath: "test.png")
+        imageData?.writeToFile("\(object.projectPath())/\("test.png")", atomically: true)
+        let look1 = Look(name: "test2", andPath: "test2.png")
+        imageData?.writeToFile("\(object.projectPath())/\("test2.png")", atomically: true)
+        
+        let script = WhenScript()
+        script.object = object
+        
+        object.lookList.addObject(look)
+        object.lookList.addObject(look1)
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(OBJECT_LOOK_NAME), leftChild: nil, rightChild: nil, parent: nil)
+        let formula = Formula(formulaElement: element)
+        
+        spriteNode.currentLook = look
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? String, look.name)
+        
+        spriteNode.currentLook = look1
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? String, look1.name)
+        
+        Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
+    }
+    
+    func testObjectLookNumber() {
+        let object = SpriteObject()
+        let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let filePath: String? = bundle.pathForResource("test.png", ofType: nil)
+        let imageData: NSData? = UIImagePNGRepresentation(UIImage(contentsOfFile: filePath!)!)
+        
+        let look = Look(name: "test", andPath: "test.png")
+        imageData?.writeToFile("\(object.projectPath())/\("test.png")", atomically: true)
+        
+        let look1 = Look(name: "test2", andPath: "test2.png")
+        imageData?.writeToFile("\(object.projectPath())/\("test2.png")", atomically: true)
+        
+        let script = WhenScript()
+        script.object = object
+        
+        object.lookList.addObject(look)
+        
+        object.lookList.addObject(look1)
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(OBJECT_LOOK_NUMBER), leftChild: nil, rightChild: nil, parent: nil)
+        
+        let formula = Formula(formulaElement: element)
+        
+        spriteNode.currentLook = look
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? Int, object.lookList.indexOfObject(look) + 1)
+        
+        spriteNode.currentLook = look1
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? Int, object.lookList.indexOfObject(look1) + 1)
+        
+        
+        Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
+    }
+    
+    func testObjectColor() {
+        let object = SpriteObject()
+        let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let filePath: String? = bundle.pathForResource("test.png", ofType: nil)
+        let imageData: NSData? = UIImagePNGRepresentation(UIImage(contentsOfFile: filePath!)!)
+        
+        let look = Look(name: "test", andPath: "test.png")
+        imageData?.writeToFile("\(object.projectPath())/\("images")/\("test.png")", atomically: true)
+        
+        let script = WhenScript()
+        script.object = object
+        
+        object.lookList.addObject(look)
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(OBJECT_COLOR), leftChild: nil, rightChild: nil, parent: nil)
+        let formula = Formula(formulaElement: element)
+        
+        spriteNode.currentLook = look
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? Int, 0)
+        
+        let changeColorByNBrick = ChangeColorByNBrick()
+        changeColorByNBrick.script = script
+        changeColorByNBrick.changeColor = Formula(double: 25)
+        
+        let action = changeColorByNBrick.actionBlock()
+        action!()
+        
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        XCTAssertEqual(formula.bufferedResult as? Int, 25)
+        
+        
+        Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
     }
 }

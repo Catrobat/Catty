@@ -35,6 +35,11 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_Y",
     @"OBJECT_GHOSTEFFECT",
     @"OBJECT_BRIGHTNESS",
+    @"OBJECT_COLOR",
+    @"OBJECT_LOOK_NUMBER",
+    @"OBJECT_LOOK_NAME",
+    @"OBJECT_BACKGROUND_NUMBER",
+    @"OBJECT_BACKGROUND_NAME",
     @"OBJECT_SIZE",
     @"OBJECT_ROTATION",
     @"OBJECT_LAYER",
@@ -84,6 +89,21 @@ NSString * const sensorStringArray[] = {
     }
     if([sensor isEqualToString:@"OBJECT_BRIGHTNESS"]) {
         return OBJECT_BRIGHTNESS;
+    }
+    if([sensor isEqualToString:@"OBJECT_COLOR"]) {
+        return OBJECT_COLOR;
+    }
+    if([sensor isEqualToString:@"OBJECT_LOOK_NUMBER"]) {
+        return OBJECT_LOOK_NUMBER;
+    }
+    if([sensor isEqualToString:@"OBJECT_LOOK_NAME"]) {
+        return OBJECT_LOOK_NAME;
+    }
+    if([sensor isEqualToString:@"OBJECT_BACKGROUND_NUMBER"]) {
+        return OBJECT_BACKGROUND_NUMBER;
+    }
+    if([sensor isEqualToString:@"OBJECT_BACKGROUND_NAME"]) {
+        return OBJECT_BACKGROUND_NAME;
     }
     if([sensor isEqualToString:@"OBJECT_SIZE"]) {
         return OBJECT_SIZE;
@@ -155,6 +175,11 @@ NSString * const sensorStringArray[] = {
     return (sensor >= OBJECT_X && sensor <= OBJECT_LAYER) ? YES : NO;
 }
 
++ (BOOL)isStringSensor:(Sensor)sensor
+{
+    return (sensor == OBJECT_LOOK_NAME || sensor == OBJECT_BACKGROUND_NAME) ? YES : NO;
+}
+
 + (BOOL)isArduinoSensor:(Sensor)sensor
 {
     return (sensor >= arduino_analogPin && sensor <= arduino_digitalPin) ? YES : NO;
@@ -172,6 +197,21 @@ NSString * const sensorStringArray[] = {
             break;
         case OBJECT_BRIGHTNESS:
             name = kUIFEObjectBrightness;
+            break;
+        case OBJECT_COLOR:
+            name = kUIFEObjectColor;
+            break;
+        case OBJECT_LOOK_NUMBER:
+            name = kUIFEObjectLookNumber;
+            break;
+        case OBJECT_LOOK_NAME:
+            name = kUIFEObjectLookName;
+            break;
+        case OBJECT_BACKGROUND_NUMBER:
+            name = kUIFEObjectBackgroundNumber;
+            break;
+        case OBJECT_BACKGROUND_NAME:
+            name = kUIFEObjectBackgroundName;
             break;
         case OBJECT_GHOSTEFFECT:
             name = kUIFEObjectTransparency;

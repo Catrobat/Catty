@@ -110,6 +110,12 @@
 "Background" = "Background";
 
 /* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
+
+/* No comment provided by engineer. */
 "Backgrounds" = "Backgrounds";
 
 /* paint */
@@ -219,6 +225,9 @@
 
 /* paint */
 "Close Paint" = "Close Paint";
+
+/* No comment provided by engineer. */
+"color" = "color";
 
 /* No comment provided by engineer. */
 "compass" = "compass";
@@ -723,6 +732,12 @@
 
 /* LOOK */
 "look" = "look";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
 
 /* No comment provided by engineer. */
 "Looks" = "Looks";
