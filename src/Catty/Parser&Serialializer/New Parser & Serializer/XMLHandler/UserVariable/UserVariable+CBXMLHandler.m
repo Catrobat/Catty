@@ -100,7 +100,7 @@
     SpriteObject *spriteObject = context.spriteObject;
     if (spriteObject) {
         [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
-        NSMutableArray *objectUserLists = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
+        NSMutableArray *objectUserLists = [context.spriteObjectNameListOfLists objectForKey:spriteObject.name];
         for (UserVariable *userListToCompare in objectUserLists) {
             if ([userListToCompare.name isEqualToString:userListName]) {
                 return userListToCompare;

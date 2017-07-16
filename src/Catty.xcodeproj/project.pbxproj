@@ -307,7 +307,6 @@
 		926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197EF1BF3249E006D1A61 /* ArduinoTests.swift */; };
 		926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926197F31BF32500006D1A61 /* PhiroTests.swift */; };
 		926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926198011BF48384006D1A61 /* BluetoothMocks.swift */; };
-		9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */; };
 		9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B7041C9E8F6C008BC594 /* SoundCache.m */; };
 		9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9276B70A1C9EA68A008BC594 /* CatrobatPlayerItem.m */; };
 		927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F79D61BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m */; };
@@ -703,6 +702,7 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */; };
 		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
 		BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB591EC382DB00796056 /* BrickCellListData.m */; };
 		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
@@ -1345,8 +1345,6 @@
 		926197EF1BF3249E006D1A61 /* ArduinoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoTests.swift; sourceTree = "<group>"; };
 		926197F31BF32500006D1A61 /* PhiroTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroTests.swift; sourceTree = "<group>"; };
 		926198011BF48384006D1A61 /* BluetoothMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMocks.swift; sourceTree = "<group>"; };
-		9266F95D1BDFBE3C0034828B /* ProgramVariablesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramVariablesManager.h; sourceTree = "<group>"; };
-		9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramVariablesManager.m; sourceTree = "<group>"; };
 		9276B7031C9E8F6C008BC594 /* SoundCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCache.h; sourceTree = "<group>"; };
 		9276B7041C9E8F6C008BC594 /* SoundCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCache.m; sourceTree = "<group>"; };
 		9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatPlayerItem.h; sourceTree = "<group>"; };
@@ -2087,6 +2085,7 @@
 		B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListFunctionsTest.m; path = Formula/UserListFunctionsTest.m; sourceTree = "<group>"; };
 		BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrick.h; sourceTree = "<group>"; };
 		BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrick.m; sourceTree = "<group>"; };
 		BA9CAB571EC3811400796056 /* BrickListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickListProtocol.h; sourceTree = "<group>"; };
@@ -2575,6 +2574,7 @@
 				4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */,
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
+				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -3532,15 +3532,6 @@
 			path = BluetoothMocks;
 			sourceTree = "<group>";
 		};
-		9266F95C1BDFBE3C0034828B /* ProgramVariablesManager */ = {
-			isa = PBXGroup;
-			children = (
-				9266F95D1BDFBE3C0034828B /* ProgramVariablesManager.h */,
-				9266F95E1BDFBE3C0034828B /* ProgramVariablesManager.m */,
-			);
-			path = ProgramVariablesManager;
-			sourceTree = "<group>";
-		};
 		9276B7021C9E8F6C008BC594 /* SoundCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -4373,7 +4364,6 @@
 		92FF30271A24DCAA00093DA7 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				9266F95C1BDFBE3C0034828B /* ProgramVariablesManager */,
 				92FF30281A24DCAA00093DA7 /* BrickManager */,
 				92FF302B1A24DCAA00093DA7 /* Bricks */,
 				92FF30971A24DCAA00093DA7 /* Formula */,
@@ -6778,6 +6768,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
+				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4C647C8B1D48E1F70060E70D /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
@@ -7017,7 +7008,6 @@
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				AA74EE2D1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift in Sources */,
 				9218B2091CC4AB75007B4C60 /* UIImage+Rotate.m in Sources */,
-				9266F95F1BDFBE3C0034828B /* ProgramVariablesManager.m in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,

@@ -571,6 +571,9 @@
 #define kUIFEFunctionLength NSLocalizedString(@"length", nil)
 #define kUIFEFunctionFloor NSLocalizedString(@"floor", nil)
 #define kUIFEFunctionCeil NSLocalizedString(@"ceil", nil)
+#define kUIFEFunctionNumberOfItems NSLocalizedString(@"number_of_items", nil)
+#define kUIFEFunctionElement NSLocalizedString(@"element", nil)
+#define kUIFEFunctionContains NSLocalizedString(@"contains", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)

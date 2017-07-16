@@ -47,6 +47,7 @@ typedef enum {
     TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER,
     TOKEN_TYPE_PERIOD,
     TOKEN_TYPE_USER_VARIABLE,
+    TOKEN_TYPE_USER_LIST,
     TOKEN_TYPE_STRING,
     TOKEN_TYPE_PARSER_END_OF_FILE
 } InternTokenType;
@@ -88,6 +89,7 @@ typedef enum KeyboardNumbers
 - (BOOL)isSensor;
 - (BOOL)isEndOfFileToken;
 - (BOOL)isUserVariable;
+- (BOOL)isUserList;
 - (BOOL)isString;
 - (void)appendToTokenStringValue:(NSString*)stringToAppend;
 - (void)appendToTokenStringValueWithArray:(NSArray*)internTokensToAppend;
