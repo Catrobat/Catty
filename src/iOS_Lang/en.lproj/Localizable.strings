@@ -643,6 +643,9 @@
 /* No comment provided by engineer. */
 "Information" = "Information";
 
+/* No comment provided by engineer. */
+"Insert%@into list\n%@\n at position%@" = "Insert%@into list\n%@\n at position%@";
+
 /* paint */
 "Inserted" = "Inserted";
 

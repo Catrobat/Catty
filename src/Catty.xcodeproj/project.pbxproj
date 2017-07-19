@@ -703,15 +703,20 @@
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
 		BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */; };
+		BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */; };
+		BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */; };
+		BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */; };
+		BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */; };
+		BA55D76F1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA55D76E1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml */; };
 		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
 		BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB591EC382DB00796056 /* BrickCellListData.m */; };
 		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
 		BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */; };
 		BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */; };
-		BA9CAB691EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
-		BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
-		BA9CAB6B1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */; };
-		BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */; };
+		BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
+		BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
+		BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
+		BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
 		BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49B51F165C3100F06741 /* ReplaceItemInUserListBrickCell.m */; };
 		BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BA1F165C6E00F06741 /* ReplaceItemInUserListBrick.m */; };
 		BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */; };
@@ -2086,6 +2091,14 @@
 		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListFunctionsTest.m; path = Formula/UserListFunctionsTest.m; sourceTree = "<group>"; };
+		BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "InsertItemIntoUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "InsertItemIntoUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/InsertItemIntoUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		BA1FA99B1F02AEDC0084184D /* InsertItemIntoUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertItemIntoUserListBrick.h; sourceTree = "<group>"; };
+		BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertItemIntoUserListBrick.m; sourceTree = "<group>"; };
+		BA1FA99E1F02B0020084184D /* InsertItemIntoUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertItemIntoUserListBrickCell.h; sourceTree = "<group>"; };
+		BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertItemIntoUserListBrickCell.m; sourceTree = "<group>"; };
+		BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "InsertItemIntoUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/InsertItemIntoUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BA55D76E1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ReplaceItemInUserListBrick098.xml; sourceTree = "<group>"; };
 		BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrick.h; sourceTree = "<group>"; };
 		BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrick.m; sourceTree = "<group>"; };
 		BA9CAB571EC3811400796056 /* BrickListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickListProtocol.h; sourceTree = "<group>"; };
@@ -2096,8 +2109,8 @@
 		BA9CAB5E1EC383E800796056 /* AddItemToUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrickCell.h; sourceTree = "<group>"; };
 		BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrickCell.m; sourceTree = "<group>"; };
 		BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AddItemToUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/AddItemToUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
-		BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
-		BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/AddItemToUserListBrick/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		BAEE49B41F165C3100F06741 /* ReplaceItemInUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceItemInUserListBrickCell.h; sourceTree = "<group>"; };
 		BAEE49B51F165C3100F06741 /* ReplaceItemInUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceItemInUserListBrickCell.m; sourceTree = "<group>"; };
 		BAEE49B91F165C6E00F06741 /* ReplaceItemInUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceItemInUserListBrick.h; sourceTree = "<group>"; };
@@ -2408,7 +2421,6 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				BA9CAB741EC391C900796056 /* AddItemToUserListBrick */,
 				CAE3E4ED1B4C50B300CC88BD /* Air_fight_0.5 */,
 				CAE3E4F01B4C50B300CC88BD /* Airplane_with_shadow */,
 				CAE3E4F31B4C50B300CC88BD /* Compass_0.1 */,
@@ -2420,6 +2432,7 @@
 				CAE3E5021B4C50B300CC88BD /* Galaxy_War */,
 				CAE3E5051B4C50B300CC88BD /* Gossip_Girl */,
 				4C7A84841DCCE270000F366B /* LedFlashBrick */,
+				BAD47DC01F12935F001C38BC /* ListBricks */,
 				CAE3E5081B4C50B300CC88BD /* Memory */,
 				CAE3E50B1B4C50B300CC88BD /* Minecraft_Work_In_Progress */,
 				CAE3E50E1B4C50B300CC88BD /* Minions_ */,
@@ -2965,6 +2978,8 @@
 				9200C2D81C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m */,
 				BAEE49BC1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.h */,
 				BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */,
+				BA1FA9961F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.h */,
+				BA1FA9971F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m */,
 				9200C2D91C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.h */,
 				9200C2DA1C8084AA002F5CA4 /* ShowTextBrick+CBXMLHandler.m */,
 				AA74EF751BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.h */,
@@ -3180,7 +3195,6 @@
 		4CC85CE01B9C717C0097E470 /* ValidProgramAllBricks */ = {
 			isa = PBXGroup;
 			children = (
-				BA9CAB681EC3916F00796056 /* AddItemToUserListBrick098.xml */,
 				4C6D15FF1D7AC65400CE53CD /* ValidProgramAllBricks093.xml */,
 				4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */,
 				4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */,
@@ -4939,10 +4953,11 @@
 			isa = PBXGroup;
 			children = (
 				BA9CAB611EC3853600796056 /* AddItemToUserListBrick+Instruction.swift */,
+				AA74EE241BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift */,
 				9200C2CD1C808206002F5CA4 /* HideTextBrick+Instruction.swift */,
 				BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */,
+				BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */,
 				9200C2CE1C808206002F5CA4 /* ShowTextBrick+Instruction.swift */,
-				AA74EE241BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift */,
 				AA74EE251BC0540D00D1E954 /* SetVariableBrick+Instruction.swift */,
 			);
 			name = Data;
@@ -5050,6 +5065,8 @@
 				9200C2C61C808006002F5CA4 /* HideTextBrick.m */,
 				BAEE49B91F165C6E00F06741 /* ReplaceItemInUserListBrick.h */,
 				BAEE49BA1F165C6E00F06741 /* ReplaceItemInUserListBrick.m */,
+				BA1FA99B1F02AEDC0084184D /* InsertItemIntoUserListBrick.h */,
+				BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */,
 				9200C2C71C808006002F5CA4 /* ShowTextBrick.h */,
 				9200C2C81C808006002F5CA4 /* ShowTextBrick.m */,
 				AA74EF991BC05B5F00D1E954 /* SetVariableBrick.h */,
@@ -5249,14 +5266,16 @@
 			children = (
 				BA9CAB5E1EC383E800796056 /* AddItemToUserListBrickCell.h */,
 				BA9CAB5F1EC383E800796056 /* AddItemToUserListBrickCell.m */,
+				AA74F03E1BC05FCE00D1E954 /* ChangeVariableBrickCell.h */,
+				AA74F03F1BC05FCE00D1E954 /* ChangeVariableBrickCell.m */,
 				9200C2D11C8082EF002F5CA4 /* HideTextBrickCell.h */,
 				9200C2D21C8082EF002F5CA4 /* HideTextBrickCell.m */,
 				BAEE49B41F165C3100F06741 /* ReplaceItemInUserListBrickCell.h */,
 				BAEE49B51F165C3100F06741 /* ReplaceItemInUserListBrickCell.m */,
+				BA1FA99E1F02B0020084184D /* InsertItemIntoUserListBrickCell.h */,
+				BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */,
 				9200C2D31C8082EF002F5CA4 /* ShowTextBrickCell.h */,
 				9200C2D41C8082EF002F5CA4 /* ShowTextBrickCell.m */,
-				AA74F03E1BC05FCE00D1E954 /* ChangeVariableBrickCell.h */,
-				AA74F03F1BC05FCE00D1E954 /* ChangeVariableBrickCell.m */,
 				AA74F0401BC05FCE00D1E954 /* SetVariableBrickCell.h */,
 				AA74F0411BC05FCE00D1E954 /* SetVariableBrickCell.m */,
 			);
@@ -5519,12 +5538,14 @@
 			name = "Extensions & Delegates & Protocols";
 			sourceTree = "<group>";
 		};
-		BA9CAB741EC391C900796056 /* AddItemToUserListBrick */ = {
+		BAD47DC01F12935F001C38BC /* ListBricks */ = {
 			isa = PBXGroup;
 			children = (
-				BA9CAB701EC391BA00796056 /* AddItemToUserListBrick098.xml */,
+				BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */,
+				BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */,
+				BA55D76E1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml */,
 			);
-			name = AddItemToUserListBrick;
+			name = ListBricks;
 			sourceTree = "<group>";
 		};
 		C34B44FB17F3403400624730 /* Extensions */ = {
@@ -6222,7 +6243,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA9CAB6B1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6233,6 +6253,7 @@
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
+				BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
@@ -6264,6 +6285,7 @@
 				4C2EE3FD1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml in Resources */,
 				CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				4CE2D4071C29503300938B5E /* Minions__097.xml in Resources */,
+				BA55D76F1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml in Resources */,
 				4C6D15EE1D7AC61000CE53CD /* Rock_paper_scissors_098.xml in Resources */,
 				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
 				4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */,
@@ -6336,9 +6358,7 @@
 				4C2EE3F71B55577C006DE9B8 /* Galaxy_War_095.xml in Resources */,
 				4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */,
 				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
-				BA9CAB6A1EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
-				BA9CAB721EC391BA00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
@@ -6387,6 +6407,7 @@
 				CAE3E53C1B4C50B300CC88BD /* Compass_0.1_093.xml in Resources */,
 				CAE3E5521B4C50B300CC88BD /* Piano_093.xml in Resources */,
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
+				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6401,8 +6422,8 @@
 				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
+				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
-				BA9CAB691EC3916F00796056 /* AddItemToUserListBrick098.xml in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
@@ -6414,6 +6435,7 @@
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
 				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
+				BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
@@ -7083,12 +7105,14 @@
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
+				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
 				922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92B46F921BC7B3E5004980C1 /* ArduinoSendDigitalValueBrick.m in Sources */,
+				BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */,
 				AA74EFE61BC05B5F00D1E954 /* IfLogicEndBrick.m in Sources */,
 				92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */,
@@ -7188,6 +7212,7 @@
 				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
+				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
@@ -7217,6 +7242,7 @@
 				AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
+				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,

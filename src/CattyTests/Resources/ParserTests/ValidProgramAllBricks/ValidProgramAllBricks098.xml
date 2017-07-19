@@ -355,6 +355,47 @@
                     <string>on</string>
                 </spinnerValues>
             </brick>
+            <brick type="AddItemToUserListBrick">
+                <formulaList>
+                    <formula category="LIST_ADD_ITEM">
+                        <type>NUMBER</type>
+                        <value>66</value>
+                    </formula>
+                </formulaList>
+                <userList>
+                    <name>programList</name>
+                </userList>
+            </brick>
+            <brick type="InsertItemIntoUserListBrick">
+                <formulaList>
+                    <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
+                        <type>NUMBER</type>
+                        <value>1</value>
+                    </formula>
+                    <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
+                        <type>NUMBER</type>
+                        <value>55</value>
+                    </formula>
+                </formulaList>
+                <userList>
+                    <name>programList2</name>
+                </userList>
+            </brick>
+            <brick type="ReplaceItemInUserListBrick">
+                <formulaList>
+                    <formula category="REPLACE_ITEM_IN_USERLIST_VALUE">
+                        <type>NUMBER</type>
+                        <value>33</value>
+                    </formula>
+                    <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
+                        <type>NUMBER</type>
+                        <value>2</value>
+                    </formula>
+                </formulaList>
+                <userList>
+                    <name>programList3</name>
+                </userList>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
@@ -374,7 +415,11 @@
         </list>
       </entry>
     </objectVariableList>
-    <programListOfLists/>
+    <programListOfLists>
+        <userList reference="../../../objectList/object/scriptList/script/brickList/brick[19]/userList"/>
+        <userList reference="../../../objectList/object/scriptList/script/brickList/brick[20]/userList"/>
+        <userList reference="../../../objectList/object/scriptList/script/brickList/brick[21]/userList"/>
+    </programListOfLists>
     <programVariableList>
       <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[13]/userVariable"/>
     </programVariableList>

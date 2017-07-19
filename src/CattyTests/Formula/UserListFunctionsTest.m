@@ -67,7 +67,7 @@
     var.name = @"TestList";
     var.isList = YES;
     var.value = [[NSMutableArray alloc] init];
-    [var.value addObject:[NSNumber numberWithInt:0]];
+    [var.value addObject:[NSNumber numberWithInt:1]];
     [var.value addObject:[NSNumber numberWithInt:4]];
     [var.value addObject:[NSNumber numberWithInt:8]];
     [program.variables.programListOfLists addObject:var];
@@ -78,8 +78,15 @@
     formulaTree = formulaTree;
     
     double element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
-    
     XCTAssertEqual(element, 4, @"Should be Element of List but is not");
+    
+    leftChild.value = @"-3";
+    element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    XCTAssertEqual(element, 0, @"Invalid default value");
+    
+    leftChild.value = @"44";
+    element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    XCTAssertEqual(element, 0, @"Invalid default value");
 }
 
 - (void)testContains
