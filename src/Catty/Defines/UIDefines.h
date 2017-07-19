@@ -213,6 +213,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kHideTextBrick             = 403,
     kAddItemToUserListBrick    = 404,
     kDeleteItemOfUserListBrick = 405,
+    kInsertItemIntoUserListBrick    = 406,
     
     // 5xx arduino bricks
     kArduinoSendDigitalValueBrick  = 500,
@@ -339,12 +340,13 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"FlashBrick"                : @(kFlashBrick),\
 \
     /* variable and list bricks */\
-    @"SetVariableBrick"          : @(kSetVariableBrick),\
-    @"ChangeVariableBrick"       : @(kChangeVariableBrick),\
-    @"ShowTextBrick"             : @(kShowTextBrick),\
-    @"HideTextBrick"             : @(kHideTextBrick),\
-    @"AddItemToUserListBrick"    : @(kAddItemToUserListBrick),\
-    @"DeleteItemOfUserListBrick" : @(kDeleteItemOfUserListBrick),\
+    @"SetVariableBrick"             : @(kSetVariableBrick),\
+    @"ChangeVariableBrick"          : @(kChangeVariableBrick),\
+    @"ShowTextBrick"                : @(kShowTextBrick),\
+    @"HideTextBrick"                : @(kHideTextBrick),\
+    @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
+ 	@"DeleteItemOfUserListBrick" : @(kDeleteItemOfUserListBrick),\
+    @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
 \
     /* arduino bricks */\
     @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
@@ -426,12 +428,13 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"FlashBrick"                : @(kBrickHeight2h),\
 \
 /* variable and list bricks */\
-@"SetVariableBrick"          : @(kBrickHeight3h),\
-@"ChangeVariableBrick"       : @(kBrickHeight3h),\
-@"ShowTextBrick"             : @(kBrickHeight3h),\
-@"HideTextBrick"             : @(kBrickHeight2h),\
-@"AddItemToUserListBrick"    : @(kBrickHeight2h),\
-@"DeleteItemOfUserListBrick" : @(kBrickHeight3h),\
+@"SetVariableBrick"             : @(kBrickHeight3h),\
+@"ChangeVariableBrick"          : @(kBrickHeight3h),\
+@"ShowTextBrick"                : @(kBrickHeight3h),\
+@"HideTextBrick"                : @(kBrickHeight2h),\
+@"AddItemToUserListBrick"       : @(kBrickHeight2h),\
+@"DeleteItemOfUserListBrick" 	: @(kBrickHeight3h),\
+@"InsertItemIntoUserListBrick"  : @(kBrickHeight3h),\
 \
 /* arduino bricks */\
 @"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\

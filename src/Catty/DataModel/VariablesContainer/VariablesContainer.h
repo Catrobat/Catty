@@ -53,6 +53,7 @@
 
 - (void)deleteFromUserList:(UserVariable*)userList atIndex:(id)index;
 
+- (void)insertToUserList:(UserVariable*)userList value:(id)value atIndex:(id)position;
 
 // Array of UserVariable
 - (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject;

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>6</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.1</applicationVersion>
+    <catrobatLanguageVersion>0.98</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>iPhone Simulator</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>10.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>InsertItemIntoUserListTest</programName>
+    <remixOf/>
+    <screenHeight>736</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>414</screenWidth>
+    <tags/>
+    <url/>
+    <userHandle/>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="InsertItemIntoUserListBrick">
+              <formulaList>
+                <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
+                  <type>NUMBER</type>
+                  <value>55</value>
+                </formula>
+                <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formula>
+              </formulaList>
+              <userList>
+                <name>hallo</name>
+              </userList>
+            </brick>
+            <brick type="InsertItemIntoUserListBrick">
+              <formulaList>
+                <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formula>
+                <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
+                    <type>STRING</type>
+                    <value>test</value>
+                </formula>
+              </formulaList>
+              <userList reference="../../brick/userList"/>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList/>
+    <programListOfLists>
+      <userList reference="../../../objectList/object/scriptList/script/brickList/brick/userList"/>
+    </programListOfLists>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
