@@ -381,6 +381,17 @@
                     <name>programList2</name>
                 </userList>
             </brick>
+            <brick type="DeleteItemOfUserListBrick">
+                <formulaList>
+                    <formula category="LIST_DELETE_ITEM">
+                        <type>NUMBER</type>
+                        <value>1</value>
+                    </formula>
+                </formulaList>
+                <userList>
+                    <name>programList3</name>
+                </userList>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
@@ -403,6 +414,8 @@
     <programListOfLists>
         <userList reference="../../../objectList/object/scriptList/script/brickList/brick[19]/userList"/>
         <userList reference="../../../objectList/object/scriptList/script/brickList/brick[20]/userList"/>
+        <userList reference="../../../objectList/object/scriptList/script/brickList/brick[21]/userList"/>
+
     </programListOfLists>
     <programVariableList>
       <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[13]/userVariable"/>

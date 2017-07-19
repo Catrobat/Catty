@@ -345,7 +345,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ShowTextBrick"                : @(kShowTextBrick),\
     @"HideTextBrick"                : @(kHideTextBrick),\
     @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
- 	@"DeleteItemOfUserListBrick" : @(kDeleteItemOfUserListBrick),\
+ 	@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
     @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
 \
     /* arduino bricks */\
