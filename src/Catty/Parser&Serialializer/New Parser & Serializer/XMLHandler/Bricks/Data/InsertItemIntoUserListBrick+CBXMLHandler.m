@@ -70,11 +70,11 @@
     GDataXMLElement *formula = [self.elementFormula xmlElementWithContext:context];
     GDataXMLElement *index = [self.index xmlElementWithContext:context];
 
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_VALUE"]];
     [index addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_INDEX"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"INSERT_ITEM_INTO_USERLIST_VALUE"]];
 
-    [formulaList addChild:formula context:context];
     [formulaList addChild:index context:context];
+    [formulaList addChild:formula context:context];
 
     [brick addChild:formulaList context:context];
 

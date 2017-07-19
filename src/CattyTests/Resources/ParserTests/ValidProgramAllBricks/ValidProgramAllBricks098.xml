@@ -368,13 +368,13 @@
             </brick>
             <brick type="InsertItemIntoUserListBrick">
                 <formulaList>
-                    <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
-                        <type>NUMBER</type>
-                        <value>55</value>
-                    </formula>
                     <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
                         <type>NUMBER</type>
                         <value>1</value>
+                    </formula>
+                    <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
+                        <type>NUMBER</type>
+                        <value>55</value>
                     </formula>
                 </formulaList>
                 <userList>

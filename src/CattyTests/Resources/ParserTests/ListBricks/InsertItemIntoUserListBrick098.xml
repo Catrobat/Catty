@@ -47,13 +47,13 @@
             </brick>
             <brick type="InsertItemIntoUserListBrick">
               <formulaList>
-                <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
-                  <type>STRING</type>
-                  <value>test</value>
-                </formula>
                 <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
                   <type>NUMBER</type>
                   <value>2</value>
+                </formula>
+                <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
+                    <type>STRING</type>
+                    <value>test</value>
                 </formula>
               </formulaList>
               <userList reference="../../brick/userList"/>
