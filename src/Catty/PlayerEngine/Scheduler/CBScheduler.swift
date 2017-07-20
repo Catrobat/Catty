@@ -21,53 +21,55 @@
  */
 
 final class CBScheduler: CBSchedulerProtocol {
-
+    
     // MARK: - Properties
     var logger: CBLogger
-//    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
+    //    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
     var running = false
     private let _broadcastHandler: CBBroadcastHandlerProtocol
-
+    
     private var _spriteNodes = [String:CBSpriteNode]()
     private var _contexts = [CBScriptContextProtocol]()
     private var _whenContexts = [String:[CBWhenScriptContext]]()
     private var _scheduledContexts = OrderedDictionary<String,[CBScriptContextProtocol]>()
-
+    private var _contextsWaitingToBeScheduled = OrderedDictionary<String,[CBScriptContextProtocol]>()
+    private var _hasNewBroadcastContextBeenScheduled = false;
+    
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _availableBufferQueues = [dispatch_queue_t]()
     private let _lockWaitQueue = dispatch_queue_create("org.catrobat.LockWaitQueue", nil)
     private let _lockBufferQueue = dispatch_queue_create("org.catrobat.LockBufferQueue", nil)
     private var _lastQueueIndex = 0
-
+    
     // MARK: Static properties
     static let vibrateSerialQueue = NSOperationQueue()
-
+    
     // MARK: - Initializers
     init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol) {
         self.logger = logger
-//        self.schedulingAlgorithm = nil // default scheduling behaviour
+        //        self.schedulingAlgorithm = nil // default scheduling behaviour
         _broadcastHandler = broadcastHandler
     }
-
+    
     // MARK: - Queries
     func isContextScheduled(context: CBScriptContextProtocol) -> Bool {
         guard let spriteName = context.spriteNode.name
-        else { fatalError("Sprite node has no name!") }
+            else { fatalError("Sprite node has no name!") }
         return _scheduledContexts[spriteName]?.contains(context) == true
     }
-
+    
     // MARK: - Model methods
     func registerSpriteNode(spriteNode: CBSpriteNode) {
         precondition(spriteNode.name != nil)
         precondition(_spriteNodes[spriteNode.name!] == nil)
         _spriteNodes[spriteNode.name!] = spriteNode
     }
-
+    
     func registerContext(context: CBScriptContextProtocol) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
         precondition(!_contexts.contains(context))
         precondition(_spriteNodes[spriteName] == context.spriteNode)
-
+        
         if context is CBWhenScriptContext {
             _contexts.insert(context, atIndex: 0);
         } else {
@@ -80,14 +82,14 @@ final class CBScheduler: CBSchedulerProtocol {
             _whenContexts[spriteName]! += whenContext
         }
     }
-
+    
     // MARK: - Scheduling
     func runNextInstructionOfContext(context: CBScriptContextProtocol) {
         assert(NSThread.currentThread().isMainThread)
         context.state = .Runnable
         runNextInstructionsGroup()
     }
-
+    
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
     // <<<   SCHEDULER   |   CONTROLLER  >>>
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
@@ -95,7 +97,7 @@ final class CBScheduler: CBSchedulerProtocol {
         guard self.running else { return }
         // TODO: apply scheduling via StrategyPattern => selects scripts to be scheduled NOW!
         assert(NSThread.currentThread().isMainThread)
-
+        
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
         var nextWaitClosures = [CBScheduleElement]()
@@ -103,13 +105,13 @@ final class CBScheduler: CBSchedulerProtocol {
         var nextConditionalBufferElements = [CBConditionalFormulaBufferElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
-            else { fatalError("WTH?? Sprite node not available (any more)...") }
-
+                else { fatalError("WTH?? Sprite node not available (any more)...") }
+            
             // collect
             var nextLongActionElements = [CBScheduleLongActionElement]()
             var nextActionElements = [CBScheduleActionElement]()
             for context in contexts {
-  
+                
                 if context.state != .Runnable { continue }
                 context.state = .Running
                 if let nextInstruction = context.nextInstruction() {
@@ -137,19 +139,23 @@ final class CBScheduler: CBSchedulerProtocol {
                     logger.debug("All actions/instructions have been finished!")
                 }
             }
-
+            
             // execute actions (node dependend!)
             if nextActionElements.count > 0 {
                 let groupAction = nextActionElements.count > 1
-                                ? SKAction.group(nextActionElements.map { $0.action })
-                                : nextActionElements.first!.1
+                    ? SKAction.group(nextActionElements.map { $0.action })
+                    : nextActionElements.first!.1
                 spriteNode.runAction(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .Runnable }
                     self?.runNextInstructionsGroup()
-                    
+                    self?.scheduleBroadcastContext(spriteName)
+                    while self?._hasNewBroadcastContextBeenScheduled != nil && self!._hasNewBroadcastContextBeenScheduled {
+                        self?._hasNewBroadcastContextBeenScheduled = false;
+                        self?.runNextInstructionsGroup()
+                    }
                 }
             }
-
+            
             for (context, duration, actionCreateClosure) in nextLongActionElements {
                 var durationTime = 0.0
                 switch duration {
@@ -162,10 +168,15 @@ final class CBScheduler: CBSchedulerProtocol {
                 spriteNode.runAction(action) { [weak self] in
                     context.state = .Runnable
                     self?.runNextInstructionsGroup()
+                    self?.scheduleBroadcastContext(spriteName)
+                    while self?._hasNewBroadcastContextBeenScheduled != nil && self!._hasNewBroadcastContextBeenScheduled {
+                        self?._hasNewBroadcastContextBeenScheduled = false;
+                        self?.runNextInstructionsGroup()
+                    }
                 }
             }
         }
-
+        
         // execute closures (not node dependend!)
         
         for (context, closure) in nextWaitClosures {
@@ -191,7 +202,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 })
             }
         }
-
+        
         for (context, closure) in nextClosures {
             closure(context: context, scheduler: self)
         }
@@ -250,30 +261,30 @@ final class CBScheduler: CBSchedulerProtocol {
             runNextInstructionsGroup()
             return
         }
-
+        
         for (context, closure) in nextHighPriorityClosures {
             closure(context: context, scheduler: self, broadcastHandler: _broadcastHandler)
         }
     }
-
+    
     // MARK: - Events
     func run() {
         assert(!running)
         logger.info(">>> [SCHEDULER STARTED] <<<")
         running = true
         _broadcastHandler.setup()
-
+        
         for idx in 1 ... PlayerConfig.NumberOfWaitQueuesInitialValue {
             _availableWaitQueues += dispatch_queue_create("org.catrobat.wait.queue[\(idx)]", DISPATCH_QUEUE_SERIAL)
         }
         _lastQueueIndex = PlayerConfig.NumberOfWaitQueuesInitialValue
-
+        
         // schedule all start scripts
         _contexts.forEach { if $0 is CBStartScriptContext { scheduleContext($0) } }
         // ... Ready...Steady...Gooooo!! => invoke first instruction!
         runNextInstructionsGroup()
     }
-
+    
     func scheduleContext(context: CBScriptContextProtocol) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
         //assert(_contexts.contains(context))
@@ -282,7 +293,7 @@ final class CBScheduler: CBSchedulerProtocol {
         context.state = .Runnable
         context.reset()
         // if context.hasActions() { context.removeAllActions() }
-
+        
         // enqueue
         // TODO: use Set-datastructure instead...
         if _scheduledContexts[spriteName] == nil {
@@ -293,70 +304,112 @@ final class CBScheduler: CBSchedulerProtocol {
                 _scheduledContexts[spriteName]! += context
             }
         }
-
+        
     }
-
+    
+    func scheduleBroadcastContext(spriteName: String) {
+        if _scheduledContexts[spriteName] == nil {
+            _scheduledContexts[spriteName] = [CBScriptContext]()
+        }
+        if let contextsToSchedule = _contextsWaitingToBeScheduled[spriteName] {
+            contextsToSchedule.forEach({_scheduledContexts[spriteName]! += $0})
+            _contextsWaitingToBeScheduled.removeValueForKey(spriteName)
+            _hasNewBroadcastContextBeenScheduled = true;
+        }
+        
+        // check for contexts of sprites whose contexts have not been scheduled yet at all
+        for name in _contextsWaitingToBeScheduled.orderedKeys {
+            if !_scheduledContexts.containsKey(name) || _scheduledContexts[name]!.count == 0 {
+                _scheduledContexts[name] = [CBScriptContext]()
+                _contextsWaitingToBeScheduled[name]?.forEach({_scheduledContexts[name]! += $0})
+                _contextsWaitingToBeScheduled.removeValueForKey(name)
+                _hasNewBroadcastContextBeenScheduled = true;
+            }
+        }
+    }
+    
+    func putBroadcastContextOnHold(context: CBScriptContextProtocol) {
+        guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
+        //assert(_contexts.contains(context))
+        logger.info("[STARTING: \(context.script)]")
+        logger.debug("  >>> !!! RESETTING: \(context.script) <<<")
+        context.state = .Runnable
+        context.reset()
+        // if context.hasActions() { context.removeAllActions() }
+        
+        // enqueue
+        // TODO: use Set-datastructure instead...
+        if _contextsWaitingToBeScheduled[spriteName] == nil {
+            _contextsWaitingToBeScheduled[spriteName] = [CBScriptContext]()
+        }
+        if let contexts = _contextsWaitingToBeScheduled[spriteName]{
+            if !contexts.contains(context) {
+                _contextsWaitingToBeScheduled[spriteName]! += context
+                _hasNewBroadcastContextBeenScheduled = true;
+            }
+        }
+        
+    }
+    
     func startWhenContextsOfSpriteNodeWithName(spriteName: String) {
         guard let contexts = _whenContexts[spriteName] else { return }
         
         for context in contexts {
             scheduleContext(context)
         }
-
+        
         runNextInstructionsGroup()
     }
-
+    
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
         
         for context in broadcastContexts {
             if context.state == .Running || context.state == .Waiting {
                 _broadcastHandler.terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context)
             }
-
-            scheduleContext(context)
+            
+            putBroadcastContextOnHold(context)
         }
         
-        //runNextInstructionsGroup()
-
     }
-
+    
     func stopContext(context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
-//        assert(!_broadcastHandler.isWaitingForCalledBroadcastContexts(context))
+        //        assert(!_broadcastHandler.isWaitingForCalledBroadcastContexts(context))
         if context.state == .Dead { return } // already stopped => must be an old deprecated dispatch closure
         let script = context.script
         logger.info("!!! STOPPING: \(script)")
-
+        
         context.state = .Dead
-
+        
         if let broadcastContext = context as? CBBroadcastScriptContext
-        where continueWaitingBroadcastSenders {
+            where continueWaitingBroadcastSenders {
             _broadcastHandler.wakeUpContextsWaitingForTerminationOfBroadcastContext(broadcastContext)
         }
-
+        
         // dequeue
         var spriteScheduledContexts = _scheduledContexts[spriteName]!
         if let index = spriteScheduledContexts.indexOfElement(context) {
             spriteScheduledContexts.removeAtIndex(index)
         }
-
+        
         if spriteScheduledContexts.count > 0 {
             _scheduledContexts[spriteName] = spriteScheduledContexts
         } else {
             _scheduledContexts[spriteName] = [CBScriptContext]()
         }
-
+        
         logger.debug("\(script) finished!")
     }
-
+    
     func shutdown() {
         logger.info("!!! SCHEDULER SHUTDOWN !!!")
         CBScheduler.vibrateSerialQueue.cancelAllOperations()
         CBScheduler.vibrateSerialQueue.suspended = false
-
+        
         _scheduledContexts.orderedValues.forEach { $0.forEach {
             stopContext($0, continueWaitingBroadcastSenders: false)
-        } }
+            } }
         _scheduledContexts.removeAll()
         _whenContexts.removeAll()
         _contexts.removeAll()
@@ -376,5 +429,5 @@ final class CBScheduler: CBSchedulerProtocol {
             CBScheduler.vibrateSerialQueue.suspended = false
         }
     }
-
+    
 }
