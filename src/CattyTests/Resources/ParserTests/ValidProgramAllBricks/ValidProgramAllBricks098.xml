@@ -366,6 +366,17 @@
                     <name>programList</name>
                 </userList>
             </brick>
+			<brick type="DeleteItemOfUserListBrick">
+                <formulaList>
+                    <formula category="LIST_DELETE_ITEM">
+                        <type>NUMBER</type>
+                        <value>1</value>
+                    </formula>
+                </formulaList>
+                <userList>
+                    <name>programList2</name>
+                </userList>
+            </brick>
             <brick type="InsertItemIntoUserListBrick">
                 <formulaList>
                     <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
@@ -378,7 +389,7 @@
                     </formula>
                 </formulaList>
                 <userList>
-                    <name>programList2</name>
+                    <name>programList3</name>
                 </userList>
             </brick>
             <brick type="ReplaceItemInUserListBrick">
@@ -393,7 +404,7 @@
                     </formula>
                 </formulaList>
                 <userList>
-                    <name>programList3</name>
+                    <name>programList4</name>
                 </userList>
             </brick>
           </brickList>
@@ -419,6 +430,7 @@
         <userList reference="../../../objectList/object/scriptList/script/brickList/brick[19]/userList"/>
         <userList reference="../../../objectList/object/scriptList/script/brickList/brick[20]/userList"/>
         <userList reference="../../../objectList/object/scriptList/script/brickList/brick[21]/userList"/>
+        <userList reference="../../../objectList/object/scriptList/script/brickList/brick[22]/userList"/>
     </programListOfLists>
     <programVariableList>
       <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[13]/userVariable"/>
