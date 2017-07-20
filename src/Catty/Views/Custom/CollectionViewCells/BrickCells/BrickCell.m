@@ -115,6 +115,7 @@
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
     @[@"{VARIABLE}"],     /* hide Text        */\
     @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],   /* add item to user list        */\
+    @[@"LIST",@"{INT;range=(1,inf)}"],    /* delete item of user list          */\
     @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}",@"{INT;range=(1,inf)}"],    /* insert item into user list   */\
 ]
 

@@ -207,13 +207,13 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
 
     // 4xx variable and list bricks
-    kSetVariableBrick               = 400,
-    kChangeVariableBrick            = 401,
-    kShowTextBrick                  = 402,
-    kHideTextBrick                  = 403,
-    kAddItemToUserListBrick         = 404,
-    kInsertItemIntoUserListBrick    = 405,
-
+    kSetVariableBrick          = 400,
+    kChangeVariableBrick       = 401,
+    kShowTextBrick             = 402,
+    kHideTextBrick             = 403,
+    kAddItemToUserListBrick    = 404,
+    kDeleteItemOfUserListBrick = 405,
+    kInsertItemIntoUserListBrick    = 406,
     
     // 5xx arduino bricks
     kArduinoSendDigitalValueBrick  = 500,
@@ -345,6 +345,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ShowTextBrick"                : @(kShowTextBrick),\
     @"HideTextBrick"                : @(kHideTextBrick),\
     @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
+ 	@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
     @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
 \
     /* arduino bricks */\
@@ -432,6 +433,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ShowTextBrick"                : @(kBrickHeight3h),\
 @"HideTextBrick"                : @(kBrickHeight2h),\
 @"AddItemToUserListBrick"       : @(kBrickHeight2h),\
+@"DeleteItemOfUserListBrick" 	: @(kBrickHeight3h),\
 @"InsertItemIntoUserListBrick"  : @(kBrickHeight3h),\
 \
 /* arduino bricks */\

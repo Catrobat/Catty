@@ -28,7 +28,9 @@
 #import "CBXMLParser.h"
 #import "FlashBrick.h"
 #import "AddItemToUserListBrick.h"
+#import "DeleteItemOfUserListBrick.h"
 #import "InsertItemIntoUserListBrick.h"
+
 
 @interface XMLParserTests098 : XMLAbstractTest
 
@@ -96,6 +98,30 @@
     
     NSString* stringValue = (NSString*)[addItemToUserListBrick.listFormula interpretVariableDataForSprite:object];
     XCTAssertEqualObjects(@"hallo", stringValue, @"Invalid list value");
+}
+
+- (void)testDeleteItemOfUserListBrick
+{
+    Program *program = [self getProgramForXML:@"DeleteItemOfUserListBrick098"];
+    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
+    
+    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(4, [script.brickList count], "Invalid brick list");
+    
+    DeleteItemOfUserListBrick *deleteItemOfUserListBrick = (DeleteItemOfUserListBrick*)[script.brickList objectAtIndex:2];
+    XCTAssertEqualObjects(@"testlist", deleteItemOfUserListBrick.userList.name, @"Invalid list name");
+    
+    NSNumber* numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects([NSNumber numberWithFloat:2], numberValue, @"Invalid list value");
+    
+    deleteItemOfUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:3];
+    XCTAssertEqualObjects(@"testlist", deleteItemOfUserListBrick.userList.name, @"Invalid list name");
+    
+    numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects([NSNumber numberWithFloat:1], numberValue, @"Invalid list value");
 }
 
 - (void)testInsertItemIntoUserListBrick
