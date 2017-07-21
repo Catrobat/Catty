@@ -118,7 +118,7 @@
     NSNumber* numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:2], numberValue, @"Invalid list value");
     
-    deleteItemOfUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:3];
+    deleteItemOfUserListBrick = (DeleteItemOfUserListBrick*)[script.brickList objectAtIndex:3];
     XCTAssertEqualObjects(@"testlist", deleteItemOfUserListBrick.userList.name, @"Invalid list name");
     
     numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
