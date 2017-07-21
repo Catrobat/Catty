@@ -30,6 +30,7 @@
 #import "AddItemToUserListBrick.h"
 #import "DeleteItemOfUserListBrick.h"
 #import "InsertItemIntoUserListBrick.h"
+#import "ReplaceItemInUserListBrick.h"
 
 
 @interface XMLParserTests098 : XMLAbstractTest
@@ -117,7 +118,7 @@
     NSNumber* numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:2], numberValue, @"Invalid list value");
     
-    deleteItemOfUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:3];
+    deleteItemOfUserListBrick = (DeleteItemOfUserListBrick*)[script.brickList objectAtIndex:3];
     XCTAssertEqualObjects(@"testlist", deleteItemOfUserListBrick.userList.name, @"Invalid list name");
     
     numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
@@ -152,6 +153,37 @@
 
     
     indexValue = (NSNumber*)[insertItemIntoUserListBrick.index interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects([NSNumber numberWithInt:2], indexValue, @"Invalid index value");
+    
+}
+
+- (void)testReplaceItemInUserListBrick
+{
+    Program *program = [self getProgramForXML:@"ReplaceItemInUserListBrick098"];
+    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
+    
+    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(4, [script.brickList count], "Invalid brick list");
+    
+    ReplaceItemInUserListBrick *replaceItemInUserListBrick = (ReplaceItemInUserListBrick*)[script.brickList objectAtIndex:2];
+    XCTAssertEqualObjects(@"testlist", replaceItemInUserListBrick.userList.name, @"Invalid list name");
+    
+    NSString* stringValue = (NSString*)[replaceItemInUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects(@"hello", stringValue, @"Invalid list value");
+    
+    NSNumber* indexValue = (NSNumber*)[replaceItemInUserListBrick.index interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects([NSNumber numberWithInt:1], indexValue, @"Invalid index value");
+    
+    replaceItemInUserListBrick = (ReplaceItemInUserListBrick*)[script.brickList objectAtIndex:3];
+    XCTAssertEqualObjects(@"testlist", replaceItemInUserListBrick.userList.name, @"Invalid list name");
+    
+    NSNumber* numberValue = (NSNumber*)[replaceItemInUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects([NSNumber numberWithFloat:33], numberValue, @"Invalid list value");
+
+    indexValue = (NSNumber*)[replaceItemInUserListBrick.index interpretVariableDataForSprite:object];
     XCTAssertEqualObjects([NSNumber numberWithInt:2], indexValue, @"Invalid index value");
     
 }

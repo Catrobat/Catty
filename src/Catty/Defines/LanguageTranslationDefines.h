@@ -410,6 +410,7 @@
 #define kLocalizedAddItemToUserList NSLocalizedString(@"Add %@ to list\n%@", nil)
 #define kLocalizedDeleteItemOfUserList NSLocalizedString(@"Delete item from list\n%@\n at position%@", nil)
 #define kLocalizedInsertItemIntoUserList NSLocalizedString(@"Insert%@into list\n%@\n at position%@", nil)
+#define kLocalizedReplaceItemInUserList NSLocalizedString(@"Replace item in list\n%@\nat position %@ with %@", nil)
 #define kLocalizedAt NSLocalizedString(@"at ", nil)
 
 

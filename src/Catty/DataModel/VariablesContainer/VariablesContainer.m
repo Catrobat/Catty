@@ -314,6 +314,37 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
+- (void)replaceItemInUserList:(UserVariable*)userList value:(id)value atIndex:(id)position
+{
+    pthread_mutex_lock(&variablesLock);
+    if((![userList.value isKindOfClass:[NSMutableArray class]]) && (userList.value != nil)){
+        NSError(@"Found a UserList that is not of class NSMutableArray.");
+    }
+    
+    NSMutableArray *array;
+    if(userList.value == nil){
+        array = [[NSMutableArray alloc] init];
+    } else {
+        array = (NSMutableArray*)userList.value;
+    }
+    
+    NSUInteger size = [array count];
+    NSUInteger castedPosition = [(NSNumber*) position unsignedIntegerValue];
+    
+    if ((castedPosition > size) || (castedPosition < 1)) {
+        pthread_mutex_unlock(&variablesLock);
+        return;
+    }
+    
+    if([value isKindOfClass:[NSString class]]){
+        [array replaceObjectAtIndex:castedPosition - 1 withObject:(NSString*)value];
+    } else if([value isKindOfClass:[NSNumber class]]){
+        [array replaceObjectAtIndex:castedPosition - 1 withObject:(NSNumber*)value];
+    }
+    userList.value = array;
+    pthread_mutex_unlock(&variablesLock);
+}
+
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value
 {
     pthread_mutex_lock(&variablesLock);

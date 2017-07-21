@@ -55,6 +55,8 @@
 
 - (void)insertToUserList:(UserVariable*)userList value:(id)value atIndex:(id)position;
 
+- (void)replaceItemInUserList:(UserVariable*)userList value:(id)value atIndex:(id)position;
+
 // Array of UserVariable
 - (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject;
 - (NSArray*)allListsForObject:(SpriteObject*)spriteObject;

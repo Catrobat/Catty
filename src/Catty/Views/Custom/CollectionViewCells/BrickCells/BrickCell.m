@@ -117,6 +117,7 @@
     @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],   /* add item to user list        */\
     @[@"LIST",@"{INT;range=(1,inf)}"],    /* delete item of user list          */\
     @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}",@"{INT;range=(1,inf)}"],    /* insert item into user list   */\
+	@[@"{LIST}",@"{INT;range=(1,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* replace item in user list    */\
 ]
 
 // arduino bricks
