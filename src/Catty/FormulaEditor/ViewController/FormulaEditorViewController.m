@@ -317,7 +317,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         }
     }
     self.sensorTypeButton = [NSMutableArray new];
-    NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y",@"acceleration_z",@"compass", @"inclination_x", @"inclination_y",@"loudness", nil];
+    NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y",@"acceleration_z",@"compass", @"inclination_x", @"inclination_y",@"loudness", @"year", @"month", @"day", @"weekday", @"hour", @"minute", @"second", nil];
     NSInteger buttonCount = standardSensorArray.count;
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
     //standard Sensors

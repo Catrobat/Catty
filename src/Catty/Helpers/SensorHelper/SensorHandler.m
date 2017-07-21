@@ -105,7 +105,36 @@ static SensorHandler* sharedSensorHandler = nil;
 
 - (double)valueForSensor:(Sensor)sensor {
     double result = 0;
+    NSDateComponents *components;
     switch (sensor) {
+        case DATE_YEAR:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear fromDate:[NSDate date]];
+            result = [components year];
+            break;
+        case DATE_MONTH:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitMonth fromDate:[NSDate date]];
+            result = [components month];
+            break;
+        case DATE_DAY:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitDay fromDate:[NSDate date]];
+            result = [components day];
+            break;
+        case DATE_WEEKDAY:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitWeekday fromDate:[NSDate date]];
+            result = [components weekday];
+            break;
+        case TIME_HOUR:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitHour fromDate:[NSDate date]];
+            result = [components hour];
+            break;
+        case TIME_MINUTE:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitMinute fromDate:[NSDate date]];
+            result = [components minute];
+            break;
+        case TIME_SECOND:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitSecond fromDate:[NSDate date]];
+            result = [components second];
+            break;    
         case X_ACCELERATION: {
             result = [self acceleration].x;
             NSDebug(@"X_ACCELERATION: %f m/s^2", result);
