@@ -282,6 +282,27 @@
         //COSTUME
             
         //SENSOR
+        case DATE_YEAR:
+            return [self buildSensor:DATE_YEAR];
+            break;
+        case DATE_MONTH:
+            return [self buildSensor:DATE_MONTH];
+            break;
+        case DATE_DAY:
+            return [self buildSensor:DATE_DAY];
+            break;
+        case DATE_WEEKDAY:
+            return [self buildSensor:DATE_WEEKDAY];
+            break;
+        case TIME_HOUR:
+            return [self buildSensor:TIME_HOUR];
+            break;
+        case TIME_MINUTE:
+            return [self buildSensor:TIME_MINUTE];
+            break;
+        case TIME_SECOND:
+            return [self buildSensor:TIME_SECOND];
+            break;
         case COMPASS_DIRECTION:
             return [self buildSensor:COMPASS_DIRECTION];
             break;
