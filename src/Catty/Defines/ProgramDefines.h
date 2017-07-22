@@ -71,17 +71,6 @@
 #define kObjectSectionIndex 1
 #define kObjectIndex 0
 
-typedef NS_ENUM(NSUInteger, kDTMActionType) {
-    kDTMActionAskUserForUniqueName = 0,
-    kDTMActionEditProgram,
-    kDTMActionEditObject,
-    kDTMActionEditLook,
-    kDTMActionEditSound,
-    kDTMActionEditBrickOrScript,
-    kDTMActionReportMessage,
-    kDTMActionVariableName
-};
-
 typedef NS_ENUM(NSInteger, ResourceType) {
     kNoResources =          0,
     kTextToSpeech =         1 << 0,
@@ -96,26 +85,6 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kLoudness =             1 << 9,
     kLED =                  1 << 10
 };
-
-#define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
-#define kDTPayloadSpriteObject @"DTPayloadSpriteObject"
-#define kDTPayloadLook @"DTPayloadLook"
-#define kDTPayloadSound @"DTPayloadSound"
-#define kDTPayloadCellIndexPath @"DTPayloadCellIndexPath"
-#define kDTPayloadAskUserAction @"DTPayloadAskUserAction"
-#define kDTPayloadAskUserTarget @"DTPayloadAskUserTarget"
-#define kDTPayloadAskUserObject @"DTPayloadAskUserObject"
-#define kDTPayloadAskUserPromptTitle @"DTPayloadAskUserPromptTitle"
-#define kDTPayloadAskUserPromptMessage @"DTPayloadAskUserPromptMessage"
-#define kDTPayloadAskUserPromptValue @"DTPayloadAskUserPromptValue"
-#define kDTPayloadAskUserPromptPlaceholder @"DTPayloadAskUserPromptPlaceholder"
-#define kDTPayloadAskUserMinInputLength @"DTPayloadAskUserMinInputLength"
-#define kDTPayloadAskUserMaxInputLength @"DTPayloadAskUserMaxInputLength"
-#define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
-#define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
-#define kDTPayloadTextView @"DTPayloadTextView"
-#define kDTPayloadCancel @"DTPayloadCancel"
-#define kDTPayloadList @"DTPayloadList"
 
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"

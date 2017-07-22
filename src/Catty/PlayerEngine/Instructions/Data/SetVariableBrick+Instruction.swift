@@ -39,16 +39,18 @@ extension SetVariableBrick: CBInstructionProtocol {
             
             //update visible userVariable
             var value = ""
-            if userVariable.value is NSNumber{
-                let number:NSNumber = (userVariable.value as? NSNumber)!
-                value = number.stringValue
-            } else if userVariable.value is NSString {
-                let string:NSString = userVariable.value as! NSString
-                value = string as String
-            } else {
-                value = ""
+            if userVariable != nil {
+                if userVariable.value is NSNumber{
+                    let number:NSNumber = (userVariable.value as? NSNumber)!
+                    value = number.stringValue
+                } else if userVariable.value is NSString {
+                    let string:NSString = userVariable.value as! NSString
+                    value = string as String
+                } else {
+                    value = ""
+                }
+                userVariable.textLabel.text = value
             }
-            userVariable.textLabel.text = value
             context.state = .Runnable
         }
         

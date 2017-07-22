@@ -28,15 +28,14 @@
 #import "BrickFormulaProtocol.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "OrderedMapTable.h"
-#import "ActionSheetAlertViewTags.h"
 #import "Script.h"
 #import "BrickCellFormulaData.h"
 #import "VariablePickerData.h"
 #import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
-#import "CatrobatAlertController.h"
 #import "ShapeButton.h"
+#import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -46,7 +45,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCancel = 4
 };
 
-@interface FormulaEditorViewController () <CatrobatActionSheetDelegate>
+@interface FormulaEditorViewController ()
 
 
 @property (weak, nonatomic) Formula *formula;
@@ -269,21 +268,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake && [self.history undoIsPossible]) {
+        [self.formulaEditorTextView resignFirstResponder];
         
-        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
-                                                                           message:kLocalizedUndoTypingDescription
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction *action) { }];
-        [undoAlert addAction:cancelAction];
-        
-        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction *action) { [self undo]; }];
-        [undoAlert addAction:undoAction];
-        [self presentViewController:undoAlert animated:YES completion:nil];
+        [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoTypingDescription]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
+         addDefaultActionWithTitle:kLocalizedUndo handler:^{
+             [self undo];
+             [self.formulaEditorTextView becomeFirstResponder];
+         }] build]
+         showWithController:self];
     }
 }
 
@@ -817,11 +812,54 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.variableButton setSelected:NO];
 }
 
-- (IBAction)addNewVariable:(UIButton *)sender {
-    //TODO alert with text
+- (void)addNewVarOrList: (BOOL)isProgramVarOrList isList:(BOOL)isList {
+    
+    NSString* promptTitle = isList ? kUIFENewList : kUIFENewVar;
+    NSString* promptMessage = isList ? kUIFEListName : kUIFEVarName;
+    self.isProgramVariable = isProgramVarOrList;
+    self.variableSegmentedControl.selectedSegmentIndex = isProgramVarOrList ? 0 : 1;
+    [self.variableSegmentedControl setNeedsDisplay];
+
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+                                          target:self
+                                     promptTitle:promptTitle
+                                   promptMessage:promptMessage
+                                  minInputLength:kMinNumOfVariableNameCharacters
+                                  maxInputLength:kMaxNumOfVariableNameCharacters
+                                          isList:isList
+                             blockedCharacterSet:[self blockedCharacterSet]
+                                    andTextField:self.formulaEditorTextView];
+}
+
+- (void)askObjectOrProgram:(BOOL)isList {
+    NSString* promptTitle = isList ? kUIFEActionList : kUIFEActionVar;
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:promptTitle]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
+        addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
+            [self addNewVarOrList: YES isList: isList];
+        }]
+       addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
+           [self addNewVarOrList: NO isList: isList];
+       }] build]
+     showWithController:self];
+}
+
+- (IBAction)askVarOrList:(UIButton *)sender {
     [self.formulaEditorTextView resignFirstResponder];
     
-    [Util actionSheetWithTitle:kUIFEVarOrList delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFENewVar,kUIFENewList] tag:kChooseVarOrListActionSheetTag view:self.view];
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEVarOrList]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
+        addDefaultActionWithTitle:kUIFENewVar handler:^{
+            [self askObjectOrProgram: NO];
+        }]
+       addDefaultActionWithTitle:kUIFENewList handler:^{
+           [self askObjectOrProgram: YES];
+       }] build]
+     showWithController:self];
 }
 
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -914,47 +952,81 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
+- (void) askForVariableName:(BOOL)isList
+{
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+                                          target:self
+                                     promptTitle:kUIFENewVarExists
+                                   promptMessage:kUIFEOtherName
+                                  minInputLength:kMinNumOfVariableNameCharacters
+                                  maxInputLength:kMaxNumOfVariableNameCharacters
+                                          isList:isList
+                             blockedCharacterSet:[self blockedCharacterSet]
+                                    andTextField:self.formulaEditorTextView];
+}
+
 - (void)saveVariable:(NSString*)name isList:(BOOL)isList
 {
-
-        for (UserVariable* variable in [self.object.program.variables allVariablesAndLists]) {
-            if ([variable.name isEqualToString:name] && (isList == variable.isList)) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEOtherName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters isList:isList blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    if (self.isProgramVariable && !isList){
+        for (UserVariable* variable in [self.object.program.variables allVariables]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForVariableName: isList];
                 return;
             }
         }
-        
-        [self.formulaEditorTextView becomeFirstResponder];
-        UserVariable* var = [UserVariable new];
-        var.name = name;
-        
-        if (isList) {
-            var.value = [[NSMutableArray alloc] init];
-        } else{
-            var.value = [NSNumber numberWithInt:0];
-        }
-        var.isList = isList;
-        
-        if (self.isProgramVariable && !isList) {
-            [self.object.program.variables.programVariableList addObject:var];
-        } else if (self.isProgramVariable && isList){
-            [self.object.program.variables.programListOfLists addObject:var];
-        } else if (!self.isProgramVariable && !isList) {
-            NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-            if (!array) {
-                array = [NSMutableArray new];
+    } else if (!self.isProgramVariable && !isList) {
+        for (UserVariable* variable in [self.object.program.variables allVariablesForObject:self.object]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForVariableName: isList];
+                return;
             }
-            [array addObject:var];
-            [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
-        } else if (!self.isProgramVariable && isList) {
-            NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
-            if (!array) {
-                array = [NSMutableArray new];
-            }
-            [array addObject:var];
-            [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
         }
-
+    } else if (self.isProgramVariable && isList){
+        for (UserVariable* variable in [self.object.program.variables allLists]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForVariableName: isList];
+                return;
+            }
+        }
+    } else if (!self.isProgramVariable && isList) {
+        for (UserVariable* variable in [self.object.program.variables allListsForObject:self.object]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForVariableName: isList];
+                return;
+            }
+        }
+    }
+    
+    [self.formulaEditorTextView becomeFirstResponder];
+    UserVariable* var = [UserVariable new];
+    var.name = name;
+    
+    if (isList) {
+        var.value = [[NSMutableArray alloc] init];
+    } else{
+        var.value = [NSNumber numberWithInt:0];
+    }
+    var.isList = isList;
+    
+    if (self.isProgramVariable && !isList) {
+        [self.object.program.variables.programVariableList addObject:var];
+    } else if (self.isProgramVariable && isList){
+        [self.object.program.variables.programListOfLists addObject:var];
+    } else if (!self.isProgramVariable && !isList) {
+        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+        if (!array) {
+            array = [NSMutableArray new];
+        }
+        [array addObject:var];
+        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+    } else if (!self.isProgramVariable && isList) {
+        NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
+        if (!array) {
+            array = [NSMutableArray new];
+        }
+        [array addObject:var];
+        [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
+    }
     
     [self.object.program saveToDiskWithNotification:YES];
     [self updateVariablePickerData];
@@ -968,7 +1040,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)addNewText:(id)sender {
     [self.formulaEditorTextView resignFirstResponder];
     
-    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:kMaxNumOfProgramNameCharacters isList:NO blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:)
+                                          target:self
+                                     promptTitle:kUIFENewText
+                                   promptMessage:kUIFETextMessage
+                                  minInputLength:kMinNumOfProgramNameCharacters
+                                  maxInputLength:kMaxNumOfProgramNameCharacters
+										  isList:NO
+                             blockedCharacterSet:[self blockedCharacterSet]
+                                    andTextField:self.formulaEditorTextView];
 }
 
 - (void)handleNewTextInput:(NSString*)text
@@ -1153,60 +1233,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)changeVariablePickerView:(id)sender {
     [self.variablePicker reloadAllComponents];
 }
-
-
-#pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    if (actionSheet.title == kUIFEVarOrList)
-    {
-        
-        if (buttonIndex == 0) {
-            [self.formulaEditorTextView becomeFirstResponder];
-            return;
-        }
-        
-        if (buttonIndex == 1) {
-            self.varOrListSegmentedControl.selectedSegmentIndex = 0;
-            [Util actionSheetWithTitle:kUIFEActionVar delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
-        }
-        if (buttonIndex == 2) {
-            self.varOrListSegmentedControl.selectedSegmentIndex = 1;
-            [Util actionSheetWithTitle:kUIFEActionList delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
-        }
-        [self.varOrListSegmentedControl setNeedsDisplay];
-        
-    }
-
-    else if (actionSheet.title == kUIFEActionVar || actionSheet.title == kUIFEActionList)
-    {
-        BOOL isList = NO;
-        NSString* promptTitle = kUIFENewVar;
-        NSString* promptMessage = kUIFEVarName;
-        if (actionSheet.title == kUIFEActionList){
-            isList = YES;
-            promptTitle = kUIFENewList;
-            promptMessage = kUIFEListName;
-        }
-        
-        
-        if (buttonIndex == 0) {
-            [self.formulaEditorTextView becomeFirstResponder];
-            return;
-        }
-        
-        self.isProgramVariable = NO;
-        self.variableSegmentedControl.selectedSegmentIndex = 1;
-        if (buttonIndex == 2) {
-            self.isProgramVariable = YES;
-            self.variableSegmentedControl.selectedSegmentIndex = 0;
-        }
-        [self.variableSegmentedControl setNeedsDisplay];
-        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:) target:self promptTitle:promptTitle promptMessage:promptMessage minInputLength:1 maxInputLength:15 isList:isList blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-    }
-}
-
 
 - (void)showNotification:(NSString*)text andDuration:(CGFloat)duration
 {
