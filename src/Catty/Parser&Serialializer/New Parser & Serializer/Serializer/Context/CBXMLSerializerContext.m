@@ -58,6 +58,22 @@
     return _programUserVariableNamePositions;
 }
 
+- (NSMutableDictionary*)spriteObjectNameUserListOfListsPositions
+{
+    if(! _spriteObjectNameUserListOfListsPositions)
+        _spriteObjectNameUserListOfListsPositions = [NSMutableDictionary dictionary];
+    
+    return _spriteObjectNameUserListOfListsPositions;
+}
+
+- (NSMutableDictionary*)programUserListNamePositions
+{
+    if(! _programUserListNamePositions)
+        _programUserListNamePositions = [NSMutableDictionary dictionary];
+    
+    return _programUserListNamePositions;
+}
+
 - (NSMutableArray*)brickList
 {
     if (! _brickList) {
