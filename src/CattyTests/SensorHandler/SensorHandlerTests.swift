@@ -184,4 +184,61 @@ final class SensorHandlerTests: XCTestCase {
         
         Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
     }
+    
+    func testDateSensors() {
+        let object = SpriteObject()
+        let program = Program.defaultProgramWithName("a", programID: kNoProgramIDYetPlaceholder)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
+        object.program = program
+        let bundle = NSBundle(forClass: self.dynamicType)
+        let filePath: String? = bundle.pathForResource("test.png", ofType: nil)
+        let imageData: NSData? = UIImagePNGRepresentation(UIImage(contentsOfFile: filePath!)!)
+        
+        let look = Look(name: "test", andPath: "test.png")
+        imageData?.writeToFile("\(object.projectPath())/\("images")/\("test.png")", atomically: true)
+        
+        let script = WhenScript()
+        script.object = object
+        
+        object.lookList.addObject(look)
+        spriteNode.currentLook = look
+        
+        let element = FormulaElement(elementType: .SENSOR, value: SensorManager.stringForSensor(DATE_YEAR), leftChild: nil, rightChild: nil, parent: nil)
+        let formula = Formula(formulaElement: element)
+        
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertNotNil(formula.bufferedResult)
+        
+        let components = NSCalendar.currentCalendar().components([.Year, .Month, .Day, .Weekday, .Hour, .Minute, .Second], fromDate: NSDate())
+        
+        XCTAssertEqual(formula.bufferedResult as? Int, components.year)
+        
+        element.value = SensorManager.stringForSensor(DATE_MONTH)
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertEqual(formula.bufferedResult as? Int, components.month)
+        
+        element.value = SensorManager.stringForSensor(DATE_DAY)
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertEqual(formula.bufferedResult as? Int, components.day)
+        
+        element.value = SensorManager.stringForSensor(DATE_WEEKDAY)
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertEqual(formula.bufferedResult as? Int, components.weekday)
+        
+        element.value = SensorManager.stringForSensor(TIME_HOUR)
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertEqual(formula.bufferedResult as? Int, components.hour)
+        
+        element.value = SensorManager.stringForSensor(TIME_MINUTE)
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertEqual(formula.bufferedResult as? Int, components.minute)
+        
+        element.value = SensorManager.stringForSensor(TIME_SECOND)
+        formula.preCalculateFormulaForSprite(script.object.spriteNode.spriteObject)
+        XCTAssertEqual(formula.bufferedResult as? Int, components.second)
+        
+        Program.removeProgramFromDiskWithProgramName(program.header.programName, programID: program.header.programID)
+    }
+
 }
