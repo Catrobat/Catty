@@ -51,7 +51,7 @@
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many %@-elements given!", elementName];
     GDataXMLElement *variablesElement = [variablesElements firstObject];
     VariablesContainer *varContainer = [VariablesContainer new];
-
+    
     
     
     //------------------
@@ -79,63 +79,69 @@
         varContainer.programListOfLists = [[self class] parseAndCreateProgramLists:programListOfListsElement withContext:context];
         context.programListOfLists = varContainer.programListOfLists;
     }
-
+    
     
     
     
     //------------------
     // Object Variables
     //------------------
+    NSMutableDictionary *objectVariableMap = nil;
+    NSMutableDictionary *spriteObjectElementMapVar = [NSMutableDictionary dictionary];
     NSArray *objectVarListElements = [variablesElement elementsForName:@"objectVariableList"];
     if ([objectVarListElements count]) {
         [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
         GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
-        NSMutableDictionary *spriteObjectElementMap = [NSMutableDictionary dictionary];
-        NSMutableDictionary *objectVariableMap = [[self class] parseAndCreateObjectVariables:objectVarListElement
-                                                                        spriteObjectElements:spriteObjectElementMap
-                                                                                 withContext:context];
+        objectVariableMap = [[self class] parseAndCreateObjectVariables:objectVarListElement
+                                                   spriteObjectElements:spriteObjectElementMapVar
+                                                            withContext:context];
         context.spriteObjectNameVariableList = objectVariableMap; // needed to correctly parse SpriteObjects
-
-        // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
-        OrderedMapTable *objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
-        for (NSString *spriteObjectName in objectVariableMap) {
-            GDataXMLElement *xmlElement = [spriteObjectElementMap objectForKey:spriteObjectName];
-            [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
-             should never happen!"];
-            SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
-            [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
-            [objectVariableList setObject:[objectVariableMap objectForKey:spriteObjectName]
-                                   forKey:spriteObject];
-        }
-        varContainer.objectVariableList = objectVariableList;
     }
     
     //------------------
     // Object Lists
     //------------------
+    NSMutableDictionary *objectListMap = nil;
+    NSMutableDictionary *spriteObjectElementMapList = [NSMutableDictionary dictionary];
     NSArray *objectListOfListsElements = [variablesElement elementsForName:@"objectListOfList"];
     if ([objectListOfListsElements count]) {
         [XMLError exceptionIf:[objectListOfListsElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
         GDataXMLElement *objectListOfListsElement = [objectListOfListsElements firstObject];
-        NSMutableDictionary *spriteObjectElementMap = [NSMutableDictionary dictionary];
-        NSMutableDictionary *objectListMap = [[self class] parseAndCreateObjectLists:objectListOfListsElement
-                                                                        spriteObjectElements:spriteObjectElementMap
-                                                                                 withContext:context];
+        objectListMap = [[self class] parseAndCreateObjectLists:objectListOfListsElement
+                                           spriteObjectElements:spriteObjectElementMapList
+                                                    withContext:context];
         context.spriteObjectNameListOfLists = objectListMap; // needed to correctly parse SpriteObjects
-        
-        // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
-        OrderedMapTable *objectListOfLists = [OrderedMapTable weakToStrongObjectsMapTable];
-        for (NSString *spriteObjectName in objectListMap) {
-            GDataXMLElement *xmlElement = [spriteObjectElementMap objectForKey:spriteObjectName];
-            [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
-             should never happen!"];
-            SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
-            [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
-            [objectListOfLists setObject:[objectListMap objectForKey:spriteObjectName]
-                                   forKey:spriteObject];
-        }
-        varContainer.objectListOfLists = objectListOfLists;
     }
+    
+    
+    
+    // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
+    OrderedMapTable *objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
+    for (NSString *spriteObjectName in objectVariableMap) {
+        GDataXMLElement *xmlElement = [spriteObjectElementMapVar objectForKey:spriteObjectName];
+        [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
+         should never happen!"];
+        SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
+        [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
+        [objectVariableList setObject:[objectVariableMap objectForKey:spriteObjectName]
+                               forKey:spriteObject];
+    }
+    varContainer.objectVariableList = objectVariableList;
+    
+    // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
+    OrderedMapTable *objectListOfLists = [OrderedMapTable weakToStrongObjectsMapTable];
+    for (NSString *spriteObjectName in objectListMap) {
+        GDataXMLElement *xmlElement = [spriteObjectElementMapList objectForKey:spriteObjectName];
+        [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
+         should never happen!"];
+        SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
+        [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
+        [objectListOfLists setObject:[objectListMap objectForKey:spriteObjectName]
+                              forKey:spriteObject];
+    }
+    varContainer.objectListOfLists = objectListOfLists;
+    
+    
     
     context.variables = varContainer;
     return varContainer;
