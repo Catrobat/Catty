@@ -371,6 +371,7 @@
                                   promptMessage:(NSString*)message
                                  minInputLength:(NSUInteger)minInputLength
                                  maxInputLength:(NSUInteger)maxInputLength
+									     isList:(BOOL)isList
                             blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                                 andTextField:(FormulaEditorTextView *)textView
 {
@@ -381,8 +382,8 @@
      addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
          if (target && action) {
              IMP imp = [target methodForSelector:action];
-             void (*func)(id, SEL, id) = (void *)imp;
-             func(target, action, name);
+             void (*func)(id, SEL, id, BOOL) = (void *)imp;
+             func(target, action, name, isList);
          }
      }]
      characterValidator:^BOOL(NSString *symbol) {
@@ -592,8 +593,10 @@
     } else if([object isKindOfClass:[SpriteObject class]]) {
         if([(SpriteObject*)object isEqualToSpriteObject:(SpriteObject*)objectToCompare])
             return YES;
+    } else if([object isKindOfClass:[NSMutableArray class]]) {
+        if([(NSMutableArray*)object isEqualToArray:(NSMutableArray*)objectToCompare])
+            return YES;
     }
-    
     return NO;
 }
 

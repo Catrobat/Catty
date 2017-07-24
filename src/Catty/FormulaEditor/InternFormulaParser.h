@@ -25,7 +25,6 @@
 #import "FormulaElement.h"
 #import "UserVariable.h"
 #import "VariablesContainer.h"
-#import "ProgramVariablesManager.h"
 #import "Program.h"
 
 typedef enum {

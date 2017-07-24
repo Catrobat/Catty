@@ -58,6 +58,22 @@
     return _programUserVariableNamePositions;
 }
 
+- (NSMutableDictionary*)spriteObjectNameUserListOfListsPositions
+{
+    if(! _spriteObjectNameUserListOfListsPositions)
+        _spriteObjectNameUserListOfListsPositions = [NSMutableDictionary dictionary];
+    
+    return _spriteObjectNameUserListOfListsPositions;
+}
+
+- (NSMutableDictionary*)programUserListNamePositions
+{
+    if(! _programUserListNamePositions)
+        _programUserListNamePositions = [NSMutableDictionary dictionary];
+    
+    return _programUserListNamePositions;
+}
+
 - (NSMutableArray*)brickList
 {
     if (! _brickList) {
@@ -72,6 +88,9 @@
     copiedContext.currentPositionStack = [self.currentPositionStack mutableCopy];
     copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
     copiedContext.programUserVariableNamePositions = [self.programUserVariableNamePositions mutableCopy];
+    copiedContext.programUserListNamePositions = [self.programUserListNamePositions mutableCopy];
+    copiedContext.spriteObjectNameUserVariableListPositions = [self.spriteObjectNameUserVariableListPositions mutableCopy];
+    copiedContext.spriteObjectNameUserListOfListsPositions = [self.spriteObjectNameUserListOfListsPositions mutableCopy];
     copiedContext.brickList = [self.brickList mutableCopy];
     return copiedContext;
 }

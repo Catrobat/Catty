@@ -233,6 +233,7 @@
 #define kLocalizedMotion NSLocalizedString(@"Motion", nil)
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedLists NSLocalizedString(@"Lists", nil)
 #define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
@@ -295,6 +296,7 @@
 #define kLocalizedEnterYourProgramDescriptionHere NSLocalizedString(@"Enter your program description here...", @"Placeholder for program-description input field")
 #define kLocalizedEnterYourMessageHere NSLocalizedString(@"Enter your message here...", @"Placeholder for message input field")
 #define kLocalizedEnterYourVariableNameHere NSLocalizedString(@"Enter your variable name here...", @"Placeholder for variable input field")
+#define kLocalizedEnterYourListNameHere NSLocalizedString(@"Enter your list name here...", @"Placeholder for list input field")
 #define kLocalizedEnterYourObjectNameHere NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 #define kLocalizedEnterYourImageNameHere NSLocalizedString(@"Enter your image name here...", @"Placeholder for add image-name input field")
 #define kLocalizedEnterYourSoundNameHere NSLocalizedString(@"Enter your sound name here...", @"Placeholder for add sound-name input field")
@@ -400,12 +402,16 @@
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 
-// variable bricks
+// variable and list bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable", nil)
 #define kLocalizedShowVariable NSLocalizedString(@"Show variable", nil)
-#define kLocalizedAt NSLocalizedString(@"at ", nil)
 #define kLocalizedHideVariable NSLocalizedString(@"Hide variable", nil)
+#define kLocalizedAddItemToUserList NSLocalizedString(@"Add %@ to list\n%@", nil)
+#define kLocalizedDeleteItemOfUserList NSLocalizedString(@"Delete item from list\n%@\n at position%@", nil)
+#define kLocalizedInsertItemIntoUserList NSLocalizedString(@"Insert%@into list\n%@\n at position%@", nil)
+#define kLocalizedReplaceItemInUserList NSLocalizedString(@"Replace item in list\n%@\nat position %@ with %@", nil)
+#define kLocalizedAt NSLocalizedString(@"at ", nil)
 
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
@@ -526,6 +532,7 @@
 #define kUIFEObject NSLocalizedString(@"Object", nil)
 #define kUIFESensor NSLocalizedString(@"Sensors", nil)
 #define kUIFEVariable NSLocalizedString(@"Variables", nil)
+#define kUIFEVariableList NSLocalizedString(@"Var/List", nil)
 #define kUIFECompute NSLocalizedString(@"Compute", nil)
 #define kUIFEDone NSLocalizedString(@"Done", nil)
 #define kUIFEError NSLocalizedString(@"Error", nil)
@@ -535,18 +542,28 @@
 #define kUIFEComputedTrue NSLocalizedString(@"Computed result is TRUE", nil)
 #define kUIFEComputedFalse NSLocalizedString(@"Computed result is FALSE", nil)
 #define kUIFENewVar NSLocalizedString(@"New Variable", nil)
-#define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
+#define kUIFENewList NSLocalizedString(@"New List", nil)
+#define kUIFENewVarExists NSLocalizedString(@"Name already exists.", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+#define kUIFEListName NSLocalizedString(@"List name:", nil)
+#define kUIFEOtherName NSLocalizedString(@"Please choose another name:", nil)
+
+
 #define kUIFEProgramVars NSLocalizedString(@"Program variables:", nil)
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
+#define kUIFEProgramLists NSLocalizedString(@"Program lists:", nil)
+#define kUIFEObjectLists NSLocalizedString(@"Object lists:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
+#define kUIFEActionList NSLocalizedString(@"List type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"for this object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"for all objects", nil)
 #define kUIFEChangesSaved NSLocalizedString(@"Changes saved!", nil)
 #define kUIFEChangesDiscarded NSLocalizedString(@"Changes discarded!", nil)
 #define kUIFESyntaxError NSLocalizedString(@"Syntax Error!", nil)
+
+#define kUIFEVarOrList NSLocalizedString(@"Variable or List", nil)
 
 #define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
@@ -556,6 +573,9 @@
 #define kUIFEFunctionLength NSLocalizedString(@"length", nil)
 #define kUIFEFunctionFloor NSLocalizedString(@"floor", nil)
 #define kUIFEFunctionCeil NSLocalizedString(@"ceil", nil)
+#define kUIFEFunctionNumberOfItems NSLocalizedString(@"number_of_items", nil)
+#define kUIFEFunctionElement NSLocalizedString(@"element", nil)
+#define kUIFEFunctionContains NSLocalizedString(@"contains", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)

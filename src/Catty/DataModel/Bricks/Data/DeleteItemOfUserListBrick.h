@@ -20,21 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "BrickListProtocol.h"
 
-#import "ProgramVariablesManager.h"
+@class UserVariable;
+@class Formula;
 
-@interface ProgramVariablesManager ()
+@interface DeleteItemOfUserListBrick : Brick<BrickFormulaProtocol, BrickListProtocol>
 
-@end
-
-@implementation ProgramVariablesManager
-
-+ (instancetype)sharedProgramVariablesManager
-{
-    static ProgramVariablesManager *_sharedCattyProgramVariablesManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{ _sharedCattyProgramVariablesManager = [ProgramVariablesManager new]; });
-    return _sharedCattyProgramVariablesManager;
-}
+@property (nonatomic, strong) UserVariable *userList;
+@property (nonatomic, strong) Formula *listFormula;
 
 @end

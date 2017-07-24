@@ -76,6 +76,7 @@ if (__functor) __functor(__VA_ARGS__);  \
                                  promptMessage:(NSString*)message
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
+                                        isList:(BOOL)isList
                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                                   andTextField:(FormulaEditorTextView *)textView;
 

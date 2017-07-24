@@ -70,6 +70,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *variableSegmentedControl;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *varOrListSegmentedControl;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *calcButton;
 @property (weak, nonatomic) IBOutlet UIButton *mathbutton;
@@ -120,7 +122,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
-
 {
     self.brickCellData = brickCellData;
     self.delegate = brickCellData;
@@ -190,11 +191,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.object.program.variables];
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
     [self initSensorView];
-    [self initVariablePicker];
+    [self initSegmentedControls];
     [self colorFormulaEditor];
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
@@ -284,7 +284,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 #pragma mark initPickerView
 
--(void)initVariablePicker
+-(void)initSegmentedControls
 {
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
@@ -292,10 +292,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variableSourceProgram = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
     self.variableSource = [[NSMutableArray alloc] init];
+    self.listSourceProgram = [[NSMutableArray alloc] init];
+    self.listSourceObject = [[NSMutableArray alloc] init];
+    self.listSource = [[NSMutableArray alloc] init];
     [self updateVariablePickerData];
     [self.variableSegmentedControl setTitle:kLocalizedObject forSegmentAtIndex:1];
     [self.variableSegmentedControl setTitle:kLocalizedPrograms forSegmentAtIndex:0];
     self.variableSegmentedControl.tintColor = [UIColor globalTintColor];
+    
+    
+    [self.varOrListSegmentedControl setTitle:kLocalizedVariables forSegmentAtIndex:0];
+    [self.varOrListSegmentedControl setTitle:kLocalizedLists forSegmentAtIndex:1];
+    self.varOrListSegmentedControl.tintColor = [UIColor globalTintColor];
 }
 
 #pragma mark initSensorView
@@ -421,7 +429,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 {
                     [button setTitle:name forState:UIControlStateNormal];
                 }
-
             }
         }
     }
@@ -431,7 +438,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.logicButton setTitle:kUIFELogic forState:UIControlStateNormal];
     [self.objectButton setTitle:kUIFEObject forState:UIControlStateNormal];
     [self.sensorButton setTitle:kUIFESensor forState:UIControlStateNormal];
-    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateNormal];
+    [self.variableButton setTitle:kUIFEVariableList forState:UIControlStateNormal];
     [self.computeButton setTitle:kUIFECompute forState:UIControlStateNormal];
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
@@ -805,43 +812,53 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.variableButton setSelected:NO];
 }
 
-- (void)addNewProgramVariable {
-    [self addNewVariableProgramVariable:YES];
-}
-
-- (void)addNewObjectVariable {
-    [self addNewVariableProgramVariable:NO];
-}
-
-- (void)addNewVariableProgramVariable:(BOOL)isProgramVariable {
-    self.isProgramVariable = isProgramVariable;
-    self.variableSegmentedControl.selectedSegmentIndex = isProgramVariable ? 0 : 1;
+- (void)addNewVarOrList: (BOOL)isProgramVarOrList isList:(BOOL)isList {
+    
+    NSString* promptTitle = isList ? kUIFENewList : kUIFENewVar;
+    NSString* promptMessage = isList ? kUIFEListName : kUIFEVarName;
+    self.isProgramVariable = isProgramVarOrList;
+    self.variableSegmentedControl.selectedSegmentIndex = isProgramVarOrList ? 0 : 1;
     [self.variableSegmentedControl setNeedsDisplay];
 
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
                                           target:self
-                                     promptTitle:kUIFENewVar
-                                   promptMessage:kUIFEVarName
+                                     promptTitle:promptTitle
+                                   promptMessage:promptMessage
                                   minInputLength:kMinNumOfVariableNameCharacters
                                   maxInputLength:kMaxNumOfVariableNameCharacters
+                                          isList:isList
                              blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
 
-- (IBAction)addNewVariable:(UIButton *)sender {
-    //TODO alert with text
-    [self.formulaEditorTextView resignFirstResponder];
+- (void)askObjectOrProgram:(BOOL)isList {
+    NSString* promptTitle = isList ? kUIFEActionList : kUIFEActionVar;
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:promptTitle]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
+        addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
+            [self addNewVarOrList: YES isList: isList];
+        }]
+       addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
+           [self addNewVarOrList: NO isList: isList];
+       }] build]
+     showWithController:self];
+}
 
-    [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEActionVar]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self.formulaEditorTextView becomeFirstResponder];
-     }]
-     addDefaultActionWithTitle:kUIFEActionVarObj handler:^{
-         [self addNewObjectVariable];
-     }]
-     addDefaultActionWithTitle:kUIFEActionVarPro handler:^{
-         [self addNewProgramVariable];
-     }] build]
+- (IBAction)askVarOrList:(UIButton *)sender {
+    [self.formulaEditorTextView resignFirstResponder];
+    
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kUIFEVarOrList]
+         addCancelActionWithTitle:kLocalizedCancel handler:^{
+             [self.formulaEditorTextView becomeFirstResponder];
+         }]
+        addDefaultActionWithTitle:kUIFENewVar handler:^{
+            [self askObjectOrProgram: NO];
+        }]
+       addDefaultActionWithTitle:kUIFENewList handler:^{
+           [self askObjectOrProgram: YES];
+       }] build]
      showWithController:self];
 }
 
@@ -863,8 +880,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.variableSource removeAllObjects];
     [self.variableSourceProgram  removeAllObjects];
     [self.variableSourceObject  removeAllObjects];
-    if([variables.programVariableList count] > 0)
+    [self.listSource removeAllObjects];
+    [self.listSourceProgram  removeAllObjects];
+    [self.listSourceObject  removeAllObjects];
+    
+    // ------------------
+    // Program Variables
+    // ------------------
+    if([variables.programVariableList count] > 0){
         [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramVars]];
+    }
     
     for(UserVariable *userVariable in variables.programVariableList) {
         VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
@@ -873,6 +898,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.variableSourceProgram addObject:pickerData];
     }
     
+    
+    // ------------------
+    // Program Lists
+    // ------------------
+    if([variables.programListOfLists count] > 0){
+        [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramLists]];
+    }
+    
+    for(UserVariable *userVariable in variables.programListOfLists) {
+        VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
+        [pickerData setIsProgramVariable:YES];
+        [self.listSource addObject:pickerData];
+        [self.listSourceProgram addObject:pickerData];
+    }
+    
+  
+    // ------------------
+    // Object Variables
+    // ------------------
     NSArray *array = [variables.objectVariableList objectForKey:self.object];
     if (array) {
         if([array count] > 0)
@@ -885,58 +929,103 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.variableSourceObject addObject:pickerData];
         }
     }
+    
+    
+    // ------------------
+    // Object Lists
+    // ------------------
+    array = [variables.objectListOfLists objectForKey:self.object];
+    if (array) {
+        if([array count] > 0)
+            [self.listSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectLists]];
+        
+        for (UserVariable *var in array) {
+            VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
+            [pickerData setIsProgramVariable:NO];
+            [self.listSource addObject:pickerData];
+            [self.listSourceObject addObject:pickerData];
+        }
+    }
   
     [self.variablePicker reloadAllComponents];
     if([self.variableSource count] > 0)
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
 }
 
-- (void)saveVariable:(NSString*)name
+- (void) askForVariableName:(BOOL)isList
 {
-    if (self.isProgramVariable){
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
+                                          target:self
+                                     promptTitle:kUIFENewVarExists
+                                   promptMessage:kUIFEOtherName
+                                  minInputLength:kMinNumOfVariableNameCharacters
+                                  maxInputLength:kMaxNumOfVariableNameCharacters
+                                          isList:isList
+                             blockedCharacterSet:[self blockedCharacterSet]
+                                    andTextField:self.formulaEditorTextView];
+}
+
+- (void)saveVariable:(NSString*)name isList:(BOOL)isList
+{
+    if (self.isProgramVariable && !isList){
         for (UserVariable* variable in [self.object.program.variables allVariables]) {
             if ([variable.name isEqualToString:name]) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
-                                                      target:self
-                                                 promptTitle:kUIFENewVarExists
-                                               promptMessage:kUIFEVarName
-                                              minInputLength:kMinNumOfVariableNameCharacters
-                                              maxInputLength:kMaxNumOfVariableNameCharacters
-                                         blockedCharacterSet:[self blockedCharacterSet]
-                                                andTextField:self.formulaEditorTextView];
+                [self askForVariableName: isList];
                 return;
             }
         }
-    } else {
+    } else if (!self.isProgramVariable && !isList) {
         for (UserVariable* variable in [self.object.program.variables allVariablesForObject:self.object]) {
             if ([variable.name isEqualToString:name]) {
-                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
-                                                      target:self
-                                                 promptTitle:kUIFENewVarExists
-                                               promptMessage:kUIFEVarName
-                                              minInputLength:kMinNumOfVariableNameCharacters
-                                              maxInputLength:kMaxNumOfVariableNameCharacters
-                                         blockedCharacterSet:[self blockedCharacterSet]
-                                                andTextField:self.formulaEditorTextView];
+                [self askForVariableName: isList];
                 return;
             }
         }
-        
+    } else if (self.isProgramVariable && isList){
+        for (UserVariable* variable in [self.object.program.variables allLists]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForVariableName: isList];
+                return;
+            }
+        }
+    } else if (!self.isProgramVariable && isList) {
+        for (UserVariable* variable in [self.object.program.variables allListsForObject:self.object]) {
+            if ([variable.name isEqualToString:name]) {
+                [self askForVariableName: isList];
+                return;
+            }
+        }
     }
     
     [self.formulaEditorTextView becomeFirstResponder];
     UserVariable* var = [UserVariable new];
     var.name = name;
-    var.value = [NSNumber numberWithInt:0];
-    if (self.isProgramVariable) {
+    
+    if (isList) {
+        var.value = [[NSMutableArray alloc] init];
+    } else{
+        var.value = [NSNumber numberWithInt:0];
+    }
+    var.isList = isList;
+    
+    if (self.isProgramVariable && !isList) {
         [self.object.program.variables.programVariableList addObject:var];
-    } else {
+    } else if (self.isProgramVariable && isList){
+        [self.object.program.variables.programListOfLists addObject:var];
+    } else if (!self.isProgramVariable && !isList) {
         NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
         if (!array) {
             array = [NSMutableArray new];
         }
         [array addObject:var];
         [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+    } else if (!self.isProgramVariable && isList) {
+        NSMutableArray *array = [self.object.program.variables.objectListOfLists objectForKey:self.object];
+        if (!array) {
+            array = [NSMutableArray new];
+        }
+        [array addObject:var];
+        [self.object.program.variables.objectListOfLists setObject:array forKey:self.object];
     }
     
     [self.object.program saveToDiskWithNotification:YES];
@@ -957,6 +1046,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    promptMessage:kUIFETextMessage
                                   minInputLength:kMinNumOfProgramNameCharacters
                                   maxInputLength:kMaxNumOfProgramNameCharacters
+										  isList:NO
                              blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
@@ -977,23 +1067,41 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0) {
+    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
         return self.variableSourceProgram.count;
-    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1) {
+    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
         return self.variableSourceObject.count;
+    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 1) {
+        return self.listSourceProgram.count;
+    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 1) {
+        return self.listSourceObject.count;
     }
     return 0;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 0) {
+    BOOL forObjectOnly = self.variableSegmentedControl.selectedSegmentIndex;
+    BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
+    
+    
+
+    if (component == 0 && !forObjectOnly && !isList) {
         if (row < self.variableSourceProgram.count) {
             return [[self.variableSourceProgram objectAtIndex:row] title];
         }
-    } else if (component == 0 && self.variableSegmentedControl.selectedSegmentIndex == 1) {
+    } else if (component == 0 && forObjectOnly && !isList) {
         if (row < self.variableSourceObject.count) {
             return [[self.variableSourceObject objectAtIndex:row] title];
+        }
+    } else if (component == 0 && !forObjectOnly && isList) {
+        if (row < self.listSourceProgram.count) {
+            return [[self.listSourceProgram objectAtIndex:row] title];
+        }
+    }
+    else if (component == 0 && forObjectOnly && isList) {
+        if (row < self.listSourceObject.count) {
+            return [[self.listSourceObject objectAtIndex:row] title];
         }
     }
     
@@ -1013,25 +1121,35 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 }
 
-- (IBAction)choseVariable:(UIButton *)sender {
+- (IBAction)choseVariableOrList:(UIButton *)sender {
 
  NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
+        int buttonType = 0;
         VariablePickerData *pickerData;
-        if (self.variableSegmentedControl.selectedSegmentIndex == 0) {
+        if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
             if (row < self.variableSourceProgram.count) {
                pickerData = [self.variableSourceProgram objectAtIndex:row];
             }
-        } else {
+        } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0){
             if (row < self.variableSourceObject.count) {
                 pickerData = [self.variableSourceObject objectAtIndex:row];
             }
+        } else if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
+            if (row < self.listSourceProgram.count) {
+                pickerData = [self.listSourceProgram objectAtIndex:row];
+                buttonType = 11;
+            }
+        } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 1){
+            if (row < self.listSourceObject.count) {
+                pickerData = [self.listSourceObject objectAtIndex:row];
+                buttonType = 11;
+            }
         }
         if (pickerData) {
-             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
+             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
         }
     }
-   
 }
 
 
@@ -1039,20 +1157,43 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         VariablePickerData *pickerData;
-        if (self.variableSegmentedControl.selectedSegmentIndex == 0) {
+        if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
+            && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
             if (row < self.variableSourceProgram.count) {
                 pickerData = [self.variableSourceProgram objectAtIndex:row];
             }
-        } else {
+        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
+                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 0)) {
             if (row < self.variableSourceObject.count) {
                 pickerData = [self.variableSourceObject objectAtIndex:row];
             }
+        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 0)
+                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
+            if (row < self.listSourceProgram.count) {
+                pickerData = [self.listSourceProgram objectAtIndex:row];
+            }
+        } else if ((self.variableSegmentedControl.selectedSegmentIndex == 1)
+                   && (self.varOrListSegmentedControl.selectedSegmentIndex == 1)) {
+            if (row < self.listSourceObject.count) {
+                pickerData = [self.listSourceObject objectAtIndex:row];
+            }
         }
         if (pickerData) {
-            if(![self isVariableBeingUsed:pickerData.userVariable]) {
-                BOOL removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+            if(![self isVarOrListBeingUsed:pickerData.userVariable]) {
+                
+                BOOL removed = NO;
+                BOOL isList = pickerData.userVariable.isList;
+                if (!isList) {
+                    removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                } else {
+                    removed = [self.object.program.variables removeUserListNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                }
                 if (removed) {
-                    [self.variableSource removeObjectAtIndex:row];
+                    if (!isList) {
+                        [self.variableSource removeObjectAtIndex:row];
+                    } else {
+                        [self.listSource removeObjectAtIndex:row];
+                    }
                     [self.object.program saveToDiskWithNotification:YES];
                     [self updateVariablePickerData];
                 }
@@ -1063,13 +1204,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+- (BOOL)isVarOrListBeingUsed:(UserVariable*)variable
 {
-    if([self.object.program.variables isProgramVariable:variable]) {
+    //TODO: Make it work for lists
+    if([self.object.program.variables isProgramVariableOrList:variable]) {
         for(SpriteObject *spriteObject in self.object.program.objectList) {
             for(Script *script in spriteObject.scriptList) {
                 for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
                         return YES;
                     }
                 }
@@ -1078,7 +1220,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         for(Script *script in self.object.scriptList) {
             for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVarOrListBeingUsed:variable]) {
                     return YES;
                 }
             }

@@ -72,6 +72,17 @@
     XCTAssertEqual(0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Not existing UserVariable misinterpretation");
 }
 
+- (void)testInterpretNonExistingUserList
+{
+    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:USER_LIST
+                                                                           value:@"notExistingUserList"
+                                                                       leftChild:nil
+                                                                      rightChild:nil
+                                                                          parent:nil];
+    
+    XCTAssertEqual(0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Not existing UserList misinterpretation");
+}
+
 - (void)testInterpretNotExisitingUnaryOperator
 {
     FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR

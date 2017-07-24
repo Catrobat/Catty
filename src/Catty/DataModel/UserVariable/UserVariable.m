@@ -33,7 +33,8 @@
 
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
 {
-    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
+    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value] &&
+        (self.isList == userVariable.isList))
         return YES;
     return NO;
 }

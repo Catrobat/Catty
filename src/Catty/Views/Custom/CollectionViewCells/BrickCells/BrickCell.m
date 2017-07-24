@@ -36,6 +36,7 @@
 #import "BrickCellMessageData.h"
 #import "BrickCellStaticChoiceData.h"
 #import "BrickCellVariableData.h"
+#import "BrickCellListData.h"
 #import "BrickCellPhiroMotorData.h"
 #import "BrickCellPhiroLightData.h"
 #import "BrickCellPhiroToneData.h"
@@ -107,12 +108,16 @@
     @"{STATICCHOICE}"               /* flash brick              */\
 ]
 
-// variable bricks
+// variable and list bricks
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* change size by N         */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
-    @[@"{VARIABLE}"]     /* hide Text        */\
+    @[@"{VARIABLE}"],     /* hide Text        */\
+    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],   /* add item to user list        */\
+    @[@"LIST",@"{INT;range=(1,inf)}"],    /* delete item of user list          */\
+    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}",@"{INT;range=(1,inf)}"],    /* insert item into user list   */\
+	@[@"{LIST}",@"{INT;range=(1,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* replace item in user list    */\
 ]
 
 // arduino bricks
@@ -374,11 +379,11 @@
         return nil;
     }
 
+    NSUInteger numberOfPreviousLineParams = 0;
     if (numberOfLines > 1) {
         // determine number of params per line
         NSUInteger totalNumberOfParams = [brickParams count];
         NSMutableArray *paramsOfLines = [NSMutableArray arrayWithCapacity:numberOfLines];
-        NSUInteger numberOfPreviousLineParams = 0;
         NSUInteger numberOfLinesWithParams = 0;
         for (NSInteger lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
             NSString *currentLine = [lines objectAtIndex:lineIndex];
@@ -394,7 +399,7 @@
                     ++numberOfLinesWithParams;
                 }
             }
-            numberOfPreviousLineParams = numberOfCurrentLineParams;
+            numberOfPreviousLineParams = numberOfPreviousLineParams + numberOfCurrentLineParams;
             [paramsOfLines addObject:currentLineParams];
         }
 
@@ -494,6 +499,9 @@
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"LIST"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellListData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"STATICCHOICE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellStaticChoiceData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];

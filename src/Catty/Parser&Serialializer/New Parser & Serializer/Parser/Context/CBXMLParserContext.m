@@ -56,12 +56,28 @@
     return _programVariableList;
 }
 
+- (NSMutableArray*)programListOfLists
+{
+    if (! _programListOfLists) {
+        _programListOfLists = [NSMutableArray array];
+    }
+    return _programListOfLists;
+}
+
 - (NSMutableDictionary*)spriteObjectNameVariableList
 {
     if (! _spriteObjectNameVariableList) {
         _spriteObjectNameVariableList = [NSMutableDictionary dictionary];
     }
     return _spriteObjectNameVariableList;
+}
+
+- (NSMutableDictionary*)spriteObjectNameListOfLists
+{
+    if (! _spriteObjectNameListOfLists) {
+        _spriteObjectNameListOfLists = [NSMutableDictionary dictionary];
+    }
+    return _spriteObjectNameListOfLists;
 }
 
 - (NSMutableDictionary*)formulaVariableNameList
@@ -72,6 +88,13 @@
     return _formulaVariableNameList;
 }
 
+- (NSMutableDictionary*)formulaListNameList
+{
+    if (! _formulaListNameList) {
+        _formulaListNameList = [NSMutableDictionary dictionary];
+    }
+    return _formulaListNameList;
+}
 - (void)setLanguageVersion:(CGFloat)languageVersion
 {
     _languageVersion = languageVersion;
@@ -82,8 +105,11 @@
 {
     CBXMLParserContext *copiedContext = [super mutableCopy];
     copiedContext.programVariableList = [self.programVariableList mutableCopy];
+    copiedContext.programListOfLists = [self.programListOfLists mutableCopy];
     copiedContext.formulaVariableNameList = [self.formulaVariableNameList mutableCopy];
+    copiedContext.formulaListNameList = [self.formulaListNameList mutableCopy];
     copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
+    copiedContext.spriteObjectNameListOfLists = [self.spriteObjectNameListOfLists mutableCopy];
     [copiedContext setLanguageVersion:self.languageVersion];
     return copiedContext;
 }

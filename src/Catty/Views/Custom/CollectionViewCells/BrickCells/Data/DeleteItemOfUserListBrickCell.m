@@ -20,14 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "DeleteItemOfUserListBrickCell.h"
 
-#import <Foundation/Foundation.h>
+@interface DeleteItemOfUserListBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *thirdRowTextLabel;
+@end
 
-@class VariablesContainer;
+@implementation DeleteItemOfUserListBrickCell
 
-@interface ProgramVariablesManager : NSObject
-@property (nonatomic, strong) VariablesContainer *variables;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.varibaleBrickRedColor strokeColor:UIColor.variableBrickStrokeColor height:largeBrick width:[Util screenWidth]];
+}
 
-+ (instancetype)sharedProgramVariablesManager;
++ (CGFloat)cellHeight
+{
+    return kBrickHeight3h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.firstRowTextLabel = inlineViewSubViews[0];
+    self.variableComboBoxView = inlineViewSubViews[1];
+    self.thirdRowTextLabel = inlineViewSubViews[2];
+    self.valueTextField = inlineViewSubViews[3];
+}
 
 @end

@@ -39,8 +39,12 @@
 //------------------------------------------------------------------------------------------------------------
 // TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
 @property (nonatomic, strong) NSMutableArray *programVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableArray *programListOfLists; // (used for parsing only)
+
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameListOfLists; // (used for parsing only)
 @property (nonatomic, strong) NSMutableDictionary *formulaVariableNameList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *formulaListNameList; // (used for parsing only)
 
 - (id)initWithLanguageVersion:(CGFloat)languageVersion;
 - (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass;

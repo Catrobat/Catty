@@ -120,7 +120,6 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
 
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -258,7 +257,6 @@
 - (void)setupScene
 {
     if (! self.scene) {
-        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
         
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
         [scene initializeScreenRecording];

@@ -206,11 +206,15 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
 
 
-    // 4xx variable bricks
-    kSetVariableBrick          = 400,
-    kChangeVariableBrick       = 401,
-    kShowTextBrick             = 402,
-    kHideTextBrick             = 403,
+    // 4xx variable and list bricks
+    kSetVariableBrick               = 400,
+    kChangeVariableBrick            = 401,
+    kShowTextBrick                  = 402,
+    kHideTextBrick                  = 403,
+    kAddItemToUserListBrick         = 404,
+	kDeleteItemOfUserListBrick 		= 405,
+    kInsertItemIntoUserListBrick    = 406,
+	kReplaceItemInUserListBrick     = 407,
     
     // 5xx arduino bricks
     kArduinoSendDigitalValueBrick  = 500,
@@ -336,11 +340,15 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"FlashBrick"                : @(kFlashBrick),\
 \
-    /* variable bricks */\
-    @"SetVariableBrick"          : @(kSetVariableBrick),\
-    @"ChangeVariableBrick"       : @(kChangeVariableBrick),\
-    @"ShowTextBrick"             : @(kShowTextBrick),\
-    @"HideTextBrick"             : @(kHideTextBrick),\
+    /* variable and list bricks */\
+    @"SetVariableBrick"             : @(kSetVariableBrick),\
+    @"ChangeVariableBrick"          : @(kChangeVariableBrick),\
+    @"ShowTextBrick"                : @(kShowTextBrick),\
+    @"HideTextBrick"                : @(kHideTextBrick),\
+    @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
+ 	@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
+    @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
+	@"ReplaceItemInUserListBrick": @(kReplaceItemInUserListBrick),\
 \
     /* arduino bricks */\
     @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
@@ -421,11 +429,15 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 @"FlashBrick"                : @(kBrickHeight2h),\
 \
-/* variable bricks */\
-@"SetVariableBrick"          : @(kBrickHeight3h),\
-@"ChangeVariableBrick"       : @(kBrickHeight3h),\
-@"ShowTextBrick"             : @(kBrickHeight3h),\
-@"HideTextBrick"             : @(kBrickHeight2h),\
+/* variable and list bricks */\
+@"SetVariableBrick"             : @(kBrickHeight3h),\
+@"ChangeVariableBrick"          : @(kBrickHeight3h),\
+@"ShowTextBrick"                : @(kBrickHeight3h),\
+@"HideTextBrick"                : @(kBrickHeight2h),\
+@"AddItemToUserListBrick"       : @(kBrickHeight2h),\
+@"DeleteItemOfUserListBrick" 	: @(kBrickHeight3h),\
+@"InsertItemIntoUserListBrick"  : @(kBrickHeight3h),\
+@"ReplaceItemInUserListBrick"	: @(kBrickHeight3h),\
 \
 /* arduino bricks */\
 @"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\

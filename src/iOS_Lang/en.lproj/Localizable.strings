@@ -23,6 +23,9 @@
 "acceleration_z" = "acceleration_z";
 
 /* No comment provided by engineer. */
+"Add %@ to list\n%@" = "Add %@ to list\n%@";
+
+/* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
@@ -248,6 +251,9 @@
 "Connection not possible" = "Connection not possible";
 
 /* No comment provided by engineer. */
+"contains" = "contains";
+
+/* No comment provided by engineer. */
 "Continue" = "Continue";
 
 /* No comment provided by engineer. */
@@ -297,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Delete Condition" = "Delete Condition";
+
+/* No comment provided by engineer. */
+"Delete item from list\n%@\n at position%@" = "Delete item from list\n%@\n at position%@";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
@@ -445,6 +454,9 @@
 /* Action sheet menu title */
 "Edit Sounds" = "Edit Sounds";
 
+/* No comment provided by engineer. */
+"element" = "element";
+
 /* paint */
 "Ellipse / Circle" = "Ellipse / Circle";
 
@@ -465,6 +477,9 @@
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for list input field */
+"Enter your list name here..." = "Enter your list name here...";
 
 /* Placeholder for message input field */
 "Enter your message here..." = "Enter your message here...";
@@ -631,6 +646,9 @@
 /* No comment provided by engineer. */
 "Information" = "Information";
 
+/* No comment provided by engineer. */
+"Insert%@into list\n%@\n at position%@" = "Insert%@into list\n%@\n at position%@";
+
 /* paint */
 "Inserted" = "Inserted";
 
@@ -699,6 +717,15 @@
 
 /* paint */
 "Line" = "Line";
+
+/* No comment provided by engineer. */
+"List name:" = "List name:";
+
+/* No comment provided by engineer. */
+"List type" = "List type";
+
+/* No comment provided by engineer. */
+"Lists" = "Lists";
 
 /* No comment provided by engineer. */
 "Loading" = "Loading";
@@ -821,13 +848,16 @@
 "Name" = "Name";
 
 /* No comment provided by engineer. */
-"Name already exists. Please choose another" = "Name already exists. Please choose another";
+"Name already exists." = "Name already exists.";
 
 /* No comment provided by engineer. */
 "New" = "New";
 
 /* paint */
 "New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New List" = "New List";
 
 /* No comment provided by engineer. */
 "New Message" = "New Message";
@@ -908,10 +938,16 @@
 "November" = "November";
 
 /* No comment provided by engineer. */
+"number_of_items" = "number_of_items";
+
+/* No comment provided by engineer. */
 "Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
 "Object" = "Object";
+
+/* No comment provided by engineer. */
+"Object lists:" = "Object lists:";
 
 /* No comment provided by engineer. */
 "Object name" = "Object name";
@@ -991,6 +1027,9 @@
 /* No comment provided by engineer. */
 "Play Phiro music\n" = "Play Phiro music\n";
 
+/* No comment provided by engineer. */
+"Please choose another name:" = "Please choose another name:";
+
 /* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
 "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
@@ -1064,6 +1103,9 @@
 "Problems occured while Uploading your program" = "Problems occured while Uploading your program";
 
 /* No comment provided by engineer. */
+"Program lists:" = "Program lists:";
+
+/* No comment provided by engineer. */
 "Program name" = "Program name";
 
 /* No comment provided by engineer. */
@@ -1122,6 +1164,9 @@
 
 /* No comment provided by engineer. */
 "Repeat" = "Repeat";
+
+/* No comment provided by engineer. */
+"Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
@@ -1478,10 +1523,16 @@
 "v" = "v";
 
 /* No comment provided by engineer. */
+"Var/List" = "Var/List";
+
+/* No comment provided by engineer. */
 "Variable" = "Variable";
 
 /* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable or List" = "Variable or List";
 
 /* No comment provided by engineer. */
 "Variable type" = "Variable type";
