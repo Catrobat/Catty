@@ -284,6 +284,9 @@
 "Create account" = "Create account";
 
 /* No comment provided by engineer. */
+"day" = "day";
+
+/* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
 
 /* No comment provided by engineer. */
@@ -614,6 +617,9 @@
 "Hide variable" = "Hide variable";
 
 /* No comment provided by engineer. */
+"hour" = "hour";
+
+/* No comment provided by engineer. */
 "If" = "If";
 
 /* No comment provided by engineer. */
@@ -784,6 +790,9 @@
 /* No comment provided by engineer. */
 "MI" = "MI";
 
+/* No comment provided by engineer. */
+"minute" = "minute";
+
 /* paint */
 "Mirror" = "Mirror";
 
@@ -795,6 +804,9 @@
 
 /* No comment provided by engineer. */
 "Monday" = "Monday";
+
+/* No comment provided by engineer. */
+"month" = "month";
 
 /* No comment provided by engineer. */
 "More" = "More";
@@ -1211,6 +1223,9 @@
 "Search" = "Search";
 
 /* No comment provided by engineer. */
+"second" = "second";
+
+/* No comment provided by engineer. */
 "second " = "second ";
 
 /* No comment provided by engineer. */
@@ -1541,6 +1556,9 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
+"weekday" = "weekday";
+
+/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1560,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "year";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";

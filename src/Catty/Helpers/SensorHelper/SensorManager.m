@@ -44,6 +44,13 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_ROTATION",
     @"OBJECT_LAYER",
     @"LOUDNESS",
+    @"DATE_YEAR",
+    @"DATE_MONTH",
+    @"DATE_DAY",
+    @"DATE_WEEKDAY",
+    @"TIME_HOUR",
+    @"TIME_MINUTE",
+    @"TIME_SECOND",
     @"FACE_DETECTED",
     @"FACE_SIZE",
     @"FACE_POSITION_X",
@@ -117,6 +124,27 @@ NSString * const sensorStringArray[] = {
     if([sensor isEqualToString:@"LOUDNESS"]) {
         return LOUDNESS;
     }
+    if([sensor isEqualToString:@"DATE_YEAR"]) {
+        return DATE_YEAR;
+    }
+    if([sensor isEqualToString:@"DATE_MONTH"]) {
+        return DATE_MONTH;
+    }
+    if([sensor isEqualToString:@"DATE_DAY"]) {
+        return DATE_DAY;
+    }
+    if([sensor isEqualToString:@"DATE_WEEKDAY"]) {
+        return DATE_WEEKDAY;
+    }
+    if([sensor isEqualToString:@"TIME_HOUR"]) {
+        return TIME_HOUR;
+    }
+    if([sensor isEqualToString:@"TIME_MINUTE"]) {
+        return TIME_MINUTE;
+    }
+    if([sensor isEqualToString:@"TIME_SECOND"]) {
+        return TIME_SECOND;
+    }
     if([sensor isEqualToString:@"FACE_DETECTED"]) {
         return FACE_DETECTED;
     }
@@ -189,6 +217,27 @@ NSString * const sensorStringArray[] = {
     Sensor sensor = [self sensorForString:sensorName];
     NSString *name;
     switch (sensor) {
+        case DATE_YEAR:
+            name = kUIFESensorDateYear;
+            break;
+        case DATE_MONTH:
+            name = kUIFESensorDateMonth;
+            break;
+        case DATE_DAY:
+            name = kUIFESensorDateDay;
+            break;
+        case DATE_WEEKDAY:
+            name = kUIFESensorDateWeekday;
+            break;
+        case TIME_HOUR:
+            name = kUIFESensorTimeHour;
+            break;
+        case TIME_MINUTE:
+            name = kUIFESensorTimeMinute;
+            break;
+        case TIME_SECOND:
+            name = kUIFESensorTimeSecond;
+            break;
         case COMPASS_DIRECTION:
             name = kUIFESensorCompass;
             break;
