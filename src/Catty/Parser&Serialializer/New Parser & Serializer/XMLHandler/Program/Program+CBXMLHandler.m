@@ -59,12 +59,15 @@
                                                                 originalWidth:[program.header.screenWidth stringValue]
                                                                originalHeight:[program.header.screenHeight stringValue]]];
     } else {
-        GDataXMLElement *scenesElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"scenes"];
-        program.scenes = [self parseScenesFromElement:scenesElement withContext:context];
-        
         GDataXMLElement *programVariableListElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"programVariableList"];
         program.programVariableList = [VariablesContainer parseProgramVariableListFromElement:programVariableListElement
                                                                                   withContext:context];
+        
+        context.programVariableList = program.programVariableList;
+        context.variables.programVariableList = program.programVariableList;
+        
+        GDataXMLElement *scenesElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"scenes"];
+        program.scenes = [self parseScenesFromElement:scenesElement withContext:context];
     }
     
     [self addMissingVariablesToVariablesContainer:program.variables withContext:context];

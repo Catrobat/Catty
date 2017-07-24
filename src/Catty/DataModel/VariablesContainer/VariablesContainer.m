@@ -192,7 +192,7 @@ static pthread_mutex_t variablesLock;
         SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
         NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
         for (UserVariable *userVariableToCompare in userVariableList) {
-            if ([userVariableToCompare isEqualToUserVariable:userVariable]) {
+            if (userVariableToCompare == userVariable) {
                 return spriteObject;
             }
         }

@@ -985,7 +985,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+                  <userVariable>paclives</userVariable>
                 </brick>
                 <brick type="SetVariableBrick">
                   <formulaList>
@@ -1005,7 +1005,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+                  <userVariable>change anim</userVariable>
                 </brick>
                 <brick type="SetVariableBrick">
                   <formulaList>
@@ -1015,7 +1015,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+                  <userVariable>animframe</userVariable>
                 </brick>
                 <brick type="IfLogicElseBrick"/>
                 <brick type="IfLogicEndBrick"/>
@@ -1094,7 +1094,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+                  <userVariable reference="../../brick[7]/userVariable"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <formulaList>
@@ -1120,7 +1120,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+                  <userVariable reference="../../brick[9]/userVariable"/>
                 </brick>
                 <brick type="IfLogicBeginBrick">
                   <formulaList>
@@ -1147,7 +1147,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+                  <userVariable reference="../../brick[9]/userVariable"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <formulaList>
@@ -1385,7 +1385,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+                  <userVariable>paclives</userVariable>
                 </brick>
                 <brick type="SetVariableBrick">
                   <formulaList>
@@ -1405,7 +1405,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+                  <userVariable>change anim</userVariable>
                 </brick>
                 <brick type="SetVariableBrick">
                   <formulaList>
@@ -1415,7 +1415,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+                  <userVariable>animframe</userVariable>
                 </brick>
                 <brick type="IfLogicElseBrick"/>
                 <brick type="IfLogicEndBrick"/>
@@ -1494,7 +1494,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+                  <userVariable reference="../../brick[7]/userVariable"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <formulaList>
@@ -1520,7 +1520,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+                  <userVariable reference="../../brick[9]/userVariable"/>
                 </brick>
                 <brick type="IfLogicBeginBrick">
                   <formulaList>
@@ -1547,7 +1547,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
+                  <userVariable reference="../../brick[9]/userVariable"/>
                 </brick>
                 <brick type="ChangeVariableBrick">
                   <formulaList>
@@ -1684,9 +1684,9 @@
           <entry>
             <object reference="../../../../objectList/object[5]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[5]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
             </list>
           </entry>
           <entry>
@@ -1708,9 +1708,9 @@
           <entry>
             <object reference="../../../../objectList/object[6]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[8]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
-              <userVariable reference="../../../../../objectList/object[2]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[9]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[10]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[6]/scriptList/script[2]/brickList/brick[7]/userVariable"/>
             </list>
           </entry>
           <entry>

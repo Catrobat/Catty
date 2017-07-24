@@ -1655,7 +1655,7 @@
                     </formula>
                   </formulaList>
                   <inUserBrick>false</inUserBrick>
-                  <userVariable reference="../../../../../../object[8]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+                  <userVariable>digit</userVariable>
                 </brick>
                 <brick type="IfLogicBeginBrick">
                   <formulaList>
@@ -1905,7 +1905,7 @@
           <entry>
             <object reference="../../../../objectList/object[9]"/>
             <list>
-              <userVariable reference="../../../../../objectList/object[8]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
+              <userVariable reference="../../../../../objectList/object[9]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
             </list>
           </entry>
           <entry>

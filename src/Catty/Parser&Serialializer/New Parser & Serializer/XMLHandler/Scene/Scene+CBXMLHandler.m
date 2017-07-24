@@ -52,8 +52,11 @@ NSString *const kOriginalHeightElementName = @"originalHeight";
     NSParameterAssert(context);
     
     NSString *name = [self parseNameFromSceneElement:xmlElement];
-    NSMutableArray<SpriteObject *> *objectList = [self parseObjectListFromSceneElement:xmlElement withContext:context];
     OrderedMapTable *objectVariableList = [self parseObjectVariableListFromSceneElement:xmlElement withContext:context];
+    
+    context.variables.objectVariableList = objectVariableList;
+    
+    NSMutableArray<SpriteObject *> *objectList = [self parseObjectListFromSceneElement:xmlElement withContext:context];
     NSString *originalWidth = [self parseOriginalWidthFromSceneElement:xmlElement];
     NSString *originalHeight = [self parseOriginalHeightFromSceneElement:xmlElement];
     
