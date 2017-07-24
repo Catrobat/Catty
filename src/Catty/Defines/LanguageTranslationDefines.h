@@ -578,6 +578,14 @@
 #define kUIFEObjectPositionX NSLocalizedString(@"pos_x", nil)
 #define kUIFEObjectPositionY NSLocalizedString(@"pos_y", nil)
 
+#define kUIFESensorDateYear NSLocalizedString(@"year", nil)
+#define kUIFESensorDateMonth NSLocalizedString(@"month", nil)
+#define kUIFESensorDateDay NSLocalizedString(@"day", nil)
+#define kUIFESensorDateWeekday NSLocalizedString(@"weekday", nil)
+#define kUIFESensorTimeHour NSLocalizedString(@"hour", nil)
+#define kUIFESensorTimeMinute NSLocalizedString(@"minute", nil)
+#define kUIFESensorTimeSecond NSLocalizedString(@"second", nil)
+
 #define kUIFESensorCompass NSLocalizedString(@"compass", nil)
 #define kUIFESensorLoudness NSLocalizedString(@"loudness", nil)
 #define kUIFESensorAccelerationX NSLocalizedString(@"acceleration_x", nil)
