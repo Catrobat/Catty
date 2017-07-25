@@ -405,7 +405,7 @@
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
-#define kLocalizedAndWait NSLocalizedString(@" And Wait", nil)
+#define kLocalizedAndWait NSLocalizedString(@" and wait", nil)
 
 // variable and list bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)

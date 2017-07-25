@@ -282,7 +282,7 @@
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
 		4D1F0BBF1F2487B0001DF63B /* SpeakAndWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BBE1F2487B0001DF63B /* SpeakAndWaitBrick.m */; };
-		4D1F0BC21F2488C5001DF63B /* SpeakAndWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrick.m */; };
+		4D1F0BC21F2488C5001DF63B /* SpeakAndWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrickCell.m */; };
 		4D1F0BC51F248981001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC41F248980001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m */; };
 		4D1F0BC71F2489E9001DF63B /* SpeakAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC61F2489E9001DF63B /* SpeakAndWaitBrick+Instruction.swift */; };
 		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
@@ -1278,7 +1278,7 @@
 		4D1F0BBB1F248774001DF63B /* SpeakAndWaitBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeakAndWaitBrick.h; sourceTree = "<group>"; };
 		4D1F0BBE1F2487B0001DF63B /* SpeakAndWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakAndWaitBrick.m; sourceTree = "<group>"; };
 		4D1F0BC01F2488BB001DF63B /* SpeakAndWaitBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeakAndWaitBrickCell.h; sourceTree = "<group>"; };
-		4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakAndWaitBrick.m; sourceTree = "<group>"; };
+		4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakAndWaitBrickCell.m; sourceTree = "<group>"; };
 		4D1F0BC31F248972001DF63B /* SpeakAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SpeakAndWaitBrick+CBXMLHandler.h"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SpeakAndWaitBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4D1F0BC41F248980001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpeakAndWaitBrick+CBXMLHandler.m"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SpeakAndWaitBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D1F0BC61F2489E9001DF63B /* SpeakAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpeakAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -5490,7 +5490,7 @@
 				AA74F0801BC05FCE00D1E954 /* SpeakBrickCell.h */,
 				AA74F0811BC05FCE00D1E954 /* SpeakBrickCell.m */,
 				4D1F0BC01F2488BB001DF63B /* SpeakAndWaitBrickCell.h */,
-				4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrick.m */,
+				4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrickCell.m */,
 				AA74F0821BC05FCE00D1E954 /* StopAllSoundsBrickCell.h */,
 				AA74F0831BC05FCE00D1E954 /* StopAllSoundsBrickCell.m */,
 			);
@@ -7150,7 +7150,7 @@
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				AAF6D9D21BC0966700686849 /* Formula+Optimization.swift in Sources */,
-				4D1F0BC21F2488C5001DF63B /* SpeakAndWaitBrick.m in Sources */,
+				4D1F0BC21F2488C5001DF63B /* SpeakAndWaitBrickCell.m in Sources */,
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				927F79E01BEE39CB008D1635 /* PhiroIfLogicBeginBrick.m in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,

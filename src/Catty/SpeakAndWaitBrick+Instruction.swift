@@ -27,6 +27,7 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         
         return CBInstruction.ExecClosure { (context, _) in
+
             var speakText = self.formula.interpretString(object)
             if(Double(speakText) !=  nil)
             {
@@ -40,6 +41,8 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.delegate = self
             synthesizer.speakUtterance(utterance)
+            synthesizer.accessibilityElements = [context]
+            
         }
         
     }
@@ -48,7 +51,9 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         if utterance.speechString == self.formula.interpretString(object)
         {
-            self.context.state = .Runnable
+            if let context = synthesizer.accessibilityElements?.last as? CBScriptContextProtocol {
+                context.state = .Runnable
+            }
         }
     }
 }
