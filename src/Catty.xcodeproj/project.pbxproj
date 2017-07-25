@@ -282,8 +282,8 @@
 		4CFC3BF71CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
 		4D1F0BBF1F2487B0001DF63B /* SpeakAndWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BBE1F2487B0001DF63B /* SpeakAndWaitBrick.m */; };
 		4D1F0BC21F2488C5001DF63B /* SpeakAndWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrickCell.m */; };
-		4D1F0BC51F248981001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC41F248980001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m */; };
 		4D1F0BC71F2489E9001DF63B /* SpeakAndWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1F0BC61F2489E9001DF63B /* SpeakAndWaitBrick+Instruction.swift */; };
+		4D3C40B21F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3C40B11F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.m */; };
 		4D6E0C8F1EE07213008FED9F /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */; };
 		4D6E0C911EE1402E008FED9F /* IfThenLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */; };
 		4D91FEAB1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D91FEAA1EF7C71400CC8FE0 /* IfThenLogicEndBrickCell.m */; };
@@ -1281,9 +1281,9 @@
 		4D1F0BBE1F2487B0001DF63B /* SpeakAndWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakAndWaitBrick.m; sourceTree = "<group>"; };
 		4D1F0BC01F2488BB001DF63B /* SpeakAndWaitBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpeakAndWaitBrickCell.h; sourceTree = "<group>"; };
 		4D1F0BC11F2488C5001DF63B /* SpeakAndWaitBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakAndWaitBrickCell.m; sourceTree = "<group>"; };
-		4D1F0BC31F248972001DF63B /* SpeakAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SpeakAndWaitBrick+CBXMLHandler.h"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SpeakAndWaitBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
-		4D1F0BC41F248980001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpeakAndWaitBrick+CBXMLHandler.m"; path = "Catty/Views/Custom/CollectionViewCells/BrickCells/Sound/SpeakAndWaitBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D1F0BC61F2489E9001DF63B /* SpeakAndWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpeakAndWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4D3C40B01F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SpeakAndWaitBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SpeakAndWaitBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4D3C40B11F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpeakAndWaitBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Sound/SpeakAndWaitBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4D6E0C8B1EE07201008FED9F /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
 		4D6E0C8E1EE07213008FED9F /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
 		4D6E0C901EE1402E008FED9F /* IfThenLogicBeginBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrickCell.m; sourceTree = "<group>"; };
@@ -3098,8 +3098,8 @@
 				AA74EF691BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m */,
 				AA74EF6A1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.h */,
 				AA74EF6B1BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m */,
-				4D1F0BC31F248972001DF63B /* SpeakAndWaitBrick+CBXMLHandler.h */,
-				4D1F0BC41F248980001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m */,
+				4D3C40B01F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.h */,
+				4D3C40B11F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.m */,
 				AA74EF6C1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.h */,
 				AA74EF6D1BC0588A00D1E954 /* StopAllSoundsBrick+CBXMLHandler.m */,
 			);
@@ -7330,7 +7330,6 @@
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
-				4D1F0BC51F248981001DF63B /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
@@ -7467,6 +7466,7 @@
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */,
 				92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */,
+				4D3C40B21F2730530054D26D /* SpeakAndWaitBrick+CBXMLHandler.m in Sources */,
 				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92D56C341BF202E700A54750 /* FirmataDevice.swift in Sources */,
