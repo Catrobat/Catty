@@ -908,6 +908,7 @@
 		47D1DBFF5CB268B8D0056D0B /* Pods-Catty UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty UITests/Pods-Catty UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
+		4C12A8D11F28B88200297615 /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
@@ -2386,6 +2387,7 @@
 		4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */ = {
 			isa = PBXGroup;
 			children = (
+				4C12A8CF1F28B88200297615 /* XMLParserTests */,
 			);
 			name = CatrobatLanguage0.97;
 			path = "Parser & Serialization/CatrobatLanguage0.97";
@@ -2404,6 +2406,22 @@
 			isa = PBXGroup;
 			children = (
 				4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C12A8CF1F28B88200297615 /* XMLParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C12A8D01F28B88200297615 /* BlackBox Tests */,
+			);
+			path = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4C12A8D01F28B88200297615 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C12A8D11F28B88200297615 /* XMLParserBlackBoxTests097.m */,
 			);
 			path = "BlackBox Tests";
 			sourceTree = "<group>";
