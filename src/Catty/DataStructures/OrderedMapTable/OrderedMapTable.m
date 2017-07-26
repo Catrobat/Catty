@@ -31,40 +31,33 @@
 
 @implementation OrderedMapTable
 
-+ (id)strongToStrongObjectsMapTable
++ (instancetype)strongToStrongObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable strongToStrongObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable strongToStrongObjectsMapTable]];
 }
 
 
-+ (id)weakToStrongObjectsMapTable
++ (instancetype)weakToStrongObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable weakToStrongObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable weakToStrongObjectsMapTable]];
 }
 
-+ (id)weakToWeakObjectsMapTable
++ (instancetype)weakToWeakObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable weakToWeakObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable weakToWeakObjectsMapTable]];
 }
 
-+ (id)strongToWeakObjectsMapTable
++ (instancetype)strongToWeakObjectsMapTable
 {
-    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
-    orderedMapTable.mapTable = [NSMapTable strongToWeakObjectsMapTable];
-    return orderedMapTable;
+    return [[OrderedMapTable alloc] initWithMapTable:[NSMapTable strongToWeakObjectsMapTable]];
 }
 
-- (id)init
+- (instancetype)initWithMapTable:(NSMapTable *)mapTable
 {
     self = [super init];
     if(self) {
-        self.keyIndexArray = [[NSMutableArray alloc] init];
+        _keyIndexArray = [[NSMutableArray alloc] init];
+        _mapTable = mapTable;
     }
     return self;
 }
@@ -111,14 +104,47 @@
     return [self.mapTable count];
 }
 
-- (NSString*)description
+- (BOOL)isEqual:(id)other
 {
-    return [NSString stringWithFormat:@"OrderedMapTable: %@", self.mapTable];
+    if (other == self)
+        return YES;
+    if (![[other class] isEqual:[self class]])
+        return NO;
+    
+    return [self isEqualToOrderedMapTable:other];
+}
+
+- (BOOL)isEqualToOrderedMapTable:(OrderedMapTable *)orderedMapTable
+{
+    if (self.count != orderedMapTable.count)
+        return NO;
+    
+    for (id key in self.keyIndexArray) {
+        NSUInteger index = [orderedMapTable.keyIndexArray indexOfObject:key];
+        id selfObject = [self.mapTable objectForKey:key];
+        id orderedMapTableObject = [orderedMapTable objectAtIndex:index];
+        
+        if (![selfObject isEqual:orderedMapTableObject])
+            return NO;
+    }
+    
+    return YES;
+}
+
+- (NSString *)description
+{
+    NSMutableString *desc = [NSMutableString stringWithString:@"OrderedMapTable: {"];
+    for (id key in self.keyIndexArray) {
+        [desc appendString:[NSString stringWithFormat:@"%@ = %@; ", key, [self objectForKey:key]]];
+    }
+    [desc appendString:@"}"];
+    
+    return desc;
 }
 
 - (id)mutableCopy
 {
-    OrderedMapTable *orderedMapTable = [OrderedMapTable new];
+    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] initWithMapTable:nil];
     orderedMapTable.keyIndexArray = [self.keyIndexArray mutableCopy];
     orderedMapTable.mapTable = [self.mapTable mutableCopy];
     return orderedMapTable;

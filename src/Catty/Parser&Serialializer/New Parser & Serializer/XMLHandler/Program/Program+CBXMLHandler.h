@@ -25,4 +25,7 @@
 
 @interface Program (CBXMLHandler) <CBXMLNodeProtocol>
 
++ (NSMutableArray<SpriteObject *> *)parseObjectListFromElement:(GDataXMLElement *)objectListElement
+                                                   withContext:(CBXMLParserContext *)context;
+
 @end

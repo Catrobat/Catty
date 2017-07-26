@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>v0.9.10-111-geb1b919 master</applicationVersion>
+    <catrobatLanguageVersion>0.992</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName>Nexus 4</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense/>
+    <platform>Android</platform>
+    <platformVersion>19.0</platformVersion>
+    <programLicense/>
+    <programName>Led and Flash Bricks</programName>
+    <remixOf/>
+    <screenHeight>1184</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>768</screenWidth>
+    <tags/>
+    <url/>
+    <userHandle/>
+  </header>
+  <scenes>
+    <scene>
+      <name>Scene 1</name>
+      <objectList>
+        <object name="Background">
+          <lookList/>
+          <soundList/>
+          <scriptList>
+            <script type="StartScript">
+              <brickList>
+                <brick type="FlashBrick">
+                  <spinnerSelectionID>1</spinnerSelectionID>
+                  <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                  </spinnerValues>
+                </brick>
+                <brick type="FlashBrick">
+                  <spinnerSelectionID>0</spinnerSelectionID>
+                  <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                  </spinnerValues>
+                </brick>
+                <brick type="FlashBrick">
+                  <spinnerSelectionID>1</spinnerSelectionID>
+                  <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                  </spinnerValues>
+                </brick>
+                <brick type="FlashBrick">
+                  <spinnerSelectionID>0</spinnerSelectionID>
+                  <spinnerValues>
+                    <string>off</string>
+                    <string>on</string>
+                  </spinnerValues>
+                </brick>
+              </brickList>
+              <isUserScript>false</isUserScript>
+            </script>
+          </scriptList>
+          <userBricks/>
+          <nfcTagList/>
+        </object>
+      </objectList>
+      <data>
+        <objectListOfList/>
+        <objectVariableList/>
+        <userBrickVariableList/>
+      </data>
+      <originalWidth>768</originalWidth>
+      <originalHeight>1184</originalHeight>
+    </scene>
+  </scenes>
+  <programVariableList/>
+  <programListOfLists/>
+  <settings/>
+</program>

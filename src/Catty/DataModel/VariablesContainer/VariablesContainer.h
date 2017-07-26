@@ -32,8 +32,7 @@
 // Map<Sprite, List<UserVariable>
 @property (nonatomic, strong) OrderedMapTable *objectVariableList;
 
-// List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray *programVariableList;
+@property (nonatomic, strong) NSMutableArray<UserVariable *> *programVariableList;
 
 - (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 

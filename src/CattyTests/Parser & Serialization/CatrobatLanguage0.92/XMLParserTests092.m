@@ -27,19 +27,13 @@
 #import "Brick.h"
 #import "NoteBrick.h"
 #import "Parser.h"
+#import "XMLAbstractTest.h"
 
-@interface XMLParserTests : XCTestCase
+@interface XMLParserTests : XMLAbstractTest
 
 @end
 
 @implementation XMLParserTests
-
-- (NSString*)getPathForXML:(NSString*)xmlFile
-{
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:xmlFile ofType:@"xml"];
-    return path;
-}
 
 - (void)testConvertUnsupportedBrickToNoteBrick {
     Parser *parser092 = [[Parser alloc] init];

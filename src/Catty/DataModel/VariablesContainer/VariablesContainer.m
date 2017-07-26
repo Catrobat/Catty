@@ -42,8 +42,6 @@ static pthread_mutex_t variablesLock;
 - (void)dealloc
 {
     NSDebug(@"Dealloc Variables");
-    [self.objectVariableList removeAllObjects];
-    [self.programVariableList removeAllObjects];
     self.programVariableList = nil;
     self.objectVariableList = nil;
     pthread_mutex_destroy(&variablesLock);
@@ -59,7 +57,7 @@ static pthread_mutex_t variablesLock;
     return _objectVariableList;
 }
 
-- (NSMutableArray*)programVariableList
+- (NSMutableArray<UserVariable *> *)programVariableList
 {
     // lazy instantiation
     if (! _programVariableList)

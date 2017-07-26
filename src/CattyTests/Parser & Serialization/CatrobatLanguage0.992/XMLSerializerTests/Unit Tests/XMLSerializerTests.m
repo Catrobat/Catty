@@ -36,35 +36,35 @@
 
 - (void)testHeader
 {
-    Program *program = [self getProgramForXML:@"ValidHeader098"];
+    Program *program = [self getProgramForXML:@"ValidHeader0992"];
     Header *header = program.header;
-    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader098"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader0992"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
 - (void)testInvalidHeader
 {
-    Program *program = [self getProgramForXML:@"ValidHeader098"];
+    Program *program = [self getProgramForXML:@"ValidHeader0992"];
     Header *header = program.header;
     header.programDescription = @"Invalid";
-    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader098"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader0992"];
     XCTAssertFalse(equal, @"GDataXMLElement::isEqualToElement not working correctly!");
 }
 
 - (void)testFormulaAndMoveNStepsBrick
 {
-    Program *program = [self getProgramForXML:@"ValidProgramAllBricks098"];
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0992"];
     MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
-    BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks098"];
+    BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/scenes/scene/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks0992"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
 - (void)testRemoveObjectAndSerializeProgram
 {
-    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.98f];
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.992f];
     
-    Program *referenceProgram = [self getProgramForXML:@"ValidProgram098"];
-    Program *program = [self getProgramForXML:@"ValidProgram098"];
+    Program *referenceProgram = [self getProgramForXML:@"ValidProgram0992"];
+    Program *program = [self getProgramForXML:@"ValidProgram0992"];
     SpriteObject *moleOne = [program.objectList objectAtIndex:1];
     [program removeObject:moleOne];
     

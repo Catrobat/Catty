@@ -39,7 +39,7 @@
 #pragma mark - CatrobatLanguageVersion check
 - (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass
 {
-    if (self.languageVersion >= 0.93f && self.languageVersion <= 0.98f) {
+    if (self.languageVersion >= 0.93f && self.languageVersion <= 0.992f) {
         return [modelClass parseFromElement:xmlElement withContext:self];
     } else {
         NSError(@"Unsupported CatrobatLanguageVersion %.2f", self.languageVersion);

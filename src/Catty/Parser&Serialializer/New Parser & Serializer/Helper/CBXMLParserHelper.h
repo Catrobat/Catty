@@ -47,4 +47,6 @@
 + (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
 + (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName;
 
++ (GDataXMLElement *)onlyChildOfElement:(GDataXMLElement *)xmlElement withName:(NSString *)childName;
+
 @end

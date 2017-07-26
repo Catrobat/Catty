@@ -31,6 +31,9 @@
 #import "Script.h"
 #import "BrickFormulaProtocol.h"
 #import "OrderedMapTable.h"
+#import "CBXMLParserHelper.h"
+#import "Scene+CBXMLHandler.h"
+#import "UserVariable+CBXMLHandler.h"
 
 @implementation Program (CBXMLHandler)
 
@@ -39,13 +42,36 @@
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
     [XMLError exceptionIfNil:context message:@"No context given!"];
-    Program *program = [Program new];
-    // IMPORTANT: DO NOT CHANGE ORDER HERE!!
+    
+    Program *program = [[Program alloc] init];
     program.header = [self parseAndCreateHeaderFromElement:xmlElement withContext:context];
-    program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
-    program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
+    
+    if (context.languageVersion <= 0.991) {
+        VariablesContainer *variables = [context parseFromElement:xmlElement withClass:[VariablesContainer class]];
+        program.programVariableList = variables.programVariableList;
+        
+        GDataXMLElement *objectListElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"objectList"];
+        NSArray<SpriteObject *> *objectList = [self parseObjectListFromElement:objectListElement withContext:context];
+        
+        program.scenes = [NSArray arrayWithObject:[[Scene alloc] initWithName:@"Scene 1"
+                                                                   objectList:[objectList mutableCopy]
+                                                           objectVariableList:variables.objectVariableList
+                                                                originalWidth:[program.header.screenWidth stringValue]
+                                                               originalHeight:[program.header.screenHeight stringValue]]];
+    } else {
+        GDataXMLElement *programVariableListElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"programVariableList"];
+        program.programVariableList = [VariablesContainer parseProgramVariableListFromElement:programVariableListElement
+                                                                                  withContext:context];
+        
+        context.programVariableList = program.programVariableList;
+        context.variables.programVariableList = program.programVariableList;
+        
+        GDataXMLElement *scenesElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"scenes"];
+        program.scenes = [self parseScenesFromElement:scenesElement withContext:context];
+    }
     
     [self addMissingVariablesToVariablesContainer:program.variables withContext:context];
+    
     return program;
 }
 
@@ -58,17 +84,16 @@
     return [context parseFromElement:[headerNodes objectAtIndex:0] withClass:[Header class]];
 }
 
-#pragma mark Object parsing
-+ (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement
-                                        withContext:(CBXMLParserContext*)context
-{
-    NSArray *objectListElements = [programElement elementsForName:@"objectList"];
-    [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
-    NSArray *objectElements = [[objectListElements firstObject] children];
-    [XMLError exceptionIf:[objectListElements count] equals:0
-                  message:@"No objects in objectList, but there must exist "\
-                          "at least 1 object (background)!!"];
-    NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
++ (NSMutableArray<SpriteObject *> *)parseObjectListFromElement:(GDataXMLElement *)objectListElement
+                                                   withContext:(CBXMLParserContext *)context {
+    NSParameterAssert([objectListElement.name isEqualToString:@"objectList"]);
+    NSParameterAssert(context);
+    
+    NSArray *objectElements = [objectListElement children];
+    [XMLError exceptionIf:[objectElements count] equals:0
+                  message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
+    
+    NSMutableArray<SpriteObject *> *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
         SpriteObject *spriteObject = [context parseFromElement:objectElement
                                                      withClass:[SpriteObject class]];
@@ -104,11 +129,15 @@
     return objectList;
 }
 
-#pragma mark Variable parsing
-+ (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
-                                              withContext:(CBXMLParserContext*)context
-{
-    return [context parseFromElement:programElement withClass:[VariablesContainer class]];
++ (NSArray<Scene *> *)parseScenesFromElement:(GDataXMLElement *)scenesElement withContext:(CBXMLParserContext *)context {
+    NSArray *sceneElements = [scenesElement children];
+    NSMutableArray<Scene *> *scenes = [NSMutableArray arrayWithCapacity:sceneElements.count];
+    
+    for (GDataXMLElement *sceneElement in sceneElements) {
+        Scene *scene = [context parseFromElement:sceneElement withClass:[Scene class]];
+        [scenes addObject:scene];
+    }
+    return scenes;
 }
 
 + (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer
@@ -148,31 +177,42 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    // update context object
     context.spriteObjectList = self.objectList;
-    context.variables = self.variables;
+    context.variables.programVariableList = self.programVariableList;
 
-    // generate xml element for program
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
+    
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
+    [xmlElement addChild:[self scenesElementWithContext:context] context:context];
+    [xmlElement addChild:[self programVariableListElementWithContext:context] context:context];
+    
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"programListOfLists" context:context] context:context];
 
-    GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList"
-                                                                     context:context];
-    for (id object in self.objectList) {
-        [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
-                      message:@"Invalid sprite object instance given"];
-        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context]
-                               context:context];
-    }
-    [xmlElement addChild:objectListXmlElement context:context];
-
-    if (self.variables) {
-        [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
-    }
-
-    // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:context] context:context];
+    
     return xmlElement;
+}
+
+- (GDataXMLElement *)scenesElementWithContext:(CBXMLSerializerContext *)context {
+    GDataXMLElement *scenesElement = [GDataXMLElement elementWithName:@"scenes" context:context];
+    
+    for (Scene *scene in self.scenes) {
+        [scenesElement addChild:[scene xmlElementWithContext:context] context:context];
+    }
+    
+    return scenesElement;
+}
+
+- (GDataXMLElement *)programVariableListElementWithContext:(CBXMLSerializerContext *)context {
+    GDataXMLElement *programVariableListElement = [GDataXMLElement elementWithName:@"programVariableList" context:context];
+    
+    for (UserVariable *userVariable in self.programVariableList) {
+        [programVariableListElement addChild:[userVariable xmlElementWithContext:context] context:context];
+    }
+    
+    return programVariableListElement;
 }
 
 @end

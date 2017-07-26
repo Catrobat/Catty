@@ -484,9 +484,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSInteger index = (kBackgroundSectionIndex + sourceIndexPath.section + sourceIndexPath.row);
     NSInteger destIndex = (kBackgroundSectionIndex + destinationIndexPath.section + destinationIndexPath.row);
-    SpriteObject* itemToMove = self.program.objectList[index];
-    [self.program.objectList removeObjectAtIndex:index];
-    [self.program.objectList insertObject:itemToMove atIndex:destIndex];
+    [self.program moveObjectFromIndex:index toIndex:destIndex];
     [self.program saveToDiskWithNotification:NO];
 }
 

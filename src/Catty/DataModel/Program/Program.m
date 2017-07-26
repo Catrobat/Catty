@@ -25,17 +25,17 @@
 #import "Util.h"
 #import "AppDelegate.h"
 #import "Parser.h"
-#import "Script.h"
 #import "Brick.h"
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
+#import "Scene.h"
+#import "OrderedMapTable.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation Program
 
-@synthesize objectList = _objectList;
+@implementation Program
 
 # pragma mark - factories
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID
@@ -150,27 +150,16 @@
 
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
-    [self.objectList addObject:object];
+    [self.sceneModel addObject:object];
+    
     [self saveToDiskWithNotification:YES];
     return object;
 }
 
 - (void)removeObjectFromList:(SpriteObject*)object
 {
-    // do not use NSArray's removeObject here
-    // => if isEqual is overriden this would lead to wrong results
-    NSUInteger index = 0;
-    for (SpriteObject *currentObject in self.objectList) {
-        if (currentObject == object) {
-            [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
-            [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
-            [currentObject.program.variables removeObjectVariablesForSpriteObject:currentObject];
-            currentObject.program = nil;
-            [self.objectList removeObjectAtIndex:index];
-            break;
-        }
-        ++index;
-    }
+    [self.sceneModel removeObject:object];
+    [self.variables removeObjectVariablesForSpriteObject:object];
 }
 
 - (void)removeObject:(SpriteObject*)object
@@ -179,7 +168,7 @@
     [self saveToDiskWithNotification:YES];
 }
 
-- (void)removeObjects:(NSArray*)objects
+- (void)removeObjects:(NSArray<SpriteObject *> *)objects
 {
     for (id object in objects) {
         if ([object isKindOfClass:[SpriteObject class]]) {
@@ -187,6 +176,10 @@
         }
     }
     [self saveToDiskWithNotification:YES];
+}
+
+- (void)moveObjectFromIndex:(NSInteger)originIndex toIndex:(NSInteger)destinationIndex {
+    [self.sceneModel moveObjectFromIndex:originIndex toIndex:destinationIndex];
 }
 
 - (BOOL)objectExistsWithName:(NSString*)objectName
@@ -199,31 +192,51 @@
     return NO;
 }
 
-#pragma mark - Custom getter and setter
-- (NSMutableArray*)objectList
-{
-    if (! _objectList) {
-         _objectList = [NSMutableArray array];
+- (Scene *)sceneModel {
+    if (self.scenes == nil) {
+        self.scenes = [NSArray arrayWithObject:[[Scene alloc] initWithName:@"Scene 1"
+                                                                objectList:[NSMutableArray array]
+                                                        objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
+                                                             originalWidth:[self.header.screenWidth stringValue] ?: @"768"
+                                                            originalHeight:[self.header.screenHeight stringValue] ?: @"1184"]];
     }
-    return _objectList;
+    
+    NSAssert(self.scenes.count == 1, @"Should have only one scene at the moment");
+    return [self.scenes firstObject];
 }
 
-- (void)setObjectList:(NSMutableArray*)objectList
+#pragma mark - Custom getter
+- (NSMutableArray<SpriteObject *> *)objectList
 {
-    for (id object in objectList) {
-        if ([object isKindOfClass:[SpriteObject class]]) {
-            ((SpriteObject*)object).program = self;
-        }
-    }
-    _objectList = objectList;
+    return [self.sceneModel objectList];
 }
 
-- (VariablesContainer*)variables
+- (void)setObjectList:(NSMutableArray<SpriteObject *> *)objectList
 {
-    // lazy instantiation
-    if (! _variables)
-        _variables = [VariablesContainer new];
-    return _variables;
+    self.sceneModel.objectList = objectList;
+}
+
+- (NSMutableArray<UserVariable *> *)programVariableList {
+    if (!_programVariableList) {
+        _programVariableList = [NSMutableArray array];
+    }
+    return _programVariableList;
+}
+- (VariablesContainer *)variables
+{
+    NSAssert(self.programVariableList != nil && self.sceneModel.objectVariableList != nil, @"Should be nonnil");
+    
+    VariablesContainer *variables = [[VariablesContainer alloc] init];
+    variables.programVariableList = self.programVariableList;
+    variables.objectVariableList = self.sceneModel.objectVariableList;
+    
+    return variables;
+}
+
+- (void)setVariables:(VariablesContainer *)variables
+{
+    self.programVariableList = variables.programVariableList;
+    self.sceneModel.objectVariableList = variables.objectVariableList;
 }
 
 - (NSString*)projectPath
@@ -389,39 +402,25 @@
     CBMutableCopyContext *context = [CBMutableCopyContext new];
     SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
-    [self.objectList addObject:copiedObject];
+    [self.sceneModel addObject:copiedObject];
     [self saveToDiskWithNotification:YES];
     return copiedObject;
 }
 
-- (BOOL)isEqualToProgram:(Program*)program
-{
-    if (! [self.header isEqualToHeader:program.header])
-        return NO;
-    if (! [self.variables isEqualToVariablesContainer:program.variables])
-        return NO;
-    if ([self.objectList count] != [program.objectList count])
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (![[other class] isEqual:[self class]])
         return NO;
     
-    NSUInteger idx;
-    for (idx = 0; idx < [self.objectList count]; idx++) {
-        SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
-        SpriteObject *secondObject = nil;
-        
-        NSUInteger programIdx;
-        for (programIdx = 0; programIdx < [program.objectList count]; programIdx++) {
-            SpriteObject *programObject = [program.objectList objectAtIndex:programIdx];
-            
-            if ([programObject.name isEqualToString:firstObject.name]) {
-                secondObject = programObject;
-                break;
-            }
-        }
-        
-        if (secondObject == nil || ! [firstObject isEqualToSpriteObject:secondObject])
-            return NO;
-    }
-    return YES;
+    return [self isEqualToProgram:other];
+}
+
+- (BOOL)isEqualToProgram:(Program *)program
+{
+    return [self.header isEqualToHeader:program.header]
+        && [self.scenes isEqualToArray:program.scenes]
+        && [self.programVariableList isEqualToArray:program.programVariableList];
 }
 
 - (NSInteger)getRequiredResources
@@ -460,7 +459,7 @@
     [ret appendFormat:@"Sprite List: %@\n", self.objectList];
     [ret appendFormat:@"URL: %@\n", self.header.url];
     [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
-    [ret appendFormat:@"Variables: %@\n", self.variables];
+    [ret appendFormat:@"Variables: %@\n", [self.variables description]];
     [ret appendFormat:@"------------------------------------------------\n"];
     return [ret copy];
 }

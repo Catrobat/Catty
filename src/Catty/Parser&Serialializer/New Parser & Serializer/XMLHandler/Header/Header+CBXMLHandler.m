@@ -84,7 +84,7 @@
     
     if (context.languageVersion == 0.95f || context.languageVersion == 0.96f) {
         headerProperties = [self headerPropertiesForLanguageVersion095];
-    } else if (context.languageVersion == 0.98f) {
+    } else if (context.languageVersion >= 0.98f) {
         headerProperties = [self headerPropertiesForLanguageVersion098];
     } else {
         headerProperties = [self defaultHeaderProperties];
