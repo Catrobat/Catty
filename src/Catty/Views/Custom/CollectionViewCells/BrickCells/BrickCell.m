@@ -96,6 +96,7 @@
 
 // look bricks
 #define kLookBrickNameParams @[\
+    @"{LOOK}",                      /* set look                 */\
     @"{LOOK}",                      /* set background           */\
     @[],                            /* next background          */\
     @[],                            /* previous background      */\

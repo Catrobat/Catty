@@ -92,6 +92,11 @@
     return NO;
 }
 
+- (BOOL)isDisabledForBackground
+{
+    return NO;
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";

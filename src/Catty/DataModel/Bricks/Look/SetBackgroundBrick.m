@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,20 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetLookBrick.h"
+#import "SetBackgroundBrick.h"
 #import "Script.h"
 #import "CBMutableCopyContext.h"
 
-@implementation SetLookBrick
-
-- (BOOL)isDisabledForBackground
-{
-    return YES;
-}
+@implementation SetBackgroundBrick
 
 - (NSString*)brickTitle
 {
-    return [kLocalizedSetLook stringByAppendingString:@"\n%@"];
+    return [kLocalizedSetBackground stringByAppendingString:@"\n%@"];
 }
 
 - (NSString*)pathForLook
@@ -44,12 +39,12 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
+    return [NSString stringWithFormat:@"SetBackgroundBrick (Background: %@)", self.look.name];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if([self.look isEqualToLook:((SetLookBrick*)brick).look])
+    if([self.look isEqualToLook:((SetBackgroundBrick*)brick).look])
         return YES;
     return NO;
 }
@@ -87,7 +82,7 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    SetLookBrick *brick = [[self class] new];
+    SetBackgroundBrick *brick = [[self class] new];
     brick.look = self.look;
     [context updateReference:self WithReference:brick];
     

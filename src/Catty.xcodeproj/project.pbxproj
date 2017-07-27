@@ -296,6 +296,10 @@
 		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
 		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
 		4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */; };
+		4DF2BECA1F2A09D6005B062F /* SetBackgroundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BEC91F2A09D6005B062F /* SetBackgroundBrick.m */; };
+		4DF2BECD1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BECC1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m */; };
+		4DF2BECF1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */; };
+		4DF2BED21F2A0C33005B062F /* SetBackgroundBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BED11F2A0C33005B062F /* SetBackgroundBrickCell.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -1302,6 +1306,13 @@
 		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
 		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DF2BEC61F2A09B9005B062F /* SetBackgroundBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetBackgroundBrick.h; sourceTree = "<group>"; };
+		4DF2BEC91F2A09D6005B062F /* SetBackgroundBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBackgroundBrick.m; sourceTree = "<group>"; };
+		4DF2BECB1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetBackgroundBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetBackgroundBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DF2BECC1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetBackgroundBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetBackgroundBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBackgroundBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBackgroundBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DF2BED01F2A0C33005B062F /* SetBackgroundBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBackgroundBrickCell.h; sourceTree = "<group>"; };
+		4DF2BED11F2A0C33005B062F /* SetBackgroundBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBackgroundBrickCell.m; sourceTree = "<group>"; };
 		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3015,6 +3026,8 @@
 				4CB2CFA51D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m */,
 				AA74EEF21BC057C900D1E954 /* SetLookBrick+CBXMLHandler.h */,
 				AA74EEF31BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m */,
+				4DF2BECB1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.h */,
+				4DF2BECC1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m */,
 				AA74EF791BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.h */,
 				AA74EF7A1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m */,
 				AA74EEF41BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.h */,
@@ -5136,6 +5149,7 @@
 				921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */,
 				AAF6D9D31BC0B9EA00686849 /* HideBrick+Instruction.swift */,
 				AAF6D9D91BC0BB1F00686849 /* SetLookBrick+Instruction.swift */,
+				4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */,
 				AAF6D9DB1BC0BFFE00686849 /* SetSizeToBrick+Instruction.swift */,
 				AAF6D9D71BC0BAF300686849 /* ShowBrick+Instruction.swift */,
 			);
@@ -5228,6 +5242,8 @@
 				4CB2CFA01D7AD762009F3034 /* SetColorBrick.m */,
 				AA74EFAF1BC05B5F00D1E954 /* SetLookBrick.h */,
 				AA74EFB01BC05B5F00D1E954 /* SetLookBrick.m */,
+				4DF2BEC61F2A09B9005B062F /* SetBackgroundBrick.h */,
+				4DF2BEC91F2A09D6005B062F /* SetBackgroundBrick.m */,
 				AA74EFB11BC05B5F00D1E954 /* SetSizeToBrick.h */,
 				AA74EFB21BC05B5F00D1E954 /* SetSizeToBrick.m */,
 				AA74EFB31BC05B5F00D1E954 /* SetTransparencyBrick.h */,
@@ -5433,6 +5449,8 @@
 				AA74F0531BC05FCE00D1E954 /* SetTransparencyBrickCell.m */,
 				AA74F0541BC05FCE00D1E954 /* SetLookBrickCell.h */,
 				AA74F0551BC05FCE00D1E954 /* SetLookBrickCell.m */,
+				4DF2BED01F2A0C33005B062F /* SetBackgroundBrickCell.h */,
+				4DF2BED11F2A0C33005B062F /* SetBackgroundBrickCell.m */,
 				AA74F0561BC05FCE00D1E954 /* SetSizeToBrickCell.h */,
 				AA74F0571BC05FCE00D1E954 /* SetSizeToBrickCell.m */,
 				AA74F0581BC05FCE00D1E954 /* ShowBrickCell.h */,
@@ -7040,6 +7058,7 @@
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
+				4DF2BECF1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift in Sources */,
 				9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
@@ -7060,6 +7079,7 @@
 				921D467D1BDF61350086AD20 /* ComeToFrontBrick+Instruction.swift in Sources */,
 				9218B20F1CC4AB75007B4C60 /* MirrorRotationZoomTool.m in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
+				4DF2BECA1F2A09D6005B062F /* SetBackgroundBrick.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
@@ -7304,6 +7324,7 @@
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
 				929CC0F91BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift in Sources */,
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
+				4DF2BED21F2A0C33005B062F /* SetBackgroundBrickCell.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92EC985C1BC3ABB90003A891 /* PhiroMotorMoveBackwardBrick+CBXMLHandler.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
@@ -7478,6 +7499,7 @@
 				92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
+				4DF2BECD1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,

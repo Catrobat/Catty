@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptProtocol.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@class Script;
+@interface SetBackgroundBrickCell : BrickCell
 
-@protocol BrickProtocol <ScriptProtocol>
-
-@property (nonatomic, weak) Script *script;
-- (BOOL)isFormulaBrick;
-- (BOOL)isIfLogicBrick;
-- (BOOL)isLoopBrick;
-- (BOOL)isDisabledForBackground;
-- (NSInteger)getRequiredResources;
+@property (nonatomic, weak) iOSCombobox *lookComboBoxView;
 
 @end

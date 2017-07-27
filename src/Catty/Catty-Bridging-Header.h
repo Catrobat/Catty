@@ -62,6 +62,7 @@
 #import "IfOnEdgeBounceBrick.h"
 #import "ShowBrick.h"
 #import "SetLookBrick.h"
+#import "SetBackgroundBrick.h"
 #import "SetSizeToBrick.h"
 #import "PointInDirectionBrick.h"
 #import "PlaceAtBrick.h"

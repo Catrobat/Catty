@@ -174,7 +174,11 @@
     return scripts;
 }
 
-- (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType
+- (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType {
+    return [self selectableBricksForCategoryType:categoryType inBackground:false];
+}
+
+- (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType inBackground:(BOOL)inBackground
 {
     NSArray *selectableBricks = [self selectableBricks];
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
@@ -195,7 +199,9 @@
         return (NSArray*)selectableBricksForCategoryMutable;
     }
     for (id<BrickProtocol> brick in selectableBricks) {
-        if (brick.brickCategoryType == categoryType) {
+        if (inBackground && brick.isDisabledForBackground) {
+            continue;
+        } else if (brick.brickCategoryType == categoryType) {
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptProtocol.h"
+#import "SetBackgroundBrickCell.h"
 
-@class Script;
+@interface SetBackgroundBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@protocol BrickProtocol <ScriptProtocol>
+@implementation SetBackgroundBrickCell
 
-@property (nonatomic, weak) Script *script;
-- (BOOL)isFormulaBrick;
-- (BOOL)isIfLogicBrick;
-- (BOOL)isLoopBrick;
-- (BOOL)isDisabledForBackground;
-- (NSInteger)getRequiredResources;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.lookComboBoxView = inlineViewSubViews[1];
+}
 
 @end
