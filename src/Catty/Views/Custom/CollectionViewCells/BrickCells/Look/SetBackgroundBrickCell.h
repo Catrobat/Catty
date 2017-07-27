@@ -20,17 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptProtocol.h"
+#import "BrickCell.h"
+#import "iOSCombobox.h"
 
-@class Script;
+@interface SetBackgroundBrickCell : BrickCell
 
-@protocol BrickProtocol <ScriptProtocol>
-
-@property (nonatomic, weak) Script *script;
-- (BOOL)isFormulaBrick;
-- (BOOL)isIfLogicBrick;
-- (BOOL)isLoopBrick;
-- (BOOL)isDisabledForBackground;
-- (NSInteger)getRequiredResources;
+@property (nonatomic, weak) iOSCombobox *lookComboBoxView;
 
 @end

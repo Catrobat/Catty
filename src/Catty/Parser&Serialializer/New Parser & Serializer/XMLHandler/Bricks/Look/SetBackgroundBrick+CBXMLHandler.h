@@ -20,17 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptProtocol.h"
+#import "SetBackgroundBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@class Script;
+@class CBXMLContext;
 
-@protocol BrickProtocol <ScriptProtocol>
-
-@property (nonatomic, weak) Script *script;
-- (BOOL)isFormulaBrick;
-- (BOOL)isIfLogicBrick;
-- (BOOL)isLoopBrick;
-- (BOOL)isDisabledForBackground;
-- (NSInteger)getRequiredResources;
+@interface SetBackgroundBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

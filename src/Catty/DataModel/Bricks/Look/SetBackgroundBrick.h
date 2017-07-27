@@ -20,17 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptProtocol.h"
+#import "Brick.h"
+#import "Look.h"
+#import "SpriteObject.h"
+#import "BrickLookProtocol.h"
 
-@class Script;
+@interface SetBackgroundBrick : Brick<BrickLookProtocol>
 
-@protocol BrickProtocol <ScriptProtocol>
-
-@property (nonatomic, weak) Script *script;
-- (BOOL)isFormulaBrick;
-- (BOOL)isIfLogicBrick;
-- (BOOL)isLoopBrick;
-- (BOOL)isDisabledForBackground;
-- (NSInteger)getRequiredResources;
+@property (nonatomic, strong) Look *look;
+- (NSString*)pathForLook;
 
 @end

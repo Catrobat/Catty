@@ -34,6 +34,7 @@
 - (NSArray*)selectableBricks;
 - (NSArray *)selectableScriptBricks;
 - (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType;
+- (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType inBackground:(BOOL)inBackground;
 - (kBrickType)brickTypeForClassName:(NSString*)className;
 - (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType;
 - (NSString*)classNameForBrickType:(kBrickType)brickType;
