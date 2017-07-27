@@ -300,6 +300,7 @@
 		4DF2BECD1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BECC1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m */; };
 		4DF2BECF1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */; };
 		4DF2BED21F2A0C33005B062F /* SetBackgroundBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BED11F2A0C33005B062F /* SetBackgroundBrickCell.m */; };
+		4DF2BED51F2A17B5005B062F /* SetBackgroundBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BED31F2A1787005B062F /* SetBackgroundBrickTests.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -1313,6 +1314,7 @@
 		4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetBackgroundBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SetBackgroundBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4DF2BED01F2A0C33005B062F /* SetBackgroundBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBackgroundBrickCell.h; sourceTree = "<group>"; };
 		4DF2BED11F2A0C33005B062F /* SetBackgroundBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBackgroundBrickCell.m; sourceTree = "<group>"; };
+		4DF2BED31F2A1787005B062F /* SetBackgroundBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBackgroundBrickTests.m; sourceTree = "<group>"; };
 		677B2BC6E19319AFC27DA98F /* Pods_Catty_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3426,6 +3428,7 @@
 				4CEB22451B95E47500B3BE2F /* SetBrightnessBrickTests.m */,
 				4CB2CFAC1D7AD8A5009F3034 /* SetColorBrickTests.m */,
 				4CEB22461B95E47500B3BE2F /* SetLookBrickTests.m */,
+				4DF2BED31F2A1787005B062F /* SetBackgroundBrickTests.m */,
 				4CEB22471B95E47500B3BE2F /* SetSizeToBrickTests.m */,
 				4CEB22481B95E47500B3BE2F /* SetTransparencyBrickTests.m */,
 				4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */,
@@ -6912,6 +6915,7 @@
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
 				4C5D11151EF51FC6003FFC72 /* XMLParserTests0991.m in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
+				4DF2BED51F2A17B5005B062F /* SetBackgroundBrickTests.m in Sources */,
 				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
 				4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */,
