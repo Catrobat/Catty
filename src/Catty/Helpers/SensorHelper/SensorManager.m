@@ -31,6 +31,10 @@ NSString * const sensorStringArray[] = {
     @"COMPASS_DIRECTION",
     @"X_INCLINATION",
     @"Y_INCLINATION",
+    @"LATITUDE",
+    @"LONGITUDE",
+    @"LOCATION_ACCURACY",
+    @"ALTITUDE",
     @"OBJECT_X",
     @"OBJECT_Y",
     @"OBJECT_GHOSTEFFECT",
@@ -84,6 +88,18 @@ NSString * const sensorStringArray[] = {
     }
     if([sensor isEqualToString:@"Y_INCLINATION"]) {
         return Y_INCLINATION;
+    }
+    if([sensor isEqualToString:@"LATITUDE"]) {
+        return LATITUDE;
+    }
+    if([sensor isEqualToString:@"LONGITUDE"]) {
+        return LONGITUDE;
+    }
+    if([sensor isEqualToString:@"LOCATION_ACCURACY"]) {
+        return LOCATION_ACCURACY;
+    }
+    if([sensor isEqualToString:@"ALTITUDE"]) {
+        return ALTITUDE;
     }
     if([sensor isEqualToString:@"OBJECT_X"]) {
         return OBJECT_X;
@@ -291,6 +307,18 @@ NSString * const sensorStringArray[] = {
             break;
         case Y_INCLINATION:
             name = kUIFESensorInclinationY;
+            break;
+        case LATITUDE:
+            name = kUIFESensorLatitude;
+            break;
+        case LONGITUDE:
+            name = kUIFESensorLongitude;
+            break;
+        case LOCATION_ACCURACY:
+            name = kUIFESensorLocationAccuracy;
+            break;
+        case ALTITUDE:
+            name = kUIFESensorAltitude;
             break;
         case Z_ACCELERATION:
             name = kUIFESensorAccelerationZ;

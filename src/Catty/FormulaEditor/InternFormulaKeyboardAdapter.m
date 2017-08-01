@@ -387,6 +387,18 @@
         case Y_INCLINATION:
             return [self buildSensor:Y_INCLINATION];
             break;
+        case LATITUDE:
+            return [self buildSensor:LATITUDE];
+            break;
+        case LONGITUDE:
+            return [self buildSensor:LONGITUDE];
+            break;
+        case LOCATION_ACCURACY:
+            return [self buildSensor:LOCATION_ACCURACY];
+            break;
+        case ALTITUDE:
+            return [self buildSensor:ALTITUDE];
+            break;
         case Z_ACCELERATION:
             return [self buildSensor:Z_ACCELERATION];
             break;
