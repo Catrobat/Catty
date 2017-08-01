@@ -191,7 +191,7 @@
         for(NSString* oneFavouriteBrickTitle in favouriteBricks) {
             for(id<BrickProtocol> scriptOrBrick in selectableBricksOrScripts) {
                 NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)[scriptOrBrick brickType]].stringValue;
-                if([wrappedBrickType isEqualToString:oneFavouriteBrickTitle]) {
+                if([wrappedBrickType isEqualToString:oneFavouriteBrickTitle] && !([scriptOrBrick isDisabledForBackground] && inBackground)) {
                     [selectableBricksForCategoryMutable addObject:scriptOrBrick];
                 }
             }
