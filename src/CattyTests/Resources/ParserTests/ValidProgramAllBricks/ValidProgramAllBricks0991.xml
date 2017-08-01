@@ -25,7 +25,11 @@
   </header>
   <objectList>
     <object name="Background">
-      <lookList/>
+      <lookList>
+        <look name="testLook">
+          <fileName>d842e119ceee69833b8db40d96d42a26_IMG_20141005_171500.jpg</fileName>
+        </look>
+      </lookList>
       <soundList/>
       <scriptList>
         <script type="StartScript">
@@ -414,6 +418,9 @@
                 </formulaList>
             </brick>
             <brick type="LoopEndBrick" />
+            <brick type="SetBackgroundBrick">
+                <look reference="../../../../../lookList/look"/>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
