@@ -48,7 +48,7 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
 
             condition.lock()
 
-            while(condition.accessibilityHint == "0") {
+            while(condition.accessibilityHint == "0") {     //accessibilityHint used because synthesizer.speaking not yet true.
                 condition.wait()
             }
             condition.unlock()
