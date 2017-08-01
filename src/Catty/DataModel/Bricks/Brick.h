@@ -44,6 +44,8 @@
 
 - (BOOL)isFormulaBrick;
 
+- (BOOL)isDisabledForBackground;
+
 - (BOOL)isBluetoothBrick;
 
 - (BOOL)isPhiroBrick;
