@@ -47,6 +47,9 @@
 "Alpha" = "Alpha";
 
 /* No comment provided by engineer. */
+"altitude" = "altitude";
+
+/* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -695,6 +698,9 @@
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
+"latitude" = "latitude";
+
+/* No comment provided by engineer. */
 "layer" = "layer";
 
 /* No comment provided by engineer. */
@@ -722,6 +728,9 @@
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
+
+/* No comment provided by engineer. */
 "Logic" = "Logic";
 
 /* No comment provided by engineer. */
@@ -735,6 +744,9 @@
 
 /* No comment provided by engineer. */
 "Logout" = "Logout";
+
+/* No comment provided by engineer. */
+"longitude" = "longitude";
 
 /* No comment provided by engineer. */
 "Look" = "Look";

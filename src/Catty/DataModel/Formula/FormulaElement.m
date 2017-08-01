@@ -1024,6 +1024,10 @@
                 resources |= kAccelerometer;
                 break;
             case COMPASS_DIRECTION:
+            case LATITUDE:
+            case LONGITUDE:
+            case LOCATION_ACCURACY:
+            case ALTITUDE:
                 resources |= kLocation;
                 break;
             case LOUDNESS:

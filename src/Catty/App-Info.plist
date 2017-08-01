@@ -61,6 +61,8 @@
 	<string>Record your own sounds or use the microphone for screen recording.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Import pictures from your Photo Library to use as Look or Background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This program is requesting access to your location.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
