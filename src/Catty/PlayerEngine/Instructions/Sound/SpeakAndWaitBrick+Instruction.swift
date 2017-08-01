@@ -26,8 +26,11 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
         
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         
-        return CBInstruction.ExecClosure { (context, _) in
-
+        return CBInstruction.WaitExecClosure { (context, _) in
+            
+            let condition = NSCondition()
+            condition.accessibilityHint = "0"
+            
             var speakText = self.formula.interpretString(object)
             if(Double(speakText) !=  nil)
             {
@@ -40,20 +43,24 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
             
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.delegate = self
+            synthesizer.accessibilityElements = [condition]
             synthesizer.speakUtterance(utterance)
-            synthesizer.accessibilityElements = [context]
-            
+
+            condition.lock()
+
+            while(condition.accessibilityHint == "0") {
+                condition.wait()
+            }
+            condition.unlock()
         }
         
     }
-    
+
     public func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didFinishSpeechUtterance utterance: AVSpeechUtterance) {
-        guard let object = self.script?.object else { fatalError("This should never happen!") }
-        if utterance.speechString == self.formula.interpretString(object)
-        {
-            if let context = synthesizer.accessibilityElements?.last as? CBScriptContextProtocol {
-                context.state = .Runnable
-            }
+        if let condition = synthesizer.accessibilityElements?.last as? NSCondition {
+            condition.accessibilityHint = "1"
+            condition.signal()
+            condition.unlock()
         }
     }
 }
