@@ -34,6 +34,7 @@
 #import "IfLogicEndBrick.h"
 #import "PreviousLookBrick.h"
 #import "RepeatUntilBrick.h"
+#import "SetBackgroundBrick.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
 
@@ -184,7 +185,7 @@
     Script *backgroundScript = [background.scriptList objectAtIndex:0];
     XCTAssertTrue([backgroundScript.brickList count] >= 26, "Invalid brick list");
     
-    Brick *previousLookBrick = (PreviousLookBrick*)[backgroundScript.brickList objectAtIndex:26];
+    Brick *previousLookBrick = [backgroundScript.brickList objectAtIndex:26];
     XCTAssertTrue([previousLookBrick isKindOfClass:[PreviousLookBrick class]], "Invalid brick type");
 }
 
@@ -196,8 +197,20 @@
     Script *backgroundScript = [background.scriptList objectAtIndex:0];
     XCTAssertTrue([backgroundScript.brickList count] >= 27, "Invalid brick list");
     
-    Brick *repeatUntilBrick = (RepeatUntilBrick*)[backgroundScript.brickList objectAtIndex:27];
+    Brick *repeatUntilBrick = [backgroundScript.brickList objectAtIndex:27];
     XCTAssertTrue([repeatUntilBrick isKindOfClass:[RepeatUntilBrick class]], "Invalid brick type");
+}
+
+- (void)testSetBackgroundBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 29, "Invalid brick list");
+    
+    Brick *setBackgroundBrick = [backgroundScript.brickList objectAtIndex:29];
+    XCTAssertTrue([setBackgroundBrick isKindOfClass:[SetBackgroundBrick class]], "Invalid brick type");
 }
 
 @end
