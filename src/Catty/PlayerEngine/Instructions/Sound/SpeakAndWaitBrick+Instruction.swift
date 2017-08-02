@@ -60,7 +60,6 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
         if let condition = synthesizer.accessibilityElements?.last as? NSCondition {
             condition.accessibilityHint = "1"
             condition.signal()
-            condition.unlock()
         }
     }
 }
