@@ -35,6 +35,7 @@
 #import "PreviousLookBrick.h"
 #import "RepeatUntilBrick.h"
 #import "SetBackgroundBrick.h"
+#import "SpeakAndWaitBrick.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
 
@@ -209,8 +210,26 @@
     Script *backgroundScript = [background.scriptList objectAtIndex:0];
     XCTAssertTrue([backgroundScript.brickList count] >= 29, "Invalid brick list");
     
-    Brick *setBackgroundBrick = [backgroundScript.brickList objectAtIndex:29];
-    XCTAssertTrue([setBackgroundBrick isKindOfClass:[SetBackgroundBrick class]], "Invalid brick type");
+    Brick *brick = [backgroundScript.brickList objectAtIndex:29];
+    XCTAssertTrue([brick isKindOfClass:[SetBackgroundBrick class]], "Invalid brick type");
+    
+    SetBackgroundBrick *setBackgroundBrick = (SetBackgroundBrick*)brick;
+    XCTAssertTrue(setBackgroundBrick.look != nil, "Invalid look");
+}
+
+- (void)testSpeakAndWaitBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 30, "Invalid brick list");
+    
+    Brick *brick = [backgroundScript.brickList objectAtIndex:30];
+    XCTAssertTrue([brick isKindOfClass:[SpeakAndWaitBrick class]], "Invalid brick type");
+    
+    SpeakAndWaitBrick *speakAndWaitBrick = (SpeakAndWaitBrick*)brick;
+    XCTAssertTrue(speakAndWaitBrick.formula != nil, "Invalid formula");
 }
 
 @end
