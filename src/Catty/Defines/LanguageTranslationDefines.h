@@ -403,6 +403,7 @@
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
+#define kLocalizedAndWait NSLocalizedString(@" and wait", nil)
 
 // variable bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)

@@ -403,6 +403,7 @@ let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
 let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
+let kLocalizedAndWait = NSLocalizedString(" and wait", comment: "")
 
 // variable bricks
 let kLocalizedSetVariable = NSLocalizedString("Set variable", comment: "")
