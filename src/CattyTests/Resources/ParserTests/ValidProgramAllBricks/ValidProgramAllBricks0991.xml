@@ -421,6 +421,15 @@
             <brick type="SetBackgroundBrick">
                 <look reference="../../../../../lookList/look"/>
             </brick>
+            <brick type="SpeakAndWaitBrick">
+                <formulaList>
+                    <formula category="SPEAK">
+                        <type>STRING</type>
+                        <value>Hello</value>
+                    </formula>
+                </formulaList>
+                <duration>0.0</duration>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
