@@ -83,7 +83,8 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kGyro =                 1 << 7,
     kMagnetometer =         1 << 8,
     kLoudness =             1 << 9,
-    kLED =                  1 << 10
+    kLED =                  1 << 10,
+    kCompass =              1 << 11
 };
 
 #define kUserDetailsShowDetailsKey @"showDetails"

@@ -767,6 +767,9 @@
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
 "location_accuracy" = "location_accuracy";
 
 /* No comment provided by engineer. */

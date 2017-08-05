@@ -40,6 +40,7 @@
 - (void)faceDetectionInit;
 
 - (BOOL)locationAvailable;
+- (BOOL)compassAvailable;
 - (BOOL)accelerometerAvailable;
 - (BOOL)gyroAvailable;
 - (BOOL)magnetometerAvailable;
