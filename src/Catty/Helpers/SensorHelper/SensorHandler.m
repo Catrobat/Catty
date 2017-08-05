@@ -291,6 +291,7 @@ static SensorHandler* sharedSensorHandler = nil;
     }
     
     [self.locationManager stopUpdatingHeading];
+    [self.locationManager stopUpdatingLocation];
     
     if([self.motionManager isDeviceMotionActive]) {
         [self.motionManager stopDeviceMotionUpdates];
