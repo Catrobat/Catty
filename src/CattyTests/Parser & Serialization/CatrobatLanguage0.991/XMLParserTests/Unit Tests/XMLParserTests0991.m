@@ -140,9 +140,9 @@
 
 - (void)testObjectLookSensors
 {
-    Program *program = [self getProgramForXML:@"ObjectLookSensors_0991"];
+    Program *program = [self getProgramForXML:@"Sensors_0991"];
     
-    XCTAssertEqual(2, [program.objectList count], "Invalid object list");
+    XCTAssertTrue([program.objectList count] >= 2, "Invalid object list");
     SpriteObject *background = [program.objectList objectAtIndex:0];
     SpriteObject *object = [program.objectList objectAtIndex:1];
     
@@ -230,6 +230,34 @@
     
     SpeakAndWaitBrick *speakAndWaitBrick = (SpeakAndWaitBrick*)brick;
     XCTAssertTrue(speakAndWaitBrick.formula != nil, "Invalid formula");
+}
+
+- (void)testLocationSensors
+{
+    Program *program = [self getProgramForXML:@"Sensors_0991"];
+    
+    XCTAssertTrue([program.objectList count] >= 3, "Invalid object list");
+    SpriteObject *object = [program.objectList objectAtIndex:2];
+    
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(4, [script.brickList count], "Invalid brick list");
+    
+    SetVariableBrick *latitudeBrick = (SetVariableBrick*)[script.brickList objectAtIndex:0];
+    SetVariableBrick *longitudeBrick = (SetVariableBrick*)[script.brickList objectAtIndex:1];
+    SetVariableBrick *altitudeBrick = (SetVariableBrick*)[script.brickList objectAtIndex:2];
+    SetVariableBrick *locationAccuracyBrick = (SetVariableBrick*)[script.brickList objectAtIndex:3];
+    
+    XCTAssertEqual(SENSOR, latitudeBrick.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, longitudeBrick.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, altitudeBrick.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, locationAccuracyBrick.variableFormula.formulaTree.type);
+    
+    XCTAssertTrue([[[SensorManager class] stringForSensor:LATITUDE] isEqualToString:latitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:LONGITUDE] isEqualToString:longitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:ALTITUDE] isEqualToString:altitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:LOCATION_ACCURACY] isEqualToString:locationAccuracyBrick.variableFormula.formulaTree.value], "Invalid sensor");
 }
 
 @end
