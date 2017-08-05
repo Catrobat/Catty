@@ -309,7 +309,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         }
     }
     self.sensorTypeButton = [NSMutableArray new];
-    NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y",@"acceleration_z",@"compass", @"inclination_x", @"inclination_y",@"loudness", @"year", @"month", @"day", @"weekday", @"hour", @"minute", @"second", nil];
+    NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y", @"acceleration_z", @"compass", @"inclination_x", @"inclination_y", @"latitude",@"longitude", @"location_accuracy", @"altitude", @"loudness", @"year", @"month", @"day", @"weekday", @"hour", @"minute", @"second", nil];
     NSInteger buttonCount = standardSensorArray.count;
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
     //standard Sensors
@@ -353,7 +353,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)addStandardSensorViewButton:(NSInteger)tag
 {
     UIButton *button = [self getSensorButton:tag];
-    if (tag > 5) {
+    if (tag > 9) {
         button.tag = 900+tag+12;
     } else {
         button.tag = 900+tag;
@@ -362,13 +362,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)addFaceDetectionSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
-    button.tag = 919+tag;
+    button.tag = FACE_DETECTED+tag;
 
 }
 -(void)addPhiroSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
-    button.tag = 923+tag;
+    button.tag = phiro_front_left+tag;
     
 }
 

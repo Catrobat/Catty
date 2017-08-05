@@ -125,7 +125,7 @@
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     for (int sensor = X_ACCELERATION; sensor < OBJECT_X; sensor++) {
-        if (sensor == COMPASS_DIRECTION) {
+        if (sensor == COMPASS_DIRECTION || sensor == LATITUDE || sensor == LONGITUDE || sensor == LOCATION_ACCURACY || sensor == ALTITUDE) {
             continue;
         }
 

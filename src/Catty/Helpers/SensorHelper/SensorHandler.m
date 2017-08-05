@@ -154,6 +154,22 @@ static SensorHandler* sharedSensorHandler = nil;
             result = [self direction];            
             break;
         }
+        case LATITUDE: {
+            result = [self latitude];
+            break;
+        }
+        case LONGITUDE: {
+            result = [self longitude];
+            break;
+        }
+        case LOCATION_ACCURACY: {
+            result = [self location_accuracy];
+            break;
+        }
+        case ALTITUDE: {
+            result = [self altitude];
+            break;
+        }
         case X_INCLINATION: {
             result = [self xInclination];
             NSDebug(@"X-inclination: %f degrees", result);
@@ -319,10 +335,47 @@ static SensorHandler* sharedSensorHandler = nil;
 
 - (double)direction
 {
+    [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingHeading];
 
     double direction = -self.locationManager.heading.magneticHeading;
     return direction;
+}
+
+- (double)latitude
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+
+    double latitude = self.locationManager.location.coordinate.latitude;
+    return latitude;
+}
+
+- (double)longitude
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    double longitude = self.locationManager.location.coordinate.longitude;
+    return longitude;
+}
+
+- (double)location_accuracy
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    double accuracy = self.locationManager.location.horizontalAccuracy;
+    return accuracy;
+}
+
+- (double)altitude
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    double altitude = self.locationManager.location.altitude;
+    return altitude;
 }
 
 - (double)xInclination
