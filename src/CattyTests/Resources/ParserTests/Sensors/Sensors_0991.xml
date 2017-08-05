@@ -95,6 +95,55 @@
       <userBricks/>
       <nfcTagList/>
     </object>
+    <object name="Object 2">
+        <lookList/>
+        <soundList/>
+        <scriptList>
+            <script type="StartScript">
+                <brickList>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LATITUDE</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LONGITUDE</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>ALTITUDE</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LOCATION_ACCURACY</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                </brickList>
+                <isUserScript>false</isUserScript>
+            </script>
+        </scriptList>
+        <userBricks/>
+        <nfcTagList/>
+    </object>
   </objectList>
   <data>
     <objectListOfList/>
