@@ -77,20 +77,29 @@ static SensorHandler* sharedSensorHandler = nil;
 
 -(BOOL)locationAvailable
 {
+    return [CLLocationManager locationServicesEnabled];
+}
+
+-(BOOL)compassAvailable
+{
     return [CLLocationManager headingAvailable];
 }
+
 -(BOOL)accelerometerAvailable
 {
     return self.motionManager.accelerometerAvailable;
 }
+
 -(BOOL)gyroAvailable
 {
     return self.motionManager.gyroAvailable;
 }
+
 -(BOOL)magnetometerAvailable
 {
     return self.motionManager.magnetometerAvailable;
 }
+
 -(BOOL)loudnessAvailable
 {
     if (!self.recorder) {

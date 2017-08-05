@@ -610,6 +610,7 @@
 #define kUIFESensorArduinoDigital NSLocalizedString(@"arduino_digital", nil)
 
 #define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
+#define kLocalizedSensorLocation NSLocalizedString(@"location", nil)
 #define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)

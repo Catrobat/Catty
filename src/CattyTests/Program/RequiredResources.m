@@ -154,7 +154,7 @@
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kLocation, @"Resourses SetBrightnessBrick not correctly calculated");
+    XCTAssertEqual(resources, kCompass, @"Resourses SetBrightnessBrick not correctly calculated");
 }
 - (void)testClearGraphicEffectBrickResources
 {
@@ -780,7 +780,7 @@
     
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(kLocation, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kCompass, resources & kCompass, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kFaceDetection, @"Resourses nested not correctly calculated");
@@ -805,7 +805,7 @@
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 
 - (void)testNestedVibrationBrickResources
@@ -836,7 +836,7 @@
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 - (void)testNestedArduinoSendPWMValueBrickResources
 {
@@ -853,7 +853,7 @@
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 
 #pragma mark-MoreScripts
@@ -910,7 +910,7 @@
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 - (void)testNestedResourcesTwoScripts2
 {
@@ -944,7 +944,7 @@
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kFaceDetection, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(kLocation, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kCompass, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 
 #pragma mark-MoreSprites
@@ -1003,7 +1003,7 @@
     XCTAssertEqual(kBluetoothPhiro, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(0, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(0, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 
 - (void)testNestedResourcesTwoSprites2
@@ -1038,8 +1038,31 @@
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kFaceDetection, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(kLocation, resources & kLocation, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kCompass, resources & kCompass, @"Resourses nested not correctly calculated");
 }
 
+#pragma mark -Location
+- (void)testLocationResources
+{
+    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:LONGITUDE] leftChild:nil rightChild:nil parent:nil];
+    
+    ChangeSizeByNBrick *brick = [ChangeSizeByNBrick new];
+    brick.size = [[Formula alloc] initWithFormulaElement:formulaElement];
+    Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
+    
+    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Longitude not correctly calculated");
+    
+    formulaElement.value = [SensorManager stringForSensor:LATITUDE];
+    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Latitude not correctly calculated");
+    
+    formulaElement.value = [SensorManager stringForSensor:ALTITUDE];
+    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Altitude not correctly calculated");
+    
+    formulaElement.value = [SensorManager stringForSensor:LOCATION_ACCURACY];
+    XCTAssertEqual(kLocation, [prog getRequiredResources], @"Resourses for Location Accuracy not correctly calculated");
+    
+    brick.size = [[Formula alloc] initWithZero];
+    XCTAssertEqual(kNoResources, [prog getRequiredResources], @"Resourses for Location not correctly calculated");
+}
 
 @end
