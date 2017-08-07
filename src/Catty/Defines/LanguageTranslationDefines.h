@@ -398,6 +398,7 @@
 #define kLocalizedSetColor NSLocalizedString(@"Set color ", nil)
 #define kLocalizedChangeColor NSLocalizedString(@"Change color ", nil)
 #define kLocalizedFlash NSLocalizedString(@"Turn flashlight", nil)
+#define kLocalizedCamera NSLocalizedString(@"Turn camera", nil)
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)

@@ -111,7 +111,8 @@
     @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
     @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
-    @"{STATICCHOICE}"               /* flash brick              */\
+    @"{STATICCHOICE}",              /* flash brick              */\
+    @"{STATICCHOICE}"               /* camera brick             */\
 ]
 
 // variable and list bricks
