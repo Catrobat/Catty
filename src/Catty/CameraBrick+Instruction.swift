@@ -37,53 +37,27 @@ extension CameraBrick: CBInstructionProtocol {
 //            guard let bgObject = self.script.object.program.objectList.firstObject as? SpriteObject,
 //                let spriteNode = bgObject.spriteNode
 //                else { fatalError("This should never happen!") }
-
+                
+            if let scene = self.script.object.spriteNode.scene {
             
-            if let vcStack = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers.reverse() {
+                let camView = UIView(frame: (scene.view?.bounds)!)
+                camView.accessibilityHint = "camView"
+                let camLayer = CALayer()
+                camLayer.accessibilityHint = "camLayer"
+                camLayer.frame = camView.bounds
+            
+//                camView.layer.addSublayer(camLayer)
                 
-                var sceneController: ScenePresenterViewController?
+//                scene.view?.addSubview(camView)
+                scene.view?.layer.insertSublayer(camLayer, atIndex: 0)
+            
+//                scene.parent.pa
                 
-                for vc in vcStack {
-                    if (vc.isKindOfClass(ScenePresenterViewController)) {
-                        sceneController = vc as? ScenePresenterViewController
-                        break
-                    }
-                }
+                captureDevice = self.setupAVCaptureDevice(forSession: session)
                 
-                if (sceneController != nil) {
-                    let view = sceneController?.view
-                    
-                    let camLayer = CALayer()
-                    
-                    view?.layer.addSublayer(camLayer)
-                    
-                    
-                    captureDevice = self.setupAVCaptureDevice(forSession: session)
-                    
-                    self.beginSessionForCaptureDevice(captureDevice, session: session, toLayer: camLayer)
-                }
+                self.beginSessionForCaptureDevice(captureDevice, session: session, toLayer: camLayer)
             }
-            
-//            NSEnumerator *vcStack = [[[[[UIApplication sharedApplication] keyWindow] rootViewController] childViewControllers] reverseObjectEnumerator];
-//            ObjectTableViewController *programVC;
-//            
-//            for (UIViewController *vc in vcStack) {
-//                if ([vc isKindOfClass:[ObjectTableViewController class]]) {
-//                    programVC = (ObjectTableViewController*)vc;
-//                    break;
-//                }
-//            }
-//            
-//            if (programVC != nil) {
-//                BOOL isBackground = [[programVC object] isBackground];
-//                return isBackground ? kLocalizedNextBackground : kLocalizedNextLook;
-//            }
-            
-//            captureDevice = self.setupAVCaptureDevice(forSession: session)
-            
-//            self.beginSessionForCaptureDevice(captureDevice, session: session, toLayer: CALayer())
-            
-//            print("<<>>", bgObject.isBackground())
+
             
             context.state = .Runnable
         }
@@ -101,10 +75,9 @@ extension CameraBrick: CBInstructionProtocol {
         return device
     }
     
-    func beginSessionForCaptureDevice(captureDevice: AVCaptureDevice, session: AVCaptureSession, toLayer layer: CALayer){
+    func beginSessionForCaptureDevice(captureDevice: AVCaptureDevice, session: AVCaptureSession, toLayer rootLayer: CALayer){
         
         var videoDataOutput: AVCaptureVideoDataOutput!
-//        var videoDataOutputQueue: dispatch_queue_t!
         var previewLayer:AVCaptureVideoPreviewLayer!
         
         var err : NSError? = nil
@@ -124,18 +97,16 @@ extension CameraBrick: CBInstructionProtocol {
         
         videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.alwaysDiscardsLateVideoFrames=true
-//        videoDataOutputQueue = dispatch_queue_create("VideoDataOutputQueue", .None) //DispatchQueue(label: "VideoDataOutputQueue")
-//        videoDataOutput.setSampleBufferDelegate(self, queue:self.videoDataOutputQueue)
         if session.canAddOutput(videoDataOutput){
             session.addOutput(videoDataOutput)
         }
-//        videoDataOutput.connection(withMediaType: AVMediaTypeVideo).isEnabled = true
+
         videoDataOutput.connectionWithMediaType(AVMediaTypeVideo).enabled = true
         
         previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer.accessibilityHint = "previewLayer"
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
         
-        let rootLayer :CALayer = layer
         rootLayer.masksToBounds = true
         previewLayer.frame = rootLayer.bounds
         rootLayer.addSublayer(previewLayer)
