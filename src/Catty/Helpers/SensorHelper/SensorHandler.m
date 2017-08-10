@@ -26,7 +26,7 @@
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 #import "FaceDetection.h"
-
+#import "AppDelegate.h"
 
 #define kSensorUpdateInterval 0.8
 #define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.01
@@ -46,6 +46,11 @@
 @property (nonatomic,   strong) ArduinoDevice* arduino;
 @property (nonatomic,   strong) FaceDetection* faceDetection;
 @property (nonatomic,   strong) dispatch_semaphore_t loudnessSemaphore;
+@property (nonatomic) BOOL screenIsTouched;
+@property (nonatomic) BOOL screenIsTouchedFirst;
+@property (nonatomic) CGPoint lastTouch;
+@property (nonatomic) CGPoint firstTouch;
+@property (nonatomic) int touchCount;
 @end
 
 @implementation SensorHandler
@@ -58,7 +63,6 @@ static SensorHandler* sharedSensorHandler = nil;
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
             sharedSensorHandler = [[[self class] alloc] init];
-            
         }
     }
     return sharedSensorHandler;
@@ -70,9 +74,55 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self) {
         self.motionManager = [[CMMotionManager alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
+        UILongPressGestureRecognizer *touchDetection = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapsFrom:)];
+        touchDetection.minimumPressDuration = 0;
+        touchDetection.cancelsTouchesInView = false;
+        [[UIApplication sharedApplication].keyWindow addGestureRecognizer:touchDetection];
+        touchDetection.delegate = self;
     }
     
     return self;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    //Without this, other required gestures (like the left slide out control strip) are blocked.
+    return YES;
+}
+
+- (void)resetTouchTracking;
+{
+    self.touchCount = 0;
+    self.screenIsTouched = false;
+    self.screenIsTouchedFirst = false;
+    self.firstTouch = CGPointMake(0, 0);
+    self.lastTouch = CGPointMake(0, 0);
+}
+
+- (void) handleTapsFrom:(UILongPressGestureRecognizer*)gestureRecognizer
+{
+
+    UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
+    CGPoint position = [gestureRecognizer locationInView: appWindow];
+    
+    //Setting origin to center of screen
+    position.x -= appWindow.bounds.size.width/2;
+    position.y -= appWindow.bounds.size.height/2;
+    
+    self.lastTouch = position;
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.screenIsTouched = true;
+        if (self.touchCount == 0)
+        {
+            self.firstTouch = position;
+            self.screenIsTouchedFirst = true;
+        }
+        self.touchCount += 1;
+    }
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        self.screenIsTouched = false;
+        self.screenIsTouchedFirst = false;
+    }
 }
 
 -(BOOL)locationAvailable
@@ -177,6 +227,22 @@ static SensorHandler* sharedSensorHandler = nil;
         }
         case ALTITUDE: {
             result = [self altitude];
+            break;
+        }
+        case FINGER_TOUCHED: {
+            result = self.screenIsTouched;
+            break;
+        }
+        case FINGER_X: {
+            result = self.lastTouch.x;
+            break;
+        }
+        case FINGER_Y: {
+            result = self.lastTouch.y;
+            break;
+        }
+        case LAST_FINGER_INDEX: {
+            result = self.touchCount;
             break;
         }
         case X_INCLINATION: {

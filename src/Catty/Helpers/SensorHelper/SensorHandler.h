@@ -25,7 +25,7 @@
 #import "SensorManager.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate,UIGestureRecognizerDelegate>
 
 
 + (instancetype)sharedSensorHandler;
@@ -38,6 +38,7 @@
 
 - (void) stopSensors;
 - (void)faceDetectionInit;
+- (void)resetTouchTracking;
 
 - (BOOL)locationAvailable;
 - (BOOL)compassAvailable;
