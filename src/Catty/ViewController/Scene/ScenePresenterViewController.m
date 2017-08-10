@@ -273,6 +273,7 @@
         }
         self.skView.paused = NO;
         [self.skView presentScene:scene];
+        [[SensorHandler sharedSensorHandler] resetTouchTracking];    //To initialize UIGestureRecognizer on window, and to reset touch index.
         self.scene = scene;
     }
 }

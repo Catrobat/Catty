@@ -35,6 +35,10 @@ NSString * const sensorStringArray[] = {
     @"LONGITUDE",
     @"LOCATION_ACCURACY",
     @"ALTITUDE",
+    @"FINGER_TOUCHED",
+    @"FINGER_X",
+    @"FINGER_Y",
+    @"LAST_FINGER_INDEX",
     @"OBJECT_X",
     @"OBJECT_Y",
     @"OBJECT_GHOSTEFFECT",
@@ -100,6 +104,18 @@ NSString * const sensorStringArray[] = {
     }
     if([sensor isEqualToString:@"ALTITUDE"]) {
         return ALTITUDE;
+    }
+    if([sensor isEqualToString:@"FINGER_TOUCHED"]) {
+        return FINGER_TOUCHED;
+    }
+    if([sensor isEqualToString:@"FINGER_X"]) {
+        return FINGER_X;
+    }
+    if([sensor isEqualToString:@"FINGER_Y"]) {
+        return FINGER_Y;
+    }
+    if([sensor isEqualToString:@"LAST_FINGER_INDEX"]) {
+        return LAST_FINGER_INDEX;
     }
     if([sensor isEqualToString:@"OBJECT_X"]) {
         return OBJECT_X;
@@ -319,6 +335,18 @@ NSString * const sensorStringArray[] = {
             break;
         case ALTITUDE:
             name = kUIFESensorAltitude;
+            break;
+        case FINGER_TOUCHED:
+            name = kUIFESensorFingerTouched;
+            break;
+        case FINGER_X:
+            name = kUIFESensorFingerX;
+            break;
+        case FINGER_Y:
+            name = kUIFESensorFingerY;
+            break;
+        case LAST_FINGER_INDEX:
+            name = kUIFESensorLastFingerIndex;
             break;
         case Z_ACCELERATION:
             name = kUIFESensorAccelerationZ;
