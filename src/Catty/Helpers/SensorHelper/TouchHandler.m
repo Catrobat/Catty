@@ -21,13 +21,11 @@
  */
 
 #import "TouchHandler.h"
-#import "KeychainUserDefaultsDefines.h"
-
 
 @interface TouchHandler()
 
 @property (nonatomic) UILongPressGestureRecognizer* touchRecognizer;
-@property (nonatomic) NSMutableArray* touchLog;
+@property (nonatomic) NSMutableArray* rawTouchLog;
 
 @end
 
@@ -67,10 +65,23 @@ static TouchHandler* shared = nil;
     self.lastFingerPosition = CGPointMake(0, 0);
     self.screenIsTouched = false;
     self.firstScreenTouch = false;
-    self.touchLog = [NSMutableArray new];
+    self.rawTouchLog = [NSMutableArray new];
+}
+
+- (void)startTrackingTouchesForScene:(CBScene*)scene
+{
+    self.scene = scene;
+    self.touchRecognizer.enabled = true;
+    [self resetData];
 }
 
 - (void)startTrackingTouches
+{
+    self.touchRecognizer.enabled = true;
+    [self resetData];
+}
+
+- (void)resumeTrackingTouches
 {
     self.touchRecognizer.enabled = true;
 }
@@ -86,18 +97,12 @@ static TouchHandler* shared = nil;
     UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
     CGPoint position = [gestureRecognizer locationInView: appWindow];
     
-    //Setting origin to center of screen
-    position.x -= appWindow.bounds.size.width/2;
-    position.y  = 1*appWindow.bounds.size.height/2 - position.y;
-    
-//    [CBSceneHelper convertPointToScene:position sceneSize:
-    
     self.lastFingerPosition = position;
     
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.screenIsTouched = true;
-        self.firstScreenTouch = self.touchLog.count == 0;
-        [self.touchLog addObject: [NSValue valueWithCGPoint:position]];
+        self.firstScreenTouch = self.rawTouchLog.count == 0;
+        [self.rawTouchLog addObject: [NSValue valueWithCGPoint:position]];
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         self.screenIsTouched = false;
@@ -110,18 +115,28 @@ static TouchHandler* shared = nil;
     return YES;
 }
 
-- (CGPoint)getTouchNumber:(unsigned long)touchNumber
+- (CGPoint)getPositionInSceneForTouchNumber:(unsigned long)touchNumber
 {
     CGPoint position = CGPointMake(0, 0);
-    if (touchNumber <= self.touchLog.count)
+    if (self.rawTouchLog.count != 0 && touchNumber <= self.rawTouchLog.count)
     {
-        if (touchNumber > 0)    //Position of touch at index touchNumber - 1
+        if (touchNumber > 0)    //Position of touch logged at index touchNumber - 1
         {
-            position = [[self.touchLog objectAtIndex:touchNumber-1] CGPointValue];
+            position = [[self.rawTouchLog objectAtIndex:touchNumber-1] CGPointValue];
         }
         else if (touchNumber == 0)  //Act as sensor
         {
             position = self.lastFingerPosition;
+        }
+        //Setting origin to center of screen
+        if(self.scene != nil)
+        {
+            position = [CBSceneHelper convertRawSceneCoordinateToScene:position sceneSize: self.scene.size];
+        }
+        else
+        {
+            UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
+            position = [CBSceneHelper convertPointToScene:position sceneSize: appWindow.bounds.size];
         }
     }
     return position;
@@ -129,7 +144,7 @@ static TouchHandler* shared = nil;
 
 - (unsigned long)numberOfTouches
 {
-    return self.touchLog.count;
+    return self.rawTouchLog.count;
 }
 
 @end
