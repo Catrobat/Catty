@@ -21,28 +21,19 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <CoreMotion/CoreMotion.h>
-#import "SensorManager.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface TouchHandler : NSObject <UIGestureRecognizerDelegate>
 
++ (instancetype)shared;
 
-+ (instancetype)sharedSensorHandler;
+@property (nonatomic) BOOL screenIsTouched;
+@property (nonatomic) BOOL firstScreenTouch;
+@property (nonatomic) CGPoint lastFingerPosition;
 
-- (CMRotationRate) rotationRate;
-- (CMAcceleration) acceleration;
-- (CMMagneticField) magneticField;
+-(void)startTrackingTouches;
+-(void)stopTrackingTouches;
+-(CGPoint)getTouchNumber:(unsigned long)touchNumber;
+-(unsigned long)numberOfTouches;
 
-- (double) valueForSensor:(Sensor)sensor;
-
-- (void) stopSensors;
-- (void)faceDetectionInit;
-
-- (BOOL)locationAvailable;
-- (BOOL)compassAvailable;
-- (BOOL)accelerometerAvailable;
-- (BOOL)gyroAvailable;
-- (BOOL)magnetometerAvailable;
-- (BOOL)loudnessAvailable;
 @end

@@ -28,6 +28,7 @@
 #import "SaveToProjectActivity.h"
 #import "LoadingView.h"
 #import "FlashHelper.h"
+#import "TouchHandler.h"
 #import "CatrobatLanguageDefines.h"
 #import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
@@ -273,7 +274,7 @@
         }
         self.skView.paused = NO;
         [self.skView presentScene:scene];
-        [[SensorHandler sharedSensorHandler] resetTouchTracking];    //To initialize UIGestureRecognizer on window, and to reset touch index.
+        [[TouchHandler shared] startTrackingTouches];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
         self.scene = scene;
     }
 }
