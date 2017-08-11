@@ -64,7 +64,6 @@ static TouchHandler* shared = nil;
 {
     self.lastFingerPosition = CGPointMake(0, 0);
     self.screenIsTouched = false;
-    self.firstScreenTouch = false;
     self.rawTouchLog = [NSMutableArray new];
 }
 
@@ -101,12 +100,10 @@ static TouchHandler* shared = nil;
     
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.screenIsTouched = true;
-        self.firstScreenTouch = self.rawTouchLog.count == 0;
         [self.rawTouchLog addObject: [NSValue valueWithCGPoint:position]];
     }
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         self.screenIsTouched = false;
-        self.firstScreenTouch = false;
     }
 }
 

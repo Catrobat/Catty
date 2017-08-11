@@ -30,8 +30,7 @@
 @property (nonatomic) CBScene* scene;
 
 @property (nonatomic) BOOL screenIsTouched;
-@property (nonatomic) BOOL firstScreenTouch;
-@property (nonatomic) CGPoint lastFingerPosition;
+@property (nonatomic) CGPoint lastFingerPosition;   //When finger is tapped and dragged around on the screen, this is updated.
 
 -(void)startTrackingTouchesForScene:(CBScene*)scene;
 -(void)startTrackingTouches;
