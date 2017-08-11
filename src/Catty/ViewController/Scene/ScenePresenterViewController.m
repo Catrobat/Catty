@@ -274,7 +274,7 @@
         }
         self.skView.paused = NO;
         [self.skView presentScene:scene];
-        [[TouchHandler shared] startTrackingTouches];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
+        [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
         self.scene = scene;
     }
 }

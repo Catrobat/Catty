@@ -184,11 +184,11 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case FINGER_X: {
-            result = [[TouchHandler shared] getTouchNumber:0].x;
+            result = [[TouchHandler shared] getPositionInSceneForTouchNumber:0].x;
             break;
         }
         case FINGER_Y: {
-            result = [[TouchHandler shared] getTouchNumber:0].y;
+            result = [[TouchHandler shared] getPositionInSceneForTouchNumber:0].y;
             break;
         }
         case LAST_FINGER_INDEX: {

@@ -21,19 +21,23 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
+#import "Pocket_Code-Swift.h"
 
 @interface TouchHandler : NSObject <UIGestureRecognizerDelegate>
 
 + (instancetype)shared;
 
+@property (nonatomic) CBScene* scene;
+
 @property (nonatomic) BOOL screenIsTouched;
 @property (nonatomic) BOOL firstScreenTouch;
 @property (nonatomic) CGPoint lastFingerPosition;
 
+-(void)startTrackingTouchesForScene:(CBScene*)scene;
 -(void)startTrackingTouches;
 -(void)stopTrackingTouches;
--(CGPoint)getTouchNumber:(unsigned long)touchNumber;
+-(void)resumeTrackingTouches;
+-(CGPoint)getPositionInSceneForTouchNumber:(unsigned long)touchNumber;
 -(unsigned long)numberOfTouches;
 
 @end
