@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2018 The Catrobat Team
+ *  Copyright (C) 2010-2017 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,28 +21,19 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <CoreMotion/CoreMotion.h>
-#import "SensorManager.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface TouchHandler : NSObject <UIGestureRecognizerDelegate>
 
++ (instancetype)shared;
 
-+ (instancetype)sharedSensorHandler;
+@property (nonatomic) BOOL screenIsTouched;
+@property (nonatomic) BOOL firstScreenTouch;
+@property (nonatomic) CGPoint lastFingerPosition;
 
-- (CMRotationRate) rotationRate;
-- (CMAcceleration) acceleration;
-- (CMMagneticField) magneticField;
+-(void)startTrackingTouches;
+-(void)stopTrackingTouches;
+-(CGPoint)getTouchNumber:(unsigned long)touchNumber;
+-(unsigned long)numberOfTouches;
 
-- (double) valueForSensor:(Sensor)sensor;
-
-- (void) stopSensors;
-- (void)faceDetectionInit;
-
-- (BOOL)locationAvailable;
-- (BOOL)compassAvailable;
-- (BOOL)accelerometerAvailable;
-- (BOOL)gyroAvailable;
-- (BOOL)magnetometerAvailable;
-- (BOOL)loudnessAvailable;
 @end
