@@ -27,43 +27,67 @@ extension CameraBrick: CBInstructionProtocol {
         
         let choice = self.cameraChoice
         
-        var captureDevice : AVCaptureDevice!
-        let session = AVCaptureSession()
-
-        
         return CBInstruction.ExecClosure { (context, _) in
             print("Performing: CameraBrick")
             
-//            guard let bgObject = self.script.object.program.objectList.firstObject as? SpriteObject,
-//                let spriteNode = bgObject.spriteNode
-//                else { fatalError("This should never happen!") }
-                
-            if let scene = self.script.object.spriteNode.scene {
-            
-                let camView = UIView(frame: (scene.view?.bounds)!)
-                camView.accessibilityHint = "camView"
-                let camLayer = CALayer()
-                camLayer.accessibilityHint = "camLayer"
-                camLayer.frame = camView.bounds
-            
-//                camView.layer.addSublayer(camLayer)
-                
-//                scene.view?.addSubview(camView)
-                scene.view?.layer.insertSublayer(camLayer, atIndex: 0)
-            
-//                scene.parent.pa
-                
-                captureDevice = self.setupAVCaptureDevice(forSession: session)
-                
-                self.beginSessionForCaptureDevice(captureDevice, session: session, toLayer: camLayer)
+            if let scene = self.script.object.spriteNode.scene as? CBScene
+            {
+                scene.view?.allowsTransparency = choice == 1
+                scene.backgroundColor = choice == 1 ? UIColor.clearColor() : UIColor.whiteColor()
+                self.shouldShowCamera(choice == 1, inScene: scene)
             }
-
             
             context.state = .Runnable
         }
     }
     
-    func setupAVCaptureDevice(forSession session: AVCaptureSession) -> AVCaptureDevice{
+    func shouldShowCamera(bool: Bool, inScene scene: CBScene)
+    {
+        
+        var captureDevice : AVCaptureDevice!
+        let session = AVCaptureSession()
+
+        let vcStack = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers.reverse()
+        var sceneController: ScenePresenterViewController?
+        
+        let camAccessibility = "camLayer"
+        
+        for vc in vcStack! {
+            if (vc.isKindOfClass(ScenePresenterViewController)) {
+                sceneController = vc as? ScenePresenterViewController
+                break
+            }
+        }
+        
+        if let sceneController = sceneController
+        {
+            if (!bool)
+            {
+                if let layers = sceneController.view.layer.sublayers
+                {
+                    for layer in layers
+                    {
+                        if layer.accessibilityHint == camAccessibility
+                        {
+                            layer.removeFromSuperlayer()
+                        }
+                    }
+                }
+                return
+            }
+            
+            let camLayer = CALayer()
+            camLayer.accessibilityHint = camAccessibility
+            camLayer.frame = (scene.view?.bounds)!
+            sceneController.view.backgroundColor = UIColor.whiteColor()
+            sceneController.view.layer.insertSublayer(camLayer, atIndex: 0)
+            captureDevice = self.setupAVCaptureDevice(forSession: session)
+            self.beginSessionForCaptureDevice(captureDevice, session: session, toLayer: camLayer)
+        }
+    }
+    
+    func setupAVCaptureDevice(forSession session: AVCaptureSession) -> AVCaptureDevice
+    {
         session.sessionPreset = AVCaptureSessionPreset640x480
         guard let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
 //            .defaultDeviceWithDeviceType(AVCaptureDeviceTypeBuiltInDuoCamera,
@@ -75,8 +99,8 @@ extension CameraBrick: CBInstructionProtocol {
         return device
     }
     
-    func beginSessionForCaptureDevice(captureDevice: AVCaptureDevice, session: AVCaptureSession, toLayer rootLayer: CALayer){
-        
+    func beginSessionForCaptureDevice(captureDevice: AVCaptureDevice, session: AVCaptureSession, toLayer rootLayer: CALayer)
+    {
         var videoDataOutput: AVCaptureVideoDataOutput!
         var previewLayer:AVCaptureVideoPreviewLayer!
         
@@ -105,7 +129,7 @@ extension CameraBrick: CBInstructionProtocol {
         
         previewLayer = AVCaptureVideoPreviewLayer(session: session)
         previewLayer.accessibilityHint = "previewLayer"
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         
         rootLayer.masksToBounds = true
         previewLayer.frame = rootLayer.bounds
