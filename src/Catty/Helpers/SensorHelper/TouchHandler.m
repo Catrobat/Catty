@@ -90,11 +90,10 @@ static TouchHandler* shared = nil;
     self.touchRecognizer.enabled = false;
 }
 
-- (void) handleTapsFrom:(UILongPressGestureRecognizer*)gestureRecognizer
+- (void)handleTapsFrom:(UILongPressGestureRecognizer*)gestureRecognizer
 {
-    
-    UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
-    CGPoint position = [gestureRecognizer locationInView: appWindow];
+    CGPoint position = [gestureRecognizer locationInView: self.scene.view];
+    position = [[self.scene view] convertPoint:position toScene:self.scene];
     
     self.lastFingerPosition = position;
     
