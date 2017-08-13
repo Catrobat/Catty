@@ -91,7 +91,6 @@ static TouchHandler* shared = nil;
     assert(self.scene);
     
     CGPoint position = [gestureRecognizer locationInView: self.scene.view];
-    position = [[self.scene view] convertPoint:position toScene:self.scene];
     
     self.lastFingerPosition = position;
     
