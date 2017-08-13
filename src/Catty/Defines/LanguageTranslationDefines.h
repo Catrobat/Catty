@@ -562,6 +562,10 @@
 #define kUIFEFunctionFloor NSLocalizedString(@"floor", nil)
 #define kUIFEFunctionCeil NSLocalizedString(@"ceil", nil)
 
+#define kUIFEFunctionScreenIsTouched NSLocalizedString(@"screen_is_touched", nil)
+#define kUIFEFunctionScreenTouchX NSLocalizedString(@"screen_touch_x", nil)
+#define kUIFEFunctionScreenTouchY NSLocalizedString(@"screen_touch_y", nil)
+
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)
 #define kUIFEOperatorOr NSLocalizedString(@"or", nil)

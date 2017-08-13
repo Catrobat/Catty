@@ -58,6 +58,9 @@ typedef NS_ENUM(NSInteger, Function) {
     ARDUINOANALOG,
     FLOOR,
     CEIL,
+    MULTI_FINGER_TOUCHED,
+    MULTI_FINGER_X,
+    MULTI_FINGER_Y,
     NO_FUNCTION = -1
 };
 

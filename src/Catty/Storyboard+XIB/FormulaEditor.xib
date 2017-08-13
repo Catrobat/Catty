@@ -341,12 +341,12 @@
                     </connections>
                 </button>
                 <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiC-Qd-lpd" userLabel="objectScrollView">
-                    <rect key="frame" x="82" y="87" width="245" height="173"/>
+                    <rect key="frame" x="82" y="86.5" width="245" height="173.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8ik-23-yWZ">
                             <rect key="frame" x="0.0" y="0.0" width="245" height="340"/>
                             <subviews>
-                                <button opaque="NO" tag="906" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-uS-BVD" userLabel="Position_x">
+                                <button opaque="NO" tag="914" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-uS-BVD" userLabel="Position_x">
                                     <rect key="frame" x="0.0" y="0.0" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Position_x">
@@ -357,7 +357,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="NJb-UR-Ptm"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="907" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-cW-FRf">
+                                <button opaque="NO" tag="915" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-cW-FRf">
                                     <rect key="frame" x="0.0" y="34" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Position_y">
@@ -368,7 +368,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="COU-7a-egi"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="908" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAy-Ms-w5o">
+                                <button opaque="NO" tag="916" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAy-Ms-w5o">
                                     <rect key="frame" x="0.0" y="68" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Transparency">
@@ -379,7 +379,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="mdM-Te-Muw"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="909" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdE-z1-t9R">
+                                <button opaque="NO" tag="917" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdE-z1-t9R">
                                     <rect key="frame" x="0.0" y="102" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Brightness">
@@ -390,7 +390,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="FTA-yn-Y1q"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="910" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrV-c3-eZc" userLabel="Color">
+                                <button opaque="NO" tag="918" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrV-c3-eZc" userLabel="Color">
                                     <rect key="frame" x="0.0" y="136" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Color">
@@ -401,7 +401,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="Y9w-eP-AYP"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="911" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-g7-vir" userLabel="Number">
+                                <button opaque="NO" tag="919" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-g7-vir" userLabel="Number">
                                     <rect key="frame" x="0.0" y="170" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Number">
@@ -412,7 +412,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="46W-oH-yvI"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="912" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7z-Bx-9IT" userLabel="Name">
+                                <button opaque="NO" tag="920" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7z-Bx-9IT" userLabel="Name">
                                     <rect key="frame" x="0.0" y="204" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Name">
@@ -423,7 +423,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="4cR-lW-LvU"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="915" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxl-IR-JLC">
+                                <button opaque="NO" tag="923" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxl-IR-JLC">
                                     <rect key="frame" x="0.0" y="238" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Size">
@@ -434,7 +434,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="JDp-CC-Mr8"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="916" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkr-se-flQ">
+                                <button opaque="NO" tag="924" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkr-se-flQ">
                                     <rect key="frame" x="0.0" y="272" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Direction">
@@ -445,7 +445,7 @@
                                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="sMR-28-qht"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="917" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqb-FQ-cx9" userLabel="Layer">
+                                <button opaque="NO" tag="925" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqb-FQ-cx9" userLabel="Layer">
                                     <rect key="frame" x="0.0" y="306" width="245" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Layer">
