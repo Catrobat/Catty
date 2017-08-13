@@ -69,13 +69,9 @@ static TouchHandler* shared = nil;
 
 - (void)startTrackingTouchesForScene:(CBScene*)scene
 {
+    assert(scene);
+    
     self.scene = scene;
-    self.touchRecognizer.enabled = true;
-    [self resetData];
-}
-
-- (void)startTrackingTouches
-{
     self.touchRecognizer.enabled = true;
     [self resetData];
 }
@@ -92,6 +88,8 @@ static TouchHandler* shared = nil;
 
 - (void)handleTapsFrom:(UILongPressGestureRecognizer*)gestureRecognizer
 {
+    assert(self.scene);
+    
     CGPoint position = [gestureRecognizer locationInView: self.scene.view];
     position = [[self.scene view] convertPoint:position toScene:self.scene];
     
@@ -113,27 +111,25 @@ static TouchHandler* shared = nil;
 
 - (CGPoint)getPositionInSceneForTouchNumber:(unsigned long)touchNumber
 {
+    assert(self.scene);
+    
     CGPoint position = CGPointMake(0, 0);
     if (self.rawTouchLog.count != 0 && touchNumber <= self.rawTouchLog.count)
     {
-        if (touchNumber > 0)    //Position of touch logged at index touchNumber - 1
-        {
-            position = [[self.rawTouchLog objectAtIndex:touchNumber-1] CGPointValue];
-        }
-        else if (touchNumber == 0)  //Act as sensor
-        {
-            position = self.lastFingerPosition;
-        }
-        //Setting origin to center of screen
-        if(self.scene != nil)
-        {
-            position = [CBSceneHelper convertRawSceneCoordinateToScene:position sceneSize: self.scene.size];
-        }
-        else
-        {
-            UIWindow *appWindow = [UIApplication sharedApplication].keyWindow;
-            position = [CBSceneHelper convertPointToScene:position sceneSize: appWindow.bounds.size];
-        }
+        position = [[self.rawTouchLog objectAtIndex:touchNumber-1] CGPointValue];
+        position = [CBSceneHelper convertRawSceneCoordinateToScene:position sceneSize: self.scene.size];
+    }
+    return position;
+}
+
+- (CGPoint)getLastPositionInScene
+{
+    assert(self.scene);
+    
+    CGPoint position = CGPointMake(0, 0);
+    if (self.rawTouchLog.count > 0)
+    {
+        position = [CBSceneHelper convertRawSceneCoordinateToScene:self.lastFingerPosition sceneSize: self.scene.size];
     }
     return position;
 }

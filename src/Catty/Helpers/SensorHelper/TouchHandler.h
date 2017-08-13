@@ -33,10 +33,10 @@
 @property (nonatomic) CGPoint lastFingerPosition;   //When finger is tapped and dragged around on the screen, this is updated.
 
 -(void)startTrackingTouchesForScene:(CBScene*)scene;
--(void)startTrackingTouches;
 -(void)stopTrackingTouches;
 -(void)resumeTrackingTouches;
 -(CGPoint)getPositionInSceneForTouchNumber:(unsigned long)touchNumber;
+-(CGPoint)getLastPositionInScene;
 -(unsigned long)numberOfTouches;
 
 @end
