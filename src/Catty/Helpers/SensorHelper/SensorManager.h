@@ -37,7 +37,7 @@ typedef enum {
     FINGER_X,
     FINGER_Y,
     LAST_FINGER_INDEX,
-    OBJECT_X,
+    OBJECT_X,       //If enum value changed here, must be updated in FormulaEditor.xib as well
     OBJECT_Y,
     OBJECT_GHOSTEFFECT,
     OBJECT_BRIGHTNESS,

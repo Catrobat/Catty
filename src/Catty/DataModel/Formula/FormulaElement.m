@@ -29,6 +29,7 @@
 #import "Util.h"
 #import "InternFormulaParserException.h"
 #import "Pocket_Code-Swift.h"
+#import "TouchHandler.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 #define kEmptyStringFallback @""
@@ -464,6 +465,24 @@
         }
         case CONTAINS : {
             result = [self interpretFunctionCONTAINS:sprite];
+            break;
+        }
+        case MULTI_FINGER_TOUCHED: {
+            BOOL screenTouched = [[TouchHandler shared] screenIsTouched];
+            BOOL isRequestedTouch = ([[TouchHandler shared] numberOfTouches] == left);
+            
+            isRequestedTouch = left == 0 ? true : isRequestedTouch; //If argument is 0, act as live touch sensor.
+            
+            result = screenTouched && isRequestedTouch ? [NSNumber numberWithInt:1]  : [NSNumber numberWithInt:0];
+            
+            break;
+        }
+        case MULTI_FINGER_X: {
+            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:left].x];
+            break;
+        }
+        case MULTI_FINGER_Y: {
+            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:left].y];
             break;
         }
         default:

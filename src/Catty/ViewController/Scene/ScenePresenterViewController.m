@@ -271,8 +271,8 @@
             scene.scaleMode = SKSceneScaleModeFill;
         }
         self.skView.paused = NO;
-        [self.skView presentScene:scene];
         [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
+        [self.skView presentScene:scene];
         self.scene = scene;
     }
 }

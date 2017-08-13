@@ -98,6 +98,12 @@
         return ELEMENT;
     if([value isEqualToString:@"CONTAINS"])
         return CONTAINS;
+    if([value isEqualToString:@"MULTI_FINGER_TOUCHED"])
+        return MULTI_FINGER_TOUCHED;
+    if([value isEqualToString:@"MULTI_FINGER_X"])
+        return MULTI_FINGER_X;
+    if([value isEqualToString:@"MULTI_FINGER_Y"])
+        return MULTI_FINGER_Y;
     
     return NO_FUNCTION;
 }
@@ -186,14 +192,14 @@
         case CEIL:
             return @"CEIL";
             break;
-        case NUMBEROFITEMS:
-            return @"NUMBEROFITEMS";
+        case MULTI_FINGER_TOUCHED:
+            return @"MULTI_FINGER_TOUCHED";
             break;
-        case ELEMENT:
-            return @"ELEMENT";
+        case MULTI_FINGER_X:
+            return @"MULTI_FINGER_X";
             break;
-        case CONTAINS:
-            return @"CONTAINS";
+        case MULTI_FINGER_Y:
+            return @"MULTI_FINGER_Y";
             break;
         default:
             return nil;
@@ -290,14 +296,14 @@
         case CEIL:
             return kUIFEFunctionCeil;
             break;
-        case NUMBEROFITEMS:
-            return kUIFEFunctionNumberOfItems;
+        case MULTI_FINGER_TOUCHED:
+            return kUIFEFunctionScreenIsTouched;
             break;
-        case ELEMENT:
-            return kUIFEFunctionElement;
+        case MULTI_FINGER_X:
+            return kUIFEFunctionScreenTouchX;
             break;
-        case CONTAINS:
-            return kUIFEFunctionContains;
+        case MULTI_FINGER_Y:
+            return kUIFEFunctionScreenTouchY;
             break;
         default:
             return @"";

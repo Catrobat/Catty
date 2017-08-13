@@ -1286,6 +1286,15 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
+"screen_is_touched" = "screen_is_touched";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
 "Screenshot" = "Screenshot";
 
 /* No comment provided by engineer. */

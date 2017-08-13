@@ -583,6 +583,10 @@ let kUIFEFunctionNumberOfItems = NSLocalizedString("number_of_items", comment: "
 let kUIFEFunctionElement = NSLocalizedString("element", comment: "")
 let kUIFEFunctionContains = NSLocalizedString("contains", comment: "")
 
+let kUIFEFunctionScreenIsTouched = NSLocalizedString("screen_is_touched", comment: "")
+let kUIFEFunctionScreenTouchX = NSLocalizedString("screen_touch_x", comment: "")
+let kUIFEFunctionScreenTouchY = NSLocalizedString("screen_touch_y", comment: "")
+
 let kUIFEOperatorAnd = NSLocalizedString("and", comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", comment: "")
 let kUIFEOperatorOr = NSLocalizedString("or", comment: "")
