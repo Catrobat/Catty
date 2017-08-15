@@ -34,6 +34,7 @@
 @implementation CameraPreviewHandler
 
 NSString* const camAccessibility = @"camLayer";
+CALayer* camLayer;
 
 static CameraPreviewHandler* shared = nil;
 
@@ -62,7 +63,7 @@ static CameraPreviewHandler* shared = nil;
 {
     if (camView != nil)
     {
-        self.camView = camView;
+        _camView = camView;
     }
     if ([self.session isRunning])
     {
@@ -86,11 +87,11 @@ static CameraPreviewHandler* shared = nil;
 {
     assert(self.camView);
     
-    CALayer* camLayer = [[CALayer alloc] init];
+    camLayer = [[CALayer alloc] init];
     camLayer.accessibilityHint = camAccessibility;
     camLayer.frame = self.camView.bounds;
     self.camView.backgroundColor = [UIColor whiteColor];
-    [self.camView.layer addSublayer:camLayer];
+    [self.camView.layer insertSublayer:camLayer atIndex:0];
 
     AVCaptureDevice* device = [self getCaptureDevice];
     if (device != nil)
@@ -145,12 +146,9 @@ static CameraPreviewHandler* shared = nil;
 // clean up AVCapture
 - (void)stopCamera
 {
-    for (CALayer* layer in self.camView.layer.sublayers)
+    if (camLayer != nil)
     {
-        if (layer.accessibilityHint == camAccessibility)
-        {
-            [layer removeFromSuperlayer];
-        }
+        [camLayer removeFromSuperlayer];
     }
     [self.session stopRunning];
 }
