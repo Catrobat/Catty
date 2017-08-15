@@ -20,25 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension CameraBrick: CBInstructionProtocol {
-    
-    
-    func instruction() -> CBInstruction {
-        
-        let choice = self.cameraChoice
-        
-        return CBInstruction.ExecClosure { (context, _) in
-            print("Performing: CameraBrick")
-            
-            if let scene = self.script.object.spriteNode.scene as? CBScene
-            {
-                scene.view?.allowsTransparency = choice == 1
-                scene.backgroundColor = choice == 1 ? UIColor.clearColor() : UIColor.whiteColor()
-                choice == 1 ? CameraPreviewHandler.shared().startCameraPreview() : CameraPreviewHandler.shared().stopCamera()
-            }
-            
-            context.state = .Runnable
-        }
-    }
-    
-}
+#import <Foundation/Foundation.h>
+#import "AVFoundation/AVFoundation.h"
+
+@interface CameraPreviewHandler : NSObject <UIGestureRecognizerDelegate>
+
++ (instancetype)shared;
+
+@property (readonly, nonatomic) UIView* camView;
+@property (readonly, nonatomic) AVCaptureDevicePosition cameraPosition;
+
+- (void)setCamView:(UIView *)camView;
+- (void)startCameraPreview;
+- (void)stopCamera;
+- (void)switchCameraPositionTo:(AVCaptureDevicePosition)position;
+
+@end

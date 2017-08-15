@@ -297,6 +297,7 @@
 		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
 		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
 		4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */; };
+		4DDB57591F436B710027E760 /* CameraPreviewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB57581F436B710027E760 /* CameraPreviewHandler.m */; };
 		4DDD1EB11F38B52000D25509 /* CameraBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDD1EB01F38B52000D25509 /* CameraBrick.m */; };
 		4DDD1EB71F38B84600D25509 /* CameraBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDD1EB61F38B84600D25509 /* CameraBrick+CBXMLHandler.m */; };
 		4DDD1EBA1F38BE2100D25509 /* CameraBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDD1EB91F38BE2100D25509 /* CameraBrickCell.m */; };
@@ -1314,6 +1315,8 @@
 		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
 		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DDB57571F436B220027E760 /* CameraPreviewHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraPreviewHandler.h; sourceTree = "<group>"; };
+		4DDB57581F436B710027E760 /* CameraPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewHandler.m; sourceTree = "<group>"; };
 		4DDD1EB01F38B52000D25509 /* CameraBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraBrick.m; sourceTree = "<group>"; };
 		4DDD1EB41F38B52D00D25509 /* CameraBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraBrick.h; sourceTree = "<group>"; };
 		4DDD1EB51F38B83300D25509 /* CameraBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CameraBrick+CBXMLHandler.h"; path = "Catty/DataModel/Bricks/Look/CameraBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -3546,6 +3549,15 @@
 			path = CatrobatReorderableCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
+		4DDB57541F436ACF0027E760 /* BrickHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				4DDB57571F436B220027E760 /* CameraPreviewHandler.h */,
+				4DDB57581F436B710027E760 /* CameraPreviewHandler.m */,
+			);
+			name = BrickHelpers;
+			sourceTree = "<group>";
+		};
 		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
 			isa = PBXGroup;
 			children = (
@@ -4306,6 +4318,7 @@
 				92FF2E701A24C7D800093DA7 /* NavigationController */,
 				92FF2E731A24C7D800093DA7 /* Reachability */,
 				92FF2E761A24C7D800093DA7 /* SensorHelper */,
+				4DDB57541F436ACF0027E760 /* BrickHelpers */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
@@ -7188,6 +7201,7 @@
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
+				4DDB57591F436B710027E760 /* CameraPreviewHandler.m in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
 				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
