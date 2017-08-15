@@ -369,6 +369,18 @@
         case ALTITUDE:
             return [self buildSensor:ALTITUDE];
             break;
+        case FINGER_TOUCHED:
+            return [self buildSensor:FINGER_TOUCHED];
+            break;
+        case FINGER_X:
+            return [self buildSensor:FINGER_X];
+            break;
+        case FINGER_Y:
+            return [self buildSensor:FINGER_Y];
+            break;
+        case LAST_FINGER_INDEX:
+            return [self buildSensor:LAST_FINGER_INDEX];
+            break;
         case Z_ACCELERATION:
             return [self buildSensor:Z_ACCELERATION];
             break;

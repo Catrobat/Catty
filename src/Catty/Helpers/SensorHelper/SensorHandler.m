@@ -26,7 +26,8 @@
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 #import "FaceDetection.h"
-
+#import "TouchHandler.h"
+#import "AppDelegate.h"
 
 #define kSensorUpdateInterval 0.8
 #define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.01
@@ -58,7 +59,6 @@ static SensorHandler* sharedSensorHandler = nil;
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
             sharedSensorHandler = [[[self class] alloc] init];
-            
         }
     }
     return sharedSensorHandler;
@@ -177,6 +177,22 @@ static SensorHandler* sharedSensorHandler = nil;
         }
         case ALTITUDE: {
             result = [self altitude];
+            break;
+        }
+        case FINGER_TOUCHED: {
+            result = [[TouchHandler shared] screenIsTouched];
+            break;
+        }
+        case FINGER_X: {
+            result = [[TouchHandler shared] getLastPositionInScene].x;
+            break;
+        }
+        case FINGER_Y: {
+            result = [[TouchHandler shared] getLastPositionInScene].y;
+            break;
+        }
+        case LAST_FINGER_INDEX: {
+            result = [TouchHandler shared].numberOfTouches;
             break;
         }
         case X_INCLINATION: {
@@ -306,10 +322,8 @@ static SensorHandler* sharedSensorHandler = nil;
         [self.loudnessTimer invalidate];
         self.loudnessTimer = nil;
         self.recorder = nil;
-        
     }
-
-    
+    [[TouchHandler shared] stopTrackingTouches];
 }
 
 - (CMRotationRate)rotationRate

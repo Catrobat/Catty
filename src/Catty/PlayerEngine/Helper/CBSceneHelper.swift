@@ -64,5 +64,11 @@
         
         return sceneDegrees
     }
+    
+    class func convertRawSceneCoordinateToScene(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
+        let x = coordinate.x - sceneSize.width/2.0
+        let y = sceneSize.height/2.0 - coordinate.y
+        return CGPoint(x: x, y: y)
+    }
 
 }
