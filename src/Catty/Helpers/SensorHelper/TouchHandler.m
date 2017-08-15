@@ -114,14 +114,10 @@ static TouchHandler* shared = nil;
     
     CGPoint position = CGPointMake(0, 0);
     
-    if (touchNumber == 0)   //If argument is 0, act as live touch sensor.
-    {
-        position = [self getLastPositionInScene];
-    }
-    else if (self.rawTouchLog.count != 0 && touchNumber <= self.rawTouchLog.count)
+    if (self.rawTouchLog.count != 0 && touchNumber <= self.rawTouchLog.count)
     {
         position = [[self.rawTouchLog objectAtIndex:touchNumber-1] CGPointValue];
-        position = [CBSceneHelper convertRawSceneCoordinateToScene:position sceneSize: [[UIApplication sharedApplication] keyWindow].frame.size];
+        position = [CBSceneHelper convertRawScreenCoordinateToScene:position sceneSize: self.scene.size];
     }
     return position;
 }
@@ -133,8 +129,7 @@ static TouchHandler* shared = nil;
     CGPoint position = CGPointMake(0, 0);
     if (self.rawTouchLog.count > 0)
     {
-//        position = [CBSceneHelper convertRawSceneCoordinateToScene:self.lastFingerPosition sceneSize: self.scene.size];
-        position = [CBSceneHelper convertRawSceneCoordinateToScene:self.lastFingerPosition sceneSize: [[UIApplication sharedApplication] keyWindow].frame.size];
+        position = [CBSceneHelper convertRawScreenCoordinateToScene:self.lastFingerPosition sceneSize: self.scene.size];
     }
     return position;
 }
