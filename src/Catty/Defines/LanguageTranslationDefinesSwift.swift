@@ -562,6 +562,10 @@ let kUIFEFunctionLength = NSLocalizedString("length", comment: "")
 let kUIFEFunctionFloor = NSLocalizedString("floor", comment: "")
 let kUIFEFunctionCeil = NSLocalizedString("ceil", comment: "")
 
+let kUIFEFunctionScreenIsTouched = NSLocalizedString("screen_is_touched", comment: "")
+let kUIFEFunctionScreenTouchX = NSLocalizedString("screen_touch_x", comment: "")
+let kUIFEFunctionScreenTouchY = NSLocalizedString("screen_touch_y", comment: "")
+
 let kUIFEOperatorAnd = NSLocalizedString("and", comment: "")
 let kUIFEOperatorNot = NSLocalizedString("not", comment: "")
 let kUIFEOperatorOr = NSLocalizedString("or", comment: "")

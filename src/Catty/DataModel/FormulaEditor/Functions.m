@@ -92,6 +92,12 @@
         return FLOOR;
     if([value isEqualToString:@"CEIL"])
         return CEIL;
+    if([value isEqualToString:@"MULTI_FINGER_TOUCHED"])
+        return MULTI_FINGER_TOUCHED;
+    if([value isEqualToString:@"MULTI_FINGER_X"])
+        return MULTI_FINGER_X;
+    if([value isEqualToString:@"MULTI_FINGER_Y"])
+        return MULTI_FINGER_Y;
     
     return NO_FUNCTION;
 }
@@ -179,6 +185,15 @@
             break;
         case CEIL:
             return @"CEIL";
+            break;
+        case MULTI_FINGER_TOUCHED:
+            return @"MULTI_FINGER_TOUCHED";
+            break;
+        case MULTI_FINGER_X:
+            return @"MULTI_FINGER_X";
+            break;
+        case MULTI_FINGER_Y:
+            return @"MULTI_FINGER_Y";
             break;
         default:
             return nil;
@@ -274,6 +289,15 @@
             break;
         case CEIL:
             return kUIFEFunctionCeil;
+            break;
+        case MULTI_FINGER_TOUCHED:
+            return kUIFEFunctionScreenIsTouched;
+            break;
+        case MULTI_FINGER_X:
+            return kUIFEFunctionScreenTouchX;
+            break;
+        case MULTI_FINGER_Y:
+            return kUIFEFunctionScreenTouchY;
             break;
         default:
             return @"";
