@@ -433,10 +433,7 @@
             BOOL screenTouched = [[TouchHandler shared] screenIsTouched];
             BOOL isRequestedTouch = ([[TouchHandler shared] numberOfTouches] == left);
             
-            isRequestedTouch = left == 0 ? true : isRequestedTouch; //If argument is 0, act as live touch sensor.
-            
-            result = screenTouched && isRequestedTouch ? [NSNumber numberWithInt:1]  : [NSNumber numberWithInt:0];
-            
+            result = screenTouched && isRequestedTouch ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
             break;
         }
         case MULTI_FINGER_X: {
