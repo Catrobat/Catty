@@ -260,5 +260,33 @@
     XCTAssertTrue([[[SensorManager class] stringForSensor:LOCATION_ACCURACY] isEqualToString:locationAccuracyBrick.variableFormula.formulaTree.value], "Invalid sensor");
 }
 
+- (void)testScreenTouchSensors
+{
+    Program *program = [self getProgramForXML:@"Sensors_0991"];
+    
+    XCTAssertTrue([program.objectList count] >= 4, "Invalid object list");
+    SpriteObject *object = [program.objectList objectAtIndex:3];
+    
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(4, [script.brickList count], "Invalid brick list");
+    
+    SetVariableBrick *fingerTouchedBrick = (SetVariableBrick*)[script.brickList objectAtIndex:0];
+    SetVariableBrick *fingerXBrick = (SetVariableBrick*)[script.brickList objectAtIndex:1];
+    SetVariableBrick *fingerYBrick = (SetVariableBrick*)[script.brickList objectAtIndex:2];
+    SetVariableBrick *lastFingerIndexBrick = (SetVariableBrick*)[script.brickList objectAtIndex:3];
+    
+    XCTAssertEqual(SENSOR, fingerTouchedBrick.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, fingerXBrick.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, fingerYBrick.variableFormula.formulaTree.type);
+    XCTAssertEqual(SENSOR, lastFingerIndexBrick.variableFormula.formulaTree.type);
+    
+    XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_TOUCHED] isEqualToString:fingerTouchedBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_X] isEqualToString:fingerXBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_Y] isEqualToString:fingerYBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([[[SensorManager class] stringForSensor:LAST_FINGER_INDEX] isEqualToString:lastFingerIndexBrick.variableFormula.formulaTree.value], "Invalid sensor");
+}
+
 @end
 
