@@ -108,7 +108,7 @@ static TouchHandler* shared = nil;
     return YES;
 }
 
-- (CGPoint)getPositionInSceneForTouchNumber:(double)touchNumber
+- (CGPoint)getPositionInSceneForTouchNumber:(NSUInteger)touchNumber
 {
     assert(self.scene);
     
@@ -134,7 +134,7 @@ static TouchHandler* shared = nil;
     return position;
 }
 
-- (double)numberOfTouches
+- (NSUInteger)numberOfTouches
 {
     return self.rawTouchLog.count;
 }

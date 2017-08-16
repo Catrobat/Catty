@@ -35,8 +35,8 @@
 -(void)startTrackingTouchesForScene:(CBScene*)scene;
 -(void)stopTrackingTouches;
 -(void)resumeTrackingTouches;
--(CGPoint)getPositionInSceneForTouchNumber:(double)touchNumber;
+-(CGPoint)getPositionInSceneForTouchNumber:(NSUInteger)touchNumber;
 -(CGPoint)getLastPositionInScene;
--(double)numberOfTouches;
+-(NSUInteger)numberOfTouches;
 
 @end
