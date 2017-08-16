@@ -548,15 +548,6 @@
 "Fill" = "Fill";
 
 /* No comment provided by engineer. */
-"finger_touched" = "finger_touched";
-
-/* No comment provided by engineer. */
-"finger_x" = "finger_x";
-
-/* No comment provided by engineer. */
-"finger_y" = "finger_y";
-
-/* No comment provided by engineer. */
 "Flashlight off" = "Flashlight off";
 
 /* No comment provided by engineer. */
@@ -710,7 +701,7 @@
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
-"last_finger_index" = "last_finger_index";
+"last_screen_touch_index" = "last_screen_touch_index";
 
 /* No comment provided by engineer. */
 "latitude" = "latitude";
