@@ -112,7 +112,8 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
     @"{STATICCHOICE}",              /* flash brick              */\
-    @"{STATICCHOICE}"               /* camera brick             */\
+    @"{STATICCHOICE}",              /* camera brick             */\
+    @"{INT}"                        /* SayBubbleBrick           */\
 ]
 
 // variable and list bricks

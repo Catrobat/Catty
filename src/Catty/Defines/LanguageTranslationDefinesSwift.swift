@@ -405,6 +405,7 @@ let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")
 let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
 let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by", comment: "")
+let kLocalizedSay = NSLocalizedString("Say", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 let kLocalizedAndWait = NSLocalizedString(" and wait", comment: "")
 
