@@ -402,6 +402,7 @@
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
+#define kLocalizedSay NSLocalizedString(@"Say", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 #define kLocalizedAndWait NSLocalizedString(@" and wait", nil)
 
