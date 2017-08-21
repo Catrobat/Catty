@@ -20,21 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-#import "SpriteObject.h"
+#import "ProgramTableViewController.h"
 
-@class ProgramLoadingInfo;
-@class Program;
-@protocol ProgramUpdateDelegate;
 
-@interface ProgramTableViewController : BaseTableViewController
-
-@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
-@property (strong, nonatomic) Program *program;
-@property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
-@property (copy) void (^afterSafeBlock)(SpriteObject* object);
-
-- (void)addObjectAction:(id)sender;
+@interface ObjectListViewController (UnitTestingExtensions)
 
 @end

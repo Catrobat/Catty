@@ -23,7 +23,8 @@
 #import "MyProgramsViewController.h"
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
-#import "ProgramTableViewController.h"
+#import "ObjectListViewController.h"
+#import "SceneListViewController.h"
 #import "AppDelegate.h"
 #import "TableUtil.h"
 #import "CellTagDefines.h"
@@ -39,13 +40,13 @@
 #import "UIUtil.h"
 #import "DescriptionViewController.h"
 #import "Pocket_Code-Swift.h"
+#import "ProgramManager.h"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UITextFieldDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, strong) NSMutableDictionary *programLoadingInfoDict;
-@property (nonatomic, strong) Program *defaultProgram;
 @end
 
 @implementation MyProgramsViewController
@@ -77,7 +78,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.navigationController.title = self.title = kLocalizedPrograms;
     [self initNavigationBar];
-    self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
     
@@ -96,7 +96,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
@@ -164,32 +163,41 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                 maxInputLength:kMaxNumOfProgramNameCharacters
                            blockedCharacterSet:[self blockedCharacterSet]
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                 existingNames:[Program allProgramNames]];
+                                 existingNames:[self allProgramNames]];
+}
+
+- (NSArray<NSString *> *)allProgramNames {
+    return [[ProgramManager instance] allProgramNames];
 }
 
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
 {
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
-    programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
-    self.defaultProgram = [Program defaultProgramWithName:programName programID:nil];
-    if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
-        [self addProgram:self.defaultProgram.header.programName];
-        [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
+    NSParameterAssert(![[self allProgramNames] containsObject:programName]);
+    
+    Program *newProgram = [Program defaultProgramWithName:programName];
+    ProgramLoadingInfo *newProgramLaodingInfo = [[ProgramManager instance] addProgram:newProgram];
+    
+    [self segueToProgramWithLoadingInfo:newProgramLaodingInfo];
+}
+
+- (void)segueToProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    self.selectedProgram = [[ProgramManager instance] programWithLoadingInfo:programLoadingInfo];
+    
+    NSString *segueIdentifier = self.selectedProgram.scenes.count > 1 ? kSegueToSceneList : kSegueToObjectList;
+    
+    if ([self shouldPerformSegueWithIdentifier:segueIdentifier sender:self]) {
+        [self performSegueWithIdentifier:segueIdentifier sender:self];
     }
 }
 
 - (void)copyProgramActionForProgramWithName:(NSString*)programName
                    sourceProgramLoadingInfo:(ProgramLoadingInfo*)sourceProgramLoadingInfo
 {
-    programName = [Util uniqueName:programName existingNames:[Program allProgramNames]];
-    ProgramLoadingInfo *destinationProgramLoadingInfo = [self addProgram:programName];
-    if (! destinationProgramLoadingInfo)
-        return;
+    programName = [Util uniqueName:programName existingNames:[self allProgramNames]];
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [[ProgramManager instance] copyProgramWithLoadingInfo:sourceProgramLoadingInfo
+                                                                                       destinationProgramName:programName];
     
     [self showLoadingView];
-    [Program copyProgramWithSourceProgramName:sourceProgramLoadingInfo.visibleName
-                              sourceProgramID:sourceProgramLoadingInfo.programID
-                       destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
     NSIndexPath* indexPath = [self getPathForProgramLoadingInfo:destinationProgramLoadingInfo];
     if (indexPath.section < self.tableView.numberOfSections)
@@ -214,12 +222,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
     
     [self showLoadingView];
-    Program *program = [Program programWithLoadingInfo:programLoadingInfo];
-    newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
-    [program renameToProgramName:newProgramName];
-    [self renameOldProgramWithName:programLoadingInfo.visibleName
-                         programID:programLoadingInfo.programID
-                  toNewProgramName:program.header.programName];
+    
+    newProgramName = [Util uniqueName:newProgramName existingNames:[self allProgramNames]];
+    Program *program = [[ProgramManager instance] programWithLoadingInfo:programLoadingInfo];
+    [self renameOldProgram:program toNewProgramName:newProgramName];
+    
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -228,7 +235,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                  sourceProgram:(Program*)program
 {
     [self showLoadingView];
-    [program updateDescriptionWithText:descriptionText];
+    program.programDescription = descriptionText;
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -256,8 +263,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [programLoadingInfosToRemove addObject:info];
     }
     for (ProgramLoadingInfo *programLoadingInfoToRemove in programLoadingInfosToRemove) {
-        [self removeProgramWithName:programLoadingInfoToRemove.visibleName
-                          programID:programLoadingInfoToRemove.programID];
+        [self removeProgramWithLoadingInfo:programLoadingInfoToRemove];
     }
     [self hideLoadingView];
     [super exitEditingMode];
@@ -269,7 +275,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
     NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
     ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
-    [self removeProgramWithName:info.visibleName programID:info.programID];
+    [self removeProgramWithLoadingInfo:info];
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -400,10 +406,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                          maxInputLength:kMaxNumOfProgramNameCharacters
                                     blockedCharacterSet:[self blockedCharacterSet]
                                invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                          existingNames:[Program allProgramNames]];
+                                          existingNames:[self allProgramNames]];
          }]
          addDefaultActionWithTitle:kLocalizedRename handler:^{
-             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+             NSMutableArray *unavailableNames = [[self allProgramNames] mutableCopy];
              [unavailableNames removeString:info.visibleName];
              [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                  target:self
@@ -420,7 +426,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                           existingNames:unavailableNames];
          }]
          addDefaultActionWithTitle:kLocalizedDescription handler:^{
-             Program *program = [Program programWithLoadingInfo:info];
+             Program *program = [[ProgramManager instance] programWithLoadingInfo:info];
              UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
              DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
              dViewController.delegate = self;
@@ -526,12 +532,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    static NSString *segueToContinue = kSegueToContinue;
     if (! self.editing) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:cell]) {
-            [self performSegueWithIdentifier:segueToContinue sender:cell];
-        }
+        NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+        NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+        ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
+
+        [self segueToProgramWithLoadingInfo:info];
     }
 }
 
@@ -555,117 +561,68 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return NO;
     }
     
-    static NSString *segueToContinue = kSegueToContinue;
-    static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([identifier isEqualToString:segueToContinue]) {
-        if ([sender isKindOfClass:[UITableViewCell class]]) {
-            NSIndexPath *path = [self.tableView indexPathForCell:sender];
-            // check if program loaded successfully -> not nil
-            NSString *sectionTitle = [self.sectionTitles objectAtIndex:path.section];
-            NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
-            ProgramLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
-            self.selectedProgram =[Program programWithLoadingInfo:info];
-            if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
-                self.selectedProgram.header.programName = info.visibleName;
-                [self.selectedProgram saveToDiskWithNotification:YES];
-            }
-            if (self.selectedProgram) {
-                return YES;
-            }
+    if ([identifier isEqualToString:kSegueToSceneList] || [identifier isEqualToString:kSegueToObjectList]) {
+        if (self.selectedProgram) {
+            return YES;
+        }
             
-            // program failed loading...
-            [Util alertWithText:kLocalizedUnableToLoadProgram];
-            return NO;
-        }
-    } else if ([identifier isEqualToString:segueToNewProgram]) {
-        if (! self.defaultProgram) {
-            return NO;
-        }
-        return YES;
+        // program failed loading...
+        [Util alertWithText:kLocalizedUnableToLoadProgram];
+        return NO;
     }
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    static NSString *segueToContinue = kSegueToContinue;
-    static NSString *segueToNewProgram = kSegueToNewProgram;
-    if ([segue.identifier isEqualToString:segueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            if ([sender isKindOfClass:[UITableViewCell class]]) {
-                [self.dataCache removeObjectForKey:self.selectedProgram.header.programName];
-                ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-                programTableViewController.delegate = self;
-                programTableViewController.program = self.selectedProgram;
-            }
-        }
-    } else if ([segue.identifier isEqualToString:segueToNewProgram]) {
-        ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-        programTableViewController.delegate = self;
-        programTableViewController.program = self.defaultProgram;
+    NSAssert(self.selectedProgram, @"Program should be already selected");
+    
+    if ([segue.identifier isEqualToString:kSegueToSceneList]) {
+        SceneListViewController *sceneListViewController = (SceneListViewController *)segue.destinationViewController;
+        NSAssert(sceneListViewController != nil, @"");
+        
+        [self.dataCache removeObjectForKey:self.selectedProgram.programName];
+        sceneListViewController.delegate = self;
+        sceneListViewController.program = self.selectedProgram;
+    } else if ([segue.identifier isEqualToString:kSegueToObjectList]) {
+        ObjectListViewController *objectListViewController = (ObjectListViewController *)segue.destinationViewController;
+        NSAssert(objectListViewController != nil, @"");
+        
+        objectListViewController.delegate = self;
+        objectListViewController.scene = self.selectedProgram.scenes.firstObject;
+        objectListViewController.shouldBehaveAsIfObjectsBelongToProgram = YES;
+    } else {
+        NSAssert(false, @"Unreachable");
     }
 }
 
 #pragma mark - program handling
-- (ProgramLoadingInfo*)addProgram:(NSString*)programName
-{
-    // check if program already exists, then update
-    BOOL exists = NO;
-    NSMutableArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-    for (ProgramLoadingInfo *programLoadingInfo in programLoadingInfos) {
-        if ([programLoadingInfo.visibleName isEqualToString:programName])
-            exists = YES;
-    }
-    
-    ProgramLoadingInfo *programLoadingInfo = nil;
-    
-    // add if not exists
-    if (! exists) {
-        programLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
-                                                                            programID:nil];
-        NSDebug(@"Adding program: %@", programLoadingInfo.basePath);
-        
-        
-    }
-    [self reloadTableView];
-    return programLoadingInfo;
-}
 
-- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID
+- (void)removeProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo
 {
-    ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
-    NSInteger rowIndex = 0;
-    NSMutableArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-    for (ProgramLoadingInfo *info in programLoadingInfos) {
-        if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
-            [Program removeProgramFromDiskWithProgramName:programName programID:programID];
-            NSIndexPath* indexPath = [self getPathForProgramLoadingInfo:info];
+    [[ProgramManager instance] removeProgramWithLoadingInfo:programLoadingInfo];
+    NSIndexPath* indexPath = [self getPathForProgramLoadingInfo:programLoadingInfo];
             
-            if ([self.tableView numberOfRowsInSection:indexPath.section] > 1)
-            {
-                [self setSectionHeaders];
-                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                                      withRowAnimation:UITableViewRowAnimationTop];
-            }
-            else
-            {
-                // Section is now completely empty, so delete the entire section.
-                [self setSectionHeaders];
-                // There should be always one program so don't delete sections of the tableView
-                if (self.programsCounter > 1) {
-                    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
-                                  withRowAnimation:UITableViewRowAnimationTop];
-                }
-            }
-            // flush cache
-            self.dataCache = nil;
-            // needed to avoid unexpected behaviour when programs are renamed
-            [[RuntimeImageCache sharedImageCache] clearImageCache];
-            [self reloadTableView];
-            return;
-        }
-        ++rowIndex;
+    if ([self.tableView numberOfRowsInSection:indexPath.section] > 1)
+    {
+        [self setSectionHeaders];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                              withRowAnimation:UITableViewRowAnimationTop];
     }
+    else
+    {
+        // Section is now completely empty, so delete the entire section.
+        [self setSectionHeaders];
+        // There should be always one program so don't delete sections of the tableView
+        if (self.programsCounter > 1) {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
+                          withRowAnimation:UITableViewRowAnimationTop];
+        }
+    }
+    // flush cache
+    self.dataCache = nil;
+    // needed to avoid unexpected behaviour when programs are renamed
+    [[RuntimeImageCache sharedImageCache] clearImageCache];
     [self reloadTableView];
 }
 
@@ -692,30 +649,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return [NSIndexPath indexPathForRow:rowCounter inSection:sectionCounter];
 }
 
-- (void)renameOldProgramWithName:(NSString*)oldProgramName
-                       programID:(NSString*)programID
-                toNewProgramName:(NSString*)newProgramName
-{
-    ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:oldProgramName
-                                                                                               programID:programID];
-    NSInteger rowIndex = 0;
-    NSMutableArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-    for (ProgramLoadingInfo *info in programLoadingInfos) {
-        if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
-            ProgramLoadingInfo *newInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:newProgramName
-                                                                                         programID:oldProgramLoadingInfo.programID];
-            [programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
-            // flush cache
-            self.dataCache = nil;
-            // needed to avoid unexpected behaviour when renaming programs
-            [[RuntimeImageCache sharedImageCache] clearImageCache];
-            
-            // update table view
-            [self.tableView reloadRowsAtIndexPaths:@[[self getPathForProgramLoadingInfo:info]] withRowAnimation:UITableViewRowAnimationNone];
-            break;
-        }
-        ++rowIndex;
-    }
+- (void)renameOldProgram:(Program *)program toNewProgramName:(NSString *)newProgramName {
+    ProgramLoadingInfo *oldLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    [[ProgramManager instance] renameProgram:program toName:newProgramName];
+    
+    // flush cache
+    self.dataCache = nil;
+    // needed to avoid unexpected behaviour when renaming programs
+    [[RuntimeImageCache sharedImageCache] clearImageCache];
+    
+    
+    // update table view
+    [self.tableView reloadRowsAtIndexPaths:@[[self getPathForProgramLoadingInfo:oldLoadingInfo]] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - helpers
@@ -753,7 +698,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.programLoadingInfoDict = [NSMutableDictionary new];
     self.programsCounter = 0;
-    NSArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    NSArray* programLoadingInfos = [[ProgramManager instance] allProgramLoadingInfos];
     for (ProgramLoadingInfo* info in programLoadingInfos) {
         NSMutableArray* array = [self.programLoadingInfoDict objectForKey:[[info.visibleName substringToIndex:1] uppercaseString]];
         if (!array.count) {

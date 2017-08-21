@@ -30,7 +30,7 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps,
-            let objectList = self.script?.object?.program?.objectList
+            let objectList = self.script?.object?.scene?.objectList
         else { fatalError("This should never happen!") }
 
         return {

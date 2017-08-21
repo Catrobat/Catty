@@ -61,7 +61,7 @@ public class MockImage : UIImage {
     }
 }
 
-final class CBSceneTouchTests: XCTestCase {
+final class sceneTouchTests: BrickTests {
 
     var scene : CBScene!
     var spriteNodeA : CBSpriteNode!
@@ -73,7 +73,7 @@ final class CBSceneTouchTests: XCTestCase {
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler)
         scheduler.running = true
         
-        scene = CBScene(size: CGSize(width: 400, height: 800), logger: logger, scheduler: scheduler, frontend: CBFrontend(logger: logger, program: nil),
+        scene = CBScene(size: CGSize(width: 400, height: 800), logger: logger, scheduler: scheduler, frontend: CBFrontend(logger: logger, scene: nil),
                         backend: CBBackend(logger: logger), broadcastHandler: broadcastHandler)
         
         let look = Look()
@@ -81,13 +81,17 @@ final class CBSceneTouchTests: XCTestCase {
         
         let spriteObjectA = SpriteObject()
         spriteObjectA.name = "SpriteObjectA"
-        spriteObjectA.addLook(look, andSaveToDisk: false)
-        spriteNodeA = CBSpriteNode(spriteObject: spriteObjectA)
-        spriteNodeA.currentUIImageLook = MockImage(size: CGSizeMake(100, 100))
+        spriteObjectA.addLook(look)
         
         let spriteObjectB = SpriteObject()
         spriteObjectB.name = "SpriteObjectB"
-        spriteObjectB.addLook(look, andSaveToDisk: false)
+        spriteObjectB.addLook(look)
+        
+        self.createAndKeepReferenceToProgramWithObjects([spriteObjectA, spriteObjectB], saveToDisk: false)
+        
+        spriteNodeA = CBSpriteNode(spriteObject: spriteObjectA)
+        spriteNodeA.currentUIImageLook = MockImage(size: CGSizeMake(100, 100))
+        
         spriteNodeB = CBSpriteNode(spriteObject: spriteObjectB)
         spriteNodeB.currentUIImageLook = MockImage(size: CGSizeMake(100, 100))
     }

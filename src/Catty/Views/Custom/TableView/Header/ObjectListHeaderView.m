@@ -20,10 +20,45 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "ObjectListHeaderView.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
-@interface ProjectParser : NSObject
+@interface ObjectListHeaderView ()
+@property (strong, nonatomic) CALayer *bottomBoarder;
 
-- (id)loadProject:(NSData*)xmlData;
+@end
+
+@implementation ObjectListHeaderView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupView];
+    }
+    return self;
+}
+
+- (void)setupView
+{
+    self.contentView.backgroundColor = UIColor.backgroundColor;
+    self.bottomBoarder.backgroundColor = [UIColor utilityTintColor].CGColor;
+    [self.contentView.layer addSublayer:self.bottomBoarder];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.bottomBoarder.frame = CGRectMake(0.0f, CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds), 0.5f);
+}
+
+- (CALayer *)bottomBoarder
+{
+    if (!_bottomBoarder) {
+        _bottomBoarder = [CALayer new];
+        _bottomBoarder.frame = CGRectZero;
+    }
+    return _bottomBoarder;
+}
 
 @end

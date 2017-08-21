@@ -23,12 +23,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class Program;
+
 @interface ProgramLoadingInfo : NSObject
 
 @property (nonatomic, strong) NSString *basePath;
 @property (nonatomic, strong) NSString *visibleName;
 @property (nonatomic, strong) NSString *programID;
 
++ (ProgramLoadingInfo*)programLoadingInfoForProgram:(Program *)program;
 + (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)programName programID:(NSString*)programID;
 - (BOOL)isEqualToLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
 

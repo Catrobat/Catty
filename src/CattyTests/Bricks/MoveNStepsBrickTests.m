@@ -32,6 +32,7 @@
 @property(nonatomic, strong) CBSpriteNode *spriteNode;
 @property(nonatomic, strong) Script *script;
 @property(nonatomic, strong) MoveNStepsBrick *brick;
+@property(nonatomic, strong) CBScene *scene;
 
 @end
 

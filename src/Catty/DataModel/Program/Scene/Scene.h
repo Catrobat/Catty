@@ -25,26 +25,43 @@
 
 @class SpriteObject;
 @class UserVariable;
+@class Program;
 
 @interface Scene : NSObject
 
-@property (nonatomic, readonly, copy) NSString *name;
-@property (nonatomic, readonly) SpriteObject *background;
-@property (nonatomic) NSMutableArray<SpriteObject *> *objectList;
-@property (nonatomic) OrderedMapTable<SpriteObject *, NSArray<UserVariable *> *> *objectVariableList;
-@property (nonatomic, readonly, copy) NSString *originalWidth;
-@property (nonatomic, readonly, copy) NSString *originalHeight;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSMutableArray<SpriteObject *> *objectList;
+@property (nonatomic, readonly) OrderedMapTable<SpriteObject *, NSMutableArray<UserVariable *> *> *objectVariableList;
+@property (nonatomic, readonly) NSString *originalWidth;
+@property (nonatomic, readonly) NSString *originalHeight;
+
+@property (nonatomic, readonly) SpriteObject *backgroundObject;
+@property (nonatomic, weak) Program *program;
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithName:(NSString *)name
-                  objectList:(NSMutableArray<SpriteObject *> *)objectList
-          objectVariableList:(OrderedMapTable<SpriteObject *, NSArray<UserVariable *> *> *)objectVariableList
+                  objectList:(NSArray<SpriteObject *> *)objectList
+          objectVariableList:(OrderedMapTable<SpriteObject *, NSMutableArray<UserVariable *> *> *)objectVariableList
                originalWidth:(NSString *)originalWidth
               originalHeight:(NSString *)originalHeight NS_DESIGNATED_INITIALIZER;
++ (instancetype)defaultSceneWithName:(NSString *)name;
+
+- (NSArray<UserVariable *> *)allAccessibleVarialbes;
 
 - (void)addObject:(SpriteObject *)object;
+
+- (void)addVariable:(UserVariable *)variable forObject:(SpriteObject *)object;
+- (void)removeVariable:(UserVariable *)variable forObject:(SpriteObject *)object;
+
 - (void)removeObject:(SpriteObject *)object;
+- (void)removeObjects:(NSArray<SpriteObject *> *)objects;
+
 - (void)moveObjectFromIndex:(NSUInteger)originIndex toIndex:(NSUInteger)destinationIndex;
+- (NSInteger)numberOfNormalObjects;
+- (NSArray<NSString *> *)allObjectNames;
+
+- (NSInteger)getRequiredResources;
+- (void)removeReferences;
 
 @end

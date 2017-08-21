@@ -24,8 +24,7 @@ extension HideTextBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
 
-        guard let spriteObject = self.script?.object,
-              let _ = spriteObject.program?.variables
+        guard let spriteObject = self.script?.object
         else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable

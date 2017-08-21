@@ -26,6 +26,7 @@
 #import "AppDelegate.h"
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
+#import "ProgramManager.h"
 
 @interface ProgramTests : XCTestCase
 
@@ -39,15 +40,15 @@
 - (void)setUp
 {
     [super setUp];
-    if (! [self.fileManager directoryExists:[Program basePath]]) {
-        [self.fileManager createDirectory:[Program basePath]];
+    if (! [self.fileManager directoryExists:[ProgramManager basePath]]) {
+        [self.fileManager createDirectory:[ProgramManager basePath]];
     }
 }
 
 - (void)tearDown
 {
     if (self.program) {
-        [ProgramTests removeProject:[self.program projectPath]];
+        [[ProgramManager instance] removeProgramWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgram:self.program]];
     }
     self.program = nil;
     self.fileManager = nil;
@@ -56,26 +57,27 @@
 
 - (void)setupForNewProgram
 {
-    self.program = [Program defaultProgramWithName:kLocalizedNewProgram programID:nil];
+    self.program = [Program defaultProgramWithName:kLocalizedNewProgram];
+    [[ProgramManager instance] addProgram:self.program];
 }
 
 - (void)testNewProgramIfProjectFolderExists
 {
     [self setupForNewProgram];
-    XCTAssertTrue([self.fileManager directoryExists:[self.program projectPath]], @"No project folder created for the new project");
+    XCTAssertTrue([self.fileManager directoryExists:[ProgramManager projectPathForProgram:self.program]], @"No project folder created for the new project");
 }
 
 - (void)testNewProgramIfImagesFolderExists
 {
     [self setupForNewProgram];
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [self.program projectPath], kProgramImagesDirName];
+    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [ProgramManager projectPathForProgram:self.program], kProgramImagesDirName];
     XCTAssertTrue([self.fileManager directoryExists:imagesDirName], @"No images folder created for the new project");
 }
 
 - (void)testNewProgramIfSoundsFolderExists
 {
     [self setupForNewProgram];
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [self.program projectPath], kProgramSoundsDirName];
+    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [ProgramManager projectPathForProgram:self.program], kProgramSoundsDirName];
     XCTAssertTrue([self.fileManager directoryExists:soundsDirName], @"No sounds folder created for the new project");
 }
 
@@ -85,14 +87,6 @@
     if (! _fileManager)
         _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
     return _fileManager;
-}
-
-+ (void)removeProject:(NSString*)projectPath
-{
-    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    if ([fileManager directoryExists:projectPath])
-        [fileManager deleteDirectory:projectPath];
-    [Util setLastProgramWithName:nil programID:nil];
 }
 
 @end

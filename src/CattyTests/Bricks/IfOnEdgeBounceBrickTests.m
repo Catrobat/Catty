@@ -32,6 +32,7 @@
 @property(nonatomic, strong) SpriteObject *spriteObject;
 @property(nonatomic, strong) Script *script;
 @property(nonatomic, strong) IfOnEdgeBounceBrick *brick;
+@property(nonatomic, strong) CBScene *scene;
 
 @end
 

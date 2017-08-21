@@ -45,8 +45,9 @@
 - (void)testClearGraphicEffectBrick
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
+    
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
@@ -87,14 +88,14 @@
     action();
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testClearGraphicEffectBrick2
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
+    
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
@@ -136,16 +137,16 @@
     action();
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testClearGraphicEffectBrick3
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
+    
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
@@ -186,7 +187,6 @@
     action();
 
     XCTAssertEqualWithAccuracy(spriteNode.brightness, 0.0f,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 @end

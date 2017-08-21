@@ -45,6 +45,7 @@
 #import "PhiroRGBLightBrick.h"
 #import "SensorManager.h"
 #import "FormulaElement.h"
+#import "Scene.h"
 
 @interface RequiredResources : XCTestCase
 
@@ -65,14 +66,18 @@
 
 -(Program*)getProgramWithOneSpriteWithBrick:(Brick*)brick
 {
-    Program * program = [Program new];
     SpriteObject* obj = [SpriteObject new];
     Script *script = [Script new];
     [script.brickList addObject:brick];
     [obj.scriptList addObject:script];
-    [program.objectList addObject:obj];
     
-    return program;
+    Scene *scene = [[Scene alloc] initWithName:@"a"
+                                    objectList:@[obj]
+                            objectVariableList:[OrderedMapTable weakToWeakObjectsMapTable]
+                                 originalWidth:@"100"
+                                originalHeight:@"100"];
+    
+    return [[Program alloc] initWithHeader:[Header defaultHeader] scenes:@[scene] programVariableList:@[]];
 }
 
 #pragma mark-Look
@@ -859,7 +864,6 @@
 #pragma mark-MoreScripts
 -(Program*)getProgramWithTwoScriptsWithBricks:(NSArray*)brickArray andBrickArray2:(NSArray*)brickArray2
 {
-    Program * program = [Program new];
     SpriteObject* obj = [SpriteObject new];
     Script *script = [Script new];
     Script *script2 = [Script new];
@@ -871,9 +875,14 @@
     }
     [obj.scriptList addObject:script];
     [obj.scriptList addObject:script2];
-    [program.objectList addObject:obj];
     
-    return program;
+    Scene *scene = [[Scene alloc] initWithName:@"a"
+                                    objectList:@[obj]
+                            objectVariableList:[OrderedMapTable weakToWeakObjectsMapTable]
+                                 originalWidth:@"100"
+                                originalHeight:@"100"];
+    
+    return [[Program alloc] initWithHeader:[Header defaultHeader] scenes:@[scene] programVariableList:@[]];
 }
 
 - (void)testNestedResourcesTwoScripts
@@ -950,7 +959,6 @@
 #pragma mark-MoreSprites
 -(Program*)getProgramWithTwoSpritesWithBricks:(NSArray*)brickArray andBrickArray2:(NSArray*)brickArray2
 {
-    Program * program = [Program new];
     SpriteObject* obj = [SpriteObject new];
     SpriteObject* obj1 = [SpriteObject new];
     Script *script = [Script new];
@@ -963,10 +971,15 @@
     }
     [obj.scriptList addObject:script];
     [obj1.scriptList addObject:script2];
-    [program.objectList addObject:obj];
-    [program.objectList addObject:obj1];
     
-    return program;
+    
+    Scene *scene = [[Scene alloc] initWithName:@"a"
+                                    objectList:@[obj, obj1]
+                            objectVariableList:[OrderedMapTable weakToWeakObjectsMapTable]
+                                 originalWidth:@"100"
+                                originalHeight:@"100"];
+    
+    return [[Program alloc] initWithHeader:[Header defaultHeader] scenes:@[scene] programVariableList:@[]];
 }
 
 - (void)testNestedResourcesTwoSprites

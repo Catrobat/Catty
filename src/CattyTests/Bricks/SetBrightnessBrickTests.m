@@ -46,10 +46,10 @@
 - (void)testSetBrightnessBrickDarker
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -77,16 +77,15 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.brightness, -70.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testSetBrightnessBrickBrighter
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -114,17 +113,16 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.brightness, 30.0f,0.1f ,@"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testSetBrightnessBrickTooBright
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
-
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
@@ -152,16 +150,15 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testSetBrightnessBrickTooDark
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -190,16 +187,15 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testSetBrightnessBrickWrongInput
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -228,7 +224,6 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 @end

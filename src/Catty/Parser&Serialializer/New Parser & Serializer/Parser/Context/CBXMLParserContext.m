@@ -48,13 +48,6 @@
 }
 
 #pragma mark - Getters and Setters
-- (NSMutableArray*)programVariableList
-{
-    if (! _programVariableList) {
-        _programVariableList = [NSMutableArray array];
-    }
-    return _programVariableList;
-}
 
 - (NSMutableDictionary*)spriteObjectNameVariableList
 {

@@ -20,28 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "XMLObjectReference.h"
+#import "BaseTableViewController.h"
 
-@implementation XMLObjectReference
+@class Program;
+@protocol ProgramUpdateDelegate;
 
-- (id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
-{
-    self = [super init];
-    if (self) {
-        self.parent = parent;
-        self.object = object;
-    }
-    return self;
-}
+@interface SceneListViewController : BaseTableViewController
 
-- (void)dealloc
-{
-    
-}
-
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"XMLObjectReference: Parent: %@, Object: %@", self.parent, self.object ];
-}
+@property (nonatomic) Program *program;
+@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
 
 @end

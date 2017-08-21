@@ -28,15 +28,11 @@ final class HideTextBrickTests: XCTestCase {
     
     func testHideTextBrickUserVariablesNil() {
         
-        let program = Program();
         let object = SpriteObject();
         let spriteNode = CBSpriteNode();
         spriteNode.name = "SpriteNode";
         spriteNode.spriteObject = object;
         object.spriteNode = spriteNode;
-        object.program = program;
-        
-        object.program.programVariableList = NSMutableArray()
         
         let brick = HideTextBrick();
         

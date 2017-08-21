@@ -87,7 +87,7 @@
 {
     UserVariable *userVariable = [UserVariable new];
     userVariable.name = @"test";
-    [self.serializerContext.variables.programVariableList addObject:userVariable];
+    [self.serializerContext.programVariableList addObject:userVariable];
     
     SetVariableBrick *setVariableBrick = [SetVariableBrick new];
     [setVariableBrick setDefaultValuesForObject:nil];
@@ -154,7 +154,7 @@
 {
     UserVariable *userVariable = [UserVariable new];
     userVariable.name = @"test";
-    [self.serializerContext.variables.programVariableList addObject:userVariable];
+    [self.serializerContext.programVariableList addObject:userVariable];
     
     ChangeVariableBrick *changeVariableBrick = [ChangeVariableBrick new];
     [changeVariableBrick setDefaultValuesForObject:nil];

@@ -27,6 +27,7 @@
 #import "CBXMLSerializer.h"
 #import "CBXMLParser.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "Scene.h"
 
 @interface XMLSerializerTests : XMLAbstractTest
 
@@ -54,7 +55,11 @@
 - (void)testFormulaAndMoveNStepsBrick
 {
     Program *program = [self getProgramForXML:@"ValidProgramAllBricks0992"];
-    MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
+    
+    XCTAssertEqual(1, [program.scenes count], "Invalid scenes");
+    Scene *scene = [program.scenes objectAtIndex:0];
+    
+    MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[scene.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
     BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/scenes/scene/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks0992"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
@@ -64,13 +69,21 @@
     CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.992f];
     
     Program *referenceProgram = [self getProgramForXML:@"ValidProgram0992"];
+    
+    XCTAssertEqual(1, [referenceProgram.scenes count], "Invalid scenes");
+    Scene *referenceScene = [referenceProgram.scenes objectAtIndex:0];
+    
     Program *program = [self getProgramForXML:@"ValidProgram0992"];
-    SpriteObject *moleOne = [program.objectList objectAtIndex:1];
-    [program removeObject:moleOne];
+    
+    XCTAssertEqual(1, [program.scenes count], "Invalid scenes");
+    Scene *scene = [program.scenes objectAtIndex:0];
+    
+    SpriteObject *moleOne = [scene.objectList objectAtIndex:1];
+    [scene removeObject:moleOne];
     
     GDataXMLElement *xmlElement = [program xmlElementWithContext:[CBXMLSerializerContext new]];
     XCTAssertNotNil(xmlElement, @"Error during serialization of removed object");
-    XCTAssertEqual([program.objectList count] + 1, [referenceProgram.objectList count], @"Object not properly removed");
+    XCTAssertEqual([scene.objectList count] + 1, [referenceScene.objectList count], @"Object not properly removed");
     XCTAssertFalse([[referenceProgram xmlElementWithContext:[CBXMLSerializerContext new]] isEqualToElement:xmlElement], @"Object not properly removed");
     
     Program *parsedProgram = [parserContext parseFromElement:xmlElement withClass:[Program class]];
@@ -81,8 +94,11 @@
 {
     Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
     XCTAssertNotNil(program, @"Program must not be nil!");
+    
+    XCTAssertEqual(1, [program.scenes count], "Invalid scenes");
+    Scene *scene = [program.scenes objectAtIndex:0];
 
-    SpriteObject *moleTwo = [program.objectList objectAtIndex:1];
+    SpriteObject *moleTwo = [scene.objectList objectAtIndex:1];
     XCTAssertNotNil(moleTwo, @"SpriteObject must not be nil!");
     XCTAssertTrue([moleTwo.name isEqualToString:@"Mole 2"], @"Invalid object name!");
 
@@ -93,7 +109,7 @@
     XCTAssertNotNil(pointToBrick, @"PointToBrick must not be nil!");
     
     CBXMLSerializerContext *context = [CBXMLSerializerContext new];
-    context.spriteObjectList = program.objectList;
+    context.spriteObjectList = scene.objectList;
 
     BOOL equal = [self isXMLElement:[pointToBrick xmlElementWithContext:context] equalToXMLElementForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[8]" inProgramForXML:@"PointToBrickWithoutSpriteObject"];
     XCTAssertTrue(equal, @"XMLElement invalid!");

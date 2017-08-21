@@ -24,21 +24,21 @@ extension SetVariableBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
 
-        guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
+        guard let spriteObject = self.script?.object else {
+            fatalError("This should never happen!")
+        }
 
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
 
         return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: SetVariableBrick")
-            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
-            variables.setUserVariable(userVariable, toValue: result)
             
             //update visible userVariable
             var value = ""
             if userVariable != nil {
+                userVariable.value = variableFormula.interpretVariableDataForSprite(spriteObject)
+                
                 if userVariable.value is NSNumber{
                     let number:NSNumber = (userVariable.value as? NSNumber)!
                     value = number.stringValue

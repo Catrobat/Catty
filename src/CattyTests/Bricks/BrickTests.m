@@ -21,16 +21,18 @@
  */
 
 #import "BrickTests.h"
+#import "Scene.h"
+#import "ProgramManager.h"
+#import "FileManager.h"
+#import "ProgramLoadingInfo.h"
+
+@interface BrickTests ()
+@property (nonatomic, strong) Program *createdProgram;
+@property (nonatomic, strong) ProgramManager *programManager;
+@end
 
 
 @implementation BrickTests
-
-- (NSMutableArray*) programs
-{
-  if (! self.programs)
-    self.programs = [NSMutableArray array];
-  return self.programs;
-}
 
 - (void)setUp
 {
@@ -38,10 +40,42 @@
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
+    if (self.createdProgram != nil) {
+        [self.programManager removeProgramWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgram:self.createdProgram]];
+        self.createdProgram = nil;
+    }
+    
     [super tearDown];
 }
 
+- (ProgramManager *)programManager {
+    if (! _programManager) {
+        _programManager = [[ProgramManager alloc] initWithFileManager:[[FileManager alloc] init]];
+    }
+    return _programManager;
+}
+
+- (Program *)createAndKeepReferenceToProgramWithObjects:(NSArray<SpriteObject *> *)objects saveToDisk:(BOOL)save {
+    NSAssert(self.createdProgram == nil, @"Already created");
+    
+    Scene *scene = [[Scene alloc] initWithName:@"Scene"
+                                    objectList:objects
+                            objectVariableList:[OrderedMapTable weakToWeakObjectsMapTable]
+                                 originalWidth:@"100" originalHeight:@"100"];
+    
+    Header *header = [Header defaultHeader];
+    header.programName = @"Program";
+    
+    self.createdProgram = [[Program alloc] initWithHeader:header
+                                                   scenes:@[scene]
+                                      programVariableList:@[]];
+    
+    if (save) {
+        [self.programManager addProgram:self.createdProgram];
+    }
+    
+    return self.createdProgram;
+}
 
 - (void)testSetVariableBrick
 {

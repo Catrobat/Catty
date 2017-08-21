@@ -20,17 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "VariablesContainer.h"
-#import "CBXMLNodeProtocol.h"
+#import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@class CBXMLContext;
+@protocol ProgramUpdateDelegate;
+@class ProgramManager;
+@class SpriteObject;
 
-@interface VariablesContainer (CBXMLHandler) <CBXMLNodeProtocol>
+@interface ObjectListViewController : BaseTableViewController
 
-+ (NSMutableArray<UserVariable *> *)parseProgramVariableListFromElement:(GDataXMLElement *)programVariableListElement
-                                                            withContext:(CBXMLParserContext *)context;
+@property (nonatomic) Scene *scene;
+@property (nonatomic) BOOL shouldBehaveAsIfObjectsBelongToProgram;
 
-+ (OrderedMapTable *)parseObjectVariableListFromElement:(GDataXMLElement *)objectVarListElement
-                                            withContext:(CBXMLParserContext *)context;
+@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
+@property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
+@property (copy) void (^afterSafeBlock)(SpriteObject *object);
+
 
 @end

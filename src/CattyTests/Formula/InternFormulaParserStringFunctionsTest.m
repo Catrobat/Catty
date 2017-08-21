@@ -35,9 +35,6 @@
 
 - (void)setUp {
     [super setUp];
-    //ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    //VariablesContainer *container = programManager.program.variables;
-    //UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:object];
     //TODO: Add tests for UserVariables if strings are possible
 }
 

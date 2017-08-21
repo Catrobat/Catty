@@ -36,6 +36,7 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "ShapeButton.h"
 #import "Pocket_Code-Swift.h"
+#import "ProgramManager.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -190,7 +191,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.object.program.variables];
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
     [self initSensorView];
@@ -859,21 +859,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)updateVariablePickerData
 {
-    VariablesContainer *variables = self.object.program.variables;
+    NSArray<UserVariable *> *programVariableList = self.object.scene.program.programVariableList;
     [self.variableSource removeAllObjects];
     [self.variableSourceProgram  removeAllObjects];
     [self.variableSourceObject  removeAllObjects];
-    if([variables.programVariableList count] > 0)
+    if([programVariableList count] > 0)
         [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramVars]];
     
-    for(UserVariable *userVariable in variables.programVariableList) {
+    for(UserVariable *userVariable in programVariableList) {
         VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
         [pickerData setIsProgramVariable:YES];
         [self.variableSource addObject:pickerData];
         [self.variableSourceProgram addObject:pickerData];
     }
     
-    NSArray *array = [variables.objectVariableList objectForKey:self.object];
+    NSArray *array = self.object.variables;
     if (array) {
         if([array count] > 0)
             [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
@@ -893,8 +893,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)saveVariable:(NSString*)name
 {
+    Scene *scene = self.object.scene;
     if (self.isProgramVariable){
-        for (UserVariable* variable in [self.object.program.variables allVariables]) {
+        for (UserVariable* variable in [scene.program allVariables]) {
             if ([variable.name isEqualToString:name]) {
                 [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
                                                       target:self
@@ -908,7 +909,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
     } else {
-        for (UserVariable* variable in [self.object.program.variables allVariablesForObject:self.object]) {
+        for (UserVariable* variable in self.object.allAccessibleVariables) {
             if ([variable.name isEqualToString:name]) {
                 [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:)
                                                       target:self
@@ -929,18 +930,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     var.name = name;
     var.value = [NSNumber numberWithInt:0];
     if (self.isProgramVariable) {
-        [self.object.program.variables.programVariableList addObject:var];
+        [scene.program addProgramVariable:var];
     } else {
-        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-        if (!array) {
-            array = [NSMutableArray new];
-        }
-        [array addObject:var];
-        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+        [scene addVariable:var forObject:self.object];
     }
     
-    [self.object.program saveToDiskWithNotification:YES];
+    [self saveProgramToDisk];
     [self updateVariablePickerData];
+}
+
+- (void)saveProgramToDisk {
+    [[ProgramManager instance] saveProgram:self.object.scene.program];
 }
 
 - (void)closeMenu
@@ -1050,12 +1050,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
         if (pickerData) {
             if(![self isVariableBeingUsed:pickerData.userVariable]) {
-                BOOL removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
-                if (removed) {
-                    [self.variableSource removeObjectAtIndex:row];
-                    [self.object.program saveToDiskWithNotification:YES];
-                    [self updateVariablePickerData];
+                if ([self isProgramVariable:pickerData.userVariable]) {
+                    [self.object.scene.program removeProgramVariable:pickerData.userVariable];
+                } else {
+                    [self.object.scene removeVariable:pickerData.userVariable forObject:self.object];
                 }
+                
+                [self.variableSource removeObjectAtIndex:row];
+                [self saveProgramToDisk];
+                [self updateVariablePickerData];
             } else {
                 [self showNotification:kUIFEDeleteVarBeingUsed andDuration:1.5f];
             }
@@ -1065,26 +1068,43 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (BOOL)isVariableBeingUsed:(UserVariable*)variable
 {
-    if([self.object.program.variables isProgramVariable:variable]) {
-        for(SpriteObject *spriteObject in self.object.program.objectList) {
-            for(Script *script in spriteObject.scriptList) {
-                for(id brick in script.brickList) {
-                    if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
-                        return YES;
-                    }
-                }
-            }
-        }
+    if([self isProgramVariable:variable]) {
+        return [self isUsedVariable:variable InProgram:self.object.scene.program];
     } else {
-        for(Script *script in self.object.scriptList) {
-            for(id brick in script.brickList) {
-                if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
-                    return YES;
-                }
+        return [self isUsedVariable:variable inSpriteObject:self.object];
+    }
+    
+    return NO;
+}
+
+- (BOOL)isUsedVariable:(UserVariable *)variable InProgram:(Program *)program {
+    for (Scene *scene in program.scenes) {
+        for(SpriteObject *spriteObject in scene.objectList) {
+            if ([self isUsedVariable:variable inSpriteObject:spriteObject]) {
+                return YES;
             }
         }
     }
-    
+    return NO;
+}
+
+- (BOOL)isUsedVariable:(UserVariable *)variable inSpriteObject:(SpriteObject *)spriteObject {
+    for(Script *script in spriteObject.scriptList) {
+        for(id brick in script.brickList) {
+            if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isProgramVariable:(UserVariable *)variable {
+    for (UserVariable *programVariable in self.object.scene.program.programVariableList) {
+        if ([programVariable.name isEqualToString:variable.name]) {
+            return YES;
+        }
+    }
     return NO;
 }
 

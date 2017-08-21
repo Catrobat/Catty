@@ -173,6 +173,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showAddLookActionSheet];
 }
 
+- (Program *)program {
+    return self.object.scene.program;
+}
+
 - (void)addLookActionWithName:(NSString*)lookName look:(Look*)look
 {
     look.name = [Util uniqueName:lookName existingNames:[self.object allLookNames]];
@@ -187,7 +191,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *newPath = [self.object pathForLook:look];
     [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
-    [self.object addLook:look AndSaveToDisk:YES];
+    [self.object addLook:look];
+    [self saveProgram:self.program showingSavedView:YES];
 
     [self showPlaceHolder:NO];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -228,7 +233,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([look isKindOfClass:[Look class]]) {
             Look *sourceLook = (Look*) look;
             NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
-            [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook AndSaveToDisk:YES];
+            Look *lookCopy = [look mutableCopyWithContext:[CBMutableCopyContext new]];
+            lookCopy.name = nameOfCopiedLook;
+            [self.object addLook:lookCopy];
+            [self saveProgram:self.program showingSavedView:YES];
+            
             
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
@@ -247,7 +256,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     [self showLoadingView];
     newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
-    [self.object renameLook:look toName:newLookName AndSaveToDisk:YES];
+    [self.object renameLook:look toName:newLookName];
+    [self saveProgram:self.program showingSavedView:YES];
+    
     NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lookIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -275,7 +286,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [looksToRemove addObject:look];
         [self.dataCache removeObjectForKey:look.fileName];
     }
-    [self.object removeLooks:looksToRemove AndSaveToDisk:YES];
+    [self.object removeLooks:looksToRemove];
+    [self saveProgram:self.program showingSavedView:YES];
+    
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -287,7 +300,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
     [self.dataCache removeObjectForKey:look.fileName];
-    [self.object removeLook:look AndSaveToDisk:YES];
+    [self.object removeLook:look];
+    [self saveProgram:self.program showingSavedView:YES];
+    
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -407,10 +422,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    Look* itemToMove = self.object.lookList[sourceIndexPath.row];
-    [self.object.lookList removeObjectAtIndex:sourceIndexPath.row];
-    [self.object.lookList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:NO];
+    [self.object moveLookAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+    [self saveProgram:self.program showingSavedView:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -688,8 +701,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
              PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
              vc.delegate = self;
              vc.editingPath = nil;
-             vc.programHeight = self.object.program.header.screenHeight.floatValue;
-             vc.programWidth = self.object.program.header.screenWidth.floatValue;
+             vc.programHeight = self.object.scene.originalHeight.floatValue;
+             vc.programWidth = self.object.scene.originalWidth.floatValue;
              NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
              [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
              [self.navigationController pushViewController:vc animated:YES];
@@ -886,7 +899,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [saveOp setCompletionBlock:^{
                 // execute this on the main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.object.program saveToDiskWithNotification:YES];
+                [self saveProgram:self.program showingSavedView:YES];
             }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];

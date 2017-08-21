@@ -23,19 +23,31 @@
 #import "ProgramLoadingInfo.h"
 #import "ProgramDefines.h"
 #import "Util.h"
+#import "Program.h"
 
 @implementation ProgramLoadingInfo
+
++ (ProgramLoadingInfo*)programLoadingInfoForProgram:(Program *)program {
+    return [self programLoadingInfoForProgramWithName:program.programName programID:program.programID];
+}
 
 + (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     NSString *documentsDirectory = [Util applicationDocumentsDirectory];
     NSString *programsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    NSString *programDirectoryName = [Program programDirectoryNameForProgramName:programName programID:programID];
+    NSString *programDirectoryName = [[self class] programDirectoryNameForProgramName:programName programID:programID];
     info.basePath = [NSString stringWithFormat:@"%@/%@/", programsPath, programDirectoryName];
     info.visibleName = [Util enableBlockedCharactersForString:programName];
     info.programID = programID;
     return info;
+}
+
++ (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
+{
+    programName = [Util replaceBlockedCharactersForString:programName];
+    programID = programID ?: kNoProgramIDYetPlaceholder;
+    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator, programID];
 }
 
 - (BOOL)isEqualToLoadingInfo:(ProgramLoadingInfo*)loadingInfo

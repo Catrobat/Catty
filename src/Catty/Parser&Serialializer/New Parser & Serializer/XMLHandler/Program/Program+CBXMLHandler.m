@@ -23,7 +23,6 @@
 #import "Program+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
-#import "VariablesContainer+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
@@ -34,6 +33,8 @@
 #import "CBXMLParserHelper.h"
 #import "Scene+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
+#import "OrderedDictionary.h"
+#import "NSArray+CustomExtension.h"
 
 @implementation Program (CBXMLHandler)
 
@@ -43,45 +44,53 @@
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
     [XMLError exceptionIfNil:context message:@"No context given!"];
     
-    Program *program = [[Program alloc] init];
-    program.header = [self parseAndCreateHeaderFromElement:xmlElement withContext:context];
+    GDataXMLElement *headerElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"header"];
+    Header *header = [self parseAndCreateHeaderFromElement:headerElement withContext:context];
+    
+    NSArray<Scene *> *scenes;
+    NSArray<UserVariable *> *programVariableList;
     
     if (context.languageVersion <= 0.991) {
-        VariablesContainer *variables = [context parseFromElement:xmlElement withClass:[VariablesContainer class]];
-        program.programVariableList = variables.programVariableList;
+        NSString *variablesWrapperElementName = context.languageVersion == 0.93f ? @"variables" : @"data";
+        GDataXMLElement *variablesWrapperElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:variablesWrapperElementName];
+        
+        GDataXMLElement *programVariableListElement = [CBXMLParserHelper onlyChildOfElement:variablesWrapperElement withName:@"programVariableList"];
+        programVariableList = [self parseProgramVariableListFromElement:programVariableListElement withContext:context];
+        
+        GDataXMLElement *objectVariableListElement = [CBXMLParserHelper onlyChildOfElement:variablesWrapperElement withName:@"objectVariableList"];
+        OrderedMapTable *objectVariableList = [self parseObjectVariableListFromElement:objectVariableListElement withContext:context];
+        
+        context.programVariableList = [programVariableList mutableCopy];
+        context.objectVariableList = [objectVariableList mutableCopy];
         
         GDataXMLElement *objectListElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"objectList"];
         NSArray<SpriteObject *> *objectList = [self parseObjectListFromElement:objectListElement withContext:context];
         
-        program.scenes = [NSArray arrayWithObject:[[Scene alloc] initWithName:@"Scene 1"
+        [self addMissingVariablesToObjectVariableList:objectVariableList withContext:context];
+        
+        scenes = [NSArray arrayWithObject:[[Scene alloc] initWithName:@"Scene 1"
                                                                    objectList:[objectList mutableCopy]
-                                                           objectVariableList:variables.objectVariableList
-                                                                originalWidth:[program.header.screenWidth stringValue]
-                                                               originalHeight:[program.header.screenHeight stringValue]]];
+                                                           objectVariableList:objectVariableList
+                                                                originalWidth:[header.screenWidth stringValue]
+                                                               originalHeight:[header.screenHeight stringValue]]];
     } else {
         GDataXMLElement *programVariableListElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"programVariableList"];
-        program.programVariableList = [VariablesContainer parseProgramVariableListFromElement:programVariableListElement
+        programVariableList = [self parseProgramVariableListFromElement:programVariableListElement
                                                                                   withContext:context];
         
-        context.programVariableList = program.programVariableList;
-        context.variables.programVariableList = program.programVariableList;
+        context.programVariableList = [programVariableList mutableCopy];
         
         GDataXMLElement *scenesElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"scenes"];
-        program.scenes = [self parseScenesFromElement:scenesElement withContext:context];
+        scenes = [self parseScenesFromElement:scenesElement withContext:context];
     }
     
-    [self addMissingVariablesToVariablesContainer:program.variables withContext:context];
-    
-    return program;
+    return [[Program alloc] initWithHeader:header scenes:scenes programVariableList:programVariableList];
 }
 
 #pragma mark Header parsing
-+ (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
-                               withContext:(CBXMLParserContext*)context
++ (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)headerElement withContext:(CBXMLParserContext*)context
 {
-    NSArray *headerNodes = [programElement elementsForName:@"header"];
-    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
-    return [context parseFromElement:[headerNodes objectAtIndex:0] withClass:[Header class]];
+    return [context parseFromElement:headerElement withClass:[Header class]];
 }
 
 + (NSMutableArray<SpriteObject *> *)parseObjectListFromElement:(GDataXMLElement *)objectListElement
@@ -129,18 +138,116 @@
     return objectList;
 }
 
++ (NSMutableArray<UserVariable *> *)parseProgramVariableListFromElement:(GDataXMLElement *)programVariableListElement
+                                                            withContext:(CBXMLParserContext *)context {
+    return [self parseUserVariablesList:[programVariableListElement children] withContext:context];
+}
+
++ (OrderedMapTable *)parseObjectVariableListFromElement:(GDataXMLElement *)objectVariableListElement
+                                            withContext:(CBXMLParserContext *)context {
+    NSMutableDictionary *spriteObjectElementMap = [NSMutableDictionary dictionary];
+    NSMutableDictionary *objectVariableMap = [self parseAndCreateObjectVariables:objectVariableListElement
+                                                            spriteObjectElements:spriteObjectElementMap
+                                                                     withContext:context];
+    context.spriteObjectNameVariableList = objectVariableMap; // needed to correctly parse SpriteObjects
+    
+    // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
+    OrderedMapTable *objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
+    for (NSString *spriteObjectName in objectVariableMap) {
+        GDataXMLElement *xmlElement = [spriteObjectElementMap objectForKey:spriteObjectName];
+        [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This should never happen!"];
+        
+        SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
+        [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
+        
+        [objectVariableList setObject:[objectVariableMap objectForKey:spriteObjectName]
+                               forKey:spriteObject];
+    }
+    return objectVariableList;
+}
+
++ (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap withContext:(CBXMLParserContext*)context
+{
+    NSArray *entries = [objectVarListElement children];
+    OrderedDictionary *objectVariableMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
+    NSUInteger index = 0;
+    for (GDataXMLElement *entry in entries) {
+        [XMLError exceptionIfNode:entry isNilOrNodeNameNotEquals:@"entry"];
+        NSArray *objectElements = [entry elementsForName:@"object"];
+        
+        if ([objectElements count] != 1) {
+            // Work-around for broken XML (e.g. for program 4705)
+            continue;
+        }
+        
+        [XMLError exceptionIf:[objectElements count] notEquals:1 message:@"Too many object-elements given!"];
+        GDataXMLElement *objectElement = [objectElements firstObject];
+        
+        // if object contains a reference then jump to the (referenced) object definition
+        if ([CBXMLParserHelper isReferenceElement:objectElement]) {
+            GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
+            NSString *xPath = [referenceAttribute stringValue];
+            objectElement = [objectElement singleNodeForCatrobatXPath:xPath];
+            [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
+        }
+        
+        // extract sprite object name out of sprite object definition
+        GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
+        [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
+        NSString *spriteObjectName = [nameAttribute stringValue];
+        [spriteObjectElementMap setObject:objectElement forKey:spriteObjectName];
+        
+        // check if that SpriteObject has been already parsed some time before
+        if ([objectVariableMap objectForKey:spriteObjectName]) {
+            [XMLError exceptionWithMessage:@"An objectVariable-entry for same \
+             SpriteObject already exists. This should never happen!"];
+        }
+        
+        // create all user variables of this sprite object
+        NSArray *listElements = [entry elementsForName:@"list"];
+        GDataXMLElement *listElement = [listElements firstObject];
+        [objectVariableMap insertObject:[[self class] parseUserVariablesList:[listElement children] withContext:context]
+                                 forKey:spriteObjectName
+                                atIndex:index];
+        ++index;
+    }
+    return objectVariableMap;
+}
+
++ (NSMutableArray*)parseUserVariablesList:(NSArray*)userVariablesListElements withContext:(CBXMLParserContext*)context
+{
+    NSMutableArray *userVariablesList = [NSMutableArray arrayWithCapacity:[userVariablesListElements count]];
+    for (GDataXMLElement *userVariableElement in userVariablesListElements) {
+        [XMLError exceptionIfNode:userVariableElement isNilOrNodeNameNotEquals:@"userVariable"];
+        UserVariable *userVariable = [context parseFromElement:userVariableElement withClass:[UserVariable class]];
+        [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
+        
+        if([userVariable.name length] > 0) {
+            if ([CBXMLParserHelper findUserVariableInArray:userVariablesList withName:userVariable.name]) {
+                [XMLError exceptionWithMessage:@"An userVariable-entry of the same UserVariable already \
+                 exists. This should never happen!"];
+            }
+            [userVariablesList addObject:userVariable];
+        }
+    }
+    return userVariablesList;
+}
+
+
 + (NSArray<Scene *> *)parseScenesFromElement:(GDataXMLElement *)scenesElement withContext:(CBXMLParserContext *)context {
     NSArray *sceneElements = [scenesElement children];
     NSMutableArray<Scene *> *scenes = [NSMutableArray arrayWithCapacity:sceneElements.count];
     
     for (GDataXMLElement *sceneElement in sceneElements) {
         Scene *scene = [context parseFromElement:sceneElement withClass:[Scene class]];
+        [self addMissingVariablesToObjectVariableList:scene.objectVariableList withContext:context];
+        
         [scenes addObject:scene];
     }
     return scenes;
 }
 
-+ (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer
++ (void)addMissingVariablesToObjectVariableList:(OrderedMapTable*)objectVariableList
                                     withContext:(CBXMLParserContext*)context
 {
     for(NSString *objectName in context.formulaVariableNameList) {
@@ -158,15 +265,21 @@
         }
         
         for(NSString *variableName in variableList) {
-            if(![variablesContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                NSMutableArray *objectVariableList = [variablesContainer.objectVariableList
-                                                      objectForKey:object];
-                if(!objectVariableList)
-                    objectVariableList = [NSMutableArray new];
+            BOOL isProgramVariable = [context.programVariableList cb_hasAny:^BOOL(UserVariable *item) {
+                return [item.name isEqualToString:variableName];
+            }];
+            BOOL variableExists = [[objectVariableList objectForKey:object] cb_hasAny:^BOOL(UserVariable *item) {
+                return [item.name isEqualToString:variableName];
+            }];
+            
+            if(!isProgramVariable && !variableExists) {
+                NSMutableArray *objectVariables = [objectVariableList objectForKey:object];
+                if(!objectVariables)
+                    objectVariables = [NSMutableArray new];
                 UserVariable *userVariable = [UserVariable new];
                 userVariable.name = variableName;
-                [objectVariableList addObject:userVariable];
-                [variablesContainer.objectVariableList setObject:objectVariableList forKey:object];
+                [objectVariables addObject:userVariable];
+                [objectVariableList setObject:objectVariables forKey:object];
                 NSDebug(@"Added UserVariable with name %@ to global object "\
                         "variable list with object %@", variableName, object.name);
             }
@@ -177,8 +290,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    context.spriteObjectList = self.objectList;
-    context.variables.programVariableList = self.programVariableList;
+    context.programVariableList = [self.programVariableList mutableCopy];
 
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     

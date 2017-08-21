@@ -27,7 +27,7 @@
 
 final class SetupScene: NSObject {
 
-    static func setupSceneForProgram(program: Program) -> CBScene {
+    static func setupSceneForScene(scene: Scene) -> CBScene {
 
         let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID)
         let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID)
@@ -38,17 +38,17 @@ final class SetupScene: NSObject {
         let bcHandler = CBBroadcastHandler(logger: bcHandlerLogger)
         let scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: bcHandler)
         bcHandler.scheduler = scheduler
-        let frontend = CBFrontend(logger: frontendLogger, program: program)
+        let frontend = CBFrontend(logger: frontendLogger, scene: scene)
         frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
         let backend = CBBackend(logger: backendLogger) // setup backend
 
-        let programSize = CGSizeMake(
-            CGFloat(program.header.screenWidth.floatValue),
-            CGFloat(program.header.screenHeight.floatValue)
+        let sceneSize = CGSizeMake(
+            CGFloat(Float(scene.originalWidth)!),
+            CGFloat(Float(scene.originalHeight)!)
         )
 
         return CBScene(
-            size: programSize,
+            size: sceneSize,
             logger: sceneLogger,
             scheduler: scheduler,
             frontend: frontend,

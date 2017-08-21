@@ -29,7 +29,7 @@ final class CBFrontendTests: XCTestCase {
     let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)
 
     func testComputeOperationSequence() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
         let waitBrick = WaitBrick()
@@ -78,7 +78,7 @@ final class CBFrontendTests: XCTestCase {
     }
 
     func testComputeIfElseConditionalSequence() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
         let waitBrick = WaitBrick()

@@ -206,32 +206,6 @@
     return transition;
 }
 
-+ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *lastUsedProgramDirectoryName = [userDefaults objectForKey:kLastUsedProgram];
-    if (! lastUsedProgramDirectoryName) {
-        lastUsedProgramDirectoryName = [Program programDirectoryNameForProgramName:kLocalizedMyFirstProgram
-                                                                         programID:nil];
-        [userDefaults setObject:lastUsedProgramDirectoryName forKey:kLastUsedProgram];
-        [userDefaults synchronize];
-    }
-    return [Program programLoadingInfoForProgramDirectoryName:lastUsedProgramDirectoryName];
-}
-
-+ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID
-{
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    if (programName) {
-        programName = [programName stringByReplacingOccurrencesOfString:@"/" withString:@"%2F"];
-        [userDefaults setObject:[Program programDirectoryNameForProgramName:programName programID:programID]
-                         forKey:kLastUsedProgram];
-    } else {
-        [userDefaults setObject:nil forKey:kLastUsedProgram];
-    }
-    [userDefaults synchronize];
-}
-
 + (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength {
     NSString *invalidNameMessage = nil;
     if (name.length < minLength) {
@@ -597,16 +571,6 @@
     return NO;
 }
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program
-{
-    for(SpriteObject *object in program.objectList) {
-        if([object.name isEqualToString:objectName]) {
-            return object;
-        }
-    }
-    return nil;
-}
-
 + (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object
 {
     for(Sound *sound in object.soundList) {
@@ -627,10 +591,10 @@
     return nil;
 }
 
-+ (NSArray*)allMessagesForProgram:(Program*)program
++ (NSArray*)allMessagesForScene:(Scene *)scene
 {
     NSMutableArray *messages = [[NSMutableArray alloc] init];
-    for(SpriteObject *object in program.objectList) {
+    for(SpriteObject *object in scene.objectList) {
         for(Script *script in object.scriptList) {
             if([script isKindOfClass:[BroadcastScript class]]) {
                 BroadcastScript *broadcastScript = (BroadcastScript*)script;

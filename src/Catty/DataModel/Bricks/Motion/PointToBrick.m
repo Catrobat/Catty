@@ -22,6 +22,7 @@
 
 #import "PointToBrick.h"
 #import "Script.h"
+#import "Scene.h"
 
 @implementation PointToBrick
 
@@ -67,7 +68,7 @@
 {
     if(spriteObject) {
         SpriteObject *firstObject = nil;
-        for(SpriteObject *object in spriteObject.program.objectList) {
+        for(SpriteObject *object in spriteObject.scene.objectList) {
             if(![object.name isEqualToString:spriteObject.name] && ![object.name isEqualToString:kLocalizedBackground]) {
                 firstObject = object;
                 break;

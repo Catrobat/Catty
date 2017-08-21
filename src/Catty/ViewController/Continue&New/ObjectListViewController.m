@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ProgramTableViewController.h"
+#import "ObjectListViewController.h"
 #import "TableUtil.h"
 #import "ObjectTableViewController.h"
 #import "SegueDefines.h"
@@ -33,7 +33,7 @@
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "ProgramUpdateDelegate.h"
 #import "CellTagDefines.h"
-#import "ProgramTableHeaderView.h"
+#import "ObjectListHeaderView.h"
 #import "RuntimeImageCache.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "LooksTableViewController.h"
@@ -41,14 +41,18 @@
 #import "DescriptionViewController.h"
 #import "PlaceHolderView.h"
 #import "Pocket_Code-Swift.h"
+#import "Scene.h"
+#import "CBXMLSerializer.h"
+#import "ProgramManager.h"
+#import "ProgramLoadingInfo.h"
 
 
-@interface ProgramTableViewController () <UINavigationBarDelegate, SetDescriptionDelegate>
+@interface ObjectListViewController () <UINavigationBarDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @end
 
-@implementation ProgramTableViewController
+@implementation ObjectListViewController
 
 #pragma mark - data helpers
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -59,13 +63,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                invertedSet];
     }
     return blockedCharacterSet;
-}
-
-#pragma mark - getter and setters
-- (void)setProgram:(Program *)program
-{
-    [program setAsLastUsedProgram];
-    _program = program;
 }
 
 #pragma mark - initialization
@@ -85,6 +82,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView reloadData];
 }
 
+- (Program *)program {
+    return self.scene.program;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -92,19 +93,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSNumber *showDetailsObjectsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsObjectsKey];
     self.useDetailCells = [showDetailsObjectsValue boolValue];
     [self initNavigationBar];
-    [self.tableView registerClass:[ProgramTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
+    [self.tableView registerClass:[ObjectListHeaderView class] forHeaderFooterViewReuseIdentifier:@"Header"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.editableSections = @[@(kObjectSectionIndex)];
-    if (self.program.header.programName) {
-        self.navigationItem.title = self.program.header.programName;
-        self.title = self.program.header.programName;
+    
+    NSString *title = self.shouldBehaveAsIfObjectsBelongToProgram ? self.program.programName : self.scene.name;
+    if (title) {
+        self.navigationItem.title = title;
+        self.title = title;
     }
+    
     self.placeHolderView.title = kLocalizedObject;
-    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
+    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
     }
+    
+    [[ProgramManager instance] setAsLastUsedProgram:self.program];
 }
 
 #pragma mark - actions
@@ -130,7 +136,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
          if (!result.valid) {
              return result;
          }
-         if ([[self.program allObjectNames] containsObject:name]) {
+         if ([[self.scene allObjectNames] containsObject:name]) {
              return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
          }
          return [InputValidationResult validInput];
@@ -148,60 +154,72 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)addObjectActionWithName:(NSString*)objectName
 {
     [self showLoadingView];
-    [self.program addObjectWithName:[Util uniqueName:objectName existingNames:[self.program allObjectNames]]];
+    
+    [self.scene addObject:[self createSpriteObjectWithName:objectName]];
+    [self saveProgram:self.program showingSavedView:YES];
+    
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:(([self.program numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
+                          withRowAnimation:(([self.scene numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
 
     LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
-    [ltvc setObject:[self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
+    [ltvc setObject:[self.scene.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
     ltvc.showAddLookActionSheetAtStartForObject = YES;
     ltvc.showAddLookActionSheetAtStartForScriptEditor = NO;
     ltvc.afterSafeBlock =  ^(Look* look) {
         [self.navigationController popViewControllerAnimated:YES];
         if (!look) {
             NSUInteger index = (kBackgroundObjects + indexPath.row);
-            SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
-            [self.program removeObjectFromList:object];
-            [self.program saveToDiskWithNotification:NO];
+            SpriteObject *object = (SpriteObject*)[self.scene.objectList objectAtIndex:index];
+            [self.scene removeObject:object];
+            [self saveProgram:self.program showingSavedView:NO];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
         }
         if (self.afterSafeBlock && look ) {
             NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-            self.afterSafeBlock([self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]);
+            self.afterSafeBlock([self.scene.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]);
         }else if (self.afterSafeBlock && !look){
             self.afterSafeBlock(nil);
         }
-        [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
+        [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     };
     [self.navigationController pushViewController:ltvc animated:NO];
-    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
+    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     [self hideLoadingView];
+}
+
+- (SpriteObject *)createSpriteObjectWithName:(NSString *)objectName {
+    SpriteObject *object = [[SpriteObject alloc] init];
+    object.spriteNode.currentLook = nil;
+    
+    object.name = [Util uniqueName:objectName existingNames:[self.scene allObjectNames]];
+    object.scene = self.scene;
+    return object;
 }
 
 - (void)renameProgramActionForProgramWithName:(NSString*)newProgramName
 {
-    if ([newProgramName isEqualToString:self.program.header.programName])
+    NSAssert(self.shouldBehaveAsIfObjectsBelongToProgram, @"Should never happen!");
+    if ([newProgramName isEqualToString:self.program.programName])
         return;
 
     [self showLoadingView];
-    NSString *oldProgramName = self.program.header.programName;
-    newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
-    [self.program renameToProgramName:newProgramName];
-    [self.delegate renameOldProgramWithName:oldProgramName
-                                  programID:self.program.header.programID
-                           toNewProgramName:self.program.header.programName];
-    self.navigationItem.title = self.title = self.program.header.programName;
+    
+    [self.delegate renameOldProgram:self.program toNewProgramName:newProgramName];
+    self.navigationItem.title = self.title = self.program.programName;
     [self hideLoadingView];
 }
 
 - (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
 {
     [self showLoadingView];
-    NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.program allObjectNames]];
-    [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
+    
+    SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:[CBMutableCopyContext new]];
+    copiedObject.name = [Util uniqueName:sourceObject.name existingNames:[self.scene allObjectNames]];
+    [self.scene addObject:copiedObject];
+    [self saveToDiskWithNotification:YES];
 
     // create new cell
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
@@ -217,13 +235,46 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
 
     [self showLoadingView];
-    newObjectName = [Util uniqueName:newObjectName existingNames:[self.program allObjectNames]];
-    [self.program renameObject:spriteObject toName:newObjectName];
-    NSUInteger spriteObjectIndex = [self.program.objectList indexOfObject:spriteObject];
+    spriteObject.name = [Util uniqueName:newObjectName existingNames:[self.scene allObjectNames]];
+    [self saveToDiskWithNotification:YES];
+    
+    NSUInteger spriteObjectIndex = [self.scene.objectList indexOfObject:spriteObject];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(spriteObjectIndex - kBackgroundObjects)
                                                 inSection:kObjectSectionIndex];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self hideLoadingView];
+}
+
+- (void)addSceneAndSegueToItActionForSceneWithName:(NSString *)name {
+    NSParameterAssert(name.length);
+    
+    Scene *scene = [Scene defaultSceneWithName:name];
+    [self.scene.program addScene:scene];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+    ObjectListViewController *controller = [storyboard instantiateViewControllerWithIdentifier:kObjectListViewControllerIdentifier];
+    controller.scene = scene;
+    controller.delegate = self.delegate;
+    
+    UINavigationController *navController = self.navigationController;
+    [navController popViewControllerAnimated:NO];
+    [navController pushViewController:controller animated:YES];
+    
+    [self saveProgram:self.scene.program showingSavedView:YES];
+}
+
+- (void)createNewScene {
+    [Util askUserForUniqueNameAndPerformAction:@selector(addSceneAndSegueToItActionForSceneWithName:)
+                                        target:self
+                                   promptTitle:@"New scene"
+                                 promptMessage:@"Scene name:"
+                                   promptValue:nil
+                             promptPlaceholder:@"Enter your scene name here..."
+                                minInputLength:kMinNumOfProgramNameCharacters
+                                maxInputLength:kMaxNumOfProgramNameCharacters
+                           blockedCharacterSet:[self blockedCharacterSet]
+                      invalidInputAlertMessage:@"A scene with the same name already exists, try again."
+                                 existingNames:[self.scene.program allSceneNames]];
 }
 
 - (void)editAction:(id)sender
@@ -234,14 +285,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                addCancelActionWithTitle:kLocalizedCancel handler:nil];
     
 
-    if ([self.program numberOfNormalObjects]) {
+    if ([self.scene numberOfNormalObjects]) {
         [actionSheet addDestructiveActionWithTitle:kLocalizedDeleteObjects handler:^{
             self.deletionMode = YES;
             [self setupEditingToolBar];
             [super changeToEditingMode:sender];
         }];
     }
-    if ([self.program numberOfNormalObjects] >= 2) {
+    if ([self.scene numberOfNormalObjects] >= 2) {
         [actionSheet addDefaultActionWithTitle:kLocalizedMoveObjects handler:^{
             self.deletionMode = NO;
             [super changeToMoveMode:sender];
@@ -250,22 +301,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     
+    if (self.shouldBehaveAsIfObjectsBelongToProgram) {
+        NSString *programName = self.scene.program.programName;
+        [actionSheet addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
+            NSMutableArray *unavailableNames = [[[ProgramManager instance] allProgramNames] mutableCopy];
+            [unavailableNames removeString:programName];
+            [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
+                                                target:self
+                                           promptTitle:kLocalizedRenameProgram
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                           promptValue:((! [programName isEqualToString:kLocalizedNewProgram])
+                                                        ? programName : nil)
+                                     promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                        minInputLength:kMinNumOfProgramNameCharacters
+                                        maxInputLength:kMaxNumOfProgramNameCharacters
+                                   blockedCharacterSet:[self blockedCharacterSet]
+                              invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                         existingNames:unavailableNames];
+        }];
+    }
+    
     [[[[[actionSheet
-     addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
-         NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-         [unavailableNames removeString:self.program.header.programName];
-         [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
-                                             target:self
-                                        promptTitle:kLocalizedRenameProgram
-                                      promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                        promptValue:((! [self.program.header.programName isEqualToString:kLocalizedNewProgram])
-                                                     ? self.program.header.programName : nil)
-                                  promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                     minInputLength:kMinNumOfProgramNameCharacters
-                                     maxInputLength:kMaxNumOfProgramNameCharacters
-                                blockedCharacterSet:[self blockedCharacterSet]
-                           invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                      existingNames:unavailableNames];
+    addDefaultActionWithTitle:@"Create Scene" handler:^{
+        [self createNewScene];
     }]
     addDefaultActionWithTitle:detailActionTitle handler:^{
         [self toggleDetailCellsMode];
@@ -317,13 +375,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if (selectedRowIndexPath.section != kObjectSectionIndex) {
             continue;
         }
-        SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
+        SpriteObject *object = (SpriteObject*)[self.scene.objectList objectAtIndex:(kObjectSectionIndex + selectedRowIndexPath.row)];
         [objectsToRemove addObject:object];
     }
-    [self.program removeObjects:objectsToRemove];
+    [self.scene removeObjects:objectsToRemove];
+    [self saveToDiskWithNotification:YES];
+    
     [super exitEditingMode];
-    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
-    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.scene numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     [self hideLoadingView];
 }
 
@@ -331,19 +391,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSUInteger index = (kBackgroundObjects + indexPath.row);
-    SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
-    [self.program removeObject:object];
+    SpriteObject *object = [self.scene.objectList objectAtIndex:index];
+    [self.scene removeObject:object];
+    [self saveToDiskWithNotification:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
-    [self showPlaceHolder:!(BOOL)[self.program numberOfNormalObjects]];
+    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
     [self hideLoadingView];
-}
-
-- (void)deleteProgramAction
-{
-    [self.delegate removeProgramWithName:self.program.header.programName programID:self.program.header.programID];
-    [self.program removeFromDisk];
-    self.program = nil;
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - table view data source
@@ -356,9 +409,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     switch (section) {
         case kBackgroundSectionIndex:
-            return [self.program numberOfBackgroundObjects];
+            return kBackgroundObjects;
         case kObjectSectionIndex:
-            return [self.program numberOfNormalObjects];
+            return [self.scene numberOfNormalObjects];
         default:
             return 0;
     }
@@ -381,7 +434,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
-    SpriteObject *object = [self.program.objectList objectAtIndex:index];
+    SpriteObject *object = [self.scene.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
@@ -484,8 +537,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSInteger index = (kBackgroundSectionIndex + sourceIndexPath.section + sourceIndexPath.row);
     NSInteger destIndex = (kBackgroundSectionIndex + destinationIndexPath.section + destinationIndexPath.row);
-    [self.program moveObjectFromIndex:index toIndex:destIndex];
-    [self.program saveToDiskWithNotification:NO];
+    [self.scene moveObjectFromIndex:index toIndex:destIndex];
+    [self saveToDiskWithNotification:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -495,7 +548,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // More button was pressed
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
         
-        SpriteObject *spriteObject = [self.program.objectList objectAtIndex:spriteObjectIndex];
+        SpriteObject *spriteObject = [self.scene.objectList objectAtIndex:spriteObjectIndex];
         
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditObject]
          addCancelActionWithTitle:kLocalizedCancel handler:nil]
@@ -503,7 +556,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
              [self copyObjectActionWithSourceObject:spriteObject];
          }]
          addDefaultActionWithTitle:kLocalizedRename handler:^{
-             NSMutableArray *unavailableNames = [[self.program allObjectNames] mutableCopy];
+             NSMutableArray *unavailableNames = [[self.scene allObjectNames] mutableCopy];
              [unavailableNames removeString:spriteObject.name];
              [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
                                                  target:self
@@ -556,12 +609,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
+    ObjectListHeaderView *headerView = (ObjectListHeaderView*)[self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"Header"];
     
     if (section == 0) {
         headerView.textLabel.text = [kLocalizedBackground uppercaseString];
     } else {
-        headerView.textLabel.text = (([self.program numberOfNormalObjects] != 1)
+        headerView.textLabel.text = (([self.scene numberOfNormalObjects] != 1)
                                                     ? [kLocalizedObjects uppercaseString]
                                                     : [kLocalizedObject uppercaseString]);
     }
@@ -582,7 +635,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
-    ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)view;
+    ObjectListHeaderView *headerView = (ObjectListHeaderView*)view;
     headerView.textLabel.textColor = [UIColor globalTintColor];
 }
 
@@ -600,7 +653,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([destController isKindOfClass:[ObjectTableViewController class]]) {
                 ObjectTableViewController *tvc = (ObjectTableViewController*) destController;
                 if ([tvc respondsToSelector:@selector(setObject:)]) {
-                    SpriteObject* object = [self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
+                    SpriteObject* object = [self.scene.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)];
                     [destController performSelector:@selector(setObject:) withObject:object];
                 }
             }
@@ -651,7 +704,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark description delegate
 - (void)setDescription:(NSString *)description
 {
-    [self.program updateDescriptionWithText:description];
+    self.scene.program.programDescription = description;
+    [self saveToDiskWithNotification:YES];
 }
+
+- (void)saveToDiskWithNotification:(BOOL)notify
+{
+    [super saveProgram:self.scene.program showingSavedView:notify];
+}
+
 
 @end

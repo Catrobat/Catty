@@ -21,6 +21,7 @@
  */
 
 #import "XMLParserBrickTests093.h"
+#import "Scene.h"
 
 @implementation XMLParserBrickTests093
 
@@ -536,7 +537,7 @@
     Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
     XCTAssertNotNil(program, @"Program must not be nil!");
     
-    SpriteObject *moleTwo = [program.objectList objectAtIndex:1];
+    SpriteObject *moleTwo = [program.scenes[0].objectList objectAtIndex:1];
     XCTAssertNotNil(moleTwo, @"SpriteObject must not be nil!");
     XCTAssertTrue([moleTwo.name isEqualToString:@"Mole 2"], @"Invalid object name!");
     

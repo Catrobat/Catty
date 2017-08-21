@@ -27,6 +27,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "NetworkDefines.h"
 #import "HelpWebViewController.h"
+#import "ProgramManager.h"
 
 @interface FileManager ()
 
@@ -38,9 +39,23 @@
 
 @property (nonatomic, strong) NSURLSession *downloadSession;
 
+@property (nonatomic, readonly) NSFileManager *fileManager;
+
 @end
 
 @implementation FileManager
+
+- (instancetype)initWithFileManager:(NSFileManager *)fileManager {
+    self = [super init];
+    if (self) {
+        _fileManager = fileManager;
+    }
+    return self;
+}
+
+- (instancetype)init {
+    return [self initWithFileManager:[NSFileManager defaultManager]];
+}
 
 #pragma mark - Getters and Setters
 - (NSString*)documentsDirectory
@@ -86,7 +101,7 @@
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath
 {
     NSError *error;
-    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:&error];
+    NSArray *fileNames = [self.fileManager contentsOfDirectoryAtPath:directoryPath error:&error];
     NSLogError(error);
 
     NSMutableArray *sounds = [NSMutableArray array];
@@ -128,10 +143,9 @@
 - (void)createDirectory:(NSString *)path
 {
     NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSDebug(@"Create directory at path: %@", path);
     if (! [self directoryExists:path]) {
-        if(![fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error])
+        if(![self.fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error])
             NSLogError(error);
     }
 }
@@ -142,15 +156,13 @@
 }
 
 - (void)deleteAllFilesOfDirectory:(NSString*)path {
-    NSFileManager *fm = [NSFileManager defaultManager];
-
     if (![path hasSuffix:@"/"]) {
         path = [NSString stringWithFormat:@"%@/", path];
     }
 
     NSError *error = nil;
-    for (NSString *file in [fm contentsOfDirectoryAtPath:path error:&error]) {
-        BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@%@", path, file] error:&error];
+    for (NSString *file in [self.fileManager contentsOfDirectoryAtPath:path error:&error]) {
+        BOOL success = [self.fileManager removeItemAtPath:[NSString stringWithFormat:@"%@%@", path, file] error:&error];
 
         if (!success) {
             NSLogError(error);
@@ -162,13 +174,13 @@
 - (BOOL)fileExists:(NSString*)path
 {
     BOOL isDir;
-    return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && (! isDir));
+    return ([self.fileManager fileExistsAtPath:path isDirectory:&isDir] && (! isDir));
 }
 
 - (BOOL)directoryExists:(NSString*)path
 {
     BOOL isDir;
-    return ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir);
+    return ([self.fileManager fileExistsAtPath:path isDirectory:&isDir] && isDir);
 }
 
 - (void)copyExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
@@ -197,7 +209,7 @@
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES) {
+    if ([self.fileManager copyItemAtURL:oldURL toURL:newURL error:&error] != YES) {
         NSError(@"Unable to copy file: %@", [error localizedDescription]);
         NSLogError(error);
     }
@@ -220,7 +232,7 @@
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
+    if ([self.fileManager moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
         NSError(@"Unable to move file: %@", [error localizedDescription]);
         NSLogError(error);
     }
@@ -235,7 +247,7 @@
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
+    if ([self.fileManager moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
         NSError(@"Unable to move directory: %@", [error localizedDescription]);
         NSLogError(error);
     }
@@ -244,7 +256,7 @@
 - (void)deleteFile:(NSString*)path
 {
     NSError *error = nil;
-    if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
+    if(![self.fileManager removeItemAtPath:path error:&error]) {
         NSError(@"Error while deleting file: %@", path);
         NSLogError(error);
     } else
@@ -254,7 +266,7 @@
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
-    if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
+    if(![self.fileManager removeItemAtPath:path error:&error]) {
         NSError(@"Error while deleting directory: %@", path);
         NSLogError(error);
     } else
@@ -266,14 +278,13 @@
     if (! [self directoryExists:path]) {
         return 0;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *filesArray = [fileManager subpathsOfDirectoryAtPath:path error:nil];
+    NSArray *filesArray = [self.fileManager subpathsOfDirectoryAtPath:path error:nil];
     NSEnumerator *filesEnumerator = [filesArray objectEnumerator];
     NSString *fileName;
     NSUInteger fileSize = 0;
     NSError *error = nil;
     while (fileName = [filesEnumerator nextObject]) {
-        NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:&error];
+        NSDictionary *fileDictionary = [self.fileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:&error];
         NSLogError(error);
         fileSize += [fileDictionary fileSize];
     }
@@ -285,9 +296,8 @@
     if (! [self fileExists:path]) {
         return 0;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
+    NSDictionary *fileDictionary = [self.fileManager attributesOfItemAtPath:path error:&error];
     if(!fileDictionary)
         NSLogError(error);
     return (NSUInteger)[fileDictionary fileSize];
@@ -298,9 +308,8 @@
     if (! [self fileExists:path]) {
         return 0;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
+    NSDictionary *fileDictionary = [self.fileManager attributesOfItemAtPath:path error:&error];
     if(!fileDictionary)
         NSLogError(error);
     return [fileDictionary fileModificationDate];
@@ -309,41 +318,10 @@
 - (NSArray*)getContentsOfDirectory:(NSString*)directory
 {
     NSError *error = nil;
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
+    NSArray *contents = [self.fileManager contentsOfDirectoryAtPath:directory error:&error];
     if(!contents)
         NSLogError(error);
     return contents;
-}
-
-- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist
-{
-    if ([Program areThereAnyPrograms]) {
-        return;
-    }
-    [self addNewBundleProgramWithName:kDefaultProgramBundleName];
-    ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
-    Program *program = [Program programWithLoadingInfo:loadingInfo];
-    [program translateDefaultProgram];
-}
-
-- (void)addNewBundleProgramWithName:(NSString*)projectName
-{
-    NSError *error;
-    if (! [self directoryExists:self.programsDirectory]) {
-        [self createDirectory:self.programsDirectory];
-    }
-
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.programsDirectory error:&error];
-    if(!contents)
-        NSLogError(error);
-
-    if ([contents indexOfObject:projectName]) {
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
-        NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
-        [self unzipAndStore:defaultProject withProgramID:nil withName:projectName];
-    } else {
-        NSInfo(@"%@ already exists...", projectName);
-    }
 }
 
 - (void)downloadProgramFromURL:(NSURL*)url withProgramID:(NSString*)programID andName:(NSString*)name
@@ -380,10 +358,9 @@
     if (! [self fileExists:path]) {
         return;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:date, NSFileModificationDate, NULL];
-    [fileManager setAttributes:attributes ofItemAtPath:path error:&error];
+    [self.fileManager setAttributes:attributes ofItemAtPath:path error:&error];
     NSLogError(error);
 }
 
@@ -431,7 +408,7 @@
     NSDebug(@"Unzip finished");
 
     NSDebug(@"Removing temp zip file");
-    [[NSFileManager defaultManager] removeItemAtPath:tempPath error:&error];
+    [self.fileManager removeItemAtPath:tempPath error:&error];
 
     [Logger logError:error];
 
@@ -441,15 +418,14 @@
 -(NSData*)zipProgram:(Program*)program
 {
     NSString *targetPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
-    NSDebug(@"ZIPing program:%@ to path:%@", program.header.programName, targetPath);
-    
-    bool success = [SSZipArchive createZipFileAtPath:targetPath withContentsOfDirectory:program.projectPath];
+    NSDebug(@"ZIPing program:%@ to path:%@", program.programName, targetPath);
+    bool success = YES;//[SSZipArchive createZipFileAtPath:targetPath withContentsOfDirectory:program.projectPath];
     
     if(success) {
         NSData *zipData = [[NSData alloc] initWithContentsOfFile:targetPath];
         
         NSError *error;
-        [[NSFileManager defaultManager] removeItemAtPath:targetPath error:&error];
+        [self.fileManager removeItemAtPath:targetPath error:&error];
         [Logger logError:error];
         
         return zipData;
@@ -490,7 +466,7 @@
     uint64_t totalFreeSpace = 0;
     NSError *error = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
+    NSDictionary *dictionary = [self.fileManager attributesOfFileSystemForPath:[paths lastObject] error: &error];
 
     if (dictionary) {
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
@@ -614,7 +590,7 @@
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSString *)URL
 {
     NSURL *localFileURL = [NSURL fileURLWithPath:URL];
-    assert([NSFileManager.defaultManager fileExistsAtPath:URL]);
+    assert([self.fileManager fileExistsAtPath:URL]);
 
     NSError *error = nil;
     BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];

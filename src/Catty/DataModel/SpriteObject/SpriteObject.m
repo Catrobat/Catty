@@ -31,6 +31,9 @@
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
 #import "CBMutableCopyContext.h"
+#import "Scene.h"
+#import "NSArray+CustomExtension.h"
+#import "ProgramManager.h"
 
 @implementation SpriteObject
 
@@ -89,7 +92,7 @@
 
 - (NSString*)projectPath
 {
-  return [self.program projectPath];
+    return [ProgramManager projectPathForProgram:self.scene.program];
 }
 
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
@@ -112,9 +115,7 @@
 
 - (BOOL)isBackground
 {
-    if (self.program && [self.program.objectList count])
-        return ([self.program.objectList objectAtIndex:0] == self);
-    return NO;
+    return self.scene.backgroundObject == self;
 }
 
 - (NSString*)pathForLook:(Look*)look
@@ -137,7 +138,6 @@
 - (CGSize)dimensionsOfLook:(Look*)look
 {
     NSString *path = [self pathForLook:look];
-    // very fast implementation! far more quicker than UIImage's size method/property
     return [path sizeOfImageForFilePath];
 }
 
@@ -154,42 +154,35 @@
     return [[AudioManager sharedAudioManager] durationOfSoundWithFilePath:path];
 }
 
-- (NSArray*)allLookNames
+- (NSArray<NSString *> *)allLookNames
 {
-    NSMutableArray *lookNames = [NSMutableArray arrayWithCapacity:[self.lookList count]];
-    for (id look in self.lookList) {
-        if ([look isKindOfClass:[Look class]]) {
-            [lookNames addObject:((Look*)look).name];
-        }
-    }
-    return [lookNames copy];
+    return [self.lookList cb_mapUsingBlock:^NSString *(Look *look) {
+        return look.name;
+    }];
 }
 
-- (NSArray*)allSoundNames
+- (NSArray<Sound *> *)allSoundNames
 {
-    NSMutableArray *soundNames = [NSMutableArray arrayWithCapacity:[self.soundList count]];
-    for (id sound in self.soundList) {
-        if ([sound isKindOfClass:[Sound class]]) {
-            [soundNames addObject:((Sound*)sound).name];
-        }
-    }
-    return [soundNames copy];
+    return [self.soundList cb_mapUsingBlock:^NSString *(Sound *sound) {
+        return sound.name;
+    }];
 }
 
-- (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save
+- (BOOL)hasLook:(Look*)look
+{
+    return [self.lookList containsObject:look];
+}
+
+- (void)addLook:(Look *)look
 {
     if ([self hasLook:look]) {
         return;
     }
-    look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
+    NSAssert(![[self allLookNames] containsObject:look.name], @"Look with such name already exists");
     [self.lookList addObject:look];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
-    return;
 }
 
-- (void)removeLookFromList:(Look*)look
+- (void)removeLook:(Look *)look
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
@@ -213,30 +206,32 @@
     }
 }
 
-- (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save
+- (void)removeLooks:(NSArray<Look *> *)looks
 {
-    if(looks == self.lookList) {
-        looks = [looks mutableCopy];
+    NSParameterAssert(looks);
+    
+    if (looks == self.lookList) {
+        looks = [looks copy];
     }
-    for (id look in looks) {
-        if ([look isKindOfClass:[Look class]]) {
-            [self removeLookFromList:look];
-        }
-    }
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
+    [looks cb_foreachUsingBlock:^(Look *look) {
+        [self removeLook:look];
+    }];
 }
 
-- (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save
+- (BOOL)hasSound:(Sound*)sound
 {
-    [self removeLookFromList:look];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
+    return [self.soundList containsObject:sound];
 }
 
-- (void)removeSoundFromList:(Sound*)sound
+- (void)addSound:(Sound *)sound {
+    if ([self hasSound:sound]) {
+        return;
+    }
+    NSAssert(![[self allSoundNames] containsObject:sound.name], @"Sound with such name already exists");
+    [self.soundList addObject:sound];
+}
+
+- (void)removeSound:(Sound*)sound
 {
     // do not use NSArray's removeObject here
     // => if isEqual is overriden this would lead to wrong results
@@ -259,92 +254,39 @@
     }
 }
 
-- (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save
+- (void)removeSounds:(NSArray<Sound *> *)sounds
 {
-    if(sounds == self.soundList) {
-        sounds = [sounds mutableCopy];
+    NSParameterAssert(sounds);
+    
+    if (sounds == self.soundList) {
+        sounds = [sounds copy];
     }
-    for (id sound in sounds) {
-        if ([sound isKindOfClass:[Sound class]]) {
-            [self removeSoundFromList:sound];
-        }
-    }
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
+    [sounds cb_foreachUsingBlock:^(Sound *sound) {
+        [self removeSound:sound];
+    }];
 }
 
-- (void)removeSound:(Sound*)sound AndSaveToDisk:(BOOL)save
-{
-    [self removeSoundFromList:sound];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
-}
-
-- (BOOL)hasLook:(Look*)look
-{
-    return [self.lookList containsObject:look];
-}
-
-- (BOOL)hasSound:(Sound*)sound
-{
-    return [self.soundList containsObject:sound];
-}
-
-- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save
-{
-    if (! [self hasLook:sourceLook]) {
-        return nil;
-    }
-    Look *copiedLook = [sourceLook mutableCopyWithContext:[CBMutableCopyContext new]];
-    copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
-    [self.lookList addObject:copiedLook];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
-    return copiedLook;
-}
-
-- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save
-{
-    if (! [self hasSound:sourceSound]) {
-        return nil;
-    }
-    Sound *copiedSound = [sourceSound mutableCopyWithContext:[CBMutableCopyContext new]];
-    copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
-    [self.soundList addObject:copiedSound];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
-    return copiedSound;
-}
-
-- (void)renameLook:(Look*)look toName:(NSString*)newLookName AndSaveToDisk:(BOOL)save
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName
 {
     if (! [self hasLook:look] || [look.name isEqualToString:newLookName]) {
         return;
     }
-    look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
+    NSAssert(![[self allLookNames] containsObject:newLookName], @"Look with such name aleady exists");
+    look.name = newLookName;
 }
 
-- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName AndSaveToDisk:(BOOL)save
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName
 {
     if (! [self hasSound:sound] || [sound.name isEqualToString:newSoundName]) {
         return;
     }
-    sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
-    if(save) {
-        [self.program saveToDiskWithNotification:YES];
-    }
+    NSAssert(![[self allSoundNames] containsObject:newSoundName], @"Sound with such name aleady exists");
+    sound.name = newSoundName;
 }
 
 - (void)removeReferences
 {
-    self.program = nil;
+    self.scene = nil;
     [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
@@ -404,6 +346,7 @@
     // scriptList
     if ([self.scriptList count] != [spriteObject.scriptList count])
         return NO;
+    
     for (index = 0; index < [self.scriptList count]; index++) {
         Script *firstScript = [self.scriptList objectAtIndex:index];
         Script *secondScript = [spriteObject.scriptList objectAtIndex:index];
@@ -411,6 +354,7 @@
         if (! [firstScript isEqualToScript:secondScript])
             return NO;
     }
+    
     return YES;
 }
 
@@ -421,29 +365,23 @@
 
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
-    newObject.program = self.program;
+    newObject.scene = self.scene;
     [context updateReference:self WithReference:newObject];
 
     // deep copy
     newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
-    for (id lookObject in self.lookList) {
-        if ([lookObject isKindOfClass:[Look class]]) {
-            [newObject.lookList addObject:[lookObject mutableCopyWithContext:context]];
-        }
+    for (Look *lookObject in self.lookList) {
+        [newObject.lookList addObject:[lookObject mutableCopyWithContext:context]];
     }
     newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
-    for (id soundObject in self.soundList) {
-        if ([soundObject isKindOfClass:[Sound class]]) {
-            [newObject.soundList addObject:[soundObject mutableCopyWithContext:context]];
-        }
+    for (Sound *soundObject in self.soundList) {
+        [newObject.soundList addObject:[soundObject mutableCopyWithContext:context]];
     }
     newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
-    for (id scriptObject in self.scriptList) {
-        if ([scriptObject isKindOfClass:[Script class]]) {
-            Script *copiedScript = [scriptObject mutableCopyWithContext:context];
-            copiedScript.object = newObject;
-            [newObject.scriptList addObject:copiedScript];
-        }
+    for (Script *scriptObject in self.scriptList) {
+        Script *copiedScript = [scriptObject mutableCopyWithContext:context];
+        copiedScript.object = newObject;
+        [newObject.scriptList addObject:copiedScript];
     }
     return newObject;
 }
@@ -462,7 +400,7 @@
 - (NSUInteger)referenceCountForLook:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.program.objectList) {
+    for (SpriteObject *object in self.scene.objectList) {
         for (Look *look in object.lookList) {
             if ([look.fileName isEqualToString:fileName]) {
                 ++referenceCount;
@@ -475,7 +413,7 @@
 - (NSUInteger)referenceCountForSound:(NSString*)fileName
 {
     NSUInteger referenceCount = 0;
-    for (SpriteObject *object in self.program.objectList) {
+    for (SpriteObject *object in self.scene.objectList) {
         for (Sound *sound in object.soundList) {
             if ([sound.fileName isEqualToString:fileName]) {
                 ++referenceCount;

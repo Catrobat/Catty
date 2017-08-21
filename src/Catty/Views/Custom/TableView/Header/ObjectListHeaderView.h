@@ -20,9 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ProgramTableViewController.h"
+#import <UIKit/UIKit.h>
 
-
-@interface ProgramTableViewController (UnitTestingExtensions)
+@interface ObjectListHeaderView : UITableViewHeaderFooterView
 
 @end

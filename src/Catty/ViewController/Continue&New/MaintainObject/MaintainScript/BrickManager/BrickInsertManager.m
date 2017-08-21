@@ -28,6 +28,8 @@
 #import "IfLogicEndBrick.h"
 #import "ForeverBrick.h"
 #import "BrickCell.h"
+#import "ProgramManager.h"
+#import "Scene.h"
 
 @interface BrickInsertManager()
 
@@ -262,7 +264,7 @@
         [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex==0?1:insertionIndex];
     }
     brick.animateInsertBrick = NO;
-    [object.program saveToDiskWithNotification:YES];
+    [[ProgramManager instance] saveProgram:object.scene.program];
 }
 
 -(Brick*)checkForeverBrickInsideLogicBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path

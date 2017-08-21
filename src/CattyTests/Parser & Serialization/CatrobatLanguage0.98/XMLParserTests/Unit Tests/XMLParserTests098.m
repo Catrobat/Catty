@@ -27,6 +27,7 @@
 #import "CBXMLSerializer.h"
 #import "CBXMLParser.h"
 #import "FlashBrick.h"
+#import "Scene.h"
 
 @interface XMLParserTests098 : XMLAbstractTest
 
@@ -38,8 +39,11 @@
 {
     Program *program = [self getProgramForXML:@"LedFlashBrick098"];
     
-    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
-    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [program.scenes count], "Invalid scenes");
+    Scene *scene = [program.scenes objectAtIndex:0];
+    
+    XCTAssertEqual(1, [scene.objectList count], "Invalid object list");
+    SpriteObject *object = [scene.objectList objectAtIndex:0];
     
     XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
     Script *script = [object.scriptList objectAtIndex:0];
@@ -57,8 +61,11 @@
 {
     Program *program = [self getProgramForXML:@"LedFlashBrick098"];
     
-    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
-    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [program.scenes count], "Invalid scenes");
+    Scene *scene = [program.scenes objectAtIndex:0];
+    
+    XCTAssertEqual(1, [scene.objectList count], "Invalid object list");
+    SpriteObject *object = [scene.objectList objectAtIndex:0];
     
     XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
     Script *script = [object.scriptList objectAtIndex:0];

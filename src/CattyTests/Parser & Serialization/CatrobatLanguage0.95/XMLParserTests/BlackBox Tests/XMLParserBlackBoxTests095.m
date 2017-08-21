@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import "XMLAbstractTest.h"
 #import "CBXMLParser.h"
-#import "Parser.h"
 
 @interface XMLParserBlackBoxTests095 : XMLAbstractTest
 
@@ -73,7 +72,7 @@
 
 - (void)testGossipGirl
 {
-    [self compareProgram:@"Gossip_Girl_091" withProgram:@"Gossip_Girl_095"];
+    [self compareProgram:@"Gossip_Girl_093" withProgram:@"Gossip_Girl_095"];
 }
 
 - (void)testMemory

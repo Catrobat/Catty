@@ -26,7 +26,7 @@
 #import "LoadingView.h"
 #import "PlaceHolderView.h"
 #import "ResourceHelper.h"
-#import "ResourceHelper.h"
+#import "ProgramManager.h"
 
 
 // tags
@@ -130,8 +130,8 @@
     }
     
     self.scenePresenterViewController = [ScenePresenterViewController new];
-    self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
+    self.scenePresenterViewController.sceneModel = [[ProgramManager instance] lastUsedProgram].scenes.firstObject;
+    NSInteger resources = [self.scenePresenterViewController.sceneModel getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
     } else {

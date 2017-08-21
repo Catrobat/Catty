@@ -22,6 +22,7 @@
 
 #import "HideTextBrick.h"
 #import "Formula.h"
+#import "Scene.h"
 
 @implementation HideTextBrick
 
@@ -40,7 +41,7 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
-        NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
+        NSArray<UserVariable *> *variables = spriteObject.allAccessibleVariables;
         if([variables count] > 0)
             self.userVariable = [variables objectAtIndex:0];
         else

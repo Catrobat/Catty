@@ -29,11 +29,9 @@
 #import "FormulaElement.h"
 #import "ProgramLoadingInfo.h"
 #import "Program.h"
-#import "Parser.h"
 #import "Look.h"
 #import <SpriteKit/SpriteKit.h>
 #import "UserVariable.h"
-#import "VariablesContainer.h"
 #import "Util.h"
 
 //BrickImports
@@ -77,8 +75,6 @@
 
 @interface BrickTests : XCTestCase
 
-@property (strong, nonatomic) NSMutableArray* programs;
-@property (strong, nonatomic) SKView *skView;
-@property (strong, nonatomic) SKScene *scene;
+- (Program *)createAndKeepReferenceToProgramWithObjects:(NSArray<SpriteObject *> *)objects saveToDisk:(BOOL)save;
 
 @end

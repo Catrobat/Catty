@@ -28,22 +28,18 @@ final class SetVariableBrickTests: XCTestCase {
 
     func testSetVariableBrickUserVariablesNil() {
 
-        let program = Program();
         let object = SpriteObject();
         let spriteNode = CBSpriteNode();
         spriteNode.name = "SpriteNode";
         spriteNode.spriteObject = object;
         object.spriteNode = spriteNode;
         spriteNode.position = CGPoint(x: 0, y: 0);
-        object.program = program;
         
         let formula = Formula();
         let formulaTree = FormulaElement();
         formulaTree.type = ElementType.NUMBER;
         formulaTree.value = "0";
         formula.formulaTree = formulaTree;
-        
-        object.program.programVariableList = NSMutableArray()
         
         let brick = SetVariableBrick();
         brick.variableFormula = formula;

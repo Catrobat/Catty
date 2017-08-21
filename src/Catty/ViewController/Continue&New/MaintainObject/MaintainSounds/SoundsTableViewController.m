@@ -200,6 +200,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self reloadData];
 }
 
+- (Program *)program {
+    return self.object.scene.program;
+}
+
 - (void)addSoundToObjectAction:(Sound*)sound
 {
     NSMutableArray *soundNames = [NSMutableArray arrayWithCapacity:[self.object.soundList count]];
@@ -220,13 +224,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [delegate.fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
     }
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
-    [self.object.soundList addObject:sound];
+    [self.object addSound:sound];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     [self showPlaceHolder:NO];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     //Error on save?
-    [self.object.program saveToDiskWithNotification:YES];
+    [self saveProgram:[self program] showingSavedView:YES];
     
     if(self.afterSafeBlock) {
         self.afterSafeBlock(sound);
@@ -248,7 +252,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSString *nameOfCopiedSound = [Util uniqueName:sourceSound.name existingNames:[self.object allSoundNames]];
-    [self.object copySound:sourceSound withNameForCopiedSound:nameOfCopiedSound AndSaveToDisk:YES];
+    Sound *soundCopy = [sourceSound mutableCopyWithContext:[CBMutableCopyContext new]];
+    soundCopy.name = nameOfCopiedSound;
+    [self.object addSound:soundCopy];
+    [self saveProgram:[self program] showingSavedView:YES];
+    
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -262,7 +270,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     [self showLoadingView];
     newSoundName = [Util uniqueName:newSoundName existingNames:[self.object allSoundNames]];
-    [self.object renameSound:sound toName:newSoundName AndSaveToDisk:YES];
+    [self.object renameSound:sound toName:newSoundName];
+    [self saveProgram:[self program] showingSavedView:YES];
     NSUInteger soundIndex = [self.object.soundList indexOfObject:sound];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:soundIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -291,7 +300,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         Sound *sound = (Sound*)[self.object.soundList objectAtIndex:selectedRowIndexPath.row];
         [soundsToRemove addObject:sound];
     }
-    [self.object removeSounds:soundsToRemove AndSaveToDisk:YES];
+    [self.object removeSounds:soundsToRemove];
+    [self saveProgram:[self program] showingSavedView:YES];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
@@ -304,7 +314,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     [self stopAllSounds];
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
-    [self.object removeSound:sound AndSaveToDisk:YES];
+    [self.object removeSound:sound];
+    [self saveProgram:[self program] showingSavedView:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
@@ -442,10 +453,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    Sound* itemToMove = self.object.soundList[sourceIndexPath.row];
-    [self.object.soundList removeObjectAtIndex:sourceIndexPath.row];
-    [self.object.soundList insertObject:itemToMove atIndex:destinationIndexPath.row];
-    [self.object.program saveToDiskWithNotification:NO];
+    [self.object moveSoundAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+    [self saveProgram:[self program] showingSavedView:NO];
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
