@@ -30,7 +30,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickVioletColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
 }
 
 + (CGFloat)cellHeight

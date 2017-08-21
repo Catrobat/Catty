@@ -69,6 +69,11 @@
     return nil;
 }
 
+-(BOOL)isDisabledForBackground
+{
+    return YES;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {
