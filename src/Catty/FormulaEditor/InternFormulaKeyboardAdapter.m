@@ -222,6 +222,22 @@
                                     andParameterValue:[NSString stringWithFormat:@"%d",0]];
             break;
             
+        case MULTI_FINGER_TOUCHED:
+            return [self buildSingleParameterFunction:MULTI_FINGER_TOUCHED
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+        case MULTI_FINGER_X:
+            return [self buildSingleParameterFunction:MULTI_FINGER_X
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+        case MULTI_FINGER_Y:
+            return [self buildSingleParameterFunction:MULTI_FINGER_Y
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+            
         //PERIOD
             
         case DECIMAL_MARK:

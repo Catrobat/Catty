@@ -310,11 +310,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     self.sensorTypeButton = [NSMutableArray new];
     NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y", @"acceleration_z", @"compass", @"inclination_x", @"inclination_y", @"latitude",@"longitude", @"location_accuracy", @"altitude", @"finger_touched", @"finger_x", @"finger_y", @"last_finger_index", @"loudness", @"year", @"month", @"day", @"weekday", @"hour", @"minute", @"second", nil];
+    
     NSInteger buttonCount = standardSensorArray.count;
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
     //standard Sensors
     for (NSInteger count = 0; count < standardSensorArray.count; count++) {
         [self addStandardSensorViewButton:count];
+    }
+    
+    NSArray *functionSensorArray = [[NSArray alloc] initWithObjects:@"multi_finger_touched(1)", @"multi_finger_x(1)", @"multi_finger_y(1)", nil];
+    buttonCount += functionSensorArray.count;
+    for (NSInteger count = 0; count < functionSensorArray.count; count++) {
+        [self addFunctionSensorViewButton:count withPrecedingStandardSensors:standardSensorArray.count];
     }
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseFaceDetectionSensors]) {
@@ -359,6 +366,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
         button.tag = 900+tag;
     }
 }
+
+-(void)addFunctionSensorViewButton:(NSInteger)tag withPrecedingStandardSensors:(NSInteger)precedingButtonCount
+{
+    UIButton *button = [self getSensorButton:precedingButtonCount+tag];
+    button.tag = MULTI_FINGER_TOUCHED + tag;
+}
+
+
 -(void)addFaceDetectionSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
@@ -408,6 +423,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         NSString *name = [Functions getExternName:[Functions getName:(Function)[button tag]]];
         if([name length] != 0)
         {
+            if (button.tag >= MULTI_FINGER_TOUCHED && button.tag <= MULTI_FINGER_Y)
+                name = [name stringByAppendingString:@"(1)"];
             [button setTitle:name forState:UIControlStateNormal];
         }else
         {

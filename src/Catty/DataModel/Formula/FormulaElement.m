@@ -30,6 +30,7 @@
 #import "Util.h"
 #import "InternFormulaParserException.h"
 #import "Pocket_Code-Swift.h"
+#import "TouchHandler.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -426,6 +427,21 @@
         }
         case CEIL : {
             result = [NSNumber numberWithInteger:ceil(left)];
+            break;
+        }
+        case MULTI_FINGER_TOUCHED: {
+            BOOL screenTouched = [[TouchHandler shared] screenIsTouched];
+            BOOL isRequestedTouch = ([[TouchHandler shared] numberOfTouches] == (NSUInteger)left);
+            
+            result = screenTouched && isRequestedTouch ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
+            break;
+        }
+        case MULTI_FINGER_X: {
+            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:(NSUInteger)left].x];
+            break;
+        }
+        case MULTI_FINGER_Y: {
+            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:(NSUInteger)left].y];
             break;
         }
         default:
