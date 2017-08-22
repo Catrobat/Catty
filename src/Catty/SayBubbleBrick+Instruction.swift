@@ -28,7 +28,7 @@ extension SayBubbleBrick: CBInstructionProtocol {
         let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
         
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.WaitExecClosure { (context, _) in
             var speakText = self.formula.interpretString(object)
             if(Double(speakText) !=  nil)
             {
@@ -37,6 +37,7 @@ extension SayBubbleBrick: CBInstructionProtocol {
             }
             
             let label = SKLabelNode(text: speakText)
+            label.name = "bubbleText"
             var bubbleWidth: CGFloat = 250
             let horizontalPadding: CGFloat = 45
             label.fontColor = UIColor.blackColor()
@@ -54,8 +55,13 @@ extension SayBubbleBrick: CBInstructionProtocol {
                 label.text?.appendContentsOf("...")
             }
             
+            if let oldBubble = spriteNode.childNodeWithName("textBubble")
+            {
+                oldBubble.runAction(SKAction.removeFromParent())
+            }
             bubbleWidth = label.frame.width + horizontalPadding
             let sayBubble = SKShapeNode(path: self.bubblePath(withWidth: bubbleWidth))
+            sayBubble.name = "textBubble"
             sayBubble.fillColor = UIColor.whiteColor()
             sayBubble.lineWidth = 3.0
             sayBubble.strokeColor = UIColor.blackColor()
