@@ -110,6 +110,7 @@ final class CBScheduler: CBSchedulerProtocol {
             // collect
             var nextLongActionElements = [CBScheduleLongActionElement]()
             var nextActionElements = [CBScheduleActionElement]()
+            var hasRunnableContexts = false
             for context in contexts {
                 
                 if context.state != .Runnable { continue }
@@ -138,6 +139,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     stopContext(context, continueWaitingBroadcastSenders: true)
                     logger.debug("All actions/instructions have been finished!")
                 }
+                hasRunnableContexts = true;
             }
             
             // execute actions (node dependend!)
@@ -148,7 +150,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 spriteNode.runAction(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .Runnable }
                     self?.runNextInstructionsGroup()
-                    self?.scheduleBroadcastContext(spriteName)
+                    self?.scheduleBroadcastContext(spriteName, checkForOtherContexts: true)
                     while self?._hasNewBroadcastContextBeenScheduled != nil && self!._hasNewBroadcastContextBeenScheduled {
                         self?._hasNewBroadcastContextBeenScheduled = false;
                         self?.runNextInstructionsGroup()
@@ -168,12 +170,17 @@ final class CBScheduler: CBSchedulerProtocol {
                 spriteNode.runAction(action) { [weak self] in
                     context.state = .Runnable
                     self?.runNextInstructionsGroup()
-                    self?.scheduleBroadcastContext(spriteName)
+                    self?.scheduleBroadcastContext(spriteName, checkForOtherContexts: true)
                     while self?._hasNewBroadcastContextBeenScheduled != nil && self!._hasNewBroadcastContextBeenScheduled {
                         self?._hasNewBroadcastContextBeenScheduled = false;
                         self?.runNextInstructionsGroup()
                     }
                 }
+            }
+            
+            // Schedule contexts that do not have to wait for an action to be completed earlier
+            if nextActionElements.count == 0 && nextLongActionElements.count == 0 && hasRunnableContexts {
+                scheduleBroadcastContext(spriteName, checkForOtherContexts: false)
             }
         }
         
@@ -283,6 +290,10 @@ final class CBScheduler: CBSchedulerProtocol {
         _contexts.forEach { if $0 is CBStartScriptContext { scheduleContext($0) } }
         // ... Ready...Steady...Gooooo!! => invoke first instruction!
         runNextInstructionsGroup()
+        while _hasNewBroadcastContextBeenScheduled {
+            _hasNewBroadcastContextBeenScheduled = false
+            runNextInstructionsGroup()
+        }
     }
     
     func scheduleContext(context: CBScriptContextProtocol) {
@@ -302,12 +313,12 @@ final class CBScheduler: CBSchedulerProtocol {
         if let contexts = _scheduledContexts[spriteName]{
             if !contexts.contains(context) {
                 _scheduledContexts[spriteName]! += context
+                _hasNewBroadcastContextBeenScheduled = true
             }
         }
-        
     }
     
-    func scheduleBroadcastContext(spriteName: String) {
+    func scheduleBroadcastContext(spriteName: String, checkForOtherContexts: Bool) {
         if _scheduledContexts[spriteName] == nil {
             _scheduledContexts[spriteName] = [CBScriptContext]()
         }
@@ -317,13 +328,15 @@ final class CBScheduler: CBSchedulerProtocol {
             _hasNewBroadcastContextBeenScheduled = true;
         }
         
-        // check for contexts of sprites whose contexts have not been scheduled yet at all
-        for name in _contextsWaitingToBeScheduled.orderedKeys {
-            if !_scheduledContexts.containsKey(name) || _scheduledContexts[name]!.count == 0 {
-                _scheduledContexts[name] = [CBScriptContext]()
-                _contextsWaitingToBeScheduled[name]?.forEach({_scheduledContexts[name]! += $0})
-                _contextsWaitingToBeScheduled.removeValueForKey(name)
-                _hasNewBroadcastContextBeenScheduled = true;
+        if checkForOtherContexts {
+            // check for contexts of sprites whose contexts have not been scheduled yet at all
+            for name in _contextsWaitingToBeScheduled.orderedKeys {
+                if !_scheduledContexts.containsKey(name) || _scheduledContexts[name]!.count == 0 {
+                    _scheduledContexts[name] = [CBScriptContext]()
+                    _contextsWaitingToBeScheduled[name]?.forEach({_scheduledContexts[name]! += $0})
+                    _contextsWaitingToBeScheduled.removeValueForKey(name)
+                    _hasNewBroadcastContextBeenScheduled = true;
+                }
             }
         }
     }
@@ -359,6 +372,10 @@ final class CBScheduler: CBSchedulerProtocol {
         }
         
         runNextInstructionsGroup()
+        while _hasNewBroadcastContextBeenScheduled {
+            _hasNewBroadcastContextBeenScheduled = false
+            runNextInstructionsGroup()
+        }
     }
     
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
@@ -370,7 +387,6 @@ final class CBScheduler: CBSchedulerProtocol {
             
             putBroadcastContextOnHold(context)
         }
-        
     }
     
     func stopContext(context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool) {

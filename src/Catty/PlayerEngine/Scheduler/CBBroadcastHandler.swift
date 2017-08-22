@@ -150,7 +150,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
                 })
         } else {
             scheduler?.scheduleContext(context)
-            scheduler?.runNextInstructionsGroup()
+            // Don't run next instruction here, or else infinite recursive broadcasts will cause a crash
         }
         _selfBroadcastCounters[message] = counter
         logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
