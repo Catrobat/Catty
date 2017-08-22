@@ -35,6 +35,10 @@ extension SetSizeToBrick: CBInstructionProtocol {
             let sizeInPercent = self.size.interpretDoubleForSprite(object)
             spriteNode.xScale = CGFloat(sizeInPercent/100.0)
             spriteNode.yScale = CGFloat(sizeInPercent/100.0)
+            if let textBubble = spriteNode.childNodeWithName("textBubble")
+            {
+                textBubble.position = CGPoint(x: spriteNode.size.width/4, y: spriteNode.size.height/2)
+            }
         }
     }
 }
