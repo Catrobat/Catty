@@ -48,6 +48,10 @@ static CameraPreviewHandler* shared = nil;
     return shared;
 }
 
++ (void)resetSharedInstance {
+    shared = nil;
+}
+
 - (id)init
 {
     self = [super init];

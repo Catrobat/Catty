@@ -123,7 +123,7 @@
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
     [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
-
+    [CameraPreviewHandler resetSharedInstance];
     // Delete sound rec for loudness sensor
     NSError *error;
     NSFileManager *fileMgr = [NSFileManager defaultManager];
