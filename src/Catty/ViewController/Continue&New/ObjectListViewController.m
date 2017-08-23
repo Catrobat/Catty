@@ -50,9 +50,15 @@
 @interface ObjectListViewController () <UINavigationBarDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
+@property (nonatomic, strong) Program *program;
 @end
 
 @implementation ObjectListViewController
+
+- (void)setScene:(Scene *)scene {
+    _scene = scene;
+    _program = scene.program; // keep strong reference to program to prevent it's deallocation
+}
 
 #pragma mark - data helpers
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -80,10 +86,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [super viewWillAppear:YES];
     [self.tableView reloadData];
-}
-
-- (Program *)program {
-    return self.scene.program;
 }
 
 - (void)viewDidLoad

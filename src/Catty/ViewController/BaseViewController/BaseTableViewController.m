@@ -48,7 +48,6 @@
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 @property (nonatomic, strong) Reachability *reachability;
-@property (nonatomic, strong) Program *playingProgram;
 @end
 
 @implementation BaseTableViewController
@@ -464,7 +463,6 @@
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
-    self.playingProgram = vc.sceneModel.program;
 }
 
 - (void)showLoadingView
