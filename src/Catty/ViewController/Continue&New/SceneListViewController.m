@@ -27,6 +27,8 @@
 #import "Scene.h"
 #import "SegueDefines.h"
 #import "ObjectListViewController.h"
+#import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @interface SceneListViewController ()
 @property (nonatomic) Scene *selectedScene;
@@ -34,14 +36,29 @@
 
 @implementation SceneListViewController
 
+static NSCharacterSet *blockedCharacterSet = nil;
+- (NSCharacterSet*)blockedCharacterSet {
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
+- (void)initNavigationBar {
+    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self initNavigationBar];
+    [self setupToolBar];
 }
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSParameterAssert([segue.identifier isEqualToString:kSegueToObjectList]);
     
@@ -99,6 +116,104 @@
     if ([self shouldPerformSegueWithIdentifier:kSegueToObjectList sender:nil]) {
         [self performSegueWithIdentifier:kSegueToObjectList sender:nil];
     }
+}
+
+- (void)addSceneAction:(id)sender
+{
+    [Util askUserForUniqueNameAndPerformAction:@selector(addSceneAndSegueToItActionForSceneWithName:)
+                                        target:self
+                                   promptTitle:@"New scene"
+                                 promptMessage:[NSString stringWithFormat:@"%@:", @"Scene name"]
+                                   promptValue:nil
+                             promptPlaceholder:@"Enter your scene name here..."
+                                minInputLength:1
+                                maxInputLength:250
+                           blockedCharacterSet:[self blockedCharacterSet]
+                      invalidInputAlertMessage:@"A scene with the same name already exists, try again."
+                                 existingNames:[self.program allSceneNames]];
+}
+
+- (void)addSceneAndSegueToItActionForSceneWithName:(NSString *)name {
+    Scene *newScene = [Scene defaultSceneWithName:name];
+    [self.program addScene:newScene];
+    
+    self.selectedScene = newScene;
+    if ([self shouldPerformSegueWithIdentifier:kSegueToObjectList sender:self]) {
+        [self performSegueWithIdentifier:kSegueToObjectList sender:self];
+    }
+    
+    [self.tableView reloadData];
+    [self saveProgram:self.program showingSavedView:YES];
+}
+
+- (void)editAction:(id)sender
+{
+    [self.tableView setEditing:false animated:YES];
+    
+    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:@"Edit scenes"]
+                                               addCancelActionWithTitle:kLocalizedCancel handler:nil];
+    
+    if ([self.program scenes].count > 1) {
+        [actionSheet addDestructiveActionWithTitle:@"Delete scenes" handler:^{
+            [self setupEditingToolBar];
+            [super changeToEditingMode:sender];
+        }];
+    }
+    [[actionSheet build] showWithController:self];
+}
+
+- (void)confirmDeleteSelectedScenesAction:(id)sender
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    if (! [selectedRowsIndexPaths count]) {
+        // nothing selected, nothing to delete...
+        [super exitEditingMode];
+        return;
+    }
+    [self deleteSelectedScenesAction];
+}
+
+- (void)deleteSelectedScenesAction
+{
+    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
+    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
+        Scene *selectedScene = [self sceneAtIndexPath:selectedRowIndexPath];
+        [self.program removeScene:selectedScene];
+    }
+    [self saveProgram:self.program showingSavedView:YES];
+    
+    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationTop];
+    [super exitEditingMode];
+}
+
+- (void)setupToolBar
+{
+    [super setupToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(addSceneAction:)];
+    self.toolbarItems = @[flexItem, add, flexItem];
+}
+
+- (void)setupEditingToolBar
+{
+    [super setupEditingToolBar];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(confirmDeleteSelectedScenesAction:)];
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
+                         invisibleButton, deleteButton, nil];
 }
 
 @end

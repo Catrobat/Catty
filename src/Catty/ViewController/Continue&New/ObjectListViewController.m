@@ -305,7 +305,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     if (self.shouldBehaveAsIfObjectsBelongToProgram) {
         NSString *programName = self.scene.program.programName;
-        [actionSheet addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
+        
+        [[actionSheet addDefaultActionWithTitle:kLocalizedRenameProgram handler:^{
             NSMutableArray *unavailableNames = [[[ProgramManager instance] allProgramNames] mutableCopy];
             [unavailableNames removeString:programName];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionForProgramWithName:)
@@ -320,13 +321,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
+        }]
+        addDefaultActionWithTitle:@"Create Scene" handler:^{
+            [self createNewScene];
         }];
     }
     
-    [[[[[actionSheet
-    addDefaultActionWithTitle:@"Create Scene" handler:^{
-        [self createNewScene];
-    }]
+    [[[[actionSheet
     addDefaultActionWithTitle:detailActionTitle handler:^{
         [self toggleDetailCellsMode];
     }]
