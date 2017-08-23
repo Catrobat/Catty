@@ -41,7 +41,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.cameraChoice = 0;
+    self.cameraChoice = 1;
 }
 
 - (void)setChoice:(NSString*)choice forLineNumber:(NSInteger)lineNumber
