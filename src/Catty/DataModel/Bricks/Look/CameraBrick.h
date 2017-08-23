@@ -27,5 +27,6 @@
 
 @property (nonatomic) int cameraChoice;
 - (id)initWithChoice:(int)choice;
+- (BOOL)isEnabled;
 
 @end
