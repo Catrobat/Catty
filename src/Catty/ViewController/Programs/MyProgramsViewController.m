@@ -178,6 +178,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ProgramLoadingInfo *newProgramLaodingInfo = [[ProgramManager instance] addProgram:newProgram];
     
     [self segueToProgramWithLoadingInfo:newProgramLaodingInfo];
+    
+    [self reloadTableView];
 }
 
 - (void)segueToProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
