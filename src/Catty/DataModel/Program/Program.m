@@ -116,6 +116,21 @@
     [self.scenes addObject:scene];
 }
 
+- (BOOL)hasScene:(Scene *)scene {
+    return [self.scenes cb_hasAny:^BOOL(Scene *item) {
+        return item == scene;
+    }];
+}
+
+- (void)removeScene:(Scene *)scene {
+    NSParameterAssert(scene);
+    
+    NSAssert([self hasScene:scene] && scene.program == self, @"Scene doesn't belong to program");
+    
+    scene.program = nil;
+    [self.scenes removeObject:scene];
+}
+
 - (void)addProgramVariable:(UserVariable *)variable {
     NSParameterAssert(variable);
     NSAssert(![[self allVariableNames] containsObject:variable.name], @"Variable with such name already exists");
