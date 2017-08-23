@@ -72,7 +72,7 @@ extension SayBubbleBrick: CBInstructionProtocol {
             sayBubble.fillColor = UIColor.whiteColor()
             sayBubble.strokeColor = UIColor.blackColor()
             
-            sayBubble.position = CGPointMake(spriteNode.size.width - sayBubble.frame.width / 2, spriteNode.size.height - sayBubble.frame.height / 2)
+            sayBubble.position = sayBubble.convertPoint(CGPointMake(spriteNode.position.x + spriteNode.frame.width / 2, spriteNode.position.y + spriteNode.frame.height / 2), toNode: spriteNode)
             
             label.position = CGPointMake(sayBubble.frame.width/2, sayBubble.frame.height*0.6)
             sayBubble.addChild(label)
