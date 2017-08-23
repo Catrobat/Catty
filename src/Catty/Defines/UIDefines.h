@@ -201,6 +201,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kClearGraphicEffectBrick   = 214,
     kFlashBrick                = 215,
     kCameraBrick               = 216,
+    kChooseCameraBrick         = 217,
 
     
     // 3xx sound bricks
@@ -349,6 +350,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"FlashBrick"                : @(kFlashBrick),\
     @"CameraBrick"               : @(kCameraBrick),\
+    @"ChooseCameraBrick"         : @(kChooseCameraBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
@@ -441,6 +443,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 @"FlashBrick"                : @(kBrickHeight2h),\
 @"CameraBrick"               : @(kBrickHeight2h),\
+@"ChooseCameraBrick"         : @(kBrickHeight2h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

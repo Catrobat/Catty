@@ -112,6 +112,7 @@
     @[],                            /* clear graphic effect     */\
     @"{STATICCHOICE}",              /* flash brick              */\
     @"{STATICCHOICE}"               /* camera brick             */\
+    @"{STATICCHOICE}"               /* choose camera brick      */\
 ]
 
 // variable bricks

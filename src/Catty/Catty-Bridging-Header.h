@@ -100,6 +100,7 @@
 #import "RepeatBrick.h"
 #import "RepeatUntilBrick.h"
 #import "CameraBrick.h"
+#import "ChooseCameraBrick.h"
 
 // Formulas
 #import "Formula.h"

@@ -20,19 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension CameraBrick: CBInstructionProtocol {
-    func instruction() -> CBInstruction {
-        
-        return CBInstruction.ExecClosure { (context, _) in
-            if let scene = self.script.object.spriteNode.scene as? CBScene
-            {
-                scene.view?.allowsTransparency = self.isEnabled()
-                scene.backgroundColor = self.isEnabled() ? UIColor.clearColor() : UIColor.whiteColor()
-                self.isEnabled() ? CameraPreviewHandler.shared().startCameraPreview() : CameraPreviewHandler.shared().stopCamera()
-            }
-            
-            context.state = .Runnable
-        }
-    }
-    
+#import "ChooseCameraBrickCell.h"
+
+@interface ChooseCameraBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
+
+@implementation ChooseCameraBrickCell
+
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth ]];
 }
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.messageComboBoxView = inlineViewSubViews[1];
+}
+
+@end
