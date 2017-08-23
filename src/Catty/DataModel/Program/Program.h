@@ -23,71 +23,44 @@
 #import "Header.h"
 #import "ProgramDefines.h"
 
-@class VariablesContainer;
-@class SpriteObject;
-@class ProgramLoadingInfo;
-@class OrderedMapTable;
 @class UserVariable;
 @class Scene;
+@class VariablesContainer;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface Program : NSObject
 
-@property (nonatomic, strong, nonnull) Header *header;
-@property (nonatomic, strong, nonnull) NSArray<Scene *> *scenes;
-@property (nonatomic, strong, nonnull) NSMutableArray<UserVariable *> *programVariableList;
+@property (nonatomic, readonly) Header *header;
+@property (nonatomic, readonly) NSMutableArray<Scene *> *scenes;
+@property (nonatomic, readonly) NSMutableArray<UserVariable *> *programVariableList;
 
-@property (nonatomic, strong, nonnull) NSMutableArray<SpriteObject *> *objectList;
-@property (nonatomic, strong, readonly, nonnull) VariablesContainer *variables;
+@property (nonatomic, readonly) NSString *programName;
+@property (nonatomic, readonly, nullable) NSString *programID;
+@property (nonatomic, nullable) NSString *programDescription;
 
-@property (nonatomic) BOOL requiresBluetooth;
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
-- (NSInteger)numberOfBackgroundObjects;
-- (NSInteger)numberOfNormalObjects;
-- (SpriteObject* _Nonnull)addObjectWithName:(NSString* _Nonnull)objectName;
-- (void)removeObjects:(NSArray* _Nonnull)objects;
-- (void)removeObject:(SpriteObject* _Nonnull)object;
-- (void)removeObjectFromList:(SpriteObject* _Nonnull)object;
-- (void)moveObjectFromIndex:(NSInteger)originIndex toIndex:(NSInteger)destinationIndex;
-- (NSString* _Nonnull)projectPath;
-- (void)removeFromDisk;
+- (instancetype)initWithHeader:(Header *)header scenes:(NSArray<Scene *> *)scenes programVariableList:(NSArray<UserVariable *> *)programVariableList;
++ (instancetype)defaultProgramWithName:(NSString *)programName;
+
+- (NSArray<UserVariable *> *)allVariables;
+- (NSArray<NSString *> *)allVariableNames;
+
+- (NSArray<NSString *> *)allSceneNames;
+
+- (void)addScene:(Scene *)scene;
+
+- (void)addProgramVariable:(UserVariable *)variable;
+- (void)removeProgramVariable:(UserVariable *)variable;
+
 - (void)removeReferences;
-- (void)saveToDiskWithNotification:(BOOL)notify;
-- (BOOL)isLastUsedProgram;
-- (void)setAsLastUsedProgram;
-- (void)translateDefaultProgram;
-- (void)renameToProgramName:(NSString* _Nonnull)programName;
-- (void)renameObject:(SpriteObject* _Nonnull)object toName:(NSString* _Nonnull)newObjectName;
-- (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
-- (nonnull NSArray*)allObjectNames;
-- (BOOL)hasObject:(SpriteObject* _Nonnull)object;
-- (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
-    withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
-- (BOOL)isEqualToProgram:(Program* _Nonnull)program;
+
+- (BOOL)isEqualToProgram:(Program *)program;
+
 - (NSInteger)getRequiredResources;
 
-+ (instancetype _Nonnull)defaultProgramWithName:(NSString* _Nonnull)programName
-                                      programID:(NSString* _Nullable)programID;
-+ (instancetype _Nonnull)lastUsedProgram;
-+ (void)updateLastModificationTimeForProgramWithName:(NSString* _Nonnull)programName
-                                           programID:(NSString* _Nonnull)programID;
-+ (instancetype _Nonnull)programWithLoadingInfo:(ProgramLoadingInfo* _Nonnull)loadingInfo;
-+ (BOOL)programExistsWithProgramName:(NSString* _Nonnull)programName
-                           programID:(NSString* _Nonnull)programID;
-+ (BOOL)programExistsWithProgramID:(NSString* _Nonnull)programID;
-+ (BOOL)areThereAnyPrograms;
-+ (void)copyProgramWithSourceProgramName:(NSString* _Nonnull)sourceProgramName
-                         sourceProgramID:(NSString* _Nonnull)sourceProgramID
-                  destinationProgramName:(NSString* _Nonnull)destinationProgramName;
-+ (void)removeProgramFromDiskWithProgramName:(NSString* _Nonnull)programName
-                                   programID:(NSString* _Nonnull)programID;
-+ (BOOL)isLastUsedProgram:(NSString* _Nonnull)programName programID:(NSString* _Nonnull)programID;
-+ (void)setLastUsedProgram:(Program* _Nonnull)program;
-+ (NSString* _Nonnull)basePath;
-+ (NSArray* _Nonnull)allProgramNames;
-+ (NSArray* _Nonnull)allProgramLoadingInfos;
-+ (NSString* _Nonnull)programDirectoryNameForProgramName:(NSString* _Nonnull)programName
-                                               programID:(NSString* _Nullable)programID;
-+ (ProgramLoadingInfo* _Nonnull)programLoadingInfoForProgramDirectoryName:(NSString* _Nonnull)programDirectoryName;
-+ (NSString* _Nonnull)programNameForProgramID:(NSString* _Nonnull)programID;
-
 @end
+
+NS_ASSUME_NONNULL_END

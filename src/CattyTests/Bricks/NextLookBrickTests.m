@@ -45,10 +45,10 @@
 - (void)testNextLookBrick
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -73,7 +73,6 @@
 
     action();
     XCTAssertEqual(spriteNode.currentLook,look1, @"NextLookBrick not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 @end

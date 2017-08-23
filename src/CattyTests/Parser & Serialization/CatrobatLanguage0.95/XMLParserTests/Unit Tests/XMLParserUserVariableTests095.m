@@ -41,53 +41,55 @@
 {
     GDataXMLDocument* xmlRoot = [self getXMLDocumentForPath:[self getPathForXML:@"Airplane_with_shadow_095"]];
     XCTAssertNotNil(xmlRoot.rootElement, @"rootElement is nil");
+    
+    // TODO: if it is possible parse program and test variables
                                     
-    VariablesContainer *variablesContainer = [self.parserContext parseFromElement:xmlRoot.rootElement withClass:[VariablesContainer class]];
-    XCTAssertNotNil(variablesContainer, @"VariablesContainer is nil");
-    
-    XCTAssertEqual(8, [variablesContainer.objectVariableList count], @"Invalid number of object variables");
-    
-    SpriteObject *spriteObject = [variablesContainer.objectVariableList keyAtIndex:0];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Lower right tile"]], @"Invalid SpriteObject name for object variable 1");
-    NSArray *variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 1");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:1];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Lower left tile"]], @"Invalid SpriteObject name for object variable 2");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 2");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:2];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Upper left tile"]], @"Invalid SpriteObject name for object variable 3");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 3");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:3];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Airplane"]], @"Invalid SpriteObject name for object variable 4");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 4");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:4];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Upper right tile"]], @"Invalid SpriteObject name for object variable 5");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 5");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:5];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Shadow"]], @"Invalid SpriteObject name for object variable 6");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 6");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:6];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Background"]], @"Invalid SpriteObject name for object variable 7");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 7");
-    
-    spriteObject = [variablesContainer.objectVariableList keyAtIndex:7];
-    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Pointer"]], @"Invalid SpriteObject name for object variable 8");
-    variables = [variablesContainer objectVariablesForObject:spriteObject];
-    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 8");
-
-    XCTAssertEqual(5, [variablesContainer.programVariableList count], @"Invalid number of program variables");
+//    VariablesContainer *variablesContainer = [self.parserContext parseFromElement:xmlRoot.rootElement withClass:[VariablesContainer class]];
+//    XCTAssertNotNil(variablesContainer, @"VariablesContainer is nil");
+//    
+//    XCTAssertEqual(8, [variablesContainer.objectVariableList count], @"Invalid number of object variables");
+//    
+//    SpriteObject *spriteObject = [variablesContainer.objectVariableList keyAtIndex:0];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Lower right tile"]], @"Invalid SpriteObject name for object variable 1");
+//    NSArray *variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 1");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:1];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Lower left tile"]], @"Invalid SpriteObject name for object variable 2");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 2");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:2];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Upper left tile"]], @"Invalid SpriteObject name for object variable 3");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 3");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:3];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Airplane"]], @"Invalid SpriteObject name for object variable 4");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 4");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:4];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Upper right tile"]], @"Invalid SpriteObject name for object variable 5");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 5");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:5];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Shadow"]], @"Invalid SpriteObject name for object variable 6");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 6");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:6];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Background"]], @"Invalid SpriteObject name for object variable 7");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 7");
+//    
+//    spriteObject = [variablesContainer.objectVariableList keyAtIndex:7];
+//    XCTAssertTrue([spriteObject.name isEqualToString:[NSString stringWithFormat:@"Pointer"]], @"Invalid SpriteObject name for object variable 8");
+//    variables = [variablesContainer objectVariablesForObject:spriteObject];
+//    XCTAssertEqual(0, [variables count], @"Invalid number of object variables for object 8");
+//
+//    XCTAssertEqual(5, [variablesContainer.programVariableList count], @"Invalid number of program variables");
 }
 
 @end

@@ -142,3 +142,4 @@
 
 #import "BrickFormulaProtocol.h"
 
+#import "Scene.h"

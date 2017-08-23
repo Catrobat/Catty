@@ -24,6 +24,7 @@
 #import "XMLAbstractTest.h"
 #import "Program.h"
 #import "CBXMLSerializer.h"
+#import "Scene.h"
 
 @interface XMLSerializerBlackBoxTests : XMLAbstractTest
 
@@ -72,7 +73,11 @@
 - (void)testInvalidAirFight
 {
     Program *program098 = [self getProgramForXML:@"Air_fight_0.5_098"];
-    SpriteObject *background = (SpriteObject*)[program098.objectList objectAtIndex:0];
+    
+    XCTAssertEqual(1, [program098.scenes count], @"Invalid scenes");
+    Scene *scene = program098.scenes.firstObject;
+    
+    SpriteObject *background = [scene.objectList objectAtIndex:0];
     background.name = @"Invalid";
     BOOL equal = [self isProgram:program098 equalToXML:@"Air_fight_0.5_0992"];
     XCTAssertFalse(equal, @"Serialized program and XML are not equal");

@@ -24,8 +24,7 @@ extension ChangeVariableBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
 
-        guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
+        guard let spriteObject = self.script?.object
         else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
@@ -44,7 +43,7 @@ extension ChangeVariableBrick: CBInstructionProtocol {
                 }
                 if userVariable.value is NSNumber && result is NSNumber {
                     let number:NSNumber = (result as? NSNumber)!
-                    variables.changeVariable(userVariable, byValue: number.doubleValue)
+                    userVariable.changeValueBy(number.doubleValue)
                     //update active UserVariable
                     userVariable.textLabel.text = String(Int(userVariable.value.doubleValue))
                 } else if userVariable.value is NSString {

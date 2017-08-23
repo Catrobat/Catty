@@ -25,7 +25,7 @@
 #import "ButtonTags.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "SegueDefines.h"
-#import "ProgramTableViewController.h"
+#import "ObjectListViewController.h"
 #import "Util.h"
 #import "NetworkDefines.h"
 #import "LoadingView.h"
@@ -35,6 +35,9 @@
 #import "ProgramUpdateDelegate.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
+#import "ProgramManager.h"
+#import "NSArray+CustomExtension.h"
+#import "SceneListViewController.h"
 
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
@@ -138,7 +141,7 @@
 - (UIView*)createViewForProject:(CatrobatProgram*)project
 {
     UIView *view = [CreateView createProgramDetailView:project target:self];
-    if ([Program programExistsWithProgramID:project.projectID]) {
+    if ([self programExistsWithProgramID:project.projectID]) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
         [view viewWithTag:kStopLoadingTag].hidden = YES;
@@ -150,6 +153,12 @@
         [view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
     }
     return view;
+}
+
+- (BOOL)programExistsWithProgramID:(NSString *)programID {
+    return [[[ProgramManager instance] allProgramLoadingInfos] cb_hasAny:^BOOL(ProgramLoadingInfo *item) {
+        return [item.programID isEqualToString:programID];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -180,15 +189,8 @@
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-    static NSString *segueToContinue = kSegueToContinue;
-    if ([identifier isEqualToString:segueToContinue]) {
-        // The local program name with same program ID could differ from the original program name.
-        // That's because the user could have renamed the downloaded program.
-        NSString *localProgramName = [Program programNameForProgramID:self.project.projectID];
-
+    if ([identifier isEqualToString:kSegueToObjectList] || [identifier isEqualToString:kSegueToObjectList]) {
         // check if program loaded successfully -> not nil
-        self.loadedProgram = [Program programWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgramWithName:localProgramName programID:self.project.projectID]];
-
         if (self.loadedProgram) {
             return YES;
         }
@@ -201,26 +203,24 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    static NSString *segueToContinue = kSegueToContinue;
-    if ([[segue identifier] isEqualToString:segueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            self.hidesBottomBarWhenPushed = YES;
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = self.loadedProgram;
-            programTableViewController.delegate = self;
-        }
+    self.hidesBottomBarWhenPushed = YES;
+    if ([[segue identifier] isEqualToString:kSegueToObjectList]) {
+        ObjectListViewController *objectListViewController = (ObjectListViewController*)segue.destinationViewController;
+        NSAssert(objectListViewController != nil, @"");
+        
+        objectListViewController.scene = self.loadedProgram.scenes.firstObject;
+        objectListViewController.delegate = self;
+        objectListViewController.shouldBehaveAsIfObjectsBelongToProgram = YES;
+    } else if ([[segue identifier] isEqualToString:kSegueToSceneList]) {
+        SceneListViewController *sceneListViewController = (SceneListViewController*)segue.destinationViewController;
+        NSAssert(sceneListViewController != nil, @"");
+        
+        sceneListViewController.program = self.loadedProgram;
+        sceneListViewController.delegate = self;
     }
 }
 
-#pragma mark - program update delegates
-- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID
-{
-    [self showPlayButton];
-}
-
-- (void)renameOldProgramWithName:(NSString*)oldProgramName
-                       programID:(NSString*)programID
-                toNewProgramName:(NSString*)newProgramName
+- (void)renameOldProgram:(Program *)program toNewProgramName:(NSString*)newProgramName
 {
     return; // IMPORTANT: this method does nothing but has to be implemented!!
 }
@@ -228,12 +228,25 @@
 #pragma mark - ProgramStore Delegate
 - (void)playButtonPressed
 {
-    static NSString* segueToContinue = kSegueToContinue;
     NSDebug(@"Play Button");
-    if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:self]) {
-        [self performSegueWithIdentifier:segueToContinue sender:self];
+    
+    self.loadedProgram = [self programWithProgramID:self.project.projectID];
+    
+    NSString *segueIdentifier = self.loadedProgram.scenes.count == 1 ? kSegueToObjectList : kSegueToSceneList;
+    if ([self shouldPerformSegueWithIdentifier:segueIdentifier sender:self]) {
+        [self performSegueWithIdentifier:segueIdentifier sender:self];
     }
 }
+
+- (Program *)programWithProgramID:(NSString *)programID {
+    // The local program name with same program ID could differ from the original program name.
+    // That's because the user could have renamed the downloaded program.
+    ProgramLoadingInfo *loadingInfo = [[[ProgramManager instance] allProgramLoadingInfos] cb_findFirst:^BOOL(ProgramLoadingInfo *item) {
+        return [item.programID isEqualToString:programID];
+    }];
+    return [[ProgramManager instance] programWithLoadingInfo:loadingInfo];
+}
+
 - (void)reportProgram
 {
     NSDebug(@"report");
@@ -378,8 +391,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         downloadAgainButton.enabled = NO;
         button.hidden = NO;
         button.progress = 0;
-        self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
-        NSDebug(@"%@",[Program allProgramNames]);
+        self.duplicateName = [Util uniqueName:self.project.name existingNames:[[ProgramManager instance] allProgramNames]];
+        NSDebug(@"%@",[[ProgramManager instance] allProgramNames]);
         [self downloadWithName:self.duplicateName];
     }
 }

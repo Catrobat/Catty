@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import "XMLAbstractTest.h"
 #import "CBXMLParser.h"
-#import "Parser.h"
 
 @interface XMLParserBlackBoxTests098 : XMLAbstractTest
 
@@ -138,7 +137,7 @@
 
 - (void)testSolarSystem
 {
-    [self compareProgram:@"Solar_System_v1.0_092" withProgram:@"Solar_System_v1.0_098"];
+    [self compareProgram:@"Solar_System_v1.0_097" withProgram:@"Solar_System_v1.0_098"];
 }
 
 @end

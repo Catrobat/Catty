@@ -107,4 +107,28 @@
     return YES;
 }
 
+- (NSString*)description
+{
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    [ret appendFormat:@"Application Build Name: %@\n", self.applicationBuildName];
+    [ret appendFormat:@"Application Build Number: %@\n", self.applicationBuildNumber];
+    [ret appendFormat:@"Application Name: %@\n", self.applicationName];
+    [ret appendFormat:@"Application Version: %@\n", self.applicationVersion];
+    [ret appendFormat:@"Catrobat Language Version: %@\n", self.catrobatLanguageVersion];
+    [ret appendFormat:@"Date Time Upload: %@\n", self.dateTimeUpload];
+    [ret appendFormat:@"Device Name: %@\n", self.deviceName];
+    [ret appendFormat:@"Media License: %@\n", self.mediaLicense];
+    [ret appendFormat:@"Platform: %@\n", self.platform];
+    [ret appendFormat:@"Platform Version: %@\n", self.platformVersion];
+    [ret appendFormat:@"Program License: %@\n", self.programLicense];
+    [ret appendFormat:@"Program Name: %@\n", self.programName];
+    [ret appendFormat:@"Remix of: %@\n", self.remixOf];
+    [ret appendFormat:@"Screen Height: %@\n", self.screenHeight];
+    [ret appendFormat:@"Screen Width: %@\n", self.screenWidth];
+    [ret appendFormat:@"Screen Mode: %@\n", self.screenMode];
+    [ret appendFormat:@"URL: %@\n", self.url];
+    [ret appendFormat:@"User Handle: %@\n", self.userHandle];
+    return [ret copy];
+}
+
 @end

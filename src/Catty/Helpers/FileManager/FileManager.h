@@ -40,6 +40,8 @@
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
 @property (atomic, strong) NSURL* projectURL;
 
+- (instancetype)initWithFileManager:(NSFileManager *)fileManager;
+
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
 - (void)deleteAllFilesOfDirectory:(NSString*)path;
@@ -55,7 +57,6 @@
 - (NSUInteger)sizeOfFileAtPath:(NSString*)path;
 - (NSDate*)lastModificationTimeOfFile:(NSString*)path;
 - (NSArray*)getContentsOfDirectory:(NSString*)directory;
-- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
 - (void)downloadProgramFromURL:(NSURL*)url withProgramID:(NSString*)programID andName:(NSString*)name;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
 - (void)stopLoading:(NSURL *)projecturl;

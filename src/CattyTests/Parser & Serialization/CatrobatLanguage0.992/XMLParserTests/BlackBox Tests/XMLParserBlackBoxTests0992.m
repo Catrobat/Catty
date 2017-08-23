@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import "XMLAbstractTest.h"
 #import "CBXMLParser.h"
-#import "Parser.h"
 
 @interface XMLParserBlackBoxTests0992 : XMLAbstractTest
 

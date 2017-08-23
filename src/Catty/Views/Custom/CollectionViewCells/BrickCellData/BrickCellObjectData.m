@@ -26,6 +26,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickObjectProtocol.h"
+#import "Scene.h"
 
 @implementation BrickCellObjectData
 
@@ -43,7 +44,7 @@
             if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
                 Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
                 SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-                for(SpriteObject *object in objectBrick.script.object.program.objectList) {
+                for(SpriteObject *object in objectBrick.script.object.scene.objectList) {
                     [options addObject:object.name];
                     if([currentObject.name isEqualToString:object.name])
                         currentOptionIndex = optionIndex;

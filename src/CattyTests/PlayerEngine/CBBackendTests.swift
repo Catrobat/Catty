@@ -29,7 +29,7 @@ final class CBBackendTests: XCTestCase {
     let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)
 
     func testActionInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
@@ -68,7 +68,7 @@ final class CBBackendTests: XCTestCase {
     }
     
     func testSetLookChangeLookInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
@@ -107,7 +107,7 @@ final class CBBackendTests: XCTestCase {
     }
     
     func testSetYSetXInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
@@ -146,7 +146,7 @@ final class CBBackendTests: XCTestCase {
     }
     
     func testIfElseInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
@@ -224,7 +224,7 @@ final class CBBackendTests: XCTestCase {
     }
     
     func testLoopInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
@@ -307,9 +307,9 @@ final class CBBackendTests: XCTestCase {
     }
     
     func testIfElseConditionalInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
-        let program = Program.defaultProgramWithName("ProgramName", programID: "123")
+        let program = Program.defaultProgramWithName("ProgramName")
         
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
@@ -319,7 +319,7 @@ final class CBBackendTests: XCTestCase {
         spriteNode.spriteObject = spriteObject
         spriteObject.name = "SpriteObjectName"
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = program
+        spriteObject.scene = program.scenes.firstObject as! Scene
         whenScript.object = spriteObject
         
         let waitBrick = WaitBrick()
@@ -432,7 +432,7 @@ final class CBBackendTests: XCTestCase {
     }
     
     func testLookMoveInstruction() {
-        let frontend = CBFrontend(logger: self.logger, program: nil)
+        let frontend = CBFrontend(logger: self.logger, scene: nil)
         let backend = CBBackend(logger: self.logger)
 
         let startScript = StartScript()

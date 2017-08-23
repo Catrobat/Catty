@@ -24,7 +24,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "MyProgramsViewController.h"
-#import "ProgramTableViewController.h"
+#import "ObjectListViewController.h"
+#import "Scene.h"
 
 @interface DescriptionViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *header;
@@ -85,14 +86,12 @@
     self.descriptionTextView.tintColor = [UIColor globalTintColor];
     
     if ([self.delegate isKindOfClass:[MyProgramsViewController class]]) {
-        MyProgramsViewController *mpvc;
-        mpvc = (MyProgramsViewController*)self.delegate;
-        self.descriptionTextView.text = mpvc.selectedProgram.header.programDescription;
+        MyProgramsViewController *mpvc = (MyProgramsViewController*)self.delegate;
+        self.descriptionTextView.text = mpvc.selectedProgram.programDescription;
     }
-    if ([self.delegate isKindOfClass:[ProgramTableViewController class]]) {
-        ProgramTableViewController *mpvc;
-        mpvc = (ProgramTableViewController*)self.delegate;
-        self.descriptionTextView.text = mpvc.program.header.programDescription;
+    if ([self.delegate isKindOfClass:[ObjectListViewController class]]) {
+        ObjectListViewController *mpvc = (ObjectListViewController*)self.delegate;
+        self.descriptionTextView.text = mpvc.scene.program.programDescription;
     }
 }
 - (IBAction)cancelAction:(id)sender {

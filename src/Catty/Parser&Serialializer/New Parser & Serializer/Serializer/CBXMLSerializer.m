@@ -89,9 +89,6 @@
             NSError(@"Program could not saved to disk! %@", error);
         }
 
-        // update last access time
-        [Program updateLastModificationTimeForProgramWithName:program.header.programName
-                                                    programID:program.header.programID];
         NSInfo(@"Saving finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be serialized! %@", [exception description]);

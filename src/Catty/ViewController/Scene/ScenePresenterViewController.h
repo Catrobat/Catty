@@ -29,7 +29,7 @@
 
 @interface ScenePresenterViewController : UIViewController
 
-@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) Scene *sceneModel;
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic, weak) UIButton* backButton;
 

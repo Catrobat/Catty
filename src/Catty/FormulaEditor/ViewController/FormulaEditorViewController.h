@@ -25,7 +25,6 @@
 #import "Formula.h"
 #import "FormulaEditorHistory.h"
 #import "SpriteObject.h"
-#import "ProgramVariablesManager.h"
 
 @protocol FormulaEditorViewControllerDelegate <NSObject>
 - (void)saveFormula:(Formula*)formula;

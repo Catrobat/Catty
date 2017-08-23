@@ -28,16 +28,12 @@ final class ShowTextBrickTests: XCTestCase {
     
     func testShowTextBrickUserVariablesNil() {
         
-        let program = Program();
         let object = SpriteObject();
         let spriteNode = CBSpriteNode();
         spriteNode.name = "SpriteNode";
         spriteNode.spriteObject = object;
         object.spriteNode = spriteNode;
         spriteNode.position = CGPoint(x: 0, y: 0);
-        object.program = program;
-        
-        object.program.programVariableList = NSMutableArray()
         
         let brick = ShowTextBrick();
         

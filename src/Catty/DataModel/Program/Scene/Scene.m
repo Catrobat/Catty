@@ -23,12 +23,16 @@
 #import "Scene.h"
 #import "SpriteObject.h"
 #import "OrderedMapTable.h"
+#import "NSArray+CustomExtension.h"
+#import "UserVariable.h"
+#import "LanguageTranslationDefines.h"
+#import "Util.h"
 
 @implementation Scene
 
 
 - (instancetype)initWithName:(NSString *)name
-                  objectList:(NSMutableArray<SpriteObject *> *)objectList
+                  objectList:(NSArray<SpriteObject *> *)objectList
           objectVariableList:(OrderedMapTable *)objectVariableList
                originalWidth:(NSString *)originalWidth
               originalHeight:(NSString *)originalHeight {
@@ -41,32 +45,109 @@
     self = [super init];
     if (self != nil) {
         _name = [name copy];
-        _objectList = objectList;
-        _objectVariableList = objectVariableList;
+        
+        _objectList = [objectList mutableCopy];
+        [_objectList cb_foreachUsingBlock:^(SpriteObject *item) {
+            item.scene = self;
+        }];
+        
+        _objectVariableList = [objectVariableList mutableCopy];
         _originalWidth = [originalWidth copy];
         _originalHeight = [originalHeight copy];
     }
     return self;
 }
 
-- (SpriteObject *)background {
++ (instancetype)defaultSceneWithName:(NSString *)name {
+    NSParameterAssert(name);
+    
+    SpriteObject *backgroundObject = [[SpriteObject alloc] init];
+    backgroundObject.name = kLocalizedBackground;
+    
+    return [[[self class] alloc] initWithName:name
+                                   objectList:@[backgroundObject]
+                           objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
+                                originalWidth:[NSString stringWithFormat:@"%f", [Util screenWidth] ?: 768]
+                               originalHeight:[NSString stringWithFormat:@"%f", [Util screenHeight] ?: 1184]];
+}
+
+- (SpriteObject *)backgroundObject {
     return [self.objectList firstObject];
+}
+
+- (NSArray<UserVariable *> *)allAccessibleVarialbes {
+    NSMutableArray<UserVariable *> *variables = [NSMutableArray array];
+    for (SpriteObject *object in self.objectList) {
+        [variables addObjectsFromArray:object.variables];
+    }
+    
+    NSArray<UserVariable *> *programVariableList = self.program.programVariableList;
+    if (programVariableList != nil) {
+        [variables addObjectsFromArray:programVariableList];
+    }
+    
+    return variables;
+}
+
+- (NSArray<NSString *> *)allObjectNames {
+    return [self.objectList cb_mapUsingBlock:^id(SpriteObject *item) {
+        return item.name;
+    }];
 }
 
 - (void)addObject:(SpriteObject *)object {
     NSParameterAssert(object);
+    NSAssert(![[self allObjectNames] containsObject:object.name], @"Object with such name already exists");
     
+    object.scene = self;
     [self.objectList addObject:object];
+}
+
+- (void)addVariable:(UserVariable *)variable forObject:(SpriteObject *)object {
+    NSParameterAssert(variable);
+    NSParameterAssert(object);
+    NSParameterAssert([self.objectList containsObject:object]);
+    
+    NSAssert(![[object allAccessibleVariableNames] containsObject:variable.name], @"Object with such name already exists");
+    
+    NSMutableArray<UserVariable *> *objectVariables = [self.objectVariableList objectForKey:object];
+    if (objectVariables == nil) {
+        objectVariables = [NSMutableArray array];
+        [self.objectVariableList setObject:objectVariables forKey:object];
+    }
+    
+    [objectVariables addObject:variable];
+}
+
+- (void)removeVariable:(UserVariable *)variable forObject:(SpriteObject *)object {
+    NSParameterAssert(variable);
+    NSParameterAssert(object);
+    NSParameterAssert([self.objectList containsObject:object]);
+    
+    NSMutableArray<UserVariable *> *objectVariables = [self.objectVariableList objectForKey:object];
+    NSAssert([objectVariables containsObject:variable], @"Object doesn't have such variable");
+    
+    [objectVariables removeObject:variable];
 }
 
 - (void)removeObject:(SpriteObject *)object {
     NSParameterAssert(object);
     NSParameterAssert([self.objectList containsObject:object]);
     
-    [object removeSounds:object.soundList AndSaveToDisk:NO];
-    [object removeLooks:object.lookList AndSaveToDisk:NO];
-    object.program = nil;
+    [object removeSounds:object.soundList];
+    [object removeLooks:object.lookList];
+    object.scene = nil;
+    
     [self.objectList removeObject:object];
+    [self.objectVariableList removeObjectForKey:object];
+}
+
+- (void)removeObjects:(NSArray<SpriteObject *> *)objects {
+    NSParameterAssert(objects);
+    
+    for (SpriteObject *object in objects) {
+        [self removeObject:object];
+    }
 }
 
 - (void)moveObjectFromIndex:(NSUInteger)originIndex toIndex:(NSUInteger)destinationIndex {
@@ -79,6 +160,23 @@
     SpriteObject *object = [self.objectList objectAtIndex:originIndex];
     [self.objectList removeObjectAtIndex:originIndex];
     [self.objectList insertObject:object atIndex:destinationIndex];
+}
+
+- (NSInteger)numberOfNormalObjects {
+    return self.objectList.count > 1 ? self.objectList.count - 1 : 0;
+}
+
+- (NSInteger)getRequiredResources {
+    NSInteger resources = kNoResources;
+    
+    for (SpriteObject *object in self.objectList) {
+        resources |= [object getRequiredResources];
+    }
+    return resources;
+}
+
+- (void)removeReferences {
+    [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
 - (BOOL)isEqual:(id)other {

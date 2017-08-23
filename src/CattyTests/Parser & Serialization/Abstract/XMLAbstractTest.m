@@ -26,7 +26,9 @@
 #import "CBXMLSerializer.h"
 #import "Program+CBXMLHandler.h"
 #import "Util.h"
-#import "Parser.h"
+#import "Scene.h"
+#import "NSArray+CustomExtension.h"
+#import "ProgramLoadingInfo.h"
 
 @implementation XMLAbstractTest
 
@@ -61,8 +63,7 @@
     // detect right parser for correct catrobat language version
     CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
     if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
-        Parser *parser = [[Parser alloc] init];
-        return [parser generateObjectForProgramWithPath:xmlPath];
+        NSAssert(false, @"Unsupported language version");
     } else {
         return [catrobatParser parseAndCreateProgram];
     }
@@ -77,14 +78,20 @@
     
     {
         // XXX: HACK => assign same header to both versions => this forces to ignore header
-        firstProgram.header = secondProgram.header;
+        firstProgram = [[Program alloc] initWithHeader:secondProgram.header
+                                                scenes:firstProgram.scenes
+                                   programVariableList:firstProgram.programVariableList];
         // XXX: HACK => for background objects always replace german name "Hintergrund" with "Background"
-        SpriteObject *firstBgObject = firstProgram.objectList[0];
-        SpriteObject *secondBgObject = secondProgram.objectList[0];
-        firstBgObject.name = [firstBgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"
-                                                                       withString:@"Background"];
-        secondBgObject.name = [secondBgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"
-                                                                       withString:@"Background"];
+        [firstProgram.scenes cb_foreachUsingBlock:^(Scene *scene) {
+            SpriteObject *bgObject = scene.objectList[0];
+            bgObject.name = [bgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"
+                                                                     withString:@"Background"];
+        }];
+        [secondProgram.scenes cb_foreachUsingBlock:^(Scene *scene) {
+            SpriteObject *bgObject = scene.objectList[0];
+            bgObject.name = [bgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"
+                                                                     withString:@"Background"];
+        }];
     }
     
     XCTAssertTrue([firstProgram isEqualToProgram:secondProgram], @"Programs are not equal");
@@ -111,7 +118,8 @@
 
 - (void)saveProgram:(Program*)program
 {
-    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
+    NSString *projectPath = [ProgramLoadingInfo programLoadingInfoForProgram:program].basePath;
+    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", projectPath, kProgramCodeFileName];
     id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:program];
 }

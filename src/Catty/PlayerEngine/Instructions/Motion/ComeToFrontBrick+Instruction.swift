@@ -29,13 +29,13 @@ extension ComeToFrontBrick: CBInstructionProtocol {
     func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let program = self.script?.object?.program,
-            let objectList = self.script?.object?.program?.objectList
+            let scene = self.script?.object?.scene,
+            let objectList = scene.objectList
             else { fatalError("This should never happen!") }
         
         return {
             let zValue = spriteNode.zPosition
-            let frontValue = program.numberOfNormalObjects()
+            let frontValue = scene.numberOfNormalObjects()
             spriteNode.zPosition = CGFloat(frontValue)
             for obj in objectList {
                 guard let objSpriteNode = obj.spriteNode else {

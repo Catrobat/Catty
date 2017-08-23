@@ -34,6 +34,8 @@
 @property (nonatomic, strong) id value;
 @property (nonatomic, strong) SKLabelNode *textLabel;
 
+- (void)changeValueBy:(double)value;
+
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;

@@ -24,17 +24,21 @@
 #import "SpriteObject.h"
 #import "Brick.h"
 #import "Script.h"
+#import "Scene.h"
 
 @implementation Program (CustomExtensions)
 
 - (void)updateReferences
 {
-    for (SpriteObject *sprite in self.objectList) {
-        sprite.program = self;
-        for (Script *script in sprite.scriptList) {
-            script.object = sprite;
-            for (Brick *brick in script.brickList) {
-                brick.script = script;
+    for (Scene *scene in self.scenes) {
+        scene.program = self;
+        for (SpriteObject *sprite in scene.objectList) {
+            sprite.scene = scene;
+            for (Script *script in sprite.scriptList) {
+                script.object = sprite;
+                for (Brick *brick in script.brickList) {
+                    brick.script = script;
+                }
             }
         }
     }

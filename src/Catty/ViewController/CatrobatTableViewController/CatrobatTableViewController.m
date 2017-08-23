@@ -31,13 +31,15 @@
 #import "ProgramDetailStoreViewController.h"
 #import "SegueDefines.h"
 #import "Script.h"
-#import "ProgramTableViewController.h"
+#import "ObjectListViewController.h"
 #import "Reachability.h"
 #import "HelpWebViewController.h"
 #import "MYBlurIntroductionView.h"
 #import "ProgramsForUploadViewController.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
+#import "ProgramManager.h"
+#import "SceneListViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -50,9 +52,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
 
-@property (nonatomic, strong) NSArray *cells;
-@property (nonatomic, strong) NSArray *imageNames;
-@property (nonatomic, strong) NSMutableArray *identifiers;
+@property (nonatomic, strong) NSArray<NSString *> *cells;
+@property (nonatomic, strong) NSArray<NSString *> *imageNames;
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @property (nonatomic, strong) Reachability *reachability;
@@ -77,7 +78,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (Program*)lastUsedProgram
 {
     if (! _lastUsedProgram) {
-        _lastUsedProgram = [Program lastUsedProgram];
+        _lastUsedProgram = [[ProgramManager instance] lastUsedProgram];
     }
     return _lastUsedProgram;
 }
@@ -92,10 +93,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.lastUsedProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
-        [appDelegate.fileManager createDirectory:[Program basePath]];
+    if (! [appDelegate.fileManager directoryExists:[ProgramManager basePath]]) {
+        [appDelegate.fileManager createDirectory:[ProgramManager basePath]];
     }
-    [appDelegate.fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+    [[ProgramManager instance] addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
 
@@ -161,7 +162,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedUpload, nil];
 
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -199,12 +199,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
 {
-    static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
     [self showLoadingView];
-    self.defaultProgram = [Program defaultProgramWithName:programName programID:nil];
-    if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
+    self.defaultProgram = [Program defaultProgramWithName:programName];
+    [[ProgramManager instance] addProgram:self.defaultProgram];
+    
+    NSString *segueIdentifier = self.defaultProgram.scenes.count == 1 ? kSegueToObjectList : kSegueToSceneList;
+    if ([self shouldPerformSegueWithIdentifier:segueIdentifier sender:self]) {
         [self hideLoadingView];
-        [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
+        [self performSegueWithIdentifier:segueIdentifier sender:self];
     }
 }
 
@@ -244,7 +246,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
+    NSString *segueIdentifier = nil;
     switch (indexPath.row) {
         case kNewProgramVC:
             [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
@@ -257,30 +259,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                         maxInputLength:kMaxNumOfProgramNameCharacters
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                         existingNames:[Program allProgramNames]];
+                                         existingNames:[[ProgramManager instance] allProgramNames]];
             break;
         case kContinueProgramVC:
-        case kLocalProgramsVC:
-        case kExploreVC:
-        case kHelpVC:
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                [self performSegueWithIdentifier:identifier sender:self];
-            }
+            segueIdentifier = self.lastUsedProgram.scenes.count == 1 ? kSegueToObjectList : kSegueToSceneList;
             break;
-//        case kHelpVC:
-//            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-////                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-////                [self.navigationController pushViewController:webVC animated:YES];
-//                
-//            }
-//            break;
+        case kLocalProgramsVC:
+            segueIdentifier = kSegueToPrograms;
+            break;
+        case kExploreVC:
+            segueIdentifier = kSegueToExplore;
+            break;
+        case kHelpVC:
+            segueIdentifier = kSegueToHelp;
+            break;
         case kUploadVC:
             //[[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];    //Just for testing purpose
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-                if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                    [self performSegueWithIdentifier:@"segueToUpload" sender:self];
-                }
-    
+                segueIdentifier = kSegueToUpload;
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
                 LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
@@ -293,6 +289,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
         default:
             break;
     }
+    
+    if (segueIdentifier != nil && [self shouldPerformSegueWithIdentifier:segueIdentifier sender:self]) {
+        [self performSegueWithIdentifier:segueIdentifier sender:self];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -328,7 +329,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor textTintColor];
     Program *lastProgram = self.lastUsedProgram;
-    subtitleLabel.text = (lastProgram) ? lastProgram.header.programName :  @"";
+    subtitleLabel.text = (lastProgram) ? lastProgram.programName :  @"";
 }
 
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath
@@ -346,26 +347,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-    if ([identifier isEqualToString:kSegueToContinue]) {
-        // check if program loaded successfully -> not nil
-        if (self.lastUsedProgram) {
-            return YES;
-        }
-
-        // program failed loading...
-        // update continue cell
-        [Util setLastProgramWithName:nil programID:nil];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [Util alertWithText:kLocalizedUnableToLoadProgram];
-        return NO;
-    } else if ([identifier isEqualToString:kSegueToNewProgram]) {
-        // if there is no program name, abort performing this segue and ask user for program name
-        // after user entered a valid program name this segue will be called again and accepted
-        if (! self.defaultProgram) {
-            return NO;
-        }
-        return YES;
+    if ([identifier isEqualToString:kSegueToObjectList] || [identifier isEqualToString:kSegueToSceneList]) {
+        return self.defaultProgram != nil || self. lastUsedProgram != nil;
     } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]||[identifier isEqualToString:kSegueToUpload]){
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
@@ -408,17 +391,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kSegueToContinue]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = self.lastUsedProgram;
+    if ([segue.identifier isEqualToString:kSegueToSceneList]) {
+        if ([segue.destinationViewController isKindOfClass:[SceneListViewController class]]) {
+            SceneListViewController *sceneListViewController = (SceneListViewController*)segue.destinationViewController;
+            sceneListViewController.program = self.defaultProgram ?: self.lastUsedProgram;
+            self.defaultProgram = nil;
             self.lastUsedProgram = nil;
         }
-    } else if ([segue.identifier isEqualToString:kSegueToNewProgram]) {
-        if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
-            ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = self.defaultProgram;
-            self.defaultProgram = nil;
+    } else if ([segue.identifier isEqualToString:kSegueToObjectList]) {
+        if ([segue.destinationViewController isKindOfClass:[ObjectListViewController class]]) {
+            Program *relevantProgram = self.defaultProgram ?: self.lastUsedProgram;
+            
+            ObjectListViewController *objectListViewController = (ObjectListViewController*)segue.destinationViewController;
+            objectListViewController.scene = relevantProgram.scenes.firstObject;
+            objectListViewController.shouldBehaveAsIfObjectsBelongToProgram = YES;
         }
     } else if ([segue.identifier isEqualToString:kSegueToUpload] && _freshLogin) {
         ProgramsForUploadViewController *destinationVC = [segue destinationViewController];
@@ -474,7 +460,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)dealloc
 {
-    [self.identifiers removeAllObjects];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
@@ -536,7 +521,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                 maxInputLength:kMaxNumOfProgramNameCharacters
                            blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                 existingNames:[Program allProgramNames]];
+                                 existingNames:[[ProgramManager instance] allProgramNames]];
 }
 
 @end

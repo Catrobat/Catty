@@ -26,6 +26,20 @@
 
 @implementation UserVariable
 
+- (void)setValue:(id)value {
+    if([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+        _value = value;
+    } else {
+        _value = [NSNumber numberWithInt:0];
+    }
+}
+
+- (void)changeValueBy:(double)value {
+    if ([self.value isKindOfClass:[NSNumber class]]){
+        self.value = [NSNumber numberWithFloat:(CGFloat)([self.value doubleValue] + value)];
+    }
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];

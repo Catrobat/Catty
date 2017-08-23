@@ -100,7 +100,7 @@ final class CBScene: SKScene {
 
     override func didMoveToView(view: SKView) {
         view.multipleTouchEnabled = true
-        startProgram()
+        startScene()
     }
 
     func touchedWithTouch(touch: UITouch) -> Bool {
@@ -143,9 +143,10 @@ final class CBScene: SKScene {
     }
 
 
-    // MARK: - Start program
-    func startProgram() {
-        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject], let variableList = frontend?.program?.variables.allVariables() as NSArray? as? [UserVariable]
+    // MARK: - Start scene
+    func startScene() {
+        guard let spriteObjectList = frontend?.scene?.objectList as NSArray? as? [SpriteObject],
+                let variableList = frontend?.scene?.allAccessibleVarialbes()
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
         assert(NSThread.currentThread().isMainThread)
 
@@ -259,12 +260,12 @@ final class CBScene: SKScene {
         scheduler?.resume()
     }
     
-    // MARK: - Stop program
-    func stopProgram() {
+    // MARK: - Stop scene
+    func stopScene() {
         view?.paused = true
         scheduler?.shutdown() // stops all script contexts of all objects and removes all ressources
         removeAllChildren() // remove all CBSpriteNodes from Scene
-        frontend?.program?.removeReferences() // remove all references in program hierarchy
+        frontend?.scene?.removeReferences() // remove all references in scene hierarchy
         logger?.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
 

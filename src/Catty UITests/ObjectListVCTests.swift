@@ -22,7 +22,7 @@
 
 import XCTest
 
-class ProgramTVCTests: XCTestCase, UITestProtocol {
+class ObjectListVCTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()
@@ -75,8 +75,8 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Delete"].exists)
 
         app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this object"].buttons["No"]
-        yesButton.tap()
+        let cancelButton = app.alerts["Delete this object"].buttons["Cancel"]
+        cancelButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
     }
 

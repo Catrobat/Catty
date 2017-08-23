@@ -34,6 +34,7 @@
 #import "JNKeychain.h"
 #import "BDKNotifyHUD.h"
 #import "LoadingView.h"
+#import "ProgramManager.h"
 
 #define uploadParameterTag @"upload"                 //zip file with program
 #define fileChecksumParameterTag @"fileChecksum"     //md5 hash
@@ -110,11 +111,6 @@ const CGFloat PADDING = 5.0f;
     self.navigationItem.rightBarButtonItem = rightButton;
     self.navigationController.toolbarHidden = YES;
     [self.programNameTextField becomeFirstResponder];
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self
-                           selector:@selector(uploadAction)
-                               name:kReadyToUpload
-                             object:nil];
     [self.navigationController.navigationBar setTintColor:[UIColor navTintColor]];
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -147,8 +143,8 @@ const CGFloat PADDING = 5.0f;
     [self.programNameTextField setKeyboardType:UIKeyboardTypeDefault];
 
     
-    if(self.program.header.programName) {
-        self.programNameTextField.text = self.program.header.programName;
+    if(self.program.programName) {
+        self.programNameTextField.text = self.program.programName;
     }
     self.currentHeight += self.programNameTextField.frame.size.height+4*PADDING;
     
@@ -200,8 +196,8 @@ const CGFloat PADDING = 5.0f;
     [self.descriptionTextView setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [self.descriptionTextView setKeyboardType:UIKeyboardTypeDefault];
     
-    if(self.program.header.programDescription) {
-        self.descriptionTextView.text = self.program.header.programDescription;
+    if(self.program.programDescription) {
+        self.descriptionTextView.text = self.program.programDescription;
     }
     self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
 
@@ -281,8 +277,10 @@ const CGFloat PADDING = 5.0f;
         self.program.header.url = nil;
         self.program.header.userHandle = nil;
     }
-    [self.program renameToProgramName:self.programNameTextField.text];
-    [self.program updateDescriptionWithText:self.descriptionTextView.text];
+    [[ProgramManager instance] renameProgram:self.program toName:self.programNameTextField.text];
+    self.program.programDescription = self.descriptionTextView.text;
+    [self saveProgramToDisk];
+    
     if (!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
         //        _loadingView.backgroundColor = [UIColor globalTintColor];
@@ -315,7 +313,7 @@ const CGFloat PADDING = 5.0f;
     }
     
     if (checksum) {
-        NSDebug(@"Upload started for file:%@ with checksum:%@", self.program.header.programName, checksum);
+        NSDebug(@"Upload started for file:%@ with checksum:%@", self.program.programName, checksum);
         
         //Upload example URL: https://pocketcode.org/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
         //For testing use: https://catroid-test.catrob.at/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
@@ -333,10 +331,10 @@ const CGFloat PADDING = 5.0f;
         NSMutableData *body = [NSMutableData data];
 
         //Program Name
-        [self setFormDataParameter:programNameTag withData:[self.program.header.programName dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+        [self setFormDataParameter:programNameTag withData:[self.program.programName dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
         //Program Description
-        [self setFormDataParameter:programDescriptionTag withData:[self.program.header.programDescription dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+        [self setFormDataParameter:programDescriptionTag withData:[self.program.programDescription dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
         //User Email
         [self setFormDataParameter:userEmailTag withData:[[[NSUserDefaults standardUserDefaults] valueForKey:kcEmail] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
@@ -388,8 +386,8 @@ const CGFloat PADDING = 5.0f;
                     
                         //Set unique Program-ID received from server
                     NSString* projectId = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
-                    self.program.header.programID = projectId;
-                    [self.program saveToDiskWithNotification:YES];
+                    [[ProgramManager instance] setProgramIDOfProgram:self.program toID:projectId];
+                    [self saveProgramToDisk];
                     
                         //Set new token but when? everytime is wrong
                     NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
@@ -491,6 +489,9 @@ const CGFloat PADDING = 5.0f;
     });
 }
 
-
+- (void)saveProgramToDisk {
+    [[ProgramManager instance] saveProgram:self.program];
+    [self uploadAction];
+}
 
 @end

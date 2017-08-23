@@ -28,8 +28,9 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLPositionStack.h"
 #import "CBXMLSerializerHelper.h"
-#import "VariablesContainer.h"
 #import "SpriteObject.h"
+#import "OrderedMapTable.h"
+#import "NSArray+CustomExtension.h"
 
 @implementation UserVariable (CBXMLHandler)
 
@@ -81,7 +82,7 @@
     CBXMLPositionStack *positionStackOfUserVariable = nil;
 
     // check whether objectVariable or programVariable
-    SpriteObject *spriteObject = [context.variables spriteObjectForObjectVariable:self];
+    SpriteObject *spriteObject = [self spriteObjectForUserVariable:self objectVariableList:context.objectVariableList];
     if (spriteObject) {
         // it is a object variable!
         NSMutableDictionary *alreadySerializedVariables = [context.spriteObjectNameUserVariableListPositions
@@ -109,7 +110,7 @@
     }
 
     // it must be a program variable!
-    if (! [context.variables isProgramVariable:self]) {
+    if (![self isProgramVariable:self programVariableList:context.programVariableList]) {
         [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor programVariable"];
     }
 
@@ -127,6 +128,33 @@
     // save current stack position in context
     [context.programUserVariableNamePositions setObject:currentPositionStack forKey:self.name];
     return xmlElement;
+}
+
+- (SpriteObject *)spriteObjectForUserVariable:(UserVariable *)variable objectVariableList:(OrderedMapTable *)objectVariableList {
+    NSUInteger spriteObjectCount = objectVariableList.count;
+    
+    for (NSUInteger index = 0; index < spriteObjectCount; index++) {
+        SpriteObject *spriteObject = [objectVariableList keyAtIndex:index];
+        
+        NSArray<UserVariable *> *variables = [objectVariableList objectForKey:spriteObject];
+        BOOL containsVariable = [variables cb_hasAny:^BOOL(UserVariable *item) {
+            return item == variable;
+        }];
+        
+        if (containsVariable) {
+            return spriteObject;
+        }
+    }
+    return nil;
+}
+
+- (BOOL)isProgramVariable:(UserVariable *)variable programVariableList:(NSArray<UserVariable *> *)programVariableList {
+    for (UserVariable *programVariable in programVariableList) {
+        if ([programVariable.name isEqualToString:variable.name]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

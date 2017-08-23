@@ -27,6 +27,7 @@
 #import "Pocket_Code-Swift.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "CatrobatTableViewController.h"
+#import "ProgramManager.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -35,16 +36,13 @@ void uncaughtExceptionHandler(NSException *exception)
 
 @implementation AppDelegate
 
-- (FileManager*)fileManager
-{
-    if (_fileManager == nil)
-        _fileManager = [[FileManager alloc] init];
-    return _fileManager;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    
+    _fileManager = [[FileManager alloc] initWithFileManager:[[NSFileManager alloc] init]];
+    [ProgramManager setInstance:[[ProgramManager alloc] initWithFileManager:_fileManager]];
     
     [self initNavigationBar];
     

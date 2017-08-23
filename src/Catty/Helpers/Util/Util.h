@@ -107,10 +107,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (CATransition*)getPushCATransition;
 
-+ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo;
-
-+ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
-
 + (InputValidationResult*)validationResultWithName:(NSString *)name minLength:(NSUInteger)minLength maxlength:(NSUInteger)maxLength;
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
@@ -164,13 +160,11 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
 
-+ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program;
-
 + (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object;
 
 + (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object;
 
-+ (NSArray*)allMessagesForProgram:(Program*)program;
++ (NSArray*)allMessagesForScene:(Scene*)scene;
 
 + (BOOL)isNetworkError:(NSError*)error;
 

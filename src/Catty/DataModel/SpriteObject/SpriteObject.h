@@ -37,8 +37,12 @@
 @property (nonatomic, strong) NSMutableArray<Look*> *lookList;
 @property (nonatomic, strong) NSMutableArray<Sound*> *soundList;
 @property (nonatomic, strong) NSMutableArray<Script*> *scriptList;
-@property (nonatomic, weak) Program *program;
+@property (nonatomic, weak) Scene *scene;
 @property (nonatomic, weak) CBSpriteNode *spriteNode;
+
+@property (nonatomic, readonly) NSArray<UserVariable *> *variables;
+@property (nonatomic, readonly) NSArray<UserVariable *> *allAccessibleVariables;
+@property (nonatomic, readonly) NSArray<NSString *> *allAccessibleVariableNames;
 
 - (NSUInteger)numberOfScripts;
 - (NSUInteger)numberOfTotalBricks; // including script bricks
@@ -57,28 +61,30 @@
 - (CGSize)dimensionsOfLook:(Look*)look;
 - (NSUInteger)fileSizeOfSound:(Sound*)sound;
 - (CGFloat)durationOfSound:(Sound*)sound;
-- (NSArray*)allLookNames;
-- (NSArray*)allSoundNames;
+- (NSArray<NSString *> *)allLookNames;
+- (NSArray<NSString *> *)allSoundNames;
 - (NSUInteger)referenceCountForLook:(NSString*)fileName;
 - (NSUInteger)referenceCountForSound:(NSString*)fileName;
 
 // actions
-- (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeLooks:(NSArray<Look *> *)looks AndSaveToDisk:(BOOL)save;
-- (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
-- (void)removeSounds:(NSArray<Sound *> *)sounds AndSaveToDisk:(BOOL)save;
-- (void)removeSound:(Sound*)sound AndSaveToDisk:(BOOL)save;
-- (void)renameLook:(Look*)look toName:(NSString*)newLookName AndSaveToDisk:(BOOL)save;
-- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName AndSaveToDisk:(BOOL)save;
-- (BOOL)hasLook:(Look*)look;
-- (BOOL)hasSound:(Sound*)sound;
-- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save;;
-- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
+- (void)addLook:(Look *)look;
+- (void)removeLook:(Look *)look;
+- (void)removeLooks:(NSArray<Look *> *)looks;
+- (void)renameLook:(Look *)look toName:(NSString *)newLookName;
+
+- (void)addSound:(Sound *)sound;
+- (void)removeSound:(Sound *)sound;
+- (void)removeSounds:(NSArray<Sound *> *)sounds;
+- (void)renameSound:(Sound *)sound toName:(NSString*)newSoundName;
+
+- (void)moveLookAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
+- (void)moveSoundAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
+
 - (void)removeReferences;
 
 - (NSInteger)getRequiredResources;
 
 // compare
-- (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;
+- (BOOL)isEqualToSpriteObject:(SpriteObject *)spriteObject;
 
 @end

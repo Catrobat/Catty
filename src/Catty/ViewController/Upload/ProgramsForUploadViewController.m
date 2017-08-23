@@ -36,6 +36,7 @@
 #import "Util.h"
 #import "UploadInfoPopupViewController.h"
 #import "BDKNotifyHUD.h"
+#import "ProgramManager.h"
 
 
 @interface ProgramsForUploadViewController ()
@@ -70,7 +71,7 @@
     [super viewDidLoad];
     
     self.navigationController.title = self.title = kLocalizedUploadProgram;
-    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    self.programLoadingInfos = [[[ProgramManager instance] allProgramLoadingInfos] mutableCopy];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self setupToolBar];
@@ -108,7 +109,7 @@
 - (Program*)lastUsedProgram
 {
     if (! _lastUsedProgram) {
-        _lastUsedProgram = [Program lastUsedProgram];
+        _lastUsedProgram = [[ProgramManager instance] lastUsedProgram];
     }
     return _lastUsedProgram;
 }
@@ -243,7 +244,7 @@
 #pragma mark - Actions
 - (void)uploadProgramAction:(id)sender
 {
-    NSDebug(@"Upload program: %@", self.lastUsedProgram.header.programName);
+    NSDebug(@"Upload program: %@", self.lastUsedProgram.programName);
     //NSDebug(@"Attention: Currently not working!");
     
     //[Util alertWithText:kLocalizedThisFeatureIsComingSoon];
@@ -280,7 +281,7 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
         UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
         if (self.uploadingProgramInfos.count) {
-            Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
+            Program * prog = [[ProgramManager instance] programWithLoadingInfo:self.uploadingProgramInfos[0]];
             vc.program = prog;
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.tableView.scrollEnabled = NO;

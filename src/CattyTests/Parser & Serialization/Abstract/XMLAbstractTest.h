@@ -36,7 +36,6 @@
 #import "CBXMLValidator.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "VariablesContainer+CBXMLHandler.h"
 #import "Script+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "Formula+CBXMLHandler.h"

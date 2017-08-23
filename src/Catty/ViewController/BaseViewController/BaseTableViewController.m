@@ -32,6 +32,7 @@
 #import "ResourceHelper.h"
 #import "Reachability.h"
 #import "MediaLibraryViewController.h"
+#import "ProgramManager.h"
 
 @class BluetoothPopupVC;
 
@@ -443,8 +444,8 @@
     }
     
     self.scenePresenterViewController = [ScenePresenterViewController new];
-    self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
+    self.scenePresenterViewController.sceneModel = [[ProgramManager instance] lastUsedProgram].scenes.firstObject;
+    NSInteger resources = [self.scenePresenterViewController.sceneModel getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
     } else {
@@ -548,6 +549,23 @@
             }
         }
     }
+}
+
+- (void)saveProgram:(Program *)progarm showingSavedView:(BOOL)show {
+    if (show) {
+        [self hideLoadingView];
+        [self showSavedView];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[ProgramManager instance] saveProgram:progarm];
+        
+        if (show) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideLoadingView];
+            });
+        }
+    });
 }
 
 //#pragma mark - segue handling

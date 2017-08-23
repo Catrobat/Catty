@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <Foundation/Foundation.h>
 
-@class VariablesContainer;
+@interface NSArray<__covariant ObjectType> (CustomExtensions)
 
-@interface ProgramVariablesManager : NSObject
-@property (nonatomic, strong) VariablesContainer *variables;
-
-+ (instancetype)sharedProgramVariablesManager;
+- (NSArray *)cb_mapUsingBlock:(id(^)(ObjectType item))block;
+- (id)cb_foldLeftWithInitialValue:(id)value usingBlock:(id (^)(id accumulator, ObjectType nextItem))block;
+- (instancetype)cb_foreachUsingBlock:(void (^)(ObjectType item))block;
+- (ObjectType)cb_findFirst:(BOOL(^)(ObjectType item))predicate;
+- (BOOL)cb_hasAny:(BOOL(^)(ObjectType item))predicate;
 
 @end

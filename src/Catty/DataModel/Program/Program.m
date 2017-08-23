@@ -21,10 +21,8 @@
  */
 
 #import "Program.h"
-#import "VariablesContainer.h"
 #import "Util.h"
 #import "AppDelegate.h"
-#import "Parser.h"
 #import "Brick.h"
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLParser.h"
@@ -33,378 +31,116 @@
 #import "Scene.h"
 #import "OrderedMapTable.h"
 #import "Pocket_Code-Swift.h"
+#import "NSArray+CustomExtension.h"
 
 
 @implementation Program
 
-# pragma mark - factories
-+ (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID
-{
-    programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
-    Program *program = [[Program alloc] init];
-    program.header = [Header defaultHeader];
-    program.header.programName = programName;
-    program.header.programID = programID;
-
-    FileManager *fileManager = [[FileManager alloc] init];
-    if (! [fileManager directoryExists:programName]) {
-        [fileManager createDirectory:[program projectPath]];
-    }
-
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramImagesDirName];
-    if (! [fileManager directoryExists:imagesDirName]) {
-        [fileManager createDirectory:imagesDirName];
-    }
-
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramSoundsDirName];
-    if (! [fileManager directoryExists:soundsDirName]) {
-        [fileManager createDirectory:soundsDirName];
-    }
-
-    [program addObjectWithName:kLocalizedBackground];
-    NSDebug(@"%@", [program description]);
-    return program;
-}
-
-+ (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
-{
-    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
-    NSDebug(@"Path: %@", loadingInfo.basePath);
-    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
-    NSDebug(@"XML-Path: %@", xmlPath);
-
-//    //######### FIXME remove that later!! {
-//        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks093" ofType:@"xml"];
-//    // }
-
-    Program *program = nil;
-    CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
-
-    if (languageVersion == kCatrobatInvalidVersion) {
-        NSDebug(@"Invalid catrobat language version!");
-        return nil;
-    }
-
-    // detect right parser for correct catrobat language version
-    CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
-    if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
-        Parser *parser = [[Parser alloc] init];
-        program = [parser generateObjectForProgramWithPath:xmlPath];
-    } else {
-        program = [catrobatParser parseAndCreateProgram];
-    }
-    program.header.programID = loadingInfo.programID;
-
-    if (! program)
-        return nil;
-
-    NSDebug(@"%@", [program description]);
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName programID:loadingInfo.programID];
-    return program;
-}
-
-+ (instancetype)lastUsedProgram
-{
-    return [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-}
-
-+ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName programID:(NSString*)programID
-{
-    NSString *xmlPath = [NSString stringWithFormat:@"%@%@",
-                         [self projectPathForProgramWithName:programName programID:programID],
-                         kProgramCodeFileName];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
-}
-
-- (NSInteger)numberOfTotalObjects
-{
-    return [self.objectList count];
-}
-
-- (NSInteger)numberOfBackgroundObjects
-{
-    NSInteger numberOfTotalObjects = [self numberOfTotalObjects];
-    if (numberOfTotalObjects < kBackgroundObjects) {
-        return numberOfTotalObjects;
-    }
-    return kBackgroundObjects;
-}
-
-- (NSInteger)numberOfNormalObjects
-{
-    NSInteger numberOfTotalObjects = [self numberOfTotalObjects];
-    if (numberOfTotalObjects > kBackgroundObjects) {
-        return (numberOfTotalObjects - kBackgroundObjects);
-    }
-    return 0;
-}
-
-- (SpriteObject*)addObjectWithName:(NSString*)objectName
-{
-    SpriteObject *object = [[SpriteObject alloc] init];
-    //object.originalSize;
-    object.spriteNode.currentLook = nil;
-
-    object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
-    object.program = self;
-    [self.sceneModel addObject:object];
+- (instancetype)initWithHeader:(Header *)header scenes:(NSArray<Scene *> *)scenes programVariableList:(NSArray<UserVariable *> *)programVariableList {
+    NSParameterAssert(header);
+    NSParameterAssert(scenes.count);
+    NSParameterAssert(programVariableList);
     
-    [self saveToDiskWithNotification:YES];
-    return object;
-}
-
-- (void)removeObjectFromList:(SpriteObject*)object
-{
-    [self.sceneModel removeObject:object];
-    [self.variables removeObjectVariablesForSpriteObject:object];
-}
-
-- (void)removeObject:(SpriteObject*)object
-{
-    [self removeObjectFromList:object];
-    [self saveToDiskWithNotification:YES];
-}
-
-- (void)removeObjects:(NSArray<SpriteObject *> *)objects
-{
-    for (id object in objects) {
-        if ([object isKindOfClass:[SpriteObject class]]) {
-            [self removeObject:((SpriteObject*)object)];
-        }
+    self = [super init];
+    if (self) {
+        _header = header;
+        
+        _scenes = [scenes mutableCopy];
+        [_scenes cb_foreachUsingBlock:^(Scene *item) {
+            item.program = self;
+        }];
+        
+        _programVariableList = [programVariableList mutableCopy];
     }
-    [self saveToDiskWithNotification:YES];
+    return self;
 }
 
-- (void)moveObjectFromIndex:(NSInteger)originIndex toIndex:(NSInteger)destinationIndex {
-    [self.sceneModel moveObjectFromIndex:originIndex toIndex:destinationIndex];
++ (instancetype)defaultProgramWithName:(NSString *)programName {
+    NSParameterAssert(programName);
+    
+    Scene *scene = [Scene defaultSceneWithName:@"Scene 1"];
+    
+    Header *header = [Header defaultHeader];
+    header.programName = [programName copy];
+    header.screenWidth = @(scene.originalWidth.floatValue);
+    header.screenHeight = @(scene.originalHeight.floatValue);
+    
+    return [[[self class] alloc] initWithHeader:header scenes:@[scene] programVariableList:@[]];
 }
 
-- (BOOL)objectExistsWithName:(NSString*)objectName
-{
-    for (SpriteObject *object in self.objectList) {
-        if ([object.name isEqualToString:objectName]) {
-            return YES;
+- (NSArray<UserVariable *> *)allVariables {
+    NSMutableArray<UserVariable *> *variables = [self.programVariableList mutableCopy];
+    
+    for (Scene *scene in self.scenes) {
+        for (SpriteObject *spriteObject in scene.objectList) {
+            [variables addObjectsFromArray:spriteObject.variables];
         }
-    }
-    return NO;
-}
-
-- (Scene *)sceneModel {
-    if (self.scenes == nil) {
-        self.scenes = [NSArray arrayWithObject:[[Scene alloc] initWithName:@"Scene 1"
-                                                                objectList:[NSMutableArray array]
-                                                        objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
-                                                             originalWidth:[self.header.screenWidth stringValue] ?: @"768"
-                                                            originalHeight:[self.header.screenHeight stringValue] ?: @"1184"]];
     }
     
-    NSAssert(self.scenes.count == 1, @"Should have only one scene at the moment");
-    return [self.scenes firstObject];
+    return [variables copy];
 }
 
-#pragma mark - Custom getter
-- (NSMutableArray<SpriteObject *> *)objectList
-{
-    return [self.sceneModel objectList];
+- (NSArray<NSString *> *)allVariableNames {
+    return [[self allVariables] cb_mapUsingBlock:^id(UserVariable *item) {
+        return item.name;
+    }];
 }
 
-- (void)setObjectList:(NSMutableArray<SpriteObject *> *)objectList
-{
-    self.sceneModel.objectList = objectList;
+- (NSArray<NSString *> *)allSceneNames {
+    return [[self scenes] cb_mapUsingBlock:^id(Scene *item) {
+        return item.name;
+    }];
 }
 
-- (NSMutableArray<UserVariable *> *)programVariableList {
-    if (!_programVariableList) {
-        _programVariableList = [NSMutableArray array];
-    }
-    return _programVariableList;
+- (NSString *)programName {
+    return self.header.programName;
 }
-- (VariablesContainer *)variables
-{
-    NSAssert(self.programVariableList != nil && self.sceneModel.objectVariableList != nil, @"Should be nonnil");
+
+- (NSString *)programID {
+    return self.header.programID;
+}
+
+- (NSString *)programDescription {
+    return self.header.programDescription;
+}
+
+- (void)setProgramDescription:(NSString *)programDescription {
+    self.header.programDescription = programDescription;
+}
+
+- (void)addScene:(Scene *)scene {
+    NSParameterAssert(scene);
+    NSAssert(![[self allSceneNames] containsObject:scene.name], @"Scene with such name already exists");
     
-    VariablesContainer *variables = [[VariablesContainer alloc] init];
-    variables.programVariableList = self.programVariableList;
-    variables.objectVariableList = self.sceneModel.objectVariableList;
+    scene.program = self;
+    [self.scenes addObject:scene];
+}
+
+- (void)addProgramVariable:(UserVariable *)variable {
+    NSParameterAssert(variable);
+    NSAssert(![[self allVariableNames] containsObject:variable.name], @"Variable with such name already exists");
     
-    return variables;
+    [self.programVariableList addObject:variable];
 }
 
-- (void)setVariables:(VariablesContainer *)variables
-{
-    self.programVariableList = variables.programVariableList;
-    self.sceneModel.objectVariableList = variables.objectVariableList;
+- (void)removeProgramVariable:(UserVariable *)variable {
+    NSParameterAssert(variable);
+    NSAssert([[self programVariableList] containsObject:variable], @"No such program variable");
+    
+    [self.programVariableList removeObject:variable];
 }
 
-- (NSString*)projectPath
-{
-    return [Program projectPathForProgramWithName:[Util replaceBlockedCharactersForString:self.header.programName] programID:self.header.programID];
-}
-
-+ (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID
-{
-    return [NSString stringWithFormat:@"%@%@/", [Program basePath], [[self class] programDirectoryNameForProgramName:[Util replaceBlockedCharactersForString:programName] programID:programID]];
-}
-
-- (void)removeFromDisk
-{
-    [Program removeProgramFromDiskWithProgramName:[Util enableBlockedCharactersForString:self.header.programName] programID:self.header.programID];
-}
-
-+ (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
-                         sourceProgramID:(NSString*)sourceProgramID
-                  destinationProgramName:(NSString*)destinationProgramName
-{
-    NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName programID:sourceProgramID];
-    destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
-    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:nil];
-
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
-    ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName programID:nil];
-    Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
-    program.header.programName = destinationProgramLoadingInfo.visibleName;
-    [program saveToDiskWithNotification:YES];
-}
-
-+ (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID
-{
-    FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
-    NSString *projectPath = [self projectPathForProgramWithName:programName programID:programID];
-    if ([fileManager directoryExists:projectPath]) {
-        [fileManager deleteDirectory:projectPath];
+- (NSInteger)getRequiredResources {
+    NSInteger resources = kNoResources;
+    
+    for (Scene *scene in self.scenes) {
+        resources |= [scene getRequiredResources];
     }
-
-    // if this is currently set as last used program, then look for next program to set it as
-    // the last used program
-    if ([Program isLastUsedProgram:programName programID:programID]) {
-        [Util setLastProgramWithName:nil programID:nil];
-        NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
-        for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
-            [Util setLastProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
-            break;
-        }
-    }
-
-    // if there are no programs left, then automatically recreate default program
-    [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+    return resources;
 }
 
-- (void)saveToDiskWithNotification:(BOOL)notify
-{
-    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
-    dispatch_async(saveToDiskQ, ^{
-        // show saved view bezel
-        if (notify) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-                [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
-                [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
-            });
-        }
-        // TODO: find correct serializer class dynamically
-        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
-        [serializer serializeProgram:self];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
-        });
-    });
-}
-
-- (BOOL)isLastUsedProgram
-{
-    return [Program isLastUsedProgram:self.header.programName programID:self.header.programID];
-}
-
-- (void)setAsLastUsedProgram
-{
-    [Program setLastUsedProgram:self];
-}
-
-- (void)translateDefaultProgram
-{
-    NSUInteger index = 0;
-    for (SpriteObject *spriteObject in self.objectList) {
-        if (index == kBackgroundObjectIndex) {
-            spriteObject.name = kLocalizedBackground;
-        } else {
-            NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
-            [spriteObjectName replaceOccurrencesOfString:kDefaultProgramBundleOtherObjectsNamePrefix
-                                              withString:kLocalizedMole
-                                                 options:NSCaseInsensitiveSearch
-                                                   range:NSMakeRange(0, spriteObjectName.length)];
-            spriteObject.name = (NSString*)spriteObjectName;
-        }
-        ++index;
-    }
-    [self renameToProgramName:kLocalizedMyFirstProgram]; // saves to disk!
-}
-
-- (void)renameToProgramName:(NSString*)programName
-{
-    if ([self.header.programName isEqualToString:programName]) {
-        return;
-    }
-    BOOL isLastProgram = [self isLastUsedProgram];
-    NSString *oldPath = [self projectPath];
-    self.header.programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
-    NSString *newPath = [self projectPath];
-    [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
-    if (isLastProgram) {
-        [Util setLastProgramWithName:self.header.programName programID:self.header.programID];
-    }
-    [self saveToDiskWithNotification:YES];
-}
-
-- (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName
-{
-    if (! [self hasObject:object] || [object.name isEqualToString:newObjectName]) {
-        return;
-    }
-    object.name = [Util uniqueName:newObjectName existingNames:[self allObjectNames]];
-    [self saveToDiskWithNotification:YES];
-}
-
-- (void)updateDescriptionWithText:(NSString*)descriptionText
-{
-    self.header.programDescription = descriptionText;
-    [self saveToDiskWithNotification:YES];
-}
-
-- (NSArray*)allObjectNames
-{
-    NSMutableArray *objectNames = [NSMutableArray arrayWithCapacity:[self.objectList count]];
-    for (id spriteObject in self.objectList) {
-        if ([spriteObject isKindOfClass:[SpriteObject class]]) {
-            [objectNames addObject:((SpriteObject*)spriteObject).name];
-        }
-    }
-    return [objectNames copy];
-}
-
-- (BOOL)hasObject:(SpriteObject *)object
-{
-    return [self.objectList containsObject:object];
-}
-
-- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
-    withNameForCopiedObject:(NSString *)nameOfCopiedObject
-{
-    if (! [self hasObject:sourceObject]) {
-        return nil;
-    }
-    CBMutableCopyContext *context = [CBMutableCopyContext new];
-    SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
-    copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
-    [self.sceneModel addObject:copiedObject];
-    [self saveToDiskWithNotification:YES];
-    return copiedObject;
+- (void)removeReferences {
+    [self.scenes makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
 - (BOOL)isEqual:(id)other {
@@ -416,180 +152,18 @@
     return [self isEqualToProgram:other];
 }
 
-- (BOOL)isEqualToProgram:(Program *)program
-{
-    return [self.header isEqualToHeader:program.header]
-        && [self.scenes isEqualToArray:program.scenes]
-        && [self.programVariableList isEqualToArray:program.programVariableList];
+- (BOOL)isEqualToProgram:(Program *)program {
+    return [program.header isEqualToHeader:self.header]
+    && [program.scenes isEqualToArray:self.scenes]
+    && [program.programVariableList isEqualToArray:self.programVariableList];
 }
 
-- (NSInteger)getRequiredResources
-{
-    NSInteger resources = kNoResources;
-    
-    for (SpriteObject *obj in self.objectList) {
-        resources |= [obj getRequiredResources];
-    }
-    return resources;
-
-}
-
-#pragma mark - helpers
-- (NSString*)description
-{
+- (NSString*)description {
     NSMutableString *ret = [[NSMutableString alloc] init];
-    [ret appendFormat:@"\n----------------- PROGRAM --------------------\n"];
-    [ret appendFormat:@"Application Build Name: %@\n", self.header.applicationBuildName];
-    [ret appendFormat:@"Application Build Number: %@\n", self.header.applicationBuildNumber];
-    [ret appendFormat:@"Application Name: %@\n", self.header.applicationName];
-    [ret appendFormat:@"Application Version: %@\n", self.header.applicationVersion];
-    [ret appendFormat:@"Catrobat Language Version: %@\n", self.header.catrobatLanguageVersion];
-    [ret appendFormat:@"Date Time Upload: %@\n", self.header.dateTimeUpload];
-    [ret appendFormat:@"Description: %@\n", self.header.description];
-    [ret appendFormat:@"Device Name: %@\n", self.header.deviceName];
-    [ret appendFormat:@"Media License: %@\n", self.header.mediaLicense];
-    [ret appendFormat:@"Platform: %@\n", self.header.platform];
-    [ret appendFormat:@"Platform Version: %@\n", self.header.platformVersion];
-    [ret appendFormat:@"Program License: %@\n", self.header.programLicense];
-    [ret appendFormat:@"Program Name: %@\n", self.header.programName];
-    [ret appendFormat:@"Remix of: %@\n", self.header.remixOf];
-    [ret appendFormat:@"Screen Height: %@\n", self.header.screenHeight];
-    [ret appendFormat:@"Screen Width: %@\n", self.header.screenWidth];
-    [ret appendFormat:@"Screen Mode: %@\n", self.header.screenMode];
-    [ret appendFormat:@"Sprite List: %@\n", self.objectList];
-    [ret appendFormat:@"URL: %@\n", self.header.url];
-    [ret appendFormat:@"User Handle: %@\n", self.header.userHandle];
-    [ret appendFormat:@"Variables: %@\n", [self.variables description]];
-    [ret appendFormat:@"------------------------------------------------\n"];
+    [ret appendFormat:@"Header:\n %@\n", [self.header description]];
+    [ret appendFormat:@"Scenes: %@\n", self.scenes];
+    [ret appendFormat:@"Program Variable List: %@\n", self.programVariableList];
     return [ret copy];
-}
-
-// returns true if either same programID and/or same programName already exists
-+ (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID
-{
-    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
-
-    // check if program with same ID already exists
-    if (programID && [programID length]) {
-        if ([[self class] programExistsWithProgramID:programID]) {
-            return YES;
-        }
-    }
-
-    // no programID match => check if program with same name already exists
-    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
-        if ([programName isEqualToString:programLoadingInfo.visibleName]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-// returns true if either same programID and/or same programName already exists
-+ (BOOL)programExistsWithProgramID:(NSString*)programID
-{
-    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
-    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
-        if ([programID isEqualToString:programLoadingInfo.programID]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-+ (BOOL)areThereAnyPrograms
-{
-    return ((BOOL)[[self allProgramNames] count]);
-}
-
-+ (BOOL)isLastUsedProgram:(NSString*)programName programID:(NSString*)programID
-{
-    ProgramLoadingInfo *lastUsedInfo = [Util lastUsedProgramLoadingInfo];
-    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
-                                                                              programID:programID];
-    return [lastUsedInfo isEqualToLoadingInfo:info];
-}
-
-+ (void)setLastUsedProgram:(Program*)program
-{
-    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
-}
-
-+ (NSString*)basePath
-{
-    return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
-}
-
-+ (NSArray*)allProgramNames
-{
-    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
-    NSMutableArray *programNames = [[NSMutableArray alloc] initWithCapacity:[allProgramLoadingInfos count]];
-    for (ProgramLoadingInfo *loadingInfo in allProgramLoadingInfos) {
-        [programNames addObject:loadingInfo.visibleName];
-    }
-    return [programNames copy];
-}
-
-+ (NSArray*)allProgramLoadingInfos
-{
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *subdirNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:subdirNames.count];
-    for (NSString *subdirName in subdirNames) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([subdirName isEqualToString:@".DS_Store"]) {
-            continue;
-        }
-
-        ProgramLoadingInfo *info = [[self class] programLoadingInfoForProgramDirectoryName:subdirName];
-        if (! info) {
-            NSDebug(@"Unable to load program located in directory %@", subdirName);
-            continue;
-        }
-        NSDebug(@"Adding loaded program: %@", info.basePath);
-        [programLoadingInfos addObject:info];
-    }
-    return programLoadingInfos;
-}
-
-+ (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
-{
-    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator,
-            (programID ? programID : kNoProgramIDYetPlaceholder)];
-}
-
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)directoryName
-{
-    CBAssert(directoryName);
-    NSArray *directoryNameParts = [directoryName componentsSeparatedByString:kProgramIDSeparator];
-    if (directoryNameParts.count < 2) {
-        return nil;
-    }
-    NSString *programID = (NSString*)directoryNameParts.lastObject;
-    NSString *programName = [directoryName substringToIndex:directoryName.length - programID.length - 1];
-    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
-}
-
-+ (NSString*)programNameForProgramID:(NSString*)programID
-{
-    if ((! programID) || (! [programID length])) {
-        return nil;
-    }
-    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
-    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
-        if ([programLoadingInfo.programID isEqualToString:programID]) {
-            return programLoadingInfo.visibleName;
-        }
-    }
-    return nil;
-}
-
-- (void)removeReferences
-{
-    [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
 @end

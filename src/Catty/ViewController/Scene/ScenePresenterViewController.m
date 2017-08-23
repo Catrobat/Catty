@@ -31,6 +31,8 @@
 #import "CatrobatLanguageDefines.h"
 #import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
+#import "Scene.h"
+#import "ProgramManager.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -120,7 +122,6 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
 
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -221,26 +222,26 @@
     [self.gridView addSubview:nullLabel];
     // positveWidth
     UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
-    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
+    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.sceneModel.originalWidth.floatValue/2];
     positiveWidth.textColor = [UIColor redColor];
     [positiveWidth sizeToFit];
     positiveWidth.frame = CGRectMake([Util screenWidth] - positiveWidth.frame.size.width - 5, [Util screenHeight]/2 + 5, positiveWidth.frame.size.width, positiveWidth.frame.size.height);
     [self.gridView addSubview:positiveWidth];
     // negativeWidth
     UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
-    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
+    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.sceneModel.originalWidth.floatValue/2];
     negativeWidth.textColor = [UIColor redColor];
     [negativeWidth sizeToFit];
     [self.gridView addSubview:negativeWidth];
     // positveHeight
     UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
-    positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
+    positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.sceneModel.originalHeight.floatValue/2];
     positiveHeight.textColor = [UIColor redColor];
     [positiveHeight sizeToFit];
     [self.gridView addSubview:positiveHeight];
     // negativeHeight
     UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
-    negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
+    negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.sceneModel.originalHeight.floatValue/2];
     negativeHeight.textColor = [UIColor redColor];
     [negativeHeight sizeToFit];
     [self.gridView addSubview:negativeHeight];
@@ -250,7 +251,7 @@
 
 - (void)checkAspectRatio
 {
-    if (self.program.header.screenWidth.floatValue == [Util screenWidth] && self.program.header.screenHeight.floatValue == [Util screenHeight]) {
+    if (self.sceneModel.originalWidth.floatValue == [Util screenWidth] && self.sceneModel.originalHeight.floatValue == [Util screenHeight]) {
         self.menuAspectRatioButton.hidden = YES;
     }
 }
@@ -258,15 +259,14 @@
 - (void)setupScene
 {
     if (! self.scene) {
-        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
-        
-        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+        CBScene *scene = [SetupScene setupSceneForScene:self.sceneModel];
         [scene initializeScreenRecording];
-        scene.name = self.program.header.programName;
+        scene.name = self.sceneModel.name;
         scene.screenRecordingDelegate = self;
-        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+        
+        if ([self.sceneModel.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
             scene.scaleMode = SKSceneScaleModeFill;
-        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+        } else if ([self.sceneModel.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
             scene.scaleMode = SKSceneScaleModeAspectFit;
         } else {
             scene.scaleMode = SKSceneScaleModeFill;
@@ -280,7 +280,7 @@
 -(void)resaveLooks
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (SpriteObject *object in self.program.objectList) {
+        for (SpriteObject *object in self.sceneModel.objectList) {
             for (Look *look in object.lookList) {
                 [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
             }
@@ -376,7 +376,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
         previousScene.userInteractionEnabled = NO;
-        [previousScene stopProgram];
+        [previousScene stopScene];
         [[AudioManager sharedAudioManager] stopAllSounds];
         [[FlashHelper sharedFlashHandler] reset];
         previousScene.userInteractionEnabled = YES;
@@ -396,7 +396,7 @@
     self.menuView.userInteractionEnabled = NO;
     CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
+    [previousScene stopScene];
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[FlashHelper sharedFlashHandler] reset];
     previousScene.userInteractionEnabled = YES;
@@ -417,7 +417,7 @@
     self.menuView.userInteractionEnabled = NO;
     CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
+    [previousScene stopScene];
     [[FlashHelper sharedFlashHandler] reset];
 
     [self freeRessources];
@@ -502,7 +502,7 @@
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
     self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
-    self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
+    self.sceneModel.program.header.screenMode = [self.sceneModel.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
     // pause Scene
@@ -524,9 +524,10 @@
 
 -(void)takeAutomaticScreenshot
 {
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/screenshot.png",[self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", [self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", [self.program projectPath]]];
+    NSString *projectPath = [ProgramManager projectPathForProgram:self.sceneModel.program];
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/screenshot.png", projectPath],
+                               [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", projectPath],
+                               [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", projectPath]];
     BOOL fileExists = NO;
     for (NSString *fallbackPath in fallbackPaths) {
         NSString *fileName = [fallbackPath lastPathComponent];
@@ -543,7 +544,7 @@
         UIGraphicsEndImageContext();
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png",[self.program projectPath]];
+            NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png", projectPath];
             NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
             [data writeToFile:pngFilePath atomically:YES];
             
@@ -557,7 +558,7 @@
 - (void)showSaveScreenshotActionSheet
 {
     UIImage *imageToShare = self.snapshotImage;
-    NSString *path = [self.program projectPath];
+    NSString *path = [ProgramManager projectPathForProgram:self.sceneModel.program];
     NSArray *itemsToShare = @[imageToShare];
 
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];

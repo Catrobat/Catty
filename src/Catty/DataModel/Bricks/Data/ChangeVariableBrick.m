@@ -53,7 +53,7 @@
 {
     self.variableFormula = [[Formula alloc] initWithZero];
     if (spriteObject) {
-        NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
+        NSArray<UserVariable *> *variables = spriteObject.allAccessibleVariables;
         if([variables count] > 0) {
             self.userVariable = [variables objectAtIndex:0];
         } else {

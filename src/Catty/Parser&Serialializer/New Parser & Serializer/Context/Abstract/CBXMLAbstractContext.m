@@ -22,7 +22,7 @@
 
 #import "CBXMLAbstractContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-#import "VariablesContainer.h"
+#import "OrderedMapTable.h"
 
 @implementation CBXMLAbstractContext
 
@@ -51,14 +51,20 @@
     return _spriteObjectList;
 }
 
-- (VariablesContainer*)variables
+- (NSMutableArray*)programVariableList
 {
-    if (! _variables) {
-        _variables = [VariablesContainer new];
+    if (! _programVariableList) {
+        _programVariableList = [NSMutableArray array];
     }
-    return _variables;
+    return _programVariableList;
 }
 
+- (OrderedMapTable *)objectVariableList {
+    if (! _objectVariableList) {
+        _objectVariableList = [OrderedMapTable weakToStrongObjectsMapTable];
+    }
+    return _objectVariableList;
+}
 
 - (id)mutableCopy
 {
@@ -67,7 +73,8 @@
     copiedContext.pointedSpriteObjectList = [self.pointedSpriteObjectList mutableCopy];
     copiedContext.spriteObjectList = [self.spriteObjectList mutableCopy];
     copiedContext.spriteObject = self.spriteObject;
-    copiedContext.variables = [self.variables mutableCopy];
+    copiedContext.programVariableList = [self.programVariableList mutableCopy];
+    copiedContext.objectVariableList = [self.objectVariableList mutableCopy];
     return copiedContext;
 }
 

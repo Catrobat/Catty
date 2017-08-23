@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProgram @"segueToNewProgram"
+#define kSegueToSceneList @"segueToSceneList"
+#define kSegueToObjectList @"segueToObjectList"
 #define kSegueToPrograms @"segueToPrograms"
 #define kSegueToHelp @"segueToHelp"
 #define kSegueToExplore @"segueToExplore"

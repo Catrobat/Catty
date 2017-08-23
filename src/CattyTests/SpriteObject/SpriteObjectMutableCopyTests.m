@@ -23,6 +23,7 @@
 #import "Program.h"
 #import "XMLAbstractTest.h"
 #import "CBMutableCopyContext.h"
+#import "Scene.h"
 
 @interface SpriteObjectMutableCopyTests : XMLAbstractTest
 
@@ -159,9 +160,13 @@
 - (void)compareSpriteObjectsWithIsEqualMethodForProgramWithXML:(NSString*)xml
 {
     Program *program = [self getProgramForXML:xml];
-    XCTAssertTrue([program.objectList count] > 0, @"Invalid objectList");
     
-    for(SpriteObject *spriteObject in program.objectList) {
+    XCTAssertEqual(1, [program.scenes count], @"Invalid scenes");
+    Scene *scene = program.scenes.firstObject;
+    
+    XCTAssertTrue([scene.objectList count] > 0, @"Invalid objectList");
+    
+    for(SpriteObject *spriteObject in scene.objectList) {
         CBMutableCopyContext *context = [CBMutableCopyContext new];
         SpriteObject *copiedSpriteObject = [spriteObject mutableCopyWithContext:context];
         XCTAssertTrue([spriteObject isEqualToSpriteObject:copiedSpriteObject], "SpriteObjects are not equal");

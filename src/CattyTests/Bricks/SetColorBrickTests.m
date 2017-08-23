@@ -46,10 +46,10 @@
 - (void)testSetColorBrickLower
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -77,16 +77,15 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.colorValue, -60.0f,0.1f, @"SetColorBrick - Color not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testSetColorBrickHigher
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -114,16 +113,15 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.colorValue, 140.0f,0.1f, @"SetColorBrick - Color not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testSetColorBrickMoreThan2Pi
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -151,17 +149,16 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.colorValue, 30.0f,0.1f, @"SetColorBrick - Color not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 
 - (void)testSetColorBrickWrongInput
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    object.program = program;
+    
+    [self createAndKeepReferenceToProgramWithObjects:@[object] saveToDisk:YES];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -190,7 +187,6 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqualWithAccuracy(spriteNode.colorValue, 0.0f,0.1f, @"SetColorBrick - Color not correct");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 @end

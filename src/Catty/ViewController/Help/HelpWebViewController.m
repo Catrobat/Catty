@@ -28,6 +28,7 @@
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "BDKNotifyHUD.h"
+#import "ProgramManager.h"
 
 @interface HelpWebViewController ()
 @property (nonatomic, strong) NSURL *URL;
@@ -261,7 +262,7 @@
         param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
         param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     }
-    if ([Program programExistsWithProgramName:param programID:programID]) {
+    if ([self programExistsWithProgramName:param programID:programID]) {
         [Util alertWithText:kLocalizedProgramAlreadyDownloadedDescription];
         return NO;
     }
@@ -277,6 +278,15 @@
         }
     }
     [self.loadingView show];
+    return NO;
+}
+
+- (BOOL)programExistsWithProgramName:(NSString *)programName programID:(NSString *)programID {
+    for (ProgramLoadingInfo *info in [[ProgramManager instance] allProgramLoadingInfos]) {
+        if ([info.visibleName isEqual:programName] || [info.programID isEqual:programID]) {
+            return YES;
+        }
+    }
     return NO;
 }
 

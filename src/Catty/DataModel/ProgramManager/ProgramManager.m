@@ -1,0 +1,360 @@
+/**
+ *  Copyright (C) 2010-2017 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
+#import "ProgramManager.h"
+#import "ProgramLoadingInfo.h"
+#import "ProgramDefines.h"
+#import "Util.h"
+#import "CatrobatLanguageDefines.h"
+#import "CBXMLParser.h"
+#import "AppDelegate.h"
+#import "CBXMLSerializer.h"
+#import "NSArray+CustomExtension.h"
+#import "Scene.h"
+
+@interface ProgramManager ()
+@property (nonatomic, readonly) FileManager *fileManager;
+@end
+
+@implementation ProgramManager
+
+static ProgramManager *_instance = nil;
+
+- (instancetype)initWithFileManager:(FileManager *)fileManager {
+    self = [super init];
+    if (self) {
+        _fileManager = fileManager;
+    }
+    return self;
+}
+
++ (void)setInstance:(ProgramManager *)instance {
+    NSParameterAssert(instance);
+    NSAssert(_instance == nil, @"Instance should be set only once");
+    _instance = instance;
+}
+
++ (instancetype)instance {
+    NSAssert(_instance != nil, @"Instance should be initialized before using");
+    return _instance;
+}
+
+
+- (Program *)programWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    NSParameterAssert(programLoadingInfo);
+    
+    NSDebug(@"Try to load project '%@'", programLoadingInfo.visibleName);
+    NSDebug(@"Path: %@", programLoadingInfo.basePath);
+    
+    NSString *xmlPath = [self xmlPathForProgramWithLoadingInfo:programLoadingInfo];
+    NSDebug(@"XML-Path: %@", xmlPath);
+    
+    CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
+    
+    if (languageVersion == kCatrobatInvalidVersion) {
+        NSDebug(@"Invalid catrobat language version!");
+        return nil;
+    }
+    
+    CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
+    if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
+        NSAssert(false, @"Unsupported");
+    }
+    
+    Program *program = [catrobatParser parseAndCreateProgram];
+    
+    program.header.programID = programLoadingInfo.programID;
+    
+    if (! program)
+        return nil;
+    
+    NSDebug(@"%@", [program description]);
+    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+    
+    [self updateLastModificationTimeForProgramWithLoadingInfo:programLoadingInfo];
+    return program;
+}
+
+- (NSString *)xmlPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    NSParameterAssert(programLoadingInfo);
+    return [NSString stringWithFormat:@"%@%@", programLoadingInfo.basePath, kProgramCodeFileName];
+}
+
+- (void)updateLastModificationTimeForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    NSParameterAssert(programLoadingInfo);
+    
+    NSString *xmlPath = [self xmlPathForProgramWithLoadingInfo:programLoadingInfo];
+    [self.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
+}
+
+- (ProgramLoadingInfo *)addProgram:(Program *)program {
+    NSParameterAssert(program);
+    NSAssert(![[self allProgramNames] containsObject:program.programName], @"Program with such name already exists");
+    
+    ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    
+    NSAssert(![self.fileManager directoryExists:loadingInfo.basePath], @"Inconsistency");
+    [self.fileManager createDirectory:loadingInfo.basePath];
+    
+    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramImagesDirName];
+    NSAssert(![self.fileManager directoryExists:imagesDirName], @"Inconsistency");
+    [self.fileManager createDirectory:imagesDirName];
+    
+    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramSoundsDirName];
+    NSAssert(![self.fileManager directoryExists:soundsDirName], @"Inconsistency");
+    [self.fileManager createDirectory:soundsDirName];
+    
+    [self saveProgram:program];
+    
+    return loadingInfo;
+}
+
+- (void)removeProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    NSParameterAssert(programLoadingInfo);
+    
+    NSString *projectPath = programLoadingInfo.basePath;
+    
+    if ([self.fileManager directoryExists:projectPath]) {
+        [self.fileManager deleteDirectory:projectPath];
+    }
+    
+    // if this is currently set as last used program, then look for next program to set it as
+    // the last used program
+    if ([[self lastUsedProgramLoadingInfo] isEqualToLoadingInfo:programLoadingInfo]) {
+        [self setAsLastUsedProgramWithLoadingInfo:[self allProgramLoadingInfos].firstObject];
+    }
+    
+    // if there are no programs left, then automatically recreate default program
+    [self addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+}
+
+- (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist {
+    if ([self allProgramLoadingInfos].count > 0) {
+        return;
+    }
+    [self addNewBundleProgramWithName:kDefaultProgramBundleName];
+    ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
+    Program *program = [self programWithLoadingInfo:loadingInfo];
+    [self translateDefaultProgram:program];
+    [self setAsLastUsedProgramWithLoadingInfo:loadingInfo];
+}
+
+- (void)addNewBundleProgramWithName:(NSString*)projectName {
+    if (! [self.fileManager directoryExists:[self class].basePath]) {
+        [self.fileManager createDirectory:[self class].basePath];
+    }
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
+    NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
+    [self.fileManager unzipAndStore:defaultProject withProgramID:nil withName:projectName];
+}
+
+- (void)translateDefaultProgram:(Program *)program {
+    NSUInteger index = 0;
+    for (SpriteObject *spriteObject in program.scenes[0].objectList) {
+        if (index == kBackgroundObjectIndex) {
+            spriteObject.name = kLocalizedBackground;
+        } else {
+            NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
+            [spriteObjectName replaceOccurrencesOfString:kDefaultProgramBundleOtherObjectsNamePrefix
+                                              withString:kLocalizedMole
+                                                 options:NSCaseInsensitiveSearch
+                                                   range:NSMakeRange(0, spriteObjectName.length)];
+            spriteObject.name = (NSString*)spriteObjectName;
+        }
+        ++index;
+    }
+    [self renameProgram:program toName:kLocalizedMyFirstProgram]; // saves to disk!
+}
+
++ (NSString *)basePath {
+    return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
+}
+
++ (NSString *)projectPathForProgram:(Program *)program {
+    NSParameterAssert(program);
+    return [ProgramLoadingInfo programLoadingInfoForProgram:program].basePath;
+}
+
++ (NSString *)directoryNameForProgram:(Program *)program {
+    NSParameterAssert(program);
+    return [self directoryNameForProgramWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgram:program]];
+}
+
++ (NSString *)directoryNameForProgramWithLoadingInfo:(ProgramLoadingInfo *)info {
+    NSParameterAssert(info);
+    return [info.basePath lastPathComponent];
+}
+
+- (void)setAsLastUsedProgram:(Program *)program {
+    ProgramLoadingInfo *info = (program != nil ? [ProgramLoadingInfo programLoadingInfoForProgram:program] : nil);
+    [self setAsLastUsedProgramWithLoadingInfo:info];
+}
+
+- (void)setAsLastUsedProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *lastProgramDirectoryName;
+    if (programLoadingInfo != nil) {
+        lastProgramDirectoryName = [[self class] directoryNameForProgramWithLoadingInfo:programLoadingInfo];
+    }
+    
+    [userDefaults setObject:lastProgramDirectoryName forKey:kLastUsedProgram];
+    [userDefaults synchronize];
+}
+
+- (ProgramLoadingInfo *)lastUsedProgramLoadingInfo {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastUsedProgramDirectoryName = [userDefaults objectForKey:kLastUsedProgram];
+    if (lastUsedProgramDirectoryName == nil) {
+        return nil;
+    }
+    
+    return [self programLoadingInfoForProgramDirectoryName:lastUsedProgramDirectoryName];
+    
+}
+
+- (Program *)lastUsedProgram {
+    ProgramLoadingInfo *info = [self lastUsedProgramLoadingInfo];
+    if (info == nil) {
+        return nil;
+    }
+    
+    return [self programWithLoadingInfo:info];
+}
+
+- (ProgramLoadingInfo *)programLoadingInfoForProgramDirectoryName:(NSString *)directoryName
+{
+    NSParameterAssert(directoryName);
+    NSArray<NSString *> *directoryNameParts = [directoryName componentsSeparatedByString:kProgramIDSeparator];
+    if (directoryNameParts.count < 2) {
+        return nil;
+    }
+    
+    NSString *programID = directoryNameParts.lastObject;
+    NSString *programName = [directoryName substringToIndex:directoryName.length - programID.length - 1];
+    if ([programID isEqualToString:kNoProgramIDYetPlaceholder]) {
+        programID = nil;
+    }
+    
+    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
+}
+
+- (ProgramLoadingInfo *)copyProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo destinationProgramName:(NSString *)destinationProgramName {
+    NSParameterAssert(programLoadingInfo);
+    NSParameterAssert(destinationProgramName);
+    
+    NSAssert(![[self allProgramNames] containsObject:destinationProgramName], @"Program with such name already exists");
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName
+                                                                                                       programID:nil];
+    NSString *sourceProgramPath = programLoadingInfo.basePath;
+    NSString *destinationProgramPath = destinationProgramLoadingInfo.basePath;
+    
+    [self.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
+    
+    Program *destinationProgram = [self programWithLoadingInfo:destinationProgramLoadingInfo];
+    destinationProgram.header.programName = destinationProgramLoadingInfo.visibleName;
+    [self saveProgram:destinationProgram];
+    
+    return destinationProgramLoadingInfo;
+}
+
+- (NSArray<NSString *> *)allProgramNames {
+    return [[self allProgramLoadingInfos] cb_mapUsingBlock:^NSString *(ProgramLoadingInfo *item) {
+        return item.visibleName;
+    }];
+}
+
+- (NSArray<ProgramLoadingInfo *> *)allProgramLoadingInfos {
+    NSArray<NSString *> *subdirNames = [self.fileManager getContentsOfDirectory:[[self class] basePath]];
+    
+    NSMutableArray<ProgramLoadingInfo *> *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:subdirNames.count];
+    for (NSString *subdirName in subdirNames) {
+        // exclude .DS_Store folder on MACOSX simulator
+        if ([subdirName isEqualToString:@".DS_Store"]) {
+            continue;
+        }
+        
+        ProgramLoadingInfo *info = [self programLoadingInfoForProgramDirectoryName:subdirName];
+        if (info == nil) {
+            NSDebug(@"Unable to load program located in directory %@", subdirName);
+            continue;
+        }
+        NSDebug(@"Adding loaded program: %@", info.basePath);
+        
+        [programLoadingInfos addObject:info];
+    }
+    return [programLoadingInfos copy];
+}
+
+- (void)renameProgram:(Program *)program toName:(NSString *)name {
+    NSParameterAssert(program);
+    NSParameterAssert(name);
+    
+    if ([program.programName isEqualToString:name]) {
+        return;
+    }
+    NSAssert(![[self allProgramNames] containsObject:name], @"Program with such name already exists");
+    
+    ProgramLoadingInfo *oldLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    program.header.programName = name;
+    ProgramLoadingInfo *newLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    
+    [self moveProgramWithLoadingInfo:oldLoadingInfo toLoadingInfo:newLoadingInfo];
+}
+
+- (void)setProgramIDOfProgram:(Program *)program toID:(NSString *)programID {
+    NSParameterAssert(program);
+    NSParameterAssert(programID);
+    
+    if ([program.programID isEqualToString:programID]) {
+        return;
+    }
+    
+    ProgramLoadingInfo *oldLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    program.header.programID = programID;
+    ProgramLoadingInfo *newLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    
+    [self moveProgramWithLoadingInfo:oldLoadingInfo toLoadingInfo:newLoadingInfo];
+}
+
+- (void)moveProgramWithLoadingInfo:(ProgramLoadingInfo *)oldLoadingInfo toLoadingInfo:(ProgramLoadingInfo *)newLoadingInfo {
+    [self.fileManager moveExistingDirectoryAtPath:oldLoadingInfo.basePath toPath:newLoadingInfo.basePath];
+    
+    if ([[self lastUsedProgramLoadingInfo] isEqualToLoadingInfo:oldLoadingInfo]) {
+        [self setAsLastUsedProgramWithLoadingInfo:newLoadingInfo];
+    }
+}
+
+- (void)saveProgram:(Program *)progarm {
+    NSParameterAssert(progarm);
+    
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:progarm];
+    NSAssert([self.fileManager directoryExists:info.basePath], @"Program doesn't exit");
+    
+    NSString *xmlPath = [self xmlPathForProgramWithLoadingInfo:info];
+    CBXMLSerializer *serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
+    [serializer serializeProgram:progarm];
+    
+    [self updateLastModificationTimeForProgramWithLoadingInfo:info];
+}
+
+@end

@@ -22,16 +22,6 @@
 
 @protocol ProgramUpdateDelegate <NSObject>
 
-@optional
-
-- (ProgramLoadingInfo*)addProgram:(NSString*)programName;
-
-@required
-
-- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID;
-
-- (void)renameOldProgramWithName:(NSString*)oldProgramName
-                       programID:(NSString*)programID
-                toNewProgramName:(NSString*)newProgramName;
+- (void)renameOldProgram:(Program *)program toNewProgramName:(NSString*)newProgramName;
 
 @end

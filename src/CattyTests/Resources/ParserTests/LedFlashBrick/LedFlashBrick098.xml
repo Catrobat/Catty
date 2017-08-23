@@ -58,6 +58,7 @@
     <objectListOfList/>
     <objectVariableList/>
     <programListOfLists/>
+    <programVariableList/>
     <userBrickVariableList/>
   </data>
   <settings/>

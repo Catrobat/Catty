@@ -21,15 +21,14 @@
  */
 
 #import "FormulaElement.h"
-#import "ProgramVariablesManager.h"
 #import "Program.h"
-#import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "SensorHandler.h"
 #import "SpriteObject.h"
 #import "Util.h"
 #import "InternFormulaParserException.h"
 #import "Pocket_Code-Swift.h"
+#import "NSArray+CustomExtension.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -110,8 +109,7 @@
 
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-            UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            UserVariable *var = [self getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
             if (var.value == nil) {
                 return [NSNumber numberWithInt:0];
@@ -150,6 +148,12 @@
     
     return result;
     
+}
+
+- (UserVariable *)getUserVariableNamed:(NSString *)variableName forSpriteObject:(SpriteObject *)spriteObject {
+    return [spriteObject.allAccessibleVariables cb_findFirst:^BOOL(UserVariable *item) {
+        return [item.name isEqualToString:variableName];
+    }];
 }
 
 - (bool) isStringDecimalNumber:(NSString *)stringValue
@@ -535,9 +539,7 @@
 
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
 {
-//    ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
-    UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
+    UserVariable *userVariable = [self getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     
     id userVariableVvalue = [userVariable value];
     if([userVariableVvalue isKindOfClass:[NSString class]])
