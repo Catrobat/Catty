@@ -29,6 +29,7 @@
 #import "LoadingView.h"
 #import "FlashHelper.h"
 #import "TouchHandler.h"
+#import "CameraPreviewHandler.h"
 #import "CatrobatLanguageDefines.h"
 #import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
@@ -122,7 +123,7 @@
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
     [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
-
+    [CameraPreviewHandler resetSharedInstance];
     // Delete sound rec for loudness sensor
     NSError *error;
     NSFileManager *fileMgr = [NSFileManager defaultManager];
@@ -274,6 +275,7 @@
         }
         self.skView.paused = NO;
         [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
+        [[CameraPreviewHandler shared] setCamView:self.view];
         [self.skView presentScene:scene];
         self.scene = scene;
     }
