@@ -36,6 +36,7 @@
 #import "RepeatUntilBrick.h"
 #import "SetBackgroundBrick.h"
 #import "SpeakAndWaitBrick.h"
+#import "CameraBrick.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
 
@@ -286,6 +287,23 @@
     XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_X] isEqualToString:fingerXBrick.variableFormula.formulaTree.value], "Invalid sensor");
     XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_Y] isEqualToString:fingerYBrick.variableFormula.formulaTree.value], "Invalid sensor");
     XCTAssertTrue([[[SensorManager class] stringForSensor:LAST_FINGER_INDEX] isEqualToString:lastFingerIndexBrick.variableFormula.formulaTree.value], "Invalid sensor");
+}
+
+- (void)testCameraBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 33, "Invalid brick list");
+    
+    Brick *cameraBrick = [backgroundScript.brickList objectAtIndex:31];
+    XCTAssertTrue([cameraBrick isKindOfClass:[CameraBrick class]], "Invalid brick type");
+    XCTAssertTrue([(CameraBrick*)cameraBrick isEnabled], "Invalid brick option");
+    
+    cameraBrick = [backgroundScript.brickList objectAtIndex:32];
+    XCTAssertTrue([cameraBrick isKindOfClass:[CameraBrick class]], "Invalid brick type");
+    XCTAssertFalse([(CameraBrick*)cameraBrick isEnabled], "Invalid brick option");
 }
 
 @end

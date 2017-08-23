@@ -100,6 +100,7 @@
 #import "RepeatBrick.h"
 #import "RepeatUntilBrick.h"
 #import "SayBubbleBrick.h"
+#import "CameraBrick.h"
 
 // Formulas
 #import "Formula.h"
@@ -131,6 +132,7 @@
 #import "LoadingView.h"
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
+#import "CameraPreviewHandler.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes

@@ -96,6 +96,7 @@
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
 		4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */; };
+		4C64B40F1F4D799B0081D166 /* CameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C64B40E1F4D799B0081D166 /* CameraBrick+Instruction.swift */; };
 		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
 		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
 		4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */; };
@@ -304,6 +305,10 @@
 		4DC4D2531F100D8A00221169 /* RepeatUntilBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D2521F100D8A00221169 /* RepeatUntilBrick+CBXMLHandler.m */; };
 		4DC4D2561F1010DD00221169 /* RepeatUntilBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4D2551F1010DD00221169 /* RepeatUntilBrickCell.m */; };
 		4DD9F1911EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */; };
+		4DDB57591F436B710027E760 /* CameraPreviewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB57581F436B710027E760 /* CameraPreviewHandler.m */; };
+		4DDD1EB11F38B52000D25509 /* CameraBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDD1EB01F38B52000D25509 /* CameraBrick.m */; };
+		4DDD1EB71F38B84600D25509 /* CameraBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDD1EB61F38B84600D25509 /* CameraBrick+CBXMLHandler.m */; };
+		4DDD1EBA1F38BE2100D25509 /* CameraBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDD1EB91F38BE2100D25509 /* CameraBrickCell.m */; };
 		4DF2BECA1F2A09D6005B062F /* SetBackgroundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BEC91F2A09D6005B062F /* SetBackgroundBrick.m */; };
 		4DF2BECD1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BECC1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.m */; };
 		4DF2BECF1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */; };
@@ -1051,6 +1056,7 @@
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_098.xml; path = CattyTests/Resources/ParserTests/Air_fight_0.5/Air_fight_0.5_098.xml; sourceTree = SOURCE_ROOT; };
 		4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests098.m; sourceTree = "<group>"; };
+		4C64B40E1F4D799B0081D166 /* CameraBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CameraBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/CameraBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaEditorUtilTests.m; path = Formula/FormulaEditorUtilTests.m; sourceTree = "<group>"; };
 		4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementTest.m; path = Formula/FormulaElementTest.m; sourceTree = "<group>"; };
 		4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaFunctionsTest.m; path = Formula/FormulaFunctionsTest.m; sourceTree = "<group>"; };
@@ -1330,6 +1336,14 @@
 		4DC4D2551F1010DD00221169 /* RepeatUntilBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatUntilBrickCell.m; sourceTree = "<group>"; };
 		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DDB57571F436B220027E760 /* CameraPreviewHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraPreviewHandler.h; sourceTree = "<group>"; };
+		4DDB57581F436B710027E760 /* CameraPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewHandler.m; sourceTree = "<group>"; };
+		4DDD1EB01F38B52000D25509 /* CameraBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraBrick.m; sourceTree = "<group>"; };
+		4DDD1EB41F38B52D00D25509 /* CameraBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraBrick.h; sourceTree = "<group>"; };
+		4DDD1EB51F38B83300D25509 /* CameraBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CameraBrick+CBXMLHandler.h"; path = "Catty/DataModel/Bricks/Look/CameraBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DDD1EB61F38B84600D25509 /* CameraBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CameraBrick+CBXMLHandler.m"; path = "Catty/DataModel/Bricks/Look/CameraBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DDD1EB81F38BE1800D25509 /* CameraBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraBrickCell.h; sourceTree = "<group>"; };
+		4DDD1EB91F38BE2100D25509 /* CameraBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraBrickCell.m; sourceTree = "<group>"; };
 		4DF2BEC61F2A09B9005B062F /* SetBackgroundBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetBackgroundBrick.h; sourceTree = "<group>"; };
 		4DF2BEC91F2A09D6005B062F /* SetBackgroundBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBackgroundBrick.m; sourceTree = "<group>"; };
 		4DF2BECB1F2A0AA1005B062F /* SetBackgroundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetBackgroundBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SetBackgroundBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -3054,6 +3068,8 @@
 				AA74EEF51BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m */,
 				AA74EEF61BC057C900D1E954 /* ShowBrick+CBXMLHandler.h */,
 				AA74EEF71BC057C900D1E954 /* ShowBrick+CBXMLHandler.m */,
+				4DDD1EB51F38B83300D25509 /* CameraBrick+CBXMLHandler.h */,
+				4DDD1EB61F38B84600D25509 /* CameraBrick+CBXMLHandler.m */,
 			);
 			name = Look;
 			path = LookBricks;
@@ -3555,6 +3571,15 @@
 				4CFC3BF61CF1972500DF5AA3 /* CatrobatReorderableCollectionViewFlowLayout.m */,
 			);
 			path = CatrobatReorderableCollectionViewFlowLayout;
+			sourceTree = "<group>";
+		};
+		4DDB57541F436ACF0027E760 /* BrickHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				4DDB57571F436B220027E760 /* CameraPreviewHandler.h */,
+				4DDB57581F436B710027E760 /* CameraPreviewHandler.m */,
+			);
+			name = BrickHelpers;
 			sourceTree = "<group>";
 		};
 		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
@@ -4317,6 +4342,7 @@
 				92FF2E701A24C7D800093DA7 /* NavigationController */,
 				92FF2E731A24C7D800093DA7 /* Reachability */,
 				92FF2E761A24C7D800093DA7 /* SensorHelper */,
+				4DDB57541F436ACF0027E760 /* BrickHelpers */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
@@ -5170,6 +5196,7 @@
 		AA74EDDF1BC0525300D1E954 /* Look */ = {
 			isa = PBXGroup;
 			children = (
+				4C64B40E1F4D799B0081D166 /* CameraBrick+Instruction.swift */,
 				921D46811BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift */,
 				99EBDC031D5624D2008D6860 /* ChangeColorBrick+Instruction.swift */,
 				921D46821BDF698A0086AD20 /* ChangeTransparencyBrick+Instruction.swift */,
@@ -5287,6 +5314,8 @@
 				AA74EFB41BC05B5F00D1E954 /* SetTransparencyBrick.m */,
 				AA74EFB51BC05B5F00D1E954 /* ShowBrick.h */,
 				AA74EFB61BC05B5F00D1E954 /* ShowBrick.m */,
+				4DDD1EB41F38B52D00D25509 /* CameraBrick.h */,
+				4DDD1EB01F38B52000D25509 /* CameraBrick.m */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -5496,6 +5525,8 @@
 				AA74F0571BC05FCE00D1E954 /* SetSizeToBrickCell.m */,
 				AA74F0581BC05FCE00D1E954 /* ShowBrickCell.h */,
 				AA74F0591BC05FCE00D1E954 /* ShowBrickCell.m */,
+				4DDD1EB81F38BE1800D25509 /* CameraBrickCell.h */,
+				4DDD1EB91F38BE2100D25509 /* CameraBrickCell.m */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -7193,6 +7224,7 @@
 				92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
+				4DDD1EBA1F38BE2100D25509 /* CameraBrickCell.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				92D56C301BF202E700A54750 /* BluetoothDevice.swift in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
@@ -7206,6 +7238,7 @@
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
+				4DDB57591F436B710027E760 /* CameraPreviewHandler.m in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
 				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
@@ -7224,6 +7257,7 @@
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
+				4DDD1EB71F38B84600D25509 /* CameraBrick+CBXMLHandler.m in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
@@ -7307,6 +7341,7 @@
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,
 				AAF6D9DC1BC0BFFE00686849 /* SetSizeToBrick+Instruction.swift in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
+				4C64B40F1F4D799B0081D166 /* CameraBrick+Instruction.swift in Sources */,
 				92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */,
 				92EC985D1BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.m in Sources */,
 				AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */,
@@ -7403,6 +7438,7 @@
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
+				4DDD1EB11F38B52000D25509 /* CameraBrick.m in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
