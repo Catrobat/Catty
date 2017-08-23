@@ -78,4 +78,10 @@ andParameterNumber:(NSInteger)paramNumber
     return kNoResources;
 }
 
+#pragma mark - Resources
+- (BOOL)isEnabled
+{
+    return self.cameraChoice == 1;
+}
+
 @end

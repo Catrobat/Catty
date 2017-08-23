@@ -430,6 +430,12 @@
                 </formulaList>
                 <duration>0.0</duration>
             </brick>
+            <brick type="CameraBrick">
+                <spinnerSelectionID>1</spinnerSelectionID>
+            </brick>
+            <brick type="CameraBrick">
+                <spinnerSelectionID>0</spinnerSelectionID>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>

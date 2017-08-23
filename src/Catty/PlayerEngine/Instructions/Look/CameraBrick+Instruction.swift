@@ -25,16 +25,14 @@ extension CameraBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         
-        let choice = self.cameraChoice
-        
         return CBInstruction.ExecClosure { (context, _) in
             print("Performing: CameraBrick")
             
             if let scene = self.script.object.spriteNode.scene as? CBScene
             {
-                scene.view?.allowsTransparency = choice == 1
-                scene.backgroundColor = choice == 1 ? UIColor.clearColor() : UIColor.whiteColor()
-                choice == 1 ? CameraPreviewHandler.shared().startCameraPreview() : CameraPreviewHandler.shared().stopCamera()
+                scene.view?.allowsTransparency = self.isEnabled()
+                scene.backgroundColor = self.isEnabled() ? UIColor.clearColor() : UIColor.whiteColor()
+                self.isEnabled() ? CameraPreviewHandler.shared().startCameraPreview() : CameraPreviewHandler.shared().stopCamera()
             }
             
             context.state = .Runnable
