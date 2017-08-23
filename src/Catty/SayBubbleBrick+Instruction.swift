@@ -23,12 +23,15 @@
 extension SayBubbleBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
-        
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
+    
+    func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
         let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
-        
-        return CBInstruction.WaitExecClosure { (context, _) in
+
+        return {
             var speakText = self.formula.interpretString(object)
             if(Double(speakText) !=  nil)
             {
@@ -68,7 +71,8 @@ extension SayBubbleBrick: CBInstructionProtocol {
             
             sayBubble.fillColor = UIColor.whiteColor()
             sayBubble.strokeColor = UIColor.blackColor()
-            sayBubble.position = CGPoint(x: spriteNode.size.width/4, y: spriteNode.size.height/2)
+            
+            sayBubble.position = CGPointMake(spriteNode.size.width - sayBubble.frame.width / 2, spriteNode.size.height - sayBubble.frame.height / 2)
             
             label.position = CGPointMake(sayBubble.frame.width/2, sayBubble.frame.height*0.6)
             sayBubble.addChild(label)
