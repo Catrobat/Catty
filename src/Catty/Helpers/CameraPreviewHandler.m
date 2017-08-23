@@ -155,6 +155,10 @@ static CameraPreviewHandler* shared = nil;
         [camLayer removeFromSuperlayer];
     }
     [self.session stopRunning];
+    for (AVCaptureDeviceInput* input in self.session.inputs)
+    {
+        [self.session removeInput:input];
+    }
 }
 
 
