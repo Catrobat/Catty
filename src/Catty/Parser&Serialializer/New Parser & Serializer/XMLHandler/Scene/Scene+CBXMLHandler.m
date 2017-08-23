@@ -195,7 +195,8 @@ NSString *const kOriginalHeightElementName = @"originalHeight";
     [context.pointedSpriteObjectList removeAllObjects];
     [context.spriteObjectNameUserVariableListPositions removeAllObjects];
     
-    GDataXMLElement *sceneElement = [GDataXMLElement elementWithName:kSceneElementName context:context];
+    NSUInteger indexOfScene = [CBXMLSerializerHelper indexOfElement:self inArray:self.program.scenes];
+    GDataXMLElement *sceneElement = [GDataXMLElement elementWithName:kSceneElementName xPathIndex:indexOfScene + 1 context:context];
     
     [sceneElement addChild:[self nameElementWithContext:context] context:context];
     [sceneElement addChild:[self objectListElementWithContext:context] context:context];
