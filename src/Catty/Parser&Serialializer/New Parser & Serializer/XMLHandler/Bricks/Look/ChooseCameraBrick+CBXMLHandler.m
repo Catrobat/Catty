@@ -49,7 +49,7 @@
         {
             [XMLError exceptionWithMessage:@"Parameter for spinnerSelectionID is not valid. Must be 0 or 1"];
         }
-        brick.cameraChoice = choiceInt;
+        brick.cameraPosition = choiceInt;
     } else {
         [XMLError exceptionWithMessage:@"ChooseCameraBrick is faulty"];
     }
@@ -59,7 +59,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraChoice];
+    NSString *numberString = [NSString stringWithFormat:@"%i", self.cameraPosition];
     
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
