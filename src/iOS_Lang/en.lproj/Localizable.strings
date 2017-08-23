@@ -110,6 +110,9 @@
 "Axes" = "Axes";
 
 /* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* No comment provided by engineer. */
@@ -609,6 +612,9 @@
 
 /* No comment provided by engineer. */
 "From Camera" = "From Camera";
+
+/* No comment provided by engineer. */
+"front" = "front";
 
 /* No comment provided by engineer. */
 "Front camera" = "Front camera";
@@ -1605,6 +1611,9 @@
 
 /* No comment provided by engineer. */
 "Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use camera" = "Use camera";
 
 /* No comment provided by engineer. */
 "Use face detection" = "Use face detection";

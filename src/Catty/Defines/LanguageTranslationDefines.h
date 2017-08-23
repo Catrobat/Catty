@@ -258,6 +258,8 @@
 #define kLocalizedNoWifiConnection NSLocalizedString(@"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", nil)
 #define kLocalizedOff NSLocalizedString(@"off", nil)
 #define kLocalizedOn NSLocalizedString(@"on", nil)
+#define kLocalizedCameraBack NSLocalizedString(@"back", nil)
+#define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -399,6 +401,7 @@
 #define kLocalizedChangeColor NSLocalizedString(@"Change color ", nil)
 #define kLocalizedFlash NSLocalizedString(@"Turn flashlight", nil)
 #define kLocalizedCamera NSLocalizedString(@"Turn camera", nil)
+#define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
