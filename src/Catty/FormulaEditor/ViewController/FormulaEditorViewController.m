@@ -940,7 +940,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (void)saveProgramToDisk {
-    [[ProgramManager instance] saveProgram:self.object.scene.program];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[ProgramManager instance] saveProgram:self.object.scene.program];
+    });
 }
 
 - (void)closeMenu

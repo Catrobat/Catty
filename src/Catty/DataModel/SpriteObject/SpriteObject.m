@@ -61,6 +61,21 @@
     return _scriptList;
 }
 
+- (NSArray<UserVariable *> *)variables {
+    return [[self.scene.objectVariableList objectForKey:self] copy];
+}
+
+- (NSArray<UserVariable *> *)allAccessibleVariables {
+    NSArray<UserVariable *> *programVariableList = [self.scene.program.programVariableList copy];
+    return [programVariableList arrayByAddingObjectsFromArray:self.variables];
+}
+
+- (NSArray<NSString *> *)allAccessibleVariableNames {
+    return [self.allAccessibleVariables cb_mapUsingBlock:^id(UserVariable *item) {
+        return item.name;
+    }];
+}
+
 - (NSUInteger)numberOfScripts
 {
     return [self.scriptList count];
@@ -218,6 +233,18 @@
     }];
 }
 
+- (void)moveLookAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex {
+    NSParameterAssert(sourceIndex >= 0 && sourceIndex < self.lookList.count);
+    NSParameterAssert(destinationIndex >= 0 && destinationIndex < self.lookList.count);
+    
+    if (sourceIndex == destinationIndex) {
+        return;
+    }
+    Look *look = [self.lookList objectAtIndex:sourceIndex];
+    [self.lookList removeObjectAtIndex:sourceIndex];
+    [self.lookList insertObject:look atIndex:destinationIndex];
+}
+
 - (BOOL)hasSound:(Sound*)sound
 {
     return [self.soundList containsObject:sound];
@@ -282,6 +309,18 @@
     }
     NSAssert(![[self allSoundNames] containsObject:newSoundName], @"Sound with such name aleady exists");
     sound.name = newSoundName;
+}
+
+- (void)moveSoundAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex {
+    NSParameterAssert(sourceIndex >= 0 && sourceIndex < self.soundList.count);
+    NSParameterAssert(destinationIndex >= 0 && destinationIndex < self.soundList.count);
+    
+    if (sourceIndex == destinationIndex) {
+        return;
+    }
+    Sound *sound = [self.soundList objectAtIndex:sourceIndex];
+    [self.soundList removeObjectAtIndex:sourceIndex];
+    [self.soundList insertObject:sound atIndex:destinationIndex];
 }
 
 - (void)removeReferences

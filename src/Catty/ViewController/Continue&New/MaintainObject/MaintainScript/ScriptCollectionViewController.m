@@ -267,6 +267,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
             if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
                 [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+                [self saveProgramToDisk];
             }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
                 return;
             }else {
@@ -471,6 +472,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
             if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
                 [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+                [self saveProgramToDisk];
             }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
                 return;
             }else {
@@ -682,6 +684,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (targetScript.brickList.count == 1 && self.object.scriptList.count == 1) {
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:targetScriptIndex] andObject:self.object];
+        [self saveProgramToDisk];
         [self reloadData];
         return;
     }
@@ -1138,7 +1141,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
-            UserVariable *variable = [self.object.variables cb_findFirst:^BOOL(UserVariable *item) {
+            UserVariable *variable = [self.object.allAccessibleVariables cb_findFirst:^BOOL(UserVariable *item) {
                 return [value isEqualToString:item.name];
             }];
             if(variable)
@@ -1340,7 +1343,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 - (void)saveProgramToDisk {
-    [[ProgramManager instance] saveProgram:self.object.scene.program];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        [[ProgramManager instance] saveProgram:self.object.scene.program];
+    });
 }
 
 @end
