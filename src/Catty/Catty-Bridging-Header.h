@@ -100,6 +100,7 @@
 #import "RepeatBrick.h"
 #import "RepeatUntilBrick.h"
 #import "SayBubbleBrick.h"
+#import "ThinkBubbleBrick.h"
 #import "CameraBrick.h"
 
 // Formulas

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SayBubbleBrick+CBXMLHandler.h"
+#import "ThinkBubbleBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
@@ -28,30 +28,31 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
 
-@implementation SayBubbleBrick (CBXMLHandler)
+@implementation ThinkBubbleBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STRING" withContext:context];
-    SayBubbleBrick *sayBrick = [self new];
-    sayBrick.formula = formula;
-    return sayBrick;
+    ThinkBubbleBrick *thinkBrick = [self new];
+    thinkBrick.formula = formula;
+    return thinkBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SayBubbleBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ThinkBubbleBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.formula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"STRING"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     
-    GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:@"0"];
+    GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:@"1"];
     [brick addChild:type];
+    
     
     return brick;
 }
