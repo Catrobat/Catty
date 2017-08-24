@@ -99,6 +99,7 @@
 #import "FlashBrick.h"
 #import "RepeatBrick.h"
 #import "RepeatUntilBrick.h"
+#import "SayBubbleBrick.h"
 #import "CameraBrick.h"
 #import "ChooseCameraBrick.h"
 

@@ -20,22 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeSizeByNBrick: CBInstructionProtocol{
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "Formula.h"
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
-    }
+@interface SayBubbleBrick : Brick<BrickFormulaProtocol>
 
-    func actionBlock() -> dispatch_block_t {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let size = self.size
-        else { fatalError("This should never happen!") }
+@property (nonatomic, strong) Formula *formula;
+@property (nonatomic, strong) NSString *text;
 
-        return {
-            let sizeInPercent = size.interpretDoubleForSprite(object)
-            spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
-            spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
-        }
-    }
-}
+@end

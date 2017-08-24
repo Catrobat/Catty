@@ -20,22 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeSizeByNBrick: CBInstructionProtocol{
+#import "SayBubbleBrickCell.h"
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
-    }
+@interface SayBubbleBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-    func actionBlock() -> dispatch_block_t {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let size = self.size
-        else { fatalError("This should never happen!") }
+@implementation SayBubbleBrickCell
 
-        return {
-            let sizeInPercent = size.interpretDoubleForSprite(object)
-            spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
-            spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
-        }
-    }
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
 }
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.sayTextField = inlineViewSubViews[1];
+}
+
+@end

@@ -20,22 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeSizeByNBrick: CBInstructionProtocol{
+#import "SayBubbleBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
-    }
+@interface SayBubbleBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
-    func actionBlock() -> dispatch_block_t {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let size = self.size
-        else { fatalError("This should never happen!") }
-
-        return {
-            let sizeInPercent = size.interpretDoubleForSprite(object)
-            spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
-            spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
-        }
-    }
-}
+@end
