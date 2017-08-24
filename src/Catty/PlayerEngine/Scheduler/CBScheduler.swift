@@ -33,7 +33,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _whenContexts = [String:[CBWhenScriptContext]]()
     private var _scheduledContexts = OrderedDictionary<String,[CBScriptContextProtocol]>()
     private var _contextsWaitingToBeScheduled = OrderedDictionary<String,[CBScriptContextProtocol]>()
-    private var _hasNewBroadcastContextBeenScheduled = false;
+    private var _hasNewBroadcastContextBeenScheduled = false
     
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _availableBufferQueues = [dispatch_queue_t]()
@@ -151,7 +151,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     nextActionElements.forEach { $0.context.state = .Runnable }
                     self?.runNextInstructionsGroup()
                     self?.scheduleBroadcastContext(spriteName, checkForOtherContexts: true)
-                    while self?._hasNewBroadcastContextBeenScheduled != nil && self!._hasNewBroadcastContextBeenScheduled {
+                    while self?._hasNewBroadcastContextBeenScheduled == true {
                         self?._hasNewBroadcastContextBeenScheduled = false;
                         self?.runNextInstructionsGroup()
                     }
@@ -171,7 +171,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     context.state = .Runnable
                     self?.runNextInstructionsGroup()
                     self?.scheduleBroadcastContext(spriteName, checkForOtherContexts: true)
-                    while self?._hasNewBroadcastContextBeenScheduled != nil && self!._hasNewBroadcastContextBeenScheduled {
+                    while self?._hasNewBroadcastContextBeenScheduled == true {
                         self?._hasNewBroadcastContextBeenScheduled = false;
                         self?.runNextInstructionsGroup()
                     }

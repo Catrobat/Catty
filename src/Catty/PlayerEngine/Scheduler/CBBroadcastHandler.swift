@@ -141,17 +141,11 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
             counter = counterNumber
         }
         counter += 1
-        if counter % PlayerConfig.MaxRecursionLimitOfSelfBroadcasts == 0 { // XXX: DIRTY PERFORMANCE HACK!!
-            // TODO: restart special case issue
-            dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                // restart this self-listening BroadcastScript
-                self?.scheduler?.scheduleContext(context)
-                self?.scheduler?.runNextInstructionsGroup()
-                })
-        } else {
-            scheduler?.scheduleContext(context)
-            // Don't run next instruction here, or else infinite recursive broadcasts will cause a crash
-        }
+        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+            // restart this self-listening BroadcastScript
+            self?.scheduler?.scheduleContext(context)
+            self?.scheduler?.runNextInstructionsGroup()
+        })
         _selfBroadcastCounters[message] = counter
         logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
     }
