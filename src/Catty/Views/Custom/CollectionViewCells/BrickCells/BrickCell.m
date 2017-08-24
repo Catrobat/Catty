@@ -114,7 +114,8 @@
     @"{STATICCHOICE}",              /* flash brick              */\
     @"{STATICCHOICE}",              /* camera brick             */\
     @"{STATICCHOICE}",              /* choose camera brick      */\
-    @"{INT}"                        /* SayBubbleBrick           */\
+    @"{INT}",                       /* SayBubbleBrick           */\
+    @"{INT}"                        /* ThinkBubbleBrick         */\
 ]
 
 // variable and list bricks

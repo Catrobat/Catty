@@ -106,6 +106,7 @@
 #import "CameraBrick.h"
 #import "ChooseCameraBrick.h"
 #import "SayBubbleBrick.h"
+#import "ThinkBubbleBrick.h"
 
 // Formulas
 #import "Formula.h"

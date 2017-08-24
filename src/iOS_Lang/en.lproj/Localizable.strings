@@ -638,7 +638,7 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
-"Hello !" = "Hello !";
+"Hello!" = "Hello!";
 
 /* No comment provided by engineer. */
 "Help" = "Help";
@@ -651,6 +651,9 @@
 
 /* No comment provided by engineer. */
 "Hide variable" = "Hide variable";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
 
 /* No comment provided by engineer. */
 "hour" = "hour";
@@ -1512,6 +1515,9 @@
 
 /* No comment provided by engineer. */
 "The sound item cannot be played" = "The sound item cannot be played";
+
+/* No comment provided by engineer. */
+"Think" = "Think";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
