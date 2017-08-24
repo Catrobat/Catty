@@ -436,6 +436,15 @@
             <brick type="CameraBrick">
                 <spinnerSelectionID>0</spinnerSelectionID>
             </brick>
+            <brick type="SayBubbleBrick">
+                <formulaList>
+                    <formula category="STRING">
+                        <type>STRING</type>
+                        <value>Hello!</value>
+                    </formula>
+                </formulaList>
+                <type>0</type>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
