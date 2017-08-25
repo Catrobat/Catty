@@ -58,13 +58,13 @@ extension SayBubbleBrick: CBInstructionProtocol {
                 label.text?.appendContentsOf("...")
             }
             
-            if let oldBubble = spriteNode.childNodeWithName("textBubble")
+            if let oldBubble = spriteNode.childNodeWithName(kBubbleBrickNodeName)
             {
                 oldBubble.runAction(SKAction.removeFromParent())
             }
             bubbleWidth = label.frame.width + horizontalPadding
             let sayBubble = SKShapeNode(path: self.bubblePath(withWidth: bubbleWidth))
-            sayBubble.name = "textBubble"
+            sayBubble.name = kBubbleBrickNodeName
             sayBubble.fillColor = UIColor.whiteColor()
             sayBubble.lineWidth = 3.0
             sayBubble.strokeColor = UIColor.blackColor()
