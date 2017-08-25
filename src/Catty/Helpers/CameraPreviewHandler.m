@@ -56,7 +56,7 @@ static CameraPreviewHandler* shared = nil;
 {
     self = [super init];
     if (self) {
-        self.cameraPosition = AVCaptureDevicePositionBack;
+        self.cameraPosition = AVCaptureDevicePositionFront;
         self.session = [[AVCaptureSession alloc] init];
     }
     
