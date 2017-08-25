@@ -910,7 +910,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
         } else {
             CBAssert([scriptOrBrick isKindOfClass:[Brick class]]);
-            Brick *brick = (Brick*)scriptOrBrick;
+            // Bug with scriptOrBrick if same type of brick is in same script! => get brick with index path instead
+            Brick *brick = (Brick*)((BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath]).scriptOrBrick;
             NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
             if (removingBrickIndexPaths) {
                 [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
