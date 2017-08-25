@@ -99,3 +99,6 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kScreenshotThumbnailPrefix @".thumb_"
 
 #define kUserDefaultsBrickSelectionStatisticsMap @"BrickStatisticsMap"
+
+#define kBubbleBrickNodeName @"textBubble"
+
