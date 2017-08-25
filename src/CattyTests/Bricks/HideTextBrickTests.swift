@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class HideTextBrickTests: XCTestCase {
+final class HideTextBrickTests: BrickTests {
     
     func testHideTextBrickUserVariablesNil() {
         
@@ -33,6 +33,8 @@ final class HideTextBrickTests: XCTestCase {
         spriteNode.name = "SpriteNode";
         spriteNode.spriteObject = object;
         object.spriteNode = spriteNode;
+        
+        self.createAndKeepReferenceToProgramWithObjects([object], saveToDisk: false)
         
         let brick = HideTextBrick();
         
