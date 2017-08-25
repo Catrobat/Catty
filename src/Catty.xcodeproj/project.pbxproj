@@ -300,6 +300,15 @@
 		4DB4FACA1EF229A900576677 /* PreviousLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */; };
 		4DB4FAD11EF2330200576677 /* PreviousLookBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */; };
 		4DB4FAD51EF2477600576677 /* PreviousLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */; };
+		4DB629BC1F50BEF8005CECD7 /* SayForBubbleBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629B91F50BEF8005CECD7 /* SayForBubbleBrick.m */; };
+		4DB629BD1F50BEF8005CECD7 /* ThinkForBubbleBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629BB1F50BEF8005CECD7 /* ThinkForBubbleBrick.m */; };
+		4DB629C21F50BF08005CECD7 /* SayForBubbleBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629BF1F50BF08005CECD7 /* SayForBubbleBrickCell.m */; };
+		4DB629C31F50BF08005CECD7 /* ThinkForBubbleBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629C11F50BF08005CECD7 /* ThinkForBubbleBrickCell.m */; };
+		4DB629C81F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629C51F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.m */; };
+		4DB629C91F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629C71F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.m */; };
+		4DB629CC1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629CA1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift */; };
+		4DB629CD1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629CB1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift */; };
+		4DB629D01F50D0CB005CECD7 /* BubbleBrickHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629CF1F50D0CB005CECD7 /* BubbleBrickHelper.m */; };
 		4DC26C591F4EEC780062D0D1 /* ThinkBubbleBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC26C581F4EEC780062D0D1 /* ThinkBubbleBrick.m */; };
 		4DC26C5C1F4EED310062D0D1 /* ThinkBubbleBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC26C5B1F4EED310062D0D1 /* ThinkBubbleBrickCell.m */; };
 		4DC26C611F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC26C601F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift */; };
@@ -1314,7 +1323,7 @@
 		4D7457171F45B25200AA4A0F /* SayBubbleBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SayBubbleBrick.m; sourceTree = "<group>"; };
 		4D7457191F45B35800AA4A0F /* SayBubbleBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SayBubbleBrickCell.h; sourceTree = "<group>"; };
 		4D74571A1F45B36100AA4A0F /* SayBubbleBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SayBubbleBrickCell.m; sourceTree = "<group>"; };
-		4D74571F1F45B65F00AA4A0F /* SayBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SayBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4D74571F1F45B65F00AA4A0F /* SayBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SayBubbleBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SayBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4D86865F1F3E2F32003DB20B /* TouchHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchHandler.h; sourceTree = "<group>"; };
 		4D8686621F3E2F3B003DB20B /* TouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchHandler.m; sourceTree = "<group>"; };
 		4D91FEA71EF7C70200CC8FE0 /* IfThenLogicEndBrickCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IfThenLogicEndBrickCell.h; sourceTree = "<group>"; };
@@ -1331,13 +1340,29 @@
 		4DB4FAC61EF2282F00576677 /* PreviousLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickCell.m; sourceTree = "<group>"; };
 		4DB4FAC81EF2297600576677 /* PreviousLookBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviousLookBrick.h; sourceTree = "<group>"; };
 		4DB4FAC91EF229A900576677 /* PreviousLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrick.m; sourceTree = "<group>"; };
-		4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DB4FAD01EF2330200576677 /* PreviousLookBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PreviousLookBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/PreviousLookBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4DB4FAD41EF2477600576677 /* PreviousLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousLookBrickTests.m; sourceTree = "<group>"; };
+		4DB629B81F50BEF8005CECD7 /* SayForBubbleBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SayForBubbleBrick.h; sourceTree = "<group>"; };
+		4DB629B91F50BEF8005CECD7 /* SayForBubbleBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SayForBubbleBrick.m; sourceTree = "<group>"; };
+		4DB629BA1F50BEF8005CECD7 /* ThinkForBubbleBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkForBubbleBrick.h; sourceTree = "<group>"; };
+		4DB629BB1F50BEF8005CECD7 /* ThinkForBubbleBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThinkForBubbleBrick.m; sourceTree = "<group>"; };
+		4DB629BE1F50BF08005CECD7 /* SayForBubbleBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SayForBubbleBrickCell.h; sourceTree = "<group>"; };
+		4DB629BF1F50BF08005CECD7 /* SayForBubbleBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SayForBubbleBrickCell.m; sourceTree = "<group>"; };
+		4DB629C01F50BF08005CECD7 /* ThinkForBubbleBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkForBubbleBrickCell.h; sourceTree = "<group>"; };
+		4DB629C11F50BF08005CECD7 /* ThinkForBubbleBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThinkForBubbleBrickCell.m; sourceTree = "<group>"; };
+		4DB629C41F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SayForBubbleBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SayForBubbleBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DB629C51F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SayForBubbleBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/SayForBubbleBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DB629C61F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ThinkForBubbleBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkForBubbleBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
+		4DB629C71F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ThinkForBubbleBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkForBubbleBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
+		4DB629CA1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SayForBubbleBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/SayForBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DB629CB1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ThinkForBubbleBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ThinkForBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DB629CE1F50D0CB005CECD7 /* BubbleBrickHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BubbleBrickHelper.h; path = BrickHelpers/BubbleBrickHelper.h; sourceTree = "<group>"; };
+		4DB629CF1F50D0CB005CECD7 /* BubbleBrickHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BubbleBrickHelper.m; path = BrickHelpers/BubbleBrickHelper.m; sourceTree = "<group>"; };
 		4DC26C571F4EEC780062D0D1 /* ThinkBubbleBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkBubbleBrick.h; sourceTree = "<group>"; };
 		4DC26C581F4EEC780062D0D1 /* ThinkBubbleBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThinkBubbleBrick.m; sourceTree = "<group>"; };
 		4DC26C5A1F4EED310062D0D1 /* ThinkBubbleBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkBubbleBrickCell.h; sourceTree = "<group>"; };
 		4DC26C5B1F4EED310062D0D1 /* ThinkBubbleBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThinkBubbleBrickCell.m; sourceTree = "<group>"; };
-		4DC26C601F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ThinkBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
+		4DC26C601F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ThinkBubbleBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ThinkBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4DC26C621F4EF10C0062D0D1 /* ThinkBubbleBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ThinkBubbleBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkBubbleBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4DC26C631F4EF10C0062D0D1 /* ThinkBubbleBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ThinkBubbleBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ThinkBubbleBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4DC34B481F151F1E001CAC06 /* RepeatUntilBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatUntilBrickTests.swift; sourceTree = "<group>"; };
@@ -1347,8 +1372,8 @@
 		4DC4D2551F1010DD00221169 /* RepeatUntilBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatUntilBrickCell.m; sourceTree = "<group>"; };
 		4DD9F18F1EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PreviousLookBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4DD9F1901EFE5BCE00839F9C /* PreviousLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PreviousLookBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/PreviousLookBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
-		4DDB57571F436B220027E760 /* CameraPreviewHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraPreviewHandler.h; sourceTree = "<group>"; };
-		4DDB57581F436B710027E760 /* CameraPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewHandler.m; sourceTree = "<group>"; };
+		4DDB57571F436B220027E760 /* CameraPreviewHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CameraPreviewHandler.h; path = BrickHelpers/CameraPreviewHandler.h; sourceTree = "<group>"; };
+		4DDB57581F436B710027E760 /* CameraPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraPreviewHandler.m; path = BrickHelpers/CameraPreviewHandler.m; sourceTree = "<group>"; };
 		4DDD1EB01F38B52000D25509 /* CameraBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraBrick.m; sourceTree = "<group>"; };
 		4DDD1EB41F38B52D00D25509 /* CameraBrick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraBrick.h; sourceTree = "<group>"; };
 		4DDD1EB51F38B83300D25509 /* CameraBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CameraBrick+CBXMLHandler.h"; path = "Catty/DataModel/Bricks/Look/CameraBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -3067,6 +3092,10 @@
 				4D35B7031F49A33400922FC3 /* SayBubbleBrick+CBXMLHandler.m */,
 				4DC26C621F4EF10C0062D0D1 /* ThinkBubbleBrick+CBXMLHandler.h */,
 				4DC26C631F4EF10C0062D0D1 /* ThinkBubbleBrick+CBXMLHandler.m */,
+				4DB629C41F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.h */,
+				4DB629C51F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.m */,
+				4DB629C61F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.h */,
+				4DB629C71F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.m */,
 				AA74EEF01BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.h */,
 				AA74EEF11BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m */,
 				4CB2CFA41D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.h */,
@@ -3591,6 +3620,8 @@
 			children = (
 				4DDB57571F436B220027E760 /* CameraPreviewHandler.h */,
 				4DDB57581F436B710027E760 /* CameraPreviewHandler.m */,
+				4DB629CE1F50D0CB005CECD7 /* BubbleBrickHelper.h */,
+				4DB629CF1F50D0CB005CECD7 /* BubbleBrickHelper.m */,
 			);
 			name = BrickHelpers;
 			sourceTree = "<group>";
@@ -5222,6 +5253,8 @@
 				AAF6D9D31BC0B9EA00686849 /* HideBrick+Instruction.swift */,
 				4D74571F1F45B65F00AA4A0F /* SayBubbleBrick+Instruction.swift */,
 				4DC26C601F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift */,
+				4DB629CA1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift */,
+				4DB629CB1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift */,
 				AAF6D9D91BC0BB1F00686849 /* SetLookBrick+Instruction.swift */,
 				4DF2BECE1F2A0B3E005B062F /* SetBackgroundBrick+Instruction.swift */,
 				AAF6D9DB1BC0BFFE00686849 /* SetSizeToBrick+Instruction.swift */,
@@ -5316,6 +5349,10 @@
 				4D7457171F45B25200AA4A0F /* SayBubbleBrick.m */,
 				4DC26C571F4EEC780062D0D1 /* ThinkBubbleBrick.h */,
 				4DC26C581F4EEC780062D0D1 /* ThinkBubbleBrick.m */,
+				4DB629B81F50BEF8005CECD7 /* SayForBubbleBrick.h */,
+				4DB629B91F50BEF8005CECD7 /* SayForBubbleBrick.m */,
+				4DB629BA1F50BEF8005CECD7 /* ThinkForBubbleBrick.h */,
+				4DB629BB1F50BEF8005CECD7 /* ThinkForBubbleBrick.m */,
 				AA74EFAD1BC05B5F00D1E954 /* SetBrightnessBrick.h */,
 				AA74EFAE1BC05B5F00D1E954 /* SetBrightnessBrick.m */,
 				4CB2CF9F1D7AD762009F3034 /* SetColorBrick.h */,
@@ -5529,6 +5566,10 @@
 				4D74571A1F45B36100AA4A0F /* SayBubbleBrickCell.m */,
 				4DC26C5A1F4EED310062D0D1 /* ThinkBubbleBrickCell.h */,
 				4DC26C5B1F4EED310062D0D1 /* ThinkBubbleBrickCell.m */,
+				4DB629BE1F50BF08005CECD7 /* SayForBubbleBrickCell.h */,
+				4DB629BF1F50BF08005CECD7 /* SayForBubbleBrickCell.m */,
+				4DB629C01F50BF08005CECD7 /* ThinkForBubbleBrickCell.h */,
+				4DB629C11F50BF08005CECD7 /* ThinkForBubbleBrickCell.m */,
 				AA74F0501BC05FCE00D1E954 /* SetBrightnessBrickCell.h */,
 				AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */,
 				4CB2CFA91D7AD86D009F3034 /* SetColorBrickCell.h */,
@@ -7182,6 +7223,7 @@
 				9218B2121CC4AB75007B4C60 /* ResizeViewManager.m in Sources */,
 				4D1F0BBF1F2487B0001DF63B /* SpeakAndWaitBrick.m in Sources */,
 				AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */,
+				4DB629CD1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				927F79DC1BEE39B0008D1635 /* PhiroIfLogicBeginBrickCell.m in Sources */,
@@ -7203,6 +7245,7 @@
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
+				4DB629BD1F50BEF8005CECD7 /* ThinkForBubbleBrick.m in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
@@ -7217,6 +7260,7 @@
 				9218B2081CC4AB75007B4C60 /* UIImage+FloodFill.m in Sources */,
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
+				4DB629C81F50BF26005CECD7 /* SayForBubbleBrick+CBXMLHandler.m in Sources */,
 				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				4D8686631F3E2F3B003DB20B /* TouchHandler.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
@@ -7292,6 +7336,7 @@
 				AA74EE2B1BC0541E00D1E954 /* GlideToBrick+Instruction.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
 				AA74EE3B1BC0543700D1E954 /* SetVolumeToBrick+Instruction.swift in Sources */,
+				4DB629D01F50D0CB005CECD7 /* BubbleBrickHelper.m in Sources */,
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
 				921D46881BDF698A0086AD20 /* ChangeTransparencyBrick+Instruction.swift in Sources */,
@@ -7377,6 +7422,7 @@
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
+				4DB629C91F50BF26005CECD7 /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				99EBDC041D5624D2008D6860 /* ChangeColorBrick+Instruction.swift in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
 				9218B20D1CC4AB75007B4C60 /* HandTool.m in Sources */,
@@ -7415,6 +7461,7 @@
 				AA74EEE31BC057B900D1E954 /* NoteBrick+CBXMLHandler.m in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Program+CBXMLHandler.m in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
+				4DB629CC1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
 				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -7455,10 +7502,12 @@
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
+				4DB629C21F50BF08005CECD7 /* SayForBubbleBrickCell.m in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
+				4DB629C31F50BF08005CECD7 /* ThinkForBubbleBrickCell.m in Sources */,
 				4DDD1EB11F38B52000D25509 /* CameraBrick.m in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
@@ -7565,6 +7614,7 @@
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				92FF31601A24DEB300093DA7 /* SaveToProjectActivity.m in Sources */,
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
+				4DB629BC1F50BEF8005CECD7 /* SayForBubbleBrick.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
 				4DC4D2531F100D8A00221169 /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
