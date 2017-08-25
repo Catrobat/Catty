@@ -34,6 +34,7 @@
 #import "Scene.h"
 #import "NSArray+CustomExtension.h"
 #import "ProgramManager.h"
+#import "FileSystemStorage.h"
 
 @implementation SpriteObject
 
@@ -105,11 +106,6 @@
     return [self.soundList count];
 }
 
-- (NSString*)projectPath
-{
-    return [ProgramManager projectPathForProgram:self.scene.program];
-}
-
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
 {
     if (index >= [self.lookList count])
@@ -119,8 +115,7 @@
     if (! look)
         return nil;
 
-    NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
-    return [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
+    return [[self imagesDirectory] stringByAppendingPathComponent:[look previewImageFileName]];
 }
 
 - (NSString*)previewImagePath
@@ -133,14 +128,23 @@
     return self.scene.backgroundObject == self;
 }
 
+- (NSString*)imagesDirectory {
+    return [FileSystemStorage imagesDirectoryForScene:self.scene];
+}
+
 - (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
+    return [[self imagesDirectory] stringByAppendingPathComponent:look.fileName];
+}
+
+
+- (NSString*)soundsDirectory {
+    return [FileSystemStorage soundsDirectoryForScene:self.scene];
 }
 
 - (NSString*)pathForSound:(Sound*)sound
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
+  return [[self soundsDirectory] stringByAppendingPathComponent:sound.fileName];
 }
 
 - (NSUInteger)fileSizeOfLook:(Look*)look

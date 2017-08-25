@@ -41,6 +41,7 @@
 #import "DescriptionViewController.h"
 #import "Pocket_Code-Swift.h"
 #import "ProgramManager.h"
+#import "FileSystemStorage.h"
 
 @interface MyProgramsViewController () <ProgramUpdateDelegate, UITextFieldDelegate, SetDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -331,8 +332,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
         AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         if (programSize) {
-            NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+            NSDate *lastAccessDate = [[ProgramManager instance] lastModificationTimeForProgramWithLoadingInfo:info];
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
@@ -357,8 +357,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self.dataCache setObject:programSize forKey:info.visibleName];
             }
             
-            NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+            NSDate *lastAccessDate = [[ProgramManager instance] lastModificationTimeForProgramWithLoadingInfo:info];
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
@@ -480,9 +479,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];
+    NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     for (NSString *fallbackPath in fallbackPaths) {
         NSString *fileName = [fallbackPath lastPathComponent];

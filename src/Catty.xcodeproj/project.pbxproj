@@ -706,6 +706,7 @@
 		C689CA7B1F0F1614002CDD47 /* XMLParserBlackBoxTests0992.m in Sources */ = {isa = PBXBuildFile; fileRef = C689CA6C1F0F0D17002CDD47 /* XMLParserBlackBoxTests0992.m */; };
 		C689CA7C1F0F1617002CDD47 /* XMLParserTests0992.m in Sources */ = {isa = PBXBuildFile; fileRef = C689CA6E1F0F0D17002CDD47 /* XMLParserTests0992.m */; };
 		C689CA7D1F0F161C002CDD47 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C689CA731F0F0D17002CDD47 /* XMLSerializerTests.m */; };
+		C69519651F4F7C7200070224 /* FileSystemStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = C69519641F4F7C7200070224 /* FileSystemStorage.m */; };
 		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
 		C6B91E801F09B9AB00BE2D38 /* Encapsulated_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = C6B91E541F09B1BD00BE2D38 /* Encapsulated_0992.xml */; };
 		C6B91E811F09B9BF00BE2D38 /* Air_fight_0.5_0992.xml in Resources */ = {isa = PBXBuildFile; fileRef = C6B91E481F09A94300BE2D38 /* Air_fight_0.5_0992.xml */; };
@@ -2103,6 +2104,8 @@
 		C689CA6E1F0F0D17002CDD47 /* XMLParserTests0992.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests0992.m; sourceTree = "<group>"; };
 		C689CA711F0F0D17002CDD47 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
 		C689CA731F0F0D17002CDD47 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
+		C69519631F4F7C7200070224 /* FileSystemStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemStorage.h; sourceTree = "<group>"; };
+		C69519641F4F7C7200070224 /* FileSystemStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemStorage.m; sourceTree = "<group>"; };
 		C6B91E481F09A94300BE2D38 /* Air_fight_0.5_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_0992.xml; sourceTree = "<group>"; };
 		C6B91E4C1F09AABA00BE2D38 /* Airplane_with_shadow_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_0992.xml; sourceTree = "<group>"; };
 		C6B91E4E1F09AE9F00BE2D38 /* Compass_0.1_0992.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_0992.xml; sourceTree = "<group>"; };
@@ -4087,6 +4090,7 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C69519601F4F7C3D00070224 /* FileSystemStorage */,
 				92F6C51F1CB135F3008BE0C4 /* OrderedDictionary */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92EC99481BC3CA870003A891 /* Firmata */,
@@ -5567,6 +5571,15 @@
 			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
+		C69519601F4F7C3D00070224 /* FileSystemStorage */ = {
+			isa = PBXGroup;
+			children = (
+				C69519631F4F7C7200070224 /* FileSystemStorage.h */,
+				C69519641F4F7C7200070224 /* FileSystemStorage.m */,
+			);
+			path = FileSystemStorage;
+			sourceTree = "<group>";
+		};
 		CA02C5E81B14386E00233FB0 /* CBSpriteNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -6903,6 +6916,7 @@
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
 				9218B2011CC4AB75007B4C60 /* YKImageCropperView.m in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
+				C69519651F4F7C7200070224 /* FileSystemStorage.m in Sources */,
 				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
 				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
 				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,

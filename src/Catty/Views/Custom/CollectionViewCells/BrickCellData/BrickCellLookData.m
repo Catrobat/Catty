@@ -49,8 +49,8 @@
                 Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
                 for(Look *look in lookBrick.script.object.lookList) {
                     [options addObject:look.name];
-                    if([look.name isEqualToString:currentLook.name]){
-                        NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName];
+                    if([look.name isEqualToString:currentLook.name]) {
+                        NSString *path = [lookBrick.script.object pathForLook:look];
                         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
                         UIImage *image = [imageCache cachedImageForPath:path];
                         

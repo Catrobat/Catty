@@ -28,11 +28,11 @@
 #import "NetworkDefines.h"
 #import "HelpWebViewController.h"
 #import "ProgramManager.h"
+#import "FileSystemStorage.h"
 
 @interface FileManager ()
 
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
-@property (nonatomic, strong) NSString *programsDirectory;
 @property (nonatomic, strong) NSMutableDictionary *programTaskDict;
 @property (nonatomic, strong) NSMutableDictionary *programNameDict;
 @property (nonatomic, strong) NSMutableDictionary *programIDDict;
@@ -60,20 +60,8 @@
 #pragma mark - Getters and Setters
 - (NSString*)documentsDirectory
 {
-    if (_documentsDirectory == nil) {
-        _documentsDirectory = [[NSString alloc] initWithString:[Util applicationDocumentsDirectory]];
-    }
-    return _documentsDirectory;
+    return [FileSystemStorage applicationDocumentsDirectory];
 }
-
-- (NSString*)programsDirectory
-{
-    if (_programsDirectory == nil) {
-        _programsDirectory = [[NSString alloc] initWithFormat:@"%@/%@", self.documentsDirectory, kProgramsFolder];
-    }
-    return _programsDirectory;
-}
-
 
 - (NSMutableDictionary*)programTaskDict {
     if (_programTaskDict == nil) {
@@ -401,7 +389,8 @@
     if ((! programID) || (! [programID length])) {
         programID = kNoProgramIDYetPlaceholder;
     }
-    NSString *storePath = [NSString stringWithFormat:@"%@/%@_%@", self.programsDirectory, name, programID];
+    
+    NSString *storePath = [NSString stringWithFormat:@"%@/%@_%@", [FileSystemStorage programsDirectory], name, programID];
 
     NSDebug(@"Starting unzip");
     [SSZipArchive unzipFileAtPath:tempPath toDestination:storePath];

@@ -165,7 +165,7 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:saveOp];
     
-    NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
+    NSString *imageDirPath = [self.spriteObject imagesDirectory];
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
 

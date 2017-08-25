@@ -30,6 +30,7 @@
 #import "CBXMLSerializer.h"
 #import "NSArray+CustomExtension.h"
 #import "Scene.h"
+#import "FileSystemStorage.h"
 
 @interface ProgramManager ()
 @property (nonatomic, readonly) FileManager *fileManager;
@@ -65,7 +66,7 @@ static ProgramManager *_instance = nil;
     NSDebug(@"Try to load project '%@'", programLoadingInfo.visibleName);
     NSDebug(@"Path: %@", programLoadingInfo.basePath);
     
-    NSString *xmlPath = [self xmlPathForProgramWithLoadingInfo:programLoadingInfo];
+    NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:programLoadingInfo];
     NSDebug(@"XML-Path: %@", xmlPath);
     
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
@@ -87,6 +88,11 @@ static ProgramManager *_instance = nil;
     if (! program)
         return nil;
     
+    if ([self hasOldImagesDirectory:program] || [self hasOldSoundsDirectory:program]) {
+        NSAssert(languageVersion <= 0.991, @"Inconsistency");
+        [self migrameToNewFolderStructureWithProgram:program];
+    }
+    
     NSDebug(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
     
@@ -94,16 +100,18 @@ static ProgramManager *_instance = nil;
     return program;
 }
 
-- (NSString *)xmlPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
-    NSParameterAssert(programLoadingInfo);
-    return [NSString stringWithFormat:@"%@%@", programLoadingInfo.basePath, kProgramCodeFileName];
-}
-
 - (void)updateLastModificationTimeForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
     NSParameterAssert(programLoadingInfo);
     
-    NSString *xmlPath = [self xmlPathForProgramWithLoadingInfo:programLoadingInfo];
+    NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:programLoadingInfo];
     [self.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
+}
+
+- (NSDate *)lastModificationTimeForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
+    NSParameterAssert(programLoadingInfo);
+    
+    NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:programLoadingInfo];
+    return [self.fileManager lastModificationTimeOfFile:xmlPath];
 }
 
 - (ProgramLoadingInfo *)addProgram:(Program *)program {
@@ -115,13 +123,15 @@ static ProgramManager *_instance = nil;
     NSAssert(![self.fileManager directoryExists:loadingInfo.basePath], @"Inconsistency");
     [self.fileManager createDirectory:loadingInfo.basePath];
     
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramImagesDirName];
-    NSAssert(![self.fileManager directoryExists:imagesDirName], @"Inconsistency");
-    [self.fileManager createDirectory:imagesDirName];
-    
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramSoundsDirName];
-    NSAssert(![self.fileManager directoryExists:soundsDirName], @"Inconsistency");
-    [self.fileManager createDirectory:soundsDirName];
+    for (Scene *scene in program.scenes) {
+        NSString *imagesDirName = [FileSystemStorage imagesDirectoryForScene:scene];
+        NSAssert(![self.fileManager directoryExists:imagesDirName], @"Inconsistency");
+        [self.fileManager createDirectory:imagesDirName];
+        
+        NSString *soundsDirName = [FileSystemStorage soundsDirectoryForScene:scene];
+        NSAssert(![self.fileManager directoryExists:soundsDirName], @"Inconsistency");
+        [self.fileManager createDirectory:soundsDirName];
+    }
     
     [self saveProgram:program];
     
@@ -159,8 +169,8 @@ static ProgramManager *_instance = nil;
 }
 
 - (void)addNewBundleProgramWithName:(NSString*)projectName {
-    if (! [self.fileManager directoryExists:[self class].basePath]) {
-        [self.fileManager createDirectory:[self class].basePath];
+    if (! [self.fileManager directoryExists:[FileSystemStorage programsDirectory]]) {
+        [self.fileManager createDirectory:[FileSystemStorage programsDirectory]];
     }
     NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
     NSData *defaultProject = [NSData dataWithContentsOfFile:filePath];
@@ -183,20 +193,6 @@ static ProgramManager *_instance = nil;
         ++index;
     }
     [self renameProgram:program toName:kLocalizedMyFirstProgram]; // saves to disk!
-}
-
-+ (NSString *)basePath {
-    return [NSString stringWithFormat:@"%@/%@/", [Util applicationDocumentsDirectory], kProgramsFolder];
-}
-
-+ (NSString *)projectPathForProgram:(Program *)program {
-    NSParameterAssert(program);
-    return [ProgramLoadingInfo programLoadingInfoForProgram:program].basePath;
-}
-
-+ (NSString *)directoryNameForProgram:(Program *)program {
-    NSParameterAssert(program);
-    return [self directoryNameForProgramWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgram:program]];
 }
 
 + (NSString *)directoryNameForProgramWithLoadingInfo:(ProgramLoadingInfo *)info {
@@ -284,7 +280,7 @@ static ProgramManager *_instance = nil;
 }
 
 - (NSArray<ProgramLoadingInfo *> *)allProgramLoadingInfos {
-    NSArray<NSString *> *subdirNames = [self.fileManager getContentsOfDirectory:[[self class] basePath]];
+    NSArray<NSString *> *subdirNames = [self.fileManager getContentsOfDirectory:[FileSystemStorage programsDirectory]];
     
     NSMutableArray<ProgramLoadingInfo *> *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:subdirNames.count];
     for (NSString *subdirName in subdirNames) {
@@ -350,11 +346,42 @@ static ProgramManager *_instance = nil;
     ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:progarm];
     NSAssert([self.fileManager directoryExists:info.basePath], @"Program doesn't exit");
     
-    NSString *xmlPath = [self xmlPathForProgramWithLoadingInfo:info];
+    NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:info];
     CBXMLSerializer *serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:progarm];
     
     [self updateLastModificationTimeForProgramWithLoadingInfo:info];
+}
+
+- (NSString *)oldImagesDirectoryForProgram:(Program *)program {
+    NSString *programDirectory = [FileSystemStorage directoryForProgramWithName:program.programName programID:program.programID];
+    return [NSString stringWithFormat:@"%@/images/", programDirectory];
+}
+
+- (BOOL)hasOldImagesDirectory:(Program *)program {
+    return [self.fileManager directoryExists:[self oldImagesDirectoryForProgram:program]];
+}
+
+- (NSString *)oldSoundsDirectoryForProgram:(Program *)program {
+    NSString *programDirectory = [FileSystemStorage directoryForProgramWithName:program.programName programID:program.programID];
+    return [NSString stringWithFormat:@"%@/sounds/", programDirectory];
+}
+
+- (BOOL)hasOldSoundsDirectory:(Program *)program {
+    return [self.fileManager directoryExists:[self oldSoundsDirectoryForProgram:program]];
+}
+
+- (void)migrameToNewFolderStructureWithProgram:(Program *)program {
+    NSAssert([program.scenes count] == 1, @"Inconsistency");
+    
+    Scene *scene = [program.scenes objectAtIndex:0];
+    NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
+    
+    NSString *programImagesDirectory = [self oldImagesDirectoryForProgram:program];
+    [self.fileManager moveExistingDirectoryAtPath:programImagesDirectory toPath:sceneDirectory];
+    
+    NSString *programSoundsDirectory = [self oldSoundsDirectoryForProgram:program];
+    [self.fileManager moveExistingDirectoryAtPath:programSoundsDirectory toPath:sceneDirectory];
 }
 
 @end

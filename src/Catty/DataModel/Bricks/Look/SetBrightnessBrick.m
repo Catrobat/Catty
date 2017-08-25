@@ -60,7 +60,7 @@
 
 - (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
+  return [self.script.object pathForLook:look];
 }
 
 #pragma mark - Description

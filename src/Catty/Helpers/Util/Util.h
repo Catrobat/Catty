@@ -58,8 +58,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 + (BOOL)activateTestMode:(BOOL)activate;
 //#endif
 
-+ (NSString*)applicationDocumentsDirectory;
-
 + (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController;
 
 + (UIViewController *)topmostViewController;

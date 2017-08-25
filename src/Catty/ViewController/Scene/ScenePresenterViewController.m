@@ -33,6 +33,8 @@
 #import "RuntimeImageCache.h"
 #import "Scene.h"
 #import "ProgramManager.h"
+#import "FileSystemStorage.h"
+#import "ProgramLoadingInfo.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -524,10 +526,8 @@
 
 -(void)takeAutomaticScreenshot
 {
-    NSString *projectPath = [ProgramManager projectPathForProgram:self.sceneModel.program];
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/screenshot.png", projectPath],
-                               [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", projectPath],
-                               [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", projectPath]];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.sceneModel.program];
+    NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
     BOOL fileExists = NO;
     for (NSString *fallbackPath in fallbackPaths) {
         NSString *fileName = [fallbackPath lastPathComponent];
@@ -544,7 +544,7 @@
         UIGraphicsEndImageContext();
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png", projectPath];
+            NSString *pngFilePath = [FileSystemStorage automaticScreenshotPathForProgramWithLoadingInfo:info];
             NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
             [data writeToFile:pngFilePath atomically:YES];
             
@@ -558,7 +558,7 @@
 - (void)showSaveScreenshotActionSheet
 {
     UIImage *imageToShare = self.snapshotImage;
-    NSString *path = [ProgramManager projectPathForProgram:self.sceneModel.program];
+    NSString *path = [FileSystemStorage manualScreenshotPathForProgramWithLoadingInfo:self.sceneModel.program];
     NSArray *itemsToShare = @[imageToShare];
 
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];

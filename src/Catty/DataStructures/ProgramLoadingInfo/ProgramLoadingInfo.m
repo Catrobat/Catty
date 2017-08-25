@@ -24,6 +24,7 @@
 #import "ProgramDefines.h"
 #import "Util.h"
 #import "Program.h"
+#import "FileSystemStorage.h"
 
 @implementation ProgramLoadingInfo
 
@@ -33,21 +34,11 @@
 
 + (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
-    NSString *documentsDirectory = [Util applicationDocumentsDirectory];
-    NSString *programsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
     ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    NSString *programDirectoryName = [[self class] programDirectoryNameForProgramName:programName programID:programID];
-    info.basePath = [NSString stringWithFormat:@"%@/%@/", programsPath, programDirectoryName];
+    info.basePath = [FileSystemStorage directoryForProgramWithName:programName programID:programID];
     info.visibleName = [Util enableBlockedCharactersForString:programName];
     info.programID = programID;
     return info;
-}
-
-+ (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
-{
-    programName = [Util replaceBlockedCharactersForString:programName];
-    programID = programID ?: kNoProgramIDYetPlaceholder;
-    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator, programID];
 }
 
 - (BOOL)isEqualToLoadingInfo:(ProgramLoadingInfo*)loadingInfo

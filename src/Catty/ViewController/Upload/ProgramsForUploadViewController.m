@@ -37,6 +37,7 @@
 #import "UploadInfoPopupViewController.h"
 #import "BDKNotifyHUD.h"
 #import "ProgramManager.h"
+#import "FileSystemStorage.h"
 
 
 @interface ProgramsForUploadViewController ()
@@ -170,9 +171,7 @@
     
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
-                               [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];
+    NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     for (NSString *fallbackPath in fallbackPaths) {
         NSString *fileName = [fallbackPath lastPathComponent];

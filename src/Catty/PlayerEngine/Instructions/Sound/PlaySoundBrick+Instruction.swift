@@ -25,14 +25,13 @@ extension PlaySoundBrick: CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         guard let objectName = self.script?.object?.name,
-            let projectPath = self.script?.object?.projectPath()
+            let filePath = self.script?.object?.soundsDirectory()
             else { fatalError("This should never happen!") }
 
         guard let sound = self.sound,
               let fileName = sound.fileName
         else { return .InvalidInstruction() }
 
-        let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.sharedAudioManager()
 
         return CBInstruction.ExecClosure { (context, _) in

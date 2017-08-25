@@ -52,10 +52,11 @@
 - (BOOL)isBackground;
 
 // helpers
-- (NSString*)projectPath; //for image-path!!!
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index;
 - (NSString*)previewImagePath; // thumbnail/preview image-path of first (!) look shown in several TableViewCells!!!
+- (NSString*)imagesDirectory;
 - (NSString*)pathForLook:(Look*)look;
+- (NSString*)soundsDirectory;
 - (NSString*)pathForSound:(Sound*)sound;
 - (NSUInteger)fileSizeOfLook:(Look*)look;
 - (CGSize)dimensionsOfLook:(Look*)look;

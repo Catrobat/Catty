@@ -42,9 +42,6 @@
 - (void)removeProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 - (ProgramLoadingInfo *)copyProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo destinationProgramName:(NSString *)destinationProgramName;
 
-+ (NSString *)basePath;
-+ (NSString *)projectPathForProgram:(Program *)program;
-
 - (NSArray<NSString *> *)allProgramNames;
 - (NSArray<ProgramLoadingInfo *> *)allProgramLoadingInfos;
 
@@ -58,5 +55,7 @@
 - (void)saveProgram:(Program *)progarm;
 
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
+
+- (NSDate *)lastModificationTimeForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 
 @end

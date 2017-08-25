@@ -25,7 +25,7 @@
 
 @interface SaveToProjectActivity : UIActivity
 
-@property (nonatomic,strong)NSString *path;
+@property (nonatomic,strong)NSString *imagePath;
 @property (nonatomic,strong)UIImage *image;
 
 - (id)initWithImagePath:(NSString *)path;

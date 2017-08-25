@@ -40,6 +40,7 @@
 #import "SettingsTableViewController.h"
 #import "ProgramManager.h"
 #import "SceneListViewController.h"
+#import "FileSystemStorage.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -93,8 +94,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.lastUsedProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    if (! [appDelegate.fileManager directoryExists:[ProgramManager basePath]]) {
-        [appDelegate.fileManager createDirectory:[ProgramManager basePath]];
+    if (! [appDelegate.fileManager directoryExists:[FileSystemStorage programsDirectory]]) {
+        [appDelegate.fileManager createDirectory:[FileSystemStorage programsDirectory]];
     }
     [[ProgramManager instance] addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 

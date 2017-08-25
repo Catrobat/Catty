@@ -603,8 +603,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                existingNames:[self.object allLookNames]]
                                     andPath:newImageFileName];
     
-    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+    NSString *newImagePath = [[self.object imagesDirectory] stringByAppendingPathComponent:newImageFileName];
     self.filePath = newImagePath;
     // leaving the main queue here!
     NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
@@ -835,8 +834,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
                                                existingNames:[self.object allLookNames]]
                                     andPath:newImageFileName];
-    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+    NSString *newImagePath = [[self.object imagesDirectory] stringByAppendingPathComponent:newImageFileName];
     self.filePath = newImagePath;
     NSDebug(@"Writing file to disk");
     // leaving the main queue here!
@@ -867,8 +865,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (checkImage) {
 //        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
-        NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
+        NSString *fileName = [path lastPathComponent];
         
         NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
         if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1))){
@@ -915,7 +912,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                        ];
         
         
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, previewImageName];
+        NSString *filePath = [[self.object imagesDirectory] stringByAppendingPathComponent:previewImageName];
         [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
         
         
@@ -933,8 +930,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
                                                    existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
-        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProgramImagesDirName, newImageFileName];
+        NSString *newImagePath = [[self.object imagesDirectory] stringByAppendingPathComponent:newImageFileName];
         self.filePath = newImagePath;
         NSDebug(@"Writing file to disk");
             // leaving the main queue here!

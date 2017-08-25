@@ -30,7 +30,7 @@
     self = [super init];
     if (self)
     {
-        self.path = path;
+        self.imagePath = path;
     }
     return self;
 }
@@ -68,9 +68,8 @@
 - (void)performActivity
 {
     //Dimensions of Screenshot???
-    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",self.path];
     NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.image)];
-    [data writeToFile:pngFilePath atomically:YES];
+    [data writeToFile:self.imagePath atomically:YES];
 
     [self activityDidFinish:YES];
 }

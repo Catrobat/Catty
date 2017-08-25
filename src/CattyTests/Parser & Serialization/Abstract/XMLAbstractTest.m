@@ -29,6 +29,7 @@
 #import "Scene.h"
 #import "NSArray+CustomExtension.h"
 #import "ProgramLoadingInfo.h"
+#import "FileSystemStorage.h"
 
 @implementation XMLAbstractTest
 
@@ -118,8 +119,8 @@
 
 - (void)saveProgram:(Program*)program
 {
-    NSString *projectPath = [ProgramLoadingInfo programLoadingInfoForProgram:program].basePath;
-    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", projectPath, kProgramCodeFileName];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:program];
+    NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:info];
     id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:program];
 }

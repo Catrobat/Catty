@@ -221,7 +221,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                       sound.name, fileExtension];
     NSString *newPath = [self.object pathForSound:sound];
     if (![self checkIfSoundFolderExists]) {
-        [delegate.fileManager createDirectory:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
+        [delegate.fileManager createDirectory:[self.object soundsDirectory]];
     }
     [delegate.fileManager copyExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.object addSound:sound];
@@ -240,7 +240,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(BOOL)checkIfSoundFolderExists{
     FileManager* manager = [[FileManager alloc] init];
-    NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName];
+    NSString * path = [self.object soundsDirectory];
     if ([manager directoryExists:path]) {
         return YES;
     }
@@ -559,8 +559,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 AudioManager *am = [AudioManager sharedAudioManager];
                 BOOL isPlayable = [am playSoundWithFileName:sound.fileName
                                                      andKey:self.object.name
-                                                 atFilePath:[NSString stringWithFormat:@"%@%@",
-                                                             [self.object projectPath], kProgramSoundsDirName]
+                                                 atFilePath:[self.object soundsDirectory]
                                                    delegate:self];
                 if (isPlayable) {
                     return;
