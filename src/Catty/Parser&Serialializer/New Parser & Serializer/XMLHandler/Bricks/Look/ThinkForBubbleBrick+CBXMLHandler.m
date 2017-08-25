@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ThinkBubbleBrick+CBXMLHandler.h"
+#import "ThinkForBubbleBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
@@ -29,14 +29,16 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
 
-@implementation ThinkBubbleBrick (CBXMLHandler)
+@implementation ThinkForBubbleBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STRING" withContext:context];
-    ThinkBubbleBrick *thinkBrick = [self new];
-    thinkBrick.formula = formula;
+    Formula *durationFormula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DURATION_IN_SECONDS" withContext:context];
+    ThinkForBubbleBrick *thinkBrick = [self new];
+    thinkBrick.stringFormula = formula;
+    thinkBrick.intFormula = durationFormula;
     
     [XMLError exceptionIfNil:[xmlElement childWithElementName:@"type"] message:@"Parsed type-attribute is invalid or empty!"];
     
@@ -47,18 +49,23 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ThinkBubbleBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ThinkForBubbleBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.formula xmlElementWithContext:context];
+    GDataXMLElement *formula = [self.stringFormula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"STRING"]];
+    
+    GDataXMLElement *durationFormula = [self.intFormula xmlElementWithContext:context];
+    [durationFormula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
+    
+    [formulaList addChild:durationFormula context:context];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     
     // Element to produce Catroid equivalent XML
-    [brick addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"1" context:context] context:context];
-    
+    [brick addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"0" context:context] context:context];
     
     return brick;
 }
+
 
 @end
