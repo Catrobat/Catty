@@ -50,8 +50,8 @@
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     
-    GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:@"1"];
-    [brick addChild:type];
+    // Element to produce Catroid equivalent XML
+    [brick addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"1" context:context] context:context];
     
     
     return brick;

@@ -27,6 +27,5 @@
 @interface ThinkBubbleBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *formula;
-@property (nonatomic, strong) NSString *text;
 
 @end

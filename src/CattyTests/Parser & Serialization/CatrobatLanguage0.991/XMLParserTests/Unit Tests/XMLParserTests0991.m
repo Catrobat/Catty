@@ -38,6 +38,7 @@
 #import "SpeakAndWaitBrick.h"
 #import "CameraBrick.h"
 #import "SayBubbleBrick.h"
+#import "ThinkBubbleBrick.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
 
@@ -318,6 +319,19 @@
     Brick *sayBubbleBrick = [backgroundScript.brickList objectAtIndex:33];
     XCTAssertTrue([sayBubbleBrick isKindOfClass:[SayBubbleBrick class]], "Invalid brick type");
     XCTAssertNotNil(((SayBubbleBrick*)sayBubbleBrick).formula, "Invalid formula");
+}
+
+- (void)testThinkBubbleBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 35, "Invalid brick list");
+    
+    Brick *thinkBubbleBrick = [backgroundScript.brickList objectAtIndex:34];
+    XCTAssertTrue([thinkBubbleBrick isKindOfClass:[ThinkBubbleBrick class]], "Invalid brick type");
+    XCTAssertNotNil(((ThinkBubbleBrick*)thinkBubbleBrick).formula, "Invalid formula");
 }
 
 @end
