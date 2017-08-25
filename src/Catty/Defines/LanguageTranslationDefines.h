@@ -404,6 +404,7 @@
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
 #define kLocalizedSay NSLocalizedString(@"Say", nil)
+#define kLocalizedThink NSLocalizedString(@"Think", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
 #define kLocalizedAndWait NSLocalizedString(@" and wait", nil)
 
@@ -417,7 +418,8 @@
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)
-#define kLocalizedHello NSLocalizedString(@"Hello !", nil)
+#define kLocalizedHello NSLocalizedString(@"Hello!", nil)
+#define kLocalizedHmmmm NSLocalizedString(@"Hmmmm!", nil)
 
 // phiro bricks
 #define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro motor", nil)

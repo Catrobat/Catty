@@ -404,6 +404,7 @@ let kLocalizedStopAllSounds = NSLocalizedString("Stop all sounds", comment: "")
 let kLocalizedSetVolumeTo = NSLocalizedString("Set volume to", comment: "")
 let kLocalizedChangeVolumeByN = NSLocalizedString("Change volume by", comment: "")
 let kLocalizedSay = NSLocalizedString("Say", comment: "")
+let kLocalizedThink = NSLocalizedString("Think", comment: "")
 let kLocalizedSpeak = NSLocalizedString("Speak", comment: "")
 let kLocalizedAndWait = NSLocalizedString(" and wait", comment: "")
 
@@ -417,7 +418,8 @@ let kLocalizedHideVariable = NSLocalizedString("Hide variable", comment: "")
 
 let kLocalizedAddCommentHere = NSLocalizedString("add comment here...", comment: "")
 let kLocalizedMessage1 = NSLocalizedString("message 1", comment: "")
-let kLocalizedHello = NSLocalizedString("Hello !", comment: "")
+let kLocalizedHello = NSLocalizedString("Hello!", comment: "")
+let kLocalizedHmmmm = NSLocalizedString("Hmmmm!", comment: "")
 
 // phiro bricks
 let kLocalizedStopPhiroMotor = NSLocalizedString("Stop Phiro motor", comment: "")

@@ -112,7 +112,8 @@
     @[],                            /* clear graphic effect     */\
     @"{STATICCHOICE}",              /* flash brick              */\
     @"{STATICCHOICE}",              /* camera brick             */\
-    @"{INT}"                        /* SayBubbleBrick           */\
+    @"{INT}",                       /* SayBubbleBrick           */\
+    @"{INT}"                        /* ThinkBubbleBrick         */\
 ]
 
 // variable bricks
