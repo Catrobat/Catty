@@ -445,6 +445,15 @@
                 </formulaList>
                 <type>0</type>
             </brick>
+            <brick type="ThinkBubbleBrick">
+                <formulaList>
+                    <formula category="STRING">
+                        <type>STRING</type>
+                        <value>Hmmmm!</value>
+                    </formula>
+                </formulaList>
+                <type>1</type>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
