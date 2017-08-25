@@ -124,13 +124,7 @@ static ProgramManager *_instance = nil;
     [self.fileManager createDirectory:loadingInfo.basePath];
     
     for (Scene *scene in program.scenes) {
-        NSString *imagesDirName = [FileSystemStorage imagesDirectoryForScene:scene];
-        NSAssert(![self.fileManager directoryExists:imagesDirName], @"Inconsistency");
-        [self.fileManager createDirectory:imagesDirName];
-        
-        NSString *soundsDirName = [FileSystemStorage soundsDirectoryForScene:scene];
-        NSAssert(![self.fileManager directoryExists:soundsDirName], @"Inconsistency");
-        [self.fileManager createDirectory:soundsDirName];
+        [self createDirectoriesForScene:scene];
     }
     
     [self saveProgram:program];
@@ -343,6 +337,14 @@ static ProgramManager *_instance = nil;
 - (void)saveProgram:(Program *)progarm {
     NSParameterAssert(progarm);
     
+    for (Scene *scene in progarm.scenes) {
+        NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
+        if (![self.fileManager directoryExists:sceneDirectory]) {
+            // This is newly added scene
+            [self createDirectoriesForScene:scene];
+        }
+    }
+    
     ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:progarm];
     NSAssert([self.fileManager directoryExists:info.basePath], @"Program doesn't exit");
     
@@ -351,6 +353,22 @@ static ProgramManager *_instance = nil;
     [serializer serializeProgram:progarm];
     
     [self updateLastModificationTimeForProgramWithLoadingInfo:info];
+}
+
+- (void)createDirectoriesForScene:(Scene *)scene {
+    NSParameterAssert(scene);
+    
+    NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
+    NSAssert(![self.fileManager directoryExists:sceneDirectory], @"Already exists");
+    [self.fileManager createDirectory:sceneDirectory];
+    
+    NSString *imagesDirName = [FileSystemStorage imagesDirectoryForScene:scene];
+    NSAssert(![self.fileManager directoryExists:imagesDirName], @"Already exists");
+    [self.fileManager createDirectory:imagesDirName];
+    
+    NSString *soundsDirName = [FileSystemStorage soundsDirectoryForScene:scene];
+    NSAssert(![self.fileManager directoryExists:soundsDirName], @"Already exists");
+    [self.fileManager createDirectory:soundsDirName];
 }
 
 - (NSString *)oldImagesDirectoryForProgram:(Program *)program {
@@ -375,13 +393,17 @@ static ProgramManager *_instance = nil;
     NSAssert([program.scenes count] == 1, @"Inconsistency");
     
     Scene *scene = [program.scenes objectAtIndex:0];
+    
     NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
+    [self.fileManager createDirectory:sceneDirectory];
     
     NSString *programImagesDirectory = [self oldImagesDirectoryForProgram:program];
-    [self.fileManager moveExistingDirectoryAtPath:programImagesDirectory toPath:sceneDirectory];
+    NSString *sceneImagesDirectory = [FileSystemStorage imagesDirectoryForScene:scene];
+    [self.fileManager moveExistingDirectoryAtPath:programImagesDirectory toPath:sceneImagesDirectory];
     
     NSString *programSoundsDirectory = [self oldSoundsDirectoryForProgram:program];
-    [self.fileManager moveExistingDirectoryAtPath:programSoundsDirectory toPath:sceneDirectory];
+    NSString *sceneSoundsDirectory = [FileSystemStorage soundsDirectoryForScene:scene];
+    [self.fileManager moveExistingDirectoryAtPath:programSoundsDirectory toPath:sceneSoundsDirectory];
 }
 
 @end

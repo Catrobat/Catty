@@ -55,7 +55,7 @@
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -91,7 +91,7 @@
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -127,7 +127,7 @@
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -164,7 +164,7 @@
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look *look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"] atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;

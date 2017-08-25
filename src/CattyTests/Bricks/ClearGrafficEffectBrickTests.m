@@ -58,7 +58,7 @@
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -106,7 +106,7 @@
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
 
     Formula *transparency = [[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
@@ -156,7 +156,7 @@
                                            ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+    [imageData writeToFile:[[object imagesDirectory] stringByAppendingPathComponent:@"test.png"] atomically:YES];
 
     Formula* brightness =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];

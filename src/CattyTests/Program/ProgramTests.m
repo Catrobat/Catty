@@ -27,6 +27,9 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 #import "ProgramManager.h"
+#import "FileSystemStorage.h"
+#import "ProgramLoadingInfo.h"
+#import "Scene.h"
 
 @interface ProgramTests : XCTestCase
 
@@ -40,8 +43,9 @@
 - (void)setUp
 {
     [super setUp];
-    if (! [self.fileManager directoryExists:[ProgramManager basePath]]) {
-        [self.fileManager createDirectory:[ProgramManager basePath]];
+    NSString *programsDirectory = [FileSystemStorage programsDirectory];
+    if (! [self.fileManager directoryExists:programsDirectory]) {
+        [self.fileManager createDirectory:programsDirectory];
     }
 }
 
@@ -64,21 +68,59 @@
 - (void)testNewProgramIfProjectFolderExists
 {
     [self setupForNewProgram];
-    XCTAssertTrue([self.fileManager directoryExists:[ProgramManager projectPathForProgram:self.program]], @"No project folder created for the new project");
+    NSString *programDirectory = [ProgramLoadingInfo programLoadingInfoForProgram:self.program].basePath;
+    XCTAssertTrue([self.fileManager directoryExists:programDirectory], @"No project folder created for the new project");
+}
+
+- (void)testNewProgramIfScenesFolderExists
+{
+    [self setupForNewProgram];
+    
+    for (Scene *scene in self.program.scenes) {
+        NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
+        XCTAssertTrue([self.fileManager directoryExists:sceneDirectory], @"No scene folder created for the new project");
+    }
 }
 
 - (void)testNewProgramIfImagesFolderExists
 {
     [self setupForNewProgram];
-    NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [ProgramManager projectPathForProgram:self.program], kProgramImagesDirName];
-    XCTAssertTrue([self.fileManager directoryExists:imagesDirName], @"No images folder created for the new project");
+    
+    for (Scene *scene in self.program.scenes) {
+        NSString *sceneImagesDirectory = [FileSystemStorage imagesDirectoryForScene:scene];
+        XCTAssertTrue([self.fileManager directoryExists:sceneImagesDirectory], @"No images folder created for the new project");
+    }
 }
 
 - (void)testNewProgramIfSoundsFolderExists
 {
     [self setupForNewProgram];
-    NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [ProgramManager projectPathForProgram:self.program], kProgramSoundsDirName];
-    XCTAssertTrue([self.fileManager directoryExists:soundsDirName], @"No sounds folder created for the new project");
+    
+    for (Scene *scene in self.program.scenes) {
+        NSString *sceneSoundsDirectory = [FileSystemStorage soundsDirectoryForScene:scene];
+        XCTAssertTrue([self.fileManager directoryExists:sceneSoundsDirectory], @"No sounds folder created for the new project");
+    }
+}
+
+- (void)testAddingNewSceneCreatesNewFolders {
+    [self setupForNewProgram];
+    
+    [self.program addScene:[[Scene alloc] initWithName:@"New scene"
+                                            objectList:@[]
+                                    objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
+                                         originalWidth:@"100"
+                                        originalHeight:@"100"]];
+    [[ProgramManager instance] saveProgram:self.program];
+    
+    for (Scene *scene in self.program.scenes) {
+        NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
+        NSString *sceneImagesDirectory = [FileSystemStorage imagesDirectoryForScene:scene];
+        NSString *sceneSoundsDirectory = [FileSystemStorage soundsDirectoryForScene:scene];
+        
+        XCTAssertTrue([self.fileManager directoryExists:sceneDirectory], @"Scene directory was not created");
+        XCTAssertTrue([self.fileManager directoryExists:sceneImagesDirectory], @"Scene images directory was not created");
+        XCTAssertTrue([self.fileManager directoryExists:sceneSoundsDirectory], @"Scene sounds directory was not created");
+    }
 }
 
 #pragma mark - getters and setters
