@@ -43,9 +43,15 @@
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic) BOOL restartProgram;
 @property (nonatomic, strong) CBScene *scene;
+@property (nonatomic, strong) Program *program;
 @end
 
 @implementation ScenePresenterViewController
+
+- (void)setSceneModel:(Scene *)sceneModel {
+    _sceneModel = sceneModel;
+    self.program = sceneModel.program; // keep strong reference to program to prevent its deallocation during scene presentation 
+}
 
 #pragma mark - View Event Handling
 - (void)viewDidLoad

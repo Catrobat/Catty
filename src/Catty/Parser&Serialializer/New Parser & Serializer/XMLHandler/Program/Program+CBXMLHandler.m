@@ -57,10 +57,11 @@
         GDataXMLElement *programVariableListElement = [CBXMLParserHelper onlyChildOfElement:variablesWrapperElement withName:@"programVariableList"];
         programVariableList = [self parseProgramVariableListFromElement:programVariableListElement withContext:context];
         
+        context.programVariableList = [programVariableList mutableCopy];
+        
         GDataXMLElement *objectVariableListElement = [CBXMLParserHelper onlyChildOfElement:variablesWrapperElement withName:@"objectVariableList"];
         OrderedMapTable *objectVariableList = [self parseObjectVariableListFromElement:objectVariableListElement withContext:context];
         
-        context.programVariableList = [programVariableList mutableCopy];
         context.objectVariableList = [objectVariableList mutableCopy];
         
         GDataXMLElement *objectListElement = [CBXMLParserHelper onlyChildOfElement:xmlElement withName:@"objectList"];
