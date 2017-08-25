@@ -25,10 +25,6 @@
 
 @interface BubbleBrickHelper()
 
-@property (nonatomic) AVCaptureSession* session;
-@property (nonatomic) AVCaptureDevicePosition cameraPosition;
-@property (nonatomic) UIView* camView;
-
 @end
 
 
@@ -80,6 +76,20 @@
     label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height*0.6);
     [sayBubble addChild:label];
     [spriteNode addChild:sayBubble];
+    
+    if(duration >= 0)
+    {
+        [NSTimer scheduledTimerWithTimeInterval:duration repeats:false block:^(NSTimer * _Nonnull timer) {
+            SKNode* oldBubble = [spriteNode childNodeWithName:kBubbleBrickNodeName];
+            
+            if (oldBubble != nil)
+            {
+                [oldBubble runAction:[SKAction removeFromParent]];
+                [spriteNode removeChildrenInArray:@[oldBubble]];
+            }
+        }];
+    }
+    
 }
 
                         
