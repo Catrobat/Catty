@@ -159,6 +159,7 @@
         picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = pickerType;
+        picker.navigationBar.tintColor = [UIColor navTintColor];
         
         [self.canvas presentViewController:picker animated:YES completion:NULL];
     } else {
