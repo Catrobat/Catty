@@ -23,6 +23,9 @@
 #import "SayForBubbleBrickCell.h"
 
 @interface SayForBubbleBrickCell ()
+@property (nonatomic, strong) UILabel *firstRowTextLabel;
+@property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
+@property (nonatomic, strong) UILabel *secondRowRightTextLabel;
 @end
 
 @implementation SayForBubbleBrickCell
@@ -39,8 +42,11 @@
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
+    self.firstRowTextLabel = inlineViewSubViews[0];
     self.sayTextField = inlineViewSubViews[1];
+    self.secondRowLeftTextLabel = inlineViewSubViews[2];
     self.forTextField = inlineViewSubViews[3];
+    self.secondRowRightTextLabel = inlineViewSubViews[4];
 }
 
 @end
