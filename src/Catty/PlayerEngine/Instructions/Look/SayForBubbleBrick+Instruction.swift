@@ -23,23 +23,41 @@
 extension SayForBubbleBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
-    }
-    
-    func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
-            let spriteNode = object.spriteNode
+            let _ = object.spriteNode
             else { fatalError("This should never happen!") }
         
+        let cachedDuration = self.intFormula.isIdempotent()
+            ? CBDuration.FixedTime(duration: self.intFormula.interpretDoubleForSprite(object))
+            : CBDuration.VarTime(formula: self.intFormula)
+        
+        return .LongDurationAction(duration: cachedDuration, actionCreateClosure: {
+            (duration) -> SKAction in
+            return SKAction.sequence([SKAction.runBlock(self.actionBlock(object)), SKAction.waitForDuration(duration), SKAction.runBlock(self.removeActionBlock(object))])
+        })
+    }
+    
+    func actionBlock(object: SpriteObject) -> dispatch_block_t {
         return {
             var speakText = self.stringFormula.interpretString(object)
-            let duration = self.intFormula.interpretDoubleForSprite(object)
             if(Double(speakText) !=  nil)
             {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
-            BubbleBrickHelper.addBubbleToSpriteNode(spriteNode, withText: speakText, andType: CBBubbleType.Speech, forDuration: duration)
+            BubbleBrickHelper.addBubbleToSpriteNode(object.spriteNode, withText: speakText, andType: CBBubbleType.Speech)
+        }
+    }
+    
+    func removeActionBlock(object: SpriteObject) -> dispatch_block_t {
+        return {
+            let oldBubble = object.spriteNode.childNodeWithName(kBubbleBrickNodeName);
+            
+            if (oldBubble != nil)
+            {
+                oldBubble!.runAction(SKAction.removeFromParent());
+                object.spriteNode.removeChildrenInArray([oldBubble!]);
+            }
         }
     }
 }
