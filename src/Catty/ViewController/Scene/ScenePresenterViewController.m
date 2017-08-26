@@ -564,7 +564,8 @@
 - (void)showSaveScreenshotActionSheet
 {
     UIImage *imageToShare = self.snapshotImage;
-    NSString *path = [FileSystemStorage manualScreenshotPathForProgramWithLoadingInfo:self.sceneModel.program];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.program];
+    NSString *path = [FileSystemStorage manualScreenshotPathForProgramWithLoadingInfo:info];
     NSArray *itemsToShare = @[imageToShare];
 
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
