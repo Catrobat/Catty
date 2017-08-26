@@ -45,7 +45,7 @@ extension ShowTextBrick: CBInstructionProtocol {
                     let string:NSString = userVariable.value as! NSString
                     value = string as String
                 } else {
-                    value = ""
+                    value = "0"
                 }
                 userVariable.textLabel.text = value
                 
