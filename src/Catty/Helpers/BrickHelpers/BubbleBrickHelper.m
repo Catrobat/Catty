@@ -68,8 +68,8 @@
     SKShapeNode* sayBubble = [SKShapeNode shapeNodeWithPath:[self bubblePathWithWidth:bubbleWidth andType:type]];
     sayBubble.name = kBubbleBrickNodeName;
     sayBubble.fillColor = [UIColor whiteColor];
-    sayBubble.lineWidth = 3.0;
     sayBubble.strokeColor = [UIColor blackColor];
+    sayBubble.lineWidth = 3.5;
     
     sayBubble.position = [sayBubble convertPoint:CGPointMake(spriteNode.position.x + spriteNode.frame.size.width / 2, spriteNode.position.y + spriteNode.frame.size.height / 2) toNode:spriteNode];
 

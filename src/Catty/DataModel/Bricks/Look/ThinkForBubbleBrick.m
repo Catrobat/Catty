@@ -55,8 +55,8 @@
     
     Formula *timeFormula = [Formula new];
     FormulaElement *timeFormulaElement = [FormulaElement new];
-    formulaElement.type = NUMBER;
-    formulaElement.value = @"1.0";
+    timeFormulaElement.type = NUMBER;
+    timeFormulaElement.value = @"1.0";
     timeFormula.formulaTree = timeFormulaElement;
     self.intFormula = timeFormula;
 }
