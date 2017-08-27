@@ -111,6 +111,7 @@
 		4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */; };
 		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
 		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
+		4C6CC0F91F52B16C00E64A2B /* BubbleBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6CC0F81F52B16C00E64A2B /* BubbleBrickTests.swift */; };
 		4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */; };
 		4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15CF1D7AC5A500CE53CD /* Compass_0.1_098.xml */; };
 		4C6D15D21D7AC5B600CE53CD /* Demonstration_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15D11D7AC5B600CE53CD /* Demonstration_098.xml */; };
@@ -1084,6 +1085,7 @@
 		4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTests.m; path = Formula/InternFormulaTests.m; sourceTree = "<group>"; };
 		4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTokenSelectionTest.m; path = Formula/InternFormulaTokenSelectionTest.m; sourceTree = "<group>"; };
 		4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaUtilsTest.m; path = Formula/InternFormulaUtilsTest.m; sourceTree = "<group>"; };
+		4C6CC0F81F52B16C00E64A2B /* BubbleBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleBrickTests.swift; sourceTree = "<group>"; };
 		4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_098.xml; sourceTree = "<group>"; };
 		4C6D15CF1D7AC5A500CE53CD /* Compass_0.1_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_098.xml; sourceTree = "<group>"; };
 		4C6D15D11D7AC5B600CE53CD /* Demonstration_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Demonstration_098.xml; sourceTree = "<group>"; };
@@ -3490,6 +3492,7 @@
 				4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */,
 				4CEB22361B95E47500B3BE2F /* BrickTests.h */,
 				4CEB22371B95E47500B3BE2F /* BrickTests.m */,
+				4C6CC0F81F52B16C00E64A2B /* BubbleBrickTests.swift */,
 				4CEB22381B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m */,
 				99E770511D7091BC00BEF91F /* ChangeColorByNBrickTests.m */,
 				4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */,
@@ -7031,6 +7034,7 @@
 				4CEB22541B95E47500B3BE2F /* BrickTests.m in Sources */,
 				4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
+				4C6CC0F91F52B16C00E64A2B /* BubbleBrickTests.swift in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
