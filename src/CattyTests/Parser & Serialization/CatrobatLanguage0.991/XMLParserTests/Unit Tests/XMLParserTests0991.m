@@ -39,6 +39,8 @@
 #import "CameraBrick.h"
 #import "SayBubbleBrick.h"
 #import "ThinkBubbleBrick.h"
+#import "SayForBubbleBrick.h"
+#import "ThinkForBubbleBrick.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
 
@@ -332,6 +334,34 @@
     Brick *thinkBubbleBrick = [backgroundScript.brickList objectAtIndex:34];
     XCTAssertTrue([thinkBubbleBrick isKindOfClass:[ThinkBubbleBrick class]], "Invalid brick type");
     XCTAssertNotNil(((ThinkBubbleBrick*)thinkBubbleBrick).formula, "Invalid formula");
+}
+
+- (void)testSayForBubbleBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 36, "Invalid brick list");
+    
+    Brick *sayForBubbleBrick = [backgroundScript.brickList objectAtIndex:35];
+    XCTAssertTrue([sayForBubbleBrick isKindOfClass:[SayForBubbleBrick class]], "Invalid brick type");
+    XCTAssertNotNil(((SayForBubbleBrick*)sayForBubbleBrick).stringFormula, "Invalid formula");
+    XCTAssertNotNil(((SayForBubbleBrick*)sayForBubbleBrick).intFormula, "Invalid formula");
+}
+
+- (void)testThinkForBubbleBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 37, "Invalid brick list");
+    
+    Brick *thinkForBubbleBrick = [backgroundScript.brickList objectAtIndex:36];
+    XCTAssertTrue([thinkForBubbleBrick isKindOfClass:[ThinkForBubbleBrick class]], "Invalid brick type");
+    XCTAssertNotNil(((ThinkForBubbleBrick*)thinkForBubbleBrick).stringFormula, "Invalid formula");
+    XCTAssertNotNil(((ThinkForBubbleBrick*)thinkForBubbleBrick).intFormula, "Invalid formula");
 }
 
 @end

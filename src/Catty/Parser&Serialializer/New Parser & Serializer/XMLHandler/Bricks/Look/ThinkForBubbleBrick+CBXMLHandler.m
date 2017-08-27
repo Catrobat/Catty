@@ -62,7 +62,7 @@
     [brick addChild:formulaList context:context];
     
     // Element to produce Catroid equivalent XML
-    [brick addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"0" context:context] context:context];
+    [brick addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"1" context:context] context:context];
     
     return brick;
 }

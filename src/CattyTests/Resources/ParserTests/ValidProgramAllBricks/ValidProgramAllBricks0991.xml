@@ -454,6 +454,32 @@
                 </formulaList>
                 <type>1</type>
             </brick>
+            <brick type="SayForBubbleBrick">
+                <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                        <type>NUMBER</type>
+                        <value>1.0</value>
+                    </formula>
+                    <formula category="STRING">
+                        <type>STRING</type>
+                        <value>Hello!</value>
+                    </formula>
+                </formulaList>
+                <type>0</type>
+            </brick>
+            <brick type="ThinkForBubbleBrick">
+                <formulaList>
+                    <formula category="DURATION_IN_SECONDS">
+                        <type>NUMBER</type>
+                        <value>1.0</value>
+                    </formula>
+                    <formula category="STRING">
+                        <type>STRING</type>
+                        <value>Hmmmm!</value>
+                    </formula>
+                </formulaList>
+                <type>1</type>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
