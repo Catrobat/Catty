@@ -32,6 +32,5 @@ typedef NS_ENUM(NSInteger, CBBubbleType)
 };
 
 + (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type;
-+ (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type forDuration:(double)duration;
 
 @end

@@ -23,20 +23,9 @@
 #import "BubbleBrickHelper.h"
 #import "Pocket_Code-Swift.h"
 
-@interface BubbleBrickHelper()
-
-@end
-
-
 @implementation BubbleBrickHelper
 
 + (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type
-{
-    [self addBubbleToSpriteNode:spriteNode withText:text andType:type forDuration:-1];
-}
-
-
-+ (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type forDuration:(double)duration
 {
     SKLabelNode* label = [SKLabelNode labelNodeWithText:text];
     label.name = @"bubbleText";
@@ -76,20 +65,6 @@
     label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height*0.6);
     [sayBubble addChild:label];
     [spriteNode addChild:sayBubble];
-    
-    if(duration >= 0)
-    {
-        [NSTimer scheduledTimerWithTimeInterval:duration repeats:false block:^(NSTimer * _Nonnull timer) {
-            SKNode* oldBubble = [spriteNode childNodeWithName:kBubbleBrickNodeName];
-            
-            if (oldBubble != nil)
-            {
-                [oldBubble runAction:[SKAction removeFromParent]];
-                [spriteNode removeChildrenInArray:@[oldBubble]];
-            }
-        }];
-    }
-    
 }
 
                         
