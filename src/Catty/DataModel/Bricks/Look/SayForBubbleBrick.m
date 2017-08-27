@@ -46,19 +46,8 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    Formula *speakFormula = [Formula new];
-    FormulaElement *formulaElement = [FormulaElement new];
-    formulaElement.type = STRING;
-    formulaElement.value = kLocalizedHello;
-    speakFormula.formulaTree = formulaElement;
-    self.stringFormula = speakFormula;
-    
-    Formula *timeFormula = [Formula new];
-    FormulaElement *timeFormulaElement = [FormulaElement new];
-    timeFormulaElement.type = NUMBER;
-    timeFormulaElement.value = @"1.0";
-    timeFormula.formulaTree = timeFormulaElement;
-    self.intFormula = timeFormula;
+    self.stringFormula = [[Formula new] initWithString:kLocalizedHello];
+    self.intFormula = [[Formula new] initWithInteger:1];
 }
 
 -(BOOL)isDisabledForBackground
