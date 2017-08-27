@@ -21,6 +21,7 @@
  */
 
 #import "SayForBubbleBrick.h"
+#import "Script.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation SayForBubbleBrick
@@ -35,8 +36,15 @@
 
 - (NSString*)brickTitle
 {
-    NSString* secondsString = (int)self.intFormula.formulaTree.value == 1 ? kLocalizedSecond : kLocalizedSeconds;
-    return [[[[kLocalizedSay stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedFor] stringByAppendingString:@"%@"] stringByAppendingString:secondsString];
+    double intFormula = [self.intFormula interpretDoubleForSprite:self.script.object andUseCache:NO];
+    NSString* localizedSecond;
+    if ([self.intFormula isSingleNumberFormula] && intFormula == 1.0) {
+        localizedSecond = kLocalizedSecond;
+    } else {
+        localizedSecond = kLocalizedSeconds;
+    }
+    
+    return [[[[kLocalizedSay stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedFor] stringByAppendingString:@"%@"] stringByAppendingString:localizedSecond];
 }
 
 - (BOOL)allowsStringFormula
