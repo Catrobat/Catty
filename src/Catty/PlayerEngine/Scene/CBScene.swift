@@ -265,7 +265,6 @@ final class CBScene: SKScene {
         view?.paused = true
         scheduler?.shutdown() // stops all script contexts of all objects and removes all ressources
         removeAllChildren() // remove all CBSpriteNodes from Scene
-        frontend?.scene?.removeReferences() // remove all references in scene hierarchy
         logger?.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
 

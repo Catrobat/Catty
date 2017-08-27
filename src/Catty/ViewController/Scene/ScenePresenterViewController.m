@@ -35,15 +35,15 @@
 #import "ProgramManager.h"
 #import "FileSystemStorage.h"
 #import "ProgramLoadingInfo.h"
+#import "SceneStartBrick.h"
+#import "NSArray+CustomExtension.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
-@property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
-@property (nonatomic, strong) LoadingView* loadingView;
+@property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) SKView *skView;
-@property (nonatomic) BOOL restartProgram;
 @property (nonatomic, strong) CBScene *scene;
 @property (nonatomic, strong) Program *program;
 @end
@@ -59,8 +59,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.restartProgram = NO;
-    [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.backgroundColor;
 }
@@ -68,7 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupScene];
+    [self startPlayingScene:self.sceneModel];
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -88,12 +86,17 @@
     [self setUpGridView];
     [self checkAspectRatio];
     [[BluetoothService sharedInstance] setScenePresenter:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveStartSceneNotification:)
+                                                 name:kStartSceneNotification
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self continueProgramAction:nil withDuration:kfirstSwipeDuration];
+    [self continueSceneAction:nil withDuration:kfirstSwipeDuration];
 
 }
 
@@ -101,8 +104,8 @@
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = self.restartProgram;
-    self.navigationController.toolbarHidden = self.restartProgram;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.toolbarHidden = NO;
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
@@ -111,6 +114,10 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kStartSceneNotification
+                                                  object:nil];
 }
 
 - (void)viewWillLayoutSubviews
@@ -123,10 +130,10 @@
 #pragma mark Dealloc
 - (void)dealloc
 {
-    [self freeRessources];
+    [self freeResources];
 }
 
-- (void)freeRessources
+- (void)freeResources
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
@@ -155,12 +162,12 @@
         [self setupLabel:labelTextArray[i]
                  andView:labelArray[i]];
     }
-    [self.menuBackLabel addTarget:self action:@selector(stopProgramAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuContinueLabel addTarget:self action:@selector(continueProgramAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuBackLabel addTarget:self action:@selector(stopSceneAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuContinueLabel addTarget:self action:@selector(continueSceneAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRestartLabel addTarget:self action:@selector(restartProgramAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRestartLabel addTarget:self action:@selector(restartSceneAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRecordLabel addTarget:self action:@selector(recordProgram:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRecordLabel addTarget:self action:@selector(recordScene:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupLabel:(NSString*)name andView:(UIButton*)label
@@ -176,11 +183,11 @@
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
-                    andSelector:@selector(stopProgramAction:)];
+                    andSelector:@selector(stopSceneAction:)];
     [self setupButtonWithButton:self.menuContinueButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
-                    andSelector:@selector(continueProgramAction:withDuration:)];
+                    andSelector:@selector(continueSceneAction:withDuration:)];
     [self setupButtonWithButton:self.menuScreenshotButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
@@ -188,7 +195,7 @@
     [self setupButtonWithButton:self.menuRestartButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_restart"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"]
-                    andSelector:@selector(restartProgramAction:)];
+                    andSelector:@selector(restartSceneAction:)];
     [self setupButtonWithButton:self.menuAxisButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
@@ -200,7 +207,7 @@
     [self setupButtonWithButton:self.menuRecordButton
                 ImageNameNormal:[UIImage imageNamed:@"record"]
         andImageNameHighlighted:[UIImage imageNamed:@"record"]
-                    andSelector:@selector(recordProgram:)];
+                    andSelector:@selector(recordScene:)];
     self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
     self.menuRecordLabel.hidden = (! self.scene.isScreenRecorderAvailable);
 }
@@ -264,36 +271,20 @@
     }
 }
 
-- (void)setupScene
-{
-    if (! self.scene) {
-        CBScene *scene = [SetupScene setupSceneForScene:self.sceneModel];
-        [scene initializeScreenRecording];
-        scene.name = self.sceneModel.name;
-        scene.screenRecordingDelegate = self;
-        
-        if ([self.sceneModel.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-            scene.scaleMode = SKSceneScaleModeFill;
-        } else if ([self.sceneModel.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-            scene.scaleMode = SKSceneScaleModeAspectFit;
-        } else {
-            scene.scaleMode = SKSceneScaleModeFill;
-        }
-        self.skView.paused = NO;
-        [self.skView presentScene:scene];
-        self.scene = scene;
+- (CBScene *)createSceneWithScreenMode:(NSString *)screenMode sceneModel:(Scene *)sceneModel {
+    CBScene *scene = [SetupScene setupSceneForScene:sceneModel];
+    [scene initializeScreenRecording];
+    scene.name = sceneModel.name;
+    scene.screenRecordingDelegate = self;
+    
+    if ([screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+        scene.scaleMode = SKSceneScaleModeFill;
+    } else if ([screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+    } else {
+        scene.scaleMode = SKSceneScaleModeFill;
     }
-}
-
--(void)resaveLooks
-{
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        for (SpriteObject *object in self.sceneModel.objectList) {
-            for (Look *look in object.lookList) {
-                [[RuntimeImageCache sharedImageCache] loadImageFromDiskWithPath:look.fileName];
-            }
-        }
-    });
+    return scene;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -305,7 +296,7 @@
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if (self.menuOpen) {
+    if (self.menuOpen || !self.scene.isUserInteractionEnabled) {
         NSDebug(@"touch on scene not allowed, because menu is open");
         return;
     }
@@ -341,7 +332,7 @@
     [self.scene resumeScheduler];
 }
 
-- (void)continueProgramAction:(UIButton*)sender withDuration:(CGFloat)duration
+- (void)continueSceneAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
@@ -370,7 +361,7 @@
     }
 }
 
-- (void)stopProgramAction:(UIButton*)sender
+- (void)stopSceneAction:(UIButton*)sender
 {
     CBScene *previousScene = self.scene;
     if (previousScene.isScreenRecording) {
@@ -419,52 +410,17 @@
      showWithController:self];
 }
 
-- (void)restartProgramAction:(UIButton*)sender
+- (void)restartSceneAction:(UIButton*)sender
 {
-    [self.loadingView show];
-    self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = self.scene;
-    previousScene.userInteractionEnabled = NO;
-    [previousScene stopScene];
-    [[FlashHelper sharedFlashHandler] reset];
-
-    [self freeRessources];
-    NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
-    [controllers removeLastObject];
-    UIViewController *previousVC = (UIViewController*)controllers.lastObject; // previous object
-    if ([previousVC respondsToSelector:@selector(playSceneAction:animated:)]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [((BaseTableViewController*)previousVC) playSceneAction:sender animated:NO];
-        });
-    } else {
-        assert("PLEASE IMPLEMENT playSceneAction:animated method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
-    }
-    self.menuView.userInteractionEnabled = YES;
-    previousScene.userInteractionEnabled = YES;
-    [self.loadingView hide];
-
-    UIView *loadingView = [[self class] sharedLoadingView];
-    [self.parentViewController.view addSubview:loadingView];
-    [self.parentViewController.view bringSubviewToFront:loadingView];
-    self.restartProgram = YES;
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-+ (UIView*)sharedLoadingView
-{
-    static UIView *loadingView = nil;
-    if (loadingView == nil) {
-        loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        UILabel *label = [[UILabel alloc] initWithFrame:loadingView.frame];
-        label.font = [UIFont systemFontOfSize:36];
-        label.text = [NSString stringWithFormat:@"%@...", kLocalizedLoading];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        [loadingView addSubview:label];
-        loadingView.backgroundColor = [UIColor backgroundColor];
-        loadingView.alpha = 1.0;
-    }
-    return loadingView;
+    [self startPlayingScene:self.sceneModel];
+    
+    [UIView animateWithDuration:0.3
+                          delay:0.0f
+                        options: UIViewAnimationOptionTransitionFlipFromRight
+                     animations:^{[self continueAnimation];}
+                     completion:^(BOOL finished) {
+                         self.menuOpen = NO;
+                     }];
 }
 
 #pragma mark User Event Handling
@@ -482,7 +438,7 @@
     }
 }
 
-- (void)recordProgram:(UIButton*)sender
+- (void)recordScene:(UIButton*)sender
 {
     if (! self.scene.isScreenRecorderAvailable) {
         return;
@@ -503,14 +459,14 @@
         [self setupLabel:kLocalizedStop
                  andView:self.menuRecordLabel];
         [self.menuView setNeedsDisplay];
-        [self continueProgramAction:nil withDuration:0];
+        [self continueSceneAction:nil withDuration:0];
     }
 }
 
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
     self.scene.scaleMode = self.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
-    self.sceneModel.program.header.screenMode = [self.sceneModel.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
+    self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
     // pause Scene
@@ -524,15 +480,15 @@
     // Screenshot function
     UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
     [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
-    self.snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    [self showSaveScreenshotActionSheet];
+    [self showSaveScreenshotActionSheetWithSnapShot:snapshotImage];
     
 }
 
 -(void)takeAutomaticScreenshot
 {
-    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.sceneModel.program];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.program];
     NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
     BOOL fileExists = NO;
     for (NSString *fallbackPath in fallbackPaths) {
@@ -561,12 +517,11 @@
 }
 
 #pragma mark - Action Sheet & Alert View Handling
-- (void)showSaveScreenshotActionSheet
+- (void)showSaveScreenshotActionSheetWithSnapShot:(UIImage *)snapshotImage
 {
-    UIImage *imageToShare = self.snapshotImage;
     ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.program];
     NSString *path = [FileSystemStorage manualScreenshotPathForProgramWithLoadingInfo:info];
-    NSArray *itemsToShare = @[imageToShare];
+    NSArray *itemsToShare = @[snapshotImage];
 
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
     NSArray *activities = @[saveToProjectActivity];
@@ -747,9 +702,6 @@
     if (! _loadingView) {
         _loadingView = [LoadingView new];
         [self.view addSubview:_loadingView];
-        [self.view bringSubviewToFront:_loadingView];
-        _loadingView.backgroundColor = [UIColor whiteColor];
-        _loadingView.alpha = 1.0;
     }
     return _loadingView;
 }
@@ -793,6 +745,58 @@
 
 - (void)hideMenuRecordButton {
     self.menuRecordButton.hidden = YES;
+}
+
+- (void)didReceiveStartSceneNotification:(NSNotification *)notifitation {
+    NSAssert([NSThread isMainThread], @"Should be called in main thread");
+    
+    NSString *sceneName = notifitation.object;
+    NSAssert(sceneName.length > 0, @"Notification's object should contain name of scene to start");
+    
+    Scene *sceneToStart = [self.program.scenes cb_findFirst:^BOOL(Scene *item) {
+        return [item.name isEqualToString:sceneName];
+    }];
+    
+    [self startPlayingScene:sceneToStart];
+}
+
+- (void)startPlayingScene:(Scene *)scene {
+    self.sceneModel = scene;
+    
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    
+    __weak typeof(self) self__weak = self;
+    
+    void(^presentSceneModel)() = ^{
+        
+        __strong typeof(self__weak) self = self__weak;
+        
+        [self.scene stopScene];
+        
+        self.scene = [self createSceneWithScreenMode:self.program.header.screenMode sceneModel:scene];
+        
+        self.skView.paused = NO;
+        [self.skView presentScene:self.scene];
+        
+        self.menuView.userInteractionEnabled = YES;
+        [self.loadingView hide];
+    };
+    
+    if (self.scene != nil) {
+        self.scene.userInteractionEnabled = NO;
+        [self.scene pauseScheduler];
+        self.skView.paused = YES;
+        
+        [[AudioManager sharedAudioManager] stopAllSounds];
+        [[FlashHelper sharedFlashHandler] reset];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            presentSceneModel();
+        });
+    } else {
+        presentSceneModel();
+    }
 }
 
 @end

@@ -327,12 +327,6 @@
     [self.soundList insertObject:sound atIndex:destinationIndex];
 }
 
-- (void)removeReferences
-{
-    self.scene = nil;
-    [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
-}
-
 - (NSString*)description
 {
     NSMutableString *mutableString = [NSMutableString string];

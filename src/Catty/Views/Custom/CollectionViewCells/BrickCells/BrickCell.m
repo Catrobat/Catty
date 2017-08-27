@@ -41,6 +41,7 @@
 #import "BrickCellPhiroToneData.h"
 #import "BrickCellPhiroIfSensorData.h"
 #import "LoopEndBrickCell.h"
+#import "BrickCellSceneData.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -59,7 +60,8 @@
     @[],                            /* else            */\
     @[],                            /* if end          */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
-    @[]                             /* loop end        */\
+    @[],                            /* loop end        */\
+    @"{SCENE}"                      /* scene start     */\
 ]
 // motion bricks
 #define kMotionBrickNameParams @[\
@@ -509,7 +511,10 @@
             } else if ([afterLabelParam rangeOfString:@"PHIROIF"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellPhiroIfSensorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
-            }else {
+            } else if ([afterLabelParam rangeOfString:@"SCENE"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellSceneData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();
             }

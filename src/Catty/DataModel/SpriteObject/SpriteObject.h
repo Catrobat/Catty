@@ -81,8 +81,6 @@
 - (void)moveLookAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
 - (void)moveSoundAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
 
-- (void)removeReferences;
-
 - (NSInteger)getRequiredResources;
 
 // compare

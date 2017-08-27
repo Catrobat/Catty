@@ -72,6 +72,7 @@
 #import "NSArray+CustomExtension.h"
 #import "ObjectListViewController.h"
 #import "ProgramManager.h"
+#import "BrickCellSceneData.h"
 
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
@@ -1163,6 +1164,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellPhiroIfSensorData class]] && [brick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
         Brick<BrickPhiroIfSensorProtocol> *phiroIfBrick = (Brick<BrickPhiroIfSensorProtocol>*)brick;
         [phiroIfBrick setSensor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellSceneData class]] && [brick conformsToProtocol:@protocol(BrickSceneProtocol)]) {
+        Brick<BrickSceneProtocol> *sceneBrick = (Brick<BrickSceneProtocol>*)brick;
+        [sceneBrick setSceneName:(NSString *)value forLineNumber:line andParameterNumber:parameter];
     }
     
     [self saveProgramToDisk];

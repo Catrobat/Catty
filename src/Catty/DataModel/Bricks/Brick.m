@@ -195,11 +195,6 @@
     }
 }
 
-- (void)removeReferences
-{
-    self.script = nil;
-}
-
 - (NSInteger)getRequiredResources
 {
     //OVERRIDE IN EVERY BRICK

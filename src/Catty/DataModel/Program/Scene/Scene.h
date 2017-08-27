@@ -62,6 +62,5 @@
 - (NSArray<NSString *> *)allObjectNames;
 
 - (NSInteger)getRequiredResources;
-- (void)removeReferences;
 
 @end

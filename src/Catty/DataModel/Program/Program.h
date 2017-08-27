@@ -56,8 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addProgramVariable:(UserVariable *)variable;
 - (void)removeProgramVariable:(UserVariable *)variable;
 
-- (void)removeReferences;
-
 - (BOOL)isEqualToProgram:(Program *)program;
 
 - (NSInteger)getRequiredResources;

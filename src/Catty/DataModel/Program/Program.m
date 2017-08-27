@@ -154,10 +154,6 @@
     return resources;
 }
 
-- (void)removeReferences {
-    [self.scenes makeObjectsPerformSelector:@selector(removeReferences)];
-}
-
 - (BOOL)isEqual:(id)other {
     if (other == self)
         return YES;

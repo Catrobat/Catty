@@ -183,13 +183,6 @@
     }
 }
 
-- (void)removeReferences
-{
-    // DO NOT CHANGE ORDER HERE!
-    [self.brickList makeObjectsPerformSelector:@selector(removeReferences)];
-    self.object = nil;
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     // Override this method in Script implementation
