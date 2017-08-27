@@ -397,6 +397,7 @@ let kLocalizedSetColor = NSLocalizedString("Set color ", comment: "")
 let kLocalizedChangeColor = NSLocalizedString("Change color ", comment: "")
 let kLocalizedFlash = NSLocalizedString("Turn flashlight", comment: "")
 let kLocalizedCamera = NSLocalizedString("Turn camera", comment: "")
+let kLocalizedFor = NSLocalizedString("for", comment: "")
 
 // sound bricks
 let kLocalizedPlaySound = NSLocalizedString("Start sound", comment: "")

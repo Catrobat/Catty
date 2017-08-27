@@ -97,11 +97,13 @@
 #import "ShowTextBrick.h"
 #import "HideTextBrick.h"
 #import "FlashBrick.h"
+#import "CameraBrick.h"
 #import "RepeatBrick.h"
 #import "RepeatUntilBrick.h"
 #import "SayBubbleBrick.h"
+#import "SayForBubbleBrick.h"
 #import "ThinkBubbleBrick.h"
-#import "CameraBrick.h"
+#import "ThinkForBubbleBrick.h"
 
 // Formulas
 #import "Formula.h"
@@ -134,6 +136,7 @@
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
 #import "CameraPreviewHandler.h"
+#import "BubbleBrickHelper.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes
