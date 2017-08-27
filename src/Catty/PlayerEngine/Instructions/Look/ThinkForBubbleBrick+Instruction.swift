@@ -44,7 +44,7 @@ extension ThinkForBubbleBrick: CBInstructionProtocol {
                 let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
-            BubbleBrickHelper.addBubbleToSpriteNode(object.spriteNode, withText: speakText, andType: CBBubbleType.Speech)
+            BubbleBrickHelper.addBubbleToSpriteNode(object.spriteNode, withText: speakText, andType: CBBubbleType.Thought)
         }
     }
     
