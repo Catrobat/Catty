@@ -91,6 +91,11 @@ static CameraPreviewHandler* shared = nil;
 {
     assert(self.camView);
     
+    if (self.session.isRunning)
+    {
+        return;
+    }
+    
     camLayer = [[CALayer alloc] init];
     camLayer.accessibilityHint = camAccessibility;
     camLayer.frame = self.camView.bounds;
