@@ -433,7 +433,6 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self showLoadingView];
     [self playSceneAction:sender animated:YES];
 }
 
@@ -443,8 +442,32 @@
         [self performSelector:@selector(stopAllSounds)];
     }
     
+    __block Program *lastUsedProgram = [[ProgramManager instance] lastUsedProgram];
+    NSArray<Scene *> *scenes = lastUsedProgram.scenes;
+    
+    if (scenes.count == 1) {
+        [self userSelectedToPlayScene:scenes[0]];
+    } else {
+        id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:@"Play Scene"]
+         addCancelActionWithTitle:kLocalizedCancel handler:NULL];
+        
+        for (Scene *scene in scenes) {
+            [actionSheet addDefaultActionWithTitle:scene.name handler:^{
+                [self userSelectedToPlayScene:scene];
+                lastUsedProgram = nil;
+            }];
+        }
+        
+        [[actionSheet build] showWithController:self];
+    }
+}
+
+- (void)userSelectedToPlayScene:(Scene *)scene {
+    [self showLoadingView];
+    
     self.scenePresenterViewController = [ScenePresenterViewController new];
-    self.scenePresenterViewController.sceneModel = [[ProgramManager instance] lastUsedProgram].scenes.firstObject;
+    self.scenePresenterViewController.sceneModel = scene;
+    
     NSInteger resources = [self.scenePresenterViewController.sceneModel getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
