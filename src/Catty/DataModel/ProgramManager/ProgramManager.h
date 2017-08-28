@@ -25,6 +25,7 @@
 @class Program;
 @class ProgramLoadingInfo;
 @class FileManager;
+@class Scene;
 
 @interface ProgramManager : NSObject
 
@@ -54,6 +55,9 @@
 
 - (void)renameProgram:(Program *)program toName:(NSString *)name;
 - (void)setProgramIDOfProgram:(Program *)program toID:(NSString *)programID;
+
+- (void)renameScene:(Scene *)scene toName:(NSString *)name;
+- (void)copyScene:(Scene *)sourceScene destinationSceneName:(NSString *)destinationSceneName;
 
 - (void)saveProgram:(Program *)progarm;
 
