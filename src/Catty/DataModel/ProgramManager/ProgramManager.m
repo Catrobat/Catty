@@ -365,6 +365,10 @@ static ProgramManager *_instance = nil;
         [program.scenes removeObject:scene];
     }
     
+    if ([program.scenes count] == 0) {
+        [self addScene:[Scene defaultSceneWithName:@"Scene 1"]  toProgram:program];
+    }
+    
     [self saveProgram:program];
 }
 
