@@ -75,6 +75,11 @@
              [self automaticScreenshotPathForProgramWithLoadingInfo:programLoadingInfo]];
 }
 
++ (NSString *)automaticScreenshotPathForScene:(Scene *)scene {
+    NSParameterAssert(scene);
+    return [[self directoryForScene:scene] stringByAppendingPathComponent:@"automatic_screenshot.png"];
+}
+
 + (NSString *)directoryForScene:(Scene *)scene {
     NSParameterAssert(scene);
     NSAssert(scene.program, @"Scene should belong to a proram");

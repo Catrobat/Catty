@@ -32,6 +32,8 @@
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
 #import "ProgramManager.h"
+#import "NSArray+CustomExtension.h"
+#import "AppDelegate.h"
 
 @implementation SceneListViewController
 
@@ -94,8 +96,45 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (void)configureImageCell:(CatrobatBaseCell<CatrobatImageCell> *)imageCell atIndexPath:(NSIndexPath *)indexPath {
+    Scene *scene = [self sceneAtIndexPath:indexPath];
     imageCell.indexPath = indexPath;
-    imageCell.titleLabel.text = [self sceneAtIndexPath:indexPath].name;
+    imageCell.titleLabel.text = scene.name;
+    imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageCell.iconImageView.image = nil;
+    
+    FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
+    NSString *screenshotPath = [FileSystemStorage automaticScreenshotPathForScene:scene];
+    if (![fileManager fileExists:screenshotPath] ) {
+        return;
+    }
+    NSString *fileName = [screenshotPath lastPathComponent];
+    NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@", [FileSystemStorage directoryForScene:scene],
+                               kScreenshotThumbnailPrefix, fileName];
+    
+    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+    UIImage *image = [imageCache cachedImageForPath:thumbnailPath];
+    if (image) {
+        imageCell.iconImageView.image = image;
+        return;
+    }
+    
+    // no screenshot files in memory, check if screenshot file exists on disk
+    // if a screenshot file is found, then load it from disk and cache it in memory for future access
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
+                                                      imagePath:screenshotPath
+                                             thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                   onCompletion:^(UIImage *image, NSString *path){
+                                                       // check if cell still needed
+                                                       if ([imageCell.indexPath isEqual:indexPath]) {
+                                                           imageCell.iconImageView.image = image;
+                                                           [imageCell setNeedsLayout];
+                                                           [self.tableView endUpdates];
+                                                       }
+                                                   }];
+    });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -202,7 +241,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addSceneAndSegueToItActionForSceneWithName:(NSString *)name {
     Scene *newScene = [Scene defaultSceneWithName:name];
-    [self.program addScene:newScene];
+    [[ProgramManager instance] addScene:newScene toProgram:self.program];
     
     [self segueToScene:newScene];
     
@@ -227,7 +266,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (void)renameSceneActionToName:(NSString *)newName scene:(Scene *)scene {
+    [self showLoadingView];
     [[ProgramManager instance] renameScene:scene toName:newName];
+    [self hideLoadingView];
     
     [self.tableView reloadData];
 }
@@ -257,11 +298,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)deleteSelectedScenesAction
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
-    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
-        Scene *selectedScene = [self sceneAtIndexPath:selectedRowIndexPath];
-        [self.program removeScene:selectedScene];
-    }
-    [self saveProgram:self.program showingSavedView:YES];
+    
+    NSArray *selectedScenes = [selectedRowsIndexPaths cb_mapUsingBlock:^id(NSIndexPath *indexPath) {
+        return [self sceneAtIndexPath:indexPath];
+    }];
+    
+    [[ProgramManager instance] removeScenes:selectedScenes fromProgram:self.program];
     
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationTop];
     [super exitEditingMode];
@@ -269,8 +311,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteSceneForIndexPath:(NSIndexPath *)indexPath {
     Scene *scene = [self sceneAtIndexPath:indexPath];
-    [self.program removeScene:scene];
-    [self saveProgram:self.program showingSavedView:YES];
+    
+    [self showLoadingView];
+    
+    [[ProgramManager instance] removeScenes:@[scene] fromProgram:self.program];
+    
+    [self hideLoadingView];
 
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
     

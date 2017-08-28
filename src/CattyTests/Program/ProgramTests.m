@@ -105,11 +105,13 @@
 - (void)testAddingNewSceneCreatesNewFolders {
     [self setupForNewProgram];
     
-    [self.program addScene:[[Scene alloc] initWithName:@"New scene"
-                                            objectList:@[]
-                                    objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
-                                         originalWidth:@"100"
-                                        originalHeight:@"100"]];
+    Scene *scene = [[Scene alloc] initWithName:@"New scene"
+                                    objectList:@[]
+                            objectVariableList:[OrderedMapTable weakToStrongObjectsMapTable]
+                                 originalWidth:@"100"
+                                originalHeight:@"100"];
+    
+    [[ProgramManager instance] addScene:scene toProgram:self.program];
     [[ProgramManager instance] saveProgram:self.program];
     
     for (Scene *scene in self.program.scenes) {

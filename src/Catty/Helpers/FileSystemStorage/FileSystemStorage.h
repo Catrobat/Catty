@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray<NSString *> *)allScreenshotPathsForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 
++ (NSString *)automaticScreenshotPathForScene:(Scene *)scene;
+
 + (NSString *)directoryForScene:(Scene *)scene;
 + (NSString *)imagesDirectoryForScene:(Scene *)scene;
 + (NSString *)soundsDirectoryForScene:(Scene *)scene;

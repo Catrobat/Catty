@@ -336,6 +336,38 @@ static ProgramManager *_instance = nil;
     }
 }
 
+- (void)addScene:(Scene *)scene toProgram:(Program *)program {
+    NSParameterAssert(scene);
+    NSParameterAssert(program);
+    NSAssert(![[program allSceneNames] containsObject:scene.name], @"Scene with such name already exists");
+    
+    scene.program = program;
+    [program.scenes addObject:scene];
+    
+    [self createDirectoriesForScene:scene];
+    
+    [self saveProgram:program];
+}
+
+- (void)removeScenes:(NSArray<Scene *> *)scenes fromProgram:(Program *)program {
+    NSParameterAssert(scenes.count);
+    NSParameterAssert(program);
+    
+    for (Scene *scene in scenes) {
+        BOOL hasScene = [program.scenes cb_findFirst:^BOOL(Scene *item) {
+            return item == scene;
+        }];
+        NSAssert(hasScene && scene.program == program, @"Scene doesn't belong to program");
+        
+        [self.fileManager deleteDirectory:[FileSystemStorage directoryForScene:scene]];
+        
+        scene.program = nil;
+        [program.scenes removeObject:scene];
+    }
+    
+    [self saveProgram:program];
+}
+
 - (void)renameScene:(Scene *)scene toName:(NSString *)name {
     NSParameterAssert(scene);
     NSParameterAssert(name);
@@ -345,7 +377,12 @@ static ProgramManager *_instance = nil;
     }
     NSAssert(![[scene.program allSceneNames] containsObject:name], @"Scene with such name already exists");
     
+    NSString *oldDirectory = [FileSystemStorage directoryForScene:scene];
     scene.name = name;
+    NSString *newDirectory = [FileSystemStorage directoryForScene:scene];
+    
+    [self.fileManager moveExistingDirectoryAtPath:oldDirectory toPath:newDirectory];
+    
     [self saveProgram:scene.program];
 }
 
@@ -361,27 +398,26 @@ static ProgramManager *_instance = nil;
                                      originalWidth:sourceScene.originalWidth
                                     originalHeight:sourceScene.originalHeight];
     
-    [sourceScene.program addScene:sceneCopy];
+    sceneCopy.program = sourceScene.program;
+    [sourceScene.program.scenes addObject:sceneCopy];
+    
+    NSString *sourceSceneDirectory = [FileSystemStorage directoryForScene:sourceScene];
+    NSString *sceneCopyDirectory = [FileSystemStorage directoryForScene:sceneCopy];
+    
+    [self.fileManager copyExistingDirectoryAtPath:sourceSceneDirectory toPath:sceneCopyDirectory];
+    
     [self saveProgram:sourceScene.program];
 }
 
-- (void)saveProgram:(Program *)progarm {
-    NSParameterAssert(progarm);
+- (void)saveProgram:(Program *)program {
+    NSParameterAssert(program);
     
-    for (Scene *scene in progarm.scenes) {
-        NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
-        if (![self.fileManager directoryExists:sceneDirectory]) {
-            // This is newly added scene
-            [self createDirectoriesForScene:scene];
-        }
-    }
-    
-    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:progarm];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:program];
     NSAssert([self.fileManager directoryExists:info.basePath], @"Program doesn't exit");
     
     NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:info];
     CBXMLSerializer *serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
-    [serializer serializeProgram:progarm];
+    [serializer serializeProgram:program];
     
     [self updateLastModificationTimeForProgramWithLoadingInfo:info];
 }

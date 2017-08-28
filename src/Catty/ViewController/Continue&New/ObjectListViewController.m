@@ -252,7 +252,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSParameterAssert(name.length);
     
     Scene *scene = [Scene defaultSceneWithName:name];
-    [self.scene.program addScene:scene];
+    [[ProgramManager instance] addScene:scene toProgram:self.program];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
     

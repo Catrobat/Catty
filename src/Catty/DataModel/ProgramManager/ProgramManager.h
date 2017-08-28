@@ -53,10 +53,13 @@
 - (void)renameProgram:(Program *)program toName:(NSString *)name;
 - (void)setProgramIDOfProgram:(Program *)program toID:(NSString *)programID;
 
+- (void)addScene:(Scene *)scene toProgram:(Program *)program;
+- (void)removeScenes:(NSArray<Scene *> *)scenes fromProgram:(Program *)program;
+
 - (void)renameScene:(Scene *)scene toName:(NSString *)name;
 - (void)copyScene:(Scene *)sourceScene destinationSceneName:(NSString *)destinationSceneName;
 
-- (void)saveProgram:(Program *)progarm;
+- (void)saveProgram:(Program *)program;
 
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
 

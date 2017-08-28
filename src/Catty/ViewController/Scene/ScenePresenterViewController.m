@@ -35,6 +35,8 @@
 #import "ProgramManager.h"
 #import "FileSystemStorage.h"
 #import "ProgramLoadingInfo.h"
+#import "FileManager.h"
+#import "AppDelegate.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -532,32 +534,42 @@
 
 -(void)takeAutomaticScreenshot
 {
+    FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
+    
     ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.sceneModel.program];
     NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
-    BOOL fileExists = NO;
+    
+    BOOL programScreenshotExists = NO;
     for (NSString *fallbackPath in fallbackPaths) {
-        NSString *fileName = [fallbackPath lastPathComponent];
-        fileExists= [[NSFileManager defaultManager] fileExistsAtPath:fileName];
-        if(fileExists){
+        programScreenshotExists = [fileManager fileExists:fallbackPath];
+        if(programScreenshotExists){
             break;
         }
     }
-    if (!fileExists) {
-        NSLog(@"AutoScreenshot");
-        UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
-        [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
-        UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *pngFilePath = [FileSystemStorage automaticScreenshotPathForProgramWithLoadingInfo:info];
-            NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
-            [data writeToFile:pngFilePath atomically:YES];
-            
-        });
-
+    
+    BOOL sceneScreenshotExists = [fileManager fileExists:[FileSystemStorage automaticScreenshotPathForScene:self.sceneModel]];
+    
+    if (programScreenshotExists && sceneScreenshotExists) {
+        return;
     }
     
+    NSLog(@"AutoScreenshot");
+    UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
+    [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
+        if (!programScreenshotExists) {
+            NSString *pngFilePath = [FileSystemStorage automaticScreenshotPathForProgramWithLoadingInfo:info];
+            [data writeToFile:pngFilePath atomically:YES];
+        }
+        if (!sceneScreenshotExists) {
+            NSString *pngFilePath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
+            [data writeToFile:pngFilePath atomically:YES];
+        }
+    });
 }
 
 #pragma mark - Action Sheet & Alert View Handling
