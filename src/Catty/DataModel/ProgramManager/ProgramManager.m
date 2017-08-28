@@ -309,6 +309,7 @@ static ProgramManager *_instance = nil;
     ProgramLoadingInfo *newLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
     
     [self moveProgramWithLoadingInfo:oldLoadingInfo toLoadingInfo:newLoadingInfo];
+    [self saveProgram:program];
 }
 
 - (void)setProgramIDOfProgram:(Program *)program toID:(NSString *)programID {
@@ -324,6 +325,7 @@ static ProgramManager *_instance = nil;
     ProgramLoadingInfo *newLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
     
     [self moveProgramWithLoadingInfo:oldLoadingInfo toLoadingInfo:newLoadingInfo];
+    [self saveProgram:program];
 }
 
 - (void)moveProgramWithLoadingInfo:(ProgramLoadingInfo *)oldLoadingInfo toLoadingInfo:(ProgramLoadingInfo *)newLoadingInfo {
@@ -332,6 +334,35 @@ static ProgramManager *_instance = nil;
     if ([[self lastUsedProgramLoadingInfo] isEqualToLoadingInfo:oldLoadingInfo]) {
         [self setAsLastUsedProgramWithLoadingInfo:newLoadingInfo];
     }
+}
+
+- (void)renameScene:(Scene *)scene toName:(NSString *)name {
+    NSParameterAssert(scene);
+    NSParameterAssert(name);
+    
+    if ([scene.name isEqualToString:name]) {
+        return;
+    }
+    NSAssert(![[scene.program allSceneNames] containsObject:name], @"Scene with such name already exists");
+    
+    scene.name = name;
+    [self saveProgram:scene.program];
+}
+
+- (void)copyScene:(Scene *)sourceScene destinationSceneName:(NSString *)destinationSceneName {
+    NSParameterAssert(sourceScene);
+    NSParameterAssert(destinationSceneName);
+    
+    NSAssert(![[sourceScene.program allSceneNames] containsObject:destinationSceneName], @"Scene with such name already exists");
+    
+    Scene *sceneCopy = [[Scene alloc] initWithName:destinationSceneName
+                                        objectList:sourceScene.objectList
+                                objectVariableList:sourceScene.objectVariableList
+                                     originalWidth:sourceScene.originalWidth
+                                    originalHeight:sourceScene.originalHeight];
+    
+    [sourceScene.program addScene:sceneCopy];
+    [self saveProgram:sourceScene.program];
 }
 
 - (void)saveProgram:(Program *)progarm {

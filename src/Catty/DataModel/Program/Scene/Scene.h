@@ -29,7 +29,7 @@
 
 @interface Scene : NSObject
 
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic) NSString *name;
 @property (nonatomic, readonly) NSMutableArray<SpriteObject *> *objectList;
 @property (nonatomic, readonly) OrderedMapTable<SpriteObject *, NSMutableArray<UserVariable *> *> *objectVariableList;
 @property (nonatomic, readonly) NSString *originalWidth;

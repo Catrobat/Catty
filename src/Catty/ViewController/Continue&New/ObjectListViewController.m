@@ -45,6 +45,7 @@
 #import "CBXMLSerializer.h"
 #import "ProgramManager.h"
 #import "ProgramLoadingInfo.h"
+#import "SceneListViewController.h"
 
 
 @interface ObjectListViewController () <UINavigationBarDelegate, SetDescriptionDelegate>
@@ -254,13 +255,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.scene.program addScene:scene];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-    ObjectListViewController *controller = [storyboard instantiateViewControllerWithIdentifier:kObjectListViewControllerIdentifier];
-    controller.scene = scene;
-    controller.delegate = self.delegate;
+    
+    ObjectListViewController *objectListVC = [storyboard instantiateViewControllerWithIdentifier:kObjectListViewControllerIdentifier];
+    objectListVC.scene = scene;
+    objectListVC.delegate = self.delegate;
+    
+    SceneListViewController *sceneListVC = [storyboard instantiateViewControllerWithIdentifier:kSceneListViewControllerIdentifier];
+    sceneListVC.program = scene.program;
+    sceneListVC.delegate = self.delegate;
     
     UINavigationController *navController = self.navigationController;
     [navController popViewControllerAnimated:NO];
-    [navController pushViewController:controller animated:YES];
+    
+    [navController pushViewController:sceneListVC animated:NO];
+    [navController pushViewController:objectListVC animated:YES];
     
     [self saveProgram:self.scene.program showingSavedView:YES];
 }
