@@ -163,7 +163,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [[[[[AlertControllerBuilder alertWithTitle:@"Delete this scene" message:kLocalizedThisActionCannotBeUndone]
             addCancelActionWithTitle:kLocalizedCancel handler:nil]
            addDefaultActionWithTitle:kLocalizedYes handler:^{
-               [self deleteSceneForIndexPath:indexPath];
+               [self deleteScenesAtIndexPaths:@[indexPath]];
            }] build]
          showWithController:self];
     }];
@@ -181,6 +181,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     if ([self numberOfScenes] == 1) {
         [navController popViewControllerAnimated:NO];
+        controller.shouldBehaveAsIfObjectsBelongToProgram = YES;
     }
     [navController pushViewController:controller animated:YES];
 }
@@ -242,37 +243,30 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)confirmDeleteSelectedScenesAction:(id)sender
 {
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
-    if (! [selectedRowsIndexPaths count]) {
-        // nothing selected, nothing to delete...
-        [super exitEditingMode];
-        return;
-    }
-    [self deleteSelectedScenesAction];
-    
-    if ([self numberOfScenes] == 1) {
-        [self segueToScene:[self sceneAtIndex:0]];
-    }
-}
-
-- (void)deleteSelectedScenesAction
-{
-    NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
-    for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
-        Scene *selectedScene = [self sceneAtIndexPath:selectedRowIndexPath];
-        [self.program removeScene:selectedScene];
-    }
-    [self saveProgram:self.program showingSavedView:YES];
-    
-    [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationTop];
     [super exitEditingMode];
+    
+    if ([selectedRowsIndexPaths count] != 0) {
+        [self deleteScenesAtIndexPaths:selectedRowsIndexPaths];
+    }
 }
 
-- (void)deleteSceneForIndexPath:(NSIndexPath *)indexPath {
-    Scene *scene = [self sceneAtIndexPath:indexPath];
-    [self.program removeScene:scene];
+- (void)deleteScenesAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+    NSParameterAssert(indexPaths.count);
+    NSMutableArray<Scene *> *scenesToDelete = [NSMutableArray arrayWithCapacity:[indexPaths count]];
+    
+    for (NSIndexPath *indexPath in indexPaths) {
+        [scenesToDelete addObject:[self sceneAtIndexPath:indexPath]];
+    }
+    BOOL newSceneWasCreated = [scenesToDelete count] == [self numberOfScenes];
+    
+    [self.program removeScenes:scenesToDelete];
     [self saveProgram:self.program showingSavedView:YES];
-
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    
+    if (newSceneWasCreated) {
+        [self.tableView reloadData];
+    } else {
+        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+    }
     
     if ([self numberOfScenes] == 1) {
         [self segueToScene:[self sceneAtIndex:0]];

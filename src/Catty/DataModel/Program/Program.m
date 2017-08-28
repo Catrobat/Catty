@@ -122,13 +122,21 @@
     }];
 }
 
-- (void)removeScene:(Scene *)scene {
-    NSParameterAssert(scene);
+- (void)removeScenes:(NSArray<Scene *> *)scenes {
+    NSParameterAssert(scenes);
     
-    NSAssert([self hasScene:scene] && scene.program == self, @"Scene doesn't belong to program");
+    for (Scene *scene in scenes) {
+        NSAssert([self hasScene:scene] && scene.program == self, @"Scene doesn't belong to program");
     
-    scene.program = nil;
-    [self.scenes removeObject:scene];
+        scene.program = nil;
+        [self.scenes removeObject:scene];
+    }
+
+    if ([self.scenes count] == 0) {
+        Scene *defaultScene = [Scene defaultSceneWithName:@"Scene 1"];
+        defaultScene.program = self;
+        [self.scenes addObject:defaultScene];
+    }
 }
 
 - (void)addProgramVariable:(UserVariable *)variable {
