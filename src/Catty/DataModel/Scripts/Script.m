@@ -210,4 +210,9 @@
     return resources;
 }
 
+- (BOOL)isDisabledForBackground
+{
+    return NO;
+}
+
 @end
