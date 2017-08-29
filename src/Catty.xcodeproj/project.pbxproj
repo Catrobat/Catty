@@ -310,6 +310,8 @@
 		4DB629CC1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629CA1F50BF3D005CECD7 /* SayForBubbleBrick+Instruction.swift */; };
 		4DB629CD1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629CB1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift */; };
 		4DB629D01F50D0CB005CECD7 /* BubbleBrickHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB629CF1F50D0CB005CECD7 /* BubbleBrickHelper.m */; };
+		4DB65AA81F54689700147118 /* WhenConditionScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB65AA71F54689700147118 /* WhenConditionScript.m */; };
+		4DB65AAD1F54703700147118 /* WhenConditionScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB65AAC1F54703700147118 /* WhenConditionScriptCell.m */; };
 		4DC26C591F4EEC780062D0D1 /* ThinkBubbleBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC26C581F4EEC780062D0D1 /* ThinkBubbleBrick.m */; };
 		4DC26C5C1F4EED310062D0D1 /* ThinkBubbleBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DC26C5B1F4EED310062D0D1 /* ThinkBubbleBrickCell.m */; };
 		4DC26C611F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC26C601F4EF0850062D0D1 /* ThinkBubbleBrick+Instruction.swift */; };
@@ -1360,6 +1362,10 @@
 		4DB629CB1F50BF3D005CECD7 /* ThinkForBubbleBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ThinkForBubbleBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ThinkForBubbleBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4DB629CE1F50D0CB005CECD7 /* BubbleBrickHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BubbleBrickHelper.h; path = BrickHelpers/BubbleBrickHelper.h; sourceTree = "<group>"; };
 		4DB629CF1F50D0CB005CECD7 /* BubbleBrickHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BubbleBrickHelper.m; path = BrickHelpers/BubbleBrickHelper.m; sourceTree = "<group>"; };
+		4DB65AA61F54689700147118 /* WhenConditionScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenConditionScript.h; sourceTree = "<group>"; };
+		4DB65AA71F54689700147118 /* WhenConditionScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenConditionScript.m; sourceTree = "<group>"; };
+		4DB65AAB1F54703700147118 /* WhenConditionScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenConditionScriptCell.h; sourceTree = "<group>"; };
+		4DB65AAC1F54703700147118 /* WhenConditionScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenConditionScriptCell.m; sourceTree = "<group>"; };
 		4DC26C571F4EEC780062D0D1 /* ThinkBubbleBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkBubbleBrick.h; sourceTree = "<group>"; };
 		4DC26C581F4EEC780062D0D1 /* ThinkBubbleBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThinkBubbleBrick.m; sourceTree = "<group>"; };
 		4DC26C5A1F4EED310062D0D1 /* ThinkBubbleBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkBubbleBrickCell.h; sourceTree = "<group>"; };
@@ -4749,6 +4755,8 @@
 				92FF30B81A24DCAA00093DA7 /* StartScript.m */,
 				92FF30B91A24DCAA00093DA7 /* WhenScript.h */,
 				92FF30BA1A24DCAA00093DA7 /* WhenScript.m */,
+				4DB65AA61F54689700147118 /* WhenConditionScript.h */,
+				4DB65AA71F54689700147118 /* WhenConditionScript.m */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -5678,6 +5686,8 @@
 				AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */,
 				AA74F0911BC05FCE00D1E954 /* WhenScriptCell.h */,
 				AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */,
+				4DB65AAB1F54703700147118 /* WhenConditionScriptCell.h */,
+				4DB65AAC1F54703700147118 /* WhenConditionScriptCell.m */,
 			);
 			path = ScriptCells;
 			sourceTree = "<group>";
@@ -7246,6 +7256,7 @@
 				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,
+				4DB65AA81F54689700147118 /* WhenConditionScript.m in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
@@ -7298,6 +7309,7 @@
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
 				921D46891BDF698A0086AD20 /* ClearGraphicEffectBrick+Instruction.swift in Sources */,
 				AA74EE271BC0540D00D1E954 /* SetVariableBrick+Instruction.swift in Sources */,
+				4DB65AAD1F54703700147118 /* WhenConditionScriptCell.m in Sources */,
 				9276B70B1C9EA68A008BC594 /* CatrobatPlayerItem.m in Sources */,
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
