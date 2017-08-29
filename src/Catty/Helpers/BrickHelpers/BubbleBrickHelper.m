@@ -25,11 +25,16 @@
 
 @implementation BubbleBrickHelper
 
+#define kMaxBubbleWidth 250
+
 + (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type
 {
     SKLabelNode* label = [SKLabelNode labelNodeWithText:text];
     label.name = @"bubbleText";
-    CGFloat bubbleWidth = 250;
+    [label setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
+    [label setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
+    
+    CGFloat bubbleWidth = kMaxBubbleWidth;
     CGFloat horizontalPadding = 45;
     
     label.fontColor = [UIColor blackColor];
@@ -62,7 +67,12 @@
     
     sayBubble.position = [sayBubble convertPoint:CGPointMake(spriteNode.position.x + spriteNode.frame.size.width / 2, spriteNode.position.y + spriteNode.frame.size.height / 2) toNode:spriteNode];
 
-    label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height*0.6);
+    if (type == CBBubbleTypeThought) {
+        label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height/2 + 21);
+    } else {
+        label.position = CGPointMake(sayBubble.frame.size.width/2 + 6.0 * bubbleWidth/kMaxBubbleWidth, sayBubble.frame.size.height/2 + 16.0);
+    }
+    
     [sayBubble addChild:label];
     [spriteNode addChild:sayBubble];
 }
@@ -117,7 +127,7 @@
             [bubblePath addLineToPoint: CGPointMake(244.03, 83)];
             [bubblePath closePath];
             
-            [bubblePath applyTransform:CGAffineTransformMakeScale(width/250, 1.0)];
+            [bubblePath applyTransform:CGAffineTransformMakeScale(width/kMaxBubbleWidth, 1.0)];
             bubblePath = [bubblePath bezierPathByReversingPath];//fixes jaggy stroke line on top, unable to figure out why.
             break;
         }
