@@ -329,6 +329,8 @@ let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("P
 // control bricks
 let kLocalizedWhenProgramStarted = NSLocalizedString("When program started", comment: "")
 let kLocalizedWhenTapped = NSLocalizedString("When tapped", comment: "")
+let kLocalizedWhen = NSLocalizedString("When", comment: "")
+let kLocalizedBecomesTrue = NSLocalizedString("becomes true", comment: "")
 let kLocalizedWait = NSLocalizedString("Wait", comment: "")
 let kLocalizedSecond = NSLocalizedString("second ", comment: "")
 let kLocalizedSeconds = NSLocalizedString("seconds ", comment: "")

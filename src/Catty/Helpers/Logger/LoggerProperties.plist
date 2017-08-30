@@ -12,6 +12,8 @@
 	<string>warn</string>
 	<key>WhenScript</key>
 	<string>warn</string>
+	<key>WhenConditionScript</key>
+	<string>warn</string>
 	<key>BroadcastScript</key>
 	<string>warn</string>
 	<key>StartScript</key>

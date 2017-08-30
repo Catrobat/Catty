@@ -151,20 +151,21 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     // 0xx control bricks
     kProgramStartedBrick       =   0,
     kTappedBrick               =   1,
-    kWaitBrick                 =   2,
-    kReceiveBrick              =   3,
-    kBroadcastBrick            =   4,
-    kBroadcastWaitBrick        =   5,
-    kNoteBrick                 =   6,
-    kForeverBrick              =   7,
-    kIfBrick                   =   8,
-    kIfThenBrick               =   9,
-    kIfElseBrick               =  10,
-    kIfEndBrick                =  11,
-    kIfThenEndBrick            =  12,
-    kRepeatBrick               =  13,
-    kRepeatUntilBrick          =  14,
-    kLoopEndBrick              =  15,
+    kConditionalBrick          =   2,
+    kWaitBrick                 =   3,
+    kReceiveBrick              =   4,
+    kBroadcastBrick            =   5,
+    kBroadcastWaitBrick        =   6,
+    kNoteBrick                 =   7,
+    kForeverBrick              =   8,
+    kIfBrick                   =   9,
+    kIfThenBrick               =  10,
+    kIfElseBrick               =  11,
+    kIfEndBrick                =  12,
+    kIfThenEndBrick            =  13,
+    kRepeatBrick               =  14,
+    kRepeatUntilBrick          =  15,
+    kLoopEndBrick              =  16,
 
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
@@ -295,6 +296,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     /* control bricks */\
     @"StartScript"               : @(kProgramStartedBrick),\
     @"WhenScript"                : @(kTappedBrick),\
+    @"WhenConditionScript"       : @(kConditionalBrick),\
     @"WaitBrick"                 : @(kWaitBrick),\
     @"BroadcastScript"           : @(kReceiveBrick),\
     @"BroadcastBrick"            : @(kBroadcastBrick),\
@@ -391,6 +393,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 /* control bricks */\
 @"StartScript"               : @(kBrickHeightControl1h),\
 @"WhenScript"                : @(kBrickHeightControl1h),\
+@"WhenConditionScript"       : @(kBrickHeightControl1h),\
 @"WaitBrick"                 : @(kBrickHeight1h),\
 @"BroadcastScript"           : @(kBrickHeightControl2h),\
 @"BroadcastBrick"            : @(kBrickHeight2h),\

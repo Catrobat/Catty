@@ -124,6 +124,9 @@
 /* No comment provided by engineer. */
 "Backgrounds" = "Backgrounds";
 
+/* No comment provided by engineer. */
+"becomes true" = "becomes true";
+
 /* paint */
 "Blue" = "Blue";
 
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
+
+/* No comment provided by engineer. */
+"When" = "When";
 
 /* No comment provided by engineer. */
 "When program started" = "When program started";

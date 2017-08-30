@@ -27,6 +27,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "BroadcastScript.h"
 #import "WhenScript.h"
+#import "WhenConditionScript.h"
 
 @interface Script()
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
@@ -103,6 +104,11 @@
         CBAssert([copiedScript isKindOfClass:[WhenScript class]]);
         WhenScript *whenScript = (WhenScript*)self;
         ((WhenScript*)copiedScript).action = [NSString stringWithString:whenScript.action];
+    } else if ([self isKindOfClass:[WhenConditionScript class]])
+    {
+        CBAssert([copiedScript isKindOfClass:[WhenConditionScript class]]);
+        WhenConditionScript *whenScript = (WhenConditionScript*)self;
+        ((WhenConditionScript*)copiedScript).whenCondition = [whenScript.whenCondition mutableCopyWithContext:context];
     }
     
     [context updateReference:self WithReference:copiedScript];
@@ -152,6 +158,14 @@
             return NO;
         }
         if (! [Util isEqual:((WhenScript*)self).action toObject:((WhenScript*)script).action]) {
+            return NO;
+        }
+    }
+    if ([self isKindOfClass:[WhenConditionScript class]]) {
+        if (! [script isKindOfClass:[WhenConditionScript class]]) {
+            return NO;
+        }
+        if (! [((WhenConditionScript*)self).whenCondition isEqualToFormula:((WhenConditionScript*)script).whenCondition]) {
             return NO;
         }
     }

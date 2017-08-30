@@ -200,6 +200,13 @@ final class CBScene: SKScene {
                         spriteNode: spriteNode,
                         state: .Runnable
                     )
+                    
+                case let whenScript as WhenConditionScript:
+                    context = CBWhenConditionScriptContext(
+                        whenConditionScript: whenScript,
+                        spriteNode: spriteNode,
+                        state: .Runnable
+                    )
 
                 case let bcScript as BroadcastScript:
                     let broadcastContext = CBBroadcastScriptContext(

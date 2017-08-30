@@ -22,6 +22,7 @@
 
 #import "Script+CBXMLHandler.h"
 #import "CBXMLValidator.h"
+#import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
@@ -30,7 +31,9 @@
 #import "BroadcastScript.h"
 #import "StartScript.h"
 #import "WhenScript.h"
+#import "WhenConditionScript.h"
 #import "Brick.h"
+#import "Formula+CBXMLHandler.h"
 #import "CBXMLSerializerHelper.h"
 
 @implementation Script (CBXMLHandler)
@@ -69,6 +72,18 @@
         GDataXMLElement *receivedMessageElement = [receivedMessageElements firstObject];
         broadcastScript.receivedMessage = [receivedMessageElement stringValue];
         script = broadcastScript;
+    } else if ([scriptType isEqualToString:@"WhenConditionScript"]) {
+        WhenConditionScript *whenScript = [WhenConditionScript new];
+        NSArray *formulaMaps = [xmlElement elementsForName:@"formulaMap"];
+        [XMLError exceptionIf:[formulaMaps count] notEquals:1
+                      message:@"Wrong number of FormulaMap elements given!"];
+        GDataXMLElement *formulaMap = [formulaMaps firstObject];
+        [XMLError exceptionIf:[[formulaMap elementsForName:@"formula"] count] notEquals:1
+                      message:@"Wrong number of Formula elements given!"];
+        GDataXMLElement *formulaElement = [formulaMap elementsForName:@"formula"].firstObject;
+        Formula *formula = [context parseFromElement:formulaElement withClass:[Formula class]];
+        whenScript.whenCondition = formula;
+        script = whenScript;
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
@@ -185,6 +200,14 @@
                       message:@"WhenScript contains invalid action string %@", whenScript.action];
         GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:whenScript.action context:context];
         [xmlElement addChild:actionXmlElement context:context];
+    } else if ([self isKindOfClass:[WhenConditionScript class]]) {
+        WhenConditionScript *whenScript = (WhenConditionScript*)self;
+        [XMLError exceptionIfNil:whenScript.whenCondition message:@"WhenConditionScript contains invalid condition formula"];
+        GDataXMLElement *formulaMap = [GDataXMLElement elementWithName:@"formulaMap" context:context];
+        GDataXMLElement *formula = [whenScript.whenCondition xmlElementWithContext: context];
+        [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
+        [formulaMap addChild:formula context:context];
+        [xmlElement addChild:formulaMap context:context];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }

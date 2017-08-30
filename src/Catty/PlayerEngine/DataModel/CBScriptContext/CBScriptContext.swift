@@ -124,6 +124,22 @@ final class CBWhenScriptContext: CBScriptContext {
 }
 
 //--------------------------------------------------------------------------------------------------
+final class CBWhenConditionScriptContext: CBScriptContext {
+    
+    convenience init(whenConditionScript: WhenConditionScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
+        self.init(whenConditionScript: whenConditionScript, spriteNode: spriteNode, state: state, instructionList: [])
+    }
+    
+    init(whenConditionScript: WhenConditionScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
+         instructionList: [CBInstruction]
+        ) {
+        super.init(script: whenConditionScript, spriteNode: spriteNode, state: state,
+                   instructionList: instructionList)
+    }
+    
+}
+
+//--------------------------------------------------------------------------------------------------
 final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextProtocol {
 
     let broadcastMessage: String

@@ -47,22 +47,23 @@
 
 // ----------------- REFACTOR BEGIN -------------------
 #define kControlBrickNameParams @[\
-    @[],                            /* program started */\
-    @[],                            /* tapped          */\
-    @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
-    @"{MESSAGE}",                   /* receive         */\
-    @"{MESSAGE}",                   /* broadcast       */\
-    @"{MESSAGE}",                   /* broadcast wait  */\
-    @"{TEXT}",                      /* note            */\
-    @[],                            /* forever         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* if              */\
-    @"{FLOAT;range=(-inf,inf)}",    /* if then         */\
-    @[],                            /* else            */\
-    @[],                            /* if end          */\
-    @[],                            /* if then end     */\
-    @"{INT;range=[0,inf)}",         /* repeat          */\
-    @"{FLOAT;range=(-inf,inf)}",    /* repeat until    */\
-    @[]                             /* loop end        */\
+    @[],                            /* program started       */\
+    @[],                            /* tapped                */\
+    @"{FLOAT;range=(-inf,inf)}",    /* WhenConditionScript   */\
+    @"{FLOAT;range=(0.0f,inf)}",    /* wait                  */\
+    @"{MESSAGE}",                   /* receive               */\
+    @"{MESSAGE}",                   /* broadcast             */\
+    @"{MESSAGE}",                   /* broadcast wait        */\
+    @"{TEXT}",                      /* note                  */\
+    @[],                            /* forever               */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if                    */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if then               */\
+    @[],                            /* else                  */\
+    @[],                            /* if end                */\
+    @[],                            /* if then end           */\
+    @"{INT;range=[0,inf)}",         /* repeat                */\
+    @"{FLOAT;range=(-inf,inf)}",    /* repeat until          */\
+    @[]                             /* loop end              */\
 ]
 // motion bricks
 #define kMotionBrickNameParams @[\

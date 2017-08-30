@@ -31,6 +31,7 @@
 // Scripts
 #import "StartScript.h"
 #import "WhenScript.h"
+#import "WhenConditionScript.h"
 #import "BroadcastScript.h"
 
 // Bricks

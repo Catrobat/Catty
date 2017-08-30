@@ -24,6 +24,7 @@
 #import "BrickProtocol.h"
 #import "BrickFormulaProtocol.h"
 #import "WhenScript.h"
+#import "WhenConditionScript.h"
 #import "LoopEndBrick.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
@@ -164,6 +165,9 @@
             if ([brickOrScript isKindOfClass:[Script class]] && [brickOrScript conformsToProtocol:@protocol(ScriptProtocol)]) {
                 if ([brickOrScript isKindOfClass:[WhenScript class]]) {
                     ((WhenScript*)brickOrScript).action = kWhenScriptDefaultAction;
+                }
+                else if ([brickOrScript isKindOfClass:[WhenConditionScript class]]) {
+                    [(WhenConditionScript*)brickOrScript setDefaultValuesForObject:nil];
                 }
                 id<ScriptProtocol> scriptBrick = brickOrScript;
                 [mutableScriptBricks addObject:scriptBrick];

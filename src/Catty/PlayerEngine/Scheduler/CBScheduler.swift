@@ -31,6 +31,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _spriteNodes = [String:CBSpriteNode]()
     private var _contexts = [CBScriptContextProtocol]()
     private var _whenContexts = [String:[CBWhenScriptContext]]()
+    private var _whenConditionContexts = [String:[CBWhenConditionScriptContext]]()
     private var _scheduledContexts = OrderedDictionary<String,[CBScriptContextProtocol]>()
 
     private var _availableWaitQueues = [dispatch_queue_t]()
@@ -78,6 +79,12 @@ final class CBScheduler: CBSchedulerProtocol {
                 _whenContexts[spriteName] = [CBWhenScriptContext]()
             }
             _whenContexts[spriteName]! += whenContext
+        }
+        if let whenConditionContext = context as? CBWhenConditionScriptContext {
+            if _whenConditionContexts[spriteName] == nil {
+                _whenConditionContexts[spriteName] = [CBWhenConditionScriptContext]()
+            }
+            _whenConditionContexts[spriteName]! += whenConditionContext
         }
     }
 
@@ -270,6 +277,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
         // schedule all start scripts
         _contexts.forEach { if $0 is CBStartScriptContext { scheduleContext($0) } }
+        _contexts.forEach { if $0 is CBWhenConditionScriptContext { startWatchingWhenConditionContext($0 as! CBWhenConditionScriptContext) } }
         // ... Ready...Steady...Gooooo!! => invoke first instruction!
         runNextInstructionsGroup()
     }
@@ -304,6 +312,24 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         runNextInstructionsGroup()
+    }
+    
+    func startWatchingWhenConditionContext(context: CBWhenConditionScriptContext) {
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(checkWhenConditionContext), userInfo: context, repeats: true).fire()
+    }
+    
+    @objc func checkWhenConditionContext(timer:NSTimer) {
+        if let context = timer.userInfo as? CBWhenConditionScriptContext
+        {
+            if let conditionalScript = context.script as? WhenConditionScript
+            {
+                if(conditionalScript.checkCondition())
+                {
+                    self.scheduleContext(context)
+                    timer.invalidate()
+                }
+            }
+        }
     }
 
     func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol]) {
