@@ -46,6 +46,11 @@
     return [self getFormulas];
 }
 
+- (BOOL)isFormulaBrick
+{
+    return true;
+}
+
 - (NSArray*)getFormulas
 {
     return @[self.whenCondition];

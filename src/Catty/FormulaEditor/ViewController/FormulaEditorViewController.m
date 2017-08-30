@@ -724,8 +724,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            FormulaElement *formulaElement;
+            if ([self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[Brick class]])
+            {
+                Brick *brick;
+                brick =  (Brick*)self.brickCellData.brickCell.scriptOrBrick;
+                formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            } else if (self.brickCellData.brickCell.isScriptBrick && [self.brickCellData.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+                Script *script;
+                script = (Script*)self.brickCellData.brickCell.scriptOrBrick;
+                formulaElement = [internFormulaParser parseFormulaForSpriteObject:script.object];
+            }
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
@@ -738,9 +747,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     [self showFormulaTooLongView];
                     break;
                 case FORMULA_PARSER_STRING:
-                    if(!self.brickCellData.brickCell.isScriptBrick){
+                    if([self.brickCellData.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]){
                         Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
-                        if(![brick allowsStringFormula]){
+                        WhenConditionScript<BrickFormulaProtocol>* script = (WhenConditionScript<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
+                        if(![brick allowsStringFormula] || ![script allowsStringFormula]){
                             [self showSyntaxErrorView];
                         }else{
                             if(self.delegate) {

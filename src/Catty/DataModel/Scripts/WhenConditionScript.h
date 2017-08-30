@@ -24,7 +24,7 @@
 #import "Script.h"
 #import "BrickFormulaProtocol.h"
 
-@interface WhenConditionScript : Script
+@interface WhenConditionScript : Script<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *whenCondition;
 
