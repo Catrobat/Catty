@@ -25,11 +25,16 @@
 
 @implementation BubbleBrickHelper
 
+#define kMaxBubbleWidth 250
+
 + (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type
 {
     SKLabelNode* label = [SKLabelNode labelNodeWithText:text];
     label.name = @"bubbleText";
-    CGFloat bubbleWidth = 250;
+    [label setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
+    [label setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
+    
+    CGFloat bubbleWidth = kMaxBubbleWidth;
     CGFloat horizontalPadding = 45;
     
     label.fontColor = [UIColor blackColor];
@@ -62,7 +67,12 @@
     
     sayBubble.position = [sayBubble convertPoint:CGPointMake(spriteNode.position.x + spriteNode.frame.size.width / 2, spriteNode.position.y + spriteNode.frame.size.height / 2) toNode:spriteNode];
 
-    label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height*0.6);
+    if (type == CBBubbleTypeThought) {
+        label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height/2 + 21);
+    } else {
+        label.position = CGPointMake(sayBubble.frame.size.width/2 + 6.0 * bubbleWidth/kMaxBubbleWidth, sayBubble.frame.size.height/2 + 16.0);
+    }
+    
     [sayBubble addChild:label];
     [spriteNode addChild:sayBubble];
 }
@@ -90,36 +100,35 @@
         }
         case CBBubbleTypeSpeech:
         {
-            bubblePath = [[UIBezierPath alloc] init];
-            //Bubble's bezier path with width = 1
-            [bubblePath moveToPoint: CGPointMake(0.96, 99.03)];
-            [bubblePath addLineToPoint: CGPointMake(0.97, 98.89)];
-            [bubblePath addCurveToPoint: CGPointMake(1, 90.67) controlPoint1: CGPointMake(0.98, 97.5) controlPoint2: CGPointMake(0.99, 94.49)];
-            [bubblePath addCurveToPoint: CGPointMake(1, 77.41) controlPoint1: CGPointMake(1, 87.17) controlPoint2: CGPointMake(1, 83.91)];
-            [bubblePath addLineToPoint: CGPointMake(1, 73.33)];
-            [bubblePath addCurveToPoint: CGPointMake(1, 60.64) controlPoint1: CGPointMake(1, 66.82) controlPoint2: CGPointMake(1, 63.57)];
-            [bubblePath addLineToPoint: CGPointMake(1, 60.07)];
-            [bubblePath addCurveToPoint: CGPointMake(0.97, 51.85) controlPoint1: CGPointMake(0.99, 56.25) controlPoint2: CGPointMake(0.98, 53.24)];
-            [bubblePath addCurveToPoint: CGPointMake(0.92, 50.74) controlPoint1: CGPointMake(0.95, 50.74) controlPoint2: CGPointMake(0.94, 50.74)];
-            [bubblePath addLineToPoint: CGPointMake(0.58, 50.74)];
-            [bubblePath addCurveToPoint: CGPointMake(0, 0.11) controlPoint1: CGPointMake(0.52, 45.64) controlPoint2: CGPointMake(0.03, 2.59)];
-            [bubblePath addCurveToPoint: CGPointMake(0, 0) controlPoint1: CGPointMake(0, 0.04) controlPoint2: CGPointMake(0, 0.01)];
-            [bubblePath addCurveToPoint: CGPointMake(0.21, 50.74) controlPoint1: CGPointMake(0, 0.03) controlPoint2: CGPointMake(0.21, 50.74)];
-            [bubblePath addLineToPoint: CGPointMake(0.18, 50.74)];
-            [bubblePath addCurveToPoint: CGPointMake(0.14, 51.71) controlPoint1: CGPointMake(0.16, 50.74) controlPoint2: CGPointMake(0.15, 50.74)];
-            [bubblePath addLineToPoint: CGPointMake(0.14, 51.85)];
-            [bubblePath addCurveToPoint: CGPointMake(0.11, 60.07) controlPoint1: CGPointMake(0.12, 53.24) controlPoint2: CGPointMake(0.11, 56.25)];
-            [bubblePath addCurveToPoint: CGPointMake(0.1, 73.33) controlPoint1: CGPointMake(0.1, 63.57) controlPoint2: CGPointMake(0.1, 66.82)];
-            [bubblePath addLineToPoint: CGPointMake(0.1, 77.41)];
-            [bubblePath addCurveToPoint: CGPointMake(0.11, 90.1) controlPoint1: CGPointMake(0.1, 83.91) controlPoint2: CGPointMake(0.1, 87.17)];
-            [bubblePath addLineToPoint: CGPointMake(0.11, 90.67)];
-            [bubblePath addCurveToPoint: CGPointMake(0.14, 98.89) controlPoint1: CGPointMake(0.11, 94.49) controlPoint2: CGPointMake(0.12, 97.5)];
-            [bubblePath addCurveToPoint: CGPointMake(0.18, 100) controlPoint1: CGPointMake(0.15, 100) controlPoint2: CGPointMake(0.16, 100)];
-            [bubblePath addLineToPoint: CGPointMake(0.92, 100)];
-            [bubblePath addCurveToPoint: CGPointMake(0.96, 99.03) controlPoint1: CGPointMake(0.94, 100) controlPoint2: CGPointMake(0.95, 100)];
+            bubblePath = [UIBezierPath bezierPath];
+            [bubblePath moveToPoint: CGPointMake(244.03, 83)];
+            [bubblePath addCurveToPoint: CGPointMake(244.07, 83) controlPoint1: CGPointMake(243.86, 83) controlPoint2: CGPointMake(243.86, 83)];
+            [bubblePath addCurveToPoint: CGPointMake(252.35, 81.53) controlPoint1: CGPointMake(244.73, 82.95) controlPoint2: CGPointMake(248.7, 82.73)];
+            [bubblePath addLineToPoint: CGPointMake(253.21, 81.31)];
+            [bubblePath addCurveToPoint: CGPointMake(267, 61.62) controlPoint1: CGPointMake(261.49, 78.3) controlPoint2: CGPointMake(267, 70.43)];
+            [bubblePath addCurveToPoint: CGPointMake(267, 60.5) controlPoint1: CGPointMake(267, 60.5) controlPoint2: CGPointMake(267, 60.5)];
+            [bubblePath addLineToPoint: CGPointMake(267, 59.38)];
+            [bubblePath addCurveToPoint: CGPointMake(253.21, 39.69) controlPoint1: CGPointMake(267, 50.57) controlPoint2: CGPointMake(261.49, 42.7)];
+            [bubblePath addCurveToPoint: CGPointMake(233.03, 38) controlPoint1: CGPointMake(247.88, 38) controlPoint2: CGPointMake(242.93, 38)];
+            [bubblePath addLineToPoint: CGPointMake(168.56, 38)];
+            [bubblePath addCurveToPoint: CGPointMake(0, 0) controlPoint1: CGPointMake(141.52, 31.9) controlPoint2: CGPointMake(0, 0)];
+            [bubblePath addCurveToPoint: CGPointMake(64.31, 38) controlPoint1: CGPointMake(0, 0) controlPoint2: CGPointMake(53.99, 31.9)];
+            [bubblePath addLineToPoint: CGPointMake(39.93, 38)];
+            [bubblePath addCurveToPoint: CGPointMake(39.97, 38.01) controlPoint1: CGPointMake(39.98, 38) controlPoint2: CGPointMake(39.97, 38.01)];
+            [bubblePath addCurveToPoint: CGPointMake(31.65, 39.47) controlPoint1: CGPointMake(41.07, 38) controlPoint2: CGPointMake(36.12, 38)];
+            [bubblePath addLineToPoint: CGPointMake(30.79, 39.69)];
+            [bubblePath addCurveToPoint: CGPointMake(17, 59.38) controlPoint1: CGPointMake(22.51, 42.7) controlPoint2: CGPointMake(17, 50.57)];
+            [bubblePath addCurveToPoint: CGPointMake(17, 60.5) controlPoint1: CGPointMake(17, 60.5) controlPoint2: CGPointMake(17, 60.5)];
+            [bubblePath addLineToPoint: CGPointMake(17, 61.63)];
+            [bubblePath addCurveToPoint: CGPointMake(30.79, 81.31) controlPoint1: CGPointMake(17, 70.43) controlPoint2: CGPointMake(22.51, 78.3)];
+            [bubblePath addLineToPoint: CGPointMake(46.52, 82.99)];
+            [bubblePath addCurveToPoint: CGPointMake(50.97, 83) controlPoint1: CGPointMake(47.89, 83) controlPoint2: CGPointMake(49.37, 83)];
+            [bubblePath addLineToPoint: CGPointMake(244.07, 83)];
+            [bubblePath addLineToPoint: CGPointMake(244.03, 83)];
             [bubblePath closePath];
-            //Since width is 1, scaling along x times width.
-            [bubblePath applyTransform:CGAffineTransformMakeScale(width, 1.0)];
+            
+            [bubblePath applyTransform:CGAffineTransformMakeScale(width/kMaxBubbleWidth, 1.0)];
+            bubblePath = [bubblePath bezierPathByReversingPath];//fixes jaggy stroke line on top, unable to figure out why.
             break;
         }
     }

@@ -30,7 +30,6 @@
 - (BOOL)isFormulaBrick;
 - (BOOL)isIfLogicBrick;
 - (BOOL)isLoopBrick;
-- (BOOL)isDisabledForBackground;
 - (NSInteger)getRequiredResources;
 
 @end
