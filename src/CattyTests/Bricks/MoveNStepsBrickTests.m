@@ -21,13 +21,13 @@
  */
 
 #import <XCTest/XCTest.h>
-#import "BrickTests.h"
+#import "AbstractBrickTests.h"
 #import "Script.h"
 #import "WhenScript.h"
 #import "MoveNStepsBrick.h"
 #import "Pocket_Code-Swift.h"
 
-@interface MoveNStepsBrickTests : BrickTests
+@interface MoveNStepsBrickTests : AbstractBrickTests
 
 @property(nonatomic, strong) CBSpriteNode *spriteNode;
 @property(nonatomic, strong) Script *script;

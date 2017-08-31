@@ -20,46 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
 #import "AbstractBrickTests.h"
-#import "WhenScript.h"
-#import "Pocket_Code-Swift.h"
 
-@interface HideBrickTests : AbstractBrickTests
-@end
 
-@implementation HideBrickTests
+@implementation AbstractBrickTests
+
+- (NSMutableArray*) programs
+{
+  if (! self.programs)
+    self.programs = [NSMutableArray array];
+  return self.programs;
+}
 
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
 {
-    // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testHideBrick
-{
-    SpriteObject *object = [[SpriteObject alloc] init];
-    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
-    object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-
-    Script *script = [[WhenScript alloc] init];
-    script.object = object;
-
-    HideBrick* brick = [[HideBrick alloc]init];
-    brick.script = script;
-
-    dispatch_block_t action = [brick actionBlock];
-    action();
-    XCTAssertEqual(spriteNode.hidden, YES, @"HideBrick is not correctly calculated");
-}
 
 @end

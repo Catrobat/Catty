@@ -235,11 +235,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    id scriptOrBrick = brickCell.scriptOrBrick;
+    
     if (self.isEditing) {
-        if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
+        if ([scriptOrBrick isKindOfClass:[Script class]]) {
             return;
         }
-        Brick *brick = (Brick*)brickCell.scriptOrBrick;
+        Brick *brick = scriptOrBrick;
         if ([brick isKindOfClass:[LoopBeginBrick class]]) {
             [[BrickSelectionManager sharedInstance] selectLoopBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
         } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
@@ -283,8 +285,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 
     id<AlertControllerBuilding> actionSheet;
-    if ([brickCell.scriptOrBrick isKindOfClass:[Brick class]]) {
-        Brick *brick = (Brick*)brickCell.scriptOrBrick;
+    if ([scriptOrBrick isKindOfClass:[Brick class]]) {
+        Brick *brick = (Brick*)scriptOrBrick;
         NSString *destructiveTitle = ([brick isIfLogicBrick] ? kLocalizedDeleteCondition
                                       : ([brick isLoopBrick]) ? kLocalizedDeleteLoop
                                       : kLocalizedDeleteBrick);
@@ -292,7 +294,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         actionSheet = [[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditBrick]
                        addCancelActionWithTitle:kLocalizedCancel handler:nil]
                        addDestructiveActionWithTitle:destructiveTitle handler:^{
-                           [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+                           [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
                        }]
                        addDefaultActionWithTitle:kLocalizedCopyBrick handler:^{
                            [self copyBrick:brick atIndexPath:indexPath];
@@ -325,11 +327,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                                     message:kLocalizedThisActionCannotBeUndone]
                   addCancelActionWithTitle:kLocalizedCancel handler:nil]
                   addDefaultActionWithTitle:kLocalizedYes handler:^{
-                      [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+                      [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
                   }] build]
                   showWithController:self];
              } else {
-                 [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
+                 [self removeBrickOrScript:scriptOrBrick atIndexPath:indexPath];
              }
          }];
     }
