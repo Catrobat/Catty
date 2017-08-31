@@ -35,5 +35,6 @@
 - (void)startCameraPreview;
 - (void)stopCamera;
 - (void)switchCameraPositionTo:(AVCaptureDevicePosition)position;
+- (AVCaptureSession*)getSession;
 
 @end

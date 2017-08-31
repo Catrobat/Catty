@@ -21,6 +21,7 @@
  */
 
 #import "FaceDetection.h"
+#import "CameraPreviewHandler.h"
 #import "KeychainUserDefaultsDefines.h"
 
 
@@ -104,7 +105,7 @@
 {
     NSError *error = nil;
     
-    self.session = [[AVCaptureSession alloc] init];
+    self.session = [[CameraPreviewHandler shared] getSession];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone){
         [self.session setSessionPreset:AVCaptureSessionPreset640x480];
     } else {

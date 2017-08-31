@@ -63,6 +63,11 @@ static CameraPreviewHandler* shared = nil;
     return self;
 }
 
+- (AVCaptureSession*)getSession
+{
+    return self.session;
+}
+
 - (void)setCamView:(UIView *)camView
 {
     if (camView != nil)
