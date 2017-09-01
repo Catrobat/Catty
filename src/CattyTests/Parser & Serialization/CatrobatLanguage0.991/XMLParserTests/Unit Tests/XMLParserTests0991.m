@@ -37,6 +37,7 @@
 #import "SetBackgroundBrick.h"
 #import "SpeakAndWaitBrick.h"
 #import "CameraBrick.h"
+#import "ChooseCameraBrick.h"
 #import "SayBubbleBrick.h"
 #import "ThinkBubbleBrick.h"
 #import "SayForBubbleBrick.h"
@@ -362,6 +363,23 @@
     XCTAssertTrue([thinkForBubbleBrick isKindOfClass:[ThinkForBubbleBrick class]], "Invalid brick type");
     XCTAssertNotNil(((ThinkForBubbleBrick*)thinkForBubbleBrick).stringFormula, "Invalid formula");
     XCTAssertNotNil(((ThinkForBubbleBrick*)thinkForBubbleBrick).intFormula, "Invalid formula");
+}
+
+- (void)testChooseCameraBrick
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *background = [program.objectList objectAtIndex:0];
+    
+    Script *backgroundScript = [background.scriptList objectAtIndex:0];
+    XCTAssertTrue([backgroundScript.brickList count] >= 39, "Invalid brick list");
+    
+    Brick *backCamera = [backgroundScript.brickList objectAtIndex:37];
+    XCTAssertTrue([backCamera isKindOfClass:[ChooseCameraBrick class]], "Invalid brick type");
+    XCTAssertEqual(0, ((ChooseCameraBrick*)backCamera).cameraPosition, "Invalid cameraPosition");
+    
+    Brick *frontCamera = [backgroundScript.brickList objectAtIndex:38];
+    XCTAssertTrue([frontCamera isKindOfClass:[ChooseCameraBrick class]], "Invalid brick type");
+    XCTAssertEqual(1, ((ChooseCameraBrick*)frontCamera).cameraPosition, "Invalid cameraPosition");
 }
 
 @end

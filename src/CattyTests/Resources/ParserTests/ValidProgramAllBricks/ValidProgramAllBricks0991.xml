@@ -480,6 +480,12 @@
                 </formulaList>
                 <type>1</type>
             </brick>
+            <brick type="ChooseCameraBrick">
+                <spinnerSelectionID>0</spinnerSelectionID>
+            </brick>
+            <brick type="ChooseCameraBrick">
+                <spinnerSelectionID>1</spinnerSelectionID>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
