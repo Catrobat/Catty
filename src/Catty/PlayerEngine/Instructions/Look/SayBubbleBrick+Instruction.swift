@@ -20,25 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+extension SayBubbleBrick: CBInstructionProtocol {
+    
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
+    
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+        let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
 
-@class SpriteObject;
-
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
-
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (BOOL)isDisabledForBackground;
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
-
-@end
+        return {
+            var speakText = self.formula.interpretString(object)
+            if(Double(speakText) !=  nil)
+            {
+                let num = (speakText as NSString).doubleValue
+                speakText = (num as NSNumber).stringValue
+            }
+            BubbleBrickHelper.addBubbleToSpriteNode(spriteNode, withText: speakText, andType: CBBubbleType.Speech)
+        }
+    }
+}

@@ -20,25 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "ThinkBubbleBrickCell.h"
 
-@class SpriteObject;
+@interface ThinkBubbleBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+@implementation ThinkBubbleBrickCell
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (BOOL)isDisabledForBackground;
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeight2h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.sayTextField = inlineViewSubViews[1];
+}
 
 @end

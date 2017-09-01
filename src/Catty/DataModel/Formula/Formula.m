@@ -78,6 +78,18 @@
     return self;
 }
 
+- (id)initWithString:(NSString *)value {
+    self = [super init];
+    
+    if(self) {
+        FormulaElement *formulaElement = [FormulaElement new];
+        formulaElement.type = STRING;
+        formulaElement.value = kLocalizedHello;
+        self.formulaTree = formulaElement;
+    }
+    return self;
+}
+
 - (id)initWithZero {
     return [self initWithInteger:0];
 }

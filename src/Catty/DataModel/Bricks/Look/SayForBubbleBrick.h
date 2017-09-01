@@ -20,25 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
+#import "Formula.h"
 
-@class SpriteObject;
+@interface SayForBubbleBrick : Brick<BrickFormulaProtocol>
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
-
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (BOOL)isDisabledForBackground;
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+@property (nonatomic, strong) Formula *stringFormula;
+@property (nonatomic, strong) Formula *intFormula;
 
 @end

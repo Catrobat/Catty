@@ -21,24 +21,16 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "SpriteObject.h"
 
-@class SpriteObject;
+@interface BubbleBrickHelper : NSObject <UIGestureRecognizerDelegate>
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+typedef NS_ENUM(NSInteger, CBBubbleType)
+{
+    CBBubbleTypeSpeech         = 0,
+    CBBubbleTypeThought        = 1
+};
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic, getter=isAnimatedMoveBrick) BOOL animateMoveBrick;
-- (BOOL)isSelectableForObject;
-- (BOOL)isAnimateable;
-- (BOOL)isDisabledForBackground;
-- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
++ (void)addBubbleToSpriteNode:(CBSpriteNode*)spriteNode withText: (NSString*)text andType:(CBBubbleType)type;
 
 @end

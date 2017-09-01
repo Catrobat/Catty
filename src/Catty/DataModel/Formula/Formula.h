@@ -39,6 +39,7 @@
 - (id)initWithInteger:(int)value;
 - (id)initWithDouble:(double)value;
 - (id)initWithFloat:(float)value;
+- (id)initWithString:(NSString*)value;
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite;
