@@ -218,6 +218,7 @@
 		4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */; };
 		4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56D1E0AD71800FD021C /* ProgramTests.m */; };
 		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
+		4CE86B001F5992B100B50D7F /* ChooseCameraBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE86AFF1F5992B100B50D7F /* ChooseCameraBrickTests.swift */; };
 		4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */; };
 		4CEA9D171F35BE190060727A /* Sensors_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEA9D161F35BE190060727A /* Sensors_0991.xml */; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
@@ -1237,6 +1238,7 @@
 		4CE2D41E1C2950B500938B5E /* ValidProgramAllBricks097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks097.xml; sourceTree = "<group>"; };
 		4CE5C56D1E0AD71800FD021C /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
+		4CE86AFF1F5992B100B50D7F /* ChooseCameraBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCameraBrickTests.swift; sourceTree = "<group>"; };
 		4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlertController.swift; sourceTree = "<group>"; };
 		4CEA9D161F35BE190060727A /* Sensors_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sensors_0991.xml; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
@@ -3498,6 +3500,7 @@
 				4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */,
 				4CEB22391B95E47500B3BE2F /* ChangeSizeByNBrickTests.m */,
 				4CEB223A1B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m */,
+				4CE86AFF1F5992B100B50D7F /* ChooseCameraBrickTests.swift */,
 				4CEB223B1B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m */,
 				4CEB223C1B95E47500B3BE2F /* ComeToFrontBrickTests.m */,
 				4CEB223D1B95E47500B3BE2F /* GoNStepsBackBrickTests.m */,
@@ -7107,6 +7110,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4C5F74771F08CD3C00D0AB14 /* SensorHandlerDeviceTests.m in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
+				4CE86B001F5992B100B50D7F /* ChooseCameraBrickTests.swift in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
