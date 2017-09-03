@@ -24,6 +24,7 @@
 
 @class ProgramLoadingInfo;
 @class Scene;
+@class Program;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,20 +33,23 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)applicationDocumentsDirectory;
 + (NSString *)programsDirectory;
 + (NSString *)directoryForProgramWithName:(NSString *)programName programID:(NSString * _Nullable)programID;
++ (NSString *)directoryForProgram:(Program *)program;
 
 + (NSString *)xmlPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 
-+ (NSString *)screenshotPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 + (NSString *)manualScreenshotPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 + (NSString *)automaticScreenshotPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
 
-+ (NSArray<NSString *> *)allScreenshotPathsForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo;
++ (NSString *)thumbnailPathForScreenshotAtPath:(NSString *)screenshotPath;
 
++ (NSString *)manualScreenshotPathForScene:(Scene *)scene;
 + (NSString *)automaticScreenshotPathForScene:(Scene *)scene;
 
 + (NSString *)directoryForScene:(Scene *)scene;
 + (NSString *)imagesDirectoryForScene:(Scene *)scene;
 + (NSString *)soundsDirectoryForScene:(Scene *)scene;
+
++ (NSString *)previewPathForImageAtPath:(NSString *)imagePath;
 
 @end
 

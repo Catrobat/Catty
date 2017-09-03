@@ -115,7 +115,7 @@
     if (! look)
         return nil;
 
-    return [[self imagesDirectory] stringByAppendingPathComponent:[look previewImageFileName]];
+    return [FileSystemStorage previewPathForImageAtPath:[self pathForLook:look]];
 }
 
 - (NSString*)previewImagePath

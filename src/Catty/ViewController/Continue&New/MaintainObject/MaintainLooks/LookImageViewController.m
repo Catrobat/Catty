@@ -155,39 +155,16 @@
             // save image to programs directory
         [imageData writeToFile:self.imagePath atomically:YES];
     }];
-        // completion block is NOT executed on the main queue
-    [saveOp setCompletionBlock:^{
-            // execute this on the main queue
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-        }];
-    }];
+    
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:saveOp];
     
-    NSString *imageDirPath = [self.spriteObject imagesDirectory];
-    NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
-    NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
-
-    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1))) {
-        abort();
-        return;
-    }
-    
-    NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
-            [fileName substringToIndex:result.location],
-            kPreviewImageNamePrefix,
-            [fileName substringFromIndex:(result.location + 1)]
-            ];
+    NSString *previewImagePath = [FileSystemStorage previewPathForImageAtPath:self.imagePath];
 
     RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
-    NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
-    [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
+    [cache overwriteThumbnailImageFromDiskWithThumbnailPath:previewImagePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
     
-    
-    [cache replaceImage:image withName:filePath];
-    
-
+    [cache replaceImage:image withName:previewImagePath];
 }
 
 - (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName

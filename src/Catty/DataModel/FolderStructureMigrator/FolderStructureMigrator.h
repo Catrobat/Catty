@@ -20,20 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "CBMutableCopying.h"
+#import <Foundation/Foundation.h>
 
-@class GDataXMLElement;
-@class SpriteObject;
+@class Program;
+@class FileManager;
 
-@interface Look : NSObject<CBMutableCopying>
+@interface FolderStructureMigrator : NSObject
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
-@property (strong, nonatomic) NSString *fileName;
-@property (strong, nonatomic) NSString *name;
-
-- (id)initWithPath:(NSString*)filePath;
-- (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
-- (NSString*)description;
-- (BOOL)isEqualToLook:(Look*)look;
-
++ (void)migrateToNewFolderStructureProgram:(Program *)program withFileManager:(FileManager *)fileManager;
 @end

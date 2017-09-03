@@ -31,6 +31,7 @@
 #import "NSArray+CustomExtension.h"
 #import "Scene.h"
 #import "FileSystemStorage.h"
+#import "FolderStructureMigrator.h"
 
 @interface ProgramManager ()
 @property (nonatomic, readonly) FileManager *fileManager;
@@ -88,9 +89,10 @@ static ProgramManager *_instance = nil;
     if (! program)
         return nil;
     
-    if ([self hasOldImagesDirectory:program] || [self hasOldSoundsDirectory:program]) {
-        NSAssert(languageVersion <= 0.991, @"Inconsistency");
-        [self migrameToNewFolderStructureWithProgram:program];
+    [self setFirstSceneNameForProgramWithName:program.programName toValue:program.scenes[0].name];
+    
+    if (languageVersion <= 0.991) {
+        [FolderStructureMigrator migrateToNewFolderStructureProgram:program withFileManager:self.fileManager];
     }
     
     NSDebug(@"%@", [program description]);
@@ -140,6 +142,8 @@ static ProgramManager *_instance = nil;
     if ([self.fileManager directoryExists:projectPath]) {
         [self.fileManager deleteDirectory:projectPath];
     }
+    
+    [self setFirstSceneNameForProgramWithName:programLoadingInfo.visibleName toValue:nil];
     
     // if this is currently set as last used program, then look for next program to set it as
     // the last used program
@@ -304,6 +308,8 @@ static ProgramManager *_instance = nil;
     }
     NSAssert(![[self allProgramNames] containsObject:name], @"Program with such name already exists");
     
+    [self setFirstSceneNameForProgramWithName:program.programName toValue:nil];
+    
     ProgramLoadingInfo *oldLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
     program.header.programName = name;
     ProgramLoadingInfo *newLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
@@ -319,6 +325,8 @@ static ProgramManager *_instance = nil;
     if ([program.programID isEqualToString:programID]) {
         return;
     }
+    
+    [self setFirstSceneNameForProgramWithName:program.programName toValue:nil];
     
     ProgramLoadingInfo *oldLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgram:program];
     program.header.programID = programID;
@@ -419,11 +427,24 @@ static ProgramManager *_instance = nil;
     ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:program];
     NSAssert([self.fileManager directoryExists:info.basePath], @"Program doesn't exit");
     
+    [self setFirstSceneNameForProgramWithName:program.programName toValue:program.scenes[0].name];
+    
     NSString *xmlPath = [FileSystemStorage xmlPathForProgramWithLoadingInfo:info];
     CBXMLSerializer *serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:program];
     
     [self updateLastModificationTimeForProgramWithLoadingInfo:info];
+}
+
+- (void)setFirstSceneNameForProgramWithName:(NSString *)programName toValue:(NSString *)firstSceneName {
+    NSParameterAssert(programName.length);
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *firstSceneNames = [userDefaults objectForKey:kFirstSceneNameOfProgramsKey];
+    NSMutableDictionary *mutableFirstSceneNames = [firstSceneNames mutableCopy] ?: [NSMutableDictionary dictionary];
+    [mutableFirstSceneNames setValue:firstSceneName forKey:programName];
+    [userDefaults setObject:mutableFirstSceneNames forKey:kFirstSceneNameOfProgramsKey];
+    [userDefaults synchronize];
 }
 
 - (void)createDirectoriesForScene:(Scene *)scene {
@@ -440,41 +461,6 @@ static ProgramManager *_instance = nil;
     NSString *soundsDirName = [FileSystemStorage soundsDirectoryForScene:scene];
     NSAssert(![self.fileManager directoryExists:soundsDirName], @"Already exists");
     [self.fileManager createDirectory:soundsDirName];
-}
-
-- (NSString *)oldImagesDirectoryForProgram:(Program *)program {
-    NSString *programDirectory = [FileSystemStorage directoryForProgramWithName:program.programName programID:program.programID];
-    return [NSString stringWithFormat:@"%@/images/", programDirectory];
-}
-
-- (BOOL)hasOldImagesDirectory:(Program *)program {
-    return [self.fileManager directoryExists:[self oldImagesDirectoryForProgram:program]];
-}
-
-- (NSString *)oldSoundsDirectoryForProgram:(Program *)program {
-    NSString *programDirectory = [FileSystemStorage directoryForProgramWithName:program.programName programID:program.programID];
-    return [NSString stringWithFormat:@"%@/sounds/", programDirectory];
-}
-
-- (BOOL)hasOldSoundsDirectory:(Program *)program {
-    return [self.fileManager directoryExists:[self oldSoundsDirectoryForProgram:program]];
-}
-
-- (void)migrameToNewFolderStructureWithProgram:(Program *)program {
-    NSAssert([program.scenes count] == 1, @"Inconsistency");
-    
-    Scene *scene = [program.scenes objectAtIndex:0];
-    
-    NSString *sceneDirectory = [FileSystemStorage directoryForScene:scene];
-    [self.fileManager createDirectory:sceneDirectory];
-    
-    NSString *programImagesDirectory = [self oldImagesDirectoryForProgram:program];
-    NSString *sceneImagesDirectory = [FileSystemStorage imagesDirectoryForScene:scene];
-    [self.fileManager moveExistingDirectoryAtPath:programImagesDirectory toPath:sceneImagesDirectory];
-    
-    NSString *programSoundsDirectory = [self oldSoundsDirectoryForProgram:program];
-    NSString *sceneSoundsDirectory = [FileSystemStorage soundsDirectoryForScene:scene];
-    [self.fileManager moveExistingDirectoryAtPath:programSoundsDirectory toPath:sceneSoundsDirectory];
 }
 
 @end

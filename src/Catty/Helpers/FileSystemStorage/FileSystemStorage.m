@@ -49,30 +49,43 @@
     return [NSString stringWithFormat:@"%@/%@/", [self programsDirectory], [self directoryNameForProgramWithName:programName programID:programID]];
 }
 
++ (NSString *)directoryForProgram:(Program *)program {
+    NSParameterAssert(program);
+    return [self directoryForProgramWithName:program.programName programID:program.programID];
+}
+
 + (NSString *)xmlPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
     NSParameterAssert(programLoadingInfo);
     return [programLoadingInfo.basePath stringByAppendingPathComponent:kProgramCodeFileName];
 }
 
-+ (NSString *)screenshotPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
-    NSParameterAssert(programLoadingInfo);
-    return [programLoadingInfo.basePath stringByAppendingPathComponent:@"screenshot.png"];
-}
-
 + (NSString *)manualScreenshotPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
     NSParameterAssert(programLoadingInfo);
-    return [programLoadingInfo.basePath stringByAppendingPathComponent:@"manual_screenshot.png"];
+    return [[self firstSceneDirectoryForProgramWithLoadingInfo:programLoadingInfo] stringByAppendingPathComponent:@"manual_screenshot.png"];
 }
 
 + (NSString *)automaticScreenshotPathForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
     NSParameterAssert(programLoadingInfo);
-    return [programLoadingInfo.basePath stringByAppendingPathComponent:@"automatic_screenshot.png"];
+    return [[self firstSceneDirectoryForProgramWithLoadingInfo:programLoadingInfo] stringByAppendingPathComponent:@"automatic_screenshot.png"];
 }
 
-+ (NSArray<NSString *> *)allScreenshotPathsForProgramWithLoadingInfo:(ProgramLoadingInfo *)programLoadingInfo {
-    return @[[self screenshotPathForProgramWithLoadingInfo:programLoadingInfo],
-             [self manualScreenshotPathForProgramWithLoadingInfo:programLoadingInfo],
-             [self automaticScreenshotPathForProgramWithLoadingInfo:programLoadingInfo]];
++ (NSString *)thumbnailPathForScreenshotAtPath:(NSString *)screenshotPath {
+    NSParameterAssert(screenshotPath.length);
+    NSString *screenshotFileName = [screenshotPath lastPathComponent];
+    NSString *screenshotDirectory = [screenshotPath stringByDeletingLastPathComponent];
+    NSString *screenshotThumbFileName = [kScreenshotThumbnailPrefix stringByAppendingString:screenshotFileName];
+    return [screenshotDirectory stringByAppendingPathComponent:screenshotThumbFileName];
+}
+
++ (NSString *)firstSceneDirectoryForProgramWithLoadingInfo:(ProgramLoadingInfo *)info {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *firstSceneNames = [userDefaults objectForKey:kFirstSceneNameOfProgramsKey];
+    NSString *firstSceneName = firstSceneNames[info.visibleName];
+    return firstSceneName ? [info.basePath stringByAppendingPathComponent:firstSceneName] : info.basePath;
+}
+
++ (NSString *)manualScreenshotPathForScene:(Scene *)scene {
+    return [[self directoryForScene:scene] stringByAppendingPathComponent:@"automatic_screenshot.png"];
 }
 
 + (NSString *)automaticScreenshotPathForScene:(Scene *)scene {
@@ -84,7 +97,7 @@
     NSParameterAssert(scene);
     NSAssert(scene.program, @"Scene should belong to a proram");
     
-    NSString *programDirectory = [self directoryForProgramWithName:scene.program.programName programID:scene.program.programID];
+    NSString *programDirectory = [self directoryForProgram:scene.program];
     NSString *sceneName = [Util replaceBlockedCharactersForString:scene.name];
     return [NSString stringWithFormat:@"%@/%@/", programDirectory, sceneName];
 }
@@ -101,6 +114,26 @@
     NSAssert(scene.program, @"Scene should belong to a proram");
     
     return [NSString stringWithFormat:@"%@/sounds/", [self directoryForScene:scene]];
+}
+
++ (NSString *)previewPathForImageAtPath:(NSString *)imagePath {
+    NSParameterAssert(imagePath.length);
+    NSString *imageName = [imagePath lastPathComponent];
+    NSString *imageDirectory = [imagePath stringByDeletingLastPathComponent];
+    
+    NSRange result = [imageName rangeOfString:kResourceFileNameSeparator];
+    
+    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([imageName length] - 1))) {
+        abort();
+        return nil;
+    }
+    
+    NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
+                                   [imageName substringToIndex:result.location],
+                                   kPreviewImageNamePrefix,
+                                   [imageName substringFromIndex:(result.location + 1)]];
+
+    return [imageDirectory stringByAppendingPathComponent:previewImageName];
 }
 
 @end

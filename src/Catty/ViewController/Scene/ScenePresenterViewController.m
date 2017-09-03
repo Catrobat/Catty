@@ -535,21 +535,8 @@
 -(void)takeAutomaticScreenshot
 {
     FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
-    
-    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.sceneModel.program];
-    NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
-    
-    BOOL programScreenshotExists = NO;
-    for (NSString *fallbackPath in fallbackPaths) {
-        programScreenshotExists = [fileManager fileExists:fallbackPath];
-        if(programScreenshotExists){
-            break;
-        }
-    }
-    
-    BOOL sceneScreenshotExists = [fileManager fileExists:[FileSystemStorage automaticScreenshotPathForScene:self.sceneModel]];
-    
-    if (programScreenshotExists && sceneScreenshotExists) {
+    NSString *sceneAutomaticScreenshotPath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
+    if ([fileManager fileExists:sceneAutomaticScreenshotPath]) {
         return;
     }
     
@@ -561,14 +548,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
-        if (!programScreenshotExists) {
-            NSString *pngFilePath = [FileSystemStorage automaticScreenshotPathForProgramWithLoadingInfo:info];
-            [data writeToFile:pngFilePath atomically:YES];
-        }
-        if (!sceneScreenshotExists) {
-            NSString *pngFilePath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
-            [data writeToFile:pngFilePath atomically:YES];
-        }
+        [data writeToFile:sceneAutomaticScreenshotPath atomically:YES];
     });
 }
 
@@ -576,8 +556,7 @@
 - (void)showSaveScreenshotActionSheet
 {
     UIImage *imageToShare = self.snapshotImage;
-    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgram:self.program];
-    NSString *path = [FileSystemStorage manualScreenshotPathForProgramWithLoadingInfo:info];
+    NSString *path = [FileSystemStorage manualScreenshotPathForScene:self.sceneModel];
     NSArray *itemsToShare = @[imageToShare];
 
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];

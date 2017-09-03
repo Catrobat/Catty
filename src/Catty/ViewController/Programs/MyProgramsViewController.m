@@ -478,13 +478,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
-    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    NSArray *fallbackPaths = [FileSystemStorage allScreenshotPathsForProgramWithLoadingInfo:info];
+    NSArray *fallbackPaths = @[[FileSystemStorage manualScreenshotPathForProgramWithLoadingInfo:info],
+                               [FileSystemStorage automaticScreenshotPathForProgramWithLoadingInfo:info]];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     for (NSString *fallbackPath in fallbackPaths) {
-        NSString *fileName = [fallbackPath lastPathComponent];
-        NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@",
-                                   info.basePath, kScreenshotThumbnailPrefix, fileName];
+        NSString *thumbnailPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:fallbackPath];
         UIImage *image = [imageCache cachedImageForPath:thumbnailPath];
         if (image) {
             cell.iconImageView.image = image;
@@ -496,11 +494,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // if a screenshot file is found, then load it from disk and cache it in memory for future access
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
+        FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
         for (NSString *fallbackPath in fallbackPaths) {
             if ([fileManager fileExists:fallbackPath]) {
-                NSString *fileName = [fallbackPath lastPathComponent];
-                NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@",
-                                           info.basePath, kScreenshotThumbnailPrefix, fileName];
+                NSString *thumbnailPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:fallbackPath];
                 [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
                                                               imagePath:fallbackPath
                                                      thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)

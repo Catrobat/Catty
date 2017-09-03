@@ -102,38 +102,41 @@ static NSCharacterSet *blockedCharacterSet = nil;
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     imageCell.iconImageView.image = nil;
     
-    FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
-    NSString *screenshotPath = [FileSystemStorage automaticScreenshotPathForScene:scene];
-    if (![fileManager fileExists:screenshotPath] ) {
-        return;
-    }
-    NSString *fileName = [screenshotPath lastPathComponent];
-    NSString *thumbnailPath = [NSString stringWithFormat:@"%@%@%@", [FileSystemStorage directoryForScene:scene],
-                               kScreenshotThumbnailPrefix, fileName];
-    
+    // check if one of these screenshot files is available in memory
+    NSArray *fallbackPaths = @[[FileSystemStorage manualScreenshotPathForScene:scene],
+                               [FileSystemStorage automaticScreenshotPathForScene:scene]];
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-    UIImage *image = [imageCache cachedImageForPath:thumbnailPath];
-    if (image) {
-        imageCell.iconImageView.image = image;
-        return;
+    for (NSString *fallbackPath in fallbackPaths) {
+        NSString *thumbnailPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:fallbackPath];
+        UIImage *image = [imageCache cachedImageForPath:thumbnailPath];
+        if (image) {
+            imageCell.iconImageView.image = image;
+            return;
+        }
     }
     
-    // no screenshot files in memory, check if screenshot file exists on disk
+    // no screenshot files in memory, check if one of these screenshot files exists on disk
     // if a screenshot file is found, then load it from disk and cache it in memory for future access
-    
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     dispatch_async(queue, ^{
-        [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
-                                                      imagePath:screenshotPath
-                                             thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                   onCompletion:^(UIImage *image, NSString *path){
-                                                       // check if cell still needed
-                                                       if ([imageCell.indexPath isEqual:indexPath]) {
-                                                           imageCell.iconImageView.image = image;
-                                                           [imageCell setNeedsLayout];
-                                                           [self.tableView endUpdates];
-                                                       }
-                                                   }];
+        FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
+        for (NSString *fallbackPath in fallbackPaths) {
+            if ([fileManager fileExists:fallbackPath]) {
+                NSString *thumbnailPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:fallbackPath];
+                [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
+                                                              imagePath:fallbackPath
+                                                     thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                                           onCompletion:^(UIImage *image, NSString* path){
+                                                               // check if cell still needed
+                                                               if ([imageCell.indexPath isEqual:indexPath]) {
+                                                                   imageCell.iconImageView.image = image;
+                                                                   [imageCell setNeedsLayout];
+                                                                   [self.tableView endUpdates];
+                                                               }
+                                                           }];
+                return;
+            }
+        }
     });
 }
 

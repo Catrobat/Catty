@@ -93,6 +93,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
 #define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
+#define kFirstSceneNameOfProgramsKey @"firstSceneNameOfPrograms"
 #define kScreenshotThumbnailPrefix @".thumb_"
 
 #define kUserDefaultsBrickSelectionStatisticsMap @"BrickStatisticsMap"

@@ -866,13 +866,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
         NSString *fileName = [path lastPathComponent];
-        
-        NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
-        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1))){
-            abort();
-            return;
-        }
-
 
         NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
         if(referenceCount > 1) {
@@ -903,20 +896,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [queue addOperation:saveOp];
     
         
+        NSString *previewImagePath = [FileSystemStorage previewPathForImageAtPath:path];
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
-        NSString *previewImageName =  [NSString stringWithFormat:@"%@%@%@",
-                                       [fileName substringToIndex:result.location+1],
-                                       kPreviewImageNamePrefix,
-                                       [fileName substringFromIndex:(result.location+1)]
-                                       ];
+        [cache overwriteThumbnailImageFromDiskWithThumbnailPath:previewImagePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
         
         
-        NSString *filePath = [[self.object imagesDirectory] stringByAppendingPathComponent:previewImageName];
-        [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
-        
-        
-        [cache replaceImage:image withName:filePath];
+        [cache replaceImage:image withName:previewImagePath];
     } else {
           NSDebug(@"SAVING");  // add image to object now
         [self showLoadingView];
