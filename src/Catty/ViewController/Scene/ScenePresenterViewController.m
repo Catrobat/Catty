@@ -536,7 +536,8 @@
 {
     FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
     NSString *sceneAutomaticScreenshotPath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
-    if ([fileManager fileExists:sceneAutomaticScreenshotPath]) {
+    NSString *sceneManualScreenshotPath = [FileSystemStorage manualScreenshotPathForScene:self.sceneModel];
+    if ([fileManager fileExists:sceneAutomaticScreenshotPath] || [fileManager fileExists:sceneManualScreenshotPath]) {
         return;
     }
     
