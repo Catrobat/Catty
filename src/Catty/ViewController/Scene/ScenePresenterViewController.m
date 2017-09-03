@@ -535,9 +535,7 @@
 -(void)takeAutomaticScreenshot
 {
     FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
-    NSString *sceneAutomaticScreenshotPath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
-    NSString *sceneManualScreenshotPath = [FileSystemStorage manualScreenshotPathForScene:self.sceneModel];
-    if ([fileManager fileExists:sceneAutomaticScreenshotPath] || [fileManager fileExists:sceneManualScreenshotPath]) {
+    if ([fileManager fileExists:[FileSystemStorage manualScreenshotPathForScene:self.sceneModel]]) {
         return;
     }
     
@@ -547,9 +545,19 @@
     UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *autoScreenshotPath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
+        NSString *autoScreenshotThumbPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:autoScreenshotPath];
+        if ([fileManager fileExists:autoScreenshotThumbPath]) {
+            [fileManager deleteFile:autoScreenshotThumbPath];
+        }
+        
         NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
-        [data writeToFile:sceneAutomaticScreenshotPath atomically:YES];
+        [data writeToFile:autoScreenshotPath atomically:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[RuntimeImageCache sharedImageCache] clearImageCache];
+        });
     });
 }
 
@@ -557,10 +565,10 @@
 - (void)showSaveScreenshotActionSheet
 {
     UIImage *imageToShare = self.snapshotImage;
-    NSString *path = [FileSystemStorage manualScreenshotPathForScene:self.sceneModel];
+    NSString *manualScreenshotPath = [FileSystemStorage manualScreenshotPathForScene:self.sceneModel];
     NSArray *itemsToShare = @[imageToShare];
 
-    SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
+    SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:manualScreenshotPath];
     NSArray *activities = @[saveToProjectActivity];
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
@@ -575,6 +583,26 @@
     [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         SKView *view = weakself.skView;
         view.paused=YES;
+        
+        FileManager *fileManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).fileManager;
+        if (![fileManager fileExists:manualScreenshotPath]) {
+            return;
+        }
+        
+        NSString *manualScreenshotThumbPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:manualScreenshotPath];
+        if ([fileManager fileExists:manualScreenshotThumbPath]) {
+            [fileManager deleteFile:manualScreenshotThumbPath];
+        }
+        NSString *autoScreenshotPath = [FileSystemStorage automaticScreenshotPathForScene:self.sceneModel];
+        if ([fileManager fileExists:autoScreenshotPath]) {
+            [fileManager deleteFile:autoScreenshotPath];
+        }
+        NSString *autoScreenshotThumbPath = [FileSystemStorage thumbnailPathForScreenshotAtPath:autoScreenshotPath];
+        if ([fileManager fileExists:autoScreenshotThumbPath]) {
+            [fileManager deleteFile:autoScreenshotThumbPath];
+        }
+        
+        [[RuntimeImageCache sharedImageCache] clearImageCache];
     }];
     [self presentViewController:activityVC animated:YES completion:^(){
         SKView *view = weakself.skView;

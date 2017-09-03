@@ -85,7 +85,7 @@
 }
 
 + (NSString *)manualScreenshotPathForScene:(Scene *)scene {
-    return [[self directoryForScene:scene] stringByAppendingPathComponent:@"automatic_screenshot.png"];
+    return [[self directoryForScene:scene] stringByAppendingPathComponent:@"manual_screenshot.png"];
 }
 
 + (NSString *)automaticScreenshotPathForScene:(Scene *)scene {
