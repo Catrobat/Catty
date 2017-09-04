@@ -33,6 +33,10 @@
 #import "UIUtil.h"
 #import "ProgramManager.h"
 
+@interface SceneListViewController ()
+@property (nonatomic, getter=isDeletionMode) BOOL deletionMode;
+@end
+
 @implementation SceneListViewController
 
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -108,9 +112,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.isDeletionMode == NO;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    [self.program moveSceneAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+    [self saveProgram:self.program showingSavedView:NO];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isEditing) {
+        return UITableViewCellEditingStyleNone;
+    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
@@ -215,16 +234,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     
-    id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:@"Edit scenes"]
-                                               addCancelActionWithTitle:kLocalizedCancel handler:nil];
-    
-    if ([self.program scenes].count > 1) {
-        [actionSheet addDestructiveActionWithTitle:@"Delete scenes" handler:^{
-            [self setupEditingToolBar];
-            [super changeToEditingMode:sender];
-        }];
-    }
-    [[actionSheet build] showWithController:self];
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:@"Edit scenes"]
+     addCancelActionWithTitle:kLocalizedCancel handler:nil]
+     addDefaultActionWithTitle:@"Move scenes" handler:^{
+         self.deletionMode = NO;
+         [self changeToMoveMode:sender];
+     }]
+     addDestructiveActionWithTitle:@"Delete scenes" handler:^{
+         self.deletionMode = YES;
+         [self setupEditingToolBar];
+         [super changeToEditingMode:sender];
+     }]
+     build] showWithController:self];
 }
 
 - (void)renameSceneActionToName:(NSString *)newName scene:(Scene *)scene {
