@@ -108,6 +108,18 @@
     self.header.programDescription = programDescription;
 }
 
+- (void)moveSceneAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex {
+    NSParameterAssert(sourceIndex >= 0 && [self.scenes count] > sourceIndex);
+    NSParameterAssert(destinationIndex >= 0 && [self.scenes count] > destinationIndex);
+    
+    if (sourceIndex == destinationIndex) {
+        return;
+    }
+    Scene *scene = [self.scenes objectAtIndex:sourceIndex];
+    [self.scenes removeObjectAtIndex:sourceIndex];
+    [self.scenes insertObject:scene atIndex:destinationIndex];
+}
+
 - (void)addProgramVariable:(UserVariable *)variable {
     NSParameterAssert(variable);
     NSAssert(![[self allVariableNames] containsObject:variable.name], @"Variable with such name already exists");

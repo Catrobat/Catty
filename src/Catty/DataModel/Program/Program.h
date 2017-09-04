@@ -50,6 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<NSString *> *)allSceneNames;
 
+- (void)moveSceneAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
+
 - (void)addProgramVariable:(UserVariable *)variable;
 - (void)removeProgramVariable:(UserVariable *)variable;
 
