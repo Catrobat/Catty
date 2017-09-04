@@ -45,6 +45,7 @@
 - (void)exitEditingMode;
 - (void)playSceneAction:(id)sender;
 - (void)playSceneAction:(id)sender animated:(BOOL)animated;
+- (void)playFirstSceneAction:(id)sender;
 - (void)showLoadingView;
 - (void)hideLoadingView;
 - (void)startSceneWithVC:(ScenePresenterViewController*)vc;

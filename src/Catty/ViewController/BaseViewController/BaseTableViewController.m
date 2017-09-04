@@ -462,6 +462,11 @@
     }
 }
 
+- (void)playFirstSceneAction:(id)sender {
+    NSArray<Scene *> *scenes = [[ProgramManager instance] lastUsedProgram].scenes;
+    [self userSelectedToPlayScene:scenes[0]];
+}
+
 - (void)userSelectedToPlayScene:(Scene *)scene {
     [self showLoadingView];
     
