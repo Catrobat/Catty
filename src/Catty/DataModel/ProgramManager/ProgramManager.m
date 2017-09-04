@@ -32,6 +32,7 @@
 #import "Scene.h"
 #import "FileSystemStorage.h"
 #import "FolderStructureMigrator.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ProgramManager ()
 @property (nonatomic, readonly) FileManager *fileManager;
@@ -347,7 +348,7 @@ static ProgramManager *_instance = nil;
 - (void)addScene:(Scene *)scene toProgram:(Program *)program {
     NSParameterAssert(scene);
     NSParameterAssert(program);
-    NSAssert(![[program allSceneNames] containsObject:scene.name], @"Scene with such name already exists");
+    NSParameterAssert([program isValidNewSceneName:scene.name].valid);
     
     scene.program = program;
     [program.scenes addObject:scene];
@@ -383,11 +384,11 @@ static ProgramManager *_instance = nil;
 - (void)renameScene:(Scene *)scene toName:(NSString *)name {
     NSParameterAssert(scene);
     NSParameterAssert(name);
+    NSParameterAssert([scene.name caseInsensitiveCompare:name] == NSOrderedSame || [scene.program isValidNewSceneName:name].valid);
     
     if ([scene.name isEqualToString:name]) {
         return;
     }
-    NSAssert(![[scene.program allSceneNames] containsObject:name], @"Scene with such name already exists");
     
     NSString *oldDirectory = [FileSystemStorage directoryForScene:scene];
     scene.name = name;
@@ -401,8 +402,7 @@ static ProgramManager *_instance = nil;
 - (void)copyScene:(Scene *)sourceScene destinationSceneName:(NSString *)destinationSceneName {
     NSParameterAssert(sourceScene);
     NSParameterAssert(destinationSceneName);
-    
-    NSAssert(![[sourceScene.program allSceneNames] containsObject:destinationSceneName], @"Scene with such name already exists");
+    NSParameterAssert([sourceScene.program isValidNewSceneName:destinationSceneName].valid);
     
     Scene *sceneCopy = [[Scene alloc] initWithName:destinationSceneName
                                         objectList:sourceScene.objectList

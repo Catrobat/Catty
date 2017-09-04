@@ -257,6 +257,18 @@
 #define kLocalizedNoWifiConnection NSLocalizedString(@"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", nil)
 #define kLocalizedOff NSLocalizedString(@"off", nil)
 #define kLocalizedOn NSLocalizedString(@"on", nil)
+#define kLocalizedNewScene NSLocalizedString(@"New Scene", nil)
+#define kLocalizedFirstScene NSLocalizedString(@"Scene 1", @"Title for first (default) scene")
+#define kLocalizedScenes NSLocalizedString(@"Scenes", nil)
+#define kLocalizedCopyScene NSLocalizedString(@"Copy scene", nil)
+#define kLocalizedRenameScene NSLocalizedString(@"Rename scene", nil)
+#define kLocalizedSceneName NSLocalizedString(@"Scene name", nil)
+#define kLocalizedEditScene NSLocalizedString(@"Edit Scene", nil)
+#define kLocalizedDeleteThisScene NSLocalizedString(@"Delete this scene", nil)
+#define kLocalizedDeleteScenes NSLocalizedString(@"Delete scenes", nil)
+#define kLocalizedMoveScenes NSLocalizedString(@"Move scenes",nil)
+#define kLocalizedEditScenes NSLocalizedString(@"Edit scenes", nil)
+#define kLocalizedCreateScene NSLocalizedString(@"Create Scene", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -320,6 +332,8 @@
 #define kLocalizedNoAccesToImagesCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToCameraCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToMicrophoneCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", nil)
+#define kLocalizedEnterYourSceneNameHere NSLocalizedString(@"Enter your scene name here...", @"Placeholder for add scene-name input field")
+#define kLocalizedSceneNameAlreadyExistsDescription NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************

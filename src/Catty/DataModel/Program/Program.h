@@ -26,6 +26,7 @@
 @class UserVariable;
 @class Scene;
 @class VariablesContainer;
+@class InputValidationResult;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<UserVariable *> *)allVariables;
 - (NSArray<NSString *> *)allVariableNames;
 
-- (NSArray<NSString *> *)allSceneNames;
+- (InputValidationResult *)isValidNewSceneName:(NSString *)sceneName;
 
 - (void)moveSceneAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex;
 

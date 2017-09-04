@@ -274,17 +274,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (void)createNewScene {
-    [Util askUserForUniqueNameAndPerformAction:@selector(addSceneAndSegueToItActionForSceneWithName:)
-                                        target:self
-                                   promptTitle:@"New scene"
-                                 promptMessage:@"Scene name:"
-                                   promptValue:nil
-                             promptPlaceholder:@"Enter your scene name here..."
-                                minInputLength:kMinNumOfProgramNameCharacters
-                                maxInputLength:kMaxNumOfProgramNameCharacters
-                           blockedCharacterSet:[self blockedCharacterSet]
-                      invalidInputAlertMessage:@"A scene with the same name already exists, try again."
-                                 existingNames:[self.scene.program allSceneNames]];
+    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedNewScene message:[NSString stringWithFormat:@"%@:", kLocalizedSceneName]]
+     placeholder:kLocalizedEnterYourSceneNameHere]
+     addCancelActionWithTitle:kLocalizedCancel handler:NULL]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *value) {
+         [self addSceneAndSegueToItActionForSceneWithName:value];
+     }]
+     characterValidator:^BOOL(NSString *symbol) {
+         return ![[self blockedCharacterSet] characterIsMember:[symbol characterAtIndex:0]];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         return [self.program isValidNewSceneName:name];
+     }]
+     build] showWithController:self];
 }
 
 - (void)editAction:(id)sender
@@ -330,7 +332,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
         }]
-        addDefaultActionWithTitle:@"Create Scene" handler:^{
+        addDefaultActionWithTitle:kLocalizedCreateScene handler:^{
             [self createNewScene];
         }];
     }

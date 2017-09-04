@@ -266,10 +266,16 @@
 "Copy program" = "Copy program";
 
 /* No comment provided by engineer. */
+"Copy scene" = "Copy scene";
+
+/* No comment provided by engineer. */
 "Create & Remix" = "Create & Remix";
 
 /* No comment provided by engineer. */
 "Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"Create Scene" = "Create Scene";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -314,6 +320,9 @@
 "Delete Programs" = "Delete Programs";
 
 /* No comment provided by engineer. */
+"Delete scenes" = "Delete scenes";
+
+/* No comment provided by engineer. */
 "Delete Script" = "Delete Script";
 
 /* No comment provided by engineer. */
@@ -351,6 +360,9 @@
 
 /* No comment provided by engineer. */
 "Delete this program" = "Delete this program";
+
+/* No comment provided by engineer. */
+"Delete this scene" = "Delete this scene";
 
 /* No comment provided by engineer. */
 "Delete this Script?" = "Delete this Script?";
@@ -436,6 +448,12 @@
 /* No comment provided by engineer. */
 "Edit Programs" = "Edit Programs";
 
+/* No comment provided by engineer. */
+"Edit Scene" = "Edit Scene";
+
+/* No comment provided by engineer. */
+"Edit scenes" = "Edit scenes";
+
 /* Action sheet menu title */
 "Edit Script" = "Edit Script";
 
@@ -477,6 +495,9 @@
 
 /* Placeholder for program-name input field */
 "Enter your program name here..." = "Enter your program name here...";
+
+/* Placeholder for add scene-name input field */
+"Enter your scene name here..." = "Enter your scene name here...";
 
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Enter your sound name here...";
@@ -806,6 +827,9 @@
 "Move Phiro motor forward" = "Move Phiro motor forward";
 
 /* No comment provided by engineer. */
+"Move scenes" = "Move scenes";
+
+/* No comment provided by engineer. */
 "Move Sounds" = "Move Sounds";
 
 /* Name of the default catrobat program (used as filename!!) */
@@ -834,6 +858,9 @@
 
 /* No comment provided by engineer. */
 "New Program" = "New Program";
+
+/* No comment provided by engineer. */
+"New Scene" = "New Scene";
 
 /* No comment provided by engineer. */
 "New Text" = "New Text";
@@ -1118,6 +1145,9 @@
 "Rename Program" = "Rename Program";
 
 /* No comment provided by engineer. */
+"Rename scene" = "Rename scene";
+
+/* No comment provided by engineer. */
 "Rename sound" = "Rename sound";
 
 /* No comment provided by engineer. */
@@ -1161,6 +1191,15 @@
 
 /* No comment provided by engineer. */
 "Saved" = "Saved";
+
+/* Title for first (default) scene */
+"Scene 1" = "Scene 1";
+
+/* No comment provided by engineer. */
+"Scene name" = "Scene name";
+
+/* No comment provided by engineer. */
+"Scenes" = "Scenes";
 
 /* No comment provided by engineer. */
 "Screenshot" = "Screenshot";

@@ -51,7 +51,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (void)initNavigationBar {
-    self.navigationItem.title = self.title = @"Scenes";
+    self.navigationItem.title = self.title = kLocalizedScenes;
     
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
@@ -187,48 +187,55 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         Scene *scene = [self sceneAtIndexPath:indexPath];
         
-        [[[[[[[AlertControllerBuilder actionSheetWithTitle:@"Edit Scene"]
-              addCancelActionWithTitle:kLocalizedCancel handler:nil]
-             addDefaultActionWithTitle:kLocalizedCopy handler:^{
-                 [Util askUserForUniqueNameAndPerformAction:@selector(copySceneActionForSceneWithName:sourceScene:)
-                                                     target:self
-                                               cancelAction:nil
-                                                 withObject:scene
-                                                promptTitle:@"Copy scene"
-                                              promptMessage:[NSString stringWithFormat:@"%@:", @"Scene name"]
-                                                promptValue:scene.name
-                                          promptPlaceholder:@"Enter your scene name here..."
-                                             minInputLength:kMinNumOfProgramNameCharacters
-                                             maxInputLength:kMaxNumOfProgramNameCharacters
-                                        blockedCharacterSet:[self blockedCharacterSet]
-                                   invalidInputAlertMessage:@"A scene with the same name already exists, try again."
-                                              existingNames:[self.program allSceneNames]];
-             }]
-            addDefaultActionWithTitle:kLocalizedRename handler:^{
-                NSMutableArray *unavailableNames = [[self.program allSceneNames] mutableCopy];
-                [unavailableNames removeObject:scene.name];
-                [Util askUserForUniqueNameAndPerformAction:@selector(renameSceneActionToName:scene:)
-                                                    target:self
-                                              cancelAction:nil
-                                                withObject:scene
-                                               promptTitle:@"Rename scene"
-                                             promptMessage:[NSString stringWithFormat:@"%@:", @"Scene name"]
-                                               promptValue:scene.name
-                                         promptPlaceholder:@"Enter your scene name here..."
-                                            minInputLength:kMinNumOfObjectNameCharacters
-                                            maxInputLength:kMaxNumOfObjectNameCharacters
-                                       blockedCharacterSet:[self blockedCharacterSet]
-                                  invalidInputAlertMessage:@"A scene with the same name already exists, try again."
-                                             existingNames:unavailableNames];
-            }] build]
-          viewWillDisappear:^{
-              [self.tableView setEditing:false animated:YES];
-          }]
+        [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditScene]
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+         addDefaultActionWithTitle:kLocalizedCopy handler:^{
+             
+             [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedCopyScene message:[NSString stringWithFormat:@"%@:", kLocalizedSceneName]]
+              initialText:scene.name]
+              placeholder:kLocalizedEnterYourSceneNameHere]
+              addCancelActionWithTitle:kLocalizedCancel handler:NULL]
+              addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+                        [self copySceneActionForSceneWithName:name sourceScene:scene];
+              }]
+              characterValidator:^BOOL(NSString *symbol) {
+                       return ![[self blockedCharacterSet] characterIsMember:[symbol characterAtIndex:0]];
+              }]
+              valueValidator:^InputValidationResult *(NSString *name) {
+                      return [self.program isValidNewSceneName:name];
+              }]
+              build] showWithController:self];
+             
+         }]
+         addDefaultActionWithTitle:kLocalizedRename handler:^{
+             
+             [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedRenameScene message:[NSString stringWithFormat:@"%@:", kLocalizedSceneName]]
+              initialText:scene.name]
+              placeholder:kLocalizedEnterYourSceneNameHere]
+              addCancelActionWithTitle:kLocalizedCancel handler:NULL]
+              addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+                  [self renameSceneActionToName:name scene:scene];
+              }]
+              characterValidator:^BOOL(NSString *symbol) {
+                  return ![[self blockedCharacterSet] characterIsMember:[symbol characterAtIndex:0]];
+              }]
+              valueValidator:^InputValidationResult *(NSString *name) {
+                  if ([name caseInsensitiveCompare:scene.name] == NSOrderedSame) {
+                      return [InputValidationResult validInput];
+                  }
+                  return [self.program isValidNewSceneName:name];
+              }]
+              build] showWithController:self];
+             
+         }] build]
+         viewWillDisappear:^{
+             [self.tableView setEditing:false animated:YES];
+         }]
          showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        [[[[[AlertControllerBuilder alertWithTitle:@"Delete this scene" message:kLocalizedThisActionCannotBeUndone]
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisScene message:kLocalizedThisActionCannotBeUndone]
             addCancelActionWithTitle:kLocalizedCancel handler:nil]
            addDefaultActionWithTitle:kLocalizedYes handler:^{
                [self deleteScenesAtIndexPaths:@[indexPath]];
@@ -256,17 +263,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addSceneAction:(id)sender
 {
-    [Util askUserForUniqueNameAndPerformAction:@selector(addSceneAndSegueToItActionForSceneWithName:)
-                                        target:self
-                                   promptTitle:@"New scene"
-                                 promptMessage:[NSString stringWithFormat:@"%@:", @"Scene name"]
-                                   promptValue:nil
-                             promptPlaceholder:@"Enter your scene name here..."
-                                minInputLength:1
-                                maxInputLength:250
-                           blockedCharacterSet:[self blockedCharacterSet]
-                      invalidInputAlertMessage:@"A scene with the same name already exists, try again."
-                                 existingNames:[self.program allSceneNames]];
+    [[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedNewScene message:[NSString stringWithFormat:@"%@:", kLocalizedSceneName]]
+     placeholder:kLocalizedEnterYourSceneNameHere]
+     addCancelActionWithTitle:kLocalizedCancel handler:NULL]
+     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *value) {
+         [self addSceneAndSegueToItActionForSceneWithName:value];
+     }]
+     characterValidator:^BOOL(NSString *symbol) {
+         return ![[self blockedCharacterSet] characterIsMember:[symbol characterAtIndex:0]];
+     }]
+     valueValidator:^InputValidationResult *(NSString *name) {
+         return [self.program isValidNewSceneName:name];
+     }]
+     build] showWithController:self];
 }
 
 - (void)addSceneAndSegueToItActionForSceneWithName:(NSString *)name {
@@ -283,13 +292,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[AlertControllerBuilder actionSheetWithTitle:@"Edit scenes"]
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditScenes]
      addCancelActionWithTitle:kLocalizedCancel handler:nil]
-     addDefaultActionWithTitle:@"Move scenes" handler:^{
+     addDefaultActionWithTitle:kLocalizedMoveScenes handler:^{
          self.deletionMode = NO;
          [self changeToMoveMode:sender];
      }]
-     addDestructiveActionWithTitle:@"Delete scenes" handler:^{
+     addDestructiveActionWithTitle:kLocalizedDeleteScenes handler:^{
          self.deletionMode = YES;
          [self setupEditingToolBar];
          [super changeToEditingMode:sender];
@@ -306,7 +315,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (void)copySceneActionForSceneWithName:(NSString *)sceneName sourceScene:(Scene *)sourceScene {
-    sceneName = [Util uniqueName:sceneName existingNames:[self.program allSceneNames]];
     [[ProgramManager instance] copyScene:sourceScene destinationSceneName:sceneName];
     
     [self.tableView reloadData];

@@ -257,6 +257,18 @@ let kLocalizedWiFiProgramDownloads = NSLocalizedString("Download only with WiFi"
 let kLocalizedNoWifiConnection = NSLocalizedString("Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", comment: "")
 let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
+let kLocalizedNewScene = NSLocalizedString("New Scene", comment: "")
+let kLocalizedFirstScene = NSLocalizedString("Scene 1", comment: "Title for first (default) scene")
+let kLocalizedScenes = NSLocalizedString("Scenes", comment: "")
+let kLocalizedCopyScene = NSLocalizedString("Copy scene", comment: "")
+let kLocalizedRenameScene = NSLocalizedString("Rename scene", comment: "")
+let kLocalizedSceneName = NSLocalizedString("Scene name", comment: "")
+let kLocalizedEditScene = NSLocalizedString("Edit Scene", comment: "")
+let kLocalizedDeleteThisScene = NSLocalizedString("Delete this scene", comment: "")
+let kLocalizedDeleteScenes = NSLocalizedString("Delete scenes", comment: "")
+let kLocalizedMoveScenes = NSLocalizedString("Move scenes", comment: "")
+let kLocalizedEditScenes = NSLocalizedString("Edit scenes", comment: "")
+let kLocalizedCreateScene = NSLocalizedString("Create Scene", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -320,6 +332,8 @@ let kLocalizedProgramAlreadyDownloadedDescription = NSLocalizedString("You have 
 let kLocalizedNoAccesToImagesCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.", comment: "")
 let kLocalizedNoAccesToCameraCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", comment: "")
 let kLocalizedNoAccesToMicrophoneCheckSettingsDescription = NSLocalizedString("Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", comment: "")
+let kLocalizedEnterYourSceneNameHere = NSLocalizedString("Enter your scene name here...", comment: "Placeholder for add scene-name input field")
+let kLocalizedSceneNameAlreadyExistsDescription = NSLocalizedString("A program with the same name already exists, try again.", comment: "")
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************

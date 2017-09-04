@@ -92,6 +92,23 @@
     }];
 }
 
+- (InputValidationResult *)isValidNewSceneName:(NSString *)sceneName {
+    NSParameterAssert(sceneName);
+    
+    InputValidationResult *result = [Util validationResultWithName:sceneName minLength:kMinNumOfSceneNameCharacters maxlength:kMaxNumOfSceneNameCharacters];
+    if (!result.valid) {
+        return result;
+    }
+    
+    BOOL alreadyExists = [[self allSceneNames] cb_hasAny:^BOOL(NSString *item) {
+        return [item caseInsensitiveCompare:sceneName] == NSOrderedSame;
+    }];
+    if (alreadyExists) {
+        return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedSceneNameAlreadyExistsDescription];
+    }
+    return [InputValidationResult validInput];
+}
+
 - (NSString *)programName {
     return self.header.programName;
 }
