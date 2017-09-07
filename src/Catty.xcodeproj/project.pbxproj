@@ -704,6 +704,7 @@
 		C640D6821F5B63F200BEF5D2 /* FolderStructureMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = C640D6811F5B63F200BEF5D2 /* FolderStructureMigrator.m */; };
 		C651AC101EF97BD400531E9E /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = C651AC0F1EF97BD400531E9E /* Scene.m */; };
 		C66F912C1F2921FF000DEE82 /* NSArray+CustomExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C66F912B1F2921FF000DEE82 /* NSArray+CustomExtension.m */; };
+		C6880A161F5E156800F4A829 /* FirstSceneNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6880A151F5E156800F4A829 /* FirstSceneNameTests.m */; };
 		C689CA7A1F0F1607002CDD47 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C689CA711F0F0D17002CDD47 /* XMLSerializerBlackBoxTests.m */; };
 		C689CA7B1F0F1614002CDD47 /* XMLParserBlackBoxTests0992.m in Sources */ = {isa = PBXBuildFile; fileRef = C689CA6C1F0F0D17002CDD47 /* XMLParserBlackBoxTests0992.m */; };
 		C689CA7C1F0F1617002CDD47 /* XMLParserTests0992.m in Sources */ = {isa = PBXBuildFile; fileRef = C689CA6E1F0F0D17002CDD47 /* XMLParserTests0992.m */; };
@@ -2105,6 +2106,7 @@
 		C651AC0F1EF97BD400531E9E /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		C66F912A1F2921FF000DEE82 /* NSArray+CustomExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CustomExtension.h"; sourceTree = "<group>"; };
 		C66F912B1F2921FF000DEE82 /* NSArray+CustomExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CustomExtension.m"; sourceTree = "<group>"; };
+		C6880A151F5E156800F4A829 /* FirstSceneNameTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstSceneNameTests.m; sourceTree = "<group>"; };
 		C689CA6C1F0F0D17002CDD47 /* XMLParserBlackBoxTests0992.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests0992.m; sourceTree = "<group>"; };
 		C689CA6E1F0F0D17002CDD47 /* XMLParserTests0992.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests0992.m; sourceTree = "<group>"; };
 		C689CA711F0F0D17002CDD47 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
@@ -3224,6 +3226,7 @@
 				4CE5C56D1E0AD71800FD021C /* ProgramTests.m */,
 				4CE5C56E1E0AD71800FD021C /* RequiredResources.m */,
 				C640D67B1F5ADE1E00BEF5D2 /* FolderStructureMigratorTests.m */,
+				C6880A151F5E156800F4A829 /* FirstSceneNameTests.m */,
 			);
 			path = Program;
 			sourceTree = "<group>";
@@ -6809,6 +6812,7 @@
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				C689CA7D1F0F161C002CDD47 /* XMLSerializerTests.m in Sources */,
+				C6880A161F5E156800F4A829 /* FirstSceneNameTests.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
 				C640D67C1F5ADE1E00BEF5D2 /* FolderStructureMigratorTests.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
