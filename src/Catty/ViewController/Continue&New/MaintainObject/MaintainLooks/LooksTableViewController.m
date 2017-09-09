@@ -92,7 +92,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         self.placeHolderView.title = kUILookTitle;
     }
-    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self configurePlaceHolderViewVisibility];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -106,6 +106,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [super viewWillAppear:animated];
     [self reloadData];
+}
+
+- (void)configurePlaceHolderViewVisibility {
+    [self showPlaceHolder:([self.object.lookList count] == 0)];
 }
 
 #pragma mark - actions
@@ -194,7 +198,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.object addLook:look];
     [self saveProgram:self.program showingSavedView:YES];
 
-    [self showPlaceHolder:NO];
+    [self configurePlaceHolderViewVisibility];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
@@ -291,7 +295,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self configurePlaceHolderViewVisibility];
     [self hideLoadingView];
 }
 
@@ -305,7 +309,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
-    [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self configurePlaceHolderViewVisibility];
     [self hideLoadingView];
     [self reloadData];
 }
@@ -616,7 +620,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // execute this on the main queue
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self hideLoadingView];
-            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            [self configurePlaceHolderViewVisibility];
             
             if (self.showAddLookActionSheetAtStartForObject) {
                 [self addLookActionWithName:look.name look:look];
@@ -739,6 +743,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
      }];
 }
 
+- (void)playSceneAction:(id)sender {
+    Scene *currentScene = self.object.scene;
+    [self playSceneActionWithFirstScene:currentScene.program.scenes[0] currentScene:currentScene];
+}
+
 #pragma mark - helpers
 - (void)setupToolBar
 {
@@ -849,7 +858,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // execute this on the main queue
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self hideLoadingView];
-            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            [self configurePlaceHolderViewVisibility];
             
             [self addLookActionWithName:look.name look:look];
         }];
@@ -947,7 +956,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 // execute this on the main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self hideLoadingView];
-                [self showPlaceHolder:([self.object.lookList count] == 0)];
+                [self configurePlaceHolderViewVisibility];
                 
                     // ask user for image name
                 if (self.showAddLookActionSheetAtStartForObject) {

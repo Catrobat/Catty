@@ -107,13 +107,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     
     self.placeHolderView.title = kLocalizedObject;
-    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+    [self configurePlaceHolderViewVisibility];
     [self setupToolBar];
     if(self.showAddObjectActionSheetAtStart) {
         [self addObjectAction:nil];
     }
     
     [[ProgramManager instance] setAsLastUsedProgram:self.program];
+}
+
+- (void)configurePlaceHolderViewVisibility {
+    [self showPlaceHolder:([self.scene numberOfNormalObjects] == 0)];
 }
 
 #pragma mark - actions
@@ -186,10 +190,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }else if (self.afterSafeBlock && !look){
             self.afterSafeBlock(nil);
         }
-        [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+        [self configurePlaceHolderViewVisibility];
     };
     [self.navigationController pushViewController:ltvc animated:NO];
-    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+    [self configurePlaceHolderViewVisibility];
     [self hideLoadingView];
 }
 
@@ -394,7 +398,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.scene numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
-    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+    [self configurePlaceHolderViewVisibility];
     [self hideLoadingView];
 }
 
@@ -406,7 +410,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.scene removeObject:object];
     [self saveToDiskWithNotification:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
-    [self showPlaceHolder:!(BOOL)[self.scene numberOfNormalObjects]];
+    [self configurePlaceHolderViewVisibility];
     [self hideLoadingView];
 }
 
@@ -670,6 +674,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
     }
+}
+
+- (void)playSceneAction:(id)sender {
+    Scene *currentScene = self.scene;
+    [self playSceneActionWithFirstScene:currentScene.program.scenes[0] currentScene:currentScene];
 }
 
 #pragma mark - helpers

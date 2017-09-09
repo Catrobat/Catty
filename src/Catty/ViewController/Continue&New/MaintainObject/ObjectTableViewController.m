@@ -130,6 +130,11 @@
     }
 }
 
+- (void)playSceneAction:(id)sender {
+    Scene *currentScene = self.object.scene;
+    [self playSceneActionWithFirstScene:currentScene.program.scenes[0] currentScene:currentScene];
+}
+
 #pragma mark - helpers
 - (void)setupToolBar
 {

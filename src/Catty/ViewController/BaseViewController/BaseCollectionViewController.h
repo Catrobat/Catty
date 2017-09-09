@@ -33,9 +33,11 @@
 @property (nonatomic, assign) BOOL allBricksSelected;
 
 - (void)showPlaceHolder:(BOOL)show;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
+- (void)playSceneAction:(id)sender; // abstract method
+- (void)playSceneActionWithFirstScene:(Scene *)firstScene currentScene:(Scene *)currentScene;
 - (void)setupToolBar;
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)configurePlaceHolderViewVisibility; // abstract method
 
 @end

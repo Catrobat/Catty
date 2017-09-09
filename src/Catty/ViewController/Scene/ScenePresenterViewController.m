@@ -430,12 +430,12 @@
     NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
     [controllers removeLastObject];
     UIViewController *previousVC = (UIViewController*)controllers.lastObject; // previous object
-    if ([previousVC respondsToSelector:@selector(playSceneAction:animated:)]) {
+    if ([previousVC respondsToSelector:@selector(playSceneActionWithFirstScene:currentScene:)]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [((BaseTableViewController*)previousVC) playSceneAction:sender animated:NO];
+            [previousVC performSelector:@selector(playSceneActionWithFirstScene:currentScene:) withObject:self.sceneModel withObject:nil];
         });
     } else {
-        assert("PLEASE IMPLEMENT playSceneAction:animated method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
+        assert("PLEASE IMPLEMENT playSceneActionWithFirstScene:currentScene: method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
     }
     self.menuView.userInteractionEnabled = YES;
     previousScene.userInteractionEnabled = YES;

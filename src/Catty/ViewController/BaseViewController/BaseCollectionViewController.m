@@ -117,20 +117,42 @@
     self.collectionView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
 }
 
-- (void)playSceneAction:(id)sender
-{
-    [self showLoadingView];
-    [self playSceneAction:sender animated:YES];
+- (void)configurePlaceHolderViewVisibility {
+    assert(@"Should be implemented in subclass");
 }
 
-- (void)playSceneAction:(id)sender animated:(BOOL)animated
+- (void)playSceneAction:(id)sender
 {
+    assert(@"Should be implemented in subclass");
+}
+
+- (void)playSceneActionWithFirstScene:(Scene *)firstScene currentScene:(Scene *)currentScene {
+    NSParameterAssert(firstScene);
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
     
+    if (currentScene == nil || firstScene == currentScene) {
+        [self userSelectedToPlayScene:firstScene];
+    } else {
+        [[[[[[AlertControllerBuilder actionSheetWithTitle:@"Play Scene"]
+         addCancelActionWithTitle:kLocalizedCancel handler:NULL]
+         addDefaultActionWithTitle:[NSString stringWithFormat:@"First Scene (%@)", firstScene.name]  handler:^{
+             [self userSelectedToPlayScene:firstScene];
+         }]
+         addDefaultActionWithTitle:[NSString stringWithFormat:@"Current Scene (%@)", currentScene.name] handler:^{
+             [self userSelectedToPlayScene:currentScene];
+         }]
+         build] showWithController:self];
+    }
+}
+
+- (void)userSelectedToPlayScene:(Scene *)scene {
+    [self showLoadingView];
+    
     self.scenePresenterViewController = [ScenePresenterViewController new];
-    self.scenePresenterViewController.sceneModel = [[ProgramManager instance] lastUsedProgram].scenes.firstObject;
+    self.scenePresenterViewController.sceneModel = scene;
+    
     NSInteger resources = [self.scenePresenterViewController.sceneModel getRequiredResources];
     if ([ResourceHelper checkResources:resources delegate:self]) {
         [self startSceneWithVC:self.scenePresenterViewController];
@@ -212,6 +234,7 @@
     self.navigationController.toolbar.userInteractionEnabled = YES;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self.loadingView hide];
+    [self configurePlaceHolderViewVisibility];
 }
 
 - (void)userAgreedToContinueAnyway {

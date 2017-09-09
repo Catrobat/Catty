@@ -43,11 +43,10 @@
 - (void)changeToEditingMode:(id)sender;
 - (void)changeToMoveMode:(id)sender;
 - (void)exitEditingMode;
-- (void)playSceneAction:(id)sender;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
-- (void)playFirstSceneAction:(id)sender;
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)configurePlaceHolderViewVisibility;
+- (void)playSceneActionWithFirstScene:(Scene *)firstScene currentScene:(Scene *)currentScene;
 - (void)startSceneWithVC:(ScenePresenterViewController*)vc;
 - (void)saveProgram:(Program *)progarm showingSavedView:(BOOL)show;
 

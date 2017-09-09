@@ -99,7 +99,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
     self.placeHolderView.title = kUISoundTitle;
-    [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    [self configurePlaceHolderViewVisibility];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.isAllowed = YES;
@@ -130,6 +130,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [dnc removeObserver:self name:kSoundAddedNotification object:nil];
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
+}
+
+- (void)configurePlaceHolderViewVisibility {
+    [self showPlaceHolder:([self.object.soundList count] == 0)];
 }
 
 #pragma mark - notification
@@ -304,7 +308,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self saveProgram:[self program] showingSavedView:YES];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
-    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    [super configurePlaceHolderViewVisibility];
     [self hideLoadingView];
     [self reloadData];
 }
@@ -318,7 +322,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self saveProgram:[self program] showingSavedView:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
-    [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    [super configurePlaceHolderViewVisibility];
     [self hideLoadingView];
     [self reloadData];
 }
@@ -748,6 +752,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
      }]
      build]
      showWithController:self];
+}
+
+- (void)playSceneAction:(id)sender {
+    Scene *currentScene = self.object.scene;
+    [self playSceneActionWithFirstScene:currentScene.program.scenes[0] currentScene:currentScene];
 }
 
 - (void)setupToolBar

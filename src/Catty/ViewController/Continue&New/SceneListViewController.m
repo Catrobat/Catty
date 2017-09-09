@@ -294,6 +294,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
+- (void)playSceneAction:(id)sender {
+    Scene *firstScene = self.program.scenes[0];
+    [self playSceneActionWithFirstScene:firstScene currentScene:nil];
+}
+
 - (void)setupToolBar
 {
     [super setupToolBar];
@@ -305,7 +310,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                          action:@selector(addSceneAction:)];
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
-                                                                          action:@selector(playFirstSceneAction:)];
+                                                                          action:@selector(playSceneAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];

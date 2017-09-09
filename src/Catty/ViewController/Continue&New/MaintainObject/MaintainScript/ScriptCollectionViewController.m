@@ -111,7 +111,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.placeHolderView.title = kUIScriptTitle;
-    self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+    [self configurePlaceHolderViewVisibility];
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
 }
@@ -150,6 +150,9 @@
     [[BrickMoveManager sharedInstance] reset];
 }
 
+- (void)configurePlaceHolderViewVisibility {
+    [self showPlaceHolder:(self.object.scriptList.count == 0)];
+}
 
 - (void)showBrickPickerAction:(id)sender
 {
@@ -616,7 +619,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [scriptOrBrick setDefaultValuesForObject:self.object];
     self.lastSelectedBrickCategoryType = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
-    self.placeHolderView.hidden = YES;
     BrickInsertManager* manager = [BrickInsertManager sharedInstance];
     if ([scriptOrBrick isKindOfClass:[Script class]]) {
         Script *script = (Script*)scriptOrBrick;
@@ -705,7 +707,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self reloadData];
     }
     [self turnOnInsertingBrickMode];
-//    [self.object.program saveToDisk];
+    [self saveProgramToDisk];
+    [self configurePlaceHolderViewVisibility];
 }
 
 
@@ -796,7 +799,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } completion:^(BOOL finished) {
         [[BrickSelectionManager sharedInstance] reset];
         [self reloadData];
-        self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+        [self configurePlaceHolderViewVisibility];
         [self saveProgramToDisk];
     }];
 }
@@ -893,7 +896,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     NSArray* indexArray = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:brick];
     [self.collectionView insertItemsAtIndexPaths:indexArray];
-    self.placeHolderView.hidden = YES;
+    [self configurePlaceHolderViewVisibility];
     [self saveProgramToDisk];
     
     NSIndexPath *lastIndexPath = [self findLastIndexPath];
@@ -922,7 +925,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
         }
     } completion:^(BOOL finished) {
-        self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+        [self configurePlaceHolderViewVisibility];
         [self reloadData];
         [self saveProgramToDisk];
         [self setEditing:NO animated:NO];
@@ -1340,6 +1343,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     return NO;
+}
+
+- (void)playSceneAction:(id)sender {
+    Scene *currentScene = self.object.scene;
+    [self playSceneActionWithFirstScene:currentScene.program.scenes[0] currentScene:currentScene];
 }
 
 - (void)saveProgramToDisk {

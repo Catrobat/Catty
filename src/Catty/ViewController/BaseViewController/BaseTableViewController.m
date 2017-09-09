@@ -149,6 +149,10 @@
     self.dataCache = nil;
 }
 
+- (void)configurePlaceHolderViewVisibility {
+    [self showPlaceHolder:NO];
+}
+
 #pragma mark - getters and setters
 - (NSMutableDictionary*)dataCache
 {
@@ -431,40 +435,25 @@
     }
 }
 
-- (void)playSceneAction:(id)sender
-{
-    [self playSceneAction:sender animated:YES];
-}
-
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
-{
+- (void)playSceneActionWithFirstScene:(Scene *)firstScene currentScene:(Scene *)currentScene {
+    NSParameterAssert(firstScene);
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
     
-    __block Program *lastUsedProgram = [[ProgramManager instance] lastUsedProgram];
-    NSArray<Scene *> *scenes = lastUsedProgram.scenes;
-    
-    if (scenes.count == 1) {
-        [self userSelectedToPlayScene:scenes[0]];
+    if (currentScene == nil || firstScene == currentScene) {
+        [self userSelectedToPlayScene:firstScene];
     } else {
-        id<AlertControllerBuilding> actionSheet = [[AlertControllerBuilder actionSheetWithTitle:@"Play Scene"]
-         addCancelActionWithTitle:kLocalizedCancel handler:NULL];
-        
-        for (Scene *scene in scenes) {
-            [actionSheet addDefaultActionWithTitle:scene.name handler:^{
-                [self userSelectedToPlayScene:scene];
-                lastUsedProgram = nil;
-            }];
-        }
-        
-        [[actionSheet build] showWithController:self];
+        [[[[[[AlertControllerBuilder actionSheetWithTitle:@"Play Scene"]
+         addCancelActionWithTitle:kLocalizedCancel handler:NULL]
+         addDefaultActionWithTitle:[NSString stringWithFormat:@"First Scene (%@)", firstScene.name]  handler:^{
+             [self userSelectedToPlayScene:firstScene];
+         }]
+         addDefaultActionWithTitle:[NSString stringWithFormat:@"Current Scene (%@)", currentScene.name] handler:^{
+             [self userSelectedToPlayScene:currentScene];
+         }]
+         build] showWithController:self];
     }
-}
-
-- (void)playFirstSceneAction:(id)sender {
-    NSArray<Scene *> *scenes = [[ProgramManager instance] lastUsedProgram].scenes;
-    [self userSelectedToPlayScene:scenes[0]];
 }
 
 - (void)userSelectedToPlayScene:(Scene *)scene {
@@ -516,6 +505,7 @@
     self.navigationController.toolbar.userInteractionEnabled = YES;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self.loadingView hide];
+    [self configurePlaceHolderViewVisibility];
 }
 
 - (void)showSavedView
