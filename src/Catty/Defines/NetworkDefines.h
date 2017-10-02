@@ -53,7 +53,7 @@
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recentIDs.json"
 #define kConnectionRecentFull @"recent.json"
-#define kConnectionFeatured @"featured.json"
+#define kConnectionFeatured @"ios-featured.json"
 #define kConnectionMostDownloaded @"mostDownloadedIDs.json"
 #define kConnectionMostDownloadedFull @"mostDownloaded.json"
 #define kConnectionMostViewed @"mostViewedIDs.json"

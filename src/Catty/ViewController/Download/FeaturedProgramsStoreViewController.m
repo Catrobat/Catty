@@ -195,7 +195,7 @@
 - (void)loadFeaturedProjects
 {
     //self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%@", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults, kMaxVersion, [Util catrobatLanguageVersion]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
 
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -230,22 +230,9 @@
     }
 
     NSError *error = nil;
-    /*
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data
                                                     options:NSJSONReadingMutableContainers
                                                       error:&error];
-    */
-    
-    // TODO: Quick hack to use other featured programs, REMOVE THIS!
-    
-    NSString *fakeResponse = @"{\"CatrobatProjects\":[{\"ProjectId\":719,\"ProjectName\":\"Galaxy War\",\"Author\":\"DavidR\",\"FeaturedImage\":\"resources/featured/featured_11.jpeg\"},{\"ProjectId\":821,\"ProjectName\":\"Whack a Mole\",\"Author\":\"VesnaK\",\"FeaturedImage\":\"resources/featured/featured_3.jpeg\"}],\"preHeaderMessages\":\"\",\"CatrobatInformation\":{\"BaseUrl\":\"https://share.catrob.at/\",\"TotalProjects\":\"2\",\"ProjectsExtension\":\".catrobat\"}}";
-    
- 
-    NSData *jsonData = [fakeResponse dataUsingEncoding:NSUTF8StringEncoding];
-    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                    options:NSJSONReadingMutableContainers
-                                                      error:&error];
-    
     NSDebug(@"array: %@", jsonObject);
     
     
@@ -413,49 +400,6 @@
         }
     }
 }
-
-#pragma mark - NSURLConnection Delegates
-//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-//    if (self.connection == connection) {
-//        NSDebug(@"Received data from server");
-//        [self.data appendData:data];
-//    }
-//}
-//
-//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-//
-//    if (self.connection == connection) {
-//
-//        [self.loadingView hide];
-//
-//        NSError *error = nil;
-//        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-//                                                        options:NSJSONReadingMutableContainers
-//                                                          error:&error];
-//        NSDebug(@"array: %@", jsonObject);
-//
-//
-//        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-//            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-//
-//            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-//
-//            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-//
-//            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-//
-//            for (NSDictionary *projectDict in catrobatProjects) {
-//                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-//                [self.projects addObject:project];
-//            }
-//        }
-//
-//        self.data = nil;
-//        self.connection = nil;
-//
-//        [self update];
-//    }
-//}
 
 # pragma mark - Segue delegate
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
