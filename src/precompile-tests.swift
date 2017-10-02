@@ -90,6 +90,8 @@ let licenseCheckExcludeFiles = [
     "MYIntroductionPanel.[mh]",
     "FBKVOController.[mh]",
     "JNKeychain.[mh]",
+    "BOButtonTableViewCell.[mh]",
+    "MXPagerView-umbrella.[mh]",
     "SwellAll.swift",
     "license-validator.swift"
 ]; let licenseCheckExcludeFilesLine = #line; // CAVE: NEVER separate these two statements by adding a new line
