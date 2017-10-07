@@ -25,9 +25,9 @@ import UIKit
 
 
 @objc public protocol AlertActionAdding {
-    func addDefaultActionWithTitle(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
-    func addDestructiveActionWithTitle(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
-    func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
+    @discardableResult func addDefaultActionWithTitle(_ title: String, handler: (() -> Void)?) -> AlertControllerBuilding
+    @discardableResult func addDestructiveActionWithTitle(_ title: String, handler: (() -> Void)?) -> AlertControllerBuilding
+    @discardableResult func addCancelActionWithTitle(_ title: String, handler: (() -> Void)?) -> AlertControllerBuilding
 }
 
 
@@ -35,18 +35,18 @@ import UIKit
 
 
 final class AlertController: BaseAlertController, AlertControllerBuilding {
-    @objc func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
-        alertController.addAction(UIAlertAction(title: title, style: .Cancel) {_ in handler?() })
+    @objc func addCancelActionWithTitle(_ title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
+        alertController.addAction(UIAlertAction(title: title, style: .cancel) {_ in handler?() })
         return self
     }
 
-    @objc func addDefaultActionWithTitle(title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
-        alertController.addAction(UIAlertAction(title: title, style: .Default) {_ in handler?() })
+    @objc func addDefaultActionWithTitle(_ title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
+        alertController.addAction(UIAlertAction(title: title, style: .default) {_ in handler?() })
         return self
     }
 
-    @objc func addDestructiveActionWithTitle(title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
-        alertController.addAction(UIAlertAction(title: title, style: .Destructive) {_ in handler?() })
+    @objc func addDestructiveActionWithTitle(_ title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
+        alertController.addAction(UIAlertAction(title: title, style: .destructive) {_ in handler?() })
         return self
     }
 }

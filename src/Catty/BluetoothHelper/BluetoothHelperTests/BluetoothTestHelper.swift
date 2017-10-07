@@ -35,32 +35,32 @@ class TestCentralManager : CMWrapper {
     var state : ManagerState
     
     var isOn : Bool {
-        return self.state == ManagerState.PoweredOn
+        return self.state == ManagerState.poweredOn
     }
     
     var isOff : Bool {
-        return self.state == ManagerState.PoweredOff
+        return self.state == ManagerState.poweredOff
     }
     
     var peripherals : [TestPeripheral] {
         return []
     }
     
-    init(state:ManagerState = .PoweredOn) {
+    init(state:ManagerState = .poweredOn) {
         self.state = state
     }
     
-    func scanForPeripheralsWithServices(uuids:[CBUUID]?) {
+    func scanForPeripheralsWithServices(_ uuids:[CBUUID]?) {
     }
     
     func stopScan() {
     }
     
-    func retrieveConnectedPeripheralsWithServices(uuids: [CBUUID]) {
+    func retrieveConnectedPeripheralsWithServices(_ uuids: [CBUUID]) {
         
     }
     
-    func retrievePeripheralsWithIdentifiers(uuids: [NSUUID]) -> [CBPeripheral] {
+    func retrievePeripheralsWithIdentifiers(_ uuids: [UUID]) -> [CBPeripheral] {
         return [CBPeripheral]()
     }
     
@@ -75,7 +75,7 @@ class TestPeripheral : PeripheralWrapper {
     
     let services : [TestService]
     
-    init(name:String = "Mock Peripheral", state:CBPeripheralState = .Disconnected,
+    init(name:String = "Mock Peripheral", state:CBPeripheralState = .disconnected,
         services:[TestService]=[TestService(uuid:CBUUID(string:"2f0a0017-69aa-f316-3e78-4194989a6ccc"), name:"Service Mock-1"),
             TestService(uuid:CBUUID(string:"2f0a0017-69aa-f316-3e78-4194989a6aaa"), name:"Service Mock-2")]) {
                 self.state = state
@@ -90,7 +90,7 @@ class TestPeripheral : PeripheralWrapper {
     }
     
     func cancel() {
-        if self.state == .Disconnected {
+        if self.state == .disconnected {
             CentralQueue.async {
                 self.helper.didDisconnectPeripheral(self)
             }
@@ -100,7 +100,7 @@ class TestPeripheral : PeripheralWrapper {
     func disconnect() {
     }
     
-    func discoverServices(services:[CBUUID]?) {
+    func discoverServices(_ services:[CBUUID]?) {
     }
     
     func didDiscoverServices() {
@@ -122,16 +122,16 @@ struct TestService : ServiceWrapper{
     
     init(uuid:CBUUID = CBUUID(string:"2f0a0017-69aa-f316-3e78-4194989a6ccc"),
         name:String = "Mock",
-        state:CBPeripheralState = .Connected) {
+        state:CBPeripheralState = .connected) {
             self.uuid = uuid
             self.name = name
             self.state = state
     }
     
-    func discoverCharacteristics(characteristics:[CBUUID]?) {
+    func discoverCharacteristics(_ characteristics:[CBUUID]?) {
     }
     
-    func didDiscoverCharacteristics(error:NSError?) {
+    func didDiscoverCharacteristics(_ error:NSError?) {
         CentralQueue.async {
             self.helper.didDiscoverCharacteristics(self, error:TestServiceValues.error)
         }
@@ -183,26 +183,26 @@ final class TestCharacteristic : CharacteristicWrapper{
         return self._afterDiscoveredPromise
     }
     
-    func stringValue(data:NSData?) -> [String:String]? {
+    func stringValue(_ data:Data?) -> [String:String]? {
         return self._stringValue
     }
     
-    func dataFromStringValue(stringValue:[String:String]) -> NSData? {
+    func dataFromStringValue(_ stringValue:[String:String]) -> Data? {
         return self._dataFromStringValue
     }
     
-    func setNotifyValue(state:Bool) {
+    func setNotifyValue(_ state:Bool) {
         self._isNotifying = state
     }
     
-    func propertyEnabled(property:CBCharacteristicProperties) -> Bool {
+    func propertyEnabled(_ property:CBCharacteristicProperties) -> Bool {
         return self._propertyEnabled
     }
     
     func readValueForCharacteristic() {
     }
     
-    func writeValue(value:NSData) {
+    func writeValue(_ value:Data) {
     }
 }
 

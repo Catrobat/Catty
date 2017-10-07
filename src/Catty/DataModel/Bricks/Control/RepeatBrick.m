@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Repeatbrick.h"
+#import "RepeatBrick.h"
 #import "Script.h"
 
 @interface RepeatBrick()

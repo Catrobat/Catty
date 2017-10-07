@@ -1,0 +1,5 @@
+github "ArtSabintsev/Siren" "swift3.2"
+github "SecondRenaissance/Bohr"
+github "Marxon13/M13ProgressSuite" ~> 1.2.9
+github "TTTAttributedLabel/TTTAttributedLabel" ~> 2.0.0
+github "maxep/MXSegmentedPager" ~> 3.3.0

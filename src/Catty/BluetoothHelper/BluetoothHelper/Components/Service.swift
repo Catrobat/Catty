@@ -38,7 +38,7 @@ public final class Service : ServiceWrapper {
     internal init(ownService:CBService, peripheral:Peripheral) {
         self.cbService = ownService
         self._peripheral = peripheral
-        self.profile = ProfileManager.sharedInstance.serviceProfiles[cbService.UUID]
+        self.profile = ProfileManager.sharedInstance.serviceProfiles[cbService.uuid]
     }
     
 
@@ -53,13 +53,13 @@ public final class Service : ServiceWrapper {
     }
     
     //MARK:Characteristic
-    public func discoverCharacteristics(characteristics:[CBUUID]) -> Future<Service> {
+    public func discoverCharacteristics(_ characteristics:[CBUUID]) -> Future<Service> {
         return self.helper.discoverCharacteristicsIfConnected(self, characteristics:characteristics)
     }
-    public func characteristic(uuid:CBUUID) -> Characteristic? {
+    public func characteristic(_ uuid:CBUUID) -> Characteristic? {
         return self.ownCharacteristics[uuid]
     }
-    public func didDiscoverCharacteristics(error:NSError?) {
+    public func didDiscoverCharacteristics(_ error:NSError?) {
         self.helper.didDiscoverCharacteristics(self, error:error)
     }
     
@@ -73,15 +73,15 @@ public final class Service : ServiceWrapper {
     }
     
     public var uuid : CBUUID {
-        return self.cbService.UUID
+        return self.cbService.uuid
     }
     
     public var state : CBPeripheralState {
         return self.peripheral.state
     }
     
-    public func discoverCharacteristics(characteristics:[CBUUID]?) {
-        self.peripheral.cbPeripheral.discoverCharacteristics(characteristics, forService:self.cbService)
+    public func discoverCharacteristics(_ characteristics:[CBUUID]?) {
+        self.peripheral.cbPeripheral.discoverCharacteristics(characteristics, for:self.cbService)
     }
     
     public func initCharacteristics() {
@@ -115,10 +115,10 @@ public final class ServiceHelper<S:ServiceWrapper> {
     }
     
     
-    public func discoverCharacteristicsIfConnected(service:S, characteristics:[CBUUID]?=nil) -> Future<S> {
+    public func discoverCharacteristicsIfConnected(_ service:S, characteristics:[CBUUID]?=nil) -> Future<S> {
 //        NSLog("uuid=\(service.uuid.UUIDString), name=\(service.name)")
         self.characteristicsDiscoveredPromise = Promise<S>()
-        if service.state == .Connected {
+        if service.state == .connected {
             service.discoverCharacteristics(characteristics)
         } else {
             self.characteristicsDiscoveredPromise.failure(BluetoothError.peripheralDisconnected)
@@ -128,7 +128,7 @@ public final class ServiceHelper<S:ServiceWrapper> {
     
     
     
-    public func didDiscoverCharacteristics(service:S, error:NSError?) {
+    public func didDiscoverCharacteristics(_ service:S, error:NSError?) {
         if let error = error {
             self.characteristicsDiscoveredPromise.failure(error)
         } else {

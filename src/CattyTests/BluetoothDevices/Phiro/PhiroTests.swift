@@ -63,7 +63,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
 
     }
@@ -76,7 +76,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
         
     }
@@ -89,7 +89,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
         
     }
@@ -103,7 +103,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 10 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
         
     }
@@ -116,7 +116,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 10, "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
         
     }
@@ -129,7 +129,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 10 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
         
     }
@@ -143,7 +143,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
         
     }
@@ -156,7 +156,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
         
     }
@@ -169,7 +169,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 12 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
         
     }
@@ -183,7 +183,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
         
     }
@@ -196,7 +196,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
         
     }
@@ -209,7 +209,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
         
     }
@@ -223,7 +223,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 10 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     
@@ -236,7 +236,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     
@@ -249,7 +249,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 13 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     
@@ -264,7 +264,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 6 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     
@@ -277,7 +277,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 9 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     func testLightLeft () {
@@ -289,7 +289,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 6 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 50 , "PinValue is wrong")
     }
     
@@ -302,7 +302,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 9 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 50 , "PinValue is wrong")
     }
     func testLightLeftWrongInput () {
@@ -314,7 +314,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 6 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
     }
     
@@ -327,7 +327,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 9 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
     }
     //MARK: TONE tests
@@ -341,7 +341,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255 , "PinValue is wrong")
     }
     
@@ -355,7 +355,7 @@ class PhiroTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "PinValue is wrong")
     }
     
@@ -368,7 +368,7 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Input , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .input , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedBool, true , "Reporting is wrong")
         XCTAssertEqual(firmataMock.receivedPin, 5 , "Reporting is wrong")
     }
@@ -383,7 +383,7 @@ class PhiroTests: XCTestCase {
             XCTAssert(true)
             return
         }
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Input , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .input , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedBool, false , "Reporting is wrong")
         XCTAssertEqual(firmataMock.receivedPin, 5 , "Pin is wrong")
     }

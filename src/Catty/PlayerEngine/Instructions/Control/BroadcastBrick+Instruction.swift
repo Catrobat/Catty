@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension BroadcastBrick: CBInstructionProtocol {
+@objc extension BroadcastBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         let msg = self.broadcastMessage
-        return CBInstruction.HighPriorityExecClosure { (context, _, bcHandler) in
-            bcHandler.performBroadcastWithMessage(msg, senderContext: context, broadcastType: .Broadcast)
+        return CBInstruction.highPriorityExecClosure { (context, _, bcHandler) in
+            bcHandler.performBroadcastWithMessage(msg!, senderContext: context, broadcastType: .Broadcast)
         }
     }
     

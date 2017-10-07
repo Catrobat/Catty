@@ -25,18 +25,18 @@ import CoreBluetooth
 import BluetoothHelper
 
 
-public class BluetoothDevice:Peripheral {
+open class BluetoothDevice:Peripheral {
     
     init(peripheral:Peripheral) {
         super.init(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi)
     }
     
     
-    public func getName() -> String{
+    open func getName() -> String{
         return "BluetoothDevice"
     }
     
-    public func getBluetoothDeviceUUID() -> CBUUID{
+    open func getBluetoothDeviceUUID() -> CBUUID{
         return CBUUID.init(string: "TEST")
     }
 //    

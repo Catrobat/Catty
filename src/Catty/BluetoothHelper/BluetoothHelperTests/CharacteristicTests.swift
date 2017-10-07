@@ -37,7 +37,7 @@ class CharacteristicTests: XCTestCase {
     
     func testDiscovered() {
         let testCharacteristic = TestCharacteristic()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.afterDiscoveredPromise?.future
         future!.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -48,14 +48,14 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didDiscover(testCharacteristic)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testWriteDataSuccess() {
         let testCharacteristic = TestCharacteristic()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.helper.writeData(testCharacteristic, value:"aa".dataFromHexString())
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -66,14 +66,14 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didWrite(testCharacteristic, error:nil)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testWriteDataFailed() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.writeData(testCharacteristic, value:"aa".dataFromHexString())
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
@@ -84,46 +84,46 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didWrite(testCharacteristic, error:TestFailure.error)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testWriteDataTimeOut() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.writeData(testCharacteristic, value:"aa".dataFromHexString())
         future.onSuccess {_ in
             XCTAssert(false, "onFailure called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == CharacteristicError.WriteTimeout.rawValue, "Error code invalid")
+            XCTAssert(error.code == CharacteristicError.writeTimeout.rawValue, "Error code invalid")
         }
-        waitForExpectationsWithTimeout(20) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 20) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testWriteDataNotWrteable() {
         let testCharacteristic = TestCharacteristic(propertyEnabled:false)
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.writeData(testCharacteristic, value:"aa".dataFromHexString())
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == CharacteristicError.WriteNotSupported.rawValue, "Error code invalid")
+            XCTAssert(error.code == CharacteristicError.writeNotSupported.rawValue, "Error code invalid")
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testWriteStringSuccess() {
         let testCharacteristic = TestCharacteristic()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.helper.writeString(testCharacteristic, stringValue:["testCharacteristic":"1"])
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -134,14 +134,14 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didWrite(testCharacteristic, error:nil)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testWriteStringFailed() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.writeString(testCharacteristic, stringValue:["testCharacteristic":"1"])
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
@@ -152,46 +152,46 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didWrite(testCharacteristic, error:TestFailure.error)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testWriteStringTimeOut() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.writeString(testCharacteristic, stringValue:["testCharacteristic":"1"])
         future.onSuccess {_ in
             XCTAssert(false, "onFailure called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == CharacteristicError.WriteTimeout.rawValue, "Error code invalid")
+            XCTAssert(error.code == CharacteristicError.writeTimeout.rawValue, "Error code invalid")
         }
-        waitForExpectationsWithTimeout(20) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 20) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testWriteStringNotWrteable() {
         let testCharacteristic = TestCharacteristic(propertyEnabled:false)
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.writeString(testCharacteristic, stringValue:["testCharacteristic":"1"])
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == CharacteristicError.WriteNotSupported.rawValue, "Error code invalid")
+            XCTAssert(error.code == CharacteristicError.writeNotSupported.rawValue, "Error code invalid")
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testReadSuccess() {
         let testCharacteristic = TestCharacteristic()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.helper.read(testCharacteristic)
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -202,14 +202,14 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didUpdate(testCharacteristic, error:nil)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testReadFailure() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.read(testCharacteristic)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
@@ -220,46 +220,46 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didUpdate(testCharacteristic, error:TestFailure.error)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testReadTimeout() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.read(testCharacteristic)
         future.onSuccess {_ in
             XCTAssert(false, "onFailure called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == CharacteristicError.ReadTimeout.rawValue, "Error code invalid")
+            XCTAssert(error.code == CharacteristicError.readTimeout.rawValue, "Error code invalid")
         }
-        waitForExpectationsWithTimeout(120) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 120) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testReadNotReadable() {
         let testCharacteristic = TestCharacteristic(propertyEnabled:false)
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.read(testCharacteristic)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == CharacteristicError.ReadNotSupported.rawValue, "Error code invalid")
+            XCTAssert(error.code == CharacteristicError.readNotSupported.rawValue, "Error code invalid")
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testStartNotifyingSucceess() {
         let testCharacteristic = TestCharacteristic()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.helper.startNotifying(testCharacteristic)
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -270,14 +270,14 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didUpdateNotificationState(testCharacteristic, error:nil)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testStartNotifyingFailure() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testCharacteristic.helper.startNotifying(testCharacteristic)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
@@ -288,15 +288,15 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didUpdateNotificationState(testCharacteristic, error:TestFailure.error)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
     
     func testReceiveNotificationUpdateSuccess() {
         let testCharacteristic = TestCharacteristic()
-        let startNotifyingOnSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future start notifying")
-        let updateOnSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future on update")
+        let startNotifyingOnSuccessExpectation = expectation(description: "onSuccess fulfilled for future start notifying")
+        let updateOnSuccessExpectation = expectation(description: "onSuccess fulfilled for future on update")
 
         let startNotifyingFuture = testCharacteristic.helper.startNotifying(testCharacteristic)
         testCharacteristic.helper.didUpdateNotificationState(testCharacteristic, error:nil)
@@ -320,15 +320,15 @@ class CharacteristicTests: XCTestCase {
         updateFuture.onFailure {error in
             XCTAssert(false, "update onFailure called")
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testReceiveNotificationUpdateFailure() {
         let testCharacteristic = TestCharacteristic()
-        let startNotifyingOnSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future start notifying")
-        let updateOnFailureExpectation = expectationWithDescription("onSuccess fulfilled for future on update")
+        let startNotifyingOnSuccessExpectation = expectation(description: "onSuccess fulfilled for future start notifying")
+        let updateOnFailureExpectation = expectation(description: "onSuccess fulfilled for future on update")
         
         let startNotifyingFuture = testCharacteristic.helper.startNotifying(testCharacteristic)
         testCharacteristic.helper.didUpdateNotificationState(testCharacteristic, error:nil)
@@ -352,14 +352,14 @@ class CharacteristicTests: XCTestCase {
         updateFuture.onFailure {error in
             updateOnFailureExpectation.fulfill()
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testStopNotifyingSuccess() {
         let testCharacteristic = TestCharacteristic()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.helper.stopNotifying(testCharacteristic)
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -370,14 +370,14 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didUpdateNotificationState(testCharacteristic, error:nil)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testStopNotifyingFailure() {
         let testCharacteristic = TestCharacteristic()
-        let onFailureExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onFailureExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testCharacteristic.helper.stopNotifying(testCharacteristic)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
@@ -388,15 +388,15 @@ class CharacteristicTests: XCTestCase {
         CentralQueue.async {
             testCharacteristic.helper.didUpdateNotificationState(testCharacteristic, error:TestFailure.error)
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testStopNotificationUpdates() {
         let testCharacteristic = TestCharacteristic()
-        let startNotifyingOnSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future start notifying")
-        let updateOnSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future on update")
+        let startNotifyingOnSuccessExpectation = expectation(description: "onSuccess fulfilled for future start notifying")
+        let updateOnSuccessExpectation = expectation(description: "onSuccess fulfilled for future on update")
 
         var updates = 0
         let startNotifyingFuture = testCharacteristic.helper.startNotifying(testCharacteristic)
@@ -430,8 +430,8 @@ class CharacteristicTests: XCTestCase {
         updateFuture.onFailure {error in
             XCTAssert(false, "update onFailure called")
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 

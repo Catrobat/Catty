@@ -21,14 +21,14 @@
  */
 
 protocol CBFrontendSequenceFilterProtocol : class {
-    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
+    func filterScriptSequenceList(_ scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
 }
 
 // analyzes script sequence list for redundant BroadcastWait operations
 // and replaces them by simple Broadcast operations
 final class CBFilterRedundantBroadcastWaits: CBFrontendSequenceFilterProtocol {
 
-    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
+    func filterScriptSequenceList(_ scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
         // TODO: implement this...
         return scriptSequenceList
     }

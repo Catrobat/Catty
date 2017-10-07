@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension FormulaElement {
+@objc extension FormulaElement {
 
-    func isIdempotent() -> Bool {
+    @objc func isIdempotent() -> Bool {
 
         if idempotenceState != .NOT_CHECKED { // cached result!
             return (idempotenceState == .IDEMPOTENT)

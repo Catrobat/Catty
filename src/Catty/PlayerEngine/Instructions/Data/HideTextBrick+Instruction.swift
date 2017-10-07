@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension HideTextBrick: CBInstructionProtocol {
+@objc extension HideTextBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
               let _ = spriteObject.program?.variables
@@ -30,12 +30,12 @@ extension HideTextBrick: CBInstructionProtocol {
 
         let userVariable = self.userVariable
 
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
 //            self.logger.debug("Performing: HideTextBrick")
-            if userVariable != nil {
-               userVariable.textLabel.hidden = true
+            if let userVariable = userVariable {
+               userVariable.textLabel.isHidden = true
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
 
     }

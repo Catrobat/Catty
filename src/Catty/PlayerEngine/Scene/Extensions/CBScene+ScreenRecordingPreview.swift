@@ -24,11 +24,11 @@ import ReplayKit
 
 extension CBScene: RPPreviewViewControllerDelegate {
 
-    func previewControllerDidFinish(previewController: RPPreviewViewController) {
-        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+        previewViewController?.dismiss(animated: true, completion: nil)
     }
 
-    func previewController(previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
-        previewViewController?.dismissViewControllerAnimated(true, completion: nil)
+    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+        previewViewController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -294,10 +294,10 @@
         if([rightId isKindOfClass:[NSNumber class]])
         {
             right = [rightId doubleValue];
-        } else if ([leftId isKindOfClass:[NSString class]] && (function != LENGTH || function != JOIN || function != LETTER))
+        } /*else if ([leftId isKindOfClass:[NSString class]] && (function != LENGTH || function != JOIN || function != LETTER))
         {
             // ERROR
-        }
+        }*/
     }
     
     id result;

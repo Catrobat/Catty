@@ -125,7 +125,7 @@
     if ((requiredResources & kBluetoothPhiro) > 0 && [Util isPhiroActivated]) {
         //ConnectPhiro
         if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
-            [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+            [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDPhiro]];
         } else {
             Phiro *phiro = [BluetoothService sharedInstance].phiro;
             [phiro reportSensorData:YES];
@@ -135,7 +135,7 @@
     if ((requiredResources & kBluetoothArduino) > 0 && [Util isArduinoActivated]) {
         //ConnectArduino
         if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
-            [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+            [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDArduino]];
         } else {
             ArduinoDevice *arduino = [BluetoothService sharedInstance].arduino;
             [arduino reportSensorData:YES];

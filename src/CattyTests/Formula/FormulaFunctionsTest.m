@@ -24,7 +24,6 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "Util.h"
-#import "Math.h"
 
 @interface FormulaFunctionsTest : XCTestCase
 

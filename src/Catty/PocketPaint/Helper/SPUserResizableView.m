@@ -70,7 +70,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     };
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
-    CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+    CGColorSpaceRelease(baseSpace); baseSpace = NULL;
     
     // (4) Set up the stroke for drawing the border of each of the anchor points.
     CGContextSetLineWidth(context, 1);
@@ -90,7 +90,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
         CGContextRestoreGState(context);
         CGContextStrokeEllipseInRect(context, CGRectInset(currPoint, 1, 1));
     }
-    CGGradientRelease(gradient), gradient = NULL;
+    CGGradientRelease(gradient); gradient = NULL;
     CGContextRestoreGState(context);
 }
 

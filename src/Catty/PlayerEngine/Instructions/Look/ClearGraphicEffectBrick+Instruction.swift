@@ -20,23 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ClearGraphicEffectBrick: CBInstructionProtocol {
+@objc extension ClearGraphicEffectBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
-            return .Action(action: SKAction.runBlock(actionClosure))
+            return .action(action: SKAction.run(actionClosure))
         }
-        return .InvalidInstruction()
+        return .invalidInstruction()
     }
 
-    func actionBlock() -> dispatch_block_t? {
+    @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
             guard let look = spriteNode.currentLook,
-                  let image = UIImage(contentsOfFile: self.pathForLook(look)) else {return}
+                  let image = UIImage(contentsOfFile: self.path(for: look)) else {return}
             
             let texture = SKTexture(image: image)
             spriteNode.currentUIImageLook = image

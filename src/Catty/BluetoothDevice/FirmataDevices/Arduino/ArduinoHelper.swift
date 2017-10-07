@@ -25,7 +25,7 @@ import CoreBluetooth
 import BluetoothHelper
 
 
-public class ArduinoHelper {
+open class ArduinoHelper {
     var analogPin0 = 0;
     var analogPin1 = 0;
     var analogPin2 = 0;
@@ -33,14 +33,14 @@ public class ArduinoHelper {
     var analogPin4 = 0;
     var analogPin5 = 0;
     
-    var digitalValues:[Int] = [Int](count: 21, repeatedValue: 0)
+    var digitalValues:[Int] = [Int](repeating: 0, count: 21)
     
-    var portValues = Array(count: 3, repeatedValue: Array(count: 8, repeatedValue: 0))
+    var portValues = Array(repeating: Array(repeating: 0, count: 8), count: 3)
     //Helper
     private var previousDigitalPin:UInt8 = 255;
     private var previousAnalogPin:UInt8 = 255;
     
-    func didReceiveAnalogMessage(pin:Int,value:Int){
+    func didReceiveAnalogMessage(_ pin:Int,value:Int){
         switch (pin) {
         case 0:
             analogPin0 = value
@@ -67,11 +67,11 @@ public class ArduinoHelper {
 
     }
     
-    func didReceiveDigitalPort(port:Int, portData:[Int]){
+    func didReceiveDigitalPort(_ port:Int, portData:[Int]){
         portValues[port] = portData
     }
     
-    func didReceiveDigitalMessage(pin:Int,value:Int){
+    func didReceiveDigitalMessage(_ pin:Int,value:Int){
         digitalValues[pin] = value
     }
     

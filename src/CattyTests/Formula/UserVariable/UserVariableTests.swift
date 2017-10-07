@@ -30,7 +30,7 @@ final class UserVariableTests: XCTestCase {
         let userVariable = UserVariable()
         userVariable.name = "userVar"
         
-        let userVariableCopy = userVariable.mutableCopyWithContext(CBMutableCopyContext())
+        let userVariableCopy = userVariable.mutableCopy(with: CBMutableCopyContext()) as! UserVariable
         
         XCTAssertEqual(userVariable.name, userVariableCopy.name, "mutableCopyWithContext not working")
         XCTAssertTrue(userVariable === userVariableCopy, "mutableCopyWithContext not working")

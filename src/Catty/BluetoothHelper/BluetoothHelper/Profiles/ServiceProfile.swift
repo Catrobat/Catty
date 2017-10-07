@@ -23,20 +23,20 @@
 import Foundation
 import CoreBluetooth
 
-public class ServiceProfile {
+open class ServiceProfile {
     
     internal var characteristicProfiles = [CBUUID:CharacteristicProfile]()
 
-    public let uuid : CBUUID
-    public let name : String
-    public let tag  : String
+    open let uuid : CBUUID
+    open let name : String
+    open let tag  : String
     
-    public var characteristics : [CharacteristicProfile] {
+    open var characteristics : [CharacteristicProfile] {
         let values: [CharacteristicProfile] = [CharacteristicProfile](self.characteristicProfiles.values)
         return values
     }
     
-    public var characteristic : [CBUUID:CharacteristicProfile] {
+    open var characteristic : [CBUUID:CharacteristicProfile] {
         return self.characteristicProfiles
     }
     
@@ -50,7 +50,7 @@ public class ServiceProfile {
         self.init(uuid:uuid, name:"Unknown")
     }
 
-    public func addCharacteristic(characteristicProfile:CharacteristicProfile) {
+    open func addCharacteristic(_ characteristicProfile:CharacteristicProfile) {
         self.characteristicProfiles[characteristicProfile.uuid] = characteristicProfile
     }
     

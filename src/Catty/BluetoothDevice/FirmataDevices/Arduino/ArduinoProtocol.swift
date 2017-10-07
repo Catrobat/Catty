@@ -24,11 +24,11 @@ import Foundation
 import CoreBluetooth
 import BluetoothHelper
 
-protocol ArduinoProtocol {
-    func setDigitalArduinoPin(digitalPinNumber:Int, pinValue:Int)
-    func getDigitalArduinoPin(digitalPinNumber:Int)-> Double
-    func setPWMArduinoPin(PWMpin:Int, value:Int)
-    func getAnalogArduinoPin(analogPinNumber:Int) -> Double
+@objc protocol ArduinoProtocol {
+    func setDigitalArduinoPin(_ digitalPinNumber:Int, pinValue:Int)
+    func getDigitalArduinoPin(_ digitalPinNumber:Int)-> Double
+    func setPWMArduinoPin(_ PWMpin:Int, value:Int)
+    func getAnalogArduinoPin(_ analogPinNumber:Int) -> Double
 }
 
 protocol ArduinoPropertyProtocol {

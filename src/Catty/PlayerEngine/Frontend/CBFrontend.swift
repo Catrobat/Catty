@@ -34,11 +34,11 @@ final class CBFrontend: CBFrontendProtocol {
     }
 
     // MARK: - Operations
-    func addSequenceFilter(sequenceFilter: CBFrontendSequenceFilterProtocol) {
+    func addSequenceFilter(_ sequenceFilter: CBFrontendSequenceFilterProtocol) {
         _sequenceFilters += sequenceFilter
     }
 
-    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList {
+    func computeSequenceListForScript(_ script : Script) -> CBScriptSequenceList {
         var currentSequenceList = CBSequenceList(rootSequenceList: nil)
         let scriptSequenceList = CBScriptSequenceList(script: script, sequenceList: currentSequenceList)
         var currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)

@@ -47,7 +47,7 @@ final class CBIfConditionalSequence : CBConditionalSequence {
         return (super.isEmpty() && (elseSequenceList?.count == 0))
     }
 
-    override func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+    override func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
 

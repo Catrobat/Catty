@@ -41,7 +41,7 @@ final class UIImageExtensionTests: XCTestCase {
     }
     
     func testTransparencyRGBA() {
-        let bundlePath = NSBundle(forClass: self.dynamicType).pathForResource("transparency-rgba", ofType: "png")
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency-rgba", ofType: "png")
         let image = UIImage(contentsOfFile: bundlePath!)
         
         let nonTransparentPoints = [
@@ -67,14 +67,14 @@ final class UIImageExtensionTests: XCTestCase {
                     }
                 }
                 
-                let isTransparent = image!.isTransparentPixelAtPoint(point)
+                let isTransparent = image!.isTransparentPixel(at: point)
                 XCTAssertEqual(expectedTransparency, isTransparent, "Wrong alpha value at point")
             }
         }
     }
     
     func testTransparencyGrayAlpha() {
-        let bundlePath = NSBundle(forClass: self.dynamicType).pathForResource("transparency-gray-alpha", ofType: "png")
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency-gray-alpha", ofType: "png")
         let image = UIImage(contentsOfFile: bundlePath!)
         
         let nonTransparentPoints = [
@@ -100,20 +100,20 @@ final class UIImageExtensionTests: XCTestCase {
                     }
                 }
                 
-                let isTransparent = image!.isTransparentPixelAtPoint(point)
+                let isTransparent = image!.isTransparentPixel(at: point)
                 XCTAssertEqual(expectedTransparency, isTransparent, "Wrong alpha value at point")
             }
         }
     }
     
     func testTransparencyRGB() {
-        let bundlePath = NSBundle(forClass: self.dynamicType).pathForResource("transparency-rgb", ofType: "png")
+        let bundlePath = Bundle(for: type(of: self)).path(forResource: "transparency-rgb", ofType: "png")
         let image = UIImage(contentsOfFile: bundlePath!)
         
         for pixelX in 0..<10 {
             for pixelY in 0..<10 {
                 let point = CGPoint(x: pixelX, y: pixelY)
-                let isTransparent = image!.isTransparentPixelAtPoint(point)
+                let isTransparent = image!.isTransparentPixel(at: point)
                 XCTAssertFalse(isTransparent, "Wrong alpha value at point")
             }
         }
@@ -129,33 +129,33 @@ final class UIImageExtensionTests: XCTestCase {
         let image = self.imageFromARGB(pixels, width: 1, height: 3)
         XCTAssertNotNil(image, "Image should not be nil")
         
-        XCTAssertTrue(image.isTransparentPixelAtPoint(CGPoint(x: 0, y: 0)), "Wrong alpha value at point (0, 0)")
-        XCTAssertFalse(image.isTransparentPixelAtPoint(CGPoint(x: 0, y: 1)), "Wrong alpha value at point (0, 1)")
-        XCTAssertFalse(image.isTransparentPixelAtPoint(CGPoint(x: 0, y: 2)), "Wrong alpha value at point (0, 2)")
+        XCTAssertTrue(image.isTransparentPixel(at: CGPoint(x: 0, y: 0)), "Wrong alpha value at point (0, 0)")
+        XCTAssertFalse(image.isTransparentPixel(at: CGPoint(x: 0, y: 1)), "Wrong alpha value at point (0, 1)")
+        XCTAssertFalse(image.isTransparentPixel(at: CGPoint(x: 0, y: 2)), "Wrong alpha value at point (0, 2)")
     }
     
-    func imageFromARGB(pixels:[PixelDataARGB], width:Int, height:Int)->UIImage {
+    func imageFromARGB(_ pixels:[PixelDataARGB], width:Int, height:Int)->UIImage {
         assert(pixels.count == Int(width * height))
         
-        var data = pixels
-        let providerRef = CGDataProviderCreateWithCFData(
-            NSData(bytes: &data, length: data.count * 4)
+        let data = pixels
+        let providerRef = CGDataProvider(
+            data: Data(bytes: UnsafeRawPointer(data).assumingMemoryBound(to: UInt8.self), count: data.count * 4) as CFData
         )
         
-        let cgim = CGImageCreate(
-            width,
-            height,
-            8,
-            32,
-            width * 4,
-            CGColorSpaceCreateDeviceRGB(),
-            CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue),
-            providerRef!,
-            nil,
-            true,
-            CGColorRenderingIntent.RenderingIntentDefault
+        let cgim = CGImage(
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bitsPerPixel: 32,
+            bytesPerRow: width * 4,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue),
+            provider: providerRef!,
+            decode: nil,
+            shouldInterpolate: true,
+            intent: CGColorRenderingIntent.defaultIntent
         )
         
-        return UIImage(CGImage: cgim!)
+        return UIImage(cgImage: cgim!)
     }
 }

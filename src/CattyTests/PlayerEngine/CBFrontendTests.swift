@@ -69,6 +69,7 @@ final class CBFrontendTests: XCTestCase {
         XCTAssertEqual(operationSequence.operationList.count, (whenScript.brickList.count - 1))
         var index = 0
         for brick in whenScript.brickList {
+            guard let brick = brick as? Brick else { XCTFail("brick is not a Brick"); return }
             if brick is NoteBrick {
                 continue // NoteBricks are ommited
             }

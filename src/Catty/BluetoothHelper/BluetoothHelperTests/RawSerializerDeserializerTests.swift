@@ -28,9 +28,9 @@ import BluetoothHelper
 class RawDeserializerTests: XCTestCase {
     
     enum RawTest: UInt8, RawDeserialize {
-        case No     = 0
-        case Yes    = 1
-        case Maybe  = 2
+        case no     = 0
+        case yes    = 1
+        case maybe  = 2
         static let uuid = "TEST"
     }
 
@@ -51,7 +51,7 @@ class RawDeserializerTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
@@ -61,7 +61,7 @@ class RawDeserializerTests: XCTestCase {
     func testRawDeserialization() {
         let data = "01".dataFromHexString()
         if let value : RawTest = Deserializer.deserialize(data) {
-            XCTAssert(value == .Yes, "RawDeserializable deserialization value wrong: \(data)")
+            XCTAssert(value == .yes, "RawDeserializable deserialization value wrong: \(data)")
         } else {
             XCTFail("RawDeserializable deserialization failed")
         }
@@ -127,7 +127,7 @@ class RawDeserializerTests: XCTestCase {
     
     //MARK: Raw Serialize
     func testRawSerialization() {
-        let value = RawTest.No
+        let value = RawTest.no
         let data = Serializer.serialize(value)
         XCTAssert(data.hexStringValue() == "00", "RawDeserializable serialization failed: \(data)")
     }

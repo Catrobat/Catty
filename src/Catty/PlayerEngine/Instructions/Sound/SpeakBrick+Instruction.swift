@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SpeakBrick: CBInstructionProtocol {
+@objc extension SpeakBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
         guard let object = self.script?.object else { fatalError("This should never happen!") }
-        
-        return CBInstruction.ExecClosure { (context, _) in
-            var speakText = self.formula.interpretString(object)
+
+        return CBInstruction.execClosure { (context, _) in
+            guard var speakText = self.formula.interpretString(object) else { return }
             if(Double(speakText) !=  nil)
             {
                 let num = (speakText as NSString).doubleValue
@@ -38,8 +38,8 @@ extension SpeakBrick: CBInstructionProtocol {
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
             
             let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speakUtterance(utterance)
-            context.state = .Runnable
+            synthesizer.speak(utterance)
+            context.state = .runnable
         }
         
     }

@@ -23,7 +23,7 @@
 protocol CBFrontendProtocol {
 
     weak var program: Program? { get }
-    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList
-    func addSequenceFilter(sequenceFilter: CBFrontendSequenceFilterProtocol)
+    func computeSequenceListForScript(_ script : Script) -> CBScriptSequenceList
+    func addSequenceFilter(_ sequenceFilter: CBFrontendSequenceFilterProtocol)
 
 }

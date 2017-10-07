@@ -25,11 +25,11 @@ import BluetoothHelper
 
 class FirmataDelegateMock: FirmataDelegate {
     var callbackInvolved = false
-    var data:NSData = NSData()
+    var data:Data = Data()
     var receivedString:String = ""
     var receivedPin:Int = 0
     var receivedPort:Int = 0
-    var receivedPortData:[Int] = [Int](count:1, repeatedValue: 0)
+    var receivedPortData:[Int] = [Int](repeating: 0, count: 1)
     var receivedValue:Int = 0
     var analogMapping = NSMutableDictionary()
     var capabilityQuery = [[Int:Int]]()
@@ -41,53 +41,53 @@ class FirmataDelegateMock: FirmataDelegate {
     
     func resetCallback () {
         callbackInvolved = false
-        data = NSData()
+        data = Data()
         receivedString = ""
         receivedPin = 0
         receivedValue = 0
         receivedPort = 0
-        receivedPortData = [Int](count:1, repeatedValue: 0)
+        receivedPortData = [Int](repeating: 0, count: 1)
     }
     
     //MARK: Callbacks
-    func sendData(newData: NSData){
+    func sendData(_ newData: Data){
         callbackInvolved = true
         data = newData
     }
-    func didReceiveAnalogMessage(pin:Int,value:Int){
+    func didReceiveAnalogMessage(_ pin:Int,value:Int){
         receivedPin = pin
         receivedValue = value
         callbackInvolved = true
     }
     
-    func didReceiveDigitalMessage(pin:Int,value:Int){
+    func didReceiveDigitalMessage(_ pin:Int,value:Int){
         receivedPin = pin
         receivedValue = value
         callbackInvolved = true
     }
-    func firmwareVersionReceived(name:String){
+    func firmwareVersionReceived(_ name:String){
         receivedString = name
         callbackInvolved = true
     }
-    func protocolVersionReceived(name:String){
+    func protocolVersionReceived(_ name:String){
         receivedString = name
         callbackInvolved = true
     }
     //    func I2cMessageReceived(message:String)
-    func stringDataReceived(message:String){
+    func stringDataReceived(_ message:String){
         receivedString = message
         callbackInvolved = true
     }
-    func didReceiveDigitalPort(port:Int, portData:[Int]){
+    func didReceiveDigitalPort(_ port:Int, portData:[Int]){
         callbackInvolved = true
         receivedPort = port
         receivedPortData = portData
     }
-    func didUpdateAnalogMapping(mapping:NSMutableDictionary){
+    func didUpdateAnalogMapping(_ mapping:NSMutableDictionary){
         callbackInvolved = true
         analogMapping = mapping
     }
-    func didUpdateCapability(pins:[[Int:Int]]){
+    func didUpdateCapability(_ pins:[[Int:Int]]){
         callbackInvolved = true
         capabilityQuery = pins
     }
@@ -99,13 +99,13 @@ class FirmataMock:Firmata{
     var receivedPin:UInt8 = 0
     var receivedPort:UInt8 = 0
     var receivedValue:UInt8 = 0
-    var receivedPinMode:PinMode = .Unknown
+    var receivedPinMode:PinMode = .unknown
     var receivedString:String = ""
-    var receivedPinState:PinState = .Low
+    var receivedPinState:PinState = .low
     var receivedBool:Bool = false
     
     
-    override func writePinMode(newMode:PinMode, pin:UInt8){
+    override func writePinMode(_ newMode:PinMode, pin:UInt8){
         receivedPin = pin
         receivedPinMode = newMode
     }
@@ -121,51 +121,51 @@ class FirmataMock:Firmata{
     override func capabilityQuery(){
         //tested in FirmataTests
     }
-    override func pinStateQuery(pin:UInt8){
+    override func pinStateQuery(_ pin:UInt8){
         receivedPin = pin
     }
-    override func servoConfig(pin:UInt8,minPulse:UInt8,maxPulse:UInt8){
+    override func servoConfig(_ pin:UInt8,minPulse:UInt8,maxPulse:UInt8){
         receivedPin = pin
     }
-    override func stringData(string:String){
+    override func stringData(_ string:String){
         receivedString = string
     }
-    override func samplingInterval(intervalMilliseconds:UInt8){
+    override func samplingInterval(_ intervalMilliseconds:UInt8){
         
     }
-    override func writePWMValue(value:UInt8, pin:UInt8){
+    override func writePWMValue(_ value:UInt8, pin:UInt8){
         receivedPin = pin
         receivedValue = value
     }
-    override func writePinState(newState: PinState, pin:UInt8){
+    override func writePinState(_ newState: PinState, pin:UInt8){
         receivedPin = pin
         receivedPinState = newState
     }
-    override func setAnalogValueReportingforPin(pin:UInt8, enabled:Bool){
+    override func setAnalogValueReportingforPin(_ pin:UInt8, enabled:Bool){
         receivedPin = pin
         receivedBool = enabled
     }
-    override func setDigitalStateReportingForPin(digitalPin:UInt8, enabled:Bool){
+    override func setDigitalStateReportingForPin(_ digitalPin:UInt8, enabled:Bool){
         receivedPin = digitalPin
         receivedBool = enabled
     }
-    override func setDigitalStateReportingForPort(port:UInt8, enabled:Bool){
+    override func setDigitalStateReportingForPort(_ port:UInt8, enabled:Bool){
         receivedPort = port
         receivedBool = enabled
     }
-    override func receiveData(data:NSData){
+    override func receiveData(_ data:Data){
         //tested in FirmataTests
     }
 }
 
 class PeripheralMock: CBPeripheral {
     
-    var dataToSend:NSData = NSData()
+    var dataToSend:Data = Data()
     init(test:Bool){
         //HACK
     }
     
-    override func writeValue(data: NSData, forCharacteristic characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
+    override func writeValue(_ data: Data, for characteristic: CBCharacteristic, type: CBCharacteristicWriteType) {
         dataToSend = data
     }
 }
@@ -179,14 +179,14 @@ class CharacteristicMock: CBCharacteristic {
     }
     
     override internal var properties: CBCharacteristicProperties {
-        return CBCharacteristicProperties(rawValue: CBCharacteristicProperties.WriteWithoutResponse.rawValue)
+        return CBCharacteristicProperties(rawValue: CBCharacteristicProperties.writeWithoutResponse.rawValue)
     }
 
 }
 
 class ArduinoTestMock: ArduinoPropertyProtocol {
     internal var totalPins = 3
-    internal var analogMapping = NSMutableDictionary(objects: [NSNumber(unsignedChar:0),NSNumber(unsignedChar:1),NSNumber(unsignedChar:2),NSNumber(unsignedChar:3)], forKeys: [NSNumber(unsignedChar:0),NSNumber(unsignedChar:1),NSNumber(unsignedChar:2),NSNumber(unsignedChar:3)])
+    internal var analogMapping = NSMutableDictionary(objects: [NSNumber(value: 0 as UInt8),NSNumber(value: 1 as UInt8),NSNumber(value: 2 as UInt8),NSNumber(value: 3 as UInt8)], forKeys: [NSNumber(value: 0 as UInt8),NSNumber(value: 1 as UInt8),NSNumber(value: 2 as UInt8),NSNumber(value: 3 as UInt8)])
     internal var pinsArray = [[String:Any]]()
     
     internal let arduinoHelper:ArduinoHelper = ArduinoHelper()

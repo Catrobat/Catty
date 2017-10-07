@@ -45,28 +45,28 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return CentralManager.sharedInstance.peripherals.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let peripheral = CentralManager.sharedInstance.peripherals[indexPath.row]
         cell.textLabel?.text = peripheral.name
-        cell.accessoryType = .None
-        if peripheral.state == .Connected {
-            cell.textLabel?.textColor = UIColor.backgroundColor()
-            cell.backgroundColor = UIColor.globalTintColor()
-            cell.userInteractionEnabled = false
+        cell.accessoryType = .none
+        if peripheral.state == .connected {
+            cell.textLabel?.textColor = UIColor.background()
+            cell.backgroundColor = UIColor.globalTint()
+            cell.isUserInteractionEnabled = false
         } else {
-            cell.textLabel?.textColor = UIColor.globalTintColor()
-            cell.userInteractionEnabled = true
+            cell.textLabel?.textColor = UIColor.globalTint()
+            cell.isUserInteractionEnabled = true
         }
 
         return cell

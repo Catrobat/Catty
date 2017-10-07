@@ -804,7 +804,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.afterSafeBlock(nil);
         }
     }
-    if (self.filePath && [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NO]) {
+    if (self.filePath && [[NSFileManager defaultManager] fileExistsAtPath:self.filePath]) {
         [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     }
 }

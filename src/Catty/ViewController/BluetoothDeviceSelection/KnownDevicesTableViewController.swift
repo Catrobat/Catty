@@ -49,20 +49,20 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return knownDevices.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        cell.textLabel?.textColor = UIColor.globalTintColor()
-        cell.userInteractionEnabled = true
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.textColor = UIColor.globalTint()
+        cell.isUserInteractionEnabled = true
         
         cell.textLabel?.text = knownDevices[indexPath.row].name
 
@@ -77,17 +77,17 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
 //        let afterTimeout = {(error:NSError) -> Void in
 //            
 //        }
-        let userdefaults = NSUserDefaults.standardUserDefaults()
+        let userdefaults = UserDefaults.standard
         var knownCBPeripherals:[CBPeripheral]
-        if let tempArray : [AnyObject] = userdefaults.arrayForKey("KnownBluetoothDevices") {
+        if let tempArray : [AnyObject] = userdefaults.array(forKey: "KnownBluetoothDevices") as [AnyObject]? {
             let stringArray:[NSString] = tempArray as! [NSString]
-            var UUIDArray:[NSUUID] = [NSUUID]()
+            var UUIDArray:[UUID] = [UUID]()
             for id:NSString in stringArray {
-                UUIDArray.append(NSUUID(UUIDString: id as String)!)
+                UUIDArray.append(UUID(uuidString: id as String)!)
             }
             knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(UUIDArray)
         } else {
-            knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
+            knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [UUID])
         }
     
         for peri in knownCBPeripherals {

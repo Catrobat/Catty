@@ -27,9 +27,9 @@ protocol CBScriptContextProtocol: class {
     var state: CBScriptContextState { get set }
     var index:Int { get set }
 
-    func appendInstructions(instructionList: [CBInstruction])
+    func appendInstructions(_ instructionList: [CBInstruction])
     func nextInstruction() -> CBInstruction?
-    func jump(numberOfInstructions numberOfInstructions: Int)
+    func jump(numberOfInstructions: Int)
     func reset()
 }
 
@@ -54,7 +54,7 @@ class CBScriptContext: CBScriptContextProtocol {
 
     // MARK: - Initializers
     convenience init(script: Script, spriteNode: CBSpriteNode) {
-        self.init(script: script, spriteNode: spriteNode, state: .Runnable, instructionList: [])
+        self.init(script: script, spriteNode: spriteNode, state: .runnable, instructionList: [])
     }
 
     init(script: Script, spriteNode: CBSpriteNode, state: CBScriptContextState, instructionList: [CBInstruction]) {
@@ -62,7 +62,7 @@ class CBScriptContext: CBScriptContextProtocol {
         self.script = script
         self.state = state
         assert(spriteNode.name != nil)
-        let nodeIndex = spriteNode.spriteObject?.scriptList.indexOfObject(script)
+        let nodeIndex = spriteNode.spriteObject?.scriptList.index(of: script)
         assert(nodeIndex != nil)
         self.id = "[\(spriteNode.name!)][\(nodeIndex!)]"
         print(self.id)
@@ -72,13 +72,13 @@ class CBScriptContext: CBScriptContextProtocol {
     }
 
     // MARK: - Operations
-    final func appendInstructions(instructionList: [CBInstruction]) {
+    final func appendInstructions(_ instructionList: [CBInstruction]) {
         _instructionList += instructionList
     }
 
     final func nextInstruction() -> CBInstruction? {
-        if state == .Dead { return nil } // must be an old deprecated enqueued dispatch closure
-        assert(state == .Running)
+        if state == .dead { return nil } // must be an old deprecated enqueued dispatch closure
+        assert(state == .running)
         if (_instructionPointer == _instructionList.count) || (_instructionList.count == 0) {
             return nil
         }
@@ -87,10 +87,10 @@ class CBScriptContext: CBScriptContextProtocol {
         return instruction
     }
 
-    final func jump(numberOfInstructions numberOfInstructions: Int) {
-        if state == .Dead || state == .Runnable { return } // must be an old deprecated enqueued dispatch closure
+    final func jump(numberOfInstructions: Int) {
+        if state == .dead || state == .runnable { return } // must be an old deprecated enqueued dispatch closure
         if numberOfInstructions == 0 { return }
-        assert(state == .Running)
+        assert(state == .running)
         let newInstructionPointerPosition = _instructionPointer + numberOfInstructions
         if newInstructionPointerPosition < 0 || newInstructionPointerPosition > _instructionList.count {
             return
@@ -102,7 +102,7 @@ class CBScriptContext: CBScriptContextProtocol {
         _instructionPointer = 0
         index += 1
         for brick in script.brickList {
-            if brick is LoopBeginBrick { brick.resetCondition() }
+            if brick is LoopBeginBrick { (brick as AnyObject).resetCondition() }
         }
     }
 }

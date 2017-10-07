@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetVariableBrick: CBInstructionProtocol {
+@objc extension SetVariableBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
         guard let spriteObject = self.script?.object,
             let variables = spriteObject.program?.variables
@@ -31,15 +31,15 @@ extension SetVariableBrick: CBInstructionProtocol {
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
         
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: SetVariableBrick")
             
-            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
+            let result = variableFormula?.interpretVariableData(forSprite: spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
             
             //update visible userVariable
             var value = ""
-            if userVariable != nil {
+            if let userVariable = userVariable {
                 if userVariable.value is NSNumber{
                     let number:NSNumber = (userVariable.value as? NSNumber)!
                     value = number.stringValue
@@ -51,7 +51,7 @@ extension SetVariableBrick: CBInstructionProtocol {
                 }
                 userVariable.textLabel.text = value
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
         
     }

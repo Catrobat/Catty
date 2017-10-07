@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, SequenceType {
+final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequence {
 
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
@@ -33,16 +33,16 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
     }
 
     // MARK: - Operations
-    func append(let sequence : CBSequenceProtocol) {
+    func append(_ sequence : CBSequenceProtocol) {
         sequenceList.append(sequence)
     }
 
     // MARK: - Generator
-    func generate() -> AnyGenerator<CBSequenceProtocol> {
+    func makeIterator() -> AnyIterator<CBSequenceProtocol> {
         var i = 0
-        return AnyGenerator {
+        return AnyIterator {
             if i >= self.sequenceList.count {
-                return .None
+                return .none
             } else {
                 let sequence = self.sequenceList[i]
                 i += 1
@@ -55,7 +55,7 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
         return count == 0
     }
 
-    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+    func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
 

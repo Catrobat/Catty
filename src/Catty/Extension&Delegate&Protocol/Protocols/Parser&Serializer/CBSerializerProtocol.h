@@ -23,11 +23,12 @@
 #import <Foundation/Foundation.h>
 
 @class Program;
+@class FileManager;
 
 @protocol CBSerializerProtocol <NSObject>
 
 @required
-- (id)initWithPath:(NSString*)path;
+- (id)initWithPath:(NSString*)path fileManager:(FileManager *)fileManager;
 - (void)serializeProgram:(Program*)program;
 
 @end

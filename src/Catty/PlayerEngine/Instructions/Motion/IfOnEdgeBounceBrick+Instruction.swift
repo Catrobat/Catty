@@ -22,13 +22,13 @@
 
 private let EPSILON = 0.0001
 
-extension IfOnEdgeBounceBrick: CBInstructionProtocol {
+@objc extension IfOnEdgeBounceBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let scene = spriteNode.scene
@@ -79,11 +79,11 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
             }
             
             spriteNode.rotation = rotation
-            spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
+            spriteNode.scenePosition = CGPoint(x: xPosition, y: yPosition)
         }
     }
     
-    func isLookingDown(rotation:Double) -> Bool {
+    func isLookingDown(_ rotation:Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if self.isGreater(normalizedRotation, second: 90.0) && self.isLess(normalizedRotation, second: 270.0) {
             return true
@@ -91,7 +91,7 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
         return false
     }
     
-    func isLookingUp(rotation:Double) -> Bool {
+    func isLookingUp(_ rotation:Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if (self.isGreaterOrEqual(normalizedRotation, second: 0.0) && self.isLess(normalizedRotation, second: 90.0)) || (self.isGreater(normalizedRotation, second: 270.0) && self.isLessOrEqual(normalizedRotation, second: 360.0)) {
             return true
@@ -99,7 +99,7 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
         return false
     }
     
-    func isLookingLeft(rotation:Double) -> Bool {
+    func isLookingLeft(_ rotation:Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if (self.isGreater(normalizedRotation, second: 180.0)) && (self.isLess(normalizedRotation, second: 360.0)) {
             return true
@@ -107,7 +107,7 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
         return false
     }
     
-    func isLookingRight(rotation:Double) -> Bool {
+    func isLookingRight(_ rotation:Double) -> Bool {
         let normalizedRotation = self.normalizeRotation(rotation)
         if (self.isGreater(normalizedRotation, second: 0.0)) && (self.isLess(normalizedRotation, second: 180.0)) {
             return true
@@ -115,32 +115,32 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
         return false
     }
 
-    private func normalizeRotation(rotation:Double) -> Double {
+    private func normalizeRotation(_ rotation:Double) -> Double {
         var normalizedRotation = rotation
         
         if self.isLess(normalizedRotation, second: 0.0) {
-            normalizedRotation = 360.0 + (normalizedRotation % -360.0);
+            normalizedRotation = 360.0 + (normalizedRotation.truncatingRemainder(dividingBy: -360.0));
         }
-        return normalizedRotation % 360
+        return normalizedRotation.truncatingRemainder(dividingBy: 360)
     }
     
-    private func isGreater(first:Double, second:Double) -> Bool {
+    private func isGreater(_ first:Double, second:Double) -> Bool {
         return first - second > EPSILON
     }
     
-    private func isGreaterOrEqual(first:Double, second:Double) -> Bool {
+    private func isGreaterOrEqual(_ first:Double, second:Double) -> Bool {
         return first - second > EPSILON || self.isEqual(first, second: second)
     }
     
-    private func isLess(first:Double, second:Double) -> Bool {
+    private func isLess(_ first:Double, second:Double) -> Bool {
         return first - second < EPSILON && !self.isEqual(first, second: second)
     }
     
-    private func isLessOrEqual(first:Double, second:Double) -> Bool {
+    private func isLessOrEqual(_ first:Double, second:Double) -> Bool {
         return first - second < EPSILON || self.isEqual(first, second: second)
     }
     
-    private func isEqual(first:Double, second:Double) -> Bool {
+    private func isEqual(_ first:Double, second:Double) -> Bool {
         return abs(first - second) <= EPSILON
     }
 }

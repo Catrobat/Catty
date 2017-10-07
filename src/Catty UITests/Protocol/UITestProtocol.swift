@@ -24,8 +24,8 @@ import XCTest
 
 protocol UITestProtocol {
     func restoreDefaultProgram()
-    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
-    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
+    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(_ numLooks: UInt)
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(_ numSounds: UInt)
     func dismissWelcomeScreenIfShown()
 }
 
@@ -45,7 +45,7 @@ extension UITestProtocol {
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
     }
     
-    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt) {
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(_ numSounds: UInt) {
         let app = XCUIApplication()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Continue"].tap()
@@ -68,7 +68,7 @@ extension UITestProtocol {
         }
     }
 
-    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt) {
+    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(_ numLooks: UInt) {
         // delete all existing looks...
         let app = XCUIApplication()
         let tablesQuery = app.tables
@@ -87,7 +87,7 @@ extension UITestProtocol {
         // add new ones
         let addButton = app.toolbars.buttons["Add"]
         let drawNewImageButton = app.buttons["Draw new image"]
-        let image = app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).elementBoundByIndex(1)
+        let image = app.scrollViews.children(matching: .other).element.children(matching: .image).element(boundBy: 1)
         let looksButton = app.navigationBars["Pocket Paint"].buttons["Backgrounds"]
         let yesButton = app.alerts["Save to PocketCode"].buttons["Yes"]
         let alertQuery = app.alerts["Add image"]
@@ -113,10 +113,10 @@ extension UITestProtocol {
         if(!elementsQuery.staticTexts["Welcome to Pocket Code"].exists) {
             return
         }
-        if(!app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).exists) {
+        if(!app.otherElements.containing(.navigationBar, identifier:"Pocket Code").children(matching: .other).element(boundBy: 1).children(matching: .button).matching(identifier: "Skip").element(boundBy: 1).exists) {
             return
         }
         
-        app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).tap()
+        app.otherElements.containing(.navigationBar, identifier:"Pocket Code").children(matching: .other).element(boundBy: 1).children(matching: .button).matching(identifier: "Skip").element(boundBy: 1).tap()
     }
 }

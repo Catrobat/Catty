@@ -21,6 +21,13 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
     .backgroundView          = @"KNSemiModelOptionBackgroundView",
 };
 
+NS_ENUM(NSUInteger, KNSemiModalTransitionStyle) {
+    KNSemiModalTransitionStyleSlideUp,
+    KNSemiModalTransitionStyleFadeInOut,
+    KNSemiModalTransitionStyleFadeIn,
+    KNSemiModalTransitionStyleFadeOut,
+};
+
 #define kSemiModalViewController           @"PaPQC93kjgzUanz"
 #define kSemiModalDismissBlock             @"l27h7RU2dzVfPoQ"
 #define kSemiModalPresentingViewController @"QKWuTQjUkWaO1Xr"

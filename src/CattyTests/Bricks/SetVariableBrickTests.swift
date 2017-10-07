@@ -60,8 +60,8 @@ final class SetVariableBrickTests: XCTestCase {
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
         
         switch instruction {
-        case let .ExecClosure(closure):
-            closure(context: CBScriptContext(script: script, spriteNode: spriteNode), scheduler: scheduler)
+        case let .execClosure(closure):
+            closure(CBScriptContext(script: script, spriteNode: spriteNode), scheduler)
         default: break;
         }
         

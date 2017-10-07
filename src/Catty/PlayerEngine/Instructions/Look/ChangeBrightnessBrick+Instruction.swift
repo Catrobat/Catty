@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeBrightnessByNBrick: CBInstructionProtocol {
+@objc extension ChangeBrightnessByNBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
-            return .Action(action: SKAction.runBlock(actionClosure))
+            return .action(action: SKAction.run(actionClosure))
         }
-        return .InvalidInstruction()
+        return .invalidInstruction()
     }
     
-    func actionBlock() -> dispatch_block_t? {
+    @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let bright = self.changeBrightness
@@ -37,7 +37,7 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
         
         return {
             guard let look = object.spriteNode!.currentLook else { return }
-            var brightnessValue = bright.interpretDoubleForSprite(object) / 100
+            var brightnessValue = bright.interpretDouble(forSprite: object) / 100
             brightnessValue += Double(spriteNode.currentLookBrightness)
             if (brightnessValue > 1) {
                 brightnessValue = 1.0;
@@ -46,7 +46,7 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
                 brightnessValue = -1.0;
             }
             
-            let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
+            let lookImage = UIImage(contentsOfFile:self.path(for: look))
             let brightnessDefaultValue:CGFloat = 0.0
             spriteNode.currentLookBrightness = CGFloat(brightnessValue)
             

@@ -118,6 +118,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     // do not call super to prevent automatic scrolling when opening a UIPickerView
     [super hideLoadingView];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;

@@ -34,10 +34,7 @@ import Foundation
 //                                 CHECKS
 //------------------------------------------------------------------------------------------------------------
 
-
-
-
-let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"
+let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%d The Catrobat Team\n"
     + " *  (http://developer.catrobat.org/credits)\n *\n"
     + " *  This program is free software: you can redistribute it and/or modify\n"
     + " *  it under the terms of the GNU Affero General Public License as\n"
@@ -56,17 +53,14 @@ let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat T
     + " *  You should have received a copy of the GNU Affero General Public License\n"
     + " *  along with this program.  If not, see http://www.gnu.org/licenses/.\n */"
 
-let components : NSDateComponents = NSCalendar.currentCalendar().components(.Year, fromDate: NSDate())
-let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, String(components.year))
+let year = Calendar.current.component(.year, from: Date())
+let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, year)
 
+let kErrorSuccess: Int32 = 0
+let kErrorFailed: Int32 = 1
+let fileManager = FileManager.default
 
-
-let kErrorSuccess : Int32 = 0
-let kErrorFailed : Int32 = 1
-let fileManager = NSFileManager.defaultManager()
-
-
-enum License : String {
+enum License: String {
     case GNUAfferoGeneralPublicLicense
     case MIT
     case zlib
@@ -75,7 +69,6 @@ enum License : String {
     case BSD
     case Unknown
 }
-
 
 let license3rdPartyDict : [String : License] = [
     "LLNode"  : .MIT,
@@ -156,62 +149,54 @@ let compatibleLicenses : [License] = [
     .MIT, .zlib, .Apache2, .Apple, .BSD
 ]
 
-
-
-
-func printErrorAndExitIfFailed(errorMessage: String)
+func printErrorAndExitIfFailed(_ errorMessage: String)
 {
     print("\(errorMessage)")
     exit(kErrorFailed)
 }
 
-func printErrorAndExitIfFailed(erorMessage: String, withFilePath filePath: String) {
+func printErrorAndExitIfFailed(_ erorMessage: String, withFilePath filePath: String) {
     printErrorAndExitIfFailed("\(filePath):1:  error: \(erorMessage)")
 }
 
-
-
-func printWarning(warning: String, withFilePath filePath: String) {
+func printWarning(_ warning: String, withFilePath filePath: String) {
     print("\(filePath):1:  warning: \(warning)")
 }
 
-func isValidLicense(license: License) -> Bool {
-    
+func isValidLicense(_ license: License) -> Bool {
+
     return compatibleLicenses.contains(license)
-    
+
 }
 
+func checkLicenseOfFile(_ filePath: String) {
 
-func checkLicenseOfFile(filePath: String) {
-    
-    
     var isExternalLibrary = false
     var libraryName = ""
     do {
-        let content = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
-        let range = content.rangeOfString(licenseSearchStringCurrentYear)
+        let content = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
+        let range = content.range(of: licenseSearchStringCurrentYear)
         if range == nil {
             isExternalLibrary = true
             //let removedFileName = (filePath as NSString).stringByDeletingLastPathComponent
             //libraryName = (removedFileName as NSString).lastPathComponent
             libraryName = (filePath as NSString).lastPathComponent
-            libraryName = (libraryName as NSString).stringByDeletingPathExtension
+            libraryName = (libraryName as NSString).deletingPathExtension
         }
     } catch let error as NSError {
         printErrorAndExitIfFailed("Could not open file \(error)")
     }
 
-    
     if isExternalLibrary {
         for excludeDir in checkDirs {
-            let range = filePath.rangeOfString(excludeDir)
+            let range = filePath.range(of: excludeDir)
             if range != nil {
                 libraryName = excludeDir
                 guard let license = licenseCheckDirs[libraryName] else {
                     printErrorAndExitIfFailed("No license specified for library: \(libraryName). Please add the license also to our license folder", withFilePath: filePath)
                     return
                 }
-                
+
                 if license == .Unknown {
                     printWarning("Unknown License found. Not sure if compatible with PocketCode", withFilePath: filePath)
                 } else {
@@ -223,12 +208,11 @@ func checkLicenseOfFile(filePath: String) {
             }
         }
 
-        
         guard let license = license3rdPartyDict[libraryName] else {
             printErrorAndExitIfFailed("No license specified for library: \(libraryName).Please add the license also to our license folder", withFilePath: filePath)
             return
         }
-        
+
         if license == .Unknown {
             printWarning("Unknown License found. Not sure if compatible with PocketCode", withFilePath: filePath)
         } else {
@@ -236,59 +220,48 @@ func checkLicenseOfFile(filePath: String) {
                 printErrorAndExitIfFailed("License (\(license)) is not compatible with PockedCode.", withFilePath: filePath)
             }
         }
-        
-
-        
     }
-    
-    
 }
 
-
 func checkLicenses() {
-    
-    
+
     let filePaths = getFilePaths()
     while let filePath = filePaths.nextObject() as? String {
-        
+
+        // skip Build and DerivedData directories
+        if filePath.hasPrefix("Build") || filePath.hasPrefix("DerivedData") || filePath.hasPrefix("Carthage") {
+            continue
+        }
+
         // only check source files
         if filePath.hasSuffix(".h") == false && filePath.hasSuffix(".m") == false && filePath.hasSuffix(".swift") == false {
             continue
         }
-        
+
         checkLicenseOfFile(filePath)
     }
-    
 
     exit(kErrorSuccess)
 }
 
+func getFilePaths() -> FileManager.DirectoryEnumerator {
 
-
-
-
-
-
-
-func getFilePaths() -> NSDirectoryEnumerator {
-    
-    guard let enumerator: NSDirectoryEnumerator? = fileManager.enumeratorAtPath(".") else {
+    guard let enumerator = fileManager.enumerator(atPath: ".") else {
         print("Could not get enumerator")
         exit(kErrorFailed)
     }
-    
-    return enumerator!
+
+    return enumerator
 }
 
-
 func getFileNameOfScript() -> String {
-    
-    guard let firstArgument = Process.arguments.first else {
+
+    guard let firstArgument = CommandLine.arguments.first else {
         print("\(#file):\(#line - 1): error: WTH is going on here!! "
             + "Unable to determine the file name of this script!\n")
         exit(kErrorFailed)
     }
-    
+
     var fileNameOfThisScript = (firstArgument as NSString).lastPathComponent
     if fileNameOfThisScript.hasSuffix(".swift") == false {
         fileNameOfThisScript += ".swift"
@@ -297,10 +270,5 @@ func getFileNameOfScript() -> String {
     return fileNameOfThisScript
 }
 
-
-
 // main
 checkLicenses()
-
-
-

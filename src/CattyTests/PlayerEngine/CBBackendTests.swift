@@ -53,14 +53,14 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
         
         switch instructionList[0] {
-            case let .Action(action):
+            case let .action(action):
                 XCTAssertNotNil(action)
             default:
                 XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-            case let .Action(action):
+            case let .action(action):
                 XCTAssertNotNil(action)
             default:
                 XCTFail("Wrong instruction type")
@@ -92,14 +92,14 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
         
         switch instructionList[0] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
@@ -131,14 +131,14 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
         
         switch instructionList[0] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
@@ -191,21 +191,21 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 6, "Instruction list should contain six instructions")
         
         switch instructionList[0] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-        case .ExecClosure(_):
+        case .execClosure(_):
             break;
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[2] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
@@ -213,7 +213,7 @@ final class CBBackendTests: XCTestCase {
         
         for counter in 3...(instructionList.count - 1) {
             switch instructionList[counter] {
-            case .ExecClosure(_):
+            case .execClosure(_):
                 break;
             default:
                 XCTFail("Wrong instruction type for \(counter)")
@@ -264,42 +264,42 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 6, "Instruction list should contain six instructions")
         
         switch instructionList[0] {
-        case .ExecClosure(_):
+        case .execClosure(_):
             break;
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-        case .HighPriorityExecClosure(_):
+        case .highPriorityExecClosure(_):
             break;
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[2] {
-        case .WaitExecClosure(_):
+        case .waitExecClosure(_):
             break;
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[3] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[4] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[5] {
-        case .HighPriorityExecClosure(_):
+        case .highPriorityExecClosure(_):
             break;
         default:
             XCTFail("Wrong instruction type")
@@ -309,7 +309,7 @@ final class CBBackendTests: XCTestCase {
     func testIfElseConditionalInstruction() {
         let frontend = CBFrontend(logger: self.logger, program: nil)
         let backend = CBBackend(logger: self.logger)
-        let program = Program.defaultProgramWithName("ProgramName", programID: "123")
+        let program = Program.defaultProgram(withName: "ProgramName", programID: "123")
         
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
@@ -385,35 +385,35 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 15, "Instruction list should contain fifteen instructions")
         
         switch instructionList[0] { // waitBrick
-        case .WaitExecClosure(_):
+        case .waitExecClosure(_):
             break;
         default:
             XCTFail("Wrong insruction type")
         }
         
         switch instructionList[1] { // broadcastBrick
-        case .HighPriorityExecClosure(_):
+        case .highPriorityExecClosure(_):
             break;
         default:
             XCTFail("Wrong insruction type")
         }
         
         switch instructionList[2] { // broadcastWaitBrick
-        case .HighPriorityExecClosure(_):
+        case .highPriorityExecClosure(_):
             break;
         default:
             XCTFail("Wrong insruction type")
         }
         
         switch instructionList[3] { // ifLogicBeginBrick
-        case .ExecClosure(_):
+        case .execClosure(_):
             break;
         default:
             XCTFail("Wrong insruction type")
         }
             
         switch instructionList[4] { // playSoundBrick
-        case .InvalidInstruction():
+        case .invalidInstruction():
             break;
         default:
             XCTFail("Wrong insruction type")
@@ -423,7 +423,7 @@ final class CBBackendTests: XCTestCase {
         
         for counter in 5...(instructionList.count - 1) {
             switch instructionList[counter] {
-            case .ExecClosure(_):
+            case .execClosure(_):
                 break;
             default:
                 XCTFail("Wrong insruction type for \(counter)")
@@ -472,7 +472,7 @@ final class CBBackendTests: XCTestCase {
         
         for counter in 0...(instructionList.count - 1) {
             switch instructionList[counter] {
-            case let .Action(action):
+            case let .action(action):
                 XCTAssertNotNil(action)
             default:
                 XCTFail("Wrong instruction type for \(counter)")

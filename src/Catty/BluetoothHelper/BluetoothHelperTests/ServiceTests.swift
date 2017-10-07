@@ -38,7 +38,7 @@ class ServiceTests: XCTestCase {
 
     func testDiscoverCharacteristicsSuccess() {
         let testService = TestService()
-        let onSuccessExpectation = expectationWithDescription("onSuccess fulfilled for future")
+        let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
         let future = testService.helper.discoverCharacteristicsIfConnected(testService, characteristics:nil)
         future.onSuccess {_ in
             onSuccessExpectation.fulfill()
@@ -47,14 +47,14 @@ class ServiceTests: XCTestCase {
             XCTAssert(false, "onFailure called")
         }
         testService.helper.didDiscoverCharacteristics(testService, error:nil)
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testDiscoverCharacteristicsFailure() {
         let testService = TestService()
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testService.helper.discoverCharacteristicsIfConnected(testService, characteristics:nil)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
@@ -63,24 +63,24 @@ class ServiceTests: XCTestCase {
             onFailureExpectation.fulfill()
         }
         testService.helper.didDiscoverCharacteristics(testService, error:TestFailure.error)
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 
     func testDiscoverCharacteristicsDisconnected() {
-        let testService = TestService(state:.Disconnected)
-        let onFailureExpectation = expectationWithDescription("onFailure fulfilled for future")
+        let testService = TestService(state:.disconnected)
+        let onFailureExpectation = expectation(description: "onFailure fulfilled for future")
         let future = testService.helper.discoverCharacteristicsIfConnected(testService, characteristics:nil)
         future.onSuccess {_ in
             XCTAssert(false, "onSuccess called")
         }
         future.onFailure {error in
             onFailureExpectation.fulfill()
-            XCTAssert(error.code == PeripheralError.Disconnected.rawValue, "Error code invalid \(error.code)")
+            XCTAssert(error.code == PeripheralError.disconnected.rawValue, "Error code invalid \(error.code)")
         }
-        waitForExpectationsWithTimeout(2) {error in
-            XCTAssertNil(error, "\(error)")
+        waitForExpectations(timeout: 2) {error in
+            XCTAssertNil(error, "\(String(describing: error))")
         }
     }
 

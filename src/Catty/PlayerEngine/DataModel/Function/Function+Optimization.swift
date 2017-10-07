@@ -24,11 +24,11 @@ extension Functions {
 
     static var cachedNonIdempotentFunctions: [Function]? = nil
 
-    static func isIdempotentFunction(function: Function) -> Bool {
+    @objc static func isIdempotentFunction(_ function: Function) -> Bool {
         if cachedNonIdempotentFunctions == nil {
             cachedNonIdempotentFunctions = [Function]()
             Functions.nonIdempotentFunctions().forEach {
-                cachedNonIdempotentFunctions! += Function(rawValue: $0.integerValue)!
+                cachedNonIdempotentFunctions! += Function(rawValue: $0.intValue)!
             }
         }
 

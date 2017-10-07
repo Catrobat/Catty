@@ -20,21 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeVolumeByNBrick: CBInstructionProtocol {
+@objc extension ChangeVolumeByNBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
         
         let volumeFormula = self.volume
-        let audioManager = AudioManager.sharedAudioManager()
+        let audioManager = AudioManager.shared()
         let spriteObjectName = spriteObject.name
         
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: ChangeVolumeByNBrick")
-            let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
-            audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)
-            context.state = .Runnable
+            if let volume = volumeFormula?.interpretDouble(forSprite: spriteObject) {
+                audioManager?.changeVolume(byPercent: CGFloat(volume), forKey: spriteObjectName)
+                context.state = .runnable
+            }
         }
         
     }

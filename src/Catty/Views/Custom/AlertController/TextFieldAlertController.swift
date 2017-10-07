@@ -23,19 +23,20 @@
 import Foundation
 
 @objc public protocol TextFieldInitialStateDefiner {
-    func initialText(text: String) -> TextFieldAlertDefining
-    func placeholder(placeholder: String) -> TextFieldAlertDefining
+    func initialText(_ text: String) -> TextFieldAlertDefining
+    func placeholder(_ placeholder: String) -> TextFieldAlertDefining
 }
 
 @objc public protocol TextFieldAlertActionAdding {
-    func addDefaultActionWithTitle(title: String, handler: ((String) -> Void)?) -> TextFieldAlertControllerBuilding
-    func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding
+    func addDefaultActionWithTitle(_ title: String, handler: ((String) -> Void)?) -> TextFieldAlertControllerBuilding
+    func addCancelActionWithTitle(_ title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding
 }
 
 @objc public protocol TextFieldAlertDefining : TextFieldInitialStateDefiner, TextFieldAlertActionAdding {}
 
+@objc
 public final class InputValidationResult : NSObject {
-    let valid: Bool
+    @objc let valid: Bool
     let localizedMessage: String?
     
     private init(valid: Bool, localizedMessage: String?) {
@@ -43,24 +44,25 @@ public final class InputValidationResult : NSObject {
         self.localizedMessage = localizedMessage
     }
     
+    @objc
     static func validInput() -> InputValidationResult {
         return InputValidationResult(valid: true, localizedMessage: nil)
     }
     
     @objc(invalidInputWithLocalizedMessage:)
-    static func invalidInput(localizedMessage: String) -> InputValidationResult {
+    static func invalidInput(_ localizedMessage: String) -> InputValidationResult {
         return InputValidationResult(valid: false, localizedMessage: localizedMessage)
     }
 }
 
 @objc public protocol TextFieldInputValidator {
-    func characterValidator(validator: (String) -> Bool) -> TextFieldInputValidating
-    func valueValidator(validator: (String) -> InputValidationResult) -> TextFieldInputValidating
+    func characterValidator(_ validator: @escaping (String) -> Bool) -> TextFieldInputValidating
+    func valueValidator(_ validator: @escaping (String) -> InputValidationResult) -> TextFieldInputValidating
 }
 
 @objc public protocol TextFieldInputValidating : TextFieldInputValidator, BuilderProtocol { }
 
-@objc public protocol TextFieldAlertControllerBuilding : TextFieldAlertActionAdding, BuilderProtocol, TextFieldInputValidating { }
+@objc public protocol TextFieldAlertControllerBuilding : TextFieldAlertActionAdding, TextFieldInputValidating { }
 
 
 final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefining, TextFieldAlertControllerBuilding, UITextFieldDelegate {
@@ -71,34 +73,34 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
     init(title: String?, message: String?) {
         initialMessage = message
         
-        super.init(title: title, message: message, style: .Alert)
+        super.init(title: title, message: message, style: .alert)
         
-        alertController.addTextFieldWithConfigurationHandler {
-            $0.clearButtonMode = .WhileEditing
-            $0.returnKeyType = .Done
-            $0.keyboardType = .Default
+        alertController.addTextField {
+            $0.clearButtonMode = .whileEditing
+            $0.returnKeyType = .done
+            $0.keyboardType = .default
             $0.delegate = self
             $0.becomeFirstResponder()
         }
     }
     
-    func initialText(text: String) -> TextFieldAlertDefining {
+    func initialText(_ text: String) -> TextFieldAlertDefining {
         alertController.textFields?[0].text = text
         return self
     }
     
-    func placeholder(placeholder: String) -> TextFieldAlertDefining {
+    func placeholder(_ placeholder: String) -> TextFieldAlertDefining {
         alertController.textFields?[0].placeholder = placeholder
         return self
     }
     
-    @objc func addDefaultActionWithTitle(title: String, handler: ((String) -> Void)?) -> TextFieldAlertControllerBuilding {
-        let action = UIAlertAction(title: title, style: .Default) { [weak self] _ in
+    @objc func addDefaultActionWithTitle(_ title: String, handler: ((String) -> Void)?) -> TextFieldAlertControllerBuilding {
+        let action = UIAlertAction(title: title, style: .default) { [weak self] _ in
             guard let `self` = self else { return }
             
             let inputText = self.alertController.textFields?.first?.text ?? ""
             
-            if let validationResult = self.valueValidator?(inputText) where !validationResult.valid {
+            if let validationResult = self.valueValidator?(inputText), !validationResult.valid {
                 self.reinputWithMessage(validationResult.localizedMessage!, alertController: self.alertController)
                 return
             }
@@ -108,32 +110,31 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
         return self
     }
     
-    private func reinputWithMessage(message: String, alertController: UIAlertController) {
+    private func reinputWithMessage(_ message: String, alertController: UIAlertController) {
         AlertControllerBuilder.alertWithTitle(kLocalizedPocketCode, message: message)
             .addCancelActionWithTitle(kLocalizedOK, handler: {
-                Util.topmostViewController().presentViewController(alertController, animated: true, completion: nil)
+                Util.topmostViewController().present(alertController, animated: true, completion: nil)
             }).build()
             .showWithController(Util.topmostViewController())
     }
     
-    @objc func addCancelActionWithTitle(title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding {
-        alertController.addAction(UIAlertAction(title: title, style: .Cancel) {_ in handler?() })
+    @objc func addCancelActionWithTitle(_ title: String, handler: (() -> Void)?) -> TextFieldAlertControllerBuilding {
+        alertController.addAction(UIAlertAction(title: title, style: .cancel) {_ in handler?() })
         return self
     }
-    
-    @objc func characterValidator(validator: (String) -> Bool) -> TextFieldInputValidating {
+
+    @objc func characterValidator(_ validator: @escaping (String) -> Bool) -> TextFieldInputValidating {
         characterValidator = validator
         return self
     }
     
-    @objc func valueValidator(validator: (String) -> InputValidationResult) -> TextFieldInputValidating {
+    @objc func valueValidator(_ validator: @escaping (String) -> InputValidationResult) -> TextFieldInputValidating {
         valueValidator = validator
         return self
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if let isValidCharacter = characterValidator
-            where string.characters.contains({ !isValidCharacter(String($0)) }) {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let isValidCharacter = characterValidator, string.characters.contains(where: { !isValidCharacter(String($0)) }) {
             return false
         }
         

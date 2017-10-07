@@ -58,12 +58,12 @@ class ScriptTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Scripts"].tap()
         
         // delete the wait brick
-        app.collectionViews.cells.elementBoundByIndex(4).tap()
+        app.collectionViews.cells.element(boundBy: 4).tap()
         app.buttons["Delete Brick"].tap()
         
         // check if show brick is now where wait was before
         app.navigationBars["Scripts"].buttons["Mole 1"].tap()
         app.tables.staticTexts["Scripts"].tap()
-        XCTAssert(app.collectionViews.cells.elementBoundByIndex(4).staticTexts["Show"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["Show"].exists)
     }
 }

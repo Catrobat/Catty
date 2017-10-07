@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ComeToFrontBrick: CBInstructionProtocol {
+@objc extension ComeToFrontBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let program = self.script?.object?.program,
@@ -38,7 +38,7 @@ extension ComeToFrontBrick: CBInstructionProtocol {
             let frontValue = program.numberOfNormalObjects()
             spriteNode.zPosition = CGFloat(frontValue)
             for obj in objectList {
-                guard let objSpriteNode = obj.spriteNode! else {
+                guard let objSpriteNode = (obj as AnyObject).spriteNode! else {
                     continue
                 }
                 if(objSpriteNode.zPosition > zValue) && (objSpriteNode.zPosition <= CGFloat(frontValue) && (obj as! SpriteObject != object)){

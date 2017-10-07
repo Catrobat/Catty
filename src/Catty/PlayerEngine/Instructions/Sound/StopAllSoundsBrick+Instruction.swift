@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension StopAllSoundsBrick: CBInstructionProtocol {
+@objc extension StopAllSoundsBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
-        let audioManager = AudioManager.sharedAudioManager()
+        let audioManager = AudioManager.shared()
         
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: StopAllSoundsBrick")
-            audioManager.stopAllSounds()
-            context.state = .Runnable
+            audioManager?.stopAllSounds()
+            context.state = .runnable
         }
         
     }

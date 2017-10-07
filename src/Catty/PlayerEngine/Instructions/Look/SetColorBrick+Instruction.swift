@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetColorBrick: CBInstructionProtocol{
+@objc extension SetColorBrick: CBInstructionProtocol{
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
-            return .Action(action: SKAction.runBlock(actionClosure))
+            return .action(action: SKAction.run(actionClosure))
         }
-        return .InvalidInstruction()
+        return .invalidInstruction()
     }
     
-    func actionBlock() -> dispatch_block_t? {
+    @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let colorFormula = self.color
@@ -38,11 +38,11 @@ extension SetColorBrick: CBInstructionProtocol{
         return {
             guard let look = object.spriteNode!.currentLook else { return }
             
-            let colorValue = colorFormula.interpretDoubleForSprite(object)
+            let colorValue = colorFormula.interpretDouble(forSprite: object)
             
-            let lookImage = UIImage(contentsOfFile:self.pathForLook(look))
+            let lookImage = UIImage(contentsOfFile:self.path(for: look))
             let colorDefaultValue:CGFloat = 0.0
-            let colorValueRadian = (CGFloat(colorValue)*CGFloat(M_PI)/100)%(2*CGFloat(M_PI))
+            let colorValueRadian = (CGFloat(colorValue)*CGFloat(Double.pi)/100).truncatingRemainder(dividingBy: (2*CGFloat(Double.pi)))
             spriteNode.currentLookColor = colorValueRadian
             
             if (colorValueRadian != colorDefaultValue){
