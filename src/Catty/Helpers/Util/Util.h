@@ -64,8 +64,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (UIViewController *)topmostViewController;
 
-+ (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
-
 + (void)alertWithText:(NSString*)text;
 
 + (void)alertWithTitle:(NSString*)title andText:(NSString*)text;

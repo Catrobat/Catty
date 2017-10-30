@@ -104,21 +104,15 @@ let license3rdPartyDict : [String : License] = [
     "UIWindow+AHKAdditions" : .MIT,
     "BDKNotifyHUD" : .MIT,
     "EVCircularProgressView" : .MIT,
-    "FBShimmering" : .BSD,
-    "FBShimmeringLayer" : .BSD,
-    "FBShimmeringView" : .BSD,
     "FXBlurView" : .zlib,
     "IBActionSheet" : .MIT,
-    "LXReorderableCollectionViewFlowLayout" : .MIT,
-    "MYBlurIntroductionView" : .MIT,
     "MYIntroductionPanel" : .MIT,
     "TTTAttributedLabel" : .MIT,
     "MXPagerView" : .MIT,
     "MXPagerViewController" : .MIT,
     "MXParallaxHeader" : .MIT,
     "MXScrollView" : .MIT,
-    "MXScrollViewController" : .MIT,
-    "UIDevice-Hardware" : .BSD
+    "MXScrollViewController" : .MIT
 ]
 
 let licenseCheckDirs : [String : License] = [
@@ -129,8 +123,7 @@ let licenseCheckDirs : [String : License] = [
     "MXSegmentedPager" : .MIT,
     "Target Support Files" : .MIT,
     "VGParallaxHeader" : .MIT,
-    "TOCropViewController" : .MIT,
-    "UIDevice-Hardware" : .BSD
+    "TOCropViewController" : .MIT
 ]
 
 let checkDirs : [String] = [
@@ -141,8 +134,7 @@ let checkDirs : [String] = [
     "MXSegmentedPager",
     "Target Support Files",
     "VGParallaxHeader",
-    "TOCropViewController",
-    "UIDevice-Hardware"
+    "TOCropViewController"
 ]
 
 let compatibleLicenses : [License] = [

@@ -44,9 +44,9 @@ After you've created a pull request we will review your code and do a full testr
 
 * If you want to implement a new feature, please ask about the details in JIRA or our IRC channel (#catrobat or #catrobatdev) first.
 
-* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12), [Carthage](https://github.com/Carthage/Carthage) as well as [CocoaPods](https://cocoapods.org) and open [Catty.xcworkspace](src/Catty.xcworkspace).
+* Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) and [Carthage](https://github.com/Carthage/Carthage).
 
-* Clone this repository and set up the required third-party libraries by executing `make init` within the `src` directory.
+* Clone this repository, set up the required third-party libraries by executing `make init` within the `src` directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
 * If you have any further questions please use our IRC Channel(#catrobat or #catrobatdev) or Google Plus community: http://goo.gl/fOjQi
 

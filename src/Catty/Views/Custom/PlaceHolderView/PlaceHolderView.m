@@ -64,18 +64,21 @@
     self.placeholderDescriptionLabel.textColor = UIColor.globalTintColor;
     self.placeholderDescriptionLabel.numberOfLines = 0;
     self.contentView = self.placeholderDescriptionLabel;
-  self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.shimmering = YES;
-    
-  
-
-    
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)setTitle:(NSString *)title
 {
     if (title.length) {
         self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd, title];
+    }
+}
+
+- (void)setContentView:(UIView *)contentView
+{
+    if (contentView != _contentView) {
+        _contentView = contentView;
+        [self addSubview:contentView];
     }
 }
 

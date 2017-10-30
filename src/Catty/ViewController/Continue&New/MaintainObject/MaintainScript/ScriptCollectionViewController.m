@@ -24,7 +24,6 @@
 #import "BrickCell.h"
 #import "Script.h"
 #import "StartScript.h"
-#import "CatrobatReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
 #import "BrickTransition.h"
 #import "PlaceHolderView.h"
@@ -84,7 +83,8 @@
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
                                              BluetoothSelection,
-                                             UIGestureRecognizerDelegate>
+                                             UIGestureRecognizerDelegate,
+                                             ScriptCollectionViewLayoutDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
@@ -92,6 +92,7 @@
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
 @property (nonatomic,strong) Script *moveHelperScript;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @end
 
 @implementation ScriptCollectionViewController
@@ -114,6 +115,8 @@
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
+    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    [self.collectionView addGestureRecognizer:self.longPressGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -407,96 +410,93 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Reorderable Cells Delegate
-- (void)collectionView:(UICollectionView*)collectionView
-       itemAtIndexPath:(NSIndexPath*)fromIndexPath
-   willMoveToIndexPath:(NSIndexPath*)toIndexPath
-{
-    if (fromIndexPath.item == 0) {
-        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        [self.object.scriptList removeObjectAtIndex:fromIndexPath.section];
-        [self.object.scriptList insertObject:script atIndex:toIndexPath.section];
+
+- (void)handleGesture:(UIGestureRecognizer*)gestureRecognizer {
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan: {
+            CGPoint location = [gestureRecognizer locationInView:self.collectionView];
+            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:location];
+            if (indexPath) {
+                [self.collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
+            }
+            break;
+        }
+        case UIGestureRecognizerStateChanged: {
+            CGPoint location = [gestureRecognizer locationInView:gestureRecognizer.view];
+            [self.collectionView updateInteractiveMovementTargetPosition:location];
+            break;
+        }
+        case UIGestureRecognizerStateEnded:
+            [self.collectionView endInteractiveMovement];
+            break;
+        default:
+            [self.collectionView cancelInteractiveMovement];
+            break;
+    }
+}
+
+- (void)scriptCollectionViewLayout:(ScriptCollectionViewLayout *)scriptCollectionViewLayout
+                        moveItemAt:(NSIndexPath *)indexPath
+                                to:(NSIndexPath *)newIndexPath {
+
+    if (indexPath.item == 0) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        [self.object.scriptList removeObjectAtIndex:indexPath.section];
+        [self.object.scriptList insertObject:script atIndex:newIndexPath.section];
         return;
     }
-    if (fromIndexPath.section == toIndexPath.section) {
-        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        if (fromIndexPath.item > 0) {
-            Brick *fromBrick = [script.brickList objectAtIndex:fromIndexPath.item - 1];
-            [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
-            if (toIndexPath.item > 0) {
-                 [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+    if (indexPath.section == newIndexPath.section) {
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        if (indexPath.item > 0) {
+            Brick *fromBrick = [script.brickList objectAtIndex:indexPath.item - 1];
+            [script.brickList removeObjectAtIndex:indexPath.item - 1];
+            if (newIndexPath.item > 0) {
+                 [script.brickList insertObject:fromBrick atIndex:newIndexPath.item - 1];
             } else {
-                [script.brickList insertObject:fromBrick atIndex:toIndexPath.item+1];
+                [script.brickList insertObject:fromBrick atIndex:newIndexPath.item+1];
             }
-           
         }
-        
     } else {
-        self.moveHelperScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-        Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-        Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+        self.moveHelperScript = [self.object.scriptList objectAtIndex:newIndexPath.section];
+        Script *toScript = [self.object.scriptList objectAtIndex:newIndexPath.section];
+        Script *fromScript = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *fromBrick = [fromScript.brickList objectAtIndex:indexPath.item - 1];
 		fromBrick.script = toScript;
         if ([fromScript.brickList count] == 1) {
             [fromScript.brickList removeAllObjects];
         } else {
-            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+            [fromScript.brickList removeObjectAtIndex:indexPath.item - 1];
         }
         if ([toScript.brickList count] == 0) {
-            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item];
+            [toScript.brickList insertObject:fromBrick atIndex:newIndexPath.item];
         }else{
-            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+            [toScript.brickList insertObject:fromBrick atIndex:newIndexPath.item - 1];
         }
     }
 }
 
-- (void)collectionView:(UICollectionView*)collectionView
-       itemAtIndexPath:(NSIndexPath*)fromIndexPath
-   didMoveToIndexPath:(NSIndexPath*)toIndexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView
+   moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath
+           toIndexPath:(NSIndexPath *)destinationIndexPath {
+
     [[BrickMoveManager sharedInstance] reset];
 }
 
-- (void)collectionView:(UICollectionView*)collectionView
-                layout:(UICollectionViewLayout*)collectionViewLayout
-didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    if (self.isEditingBrickMode) {
-        return;
-    }
-    
-    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        if (indexPath.item != 0) {
-            Brick *brick;
-            if (script.brickList.count >= 1) {
-                brick = [script.brickList objectAtIndex:indexPath.item - 1];
-            }else{
-                brick = [script.brickList objectAtIndex:indexPath.item];
-            }
-            if (brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick) {
-                [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
-            }else if(!brick.isAnimatedInsertBrick && !brick.isAnimatedMoveBrick){
-                return;
-            }else {
-                brick.animateInsertBrick = NO;
-                brick.animateMoveBrick = NO;
-            }
-        }else{
-            script.animateInsertBrick = NO;
-        }
-        [self turnOffInsertingBrickMode];
-    } else {
-        [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
-        [self.object.program saveToDiskWithNotification:YES];
-    }
-    [self reloadData];
-}
+- (NSIndexPath *)collectionView:(UICollectionView *)collectionView
+targetIndexPathForMoveFromItemAtIndexPath:(NSIndexPath *)originalIndexPath
+            toProposedIndexPath:(NSIndexPath *)proposedIndexPath {
 
-- (void)collectionView:(UICollectionView*)collectionView
-                layout:(UICollectionViewLayout*)collectionViewLayout
-willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    [[BrickMoveManager sharedInstance] reset];
+    // find nearest index path 
+    NSInteger item = proposedIndexPath.item;
+    NSInteger step = (proposedIndexPath.item < originalIndexPath.item) ? 1 : -1;
+    do {
+        if ([self collectionView:collectionView itemAtIndexPath:originalIndexPath canMoveToIndexPath:proposedIndexPath])
+            return proposedIndexPath;
+        item += step;
+        proposedIndexPath = [NSIndexPath indexPathForItem:item inSection:proposedIndexPath.section];
+    } while (item != originalIndexPath.item);
+
+    return originalIndexPath;
 }
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
@@ -508,7 +508,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
-
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -820,8 +819,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;
     }
-    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
+    self.longPressGestureRecognizer.minimumPressDuration = 0.1;
+
     [self.navigationItem setHidesBackButton:YES animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
        self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -835,8 +834,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = YES;
     }
-    CatrobatReorderableCollectionViewFlowLayout *layout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
+    self.longPressGestureRecognizer.minimumPressDuration = 0.5;
+
     [self.navigationItem setHidesBackButton:NO animated:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -1056,7 +1055,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.backgroundColor = [UIColor backgroundColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
-    self.collectionView.collectionViewLayout = [CatrobatReorderableCollectionViewFlowLayout new];
+    ScriptCollectionViewLayout *layout = [ScriptCollectionViewLayout new];
+    layout.delegate = self;
+    self.collectionView.collectionViewLayout = layout;
+
     self.navigationController.title = self.title = kLocalizedScripts;
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete style:UIBarButtonItemStylePlain target:self action:@selector(enterDeleteMode)];
     self.navigationItem.rightBarButtonItem = deleteButton;
@@ -1262,8 +1264,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)enableUserInteractionAndResetHighlight
 {
-    CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    collectionViewLayout.longPressGestureRecognizer.enabled = YES;
+    self.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.isEditingBrickMode = NO;
     self.navigationController.toolbar.userInteractionEnabled = YES;
@@ -1290,8 +1291,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
-    CatrobatReorderableCollectionViewFlowLayout *collectionViewLayout = (CatrobatReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    collectionViewLayout.longPressGestureRecognizer.enabled = NO;
+    self.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
     self.navigationController.toolbar.userInteractionEnabled = NO;

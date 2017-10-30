@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Shimmer/FBShimmeringView.h>
-
-@interface PlaceHolderView : FBShimmeringView
+@interface PlaceHolderView : UIView
 
 - (id)initWithTitle:(NSString*)title;
 @property (nonatomic, strong) NSString *title;
+
+@property (strong, nonatomic) UIView *contentView;
 
 @end

@@ -929,7 +929,7 @@ class Firmata: FirmataProtocol {
     private func binaryforByte(_ value: UInt8) -> String {
         
         var str = String(value, radix: 2)
-        let len = str.characters.count
+        let len = str.count
         if len < 8 {
             var addzeroes = 8 - len
             while addzeroes > 0 {

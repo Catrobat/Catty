@@ -30,8 +30,8 @@ public extension String {
   
     public func dataFromHexString() -> Data {
         var bytes = [UInt8]()
-        for i in 0..<(self.characters.count/2) {
-            let string = self[self.characters.index(self.startIndex, offsetBy: 2*i) ..< self.characters.index(self.startIndex, offsetBy: 2*i+2)]
+        for i in 0..<(self.count/2) {
+            let string = self[self.index(self.startIndex, offsetBy: 2*i) ..< self.index(self.startIndex, offsetBy: 2*i+2)]
             let byte = strtol((string as NSString).utf8String, nil, 16)
             bytes.append(UInt8(byte))
         }

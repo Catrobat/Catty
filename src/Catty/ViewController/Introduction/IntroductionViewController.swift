@@ -20,8 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LXReorderableCollectionViewFlowLayout.h"
+class IntroductionViewController: UIViewController {
 
-@interface CatrobatReorderableCollectionViewFlowLayout : LXReorderableCollectionViewFlowLayout
+    @IBOutlet weak var headline: UILabel!
+    @IBOutlet weak var paragraph: UILabel!
+    @IBOutlet weak var image: UIImageView!
 
-@end
+    var content: Content?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.backgroundColor = .clear
+
+        self.headline.text = self.content?.title
+        self.paragraph.text = self.content?.description
+        self.image.image = self.content?.image
+    }
+}
+
+extension IntroductionViewController {
+    struct Content {
+        var title: String
+        var description: String
+        var image: UIImage
+    }
+}
