@@ -44,7 +44,7 @@ class SerializerDeserializerTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
@@ -60,7 +60,7 @@ class SerializerDeserializerTests: XCTestCase {
     }
     
     func testDeserializeUInt8Failure() {
-        let data = NSData()
+        let data = Data()
         if let value : UInt8 = Deserializer.deserialize(data) {
             XCTFail("UInt8 deserialization succeded: \(value)")
         }
@@ -77,7 +77,7 @@ class SerializerDeserializerTests: XCTestCase {
     }
     
     func testDeserializeInt8Failure() {
-        let data = NSData()
+        let data = Data()
         if let value : Int16 = Deserializer.deserialize(data) {
             XCTFail("Int16 deserialization succeded: \(value)")
         }
@@ -95,7 +95,7 @@ class SerializerDeserializerTests: XCTestCase {
     }
     
     func testDeserializeUInt16Failure() {
-        let data = NSData()
+        let data = Data()
         if let value : UInt16 = Deserializer.deserialize(data) {
             XCTFail("UInt16 deserialization succeded: \(value)")
         }
@@ -112,7 +112,7 @@ class SerializerDeserializerTests: XCTestCase {
     }
     
     func testDeserializeInt16Failure() {
-        let data = NSData()
+        let data = Data()
         if let value : Int16 = Deserializer.deserialize(data) {
             XCTFail("Int16 deserialization succeded: \(value)")
         }
@@ -196,7 +196,7 @@ class SerializerDeserializerTests: XCTestCase {
     
     // MARK: Serialize Pair
     func testSerializePair() {
-        let data = NSData.serialize(Int16(-1100),  value2:UInt8(100))
+        let data = Data.serialize(Int16(-1100),  value2:UInt8(100))
         XCTAssert(data.hexStringValue() == "b4fb64", "Pair serialization value invalid: \(data.hexStringValue())")
     }
     
@@ -204,7 +204,7 @@ class SerializerDeserializerTests: XCTestCase {
     func testSerializeArrayPair() {
         let value1 = [Int16(-1100), Int16(1000)]
         let value2 = [UInt8(100), UInt8(75)]
-        let data = NSData.serializeArrays(value1, values2:value2)
+        let data = Data.serializeArrays(value1, values2:value2)
         XCTAssert(data.hexStringValue() == "b4fbe803644b", "Pair serialization value invalid: \(data.hexStringValue())")
     }
 

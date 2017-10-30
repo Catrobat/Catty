@@ -21,6 +21,7 @@
  */
 
 #import "BaseCollectionViewController.h"
+#import "AppDelegate.h"
 #import "UIDefines.h"
 #import "Util.h"
 #import "LoadingView.h"
@@ -44,6 +45,8 @@
 
 - (void) viewDidLoad
 {
+    [super viewDidLoad];
+    
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint
                                          constraintWithItem:self.placeHolderView
                                          attribute:NSLayoutAttributeTop
@@ -128,7 +131,7 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-    
+
     self.scenePresenterViewController = [ScenePresenterViewController new];
     self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];

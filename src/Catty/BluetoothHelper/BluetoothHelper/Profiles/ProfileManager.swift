@@ -23,7 +23,7 @@
 import Foundation
 import CoreBluetooth
 
-public class ProfileManager {
+open class ProfileManager {
     
     // INTERNAL
     internal var serviceProfiles = [CBUUID:ServiceProfile]()
@@ -33,23 +33,23 @@ public class ProfileManager {
     }
     
     // PUBLIC
-    public var services : [ServiceProfile] {
+    open var services : [ServiceProfile] {
         let values: [ServiceProfile] = [ServiceProfile](self.serviceProfiles.values)
         return values
     }
     
-    public var service : [CBUUID:ServiceProfile] {
+    open var service : [CBUUID:ServiceProfile] {
         return self.serviceProfiles
     }
 
-    public class var sharedInstance : ProfileManager {
+    open class var sharedInstance : ProfileManager {
         struct Static {
             static let instance = ProfileManager()
         }
         return Static.instance
     }
     
-    public func addService(serviceProfile:ServiceProfile) -> ServiceProfile {
+    open func addService(_ serviceProfile:ServiceProfile) -> ServiceProfile {
         self.serviceProfiles[serviceProfile.uuid] = serviceProfile
         return serviceProfile
     }

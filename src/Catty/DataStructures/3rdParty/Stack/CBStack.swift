@@ -39,7 +39,7 @@ class CBStack<T> {
     
     
     //push an item onto the stack
-    func push(key: T) {
+    func push(_ key: T) {
         
         
         //check for the instance

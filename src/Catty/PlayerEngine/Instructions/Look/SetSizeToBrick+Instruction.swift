@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetSizeToBrick: CBInstructionProtocol {
+@objc extension SetSizeToBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            let sizeInPercent = self.size.interpretDoubleForSprite(object)
+            let sizeInPercent = self.size.interpretDouble(forSprite: object)
             spriteNode.xScale = CGFloat(sizeInPercent/100.0)
             spriteNode.yScale = CGFloat(sizeInPercent/100.0)
         }

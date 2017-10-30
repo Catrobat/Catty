@@ -23,22 +23,22 @@
 import Foundation
 import Siren
 
-@objc public class SwiftBridge:NSObject {
+@objc open class SwiftBridge:NSObject {
 
-    @objc public class func sirenBridgeApplicationDidFinishLaunching() {
-        let siren = Siren.sharedInstance
-        siren.checkVersion(.Daily)
-        siren.alertType = .Option
+    @objc open class func sirenBridgeApplicationDidFinishLaunching() {
+        let siren = Siren.shared
+        siren.checkVersion(checkType: .daily)
+        siren.alertType = .option
     }
     
-    @objc public class func sirenApplicationDidBecomeActive() {
-        let siren = Siren.sharedInstance
-        siren.checkVersion(.Daily)
+    @objc open class func sirenApplicationDidBecomeActive() {
+        let siren = Siren.shared
+        siren.checkVersion(checkType: .daily)
     }
     
-    @objc public class func sirenApplicationWillEnterForeground() {
-        let siren = Siren.sharedInstance
-        siren.checkVersion(.Daily)
+    @objc open class func sirenApplicationWillEnterForeground() {
+        let siren = Siren.shared
+        siren.checkVersion(checkType: .daily)
     }
     
 }

@@ -31,7 +31,7 @@ final class CBBackend: CBBackendProtocol {
     }
 
     // MARK: - Operations
-    func instructionsForSequence(sequenceList: CBSequenceList) -> [CBInstruction] {
+    func instructionsForSequence(_ sequenceList: CBSequenceList) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
         sequenceList.forEach {
             switch $0 {
@@ -50,30 +50,30 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionForBrick(brick: Brick) -> [CBInstruction] {
+    private func _instructionForBrick(_ brick: Brick) -> [CBInstruction] {
         // check whether conforms to CBInstructionProtocol (i.e. brick extension)
         guard let instructionBrick = brick as? CBInstructionProtocol else {
             fatalError("All Bricks should implement the CBInstructionProtocol")
         }
-        if (brick.getRequiredResources() & ResourceType.BluetoothArduino.rawValue) > 0 {
+        if (brick.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
             guard let formulaBufferBrick = brick as? BrickFormulaProtocol else {
                  fatalError("All Bricks with formulas should implement the BrickFormulaProtocol")
             }
-            return [.FormulaBuffer(brick: formulaBufferBrick), instructionBrick.instruction()]
+            return [.formulaBuffer(brick: formulaBufferBrick), instructionBrick.instruction()]
         }
         return [instructionBrick.instruction()] // actions that have been ported to Swift yet
     }
 
-    private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence) -> [CBInstruction] {
+    private func _instructionsForIfSequence(_ ifSequence: CBIfConditionalSequence) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
 
         // add if condition evaluation instruction
         let ifInstructions = instructionsForSequence(ifSequence.sequenceList)
         let numberOfIfInstructions = ifInstructions.count
         if ifSequence.hasBluetoothFormula() {
-            instructionList += CBInstruction.ConditionalFormulaBuffer(conditionalBrick: ifSequence)
+            instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: ifSequence)
         }
-        instructionList += CBInstruction.ExecClosure { (context, scheduler) in
+        instructionList += CBInstruction.execClosure { (context, scheduler) in
             if ifSequence.checkCondition() == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
@@ -81,7 +81,7 @@ final class CBBackend: CBBackendProtocol {
                 }
                 context.jump(numberOfInstructions: numberOfInstructionsToJump)
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
         instructionList += ifInstructions // add if instructions
 
@@ -93,20 +93,20 @@ final class CBBackend: CBBackendProtocol {
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
-            instructionList += CBInstruction.ExecClosure { (context, scheduler) in
+            instructionList += CBInstruction.execClosure { (context, scheduler) in
                 context.jump(numberOfInstructions: numberOfElseInstructions)
-                context.state = .Runnable
+                context.state = .runnable
             }
             instructionList += elseInstructions
         }
         return instructionList
     }
 
-    private func _instructionsForLoopSequence(loopSequence: CBConditionalSequence) -> [CBInstruction] {
+    private func _instructionsForLoopSequence(_ loopSequence: CBConditionalSequence) -> [CBInstruction] {
         let bodyInstructions = instructionsForSequence(loopSequence.sequenceList)
         let numOfBodyInstructions = bodyInstructions.count
 
-        let loopEndInstruction = CBInstruction.HighPriorityExecClosure { (context, scheduler, _) in
+        let loopEndInstruction = CBInstruction.highPriorityExecClosure { (context, scheduler, _) in
             var numOfInstructionsToJump = 0
             if loopSequence.checkCondition() {
                 if loopSequence.hasBluetoothFormula() {
@@ -115,16 +115,16 @@ final class CBBackend: CBBackendProtocol {
                    numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
                 }
                 
-                loopSequence.lastLoopIterationStartTime = NSDate()
+                loopSequence.lastLoopIterationStartTime = Date()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
             }
 
             // minimum duration (CatrobatLanguage specification!)
-            let duration = NSDate().timeIntervalSinceDate(loopSequence.lastLoopIterationStartTime)
+            let duration = Date().timeIntervalSince(loopSequence.lastLoopIterationStartTime)
             self.logger.debug("  Duration for Sequence: \(duration*1_000)ms")
             if duration < PlayerConfig.LoopMinDurationTime {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(execute: {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
                     self.logger.debug("Waiting on high priority queue")
@@ -132,7 +132,7 @@ final class CBBackend: CBBackendProtocol {
                     usleep(uduration)
 
                     // now switch back to the main queue for executing the sequence!
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
                         scheduler.runNextInstructionOfContext(context)
                     });
@@ -144,9 +144,9 @@ final class CBBackend: CBBackendProtocol {
             }
         }
 
-        let loopBeginInstruction = CBInstruction.ExecClosure { (context, scheduler) in
+        let loopBeginInstruction = CBInstruction.execClosure { (context, scheduler) in
             if loopSequence.checkCondition() {
-                loopSequence.lastLoopIterationStartTime = NSDate()
+                loopSequence.lastLoopIterationStartTime = Date()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
                 if loopSequence.hasBluetoothFormula() {
@@ -156,18 +156,18 @@ final class CBBackend: CBBackendProtocol {
                 }
                 
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
 
         // finally add all instructions to list
         var instructionList = [CBInstruction]()
         if loopSequence.hasBluetoothFormula() {
-            instructionList += CBInstruction.ConditionalFormulaBuffer(conditionalBrick: loopSequence)
+            instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: loopSequence)
         }
         instructionList += loopBeginInstruction
         instructionList += bodyInstructions
         if loopSequence.hasBluetoothFormula() {
-            instructionList += CBInstruction.ConditionalFormulaBuffer(conditionalBrick: loopSequence)
+            instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: loopSequence)
         }
         instructionList += loopEndInstruction
         return instructionList

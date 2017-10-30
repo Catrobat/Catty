@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension Formula {
+@objc extension Formula {
 
-    func isIdempotent() -> Bool {
+    @objc func isIdempotent() -> Bool {
         return formulaTree.isIdempotent()
     }
 

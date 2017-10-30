@@ -20,27 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension MoveNStepsBrick: CBInstructionProtocol {
+@objc extension MoveNStepsBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps
         else { fatalError("This should never happen!") }
 
         return {
-            let steps = stepsFormula.interpretDoubleForSprite(object)
-            let rotation = Util.degreeToRadians(spriteNode.rotation)
+            let steps = stepsFormula.interpretDouble(forSprite: object)
+            let rotation = Util.degree(toRadians: spriteNode.rotation)
             let position = spriteNode.scenePosition
             
             let xPosition = Double(position.x) + (steps * sin(rotation))
             let yPosition = Double(position.y) + (steps * cos(rotation))
             
-            spriteNode.scenePosition = CGPointMake(CGFloat(xPosition), CGFloat(yPosition))
+            spriteNode.scenePosition = CGPoint(x: CGFloat(xPosition), y: CGFloat(yPosition))
         }
     }
 }

@@ -66,7 +66,7 @@
     return program;
 }
 
-+ (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
++ (nullable instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo
 {
     NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
     NSDebug(@"Path: %@", loadingInfo.basePath);
@@ -283,6 +283,7 @@
 
 - (void)saveToDiskWithNotification:(BOOL)notify
 {
+    FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // show saved view bezel
@@ -295,7 +296,7 @@
         }
         // TODO: find correct serializer class dynamically
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
+        id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
         [serializer serializeProgram:self];
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -563,7 +564,7 @@
             (programID ? programID : kNoProgramIDYetPlaceholder)];
 }
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)directoryName
++ (nullable ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)directoryName
 {
     CBAssert(directoryName);
     NSArray *directoryNameParts = [directoryName componentsSeparatedByString:kProgramIDSeparator];
@@ -575,7 +576,7 @@
     return [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
 }
 
-+ (NSString*)programNameForProgramID:(NSString*)programID
++ (nullable NSString *)programNameForProgramID:(NSString*)programID
 {
     if ((! programID) || (! [programID length])) {
         return nil;

@@ -23,42 +23,43 @@
 import Foundation
 import CoreBluetooth
 
-func toHostByteOrder<T>(value:T) -> T {
+func toHostByteOrder<T>(_ value:T) -> T {
     return value;
 }
 
-func fromHostByteOrder<T>(value:T) -> T {
+func fromHostByteOrder<T>(_ value:T) -> T {
     return value;
 }
 
-func byteArrayValue<T>(value:T) -> [UInt8] {
+func byteArrayValue<T>(_ value:T) -> [UInt8] {
     let values = [value]
-    let data = NSData(bytes:values, length:sizeof(T))
-    var byteArray = [UInt8](count:sizeof(T), repeatedValue:0)
-    data.getBytes(&byteArray, length:sizeof(T))
+    let bytes = UnsafeRawPointer(values).assumingMemoryBound(to: UInt8.self)
+    let data = Data(bytes: bytes, count:MemoryLayout<T>.size)
+    var byteArray = [UInt8](repeating: 0, count: MemoryLayout<T>.size)
+    (data as NSData).getBytes(&byteArray, length:MemoryLayout<T>.size)
     return byteArray
 }
 
-func reverseBytes<T>(value:T) -> T {
+func reverseBytes<T>(_ value:T) -> T {
     var result = value
-    let swappedBytes = NSData(bytes:byteArrayValue(value).reverse(), length:sizeof(T))
-    swappedBytes.getBytes(&result, length:sizeof(T))
+    let swappedBytes = Data(bytes: UnsafePointer<UInt8>(byteArrayValue(value).reversed()), count:MemoryLayout<T>.size)
+    (swappedBytes as NSData).getBytes(&result, length:MemoryLayout<T>.size)
     return result
 }
 
 public protocol Deserialize {
     static var size : Int {get}
-    static func deserialize(data:NSData) -> Self?
-    static func deserialize(data:NSData, start:Int) -> Self?
-    static func deserialize(data:NSData) -> [Self]
+    static func deserialize(_ data:Data) -> Self?
+    static func deserialize(_ data:Data, start:Int) -> Self?
+    static func deserialize(_ data:Data) -> [Self]
 }
 
 public protocol Serialize {
-    static func fromString(value:String, encoding:NSStringEncoding) -> NSData?
-    static func serialize<T>(value:T) -> NSData
-    static func serialize<T>(values:[T]) -> NSData
-    static func serialize<T1, T2>(value1:T1, value2:T2) -> NSData
-    static func serialize<T1, T2>(value1:[T1], value2:[T2]) -> NSData
+    static func fromString(_ value:String, encoding:String.Encoding) -> Data?
+    static func serialize<T>(_ value:T) -> Data
+    static func serialize<T>(_ values:[T]) -> Data
+    static func serialize<T1, T2>(_ value1:T1, value2:T2) -> Data
+    static func serialize<T1, T2>(_ value1:[T1], value2:[T2]) -> Data
 }
 
 public protocol CharacteristicConfigurable {
@@ -66,7 +67,7 @@ public protocol CharacteristicConfigurable {
     static var uuid          : String {get}
     static var permissions   : CBAttributePermissions {get}
     static var properties    : CBCharacteristicProperties {get}
-    static var initialValue  : NSData? {get}
+    static var initialValue  : Data? {get}
 }
 
 public protocol ServiceConfigurable {
@@ -118,71 +119,71 @@ public protocol RawArrayPairDeserialize {
 
 public struct Serializer {
     
-    public static func serialize(value:String, encoding:NSStringEncoding = NSUTF8StringEncoding) -> NSData? {
-        return NSData.fromString(value, encoding:encoding)
+    public static func serialize(_ value:String, encoding:String.Encoding = String.Encoding.utf8) -> Data? {
+        return Data.fromString(value, encoding:encoding)
     }
 
 
-    public static func serialize<T:Deserialize>(value:T) -> NSData {
-        return NSData.serialize(value)
+    public static func serialize<T:Deserialize>(_ value:T) -> Data {
+        return Data.serialize(value)
     }
 
-    public static func serialize<T:Deserialize>(values:[T]) -> NSData {
-        return NSData.serializeArray(values)
-    }
-
-
-
-    public static func serialize<T:RawDeserialize>(value:T) -> NSData {
-        return NSData.serialize(value.rawValue)
+    public static func serialize<T:Deserialize>(_ values:[T]) -> Data {
+        return Data.serializeArray(values)
     }
 
 
 
-    public static func serialize<T:RawArrayDeserialize>(value:T) -> NSData {
-        return NSData.serializeArray(value.rawValue)
+    public static func serialize<T:RawDeserialize>(_ value:T) -> Data {
+        return Data.serialize(value.rawValue)
     }
 
 
 
-    public static func serialize<T:RawPairDeserialize>(value:T) -> NSData {
-        return NSData.serialize(value.rawValue1, value2:value.rawValue2)
+    public static func serialize<T:RawArrayDeserialize>(_ value:T) -> Data {
+        return Data.serializeArray(value.rawValue)
     }
 
 
 
-    public static func serialize<T:RawArrayPairDeserialize>(value:T) -> NSData {
-        return NSData.serializeArrays(value.rawValue1, values2:value.rawValue2)
+    public static func serialize<T:RawPairDeserialize>(_ value:T) -> Data {
+        return Data.serialize(value.rawValue1, value2:value.rawValue2)
+    }
+
+
+
+    public static func serialize<T:RawArrayPairDeserialize>(_ value:T) -> Data {
+        return Data.serializeArrays(value.rawValue1, values2:value.rawValue2)
     }
 }
 
 public struct Deserializer {
   
-  public static func deserialize(data:NSData, encoding:NSStringEncoding = NSUTF8StringEncoding) -> String? {
-    return (NSString(data:data, encoding:encoding) as? String)
+  public static func deserialize(_ data:Data, encoding:String.Encoding = String.Encoding.utf8) -> String? {
+    return (NSString(data:data, encoding:encoding.rawValue) as String?)
   }
   
-  public static func deserialize<T:Deserialize>(data:NSData) -> T? {
+  public static func deserialize<T:Deserialize>(_ data:Data) -> T? {
     return T.deserialize(data)
   }
   
   
-  public static func deserialize<T:RawDeserialize where T.RawType:Deserialize>(data:NSData) -> T? {
+  public static func deserialize<T:RawDeserialize>(_ data:Data) -> T? where T.RawType:Deserialize {
     return T.RawType.deserialize(data).flatmap{T(rawValue:$0)}
   }
   
-  public static func deserialize<T:RawArrayDeserialize where T.RawType:Deserialize>(data:NSData) -> T? {
-    if data.length >= T.size {
+  public static func deserialize<T:RawArrayDeserialize>(_ data:Data) -> T? where T.RawType:Deserialize {
+    if data.count >= T.size {
       return T(rawValue:T.RawType.deserialize(data))
     } else {
       return nil
     }
   }
   
-  public static func deserialize<T:RawPairDeserialize where T.RawType1:Deserialize,  T.RawType2:Deserialize>(data:NSData) -> T? {
-    if data.length >= (T.RawType1.size + T.RawType2.size) {
-      let rawData1 = data.subdataWithRange(NSMakeRange(0, T.RawType1.size))
-      let rawData2 = data.subdataWithRange(NSMakeRange(T.RawType1.size, T.RawType2.size))
+  public static func deserialize<T:RawPairDeserialize>(_ data:Data) -> T? where T.RawType1:Deserialize,  T.RawType2:Deserialize {
+    if data.count >= (T.RawType1.size + T.RawType2.size) {
+      let rawData1 = data.subdata(in: Range(NSMakeRange(0, T.RawType1.size))!)
+      let rawData2 = data.subdata(in: Range(NSMakeRange(T.RawType1.size, T.RawType2.size))!)
       return T.RawType1.deserialize(rawData1).flatmap {rawValue1 in
         T.RawType2.deserialize(rawData2).flatmap {rawValue2 in
           T(rawValue1:rawValue1, rawValue2:rawValue2)
@@ -193,10 +194,10 @@ public struct Deserializer {
     }
   }
   
-  public static func deserialize<T:RawArrayPairDeserialize where T.RawType1:Deserialize,  T.RawType2:Deserialize>(data:NSData) -> T? {
-    if data.length >= (T.size1 + T.size2) {
-      let rawData1 = data.subdataWithRange(NSMakeRange(0, T.size1))
-      let rawData2 = data.subdataWithRange(NSMakeRange(T.size1, T.size2))
+  public static func deserialize<T:RawArrayPairDeserialize>(_ data:Data) -> T? where T.RawType1:Deserialize,  T.RawType2:Deserialize {
+    if data.count >= (T.size1 + T.size2) {
+      let rawData1 = data.subdata(in: Range(NSMakeRange(0, T.size1))!)
+      let rawData2 = data.subdata(in: Range(NSMakeRange(T.size1, T.size2))!)
       return T(rawValue1:T.RawType1.deserialize(rawData1), rawValue2:T.RawType2.deserialize(rawData2))
     } else {
       return nil

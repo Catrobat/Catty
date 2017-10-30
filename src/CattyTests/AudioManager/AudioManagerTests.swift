@@ -25,29 +25,29 @@ import XCTest
 
 class AudioManagerTests: XCTestCase {
     
-    var audioManager = AudioManager.sharedAudioManager()
+    var audioManager = AudioManager.shared()
     
     override func setUp( ) {
         super.setUp()
-        audioManager = AudioManager.sharedAudioManager()
+        audioManager = AudioManager.shared()
     }
     
     override func tearDown() {
         super.tearDown()
-        audioManager.stopAllSounds()
+        audioManager?.stopAllSounds()
     }
     
     func testPlaySound() {
-        let testBundle = NSBundle(forClass: self.dynamicType)
-        let fileURL = testBundle.URLForResource("silence", withExtension: "mp3")
+        let testBundle = Bundle(for: type(of: self))
+        let fileURL = testBundle.url(forResource: "silence", withExtension: "mp3")
         XCTAssertNotNil(fileURL)
         
-        let result = audioManager.playSoundWithFileName(fileURL!.lastPathComponent, andKey: "key", atFilePath: fileURL!.URLByDeletingLastPathComponent!.path)
-        XCTAssertTrue(result)
+        let result = audioManager?.playSound(withFileName: fileURL!.lastPathComponent, andKey: "key", atFilePath: fileURL!.deletingLastPathComponent().path)
+        XCTAssertTrue(result!)
     }
     
     func testPlaySoundAndFail() {
-        let result = audioManager.playSoundWithFileName("invalidFile", andKey: "key", atFilePath: "invalidPath")
-        XCTAssertFalse(result)
+        let result = audioManager?.playSound(withFileName: "invalidFile", andKey: "key", atFilePath: "invalidPath")
+        XCTAssertFalse(result!)
     }
 }

@@ -148,8 +148,8 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, PinState.high , "PinState is wrong")
     }
     func testSetDigitalPin4To0() {
         //Given
@@ -164,8 +164,8 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.Low , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .low , "PinState is wrong")
     }
     func testSetDigitalPin4To5() {
         //Given
@@ -180,8 +180,8 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .high , "PinState is wrong")
     }
     func testSetDigitalPin4ToMinus3() {
         //Given
@@ -196,8 +196,8 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.Low , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .low , "PinState is wrong")
     }
     // pwm pin
     func testSetPWMPin3To25() {
@@ -213,7 +213,7 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, UInt8(value),"PinValue is wrong")
     }
     func testSetPWMPin3ToMinus20() {
@@ -229,7 +229,7 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0,"PinValue is wrong")
     }
     
@@ -246,7 +246,7 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 255,"PinValue is wrong")
     }
     
@@ -265,8 +265,8 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .high , "PinState is wrong")
     }
     
     func testSetDigitalPin1WithMapping (){
@@ -284,8 +284,8 @@ class ArduinoTests: XCTestCase {
         }
         //not called -> initial values
         XCTAssertEqual(firmataMock.receivedPin, 0 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Unknown , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.Low , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .unknown , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .low , "PinState is wrong")
     }
     
     func testSetDigitalPin2WithMapping (){
@@ -303,8 +303,8 @@ class ArduinoTests: XCTestCase {
         }
         //not called -> initial values
         XCTAssertEqual(firmataMock.receivedPin, 0 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Unknown , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.Low , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .unknown , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .low , "PinState is wrong")
     }
     
     func testSetDigitalPin3WithMapping (){
@@ -321,8 +321,8 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 3 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
-        XCTAssertEqual(firmataMock.receivedPinState, PinState.High , "PinState is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinState, .high , "PinState is wrong")
     }
     
     func testSetPWMPin1WithMapping () {
@@ -339,7 +339,7 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin,UInt8(pin) , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.PWM , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, UInt8(value),"PinValue is wrong")
     }
     
@@ -357,7 +357,7 @@ class ArduinoTests: XCTestCase {
             return
         }
         XCTAssertEqual(firmataMock.receivedPin, 0 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Unknown , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .unknown , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0,"PinValue is wrong")
     }
     
@@ -521,7 +521,7 @@ class ArduinoTests: XCTestCase {
         XCTAssertEqual(firmataMock.receivedBool, false , "Reporting is wrong")
         //Last Pin set to 0
         XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
-        XCTAssertEqual(firmataMock.receivedPinMode, PinMode.Output , "PinMode is wrong")
+        XCTAssertEqual(firmataMock.receivedPinMode, .output , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 0 , "Value is wrong")
     }
     
@@ -571,7 +571,7 @@ class ArduinoTests: XCTestCase {
     func testFirmataDeviceSending () {
         //Given
         let name = "test"
-        let data = name.dataUsingEncoding(NSASCIIStringEncoding)
+        let data = name.data(using: String.Encoding.ascii)
         arduinoTest.txCharacteristic = CharacteristicMock(test: true)
         //When
         arduinoTest.sendData(data!)
@@ -587,7 +587,7 @@ class ArduinoTests: XCTestCase {
     func testFirmataDeviceSending2 () {
         //Given
         let name = "testtesttesttesttesttest"
-        let data = name.dataUsingEncoding(NSASCIIStringEncoding)
+        let data = name.data(using: String.Encoding.ascii)
         arduinoTest.txCharacteristic = CharacteristicMock(test: true)
         //When
         arduinoTest.sendData(data!)
@@ -597,7 +597,7 @@ class ArduinoTests: XCTestCase {
             return
         }
         let checkName = "test"
-        let checkData = checkName.dataUsingEncoding(NSASCIIStringEncoding)
+        let checkData = checkName.data(using: String.Encoding.ascii)
         XCTAssertEqual(peripheralMock.dataToSend,checkData,"Data is wrong")
     }
     

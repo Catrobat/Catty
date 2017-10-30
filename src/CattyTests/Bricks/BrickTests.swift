@@ -31,7 +31,7 @@ final class BrickTests: XCTestCase {
         let script = Script()
         let brick = WaitBrick()
         
-        script.addBrick(brick, atIndex: 0)
+        script.add(brick, at: 0)
         
         XCTAssertEqual(1, script.brickList.count, "Invalid number of Bricks")
         
@@ -49,8 +49,8 @@ final class BrickTests: XCTestCase {
         let brickB = SetVariableBrick()
         brickB.variableFormula = Formula.init(float: 2.0)
         
-        script.addBrick(brickA, atIndex: 0)
-        script.addBrick(brickB, atIndex: 1)
+        script.add(brickA, at: 0)
+        script.add(brickB, at: 1)
         
         XCTAssertEqual(2, script.brickList.count, "Invalid number of Bricks")
         
@@ -60,6 +60,6 @@ final class BrickTests: XCTestCase {
         
         let brick = script.brickList[0] as! SetVariableBrick
         
-        XCTAssertEqual(1.0, brick.variableFormula.interpretDoubleForSprite(nil), "Invalid formula");
+        XCTAssertEqual(1.0, brick.variableFormula.interpretDouble(forSprite: nil), "Invalid formula");
     }
 }

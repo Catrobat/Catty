@@ -36,11 +36,11 @@ final class CBOperationSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
         return (operationList.count == 0)
     }
 
-    func addOperation(operation : CBOperation) {
+    func addOperation(_ operation : CBOperation) {
         operationList.append(operation)
     }
 
-    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+    func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
 

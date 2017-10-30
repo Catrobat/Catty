@@ -35,7 +35,7 @@
 
 - (void)setup {
     
-    self.title = @"Settings";
+    self.title = kLocalizedSettings;
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {

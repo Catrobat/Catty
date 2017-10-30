@@ -20,38 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension GlideToBrick: CBInstructionProtocol {
+@objc extension GlideToBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
         guard let durationFormula = self.durationInSeconds,
             let object = self.script?.object
             else { fatalError("This should never happen!") }
         
         let cachedDuration = durationFormula.isIdempotent()
-            ? CBDuration.FixedTime(duration: durationFormula.interpretDoubleForSprite(object))
-            : CBDuration.VarTime(formula: durationFormula)
+            ? CBDuration.fixedTime(duration: durationFormula.interpretDouble(forSprite: object))
+            : CBDuration.varTime(formula: durationFormula)
         
-        return .LongDurationAction(duration: cachedDuration, actionCreateClosure: {
+        return .longDurationAction(duration: cachedDuration, actionCreateClosure: {
             (duration) -> SKAction in
                 return self.action(duration)
         })
     }
     
-    func action(duration : NSTimeInterval) -> SKAction {
+    @objc func action(_ duration : TimeInterval) -> SKAction {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
         
-        let xDestination = self.xDestination.interpretFloatForSprite(object)
-        let yDestination = self.yDestination.interpretFloatForSprite(object)
-        let duration = self.durationInSeconds.interpretDoubleForSprite(object)
+        let xDestination = self.xDestination.interpretFloat(forSprite: object)
+        let yDestination = self.yDestination.interpretFloat(forSprite: object)
+        let duration = self.durationInSeconds.interpretDouble(forSprite: object)
         guard let scene = spriteNode.scene else {
             fatalError("This should never happen!")
         }
         let destPoint = CGPoint(x: scene.size.width / 2 + CGFloat(xDestination), y: scene.size.height / 2 + CGFloat(yDestination))
         
-        let action = SKAction.moveTo(destPoint, duration: duration)
+        let action = SKAction.move(to: destPoint, duration: duration)
         return action
     }
 }

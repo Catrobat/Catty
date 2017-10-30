@@ -25,10 +25,11 @@
 #define kCBXMLSerializerLanguageVersion [Util catrobatLanguageVersion]
 
 @class GDataXMLDocument;
+@class FileManager;
 
 @interface CBXMLSerializer : NSObject <CBSerializerProtocol>
 
-- (id)initWithPath:(NSString*)path;
+- (id)initWithPath:(NSString*)path fileManager:(FileManager *)fileManager;
 - (void)serializeProgram:(Program*)program;
 + (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program;
 

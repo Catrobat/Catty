@@ -226,6 +226,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     if (! cell) {
         NSError(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
+        return [UITableViewCell new];
     }
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;

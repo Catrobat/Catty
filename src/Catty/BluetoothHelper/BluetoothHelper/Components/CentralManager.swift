@@ -24,7 +24,7 @@ import UIKit
 import CoreBluetooth
 
 //MARK: Central Manager
-public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
+@objc open class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     
     private static var instance : CentralManager!
     
@@ -34,17 +34,17 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     
     internal var ownPeripherals   = [CBPeripheral: Peripheral]()
     
-    public class var sharedInstance : CentralManager {
+    @objc open class var sharedInstance : CentralManager {
         self.instance = self.instance ?? CentralManager()
         return self.instance
     }
 
-    public class func sharedInstance(options:[String:AnyObject]) -> CentralManager {
+    @objc open class func sharedInstance(_ options:[String:AnyObject]) -> CentralManager {
         self.instance = self.instance ?? CentralManager(options:options)
         return self.instance
     }
 
-    public var isScanning : Bool {
+    @objc open var isScanning : Bool {
         return self.helper.isScanning
     }
     
@@ -61,55 +61,55 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     
     
     //MARK: SCAN
-    public func getKnownPeripheralsWithIdentifiers(uuids:[NSUUID])-> [CBPeripheral] {
+    open func getKnownPeripheralsWithIdentifiers(_ uuids:[UUID])-> [CBPeripheral] {
         return self.helper.retrieveKnownPeripheralsWithIdentifiers(self, uuids: uuids)
     }
     
-    public func getConnectedPeripheralsWithServices(uuids:[CBUUID])-> FutureStream<[Peripheral]> {
+    open func getConnectedPeripheralsWithServices(_ uuids:[CBUUID])-> FutureStream<[Peripheral]> {
         return self.helper.retrieveConnectedPeripheralsWithServices(self,uuids: uuids)
     }
     
-    public func startScan() -> FutureStream<Peripheral> {
+    open func startScan() -> FutureStream<Peripheral> {
         return self.helper.startScanningForServiceUUIDs(self, uuids: nil)
     }
     
-    public func startScanningForServiceUUIDs(uuids:[CBUUID]!, capacity:Int? = nil) -> FutureStream<Peripheral> {
+    open func startScanningForServiceUUIDs(_ uuids:[CBUUID]!, capacity:Int? = nil) -> FutureStream<Peripheral> {
         return self.helper.startScanningForServiceUUIDs(self, uuids:uuids, capacity:capacity)
     }
     
-    public func stopScanning() {
+    open func stopScanning() {
         self.helper.stopScanning(self)
     }
     
-    public func removeAllPeripherals() {
-        self.ownPeripherals.removeAll(keepCapacity:false)
+    open func removeAllPeripherals() {
+        self.ownPeripherals.removeAll(keepingCapacity:false)
     }
     
     //MARK: Connection
-    public func disconnectAllPeripherals() {
+    open func disconnectAllPeripherals() {
         self.helper.disconnectAllPeripherals(self)
     }
     
-    public func connectPeripheral(peripheral:Peripheral, options:[String:AnyObject]?=nil) {
-        self.cbCentralManager.connectPeripheral(peripheral.cbPeripheral, options:options)
+    open func connectPeripheral(_ peripheral:Peripheral, options:[String:AnyObject]?=nil) {
+        self.cbCentralManager.connect(peripheral.cbPeripheral, options:options)
     }
     
-    internal func cancelPeripheralConnection(peripheral:Peripheral) {
+    internal func cancelPeripheralConnection(_ peripheral:Peripheral) {
         self.cbCentralManager.cancelPeripheralConnection(peripheral.cbPeripheral)
     }
     
     //MARK: Start/Stop
-    public func start() -> Future<Void> {
+    open func start() -> Future<Void> {
         return self.helper.start(self)
     }
     
-    public func stop() -> Future<Void> {
+    open func stop() -> Future<Void> {
         return self.helper.stop(self)
     }
     
     //MARK: CBCentralManagerDelegate
-    public func centralManager(_:CBCentralManager, didConnectPeripheral peripheral:CBPeripheral) {
-        NSLog("peripheral: \(peripheral.name)")
+    open func centralManager(_:CBCentralManager, didConnect peripheral:CBPeripheral) {
+        NSLog("peripheral: \(String(describing: peripheral.name))")
         guard let ownPeripheral = self.ownPeripherals[peripheral] else {
             NSLog("error")
             return
@@ -117,8 +117,8 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         ownPeripheral.didConnectPeripheral()
     }
     
-    public func centralManager(_:CBCentralManager, didDisconnectPeripheral peripheral:CBPeripheral, error:NSError?) {
-        NSLog("peripheral: \(peripheral.name)")
+    open func centralManager(_:CBCentralManager, didDisconnectPeripheral peripheral:CBPeripheral, error:Error?) {
+        NSLog("peripheral: \(String(describing: peripheral.name))")
         guard let ownPeripheral = self.self.ownPeripherals[peripheral] else {
             NSLog("error")
             return
@@ -126,25 +126,25 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         ownPeripheral.didDisconnectPeripheral()
     }
     
-    public func centralManager(_:CBCentralManager, didDiscoverPeripheral peripheral:CBPeripheral, advertisementData:[String:AnyObject], RSSI:NSNumber) {
+    open func centralManager(_:CBCentralManager, didDiscover peripheral:CBPeripheral, advertisementData:[String:Any], rssi RSSI:NSNumber) {
         if self.ownPeripherals[peripheral] == nil {
 
-            let ownPeripheral = Peripheral(cbPeripheral:peripheral, advertisements:self.unpackAdvertisements(advertisementData), rssi:RSSI.integerValue)
+            let ownPeripheral = Peripheral(cbPeripheral:peripheral, advertisements:self.unpackAdvertisements(advertisementData as [String : AnyObject]), rssi:RSSI.intValue)
             NSLog("peripheral: \(ownPeripheral.name)")
             self.ownPeripherals[peripheral] = ownPeripheral
             self.helper.didDiscoverPeripheral(ownPeripheral)
         }
     }
     
-    public func centralManager(_:CBCentralManager, didFailToConnectPeripheral peripheral:CBPeripheral, error:NSError?) {
+    open func centralManager(_:CBCentralManager, didFailToConnect peripheral:CBPeripheral, error:Error?) {
         guard let bcPeripheral = self.ownPeripherals[peripheral] else {
             NSLog("error")
             return
         }
-        bcPeripheral.didFailToConnectPeripheral(error)
+        bcPeripheral.didFailToConnectPeripheral(error as NSError?)
     }
     
-    public func centralManager(_:CBCentralManager!, didRetrieveConnectedPeripherals peripherals:[AnyObject]!) {
+    open func centralManager(_:CBCentralManager!, didRetrieveConnectedPeripherals peripherals:[AnyObject]!) {
         var array:[Peripheral] = Array()
         for peripheral:CBPeripheral in peripherals as! [CBPeripheral] {
             let ownPeripheral:Peripheral = Peripheral(cbPeripheral:peripheral)
@@ -153,7 +153,7 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         self.helper.receivedConnectedPeripheral(array)
     }
     
-    public func centralManager(_:CBCentralManager!, didRetrievePeripherals peripherals:[AnyObject]!) {
+    open func centralManager(_:CBCentralManager!, didRetrievePeripherals peripherals:[AnyObject]!) {
         var array:[Peripheral] = Array()
         for peripheral:CBPeripheral in peripherals as! [CBPeripheral] {
             let ownPeripheral:Peripheral = Peripheral(cbPeripheral:peripheral)
@@ -163,16 +163,16 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
 
     }
     
-    public func centralManager(_:CBCentralManager, willRestoreState dict:[String:AnyObject]) {
+    open func centralManager(_:CBCentralManager, willRestoreState dict:[String:Any]) {
 
     }
-    public func centralManagerDidUpdateState(_:CBCentralManager) {
+    open func centralManagerDidUpdateState(_:CBCentralManager) {
         self.helper.didUpdateState(self)
     }
 
-    internal func unpackAdvertisements(advertDictionary:[String:AnyObject]) -> [String:String] {
+    internal func unpackAdvertisements(_ advertDictionary:[String:AnyObject]) -> [String:String] {
         var advertisements = [String:String]()
-        func addKey(key:String, andValue value:AnyObject) -> () {
+        func addKey(_ key:String, andValue value:AnyObject) -> () {
             if value is NSString {
                 advertisements[key] = (value as? String)
             } else {
@@ -182,8 +182,8 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
         for key in advertDictionary.keys {
             if let value : AnyObject = advertDictionary[key] {
                 if value is NSArray {
-                    for valueItem : AnyObject in (value as! NSArray) {
-                        addKey(key, andValue:valueItem)
+                    for valueItem in (value as! NSArray) {
+                        addKey(key, andValue:valueItem as AnyObject)
                     }
                 } else {
                     addKey(key, andValue:value)
@@ -194,9 +194,9 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     }
     
     //MARK: Wrap
-    public var isOn : Bool {
+    open var isOn : Bool {
         switch self.cbCentralManager.state {
-        case .PoweredOn:
+        case .poweredOn:
             return true
         default:
             return false
@@ -204,58 +204,58 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     }
     
     //MARK: Wrap
-    public var isOff : Bool {
+    open var isOff : Bool {
         switch self.cbCentralManager.state {
-        case .PoweredOff:
+        case .poweredOff:
             return true
         default:
             return false
         }
     }
     
-    public var peripherals : [Peripheral] {
+    open var peripherals : [Peripheral] {
         
         let values: [Peripheral] = [Peripheral](self.ownPeripherals.values)
         return values
     }
 
-    public var state: ManagerState {
+    @objc open var state: ManagerState {
         switch self.cbCentralManager.state {
-        case .Unknown:
-            return .Unknown
-        case .Resetting:
-            return .Resetting
-        case .Unsupported:
-            return .Unsupported
-        case .Unauthorized:
-            return .Unauthorized
-        case .PoweredOff:
-            return .PoweredOff
-        case .PoweredOn:
-            return .PoweredOn
+        case .unknown:
+            return .unknown
+        case .resetting:
+            return .resetting
+        case .unsupported:
+            return .unsupported
+        case .unauthorized:
+            return .unauthorized
+        case .poweredOff:
+            return .poweredOff
+        case .poweredOn:
+            return .poweredOn
         }
     }
     
-    public func scanForPeripheralsWithServices(uuids:[CBUUID]?) {
-        self.cbCentralManager.scanForPeripheralsWithServices(uuids,options:nil)
+    open func scanForPeripheralsWithServices(_ uuids:[CBUUID]?) {
+        self.cbCentralManager.scanForPeripherals(withServices: uuids,options:nil)
     }
     
-    public func retrievePeripheralsWithIdentifiers(uuids:[NSUUID]) -> [CBPeripheral]{
-        return self.cbCentralManager.retrievePeripheralsWithIdentifiers(uuids)
+    open func retrievePeripheralsWithIdentifiers(_ uuids:[UUID]) -> [CBPeripheral]{
+        return self.cbCentralManager.retrievePeripherals(withIdentifiers: uuids)
     }
-    public func retrieveConnectedPeripheralsWithServices(uuids:[CBUUID]){
-        self.cbCentralManager.retrieveConnectedPeripheralsWithServices(uuids)
+    open func retrieveConnectedPeripheralsWithServices(_ uuids:[CBUUID]){
+        self.cbCentralManager.retrieveConnectedPeripherals(withServices: uuids)
     }
     
-    public func stopScan() {
+    open func stopScan() {
         self.cbCentralManager.stopScan()
     }
 
 }
 
 //MARK:Helper
-public class CentralManagerHelper<CM where CM:CMWrapper,
-                                           CM.PeripheralWrap:PeripheralWrapper> {
+open class CentralManagerHelper<CM> where CM:CMWrapper,
+                                           CM.PeripheralWrap:PeripheralWrapper {
     
     private var afterStartingPromise                 = Promise<Void>()
     private var afterStoppingPromise                = Promise<Void>()
@@ -265,7 +265,7 @@ public class CentralManagerHelper<CM where CM:CMWrapper,
     
     private var _isScanning      = false
     
-    public var isScanning : Bool {
+    open var isScanning : Bool {
         return self._isScanning
     }
     
@@ -274,7 +274,7 @@ public class CentralManagerHelper<CM where CM:CMWrapper,
     
     //MARK: Scan
     
-    public func startScanningForServiceUUIDs(central:CM, uuids:[CBUUID]!, capacity:Int? = nil) -> FutureStream<CM.PeripheralWrap> {
+    open func startScanningForServiceUUIDs(_ central:CM, uuids:[CBUUID]!, capacity:Int? = nil) -> FutureStream<CM.PeripheralWrap> {
         if !self._isScanning {
             NSLog("UUIDs \(uuids)")
             if let capacity = capacity {
@@ -288,17 +288,17 @@ public class CentralManagerHelper<CM where CM:CMWrapper,
         return self.afterPeripheralDiscoveredPromise.future
     }
     
-    public func retrieveKnownPeripheralsWithIdentifiers(central:CM,uuids:[NSUUID])-> [CBPeripheral] {
+    open func retrieveKnownPeripheralsWithIdentifiers(_ central:CM,uuids:[UUID])-> [CBPeripheral] {
         return central.retrievePeripheralsWithIdentifiers(uuids)
     }
     
-    public func retrieveConnectedPeripheralsWithServices(central:CM,uuids:[CBUUID])-> FutureStream<[CM.PeripheralWrap]> {
+    open func retrieveConnectedPeripheralsWithServices(_ central:CM,uuids:[CBUUID])-> FutureStream<[CM.PeripheralWrap]> {
         central.retrieveConnectedPeripheralsWithServices(uuids)
         self.afterConnectedPeripheralDiscoveredPromise = StreamPromise<[CM.PeripheralWrap]>()
         return self.afterConnectedPeripheralDiscoveredPromise.future
     }
     
-    public func stopScanning(central:CM) {
+    open func stopScanning(_ central:CM) {
         if self._isScanning {
             self._isScanning = false
             central.stopScan()
@@ -306,7 +306,7 @@ public class CentralManagerHelper<CM where CM:CMWrapper,
     }
     
     //MARK: Connection
-    public func disconnectAllPeripherals(central:CentralManager) {
+    open func disconnectAllPeripherals(_ central:CentralManager) {
         for peripheral in central.peripherals {
             peripheral.disconnect()
         }
@@ -314,66 +314,66 @@ public class CentralManagerHelper<CM where CM:CMWrapper,
     
     
     //MARK: Power
-    public func start(central:CM) -> Future<Void> {
+    open func start(_ central:CM) -> Future<Void> {
         CentralQueue.sync {
             self.afterStartingPromise = Promise<Void>()
             if central.isOn {
-                self.afterStartingPromise.success()
+                self.afterStartingPromise.success(())
             }
         }
         return self.afterStartingPromise.future
     }
     
-    public func stop(central:CM) -> Future<Void> {
+    open func stop(_ central:CM) -> Future<Void> {
         CentralQueue.sync {
             self.afterStoppingPromise = Promise<Void>()
             if central.isOff {
-                self.afterStoppingPromise.success()
+                self.afterStoppingPromise.success(())
             }
         }
         return self.afterStoppingPromise.future
     }
     
     //MARK: State
-    public func didUpdateState(central:CM) {
+    open func didUpdateState(_ central:CM) {
         switch(central.state) {
-        case .Unauthorized:
+        case .unauthorized:
             NSLog("Unauthorized")
             break
-        case .Unknown:
+        case .unknown:
             NSLog("Unknown")
             break
-        case .Unsupported:
+        case .unsupported:
             NSLog("Unsupported")
             break
-        case .Resetting:
+        case .resetting:
             NSLog("Resetting")
             break
-        case .PoweredOff:
+        case .poweredOff:
             NSLog("PoweredOff")
             if !self.afterStoppingPromise.completed {
-                self.afterStoppingPromise.success()
+                self.afterStoppingPromise.success(())
             }
             break
-        case .PoweredOn:
+        case .poweredOn:
             NSLog("PoweredOn")
             if !self.afterStartingPromise.completed {
-                self.afterStartingPromise.success()
+                self.afterStartingPromise.success(())
             }
             break
         }
     }
     
     //MARK: did discover Peripheral
-    public func didDiscoverPeripheral(peripheral:CM.PeripheralWrap) {
+    open func didDiscoverPeripheral(_ peripheral:CM.PeripheralWrap) {
         self.afterPeripheralDiscoveredPromise.success(peripheral)
     }
     
-    public func receivedKnownPeripheral(peripherals:[CM.PeripheralWrap]) {
+    open func receivedKnownPeripheral(_ peripherals:[CM.PeripheralWrap]) {
         self.afterKnownPeripheralDiscoveredPromise.success(peripherals)
     }
     
-    public func receivedConnectedPeripheral(peripherals:[CM.PeripheralWrap]) {
+    open func receivedConnectedPeripheral(_ peripherals:[CM.PeripheralWrap]) {
         self.afterConnectedPeripheralDiscoveredPromise.success(peripherals)
     }
     

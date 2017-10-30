@@ -261,7 +261,7 @@
         param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
         param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     }
-    if ([Program programExistsWithProgramName:param programID:programID]) {
+    if (param && [Program programExistsWithProgramName:param programID:programID]) {
         [Util alertWithText:kLocalizedProgramAlreadyDownloadedDescription];
         return NO;
     }
@@ -273,7 +273,7 @@
         param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
         NSRange end = [param rangeOfString:@"."];
         if (end.location != NSNotFound) {
-            param = [param substringToIndex:end.location];
+            //param = [param substringToIndex:end.location];
         }
     }
     [self.loadingView show];

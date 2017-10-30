@@ -39,7 +39,7 @@ final class CBScriptSequenceList : CBSequenceVisitProtocol {
     }
 
     // MARK: - Operations
-    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+    func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
 

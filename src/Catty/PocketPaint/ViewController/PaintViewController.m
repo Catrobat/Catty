@@ -310,7 +310,7 @@
 {
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
-    self.navigationItem.title = @"Pocket Paint";
+    self.navigationItem.title = kLocalizedPaintPocketPaint;
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self

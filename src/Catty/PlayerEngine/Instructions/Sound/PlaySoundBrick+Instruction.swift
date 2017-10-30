@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PlaySoundBrick: CBInstructionProtocol {
+@objc extension PlaySoundBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
         guard let objectName = self.script?.object?.name,
             let projectPath = self.script?.object?.projectPath()
@@ -30,17 +30,17 @@ extension PlaySoundBrick: CBInstructionProtocol {
 
         guard let sound = self.sound,
               let fileName = sound.fileName
-        else { return .InvalidInstruction() }
+        else { return .invalidInstruction() }
 
         let filePath = projectPath + kProgramSoundsDirName
-        let audioManager = AudioManager.sharedAudioManager()
+        let audioManager = AudioManager.shared()
 
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: PlaySoundBrick")
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
-                audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async{
+                audioManager?.playSound(withFileName: fileName, andKey: objectName, atFilePath: filePath)
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
 
     }

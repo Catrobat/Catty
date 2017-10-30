@@ -20,23 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetTransparencyBrick: CBInstructionProtocol{
+@objc extension SetTransparencyBrick: CBInstructionProtocol{
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
-            return .Action(action: SKAction.runBlock(actionClosure))
+            return .action(action: SKAction.run(actionClosure))
         }
-        return .InvalidInstruction()
+        return .invalidInstruction()
     }
 
-    func actionBlock() -> dispatch_block_t? {
+    @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let transparency = self.transparency
         else { fatalError("This should never happen!") }
 
         return {
-            let trans = transparency.interpretDoubleForSprite(object)
+            let trans = transparency.interpretDouble(forSprite: object)
             let alpha = 1.0 - (trans / 100.0)
             if (alpha < 0) {
                 spriteNode.alpha = 0;

@@ -96,7 +96,7 @@
     CGContextClearRect(ctx, rect);
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
   
-    CGColorSpaceRelease(baseSpace), baseSpace = NULL;
+    CGColorSpaceRelease(baseSpace); baseSpace = NULL;
     
 
     

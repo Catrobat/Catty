@@ -22,6 +22,6 @@
 
 protocol CBBackendProtocol {
 
-    func instructionsForSequence(sequenceList: CBSequenceList) -> [CBInstruction]
+    func instructionsForSequence(_ sequenceList: CBSequenceList) -> [CBInstruction]
 
 }

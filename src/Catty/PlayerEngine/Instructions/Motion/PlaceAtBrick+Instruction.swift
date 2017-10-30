@@ -20,21 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PlaceAtBrick: CBInstructionProtocol{
+@objc extension PlaceAtBrick: CBInstructionProtocol{
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            let xPosition = CGFloat(self.xPosition.interpretDoubleForSprite(object))
-            let yPosition = CGFloat(self.yPosition.interpretDoubleForSprite(object))
-            spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
+            let xPosition = CGFloat(self.xPosition.interpretDouble(forSprite: object))
+            let yPosition = CGFloat(self.yPosition.interpretDouble(forSprite: object))
+            spriteNode.scenePosition = CGPoint(x: xPosition, y: yPosition)
         }
     }
 

@@ -20,20 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetVolumeToBrick: CBInstructionProtocol {
+@objc extension SetVolumeToBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen") }
 
-        let audioManager = AudioManager.sharedAudioManager()
+        let audioManager = AudioManager.shared()
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
 //            self.logger.debug("Performing: SetVolumeToBrick")
-            let volume = self.volume.interpretDoubleForSprite(spriteObject)
-            audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
-            context.state = .Runnable
+            let volume = self.volume.interpretDouble(forSprite: spriteObject)
+            audioManager?.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
+            context.state = .runnable
         }
 
     }

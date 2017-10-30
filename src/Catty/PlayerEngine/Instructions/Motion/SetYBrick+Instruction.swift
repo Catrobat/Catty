@@ -20,21 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetYBrick: CBInstructionProtocol {
+@objc extension SetYBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.scenePosition = CGPointMake(
-                spriteNode.scenePosition.x,
-                CGFloat(self.yPosition.interpretDoubleForSprite(object))
+            spriteNode.scenePosition = CGPoint(
+                x: spriteNode.scenePosition.x,
+                y: CGFloat(self.yPosition.interpretDouble(forSprite: object))
             )
         }
     }

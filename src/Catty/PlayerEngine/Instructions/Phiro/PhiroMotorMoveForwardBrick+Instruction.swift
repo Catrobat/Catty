@@ -22,13 +22,13 @@
 
 import Foundation
 
-extension PhiroMotorMoveForwardBrick :CBInstructionProtocol {
+@objc extension PhiroMotorMoveForwardBrick :CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure { (context, _) in
-            let speedValue:Int = Int(self.formula.interpretIntegerForSprite(object))
+        return CBInstruction.execClosure { (context, _) in
+            let speedValue:Int = Int(self.formula.interpretInteger(forSprite: object))
             
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
                 return
@@ -46,7 +46,7 @@ extension PhiroMotorMoveForwardBrick :CBInstructionProtocol {
                     phiro.moveLeftMotorForward(speedValue);
                 break;
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
     }
     

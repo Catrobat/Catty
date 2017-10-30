@@ -21,13 +21,13 @@
  */
 
 protocol CBOptimizeSequenceVisitorProtocol {
-    func visit(sequence: CBScriptSequenceList)
-    func visit(sequence: CBSequenceList)
-    func visit(sequence: CBOperationSequence)
-    func visit(sequence: CBConditionalSequence)
-    func visit(sequence: CBIfConditionalSequence)
+    func visit(_ sequence: CBScriptSequenceList)
+    func visit(_ sequence: CBSequenceList)
+    func visit(_ sequence: CBOperationSequence)
+    func visit(_ sequence: CBConditionalSequence)
+    func visit(_ sequence: CBIfConditionalSequence)
 }
 
 protocol CBSequenceVisitProtocol {
-    func accept(visitor: CBOptimizeSequenceVisitorProtocol)
+    func accept(_ visitor: CBOptimizeSequenceVisitorProtocol)
 }

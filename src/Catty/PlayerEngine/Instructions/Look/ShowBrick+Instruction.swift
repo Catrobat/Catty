@@ -20,18 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ShowBrick: CBInstructionProtocol {
+@objc extension ShowBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
-        return { spriteNode.hidden = false }
+        return { spriteNode.isHidden = false }
     }
 
 }

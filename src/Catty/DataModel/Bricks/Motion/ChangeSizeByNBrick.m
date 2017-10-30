@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Changesizebynbrick.h"
+#import "ChangeSizeByNBrick.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 

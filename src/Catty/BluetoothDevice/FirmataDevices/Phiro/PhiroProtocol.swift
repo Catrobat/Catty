@@ -24,14 +24,14 @@ import Foundation
 
 
 protocol PhiroProtocol{
-    func playTone(toneFrequency:NSInteger,duration:Double)
-    func moveLeftMotorForward(speed:Int)
-    func moveLeftMotorBackward(speed:Int)
-    func moveRightMotorForward(speed:Int)
-    func moveRightMotorBackward(speed:Int)
+    func playTone(_ toneFrequency:NSInteger,duration:Double)
+    func moveLeftMotorForward(_ speed:Int)
+    func moveLeftMotorBackward(_ speed:Int)
+    func moveRightMotorForward(_ speed:Int)
+    func moveRightMotorBackward(_ speed:Int)
     func stopLeftMotor()
     func stopRightMotor()
     func stopAllMotors()
-    func setLeftRGBLightColor(red:Int,green:Int,blue:Int)
-    func setRightRGBLightColor(red:Int,green:Int,blue:Int)
+    func setLeftRGBLightColor(_ red:Int,green:Int,blue:Int)
+    func setRightRGBLightColor(_ red:Int,green:Int,blue:Int)
 }

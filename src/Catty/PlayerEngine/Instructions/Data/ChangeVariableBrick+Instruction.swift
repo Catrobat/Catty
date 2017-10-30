@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeVariableBrick: CBInstructionProtocol {
+@objc extension ChangeVariableBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
               let variables = spriteObject.program?.variables
@@ -31,29 +31,29 @@ extension ChangeVariableBrick: CBInstructionProtocol {
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
 
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
 //            self.logger.debug("Performing: ChangeVariableBrick")
-            let result = variableFormula.interpretVariableDataForSprite(spriteObject)
-            if userVariable != nil {
+            let result = variableFormula?.interpretVariableData(forSprite: spriteObject)
+            if let userVariable = userVariable {
                 if userVariable.value == nil {
                     if result is NSNumber {
-                        userVariable.value = NSNumber(int: 0)
+                        userVariable.value = NSNumber(value: 0 as Int32)
                     } else {
                         userVariable.value = ""
                     }
                 }
                 if userVariable.value is NSNumber && result is NSNumber {
-                    let number:NSNumber = (result as? NSNumber)!
-                    variables.changeVariable(userVariable, byValue: number.doubleValue)
+                    let number:NSNumber = (result as? NSNumber)! // FIXME: don't force unwrap
+                    variables.change(userVariable, byValue: number.doubleValue)
                     //update active UserVariable
-                    userVariable.textLabel.text = String(Int(userVariable.value.doubleValue))
+                    userVariable.textLabel.text = String(Int((userVariable.value as! NSNumber).doubleValue)) // FIXME: don't force unwrap
                 } else if userVariable.value is NSString {
                     // do nothing
                 } else {
                     // do nothing
                 }
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
 
     }

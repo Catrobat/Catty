@@ -25,11 +25,11 @@ import UIKit
 
 
 @objc public protocol AlertControllerProtocol {
-    func showWithController(controller: UIViewController)
-    func showWithController(controller: UIViewController, completion: () -> Void)
+    func showWithController(_ controller: UIViewController)
+    func showWithController(_ controller: UIViewController, completion: @escaping () -> Void)
 
-    func viewDidAppear(handler: (UIView) -> Void) -> AlertControllerProtocol
-    func viewWillDisappear(handler: () -> Void) -> AlertControllerProtocol
+    func viewDidAppear(_ handler: @escaping (UIView) -> Void) -> AlertControllerProtocol
+    func viewWillDisappear(_ handler: @escaping () -> Void) -> AlertControllerProtocol
 }
 
 
@@ -45,15 +45,15 @@ protocol CustomAlertControllerDelegate {
 
 
 final class CustomAlertController: UIAlertController {
-    private var delegate: CustomAlertControllerDelegate?
+    fileprivate var delegate: CustomAlertControllerDelegate?
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         delegate?.viewDidAppear?(self.view)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
         delegate?.viewWillDisappear?()
@@ -75,31 +75,31 @@ class BaseAlertController: NSObject, AlertControllerProtocol, BuilderProtocol, C
     }
 
     @objc func build() -> AlertControllerProtocol {
-        alertController.view.tintColor = UIColor.globalTintColor()
-        alertController.view.backgroundColor = UIColor.clearColor()
+        alertController.view.tintColor = UIColor.globalTint()
+        alertController.view.backgroundColor = UIColor.clear
         return self
     }
 
-    @objc func viewDidAppear(handler: (UIView) -> Void) -> AlertControllerProtocol {
+    @objc func viewDidAppear(_ handler: @escaping (UIView) -> Void) -> AlertControllerProtocol {
         self.viewDidAppear = handler
         return self
     }
 
-    @objc func viewWillDisappear(handler: () -> Void) -> AlertControllerProtocol {
+    @objc func viewWillDisappear(_ handler: @escaping () -> Void) -> AlertControllerProtocol {
         self.viewWillDisappear = handler
         return self
     }
     
-    @objc func showWithController(controller: UIViewController) {
+    @objc func showWithController(_ controller: UIViewController) {
         showWithController(controller, completion: {})
     }
 
-    @objc func showWithController(controller: UIViewController, completion: () -> Void) {
+    @objc func showWithController(_ controller: UIViewController, completion: @escaping () -> Void) {
         guard !Util.activateTestMode(false) else {
             return
         }
-        let presentingController = !controller.isViewLoaded() || controller.view.window == nil ?
-                Util.topViewControllerInViewController(controller) : controller
-        presentingController.presentViewController(alertController, animated: true, completion: completion)
+        let presentingController = !controller.isViewLoaded || controller.view.window == nil ?
+                Util.topViewController(in: controller) : controller
+        presentingController?.present(alertController, animated: true, completion: completion)
     }
 }

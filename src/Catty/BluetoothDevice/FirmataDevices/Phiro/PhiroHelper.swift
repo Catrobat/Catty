@@ -32,7 +32,7 @@ class PhiroHelper {
     
     
     
-    func didReceiveAnalogMessage(pin:Int,value:Int){
+    func didReceiveAnalogMessage(_ pin:Int,value:Int){
         switch (pin) {
         case PIN_SENSOR_SIDE_RIGHT:
             sideRightSensor = value

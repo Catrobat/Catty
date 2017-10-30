@@ -20,28 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension NextLookBrick: CBInstructionProtocol {
+@objc extension NextLookBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         if let actionClosure = actionBlock() {
-            return .Action(action: SKAction.runBlock(actionClosure))
+            return .action(action: SKAction.run(actionClosure))
         }
-        return .InvalidInstruction()
+        return .invalidInstruction()
     }
 
-    func actionBlock() -> dispatch_block_t? {
+    @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
         return {
             guard let look = spriteNode.nextLook() else { return  }
-            let cache:RuntimeImageCache = RuntimeImageCache.sharedImageCache()
-            var image = cache.cachedImageForPath(self.pathForLook(look))
+            let cache:RuntimeImageCache = RuntimeImageCache.shared()
+            var image = cache.cachedImage(forPath: self.path(for: look))
             
             if(image == nil){
                 print("LoadImageFromDisk")
-                cache.loadImageFromDiskWithPath(self.pathForLook(look))
-                guard let imageFromDisk = UIImage(contentsOfFile: self.pathForLook(look)) else { return }
+                cache.loadImageFromDisk(withPath: self.path(for: look))
+                guard let imageFromDisk = UIImage(contentsOfFile: self.path(for: look)) else { return }
                 image = imageFromDisk
             }
            

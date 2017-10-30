@@ -69,7 +69,7 @@
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, weak_ref) UIView *underlyingView;
 
-- (void)updateAsynchronously:(BOOL)async completion:(void (^)())completion;
+- (void)updateAsynchronously:(BOOL)async completion:(void (^)(void))completion;
 
 @end
 

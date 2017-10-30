@@ -22,19 +22,19 @@
 
 import Foundation
 
-extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
+@objc extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure{ (context, _) in
-            let pinValue = Int(self.pin.interpretIntegerForSprite(object))
-            let settingValue = Int(self.value.interpretDoubleForSprite(object))
+        return CBInstruction.execClosure{ (context, _) in
+            let pinValue = Int(self.pin.interpretInteger(forSprite: object))
+            let settingValue = Int(self.value.interpretDouble(forSprite: object))
                 
             if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
                 arduino.setPWMArduinoPin(pinValue, value: settingValue)
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
     }
 }

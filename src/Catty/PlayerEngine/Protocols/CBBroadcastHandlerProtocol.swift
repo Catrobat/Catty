@@ -24,11 +24,11 @@ protocol CBBroadcastHandlerProtocol: class {
 
     func setup()
     func tearDown()
-    func subscribeBroadcastContext(context: CBBroadcastScriptContextProtocol)
-    func unsubscribeBroadcastContext(context: CBBroadcastScriptContextProtocol)
-    func performBroadcastWithMessage(message: String, senderContext: CBScriptContextProtocol, broadcastType: CBBroadcastType)
-    func wakeUpContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContextProtocol)
-    func isWaitingForCalledBroadcastContexts(context: CBScriptContextProtocol) -> Bool
-    func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context: CBScriptContextProtocol)
+    func subscribeBroadcastContext(_ context: CBBroadcastScriptContextProtocol)
+    func unsubscribeBroadcastContext(_ context: CBBroadcastScriptContextProtocol)
+    func performBroadcastWithMessage(_ message: String, senderContext: CBScriptContextProtocol, broadcastType: CBBroadcastType)
+    func wakeUpContextsWaitingForTerminationOfBroadcastContext(_ context: CBBroadcastScriptContextProtocol)
+    func isWaitingForCalledBroadcastContexts(_ context: CBScriptContextProtocol) -> Bool
+    func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(_ context: CBScriptContextProtocol)
 
 }

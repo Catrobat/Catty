@@ -26,22 +26,22 @@ protocol CBSchedulerProtocol : class {
     var running:Bool { get set }
 
     // queries
-    func isContextScheduled(context: CBScriptContextProtocol) -> Bool
-    func startWhenContextsOfSpriteNodeWithName(spriteName: String)
-    func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol])
+    func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool
+    func startWhenContextsOfSpriteNodeWithName(_ spriteName: String)
+    func startBroadcastContexts(_ broadcastContexts: [CBBroadcastScriptContextProtocol])
 
     // registration
-    func registerSpriteNode(spriteNode: CBSpriteNode)
-    func registerContext(context: CBScriptContextProtocol)
+    func registerSpriteNode(_ spriteNode: CBSpriteNode)
+    func registerContext(_ context: CBScriptContextProtocol)
 
     // events
     func run()
     func shutdown()
     func pause()
     func resume()
-    func runNextInstructionOfContext(context: CBScriptContextProtocol)
+    func runNextInstructionOfContext(_ context: CBScriptContextProtocol)
     func runNextInstructionsGroup()
-    func scheduleContext(context: CBScriptContextProtocol)
-    func stopContext(context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
+    func scheduleContext(_ context: CBScriptContextProtocol)
+    func stopContext(_ context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
 
 }

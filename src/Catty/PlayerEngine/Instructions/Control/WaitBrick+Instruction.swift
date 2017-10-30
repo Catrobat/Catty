@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension WaitBrick: CBInstructionProtocol {
+@objc extension WaitBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let object = self.script?.object
         else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
 
-        return CBInstruction.WaitExecClosure { (_, _) in
-            let durationInSeconds = self.timeToWaitInSeconds.interpretDoubleForSprite(object)
+        return CBInstruction.waitExecClosure { (_, _) in
+            let durationInSeconds = self.timeToWaitInSeconds.interpretDouble(forSprite: object)
 
             // check if an invalid duration is given! => prevents UInt32 underflow
             if durationInSeconds <= 0.0 { return }
@@ -36,9 +36,9 @@ extension WaitBrick: CBInstructionProtocol {
             // UInt32 overflow protection check
             if durationInSeconds > 60.0 {
                 //logger.warn("WOW!!! long time to sleep (> 1min!!!)...")
-                let wakeUpTime = NSDate().dateByAddingTimeInterval(durationInSeconds)
+                let wakeUpTime = Date().addingTimeInterval(durationInSeconds)
                 //logger.debug("Sleeping now until \(wakeUpTime)...")
-                NSThread.sleepUntilDate(wakeUpTime)
+                Thread.sleep(until: wakeUpTime)
             } else {
                 let durationInMicroSeconds = durationInSeconds * 1_000_000
                 let uduration = UInt32(durationInMicroSeconds) // in microseconds (10^-6)

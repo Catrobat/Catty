@@ -32,6 +32,7 @@
 #import "ResourceHelper.h"
 #import "Reachability.h"
 #import "MediaLibraryViewController.h"
+#import "AppDelegate.h"
 
 @class BluetoothPopupVC;
 
@@ -441,7 +442,7 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-    
+
     self.scenePresenterViewController = [ScenePresenterViewController new];
     self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];

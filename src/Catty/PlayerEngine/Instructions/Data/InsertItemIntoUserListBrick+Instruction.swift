@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension InsertItemIntoUserListBrick: CBInstructionProtocol {
+@objc extension InsertItemIntoUserListBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
               let variablesContainer = spriteObject.program?.variables
@@ -33,14 +33,14 @@ extension InsertItemIntoUserListBrick: CBInstructionProtocol {
         let position = self.index
 
 
-        return CBInstruction.ExecClosure { (context, _) in
+        return CBInstruction.execClosure { (context, _) in
 //            self.logger.debug("Performing: InsertItemIntoUserListBrick")
             if (userList != nil){
-                let valueResult = elementFormula.interpretVariableDataForSprite(spriteObject)
-                let positionResult = position.interpretVariableDataForSprite(spriteObject)
-                variablesContainer.insertToUserList(userList, value: valueResult, atIndex: positionResult)
+                let valueResult = elementFormula?.interpretVariableData(forSprite: spriteObject)
+                let positionResult = position?.interpretVariableData(forSprite: spriteObject)
+                variablesContainer.insert(toUserList: userList, value: valueResult, atIndex: positionResult)
             }
-            context.state = .Runnable
+            context.state = .runnable
         }
 
     }

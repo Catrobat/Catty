@@ -63,7 +63,7 @@
 + (instancetype _Nonnull)lastUsedProgram;
 + (void)updateLastModificationTimeForProgramWithName:(NSString* _Nonnull)programName
                                            programID:(NSString* _Nonnull)programID;
-+ (instancetype _Nonnull)programWithLoadingInfo:(ProgramLoadingInfo* _Nonnull)loadingInfo;
++ (nullable instancetype)programWithLoadingInfo:(ProgramLoadingInfo* _Nonnull)loadingInfo;
 + (BOOL)programExistsWithProgramName:(NSString* _Nonnull)programName
                            programID:(NSString* _Nonnull)programID;
 + (BOOL)programExistsWithProgramID:(NSString* _Nonnull)programID;
@@ -80,7 +80,7 @@
 + (NSArray* _Nonnull)allProgramLoadingInfos;
 + (NSString* _Nonnull)programDirectoryNameForProgramName:(NSString* _Nonnull)programName
                                                programID:(NSString* _Nullable)programID;
-+ (ProgramLoadingInfo* _Nonnull)programLoadingInfoForProgramDirectoryName:(NSString* _Nonnull)programDirectoryName;
-+ (NSString* _Nonnull)programNameForProgramID:(NSString* _Nonnull)programID;
++ (nullable ProgramLoadingInfo *)programLoadingInfoForProgramDirectoryName:(NSString* _Nonnull)programDirectoryName;
++ (nullable NSString *)programNameForProgramID:(NSString* _Nonnull)programID;
 
 @end

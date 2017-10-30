@@ -23,35 +23,35 @@
 @objc class CBSceneHelper: NSObject {
     
     // MARK: - Operations (Helpers)
-    class func convertPointToScene(point: CGPoint, sceneSize: CGSize) -> CGPoint {
+    @objc class func convertPointToScene(_ point: CGPoint, sceneSize: CGSize) -> CGPoint {
         let x = convertXCoordinateToScene(point.x, sceneSize: sceneSize)
         let y = convertYCoordinateToScene(point.y, sceneSize: sceneSize)
         return CGPoint(x: x, y: y)
     }
     
-    class func convertXCoordinateToScene(x: CGFloat, sceneSize: CGSize) -> CGFloat {
+    @objc class func convertXCoordinateToScene(_ x: CGFloat, sceneSize: CGSize) -> CGFloat {
         return (sceneSize.width/2.0 + x)
     }
     
-    class func convertYCoordinateToScene(y: CGFloat, sceneSize: CGSize) -> CGFloat {
+    @objc class func convertYCoordinateToScene(_ y: CGFloat, sceneSize: CGSize) -> CGFloat {
         return (sceneSize.height/2.0 + y)
     }
     
-    class func convertSceneCoordinateToPoint(point: CGPoint, sceneSize: CGSize) -> CGPoint {
+    @objc class func convertSceneCoordinateToPoint(_ point: CGPoint, sceneSize: CGSize) -> CGPoint {
         let x = point.x - sceneSize.width/2.0
         let y = point.y - sceneSize.height/2.0
-        return CGPointMake(x, y);
+        return CGPoint(x: x, y: y);
     }
     
-    class func convertDegreesToScene(degrees: Double) -> Double {
+    @objc class func convertDegreesToScene(_ degrees: Double) -> Double {
         if degrees < 0.0 {
-            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees % -360.0)) % -360.0
+            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
         }
         
-        return (360.0 - (degrees % 360.0 - PlayerConfig.RotationDegreeOffset)) % 360.0
+        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - PlayerConfig.RotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
     }
     
-    class func convertSceneToDegrees(scene: Double) -> Double {
+    @objc class func convertSceneToDegrees(_ scene: Double) -> Double {
         let sceneDegrees = self.convertDegreesToScene(scene)
         
         if sceneDegrees > 180.0 {

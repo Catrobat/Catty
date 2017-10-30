@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension GoNStepsBackBrick: CBInstructionProtocol {
+@objc extension GoNStepsBackBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
 
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps,
@@ -35,13 +35,13 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
 
         return {
             let zValue = spriteNode.zPosition
-            let steps = stepsFormula.interpretDoubleForSprite(object)
+            let steps = stepsFormula.interpretDouble(forSprite: object)
             spriteNode.zPosition = max(1, zValue - CGFloat(steps))
             for obj in objectList {
-                guard let objSpriteNode = obj.spriteNode! else {
+                guard let objSpriteNode = (obj as AnyObject).spriteNode! else {
                     continue
                 }
-                if(objSpriteNode.zPosition < zValue) && (objSpriteNode.zPosition >= object.spriteNode?.zPosition) && (obj as! SpriteObject != object){
+                if(objSpriteNode.zPosition < zValue) && (objSpriteNode.zPosition >= (object.spriteNode?.zPosition)!) && (obj as! SpriteObject != object){
                     objSpriteNode.zPosition += 1
                 }
             }

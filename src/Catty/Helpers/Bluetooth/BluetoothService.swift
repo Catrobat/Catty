@@ -29,59 +29,60 @@ import BluetoothHelper
     case phiro
 }
 
-public class BluetoothService:NSObject {
+@objc
+open class BluetoothService:NSObject {
 
     static let swiftSharedInstance = BluetoothService()
 
     // the sharedInstance class method can be reached from ObjC
-    @objc public class func sharedInstance() -> BluetoothService {
+    @objc open class func sharedInstance() -> BluetoothService {
         return BluetoothService.swiftSharedInstance
     }
 
 
-    var digitalSemaphoreArray:[dispatch_semaphore_t] = []
-    var analogSemaphoreArray:[dispatch_semaphore_t] = []
+    var digitalSemaphoreArray:[DispatchSemaphore] = []
+    var analogSemaphoreArray:[DispatchSemaphore] = []
     
-    var phiro:Phiro?
-    var arduino:ArduinoDevice?
-    weak var selectionManager:BluetoothDevicesTableViewController?
-    weak var scenePresenter:ScenePresenterViewController?
-    var connectionTimer:NSTimer?
+    @objc var phiro:Phiro?
+    @objc var arduino:ArduinoDevice?
+    @objc weak var selectionManager:BluetoothDevicesTableViewController?
+    @objc weak var scenePresenter:ScenePresenterViewController?
+    @objc var connectionTimer:Timer?
     
-    func setDigitalSemaphore(semaphore:dispatch_semaphore_t){
+    @objc func setDigitalSemaphore(_ semaphore:DispatchSemaphore){
         digitalSemaphoreArray.append(semaphore)
     }
     
-    func signalDigitalSemaphore(check:Bool){
+    @objc func signalDigitalSemaphore(_ check:Bool){
         if(digitalSemaphoreArray.count > 0){
-            digitalSemaphoreArray.removeAtIndex(0)
+            digitalSemaphoreArray.remove(at: 0)
         }
         if(check == true){
             if(digitalSemaphoreArray.count > 0){
                 let sema = digitalSemaphoreArray[0]
-                digitalSemaphoreArray.removeAtIndex(0)
-                dispatch_semaphore_signal(sema)
+                digitalSemaphoreArray.remove(at: 0)
+                sema.signal()
                 
             }
         }
         
     }
     
-    func setAnalogSemaphore(semaphore:dispatch_semaphore_t){
+    @objc func setAnalogSemaphore(_ semaphore:DispatchSemaphore){
         analogSemaphoreArray.append(semaphore)
     }
     
-    @objc public func signalAnalogSemaphore(){
+    @objc open func signalAnalogSemaphore(){
         if(analogSemaphoreArray.count > 0){
             let sema = analogSemaphoreArray[0]
-            analogSemaphoreArray.removeAtIndex(0)
-            dispatch_semaphore_signal(sema)
+            analogSemaphoreArray.remove(at: 0)
+            sema.signal()
         }
         
     }
     
-    func getSemaphore()->dispatch_semaphore_t {
-        return dispatch_semaphore_create(0)
+    @objc func getSemaphore()->DispatchSemaphore {
+        return DispatchSemaphore(value: 0)
     }
     
     @objc func getSensorPhiro() -> Phiro? {
@@ -98,7 +99,7 @@ public class BluetoothService:NSObject {
         return senorArduino
     }
     
-    @objc public func disconnect() {
+    @objc open func disconnect() {
         self.phiro?.disconnect()
         self.arduino?.disconnect()
         self.phiro = nil
@@ -109,13 +110,13 @@ public class BluetoothService:NSObject {
     
     //MARK: Bluetooth Connection
     
-    func connectDevice(peri:Peripheral) {
+    @objc func connectDevice(_ peri:Peripheral) {
      
         let future = peri.connect(10, timeoutRetries: 2, disconnectRetries: 0, connectionTimeout: Double(4))
         future.onSuccess {(peripheral, connectionEvent) in
    
             switch connectionEvent {
-            case .Connected:
+            case .connected:
                 self.updateKnownDevices(peripheral.id)
                 guard let manager = self.selectionManager else {
                     return
@@ -123,7 +124,7 @@ public class BluetoothService:NSObject {
                 manager.deviceConnected(peripheral)
                 manager.updateWhenActive()
                 break
-            case .Disconnected:
+            case .disconnected:
                 if let scene = self.scenePresenter {
                     scene.connectionLost();
                 }
@@ -136,23 +137,23 @@ public class BluetoothService:NSObject {
                 }
                 manager.updateWhenActive()
                 break
-            case .Timeout:
+            case .timeout:
                 peripheral.reconnect()
                 break
-            case .ForcedDisconnected:
+            case .forcedDisconnected:
                 if let scene = self.scenePresenter {
                     scene.connectionLost();
                 }
                 CentralManager.sharedInstance.disconnectAllPeripherals()
                 CentralManager.sharedInstance.removeAllPeripherals()
                 break
-            case .Failed:
+            case .failed:
                 CentralManager.sharedInstance.disconnectAllPeripherals()
                 CentralManager.sharedInstance.removeAllPeripherals()
                 print("Fail")
                 self.connectionFailure()
                 break
-            case .GiveUp:
+            case .giveUp:
                 peripheral.disconnect()
                 print("GiveUp")
                 self.giveUpFailure()
@@ -166,32 +167,29 @@ public class BluetoothService:NSObject {
 
     }
     
-    func updateKnownDevices(id:NSUUID){
-        let userdefaults = NSUserDefaults.standardUserDefaults()
-        if let tempArray : [AnyObject] = userdefaults.arrayForKey("KnownBluetoothDevices") {
-            var StringArray:[NSString] = tempArray as! [NSString]
-            if StringArray.contains(id.UUIDString){
-                
-            }else{
-                StringArray.append(id.UUIDString)
-                userdefaults.setObject(StringArray, forKey: "KnownBluetoothDevices")
+    @objc func updateKnownDevices(_ id:UUID){
+        let userdefaults = UserDefaults.standard
+        if var stringArray = userdefaults.array(forKey: "KnownBluetoothDevices") as? [String] {
+            if !stringArray.contains(id.uuidString){
+                stringArray.append(id.uuidString)
+                userdefaults.set(stringArray, forKey: "KnownBluetoothDevices")
             }
             
         } else {
-            var array:[NSString] = [NSString]()
-            array.append(id.UUIDString)
-            userdefaults.setObject(array, forKey: "KnownBluetoothDevices")
+            var array = [String]()
+            array.append(id.uuidString)
+            userdefaults.set(array, forKey: "KnownBluetoothDevices")
             
         }
         userdefaults.synchronize()
     }
     
-    func removeKnownDevices() {
-        let userdefaults = NSUserDefaults.standardUserDefaults()
-         userdefaults.setObject([NSString](), forKey: "KnownBluetoothDevices")
+    @objc func removeKnownDevices() {
+        let userdefaults = UserDefaults.standard
+         userdefaults.set([NSString](), forKey: "KnownBluetoothDevices")
     }
     
-    func setBLEDevice(peripheral:Peripheral,type:BluetoothDeviceID){
+    @objc func setBLEDevice(_ peripheral:Peripheral,type:BluetoothDeviceID){
         var bluetoothDevice:BluetoothDevice
         
         switch(type){
@@ -270,29 +268,29 @@ public class BluetoothService:NSObject {
         future.onFailure{error in
             self.serviceDiscoveryFailed()
         }
-        connectionTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector:#selector(BluetoothService.serviceDiscoveryFailed) , userInfo: nil, repeats: false)
+        connectionTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(BluetoothService.serviceDiscoveryFailed) , userInfo: nil, repeats: false)
 
     }
     
-    func serviceDiscoveryFailed() {
+    @objc func serviceDiscoveryFailed() {
         if let manager = self.selectionManager  {
             manager.deviceNotResponding()
         }
-        Util.alertWithTitle(klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothNotResponding)
+        Util.alert(withTitle: klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothNotResponding)
     }
     
     func giveUpFailure() {
         if let manager = self.selectionManager  {
             manager.giveUpConnectionToDevice()
         }
-        Util.alertWithTitle(klocalizedBluetoothConnectionLost, andText:  klocalizedBluetoothDisconnected)
+        Util.alert(withTitle: klocalizedBluetoothConnectionLost, andText:  klocalizedBluetoothDisconnected)
     }
     
     func connectionFailure() {
         if let manager = self.selectionManager  {
             manager.deviceFailedConnection()
         }
-        Util.alertWithTitle(klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothCannotConnect)
+        Util.alert(withTitle: klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothCannotConnect)
     }
     
 //    func setPhiroDevice(peripheral:Peripheral){
@@ -355,7 +353,7 @@ public class BluetoothService:NSObject {
 //        
 //    }
     
-    func resetBluetoothDevice(){
+    @objc func resetBluetoothDevice(){
         
     	if let phiroReset = phiro {
             phiroReset.reportSensorData(false)
@@ -368,7 +366,7 @@ public class BluetoothService:NSObject {
 
     }
     
-    func continueBluetoothDevice(){
+    @objc func continueBluetoothDevice(){
         
         if let phiroReset = phiro {
             phiroReset.reportSensorData(true)
@@ -380,7 +378,7 @@ public class BluetoothService:NSObject {
         
     }
 
-    func pauseBluetoothDevice(){
+    @objc func pauseBluetoothDevice(){
         
         if let phiroReset = phiro {
             phiroReset.reportSensorData(false)

@@ -28,27 +28,27 @@ typealias CBScheduleElement = (context: CBScriptContextProtocol, closure: CBExec
 typealias CBFormulaBufferElement = (context: CBScriptContextProtocol, brick: BrickFormulaProtocol)
 typealias CBConditionalFormulaBufferElement = (context: CBScriptContextProtocol, condition: CBConditionalSequence)
 
-typealias CBExecClosure = (context: CBScriptContextProtocol, scheduler: CBSchedulerProtocol) -> Void
-typealias CBHighPriorityExecClosure = (context: CBScriptContextProtocol,
-    scheduler: CBSchedulerProtocol, broadcastHandler: CBBroadcastHandlerProtocol) -> Void
-typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> SKAction
+typealias CBExecClosure = (_ context: CBScriptContextProtocol, _ scheduler: CBSchedulerProtocol) -> Void
+typealias CBHighPriorityExecClosure = (_ context: CBScriptContextProtocol,
+    _ scheduler: CBSchedulerProtocol, _ broadcastHandler: CBBroadcastHandlerProtocol) -> Void
+typealias CBLongActionCreateClosure = (_ duration: TimeInterval) -> SKAction
 
 // MARK: - Enums
 indirect enum CBInstruction {
-    case HighPriorityExecClosure(closure: CBHighPriorityExecClosure)
-    case ExecClosure(closure: CBExecClosure)
+    case highPriorityExecClosure(closure: CBHighPriorityExecClosure)
+    case execClosure(closure: CBExecClosure)
 //    case LongDurationExecClosure(closure: CBExecClosure) // unused atm.
-    case WaitExecClosure(closure: CBExecClosure)
-    case LongDurationAction(duration: CBDuration, actionCreateClosure: CBLongActionCreateClosure)
-    case Action(action: SKAction)
-    case FormulaBuffer(brick: BrickFormulaProtocol)
-    case ConditionalFormulaBuffer(conditionalBrick: CBConditionalSequence)
-    case InvalidInstruction()
+    case waitExecClosure(closure: CBExecClosure)
+    case longDurationAction(duration: CBDuration, actionCreateClosure: CBLongActionCreateClosure)
+    case action(action: SKAction)
+    case formulaBuffer(brick: BrickFormulaProtocol)
+    case conditionalFormulaBuffer(conditionalBrick: CBConditionalSequence)
+    case invalidInstruction()
 }
 
 enum CBDuration {
-    case VarTime(formula: Formula)
-    case FixedTime(duration: Double)
+    case varTime(formula: Formula)
+    case fixedTime(duration: Double)
 }
 
 
@@ -77,19 +77,19 @@ enum CBScriptContextState {
 
     // initial state for a CBScriptExecContext that has
     // not yet been added to the scheduler
-    case Runnable
+    case runnable
 
     // indicates that CBScriptExecContext has already
     // been added to the scheduler
-    case Running
+    case running
 
     // indicates that a script is waiting for BroadcastWait scripts
     // (listening to the corresponding broadcastMessage) to be finished!!
-    case Waiting
+    case waiting
 
     // indicates that CBScriptExecContext is going to be removed
     // from the scheduler soon
-    case Dead
+    case dead
 
 }
 
@@ -101,9 +101,9 @@ enum CBBroadcastType: String {
 
 // MARK: - Protocol extensions
 // TODO: simplify and remove duplicate...
-extension CollectionType where Generator.Element == CBScriptContextProtocol {
+extension Collection where Iterator.Element == CBScriptContextProtocol {
     
-    func contains(e: Generator.Element) -> Bool {
+    func contains(_ e: Iterator.Element) -> Bool {
         for element in self {
             if element == e {
                 return true
@@ -112,7 +112,7 @@ extension CollectionType where Generator.Element == CBScriptContextProtocol {
         return false
     }
     
-    func indexOfElement(e: Generator.Element) -> Int? {
+    func indexOfElement(_ e: Iterator.Element) -> Int? {
         var index = 0
         for element in self {
             if element == e {
@@ -125,9 +125,9 @@ extension CollectionType where Generator.Element == CBScriptContextProtocol {
     
 }
 
-extension CollectionType where Generator.Element == CBBroadcastScriptContextProtocol {
+extension Collection where Iterator.Element == CBBroadcastScriptContextProtocol {
     
-    func contains(e: Generator.Element) -> Bool {
+    func contains(_ e: Iterator.Element) -> Bool {
         for element in self {
             if element == e {
                 return true
@@ -136,7 +136,7 @@ extension CollectionType where Generator.Element == CBBroadcastScriptContextProt
         return false
     }
     
-    func indexOfElement(e: Generator.Element) -> Int? {
+    func indexOfElement(_ e: Iterator.Element) -> Int? {
         var index = 0
         for element in self {
             if element == e {
@@ -151,9 +151,9 @@ extension CollectionType where Generator.Element == CBBroadcastScriptContextProt
 
 // MARK: - Extensions
 extension Array {
-    mutating func removeObject<U: Equatable>(object: U) {
+    mutating func removeObject<U: Equatable>(_ object: U) {
         var index: Int?
-        for (idx, objectToCompare) in self.enumerate() {
+        for (idx, objectToCompare) in self.enumerated() {
             if let to = objectToCompare as? U {
                 if object == to {
                     index = idx
@@ -161,12 +161,12 @@ extension Array {
             }
         }
         if(index != nil) {
-            self.removeAtIndex(index!)
+            self.remove(at: index!)
         }
     }
     
-    mutating func prepend(newElement: Element) {
-        self.insert(newElement, atIndex: 0)
+    mutating func prepend(_ newElement: Element) {
+        self.insert(newElement, at: 0)
     }
 }
 
@@ -175,24 +175,24 @@ func ==(lhs: CBScriptContextProtocol, rhs: CBScriptContextProtocol) -> Bool {
     return lhs.id == rhs.id
 }
 
-func +=(inout left: CBScriptContext, right: CBInstruction) {
+func +=(left: inout CBScriptContext, right: CBInstruction) {
     left.appendInstructions([right])
 }
 
-func +=(inout left: CBScriptContext, right: [CBInstruction]) {
+func +=(left: inout CBScriptContext, right: [CBInstruction]) {
     left.appendInstructions(right)
 }
 
-func +=<T>(inout left: [T], right: T) {
+func +=<T>(left: inout [T], right: T) {
     left.append(right)
 }
 
-func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+func ==(lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
 }
 
-func <(lhs: NSDate, rhs: NSDate) -> Bool {
-    if lhs.compare(rhs) == .OrderedAscending {
+func <(lhs: Date, rhs: Date) -> Bool {
+    if lhs.compare(rhs) == .orderedAscending {
         return true
     }
     return false
