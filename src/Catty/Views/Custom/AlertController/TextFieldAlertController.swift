@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2017 The Catrobat Team
+ *  Copyright (C) 2010-2018 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -134,7 +134,7 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let isValidCharacter = characterValidator, string.characters.contains(where: { !isValidCharacter(String($0)) }) {
+        if let isValidCharacter = characterValidator, string.contains(where: { !isValidCharacter(String($0)) }) {
             return false
         }
         

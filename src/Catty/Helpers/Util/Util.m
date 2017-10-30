@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2017 The Catrobat Team
+ *  Copyright (C) 2010-2018 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,6 @@
 #import "Util.h"
 #import "ProgramLoadingInfo.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import <MYBlurIntroductionView/MYBlurIntroductionView.h>
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
@@ -35,8 +34,8 @@
 #import "KeychainUserDefaultsDefines.h"
 #import <objc/runtime.h>
 #import "OrderedDictionary.h"
-#import "UIDevice-Hardware.h"
 #import "Pocket_Code-Swift.h"
+#import <sys/utsname.h>
 
 @interface Util ()
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -76,37 +75,6 @@
     return [self topViewControllerInViewController:ROOTVIEW];
 }
 
-
-+ (void)showIntroductionScreenInView:(UIView *)view delegate:(id<MYIntroductionDelegate>)delegate
-{
-    MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedWelcomeToPocketCode description:kLocalizedWelcomeDescription image:[UIImage imageNamed:@"page1_logo"]];
-    panel1.PanelImageView.contentMode = UIViewContentModeScaleAspectFit;
-    panel1.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
-
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedExploreApps description:kLocalizedExploreDescription image:[UIImage imageNamed:@"page2_explore"]];
-    panel2.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
-    
-    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedCreateAndEdit description:kLocalizedCreateAndEditDescription image:[UIImage imageNamed:@"page3_info"]];
-    panel2.PanelDescriptionLabel.font = [UIFont systemFontOfSize:14];
-    
-    //Add panels to an array
-    NSArray *panels = @[panel1, panel2, panel3];
-    
-    //Create the introduction view and set its delegate
-    MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
-    introductionView.delegate = delegate;
-    [introductionView setEnabled:YES];
-    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor globalTintColor]];
-    [introductionView setBackgroundColor:[UIColor globalTintColor]];
-    //introductionView.LanguageDirection = MYLanguageDirectionRightToLeft;
-    
-    //Build the introduction with desired panels
-    [introductionView buildIntroductionWithPanels:panels];
-    
-    //Add the introduction to your view
-    [view addSubview:introductionView];
-}
-
 + (void)alertWithText:(NSString*)text
 {
     [Util alertWithTitle:kLocalizedPocketCode andText:text];
@@ -118,7 +86,6 @@
      addCancelActionWithTitle:kLocalizedOK handler:nil]
      build]
      showWithController:[Util topmostViewController]];
-
 }
 
 + (NSString*)appName
@@ -160,7 +127,10 @@
 
 + (NSString*)deviceName
 {
-    return [[UIDevice currentDevice] modelName];
+    // https://stackoverflow.com/a/11197770
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
 + (NSString*)platformName

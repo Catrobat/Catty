@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2017 The Catrobat Team
+ *  Copyright (C) 2010-2018 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -64,18 +64,21 @@
     self.placeholderDescriptionLabel.textColor = UIColor.globalTintColor;
     self.placeholderDescriptionLabel.numberOfLines = 0;
     self.contentView = self.placeholderDescriptionLabel;
-  self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.shimmering = YES;
-    
-  
-
-    
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)setTitle:(NSString *)title
 {
     if (title.length) {
         self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd, title];
+    }
+}
+
+- (void)setContentView:(UIView *)contentView
+{
+    if (contentView != _contentView) {
+        _contentView = contentView;
+        [self addSubview:contentView];
     }
 }
 
