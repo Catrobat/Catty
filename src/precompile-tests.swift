@@ -52,6 +52,7 @@ let licenseCheckExcludeDirs = [
     "minizip",
     "SSZipArchive",
     "GDataXMLNode",
+    "LXReorderableCollectionViewFlowLayout",
     "AHKActionSheetViewController",
     "AHKAdditions",
     "IBActionSheet",
@@ -77,6 +78,7 @@ let licenseCheckExcludeDirs = [
 let licenseCheckExcludeFiles = [
     "AHKActionSheet.[mh]",
     "AHKActionSheetViewController.[mh]",
+    "LXReorderableCollectionViewFlowLayout.[mh]",
     "IBActionSheet.[mh]",
     "Reachability.[mh]",
     "SharkfoodMuteSwitchDetector.[mh]",

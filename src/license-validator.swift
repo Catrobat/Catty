@@ -106,6 +106,7 @@ let license3rdPartyDict : [String : License] = [
     "EVCircularProgressView" : .MIT,
     "FXBlurView" : .zlib,
     "IBActionSheet" : .MIT,
+    "LXReorderableCollectionViewFlowLayout" : .MIT,
     "MYIntroductionPanel" : .MIT,
     "TTTAttributedLabel" : .MIT,
     "MXPagerView" : .MIT,

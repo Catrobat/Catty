@@ -253,6 +253,8 @@
 		593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A671F76F05000BD634F /* MXPagerView.framework */; };
 		593624C91F76F374008A588D /* MXParallaxHeader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A681F76F05000BD634F /* MXParallaxHeader.framework */; };
 		593624CA1F76F374008A588D /* MXSegmentedPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A691F76F05000BD634F /* MXSegmentedPager.framework */; };
+		593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */; };
+		593E4DE41FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */; };
 		59473A611F76F04B00BD634F /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
 		59473A6B1F76F05000BD634F /* HMSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A651F76F05000BD634F /* HMSegmentedControl.framework */; };
@@ -1204,6 +1206,9 @@
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		590275B01FAA54F000105E77 /* ScriptCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptCollectionViewLayout.swift; sourceTree = "<group>"; };
+		593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		593E4DDF1FE11D5F0016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LXReorderableCollectionViewFlowLayout.framework; path = Carthage/Build/iOS/LXReorderableCollectionViewFlowLayout.framework; sourceTree = "<group>"; };
 		59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = Carthage/Build/iOS/TTTAttributedLabel.framework; sourceTree = "<group>"; };
 		59473A641F76F05000BD634F /* Bohr.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bohr.framework; path = Carthage/Build/iOS/Bohr.framework; sourceTree = "<group>"; };
 		59473A651F76F05000BD634F /* HMSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HMSegmentedControl.framework; path = Carthage/Build/iOS/HMSegmentedControl.framework; sourceTree = "<group>"; };
@@ -2243,6 +2248,7 @@
 				CADBD7EE19B0E8C200C62836 /* libz.dylib in Frameworks */,
 				59473A6A1F76F05000BD634F /* Bohr.framework in Frameworks */,
 				59473A6B1F76F05000BD634F /* HMSegmentedControl.framework in Frameworks */,
+				593E4DE41FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework in Frameworks */,
 				59473A6C1F76F05000BD634F /* M13ProgressSuite.framework in Frameworks */,
 				59473A6D1F76F05000BD634F /* MXPagerView.framework in Frameworks */,
 				59473A6E1F76F05000BD634F /* MXParallaxHeader.framework in Frameworks */,
@@ -2300,6 +2306,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */,
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
 				59473A641F76F05000BD634F /* Bohr.framework */,
@@ -3341,6 +3348,15 @@
 			name = Extensions;
 			path = Catty/PlayerEngine/Scene/Extensions;
 			sourceTree = SOURCE_ROOT;
+		};
+		593E4DDC1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				593E4DDF1FE11D5F0016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.h */,
+				593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */,
+			);
+			path = CatrobatReorderableCollectionViewFlowLayout;
+			sourceTree = "<group>";
 		};
 		5983198F1FBB810400639BBF /* Introduction */ = {
 			isa = PBXGroup;
@@ -4700,16 +4716,17 @@
 		92FF31A21A24E2F400093DA7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				92289A441A42F2A3008C771A /* ComboBox */,
+				91FC81FA01E91B5CF3266F79 /* AlertController */,
+				593E4DDC1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout */,
+				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
 				92FF31A91A24E2F400093DA7 /* CollectionViewCells */,
+				92289A441A42F2A3008C771A /* ComboBox */,
 				92FF32291A24E2F400093DA7 /* CreateView */,
 				92FF322E1A24E2F400093DA7 /* LoadingView */,
 				92FF32311A24E2F400093DA7 /* MotionEffect */,
 				92FF32341A24E2F400093DA7 /* PlaceHolderView */,
 				92FF32371A24E2F400093DA7 /* TableView */,
 				92FF324F1A24E2F400093DA7 /* ViewControllerTransitions */,
-				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
-				91FC81FA01E91B5CF3266F79 /* AlertController */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -6434,6 +6451,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MXSegmentedPager.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Siren.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/LXReorderableCollectionViewFlowLayout.framework",
 			);
 			name = "Carthage Copy Frameworks Run Script";
 			outputPaths = (
@@ -6445,6 +6463,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/MXSegmentedPager.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Siren.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TTTAttributedLabel.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LXReorderableCollectionViewFlowLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7112,6 +7131,7 @@
 				AA74F0C21BC05FCE00D1E954 /* TurnLeftBrickCell.m in Sources */,
 				92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */,
 				AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */,
+				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
