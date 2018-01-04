@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2017 The Catrobat Team
+ *  Copyright (C) 2010-2018 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -87,10 +87,10 @@ typedef NS_ENUM(NSInteger, ResourceType) {
 };
 
 #define kUserDetailsShowDetailsKey @"showDetails"
-#define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserIsLoggedIn @"userIsLoggedIn"
 #define kUserLoginToken @"userLoginToken"
-#define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
+#define kUserIntroductionHasBeenShown @"introductionHasBeenShown"
+#define kUserShowIntroductionOnEveryLaunch @"showIntroductionOnEveryLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"

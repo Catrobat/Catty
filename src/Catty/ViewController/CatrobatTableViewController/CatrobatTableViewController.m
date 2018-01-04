@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2017 The Catrobat Team
+ *  Copyright (C) 2010-2018 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -34,10 +34,10 @@
 #import "ProgramTableViewController.h"
 #import "Reachability.h"
 #import "HelpWebViewController.h"
-#import "MYBlurIntroductionView.h"
 #import "ProgramsForUploadViewController.h"
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
+#import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -48,7 +48,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kUploadVC
 };
 
-@interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
+@interface CatrobatTableViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
@@ -107,6 +107,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorInset = UIEdgeInsetsZero;
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    [self presentIntroductionIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -123,14 +125,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     BOOL lockIphoneEnabeled = [self shouldLockIphoneInAppWithoutScenePresenter];
     [[UIApplication sharedApplication] setIdleTimerDisabled:(lockIphoneEnabeled)];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ((! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) && animated == NO) {
-        self.tableView.scrollEnabled = NO;
-        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
-    } else {
-        self.tableView.scrollEnabled = YES;
-        [self initNavigationBar];
-    }
+    self.tableView.scrollEnabled = YES;
+    [self initNavigationBar];
 }
 
 - (BOOL)shouldLockIphoneInAppWithoutScenePresenter
@@ -190,6 +186,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (IBAction)openSettings:(id)sender {
     [self infoPressed:sender];
 }
+
+#pragma mark - introduction
+
+- (void)presentIntroductionIfNeeded {
+    if (!IntroductionPageViewController.hasBeenShown || IntroductionPageViewController.showOnEveryLaunch) {
+        UIViewController *viewController = [IntroductionPageViewController new];
+        viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self.navigationController presentViewController:viewController animated:NO completion:nil];
+    }
+}
+
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
@@ -477,22 +485,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.identifiers removeAllObjects];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-}
-
-#pragma mark - MYIntroduction Delegate
-- (void)introduction:(MYBlurIntroductionView*)introductionView didChangeToPanel:(MYIntroductionPanel*)panel
-           withIndex:(NSInteger)panelIndex
-{
-}
-
-- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType
-{
-    NSDebug(@"Introduction did finish");
-    [self initNavigationBar];
-    self.tableView.scrollEnabled = YES;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
-    [defaults synchronize];
 }
 
 -(void)addProgramFromInboxWithName:(NSString*)newProgramName

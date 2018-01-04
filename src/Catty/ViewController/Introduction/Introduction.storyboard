@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fC6-2I-Hv7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Introduction View Controller-->
+        <scene sceneID="bdw-Ob-FeK">
+            <objects>
+                <viewController id="fC6-2I-Hv7" customClass="IntroductionViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8wZ-BG-6Kh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pt-28-dhX">
+                                <rect key="frame" x="127" y="50" width="122" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8s-GX-5m5">
+                                <rect key="frame" x="25" y="94" width="325" height="107.5"/>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7Gy-IL-zzz">
+                                <rect key="frame" x="25" y="225" width="325" height="402"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m8n-XE-GBT" firstAttribute="trailing" secondItem="n8s-GX-5m5" secondAttribute="trailing" constant="25" id="9IF-Ba-tlU"/>
+                            <constraint firstItem="2pt-28-dhX" firstAttribute="centerX" secondItem="m8n-XE-GBT" secondAttribute="centerX" id="AdT-yJ-nCO"/>
+                            <constraint firstItem="m8n-XE-GBT" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Gy-IL-zzz" secondAttribute="bottom" constant="40" id="EH4-Lg-I1M"/>
+                            <constraint firstItem="n8s-GX-5m5" firstAttribute="leading" secondItem="m8n-XE-GBT" secondAttribute="leading" constant="25" id="GRV-In-doP"/>
+                            <constraint firstItem="7Gy-IL-zzz" firstAttribute="leading" secondItem="n8s-GX-5m5" secondAttribute="leading" id="Klb-fo-yiI"/>
+                            <constraint firstItem="m8n-XE-GBT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2pt-28-dhX" secondAttribute="trailing" constant="25" id="R6P-d0-IqW"/>
+                            <constraint firstItem="n8s-GX-5m5" firstAttribute="top" secondItem="2pt-28-dhX" secondAttribute="bottom" constant="20" id="YFa-I1-QuK"/>
+                            <constraint firstItem="2pt-28-dhX" firstAttribute="top" secondItem="m8n-XE-GBT" secondAttribute="top" constant="30" id="aAt-Zy-Jke"/>
+                            <constraint firstItem="7Gy-IL-zzz" firstAttribute="top" secondItem="n8s-GX-5m5" secondAttribute="bottom" constant="23.5" id="acp-4B-Ypt"/>
+                            <constraint firstItem="m8n-XE-GBT" firstAttribute="bottom" secondItem="7Gy-IL-zzz" secondAttribute="bottom" constant="40" placeholder="YES" id="hbM-FG-p30"/>
+                            <constraint firstItem="7Gy-IL-zzz" firstAttribute="trailing" secondItem="n8s-GX-5m5" secondAttribute="trailing" id="j9r-UA-JJf"/>
+                            <constraint firstItem="2pt-28-dhX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m8n-XE-GBT" secondAttribute="leading" constant="25" id="xRG-rD-3mh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m8n-XE-GBT"/>
+                    </view>
+                    <connections>
+                        <outlet property="headline" destination="2pt-28-dhX" id="CBB-xX-E94"/>
+                        <outlet property="image" destination="7Gy-IL-zzz" id="KMI-Ue-WEx"/>
+                        <outlet property="paragraph" destination="n8s-GX-5m5" id="Ma7-dh-Lgf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OCx-VI-sFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="456.80000000000001" y="114.69265367316342"/>
+        </scene>
+    </scenes>
+</document>

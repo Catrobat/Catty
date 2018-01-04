@@ -1,6 +1,6 @@
 #!/usr/bin/env xcrun swift -I .
 /**
- *  Copyright (C) 2010-2017 The Catrobat Team
+ *  Copyright (C) 2010-2018 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,6 @@ let licenseCheckExcludeDirs = [
     "minizip",
     "SSZipArchive",
     "GDataXMLNode",
-    "FBShimmering",
     "LXReorderableCollectionViewFlowLayout",
     "AHKActionSheetViewController",
     "AHKAdditions",
@@ -92,7 +91,6 @@ let licenseCheckExcludeFiles = [
     "SWUtilityButtonTapGestureRecognizer.[mh]",
     "SMPageControl.[mh]",
     "EAIntroPage.[mh]",
-    "MYBlurIntroductionView.[mh]",
     "MYIntroductionPanel.[mh]",
     "FBKVOController.[mh]",
     "JNKeychain.[mh]",
@@ -157,7 +155,7 @@ extension String {
         let temp = self as NSString
         let stringLength = temp.length
         let substringIndex = (stringLength < count) ? 0 : stringLength - count
-        return self.substring(to: self.characters.index(self.startIndex, offsetBy: substringIndex))
+        return self.substring(to: self.index(self.startIndex, offsetBy: substringIndex))
     }
 }
 
@@ -184,7 +182,7 @@ func licenseCheck(_ filePath : String, fileContent : String, lineNumberOffset : 
 {
     let range = fileContent.range(of: licenseSearchStringCurrentYear)
     if range != nil {
-        let index: Int = fileContent.characters.distance(from: fileContent.startIndex, to: range!.lowerBound)
+        let index: Int = fileContent.distance(from: fileContent.startIndex, to: range!.lowerBound)
         if index != 0 {
             let newRange : Range<String.Index> = fileContent.startIndex ..< range!.lowerBound
             let substring : String = fileContent.substring(with: newRange)
@@ -201,7 +199,7 @@ func licenseCheck(_ filePath : String, fileContent : String, lineNumberOffset : 
 
     let rangePreviousYear = fileContent.range(of: licenseSearchStringPreviousYear)
     if rangePreviousYear != nil {
-        let index: Int = fileContent.characters.distance(from: fileContent.startIndex, to: rangePreviousYear!.lowerBound)
+        let index: Int = fileContent.distance(from: fileContent.startIndex, to: rangePreviousYear!.lowerBound)
         var lineNumber : Int = 1
         if index != 0 {
             let newRange : Range<String.Index> = fileContent.startIndex ..< rangePreviousYear!.lowerBound
@@ -268,7 +266,7 @@ for excludeFile in localizedStringCheckExcludeFiles {
         continue
     }
     if excludeFile.hasSuffix(".[hm]") || excludeFile.hasSuffix(".[mh]") {
-        let fileNameWithoutExtension = excludeFile.removeCharsFromEnd(".[mh]".characters.count)
+        let fileNameWithoutExtension = excludeFile.removeCharsFromEnd(".[mh]".count)
         localizedStringCheckSeparatedExcludeFiles.append(fileNameWithoutExtension + ".h")
         localizedStringCheckSeparatedExcludeFiles.append(fileNameWithoutExtension + ".m")
     } else {
@@ -290,7 +288,7 @@ for excludeFile in licenseCheckExcludeFiles {
         continue
     }
     if excludeFile.hasSuffix(".[hm]") || excludeFile.hasSuffix(".[mh]") {
-        let fileNameWithoutExtension = excludeFile.removeCharsFromEnd(".[mh]".characters.count)
+        let fileNameWithoutExtension = excludeFile.removeCharsFromEnd(".[mh]".count)
         licenseCheckSeparatedExcludeFiles.append(fileNameWithoutExtension + ".h")
         licenseCheckSeparatedExcludeFiles.append(fileNameWithoutExtension + ".m")
     } else {

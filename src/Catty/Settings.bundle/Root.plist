@@ -16,7 +16,7 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>showIntroductionOnLaunch</string>
+			<string>showIntroductionOnEveryLaunch</string>
 			<key>Title</key>
 			<string>Show introduction on launch</string>
 			<key>Type</key>
