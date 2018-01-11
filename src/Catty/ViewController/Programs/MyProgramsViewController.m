@@ -321,10 +321,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
         ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
         NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        FileManager *fileManager = [FileManager sharedManager];
         if (programSize) {
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+            NSDate *lastAccessDate = [fileManager lastModificationTimeOfFile:xmlPath];
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
@@ -344,13 +344,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
             NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
             if (! programSize) {
-                NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
+                NSUInteger resultSize = [fileManager sizeOfDirectoryAtPath:info.basePath];
                 programSize = [NSNumber numberWithUnsignedInteger:resultSize];
                 [self.dataCache setObject:programSize forKey:info.visibleName];
             }
             
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+            NSDate *lastAccessDate = [fileManager lastModificationTimeOfFile:xmlPath];
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
@@ -471,7 +471,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
-    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
+    FileManager *fileManager = [FileManager sharedManager];
     NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];

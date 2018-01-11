@@ -44,8 +44,8 @@
 - (NSArray*)playableSounds
 {
     if (! _playableSounds && self.directory) {
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        _playableSounds = [appDelegate.fileManager playableSoundsInDirectory:self.directory];
+        FileManager *fileManager = [FileManager sharedManager];
+        _playableSounds = [fileManager playableSoundsInDirectory:self.directory];
     }
     return _playableSounds;
 }
@@ -205,10 +205,10 @@
                     dispatch_async(queue, ^{
                         [[AudioManager sharedAudioManager] stopAllSounds];
                         if (! isPlaying) {
-                            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                            FileManager *fileManager = [FileManager sharedManager];
                             [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
                                                                               andKey:sound.name
-                                                                          atFilePath:appDelegate.fileManager.documentsDirectory
+                                                                          atFilePath:fileManager.documentsDirectory
                                                                             delegate:self];
                         }
                     });

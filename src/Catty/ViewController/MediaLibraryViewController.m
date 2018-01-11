@@ -106,9 +106,7 @@
             {
                 UIImage * image = [UIImage imageWithData:self.mdata];
                 NSString *fileName =[[NSString uuid] stringByAppendingString:@".mpga"];
-                AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                
-                
+                FileManager *fileManager = [FileManager sharedManager];
                 if (image)
                 {
                     NSString *decodedFilename = [(NSString *)[self.url absoluteString] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
@@ -121,7 +119,7 @@
                 }
                 else
                 {
-                    self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
+                    self.filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, fileName];
                     
                     NSString *decodedFilename = [(NSString *)[[[self.url absoluteString] componentsSeparatedByString:@"="] lastObject] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
                     decodedFilename = [decodedFilename stringByRemovingPercentEncoding];

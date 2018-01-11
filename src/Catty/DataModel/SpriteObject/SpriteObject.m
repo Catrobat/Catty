@@ -130,8 +130,8 @@
 - (NSUInteger)fileSizeOfLook:(Look*)look
 {
     NSString *path = [self pathForLook:look];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    return [appDelegate.fileManager sizeOfFileAtPath:path];
+    FileManager *fileManager = [FileManager sharedManager];
+    return [fileManager sizeOfFileAtPath:path];
 }
 
 - (CGSize)dimensionsOfLook:(Look*)look
@@ -144,8 +144,8 @@
 - (NSUInteger)fileSizeOfSound:(Sound*)sound
 {
     NSString *path = [self pathForSound:sound];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    return [appDelegate.fileManager sizeOfFileAtPath:path];
+    FileManager *fileManager = [FileManager sharedManager];
+    return [fileManager sizeOfFileAtPath:path];
 }
 
 - (CGFloat)durationOfSound:(Sound*)sound
@@ -218,9 +218,9 @@
         NSUInteger lookImageReferenceCounter = [self referenceCountForLook:look.fileName];
         // if image is not used by other objects, delete it
         if (lookImageReferenceCounter <= 1) {
-            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate.fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
-            [appDelegate.fileManager deleteFile:[self pathForLook:look]];
+            FileManager *fileManager = [FileManager sharedManager];
+            [fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
+            [fileManager deleteFile:[self pathForLook:look]];
         }
         [self.lookList removeObjectAtIndex:index];
         break;
@@ -265,8 +265,8 @@
         NSUInteger soundReferenceCounter = [self referenceCountForSound:sound.fileName];
         // if sound is not used by other objects, delete it
         if (soundReferenceCounter <= 1) {
-            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate.fileManager deleteFile:[self pathForSound:sound]];
+            FileManager *fileManager = [FileManager sharedManager];
+            [fileManager deleteFile:[self pathForSound:sound]];
         }
         [self.soundList removeObjectAtIndex:index];
         break;

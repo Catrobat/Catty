@@ -91,11 +91,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.freshLogin = false;
     self.lastUsedProgram = nil;
     self.defaultProgram = nil;
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
-        [appDelegate.fileManager createDirectory:[Program basePath]];
+    FileManager *fileManager = [FileManager sharedManager];
+    if (! [fileManager directoryExists:[Program basePath]]) {
+        [fileManager createDirectory:[Program basePath]];
     }
-    [appDelegate.fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
+    [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
 
@@ -504,14 +504,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     NSData* newProgram = [NSData dataWithContentsOfFile:newProgramPath];
     
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    FileManager *fileManager = [FileManager sharedManager];
+    [fileManager unzipAndStore:newProgram withProgramID:nil withName:newProgramName];
     
-    [appDelegate.fileManager unzipAndStore:newProgram
-                             withProgramID:nil
-                                  withName:newProgramName];
-    
-    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath
-                                               error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath error:nil];
 }
 
 -(void)addProgramFromInbox

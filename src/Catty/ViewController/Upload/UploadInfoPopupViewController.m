@@ -162,9 +162,9 @@ const CGFloat PADDING = 5.0f;
     [self.sizeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.sizeLabel sizeToFit];
     
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    FileManager *fileManager = [FileManager sharedManager];
     self.zipFileData = nil;
-    self.zipFileData = [appDelegate.fileManager zipProgram:self.program];
+    self.zipFileData = [fileManager zipProgram:self.program];
     NSString *zipFileSizeString = @"";
     
     if(!self.zipFileData) {
@@ -306,8 +306,8 @@ const CGFloat PADDING = 5.0f;
     }
     
     //Program might have changed, update zip file accordingly
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    self.zipFileData = [appDelegate.fileManager zipProgram:self.program];
+    FileManager *fileManager = [FileManager sharedManager];
+    self.zipFileData = [fileManager zipProgram:self.program];
     
     NSString *checksum = nil;
     if (self.zipFileData) {

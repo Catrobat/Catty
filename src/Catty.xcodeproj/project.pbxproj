@@ -4591,10 +4591,10 @@
 			children = (
 				4CB4FE011B95DF2900431757 /* BrickManager */,
 				811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */,
-				81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */,
-				811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */,
 				811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */,
+				81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */,
 				81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */,
+				811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */,
 				811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */,
 			);
 			path = MaintainScript;
@@ -6112,7 +6112,6 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 8FL5R8726S;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -7587,7 +7586,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -7633,7 +7632,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

@@ -35,13 +35,6 @@ void uncaughtExceptionHandler(NSException *exception)
 
 @implementation AppDelegate
 
-- (FileManager*)fileManager
-{
-    if (_fileManager == nil)
-        _fileManager = [[FileManager alloc] init];
-    return _fileManager;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);

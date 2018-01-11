@@ -115,8 +115,8 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@",
                          [self projectPathForProgramWithName:programName programID:programID],
                          kProgramCodeFileName];
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
+    FileManager *fileManager = [FileManager sharedManager];
+    [fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
 }
 
 - (NSInteger)numberOfTotalObjects
@@ -250,8 +250,8 @@
     destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
     NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:nil];
 
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
+    FileManager *fileManager = [FileManager sharedManager];
+    [fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
     ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName programID:nil];
     Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
     program.header.programName = destinationProgramLoadingInfo.visibleName;
@@ -260,7 +260,7 @@
 
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID
 {
-    FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
+    FileManager *fileManager = [FileManager sharedManager];
     NSString *projectPath = [self projectPathForProgramWithName:programName programID:programID];
     if ([fileManager directoryExists:projectPath]) {
         [fileManager deleteDirectory:projectPath];
@@ -283,7 +283,7 @@
 
 - (void)saveToDiskWithNotification:(BOOL)notify
 {
-    FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
+    FileManager *fileManager = [FileManager sharedManager];
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // show saved view bezel
