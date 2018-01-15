@@ -671,9 +671,16 @@
 //************************************************************************************************************
 //************************************       MediaLibrary        *********************************************
 //************************************************************************************************************
+
 #define kLocalizedMediaLibrary NSLocalizedString(@"Media Library", nil)
-
-
+#define kLocalizedMediaLibraryConnectionIssueTitle NSLocalizedString(@"Connection failed", nil)
+#define kLocalizedMediaLibraryConnectionIssueMessage NSLocalizedString(@"Cannot connect to the Media Library. Please check your Internet connection.", nil)
+#define kLocalizedMediaLibraryImportFailedTitle NSLocalizedString(@"Failed to import item", nil)
+#define kLocalizedMediaLibraryImportFailedMessage NSLocalizedString(@"The following item could not be imported from the Media Library:", nil)
+#define kLocalizedMediaLibrarySoundLoadFailureTitle NSLocalizedString(@"Failed to load sound", nil)
+#define kLocalizedMediaLibrarySoundLoadFailureMessage NSLocalizedString(@"The sound item cannot be loaded", nil)
+#define kLocalizedMediaLibrarySoundPlayFailureTitle NSLocalizedString(@"Failed to play sound", nil)
+#define kLocalizedMediaLibrarySoundPlayFailureMessage NSLocalizedString(@"The sound item cannot be played", nil)
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

@@ -671,9 +671,16 @@ let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", 
 //************************************************************************************************************
 //************************************       MediaLibrary        *********************************************
 //************************************************************************************************************
+
 let kLocalizedMediaLibrary = NSLocalizedString("Media Library", comment: "")
-
-
+let kLocalizedMediaLibraryConnectionIssueTitle = NSLocalizedString("Connection failed", comment: "")
+let kLocalizedMediaLibraryConnectionIssueMessage = NSLocalizedString("Cannot connect to the Media Library. Please check your Internet connection.", comment: "")
+let kLocalizedMediaLibraryImportFailedTitle = NSLocalizedString("Failed to import item", comment: "")
+let kLocalizedMediaLibraryImportFailedMessage = NSLocalizedString("The following item could not be imported from the Media Library:", comment: "")
+let kLocalizedMediaLibrarySoundLoadFailureTitle = NSLocalizedString("Failed to load sound", comment: "")
+let kLocalizedMediaLibrarySoundLoadFailureMessage = NSLocalizedString("The sound item cannot be loaded", comment: "")
+let kLocalizedMediaLibrarySoundPlayFailureTitle = NSLocalizedString("Failed to play sound", comment: "")
+let kLocalizedMediaLibrarySoundPlayFailureMessage = NSLocalizedString("The sound item cannot be played", comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

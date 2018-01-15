@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1871,39 +1871,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-465" y="-3156.3380281690138"/>
-        </scene>
-        <!--Media Library View Controller-->
-        <scene sceneID="OAl-dc-46s">
-            <objects>
-                <viewController storyboardIdentifier="medialibrary" id="j2U-pK-f0M" customClass="MediaLibraryViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Yb-fJ-BzR"/>
-                        <viewControllerLayoutGuide type="bottom" id="tUZ-ku-hal"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mO0-fD-svi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZ9-Oq-e2g">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="RZ9-Oq-e2g" firstAttribute="bottom" secondItem="tUZ-ku-hal" secondAttribute="top" id="Ccu-Ww-4SH"/>
-                            <constraint firstAttribute="trailing" secondItem="RZ9-Oq-e2g" secondAttribute="trailing" id="TVa-A8-GGa"/>
-                            <constraint firstItem="RZ9-Oq-e2g" firstAttribute="top" secondItem="mO0-fD-svi" secondAttribute="top" id="Z58-eZ-seU"/>
-                            <constraint firstItem="RZ9-Oq-e2g" firstAttribute="leading" secondItem="mO0-fD-svi" secondAttribute="leading" id="dhW-Gu-iBC"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="RZ9-Oq-e2g" id="Pu9-Wh-hId"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Aai-hJ-R7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="230" y="-3159"/>
         </scene>
         <!--Paint View Controller-->
         <scene sceneID="3Xb-dV-P3s">

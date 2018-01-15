@@ -634,3 +634,9 @@
 }
 
 @end
+
+@implementation CBFileManager
++ (FileManager *)sharedFileManager {
+    return [FileManager sharedManager];
+}
+@end

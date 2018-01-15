@@ -25,6 +25,15 @@
 
 @implementation Sound
 
+- (instancetype)initWithName:(NSString *)name fileName:(NSString *)fileName {
+    self = [super init];
+    if (self) {
+        self.name = name;
+        self.fileName = fileName;
+    }
+    return self;
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Sound: %@\r", self.name];

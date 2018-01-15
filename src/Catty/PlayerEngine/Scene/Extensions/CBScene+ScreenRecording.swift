@@ -67,8 +67,8 @@ extension CBScene: RPScreenRecorderDelegate {
         isPaused = true
 
         // Show an alert notifying the user that there was an issue with starting or stopping the recorder.
-        AlertControllerBuilder.alertWithTitle(nil, message: message)
-            .addDefaultActionWithTitle(kLocalizedOK) { self.isPaused = false }.build()
+        AlertControllerBuilder.alert(title: nil, message: message)
+            .addDefaultAction(title: kLocalizedOK) { self.isPaused = false }.build()
             .showWithController(view?.window?.rootViewController ?? Util.topmostViewController())
     }
 

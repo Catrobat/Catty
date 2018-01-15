@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LibrarySoundCollectionViewCell" customModule="Pocket_Code" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdC-F3-LB6">
+                        <rect key="frame" x="15" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="XZ5-az-77f"/>
+                            <constraint firstAttribute="width" secondItem="CdC-F3-LB6" secondAttribute="height" multiplier="1:1" id="swS-tH-Lb5"/>
+                        </constraints>
+                        <state key="normal" image="ic_media_play"/>
+                        <state key="selected" image="ic_media_pause"/>
+                        <connections>
+                            <action selector="playOrStop" destination="gTV-IL-0wX" eventType="touchUpInside" id="BS0-Hf-all"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNw-Gq-6Td">
+                        <rect key="frame" x="0.0" y="50" width="80" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWF-1k-iE3">
+                                <rect key="frame" x="19" y="6" width="43" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VWF-1k-iE3" firstAttribute="centerX" secondItem="tNw-Gq-6Td" secondAttribute="centerX" id="E3Z-u6-JWH"/>
+                            <constraint firstItem="VWF-1k-iE3" firstAttribute="centerY" secondItem="tNw-Gq-6Td" secondAttribute="centerY" id="eby-fm-YAr"/>
+                            <constraint firstItem="VWF-1k-iE3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tNw-Gq-6Td" secondAttribute="leading" id="fED-mx-zMd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VWF-1k-iE3" secondAttribute="trailing" id="gS5-Ry-OyJ"/>
+                        </constraints>
+                    </view>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Rca-vO-wtf">
+                        <rect key="frame" x="30" y="55" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </activityIndicatorView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="tNw-Gq-6Td" secondAttribute="bottom" id="Eth-xx-DbH"/>
+                <constraint firstItem="CdC-F3-LB6" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="Im7-V1-fYH"/>
+                <constraint firstItem="CdC-F3-LB6" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="aBx-kv-kLj"/>
+                <constraint firstItem="tNw-Gq-6Td" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" id="gQU-b4-gWn"/>
+                <constraint firstItem="tNw-Gq-6Td" firstAttribute="top" secondItem="CdC-F3-LB6" secondAttribute="bottom" id="gby-Ym-6D4"/>
+                <constraint firstItem="tNw-Gq-6Td" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="kMk-l7-3o9"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="189" height="96"/>
+            <connections>
+                <outlet property="activityIndicator" destination="Rca-vO-wtf" id="8Kz-qL-g4k"/>
+                <outlet property="playOrStopButton" destination="CdC-F3-LB6" id="QLC-3D-4Qs"/>
+                <outlet property="titleLabel" destination="VWF-1k-iE3" id="uuu-Lh-1Fs"/>
+            </connections>
+            <point key="canvasLocation" x="103" y="77"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_media_pause" width="69" height="68"/>
+        <image name="ic_media_play" width="69" height="67"/>
+    </resources>
+</document>

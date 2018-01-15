@@ -23,13 +23,21 @@
 #import <UIKit/UIKit.h>
 #import "CBMutableCopying.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class SpriteObject;
 
 @interface Sound : NSObject<CBMutableCopying>
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *fileName;
+
+@property (strong, nonatomic, nullable) NSString *name;
+@property (strong, nonatomic, nullable) NSString *fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
+
+- (instancetype)initWithName:(NSString *)name fileName:(NSString *)fileName;
 
 - (BOOL)isEqualToSound:(Sound*)sound;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

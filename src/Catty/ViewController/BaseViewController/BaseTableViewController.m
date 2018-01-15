@@ -31,7 +31,6 @@
 #import "Pocket_Code-Swift.h"
 #import "ResourceHelper.h"
 #import "Reachability.h"
-#import "MediaLibraryViewController.h"
 #import "AppDelegate.h"
 
 @class BluetoothPopupVC;
@@ -521,34 +520,7 @@
 #pragma mark - network status
 - (void)networkStatusChanged:(NSNotification *)notification
 {
-    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-    if(remoteHostStatus == NotReachable) {
-        if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
-            [Util defaultAlertForNetworkError];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        NSDebug(@"not reachable");
-    } else if (remoteHostStatus == ReachableViaWiFi) {
-        if (!self.reachability.connectionRequired) {
-            NSDebug(@"reachable via Wifi");
-        }else{
-            NSDebug(@"reachable via wifi but no data");
-            if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
-                [Util defaultAlertForNetworkError];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }
-    }  else if (remoteHostStatus == ReachableViaWWAN){
-        if (! self.reachability.connectionRequired) {
-            NSDebug(@"celluar data ok");
-        } else {
-            NSDebug(@"reachable via cellular but no data");
-            if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]] ) {
-                [Util defaultAlertForNetworkError];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }
-    }
+//    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
 }
 
 //#pragma mark - segue handling

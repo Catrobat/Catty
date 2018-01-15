@@ -24,22 +24,23 @@ import Foundation
 import BluetoothHelper
 import CoreBluetooth
 
+class BluetoothDevicesTableViewController: UITableViewController {
 
-class BluetoothDevicesTableViewController:UITableViewController{
+    weak var delegate : BluetoothPopupVC?
+    weak var loadingView: LoadingView!
+
     override func viewDidLoad() {
+        let loadingView = LoadingView() // helper variable due to self.loadingView being a weak property
+        self.view.addSubview(loadingView)
+        self.loadingView = loadingView
         self.tableView.backgroundColor = UIColor.background()
     }
-    
     
     func updateWhenActive() {
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
     }
-    
-    weak var delegate : BluetoothPopupVC?
-    private let loadingView = LoadingView()
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
@@ -66,8 +67,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
             return
         }
         DispatchQueue.main.async(execute: {
-            self.view.addSubview(self.loadingView!)
-            self.loadingView?.show()
+            self.loadingView.show()
         })
         BluetoothService.swiftSharedInstance.connectDevice(peri)
     }
@@ -126,7 +126,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
     
     func deviceFailedConnection(){
         DispatchQueue.main.async(execute: {
-            self.loadingView?.hide()
+            self.loadingView.hide()
             CentralManager.sharedInstance.stopScanning()
             self.initScan()
         })
@@ -134,7 +134,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
     
     func deviceNotResponding(){
         DispatchQueue.main.async(execute: {
-            self.loadingView?.hide()
+            self.loadingView.hide()
             CentralManager.sharedInstance.stopScanning()
             self.initScan()
         })
@@ -142,7 +142,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
     
     func giveUpConnectionToDevice(){
         DispatchQueue.main.async(execute: {
-            self.loadingView?.hide()
+            self.loadingView.hide()
             CentralManager.sharedInstance.stopScanning()
             self.initScan()
         })

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="LibraryCategoryCollectionReusableView" customModule="Pocket_Code" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="339" height="48"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxh-7K-9PF">
+                    <rect key="frame" x="16" y="8" width="307" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pFj-Go-s5T">
+                    <rect key="frame" x="16" y="38" width="307" height="2"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="bgb-4q-Cgy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="pFj-Go-s5T" firstAttribute="top" secondItem="gxh-7K-9PF" secondAttribute="bottom" constant="1" id="7Jn-0e-GHM"/>
+                <constraint firstItem="gxh-7K-9PF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="8" id="FQL-3h-TAz"/>
+                <constraint firstItem="pFj-Go-s5T" firstAttribute="leading" secondItem="gxh-7K-9PF" secondAttribute="leading" id="NJQ-A8-myE"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="gxh-7K-9PF" secondAttribute="trailing" constant="16" id="RMC-3S-G2g"/>
+                <constraint firstItem="gxh-7K-9PF" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="16" id="e0r-0i-yej"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="pFj-Go-s5T" secondAttribute="bottom" constant="8" id="gYc-6e-WOA"/>
+                <constraint firstItem="pFj-Go-s5T" firstAttribute="trailing" secondItem="gxh-7K-9PF" secondAttribute="trailing" id="ydL-Wl-fIS"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="borderThicknessConstraint" destination="bgb-4q-Cgy" id="BwB-7h-oDg"/>
+                <outlet property="borderView" destination="pFj-Go-s5T" id="kfx-0n-UMi"/>
+                <outlet property="titleLabel" destination="gxh-7K-9PF" id="zu5-ds-rUl"/>
+            </connections>
+            <point key="canvasLocation" x="43.5" y="68.5"/>
+        </collectionReusableView>
+    </objects>
+</document>
