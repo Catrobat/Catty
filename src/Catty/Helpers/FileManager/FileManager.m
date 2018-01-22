@@ -42,6 +42,15 @@
 
 @implementation FileManager
 
++ (instancetype)sharedManager {
+    static FileManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[FileManager alloc] init];
+    });
+    return sharedManager;
+}
+
 #pragma mark - Getters and Setters
 - (NSString*)documentsDirectory
 {

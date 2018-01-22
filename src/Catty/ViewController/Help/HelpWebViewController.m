@@ -233,7 +233,6 @@
     NSString *param = nil;
     NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
     param = myArray[0];
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
     NSArray *urlParts = [param componentsSeparatedByString:@"/"];
     if (! [urlParts count]) {
@@ -254,7 +253,8 @@
         return NO;
     }
     NSURL *url = [NSURL URLWithString:param];
-    appDelegate.fileManager.delegate = self;
+    FileManager *fileManager = [FileManager sharedManager];
+    fileManager.delegate = self;
     param = nil;
     NSRange start = [request.URL.absoluteString rangeOfString:@"="];
     if (start.location != NSNotFound) {
@@ -265,7 +265,6 @@
         [Util alertWithText:kLocalizedProgramAlreadyDownloadedDescription];
         return NO;
     }
-    FileManager *fileManager = appDelegate.fileManager;
     [fileManager downloadProgramFromURL:url withProgramID:programID andName:param];
     param = nil;
     start = [request.URL.absoluteString rangeOfString:@"download/"];

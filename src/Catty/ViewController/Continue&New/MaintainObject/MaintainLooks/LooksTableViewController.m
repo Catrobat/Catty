@@ -177,7 +177,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     look.name = [Util uniqueName:lookName existingNames:[self.object allLookNames]];
     // rename temporary file name (example: "temp_D41D8CD98F00B204E9800998ECF8427E.png") as well
-    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NSString *oldPath = [self.object pathForLook:look];
     NSArray *fileNameParts = [look.fileName componentsSeparatedByString:@"."];
     NSString *hash = [[[fileNameParts firstObject] componentsSeparatedByString:kResourceFileNameSeparator] lastObject];
@@ -185,7 +184,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     look.fileName = [NSString stringWithFormat:@"%@%@%@.%@", hash, kResourceFileNameSeparator,
                      look.name, fileExtension];
     NSString *newPath = [self.object pathForLook:look];
-    [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
+    FileManager *fileManager = [FileManager sharedManager];
+    [fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
     [self.object addLook:look AndSaveToDisk:YES];
 

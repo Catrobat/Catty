@@ -103,10 +103,9 @@
 
 - (void)prepareRecorder
 {
-    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    
+    FileManager *fileManager = [FileManager sharedManager];
     NSString *fileName =[[NSString uuid] stringByAppendingString:@".m4a"];
-    self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
+    self.filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, fileName];
     self.sound = [[Sound alloc] init];
     self.sound.fileName = fileName;
     NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
@@ -153,8 +152,8 @@
             //        [self.recorder record];
         self.isRecording = YES;
         [self.session setActive:YES error:nil];
-        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        [self.recorder recordForDuration:(([delegate.fileManager freeDiskspace]/1024ll)/256.0)];
+        FileManager *fileManager = [FileManager sharedManager];
+        [self.recorder recordForDuration:(([fileManager freeDiskspace]/1024ll)/256.0)];
 //        [self setupToolBar];
         self.sound.name = kLocalizedRecording;
             //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];

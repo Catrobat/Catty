@@ -80,16 +80,13 @@
 }
 
 #pragma mark - getters and setters
-- (FileManager*)fileManager
-{
-    if (! _fileManager)
-        _fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
-    return _fileManager;
+- (FileManager*)fileManager {
+    return [FileManager sharedManager];
 }
 
 + (void)removeProject:(NSString*)projectPath
 {
-    FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;
+    FileManager *fileManager = [FileManager sharedManager];
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
     [Util setLastProgramWithName:nil programID:nil];

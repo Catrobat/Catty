@@ -26,6 +26,5 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) FileManager *fileManager;
 
 @end

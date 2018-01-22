@@ -113,8 +113,8 @@
         [self createCacheDirectoryIfNotExists];
         NSString *path = [[NSString alloc] initWithFormat:@"%@/%@.png", self.imageCacheDirectory, [imageName sha1]];
 
-        AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        if (! [appDelegate.fileManager fileExists:path]) {
+        FileManager *fileManager = [FileManager sharedManager];
+        if (! [fileManager fileExists:path]) {
             [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
         }
     });

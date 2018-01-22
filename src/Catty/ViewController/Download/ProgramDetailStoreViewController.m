@@ -94,9 +94,9 @@
     [self loadProject:self.project];
 //    self.scrollViewOutlet.exclusiveTouch = YES;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    appDelegate.fileManager.delegate = self;
-    appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
+    FileManager *fileManager = [FileManager sharedManager];
+    fileManager.delegate = self;
+    fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
     self.reachability = [Reachability reachabilityForInternetConnection];
 }
 
@@ -386,10 +386,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)downloadWithName:(NSString*)name
 {
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    appDelegate.fileManager.delegate = self;
-    [appDelegate.fileManager downloadProgramFromURL:url withProgramID:self.project.projectID andName:name];
+    FileManager *fileManager = [FileManager sharedManager];
+    fileManager.delegate = self;
+    [fileManager downloadProgramFromURL:url withProgramID:self.project.projectID andName:name];
     self.project.isdownloading = YES;
     [self.projects setObject:self.project forKey:url];
     [self reloadInputViews];
@@ -466,10 +466,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)stopLoading
 {
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    [appDelegate.fileManager stopLoading:url];
-    appDelegate.fileManager.delegate = self;
+    FileManager *fileManager = [FileManager sharedManager];
+    [fileManager stopLoading:url];
+    fileManager.delegate = self;
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;
     button.progress = 0;

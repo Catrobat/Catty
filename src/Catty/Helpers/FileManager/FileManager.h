@@ -40,6 +40,8 @@
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
 @property (atomic, strong) NSURL* projectURL;
 
++ (instancetype)sharedManager;
+
 - (void)createDirectory:(NSString*)path;
 - (void)deleteAllFilesInDocumentsDirectory;
 - (void)deleteAllFilesOfDirectory:(NSString*)path;
