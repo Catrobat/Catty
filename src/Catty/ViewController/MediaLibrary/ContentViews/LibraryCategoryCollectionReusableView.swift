@@ -20,10 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
+class LibraryCategoryCollectionReusableView: UICollectionReusableView {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak var borderThicknessConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.borderView.backgroundColor = UIColor.utilityTint()
+        self.borderThicknessConstraint.constant = CGFloat(kDefaultImageCellBorderWidth)
+    }
+}

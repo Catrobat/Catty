@@ -20,15 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "LooksTableViewController.h"
-#import "SoundsTableViewController.h"
+/// An URLSession subclass that doesn't send a proper URLResponse in the completion handlers.
+class URLSessionMock: URLSession {
 
-@interface MediaLibraryViewController : UIViewController <UIWebViewDelegate>
-@property (weak, nonatomic) IBOutlet NSString *urlEnding;
-@property (weak, nonatomic) NSURL *url;
-@property (strong, nonatomic) Sound *sound;
-@property (strong, nonatomic) UIImage *image;
-@property (nonatomic,weak)id<SoundDelegate> soundDelegate;
-@property (nonatomic,weak)id<PaintDelegate> paintDelegate;
-@end
+    override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        return URLSessionDataTaskMock(completionHandler)
+    }
+
+    class URLSessionDataTaskMock: URLSessionDataTask {
+
+        var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
+
+        required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+            self.completionHandler = completionHandler
+        }
+
+        override func resume() {
+            self.completionHandler?(nil, nil, nil)
+            self.completionHandler = nil
+        }
+    }
+}

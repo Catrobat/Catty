@@ -20,10 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
-
+extension UIAlertController {
+    func addAction(title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)?) {
+        let action = UIAlertAction(title: title, style: style, handler: handler)
+        self.addAction(action)
+    }
+}

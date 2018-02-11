@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "LoadingView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIDefines.h"
@@ -37,21 +36,14 @@
 
 @implementation LoadingView
 
-- (id)initWithFrame:(CGRect)frame
-{
-  self = [super initWithFrame:frame];
-  if (self) {
-  }
-  return self;
-}
-
-- (id)init
+- (instancetype)init
 {
   if (self = [super initWithFrame:CGRectMake(25, 130, kLoadingBackgroundWidth, kLoadingBackgroundHeight)]) {
     self.tag = kLoadingViewTag;
     self.backgroundColor = [UIColor navTintColor];
     self.alpha = 0.90f;
     self.layer.cornerRadius = 5;
+    self.userInteractionEnabled = false;
     [self initLoadingLabel];
     [self initActivityIndicator];
   }

@@ -1,0 +1,31 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 404,
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "PHPSESSID=lsurf01rq2ll911qghavi56334; path=\/",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "Server" : "nginx",
+          "Date" : "Fri, 09 Feb 2018 08:53:51 GMT",
+          "Cache-Control" : "private, must-revalidate"
+        },
+        "body" : {
+          "error" : {
+            "message" : "Not Found",
+            "code" : 404
+          }
+        },
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/download-media\/99999"
+      },
+      "recorded_at" : 1518166431.5628099,
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/download-media\/99999"
+      }
+    }
+  ],
+  "name" : "MediaLibraryDownloader.downloadData.fail.data"
+}

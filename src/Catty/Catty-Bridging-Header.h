@@ -121,8 +121,8 @@
 //------------------------------------------------------------------------------------------------------------
 
 #import "Util.h"
+#import "FileManager.h"
 #import "AudioManager.h"
-#import "ProgramDefines.h"
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
 #import "LoadingView.h"
@@ -130,19 +130,18 @@
 #import "CBMutableCopyContext.h"
 
 //------------------------------------------------------------------------------------------------------------
-// TableView classes
+// ViewController classes
 //------------------------------------------------------------------------------------------------------------
 
 #import "BaseTableViewController.h"
-
+#import "LooksTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Defines
 //------------------------------------------------------------------------------------------------------------
 #import "NetworkDefines.h"
-//#import "LanguageTranslationDefines.h"
-
 #import "ProgramDefines.h"
+//#import "LanguageTranslationDefines.h"
 
 #import "BrickFormulaProtocol.h"
 

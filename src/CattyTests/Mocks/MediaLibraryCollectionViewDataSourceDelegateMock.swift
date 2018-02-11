@@ -20,10 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
+@testable import Pocket_Code
 
+class MediaLibraryCollectionViewDataSourceDelegateMock: MediaLibraryCollectionViewDataSourceDelegate {
+
+    var didSelectCell: ((MediaItem) -> Void)?
+
+    init(didSelectCell: ((MediaItem) -> Void)? = nil) {
+        self.didSelectCell = didSelectCell
+    }
+
+    func mediaLibraryCollectionViewDataSource(_ dataSource: MediaLibraryCollectionViewDataSource, didSelectCellWith item: MediaItem) {
+        self.didSelectCell?(item)
+    }
+}

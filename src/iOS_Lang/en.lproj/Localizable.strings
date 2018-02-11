@@ -170,6 +170,9 @@
 "Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
 
 /* No comment provided by engineer. */
+"Cannot connect to the Media Library. Please check your Internet connection." = "Cannot connect to the Media Library. Please check your Internet connection.";
+
+/* No comment provided by engineer. */
 "Categories" = "Categories";
 
 /* No comment provided by engineer. */
@@ -528,6 +531,15 @@
 
 /* No comment provided by engineer. */
 "facesize" = "facesize";
+
+/* No comment provided by engineer. */
+"Failed to import item" = "Failed to import item";
+
+/* No comment provided by engineer. */
+"Failed to load sound" = "Failed to load sound";
+
+/* No comment provided by engineer. */
+"Failed to play sound" = "Failed to play sound";
 
 /* No comment provided by engineer. */
 "false" = "false";
@@ -1406,10 +1418,19 @@
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
 
 /* No comment provided by engineer. */
+"The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";
+
+/* No comment provided by engineer. */
 "The input is too long. Please enter maximal %lu character(s)." = "The input is too long. Please enter maximal %lu character(s).";
 
 /* No comment provided by engineer. */
 "The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The sound item cannot be loaded" = "The sound item cannot be loaded";
+
+/* No comment provided by engineer. */
+"The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";

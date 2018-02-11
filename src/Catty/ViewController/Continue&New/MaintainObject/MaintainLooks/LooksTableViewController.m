@@ -41,8 +41,6 @@
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
-#import "MediaLibraryViewController.h"
 #import "Pocket_Code-Swift.h"
 
 @interface LooksTableViewController () <UIImagePickerControllerDelegate,
@@ -697,15 +695,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
      }]
      addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
          dispatch_async(dispatch_get_main_queue(), ^{
-             MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
-             vc.paintDelegate = self;
-             
-             vc.urlEnding = self.object.isBackground ? @"backgrounds" : @"looks";
-             
-             [self.navigationController pushViewController:vc animated:YES];
+             if (self.object.isBackground) {
+                 [self showBackgroundsMediaLibrary];
+             } else {
+                 [self showLooksMediaLibrary];
+             }
          });
-    }] build]
-    showWithController:self];
+     }] build]
+     showWithController:self];
 }
 
 - (void)suggestToOpenSettingsAppWithMessage:(NSString *)message {
@@ -1020,7 +1017,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         //do something
         [self.tableView reloadData];
         [self changeEditingBarButtonState];
-        
     });
 }
 

@@ -1,6 +1,8 @@
-github "ArtSabintsev/Siren" "swift3.2"
+github "ArtSabintsev/Siren"
 github "SecondRenaissance/Bohr"
 github "Marxon13/M13ProgressSuite" ~> 1.2.9
 github "TTTAttributedLabel/TTTAttributedLabel" ~> 2.0.0
 github "maxep/MXSegmentedPager" ~> 3.3.0
 github "caldrian/LXReorderableCollectionViewFlowLayout" "1a17393441a91f4cbcf92d6d195873c757e42b23"
+github "onevcat/Kingfisher" ~> 4.0
+github "venmo/DVR" "ma/interaction-http-response-parsing"

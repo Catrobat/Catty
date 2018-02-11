@@ -24,9 +24,6 @@
 
 @interface LoadingView : UIView
 
-
-- (id)init;
-
 - (void)show;
 
 - (void)hide;

@@ -24,18 +24,18 @@ import Foundation
 
 @objc
 public final class AlertControllerBuilder: NSObject {
-    @objc
-    public static func alertWithTitle(_ title: String?, message: String?) -> AlertActionAdding {
+    @objc(alertWithTitle:message:)
+    public static func alert(title: String?, message: String?) -> AlertActionAdding {
         return AlertController(title: title, message: message, style: .alert)
     }
 
-    @objc
-    public static func actionSheetWithTitle(_ title: String) -> AlertActionAdding {
+    @objc(actionSheetWithTitle:)
+    public static func actionSheet(title: String) -> AlertActionAdding {
         return AlertController(title: title, message: nil, style: .actionSheet)
     }
 
-    @objc
-    public static func textFieldAlertWithTitle(_ title: String?, message: String?) -> TextFieldAlertDefining {
+    @objc(textFieldAlertWithTitle:message:)
+    public static func textFieldAlert(title: String?, message: String?) -> TextFieldAlertDefining {
         return TextFieldAlertController(title: title, message: message)
     }
 }

@@ -1,0 +1,31 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "PHPSESSID=hqtuffbfmbh3ni5io8phja59a2; path=\/",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Server" : "nginx",
+          "Date" : "Fri, 09 Feb 2018 08:10:42 GMT",
+          "Cache-Control" : "private, must-revalidate"
+        },
+        "body" : [
+          {
+            "id" : 2
+          }
+        ],
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
+      },
+      "recorded_at" : 1518163842.845463,
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/\/api\/media\/package\/Backgrounds\/json"
+      }
+    }
+  ],
+  "name" : "MediaLibraryDownloader.downloadIndex"
+}

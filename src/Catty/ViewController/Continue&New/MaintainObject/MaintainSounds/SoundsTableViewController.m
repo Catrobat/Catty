@@ -40,7 +40,6 @@
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
-#import "MediaLibraryViewController.h"
 #import "Pocket_Code-Swift.h"
 
 @interface SoundsTableViewController () <AudioManagerDelegate,AVAudioPlayerDelegate>
@@ -650,6 +649,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - Helper Methods
+
 - (void)stopAllSounds
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
@@ -716,14 +716,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
          }];
      }]
      addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
-         NSDebug(@"Media library");
          self.isAllowed = YES;
          dispatch_async(dispatch_get_main_queue(), ^{
-             MediaLibraryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kMediaLibraryViewControllerIdentifier];
-             vc.soundDelegate = self;
-             vc.urlEnding = @"sounds";
-             
-             [self.navigationController pushViewController:vc animated:YES];
+             [self showSoundsMediaLibrary];
          });
      }]
      build]

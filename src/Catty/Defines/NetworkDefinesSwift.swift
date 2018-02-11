@@ -20,10 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
+//************************************************************************************************************
+//************************************       MediaLibrary        *********************************************
+//************************************************************************************************************
 
+let kMediaLibraryBackgroundsIndex = kBaseUrl.appending("/api/media/package/Backgrounds/json")
+let kMediaLibraryLooksIndex = kBaseUrl.appending("/api/media/package/Looks/json")
+let kMediaLibrarySoundsIndex = kBaseUrl.appending("/api/media/package/Sounds/json")
+let kMediaLibraryDownloadBaseURL = kBaseUrl.replacingOccurrences(of: "/pocketcode/", with: "")

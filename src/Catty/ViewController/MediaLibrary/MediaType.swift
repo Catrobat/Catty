@@ -20,10 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
+enum MediaType: String {
+    case backgrounds
+    case looks
+    case sounds
+}
 
+extension MediaType {
+    var indexURL: URL {
+        switch self {
+        case .backgrounds:
+            guard let indexURL = URL(string: kMediaLibraryBackgroundsIndex) else { fatalError("Media Library backgrounds URL constant misconfiguration") }
+            return indexURL
+        case .looks:
+            guard let indexURL = URL(string: kMediaLibraryLooksIndex) else { fatalError("Media Library looks URL constant misconfiguration") }
+            return indexURL
+        case .sounds:
+            guard let indexURL = URL(string: kMediaLibrarySoundsIndex) else { fatalError("Media Library sounds URL constant misconfiguration") }
+            return indexURL
+        }
+    }
+}

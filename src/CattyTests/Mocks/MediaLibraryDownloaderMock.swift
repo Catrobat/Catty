@@ -20,10 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kPaintViewControllerIdentifier @"paint"
-#define kLooksTableViewControllerIdentifier @"LooksTableViewController"
-#define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
-#define kProgramTableViewControllerIdentifier @"ProgramTableViewController"
-#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
-#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"
+@testable import Pocket_Code
 
+final class MediaLibraryDownloaderMock: MediaLibraryDownloaderProtocol {
+
+    var categories: [[MediaItem]]?
+    var data: Data?
+
+    func downloadIndex(for mediaType: MediaType, completion: @escaping ([[MediaItem]]?, MediaLibraryDownloadError?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            completion(self.categories, nil)
+        }
+    }
+
+    func downloadData(for mediaItem: MediaItem, completion: @escaping (Data?, MediaLibraryDownloadError?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            completion(self.data, nil)
+        }
+    }
+}
