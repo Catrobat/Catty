@@ -727,9 +727,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)setupToolBar
 {
     [super setupToolBar];
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
+
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addLookAction:)];
@@ -738,18 +736,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                           action:@selector(playSceneAction:)];
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, add, invisibleButton, flexItem,
-                         flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem, nil];
+    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem(), invisibleItem(), add, invisibleItem(), flexItem(),
+                         flexItem(), flexItem(), invisibleItem(), play, invisibleItem(), flexItem(), nil];
 }
 
 - (void)setupEditingToolBar
 {
     [super setupEditingToolBar];
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                            action:nil];
+
     UIBarButtonItem *editActionButton;
     if (self.deletionMode){
         editActionButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
@@ -764,10 +760,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
-                         invisibleButton, editActionButton, nil];
+    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleItem(), flexItem(),
+                         invisibleItem(), editActionButton, nil];
 }
 
 #pragma mark paintDelegate
