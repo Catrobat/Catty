@@ -28,6 +28,7 @@
 #import "LoadingView.h"
 #import "NetworkDefines.h"
 #import "BDKNotifyHUD.h"
+#import "Pocket_Code-Swift.h"
 
 @interface HelpWebViewController ()
 @property (nonatomic, strong) NSURL *URL;
@@ -112,22 +113,19 @@
     self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
-    
     UIBarButtonItem *forward = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_right"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)];
     forward.enabled = self.webView.canGoForward;
 
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
     back.enabled = self.webView.canGoBack;
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInSafari)];
+
         // XXX: workaround for tap area problem:
         // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:invisibleButton, back, invisibleButton, flexItem,
-                          invisibleButton, forward, invisibleButton, flexItem, flexItem, share,flexItem, nil];
+    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    self.toolbarItems = [NSArray arrayWithObjects:invisibleItem(), back, invisibleItem(), flexItem(),
+                          invisibleItem(), forward, invisibleItem(), flexItem(), flexItem(), share, flexItem(), nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

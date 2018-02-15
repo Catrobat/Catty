@@ -28,7 +28,7 @@
 #import "TimerLabel.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
-
+#import "Pocket_Code-Swift.h"
 
 @interface SRViewController ()
 @property (nonatomic,strong)Sound *sound;
@@ -188,9 +188,7 @@
 
 - (void)setupToolBar
 {
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
+
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                           target:self
                                                                           action:@selector(saveSound)];
@@ -209,10 +207,10 @@
     
         // XXX: workaround for tap area problem:
         // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, recordPause, invisibleButton, flexItem,
-                         flexItem, flexItem, invisibleButton, save , invisibleButton, flexItem, nil];
+    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem(), invisibleItem(), recordPause, invisibleItem(), flexItem(),
+                         flexItem(), flexItem(), invisibleItem(), save , invisibleItem(), flexItem(), nil];
 }
 
 - (void)saveSound

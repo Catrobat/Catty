@@ -36,6 +36,7 @@
 #import "Util.h"
 #import "UploadInfoPopupViewController.h"
 #import "BDKNotifyHUD.h"
+#import "Pocket_Code-Swift.h"
 
 
 @interface ProgramsForUploadViewController ()
@@ -260,18 +261,16 @@
 - (void)setupToolBar
 {
     [super setupToolBar];
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
-    
+
     self.uploadButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedUpload
                                                          style:UIBarButtonItemStylePlain
                                                         target:self
                                                         action:@selector(uploadProgramAction:)];
     
     [self.uploadButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
-    
-    self.toolbarItems = @[flexItem, self.uploadButton, flexItem];
+
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    self.toolbarItems = @[flexItem(), self.uploadButton, flexItem()];
 }
 
 - (void)showUploadInfoView

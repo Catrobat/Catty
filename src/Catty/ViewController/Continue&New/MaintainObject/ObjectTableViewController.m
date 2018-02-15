@@ -134,13 +134,12 @@
 - (void)setupToolBar
 {
     [super setupToolBar];
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
+
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, play, flexItem, nil];
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem(), play, flexItem(), nil];
 }
 
 @end

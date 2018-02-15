@@ -153,11 +153,9 @@
 #pragma mark - Setup Toolbar
 - (void)setupToolBar
 {
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
+    UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
+
     UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
@@ -185,10 +183,10 @@
                                                                           action:@selector(playSceneAction:)];
     play.enabled = (! self.editing);
     if (self.editing) {
-        self.toolbarItems = @[selectAllRowsButtonItem,flexItem,delete];
+        self.toolbarItems = @[selectAllRowsButtonItem,flexItem(),delete];
     } else {
-        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
-                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+        self.toolbarItems = @[flexItem(), invisibleItem(), add, invisibleItem(), flexItem(),
+                              flexItem(), flexItem(), invisibleItem(), play, invisibleItem(), flexItem()];
     }
 }
 
