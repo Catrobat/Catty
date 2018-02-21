@@ -65,6 +65,14 @@
     XCTAssertTrue([self.fileManager directoryExists:[self.program projectPath]], @"No project folder created for the new project");
 }
 
+- (void)testDeleteAllPrograms
+{
+    [self setupForNewProgram];
+    XCTAssertTrue([self.fileManager directoryExists:[self.program projectPath]], @"No project folder created for the new project");
+    [self.program deleteAllPrograms];
+    XCTAssertFalse([self.fileManager directoryExists:[self.program projectPath]], @"No project folder created for the new project");
+}
+
 - (void)testNewProgramIfImagesFolderExists
 {
     [self setupForNewProgram];

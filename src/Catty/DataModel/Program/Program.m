@@ -595,4 +595,9 @@
     [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
+- (void)deleteAllPrograms
+{
+    
+}
+
 @end
