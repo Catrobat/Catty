@@ -169,10 +169,8 @@
 		4CDE4CEC203DBBF500B43034 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */; };
 		4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */; };
 		4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD6203DBBF300B43034 /* minizip.license */; };
-		4CDE4CEF203DBBF500B43034 /* PureLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD7203DBBF300B43034 /* PureLayout.license */; };
 		4CDE4CF0203DBBF500B43034 /* SPUserResizableView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */; };
 		4CDE4CF1203DBBF500B43034 /* YKImageCropperView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */; };
-		4CDE4CF2203DBBF500B43034 /* VGParallaxHeader.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDA203DBBF300B43034 /* VGParallaxHeader.license */; };
 		4CDE4CF3203DBBF500B43034 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDB203DBBF300B43034 /* FXBlurView.license */; };
 		4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */; };
 		4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */; };
@@ -1154,10 +1152,8 @@
 		4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
 		4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4CDE4CD6203DBBF300B43034 /* minizip.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minizip.license; sourceTree = "<group>"; };
-		4CDE4CD7203DBBF300B43034 /* PureLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PureLayout.license; sourceTree = "<group>"; };
 		4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPUserResizableView.license; sourceTree = "<group>"; };
 		4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YKImageCropperView.license; sourceTree = "<group>"; };
-		4CDE4CDA203DBBF300B43034 /* VGParallaxHeader.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGParallaxHeader.license; sourceTree = "<group>"; };
 		4CDE4CDB203DBBF300B43034 /* FXBlurView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FXBlurView.license; sourceTree = "<group>"; };
 		4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HMSegmentedControl.license; sourceTree = "<group>"; };
 		4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+FloodFill.license"; sourceTree = "<group>"; };
@@ -3204,7 +3200,6 @@
 				4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */,
 				4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */,
 				4CDE4CD1203DBBF200B43034 /* OrderedDictionary.license */,
-				4CDE4CD7203DBBF300B43034 /* PureLayout.license */,
 				4CDE4CD2203DBBF200B43034 /* Reachability.license */,
 				4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */,
 				4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */,
@@ -3214,7 +3209,6 @@
 				4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */,
 				4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */,
 				4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */,
-				4CDE4CDA203DBBF300B43034 /* VGParallaxHeader.license */,
 				4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */,
 			);
 			name = Licenses;
@@ -6579,7 +6573,6 @@
 				4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */,
 				9218B1FC1CC4AB75007B4C60 /* nko_brightness_guide.png in Resources */,
 				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
-				4CDE4CF2203DBBF500B43034 /* VGParallaxHeader.license in Resources */,
 				4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */,
 				4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
@@ -6594,7 +6587,6 @@
 				92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */,
 				4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */,
 				9218B1FD1CC4AB75007B4C60 /* nko_brightness_guide@2x.png in Resources */,
-				4CDE4CEF203DBBF500B43034 /* PureLayout.license in Resources */,
 				4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */,
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
 				4CDE4CF1203DBBF500B43034 /* YKImageCropperView.license in Resources */,
