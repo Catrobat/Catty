@@ -34,6 +34,8 @@
 @property (nonatomic, strong, nonnull) VariablesContainer *variables;
 @property (nonatomic) BOOL requiresBluetooth;
 
+- (void)deleteAllPrograms;
+
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;
