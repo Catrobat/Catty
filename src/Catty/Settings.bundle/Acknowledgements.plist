@@ -22,6 +22,12 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
+                <string>Catty/Resources/Licenses/DVR</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/EVCircularProgressView</string>
             </dict>
             <dict>
@@ -47,6 +53,12 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/ImageHelper</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
+                <string>Catty/Resources/Licenses/Kingfisher</string>
             </dict>
             <dict>
                 <key>Type</key>
@@ -113,6 +125,12 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/SharkfoodMuteSwitchDetector</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
+                <string>Catty/Resources/Licenses/Siren</string>
             </dict>
             <dict>
                 <key>Type</key>

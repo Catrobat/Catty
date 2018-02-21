@@ -181,6 +181,9 @@
 		4CDE4CF8203DBBF500B43034 /* LCTableViewPickerControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */; };
 		4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */; };
 		4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */; };
+		4CDE4CFC203DBC8100B43034 /* Siren.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFB203DBC8100B43034 /* Siren.license */; };
+		4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFD203DBCC100B43034 /* Kingfisher.license */; };
+		4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFF203DBD0B00B43034 /* DVR.license */; };
 		4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */; };
 		4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */; };
 		4CE2D3F31C294F1700938B5E /* Airplane_with_shadow_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */; };
@@ -1163,6 +1166,9 @@
 		4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LCTableViewPickerControl.license; sourceTree = "<group>"; };
 		4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TTTAttributedLabel.license; sourceTree = "<group>"; };
 		4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MXSegmentedPager.license; sourceTree = "<group>"; };
+		4CDE4CFB203DBC8100B43034 /* Siren.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Siren.license; sourceTree = "<group>"; };
+		4CDE4CFD203DBCC100B43034 /* Kingfisher.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kingfisher.license; sourceTree = "<group>"; };
+		4CDE4CFF203DBD0B00B43034 /* DVR.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVR.license; sourceTree = "<group>"; };
 		4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementIdempotenceTest.m; path = Formula/FormulaElementIdempotenceTest.m; sourceTree = "<group>"; };
 		4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_097.xml; sourceTree = "<group>"; };
 		4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_097.xml; sourceTree = "<group>"; };
@@ -3184,11 +3190,13 @@
 			isa = PBXGroup;
 			children = (
 				4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */,
+				4CDE4CFF203DBD0B00B43034 /* DVR.license */,
 				4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */,
 				4CDE4CDB203DBBF300B43034 /* FXBlurView.license */,
 				4CDE4CCE203DBBF200B43034 /* GDataXMLNode.license */,
 				4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */,
 				4CDE4CCD203DBBF200B43034 /* ImageHelper.license */,
+				4CDE4CFD203DBCC100B43034 /* Kingfisher.license */,
 				4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */,
 				4CDE4CCF203DBBF200B43034 /* LXReorderableCollectionViewFlowLayout.license */,
 				4CDE4CD6203DBBF300B43034 /* minizip.license */,
@@ -3201,6 +3209,7 @@
 				4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */,
 				4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */,
 				4CDE4CD0203DBBF200B43034 /* SSZipArchive.license */,
+				4CDE4CFB203DBC8100B43034 /* Siren.license */,
 				4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */,
 				4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */,
 				4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */,
@@ -6593,6 +6602,7 @@
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
 				59697DA3201F46AD00A0071A /* LibraryImageCollectionViewCell.xib in Resources */,
 				4CDE4CEA203DBBF500B43034 /* Reachability.license in Resources */,
+				4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */,
 				4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */,
 				BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CDE4CEB203DBBF500B43034 /* UIViewController+KNSemiModal.license in Resources */,
@@ -6601,6 +6611,7 @@
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
 				92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */,
+				4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */,
 				92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */,
 				4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */,
@@ -6608,6 +6619,7 @@
 				CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */,
 				597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */,
 				9218B1FE1CC4AB75007B4C60 /* nko_colormap.png in Resources */,
+				4CDE4CFC203DBC8100B43034 /* Siren.license in Resources */,
 				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
 				92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */,
 			);
