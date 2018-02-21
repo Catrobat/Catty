@@ -157,30 +157,30 @@
 		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
 		4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD085DC1CD9EE59009A6428 /* SceneTests.m */; };
 		4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */; };
-		4CDE4C98203DAE3900B43034 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C97203DAE3900B43034 /* BDKNotifyHUD.license */; };
-		4CDE4CB0203DAE4A00B43034 /* NKOColorPickerView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C99203DAE4800B43034 /* NKOColorPickerView.license */; };
-		4CDE4CB1203DAE4A00B43034 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C9A203DAE4800B43034 /* UIViewController+CWPopup.license */; };
-		4CDE4CB2203DAE4A00B43034 /* ImageHelper.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C9B203DAE4800B43034 /* ImageHelper.license */; };
-		4CDE4CB3203DAE4A00B43034 /* GDataXMLNode.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C9C203DAE4800B43034 /* GDataXMLNode.license */; };
-		4CDE4CB4203DAE4A00B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C9D203DAE4800B43034 /* LXReorderableCollectionViewFlowLayout.license */; };
-		4CDE4CB5203DAE4A00B43034 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C9E203DAE4800B43034 /* SSZipArchive.license */; };
-		4CDE4CB6203DAE4A00B43034 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4C9F203DAE4800B43034 /* OrderedDictionary.license */; };
-		4CDE4CB7203DAE4A00B43034 /* Reachability.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA0203DAE4800B43034 /* Reachability.license */; };
-		4CDE4CB8203DAE4A00B43034 /* UIViewController+KNSemiModal.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA1203DAE4800B43034 /* UIViewController+KNSemiModal.license */; };
-		4CDE4CB9203DAE4A00B43034 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA2203DAE4800B43034 /* minizip.license */; };
-		4CDE4CBA203DAE4A00B43034 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA3203DAE4900B43034 /* NSString+FastImageSize.license */; };
-		4CDE4CBB203DAE4A00B43034 /* YKImageCropperView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA4203DAE4900B43034 /* YKImageCropperView.license */; };
-		4CDE4CBC203DAE4A00B43034 /* PureLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA5203DAE4900B43034 /* PureLayout.license */; };
-		4CDE4CBD203DAE4A00B43034 /* SPUserResizableView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA6203DAE4900B43034 /* SPUserResizableView.license */; };
-		4CDE4CBE203DAE4A00B43034 /* VGParallaxHeader.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA7203DAE4900B43034 /* VGParallaxHeader.license */; };
-		4CDE4CBF203DAE4A00B43034 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA8203DAE4900B43034 /* FXBlurView.license */; };
-		4CDE4CC0203DAE4A00B43034 /* UIImage+FloodFill.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CA9203DAE4900B43034 /* UIImage+FloodFill.license */; };
-		4CDE4CC1203DAE4A00B43034 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CAA203DAE4900B43034 /* SharkfoodMuteSwitchDetector.license */; };
-		4CDE4CC3203DAE4A00B43034 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CAC203DAE4A00B43034 /* EVCircularProgressView.license */; };
-		4CDE4CC4203DAE4A00B43034 /* LCTableViewPickerControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CAD203DAE4A00B43034 /* LCTableViewPickerControl.license */; };
-		4CDE4CC5203DAE4A00B43034 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CAE203DAE4A00B43034 /* TTTAttributedLabel.license */; };
-		4CDE4CC6203DAE4A00B43034 /* MXSegmentedPager.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CAF203DAE4A00B43034 /* MXSegmentedPager.license */; };
-		4CDE4CCA203DAF5600B43034 /* HMSegmentedControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CC9203DAF5600B43034 /* HMSegmentedControl.license */; };
+		4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */; };
+		4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */; };
+		4CDE4CE5203DBBF500B43034 /* ImageHelper.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCD203DBBF200B43034 /* ImageHelper.license */; };
+		4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCE203DBBF200B43034 /* GDataXMLNode.license */; };
+		4CDE4CE7203DBBF500B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCF203DBBF200B43034 /* LXReorderableCollectionViewFlowLayout.license */; };
+		4CDE4CE8203DBBF500B43034 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD0203DBBF200B43034 /* SSZipArchive.license */; };
+		4CDE4CE9203DBBF500B43034 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD1203DBBF200B43034 /* OrderedDictionary.license */; };
+		4CDE4CEA203DBBF500B43034 /* Reachability.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD2203DBBF200B43034 /* Reachability.license */; };
+		4CDE4CEB203DBBF500B43034 /* UIViewController+KNSemiModal.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */; };
+		4CDE4CEC203DBBF500B43034 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */; };
+		4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */; };
+		4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD6203DBBF300B43034 /* minizip.license */; };
+		4CDE4CEF203DBBF500B43034 /* PureLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD7203DBBF300B43034 /* PureLayout.license */; };
+		4CDE4CF0203DBBF500B43034 /* SPUserResizableView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */; };
+		4CDE4CF1203DBBF500B43034 /* YKImageCropperView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */; };
+		4CDE4CF2203DBBF500B43034 /* VGParallaxHeader.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDA203DBBF300B43034 /* VGParallaxHeader.license */; };
+		4CDE4CF3203DBBF500B43034 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDB203DBBF300B43034 /* FXBlurView.license */; };
+		4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */; };
+		4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */; };
+		4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */; };
+		4CDE4CF7203DBBF500B43034 /* EVCircularProgressView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */; };
+		4CDE4CF8203DBBF500B43034 /* LCTableViewPickerControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */; };
+		4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */; };
+		4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */; };
 		4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */; };
 		4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */; };
 		4CE2D3F31C294F1700938B5E /* Airplane_with_shadow_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */; };
@@ -1139,30 +1139,30 @@
 		4CD085DB1CD9EE59009A6428 /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneTests.h; path = Scene/SceneTests.h; sourceTree = "<group>"; };
 		4CD085DC1CD9EE59009A6428 /* SceneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneTests.m; path = Scene/SceneTests.m; sourceTree = "<group>"; };
 		4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeVariableBrickTests.swift; sourceTree = "<group>"; };
-		4CDE4C97203DAE3900B43034 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
-		4CDE4C99203DAE4800B43034 /* NKOColorPickerView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NKOColorPickerView.license; sourceTree = "<group>"; };
-		4CDE4C9A203DAE4800B43034 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
-		4CDE4C9B203DAE4800B43034 /* ImageHelper.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImageHelper.license; sourceTree = "<group>"; };
-		4CDE4C9C203DAE4800B43034 /* GDataXMLNode.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.license; sourceTree = "<group>"; };
-		4CDE4C9D203DAE4800B43034 /* LXReorderableCollectionViewFlowLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LXReorderableCollectionViewFlowLayout.license; sourceTree = "<group>"; };
-		4CDE4C9E203DAE4800B43034 /* SSZipArchive.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SSZipArchive.license; sourceTree = "<group>"; };
-		4CDE4C9F203DAE4800B43034 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
-		4CDE4CA0203DAE4800B43034 /* Reachability.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Reachability.license; sourceTree = "<group>"; };
-		4CDE4CA1203DAE4800B43034 /* UIViewController+KNSemiModal.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+KNSemiModal.license"; sourceTree = "<group>"; };
-		4CDE4CA2203DAE4800B43034 /* minizip.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minizip.license; sourceTree = "<group>"; };
-		4CDE4CA3203DAE4900B43034 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
-		4CDE4CA4203DAE4900B43034 /* YKImageCropperView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YKImageCropperView.license; sourceTree = "<group>"; };
-		4CDE4CA5203DAE4900B43034 /* PureLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PureLayout.license; sourceTree = "<group>"; };
-		4CDE4CA6203DAE4900B43034 /* SPUserResizableView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPUserResizableView.license; sourceTree = "<group>"; };
-		4CDE4CA7203DAE4900B43034 /* VGParallaxHeader.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGParallaxHeader.license; sourceTree = "<group>"; };
-		4CDE4CA8203DAE4900B43034 /* FXBlurView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FXBlurView.license; sourceTree = "<group>"; };
-		4CDE4CA9203DAE4900B43034 /* UIImage+FloodFill.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+FloodFill.license"; sourceTree = "<group>"; };
-		4CDE4CAA203DAE4900B43034 /* SharkfoodMuteSwitchDetector.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharkfoodMuteSwitchDetector.license; sourceTree = "<group>"; };
-		4CDE4CAC203DAE4A00B43034 /* EVCircularProgressView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EVCircularProgressView.license; sourceTree = "<group>"; };
-		4CDE4CAD203DAE4A00B43034 /* LCTableViewPickerControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LCTableViewPickerControl.license; sourceTree = "<group>"; };
-		4CDE4CAE203DAE4A00B43034 /* TTTAttributedLabel.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TTTAttributedLabel.license; sourceTree = "<group>"; };
-		4CDE4CAF203DAE4A00B43034 /* MXSegmentedPager.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MXSegmentedPager.license; sourceTree = "<group>"; };
-		4CDE4CC9203DAF5600B43034 /* HMSegmentedControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HMSegmentedControl.license; sourceTree = "<group>"; };
+		4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NKOColorPickerView.license; sourceTree = "<group>"; };
+		4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
+		4CDE4CCD203DBBF200B43034 /* ImageHelper.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImageHelper.license; sourceTree = "<group>"; };
+		4CDE4CCE203DBBF200B43034 /* GDataXMLNode.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.license; sourceTree = "<group>"; };
+		4CDE4CCF203DBBF200B43034 /* LXReorderableCollectionViewFlowLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LXReorderableCollectionViewFlowLayout.license; sourceTree = "<group>"; };
+		4CDE4CD0203DBBF200B43034 /* SSZipArchive.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SSZipArchive.license; sourceTree = "<group>"; };
+		4CDE4CD1203DBBF200B43034 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CDE4CD2203DBBF200B43034 /* Reachability.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Reachability.license; sourceTree = "<group>"; };
+		4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+KNSemiModal.license"; sourceTree = "<group>"; };
+		4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
+		4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
+		4CDE4CD6203DBBF300B43034 /* minizip.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = minizip.license; sourceTree = "<group>"; };
+		4CDE4CD7203DBBF300B43034 /* PureLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PureLayout.license; sourceTree = "<group>"; };
+		4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SPUserResizableView.license; sourceTree = "<group>"; };
+		4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YKImageCropperView.license; sourceTree = "<group>"; };
+		4CDE4CDA203DBBF300B43034 /* VGParallaxHeader.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VGParallaxHeader.license; sourceTree = "<group>"; };
+		4CDE4CDB203DBBF300B43034 /* FXBlurView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FXBlurView.license; sourceTree = "<group>"; };
+		4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HMSegmentedControl.license; sourceTree = "<group>"; };
+		4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIImage+FloodFill.license"; sourceTree = "<group>"; };
+		4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SharkfoodMuteSwitchDetector.license; sourceTree = "<group>"; };
+		4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EVCircularProgressView.license; sourceTree = "<group>"; };
+		4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LCTableViewPickerControl.license; sourceTree = "<group>"; };
+		4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TTTAttributedLabel.license; sourceTree = "<group>"; };
+		4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MXSegmentedPager.license; sourceTree = "<group>"; };
 		4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementIdempotenceTest.m; path = Formula/FormulaElementIdempotenceTest.m; sourceTree = "<group>"; };
 		4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_097.xml; sourceTree = "<group>"; };
 		4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_097.xml; sourceTree = "<group>"; };
@@ -3183,30 +3183,30 @@
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				4CDE4C97203DAE3900B43034 /* BDKNotifyHUD.license */,
-				4CDE4CAC203DAE4A00B43034 /* EVCircularProgressView.license */,
-				4CDE4CA8203DAE4900B43034 /* FXBlurView.license */,
-				4CDE4C9C203DAE4800B43034 /* GDataXMLNode.license */,
-				4CDE4CC9203DAF5600B43034 /* HMSegmentedControl.license */,
-				4CDE4C9B203DAE4800B43034 /* ImageHelper.license */,
-				4CDE4CAD203DAE4A00B43034 /* LCTableViewPickerControl.license */,
-				4CDE4C9D203DAE4800B43034 /* LXReorderableCollectionViewFlowLayout.license */,
-				4CDE4CA2203DAE4800B43034 /* minizip.license */,
-				4CDE4CAF203DAE4A00B43034 /* MXSegmentedPager.license */,
-				4CDE4C99203DAE4800B43034 /* NKOColorPickerView.license */,
-				4CDE4CA3203DAE4900B43034 /* NSString+FastImageSize.license */,
-				4CDE4C9F203DAE4800B43034 /* OrderedDictionary.license */,
-				4CDE4CA5203DAE4900B43034 /* PureLayout.license */,
-				4CDE4CA0203DAE4800B43034 /* Reachability.license */,
-				4CDE4CAA203DAE4900B43034 /* SharkfoodMuteSwitchDetector.license */,
-				4CDE4CA6203DAE4900B43034 /* SPUserResizableView.license */,
-				4CDE4C9E203DAE4800B43034 /* SSZipArchive.license */,
-				4CDE4CAE203DAE4A00B43034 /* TTTAttributedLabel.license */,
-				4CDE4CA9203DAE4900B43034 /* UIImage+FloodFill.license */,
-				4CDE4C9A203DAE4800B43034 /* UIViewController+CWPopup.license */,
-				4CDE4CA1203DAE4800B43034 /* UIViewController+KNSemiModal.license */,
-				4CDE4CA7203DAE4900B43034 /* VGParallaxHeader.license */,
-				4CDE4CA4203DAE4900B43034 /* YKImageCropperView.license */,
+				4CDE4CD4203DBBF300B43034 /* BDKNotifyHUD.license */,
+				4CDE4CDF203DBBF400B43034 /* EVCircularProgressView.license */,
+				4CDE4CDB203DBBF300B43034 /* FXBlurView.license */,
+				4CDE4CCE203DBBF200B43034 /* GDataXMLNode.license */,
+				4CDE4CDC203DBBF300B43034 /* HMSegmentedControl.license */,
+				4CDE4CCD203DBBF200B43034 /* ImageHelper.license */,
+				4CDE4CE0203DBBF400B43034 /* LCTableViewPickerControl.license */,
+				4CDE4CCF203DBBF200B43034 /* LXReorderableCollectionViewFlowLayout.license */,
+				4CDE4CD6203DBBF300B43034 /* minizip.license */,
+				4CDE4CE2203DBBF500B43034 /* MXSegmentedPager.license */,
+				4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */,
+				4CDE4CD5203DBBF300B43034 /* NSString+FastImageSize.license */,
+				4CDE4CD1203DBBF200B43034 /* OrderedDictionary.license */,
+				4CDE4CD7203DBBF300B43034 /* PureLayout.license */,
+				4CDE4CD2203DBBF200B43034 /* Reachability.license */,
+				4CDE4CDE203DBBF400B43034 /* SharkfoodMuteSwitchDetector.license */,
+				4CDE4CD8203DBBF300B43034 /* SPUserResizableView.license */,
+				4CDE4CD0203DBBF200B43034 /* SSZipArchive.license */,
+				4CDE4CE1203DBBF400B43034 /* TTTAttributedLabel.license */,
+				4CDE4CDD203DBBF400B43034 /* UIImage+FloodFill.license */,
+				4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */,
+				4CDE4CD3203DBBF200B43034 /* UIViewController+KNSemiModal.license */,
+				4CDE4CDA203DBBF300B43034 /* VGParallaxHeader.license */,
+				4CDE4CD9203DBBF300B43034 /* YKImageCropperView.license */,
 			);
 			name = Licenses;
 			path = Resources/Licenses;
@@ -6560,56 +6560,56 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CDE4CC3203DAE4A00B43034 /* EVCircularProgressView.license in Resources */,
-				4CDE4CB3203DAE4A00B43034 /* GDataXMLNode.license in Resources */,
+				4CDE4CF7203DBBF500B43034 /* EVCircularProgressView.license in Resources */,
+				4CDE4CE8203DBBF500B43034 /* SSZipArchive.license in Resources */,
+				4CDE4CE9203DBBF500B43034 /* OrderedDictionary.license in Resources */,
 				59697DAF201F855C00A0071A /* LibraryCategoryCollectionReusableView.xib in Resources */,
+				4CDE4CF8203DBBF500B43034 /* LCTableViewPickerControl.license in Resources */,
 				CA2D44431B12305400A3B53D /* Swell.plist in Resources */,
-				4CDE4CC4203DAE4A00B43034 /* LCTableViewPickerControl.license in Resources */,
 				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
+				4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */,
 				9218B1FC1CC4AB75007B4C60 /* nko_brightness_guide.png in Resources */,
 				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
-				4CDE4CB4203DAE4A00B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
+				4CDE4CF2203DBBF500B43034 /* VGParallaxHeader.license in Resources */,
+				4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */,
+				4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
-				4CDE4CBE203DAE4A00B43034 /* VGParallaxHeader.license in Resources */,
 				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
-				4CDE4CC5203DAE4A00B43034 /* TTTAttributedLabel.license in Resources */,
+				4CDE4CF3203DBBF500B43034 /* FXBlurView.license in Resources */,
+				4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */,
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
-				4CDE4CBF203DAE4A00B43034 /* FXBlurView.license in Resources */,
 				598319951FBB813C00639BBF /* Introduction.storyboard in Resources */,
-				4CDE4CBB203DAE4A00B43034 /* YKImageCropperView.license in Resources */,
+				4CDE4CE7203DBBF500B43034 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
+				4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
-				4CDE4CB5203DAE4A00B43034 /* SSZipArchive.license in Resources */,
 				92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */,
+				4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */,
 				9218B1FD1CC4AB75007B4C60 /* nko_brightness_guide@2x.png in Resources */,
+				4CDE4CEF203DBBF500B43034 /* PureLayout.license in Resources */,
+				4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */,
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
-				4CDE4CC6203DAE4A00B43034 /* MXSegmentedPager.license in Resources */,
-				4CDE4CB2203DAE4A00B43034 /* ImageHelper.license in Resources */,
+				4CDE4CF1203DBBF500B43034 /* YKImageCropperView.license in Resources */,
 				92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */,
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
-				4CDE4CB1203DAE4A00B43034 /* UIViewController+CWPopup.license in Resources */,
-				4CDE4CB0203DAE4A00B43034 /* NKOColorPickerView.license in Resources */,
 				59697DA3201F46AD00A0071A /* LibraryImageCollectionViewCell.xib in Resources */,
+				4CDE4CEA203DBBF500B43034 /* Reachability.license in Resources */,
+				4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */,
 				BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
+				4CDE4CEB203DBBF500B43034 /* UIViewController+KNSemiModal.license in Resources */,
+				4CDE4CEC203DBBF500B43034 /* BDKNotifyHUD.license in Resources */,
+				4CDE4CE5203DBBF500B43034 /* ImageHelper.license in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
-				4CDE4CB6203DAE4A00B43034 /* OrderedDictionary.license in Resources */,
-				4CDE4CC1203DAE4A00B43034 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */,
 				92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */,
-				4CDE4CBC203DAE4A00B43034 /* PureLayout.license in Resources */,
-				4CDE4CBA203DAE4A00B43034 /* NSString+FastImageSize.license in Resources */,
+				4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */,
+				4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */,
+				4CDE4CF0203DBBF500B43034 /* SPUserResizableView.license in Resources */,
 				CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */,
-				4CDE4CCA203DAF5600B43034 /* HMSegmentedControl.license in Resources */,
-				4CDE4CB9203DAE4A00B43034 /* minizip.license in Resources */,
 				597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */,
 				9218B1FE1CC4AB75007B4C60 /* nko_colormap.png in Resources */,
-				4CDE4CC0203DAE4A00B43034 /* UIImage+FloodFill.license in Resources */,
-				4CDE4CB7203DAE4A00B43034 /* Reachability.license in Resources */,
-				4CDE4C98203DAE3900B43034 /* BDKNotifyHUD.license in Resources */,
-				4CDE4CB8203DAE4A00B43034 /* UIViewController+KNSemiModal.license in Resources */,
 				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
 				92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */,
-				4CDE4CBD203DAE4A00B43034 /* SPUserResizableView.license in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
