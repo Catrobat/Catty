@@ -32,6 +32,7 @@
 - (void) setBackDownloadStatus;
 - (void) timeoutReached;
 - (void) maximumFilesizeReached;
+- (void) fileNotFound;
 
 @end
 

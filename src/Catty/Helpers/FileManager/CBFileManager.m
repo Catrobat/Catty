@@ -404,6 +404,21 @@
 #pragma mark - Helper
 - (void)storeDownloadedProgram:(NSData *)data andTask:(NSURLSessionDownloadTask *)task
 {
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:nil];
+    
+    if (jsonObject && [jsonObject isKindOfClass:[NSDictionary class]] && [jsonObject objectForKey:@"error"]) {
+        // JSON API returned a 404 error (different from HTTP 404 error)
+        if ([self.delegate respondsToSelector:@selector(fileNotFound)]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate fileNotFound];
+            });
+        }
+        
+        return;
+    }
+    
     NSString *name = [self.programNameDict objectForKey:task];
     NSString *programID = [self.programIDDict objectForKey:task];
     [self unzipAndStore:data withProgramID:programID withName:name];

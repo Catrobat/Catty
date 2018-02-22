@@ -411,6 +411,12 @@
     [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
 }
 
+- (void)fileNotFound
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:kLocalizedProgramNotFound];
+}
+
 - (void)setBackDownloadStatus
 {
     
