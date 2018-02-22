@@ -321,7 +321,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
         ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
         NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
-        FileManager *fileManager = [FileManager sharedManager];
+        CBFileManager *fileManager = [CBFileManager sharedManager];
         if (programSize) {
             NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
             NSDate *lastAccessDate = [fileManager lastModificationTimeOfFile:xmlPath];
@@ -471,7 +471,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];

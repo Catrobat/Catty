@@ -44,7 +44,7 @@
 - (NSArray*)playableSounds
 {
     if (! _playableSounds && self.directory) {
-        FileManager *fileManager = [FileManager sharedManager];
+        CBFileManager *fileManager = [CBFileManager sharedManager];
         _playableSounds = [fileManager playableSoundsInDirectory:self.directory];
     }
     return _playableSounds;
@@ -205,7 +205,7 @@
                     dispatch_async(queue, ^{
                         [[AudioManager sharedAudioManager] stopAllSounds];
                         if (! isPlaying) {
-                            FileManager *fileManager = [FileManager sharedManager];
+                            CBFileManager *fileManager = [CBFileManager sharedManager];
                             [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
                                                                               andKey:sound.name
                                                                           atFilePath:fileManager.documentsDirectory

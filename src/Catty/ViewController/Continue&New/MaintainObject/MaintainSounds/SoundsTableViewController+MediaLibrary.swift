@@ -42,7 +42,8 @@ extension SoundsTableViewController {
 
 extension SoundsTableViewController: MediaLibraryViewControllerImportDelegate {
     func mediaLibraryViewController(_ mediaLibraryViewController: MediaLibraryViewController, didPickItemsForImport items: [MediaItem]) {
-        let documents = URL(fileURLWithPath: CBFileManager.sharedFileManager().documentsDirectory)
+        let documents = URL(fileURLWithPath:
+            CBFileManager.shared().documentsDirectory)
         for item in items {
             guard let data = item.cachedData else { self.showImportAlert(itemName: item.name); continue }
 

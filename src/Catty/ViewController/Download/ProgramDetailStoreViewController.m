@@ -94,7 +94,7 @@
     [self loadProject:self.project];
 //    self.scrollViewOutlet.exclusiveTouch = YES;
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     fileManager.delegate = self;
     fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
     self.reachability = [Reachability reachabilityForInternetConnection];
@@ -387,7 +387,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 -(void)downloadWithName:(NSString*)name
 {
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     fileManager.delegate = self;
     [fileManager downloadProgramFromURL:url withProgramID:self.project.projectID andName:name];
     self.project.isdownloading = YES;
@@ -467,7 +467,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)stopLoading
 {
     NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager stopLoading:url];
     fileManager.delegate = self;
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];

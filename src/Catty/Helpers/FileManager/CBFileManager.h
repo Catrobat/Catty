@@ -34,7 +34,7 @@
 
 @end
 
-@interface FileManager : NSObject <NSURLSessionDelegate,NSURLSessionDownloadDelegate>
+@interface CBFileManager : NSObject <NSURLSessionDelegate,NSURLSessionDownloadDelegate>
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, strong, readonly) NSString *documentsDirectory;
@@ -69,10 +69,4 @@
         withProgramID:(NSString*)programID
              withName:(NSString*)name;
 
-@end
-
-// Class for accessing the PocketCode's FileManager in order to prevent issues in the Swift code.
-// Remove this class eventually either by renaming FileManager to CBFileManager or by bigger refactoring.
-@interface CBFileManager : NSObject
-+ (FileManager *)sharedFileManager;
 @end

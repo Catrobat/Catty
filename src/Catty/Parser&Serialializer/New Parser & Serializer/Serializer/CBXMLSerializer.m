@@ -26,7 +26,7 @@
 #import "CBXMLSerializerContext.h"
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLPositionStack.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 
 @interface CBXMLSerializer()
 

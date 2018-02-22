@@ -30,7 +30,7 @@
 #import "SpriteObject.h"
 #import "AudioManager.h"
 #import "Util.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import "AppDelegate.h"
 #import "SoundPickerTableViewController.h"
 #import "NSData+Hashes.h"
@@ -206,7 +206,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [soundNames addObject:currentSound.name];
     }
     sound.name = [Util uniqueName:sound.name existingNames:soundNames];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSString *oldPath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, sound.fileName];
     NSData *data = [NSData dataWithContentsOfFile:oldPath];
     NSString *fileExtension = [[sound.fileName componentsSeparatedByString:@"."] lastObject];
@@ -234,7 +234,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 
 -(BOOL)checkIfSoundFolderExists{
-    FileManager* manager = [[FileManager alloc] init];
+    CBFileManager* manager = [CBFileManager sharedManager];
     NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName];
     if ([manager directoryExists:path]) {
         return YES;
@@ -698,7 +698,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
      addDefaultActionWithTitle:kLocalizedChooseSound handler:^{
          NSDebug(@"Select music track");
          self.isAllowed = YES;
-         FileManager *fileManager = [FileManager sharedManager];
+         CBFileManager *fileManager = [CBFileManager sharedManager];
          if (! [fileManager existPlayableSoundsInDirectory:fileManager.documentsDirectory]) {
              [Util alertWithTitle:kLocalizedNoImportedSoundsFoundTitle
                           andText:kLocalizedNoImportedSoundsFoundDescription];
@@ -796,7 +796,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.isAllowed) {
         Sound* recording =(Sound*)sound;
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", [FileManager sharedManager].documentsDirectory, recording.fileName];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", [CBFileManager sharedManager].documentsDirectory, recording.fileName];
         [self addSoundToObjectAction:recording];
         NSError *error;
         [fileManager removeItemAtPath:filePath error:&error];
@@ -845,7 +845,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)cancelPaintSave
 {
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, self.sound.fileName];
     [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
     if (self.afterSafeBlock) {

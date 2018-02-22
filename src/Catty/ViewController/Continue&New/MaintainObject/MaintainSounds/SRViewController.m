@@ -103,7 +103,7 @@
 
 - (void)prepareRecorder
 {
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSString *fileName =[[NSString uuid] stringByAppendingString:@".m4a"];
     self.filePath = [NSString stringWithFormat:@"%@/%@", fileManager.documentsDirectory, fileName];
     self.sound = [[Sound alloc] init];
@@ -152,7 +152,7 @@
             //        [self.recorder record];
         self.isRecording = YES;
         [self.session setActive:YES error:nil];
-        FileManager *fileManager = [FileManager sharedManager];
+        CBFileManager *fileManager = [CBFileManager sharedManager];
         [self.recorder recordForDuration:(([fileManager freeDiskspace]/1024ll)/256.0)];
 //        [self setupToolBar];
         self.sound.name = kLocalizedRecording;

@@ -82,7 +82,7 @@
                                        onCompletion:(void(^)(UIImage *image, NSString* path))completion
 {
     dispatch_async(self.imageCacheQueue, ^{
-        FileManager *fileManager = [FileManager sharedManager];
+        CBFileManager *fileManager = [CBFileManager sharedManager];
         if ([fileManager fileExists:thumbnailPath]) {
             [self loadImageFromDiskWithPath:thumbnailPath
                                onCompletion:completion];

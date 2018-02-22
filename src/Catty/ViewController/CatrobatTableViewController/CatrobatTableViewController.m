@@ -91,7 +91,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.freshLogin = false;
     self.lastUsedProgram = nil;
     self.defaultProgram = nil;
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     if (! [fileManager directoryExists:[Program basePath]]) {
         [fileManager createDirectory:[Program basePath]];
     }
@@ -504,7 +504,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     NSData* newProgram = [NSData dataWithContentsOfFile:newProgramPath];
     
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager unzipAndStore:newProgram withProgramID:nil withName:newProgramName];
     
     [[NSFileManager defaultManager] removeItemAtPath:newProgramPath error:nil];

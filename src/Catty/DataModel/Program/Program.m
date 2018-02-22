@@ -46,7 +46,7 @@
     program.header.programName = programName;
     program.header.programID = programID;
 
-    FileManager *fileManager = [[FileManager alloc] init];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     if (! [fileManager directoryExists:programName]) {
         [fileManager createDirectory:[program projectPath]];
     }
@@ -115,7 +115,7 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@",
                          [self projectPathForProgramWithName:programName programID:programID],
                          kProgramCodeFileName];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
 }
 
@@ -250,7 +250,7 @@
     destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
     NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:nil];
 
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
     ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName programID:nil];
     Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
@@ -260,7 +260,7 @@
 
 + (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID
 {
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSString *projectPath = [self projectPathForProgramWithName:programName programID:programID];
     if ([fileManager directoryExists:projectPath]) {
         [fileManager deleteDirectory:projectPath];
@@ -283,7 +283,7 @@
 
 - (void)saveToDiskWithNotification:(BOOL)notify
 {
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // show saved view bezel
@@ -344,7 +344,7 @@
     NSString *oldPath = [self projectPath];
     self.header.programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     NSString *newPath = [self projectPath];
-    [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
+    [[CBFileManager sharedManager] moveExistingDirectoryAtPath:oldPath toPath:newPath];
     if (isLastProgram) {
         [Util setLastProgramWithName:self.header.programName programID:self.header.programID];
     }
