@@ -634,10 +634,3 @@
 }
 
 @end
-
-//@implementation CBFileManager
-//+ (CBFileManager *)sharedFileManager {
-//    return [CBFileManager sharedManager];
-//}
-//@end
-
