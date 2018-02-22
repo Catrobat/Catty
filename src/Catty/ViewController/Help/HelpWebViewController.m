@@ -405,6 +405,12 @@
     [Util defaultAlertForNetworkError];
 }
 
+- (void)maximumFilesizeReached
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
+}
+
 - (void)setBackDownloadStatus
 {
     
