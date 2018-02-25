@@ -30,7 +30,7 @@
 #import "ProgramLoadingInfo.h"
 #import "UIDefines.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import "RuntimeImageCache.h"
 #import "AppDelegate.h"
 #import "Util.h"
@@ -169,7 +169,7 @@
     [cell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];
     
     // check if one of these screenshot files is available in memory
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", info.basePath],
                                [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", info.basePath]];

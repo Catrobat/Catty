@@ -22,7 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Program.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
@@ -30,7 +30,7 @@
 @interface ProgramTests : XCTestCase
 
 @property (nonatomic, strong) Program *program;
-@property (nonatomic, strong) FileManager *fileManager;
+@property (nonatomic, strong) CBFileManager *fileManager;
 
 @end
 
@@ -80,13 +80,13 @@
 }
 
 #pragma mark - getters and setters
-- (FileManager*)fileManager {
-    return [FileManager sharedManager];
+- (CBFileManager*)fileManager {
+    return [CBFileManager sharedManager];
 }
 
 + (void)removeProject:(NSString*)projectPath
 {
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     if ([fileManager directoryExists:projectPath])
         [fileManager deleteDirectory:projectPath];
     [Util setLastProgramWithName:nil programID:nil];

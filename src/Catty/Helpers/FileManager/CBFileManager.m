@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import "Util.h"
 #import "SSZipArchive.h"
 #import "Sound.h"
@@ -28,7 +28,7 @@
 #import "NetworkDefines.h"
 #import "HelpWebViewController.h"
 
-@interface FileManager ()
+@interface CBFileManager ()
 
 @property (nonatomic, strong, readwrite) NSString *documentsDirectory;
 @property (nonatomic, strong) NSString *programsDirectory;
@@ -40,13 +40,13 @@
 
 @end
 
-@implementation FileManager
+@implementation CBFileManager
 
 + (instancetype)sharedManager {
-    static FileManager *sharedManager = nil;
+    static CBFileManager *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedManager = [[FileManager alloc] init];
+        sharedManager = [[CBFileManager alloc] init];
     });
     return sharedManager;
 }
@@ -137,10 +137,10 @@
 - (void)createDirectory:(NSString *)path
 {
     NSError *error = nil;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *CBFileManager = [NSFileManager defaultManager];
     NSDebug(@"Create directory at path: %@", path);
     if (! [self directoryExists:path]) {
-        if(![fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error])
+        if(![CBFileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error])
             NSLogError(error);
     }
 }
@@ -275,14 +275,14 @@
     if (! [self directoryExists:path]) {
         return 0;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *filesArray = [fileManager subpathsOfDirectoryAtPath:path error:nil];
+    NSFileManager *CBFileManager = [NSFileManager defaultManager];
+    NSArray *filesArray = [CBFileManager subpathsOfDirectoryAtPath:path error:nil];
     NSEnumerator *filesEnumerator = [filesArray objectEnumerator];
     NSString *fileName;
     NSUInteger fileSize = 0;
     NSError *error = nil;
     while (fileName = [filesEnumerator nextObject]) {
-        NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:&error];
+        NSDictionary *fileDictionary = [CBFileManager attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:&error];
         NSLogError(error);
         fileSize += [fileDictionary fileSize];
     }
@@ -294,9 +294,9 @@
     if (! [self fileExists:path]) {
         return 0;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *CBFileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
+    NSDictionary *fileDictionary = [CBFileManager attributesOfItemAtPath:path error:&error];
     if(!fileDictionary)
         NSLogError(error);
     return (NSUInteger)[fileDictionary fileSize];
@@ -307,9 +307,9 @@
     if (! [self fileExists:path]) {
         return 0;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *CBFileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
+    NSDictionary *fileDictionary = [CBFileManager attributesOfItemAtPath:path error:&error];
     if(!fileDictionary)
         NSLogError(error);
     return [fileDictionary fileModificationDate];
@@ -389,10 +389,10 @@
     if (! [self fileExists:path]) {
         return;
     }
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager *CBFileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:date, NSFileModificationDate, NULL];
-    [fileManager setAttributes:attributes ofItemAtPath:path error:&error];
+    [CBFileManager setAttributes:attributes ofItemAtPath:path error:&error];
     NSLogError(error);
 }
 
@@ -633,10 +633,4 @@
     return success;
 }
 
-@end
-
-@implementation CBFileManager
-+ (FileManager *)sharedFileManager {
-    return [FileManager sharedManager];
-}
 @end

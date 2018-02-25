@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "FileManager.h"
+#import "CBFileManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

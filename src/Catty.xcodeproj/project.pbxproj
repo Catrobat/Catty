@@ -485,7 +485,7 @@
 		92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E321A24C5A700093DA7 /* UIViewController+CWPopup.m */; };
 		92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E4F1A24C7D800093DA7 /* AudioManager.m */; };
 		92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */; };
-		92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E541A24C7D800093DA7 /* FileManager.m */; };
+		92FF2E8E1A24C7D800093DA7 /* CBFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E541A24C7D800093DA7 /* CBFileManager.m */; };
 		92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E571A24C7D800093DA7 /* FlashHelper.m */; };
 		92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E5A1A24C7D800093DA7 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E5D1A24C7D800093DA7 /* DownloadImageCache.m */; };
@@ -1639,8 +1639,8 @@
 		92FF2E4F1A24C7D800093DA7 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
 		92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
-		92FF2E531A24C7D800093DA7 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
-		92FF2E541A24C7D800093DA7 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		92FF2E531A24C7D800093DA7 /* CBFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBFileManager.h; sourceTree = "<group>"; };
+		92FF2E541A24C7D800093DA7 /* CBFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBFileManager.m; sourceTree = "<group>"; };
 		92FF2E561A24C7D800093DA7 /* FlashHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashHelper.h; sourceTree = "<group>"; };
 		92FF2E571A24C7D800093DA7 /* FlashHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlashHelper.m; sourceTree = "<group>"; };
 		92FF2E591A24C7D800093DA7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
@@ -4319,8 +4319,8 @@
 		92FF2E521A24C7D800093DA7 /* FileManager */ = {
 			isa = PBXGroup;
 			children = (
-				92FF2E531A24C7D800093DA7 /* FileManager.h */,
-				92FF2E541A24C7D800093DA7 /* FileManager.m */,
+				92FF2E531A24C7D800093DA7 /* CBFileManager.h */,
+				92FF2E541A24C7D800093DA7 /* CBFileManager.m */,
 			);
 			path = FileManager;
 			sourceTree = "<group>";
@@ -7316,7 +7316,7 @@
 				AA74F0BC1BC05FCE00D1E954 /* MoveNStepsBrickCell.m in Sources */,
 				929CC0FC1BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift in Sources */,
 				AA74F0A81BC05FCE00D1E954 /* ChangeVariableBrickCell.m in Sources */,
-				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
+				92FF2E8E1A24C7D800093DA7 /* CBFileManager.m in Sources */,
 				921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
 				C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */,

@@ -26,7 +26,7 @@
 #import "Sound.h"
 #import "Util.h"
 #import "Brick.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import "AudioManager.h"
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
@@ -130,7 +130,7 @@
 - (NSUInteger)fileSizeOfLook:(Look*)look
 {
     NSString *path = [self pathForLook:look];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     return [fileManager sizeOfFileAtPath:path];
 }
 
@@ -144,7 +144,7 @@
 - (NSUInteger)fileSizeOfSound:(Sound*)sound
 {
     NSString *path = [self pathForSound:sound];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     return [fileManager sizeOfFileAtPath:path];
 }
 
@@ -218,7 +218,7 @@
         NSUInteger lookImageReferenceCounter = [self referenceCountForLook:look.fileName];
         // if image is not used by other objects, delete it
         if (lookImageReferenceCounter <= 1) {
-            FileManager *fileManager = [FileManager sharedManager];
+            CBFileManager *fileManager = [CBFileManager sharedManager];
             [fileManager deleteFile:[self previewImagePathForLookAtIndex:index]];
             [fileManager deleteFile:[self pathForLook:look]];
         }
@@ -265,7 +265,7 @@
         NSUInteger soundReferenceCounter = [self referenceCountForSound:sound.fileName];
         // if sound is not used by other objects, delete it
         if (soundReferenceCounter <= 1) {
-            FileManager *fileManager = [FileManager sharedManager];
+            CBFileManager *fileManager = [CBFileManager sharedManager];
             [fileManager deleteFile:[self pathForSound:sound]];
         }
         [self.soundList removeObjectAtIndex:index];

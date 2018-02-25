@@ -182,7 +182,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     look.fileName = [NSString stringWithFormat:@"%@%@%@.%@", hash, kResourceFileNameSeparator,
                      look.name, fileExtension];
     NSString *newPath = [self.object pathForLook:look];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
     [self.object addLook:look AndSaveToDisk:YES];

@@ -27,7 +27,7 @@
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
 #import "Util.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import "AppDelegate.h"
 #import "NSData+Hashes.h"
 #import "KeychainUserDefaultsDefines.h"
@@ -162,7 +162,7 @@ const CGFloat PADDING = 5.0f;
     [self.sizeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.sizeLabel sizeToFit];
     
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     self.zipFileData = nil;
     self.zipFileData = [fileManager zipProgram:self.program];
     NSString *zipFileSizeString = @"";
@@ -306,7 +306,7 @@ const CGFloat PADDING = 5.0f;
     }
     
     //Program might have changed, update zip file accordingly
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     self.zipFileData = [fileManager zipProgram:self.program];
     
     NSString *checksum = nil;

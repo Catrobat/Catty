@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProgramStoreDelegate.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "SearchStoreViewController.h"
 #import "BaseTableViewController.h"

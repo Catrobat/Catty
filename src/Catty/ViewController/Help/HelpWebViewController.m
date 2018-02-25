@@ -251,7 +251,7 @@
         return NO;
     }
     NSURL *url = [NSURL URLWithString:param];
-    FileManager *fileManager = [FileManager sharedManager];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     fileManager.delegate = self;
     param = nil;
     NSRange start = [request.URL.absoluteString rangeOfString:@"="];

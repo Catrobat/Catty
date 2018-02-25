@@ -27,7 +27,7 @@
 #import "Program+CBXMLHandler.h"
 #import "Util.h"
 #import "Parser.h"
-#import "FileManager.h"
+#import "CBFileManager.h"
 
 @implementation XMLAbstractTest
 
@@ -112,7 +112,7 @@
 
 - (void)saveProgram:(Program*)program
 {
-    FileManager *fileManager = [[FileManager alloc] init];
+    CBFileManager *fileManager = [CBFileManager sharedManager];
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
     id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
     [serializer serializeProgram:program];
