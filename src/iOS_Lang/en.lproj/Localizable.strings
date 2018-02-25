@@ -1427,7 +1427,7 @@
 "The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
 
 /* No comment provided by engineer. */
-"The requested program can not be found. Please chose a different one." = "The requested program can not be found. Please chose a different one.";
+"The requested program can not be found. Please choose a different one." = "The requested program can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
 "The sound item cannot be loaded" = "The sound item cannot be loaded";
