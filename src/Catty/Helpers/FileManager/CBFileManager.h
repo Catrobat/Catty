@@ -31,6 +31,8 @@
 - (void) updateProgress:(double)progress;
 - (void) setBackDownloadStatus;
 - (void) timeoutReached;
+- (void) maximumFilesizeReached;
+- (void) fileNotFound;
 
 @end
 

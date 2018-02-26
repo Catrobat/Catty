@@ -496,6 +496,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [Util defaultAlertForNetworkError];
 }
 
+- (void)maximumFilesizeReached
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
+}
+
+- (void)fileNotFound
+{
+    [self setBackDownloadStatus];
+    [Util alertWithText:kLocalizedProgramNotFound];
+}
+
 - (void)setBackDownloadStatus
 {
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;

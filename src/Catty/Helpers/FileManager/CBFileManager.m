@@ -404,6 +404,21 @@
 #pragma mark - Helper
 - (void)storeDownloadedProgram:(NSData *)data andTask:(NSURLSessionDownloadTask *)task
 {
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                    options:NSJSONReadingMutableContainers
+                                                      error:nil];
+    
+    if (jsonObject && [jsonObject isKindOfClass:[NSDictionary class]] && [jsonObject objectForKey:@"error"]) {
+        // JSON API returned a 404 error (different from HTTP 404 error)
+        if ([self.delegate respondsToSelector:@selector(fileNotFound)]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate fileNotFound];
+            });
+        }
+        
+        return;
+    }
+    
     NSString *name = [self.programNameDict objectForKey:task];
     NSString *programID = [self.programIDDict objectForKey:task];
     [self unzipAndStore:data withProgramID:programID withName:name];
@@ -538,12 +553,13 @@
     if (! url) {
         return;
     }
-    if ([self freeDiskspace] < totalBytesExpectedToWrite) {
+    
+    uint64_t freeDiskspace = [self freeDiskspace];
+    if (totalBytesExpectedToWrite != NSURLResponseUnknownLength && freeDiskspace < totalBytesExpectedToWrite) {
         [self stopLoadingTask:downloadTask];
-        [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
-        if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
+        if ([self.delegate respondsToSelector:@selector(maximumFilesizeReached)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate setBackDownloadStatus];
+                [self.delegate maximumFilesizeReached];
             });
         }
         UIApplication* app = [UIApplication sharedApplication];
@@ -591,6 +607,15 @@
             }
             return;
         }
+        if (error.code == kCFURLErrorDataLengthExceedsMaximum){
+            if ([self.delegate respondsToSelector:@selector(maximumFilesizeReached)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate maximumFilesizeReached];
+                });
+            }
+            return;
+        }
+        
         NSURL *url = [self.programTaskDict objectForKey:task];
         if (url) {
             [self.programTaskDict removeObjectForKey:task];
