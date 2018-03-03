@@ -10,10 +10,12 @@ For more information oriented towards developers please visit our [developers pa
 
 For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75). Before, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+IOS+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
 
-# Questions?
-Please ask on our Google Plus community: http://goo.gl/fOjQi
+# Contributing #
 
+If you want to contribute we suggest that you start with [forking](https://help.github.com/articles/fork-a-repo/) our repository and browse the code. Then you can look at our [Issue-Tracker](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=60) and start with fixing one ticket. We strictly use [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) and [Clean Code](http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf), so first read everything you can about these development methods. Code developed in a different style will not be accepted.
+After you've created a pull request we will review your code and do a full testrun on your branch.
 
+If you want to implement a new feature, please ask about the details on http://catrob.at/mailinglist or https://groups.google.com/forum/#!forum/catty-ios
 
 <!--
  1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
@@ -29,26 +31,17 @@ Please ask on our Google Plus community: http://goo.gl/fOjQi
  1. `sudo brew install homebrew/versions/perl516`
  -->
 
+## Learn iOS development
 
-# First steps for extern Contributors
-## Learn iOS development?
-We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
+We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/course/developing-ios-11-apps-with-swift/id1309275316) from the Stanford University.
 
-## Setting Up Your First Project - Step by Step
-For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0tmG
-
-## ... Short Version
-
-* If you want to contribute we suggest that you start with [forking](https://help.github.com/articles/fork-a-repo/) our repository and browse the code. Then you can look at our [Issue-Tracker](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75) and start with fixing one ticket. We strictly use [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) and [Clean Code](http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf), so first read everything you can about these development methods. Code developed in a different style will not be accepted. 
-After you've created a pull request we will review your code and do a full testrun on your branch.
-
-* If you want to implement a new feature, please ask about the details in JIRA or our IRC channel (#catrobat or #catrobatdev) first.
+## Start setting up the working environment:
 
 * Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) and [Carthage](https://github.com/Carthage/Carthage).
 
 * Clone this repository, set up the required third-party libraries by executing `make init` within the `src` directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
-* If you have any further questions please use our IRC Channel(#catrobat or #catrobatdev) or Google Plus community: http://goo.gl/fOjQi
+* If you have any further questions please use our [Google Plus community](http://goo.gl/fOjQi) or [Google Groups](https://groups.google.com/forum/#!forum/catty-ios)
 
 
 
