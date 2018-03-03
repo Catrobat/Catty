@@ -37,16 +37,11 @@ We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/cou
 
 ## Start setting up the working environment:
 
-* If you want to contribute we suggest that you start with [forking](https://help.github.com/articles/fork-a-repo/) our repository and browse the code. Then you can look at our [Issue-Tracker](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75) and start with fixing one ticket. We strictly use [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) and [Clean Code](http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf), so first read everything you can about these development methods. Code developed in a different style will not be accepted.
-After you've created a pull request we will review your code and do a full testrun on your branch.
-
-* If you want to implement a new feature, please ask about the details in JIRA or our IRC channel (#catrobat or #catrobatdev) first.
-
 * Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) and [Carthage](https://github.com/Carthage/Carthage).
 
 * Clone this repository, set up the required third-party libraries by executing `make init` within the `src` directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
-* If you have any further questions please use our IRC Channel(#catrobat or #catrobatdev) or Google Plus community: http://goo.gl/fOjQi
+* If you have any further questions please use our [Google Plus community](http://goo.gl/fOjQi) or [Google Groups](https://groups.google.com/forum/#!forum/catty-ios)
 
 
 
