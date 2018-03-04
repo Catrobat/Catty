@@ -65,7 +65,7 @@
         return sceneDegrees
     }
     
-    class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
+    @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize()
         var x = (coordinate.x - screenSize.width/2.0)
         x = x * (sceneSize.width / screenSize.width)

@@ -262,21 +262,21 @@ final class CBBackendTests: XCTestCase {
         XCTAssertEqual(instructionList.count, 5, "Instruction list should contain five instructions")
         
         switch instructionList[0] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-        case .ExecClosure(_):
+        case .execClosure(_):
             break;
         default:
             XCTFail("Wrong instruction type")
         }
         
         switch instructionList[2] {
-        case let .Action(action):
+        case let .action(action):
             XCTAssertNotNil(action)
         default:
             XCTFail("Wrong instruction type")
@@ -284,7 +284,7 @@ final class CBBackendTests: XCTestCase {
         
         for counter in 3...(instructionList.count - 1) {
             switch instructionList[counter] {
-            case .ExecClosure(_):
+            case .execClosure(_):
                 break;
             default:
                 XCTFail("Wrong instruction type for \(counter)")

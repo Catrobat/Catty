@@ -157,7 +157,7 @@ final class CBSpriteNode: SKSpriteNode {
             return nil
         }
         if let spriteObject = self.spriteObject {
-            var index = spriteObject.lookList.indexOfObject(currentLook!)
+            var index = spriteObject.lookList.index(of: currentLook!)
             index -= 1
             index = index < 0 ? spriteObject.lookList.count - 1 : index
             return spriteObject.lookList[index] as? Look

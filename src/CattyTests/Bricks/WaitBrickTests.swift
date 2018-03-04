@@ -52,8 +52,8 @@ final class WaitBrickTests: XCTestCase {
         waitBrick.timeToWaitInSeconds = Formula(double: duration)
         waitBrick.script = script;
         
-        let executionTime = measureExecutionTime(waitBrick.instruction())
-        XCTAssertEqualWithAccuracy(executionTime, duration, accuracy: 0.1, "Wrong execution time")
+        let executionTime = measureExecutionTime(instruction: waitBrick.instruction())
+        XCTAssertEqual(executionTime, duration, accuracy: 0.1, "Wrong execution time")
     }
     
     /*func testSpeakAndWaitDuration() {
@@ -81,13 +81,13 @@ final class WaitBrickTests: XCTestCase {
         let start = NSDate()
        
         switch instruction {
-            case let .WaitExecClosure(closure):
-                closure(context: CBScriptContext(script: self.script, spriteNode: self.spriteNode), scheduler: CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger)))
+            case let .waitExecClosure(closure):
+                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode), CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger)))
             default: break
         }
         
         let end = NSDate()
-        let timeIntervalInSeconds: Double = end.timeIntervalSinceDate(start)
+        let timeIntervalInSeconds: Double = end.timeIntervalSince(start as Date)
         return timeIntervalInSeconds
     }
 }

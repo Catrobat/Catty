@@ -20,43 +20,43 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SayForBubbleBrick: CBInstructionProtocol {
+@objc extension SayForBubbleBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object,
             let _ = object.spriteNode
             else { fatalError("This should never happen!") }
         
         let cachedDuration = self.intFormula.isIdempotent()
-            ? CBDuration.FixedTime(duration: self.intFormula.interpretDoubleForSprite(object))
-            : CBDuration.VarTime(formula: self.intFormula)
+            ? CBDuration.fixedTime(duration: self.intFormula.interpretDouble(forSprite: object))
+            : CBDuration.varTime(formula: self.intFormula)
         
-        return .LongDurationAction(duration: cachedDuration, actionCreateClosure: {
+        return .longDurationAction(duration: cachedDuration, actionCreateClosure: {
             (duration) -> SKAction in
-            return SKAction.sequence([SKAction.runBlock(self.actionBlock(object)), SKAction.waitForDuration(duration), SKAction.runBlock(self.removeActionBlock(object))])
+            return SKAction.sequence([SKAction.run(self.actionBlock(object: object)), SKAction.wait(forDuration: duration), SKAction.run(self.removeActionBlock(object: object))])
         })
     }
     
-    func actionBlock(object: SpriteObject) -> dispatch_block_t {
+    @objc func actionBlock(object: SpriteObject) -> ()->() {
         return {
             var speakText = self.stringFormula.interpretString(object)
-            if(Double(speakText) !=  nil)
+            if(Double(speakText!) !=  nil)
             {
-                let num = (speakText as NSString).doubleValue
+                let num = (speakText! as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
-            BubbleBrickHelper.addBubbleToSpriteNode(object.spriteNode, withText: speakText, andType: CBBubbleType.Speech)
+            BubbleBrickHelper.addBubble(to: object.spriteNode, withText: speakText, andType: CBBubbleType.speech)
         }
     }
     
-    func removeActionBlock(object: SpriteObject) -> dispatch_block_t {
+    @nonobjc func removeActionBlock(object: SpriteObject) -> ()->() {
         return {
-            let oldBubble = object.spriteNode.childNodeWithName(kBubbleBrickNodeName);
+            let oldBubble = object.spriteNode.childNode(withName: kBubbleBrickNodeName);
             
             if (oldBubble != nil)
             {
-                oldBubble!.runAction(SKAction.removeFromParent());
-                object.spriteNode.removeChildrenInArray([oldBubble!]);
+                oldBubble!.run(SKAction.removeFromParent());
+                object.spriteNode.removeChildren(in: [oldBubble!]);
             }
         }
     }

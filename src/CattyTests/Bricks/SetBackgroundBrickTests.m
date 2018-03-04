@@ -21,11 +21,11 @@
  */
 
 #import <XCTest/XCTest.h>
-#import "BrickTests.h"
+#import "AbstractBrickTests.h"
 #import "WhenScript.h"
 #import "Pocket_Code-Swift.h"
 
-@interface SetBackgroundBrickTests : BrickTests
+@interface SetBackgroundBrickTests : AbstractBrickTests
 @end
 
 @implementation SetBackgroundBrickTests

@@ -20,31 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate {
+@objc extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate {
     
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         
-        return CBInstruction.WaitExecClosure { (context, _) in
-            
+        return CBInstruction.waitExecClosure { (context, _) in
             let condition = NSCondition()
             condition.accessibilityHint = "0"
             
             var speakText = self.formula.interpretString(object)
-            if(Double(speakText) !=  nil)
+            if(Double(speakText!) !=  nil)
             {
-                let num = (speakText as NSString).doubleValue
+                let num = (speakText! as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
             
-            let utterance = AVSpeechUtterance(string: speakText)
+            let utterance = AVSpeechUtterance(string: speakText!)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
             
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.delegate = self
             synthesizer.accessibilityElements = [condition]
-            synthesizer.speakUtterance(utterance)
+            synthesizer.speak(utterance)
 
             condition.lock()
 
@@ -53,7 +52,6 @@ extension SpeakAndWaitBrick: CBInstructionProtocol, AVSpeechSynthesizerDelegate 
             }
             condition.unlock()
         }
-        
     }
 
     public func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didFinishSpeechUtterance utterance: AVSpeechUtterance) {

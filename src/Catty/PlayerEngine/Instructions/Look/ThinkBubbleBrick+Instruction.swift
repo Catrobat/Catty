@@ -20,25 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ThinkBubbleBrick: CBInstructionProtocol {
+@objc extension ThinkBubbleBrick: CBInstructionProtocol {
     
-    func instruction() -> CBInstruction {
-        return .Action(action: SKAction.runBlock(actionBlock()))
+    @nonobjc func instruction() -> CBInstruction {
+        return .action(action: SKAction.run(actionBlock()))
     }
     
-    func actionBlock() -> dispatch_block_t {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
         
         return {
             var speakText = self.formula.interpretString(object)
-            if(Double(speakText) !=  nil)
+            if(Double(speakText!) !=  nil)
             {
-                let num = (speakText as NSString).doubleValue
+                let num = (speakText! as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
-            BubbleBrickHelper.addBubbleToSpriteNode(spriteNode, withText: speakText, andType: CBBubbleType.Thought)
+            BubbleBrickHelper.addBubble(to: spriteNode, withText: speakText, andType: CBBubbleType.thought)
         }
     }
 }

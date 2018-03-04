@@ -165,7 +165,7 @@
 {
     CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
     CGPoint scaledSceneCenter = CGPointMake(self.screenSize.width/2, self.screenSize.height/2);
-    CGPoint convertedCenter = [[CBSceneHelper class] convertTouchCoordinateToPoint:scaledSceneCenter sceneSize:scaledScene.size];
+    CGPoint convertedCenter = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneCenter sceneSize:scaledScene.size];
     
     XCTAssertTrue(CGPointEqualToPoint(convertedCenter, self.pocketCodeCenter), @"The Scene Center is not correctly calculated");
 }
@@ -174,7 +174,7 @@
 {
     CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width, self.screenSize.height)];
     CGPoint scaledSceneCenter = CGPointMake(self.screenSize.width/2, self.screenSize.height/2);
-    CGPoint convertedCenter = [[CBSceneHelper class] convertTouchCoordinateToPoint:scaledSceneCenter sceneSize:scaledScene.size];
+    CGPoint convertedCenter = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneCenter sceneSize:scaledScene.size];
     
     XCTAssertTrue(CGPointEqualToPoint(convertedCenter, self.pocketCodeCenter), @"The Scene Center is not correctly calculated");
 }
@@ -184,7 +184,7 @@
     CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
     CGPoint scaledSceneBottomLeft = CGPointMake(0, self.screenSize.height);
     CGPoint pocketCodeBottomLeft = CGPointMake(scaledScene.size.width / 2 * -1, scaledScene.size.height / 2 * -1);
-    CGPoint convertedBottomLeft = [[CBSceneHelper class] convertTouchCoordinateToPoint:scaledSceneBottomLeft sceneSize:scaledScene.size];
+    CGPoint convertedBottomLeft = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneBottomLeft sceneSize:scaledScene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedBottomLeft, pocketCodeBottomLeft), @"The Bottom Left is not correctly calculated");
 }
 
@@ -193,7 +193,7 @@
     CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
     CGPoint scaledSceneBottomRight = CGPointMake(self.screenSize.width, self.screenSize.height);
     CGPoint pocketCodeBottomRight = CGPointMake(scaledScene.size.width / 2, scaledScene.size.height / 2 * -1);
-    CGPoint convertedBottomRight = [[CBSceneHelper class] convertTouchCoordinateToPoint:scaledSceneBottomRight sceneSize:scaledScene.size];
+    CGPoint convertedBottomRight = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneBottomRight sceneSize:scaledScene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedBottomRight, pocketCodeBottomRight), @"The Bottom Right is not correctly calculated");
 }
 
@@ -202,7 +202,7 @@
     CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
     CGPoint scaledSceneTopLeft = CGPointMake(0, 0);
     CGPoint pocketCodeTopLeft = CGPointMake(scaledScene.size.width / 2 * -1, scaledScene.size.height / 2);
-    CGPoint convertedTopLeft = [[CBSceneHelper class] convertTouchCoordinateToPoint:scaledSceneTopLeft sceneSize:scaledScene.size];
+    CGPoint convertedTopLeft = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneTopLeft sceneSize:scaledScene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedTopLeft, pocketCodeTopLeft), @"The Top Left is not correctly calculated");
 }
 
@@ -211,7 +211,7 @@
     CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
     CGPoint scaledSceneTopRight = CGPointMake(self.screenSize.width, 0);
     CGPoint pocketCodeTopRight = CGPointMake(scaledScene.size.width / 2, scaledScene.size.height / 2);
-    CGPoint convertedTopRight = [[CBSceneHelper class] convertTouchCoordinateToPoint:scaledSceneTopRight sceneSize:scaledScene.size];
+    CGPoint convertedTopRight = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneTopRight sceneSize:scaledScene.size];
     XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, pocketCodeTopRight), @"The Top Right is not correctly calculated");
 }
 

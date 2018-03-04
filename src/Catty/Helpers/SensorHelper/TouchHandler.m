@@ -117,7 +117,7 @@ static TouchHandler* shared = nil;
     if (self.rawTouchLog.count != 0 && touchNumber <= self.rawTouchLog.count)
     {
         position = [[self.rawTouchLog objectAtIndex:touchNumber-1] CGPointValue];
-        position = [CBSceneHelper convertTouchCoordinateToPoint:position sceneSize: self.scene.size];
+        position = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:position sceneSize:self.scene.size];
     }
     return position;
 }
@@ -129,7 +129,7 @@ static TouchHandler* shared = nil;
     CGPoint position = CGPointMake(0, 0);
     if (self.rawTouchLog.count > 0)
     {
-        position = [CBSceneHelper convertTouchCoordinateToPoint:self.lastFingerPosition sceneSize: self.scene.size];
+        position = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:self.lastFingerPosition sceneSize:self.scene.size];
     }
     return position;
 }

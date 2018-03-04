@@ -29,7 +29,7 @@ final class ChooseCameraBrickTests: XCTestCase {
     func testDefaultCameraPosition() {
         // front camera should be default
         CameraPreviewHandler.resetSharedInstance()
-        XCTAssertEqual(AVCaptureDevicePosition.Front, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
     
     func testChooseCameraBrick() {
@@ -55,12 +55,12 @@ final class ChooseCameraBrickTests: XCTestCase {
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
         
         switch instruction {
-        case let .ExecClosure(closure):
-            closure(context: CBScriptContext(script: script, spriteNode: spriteNode), scheduler: scheduler)
+        case let .execClosure(closure):
+            closure(CBScriptContext(script: script, spriteNode: spriteNode), scheduler)
         default: break;
         }
         
-        XCTAssertEqual(AVCaptureDevicePosition.Back, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
     }
     
     func testChooseCameraBrickInitWithZero() {
@@ -77,21 +77,21 @@ final class ChooseCameraBrickTests: XCTestCase {
         
         let script = Script();
         script.object = object;
-        brick.script = script;
+        brick?.script = script;
         
-        let instruction = brick.instruction();
+        let instruction = brick?.instruction();
         
         let logger = CBLogger(name: "Logger");
         let broadcastHandler = CBBroadcastHandler(logger: logger);
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
         
-        switch instruction {
-        case let .ExecClosure(closure):
-            closure(context: CBScriptContext(script: script, spriteNode: spriteNode), scheduler: scheduler)
+        switch instruction! {
+        case let .execClosure(closure):
+            closure(CBScriptContext(script: script, spriteNode: spriteNode), scheduler)
         default: break;
         }
         
-        XCTAssertEqual(AVCaptureDevicePosition.Back, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.back, CameraPreviewHandler.shared().cameraPosition)
     }
     
     func testChooseCameraBrickInitWithOne() {
@@ -108,20 +108,20 @@ final class ChooseCameraBrickTests: XCTestCase {
         
         let script = Script();
         script.object = object;
-        brick.script = script;
+        brick?.script = script;
         
-        let instruction = brick.instruction();
+        let instruction = brick?.instruction();
         
         let logger = CBLogger(name: "Logger");
         let broadcastHandler = CBBroadcastHandler(logger: logger);
         let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
         
-        switch instruction {
-        case let .ExecClosure(closure):
-            closure(context: CBScriptContext(script: script, spriteNode: spriteNode), scheduler: scheduler)
+        switch instruction! {
+        case let .execClosure(closure):
+            closure(CBScriptContext(script: script, spriteNode: spriteNode), scheduler)
         default: break;
         }
         
-        XCTAssertEqual(AVCaptureDevicePosition.Front, CameraPreviewHandler.shared().cameraPosition)
+        XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
 }

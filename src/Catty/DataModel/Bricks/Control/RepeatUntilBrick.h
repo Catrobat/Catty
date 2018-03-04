@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Foreverbrick.h"
+#import "ForeverBrick.h"
 #import "LoopBeginBrick.h"
 #import "BrickFormulaProtocol.h"
 
