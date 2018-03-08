@@ -160,8 +160,8 @@ extension Array {
                 }
             }
         }
-        if(index != nil) {
-            self.remove(at: index!)
+        if let index = index {
+            self.remove(at: index)
         }
     }
     

@@ -36,7 +36,7 @@
             else { fatalError("This should never happen!") }
         
         return {
-            guard let look = object.spriteNode!.currentLook else { return }
+            guard let look = object.spriteNode?.currentLook else { return }
             
             let colorValue = colorFormula.interpretDouble(forSprite: object)
             

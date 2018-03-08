@@ -376,15 +376,12 @@
         return;
     }
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        self.menuView.userInteractionEnabled = NO;
-        previousScene.userInteractionEnabled = NO;
-        [previousScene stopProgram];
-        [[AudioManager sharedAudioManager] stopAllSounds];
-        [[FlashHelper sharedFlashHandler] reset];
-        previousScene.userInteractionEnabled = YES;
-    });
-    
+    self.menuView.userInteractionEnabled = NO;
+    previousScene.userInteractionEnabled = NO;
+    [previousScene stopProgram];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[FlashHelper sharedFlashHandler] reset];
+    previousScene.userInteractionEnabled = YES;
     
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];

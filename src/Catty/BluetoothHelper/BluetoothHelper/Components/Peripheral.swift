@@ -72,7 +72,7 @@ private func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     
     internal init(cbPeripheral:CBPeripheral) {
         self.cbPeripheral = cbPeripheral
-        self.advertisements = NSDictionary() as! [String : String]
+        self.advertisements = [String : String]()
         self.rssi = 0
         super.init()
         self.cbPeripheral.delegate = self
@@ -299,13 +299,14 @@ open class PeripheralHelper<P> where P:PeripheralWrapper,
     }
     
     open func connect(_ peripheral:P, capacity:Int? = nil, timeoutRetries:Int? = nil, disconnectRetries:Int? = nil, connectionTimeout:Double = 5.0) -> FutureStream<(P, ConnectionEvent)> {
-        self.connectionPromise = StreamPromise<(P, ConnectionEvent)>(capacity:capacity)
+        let connectionPromise = StreamPromise<(P, ConnectionEvent)>(capacity:capacity)
+        self.connectionPromise = connectionPromise
         self.timeoutRetries = timeoutRetries
         self.disconnectRetries = disconnectRetries
         self.connectionTimeout = connectionTimeout
         NSLog("connect peripheral \(peripheral.name)")
         self.connectPeripheral(peripheral)
-        return self.connectionPromise!.future
+        return connectionPromise.future
     }
     
     open func disconnect(_ peripheral:P) {
@@ -451,9 +452,9 @@ open class PeripheralHelper<P> where P:PeripheralWrapper,
             self.connectionPromise?.success((peripheral, ConnectionEvent.timeout))
             return
         }
-        if self.timeoutRetries > 0 {
+        if let timeoutRetries = self.timeoutRetries, timeoutRetries > 0 {
             self.connectionPromise?.success((peripheral, ConnectionEvent.timeout))
-            self.timeoutRetries! -= 1
+            self.timeoutRetries = timeoutRetries - 1
         } else {
             self.connectionPromise?.success((peripheral, ConnectionEvent.giveUp))
         }
@@ -465,8 +466,8 @@ open class PeripheralHelper<P> where P:PeripheralWrapper,
             self.connectionPromise?.success((peripheral, ConnectionEvent.disconnected))
             return
         }
-        if self.disconnectRetries > 0 {
-            self.disconnectRetries! -= 1
+        if let disconnectRetries = self.disconnectRetries, disconnectRetries > 0 {
+            self.disconnectRetries = disconnectRetries - 1
             self.connectionPromise?.success((peripheral, ConnectionEvent.disconnected))
         } else {
             self.connectionPromise?.success((peripheral, ConnectionEvent.giveUp))

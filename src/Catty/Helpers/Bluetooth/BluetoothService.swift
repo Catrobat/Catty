@@ -235,13 +235,12 @@ open class BluetoothService:NSObject {
                     }
                     switch(type){
                     case .arduino , .phiro:
-                        let firmataDevice: FirmataDevice = (bluetoothDevice as? FirmataDevice)!
-                        if(firmataDevice.txCharacteristic != nil && firmataDevice.rxCharacteristic != nil){
+                        if let firmataDevice = bluetoothDevice as? FirmataDevice, firmataDevice.txCharacteristic != nil && firmataDevice.rxCharacteristic != nil {
                             guard let manager = self.selectionManager else {
                                 print("SHOULD NEVER HAPPEN")
                                 return
                             }
-                            //                            arduino.reportSensorData(true)
+//                            arduino.reportSensorData(true)
                             if let timer = self.connectionTimer {
                                 timer.invalidate()
                             }

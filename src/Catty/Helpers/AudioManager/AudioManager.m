@@ -29,7 +29,7 @@
 
 @property (nonatomic) NSInteger soundCounter;
 
-@property (nonatomic, strong) NSMutableDictionary* sounds;
+@property (atomic, strong) NSDictionary* sounds;
 @property (nonatomic) float current_volume;
 
 @end
@@ -54,15 +54,6 @@
     return self;
 }
 
-
-- (NSMutableDictionary*)sounds
-{
-    if(!_sounds) {
-        _sounds = [[NSMutableDictionary alloc] init];
-    }
-    return _sounds;
-}
-
 - (BOOL)playSoundWithFileName:(NSString*)fileName
                        andKey:(NSString*)key
                    atFilePath:(NSString*)filePath
@@ -71,7 +62,9 @@
     NSMutableDictionary* audioPlayers = [self.sounds objectForKey:key];
     if (! audioPlayers) {
         audioPlayers = [[NSMutableDictionary alloc] init];
-        [self.sounds setObject:audioPlayers forKey:key];
+        NSMutableDictionary *sounds = [self.sounds mutableCopy];
+        [sounds setObject:audioPlayers forKey:key];
+        self.sounds = [sounds copy];
     }
     
     NSString *path =[NSString stringWithFormat:@"%@/%@", filePath, fileName];
@@ -141,7 +134,6 @@
         }
         [audioPlayers removeAllObjects];
     }
-    [self.sounds removeAllObjects];
     self.sounds = nil;
 }
 

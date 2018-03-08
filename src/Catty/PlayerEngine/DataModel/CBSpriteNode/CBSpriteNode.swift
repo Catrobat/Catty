@@ -35,8 +35,14 @@ final class CBSpriteNode: SKSpriteNode {
     
     
     @objc var scenePosition: CGPoint {
-        set { self.position = CBSceneHelper.convertPointToScene(newValue, sceneSize: (scene?.size)!) }
-        get { return CBSceneHelper.convertSceneCoordinateToPoint(self.position, sceneSize: (scene?.size)!) }
+        set {
+            guard let scene = self.scene else { preconditionFailure() }
+            self.position = CBSceneHelper.convertPointToScene(newValue, sceneSize: scene.size)
+        }
+        get {
+            guard let scene = self.scene else { preconditionFailure() }
+            return CBSceneHelper.convertSceneCoordinateToPoint(self.position, sceneSize: scene.size)
+        }
     }
     @objc var zIndex: CGFloat { return zPosition }
     @objc var brightness: CGFloat { return (100 * self.currentLookBrightness) }
@@ -100,35 +106,33 @@ final class CBSpriteNode: SKSpriteNode {
         return filter
     }
     
-    @objc func executeFilter(_ inputImage: UIImage?){
-        let lookImage = inputImage
-        var filter: CIFilter? = nil;
-        let image = lookImage!.cgImage
-        var ciImage = CIImage(cgImage: image!)
+    @objc func executeFilter(_ inputImage: UIImage?) {
+        guard let lookImage = inputImage?.cgImage else { preconditionFailure() }
+
+        var ciImage = CIImage(cgImage: lookImage)
         /////
         let context = CIContext(options: nil)
         
         for (filterName, isActive) in filterDict {
-            if (isActive == true){
-                filter = returnFIlterInstance(filterName, image: ciImage)
-                ciImage = (filter?.outputImage)!
+            if isActive, let outputImage = returnFIlterInstance(filterName, image: ciImage)?.outputImage {
+                ciImage = outputImage
             }
         }
         
         let outputImage = ciImage
         // 2
-        let cgimg = context.createCGImage(outputImage, from: outputImage.extent)
+        guard let cgimg = context.createCGImage(outputImage, from: outputImage.extent) else { preconditionFailure() }
         
         // 3
-        let newImage = UIImage(cgImage: cgimg!)
+        let newImage = UIImage(cgImage: cgimg)
         self.currentUIImageLook = newImage
-        self.texture = SKTexture(image: newImage)
+        let texture = SKTexture(image: newImage)
         let xScale = self.xScale
         let yScale = self.yScale
         self.xScale = 1.0
         self.yScale = 1.0
-        self.size = self.texture!.size()
-        self.texture = self.texture
+        self.size = texture.size()
+        self.texture = texture
         if(xScale != 1.0) {
             self.xScale = xScale;
         }
@@ -140,16 +144,13 @@ final class CBSpriteNode: SKSpriteNode {
     
     
     @objc func nextLook() -> Look? {
-        if currentLook == nil {
-            return nil
-        }
-        if let spriteObject = self.spriteObject {
-            var index = spriteObject.lookList.index(of: currentLook!)
-            index += 1
-            index %= spriteObject.lookList.count
-            return spriteObject.lookList[index] as? Look
-        }
-        return nil
+        guard let currentLook = currentLook,
+            let spriteObject = self.spriteObject
+            else { return nil }
+
+        let currentIndex = spriteObject.lookList.index(of: currentLook)
+        let nextIndex = (currentIndex + 1) % spriteObject.lookList.count
+        return spriteObject.lookList[nextIndex] as? Look
     }
 
     @objc func previousLook() -> Look? {
@@ -166,12 +167,12 @@ final class CBSpriteNode: SKSpriteNode {
     }
     
     @objc func changeLook(_ look: Look?) {
-        if look == nil { return }
-        let filePathForLook = spriteObject?.path(for: look)
-        if filePathForLook == nil { return }
-        let image = UIImage(contentsOfFile:filePathForLook!)
-        if image == nil { return }
-        let texture = SKTexture(image: image!)
+        guard let look = look,
+            let filePathForLook = spriteObject?.path(for: look),
+            let image = UIImage(contentsOfFile:filePathForLook)
+            else { return }
+
+        let texture = SKTexture(image: image)
         self.currentUIImageLook = image
         self.size = texture.size()
         //if spriteObject?.isBackground() == true {
@@ -235,7 +236,7 @@ final class CBSpriteNode: SKSpriteNode {
 
         guard let spriteObject = spriteObject,
               let spriteName = spriteObject.name
-        else { fatalError("Invalid SpriteObject!") }
+        else { preconditionFailure("Invalid SpriteObject!") }
         let touchedPoint = touch.location(in: self)
         
         if imageLook.isTransparentPixel(atScenePoint: touchedPoint) {

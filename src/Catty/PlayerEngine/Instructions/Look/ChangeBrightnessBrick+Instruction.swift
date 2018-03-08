@@ -36,7 +36,7 @@
             else { fatalError("This should never happen!") }
         
         return {
-            guard let look = object.spriteNode!.currentLook else { return }
+            guard let look = object.spriteNode?.currentLook else { return }
             var brightnessValue = bright.interpretDouble(forSprite: object) / 100
             brightnessValue += Double(spriteNode.currentLookBrightness)
             if (brightnessValue > 1) {

@@ -53,18 +53,19 @@ class CBScriptContext: CBScriptContextProtocol {
     final private lazy var _instructionList = [CBInstruction]()
 
     // MARK: - Initializers
-    convenience init(script: Script, spriteNode: CBSpriteNode) {
+    convenience init?(script: Script, spriteNode: CBSpriteNode) {
         self.init(script: script, spriteNode: spriteNode, state: .runnable, instructionList: [])
     }
 
-    init(script: Script, spriteNode: CBSpriteNode, state: CBScriptContextState, instructionList: [CBInstruction]) {
+    init?(script: Script, spriteNode: CBSpriteNode, state: CBScriptContextState, instructionList: [CBInstruction]) {
+        guard let spriteNodeName = spriteNode.name,
+            let nodeIndex = spriteNode.spriteObject?.scriptList.index(of: script)
+            else { return nil }
+
         self.spriteNode = spriteNode
         self.script = script
         self.state = state
-        assert(spriteNode.name != nil)
-        let nodeIndex = spriteNode.spriteObject?.scriptList.index(of: script)
-        assert(nodeIndex != nil)
-        self.id = "[\(spriteNode.name!)][\(nodeIndex!)]"
+        self.id = "[\(spriteNodeName)][\(nodeIndex)]"
         print(self.id)
         _instructionPointer = 0
         index = 0
@@ -100,7 +101,7 @@ class CBScriptContext: CBScriptContextProtocol {
 
     final func reset() {
         _instructionPointer = 0
-        index += 1
+        index += 1 // FIXME: ThreadSanitizer detects Swift access race here
         for brick in script.brickList {
             if brick is LoopBeginBrick { (brick as AnyObject).resetCondition() }
         }
@@ -110,11 +111,11 @@ class CBScriptContext: CBScriptContextProtocol {
 //--------------------------------------------------------------------------------------------------
 final class CBWhenScriptContext: CBScriptContext {
 
-    convenience init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
+    convenience init?(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
         self.init(whenScript: whenScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
+    init?(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
         instructionList: [CBInstruction]
     ) {
         super.init(script: whenScript, spriteNode: spriteNode, state: state,
@@ -129,11 +130,11 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
     let broadcastMessage: String
     var waitingContext: CBScriptContextProtocol?
 
-    convenience init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
+    convenience init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
         self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
+    init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
         instructionList: [CBInstruction]
     ) {
         broadcastMessage = broadcastScript.receivedMessage
@@ -147,11 +148,11 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
 //--------------------------------------------------------------------------------------------------
 final class CBStartScriptContext: CBScriptContext {
 
-    convenience init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
+    convenience init?(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
         self.init(startScript: startScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
+    init?(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
         instructionList: [CBInstruction]
     ) {
         super.init(script: startScript, spriteNode: spriteNode, state: state,

@@ -108,7 +108,7 @@ import CoreBluetooth
     }
     
     //MARK: CBCentralManagerDelegate
-    open func centralManager(_:CBCentralManager, didConnect peripheral:CBPeripheral) {
+    open func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         NSLog("peripheral: \(String(describing: peripheral.name))")
         guard let ownPeripheral = self.ownPeripherals[peripheral] else {
             NSLog("error")
@@ -117,7 +117,7 @@ import CoreBluetooth
         ownPeripheral.didConnectPeripheral()
     }
     
-    open func centralManager(_:CBCentralManager, didDisconnectPeripheral peripheral:CBPeripheral, error:Error?) {
+    open func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         NSLog("peripheral: \(String(describing: peripheral.name))")
         guard let ownPeripheral = self.self.ownPeripherals[peripheral] else {
             NSLog("error")
@@ -136,7 +136,7 @@ import CoreBluetooth
         }
     }
     
-    open func centralManager(_:CBCentralManager, didFailToConnect peripheral:CBPeripheral, error:Error?) {
+    open func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         guard let bcPeripheral = self.ownPeripherals[peripheral] else {
             NSLog("error")
             return
@@ -144,29 +144,24 @@ import CoreBluetooth
         bcPeripheral.didFailToConnectPeripheral(error as NSError?)
     }
     
-    open func centralManager(_:CBCentralManager!, didRetrieveConnectedPeripherals peripherals:[AnyObject]!) {
-        var array:[Peripheral] = Array()
-        for peripheral:CBPeripheral in peripherals as! [CBPeripheral] {
-            let ownPeripheral:Peripheral = Peripheral(cbPeripheral:peripheral)
-            array.append(ownPeripheral)
+    open func centralManager(_:CBCentralManager!, didRetrieveConnectedPeripherals peripherals: [AnyObject]!) {
+        let peripherals = peripherals.flatMap { cbPeripheral -> Peripheral? in
+            guard let peripheral = cbPeripheral as? CBPeripheral else { return nil }
+            return Peripheral(cbPeripheral: peripheral)
         }
-        self.helper.receivedConnectedPeripheral(array)
+        self.helper.receivedConnectedPeripheral(peripherals)
     }
     
     open func centralManager(_:CBCentralManager!, didRetrievePeripherals peripherals:[AnyObject]!) {
-        var array:[Peripheral] = Array()
-        for peripheral:CBPeripheral in peripherals as! [CBPeripheral] {
-            let ownPeripheral:Peripheral = Peripheral(cbPeripheral:peripheral)
-            array.append(ownPeripheral)
+        let peripherals = peripherals.flatMap { cbPeripheral -> Peripheral? in
+            guard let peripheral = cbPeripheral as? CBPeripheral else { return nil }
+            return Peripheral(cbPeripheral: peripheral)
         }
-        self.helper.receivedKnownPeripheral(array)
+        self.helper.receivedKnownPeripheral(peripherals)
 
     }
-    
-    open func centralManager(_:CBCentralManager, willRestoreState dict:[String:Any]) {
 
-    }
-    open func centralManagerDidUpdateState(_:CBCentralManager) {
+    open func centralManagerDidUpdateState(_ central: CBCentralManager) {
         self.helper.didUpdateState(self)
     }
 
@@ -181,8 +176,8 @@ import CoreBluetooth
         }
         for key in advertDictionary.keys {
             if let value : AnyObject = advertDictionary[key] {
-                if value is NSArray {
-                    for valueItem in (value as! NSArray) {
+                if let value = value as? NSArray {
+                    for valueItem in value {
                         addKey(key, andValue:valueItem as AnyObject)
                     }
                 } else {
