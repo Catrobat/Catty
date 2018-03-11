@@ -88,6 +88,8 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
     }
 
     func testHeaderViewTitle() {
+        guard #available(iOS 11, *) else { return }
+
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
