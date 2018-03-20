@@ -320,6 +320,8 @@
 		59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */; };
 		59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */; };
 		59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */; };
+		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
+		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -915,6 +917,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		59D9EC66206117100019EC10 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92C6319D1BC5180B00486958 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1301,6 +1314,7 @@
 		59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LooksTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
 		59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+AddAction.swift"; sourceTree = "<group>"; };
 		59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
+		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
@@ -2310,6 +2324,7 @@
 			files = (
 				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
 				593624C51F76F374008A588D /* Bohr.framework in Frameworks */,
+				59D9EC65206117000019EC10 /* DVR.framework in Frameworks */,
 				593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */,
 				593624C71F76F374008A588D /* M13ProgressSuite.framework in Frameworks */,
 				593624C81F76F374008A588D /* MXPagerView.framework in Frameworks */,
@@ -2389,6 +2404,7 @@
 				B405BAC7175DD3F600B1A0FC /* libxml2.dylib */,
 				DE5C4E6D138ED109004892CA /* libz.dylib */,
 				59473A641F76F05000BD634F /* Bohr.framework */,
+				59D9EC62206117000019EC10 /* DVR.framework */,
 				59473A651F76F05000BD634F /* HMSegmentedControl.framework */,
 				59697DAB201F631700A0071A /* Kingfisher.framework */,
 				593E4DE31FE120780016DCB9 /* LXReorderableCollectionViewFlowLayout.framework */,
@@ -6232,6 +6248,7 @@
 				CA7698A61B0E4A97000D0340 /* Sources */,
 				CA7698A71B0E4A97000D0340 /* Frameworks */,
 				CA7698A81B0E4A97000D0340 /* Resources */,
+				59D9EC66206117100019EC10 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
