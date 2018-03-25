@@ -58,14 +58,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *normalTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *highlightedButtons;
-@property (strong, nonatomic) NSMutableArray *sensorTypeButton;
+@property (strong, nonatomic) NSMutableArray<UIButton*> *sensorTypeButton;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *logicScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
-@property (weak, nonatomic)IBOutlet  UIScrollView *sensorScrollView;
-@property (strong, nonatomic)        UIScrollView *sensorScrollHelperView;
+@property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *variableScrollView;
 @property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *variableSegmentedControl;
@@ -239,8 +238,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     //self.pickerGesture.numberOfTapsRequired = 1;
     //[self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
-    [self updateSensorButtonWidth];
-   
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -310,17 +307,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 -(void)initSensorView
 {
-    for (UIView* view in [self.formulaEditorTextView.inputView subviews]){
-        if (view.tag == 9000) {
-            self.sensorScrollHelperView = (UIScrollView*)view;
-            break;
-        }
-    }
     self.sensorTypeButton = [NSMutableArray new];
     NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y", @"acceleration_z", @"compass", @"inclination_x", @"inclination_y", @"latitude",@"longitude", @"location_accuracy", @"altitude", @"finger_touched", @"finger_x", @"finger_y", @"last_finger_index", @"loudness", @"year", @"month", @"day", @"weekday", @"hour", @"minute", @"second", nil];
     
     NSInteger buttonCount = standardSensorArray.count;
-    self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+    
     //standard Sensors
     for (NSInteger count = 0; count < standardSensorArray.count; count++) {
         [self addStandardSensorViewButton:count];
@@ -361,8 +352,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
     
     [self.normalTypeButton addObjectsFromArray:self.sensorTypeButton];
-    self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
-    self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+    
+    self.sensorScrollView.frame = CGRectMake(self.sensorScrollView.frame.origin.x, self.sensorScrollView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+    self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
 }
 
 -(void)addStandardSensorViewButton:(NSInteger)tag
@@ -404,46 +396,48 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(UIButton*)getSensorButton:(NSInteger)buttonCount
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
     [button addTarget:self
                action:@selector(buttonPressed:)
      forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(0, buttonCount*self.calcButton.frame.size.height, self.sensorScrollHelperView.frame.size.width, self.calcButton.frame.size.height);
+    
     button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
-    [self.sensorScrollHelperView addSubview:button];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.sensorScrollView addSubview:button];
     [self.sensorTypeButton addObject:button];
+    
+    if (buttonCount == 0) {
+        [button.topAnchor constraintEqualToAnchor:self.sensorScrollView.topAnchor constant: 0].active = YES;
+    } else {
+        [button.topAnchor constraintEqualToAnchor:self.sensorTypeButton[buttonCount-1].bottomAnchor constant: 0].active = YES;
+    }
+    
+    [button.heightAnchor constraintEqualToAnchor:self.calcButton.heightAnchor constant:0].active = YES;
+    [button.widthAnchor constraintEqualToAnchor:self.sensorScrollView.widthAnchor constant:0].active = YES;
+    [button.leadingAnchor constraintEqualToAnchor:self.sensorScrollView.leadingAnchor constant:0].active = YES;
+    
     return button;
 }
 
--(void)updateSensorButtonWidth
-{
-    for(UIButton* button in self.sensorTypeButton){
-        button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, self.sensorScrollView.frame.size.width, button.frame.size.height);
-    }
-    
-}
-
 #pragma mark - localizeView
-
 - (void)localizeView
 {
     for (UIButton *button in self.normalTypeButton) {
         
         NSString *name = [Functions getExternName:[Functions getName:(Function)[button tag]]];
-        if([name length] != 0)
-        {
-            if (button.tag >= MULTI_FINGER_TOUCHED && button.tag <= MULTI_FINGER_Y)
+        if([name length] != 0) {
+            if (button.tag >= MULTI_FINGER_TOUCHED && button.tag <= MULTI_FINGER_Y) {
                 name = [name stringByAppendingString:@"(1)"];
+            }
             [button setTitle:name forState:UIControlStateNormal];
-        }else
-        {
+        } else {
             name = [Operators getExternName:[Operators getName:(Operator)[button tag]]];
-            if([name length] != 0)
-            {
+            if([name length] != 0) {
                 [button setTitle:name forState:UIControlStateNormal];
-            }else{
+            } else {
                 name = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[button tag]]];
-                if([name length] != 0)
-                {
+                if([name length] != 0) {
                     [button setTitle:name forState:UIControlStateNormal];
                 }
             }
@@ -460,7 +454,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
     [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
-    
 }
 
 
@@ -487,13 +480,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
         NSString *title = button.titleLabel.text;
-
-//        if(PLUS == [sender tag])
-//        {
-//            NSDebug(@"Plus: %@", title);
-//        }else{
-//            NSDebug(@"Beschreibung: %ld", (long)[sender tag]);
-//        }
         
         [self handleInputWithTitle:title AndButtonType:(int)[sender tag]];
     }
@@ -561,7 +547,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     {
         [self dismissFormulaEditorViewController];
     }
-    
 }
 
 - (void)updateDeleteButton:(BOOL)enabled
@@ -605,12 +590,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 break;
         }
     }
-    
 }
 
-
 #pragma mark - UI
-
 - (void)showFormulaEditor
 {
     self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + kFormulaEditorTopOffset, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
