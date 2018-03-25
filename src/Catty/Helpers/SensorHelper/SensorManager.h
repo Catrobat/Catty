@@ -23,7 +23,19 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    X_ACCELERATION = 900,
+    OBJECT_X = 900,
+    OBJECT_Y,
+    OBJECT_GHOSTEFFECT,
+    OBJECT_BRIGHTNESS,
+    OBJECT_COLOR,
+    OBJECT_LOOK_NUMBER,
+    OBJECT_LOOK_NAME,
+    OBJECT_BACKGROUND_NUMBER,
+    OBJECT_BACKGROUND_NAME,
+    OBJECT_SIZE,
+    OBJECT_ROTATION,
+    OBJECT_LAYER,
+    X_ACCELERATION,
     Y_ACCELERATION,
     Z_ACCELERATION,
     COMPASS_DIRECTION,
@@ -37,18 +49,6 @@ typedef enum {
     FINGER_X,
     FINGER_Y,
     LAST_FINGER_INDEX,
-    OBJECT_X,       //If enum value changed here, must be updated in FormulaEditor.xib as well
-    OBJECT_Y,
-    OBJECT_GHOSTEFFECT,
-    OBJECT_BRIGHTNESS,
-    OBJECT_COLOR,
-    OBJECT_LOOK_NUMBER,
-    OBJECT_LOOK_NAME,
-    OBJECT_BACKGROUND_NUMBER,
-    OBJECT_BACKGROUND_NAME,
-    OBJECT_SIZE,
-    OBJECT_ROTATION,
-    OBJECT_LAYER,
     LOUDNESS,
     DATE_YEAR,
     DATE_MONTH,
@@ -68,7 +68,7 @@ typedef enum {
     phiro_bottom_left,
     phiro_bottom_right,
     arduino_analogPin,
-    arduino_digitalPin
+    arduino_digitalPin,
 } Sensor;
 
 @interface SensorManager : NSObject
