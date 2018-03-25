@@ -372,7 +372,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
  	@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
     @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
-	@"ReplaceItemInUserListBrick": @(kReplaceItemInUserListBrick),\
+	@"ReplaceItemInUserListBrick"   : @(kReplaceItemInUserListBrick),\
 \
     /* arduino bricks */\
     @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
@@ -383,8 +383,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
     @"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
     @"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
-    @"PhiroRGBLightBrick"          : @(kPhiroRGBLightBrick),\
-    @"PhiroIfLogicBeginBrick"         : @(kPhiroIfLogicBeginBrick)\
+    @"PhiroRGBLightBrick"           : @(kPhiroRGBLightBrick),\
+    @"PhiroIfLogicBeginBrick"       : @(kPhiroIfLogicBeginBrick)\
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
@@ -459,6 +459,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 @"FlashBrick"                : @(kBrickHeight2h),\
 @"CameraBrick"               : @(kBrickHeight2h),\
+@"ChooseCameraBrick"         : @(kBrickHeight2h),\
 @"SayBubbleBrick"            : @(kBrickHeight2h),\
 @"SayForBubbleBrick"         : @(kBrickHeight2h),\
 @"ThinkBubbleBrick"          : @(kBrickHeight2h),\
