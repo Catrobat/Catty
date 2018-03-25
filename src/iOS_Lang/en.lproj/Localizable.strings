@@ -704,6 +704,9 @@
 "Invalid URL given!" = "Invalid URL given!";
 
 /* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
 "is true then" = "is true then";
 
 /* paint */
@@ -1244,7 +1247,7 @@
 "Repeat" = "Repeat";
 
 /* No comment provided by engineer. */
-"Repeat Until" = "Repeat Until";
+"Repeat until" = "Repeat until";
 
 /* No comment provided by engineer. */
 "Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";

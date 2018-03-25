@@ -65,15 +65,7 @@
 
 - (NSString*)brickTitle
 {
-    int repeatFor = [self.repeatCondition interpretIntegerForSprite:self.script.object andUseCache:NO];
-    NSString* repeatForStr;
-    if ([self.repeatCondition isSingleNumberFormula] && repeatFor == 1.0) {
-        repeatForStr = kLocalizedTime;
-    }
-    else {
-        repeatForStr = kLocalizedTimes;
-    }
-    return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:repeatForStr]];
+    return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedRepeatUntilIsTrue]];
 }
 
 - (BOOL)checkCondition

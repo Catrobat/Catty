@@ -26,12 +26,12 @@ import XCTest
 
 final class RepeatUntilBrickTests: XCTestCase {
 
-    /*func testRepeatUntil() {
+    func testRepeatUntil() {
         let repeatUntilBrick = RepeatUntilBrick()
         repeatUntilBrick.repeatCondition = Formula(double: 0)
         XCTAssertTrue(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
         
         repeatUntilBrick.repeatCondition = Formula(double: 1)
         XCTAssertFalse(repeatUntilBrick.checkCondition(), "Wrong repeat condition")
-    }*/
+    }
 }
