@@ -26,7 +26,7 @@
 
 @interface RecentProgramsStoreViewController (Test)
 - (void)loadProjectsWithIndicator:(NSInteger)indicator;
-- (void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects;
+- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
 - (void)initSegmentedControl;
 @end
 

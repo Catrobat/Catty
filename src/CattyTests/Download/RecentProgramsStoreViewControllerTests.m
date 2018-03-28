@@ -36,9 +36,10 @@
     self.downloadFinished = expectation;
     return self;
 }
-- (void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects
+
+- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
-    [super loadIDForArray:projects andInformation:information andProjects:catrobatProjects];
+    [super loadIDsWith:data andResponse:response];
     [self.downloadFinished fulfill];
 }
 - (UISegmentedControl*)downloadSegmentedControl
