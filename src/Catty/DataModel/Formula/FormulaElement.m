@@ -29,7 +29,6 @@
 #import "Util.h"
 #import "InternFormulaParserException.h"
 #import "Pocket_Code-Swift.h"
-#import "TouchHandler.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 #define kEmptyStringFallback @""
@@ -149,23 +148,20 @@
             
         case SENSOR: {
             //NSDebug(@"SENSOR");
-            Sensor sensor = [SensorManager sensorForString:self.value];
+            result = [NSNumber numberWithDouble: [[CBSensorManager shared] valueWithSensorTag:self.value]];
+            /*Sensor sensor = [SensorManager sensorForString:self.value];
             if([SensorManager isObjectSensor:sensor]) {
-                if([SensorManager isStringSensor:sensor]){
-                    result = [self interpretLookStringSensor:sensor forSprite:sprite];
-                } else{
-                    result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];
-                }
+                result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];
             } else {
-                result = [NSNumber numberWithDouble:[[SensorHandler sharedSensorHandler] valueForSensor:sensor]];
-            }
+                result = [NSNumber numberWithDouble: [[CBSensorManager shared] valueWithSensorTag:self.value]];
+            }*/
             break;
         }
             
         case BRACKET: {
            // NSDebug(@"BRACKET");
             result = [self.rightChild interpretRecursiveForSprite:sprite];
-            break;
+            break;  
         }
         case STRING:
     
@@ -465,21 +461,6 @@
         }
         case CONTAINS : {
             result = [self interpretFunctionCONTAINS:sprite];
-            break;
-        }
-        case MULTI_FINGER_TOUCHED: {
-            BOOL screenTouched = [[TouchHandler shared] screenIsTouched];
-            BOOL isRequestedTouch = ([[TouchHandler shared] numberOfTouches] == (NSUInteger)left);
-            
-            result = screenTouched && isRequestedTouch ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
-            break;
-        }
-        case MULTI_FINGER_X: {
-            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:(NSUInteger)left].x];
-            break;
-        }
-        case MULTI_FINGER_Y: {
-            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:(NSUInteger)left].y];
             break;
         }
         default:
@@ -838,28 +819,6 @@
 }
 
 
-- (NSString*) interpretLookStringSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
-{
-    NSString* result = @"";
-    
-    switch (sensor){
-        case OBJECT_LOOK_NAME:
-        case OBJECT_BACKGROUND_NAME:
-        {
-            if (sprite.spriteNode.currentLook.name != nil){
-                result = sprite.spriteNode.currentLook.name;
-            }
-            break;
-        }
-        default: {
-            abort();
-            break;
-        }
-    }
-    
-    return result;
-}
-
 - (double) interpretLookSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
 {
     double result = 0;
@@ -880,18 +839,6 @@
         }
         case OBJECT_BRIGHTNESS: {
             result = sprite.spriteNode.brightness;
-            break;
-        }
-        case OBJECT_COLOR: {
-            result = sprite.spriteNode.colorValue;
-            break;
-        }
-        case OBJECT_LOOK_NUMBER:
-        case OBJECT_BACKGROUND_NUMBER: {
-            result = 1;
-            if (sprite.spriteNode.currentLook != nil && sprite.lookList.count > 0){
-                result = [sprite.lookList indexOfObject:sprite.spriteNode.currentLook] + 1;
-            }
             break;
         }
         case OBJECT_SIZE: {
@@ -1205,12 +1152,6 @@
                 resources |= kAccelerometer;
                 break;
             case COMPASS_DIRECTION:
-                resources |= kCompass;
-                break;
-            case LATITUDE:
-            case LONGITUDE:
-            case LOCATION_ACCURACY:
-            case ALTITUDE:
                 resources |= kLocation;
                 break;
             case LOUDNESS:
