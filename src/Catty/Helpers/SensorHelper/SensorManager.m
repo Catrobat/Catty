@@ -25,20 +25,40 @@
 @implementation SensorManager
 
 NSString * const sensorStringArray[] = {
+    @"OBJECT_X",
+    @"OBJECT_Y",
+    @"OBJECT_GHOSTEFFECT",
+    @"OBJECT_BRIGHTNESS",
+    @"OBJECT_COLOR",
+    @"OBJECT_LOOK_NUMBER",
+    @"OBJECT_LOOK_NAME",
+    @"OBJECT_BACKGROUND_NUMBER",
+    @"OBJECT_BACKGROUND_NAME",
+    @"OBJECT_SIZE",
+    @"OBJECT_ROTATION",
+    @"OBJECT_LAYER",
     @"X_ACCELERATION",
     @"Y_ACCELERATION",
     @"Z_ACCELERATION",
     @"COMPASS_DIRECTION",
     @"X_INCLINATION",
     @"Y_INCLINATION",
-    @"OBJECT_X",
-    @"OBJECT_Y",
-    @"OBJECT_GHOSTEFFECT",
-    @"OBJECT_BRIGHTNESS",
-    @"OBJECT_SIZE",
-    @"OBJECT_ROTATION",
-    @"OBJECT_LAYER",
+    @"LATITUDE",
+    @"LONGITUDE",
+    @"LOCATION_ACCURACY",
+    @"ALTITUDE",
+    @"FINGER_TOUCHED",
+    @"FINGER_X",
+    @"FINGER_Y",
+    @"LAST_FINGER_INDEX",
     @"LOUDNESS",
+    @"DATE_YEAR",
+    @"DATE_MONTH",
+    @"DATE_DAY",
+    @"DATE_WEEKDAY",
+    @"TIME_HOUR",
+    @"TIME_MINUTE",
+    @"TIME_SECOND",
     @"FACE_DETECTED",
     @"FACE_SIZE",
     @"FACE_POSITION_X",
@@ -73,6 +93,30 @@ NSString * const sensorStringArray[] = {
     if([sensor isEqualToString:@"Y_INCLINATION"]) {
         return Y_INCLINATION;
     }
+    if([sensor isEqualToString:@"LATITUDE"]) {
+        return LATITUDE;
+    }
+    if([sensor isEqualToString:@"LONGITUDE"]) {
+        return LONGITUDE;
+    }
+    if([sensor isEqualToString:@"LOCATION_ACCURACY"]) {
+        return LOCATION_ACCURACY;
+    }
+    if([sensor isEqualToString:@"ALTITUDE"]) {
+        return ALTITUDE;
+    }
+    if([sensor isEqualToString:@"FINGER_TOUCHED"]) {
+        return FINGER_TOUCHED;
+    }
+    if([sensor isEqualToString:@"FINGER_X"]) {
+        return FINGER_X;
+    }
+    if([sensor isEqualToString:@"FINGER_Y"]) {
+        return FINGER_Y;
+    }
+    if([sensor isEqualToString:@"LAST_FINGER_INDEX"]) {
+        return LAST_FINGER_INDEX;
+    }
     if([sensor isEqualToString:@"OBJECT_X"]) {
         return OBJECT_X;
     }
@@ -85,6 +129,21 @@ NSString * const sensorStringArray[] = {
     if([sensor isEqualToString:@"OBJECT_BRIGHTNESS"]) {
         return OBJECT_BRIGHTNESS;
     }
+    if([sensor isEqualToString:@"OBJECT_COLOR"]) {
+        return OBJECT_COLOR;
+    }
+    if([sensor isEqualToString:@"OBJECT_LOOK_NUMBER"]) {
+        return OBJECT_LOOK_NUMBER;
+    }
+    if([sensor isEqualToString:@"OBJECT_LOOK_NAME"]) {
+        return OBJECT_LOOK_NAME;
+    }
+    if([sensor isEqualToString:@"OBJECT_BACKGROUND_NUMBER"]) {
+        return OBJECT_BACKGROUND_NUMBER;
+    }
+    if([sensor isEqualToString:@"OBJECT_BACKGROUND_NAME"]) {
+        return OBJECT_BACKGROUND_NAME;
+    }
     if([sensor isEqualToString:@"OBJECT_SIZE"]) {
         return OBJECT_SIZE;
     }
@@ -96,6 +155,27 @@ NSString * const sensorStringArray[] = {
     }
     if([sensor isEqualToString:@"LOUDNESS"]) {
         return LOUDNESS;
+    }
+    if([sensor isEqualToString:@"DATE_YEAR"]) {
+        return DATE_YEAR;
+    }
+    if([sensor isEqualToString:@"DATE_MONTH"]) {
+        return DATE_MONTH;
+    }
+    if([sensor isEqualToString:@"DATE_DAY"]) {
+        return DATE_DAY;
+    }
+    if([sensor isEqualToString:@"DATE_WEEKDAY"]) {
+        return DATE_WEEKDAY;
+    }
+    if([sensor isEqualToString:@"TIME_HOUR"]) {
+        return TIME_HOUR;
+    }
+    if([sensor isEqualToString:@"TIME_MINUTE"]) {
+        return TIME_MINUTE;
+    }
+    if([sensor isEqualToString:@"TIME_SECOND"]) {
+        return TIME_SECOND;
     }
     if([sensor isEqualToString:@"FACE_DETECTED"]) {
         return FACE_DETECTED;
@@ -155,6 +235,11 @@ NSString * const sensorStringArray[] = {
     return (sensor >= OBJECT_X && sensor <= OBJECT_LAYER) ? YES : NO;
 }
 
++ (BOOL)isStringSensor:(Sensor)sensor
+{
+    return (sensor == OBJECT_LOOK_NAME || sensor == OBJECT_BACKGROUND_NAME) ? YES : NO;
+}
+
 + (BOOL)isArduinoSensor:(Sensor)sensor
 {
     return (sensor >= arduino_analogPin && sensor <= arduino_digitalPin) ? YES : NO;
@@ -164,6 +249,27 @@ NSString * const sensorStringArray[] = {
     Sensor sensor = [self sensorForString:sensorName];
     NSString *name;
     switch (sensor) {
+        case DATE_YEAR:
+            name = kUIFESensorDateYear;
+            break;
+        case DATE_MONTH:
+            name = kUIFESensorDateMonth;
+            break;
+        case DATE_DAY:
+            name = kUIFESensorDateDay;
+            break;
+        case DATE_WEEKDAY:
+            name = kUIFESensorDateWeekday;
+            break;
+        case TIME_HOUR:
+            name = kUIFESensorTimeHour;
+            break;
+        case TIME_MINUTE:
+            name = kUIFESensorTimeMinute;
+            break;
+        case TIME_SECOND:
+            name = kUIFESensorTimeSecond;
+            break;
         case COMPASS_DIRECTION:
             name = kUIFESensorCompass;
             break;
@@ -172,6 +278,21 @@ NSString * const sensorStringArray[] = {
             break;
         case OBJECT_BRIGHTNESS:
             name = kUIFEObjectBrightness;
+            break;
+        case OBJECT_COLOR:
+            name = kUIFEObjectColor;
+            break;
+        case OBJECT_LOOK_NUMBER:
+            name = kUIFEObjectLookNumber;
+            break;
+        case OBJECT_LOOK_NAME:
+            name = kUIFEObjectLookName;
+            break;
+        case OBJECT_BACKGROUND_NUMBER:
+            name = kUIFEObjectBackgroundNumber;
+            break;
+        case OBJECT_BACKGROUND_NAME:
+            name = kUIFEObjectBackgroundName;
             break;
         case OBJECT_GHOSTEFFECT:
             name = kUIFEObjectTransparency;
@@ -202,6 +323,30 @@ NSString * const sensorStringArray[] = {
             break;
         case Y_INCLINATION:
             name = kUIFESensorInclinationY;
+            break;
+        case LATITUDE:
+            name = kUIFESensorLatitude;
+            break;
+        case LONGITUDE:
+            name = kUIFESensorLongitude;
+            break;
+        case LOCATION_ACCURACY:
+            name = kUIFESensorLocationAccuracy;
+            break;
+        case ALTITUDE:
+            name = kUIFESensorAltitude;
+            break;
+        case FINGER_TOUCHED:
+            name = kUIFESensorFingerTouched;
+            break;
+        case FINGER_X:
+            name = kUIFESensorFingerX;
+            break;
+        case FINGER_Y:
+            name = kUIFESensorFingerY;
+            break;
+        case LAST_FINGER_INDEX:
+            name = kUIFESensorLastFingerIndex;
             break;
         case Z_ACCELERATION:
             name = kUIFESensorAccelerationZ;

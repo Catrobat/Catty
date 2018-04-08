@@ -158,10 +158,13 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kNoteBrick                 =   6,
     kForeverBrick              =   7,
     kIfBrick                   =   8,
-    kIfElseBrick               =   9,
-    kIfEndBrick                =  10,
-    kRepeatBrick               =  11,
-    kLoopEndBrick              =  12,
+    kIfThenBrick               =   9,
+    kIfElseBrick               =  10,
+    kIfEndBrick                =  11,
+    kIfThenEndBrick            =  12,
+    kRepeatBrick               =  13,
+    kRepeatUntilBrick          =  14,
+    kLoopEndBrick              =  15,
 
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
@@ -182,19 +185,27 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     
     // 2xx look bricks
     kSetLookBrick              = 200,
-    kNextLookBrick             = 201,
-    kSetSizeToBrick            = 202,
-    kChangeSizeByNBrick        = 203,
-    kHideBrick                 = 204,
-    kShowBrick                 = 205,
-    kSetTransparencyBrick      = 206,
-    kChangeTransparencyByNBrick= 207,
-    kSetBrightnessBrick        = 208,
-    kChangeBrightnessByNBrick  = 209,
-    kSetColorBrick             = 210,
-    kChangeColorByNBrick       = 211,
-    kClearGraphicEffectBrick   = 212,
-    kFlashBrick                = 213,
+    kSetBackgroundBrick        = 201,
+    kNextLookBrick             = 202,
+    kPreviousLookBrick         = 203,
+    kSetSizeToBrick            = 204,
+    kChangeSizeByNBrick        = 205,
+    kHideBrick                 = 206,
+    kShowBrick                 = 207,
+    kSetTransparencyBrick      = 208,
+    kChangeTransparencyByNBrick= 209,
+    kSetBrightnessBrick        = 210,
+    kChangeBrightnessByNBrick  = 211,
+    kSetColorBrick             = 212,
+    kChangeColorByNBrick       = 213,
+    kClearGraphicEffectBrick   = 214,
+    kFlashBrick                = 215,
+    kCameraBrick               = 216,
+    kChooseCameraBrick         = 217,
+    kSayBubbleBrick            = 218,
+    kSayForBubbleBrick         = 219,
+    kThinkBubbleBrick          = 220,
+    kThinkForBubbleBrick       = 221,
 
     
     // 3xx sound bricks
@@ -203,6 +214,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSetVolumeToBrick          = 302,
     kChangeVolumeByNBrick      = 303,
     kSpeakBrick                = 304,
+    kSpeakAndWaitBrick         = 305,
 
 
 
@@ -295,9 +307,12 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"NoteBrick"                 : @(kNoteBrick),\
     @"ForeverBrick"              : @(kForeverBrick),\
     @"IfLogicBeginBrick"         : @(kIfBrick),\
+    @"IfThenLogicBeginBrick"     : @(kIfThenBrick),\
     @"IfLogicElseBrick"          : @(kIfElseBrick),\
     @"IfLogicEndBrick"           : @(kIfEndBrick),\
+    @"IfThenLogicEndBrick"       : @(kIfThenEndBrick),\
     @"RepeatBrick"               : @(kRepeatBrick),\
+    @"RepeatUntilBrick"          : @(kRepeatUntilBrick),\
     @"LoopEndBrick"              : @(kLoopEndBrick),\
 \
     /* motion bricks */\
@@ -323,10 +338,13 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"SetVolumeToBrick"          : @(kSetVolumeToBrick),\
     @"ChangeVolumeByNBrick"      : @(kChangeVolumeByNBrick),\
     @"SpeakBrick"                : @(kSpeakBrick),\
+    @"SpeakAndWaitBrick"         : @(kSpeakAndWaitBrick),\
 \
     /* look bricks */\
     @"SetLookBrick"              : @(kSetLookBrick),\
+    @"SetBackgroundBrick"        : @(kSetBackgroundBrick),\
     @"NextLookBrick"             : @(kNextLookBrick),\
+    @"PreviousLookBrick"         : @(kPreviousLookBrick),\
     @"SetSizeToBrick"            : @(kSetSizeToBrick),\
     @"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
     @"HideBrick"                 : @(kHideBrick),\
@@ -339,6 +357,12 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
     @"FlashBrick"                : @(kFlashBrick),\
+    @"CameraBrick"               : @(kCameraBrick),\
+    @"ChooseCameraBrick"         : @(kChooseCameraBrick),\
+    @"SayBubbleBrick"            : @(kSayBubbleBrick),\
+    @"SayForBubbleBrick"         : @(kSayForBubbleBrick),\
+    @"ThinkBubbleBrick"          : @(kThinkBubbleBrick),\
+    @"ThinkForBubbleBrick"       : @(kThinkForBubbleBrick),\
 \
     /* variable and list bricks */\
     @"SetVariableBrick"             : @(kSetVariableBrick),\
@@ -348,7 +372,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
  	@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
     @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
-	@"ReplaceItemInUserListBrick": @(kReplaceItemInUserListBrick),\
+	@"ReplaceItemInUserListBrick"   : @(kReplaceItemInUserListBrick),\
 \
     /* arduino bricks */\
     @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
@@ -359,8 +383,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
     @"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
     @"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
-    @"PhiroRGBLightBrick"          : @(kPhiroRGBLightBrick),\
-    @"PhiroIfLogicBeginBrick"         : @(kPhiroIfLogicBeginBrick)\
+    @"PhiroRGBLightBrick"           : @(kPhiroRGBLightBrick),\
+    @"PhiroIfLogicBeginBrick"       : @(kPhiroIfLogicBeginBrick)\
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
@@ -384,9 +408,12 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"NoteBrick"                 : @(kBrickHeight2h),\
 @"ForeverBrick"              : @(kBrickHeight1h),\
 @"IfLogicBeginBrick"         : @(kBrickHeight1h),\
+@"IfThenLogicBeginBrick"     : @(kBrickHeight1h),\
 @"IfLogicElseBrick"          : @(kBrickHeight1h),\
 @"IfLogicEndBrick"           : @(kBrickHeight1h),\
+@"IfThenLogicEndBrick"       : @(kBrickHeight1h),\
 @"RepeatBrick"               : @(kBrickHeight1h),\
+@"RepeatUntilBrick"          : @(kBrickHeight1h),\
 @"LoopEndBrick"              : @(kBrickHeight1h),\
 \
 /* motion bricks */\
@@ -412,10 +439,13 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SetVolumeToBrick"          : @(kBrickHeight1h),\
 @"ChangeVolumeByNBrick"      : @(kBrickHeight1h),\
 @"SpeakBrick"                : @(kBrickHeight2h),\
+@"SpeakAndWaitBrick"         : @(kBrickHeight2h),\
 \
 /* look bricks */\
 @"SetLookBrick"              : @(kBrickHeight2h),\
+@"SetBackgroundBrick"        : @(kBrickHeight2h),\
 @"NextLookBrick"             : @(kBrickHeight1h),\
+@"PreviousLookBrick"         : @(kBrickHeight1h),\
 @"SetSizeToBrick"            : @(kBrickHeight1h),\
 @"ChangeSizeByNBrick"        : @(kBrickHeight1h),\
 @"HideBrick"                 : @(kBrickHeight1h),\
@@ -428,6 +458,12 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SetColorBrick"             : @(kBrickHeight1h),\
 @"ChangeColorByNBrick"       : @(kBrickHeight1h),\
 @"FlashBrick"                : @(kBrickHeight2h),\
+@"CameraBrick"               : @(kBrickHeight2h),\
+@"ChooseCameraBrick"         : @(kBrickHeight2h),\
+@"SayBubbleBrick"            : @(kBrickHeight2h),\
+@"SayForBubbleBrick"         : @(kBrickHeight2h),\
+@"ThinkBubbleBrick"          : @(kBrickHeight2h),\
+@"ThinkForBubbleBrick"       : @(kBrickHeight2h),\
 \
 /* variable and list bricks */\
 @"SetVariableBrick"             : @(kBrickHeight3h),\
@@ -448,8 +484,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"PhiroMotorMoveForwardBrick"   : @(kBrickHeight3h),\
 @"PhiroMotorMoveBackwardBrick"  : @(kBrickHeight3h),\
 @"PhiroPlayToneBrick"           : @(kBrickHeight3h),\
-@"PhiroRGBLightBrick"          : @(kBrickHeight3h),\
-@"PhiroIfLogicBeginBrick"          : @(kBrickHeight1h)\
+@"PhiroRGBLightBrick"           : @(kBrickHeight3h),\
+@"PhiroIfLogicBeginBrick"       : @(kBrickHeight1h)\
 }
 
 // brick heights

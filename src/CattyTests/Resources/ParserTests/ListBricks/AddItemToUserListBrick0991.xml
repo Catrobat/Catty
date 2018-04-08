@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName>Catty</applicationBuildName>
+    <applicationBuildNumber>5</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.1</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>iPhone Simulator</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>iOS</platform>
+    <platformVersion>10.0</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>AddItemToUserListTest</programName>
+    <remixOf></remixOf>
+    <screenHeight>568</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>320</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="AddItemToUserListBrick">
+              <formulaList>
+                <formula category="LIST_ADD_ITEM">
+                  <type>NUMBER</type>
+                  <value>66</value>
+                </formula>
+              </formulaList>
+              <userList>
+                <name>programList</name>
+              </userList>
+            </brick>
+            <brick type="AddItemToUserListBrick">
+              <formulaList>
+                <formula category="LIST_ADD_ITEM">
+                  <type>STRING</type>
+                  <value>hallo</value>
+                </formula>
+              </formulaList>
+              <userList>
+                <name>objectList</name>
+              </userList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list>
+          <userList reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userList"/>
+        </list>
+      </entry>
+    </objectListOfList>
+    <objectVariableList/>
+    <programListOfLists>
+      <userList reference="../../../objectList/object/scriptList/script/brickList/brick/userList"/>
+    </programListOfLists>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

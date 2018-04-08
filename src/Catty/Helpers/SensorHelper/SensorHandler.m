@@ -26,7 +26,8 @@
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
 #import "FaceDetection.h"
-
+#import "TouchHandler.h"
+#import "AppDelegate.h"
 
 #define kSensorUpdateInterval 0.8
 #define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.01
@@ -58,7 +59,6 @@ static SensorHandler* sharedSensorHandler = nil;
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
             sharedSensorHandler = [[[self class] alloc] init];
-            
         }
     }
     return sharedSensorHandler;
@@ -77,20 +77,29 @@ static SensorHandler* sharedSensorHandler = nil;
 
 -(BOOL)locationAvailable
 {
+    return [CLLocationManager locationServicesEnabled];
+}
+
+-(BOOL)compassAvailable
+{
     return [CLLocationManager headingAvailable];
 }
+
 -(BOOL)accelerometerAvailable
 {
     return self.motionManager.accelerometerAvailable;
 }
+
 -(BOOL)gyroAvailable
 {
     return self.motionManager.gyroAvailable;
 }
+
 -(BOOL)magnetometerAvailable
 {
     return self.motionManager.magnetometerAvailable;
 }
+
 -(BOOL)loudnessAvailable
 {
     if (!self.recorder) {
@@ -105,7 +114,36 @@ static SensorHandler* sharedSensorHandler = nil;
 
 - (double)valueForSensor:(Sensor)sensor {
     double result = 0;
+    NSDateComponents *components;
     switch (sensor) {
+        case DATE_YEAR:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear fromDate:[NSDate date]];
+            result = [components year];
+            break;
+        case DATE_MONTH:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitMonth fromDate:[NSDate date]];
+            result = [components month];
+            break;
+        case DATE_DAY:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitDay fromDate:[NSDate date]];
+            result = [components day];
+            break;
+        case DATE_WEEKDAY:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitWeekday fromDate:[NSDate date]];
+            result = [components weekday];
+            break;
+        case TIME_HOUR:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitHour fromDate:[NSDate date]];
+            result = [components hour];
+            break;
+        case TIME_MINUTE:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitMinute fromDate:[NSDate date]];
+            result = [components minute];
+            break;
+        case TIME_SECOND:
+            components = [[NSCalendar currentCalendar] components: NSCalendarUnitSecond fromDate:[NSDate date]];
+            result = [components second];
+            break;    
         case X_ACCELERATION: {
             result = [self acceleration].x;
             NSDebug(@"X_ACCELERATION: %f m/s^2", result);
@@ -123,6 +161,38 @@ static SensorHandler* sharedSensorHandler = nil;
         }
         case COMPASS_DIRECTION: {
             result = [self direction];            
+            break;
+        }
+        case LATITUDE: {
+            result = [self latitude];
+            break;
+        }
+        case LONGITUDE: {
+            result = [self longitude];
+            break;
+        }
+        case LOCATION_ACCURACY: {
+            result = [self location_accuracy];
+            break;
+        }
+        case ALTITUDE: {
+            result = [self altitude];
+            break;
+        }
+        case FINGER_TOUCHED: {
+            result = [[TouchHandler shared] screenIsTouched];
+            break;
+        }
+        case FINGER_X: {
+            result = [[TouchHandler shared] getLastPositionInScene].x;
+            break;
+        }
+        case FINGER_Y: {
+            result = [[TouchHandler shared] getLastPositionInScene].y;
+            break;
+        }
+        case LAST_FINGER_INDEX: {
+            result = [TouchHandler shared].numberOfTouches;
             break;
         }
         case X_INCLINATION: {
@@ -237,6 +307,7 @@ static SensorHandler* sharedSensorHandler = nil;
     }
     
     [self.locationManager stopUpdatingHeading];
+    [self.locationManager stopUpdatingLocation];
     
     if([self.motionManager isDeviceMotionActive]) {
         [self.motionManager stopDeviceMotionUpdates];
@@ -251,10 +322,8 @@ static SensorHandler* sharedSensorHandler = nil;
         [self.loudnessTimer invalidate];
         self.loudnessTimer = nil;
         self.recorder = nil;
-        
     }
-
-    
+    [[TouchHandler shared] stopTrackingTouches];
 }
 
 - (CMRotationRate)rotationRate
@@ -290,10 +359,47 @@ static SensorHandler* sharedSensorHandler = nil;
 
 - (double)direction
 {
+    [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingHeading];
 
     double direction = -self.locationManager.heading.magneticHeading;
     return direction;
+}
+
+- (double)latitude
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+
+    double latitude = self.locationManager.location.coordinate.latitude;
+    return latitude;
+}
+
+- (double)longitude
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    double longitude = self.locationManager.location.coordinate.longitude;
+    return longitude;
+}
+
+- (double)location_accuracy
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    double accuracy = self.locationManager.location.horizontalAccuracy;
+    return accuracy;
+}
+
+- (double)altitude
+{
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    double altitude = self.locationManager.location.altitude;
+    return altitude;
 }
 
 - (double)xInclination

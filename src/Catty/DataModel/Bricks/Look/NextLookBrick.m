@@ -21,15 +21,16 @@
  */
 
 #import "NextLookBrick.h"
+#import "ObjectTableViewController.h"
 #import "Look.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
 @implementation NextLookBrick
 
-- (NSString*)brickTitle
+- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground
 {
-    return ([self.script.object isBackground] ? kLocalizedNextBackground : kLocalizedNextLook);
+    return inBackground ? kLocalizedNextBackground : kLocalizedNextLook;
 }
 
 - (NSString*)pathForLook:(Look*)look

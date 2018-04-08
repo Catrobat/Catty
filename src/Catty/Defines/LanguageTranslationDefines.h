@@ -258,6 +258,8 @@
 #define kLocalizedNoWifiConnection NSLocalizedString(@"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", nil)
 #define kLocalizedOff NSLocalizedString(@"off", nil)
 #define kLocalizedOn NSLocalizedString(@"on", nil)
+#define kLocalizedCameraBack NSLocalizedString(@"back", nil)
+#define kLocalizedCameraFront NSLocalizedString(@"front", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -346,6 +348,8 @@
 #define kLocalizedElse NSLocalizedString(@"Else", nil)
 #define kLocalizedEndIf NSLocalizedString(@"End If", nil)
 #define kLocalizedRepeat NSLocalizedString(@"Repeat", nil)
+#define kLocalizedRepeatUntil NSLocalizedString(@"Repeat until", nil)
+#define kLocalizedRepeatUntilIsTrue NSLocalizedString(@"is true", nil)
 #define kLocalizedTime NSLocalizedString(@"time", nil)
 #define kLocalizedTimes NSLocalizedString(@"times", nil)
 #define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
@@ -379,6 +383,8 @@
 #define kLocalizedSetBackground NSLocalizedString(@"Set background", nil)
 #define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
 #define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
+#define kLocalizedPreviousLook NSLocalizedString(@"Previous look", nil)
+#define kLocalizedPreviousBackground NSLocalizedString(@"Previous background", nil)
 #define kLocalizedSetSizeTo NSLocalizedString(@"Set size to", nil)
 #define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by", nil)
 #define kLocalizedHide NSLocalizedString(@"Hide", nil)
@@ -395,13 +401,19 @@
 #define kLocalizedSetColor NSLocalizedString(@"Set color ", nil)
 #define kLocalizedChangeColor NSLocalizedString(@"Change color ", nil)
 #define kLocalizedFlash NSLocalizedString(@"Turn flashlight", nil)
+#define kLocalizedCamera NSLocalizedString(@"Turn camera", nil)
+#define kLocalizedChooseCamera NSLocalizedString(@"Use camera", nil)
+#define kLocalizedFor NSLocalizedString(@"for", nil)
 
 // sound bricks
 #define kLocalizedPlaySound NSLocalizedString(@"Start sound", nil)
 #define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by", nil)
+#define kLocalizedSay NSLocalizedString(@"Say", nil)
+#define kLocalizedThink NSLocalizedString(@"Think", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak", nil)
+#define kLocalizedAndWait NSLocalizedString(@" and wait", nil)
 
 // variable and list bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable", nil)
@@ -417,7 +429,8 @@
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)
-#define kLocalizedHello NSLocalizedString(@"Hello !", nil)
+#define kLocalizedHello NSLocalizedString(@"Hello!", nil)
+#define kLocalizedHmmmm NSLocalizedString(@"Hmmmm!", nil)
 
 // phiro bricks
 #define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro motor", nil)
@@ -578,17 +591,34 @@
 #define kUIFEFunctionElement NSLocalizedString(@"element", nil)
 #define kUIFEFunctionContains NSLocalizedString(@"contains", nil)
 
+#define kUIFEFunctionScreenIsTouched NSLocalizedString(@"screen_is_touched", nil)
+#define kUIFEFunctionScreenTouchX NSLocalizedString(@"screen_touch_x", nil)
+#define kUIFEFunctionScreenTouchY NSLocalizedString(@"screen_touch_y", nil)
+
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)
 #define kUIFEOperatorOr NSLocalizedString(@"or", nil)
 
 #define kUIFEObjectTransparency NSLocalizedString(@"transparency", nil)
 #define kUIFEObjectBrightness NSLocalizedString(@"brightness", nil)
+#define kUIFEObjectColor NSLocalizedString(@"color", nil)
+#define kUIFEObjectLookNumber NSLocalizedString(@"look_number", nil)
+#define kUIFEObjectLookName NSLocalizedString(@"look_name", nil)
+#define kUIFEObjectBackgroundNumber NSLocalizedString(@"background_number", nil)
+#define kUIFEObjectBackgroundName NSLocalizedString(@"background_name", nil)
 #define kUIFEObjectSize NSLocalizedString(@"size", nil)
 #define kUIFEObjectDirection NSLocalizedString(@"direction", nil)
 #define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
 #define kUIFEObjectPositionX NSLocalizedString(@"pos_x", nil)
 #define kUIFEObjectPositionY NSLocalizedString(@"pos_y", nil)
+
+#define kUIFESensorDateYear NSLocalizedString(@"year", nil)
+#define kUIFESensorDateMonth NSLocalizedString(@"month", nil)
+#define kUIFESensorDateDay NSLocalizedString(@"day", nil)
+#define kUIFESensorDateWeekday NSLocalizedString(@"weekday", nil)
+#define kUIFESensorTimeHour NSLocalizedString(@"hour", nil)
+#define kUIFESensorTimeMinute NSLocalizedString(@"minute", nil)
+#define kUIFESensorTimeSecond NSLocalizedString(@"second", nil)
 
 #define kUIFESensorCompass NSLocalizedString(@"compass", nil)
 #define kUIFESensorLoudness NSLocalizedString(@"loudness", nil)
@@ -597,6 +627,14 @@
 #define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration_z", nil)
 #define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
 #define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
+#define kUIFESensorLatitude NSLocalizedString(@"latitude", nil)
+#define kUIFESensorLongitude NSLocalizedString(@"longitude", nil)
+#define kUIFESensorLocationAccuracy NSLocalizedString(@"location_accuracy", nil)
+#define kUIFESensorAltitude NSLocalizedString(@"altitude", nil)
+#define kUIFESensorFingerTouched NSLocalizedString(@"screen_is_touched", nil)
+#define kUIFESensorFingerX NSLocalizedString(@"screen_touch_x", nil)
+#define kUIFESensorFingerY NSLocalizedString(@"screen_touch_y", nil)
+#define kUIFESensorLastFingerIndex NSLocalizedString(@"last_screen_touch_index", nil)
 #define kUIFESensorPhiroFrontLeft NSLocalizedString(@"phiro_front_left", nil)
 #define kUIFESensorPhiroFrontRight NSLocalizedString(@"phiro_front_right", nil)
 #define kUIFESensorPhiroSideLeft NSLocalizedString(@"phiro_side_left", nil)
@@ -609,6 +647,7 @@
 #define kUIFESensorArduinoDigital NSLocalizedString(@"arduino_digital", nil)
 
 #define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
+#define kLocalizedSensorLocation NSLocalizedString(@"location", nil)
 #define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)

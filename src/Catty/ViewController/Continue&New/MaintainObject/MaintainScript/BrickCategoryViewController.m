@@ -47,9 +47,8 @@
         self.pageIndexArray = pageIndexArray;
         
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
-        self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
         self.spriteObject = spriteObject;
-        
+        self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category inBackground: spriteObject.isBackground];
     }
     return self;
 }
@@ -124,7 +123,7 @@
     brickCell.isInserting = YES;
     brickCell.scriptOrBrick = self.bricks[indexPath.item];
     [brickCell.scriptOrBrick setDefaultValuesForObject:self.spriteObject];
-    [brickCell setupBrickCell];
+    [brickCell setupBrickCellinSelectionView:true inBackground: self.spriteObject.isBackground];
     [brickCell setNeedsDisplay];
     
     for (id subview in brickCell.subviews) {

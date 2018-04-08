@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+" and wait" = " and wait";
+
+/* No comment provided by engineer. */
 "A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -48,6 +51,9 @@
 
 /* paint */
 "Alpha" = "Alpha";
+
+/* No comment provided by engineer. */
+"altitude" = "altitude";
 
 /* No comment provided by engineer. */
 "An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
@@ -104,6 +110,9 @@
 "Axes" = "Axes";
 
 /* No comment provided by engineer. */
+"back" = "back";
+
+/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* No comment provided by engineer. */
@@ -111,6 +120,12 @@
 
 /* No comment provided by engineer. */
 "Background" = "Background";
+
+/* No comment provided by engineer. */
+"background_name" = "background_name";
+
+/* No comment provided by engineer. */
+"background_number" = "background_number";
 
 /* No comment provided by engineer. */
 "Backgrounds" = "Backgrounds";
@@ -227,6 +242,9 @@
 "Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
+"color" = "color";
+
+/* No comment provided by engineer. */
 "compass" = "compass";
 
 /* No comment provided by engineer. */
@@ -279,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Create account" = "Create account";
+
+/* No comment provided by engineer. */
+"day" = "day";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -566,6 +587,9 @@
 "floor" = "floor";
 
 /* No comment provided by engineer. */
+"for" = "for";
+
+/* No comment provided by engineer. */
 "for all objects" = "for all objects";
 
 /* No comment provided by engineer. */
@@ -593,6 +617,9 @@
 "From Camera" = "From Camera";
 
 /* No comment provided by engineer. */
+"front" = "front";
+
+/* No comment provided by engineer. */
 "Front camera" = "Front camera";
 
 /* No comment provided by engineer. */
@@ -614,7 +641,7 @@
 "gyro-sensor" = "gyro-sensor";
 
 /* No comment provided by engineer. */
-"Hello !" = "Hello !";
+"Hello!" = "Hello!";
 
 /* No comment provided by engineer. */
 "Help" = "Help";
@@ -627,6 +654,12 @@
 
 /* No comment provided by engineer. */
 "Hide variable" = "Hide variable";
+
+/* No comment provided by engineer. */
+"Hmmmm!" = "Hmmmm!";
+
+/* No comment provided by engineer. */
+"hour" = "hour";
 
 /* No comment provided by engineer. */
 "If" = "If";
@@ -671,6 +704,9 @@
 "Invalid URL given!" = "Invalid URL given!";
 
 /* No comment provided by engineer. */
+"is true" = "is true";
+
+/* No comment provided by engineer. */
 "is true then" = "is true then";
 
 /* paint */
@@ -705,6 +741,12 @@
 
 /* No comment provided by engineer. */
 "Last access" = "Last access";
+
+/* No comment provided by engineer. */
+"last_screen_touch_index" = "last_screen_touch_index";
+
+/* No comment provided by engineer. */
+"latitude" = "latitude";
 
 /* No comment provided by engineer. */
 "layer" = "layer";
@@ -743,6 +785,12 @@
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
+"location" = "location";
+
+/* No comment provided by engineer. */
+"location_accuracy" = "location_accuracy";
+
+/* No comment provided by engineer. */
 "Logic" = "Logic";
 
 /* No comment provided by engineer. */
@@ -758,10 +806,19 @@
 "Logout" = "Logout";
 
 /* No comment provided by engineer. */
+"longitude" = "longitude";
+
+/* No comment provided by engineer. */
 "Look" = "Look";
 
 /* LOOK */
 "look" = "look";
+
+/* No comment provided by engineer. */
+"look_name" = "look_name";
+
+/* No comment provided by engineer. */
+"look_number" = "look_number";
 
 /* No comment provided by engineer. */
 "Looks" = "Looks";
@@ -802,6 +859,9 @@
 /* No comment provided by engineer. */
 "MI" = "MI";
 
+/* No comment provided by engineer. */
+"minute" = "minute";
+
 /* paint */
 "Mirror" = "Mirror";
 
@@ -813,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "Monday" = "Monday";
+
+/* No comment provided by engineer. */
+"month" = "month";
 
 /* No comment provided by engineer. */
 "More" = "More";
@@ -1109,6 +1172,12 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
+"Previous background" = "Previous background";
+
+/* No comment provided by engineer. */
+"Previous look" = "Previous look";
+
+/* No comment provided by engineer. */
 "Privacy Settings" = "Privacy Settings";
 
 /* No comment provided by engineer. */
@@ -1178,6 +1247,9 @@
 "Repeat" = "Repeat";
 
 /* No comment provided by engineer. */
+"Repeat until" = "Repeat until";
+
+/* No comment provided by engineer. */
 "Replace item in list\n%@\nat position %@ with %@" = "Replace item in list\n%@\nat position %@ with %@";
 
 /* No comment provided by engineer. */
@@ -1220,6 +1292,18 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
+"Say" = "Say";
+
+/* No comment provided by engineer. */
+"screen_is_touched" = "screen_is_touched";
+
+/* No comment provided by engineer. */
+"screen_touch_x" = "screen_touch_x";
+
+/* No comment provided by engineer. */
+"screen_touch_y" = "screen_touch_y";
+
+/* No comment provided by engineer. */
 "Screenshot" = "Screenshot";
 
 /* No comment provided by engineer. */
@@ -1236,6 +1320,9 @@
 
 /* bluetooth */
 "Search" = "Search";
+
+/* No comment provided by engineer. */
+"second" = "second";
 
 /* No comment provided by engineer. */
 "second " = "second ";
@@ -1436,6 +1523,9 @@
 "The sound item cannot be played" = "The sound item cannot be played";
 
 /* No comment provided by engineer. */
+"Think" = "Think";
+
+/* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
 
 /* No comment provided by engineer. */
@@ -1476,6 +1566,9 @@
 
 /* No comment provided by engineer. */
 "Tuesday" = "Tuesday";
+
+/* No comment provided by engineer. */
+"Turn camera" = "Turn camera";
 
 /* No comment provided by engineer. */
 "Turn flashlight" = "Turn flashlight";
@@ -1532,6 +1625,9 @@
 "Use Arduino bricks" = "Use Arduino bricks";
 
 /* No comment provided by engineer. */
+"Use camera" = "Use camera";
+
+/* No comment provided by engineer. */
 "Use face detection" = "Use face detection";
 
 /* No comment provided by engineer. */
@@ -1586,6 +1682,9 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
+"weekday" = "weekday";
+
+/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1605,6 +1704,9 @@
 
 /* No comment provided by engineer. */
 "Y: " = "Y: ";
+
+/* No comment provided by engineer. */
+"year" = "year";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";

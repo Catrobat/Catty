@@ -26,9 +26,14 @@
 
 @implementation SetLookBrick
 
+- (BOOL)isDisabledForBackground
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
-    return ([self.script.object isBackground] ? [kLocalizedSetBackground stringByAppendingString:@"\n%@"] : [kLocalizedSetLook stringByAppendingString:@"\n%@"]);
+    return [kLocalizedSetLook stringByAppendingString:@"\n%@"];
 }
 
 - (NSString*)pathForLook

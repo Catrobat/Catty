@@ -252,6 +252,22 @@
             break;
 
             
+        case MULTI_FINGER_TOUCHED:
+            return [self buildSingleParameterFunction:MULTI_FINGER_TOUCHED
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+        case MULTI_FINGER_X:
+            return [self buildSingleParameterFunction:MULTI_FINGER_X
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+        case MULTI_FINGER_Y:
+            return [self buildSingleParameterFunction:MULTI_FINGER_Y
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]];
+            break;
+            
         //PERIOD
             
         case DECIMAL_MARK:
@@ -312,6 +328,27 @@
         //COSTUME
             
         //SENSOR
+        case DATE_YEAR:
+            return [self buildSensor:DATE_YEAR];
+            break;
+        case DATE_MONTH:
+            return [self buildSensor:DATE_MONTH];
+            break;
+        case DATE_DAY:
+            return [self buildSensor:DATE_DAY];
+            break;
+        case DATE_WEEKDAY:
+            return [self buildSensor:DATE_WEEKDAY];
+            break;
+        case TIME_HOUR:
+            return [self buildSensor:TIME_HOUR];
+            break;
+        case TIME_MINUTE:
+            return [self buildSensor:TIME_MINUTE];
+            break;
+        case TIME_SECOND:
+            return [self buildSensor:TIME_SECOND];
+            break;
         case COMPASS_DIRECTION:
             return [self buildSensor:COMPASS_DIRECTION];
             break;
@@ -320,6 +357,21 @@
             break;
         case OBJECT_BRIGHTNESS:
             return [self buildSensor:OBJECT_BRIGHTNESS];
+            break;
+        case OBJECT_COLOR:
+            return [self buildSensor:OBJECT_COLOR];
+            break;
+        case OBJECT_LOOK_NUMBER:
+            return [self buildSensor:OBJECT_LOOK_NUMBER];
+            break;
+        case OBJECT_LOOK_NAME:
+            return [self buildSensor:OBJECT_LOOK_NAME];
+            break;
+        case OBJECT_BACKGROUND_NUMBER:
+            return [self buildSensor:OBJECT_BACKGROUND_NUMBER];
+            break;
+        case OBJECT_BACKGROUND_NAME:
+            return [self buildSensor:OBJECT_BACKGROUND_NAME];
             break;
         case OBJECT_GHOSTEFFECT:
             return [self buildSensor:OBJECT_GHOSTEFFECT];
@@ -350,6 +402,30 @@
             break;
         case Y_INCLINATION:
             return [self buildSensor:Y_INCLINATION];
+            break;
+        case LATITUDE:
+            return [self buildSensor:LATITUDE];
+            break;
+        case LONGITUDE:
+            return [self buildSensor:LONGITUDE];
+            break;
+        case LOCATION_ACCURACY:
+            return [self buildSensor:LOCATION_ACCURACY];
+            break;
+        case ALTITUDE:
+            return [self buildSensor:ALTITUDE];
+            break;
+        case FINGER_TOUCHED:
+            return [self buildSensor:FINGER_TOUCHED];
+            break;
+        case FINGER_X:
+            return [self buildSensor:FINGER_X];
+            break;
+        case FINGER_Y:
+            return [self buildSensor:FINGER_Y];
+            break;
+        case LAST_FINGER_INDEX:
+            return [self buildSensor:LAST_FINGER_INDEX];
             break;
         case Z_ACCELERATION:
             return [self buildSensor:Z_ACCELERATION];

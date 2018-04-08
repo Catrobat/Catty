@@ -33,8 +33,6 @@
         else { fatalError("This should never happen!") }
 
         return {
-
-            
             let sizeInPercent = size.interpretDouble(forSprite: object)
             spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
             spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))

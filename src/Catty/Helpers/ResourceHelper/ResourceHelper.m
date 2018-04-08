@@ -57,6 +57,15 @@
     if ((requiredResources & kLocation) > 0) {
         if (![[SensorHandler sharedSensorHandler] locationAvailable]) {
             if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLocation];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorLocation];
+            }
+        }
+    }
+    if ((requiredResources & kCompass) > 0) {
+        if (![[SensorHandler sharedSensorHandler] compassAvailable]) {
+            if([notAvailable isEqualToString:@""]){
                 notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
             } else {
                 notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorCompass];

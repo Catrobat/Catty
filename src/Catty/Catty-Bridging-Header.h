@@ -37,8 +37,10 @@
 #import "Brick.h"
 #import "BrickConditionalBranchProtocol.h"
 #import "IfLogicBeginBrick.h"
+#import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "IfThenLogicEndBrick.h"
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "NoteBrick.h"
@@ -49,6 +51,7 @@
 #import "PlaySoundBrick.h"
 #import "StopAllSoundsBrick.h"
 #import "SpeakBrick.h"
+#import "SpeakAndWaitBrick.h"
 #import "ChangeVolumeByNBrick.h"
 #import "SetVolumeToBrick.h"
 #import "SetVariableBrick.h"
@@ -59,6 +62,7 @@
 #import "IfOnEdgeBounceBrick.h"
 #import "ShowBrick.h"
 #import "SetLookBrick.h"
+#import "SetBackgroundBrick.h"
 #import "SetSizeToBrick.h"
 #import "PointInDirectionBrick.h"
 #import "PlaceAtBrick.h"
@@ -86,6 +90,7 @@
 #import "SetColorBrick.h"
 #import "ChangeColorByNBrick.h"
 #import "NextLookBrick.h"
+#import "PreviousLookBrick.h"
 #import "ClearGraphicEffectBrick.h"
 #import "ChangeTransparencyByNBrick.h"
 #import "ChangeBrightnessByNBrick.h"
@@ -97,6 +102,13 @@
 #import "InsertItemIntoUserListBrick.h"
 #import "ReplaceItemInUserListBrick.h"
 #import "RepeatBrick.h"
+#import "RepeatUntilBrick.h"
+#import "CameraBrick.h"
+#import "ChooseCameraBrick.h"
+#import "SayBubbleBrick.h"
+#import "SayForBubbleBrick.h"
+#import "ThinkBubbleBrick.h"
+#import "ThinkForBubbleBrick.h"
 
 // Formulas
 #import "Formula.h"
@@ -128,6 +140,8 @@
 #import "LoadingView.h"
 #import "RuntimeImageCache.h"
 #import "CBMutableCopyContext.h"
+#import "CameraPreviewHandler.h"
+#import "BubbleBrickHelper.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes

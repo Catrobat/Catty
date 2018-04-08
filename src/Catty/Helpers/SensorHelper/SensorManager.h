@@ -23,20 +23,40 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    X_ACCELERATION = 900,
+    OBJECT_X = 900,
+    OBJECT_Y,
+    OBJECT_GHOSTEFFECT,
+    OBJECT_BRIGHTNESS,
+    OBJECT_COLOR,
+    OBJECT_LOOK_NUMBER,
+    OBJECT_LOOK_NAME,
+    OBJECT_BACKGROUND_NUMBER,
+    OBJECT_BACKGROUND_NAME,
+    OBJECT_SIZE,
+    OBJECT_ROTATION,
+    OBJECT_LAYER,
+    X_ACCELERATION,
     Y_ACCELERATION,
     Z_ACCELERATION,
     COMPASS_DIRECTION,
     X_INCLINATION,
     Y_INCLINATION,
-    OBJECT_X,
-    OBJECT_Y,
-    OBJECT_GHOSTEFFECT,
-    OBJECT_BRIGHTNESS,
-    OBJECT_SIZE,
-    OBJECT_ROTATION,
-    OBJECT_LAYER,
+    LATITUDE,
+    LONGITUDE,
+    LOCATION_ACCURACY,
+    ALTITUDE,
+    FINGER_TOUCHED,
+    FINGER_X,
+    FINGER_Y,
+    LAST_FINGER_INDEX,
     LOUDNESS,
+    DATE_YEAR,
+    DATE_MONTH,
+    DATE_DAY,
+    DATE_WEEKDAY,
+    TIME_HOUR,
+    TIME_MINUTE,
+    TIME_SECOND,
     FACE_DETECTED,
     FACE_SIZE,
     FACE_POSITION_X,
@@ -48,7 +68,7 @@ typedef enum {
     phiro_bottom_left,
     phiro_bottom_right,
     arduino_analogPin,
-    arduino_digitalPin
+    arduino_digitalPin,
 } Sensor;
 
 @interface SensorManager : NSObject
@@ -58,6 +78,8 @@ typedef enum {
 + (NSString*) stringForSensor:(Sensor)sensor;
 
 + (BOOL) isObjectSensor:(Sensor)sensor;
+
++ (BOOL) isStringSensor:(Sensor)sensor;
 
 + (NSString *)getExternName:(NSString *)sensorName;
 

@@ -152,6 +152,19 @@ final class CBSpriteNode: SKSpriteNode {
         return nil
     }
 
+    @objc func previousLook() -> Look? {
+        if currentLook == nil {
+            return nil
+        }
+        if let spriteObject = self.spriteObject {
+            var index = spriteObject.lookList.index(of: currentLook!)
+            index -= 1
+            index = index < 0 ? spriteObject.lookList.count - 1 : index
+            return spriteObject.lookList[index] as? Look
+        }
+        return nil
+    }
+    
     @objc func changeLook(_ look: Look?) {
         if look == nil { return }
         let filePathForLook = spriteObject?.path(for: look)

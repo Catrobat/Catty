@@ -57,9 +57,12 @@
     @"{TEXT}",                      /* note            */\
     @[],                            /* forever         */\
     @"{FLOAT;range=(-inf,inf)}",    /* if              */\
+    @"{FLOAT;range=(-inf,inf)}",    /* if then         */\
     @[],                            /* else            */\
     @[],                            /* if end          */\
+    @[],                            /* if then end     */\
     @"{INT;range=[0,inf)}",         /* repeat          */\
+    @"{FLOAT;range=(-inf,inf)}",    /* repeat until    */\
     @[]                             /* loop end        */\
 ]
 // motion bricks
@@ -87,13 +90,16 @@
     @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{INT}"                        /* speak              */\
+    @"{INT}",                       /* speak              */\
+    @"{INT}"                        /* speak and wait     */\
 ]
 
 // look bricks
 #define kLookBrickNameParams @[\
+    @"{LOOK}",                      /* set look                 */\
     @"{LOOK}",                      /* set background           */\
     @[],                            /* next background          */\
+    @[],                            /* previous background      */\
     @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
     @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
     @[],                            /* hide                     */\
@@ -105,7 +111,13 @@
     @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
     @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
-    @"{STATICCHOICE}"               /* flash brick              */\
+    @"{STATICCHOICE}",              /* flash brick              */\
+    @"{STATICCHOICE}",              /* camera brick             */\
+    @"{STATICCHOICE}",              /* choose camera brick      */\
+    @"{INT}",                       /* SayBubbleBrick           */\
+    @[@"{INT}", @"{INT}"],          /* SayForBubbleBrick        */\
+    @"{INT}",                       /* ThinkBubbleBrick         */\
+    @[@"{INT}", @"{INT}"]           /* ThinkForBubbleBrick      */\
 ]
 
 // variable and list bricks
@@ -175,6 +187,12 @@
 
 - (void)setupBrickCell
 {
+    [self setupBrickCellinSelectionView:false inBackground:false];
+}
+
+- (void)setupBrickCellinSelectionView:(BOOL)inSelectionView inBackground:(BOOL)inBackground
+{
+    self.brickTitle = [self.scriptOrBrick brickTitleForBrickinSelection:inSelectionView inBackground:inBackground];
     if ([self isKindOfClass:[LoopEndBrickCell class]]) {
         LoopEndBrickCell* cell = (LoopEndBrickCell*)self;
         cell.type = [[BrickManager sharedBrickManager] checkEndLoopBrickTypeForDrawing:cell];
@@ -366,7 +384,7 @@
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
-    NSString *brickTitle = self.scriptOrBrick.brickTitle;
+    NSString *brickTitle = self.brickTitle;
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;

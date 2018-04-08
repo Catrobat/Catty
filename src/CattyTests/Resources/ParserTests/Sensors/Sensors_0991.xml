@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>v0.9.10-111-geb1b919 master</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>Nexus 4</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense></mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>19.0</platformVersion>
+    <programLicense></programLicense>
+    <programName>Alle Bricks</programName>
+    <remixOf></remixOf>
+    <screenHeight>1184</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>768</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_BACKGROUND_NAME</value>
+                </formula>
+              </formulaList>
+              <userVariable>sensor1</userVariable>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_BACKGROUND_NUMBER</value>
+                </formula>
+              </formulaList>
+              <userVariable>sensor2</userVariable>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="Object 1">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_LOOK_NAME</value>
+                </formula>
+              </formulaList>
+              <userVariable reference="../../../../../../object/scriptList/script/brickList/brick/userVariable"/>
+            </brick>
+            <brick type="SetVariableBrick">
+              <formulaList>
+                <formula category="VARIABLE">
+                  <type>SENSOR</type>
+                  <value>OBJECT_LOOK_NUMBER</value>
+                </formula>
+              </formulaList>
+              <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+            <brick type="SetVariableBrick">
+                <formulaList>
+                    <formula category="VARIABLE">
+                        <type>SENSOR</type>
+                        <value>OBJECT_COLOR</value>
+                    </formula>
+                </formulaList>
+                <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+    <object name="Object 2">
+        <lookList/>
+        <soundList/>
+        <scriptList>
+            <script type="StartScript">
+                <brickList>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LATITUDE</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LONGITUDE</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>ALTITUDE</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LOCATION_ACCURACY</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                </brickList>
+                <isUserScript>false</isUserScript>
+            </script>
+        </scriptList>
+        <userBricks/>
+        <nfcTagList/>
+    </object>
+    <object name="Object 3">
+        <lookList/>
+        <soundList/>
+        <scriptList>
+            <script type="StartScript">
+                <brickList>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>FINGER_TOUCHED</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>FINGER_X</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>FINGER_Y</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                    <brick type="SetVariableBrick">
+                        <formulaList>
+                            <formula category="VARIABLE">
+                                <type>SENSOR</type>
+                                <value>LAST_FINGER_INDEX</value>
+                            </formula>
+                        </formulaList>
+                        <userVariable reference="../../../../../../object/scriptList/script/brickList/brick[2]/userVariable"/>
+                    </brick>
+                </brickList>
+                <isUserScript>false</isUserScript>
+            </script>
+        </scriptList>
+        <userBricks/>
+        <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList/>
+    <objectVariableList />
+    <programListOfLists/>
+    <programVariableList>
+      <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick/userVariable"/>
+      <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[2]/userVariable"/>
+    </programVariableList>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>

@@ -44,11 +44,15 @@
 
 - (BOOL)isFormulaBrick;
 
+- (BOOL)isDisabledForBackground;
+
 - (BOOL)isBluetoothBrick;
 
 - (BOOL)isPhiroBrick;
 
 - (BOOL)isArduinoBrick;
+
+- (NSString*)brickTitleForBrickinSelection:(BOOL)inSelection inBackground:(BOOL)inBackground;
 
 - (NSString*)description;
 
