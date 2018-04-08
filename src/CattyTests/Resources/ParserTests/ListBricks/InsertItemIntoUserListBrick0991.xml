@@ -5,23 +5,23 @@
     <applicationBuildNumber>6</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.1</applicationVersion>
-    <catrobatLanguageVersion>0.98</catrobatLanguageVersion>
-    <dateTimeUpload/>
-    <description/>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
     <deviceName>iPhone Simulator</deviceName>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>iOS</platform>
-    <platformVersion>10.2</platformVersion>
+    <platformVersion>10.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>asd</programName>
-    <remixOf/>
-    <screenHeight>667</screenHeight>
+    <programName>InsertItemIntoUserListTest</programName>
+    <remixOf></remixOf>
+    <screenHeight>736</screenHeight>
     <screenMode>STRETCH</screenMode>
-    <screenWidth>375</screenWidth>
-    <tags/>
-    <url/>
-    <userHandle/>
+    <screenWidth>414</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
   </header>
   <objectList>
     <object name="Background">
@@ -30,48 +30,30 @@
       <scriptList>
         <script type="StartScript">
           <brickList>
-            <brick type="AddItemToUserListBrick">
+            <brick type="InsertItemIntoUserListBrick">
               <formulaList>
-                <formula category="LIST_ADD_ITEM">
+                <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
                   <type>NUMBER</type>
-                  <value>9</value>
+                  <value>55</value>
                 </formula>
-              </formulaList>
-              <userList>
-                <name>testlist</name>
-              </userList>
-            </brick>
-            <brick type="AddItemToUserListBrick">
-              <formulaList>
-                <formula category="LIST_ADD_ITEM">
-                  <type>STRING</type>
-                  <value>hello</value>
-                </formula>
-              </formulaList>
-              <userList reference="../../brick/userList"/>
-            </brick>
-            <brick type="ReplaceItemInUserListBrick">
-              <formulaList>
-                <formula category="REPLACE_ITEM_IN_USERLIST_VALUE">
-                  <type>STRING</type>
-                  <value>hello</value>
-                </formula>
-                <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
+                <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
                   <type>NUMBER</type>
                   <value>1</value>
                 </formula>
               </formulaList>
-              <userList reference="../../brick/userList"/>
+              <userList>
+                <name>hallo</name>
+              </userList>
             </brick>
-            <brick type="ReplaceItemInUserListBrick">
+            <brick type="InsertItemIntoUserListBrick">
               <formulaList>
-                <formula category="REPLACE_ITEM_IN_USERLIST_VALUE">
-                  <type>NUMBER</type>
-                  <value>33</value>
-                </formula>
-                <formula category="REPLACE_ITEM_IN_USERLIST_INDEX">
+                <formula category="INSERT_ITEM_INTO_USERLIST_INDEX">
                   <type>NUMBER</type>
                   <value>2</value>
+                </formula>
+                <formula category="INSERT_ITEM_INTO_USERLIST_VALUE">
+                  <type>STRING</type>
+                  <value>test</value>
                 </formula>
               </formulaList>
               <userList reference="../../brick/userList"/>

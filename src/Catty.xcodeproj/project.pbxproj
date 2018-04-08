@@ -218,6 +218,12 @@
 		4C8B79571CB141AA001231F1 /* Solar_System_v1.0_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B79551CB141AA001231F1 /* Solar_System_v1.0_097.xml */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4C968C401F00288500355C0D /* BrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C968C3F1F00288500355C0D /* BrickTests.swift */; };
+		4C994DD5207A25F600C415FD /* DeleteItemOfUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DD2207A25F600C415FD /* DeleteItemOfUserListBrick098.xml */; };
+		4C994DD7207A260300C415FD /* ReplaceItemInUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DD6207A260300C415FD /* ReplaceItemInUserListBrick098.xml */; };
+		4C994DD9207A26D700C415FD /* AddItemToUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DD8207A26D700C415FD /* AddItemToUserListBrick0991.xml */; };
+		4C994DDB207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */; };
+		4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */; };
+		4C994DDF207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */; };
 		4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */; };
 		4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
@@ -871,7 +877,6 @@
 		BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */; };
 		BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */; };
 		BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */; };
-		BA55D76F1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BA55D76E1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml */; };
 		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
 		BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB591EC382DB00796056 /* BrickCellListData.m */; };
 		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
@@ -881,7 +886,6 @@
 		BACDF3571F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BACDF3561F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m */; };
 		BACDF35A1F1F9BD000346167 /* DeleteItemOfUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BACDF3591F1F9BD000346167 /* DeleteItemOfUserListBrickCell.m */; };
 		BACDF35C1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACDF35B1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift */; };
-		BACDF35E1F1F9C7300346167 /* DeleteItemOfUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BACDF35D1F1F9C7300346167 /* DeleteItemOfUserListBrick098.xml */; };
 		BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
 		BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
 		BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
@@ -1318,6 +1322,12 @@
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C968C3F1F00288500355C0D /* BrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrickTests.swift; sourceTree = "<group>"; };
+		4C994DD2207A25F600C415FD /* DeleteItemOfUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = DeleteItemOfUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/DeleteItemOfUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		4C994DD6207A260300C415FD /* ReplaceItemInUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ReplaceItemInUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/ReplaceItemInUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		4C994DD8207A26D700C415FD /* AddItemToUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/AddItemToUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
+		4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = DeleteItemOfUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/DeleteItemOfUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
+		4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
+		4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ReplaceItemInUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ReplaceItemInUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSceneHelper.swift; sourceTree = "<group>"; };
 		4C9E07731CD9DB0A00B14B2F /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-gray-alpha.png"; path = "CattyTests/Resources/Images/transparency-gray-alpha.png"; sourceTree = SOURCE_ROOT; };
@@ -2391,7 +2401,6 @@
 		BA1FA99E1F02B0020084184D /* InsertItemIntoUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertItemIntoUserListBrickCell.h; sourceTree = "<group>"; };
 		BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertItemIntoUserListBrickCell.m; sourceTree = "<group>"; };
 		BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "InsertItemIntoUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/InsertItemIntoUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
-		BA55D76E1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ReplaceItemInUserListBrick098.xml; sourceTree = "<group>"; };
 		BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrick.h; sourceTree = "<group>"; };
 		BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrick.m; sourceTree = "<group>"; };
 		BA9CAB571EC3811400796056 /* BrickListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickListProtocol.h; sourceTree = "<group>"; };
@@ -2409,7 +2418,6 @@
 		BACDF3581F1F9BD000346167 /* DeleteItemOfUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteItemOfUserListBrickCell.h; sourceTree = "<group>"; };
 		BACDF3591F1F9BD000346167 /* DeleteItemOfUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteItemOfUserListBrickCell.m; sourceTree = "<group>"; };
 		BACDF35B1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DeleteItemOfUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/DeleteItemOfUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
-		BACDF35D1F1F9C7300346167 /* DeleteItemOfUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DeleteItemOfUserListBrick098.xml; sourceTree = "<group>"; };
 		BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		BAEE49B41F165C3100F06741 /* ReplaceItemInUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceItemInUserListBrickCell.h; sourceTree = "<group>"; };
@@ -6065,9 +6073,13 @@
 			isa = PBXGroup;
 			children = (
 				BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */,
-				BACDF35D1F1F9C7300346167 /* DeleteItemOfUserListBrick098.xml */,
+				4C994DD8207A26D700C415FD /* AddItemToUserListBrick0991.xml */,
+				4C994DD2207A25F600C415FD /* DeleteItemOfUserListBrick098.xml */,
+				4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */,
 				BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */,
-				BA55D76E1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml */,
+				4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */,
+				4C994DD6207A260300C415FD /* ReplaceItemInUserListBrick098.xml */,
+				4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */,
 			);
 			name = ListBricks;
 			sourceTree = "<group>";
@@ -6801,6 +6813,7 @@
 				4CEF0CDC1B9C642A003C9B20 /* Pong_Starter_096.xml in Resources */,
 				CAE3E55D1B4C50B300CC88BD /* SKYPASCAL_093.xml in Resources */,
 				4C2EE3F11B555740006DE9B8 /* Drink_more_water_095.xml in Resources */,
+				4C994DD7207A260300C415FD /* ReplaceItemInUserListBrick098.xml in Resources */,
 				4C2EE3FB1B55579D006DE9B8 /* Memory_095.xml in Resources */,
 				4C2EE3FF1B5557BF006DE9B8 /* Minions__095.xml in Resources */,
 				4CE2D3F51C294F2000938B5E /* Compass_0.1_097.xml in Resources */,
@@ -6826,6 +6839,7 @@
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				4C0FA004204BD4FF00E71B2D /* Rock_paper_scissors_0991.xml in Resources */,
+				4C994DD9207A26D700C415FD /* AddItemToUserListBrick0991.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
 				4C6D15D21D7AC5B600CE53CD /* Demonstration_098.xml in Resources */,
@@ -6833,7 +6847,6 @@
 				4C2EE3FD1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml in Resources */,
 				CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				4CE2D4071C29503300938B5E /* Minions__097.xml in Resources */,
-				BA55D76F1F2001D3004624F8 /* ReplaceItemInUserListBrick098.xml in Resources */,
 				4C6D15EE1D7AC61000CE53CD /* Rock_paper_scissors_098.xml in Resources */,
 				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
 				4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */,
@@ -6878,6 +6891,7 @@
 				4C0FA00D204BD53400E71B2D /* Tic_Tac_Toe_Master_0991.xml in Resources */,
 				4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
+				4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */,
 				4C0FA00B204BD52900E71B2D /* Solar_System_v1.0_0991.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
@@ -6918,7 +6932,6 @@
 				4CE2D4151C29507F00938B5E /* Tic_Tac_Toe_Master_097.xml in Resources */,
 				4CE2D3F71C294F2900938B5E /* Demonstration_097.xml in Resources */,
 				4CC85CE81B9C717C0097E470 /* ValidProgram096.xml in Resources */,
-				BACDF35E1F1F9C7300346167 /* DeleteItemOfUserListBrick098.xml in Resources */,
 				CAE3E5481B4C50B300CC88BD /* Gossip_Girl_093.xml in Resources */,
 				4C2EE4071B555811006DE9B8 /* Pythagorean_Theorem_095.xml in Resources */,
 				CAE3E5601B4C50B300CC88BD /* Word_balloon_demo_09.xml in Resources */,
@@ -6936,6 +6949,7 @@
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
 				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
 				4C6D15F21D7AC61C00CE53CD /* Solar_System_v1.0_098.xml in Resources */,
+				4C994DD5207A25F600C415FD /* DeleteItemOfUserListBrick098.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				4C6D15F61D7AC62800CE53CD /* Word_balloon_demo_098.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
@@ -6954,6 +6968,7 @@
 				4CC85CE71B9C717C0097E470 /* ValidProgram095.xml in Resources */,
 				CAE3E5471B4C50B300CC88BD /* Gossip_Girl_091.xml in Resources */,
 				4C6D15E01D7AC5E700CE53CD /* Memory_098.xml in Resources */,
+				4C994DDF207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml in Resources */,
 				4CE2D4111C29506600938B5E /* Rock_paper_scissors_097.xml in Resources */,
 				4C2EE4051B5557F3006DE9B8 /* Pong_Starter_095.xml in Resources */,
 				4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */,
@@ -6970,6 +6985,7 @@
 				4C0FA000204BD4E900E71B2D /* Pong_Starter_0991.xml in Resources */,
 				4C0F9FE1204BD42700E71B2D /* Compass_0.1_0991.xml in Resources */,
 				4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */,
+				4C994DDB207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml in Resources */,
 				4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */,
 				599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */,
 				4C2EE3EB1B55570C006DE9B8 /* Airplane_with_shadow_095.xml in Resources */,

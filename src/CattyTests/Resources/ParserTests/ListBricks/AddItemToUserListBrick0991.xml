@@ -2,26 +2,26 @@
 <program>
   <header>
     <applicationBuildName>Catty</applicationBuildName>
-    <applicationBuildNumber>6</applicationBuildNumber>
+    <applicationBuildNumber>5</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.1</applicationVersion>
-    <catrobatLanguageVersion>0.98</catrobatLanguageVersion>
-    <dateTimeUpload/>
-    <description/>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
     <deviceName>iPhone Simulator</deviceName>
     <landscapeMode>false</landscapeMode>
     <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
     <platform>iOS</platform>
-    <platformVersion>10.2</platformVersion>
+    <platformVersion>10.0</platformVersion>
     <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>jgh</programName>
-    <remixOf/>
-    <screenHeight>667</screenHeight>
+    <programName>AddItemToUserListTest</programName>
+    <remixOf></remixOf>
+    <screenHeight>568</screenHeight>
     <screenMode>STRETCH</screenMode>
-    <screenWidth>375</screenWidth>
-    <tags/>
-    <url/>
-    <userHandle/>
+    <screenWidth>320</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
   </header>
   <objectList>
     <object name="Background">
@@ -38,35 +38,19 @@
                 </formula>
               </formulaList>
               <userList>
-                <name>testlist</name>
+                <name>programList</name>
               </userList>
             </brick>
             <brick type="AddItemToUserListBrick">
               <formulaList>
                 <formula category="LIST_ADD_ITEM">
                   <type>STRING</type>
-                  <value>hello</value>
+                  <value>hallo</value>
                 </formula>
               </formulaList>
-              <userList reference="../../brick/userList"/>
-            </brick>
-            <brick type="DeleteItemOfUserListBrick">
-              <formulaList>
-                <formula category="LIST_DELETE_ITEM">
-                  <type>NUMBER</type>
-                  <value>2</value>
-                </formula>
-              </formulaList>
-              <userList reference="../../brick/userList"/>
-            </brick>
-            <brick type="DeleteItemOfUserListBrick">
-              <formulaList>
-                <formula category="LIST_DELETE_ITEM">
-                  <type>NUMBER</type>
-                  <value>1</value>
-                </formula>
-              </formulaList>
-              <userList reference="../../brick/userList"/>
+              <userList>
+                <name>objectList</name>
+              </userList>
             </brick>
           </brickList>
           <isUserScript>false</isUserScript>
@@ -77,14 +61,19 @@
     </object>
   </objectList>
   <data>
-    <objectListOfList/>
+    <objectListOfList>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list>
+          <userList reference="../../../../../objectList/object/scriptList/script/brickList/brick[2]/userList"/>
+        </list>
+      </entry>
+    </objectListOfList>
     <objectVariableList/>
     <programListOfLists>
       <userList reference="../../../objectList/object/scriptList/script/brickList/brick/userList"/>
     </programListOfLists>
-    <programVariableList>
-      <userVariable>test</userVariable>
-    </programVariableList>
+    <programVariableList/>
     <userBrickVariableList/>
   </data>
   <settings/>
