@@ -84,7 +84,7 @@
     if(self) {
         FormulaElement *formulaElement = [FormulaElement new];
         formulaElement.type = STRING;
-        formulaElement.value = kLocalizedHello;
+        formulaElement.value = value;
         self.formulaTree = formulaElement;
     }
     return self;
