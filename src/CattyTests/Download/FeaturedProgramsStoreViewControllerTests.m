@@ -35,9 +35,9 @@
     self.downloadFinished = expectation;
     return self;
 }
-- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
-    [super loadIDsWith:data andResponse:response];
+    [super loadProjectsWith:data andResponse:response];
     [self.downloadFinished fulfill];
 }
 - (void)viewDidLoad

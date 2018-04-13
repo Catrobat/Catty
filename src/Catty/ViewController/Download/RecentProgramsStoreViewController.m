@@ -129,6 +129,12 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
@@ -284,7 +290,7 @@
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSDebug(@"LoadIDS");
-                [self loadIDsWith:data andResponse:response];
+                [self loadProjectsWith:data andResponse:response];
             });
         }
     }];
@@ -301,7 +307,7 @@
     self.programListOffset += kRecentProgramsMaxResults;
 }
 
-- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
     if (data == nil) {
         if (self.shouldShowAlert) {
@@ -379,6 +385,31 @@
         if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:cell]) {
             [self performSegueWithIdentifier:segueToProgramDetail sender:cell];
         }
+    }
+}
+
+# pragma mark - Segue delegate
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
+        NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
+        CatrobatProgram *catrobatProject;
+        switch (self.downloadSegmentedControl.selectedSegmentIndex) {
+            case 0:
+                catrobatProject = [self.mostDownloadedProjects objectAtIndex:selectedRowIndexPath.row];
+                break;
+            case 1:
+                catrobatProject = [self.mostViewedProjects objectAtIndex:selectedRowIndexPath.row];
+                break;
+            case 2:
+                catrobatProject = [self.mostRecentProjects objectAtIndex:selectedRowIndexPath.row];
+                break;
+            default:
+                break;
+        }
+        self.controller = (ProgramDetailStoreViewController*)[segue destinationViewController];
+        self.controller.project = catrobatProject;
+        self.delegate = self.controller;
     }
 }
 

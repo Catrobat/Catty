@@ -26,7 +26,7 @@
 
 @interface RecentProgramsStoreViewController (Test)
 - (void)loadProjectsWithIndicator:(NSInteger)indicator;
-- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
+- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response;
 - (void)initSegmentedControl;
 @end
 
