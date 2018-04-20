@@ -23,7 +23,7 @@
 #import "FeaturedProgramsStoreViewController.h"
 
 @interface FeaturedProgramsStoreViewController (Test)
-- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response;
+- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
 - (void)loadFeaturedProjects;
 @end
 
