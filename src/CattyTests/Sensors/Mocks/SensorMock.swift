@@ -20,23 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AccelerationYSensor : CBSensor {
+@testable import Pocket_Code
 
-    static let tag = "Y_ACCELERATION"
-    static let name = kUIFESensorAccelerationY
-    static let defaultValue = 0.0
+final class SensorMock: CBSensor {
 
-    let getMotionManager: () -> MotionManager?
+    static let tag = "tag"
+    static let name = "name"
+    static let defaultValue = 20.0
+
+    var value: Double
 
     var rawValue: Double {
-        return self.getMotionManager()?.accelerometerData?.acceleration.y ?? type(of: self).defaultValue
+        return self.value
     }
 
     var standardizedValue: Double {
-        return self.rawValue
+        return self.value
     }
 
-    init(motionManagerGetter: @escaping () -> MotionManager?) {
-        self.getMotionManager = motionManagerGetter
+    init(value: Double) {
+        self.value = value
     }
 }

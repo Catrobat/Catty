@@ -21,17 +21,41 @@
  */
 
 import XCTest
-import CoreMotion
 
 @testable import Pocket_Code
 
 final class InclinationXSensorTest: XCTestCase {
 
-    var sensor : CBSensor = InclinationXSensor()
-    
-    func testTransformToPocketCode() {
-        XCTAssertEqual(0, sensor.transformToPocketCode(rawValue: 0))
-        
-        // TODO boundary tests
+    var motionManager: MotionManagerMock!
+    var sensor: InclinationXSensor!
+
+    override func setUp() {
+        self.motionManager = MotionManagerMock()
+        self.sensor = InclinationXSensor { [weak self] in self?.motionManager }
     }
+
+    override func tearDown() {
+        self.sensor = nil
+        self.motionManager = nil
+    }
+
+    func testReturnDefaultValue() {
+        let sensor = InclinationXSensor { nil }
+        XCTAssertEqual(sensor.rawValue, InclinationXSensor.defaultValue)
+        XCTAssertEqual(sensor.standardizedValue, InclinationXSensor.defaultValue)
+    }
+    
+    func testStandardization() {
+        self.motionManager.attitude = (roll: -Double.pi/2, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue, -Double.pi/2)
+        XCTAssertEqual(self.sensor.standardizedValue, 0)
+
+        self.motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue, -Double.pi/3)
+        XCTAssertEqual(self.sensor.standardizedValue, 240) // TODO: circumvent float rounding errors (e.g. by converting to Int)
+
+        // TODO: add more cases
+    }
+
+    // TODO: add more tests
 }

@@ -20,19 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreLocation
+class CompassDirectionSensor : CBSensor {
+    
+    static let tag = "COMPASS_DIRECTION"
+    static let name = kUIFESensorCompass
+    static let defaultValue = 0.0
 
-class CompassDirectionSensor : HeadingSensor {
-    
-    var tagForSerialization : String { return "COMPASS_DIRECTION" }
-    var nameForFormulaEditor : String { return kUIFESensorCompass }
-    var defaultValue: Double { return 0.0 }
-    
-    func rawValue(heading : CLHeading) -> Double {
-        return heading.magneticHeading;
+    let getLocationManager: () -> LocationManager?
+
+    var rawValue: Double {
+        return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultValue
     }
-    
-    func transformToPocketCode(rawValue: Double) -> Double {
-        return rawValue * -1
+
+    var standardizedValue: Double {
+        return -self.rawValue
+    }
+
+    init(locationManagerGetter: @escaping () -> LocationManager?) {
+        self.getLocationManager = locationManagerGetter
     }
 }

@@ -20,23 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AccelerationYSensor : CBSensor {
+protocol MotionManager {
+    var accelerometerData: AccelerometerData? { get }
+    var deviceMotion: DeviceMotion? { get }
+}
 
-    static let tag = "Y_ACCELERATION"
-    static let name = kUIFESensorAccelerationY
-    static let defaultValue = 0.0
+protocol AccelerometerData {
+    var acceleration: Acceleration { get }
+}
 
-    let getMotionManager: () -> MotionManager?
+protocol Acceleration {
+    var x: Double { get }
+    var y: Double { get }
+    var z: Double { get }
+}
 
-    var rawValue: Double {
-        return self.getMotionManager()?.accelerometerData?.acceleration.y ?? type(of: self).defaultValue
-    }
+protocol DeviceMotion {
+    var attitude: Attitude { get }
+}
 
-    var standardizedValue: Double {
-        return self.rawValue
-    }
-
-    init(motionManagerGetter: @escaping () -> MotionManager?) {
-        self.getMotionManager = motionManagerGetter
-    }
+protocol Attitude {
+    var pitch: Double { get }
+    var roll: Double { get }
 }

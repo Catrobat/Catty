@@ -20,27 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
+protocol LocationManager {
+    var heading: Heading? { get }
+}
 
-final class SensorMock: DefaultSensor {
-    
-    public var tagForSerialization: String
-    public var nameForFormulaEditor: String
-    public var defaultValue: Double
-    public var value: Double
-    
-    init(tagForSerialization: String, nameForFormulaEditor: String, value: Double, defaultValue: Double) {
-        self.tagForSerialization = tagForSerialization
-        self.nameForFormulaEditor = nameForFormulaEditor
-        self.defaultValue = defaultValue
-        self.value = value
-    }
-    
-    func rawValue() -> Double {
-        return value
-    }
-    
-    func transformToPocketCode(rawValue: Double) -> Double {
-        return rawValue
-    }
+protocol Heading {
+    var magneticHeading: Double { get }
 }

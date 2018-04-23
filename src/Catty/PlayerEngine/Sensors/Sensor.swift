@@ -20,30 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreLocation
-import CoreMotion
-
 protocol CBSensor {
-    var tagForSerialization : String { get }
-    var nameForFormulaEditor : String { get }
-    var defaultValue : Double { get }
-    
-    func transformToPocketCode(rawValue : Double) -> Double
-}
 
-protocol DefaultSensor : CBSensor {
-    func rawValue() -> Double
-}
+    /// Tag for serialization
+    static var tag: String { get }
 
-protocol HeadingSensor : CBSensor {
-    func rawValue(heading : CLHeading) -> Double
-}
+    /// Name for formula editor
+    static var name: String { get }
 
-protocol AccelerationSensor : CBSensor {
-    func rawValue(acceleration : CMAcceleration) -> Double
-}
+    /// TODO: is this value standardized or platform specific?
+    static var defaultValue: Double { get }
 
-protocol MotionSensor : CBSensor {
-    func rawValue(motion : CMDeviceMotion) -> Double
-}
+    /// The current raw sensor value (iOS platform specific)
+    var rawValue: Double { get }
 
+    /// The current Pocket Code standardized sensor value
+    var standardizedValue: Double { get }
+}

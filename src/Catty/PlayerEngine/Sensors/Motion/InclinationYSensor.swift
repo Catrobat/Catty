@@ -20,29 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
+class InclinationYSensor : CBSensor {
 
-class InclinationYSensor : MotionSensor {
-    
-    var tagForSerialization : String { return "Y_INCLINATION" }
-    var nameForFormulaEditor : String { return kUIFESensorInclinationY }
-    var defaultValue: Double { return 0.0 }
-    
-    func rawValue(motion : CMDeviceMotion) -> Double {
-        return motion.attitude.pitch;
+    static let tag = "Y_INCLINATION"
+    static let name = kUIFESensorInclinationY
+    static let defaultValue = 0.0
+
+    let getMotionManager: () -> MotionManager?
+
+    var rawValue: Double {
+        return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultValue
     }
-    
-    func transformToPocketCode(rawValue: Double) -> Double {
-        var value = Util.radians(toDegree: rawValue * 4)
-        
-        /*if(motionManager.accelerometerData!.acceleration.z > 0) { // Face Down
+
+    var standardizedValue: Double {
+        let value = Util.radians(toDegree: self.rawValue * -4)
+
+        /*if (motionManager.accelerometerData!.acceleration.z > 0) { // Face Down
             if(value < 0.0) {
                 value = -180.0 - value;
             } else {
                 value = 180.0 - value;
             }
         }*/
-        
+
         return value
+    }
+
+    init(motionManagerGetter: @escaping () -> MotionManager?) {
+        self.getMotionManager = motionManagerGetter
     }
 }

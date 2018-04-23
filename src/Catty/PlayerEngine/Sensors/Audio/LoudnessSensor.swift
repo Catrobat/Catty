@@ -20,42 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LoudnessSensor : CBSensor {
+class LoudnessSensor: CBSensor { // TODO: finish implementation
     
-    private var recorder : AVAudioRecorder?
-    
-    init() {
+    static let tag = "LOUDNESS"
+    static let name = kUIFESensorLoudness
+    static let defaultValue = 0.0
+
+    let getAudioRecorder: () -> AVAudioRecorder?
+
+    var rawValue: Double {
+        return 0
+    }
+
+    var standardizedValue: Double {
+        fatalError("not implemented")
     }
     
-    var tagForSerialization : String { return "LOUDNESS" }
-    var nameForFormulaEditor : String { return kUIFESensorLoudness }
-    var defaultValue: Double { return 0.0 }
-    
-    func isAvailable() -> Bool {
-        // TODO
-        return false
+    var isAvailable: Bool {
+        fatalError("not implemented")
     }
     
-    func isActive() -> Bool {
-        // TODO
-        return false
+    var isActive: Bool {
+        fatalError("not implemented")
+    }
+
+    init(audioRecorderGetter: @escaping () -> AVAudioRecorder?) {
+        self.getAudioRecorder = audioRecorderGetter
     }
     
     func start() {
-        // TODO
+        fatalError("not implemented")
     }
     
     func stop() {
-       // TODO
-    }
-    
-    func rawValue() -> Double {
-        // TODO
-        return 0
-    }
-    
-    func transformToPocketCode(rawValue: Double) -> Double {
-        // TODO
-        return 0
+        fatalError("not implemented")
     }
 }

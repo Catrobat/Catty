@@ -427,6 +427,10 @@
 		59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */; };
 		59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */; };
 		59B9F633202D8F8500937299 /* MediaLibraryDownloader.downloadIndex.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */; };
+		59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008E8208E3FDC000539E7 /* MotionManager.swift */; };
+		59D008ED208E4249000539E7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008EC208E4249000539E7 /* LocationManager.swift */; };
+		59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008EF208E4370000539E7 /* LocationManagerMock.swift */; };
+		59D008F4208E4BF9000539E7 /* MotionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */; };
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
@@ -1563,6 +1567,10 @@
 		59ABDC5F2021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LooksTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
 		59ABDC642021D7DA00061403 /* UIAlertController+AddAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+AddAction.swift"; sourceTree = "<group>"; };
 		59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.success.json; sourceTree = "<group>"; };
+		59D008E8208E3FDC000539E7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		59D008EF208E4370000539E7 /* LocationManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerMock.swift; sourceTree = "<group>"; };
+		59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionManagerMock.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
@@ -3543,10 +3551,11 @@
 		4C994DEB207A3CEF00C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
-				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
-				4C994DF6207A3D0600C415FD /* SensorHandlerDeviceTests.m */,
-				4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */,
+				59D008EE208E435B000539E7 /* Mocks */,
 				4C994DED207A3CEF00C415FD /* Motion */,
+				4C994DF6207A3D0600C415FD /* SensorHandlerDeviceTests.m */,
+				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
+				4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -3563,6 +3572,8 @@
 			isa = PBXGroup;
 			children = (
 				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
+				59D008EC208E4249000539E7 /* LocationManager.swift */,
+				59D008E8208E3FDC000539E7 /* MotionManager.swift */,
 				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
 				4C994DFE207A3D4100C415FD /* Sensor.swift */,
 				4C994E1D207A56D500C415FD /* Acceleration */,
@@ -3947,7 +3958,6 @@
 				5973F235202EF2BB00A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
-				4C994E12207A3E8000C415FD /* SensorMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
 			);
 			path = Mocks;
@@ -3982,6 +3992,16 @@
 				59B9F631202D8F6200937299 /* MediaLibraryDownloader.downloadIndex.success.json */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		59D008EE208E435B000539E7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				59D008EF208E4370000539E7 /* LocationManagerMock.swift */,
+				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
+				4C994E12207A3E8000C415FD /* SensorMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
@@ -7421,6 +7441,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
+				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
@@ -7438,6 +7459,7 @@
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
+				59D008F4208E4BF9000539E7 /* MotionManagerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7572,6 +7594,7 @@
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
+				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
 				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
@@ -7911,6 +7934,7 @@
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */,
+				59D008ED208E4249000539E7 /* LocationManager.swift in Sources */,
 				9218B2061CC4AB75007B4C60 /* RGBAHelper.m in Sources */,
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				4C0F9F5D204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m in Sources */,

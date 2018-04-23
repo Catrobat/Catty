@@ -20,19 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
+class AccelerationXSensor : CBSensor {
 
-class AccelerationXSensor : AccelerationSensor {
-    
-    var tagForSerialization : String { return "X_ACCELERATION" }
-    var nameForFormulaEditor : String { return kUIFESensorAccelerationX }
-    var defaultValue: Double { return 0.0 }
-    
-    func rawValue(acceleration : CMAcceleration) -> Double {
-        return acceleration.x;
+    static let tag = "X_ACCELERATION"
+    static let name = kUIFESensorAccelerationX
+    static let defaultValue = 0.0
+
+    let getMotionManager: () -> MotionManager?
+
+    var rawValue: Double {
+        return self.getMotionManager()?.accelerometerData?.acceleration.x ?? type(of: self).defaultValue
     }
-    
-    func transformToPocketCode(rawValue: Double) -> Double {
-        return rawValue
+
+    var standardizedValue: Double {
+        return self.rawValue
+    }
+
+    init(motionManagerGetter: @escaping () -> MotionManager?) {
+        self.getMotionManager = motionManagerGetter
     }
 }
