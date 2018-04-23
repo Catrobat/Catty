@@ -448,12 +448,8 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
 // MARK: - Extensions
 
 private extension MediaItem {
-    init(name: String = "", fileExtension: String = "", category: String = "", relativePath: String = "", cachedData: Data? = nil) {
-        self.name = name
-        self.fileExtension = fileExtension
-        self.category = category
-        self.relativePath = relativePath
-        self.cachedData = cachedData
+    init(name: String = "", category: String = "", cachedData: Data? = nil) {
+        self.init(name: name, fileExtension: "", category: category, relativePath: "", cachedData: cachedData)
     }
 }
 

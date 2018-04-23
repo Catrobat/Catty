@@ -145,7 +145,7 @@ import CoreBluetooth
     }
     
     open func centralManager(_:CBCentralManager!, didRetrieveConnectedPeripherals peripherals: [AnyObject]!) {
-        let peripherals = peripherals.flatMap { cbPeripheral -> Peripheral? in
+        let peripherals = peripherals.compactMap { cbPeripheral -> Peripheral? in
             guard let peripheral = cbPeripheral as? CBPeripheral else { return nil }
             return Peripheral(cbPeripheral: peripheral)
         }
@@ -153,7 +153,7 @@ import CoreBluetooth
     }
     
     open func centralManager(_:CBCentralManager!, didRetrievePeripherals peripherals:[AnyObject]!) {
-        let peripherals = peripherals.flatMap { cbPeripheral -> Peripheral? in
+        let peripherals = peripherals.compactMap { cbPeripheral -> Peripheral? in
             guard let peripheral = cbPeripheral as? CBPeripheral else { return nil }
             return Peripheral(cbPeripheral: peripheral)
         }

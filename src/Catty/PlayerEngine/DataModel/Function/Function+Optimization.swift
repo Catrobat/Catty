@@ -23,7 +23,7 @@
 extension Functions {
 
     static var cachedNonIdempotentFunctions: [Function] = {
-        return Functions.nonIdempotentFunctions().flatMap { Function(rawValue: $0.intValue) }
+        return Functions.nonIdempotentFunctions().compactMap { Function(rawValue: $0.intValue) }
     }()
 
     @objc static func isIdempotentFunction(_ function: Function) -> Bool {

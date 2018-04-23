@@ -137,8 +137,8 @@ final class CBScene: SKScene {
                 var zPosition = currentNode.zPosition
                 zPosition -= 1
                 if (zPosition == -1) {
-                    return true;
                     logger?.debug("Found Object")
+                    return true
                 }
             }
         }

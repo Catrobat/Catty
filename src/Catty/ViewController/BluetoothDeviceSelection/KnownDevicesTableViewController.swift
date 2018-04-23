@@ -79,7 +79,7 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
 //        }
         var knownCBPeripherals:[CBPeripheral]
         let stringArray = UserDefaults.standard.array(forKey: "KnownBluetoothDevices") as? [String]
-        let uuidArray = stringArray?.flatMap { UUID(uuidString: $0) }
+        let uuidArray = stringArray?.compactMap { UUID(uuidString: $0) }
         knownCBPeripherals = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(uuidArray ?? [])
         for peri in knownCBPeripherals {
             let peripheral = Peripheral(cbPeripheral: peri, advertisements: [:], rssi: 0)
