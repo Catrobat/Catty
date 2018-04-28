@@ -20,11 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Brick.h"
 #import "BrickMessageProtocol.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
 @property (nonatomic, strong) NSString *broadcastMessage;
 - (id)initWithMessage:(NSString*)message;
 @end
+
+NS_ASSUME_NONNULL_END

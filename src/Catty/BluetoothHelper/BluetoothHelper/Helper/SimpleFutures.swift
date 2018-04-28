@@ -422,11 +422,9 @@ public struct Queue {
     }
     
     public func sync<T>(_ block:() -> T) -> T {
-        var result:T!
-        self.queue.sync(execute: {
-            result = block();
-        });
-        return result;
+        return self.queue.sync {
+            return block()
+        }
     }
     
     public func async(_ block:@escaping ()->()) {

@@ -100,8 +100,8 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
             
             let inputText = self.alertController.textFields?.first?.text ?? ""
             
-            if let validationResult = self.valueValidator?(inputText), !validationResult.valid {
-                self.reinputWithMessage(validationResult.localizedMessage!, alertController: self.alertController)
+            if let validationResult = self.valueValidator?(inputText), !validationResult.valid, let localizedMessage = validationResult.localizedMessage {
+                self.reinputWithMessage(localizedMessage, alertController: self.alertController)
                 return
             }
             handler?(inputText)

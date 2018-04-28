@@ -32,7 +32,7 @@
         let variableFormula = self.variableFormula
         
         return CBInstruction.execClosure { (context, _) in
-            //            self.logger.debug("Performing: SetVariableBrick")
+//            self.logger.debug("Performing: SetVariableBrick")
             
             let result = variableFormula?.interpretVariableData(forSprite: spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
@@ -40,12 +40,10 @@
             //update visible userVariable
             var value = ""
             if let userVariable = userVariable {
-                if userVariable.value is NSNumber{
-                    let number:NSNumber = (userVariable.value as? NSNumber)!
-                    value = number.stringValue
-                } else if userVariable.value is NSString {
-                    let string:NSString = userVariable.value as! NSString
-                    value = string as String
+                if let userVariableNumber = userVariable.value as? NSNumber {
+                    value = userVariableNumber.stringValue
+                } else if let userVariableValue = userVariable.value as? String {
+                    value = userVariableValue
                 } else {
                     value = ""
                 }

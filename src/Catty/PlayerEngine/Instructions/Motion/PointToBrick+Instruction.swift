@@ -28,12 +28,12 @@
 
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode,
+            let pointedObjectPosition = self.pointedObject?.spriteNode?.position
+            else { fatalError("This should never happen!") }
 
         return {
             let objectPosition = spriteNode.position
-            let pointedObjectPosition = self.pointedObject!.spriteNode!.position
 
             var rotationDegrees = 0.0
             if (objectPosition.x == pointedObjectPosition.x) && (objectPosition.y == pointedObjectPosition.y) {

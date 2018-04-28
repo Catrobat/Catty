@@ -77,7 +77,7 @@ class RawDeserializerTests: XCTestCase {
     //MARK: RawPairDeserialize
     func testRawPairDeserialization() {
         let data = "02ab".dataFromHexString()
-        if let value : RawPairTest = Deserializer.deserialize(data) {
+        if let value: RawPairTest = Deserializer.deserialize(data) {
             XCTAssert(value.value1 == 2 && value.value2 == 171, "RawPairDeserializableTests deserialization value invalid: \(value.value1), \(value.value2)")
         } else {
             XCTFail("RawPairDeserializableTests deserialization failed")

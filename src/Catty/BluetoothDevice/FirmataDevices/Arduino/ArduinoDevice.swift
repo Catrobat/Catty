@@ -192,18 +192,18 @@ class ArduinoDevice:FirmataDevice,ArduinoProtocol,ArduinoPropertyProtocol {
     //MARK: Helper
     
     private func checkDigitalPinCapability(_ pinNumber:UInt8,neededMode:PinMode) -> Bool {
-        if(pinsArray.count > 0){
+        if (pinsArray.count > 0) {
             let pinCheck = "D\(pinNumber)"
-            for pin:[String:Any] in pinsArray {
-                let pinName:String = pin["name"] as! String
-                if pinName == pinCheck {
+            for pin in pinsArray {
+                if let pinName = pin["name"] as? String, pinName == pinCheck {
                     if neededMode == .unknown {
                         return true
                     }
-                    let modes:[Int:Int] = pin["modes"] as! [Int:Int]
-                    for (mode,_) in modes {
-                        if mode == neededMode.rawValue {
-                            return true
+                    if let modes = pin["modes"] as? [Int:Int] {
+                        for (mode, _) in modes {
+                            if mode == neededMode.rawValue {
+                                return true
+                            }
                         }
                     }
                     return false
@@ -214,21 +214,20 @@ class ArduinoDevice:FirmataDevice,ArduinoProtocol,ArduinoPropertyProtocol {
         }
         return true
     }
-    
-    
+
     private func checkAnalogPinCapability(_ pinNumber:UInt8,neededMode:PinMode) -> Bool {
-        if(pinsArray.count > 0){
+        if (pinsArray.count > 0) {
             let pinCheck = "A\(pinNumber)"
-            for pin:[String:Any] in pinsArray {
-                let pinName:String = pin["name"] as! String
-                if pinName == pinCheck {
+            for pin in pinsArray {
+                if let pinName = pin["name"] as? String, pinName == pinCheck {
                     if neededMode == .unknown {
                         return true
                     }
-                    let modes:[Int:Int] = pin["modes"] as! [Int:Int]
-                    for (mode,_) in modes {
-                        if mode == neededMode.rawValue {
-                            return true
+                    if let modes = pin["modes"] as? [Int:Int] {
+                        for (mode,_) in modes {
+                            if mode == neededMode.rawValue {
+                                return true
+                            }
                         }
                     }
                 }

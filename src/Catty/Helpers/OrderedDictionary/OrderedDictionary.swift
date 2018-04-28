@@ -58,7 +58,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     }
     
     public var orderedValues: [Value] {
-        return _orderedKeys.flatMap { _keysToValues[$0] }
+        return _orderedKeys.compactMap { _keysToValues[$0] }
     }
     
     // ======================================================= //

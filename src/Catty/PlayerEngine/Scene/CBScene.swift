@@ -137,8 +137,8 @@ final class CBScene: SKScene {
                 var zPosition = currentNode.zPosition
                 zPosition -= 1
                 if (zPosition == -1) {
-                    return true;
                     logger?.debug("Found Object")
+                    return true
                 }
             }
         }
@@ -188,36 +188,26 @@ final class CBScene: SKScene {
 
                 logger?.info("Generating Context of \(script)")
                 var context: CBScriptContext? = nil
-
                 switch script {
                 case let startScript as StartScript:
-                    context = CBStartScriptContext(
-                        startScript: startScript,
-                        spriteNode: spriteNode,
-                        state: .runnable
-                    )
+                    context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, state: .runnable)
 
                 case let whenScript as WhenScript:
-                    context = CBWhenScriptContext(
-                        whenScript: whenScript,
-                        spriteNode: spriteNode,
-                        state: .runnable
-                    )
+                    context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, state: .runnable)
 
                 case let bcScript as BroadcastScript:
-                    let broadcastContext = CBBroadcastScriptContext(
-                        broadcastScript: bcScript,
-                        spriteNode: spriteNode,
-                        state: .runnable
-                    )
-                    broadcastHandler?.subscribeBroadcastContext(broadcastContext)
-                    context = broadcastContext
-
+                    context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, state: .runnable)
+                    if let broadcastContext = context as? CBBroadcastScriptContext {
+                        broadcastHandler?.subscribeBroadcastContext(broadcastContext)
+                    }
                 default:
+                    break
+                }
+                guard var scriptContext = context else {
                     fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
                 }
-                context! += instructions // generate instructions and add them to script context
-                scheduler?.registerContext(context!)
+                scriptContext += instructions // generate instructions and add them to script context
+                scheduler?.registerContext(scriptContext)
             }
         }
         for variable:UserVariable in variableList {

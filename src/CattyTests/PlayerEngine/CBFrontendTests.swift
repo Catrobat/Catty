@@ -26,7 +26,7 @@ import XCTest
 
 final class CBFrontendTests: XCTestCase {
 
-    let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)
+    let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)!
 
     func testComputeOperationSequence() {
         let frontend = CBFrontend(logger: self.logger, program: nil)
