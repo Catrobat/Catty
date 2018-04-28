@@ -20,21 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
+class PositionXSensor: ObjectSensor {
 
-protocol SensorManagerProtocol {
-    
-    var defaultValueForUndefinedSensor : Double { get set }
-    
-//    func registerSensor(_ sensor: CBSensor) -> Void
+    static let tag = "X_INCLINATION"
+    static let name = kUIFESensorInclinationX
+    static let defaultValue = 0.0
 
-    func sensor(tag: String) -> CBSensor?
-    
-//    func isAvailable(sensor: CBSensor) -> Bool
+    func rawValue(for spriteObject: SpriteObject) -> Double {
+        return Double(spriteObject.spriteNode.scenePosition.x)
+    }
 
-//    func value(sensor: CBSensor) -> Double
-
-    func value(sensorTag: String) -> Double
-    
-    func stopSensors()
+    func standardizedValue(for spriteObject: SpriteObject) -> Double {
+        return self.rawValue(for: spriteObject)
+    }
 }

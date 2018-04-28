@@ -89,9 +89,14 @@ import CoreLocation
 //        return sensor.transformToPocketCode(rawValue: rawValue)
 //    }
 
-    @objc func value(sensorTag: String) -> Double {
+    @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> Double {
         guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor }
-        return sensor.standardizedValue
+        if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
+            return sensor.standardizedValue(for: spriteObject)
+        } else if let sensor = sensor as? DeviceSensor {
+            return sensor.standardizedValue()
+        }
+        return type(of: sensor).defaultValue
     }
     
 //    func isAvailable(sensor: CBSensor) -> Bool {

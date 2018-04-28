@@ -378,6 +378,10 @@
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		591596D6203563850015F74A /* UIBarButtonItem+InvisibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */; };
+		592EF6E32094B10700BD6000 /* PositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E22094B10700BD6000 /* PositionXSensor.swift */; };
+		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
+		592EF6E82094B52E00BD6000 /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E72094B52E00BD6000 /* ObjectSensor.swift */; };
+		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		593624C51F76F374008A588D /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
 		593624C61F76F374008A588D /* HMSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A651F76F05000BD634F /* HMSegmentedControl.framework */; };
@@ -1525,6 +1529,10 @@
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+InvisibleButton.swift"; sourceTree = "<group>"; };
+		592EF6E22094B10700BD6000 /* PositionXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionXSensor.swift; sourceTree = "<group>"; };
+		592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
+		592EF6E72094B52E00BD6000 /* ObjectSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
+		592EF6E92094B84900BD6000 /* DeviceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSensor.swift; sourceTree = "<group>"; };
 		5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
 		593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		593E4DDF1FE11D5F0016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
@@ -3571,15 +3579,13 @@
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
-				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
-				59D008EC208E4249000539E7 /* LocationManager.swift */,
-				59D008E8208E3FDC000539E7 /* MotionManager.swift */,
-				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
-				4C994DFE207A3D4100C415FD /* Sensor.swift */,
 				4C994E1D207A56D500C415FD /* Acceleration */,
-				4C994E2D207A594100C415FD /* Motion */,
-				4C994E1A207A55E400C415FD /* Heading */,
 				4C994E05207A3D4100C415FD /* Audio */,
+				4C994E1A207A55E400C415FD /* Heading */,
+				4C994E2D207A594100C415FD /* Motion */,
+				592EF6DF2094B0B600BD6000 /* Object */,
+				592EF6E42094B3C700BD6000 /* Protocols */,
+				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
 			);
 			name = Sensors;
 			path = PlayerEngine/Sensors;
@@ -3905,6 +3911,28 @@
 				591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */,
 			);
 			path = "UIBarButtonItem+InvisibleButton";
+			sourceTree = "<group>";
+		};
+		592EF6DF2094B0B600BD6000 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				592EF6E22094B10700BD6000 /* PositionXSensor.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		592EF6E42094B3C700BD6000 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				592EF6E92094B84900BD6000 /* DeviceSensor.swift */,
+				59D008EC208E4249000539E7 /* LocationManager.swift */,
+				59D008E8208E3FDC000539E7 /* MotionManager.swift */,
+				592EF6E72094B52E00BD6000 /* ObjectSensor.swift */,
+				4C994DFE207A3D4100C415FD /* Sensor.swift */,
+				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
+				592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		593E4DDC1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout */ = {
@@ -7640,6 +7668,7 @@
 				92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
+				592EF6E82094B52E00BD6000 /* ObjectSensor.swift in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
@@ -7721,6 +7750,7 @@
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
 				AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */,
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
+				592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */,
 				AA74EE391BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				4C994E30207A594100C415FD /* InclinationXSensor.swift in Sources */,
@@ -7864,6 +7894,7 @@
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
+				592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */,
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
@@ -7892,6 +7923,7 @@
 				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,
 				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
+				592EF6E32094B10700BD6000 /* PositionXSensor.swift in Sources */,
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,

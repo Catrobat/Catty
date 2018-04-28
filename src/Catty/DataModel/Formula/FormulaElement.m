@@ -148,7 +148,7 @@
             
         case SENSOR: {
             //NSDebug(@"SENSOR");
-            result = [NSNumber numberWithDouble: [[CBSensorManager shared] valueWithSensorTag:self.value]];
+            result = [NSNumber numberWithDouble: [[CBSensorManager shared] valueWithSensorTag:self.value spriteObject:sprite]];
             /*Sensor sensor = [SensorManager sensorForString:self.value];
             if([SensorManager isObjectSensor:sensor]) {
                 result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];

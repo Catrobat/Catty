@@ -20,20 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSensor {
+protocol ObjectSensor: CBSensor {
 
-    /// Tag for serialization
-    static var tag: String { get }
+    /// TODO: description
+    func rawValue(for spriteObject: SpriteObject) -> Double
 
-    /// Name for formula editor
-    static var name: String { get }
-
-    /// TODO: is this value standardized or platform specific?
-    static var defaultValue: Double { get }
-
-    /// The current raw sensor value (iOS platform specific)
-    var rawValue: Double { get }
-
-    /// The current Pocket Code standardized sensor value
-    var standardizedValue: Double { get }
+    /// TODO: description
+    func standardizedValue(for spriteObject: SpriteObject) -> Double
 }
