@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PositionXSensor: ObjectSensor {
+class SizeSensor: ObjectSensor {
 
-    static let tag = "OBJECT_X"
-    static let name = kUIFEObjectPositionX
+    static let tag = "OBJECT_SIZE"
+    static let name = kUIFEObjectSize
     static let defaultValue = 0.0
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.scenePosition.x)
+        return Double(spriteObject.spriteNode.scaleX)
     }
 
     func standardizedValue(for spriteObject: SpriteObject) -> Double {

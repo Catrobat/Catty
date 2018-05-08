@@ -29,30 +29,15 @@ class LoudnessSensor: CBSensor { // TODO: finish implementation
     let getAudioRecorder: () -> AVAudioRecorder?
 
     var rawValue: Double {
+        // TODO implement
         return 0
     }
 
     var standardizedValue: Double {
-        fatalError("not implemented")
+        return rawValue
     }
     
-    var isAvailable: Bool {
-        fatalError("not implemented")
-    }
-    
-    var isActive: Bool {
-        fatalError("not implemented")
-    }
-
     init(audioRecorderGetter: @escaping () -> AVAudioRecorder?) {
         self.getAudioRecorder = audioRecorderGetter
-    }
-    
-    func start() {
-        fatalError("not implemented")
-    }
-    
-    func stop() {
-        fatalError("not implemented")
     }
 }

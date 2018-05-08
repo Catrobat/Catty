@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PositionXSensor: ObjectSensor {
+class BrightnessSensor: ObjectSensor {
 
-    static let tag = "OBJECT_X"
-    static let name = kUIFEObjectPositionX
+    static let tag = "OBJECT_BRIGHTNESS"
+    static let name = kUIFEObjectBrightness
     static let defaultValue = 0.0
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.scenePosition.x)
+        return Double(spriteObject.spriteNode.brightness)
     }
 
     func standardizedValue(for spriteObject: SpriteObject) -> Double {

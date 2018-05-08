@@ -33,15 +33,15 @@ class InclinationYSensor : CBSensor {
     }
 
     var standardizedValue: Double {
-        let value = Util.radians(toDegree: self.rawValue * -4)
+        var value = Util.radians(toDegree: self.rawValue * -4)
 
-        /*if (motionManager.accelerometerData!.acceleration.z > 0) { // Face Down
+        if ((self.getMotionManager()?.accelerometerData!.acceleration.z)! > 0.0) { // Face Down
             if(value < 0.0) {
                 value = -180.0 - value;
             } else {
                 value = 180.0 - value;
             }
-        }*/
+        }
 
         return value
     }
