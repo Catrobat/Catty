@@ -34,4 +34,9 @@
 
 #define kPhiroActivated 0
 #define kArduinoActivated 1
-#define kProductionServerActivated 0
+
+#ifdef RELEASE
+    #define kProductionServerActivated 1
+#else
+    #define kProductionServerActivated 0
+#endif
