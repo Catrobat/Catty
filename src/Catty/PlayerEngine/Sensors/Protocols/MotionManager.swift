@@ -23,6 +23,10 @@
 protocol MotionManager {
     var accelerometerData: AccelerometerData? { get }
     var deviceMotion: DeviceMotion? { get }
+    var isDeviceMotionAvailable: Bool { get }
+    var isAccelerometerAvailable: Bool { get }
+    var isGyroAvailable: Bool { get }
+    var isMagnetometerAvailable: Bool { get }
 }
 
 protocol AccelerometerData {

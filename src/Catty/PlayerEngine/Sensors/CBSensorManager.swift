@@ -58,6 +58,12 @@ import CoreLocation
     func sensor(tag: String) -> CBSensor? {
         return sensors[tag]
     }
+    
+    // TODO write test
+    @objc func resource(sensorTag: String) -> ResourceType {
+        guard let sensor = self.sensor(tag: sensorTag) else { return .noResources }
+        return type(of: sensor).requiredResource
+    }
 
 //    func value(sensor: CBSensor) -> Double {
 //        guard isAvailable(sensor: sensor) else { return sensor.defaultValue }
@@ -114,6 +120,21 @@ import CoreLocation
 //            return true;
 //        }
 //    }
+    
+    @objc(setupSensorsForRequiredResources:)
+    func setupSensors(for requiredResources: NSInteger) -> NSInteger {
+        var unavailableResource: NSInteger = ResourceType.noResources.rawValue
+        
+        if requiredResources & ResourceType.accelerometer.rawValue > 0 {
+            if self.motionManager.isAccelerometerAvailable {
+                self.motionManager.startDeviceMotionUpdates()
+            } else {
+                unavailableResource |= ResourceType.accelerometer.rawValue
+            }
+        }
+        
+        return unavailableResource
+    }
     
     func stopSensors() {
         locationManager.stopUpdatingHeading()

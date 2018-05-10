@@ -25,6 +25,7 @@ class InclinationYSensor : CBSensor {
     static let tag = "Y_INCLINATION"
     static let name = kUIFESensorInclinationY
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
 

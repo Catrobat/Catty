@@ -21,10 +21,10 @@
  */
 
 class InclinationXSensor: CBSensor {
-
     static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
 
@@ -35,7 +35,7 @@ class InclinationXSensor: CBSensor {
     var standardizedValue: Double {
         return Util.radians(toDegree: self.rawValue * -4)
     }
-
+    
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }

@@ -25,6 +25,7 @@ class SizeSensor: ObjectSensor {
     static let tag = "OBJECT_SIZE"
     static let name = kUIFEObjectSize
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.scaleX)

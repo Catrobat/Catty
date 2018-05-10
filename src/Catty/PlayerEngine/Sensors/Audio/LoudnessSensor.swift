@@ -25,6 +25,7 @@ class LoudnessSensor: CBSensor { // TODO: finish implementation
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.loudness
 
     let getAudioRecorder: () -> AVAudioRecorder?
 

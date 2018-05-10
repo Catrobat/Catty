@@ -25,6 +25,7 @@ class AccelerationYSensor : CBSensor {
     static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
 

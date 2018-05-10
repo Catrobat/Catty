@@ -260,6 +260,10 @@
 - (void)setupScene
 {
     if (! self.scene) {
+        // Initialize sensors
+        NSInteger requiredResources = [self.program getRequiredResources];
+        NSInteger unavailableResource = [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
+        
         
         CBScene *scene = [SetupScene setupSceneForProgram:self.program];
         [scene initializeScreenRecording];

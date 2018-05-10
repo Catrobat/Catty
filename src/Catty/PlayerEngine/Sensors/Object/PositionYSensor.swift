@@ -25,6 +25,7 @@ class TransparencySensor: ObjectSensor {
     static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.alpha)

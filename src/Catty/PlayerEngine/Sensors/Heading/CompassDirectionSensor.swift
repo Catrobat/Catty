@@ -25,6 +25,7 @@ class CompassDirectionSensor : CBSensor {
     static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.location
 
     let getLocationManager: () -> LocationManager?
 

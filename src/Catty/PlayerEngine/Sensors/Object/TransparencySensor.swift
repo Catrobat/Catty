@@ -25,6 +25,7 @@ class PositionYSensor: ObjectSensor {
     static let tag = "OBJECT_Y"
     static let name = kUIFEObjectPositionY
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.scenePosition.y)

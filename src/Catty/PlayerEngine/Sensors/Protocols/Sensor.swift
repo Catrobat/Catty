@@ -30,4 +30,6 @@ protocol CBSensor {
 
     /// TODO: is this value standardized or platform specific?
     static var defaultValue: Double { get }
+    
+    static var requiredResource: ResourceType { get }
 }

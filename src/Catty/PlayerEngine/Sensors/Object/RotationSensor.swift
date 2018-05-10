@@ -25,6 +25,7 @@ class RotationSensor: ObjectSensor {
     static let tag = "OBJECT_ROTATION"
     static let name = kUIFEObjectDirection
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.rotation)

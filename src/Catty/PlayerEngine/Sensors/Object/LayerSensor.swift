@@ -25,6 +25,7 @@ class LayerSensor: ObjectSensor {
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.zIndex)

@@ -25,6 +25,7 @@ class AccelerationZSensor : CBSensor {
     static let tag = "Z_ACCELERATION"
     static let name = kUIFESensorAccelerationZ
     static let defaultValue = 0.0
+    static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
 

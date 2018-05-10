@@ -1121,7 +1121,9 @@
         resources |= [self.rightChild getRequiredResources];
     }
     if (self.type == SENSOR) {
-        Sensor sensor = [SensorManager sensorForString:self.value];
+        resources |= [[CBSensorManager shared] resourceWithSensorTag:self.value];
+        
+        /*Sensor sensor = [SensorManager sensorForString:self.value];
         switch (sensor) {
             case FACE_DETECTED:
             case FACE_SIZE:
@@ -1159,7 +1161,7 @@
                 break;
             default:
                 resources |= kNoResources;
-        }
+        }*/
     }
     if (self.type == FUNCTION) {
         Function function = [Functions getFunctionByValue:self.value];
