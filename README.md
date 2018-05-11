@@ -39,7 +39,7 @@ We recommend [Developing iOS 11 Apps with Swift](https://itunes.apple.com/us/cou
 
 * Install [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) and [Carthage](https://github.com/Carthage/Carthage).
 
-* Clone this repository, set up the required third-party libraries by executing `make init` within the `src` directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
+* Clone this repository, set up the required third-party libraries by executing `make init` within the 'Catty' directory and open [Catty.xcodeproj](src/Catty.xcodeproj)
 
 * If you have any further questions please use our [Google Plus community](http://goo.gl/fOjQi) or [Google Groups](https://groups.google.com/forum/#!forum/catty-ios)
 
