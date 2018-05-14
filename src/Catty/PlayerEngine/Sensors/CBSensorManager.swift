@@ -161,24 +161,33 @@ import CoreLocation
 
 extension CMMotionManager: MotionManager {
     var accelerometerData: AccelerometerData? {
-        return super.accelerometerData
+        return self.value(forKey: "accelerometerData") as? CMAccelerometerData
     }
     var deviceMotion: DeviceMotion? {
-        return self.deviceMotion
+        return self.value(forKey: "deviceMotion") as? CMDeviceMotion
     }
+
 }
 extension CMAccelerometerData: AccelerometerData {
     var acceleration: Acceleration {
-        return self.acceleration
+        guard let acceleration = self.value(forKey: "acceleration") as? CMAcceleration else { return CMAcceleration() }
+        return acceleration
     }
 }
 extension CMAcceleration: Acceleration {}
+extension CMDeviceMotion: DeviceMotion {
+    var attitude: Attitude {
+        guard let attitude = self.value(forKey: "attitude") as? CMAttitude else { return CMAttitude() }
+        return attitude
+    }
+}
+extension CMAttitude: Attitude {}
 
 // MARK: - CoreLocation protocol conformance
 
 extension CLLocationManager: LocationManager {
     var heading: Heading? {
-        return self.heading
+        return self.value(forKey: "heading") as? CLHeading
     }
 }
 extension CLHeading: Heading {}
