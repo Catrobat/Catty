@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class InclinationXSensor: CBSensor {
+class InclinationXSensor: DeviceSensor {
     static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
     static let defaultValue = 0.0
@@ -28,12 +28,12 @@ class InclinationXSensor: CBSensor {
 
     let getMotionManager: () -> MotionManager?
 
-    var rawValue: Double {
+    func rawValue() -> Double {
         return self.getMotionManager()?.deviceMotion?.attitude.roll ?? type(of: self).defaultValue
     }
 
-    var standardizedValue: Double {
-        return Util.radians(toDegree: self.rawValue * -4)
+    func standardizedValue() -> Double {
+        return Util.radians(toDegree: self.rawValue() * -4)
     }
     
     init(motionManagerGetter: @escaping () -> MotionManager?) {

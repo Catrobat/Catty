@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CompassDirectionSensor : CBSensor {
+class CompassDirectionSensor : DeviceSensor {
     
     static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
@@ -29,12 +29,12 @@ class CompassDirectionSensor : CBSensor {
 
     let getLocationManager: () -> LocationManager?
 
-    var rawValue: Double {
+    func rawValue() -> Double {
         return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultValue
     }
 
-    var standardizedValue: Double {
-        return -self.rawValue
+    func standardizedValue() -> Double {
+        return -self.rawValue()
     }
 
     init(locationManagerGetter: @escaping () -> LocationManager?) {

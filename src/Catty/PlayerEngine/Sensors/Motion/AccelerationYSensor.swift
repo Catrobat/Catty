@@ -20,8 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AccelerationYSensor : CBSensor {
-
+class AccelerationYSensor : DeviceSensor {
     static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
     static let defaultValue = 0.0
@@ -29,12 +28,12 @@ class AccelerationYSensor : CBSensor {
 
     let getMotionManager: () -> MotionManager?
 
-    var rawValue: Double {
+    func rawValue() -> Double {
         return self.getMotionManager()?.accelerometerData?.acceleration.y ?? type(of: self).defaultValue
     }
 
-    var standardizedValue: Double {
-        return self.rawValue
+    func standardizedValue() -> Double {
+        return self.rawValue()
     }
 
     init(motionManagerGetter: @escaping () -> MotionManager?) {

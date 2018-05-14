@@ -105,33 +105,47 @@ import CoreLocation
         return type(of: sensor).defaultValue
     }
     
-//    func isAvailable(sensor: CBSensor) -> Bool {
-//        switch sensor {
-//        case is HeadingSensor:
-//            return CLLocationManager.headingAvailable()
-//            
-//        case is AccelerationSensor:
-//            return motionManager.isAccelerometerAvailable
-//            
-//        case is MotionSensor:
-//            return motionManager.isDeviceMotionAvailable
-//            
-//        default:
-//            return true;
-//        }
-//    }
-    
     @objc(setupSensorsForRequiredResources:)
-    func setupSensors(for requiredResources: NSInteger) -> NSInteger {
+    func setupSensors(for requiredResources: NSInteger) {
+        let unavailableResource = getUnavailableResources(for: requiredResources)
+        
+        if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
+            self.motionManager.startDeviceMotionUpdates()
+        }
+    }
+    
+    @objc(getUnavailableResources:)
+    func getUnavailableResources(for requiredResources: NSInteger) -> NSInteger {
         var unavailableResource: NSInteger = ResourceType.noResources.rawValue
         
-        if requiredResources & ResourceType.accelerometer.rawValue > 0 {
-            if self.motionManager.isAccelerometerAvailable {
-                self.motionManager.startDeviceMotionUpdates()
-            } else {
-                unavailableResource |= ResourceType.accelerometer.rawValue
-            }
+        if requiredResources & ResourceType.accelerometer.rawValue > 0 && !self.motionManager.isAccelerometerAvailable {
+            unavailableResource |= ResourceType.accelerometer.rawValue
         }
+        
+        if requiredResources & ResourceType.location.rawValue > 0 && !type(of: self.locationManager).locationServicesEnabled() {
+            unavailableResource |= ResourceType.accelerometer.rawValue
+        }
+        
+        if requiredResources & ResourceType.vibration.rawValue > 0 && !Util.isPhone() {
+            unavailableResource |= ResourceType.vibration.rawValue
+        }
+        
+        if requiredResources & ResourceType.compass.rawValue > 0 && !type(of: self.locationManager).headingAvailable() {
+            unavailableResource |= ResourceType.compass.rawValue
+        }
+        
+        if requiredResources & ResourceType.gyro.rawValue > 0 && !self.motionManager.isGyroAvailable {
+            unavailableResource |= ResourceType.gyro.rawValue
+        }
+        
+        if requiredResources & ResourceType.magnetometer.rawValue > 0 && !self.motionManager.isMagnetometerAvailable {
+            unavailableResource |= ResourceType.magnetometer.rawValue
+        }
+        
+        // TODO
+        /*if requiredResources & ResourceType.loudness.rawValue > 0 && !self.motionManager.isMagnetometerAvailable {
+            unavailableResource |= ResourceType.loudness.rawValue
+        }*/
         
         return unavailableResource
     }
@@ -147,7 +161,7 @@ import CoreLocation
 
 extension CMMotionManager: MotionManager {
     var accelerometerData: AccelerometerData? {
-        return self.accelerometerData
+        return super.accelerometerData
     }
     var deviceMotion: DeviceMotion? {
         return self.deviceMotion

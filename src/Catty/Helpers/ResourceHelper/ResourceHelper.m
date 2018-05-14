@@ -34,7 +34,6 @@
 
 +(BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,ResourceNotAvailableDelegate>)delegate
 {
-    NSString *notAvailable = @"";
     NSMutableArray *bluetoothArray = [NSMutableArray new];
     if ((requiredResources & kTextToSpeech) > 0) {
         //intern iOS AVSpeechSynthesizer always available
@@ -44,83 +43,48 @@
         [[SensorHandler sharedSensorHandler] faceDetectionInit];
     }
     
-    if ((requiredResources & kVibration) > 0) {
-        NSInteger available = kSystemSoundID_Vibrate;
-        if (!available) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedVibration];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedVibration];
-            }
-        }
+    // Sensors
+    NSInteger unavailableResource = [[CBSensorManager shared] getUnavailableResources:requiredResources];
+    NSMutableArray<NSString*>* unavailableResourceMessages = [NSMutableArray new];
+    
+    if ((unavailableResource & kVibration) > 0) {
+        [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedVibration]];
     }
-    if ((requiredResources & kLocation) > 0) {
-        if (![[SensorHandler sharedSensorHandler] locationAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLocation];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorLocation];
-            }
-        }
+    
+    if ((unavailableResource & kLocation) > 0) {
+        [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorLocation]];
     }
-    if ((requiredResources & kCompass) > 0) {
-        if (![[SensorHandler sharedSensorHandler] compassAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorCompass];
-            }
-        }
+    
+    if ((unavailableResource & kCompass) > 0) {
+        [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorCompass]];
     }
-    if ((requiredResources & kAccelerometer) > 0) {
-        if (![[SensorHandler sharedSensorHandler] accelerometerAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorAcceleration];
-            }
-        }
+    
+    if ((unavailableResource & kAccelerometer) > 0) {
+        [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration]];
     }
-    if ((requiredResources & kGyro) > 0) {
-        if (![[SensorHandler sharedSensorHandler] gyroAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorRotation];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorRotation];
-            }
-        }
+    
+    if ((unavailableResource & kGyro) > 0) {
+        [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorRotation]];
     }
-    if ((requiredResources & kMagnetometer) > 0) {
-        if (![[SensorHandler sharedSensorHandler] magnetometerAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorMagnetic];
-            }
-        }
+    
+    if ((unavailableResource & kMagnetometer) > 0) {
+        [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic]];
     }
+    
     if ((requiredResources & kLoudness) > 0) {
         if (![[SensorHandler sharedSensorHandler] loudnessAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLoudness];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorLoudness];
-            }
+            [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorLoudness]];
         }
     }
     if ((requiredResources & kLED) > 0) {
         if (![[FlashHelper sharedFlashHandler] isAvailable]) {
-            if([notAvailable isEqualToString:@""]){
-                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLED];
-            } else {
-                notAvailable = [NSString stringWithFormat:@"%@, %@",notAvailable,kLocalizedSensorLED];
-            }
+            [unavailableResourceMessages addObject:[NSString stringWithFormat:@"%@",kLocalizedSensorLED]];
         }
     }
-    if (![notAvailable isEqualToString:@""]) {
-        notAvailable = [NSString stringWithFormat:@"%@ %@",notAvailable,kLocalizedNotAvailable];
+    if ([unavailableResourceMessages count] > 0) {
+        NSString *alertMessage = [NSString stringWithFormat:@"%@ %@",[unavailableResourceMessages componentsJoinedByString:@", "], kLocalizedNotAvailable];
         
-        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedPocketCode message:notAvailable]
+        [[[[[AlertControllerBuilder alertWithTitle:kLocalizedPocketCode message:alertMessage]
          addCancelActionWithTitle:kLocalizedCancel handler:nil]
          addDefaultActionWithTitle:kLocalizedYes handler:^{
              [delegate userAgreedToContinueAnyway];
@@ -129,8 +93,8 @@
         
         return NO;
     }
-    //CheckBluetooth
     
+    //CheckBluetooth
     if ((requiredResources & kBluetoothPhiro) > 0 && [Util isPhiroActivated]) {
         //ConnectPhiro
         if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
