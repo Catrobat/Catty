@@ -90,6 +90,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIButton *variable;
 @property (weak, nonatomic) IBOutlet UIButton *takeVar;
+@property (weak, nonatomic) IBOutlet UIButton *deleteVar;
 
 @property (nonatomic) BOOL isProgramVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
@@ -294,7 +295,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.listSource = [[NSMutableArray alloc] init];
     [self updateVariablePickerData];
     [self.variableSegmentedControl setTitle:kLocalizedObject forSegmentAtIndex:1];
-    [self.variableSegmentedControl setTitle:kLocalizedPrograms forSegmentAtIndex:0];
+    [self.variableSegmentedControl setTitle:kLocalizedProgram forSegmentAtIndex:0];
     self.variableSegmentedControl.tintColor = [UIColor globalTintColor];
     
     
@@ -459,6 +460,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateNormal];
     [self.variable setTitle:kUIFEVar forState:UIControlStateNormal];
     [self.takeVar setTitle:kUIFETake forState:UIControlStateNormal];
+    [self.deleteVar setTitle:kUIFEDelete forState:UIControlStateNormal];
 }
 
 

@@ -151,7 +151,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.cells = [[NSArray alloc] initWithObjects:
                   kLocalizedContinue,
                   kLocalizedNew,
-                  kLocalizedPrograms,
+                  kLocalizedProgram,
                   kLocalizedHelp,
                   kLocalizedExplore,
                   kLocalizedUpload, nil];

@@ -1184,6 +1184,9 @@
 "Problems occured while Uploading your program" = "Problems occured while Uploading your program";
 
 /* No comment provided by engineer. */
+"Program" = "Program";
+
+/* No comment provided by engineer. */
 "Program lists:" = "Program lists:";
 
 /* No comment provided by engineer. */
@@ -1194,9 +1197,6 @@
 
 /* No comment provided by engineer. */
 "Program variables:" = "Program variables:";
-
-/* No comment provided by engineer. */
-"Programs" = "Programs";
 
 /* No comment provided by engineer. */
 "Project" = "Project";

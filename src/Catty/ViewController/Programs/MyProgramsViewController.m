@@ -75,7 +75,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.navigationController.title = self.title = kLocalizedPrograms;
+    self.navigationController.title = self.title = kLocalizedProgram;
     [self initNavigationBar];
     self.defaultProgram = nil;
     self.selectedProgram = nil;
