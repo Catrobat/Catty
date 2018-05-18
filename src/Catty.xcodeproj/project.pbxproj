@@ -99,6 +99,7 @@
 		4C0FA017204BD57400E71B2D /* X_Ray_phone_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FA016204BD57400E71B2D /* X_Ray_phone_0991.xml */; };
 		4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */; };
 		4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */; };
+		4C11795E20AED5B6006C6E32 /* PositionXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795D20AED5B6006C6E32 /* PositionXSensorTest.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
 		4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */; };
@@ -1193,6 +1194,7 @@
 		4C0FA016204BD57400E71B2D /* X_Ray_phone_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_0991.xml; sourceTree = "<group>"; };
 		4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongitudeSensor.swift; sourceTree = "<group>"; };
 		4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolConformance.swift; sourceTree = "<group>"; };
+		4C11795D20AED5B6006C6E32 /* PositionXSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionXSensorTest.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
@@ -2841,6 +2843,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4C11795A20AED57D006C6E32 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				4C11795D20AED5B6006C6E32 /* PositionXSensorTest.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
 		4C1329021CD9259900F16E48 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3591,10 +3601,11 @@
 		4C994DEB207A3CEF00C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
 				59D008EE208E435B000539E7 /* Mocks */,
 				4C994DED207A3CEF00C415FD /* Motion */,
+				4C11795A20AED57D006C6E32 /* Object */,
 				4C994DF6207A3D0600C415FD /* SensorHandlerDeviceTests.m */,
-				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
 				4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */,
 			);
 			path = Sensors;
@@ -7516,6 +7527,7 @@
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
+				4C11795E20AED5B6006C6E32 /* PositionXSensorTest.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,

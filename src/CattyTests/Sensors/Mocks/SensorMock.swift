@@ -27,6 +27,7 @@ final class SensorMock: CBSensor {
     static let tag = "tag"
     static let name = "name"
     static let defaultValue = 20.0
+    static let requiredResource = ResourceType.noResources
 
     var value: Double
 

@@ -23,7 +23,11 @@
 @testable import Pocket_Code
 
 final class MotionManagerMock: MotionManager {
-
+    var isDeviceMotionAvailable = true
+    var isAccelerometerAvailable = true
+    var isGyroAvailable = true
+    var isMagnetometerAvailable = true
+    
     var xAcceleration: Double?
     var yAcceleration: Double?
     var zAcceleration: Double?

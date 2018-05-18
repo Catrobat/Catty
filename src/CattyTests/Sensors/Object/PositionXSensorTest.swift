@@ -24,35 +24,40 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class InclinationXSensorTest: XCTestCase {
+final class PositionXSensorTest: XCTestCase {
 
-    var motionManager: MotionManagerMock!
-    var sensor: InclinationXSensor!
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var sensor: PositionXSensor!
 
     override func setUp() {
-        self.motionManager = MotionManagerMock()
-        self.sensor = InclinationXSensor { [weak self] in self?.motionManager }
+        self.spriteNode = CBSpriteNode()
+        // TODO setup SpriteNode and Scene
+        
+        self.spriteObject = SpriteObject()
+        self.spriteObject.spriteNode = self.spriteNode
+        
+        self.sensor = PositionXSensor()
     }
 
     override func tearDown() {
+        self.spriteObject = nil
         self.sensor = nil
-        self.motionManager = nil
     }
 
     func testReturnDefaultValue() {
-        let sensor = InclinationXSensor { nil }
-        XCTAssertEqual(sensor.rawValue(), InclinationXSensor.defaultValue, accuracy: 0.0001)
-        XCTAssertEqual(sensor.standardizedValue(), InclinationXSensor.defaultValue, accuracy: 0.0001)
+        spriteObject.spriteNode.scenePosition = CGPoint(x: 12, y: 34)
+        XCTAssertNotEqual(sensor.rawValue(for: spriteObject), PositionXSensor.defaultValue, accuracy: 0.0001)
+        
+        spriteObject.spriteNode = nil
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), PositionXSensor.defaultValue, accuracy: 0.0001)
+        XCTAssertEqual(sensor.standardizedValue(for: spriteObject), PositionXSensor.defaultValue, accuracy: 0.0001)
     }
     
     func testStandardization() {
-        self.motionManager.attitude = (roll: -Double.pi/2, pitch: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/2, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.standardizedValue(), 0, accuracy: 0.0001)
-
-        self.motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/3, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.standardizedValue(), 240, accuracy: 0.0001)
+        spriteObject.spriteNode.scenePosition = CGPoint(x: 12, y: 34)
+        XCTAssertEqual(self.sensor.rawValue(for: spriteObject), 12.3, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.standardizedValue(for: spriteObject), 12.3, accuracy: 0.0001)
 
         // TODO: add more cases
     }
