@@ -97,6 +97,8 @@
 		4C0FA013204BD55B00E71B2D /* ValidProgramAllBricks0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FA012204BD55B00E71B2D /* ValidProgramAllBricks0991.xml */; };
 		4C0FA015204BD56800E71B2D /* Word_balloon_demo_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FA014204BD56800E71B2D /* Word_balloon_demo_0991.xml */; };
 		4C0FA017204BD57400E71B2D /* X_Ray_phone_0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FA016204BD57400E71B2D /* X_Ray_phone_0991.xml */; };
+		4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */; };
+		4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
 		4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */; };
@@ -1189,6 +1191,8 @@
 		4C0FA012204BD55B00E71B2D /* ValidProgramAllBricks0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks0991.xml; sourceTree = "<group>"; };
 		4C0FA014204BD56800E71B2D /* Word_balloon_demo_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_0991.xml; sourceTree = "<group>"; };
 		4C0FA016204BD57400E71B2D /* X_Ray_phone_0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_0991.xml; sourceTree = "<group>"; };
+		4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongitudeSensor.swift; sourceTree = "<group>"; };
+		4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolConformance.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
@@ -2821,6 +2825,22 @@
 			path = CattyTests/Resources/ParserTests/Sensors;
 			sourceTree = SOURCE_ROOT;
 		};
+		4C11794D20AEBE08006C6E32 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				4C11795020AEBE38006C6E32 /* LongitudeSensor.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		4C11795220AEC351006C6E32 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4C1329021CD9259900F16E48 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -3593,8 +3613,10 @@
 			children = (
 				4C994E05207A3D4100C415FD /* Audio */,
 				4C994E1A207A55E400C415FD /* Heading */,
+				4C11794D20AEBE08006C6E32 /* Location */,
 				4C994E2D207A594100C415FD /* Motion */,
 				592EF6DF2094B0B600BD6000 /* Object */,
+				4C11795220AEC351006C6E32 /* Extensions */,
 				592EF6E42094B3C700BD6000 /* Protocols */,
 				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
 			);
@@ -7549,6 +7571,7 @@
 				AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
+				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				AA74EE331BC0542C00D1E954 /* VibrationBrick+Instruction.swift in Sources */,
@@ -7846,6 +7869,7 @@
 				9218B2101CC4AB75007B4C60 /* PipetteTool.m in Sources */,
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
+				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,

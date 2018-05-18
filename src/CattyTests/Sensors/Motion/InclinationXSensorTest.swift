@@ -41,18 +41,18 @@ final class InclinationXSensorTest: XCTestCase {
 
     func testReturnDefaultValue() {
         let sensor = InclinationXSensor { nil }
-        XCTAssertEqual(sensor.rawValue, InclinationXSensor.defaultValue)
-        XCTAssertEqual(sensor.standardizedValue, InclinationXSensor.defaultValue)
+        XCTAssertEqual(sensor.rawValue(), InclinationXSensor.defaultValue)
+        XCTAssertEqual(sensor.standardizedValue(), InclinationXSensor.defaultValue)
     }
     
     func testStandardization() {
         self.motionManager.attitude = (roll: -Double.pi/2, pitch: 0)
-        XCTAssertEqual(self.sensor.rawValue, -Double.pi/2)
-        XCTAssertEqual(self.sensor.standardizedValue, 0)
+        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/2)
+        XCTAssertEqual(self.sensor.standardizedValue(), 0)
 
         self.motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
-        XCTAssertEqual(self.sensor.rawValue, -Double.pi/3)
-        XCTAssertEqual(self.sensor.standardizedValue, 240) // TODO: circumvent float rounding errors (e.g. by converting to Int)
+        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/3)
+        XCTAssertEqual(self.sensor.standardizedValue(), 240) // TODO: circumvent float rounding errors (e.g. by converting to Int)
 
         // TODO: add more cases
     }

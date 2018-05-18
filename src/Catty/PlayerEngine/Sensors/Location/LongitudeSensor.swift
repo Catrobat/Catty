@@ -20,22 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol LocationManager {
-    var heading: Heading? { get }
-    var location: Location? { get }
-}
-
-protocol Heading {
-    var magneticHeading: Double { get }
-}
-
-protocol Location {
-    var coordinate: LocationCoordinate2D { get }
-    var altitude: Double { get }
-    var horizontalAccuracy: Double { get }
-}
-
-protocol LocationCoordinate2D {
-    var longitude: Double { get }
-    var latitude: Double { get }
+class LongitudeSensor : DeviceSensor {
+    
+    static let tag = "LONGITUDE"
+    static let name = kUIFESensorLongitude
+    static let defaultValue = 0.0
+    static let requiredResource = ResourceType.location
+    
+    let getLocationManager: () -> LocationManager?
+    
+    func rawValue() -> Double {
+        return self.getLocationManager()?.location?.coordinate.longitude ?? type(of: self).defaultValue
+    }
+    
+    func standardizedValue() -> Double {
+        return self.rawValue()
+    }
+    
+    init(locationManagerGetter: @escaping () -> LocationManager?) {
+        self.getLocationManager = locationManagerGetter
+    }
 }

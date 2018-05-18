@@ -45,12 +45,20 @@ import CoreLocation
         let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
         let sensors: [CBSensor] = [
+            BrightnessSensor(),
+            LayerSensor(),
+            PositionXSensor(),
+            PositionYSensor(),
+            RotationSensor(),
+            SizeSensor(),
+            TransparencySensor(),
             InclinationXSensor(motionManagerGetter: motionManagerGetter),
             InclinationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationXSensor(motionManagerGetter: motionManagerGetter),
             AccelerationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationZSensor(motionManagerGetter: motionManagerGetter),
-            CompassDirectionSensor(locationManagerGetter: locationManagerGetter)
+            CompassDirectionSensor(locationManagerGetter: locationManagerGetter),
+            LongitudeSensor(locationManagerGetter: locationManagerGetter)
         ]
         sensors.forEach { self.sensors[type(of: $0).tag] = $0 }
     }
@@ -64,36 +72,6 @@ import CoreLocation
         guard let sensor = self.sensor(tag: sensorTag) else { return .noResources }
         return type(of: sensor).requiredResource
     }
-
-//    func value(sensor: CBSensor) -> Double {
-//        guard isAvailable(sensor: sensor) else { return sensor.defaultValue }
-//        var rawValue: Double
-//
-//        switch sensor {
-//        case let sensor as HeadingSensor:
-//            locationManager.startUpdatingLocation()
-//            rawValue = sensor.rawValue(heading: locationManager.heading!)
-//
-//        case let sensor as AccelerationSensor:
-//            if (motionManager.isAccelerometerActive == false) {
-//                motionManager.startAccelerometerUpdates()
-//                Thread.sleep(forTimeInterval: 0.8)
-//            }
-//            rawValue = sensor.rawValue(acceleration: (motionManager.accelerometerData?.acceleration)!)
-//
-//        case let sensor as MotionSensor:
-//            if (motionManager.isDeviceMotionActive == false) {
-//                motionManager.startDeviceMotionUpdates()
-//                Thread.sleep(forTimeInterval: 0.8)
-//            }
-//            rawValue = sensor.rawValue(motion: motionManager.deviceMotion!)
-//
-//        default:
-//            return sensor.defaultValue
-//        }
-//
-//        return sensor.transformToPocketCode(rawValue: rawValue)
-//    }
 
     @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> Double {
         guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor }
@@ -167,38 +145,3 @@ import CoreLocation
         motionManager.stopDeviceMotionUpdates()
     }
 }
-
-// MARK: - CoreMotion protocol conformance
-
-extension CMMotionManager: MotionManager {
-    var accelerometerData: AccelerometerData? {
-        return self.value(forKey: "accelerometerData") as? CMAccelerometerData
-    }
-    var deviceMotion: DeviceMotion? {
-        return self.value(forKey: "deviceMotion") as? CMDeviceMotion
-    }
-
-}
-extension CMAccelerometerData: AccelerometerData {
-    var acceleration: Acceleration {
-        guard let acceleration = self.value(forKey: "acceleration") as? CMAcceleration else { return CMAcceleration() }
-        return acceleration
-    }
-}
-extension CMAcceleration: Acceleration {}
-extension CMDeviceMotion: DeviceMotion {
-    var attitude: Attitude {
-        guard let attitude = self.value(forKey: "attitude") as? CMAttitude else { return CMAttitude() }
-        return attitude
-    }
-}
-extension CMAttitude: Attitude {}
-
-// MARK: - CoreLocation protocol conformance
-
-extension CLLocationManager: LocationManager {
-    var heading: Heading? {
-        return self.value(forKey: "heading") as? CLHeading
-    }
-}
-extension CLHeading: Heading {}

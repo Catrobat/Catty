@@ -29,22 +29,13 @@ final class CBSensorManagerTest: XCTestCase {
     private var manager: SensorManagerProtocol = CBSensorManager.shared
 
     override func setUp() {
-//        manager.registerSensor(sensor)
     }
     
     func testDefaultValueForUndefinedSensor() {
         manager.defaultValueForUndefinedSensor = 12.3
         
         XCTAssertNil(manager.sensor(tag: "noSensorForThisTag"))
-        XCTAssertEqual(manager.defaultValueForUndefinedSensor, manager.value(sensorTag: "noSensorForThisTag"))
-    }
-    
-    func testRegister() {
-//        let sensor = SensorMock(value: 10)
-//        XCTAssertNil(manager.sensor(tag: sensor.tag))
-//
-//        manager.register(sensor: sensor)
-//        XCTAssertNotNil(manager.sensor(tag: sensor.tag))
+        XCTAssertEqual(manager.defaultValueForUndefinedSensor, manager.value(sensorTag: "noSensorForThisTag", spriteObject: nil))
     }
     
     func testValueForTag() {
