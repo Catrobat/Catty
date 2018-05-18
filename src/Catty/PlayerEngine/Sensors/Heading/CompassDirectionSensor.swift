@@ -25,7 +25,7 @@ class CompassDirectionSensor : DeviceSensor {
     static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
     static let defaultValue = 0.0
-    static let requiredResource = ResourceType.location
+    static let requiredResource = ResourceType.compass
 
     let getLocationManager: () -> LocationManager?
 

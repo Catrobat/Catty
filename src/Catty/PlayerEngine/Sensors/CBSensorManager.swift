@@ -112,6 +112,16 @@ import CoreLocation
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
             self.motionManager.startDeviceMotionUpdates()
         }
+        
+        if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingHeading()
+        }
+        
+        if (requiredResources & ResourceType.location.rawValue > 0) && (unavailableResource & ResourceType.location.rawValue) == 0  {
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingLocation()
+        }
     }
     
     @objc(getUnavailableResources:)
@@ -152,6 +162,7 @@ import CoreLocation
     
     func stopSensors() {
         locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
         motionManager.stopAccelerometerUpdates()
         motionManager.stopDeviceMotionUpdates()
     }
