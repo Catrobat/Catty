@@ -612,7 +612,7 @@
 #define kUIFEObjectDirection NSLocalizedString(@"direction", nil)
 #define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
 #define kUIFEObjectPositionX NSLocalizedString(@"position_x", nil)
-#define kUIFEObjectPositionY NSLocalizedString(@"pos_y", nil)
+#define kUIFEObjectPositionY NSLocalizedString(@"position_y", nil)
 
 #define kUIFESensorDateYear NSLocalizedString(@"year", nil)
 #define kUIFESensorDateMonth NSLocalizedString(@"month", nil)
