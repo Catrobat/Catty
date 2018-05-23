@@ -1166,10 +1166,10 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"pos_x" = "pos_x";
+"pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"pos_y" = "pos_y";
+"position_x" = "position_x";
 
 /* No comment provided by engineer. */
 "Previous background" = "Previous background";
