@@ -43,11 +43,7 @@
 - (void)changeToEditingMode:(id)sender;
 - (void)changeToMoveMode:(id)sender;
 - (void)exitEditingMode;
-- (void)playSceneAction:(id)sender;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)showLoadingView;
 - (void)hideLoadingView;
-- (void)startSceneWithVC:(ScenePresenterViewController*)vc;
-
 
 @end

@@ -32,6 +32,6 @@
 
 @interface ResourceHelper : NSObject
 
-+ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,ResourceNotAvailableDelegate>)delegate;
++ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<ResourceNotAvailableDelegate>)delegate;
 
 @end

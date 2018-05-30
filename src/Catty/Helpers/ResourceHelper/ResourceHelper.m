@@ -32,7 +32,7 @@
 
 @implementation ResourceHelper
 
-+(BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,ResourceNotAvailableDelegate>)delegate
++(BOOL)checkResources:(NSInteger)requiredResources delegate:(id<ResourceNotAvailableDelegate>)delegate
 {
     NSMutableArray *bluetoothArray = [NSMutableArray new];
     if ((requiredResources & kTextToSpeech) > 0) {
@@ -119,15 +119,15 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
             BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
             [bvc setDeviceArray:bluetoothArray];
-            [bvc setDelegate:delegate];
+            
             if ([delegate isKindOfClass:[BaseTableViewController class]]) {
                 BaseTableViewController *btvc = (BaseTableViewController*)delegate;
-                [bvc setVc:btvc.scenePresenterViewController];
+                [bvc setScenePresenterViewController:btvc.scenePresenterViewController];
                 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
                 [btvc presentViewController:navController animated:YES completion:nil];
             } else if ([delegate isKindOfClass:[BaseCollectionViewController class]]) {
                 BaseCollectionViewController *bcvc = (BaseCollectionViewController*)delegate;
-                [bvc setVc:bcvc.scenePresenterViewController];
+                [bvc setScenePresenterViewController:bcvc.scenePresenterViewController];
                 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
                 [bcvc presentViewController:navController animated:YES completion:nil];
             } else {

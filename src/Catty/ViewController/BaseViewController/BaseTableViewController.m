@@ -33,8 +33,6 @@
 #import "Reachability.h"
 #import "AppDelegate.h"
 
-@class BluetoothPopupVC;
-
 // identifiers
 #define kTableHeaderIdentifier @"Header"
 
@@ -42,7 +40,7 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <BluetoothSelection, ResourceNotAvailableDelegate>
+@interface BaseTableViewController ()
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
@@ -281,44 +279,6 @@
     return YES;
 }
 
-//- (BOOL)shouldPerformSegueWithIdentifierForWebView:(NSString *)identifier sender:(id)sender
-//{
-//    if([identifier isEqualToString:kSegueToMediaLibrary]){
-//        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-//        
-//        if(remoteHostStatus == NotReachable) {
-//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//            NSDebug(@"not reachable");
-//            return NO;
-//        } else if (remoteHostStatus == ReachableViaWiFi) {
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via Wifi");
-//                return YES;
-//            }else{
-//                NSDebug(@"reachable via wifi but no data");
-//                if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]]) {
-//                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                    return NO;
-//                }
-//                return NO;
-//            }
-//            return YES;
-//        } else if (remoteHostStatus == ReachableViaWWAN){
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via celullar");
-//                return YES;
-//            }else{
-//                NSDebug(@" not reachable via celullar");
-//                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                return NO;
-//            }
-//            return YES;
-//        }
-//    }
-//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-//}
-
 #pragma mark - helpers
 - (void)setupToolBar
 {
@@ -342,7 +302,7 @@
     if (! totalNumberOfRows) {
         return NO;
     }
-
+    
     NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
     NSInteger counter = 0;
     for (NSIndexPath *indexPath in indexPaths) {
@@ -432,41 +392,17 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self showLoadingView];
-    [self playSceneAction:sender animated:YES];
-}
-
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
-{
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-
-    self.scenePresenterViewController = [ScenePresenterViewController new];
-    self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
-    if ([ResourceHelper checkResources:resources delegate:self]) {
-        [self startSceneWithVC:self.scenePresenterViewController];
-    } else {
-        [self hideLoadingView];
-    }
-}
-
--(void)userAgreedToContinueAnyway {
-    [self startSceneWithVC:self.scenePresenterViewController];
-}
-
--(void)startSceneWithVC:(ScenePresenterViewController*)vc
-{
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    ScenePresenterViewController *scenePresenterViewController = [[ScenePresenterViewController alloc] initWithParentViewController:self];
+    [scenePresenterViewController startAction];
 }
 
 - (void)showLoadingView
 {
-//    self.loadingView.backgroundColor = [UIColor whiteColor];
+    //    self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
     [self.tableView setContentOffset:top animated:NO];
@@ -499,8 +435,8 @@
     [self.view addSubview:hud];
     [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
                        speed:kBDKNotifyHUDPresentationSpeed
-                       inView:self.view
-                       completion:^{ [hud removeFromSuperview]; }];
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)showPlaceHolder:(BOOL)show
@@ -516,52 +452,5 @@
     }
     return _loadingView;
 }
-
-#pragma mark - network status
-- (void)networkStatusChanged:(NSNotification *)notification
-{
-//    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-}
-
-//#pragma mark - segue handling
-//- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
-//{
-//    if([identifier isEqualToString:kSegueToExplore]){
-//        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-//        
-//        if(remoteHostStatus == NotReachable) {
-//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//            NSDebug(@"not reachable");
-//            return NO;
-//        } else if (remoteHostStatus == ReachableViaWiFi) {
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via Wifi");
-//                return YES;
-//            }else{
-//                NSDebug(@"reachable via wifi but no data");
-//                if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]]) {
-//                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                    [self.navigationController popToRootViewControllerAnimated:YES];
-//                    return NO;
-//                }
-//                return NO;
-//            }
-//            return YES;
-//        } else if (remoteHostStatus == ReachableViaWWAN){
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via celullar");
-//                return YES;
-//            }else{
-//                NSDebug(@" not reachable via celullar");
-//                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                return NO;
-//            }
-//            return YES;
-//        }
-//    }
-//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-//}
-
-
 
 @end

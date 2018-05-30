@@ -84,7 +84,6 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             BluetoothSelection,
                                              UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;

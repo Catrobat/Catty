@@ -29,7 +29,6 @@
 
 @interface ScenePresenterViewController : UIViewController
 
-@property (nonatomic, strong) Program *program;
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic, weak) UIButton* backButton;
 
@@ -48,6 +47,10 @@
 @property (weak,nonatomic) IBOutlet UIButton *menuAxisLabel;
 @property (weak,nonatomic) IBOutlet UIButton *menuRecordLabel;
 
+- (instancetype)initWithParentViewController:(UIViewController*)parentVC;
+- (instancetype)initWithProgram:(Program*)program andParentViewController:(UIViewController*)parentVC;
+
+- (void)startAction;
 - (void)pauseAction;
 - (void)resumeAction;
 - (void)connectionLost;
