@@ -343,12 +343,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     NSInteger buttonCount = 0;
     NSMutableArray<NSNumber*> *sensorArray = [NSMutableArray arrayWithObjects:
+                     [NSNumber numberWithInteger:X_INCLINATION],
+                     [NSNumber numberWithInteger:Y_INCLINATION],
                      [NSNumber numberWithInteger:X_ACCELERATION],
                      [NSNumber numberWithInteger:Y_ACCELERATION],
                      [NSNumber numberWithInteger:Z_ACCELERATION],
                      [NSNumber numberWithInteger:COMPASS_DIRECTION],
-                     [NSNumber numberWithInteger:X_INCLINATION],
-                     [NSNumber numberWithInteger:Y_INCLINATION],
                      [NSNumber numberWithInteger:LATITUDE],
                      [NSNumber numberWithInteger:LONGITUDE],
                      [NSNumber numberWithInteger:LOCATION_ACCURACY],
