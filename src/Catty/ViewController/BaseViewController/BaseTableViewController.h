@@ -45,5 +45,6 @@
 - (void)exitEditingMode;
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)playSceneAction:(id)sender;
 
 @end

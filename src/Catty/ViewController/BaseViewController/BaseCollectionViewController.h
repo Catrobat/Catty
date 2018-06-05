@@ -35,5 +35,6 @@
 - (void)setupToolBar;
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)playSceneAction:(id)sender;
 
 @end

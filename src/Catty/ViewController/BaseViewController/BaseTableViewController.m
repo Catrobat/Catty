@@ -392,12 +392,7 @@
 
 - (void)playSceneAction:(id)sender
 {
-    if ([self respondsToSelector:@selector(stopAllSounds)]) {
-        [self performSelector:@selector(stopAllSounds)];
-    }
-    
-    ScenePresenterViewController *scenePresenterViewController = [[ScenePresenterViewController alloc] initWithParentViewController:self];
-    [scenePresenterViewController startAction];
+    [self.navigationController pushViewController:[ScenePresenterViewController new] animated:YES];
 }
 
 - (void)showLoadingView

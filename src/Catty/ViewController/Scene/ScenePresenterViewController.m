@@ -40,40 +40,52 @@
 @property (nonatomic, strong) CBScene *scene;
 @property (nonatomic, strong) SKView *skView;
 
+@property (nonatomic) BOOL requiredResourcesExisting;
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
 @property (nonatomic, strong) LoadingView* loadingView;
-@property (nonatomic) BOOL restartProgram;
-@property (nonatomic, weak, readonly) UIViewController *parentVC;
 @end
 
 @implementation ScenePresenterViewController
 
 #pragma mark - Initialization
-- (instancetype)initWithParentViewController:(UIViewController*)parentVC
-{
-    Program *lastUsedProgram = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    return [self initWithProgram:lastUsedProgram andParentViewController:parentVC];
-}
-
-- (instancetype)initWithProgram:(Program*)program andParentViewController:(UIViewController*)parentVC
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        _program = program;
-        _parentVC = parentVC;
+        [self initProgramAndCheckRequiredResources:true];
     }
     return self;
+}
+
+- (void)initProgramAndCheckRequiredResources:(BOOL)checkRequiredResources
+{
+    [self showLoadingView];
+    
+    // Initialize program
+    self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    
+    if (checkRequiredResources) {
+        NSInteger requiredResources = [self.program getRequiredResources];
+        self.requiredResourcesExisting = [ResourceHelper checkResources:requiredResources delegate:self];
+    } else {
+        self.requiredResourcesExisting = YES;
+    }
+
+    [self hideLoadingView];
 }
 
 #pragma mark - View Event Handling
 - (void)viewDidLoad
 {
+    if (!self.requiredResourcesExisting) {
+        [self removeFromParentViewController];
+        return;
+    }
+    
     [super viewDidLoad];
-    self.restartProgram = NO;
-    [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.backgroundColor;
 }
@@ -81,7 +93,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.view addSubview:self.skView];
+    
     [self setupScene];
+    
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -91,7 +106,7 @@
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     self.menuOpen = NO;
-    [self.view addSubview:self.skView];
+    
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"SceneMenuView" owner:self options:nil];
     self.menuView = [subviewArray objectAtIndex:0];
     self.menuView.frame = CGRectMake(self.menuView.frame.origin.x, self.menuView.frame.origin.y, self.menuView.frame.size.width, [Util screenHeight]);
@@ -100,6 +115,7 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
+    
     [[BluetoothService sharedInstance] setScenePresenter:self];
 }
 
@@ -114,11 +130,10 @@
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = self.restartProgram;
-    self.navigationController.toolbarHidden = self.restartProgram;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.toolbarHidden = NO;
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
-    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
 
     // reenable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -144,6 +159,11 @@
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
     [CameraPreviewHandler resetSharedInstance];
+    [[FlashHelper sharedFlashHandler] reset];
+    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
+    
+    self.program = nil;
+    self.scene = nil;
     
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -280,29 +300,33 @@
 
 - (void)setupScene
 {
-    if (! self.scene) {
-        // Initialize sensors
-        NSInteger requiredResources = [self.program getRequiredResources];
-        
-        [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
-        
-        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
-        [scene initializeScreenRecording];
-        scene.name = self.program.header.programName;
-        scene.screenRecordingDelegate = self;
-        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-            scene.scaleMode = SKSceneScaleModeFill;
-        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-            scene.scaleMode = SKSceneScaleModeAspectFit;
-        } else {
-            scene.scaleMode = SKSceneScaleModeFill;
-        }
-        self.skView.paused = NO;
-        [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
-        [[CameraPreviewHandler shared] setCamView:self.view];
-        [self.skView presentScene:scene];
-        self.scene = scene;
+    [self showLoadingView];
+    
+    // Initialize sensors
+    NSInteger requiredResources = [self.program getRequiredResources];
+    [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
+    
+    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+    [scene initializeScreenRecording];
+    scene.name = self.program.header.programName;
+    scene.screenRecordingDelegate = self;
+    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+        scene.scaleMode = SKSceneScaleModeFill;
+    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+    } else {
+        scene.scaleMode = SKSceneScaleModeFill;
     }
+    self.skView.paused = NO;
+    [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
+    [[CameraPreviewHandler shared] setCamView:self.view];
+    [self.skView presentScene:scene];
+    self.scene = scene;
+    
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    
+    [self hideLoadingView];
 }
 
 -(void)resaveLooks
@@ -321,15 +345,6 @@
     return YES;
 }
 
-#pragma mark Show Scene
--(void)showScene
-{
-    [self.parentVC.navigationController setToolbarHidden:YES animated:YES];
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    [self.parentVC.navigationController pushViewController:self animated:YES];
-}
-
 #pragma mark - Touch Event Handling
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -345,20 +360,6 @@
 }
 
 #pragma mark - Game Event Handling
--(void)startAction
-{
-    [self showLoadingView];
-    
-    NSInteger resources = [self.program getRequiredResources];
-    BOOL readyToStart = [ResourceHelper checkResources:resources delegate:self];
-    
-    if (readyToStart) {
-        [self showScene];
-    } else {
-        [self hideLoadingView];
-    }
-}
-
 - (void)userAgreedToContinueAnyway {
     // TODO
 }
@@ -446,49 +447,16 @@
 - (void)restartAction:(UIButton*)sender
 {
     [self showLoadingView];
+    
     self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = self.scene;
-    previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
-    [[FlashHelper sharedFlashHandler] reset];
-
+    self.scene.userInteractionEnabled = NO;
+    [self.scene stopProgram];
+    
     [self freeRessources];
-    NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
-    [controllers removeLastObject];
-    UIViewController *previousVC = (UIViewController*)controllers.lastObject; // previous object
-    if ([previousVC respondsToSelector:@selector(playSceneAction:animated:)]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self startAction];
-        });
-    } else {
-        assert("PLEASE IMPLEMENT playSceneAction:animated method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
-    }
-    self.menuView.userInteractionEnabled = YES;
-    previousScene.userInteractionEnabled = YES;
-    [self hideLoadingView];
-
-    UIView *loadingView = [[self class] sharedLoadingView];
-    [self.parentViewController.view addSubview:loadingView];
-    [self.parentViewController.view bringSubviewToFront:loadingView];
-    self.restartProgram = YES;
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-+ (UIView*)sharedLoadingView
-{
-    static UIView *loadingView = nil;
-    if (loadingView == nil) {
-        loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        UILabel *label = [[UILabel alloc] initWithFrame:loadingView.frame];
-        label.font = [UIFont systemFontOfSize:36];
-        label.text = [NSString stringWithFormat:@"%@...", kLocalizedLoading];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        [loadingView addSubview:label];
-        loadingView.backgroundColor = [UIColor backgroundColor];
-        loadingView.alpha = 1.0;
-    }
-    return loadingView;
+    
+    [self initProgramAndCheckRequiredResources:NO];
+    [self setupScene];
+    [self continueAction:nil withDuration:kfirstSwipeDuration];
 }
 
 #pragma mark - Bluetooth Event Handling
@@ -792,8 +760,9 @@
     // lazy instantiation
     if (! _loadingView) {
         _loadingView = [LoadingView new];
-        [self.parentVC.view addSubview:_loadingView];
-        [self.parentVC.view bringSubviewToFront:_loadingView];
+        // TODO refactor loading view
+        [self.view addSubview:_loadingView];
+        [self.view bringSubviewToFront:_loadingView];
         _loadingView.backgroundColor = [UIColor whiteColor];
         _loadingView.alpha = 1.0;
     }

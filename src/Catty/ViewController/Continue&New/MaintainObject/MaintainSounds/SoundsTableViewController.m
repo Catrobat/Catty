@@ -150,7 +150,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self reloadData];
 }
 
-
+#pragma mark - start scene
+- (void)playSceneAction:(id)sender
+{
+    [self stopAllSounds];
+    [super playSceneAction:sender];
+}
 
 #pragma mark - actions
 - (void)editAction:(id)sender
