@@ -40,7 +40,6 @@
 @property (nonatomic, strong) CBScene *scene;
 @property (nonatomic, strong) SKView *skView;
 
-@property (nonatomic) BOOL requiredResourcesExisting;
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -50,52 +49,35 @@
 
 @implementation ScenePresenterViewController
 
-#pragma mark - Initialization
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self initProgramAndCheckRequiredResources:true];
-    }
-    return self;
-}
-
-- (void)initProgramAndCheckRequiredResources:(BOOL)checkRequiredResources
+#pragma mark - View Event Handling
+- (void)checkResourcesAndPushToNavigationController:(UINavigationController*)navigationController
 {
     [self showLoadingView];
     
-    // Initialize program
-    self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    
-    if (checkRequiredResources) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSInteger requiredResources = [self.program getRequiredResources];
-        self.requiredResourcesExisting = [ResourceHelper checkResources:requiredResources delegate:self];
-    } else {
-        self.requiredResourcesExisting = YES;
-    }
-
-    [self hideLoadingView];
+        BOOL requiredResourcesAvailable = [ResourceHelper checkResources:requiredResources delegate:self];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (! requiredResourcesAvailable) {
+                [self removeFromParentViewController];
+            } else {
+                [navigationController pushViewController:self animated:YES];
+            }
+        });
+    });
 }
 
-#pragma mark - View Event Handling
 - (void)viewDidLoad
 {
-    if (!self.requiredResourcesExisting) {
-        [self removeFromParentViewController];
-        return;
-    }
-    
     [super viewDidLoad];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    self.skView.backgroundColor = UIColor.backgroundColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.view addSubview:self.skView];
-    
-    [self setupScene];
     
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
@@ -116,14 +98,12 @@
     [self setUpGridView];
     [self checkAspectRatio];
     
-    [[BluetoothService sharedInstance] setScenePresenter:self];
+    [self setupSceneAndStart];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self continueAction:nil withDuration:kfirstSwipeDuration];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -298,35 +278,48 @@
     }
 }
 
-- (void)setupScene
+- (void)setupSceneAndStart
 {
     [self showLoadingView];
     
-    // Initialize sensors
-    NSInteger requiredResources = [self.program getRequiredResources];
-    [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
-    
-    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
-    [scene initializeScreenRecording];
-    scene.name = self.program.header.programName;
-    scene.screenRecordingDelegate = self;
-    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        scene.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        scene.scaleMode = SKSceneScaleModeAspectFit;
-    } else {
-        scene.scaleMode = SKSceneScaleModeFill;
-    }
-    self.skView.paused = NO;
-    [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
-    [[CameraPreviewHandler shared] setCamView:self.view];
-    [self.skView presentScene:scene];
-    self.scene = scene;
-    
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    
-    [self hideLoadingView];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSInteger requiredResources = [self.program getRequiredResources];
+        
+        // Initialize sensors
+        [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
+        
+        // Initialize scene
+        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+        [scene initializeScreenRecording];
+        scene.name = self.program.header.programName;
+        scene.screenRecordingDelegate = self;
+        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+            scene.scaleMode = SKSceneScaleModeFill;
+        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+            scene.scaleMode = SKSceneScaleModeAspectFit;
+        } else {
+            scene.scaleMode = SKSceneScaleModeFill;
+        }
+        self.skView.paused = NO;
+        self.scene = scene;
+        
+        [[BluetoothService sharedInstance] setScenePresenter:self];
+        [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
+        [[CameraPreviewHandler shared] setCamView:self.view];
+        
+        NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSThread sleepForTimeInterval:2.0f];
+            [self hideLoadingView];
+            
+            [self.skView presentScene:self.scene];
+            [self.scene startProgram];
+            
+            [self continueAction:nil withDuration:kfirstSwipeDuration];
+        });
+    });
 }
 
 -(void)resaveLooks
@@ -450,13 +443,13 @@
     
     self.menuView.userInteractionEnabled = NO;
     self.scene.userInteractionEnabled = NO;
-    [self.scene stopProgram];
     
-    [self freeRessources];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        [self.scene stopProgram];
+        [self freeRessources];
     
-    [self initProgramAndCheckRequiredResources:NO];
-    [self setupScene];
-    [self continueAction:nil withDuration:kfirstSwipeDuration];
+        [self setupSceneAndStart];
+    });
 }
 
 #pragma mark - Bluetooth Event Handling
@@ -570,9 +563,7 @@
             [data writeToFile:pngFilePath atomically:YES];
             
         });
-
     }
-    
 }
 
 #pragma mark - Action Sheet & Alert View Handling
@@ -745,6 +736,15 @@
 }
 
 #pragma mark - Getters & Setters
+- (Program*)program
+{
+    // lazy instantiation
+    if (! _program) {
+        _program =  [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    }
+    return _program;
+}
+                   
 - (UIView*)gridView
 {
     // lazy instantiation
@@ -760,10 +760,9 @@
     // lazy instantiation
     if (! _loadingView) {
         _loadingView = [LoadingView new];
-        // TODO refactor loading view
         [self.view addSubview:_loadingView];
         [self.view bringSubviewToFront:_loadingView];
-        _loadingView.backgroundColor = [UIColor whiteColor];
+        _loadingView.backgroundColor = [UIColor clearColor];
         _loadingView.alpha = 1.0;
     }
     return _loadingView;
@@ -772,6 +771,7 @@
 - (void)showLoadingView
 {
     [self.loadingView show];
+    [self.loadingView setNeedsDisplay];
 }
 
 - (void)hideLoadingView

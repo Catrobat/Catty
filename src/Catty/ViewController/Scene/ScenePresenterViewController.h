@@ -47,6 +47,7 @@
 @property (weak,nonatomic) IBOutlet UIButton *menuAxisLabel;
 @property (weak,nonatomic) IBOutlet UIButton *menuRecordLabel;
 
+- (void)checkResourcesAndPushToNavigationController:(UINavigationController*)navigationController;
 - (void)pauseAction;
 - (void)resumeAction;
 - (void)connectionLost;
