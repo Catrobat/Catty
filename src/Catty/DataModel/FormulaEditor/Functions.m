@@ -205,7 +205,7 @@
             return @"ELEMENT";
             break;
         case NUMBEROFITEMS:
-            return @"NUMBEROFITEMS";
+            return @"NUMBER_OF_ITEMS";
             break;
         case CONTAINS:
             return @"CONTAINS";

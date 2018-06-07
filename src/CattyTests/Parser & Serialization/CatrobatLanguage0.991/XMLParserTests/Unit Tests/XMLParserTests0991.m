@@ -410,6 +410,23 @@
     XCTAssertEqualObjects(@"hallo", stringValue, @"Invalid list value");
 }
 
+- (void)testNumberOfItemsFunction
+{
+    Program *program = [self getProgramForXML:@"NumberOfItemsInListFunction0991"];
+    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
+    
+    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(3, [script.brickList count], "Invalid brick list");
+    
+    AddItemToUserListBrick *addItemToUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:2];
+    Formula *formula = addItemToUserListBrick.listFormula;
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"NUMBER_OF_ITEMS"]);
+    XCTAssertEqual(FUNCTION, formula.formulaTree.type);
+}
+
 - (void)testDeleteItemOfUserListBrick
 {
     Program *program = [self getProgramForXML:@"DeleteItemOfUserListBrick0991"];
