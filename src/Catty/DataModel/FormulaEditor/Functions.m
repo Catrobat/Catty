@@ -201,6 +201,15 @@
         case MULTI_FINGER_Y:
             return @"MULTI_FINGER_Y";
             break;
+        case ELEMENT:
+            return @"ELEMENT";
+            break;
+        case NUMBEROFITEMS:
+            return @"NUMBEROFITEMS";
+            break;
+        case CONTAINS:
+            return @"CONTAINS";
+            break;
         default:
             return nil;
             break;
@@ -304,6 +313,15 @@
             break;
         case MULTI_FINGER_Y:
             return kUIFEFunctionScreenTouchY;
+            break;
+        case CONTAINS:
+            return kUIFEFunctionContains;
+            break;
+        case NUMBEROFITEMS:
+            return kUIFEFunctionNumberOfItems;
+            break;
+        case ELEMENT:
+            return kUIFEFunctionElement;
             break;
         default:
             return @"";
