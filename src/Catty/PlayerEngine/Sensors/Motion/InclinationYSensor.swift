@@ -30,6 +30,9 @@ class InclinationYSensor : DeviceSensor {
     let getMotionManager: () -> MotionManager?
 
     func rawValue() -> Double {
+        if ( self.getMotionManager()?.accelerometerData == nil) {
+            return type(of: self).defaultValue
+        }
         return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultValue
     }
 
