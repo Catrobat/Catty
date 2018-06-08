@@ -392,6 +392,7 @@
 
 - (void)playSceneAction:(id)sender
 {
+    [self showLoadingView];
     [[ScenePresenterViewController new] checkResourcesAndPushToNavigationController:self.navigationController];
 }
 
