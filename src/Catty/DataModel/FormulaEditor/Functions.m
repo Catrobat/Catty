@@ -92,7 +92,7 @@
         return FLOOR;
     if([value isEqualToString:@"CEIL"])
         return CEIL;
-    if([value isEqualToString:@"NUMBEROFITEMS"])
+    if([value isEqualToString:@"NUMBER_OF_ITEMS"])
         return NUMBEROFITEMS;
     if([value isEqualToString:@"ELEMENT"])
         return ELEMENT;
