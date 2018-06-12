@@ -92,7 +92,7 @@
         return FLOOR;
     if([value isEqualToString:@"CEIL"])
         return CEIL;
-    if([value isEqualToString:@"NUMBEROFITEMS"])
+    if([value isEqualToString:@"NUMBER_OF_ITEMS"])
         return NUMBEROFITEMS;
     if([value isEqualToString:@"ELEMENT"])
         return ELEMENT;
@@ -201,6 +201,15 @@
         case MULTI_FINGER_Y:
             return @"MULTI_FINGER_Y";
             break;
+        case ELEMENT:
+            return @"ELEMENT";
+            break;
+        case NUMBEROFITEMS:
+            return @"NUMBER_OF_ITEMS";
+            break;
+        case CONTAINS:
+            return @"CONTAINS";
+            break;
         default:
             return nil;
             break;
@@ -304,6 +313,15 @@
             break;
         case MULTI_FINGER_Y:
             return kUIFEFunctionScreenTouchY;
+            break;
+        case CONTAINS:
+            return kUIFEFunctionContains;
+            break;
+        case NUMBEROFITEMS:
+            return kUIFEFunctionNumberOfItems;
+            break;
+        case ELEMENT:
+            return kUIFEFunctionElement;
             break;
         default:
             return @"";
