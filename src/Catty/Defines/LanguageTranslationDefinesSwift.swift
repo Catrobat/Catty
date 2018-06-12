@@ -611,8 +611,8 @@ let kUIFEObjectBackgroundName = NSLocalizedString("background_name", comment: ""
 let kUIFEObjectSize = NSLocalizedString("size", comment: "")
 let kUIFEObjectDirection = NSLocalizedString("direction", comment: "")
 let kUIFEObjectLayer = NSLocalizedString("layer", comment: "")
-let kUIFEObjectPositionX = NSLocalizedString("pos_x", comment: "")
-let kUIFEObjectPositionY = NSLocalizedString("pos_y", comment: "")
+let kUIFEObjectPositionX = NSLocalizedString("position_x", comment: "")
+let kUIFEObjectPositionY = NSLocalizedString("position_y", comment: "")
 
 let kUIFESensorDateYear = NSLocalizedString("year", comment: "")
 let kUIFESensorDateMonth = NSLocalizedString("month", comment: "")

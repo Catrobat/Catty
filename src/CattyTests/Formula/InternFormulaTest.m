@@ -328,7 +328,7 @@
     XCTAssertEqual(0, [[internFormula getSelection] getStartIndex], @"Selection start index not as expected");
     XCTAssertEqual(5, [[internFormula getSelection] getEndIndex], @"Selection end index not as expected");
 
-    doubleClickIndex = (int)[@"rand" length];
+    doubleClickIndex = (int)[@"random" length];
     
     int singleClickIndex = doubleClickIndex;
     
