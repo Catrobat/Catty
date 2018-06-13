@@ -427,6 +427,27 @@
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
 }
 
+- (void)testElementOfListFunction
+{
+    Program *program = [self getProgramForXML:@"ElementOfListFunction0991"];
+    XCTAssertEqual(1, [program.objectList count], "Invalid object list");
+    
+    SpriteObject *object = [program.objectList objectAtIndex:0];
+    XCTAssertEqual(1, [object.scriptList count], "Invalid script list");
+    
+    Script *script = [object.scriptList objectAtIndex:0];
+    XCTAssertEqual(1, [script.brickList count], "Invalid brick list");
+    
+    WaitBrick *waitBrick = (WaitBrick*)[script.brickList objectAtIndex:0];
+    Formula *formula = waitBrick.timeToWaitInSeconds;
+    
+    NSNumber* numberValue = (NSNumber*)[formula interpretVariableDataForSprite:object];
+    XCTAssertEqualObjects([NSNumber numberWithFloat:1], numberValue, @"Invalid list value");
+    
+    
+    
+}
+
 - (void)testDeleteItemOfUserListBrick
 {
     Program *program = [self getProgramForXML:@"DeleteItemOfUserListBrick0991"];
