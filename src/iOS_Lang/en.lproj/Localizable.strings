@@ -1166,10 +1166,10 @@
 "Pointer" = "Pointer";
 
 /* No comment provided by engineer. */
-"pos_x" = "pos_x";
+"position_x" = "position_x";
 
 /* No comment provided by engineer. */
-"pos_y" = "pos_y";
+"position_y" = "position_y";
 
 /* No comment provided by engineer. */
 "Previous background" = "Previous background";
@@ -1182,6 +1182,9 @@
 
 /* No comment provided by engineer. */
 "Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+
+/* No comment provided by engineer. */
+"Program" = "Program";
 
 /* No comment provided by engineer. */
 "Program lists:" = "Program lists:";

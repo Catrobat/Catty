@@ -243,7 +243,7 @@
             return kUIFEFunctionSqrt;
             break;
         case RAND:
-            return @"rand";
+            return @"random";
             break;
         case ROUND:
             return @"round";
