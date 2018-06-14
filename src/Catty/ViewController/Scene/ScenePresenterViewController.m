@@ -52,17 +52,22 @@
 #pragma mark - Initialization
 - (void)checkResourcesAndPushToNavigationController:(UINavigationController*)navigationController
 {
+    [navigationController.view addSubview:self.loadingView];
+    [self showLoadingView];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.program = [self loadProgram];
         
         NSInteger requiredResources = [self.program getRequiredResources];
         BOOL requiredResourcesAvailable = [ResourceHelper checkResources:requiredResources delegate:self];
         
-        if (requiredResourcesAvailable) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (requiredResourcesAvailable) {
                 [navigationController pushViewController:self animated:YES];
-            });
-        }
+            } else {
+                [self hideLoadingView];
+            }
+        });
     });
 }
 
@@ -306,6 +311,7 @@
     [scene initializeScreenRecording];
     scene.name = self.program.header.programName;
     scene.screenRecordingDelegate = self;
+    
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
     } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
@@ -326,6 +332,7 @@
     [self.skView presentScene:self.scene];
     [self.scene startProgram];
     
+    [self hideLoadingView];
     [self continueAction:nil withDuration:kfirstSwipeDuration];
 }
 
@@ -443,13 +450,19 @@
 
 - (void)restartAction:(UIButton*)sender
 {
+    [self showLoadingView];
+    
     self.menuView.userInteractionEnabled = NO;
     self.scene.userInteractionEnabled = NO;
     
-    [self stopProgram];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self stopProgram];
     
-    self.program = [self loadProgram];
-    [self setupSceneAndStart];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.program = [self loadProgram];
+            [self setupSceneAndStart];
+        });
+    });
 }
 
 #pragma mark - Bluetooth Event Handling
@@ -749,8 +762,6 @@
         _loadingView = [LoadingView new];
         [self.view addSubview:_loadingView];
         [self.view bringSubviewToFront:_loadingView];
-        _loadingView.backgroundColor = [UIColor clearColor];
-        _loadingView.alpha = 1.0;
     }
     return _loadingView;
 }

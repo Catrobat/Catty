@@ -28,11 +28,13 @@ class BluetoothDevicesTableViewController: UITableViewController {
 
     weak var delegate : BluetoothPopupVC?
     weak var loadingView: LoadingView!
+    var scenePresenterVC : ScenePresenterViewController!
 
     override func viewDidLoad() {
         let loadingView = LoadingView() // helper variable due to self.loadingView being a weak property
         self.view.addSubview(loadingView)
         self.loadingView = loadingView
+        self.scenePresenterVC = ScenePresenterViewController()
         self.tableView.backgroundColor = UIColor.background()
     }
     
@@ -166,8 +168,8 @@ class BluetoothDevicesTableViewController: UITableViewController {
         }
         delegate!.rightButton.isEnabled = false
         DispatchQueue.main.async {
-            //self.delegate!.scenePresenterViewController?.startAction() // TODO push view controller
             self.loadingView?.hide()
+            self.scenePresenterVC.checkResourcesAndPush(to: self.navigationController)
         }
     }
 
