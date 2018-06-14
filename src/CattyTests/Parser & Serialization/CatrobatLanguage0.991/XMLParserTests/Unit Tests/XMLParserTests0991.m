@@ -438,13 +438,17 @@
     Script *script = [object.scriptList objectAtIndex:0];
     XCTAssertEqual(1, [script.brickList count], "Invalid brick list");
     
-    WaitBrick *waitBrick = (WaitBrick*)[script.brickList objectAtIndex:0];
+   WaitBrick *waitBrick = (WaitBrick*)[script.brickList objectAtIndex:0];
     Formula *formula = waitBrick.timeToWaitInSeconds;
     
-    NSNumber* numberValue = (NSNumber*)[formula interpretVariableDataForSprite:object];
-    XCTAssertEqualObjects([NSNumber numberWithFloat:1], numberValue, @"Invalid list value");
+    XCTAssertEqual(NUMBER, formula.formulaTree.leftChild.type);
+    XCTAssertTrue([formula.formulaTree.leftChild.value isEqualToString:@"1"]);
     
+    XCTAssertEqual(USER_LIST, formula.formulaTree.rightChild.type);
+    XCTAssertTrue([formula.formulaTree.rightChild.value isEqualToString:@"test"]);
     
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
+    XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
 }
 
