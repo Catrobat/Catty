@@ -53,6 +53,8 @@
 - (void)checkResourcesAndPushToNavigationController:(UINavigationController*)navigationController
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.program = [self loadProgram];
+        
         NSInteger requiredResources = [self.program getRequiredResources];
         BOOL requiredResourcesAvailable = [ResourceHelper checkResources:requiredResources delegate:self];
         
@@ -62,6 +64,27 @@
             });
         }
     });
+}
+
+#pragma mark - Program
+- (Program*)loadProgram
+{
+    return [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+}
+
+- (void)stopProgram
+{
+    [self.scene stopProgram];
+    
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[SensorHandler sharedSensorHandler] stopSensors];
+    [CameraPreviewHandler resetSharedInstance];
+    
+    [[FlashHelper sharedFlashHandler] reset];
+    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
+    
+    [[BluetoothService sharedInstance] setScenePresenter:nil];
+    [[BluetoothService sharedInstance] resetBluetoothDevice];
 }
 
 #pragma mark - View Event Handling
@@ -135,12 +158,6 @@
 
 - (void)freeRessources
 {
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[SensorHandler sharedSensorHandler] stopSensors];
-    [CameraPreviewHandler resetSharedInstance];
-    [[FlashHelper sharedFlashHandler] reset];
-    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
-    
     self.program = nil;
     self.scene = nil;
     
@@ -306,8 +323,6 @@
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
-    [NSThread sleepForTimeInterval:2.0f];
-    
     [self.skView presentScene:self.scene];
     [self.scene startProgram];
     
@@ -416,9 +431,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
         previousScene.userInteractionEnabled = NO;
-        [previousScene stopProgram];
-        [[AudioManager sharedAudioManager] stopAllSounds];
-        [[FlashHelper sharedFlashHandler] reset];
+        [self stopProgram];
         previousScene.userInteractionEnabled = YES;
     });
     
@@ -426,26 +439,17 @@
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
-    [[BluetoothService sharedInstance] setScenePresenter:nil];
-    [[BluetoothService sharedInstance] resetBluetoothDevice];
 }
 
 - (void)restartAction:(UIButton*)sender
 {
-    [self showLoadingView];
-    
     self.menuView.userInteractionEnabled = NO;
     self.scene.userInteractionEnabled = NO;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.scene stopProgram];
-        [self freeRessources];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self hideLoadingView];
-            [self setupSceneAndStart];
-        });
-    });
+    [self stopProgram];
+    
+    self.program = [self loadProgram];
+    [self setupSceneAndStart];
 }
 
 #pragma mark - Bluetooth Event Handling
@@ -455,9 +459,7 @@
     self.menuView.userInteractionEnabled = NO;
     CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[FlashHelper sharedFlashHandler] reset];
+    [self stopProgram];
     previousScene.userInteractionEnabled = YES;
     [self hideLoadingView];
     
@@ -730,15 +732,6 @@
 }
 
 #pragma mark - Getters & Setters
-- (Program*)program
-{
-    // lazy instantiation
-    if (! _program) {
-        _program =  [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    }
-    return _program;
-}
-
 - (UIView*)gridView
 {
     // lazy instantiation
