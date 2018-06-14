@@ -423,8 +423,14 @@
     
     AddItemToUserListBrick *addItemToUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:2];
     Formula *formula = addItemToUserListBrick.listFormula;
+    
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"NUMBER_OF_ITEMS"]);
+    
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
+    
+    XCTAssertEqual(NUMBEROFITEMS, [Functions getFunctionByValue:formula.formulaTree.value]);
+    
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:[Functions getName:NUMBEROFITEMS]]);
 }
 
 - (void)testElementOfListFunction
@@ -438,7 +444,7 @@
     Script *script = [object.scriptList objectAtIndex:0];
     XCTAssertEqual(1, [script.brickList count], "Invalid brick list");
     
-   WaitBrick *waitBrick = (WaitBrick*)[script.brickList objectAtIndex:0];
+    WaitBrick *waitBrick = (WaitBrick*)[script.brickList objectAtIndex:0];
     Formula *formula = waitBrick.timeToWaitInSeconds;
     
     XCTAssertEqual(NUMBER, formula.formulaTree.leftChild.type);
@@ -450,6 +456,9 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
+    XCTAssertEqual(ELEMENT, [Functions getFunctionByValue:formula.formulaTree.value]);
+    
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:[Functions getName:ELEMENT]]);
 }
 
 - (void)testDeleteItemOfUserListBrick
