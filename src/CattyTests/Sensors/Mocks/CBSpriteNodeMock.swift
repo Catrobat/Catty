@@ -20,18 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "Pocket_Code-Swift.h"
-
-#import <CoreBluetooth/CoreBluetooth.h>
-@class BluetoothPopupVC;
-
-@protocol ResourceNotAvailableDelegate <NSObject>
--(void)userAgreedToContinueAnyway;
-@end
-
-@interface ResourceHelper : NSObject
-
-+ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<ResourceNotAvailableDelegate>)delegate;
-
-@end
+class CBSpriteNodeMock: CBSpriteNode {
+    
+    var pos : CGPoint?
+    
+    required init(spriteObject: SpriteObject) {
+        super.init(spriteObject: spriteObject)
+    }
+    
+    required init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override var scenePosition: CGPoint {
+        get {
+            return pos!
+        }
+        set {
+            self.pos = newValue
+        }
+    }
+}

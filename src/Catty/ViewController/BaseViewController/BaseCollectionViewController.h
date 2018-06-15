@@ -28,7 +28,6 @@
 @interface BaseCollectionViewController : UICollectionViewController
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @property (nonatomic, assign) BOOL allBricksSelected;
 
 - (void)showPlaceHolder:(BOOL)show;

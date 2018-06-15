@@ -29,7 +29,6 @@
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
 #import "Pocket_Code-Swift.h"
-#import "ResourceHelper.h"
 #import "Reachability.h"
 #import "AppDelegate.h"
 
@@ -45,6 +44,7 @@
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
 @property (nonatomic, strong) Reachability *reachability;
+@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @end
 
 @implementation BaseTableViewController
@@ -77,15 +77,15 @@
     [self.reachability startNotifier];
     
   
-  NSLayoutConstraint *topConstraint = [NSLayoutConstraint
-                                       constraintWithItem:self.placeHolderView
-                                       attribute:NSLayoutAttributeTop
-                                       relatedBy:NSLayoutRelationEqual
-                                       toItem:self.placeHolderView.superview
-                                       attribute: NSLayoutAttributeTop
-                                       multiplier:1.0f constant:0];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint
+                                         constraintWithItem:self.placeHolderView
+                                         attribute:NSLayoutAttributeTop
+                                         relatedBy:NSLayoutRelationEqual
+                                         toItem:self.placeHolderView.superview
+                                         attribute: NSLayoutAttributeTop
+                                         multiplier:1.0f constant:0];
   
-  NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint
+    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint
                                            constraintWithItem:self.placeHolderView
                                            attribute:NSLayoutAttributeLeading
                                            relatedBy:NSLayoutRelationEqual
@@ -94,39 +94,42 @@
                                            multiplier:1.0f constant:0];
   
   
-  NSLayoutConstraint *widthConstraint = [NSLayoutConstraint
-                                         constraintWithItem:self.placeHolderView
-                                         attribute:NSLayoutAttributeWidth
-                                         relatedBy:NSLayoutRelationEqual
-                                         toItem:self.placeHolderView.superview
-                                         attribute: NSLayoutAttributeWidth
-                                         multiplier:1.0f constant:0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint
+                                           constraintWithItem:self.placeHolderView
+                                           attribute:NSLayoutAttributeWidth
+                                           relatedBy:NSLayoutRelationEqual
+                                           toItem:self.placeHolderView.superview
+                                           attribute: NSLayoutAttributeWidth
+                                           multiplier:1.0f constant:0];
   
-  NSLayoutConstraint *heightConstraint = [NSLayoutConstraint
-                                          constraintWithItem:self.placeHolderView
-                                          attribute:NSLayoutAttributeHeight
-                                          relatedBy:NSLayoutRelationEqual
-                                          toItem:self.placeHolderView.superview
-                                          attribute: NSLayoutAttributeHeight
-                                          multiplier:1.0f constant:0];
-    NSLayoutConstraint *centerXConstraint = [NSLayoutConstraint
-                                            constraintWithItem:self.placeHolderView.contentView
-                                            attribute:NSLayoutAttributeCenterX
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint
+                                            constraintWithItem:self.placeHolderView
+                                            attribute:NSLayoutAttributeHeight
                                             relatedBy:NSLayoutRelationEqual
-                                            toItem:self.placeHolderView.contentView.superview
-                                            attribute: NSLayoutAttributeCenterX
+                                            toItem:self.placeHolderView.superview
+                                            attribute: NSLayoutAttributeHeight
                                             multiplier:1.0f constant:0];
+    
+    NSLayoutConstraint *centerXConstraint = [NSLayoutConstraint
+                                             constraintWithItem:self.placeHolderView.contentView
+                                             attribute:NSLayoutAttributeCenterX
+                                             relatedBy:NSLayoutRelationEqual
+                                             toItem:self.placeHolderView.contentView.superview
+                                             attribute: NSLayoutAttributeCenterX
+                                             multiplier:1.0f constant:0];
     
     NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint
-                                            constraintWithItem:self.placeHolderView.contentView
-                                            attribute:NSLayoutAttributeCenterY
-                                            relatedBy:NSLayoutRelationEqual
-                                            toItem:self.placeHolderView.contentView.superview
-                                            attribute: NSLayoutAttributeCenterY
-                                            multiplier:1.0f constant:0];
+                                             constraintWithItem:self.placeHolderView.contentView
+                                             attribute:NSLayoutAttributeCenterY
+                                             relatedBy:NSLayoutRelationEqual
+                                             toItem:self.placeHolderView.contentView.superview
+                                             attribute: NSLayoutAttributeCenterY
+                                             multiplier:1.0f constant:0];
     
-  [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
-  [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
+    [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
+    [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
+    
+    self.scenePresenterViewController = [ScenePresenterViewController new];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -392,7 +395,7 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [[ScenePresenterViewController new] checkResourcesAndPushToNavigationController:self.navigationController];
+    [self.scenePresenterViewController checkResourcesAndPushToNavigationController:self.navigationController];
 }
 
 - (void)showLoadingView

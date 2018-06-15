@@ -21,7 +21,7 @@
  */
 
 @objc
-final class CBSpriteNode: SKSpriteNode {
+class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
     @objc var spriteObject: SpriteObject?

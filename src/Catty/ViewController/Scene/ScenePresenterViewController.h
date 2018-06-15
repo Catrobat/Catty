@@ -22,15 +22,19 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
-#import "Program.h"
-
 
 @protocol SpriteManagerDelegate;
+@class Program;
+@class LoadingView;
 
 @interface ScenePresenterViewController : UIViewController
 
+@property (nonatomic, strong) Program *program;
+
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic, weak) UIButton* backButton;
+
+@property (nonatomic, strong) LoadingView* loadingView;
 
 @property (nonatomic, strong) UIView *menuView;
 @property (weak,nonatomic) IBOutlet UIButton *menuBackButton;
@@ -47,9 +51,11 @@
 @property (weak,nonatomic) IBOutlet UIButton *menuAxisLabel;
 @property (weak,nonatomic) IBOutlet UIButton *menuRecordLabel;
 
-- (void)checkResourcesAndPushToNavigationController:(UINavigationController*)navigationController;
 - (void)pauseAction;
 - (void)resumeAction;
 - (void)connectionLost;
+
+- (void)showLoadingView;
+- (void)hideLoadingView;
 
 @end

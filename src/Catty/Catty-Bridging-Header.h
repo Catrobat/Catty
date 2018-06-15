@@ -28,6 +28,10 @@
 // Data model classes
 //------------------------------------------------------------------------------------------------------------
 
+// Sensors
+#import "FaceDetection.h"
+#import "FlashHelper.h"
+
 // Scripts
 #import "StartScript.h"
 #import "WhenScript.h"

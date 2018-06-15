@@ -31,10 +31,12 @@ import CoreLocation
     private var sensors: [String: CBSensor]
     private var motionManager: CMMotionManager
     private var locationManager: CLLocationManager
+    private var faceDetectionManager: FaceDetection
     
     override private init() {
         motionManager = CMMotionManager()
         locationManager = CLLocationManager()
+        faceDetectionManager = FaceDetection()
         sensors = [String: CBSensor]()
         super.init()
         
@@ -68,7 +70,7 @@ import CoreLocation
     }
     
     // TODO write test
-    @objc func resource(sensorTag: String) -> ResourceType {
+    @objc func requiredResource(sensorTag: String) -> ResourceType {
         guard let sensor = self.sensor(tag: sensorTag) else { return .noResources }
         return type(of: sensor).requiredResource
     }
@@ -88,17 +90,21 @@ import CoreLocation
         let unavailableResource = getUnavailableResources(for: requiredResources)
         
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
-            self.motionManager.startDeviceMotionUpdates()
+            motionManager.startDeviceMotionUpdates()
         }
         
         if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
-            self.locationManager.requestWhenInUseAuthorization()
-            self.locationManager.startUpdatingHeading()
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingHeading()
         }
         
         if (requiredResources & ResourceType.location.rawValue > 0) && (unavailableResource & ResourceType.location.rawValue) == 0  {
-            self.locationManager.requestWhenInUseAuthorization()
-            self.locationManager.startUpdatingLocation()
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        if ((requiredResources & ResourceType.faceDetection.rawValue) > 0) && (unavailableResource & ResourceType.faceDetection.rawValue) == 0 {
+            faceDetectionManager.start()
         }
     }
     
@@ -106,11 +112,11 @@ import CoreLocation
     func getUnavailableResources(for requiredResources: NSInteger) -> NSInteger {
         var unavailableResource: NSInteger = ResourceType.noResources.rawValue
         
-        if requiredResources & ResourceType.accelerometer.rawValue > 0 && !self.motionManager.isAccelerometerAvailable {
+        if requiredResources & ResourceType.accelerometer.rawValue > 0 && !motionManager.isAccelerometerAvailable {
             unavailableResource |= ResourceType.accelerometer.rawValue
         }
         
-        if requiredResources & ResourceType.location.rawValue > 0 && !type(of: self.locationManager).locationServicesEnabled() {
+        if requiredResources & ResourceType.location.rawValue > 0 && !type(of: locationManager).locationServicesEnabled() {
             unavailableResource |= ResourceType.accelerometer.rawValue
         }
         
@@ -118,20 +124,20 @@ import CoreLocation
             unavailableResource |= ResourceType.vibration.rawValue
         }
         
-        if requiredResources & ResourceType.compass.rawValue > 0 && !type(of: self.locationManager).headingAvailable() {
+        if requiredResources & ResourceType.compass.rawValue > 0 && !type(of: locationManager).headingAvailable() {
             unavailableResource |= ResourceType.compass.rawValue
         }
         
-        if requiredResources & ResourceType.gyro.rawValue > 0 && !self.motionManager.isGyroAvailable {
+        if requiredResources & ResourceType.gyro.rawValue > 0 && !motionManager.isGyroAvailable {
             unavailableResource |= ResourceType.gyro.rawValue
         }
         
-        if requiredResources & ResourceType.magnetometer.rawValue > 0 && !self.motionManager.isMagnetometerAvailable {
+        if requiredResources & ResourceType.magnetometer.rawValue > 0 && !motionManager.isMagnetometerAvailable {
             unavailableResource |= ResourceType.magnetometer.rawValue
         }
         
         // TODO
-        /*if requiredResources & ResourceType.loudness.rawValue > 0 && !self.motionManager.isMagnetometerAvailable {
+        /*if requiredResources & ResourceType.loudness.rawValue > 0 && ![[SensorHandler sharedSensorHandler] loudnessAvailable] {
             unavailableResource |= ResourceType.loudness.rawValue
         }*/
         
@@ -143,5 +149,6 @@ import CoreLocation
         locationManager.stopUpdatingLocation()
         motionManager.stopAccelerometerUpdates()
         motionManager.stopDeviceMotionUpdates()
+        faceDetectionManager.stop()
     }
 }

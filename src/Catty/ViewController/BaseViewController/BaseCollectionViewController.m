@@ -26,9 +26,6 @@
 #import "Util.h"
 #import "LoadingView.h"
 #import "PlaceHolderView.h"
-#import "ResourceHelper.h"
-#import "ResourceHelper.h"
-
 
 // tags
 #define kSelectAllItemsTag 0
@@ -36,7 +33,7 @@
 
 @interface BaseCollectionViewController ()
 @property (nonatomic, strong) LoadingView* loadingView;
-
+@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @end
 
 @implementation BaseCollectionViewController
@@ -95,6 +92,8 @@
     
     [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
     [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
+    
+    self.scenePresenterViewController = [ScenePresenterViewController new];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -120,7 +119,7 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [[ScenePresenterViewController new] checkResourcesAndPushToNavigationController:self.navigationController];
+    [self.scenePresenterViewController checkResourcesAndPushToNavigationController:self.navigationController];
 }
 
 #pragma mark - Setup Toolbar

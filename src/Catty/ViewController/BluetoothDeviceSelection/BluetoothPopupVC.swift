@@ -26,8 +26,6 @@ import BluetoothHelper
 
 @objc class BluetoothPopupVC: MXSegmentedPagerController {
     
-    @objc var scenePresenterViewController : ScenePresenterViewController?
-    
     @objc var deviceArray:[Int]?
     @objc var rightButton:UIBarButtonItem = UIBarButtonItem()
     

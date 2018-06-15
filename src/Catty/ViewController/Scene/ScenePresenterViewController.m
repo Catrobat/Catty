@@ -33,10 +33,8 @@
 #import "CatrobatLanguageDefines.h"
 #import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
-#import "ResourceHelper.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate, ResourceNotAvailableDelegate>
-@property (nonatomic, strong) Program *program;
+@interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic, strong) CBScene *scene;
 @property (nonatomic, strong) SKView *skView;
 
@@ -44,38 +42,9 @@
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
-@property (nonatomic, strong) LoadingView* loadingView;
 @end
 
 @implementation ScenePresenterViewController
-
-#pragma mark - Initialization
-- (void)checkResourcesAndPushToNavigationController:(UINavigationController*)navigationController
-{
-    [navigationController.view addSubview:self.loadingView];
-    [self showLoadingView];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.program = [self loadProgram];
-        
-        NSInteger requiredResources = [self.program getRequiredResources];
-        BOOL requiredResourcesAvailable = [ResourceHelper checkResources:requiredResources delegate:self];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (requiredResourcesAvailable) {
-                [navigationController pushViewController:self animated:YES];
-            } else {
-                [self hideLoadingView];
-            }
-        });
-    });
-}
-
-#pragma mark - Program
-- (Program*)loadProgram
-{
-    return [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-}
 
 - (void)stopProgram
 {
@@ -367,10 +336,6 @@
 }
 
 #pragma mark - Game Event Handling
-- (void)userAgreedToContinueAnyway {
-    // TODO
-}
-
 - (void)pauseAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
@@ -459,7 +424,7 @@
         [self stopProgram];
     
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.program = [self loadProgram];
+            self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
             [self setupSceneAndStart];
         });
     });

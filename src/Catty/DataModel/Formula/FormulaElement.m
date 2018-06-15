@@ -1121,7 +1121,7 @@
         resources |= [self.rightChild getRequiredResources];
     }
     if (self.type == SENSOR) {
-        resources |= [[CBSensorManager shared] resourceWithSensorTag:self.value];
+        resources |= [[CBSensorManager shared] requiredResourceWithSensorTag:self.value];
         
         /*Sensor sensor = [SensorManager sensorForString:self.value];
         switch (sensor) {
