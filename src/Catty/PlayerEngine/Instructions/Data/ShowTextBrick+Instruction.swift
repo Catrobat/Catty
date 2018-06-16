@@ -25,25 +25,23 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-              let _ = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
+            let _ = spriteObject.program?.variables,
+            let xFormula = self.xFormula,
+            let yFormula = self.yFormula
+            else { fatalError("This should never happen!") }
 
         let userVariable = self.userVariable
-        let xFormula = self.xFormula
-        let yFormula = self.yFormula
 
         return CBInstruction.execClosure { (context, _) in
 //            self.logger.debug("Performing: ShowTextBrick")
-            let xResult = xFormula?.interpretDouble(forSprite: spriteObject)
-            let yResult = yFormula?.interpretDouble(forSprite: spriteObject)
+            let xResult = xFormula.interpretDouble(forSprite: spriteObject)
+            let yResult = yFormula.interpretDouble(forSprite: spriteObject)
             var value = ""
             if let userVariable = userVariable {
-                if userVariable.value is NSNumber{
-                    let number:NSNumber = (userVariable.value as? NSNumber)!
-                    value = number.stringValue
-                } else if userVariable.value is NSString {
-                    let string = userVariable.value as! NSString
-                    value = string as String
+                if let userVariableValue = (userVariable.value as? NSNumber) {
+                    value = userVariableValue.stringValue
+                } else if let userVariableValue = userVariable.value as? String {
+                    value = userVariableValue
                 } else {
                     value = "0"
                 }
@@ -52,11 +50,10 @@
                 guard let scene = userVariable.textLabel.scene else {
                     fatalError("This should never happen!")
                 }
-                userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult!), y: scene.size.height / 2 + CGFloat(yResult!))
+                userVariable.textLabel.position = CGPoint(x: scene.size.width / 2 + CGFloat(xResult), y: scene.size.height / 2 + CGFloat(yResult))
                 userVariable.textLabel.isHidden = false
             }
             context.state = .runnable
         }
-
     }
 }

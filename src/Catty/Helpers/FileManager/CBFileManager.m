@@ -577,8 +577,10 @@
             }
 
         }
-        UIApplication* app = [UIApplication sharedApplication];
-        app.networkActivityIndicatorVisible = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIApplication* app = [UIApplication sharedApplication];
+            app.networkActivityIndicatorVisible = YES;
+        });
     }
 }
 

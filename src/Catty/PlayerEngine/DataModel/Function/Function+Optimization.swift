@@ -22,17 +22,11 @@
 
 extension Functions {
 
-    static var cachedNonIdempotentFunctions: [Function]? = nil
+    static var cachedNonIdempotentFunctions: [Function] = {
+        return Functions.nonIdempotentFunctions().compactMap { Function(rawValue: $0.intValue) }
+    }()
 
     @objc static func isIdempotentFunction(_ function: Function) -> Bool {
-        if cachedNonIdempotentFunctions == nil {
-            cachedNonIdempotentFunctions = [Function]()
-            Functions.nonIdempotentFunctions().forEach {
-                cachedNonIdempotentFunctions! += Function(rawValue: $0.intValue)!
-            }
-        }
-
-        return cachedNonIdempotentFunctions!.contains(function) == false
+        return cachedNonIdempotentFunctions.contains(function) == false
     }
-
 }

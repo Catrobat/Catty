@@ -38,11 +38,11 @@ class CharacteristicTests: XCTestCase {
     func testDiscovered() {
         let testCharacteristic = TestCharacteristic()
         let onSuccessExpectation = expectation(description: "onSuccess fulfilled for future")
-        let future = testCharacteristic.afterDiscoveredPromise?.future
-        future!.onSuccess {_ in
+        let future = testCharacteristic.afterDiscoveredPromise!.future
+        future.onSuccess {_ in
             onSuccessExpectation.fulfill()
         }
-        future!.onFailure {error in
+        future.onFailure {error in
             XCTAssert(false, "onFailure called")
         }
         CentralQueue.async {

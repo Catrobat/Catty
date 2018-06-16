@@ -80,7 +80,7 @@ class Firmata: FirmataProtocol {
     private let PORT_COUNT = 3
 
     private var portMasks = [UInt8](repeating: 0, count: 3)
-    var delegate : FirmataDelegate!
+    weak var delegate: FirmataDelegate?
     private var sysexData:NSMutableData = NSMutableData()
     private var seenStartSysex:Bool = false
     
@@ -102,8 +102,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0, data1, data2]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
         
-        delegate!.sendData(newData)
-        
+        delegate?.sendData(newData)
     }
     
     /*Report Version
@@ -117,7 +116,7 @@ class Firmata: FirmataProtocol {
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 1)
         
         print("reportVersion bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     /*Report Version
     * -------------------------------
@@ -132,7 +131,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0,data1,data2]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:3)
         print("reportFirmware bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     /* analog mapping query
@@ -148,7 +147,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0,data1,data2]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:3)
         print("analogMappingQuery bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     /* capabilities query
@@ -164,7 +163,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0,data1,data2]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:3)
         print("capabilityQuery bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     /* pin state query
@@ -182,7 +181,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0,data1,data2,data3]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:4)
         print("pinStateQuery bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     /* servo config
@@ -208,7 +207,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0,data1,data2,data3,data4,data5,data6,data7]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:8)
         print("servoConfig bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     
@@ -225,8 +224,8 @@ class Firmata: FirmataProtocol {
         let bytes1:[UInt8] = [data0,data1]
         var newData = Data(bytes: bytes1, count: 2)
     
-        let data:Data = string.data(using: String.Encoding.ascii)!
-    
+        guard let data = string.data(using: String.Encoding.ascii) else { return }
+
         let count = data.count / MemoryLayout<UInt8>.size
         var bytes = [UInt8](repeating: 0, count: count)
         (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
@@ -256,7 +255,7 @@ class Firmata: FirmataProtocol {
         newData.append(Data(bytes: UnsafePointer<UInt8>(endData), count: 1))
     
         print("stringdata bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
 
     /* Set sampling interval
@@ -276,7 +275,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0,data1,data2,data3,data4]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:5)
         print("samplingInterval bytes in hex \(newData.description)")
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     /* WritePWM
@@ -301,7 +300,7 @@ class Firmata: FirmataProtocol {
         let bytes:[UInt8] = [data0, data1, data2]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes),count: 3)
         
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
         
     }
     
@@ -353,7 +352,7 @@ class Firmata: FirmataProtocol {
         
         let bytes:[UInt8] = [data0, data1, data2]
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
         
         print(self, "setting pin states -->", "[\(binaryforByte(portMasks[0]))] [\(binaryforByte(portMasks[1]))] [\(binaryforByte(portMasks[2]))]")
         
@@ -378,7 +377,7 @@ class Firmata: FirmataProtocol {
         
         let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count:2)
         
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     
@@ -413,7 +412,7 @@ class Firmata: FirmataProtocol {
         
         portMasks[Int(port)] = data1    //save new pin
         
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
         
     }
     
@@ -432,7 +431,7 @@ class Firmata: FirmataProtocol {
         
         let bytes:[UInt8] = [data0, data1]
         let newData = Data(bytes: UnsafePointer<UInt8>(bytes), count: 2)
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
         
     }
     
@@ -468,7 +467,7 @@ class Firmata: FirmataProtocol {
         let append:[UInt8] = [data0]
         newData.append(Data(bytes: UnsafePointer<UInt8>(append), count: 1))
     
-        delegate!.sendData(newData)
+        delegate?.sendData(newData)
     }
     
     /* I2C read/write request
@@ -651,7 +650,7 @@ class Firmata: FirmataProtocol {
                 
                 print("\(pin):\(val)")
                 
-                delegate.didReceiveAnalogMessage(pin, value: val)
+                delegate?.didReceiveAnalogMessage(pin, value: val)
                 
             }else if(data[i] == REPORT_VERSION){
                 print("Report Version");
@@ -676,13 +675,13 @@ class Firmata: FirmataProtocol {
             state = state >> i
             
             let pin = i + Int(offset)
-            delegate.didReceiveDigitalMessage(pin, value: state)
+            delegate?.didReceiveDigitalMessage(pin, value: state)
             portData.append(state)
         }
 
         //Save reference state mask
         portMasks[port] = UInt8(pinStates)
-        delegate.didReceiveDigitalPort(port, portData: portData)
+        delegate?.didReceiveDigitalPort(port, portData: portData)
     }
     
     //MARK: PARSE
@@ -696,12 +695,10 @@ class Firmata: FirmataProtocol {
     * 4  END_SYSEX (0xF7)
     */
     private func parseStringData(_ data:Data){
-        
-        let range:NSRange = NSMakeRange (2, data.count-3)
-        let nameData = data.subdata(in: Range(range)!) // FIXME: never force unwrap!
-        let name:String = String(data: nameData, encoding: String.Encoding.ascii)!
-        
-        delegate.stringDataReceived(name)
+        let nameData = data[2..<data.count-1]
+        if let name = String(data: nameData, encoding: String.Encoding.ascii) {
+            delegate?.stringDataReceived(name)
+        }
     }
 
     /* Receive Firmware Name and Version (after query)
@@ -715,18 +712,10 @@ class Firmata: FirmataProtocol {
     * 6  END_SYSEX (0xF7)
     */
     private func parseReportFirmwareResponse(_ data:Data){
-        let range:NSRange = NSMakeRange (4, data.count-5)
-    
-        let count = data.count / MemoryLayout<UInt8>.size
-        var bytes = [UInt8](repeating: 0, count: count)
-        (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-    
-        let nameData = data.subdata(in: Range(range)!)
-        let name:String = String(data: nameData, encoding: String.Encoding.ascii)!
-
-        print(name)
-
-        delegate.firmwareVersionReceived(name + " \(Int32(bytes[2]))." + "\(Int32(bytes[3]))")
+        let nameData = data[4..<data.count-1]
+        if let name = String(data: nameData, encoding: String.Encoding.ascii) {
+            delegate?.firmwareVersionReceived(name + " \(data[2])." + "\(data[3])")
+        }
     }
 
     /* version report format
@@ -736,14 +725,7 @@ class Firmata: FirmataProtocol {
     * 2  minor version (0-127)
     */
     private func parseReportVersionResponse(_ data:Data){
-        
-        let count = data.count / MemoryLayout<UInt8>.size
-        var bytes = [UInt8](repeating: 0, count: count)
-        (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-
-        
-        delegate.protocolVersionReceived("\(Int32(bytes[1]))," + "\(Int32(bytes[2]))")
-    
+        delegate?.protocolVersionReceived("\(data[1])," + "\(data[2])")
     }
     
     /* pin state response
@@ -759,22 +741,14 @@ class Firmata: FirmataProtocol {
     * N  END_SYSEX (0xF7)
     The pin "state" is any data written to the pin. For output modes (digital output, PWM, and Servo), the state is any value that has been previously written to the pin. A GUI needs this state to properly initialize any on-screen controls, so their initial settings match whatever the pin is actually doing. For input modes, typically the state is zero. However, for digital inputs, the state is the status of the pullup resistor.
     */
-    private func parsePinStateResponse(_ data:Data){
-        let count = data.count / MemoryLayout<UInt8>.size
-        var bytes = [UInt8](repeating: 0, count: count)
-        (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-
- 
-    
-        let pin:UInt8 = bytes[2]
-        let currentMode:UInt8 = bytes[3]
-        let value:UInt8 = bytes[4] & 0x7F
-        let port:UInt8 = pin / 8
-    
+    private func parsePinStateResponse(_ data: Data) {
+        let pin = data[2]
+        let currentMode = data[3]
+        let value = data[4] & 0x7F
+        let port = pin / 8
         print("Pin: %i, Mode: %i, Value %i", pin, currentMode, value)
-    
         print("Setting Pin %i for port %i", pin, port)
-    
+
     //check if if its digital
     
     //    @try {
@@ -802,26 +776,18 @@ class Firmata: FirmataProtocol {
     ...   etc, one byte for each pin
     * N  END_SYSEX (0xF7)
     */
-    private func parseAnalogMappingResponse(_ data:Data){
-        let analogMapping:NSMutableDictionary = NSMutableDictionary()
-    
-        var j:UInt8 = 0
-        let count = data.count / MemoryLayout<UInt8>.size
-        var bytes = [UInt8](repeating: 0, count: count)
-        (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-        
+    private func parseAnalogMappingResponse(_ data: Data) {
+        var analogMapping = [UInt8: UInt8]()
+        var j = UInt8(0)
         let length = data.count - 1
         for i in 2 ..< length {
-    
-            if(bytes[i] != 127){
-                analogMapping.setObject(NSNumber(value: j as UInt8), forKey: NSNumber(value: bytes[i] as UInt8))
+            if data[i] != 127 {
+                analogMapping[data[i]] = j
             }
-    
             j=j+1
         }
-    
-        print("Analog Mapping Response %@",analogMapping)
-        delegate.didUpdateAnalogMapping(analogMapping)
+        print("Analog Mapping Response %@", analogMapping)
+        delegate?.didUpdateAnalogMapping(NSMutableDictionary(dictionary: analogMapping))
     }
 
     /* capabilities response
@@ -870,11 +836,9 @@ class Firmata: FirmataProtocol {
         }
     
         print("Capability Response %@",pins)
-        delegate.didUpdateCapability(pins)
+        delegate?.didUpdateCapability(pins)
 //    [peripheralDelegate didUpdateCapability:(NSMutableArray*)pins];
     }
-
-
 
     //MARK: Helper
     private func pinStateForInt(_ stateInt:Int) ->PinState{

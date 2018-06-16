@@ -49,9 +49,9 @@
         if([messages count] > 0)
             self.broadcastMessage = [messages objectAtIndex:0];
         else
-            self.broadcastMessage = nil;
+            self.broadcastMessage = @"";
     }
-    if(!self.broadcastMessage)
+    if(![self.broadcastMessage length])
         self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 

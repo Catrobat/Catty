@@ -82,7 +82,7 @@ final class WaitBrickTests: XCTestCase {
        
         switch instruction {
             case let .waitExecClosure(closure):
-                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode), CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger)))
+                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode)!, CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger)))
             default: break
         }
         

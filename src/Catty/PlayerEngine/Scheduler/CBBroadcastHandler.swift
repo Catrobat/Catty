@@ -61,7 +61,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
             _registeredBroadcastContexts[message] = [context]
         }
         logger.info("Subscribed new CBBroadcastContext of object "
-            + "\(context.script.object!.name) for message \(message)")
+            + "\(context.script.object?.name ?? "<no name>") for message \(message)")
     }
     
     func unsubscribeBroadcastContext(_ context: CBBroadcastScriptContextProtocol) {
@@ -72,7 +72,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
                 if registeredContext === context {
                     registeredContexts.remove(at: index)
                     let object = context.script.object
-                    logger.info("Unsubscribed CBBroadcastContext of object \(object!.name) for message \(message)")
+                    logger.info("Unsubscribed CBBroadcastContext of object \(object?.name ?? "<no name>") for message \(message)")
                     return
                 }
                 index += 1
@@ -90,8 +90,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts?.count == 0)
         
         var isSelfBroadcast = false
-        let registeredContexts = _registeredBroadcastContexts[message]
-        if registeredContexts == nil || registeredContexts?.count == 0 {
+        guard let registeredContexts = _registeredBroadcastContexts[message], registeredContexts.count != 0 else {
             logger.info("No listeners for message '\(message)' found")
             scheduler?.runNextInstructionOfContext(senderContext)
             return
@@ -99,7 +98,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         
         // collect all broadcast recipients
         var recipientContexts = [CBBroadcastScriptContextProtocol]()
-        for registeredContext in registeredContexts! {
+        for registeredContext in registeredContexts {
             // case broadcastScript == senderScript => restart script
             if registeredContext === senderContext {
                 // end of script reached!! Script will be aborted due to self-calling broadcast
@@ -124,9 +123,9 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         // finally schedule all other (!) (collected) listening broadcast scripts
         scheduler?.startBroadcastContexts(recipientContexts)
         
-        if isSelfBroadcast {
+        if isSelfBroadcast, let broadcastScriptContext = senderContext as? CBBroadcastScriptContext {
             // launch self (!) listening broadcast script
-            _performSelfBroadcastForContext(senderContext as! CBBroadcastScriptContext)
+            _performSelfBroadcastForContext(broadcastScriptContext)
         } else if broadcastType == .Broadcast {
             scheduler?.runNextInstructionOfContext(senderContext)
         } else if broadcastType == .BroadcastWait {
@@ -154,8 +153,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         var waitingContextToBeContinued: CBScriptContextProtocol? = nil
         for (waitingContextID, var runningBroadcastContexts) in _broadcastWaitingContextsQueue {
             assert(waitingContextID != context.id)
-            let waitingContext = _broadcastWaitingContexts[waitingContextID]!
-            if let index = runningBroadcastContexts.indexOfElement(context) {
+            if let waitingContext = _broadcastWaitingContexts[waitingContextID], let index = runningBroadcastContexts.indexOfElement(context) {
                 runningBroadcastContexts.remove(at: index)
                 _broadcastWaitingContextsQueue[waitingContextID] = runningBroadcastContexts
                 assert(_broadcastWaitingContextsQueue[waitingContextID]!.count == runningBroadcastContexts.count)
@@ -173,15 +171,15 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         _broadcastWaitingContextsQueue.removeValue(forKey: waitingContext.id)
         _broadcastWaitingContexts.removeValue(forKey: waitingContext.id)
         assert(waitingContext.state == .waiting) // just to ensure
-        DispatchQueue.main.async(execute: { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             assert(waitingContext.state == .waiting) // just to ensure
             waitingContext.state = .runnable // running again!
             self?.scheduler?.runNextInstructionOfContext(waitingContext)
-            })
+        }
     }
     
     func isWaitingForCalledBroadcastContexts(_ context: CBScriptContextProtocol) -> Bool {
-        return (_broadcastWaitingContextsQueue[context.id]?.count)! > 0
+        return (_broadcastWaitingContextsQueue[context.id]?.count ?? 0) > 0
     }
     
     func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(_ context: CBScriptContextProtocol) {

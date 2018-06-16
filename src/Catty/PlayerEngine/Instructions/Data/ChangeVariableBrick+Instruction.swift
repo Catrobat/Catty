@@ -42,11 +42,11 @@
                         userVariable.value = ""
                     }
                 }
-                if userVariable.value is NSNumber && result is NSNumber {
-                    let number:NSNumber = (result as? NSNumber)! // FIXME: don't force unwrap
-                    variables.change(userVariable, byValue: number.doubleValue)
+                if let userVariableDoubleValue = (userVariable.value as? NSNumber)?.doubleValue,
+                    let numberDoubleValue = (result as? NSNumber)?.doubleValue {
+                    variables.change(userVariable, byValue: numberDoubleValue)
                     //update active UserVariable
-                    userVariable.textLabel.text = String(Int((userVariable.value as! NSNumber).doubleValue)) // FIXME: don't force unwrap
+                    userVariable.textLabel.text = String(Int(userVariableDoubleValue))
                 } else if userVariable.value is NSString {
                     // do nothing
                 } else {
@@ -55,6 +55,5 @@
             }
             context.state = .runnable
         }
-
     }
 }

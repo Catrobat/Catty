@@ -296,9 +296,10 @@ public final class CharacteristicImplementation<C:CharacteristicWrapper> {
         return self.notificationStateChangedPromise.future
     }
     
-    public func recieveNotificationUpdates(_ capacity:Int? = nil) -> FutureStream<C> {
-        self.notificationUpdatePromise = StreamPromise<C>(capacity:capacity)
-        return self.notificationUpdatePromise!.future
+    public func recieveNotificationUpdates(_ capacity: Int? = nil) -> FutureStream<C> {
+        let notificationUpdatePromise = StreamPromise<C>(capacity: capacity)
+        self.notificationUpdatePromise = notificationUpdatePromise
+        return notificationUpdatePromise.future
     }
     
     public func stopNotificationUpdates() {

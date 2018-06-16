@@ -26,7 +26,7 @@ import XCTest
 
 final class CBBackendTests: XCTestCase {
 
-    let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)
+    let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)!
 
     func testActionInstruction() {
         let frontend = CBFrontend(logger: self.logger, program: nil)

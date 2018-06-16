@@ -61,7 +61,7 @@ final class ChangeVariableBrickTests: XCTestCase {
         
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode), scheduler)
+            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
         default: break;
         }
         

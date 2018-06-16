@@ -27,13 +27,14 @@
 
 @objc final class SetupScene: NSObject {
 
-    @objc static func setupSceneForProgram(_ program: Program) -> CBScene {
-
-        let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID)
-        let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID)
-        let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID)
-        let backendLogger = Swell.getLogger(LoggerConfig.PlayerBackendID)
-        let bcHandlerLogger = Swell.getLogger(LoggerConfig.PlayerBroadcastHandlerID)
+    @objc static func setupSceneForProgram(_ program: Program) -> CBScene? {
+        guard
+            let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID),
+            let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID),
+            let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID),
+            let backendLogger = Swell.getLogger(LoggerConfig.PlayerBackendID),
+            let bcHandlerLogger = Swell.getLogger(LoggerConfig.PlayerBroadcastHandlerID)
+        else { preconditionFailure() }
 
         let bcHandler = CBBroadcastHandler(logger: bcHandlerLogger)
         let scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: bcHandler)
@@ -56,5 +57,4 @@
             broadcastHandler: bcHandler
         )
     }
-
 }

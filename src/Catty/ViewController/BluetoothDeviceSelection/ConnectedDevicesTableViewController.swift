@@ -54,7 +54,7 @@ class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
     
         }
     
-        let future : FutureStream<[Peripheral]> = CentralManager.sharedInstance.getConnectedPeripheralsWithServices(NSArray() as! [CBUUID])
+        let future: FutureStream<[Peripheral]> = CentralManager.sharedInstance.getConnectedPeripheralsWithServices([])
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }

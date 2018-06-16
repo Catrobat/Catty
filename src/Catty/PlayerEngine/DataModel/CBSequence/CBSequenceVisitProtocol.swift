@@ -23,7 +23,7 @@
 protocol CBSequenceProtocol {
 
     // MARK: - Properties
-    weak var rootSequenceList: CBScriptSequenceList? { get set }
+    var rootSequenceList: CBScriptSequenceList? { get set }
 
     // MARK: - Operations
     func isEmpty() -> Bool

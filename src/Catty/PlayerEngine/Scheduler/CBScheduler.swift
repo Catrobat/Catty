@@ -58,9 +58,10 @@ final class CBScheduler: CBSchedulerProtocol {
 
     // MARK: - Model methods
     func registerSpriteNode(_ spriteNode: CBSpriteNode) {
-        precondition(spriteNode.name != nil)
-        precondition(_spriteNodes[spriteNode.name!] == nil)
-        _spriteNodes[spriteNode.name!] = spriteNode
+        guard let spriteNodeName = spriteNode.name, _spriteNodes[spriteNode.name!] == nil else {
+            preconditionFailure()
+        }
+        _spriteNodes[spriteNodeName] = spriteNode
     }
 
     func registerContext(_ context: CBScriptContextProtocol) {
@@ -77,7 +78,7 @@ final class CBScheduler: CBSchedulerProtocol {
             if _whenContexts[spriteName] == nil {
                 _whenContexts[spriteName] = [CBWhenScriptContext]()
             }
-            _whenContexts[spriteName]! += whenContext
+            _whenContexts[spriteName]?.append(whenContext)
         }
     }
 
@@ -142,7 +143,7 @@ final class CBScheduler: CBSchedulerProtocol {
             if nextActionElements.count > 0 {
                 let groupAction = nextActionElements.count > 1
                     ? SKAction.group(nextActionElements.map { $0.action })
-                    : nextActionElements.first!.1
+                    : nextActionElements[0].1
                 spriteNode.run(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .runnable }
                     self?.runNextInstructionsGroup()
@@ -169,18 +170,19 @@ final class CBScheduler: CBSchedulerProtocol {
 
         for (context, closure) in nextWaitClosures {
             self._lockWaitQueue.async {
-                var queue = self._availableWaitQueues.first
-                if queue == nil {
+                let queue: DispatchQueue
+                if let availableBufferQueue = self._availableBufferQueues.first {
+                    queue = availableBufferQueue
+                    self._availableBufferQueues.removeFirst()
+                } else {
                     self._lastQueueIndex += 1
                     queue = DispatchQueue(label: "org.catrobat.wait.queue[\(self._lastQueueIndex)]", attributes: [])
-                } else {
-                    self._availableWaitQueues.removeFirst()
                 }
-                queue!.async {
+                queue.async {
                     let index = context.index
                     closure(context, self)
                     self._lockWaitQueue.async {
-                        self._availableWaitQueues += queue!
+                        self._availableWaitQueues += queue
                     }
                     if index == context.index {
                         DispatchQueue.main.async {
@@ -197,21 +199,23 @@ final class CBScheduler: CBSchedulerProtocol {
 
         for (context, brick) in nextBufferElements {
             self._lockBufferQueue.async {
-                var queue = self._availableBufferQueues.first
-                if queue == nil {
-                    queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
-                } else {
+                let queue: DispatchQueue
+                if let availableBufferQueue = self._availableBufferQueues.first {
+                    queue = availableBufferQueue
                     self._availableBufferQueues.removeFirst()
+                } else {
+                    queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
                 }
-                queue!.async {
+                queue.async {
                     let index = context.index
-                    let formulaArray = brick.getFormulas()
-                    for formula:Formula in formulaArray! {
-                        formula.preCalculate(forSprite: context.spriteNode.spriteObject)
+                    if let formulaArray = brick.getFormulas() {
+                        for formula in formulaArray {
+                            formula.preCalculate(forSprite: context.spriteNode.spriteObject)
+                        }
                     }
                     print("preCalculate")
                     self._lockBufferQueue.async {
-                        self._availableBufferQueues += queue!
+                        self._availableBufferQueues += queue
                     }
                     if index == context.index {
                         DispatchQueue.main.async {
@@ -224,24 +228,25 @@ final class CBScheduler: CBSchedulerProtocol {
 
         for (context, condition) in nextConditionalBufferElements {
             self._lockBufferQueue.async {
-                var queue = self._availableBufferQueues.first
-                if queue == nil {
-                    queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
-                } else {
+                let queue: DispatchQueue
+                if let availableBufferQueue = self._availableBufferQueues.first {
+                    queue = availableBufferQueue
                     self._availableBufferQueues.removeFirst()
+                } else {
+                    queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
                 }
-                queue!.async(execute: {
+                queue.async {
                     let index = context.index
                     condition.bufferCondition(context.spriteNode.spriteObject)
                     self._lockBufferQueue.async {
-                        self._availableBufferQueues += queue!
+                        self._availableBufferQueues += queue
                     }
                     if index == context.index {
                         DispatchQueue.main.async {
                             self.runNextInstructionOfContext(context)
                         }
                     }
-                })
+                }
             }
         }
 
@@ -287,12 +292,11 @@ final class CBScheduler: CBSchedulerProtocol {
         if _scheduledContexts[spriteName] == nil {
             _scheduledContexts[spriteName] = [CBScriptContext]()
         }
-        if let contexts = _scheduledContexts[spriteName]{
+        if let contexts = _scheduledContexts[spriteName] {
             if !contexts.contains(context) {
-                _scheduledContexts[spriteName]! += context
+                _scheduledContexts[spriteName]?.append(context)
             }
         }
-
     }
 
     func startWhenContextsOfSpriteNodeWithName(_ spriteName: String) {
@@ -333,7 +337,7 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
         // dequeue
-        var spriteScheduledContexts = _scheduledContexts[spriteName]!
+        guard var spriteScheduledContexts = _scheduledContexts[spriteName] else { preconditionFailure() }
         if let index = spriteScheduledContexts.indexOfElement(context) {
             spriteScheduledContexts.remove(at: index)
         }

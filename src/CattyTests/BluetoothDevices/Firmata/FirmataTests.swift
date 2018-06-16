@@ -326,21 +326,15 @@ final class FirmataTests : XCTestCase{
     func testReceiveStringData(){
         //Given
         let name = "test"
-        let data3 = name.data(using: String.Encoding.ascii)
-        let count = data3!.count / MemoryLayout<UInt8>.size
-        var bytes = [UInt8](repeating: 0, count: count)
-        (data3! as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-        var bytestoSend:[UInt8] = [START_SYSEX,STRING_DATA]
-        for i in 0 ..< data3!.count {
+        let bytes = [UInt8](name.data(using: .ascii)!)
+        var bytestoSend = [START_SYSEX,STRING_DATA]
+        for i in 0 ..< bytes.count {
             let lsb = bytes[i] & 0x7f;
-            let append1:UInt8 = lsb
-            bytestoSend.append(append1)
+            bytestoSend.append(lsb)
         }
-
         bytestoSend.append(END_SYSEX)
-        let receivedData:Data = Data(bytes: UnsafePointer<UInt8>(bytestoSend), count:3+(data3!.count*2))
         //When
-        mock.testfirmata.receiveData(receivedData)
+        mock.testfirmata.receiveData(Data(bytes: bytestoSend))
         //Then
         XCTAssertTrue(mock.callbackInvolved, "Callback not called")
         XCTAssertEqual(mock.receivedString, name , "Received Port wrong")

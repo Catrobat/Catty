@@ -265,12 +265,12 @@ open class FlexFormatter: LogFormatter {
                 case .level: logMessage += level.label
                 case .date: logMessage += Date().description
                 case .line:
-                    if (filename != nil) && (line != nil) {
-                        logMessage += "[\((filename! as NSString).lastPathComponent):\(line!)]"
+                    if let filename = filename, let line = line {
+                        logMessage += "[\((filename as NSString).lastPathComponent):\(line)]"
                     }
                 case .func:
-                    if (function != nil) {
-                        let output = getFunctionFormat(function!)
+                    if let function = function {
+                        let output = getFunctionFormat(function)
                         logMessage += "[\(output)]"
                     }
                 }
@@ -789,10 +789,9 @@ let globalSwell = Swell();
 
 
 open class Swell {
-    
-    lazy var swellLogger: CBLogger = {
-        let result = getLogger("Shared")
-        return result
+
+    lazy var swellLogger: CBLogger? = {
+        return getLogger("Shared")
     }()
 
     var selector = LogSelector()
@@ -822,51 +821,51 @@ open class Swell {
     // Global/convenience log methods used for quick logging
 
     open class func trace<T>(_ message: @autoclosure () -> T) {
-        globalSwell.swellLogger.trace(message)
+        globalSwell.swellLogger?.trace(message)
     }
     
     open class func debug<T>(_ message: @autoclosure () -> T) {
-        globalSwell.swellLogger.debug(message)
+        globalSwell.swellLogger?.debug(message)
     }
     
     open class func info<T>(_ message: @autoclosure () -> T) {
-        globalSwell.swellLogger.info(message)
+        globalSwell.swellLogger?.info(message)
     }
     
     open class func warn<T>(_ message: @autoclosure () -> T) {
-        globalSwell.swellLogger.warn(message)
+        globalSwell.swellLogger?.warn(message)
     }
     
     open class func error<T>(_ message: @autoclosure () -> T) {
-        globalSwell.swellLogger.error(message)
+        globalSwell.swellLogger?.error(message)
     }
     
     open class func severe<T>(_ message: @autoclosure () -> T) {
-        globalSwell.swellLogger.severe(message)
+        globalSwell.swellLogger?.severe(message)
     }
 
     open class func trace(_ fn: () -> String) {
-        globalSwell.swellLogger.trace(fn())
+        globalSwell.swellLogger?.trace(fn())
     }
     
     open class func debug(_ fn: () -> String) {
-        globalSwell.swellLogger.debug(fn())
+        globalSwell.swellLogger?.debug(fn())
     }
     
     open class func info(_ fn: () -> String) {
-        globalSwell.swellLogger.info(fn())
+        globalSwell.swellLogger?.info(fn())
     }
     
     open class func warn(_ fn: () -> String) {
-        globalSwell.swellLogger.warn(fn())
+        globalSwell.swellLogger?.warn(fn())
     }
     
     open class func error(_ fn: () -> String) {
-        globalSwell.swellLogger.error(fn())
+        globalSwell.swellLogger?.error(fn())
     }
     
     open class func severe(_ fn: () -> String) {
-        globalSwell.swellLogger.severe(fn())
+        globalSwell.swellLogger?.severe(fn())
     }
     
     //====================================================================================================
@@ -875,7 +874,7 @@ open class Swell {
 
     /// Returns the logger configured for the given name.
     /// This is the recommended way of retrieving a Swell logger.
-    open class func getLogger(_ name: String) -> CBLogger {
+    open class func getLogger(_ name: String) -> CBLogger? {
         return globalSwell.getLogger(name);
     }
     
@@ -922,23 +921,24 @@ open class Swell {
     
     /// Returns the Logger instance configured for a given logger name.
     /// Use this to get Logger instances for use in classes.
-    func getLogger(_ name: String) -> CBLogger {
-        let logger = allLoggers[name]
-        if (logger != nil) {
-            return logger!
-        } else {
-            let result: CBLogger = createLogger(name)
-            allLoggers[name] = result
-            return result
+    func getLogger(_ name: String) -> CBLogger? {
+        if let logger = allLoggers[name] {
+            return logger
+        } else if let logger = createLogger(name) {
+            allLoggers[name] = logger
+            return logger
         }
+        return nil
     }
     
     /// Creates a new Logger instance based on configuration returned by getConfigurationForLoggerName()
     /// This is intended to be in an internal method and should not be called by other classes.
     /// Use getLogger(name) to get a logger for normal use.
-    func createLogger(_ name: String) -> CBLogger {
+    func createLogger(_ name: String) -> CBLogger? {
         let config = getConfigurationForLoggerName(name)
-        let result = CBLogger(name: name, level: config.level!, formatter: config.formatter!, logLocation: config.locations[0])
+        guard let level = config.level, let formatter = config.formatter else { return nil }
+
+        let result = CBLogger(name: name, level: level, formatter: formatter, logLocation: config.locations[0])
         
         // Now we need to handle potentially > 1 locations
         if config.locations.count > 1 {
@@ -1105,8 +1105,8 @@ open class Swell {
         
         if let location = givenLocation {
             newConfiguration.locations += [location]
-        } else if oldConfiguration?.locations.count > 0 {
-            newConfiguration.locations = oldConfiguration!.locations
+        } else if let locations = oldConfiguration?.locations, locations.count > 0 {
+            newConfiguration.locations = locations
         }
         
         applyLoggerConfiguration(loggerName, configuration: newConfiguration)
@@ -1215,9 +1215,8 @@ open class Swell {
                     // handle file name
                     let filenameValue: AnyObject? = map["SWLLocationFilename"]
                     if let filename: AnyObject = filenameValue {
-                        let fileLocation = getConfiguredFileLocation(configuration, item: filename);
-                        if fileLocation != nil {
-                            results += [fileLocation!]
+                        if let fileLocation = getConfiguredFileLocation(configuration, item: filename) {
+                            results += [fileLocation]
                         }
                     }
                 } else if (value == "console") {

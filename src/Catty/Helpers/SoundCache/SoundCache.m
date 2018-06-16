@@ -28,7 +28,7 @@
 @interface SoundCache()
 
 @property (nonatomic, strong) NSCache *soundCache;
-@property (nonatomic, strong, readwrite) dispatch_queue_t soundCacheQueue;
+@property (nonatomic, strong) dispatch_queue_t soundCacheQueue;
 
 @end
 
@@ -57,17 +57,19 @@ static NSMutableDictionary *sharedSoundCaches = nil;
     }
 }
 
-- (NSCache*)soundCache
+- (NSCache *)soundCache
 {
-    if (! _soundCache) {
-        _soundCache = [[NSCache alloc] init];
-        _soundCache.delegate = self;
+    static NSCache *soundCache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        soundCache = [[NSCache alloc] init];
+        soundCache.delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(clearSoundCache)
                                                      name:UIApplicationDidReceiveMemoryWarningNotification
                                                    object:nil];
-    }
-    return _soundCache;
+    });
+    return soundCache;
 }
 
 - (dispatch_queue_t)imageCacheQueue
