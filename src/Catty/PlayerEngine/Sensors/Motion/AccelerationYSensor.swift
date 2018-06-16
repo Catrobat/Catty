@@ -35,6 +35,10 @@ class AccelerationYSensor : DeviceSensor {
     func standardizedValue() -> Double {
         return self.rawValue()
     }
+    
+    func showInFormulaEditor() -> Bool {
+        return true
+    }
 
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSensor {
+@objc protocol CBSensor {
 
     /// Tag for serialization
     static var tag: String { get }

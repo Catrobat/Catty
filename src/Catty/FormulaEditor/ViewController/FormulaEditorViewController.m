@@ -47,7 +47,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
-
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCellFormulaData *brickCellData;
 
@@ -95,8 +94,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (nonatomic) BOOL isProgramVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
 @end
-
-
 
 @implementation FormulaEditorViewController
 
@@ -308,30 +305,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)initObjectView
 {
     NSInteger buttonCount = 0;
-    NSMutableArray<NSNumber*> *sensorArray = [NSMutableArray arrayWithObjects:
-                                              [NSNumber numberWithInteger:OBJECT_X],
-                                              [NSNumber numberWithInteger:OBJECT_Y],
-                                              [NSNumber numberWithInteger:OBJECT_GHOSTEFFECT],
-                                              [NSNumber numberWithInteger:OBJECT_BRIGHTNESS],
-                                              [NSNumber numberWithInteger:OBJECT_COLOR],
-                                              nil];
-    if (self.object.isBackground) {
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_BACKGROUND_NUMBER]];
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_BACKGROUND_NAME]];
-    } else {
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_LOOK_NUMBER]];
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_LOOK_NAME]];
-    }
-    
-    [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_SIZE]];
-    [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_ROTATION]];
-    [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_LAYER]];
-    
     UIView* topAnchorView = nil;
-    for (NSNumber *tag in sensorArray) {
-        NSString *title = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[tag integerValue]]];
-        topAnchorView = [self addButtonToScrollView:self.objectScrollView withTag:[tag integerValue] andTitle:title andTopAnchor:topAnchorView];
-        buttonCount++;
+    
+    for (id sensor in [[CBSensorManager shared] objectSensors]) {
+        if ([sensor showInFormulaEditorFor:self.object]) {
+            topAnchorView = [self addButtonToScrollView:self.objectScrollView withTag:1 andTitle:[[sensor class] name] andTopAnchor:topAnchorView];
+            buttonCount++;
+        }
     }
     
     self.objectScrollView.frame = CGRectMake(self.objectScrollView.frame.origin.x, self.objectScrollView.frame.origin.y, self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);

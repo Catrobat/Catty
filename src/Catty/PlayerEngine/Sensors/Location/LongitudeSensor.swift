@@ -37,6 +37,10 @@ class LongitudeSensor : DeviceSensor {
         return self.rawValue()
     }
     
+    func showInFormulaEditor() -> Bool {
+        return true
+    }
+    
     init(locationManagerGetter: @escaping () -> LocationManager?) {
         self.getLocationManager = locationManagerGetter
     }

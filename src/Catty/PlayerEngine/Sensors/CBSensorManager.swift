@@ -46,23 +46,78 @@ import CoreLocation
     func registerSensors() {
         let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
+        
+        // In the Formula Editor the sensors appear in the same order
         let sensors: [CBSensor] = [
-            BrightnessSensor(),
-            LayerSensor(),
-            PositionXSensor(),
-            PositionYSensor(),
-            RotationSensor(),
-            SizeSensor(),
-            TransparencySensor(),
             InclinationXSensor(motionManagerGetter: motionManagerGetter),
             InclinationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationXSensor(motionManagerGetter: motionManagerGetter),
             AccelerationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationZSensor(motionManagerGetter: motionManagerGetter),
             CompassDirectionSensor(locationManagerGetter: locationManagerGetter),
-            LongitudeSensor(locationManagerGetter: locationManagerGetter)
+            /*LatitudeSensor(locationManagerGetter: locationManagerGetter),
+            LongitudeSensor(locationManagerGetter: locationManagerGetter),
+            LocationAccuracySensor(locationManagerGetter: locationManagerGetter),
+            AltitudeSensor(locationManagerGetter: locationManagerGetter),
+            FingerTouchedSensor(locationManagerGetter: locationManagerGetter),
+            FingerXSensor(locationManagerGetter: locationManagerGetter),
+            FingerYSensor(locationManagerGetter: locationManagerGetter),
+            LastFingerIndexSensor(locationManagerGetter: locationManagerGetter),
+            
+            DateYearSensor(),
+            DateMonthSensor(),
+            DateDaySensor(),
+            DateWeekdaySensor(),
+            TimeHourSensor(),
+            TimeMinuteSensor(),
+            TimeSecondSensor(),
+            
+            MultiFingerTouchedSensor(),
+            MultiFingerXSensor(),
+            MultiFingerYSensor(),
+            
+            FaceDetectedSensor(),
+            FaceSizeSensor(),
+            FacePositionXSensor(),
+            FacePositionYSensor(),
+            
+            PhiroFrontLeftSensor(),
+            PhiroFrontRightSensor(),
+            PhiroSideLeftSensor(),
+            PhiroSideRightSensor(),
+            PhiroBottomLeftSensor(),
+            PhiroBottomRightSensor(),
+            
+            ArduinoAnalogPinSensor(),
+            ArduinoDigitalPinSensor(),*/
+            
+            PositionXSensor(),
+            PositionYSensor(),
+            TransparencySensor(),
+            BrightnessSensor(),
+            /*ColorSensor(),
+            BackgroundNumberSensor(), // only for background
+            BackgroundNameSensor(), // only for background
+            LookNumberSensor(), // only for look
+            LookNameSensor(),*/ // only for look
+            
+            SizeSensor(),
+            RotationSensor(),
+            LayerSensor()
         ]
         sensors.forEach { self.sensors[type(of: $0).tag] = $0 }
+    }
+    
+    @objc func sensorList() -> [CBSensor] {
+        return Array(sensors.values.map{ $0 })
+    }
+    
+    @objc func deviceSensors() -> [DeviceSensor] {
+        return Array(sensors.values.filter{$0 is DeviceSensor}.map{ $0 as! DeviceSensor })
+    }
+    
+    @objc func objectSensors() -> [ObjectSensor] {
+        return Array(sensors.values.filter{$0 is ObjectSensor}.map{ $0 as! ObjectSensor })
     }
     
     func sensor(tag: String) -> CBSensor? {

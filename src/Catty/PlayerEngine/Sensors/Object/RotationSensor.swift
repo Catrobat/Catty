@@ -34,4 +34,8 @@ class RotationSensor: ObjectSensor {
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
         return self.rawValue(for: spriteObject)
     }
+    
+    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+        return true
+    }
 }

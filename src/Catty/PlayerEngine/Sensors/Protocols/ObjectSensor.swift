@@ -20,11 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol ObjectSensor: CBSensor {
+@objc protocol ObjectSensor: CBSensor {
 
     /// TODO: description
     func rawValue(for spriteObject: SpriteObject) -> Double
 
     /// TODO: description
     func standardizedValue(for spriteObject: SpriteObject) -> Double
+    
+    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool
 }

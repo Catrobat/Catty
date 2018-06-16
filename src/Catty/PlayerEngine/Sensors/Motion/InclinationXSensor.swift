@@ -36,6 +36,10 @@ class InclinationXSensor: DeviceSensor {
         return Util.radians(toDegree: self.rawValue() * -4)
     }
     
+    func showInFormulaEditor() -> Bool {
+        return true
+    }
+    
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }

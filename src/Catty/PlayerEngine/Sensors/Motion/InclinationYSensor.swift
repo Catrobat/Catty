@@ -49,6 +49,10 @@ class InclinationYSensor : DeviceSensor {
 
         return value
     }
+    
+    func showInFormulaEditor() -> Bool {
+        return true
+    }
 
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter

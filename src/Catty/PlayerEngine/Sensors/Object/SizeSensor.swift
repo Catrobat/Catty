@@ -21,7 +21,7 @@
  */
 
 class SizeSensor: ObjectSensor {
-
+    
     static let tag = "OBJECT_SIZE"
     static let name = kUIFEObjectSize
     static let defaultValue = 0.0
@@ -33,5 +33,9 @@ class SizeSensor: ObjectSensor {
 
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
         return self.rawValue(for: spriteObject)
+    }
+    
+    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+        return true
     }
 }
