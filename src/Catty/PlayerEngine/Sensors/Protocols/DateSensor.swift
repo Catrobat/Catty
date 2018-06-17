@@ -20,26 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DateYearSensor : DateSensor {
-    
-    static let tag = "DATE_YEAR"
-    static let name = kUIFESensorDateYear
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
-    
-    func rawValue() -> Double {
-        return Double(Calendar.current.component(.year, from: self.date()))
-    }
-    
-    func standardizedValue() -> Double {
-        return self.rawValue()
-    }
-    
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
-    func date() -> Date {
-        return Date()
-    }
+protocol DateSensor: DeviceSensor {
+    /* This function should return the current date */
+    func date() -> Date
 }
