@@ -1030,6 +1030,8 @@
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
+		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
+		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
 /* End PBXBuildFile section */
 
@@ -2642,6 +2644,8 @@
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
+		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
+		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4017,6 +4021,7 @@
 			children = (
 				4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */,
 				F48E946220D6F221007E782E /* DateMonthSensor.swift */,
+				F48E946A20D6F869007E782E /* DateDaySensor.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -4026,6 +4031,7 @@
 			children = (
 				4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */,
 				F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */,
+				F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -7618,6 +7624,7 @@
 				4C994DF8207A3D0600C415FD /* SensorHandlerDeviceTests.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
+				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
@@ -7897,6 +7904,7 @@
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
 				921D46881BDF698A0086AD20 /* ChangeTransparencyBrick+Instruction.swift in Sources */,
+				F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
