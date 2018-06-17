@@ -20,22 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
+@objc class FingerYSensor: NSObject, TouchSensor {
 
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
+    static let tag = "FINGER_Y"
+    static let name = kUIFESensorFingerY
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
+    func rawValue() -> Double {
+        return 0 // TODO
     }
 
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    func standardizedValue() -> Double {
+        return self.rawValue()
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    func showInFormulaEditor() -> Bool {
         return true
     }
 }

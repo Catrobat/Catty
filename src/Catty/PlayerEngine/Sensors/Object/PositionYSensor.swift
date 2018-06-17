@@ -20,17 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TransparencySensor: ObjectSensor {
-
-    static let tag = "OBJECT_GHOSTEFFECT"
-    static let name = kUIFEObjectTransparency
+class PositionYSensor: ObjectSensor {
+    
+    static let tag = "OBJECT_Y"
+    static let name = kUIFEObjectPositionY
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
-
+    
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.alpha)
+        return Double(spriteObject.spriteNode.scenePosition.y)
     }
-
+    
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
         return self.rawValue(for: spriteObject)
     }

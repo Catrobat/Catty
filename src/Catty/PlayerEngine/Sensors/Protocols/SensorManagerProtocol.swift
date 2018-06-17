@@ -26,15 +26,9 @@ protocol SensorManagerProtocol {
     
     var defaultValueForUndefinedSensor : Double { get set }
     
-//    func registerSensor(_ sensor: CBSensor) -> Void
-
     func sensor(tag: String) -> CBSensor?
     
-//    func isAvailable(sensor: CBSensor) -> Bool
-
-//    func value(sensor: CBSensor) -> Double
-
-    func value(sensorTag: String, spriteObject: SpriteObject?) -> Double
+    func value(sensorTag: String, spriteObject: SpriteObject?) -> AnyObject
     
     func stopSensors()
 }

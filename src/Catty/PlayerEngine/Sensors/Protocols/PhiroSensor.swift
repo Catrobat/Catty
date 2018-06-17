@@ -20,22 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
-
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
-
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
-    }
-
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
-    }
+@objc protocol PhiroSensor: DeviceSensor {
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
-    }
+    @objc func pinNumber() -> Int
 }

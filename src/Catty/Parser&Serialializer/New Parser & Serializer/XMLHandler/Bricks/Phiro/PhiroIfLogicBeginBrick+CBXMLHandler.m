@@ -28,6 +28,7 @@
 #import "CBXMLParserHelper.h"
 #import "Formula+CBXMLHandler.h"
 #import "CBXMLSerializerHelper.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PhiroIfLogicBeginBrick (CBXMLHandler)
 
@@ -38,21 +39,15 @@
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_PHIRO_SENSOR_CONDITION" withContext:context];
     ifLogicBeginBrick.ifCondition = formula;
 //    formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
-    GDataXMLElement *sensor = [xmlElement childWithElementName:@"sensorSpinnerPosition"];
-    if ([sensor.stringValue isEqualToString:@"0"]) {
-        ifLogicBeginBrick.sensor = [SensorManager stringForSensor:phiro_front_left];
-    } else if ([sensor.stringValue isEqualToString:@"1"]) {
-        ifLogicBeginBrick.sensor =[SensorManager stringForSensor:phiro_front_right];
-    } else if ([sensor.stringValue isEqualToString:@"2"]) {
-        ifLogicBeginBrick.sensor =[SensorManager stringForSensor:phiro_side_left];
-    } else if ([sensor.stringValue isEqualToString:@"3"]) {
-        ifLogicBeginBrick.sensor =[SensorManager stringForSensor:phiro_side_right];
-    } else if ([sensor.stringValue isEqualToString:@"4"]) {
-        ifLogicBeginBrick.sensor =[SensorManager stringForSensor:phiro_bottom_left];
-    } else if ([sensor.stringValue isEqualToString:@"5"]) {
-        ifLogicBeginBrick.sensor =[SensorManager stringForSensor:phiro_bottom_right];
-    } else {
-        ifLogicBeginBrick.sensor = [SensorManager stringForSensor:phiro_front_left];
+    GDataXMLElement *sensorSpinnerPosition = [xmlElement childWithElementName:@"sensorSpinnerPosition"];
+    
+    // Default value
+    ifLogicBeginBrick.sensor = PhiroFrontLeftSensor.tag;
+    
+    for (id<PhiroSensor> sensor in [[CBSensorManager shared] phiroSensors]) {
+        if ([sensorSpinnerPosition.stringValue isEqualToString:[[NSNumber numberWithInteger:[sensor pinNumber]] stringValue]]) {
+            ifLogicBeginBrick.sensor = [[CBSensorManager shared] tagWithSensor:sensor];
+        }
     }
     
     // add opening nesting brick on stack
@@ -80,32 +75,14 @@
     
     [brick addChild:formulaList context:context];
     
-    NSString *sensor;
-    switch (self.phiroSensor) {
-        case phiro_front_left:
-            sensor = @"0";
-            break;
-        case phiro_front_right:
-            sensor = @"1";
-            break;
-        case phiro_side_left:
-            sensor = @"2";
-            break;
-        case phiro_side_right:
-            sensor = @"3";
-            break;
-        case phiro_bottom_left:
-            sensor = @"4";
-            break;
-        case phiro_bottom_right:
-            sensor = @"5";
-            break;
-            
-        default:
-            sensor = @"0";
-            break;
+    NSString *sensorSpinnerPosition = PhiroFrontLeftSensor.tag;
+    id phiroSensor = [[CBSensorManager shared] sensorWithTag:self.sensor];
+    
+    if (phiroSensor != nil && [phiroSensor conformsToProtocol:@protocol(PhiroSensor)]) {
+        sensorSpinnerPosition = [[NSNumber numberWithInteger:[phiroSensor pinNumber]] stringValue];
     }
-    GDataXMLElement *value = [GDataXMLElement elementWithName:@"sensorSpinnerPosition" stringValue:sensor context:context];
+    
+    GDataXMLElement *value = [GDataXMLElement elementWithName:@"sensorSpinnerPosition" stringValue:sensorSpinnerPosition context:context];
     [brick addChild:value context:context];
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];

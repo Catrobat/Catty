@@ -21,6 +21,7 @@
  */
 
 class InclinationXSensor: DeviceSensor {
+    
     static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
     static let defaultValue = 0.0

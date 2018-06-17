@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
+@objc class BackgroundNumberSensor: NSObject, ObjectSensor {
 
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
+    static let tag = "OBJECT_BACKGROUND_NUMBER"
+    static let name = kUIFEObjectBackgroundNumber
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
+        return 0 // TODO
     }
 
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
@@ -36,6 +36,6 @@
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
+        return true // TODO
     }
 }

@@ -20,22 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
-
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
+@objc class PhiroSideLeftSensor : NSObject, PhiroSensor {
+    
+    static let tag = "side_left"
+    static let name = kUIFESensorPhiroSideLeft
     static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
-
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
-    }
-
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    static let requiredResource = ResourceType.bluetoothPhiro
+    
+    let getBluetoothService: () -> BluetoothService?
+    
+    func rawValue() -> Double {
+        return self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(self.pinNumber()) ?? type(of: self).defaultValue
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
+    func standardizedValue() -> Double {
+        return self.rawValue()
+    }
+    
+    func pinNumber() -> Int {
+        return 4
+    }
+    
+    func showInFormulaEditor() -> Bool {
+        return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
+    }
+    
+    init(bluetoothServiceGetter: @escaping () -> BluetoothService?) {
+        self.getBluetoothService = bluetoothServiceGetter
     }
 }

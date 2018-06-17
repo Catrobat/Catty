@@ -21,6 +21,7 @@
  */
 
 #import "InternFormulaKeyboardAdapter.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation InternFormulaKeyboardAdapter
 
@@ -324,164 +325,17 @@
         case BRACKET_CLOSE:
             return [self buildBracketClose];
             break;
-            
-        //COSTUME
-            
-        //SENSOR
-        case DATE_YEAR:
-            return [self buildSensor:DATE_YEAR];
-            break;
-        case DATE_MONTH:
-            return [self buildSensor:DATE_MONTH];
-            break;
-        case DATE_DAY:
-            return [self buildSensor:DATE_DAY];
-            break;
-        case DATE_WEEKDAY:
-            return [self buildSensor:DATE_WEEKDAY];
-            break;
-        case TIME_HOUR:
-            return [self buildSensor:TIME_HOUR];
-            break;
-        case TIME_MINUTE:
-            return [self buildSensor:TIME_MINUTE];
-            break;
-        case TIME_SECOND:
-            return [self buildSensor:TIME_SECOND];
-            break;
-        case COMPASS_DIRECTION:
-            return [self buildSensor:COMPASS_DIRECTION];
-            break;
-        case LOUDNESS:
-            return [self buildSensor:LOUDNESS];
-            break;
-        case OBJECT_BRIGHTNESS:
-            return [self buildSensor:OBJECT_BRIGHTNESS];
-            break;
-        case OBJECT_COLOR:
-            return [self buildSensor:OBJECT_COLOR];
-            break;
-        case OBJECT_LOOK_NUMBER:
-            return [self buildSensor:OBJECT_LOOK_NUMBER];
-            break;
-        case OBJECT_LOOK_NAME:
-            return [self buildSensor:OBJECT_LOOK_NAME];
-            break;
-        case OBJECT_BACKGROUND_NUMBER:
-            return [self buildSensor:OBJECT_BACKGROUND_NUMBER];
-            break;
-        case OBJECT_BACKGROUND_NAME:
-            return [self buildSensor:OBJECT_BACKGROUND_NAME];
-            break;
-        case OBJECT_GHOSTEFFECT:
-            return [self buildSensor:OBJECT_GHOSTEFFECT];
-            break;
-        case OBJECT_LAYER:
-            return [self buildSensor:OBJECT_LAYER];
-            break;
-        case OBJECT_ROTATION:
-            return [self buildSensor:OBJECT_ROTATION];
-            break;
-        case OBJECT_SIZE:
-            return [self buildSensor:OBJECT_SIZE];
-            break;
-        case OBJECT_X:
-            return [self buildSensor:OBJECT_X];
-            break;
-        case OBJECT_Y:
-            return [self buildSensor:OBJECT_Y];
-            break;
-        case X_ACCELERATION:
-            return [self buildSensor:X_ACCELERATION];
-            break;
-        case X_INCLINATION:
-            return [self buildSensor:X_INCLINATION];
-            break;
-        case Y_ACCELERATION:
-            return [self buildSensor:Y_ACCELERATION];
-            break;
-        case Y_INCLINATION:
-            return [self buildSensor:Y_INCLINATION];
-            break;
-        case LATITUDE:
-            return [self buildSensor:LATITUDE];
-            break;
-        case LONGITUDE:
-            return [self buildSensor:LONGITUDE];
-            break;
-        case LOCATION_ACCURACY:
-            return [self buildSensor:LOCATION_ACCURACY];
-            break;
-        case ALTITUDE:
-            return [self buildSensor:ALTITUDE];
-            break;
-        case FINGER_TOUCHED:
-            return [self buildSensor:FINGER_TOUCHED];
-            break;
-        case FINGER_X:
-            return [self buildSensor:FINGER_X];
-            break;
-        case FINGER_Y:
-            return [self buildSensor:FINGER_Y];
-            break;
-        case LAST_FINGER_INDEX:
-            return [self buildSensor:LAST_FINGER_INDEX];
-            break;
-        case Z_ACCELERATION:
-            return [self buildSensor:Z_ACCELERATION];
-            break;
-        case FACE_DETECTED:
-            return [self buildSensor:FACE_DETECTED];
-            break;
-        case FACE_SIZE:
-            return [self buildSensor:FACE_SIZE];
-            break;
-        case FACE_POSITION_X:
-            return [self buildSensor:FACE_POSITION_X];
-            break;
-        case FACE_POSITION_Y:
-            return [self buildSensor:FACE_POSITION_Y];
-            break;
-        case phiro_front_left:
-            return  [self buildSensor:phiro_front_left];
-            break;
-        case phiro_front_right:
-            return  [self buildSensor:phiro_front_right];
-            break;
-        case phiro_bottom_left:
-            return  [self buildSensor:phiro_bottom_left];
-            break;
-        case phiro_bottom_right:
-            return  [self buildSensor:phiro_bottom_right];
-            break;
-        case phiro_side_left:
-            return  [self buildSensor:phiro_side_left];
-            break;
-        case phiro_side_right:
-            return  [self buildSensor:phiro_side_right];
-            break;
-        case arduino_analogPin:
-            return [self buildSingleParameterSensor:arduino_analogPin
-                               withFirstParameterType:TOKEN_TYPE_NUMBER
-                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
-            break;
-//            return  [self buildSensor:arduino_analogPin];
-//            break;
-        case arduino_digitalPin:
-//            return  [self buildSensor:arduino_digitalPin];
-//            break;
 
-            return [self buildSingleParameterSensor:arduino_digitalPin
-                               withFirstParameterType:TOKEN_TYPE_NUMBER
-                                    andParameterValue:[NSString stringWithFormat:@"%d",0]];
-            break;
         default:
             return nil;
-            break;
-            
+            break;            
     }
-    
-    
+}
+
+- (NSMutableArray *)createInternTokenListBySensor:(id<CBSensor>)sensor
+{
+    // TODO arduino: buildSingleParameterFunction
+    return [self buildSensor:sensor];
 }
 
 - (NSMutableArray *)buildUserVariable:(NSString *)name
@@ -594,22 +448,25 @@
     return returnList;
 }
 
-- (NSMutableArray *)buildSensor:(Sensor)sensor
+- (NSMutableArray *)buildSensor:(id<CBSensor>)sensor
 {
+    NSString *sensorTag = [[CBSensorManager shared] tagWithSensor:sensor];
+    
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_SENSOR
-                                                  AndValue:[SensorManager stringForSensor:sensor]]];
+                                                  AndValue:sensorTag]];
     return returnList;
 }
 
-- (NSMutableArray *)buildSingleParameterSensor:(Sensor)sensor
+- (NSMutableArray *)buildSingleParameterSensor:(id)sensor
                           withFirstParameterType:(InternTokenType)firstParameter
                                andParameterValue:(NSString *)parameterValue
 {
+    NSString *sensorTag = [[CBSensorManager shared] tagWithSensor:sensor];
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_FUNCTION_NAME
-                                                  AndValue:[SensorManager stringForSensor:sensor]]];
+                                                  AndValue:sensorTag]];
     
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     

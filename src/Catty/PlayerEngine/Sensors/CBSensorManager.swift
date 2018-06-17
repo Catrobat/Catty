@@ -28,16 +28,20 @@ import CoreLocation
     @objc public static let shared = CBSensorManager()
     public var defaultValueForUndefinedSensor: Double = 0
     
-    private var sensors: [String: CBSensor]
+    private var sensors: [CBSensor]
+    private var sensorMap: [String: CBSensor]
     private var motionManager: CMMotionManager
     private var locationManager: CLLocationManager
+    private var bluetoothService: BluetoothService
     private var faceDetectionManager: FaceDetection
     
     override private init() {
         motionManager = CMMotionManager()
         locationManager = CLLocationManager()
+        bluetoothService = BluetoothService.sharedInstance()
         faceDetectionManager = FaceDetection()
-        sensors = [String: CBSensor]()
+        sensors = [CBSensor]()
+        sensorMap = [String: CBSensor]()
         super.init()
         
         registerSensors()
@@ -46,25 +50,26 @@ import CoreLocation
     func registerSensors() {
         let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
+        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         
         // In the Formula Editor the sensors appear in the same order
-        let sensors: [CBSensor] = [
+        self.sensors = [
             InclinationXSensor(motionManagerGetter: motionManagerGetter),
             InclinationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationXSensor(motionManagerGetter: motionManagerGetter),
             AccelerationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationZSensor(motionManagerGetter: motionManagerGetter),
             CompassDirectionSensor(locationManagerGetter: locationManagerGetter),
-            /*LatitudeSensor(locationManagerGetter: locationManagerGetter),
+            LatitudeSensor(locationManagerGetter: locationManagerGetter),
             LongitudeSensor(locationManagerGetter: locationManagerGetter),
             LocationAccuracySensor(locationManagerGetter: locationManagerGetter),
             AltitudeSensor(locationManagerGetter: locationManagerGetter),
-            FingerTouchedSensor(locationManagerGetter: locationManagerGetter),
-            FingerXSensor(locationManagerGetter: locationManagerGetter),
-            FingerYSensor(locationManagerGetter: locationManagerGetter),
-            LastFingerIndexSensor(locationManagerGetter: locationManagerGetter),
+            FingerTouchedSensor(),
+            FingerXSensor(),
+            FingerYSensor(),
+            LastFingerIndexSensor(),
             
-            DateYearSensor(),
+            /*DateYearSensor(),
             DateMonthSensor(),
             DateDaySensor(),
             DateWeekdaySensor(),
@@ -79,49 +84,66 @@ import CoreLocation
             FaceDetectedSensor(),
             FaceSizeSensor(),
             FacePositionXSensor(),
-            FacePositionYSensor(),
+            FacePositionYSensor(),*/
             
-            PhiroFrontLeftSensor(),
-            PhiroFrontRightSensor(),
-            PhiroSideLeftSensor(),
-            PhiroSideRightSensor(),
-            PhiroBottomLeftSensor(),
-            PhiroBottomRightSensor(),
+            PhiroFrontLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroFrontRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroBottomLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroBottomRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             
-            ArduinoAnalogPinSensor(),
+            /*ArduinoAnalogPinSensor(), // only show if [[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]
             ArduinoDigitalPinSensor(),*/
-            
+ 
             PositionXSensor(),
             PositionYSensor(),
             TransparencySensor(),
             BrightnessSensor(),
-            /*ColorSensor(),
+            ColorSensor(),
             BackgroundNumberSensor(), // only for background
             BackgroundNameSensor(), // only for background
             LookNumberSensor(), // only for look
-            LookNameSensor(),*/ // only for look
+            LookNameSensor(), // only for look
             
             SizeSensor(),
             RotationSensor(),
             LayerSensor()
         ]
-        sensors.forEach { self.sensors[type(of: $0).tag] = $0 }
+        self.sensors.forEach { self.sensorMap[type(of: $0).tag] = $0 }
     }
     
     @objc func sensorList() -> [CBSensor] {
-        return Array(sensors.values.map{ $0 })
+        return self.sensors
     }
     
     @objc func deviceSensors() -> [DeviceSensor] {
-        return Array(sensors.values.filter{$0 is DeviceSensor}.map{ $0 as! DeviceSensor })
+        return self.sensors.filter{$0 is DeviceSensor}.map{ $0 as! DeviceSensor }
     }
     
     @objc func objectSensors() -> [ObjectSensor] {
-        return Array(sensors.values.filter{$0 is ObjectSensor}.map{ $0 as! ObjectSensor })
+        return self.sensors.filter{$0 is ObjectSensor}.map{ $0 as! ObjectSensor }
     }
     
-    func sensor(tag: String) -> CBSensor? {
-        return sensors[tag]
+    @objc func phiroSensors() -> [PhiroSensor] {
+        return self.sensors.filter{$0 is PhiroSensor}.map{ $0 as! PhiroSensor }
+    }
+    
+    @objc func sensor(tag: String) -> CBSensor? {
+        return self.sensorMap[tag]
+    }
+    
+    @objc func tag(sensor: CBSensor) -> String {
+        return type(of: sensor).tag
+    }
+    
+    @objc func name(sensor: CBSensor) -> String {
+        return type(of: sensor).name
+    }
+    
+    @objc func name(tag: String) -> String? {
+        guard let sensor = self.sensor(tag: tag) else { return nil }
+        return type(of: sensor).name
     }
     
     // TODO write test
@@ -130,14 +152,14 @@ import CoreLocation
         return type(of: sensor).requiredResource
     }
 
-    @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> Double {
-        guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor }
+    @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
+        guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor as AnyObject }
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
-            return sensor.standardizedValue(for: spriteObject)
+            return sensor.standardizedValue(for: spriteObject) as AnyObject
         } else if let sensor = sensor as? DeviceSensor {
-            return sensor.standardizedValue()
+            return sensor.standardizedValue() as AnyObject
         }
-        return type(of: sensor).defaultValue
+        return type(of: sensor).defaultValue as AnyObject
     }
     
     @objc(setupSensorsForRequiredResources:)

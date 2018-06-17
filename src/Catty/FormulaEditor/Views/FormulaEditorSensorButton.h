@@ -20,22 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
+#import <UIKit/UIKit.h>
+#import "Pocket_Code-Swift.h"
 
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
+@interface FormulaEditorSensorButton : UIButton
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
-    }
+@property(nonatomic, strong) id<CBSensor> sensor;
 
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
-    }
-    
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
-    }
-}
+@end

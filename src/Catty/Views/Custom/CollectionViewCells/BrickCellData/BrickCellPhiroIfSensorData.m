@@ -26,6 +26,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickPhiroIfSensorProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BrickCellPhiroIfSensorData
 
@@ -40,35 +41,31 @@
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
             Brick<BrickPhiroIfSensorProtocol> *ifSensorBrick = (Brick<BrickPhiroIfSensorProtocol>*)brickCell.scriptOrBrick;
             NSString* currentSensor = [ifSensorBrick sensorForLineNumber:line andParameterNumber:parameter];
-            switch([SensorManager sensorForString:currentSensor]) {
-                case phiro_front_left:
-                    currentOptionIndex = 0;
-                    break;
-                case phiro_front_right:
-                    currentOptionIndex = 1;
-                    break;
-                case phiro_bottom_left:
-                    currentOptionIndex = 2;
-                    break;
-                case phiro_bottom_right:
-                    currentOptionIndex = 3;
-                    break;
-                case phiro_side_left:
-                    currentOptionIndex = 4;
-                    break;
-                case phiro_side_right:
-                    currentOptionIndex = 5;
-                    break;
-                default:
-                    [NSException raise:NSGenericException format:@"Unexpected FormatType."];
+            
+            id sensor = [[CBSensorManager shared] sensorWithTag:currentSensor];
+            
+            if ([sensor isKindOfClass:[PhiroFrontLeftSensor class]]) {
+                currentOptionIndex = 0;
+            } else if ([sensor isKindOfClass:[PhiroFrontRightSensor class]]) {
+                currentOptionIndex = 1;
+            } else if ([sensor isKindOfClass:[PhiroBottomLeftSensor class]]) {
+                currentOptionIndex = 2;
+            } else if ([sensor isKindOfClass:[PhiroBottomRightSensor class]]) {
+                currentOptionIndex = 3;
+            } else if ([sensor isKindOfClass:[PhiroSideLeftSensor class]]) {
+                currentOptionIndex = 4;
+            } else if ([sensor isKindOfClass:[PhiroSideRightSensor class]]) {
+                currentOptionIndex = 5;
+            } else {
+                [NSException raise:NSGenericException format:@"Unexpected FormatType."];
             }
         }
-        [options addObject:[SensorManager stringForSensor:phiro_front_left]];
-        [options addObject:[SensorManager stringForSensor:phiro_front_right]];
-        [options addObject:[SensorManager stringForSensor:phiro_bottom_left]];
-        [options addObject:[SensorManager stringForSensor:phiro_bottom_right]];
-        [options addObject:[SensorManager stringForSensor:phiro_side_left]];
-        [options addObject:[SensorManager stringForSensor:phiro_side_right]];
+        [options addObject:PhiroFrontLeftSensor.tag];
+        [options addObject:PhiroFrontRightSensor.tag];
+        [options addObject:PhiroBottomLeftSensor.tag];
+        [options addObject:PhiroBottomRightSensor.tag];
+        [options addObject:PhiroSideLeftSensor.tag];
+        [options addObject:PhiroSideRightSensor.tag];
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];

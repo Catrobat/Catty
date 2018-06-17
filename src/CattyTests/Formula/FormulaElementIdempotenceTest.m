@@ -27,6 +27,7 @@
 #import "InternToken.h"
 #import "Operators.h"
 #import "InternFormulaParser.h"
+#import "Pocket_Code-Swift.h"
 
 @interface FormulaElementIdempotenceTest : XCTestCase
 
@@ -81,7 +82,7 @@
 - (void)testSingleSensor
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:X_ACCELERATION]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:AccelerationXSensor.tag]];
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
@@ -92,9 +93,9 @@
 - (void)testTwoSensor
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:X_ACCELERATION]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:AccelerationXSensor.tag]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:Y_ACCELERATION]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:AccelerationYSensor.tag]];
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
@@ -105,7 +106,7 @@
 - (void)testSensorLeftChild
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:X_ACCELERATION]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:AccelerationXSensor.tag]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"3"]];
     
@@ -120,7 +121,7 @@
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"3"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:X_ACCELERATION]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:AccelerationXSensor.tag]];
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
@@ -135,7 +136,7 @@
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:PLUS]]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"4"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]]];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:X_ACCELERATION]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:AccelerationXSensor.tag]];
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];

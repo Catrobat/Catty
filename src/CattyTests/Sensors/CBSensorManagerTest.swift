@@ -35,7 +35,7 @@ final class CBSensorManagerTest: XCTestCase {
         manager.defaultValueForUndefinedSensor = 12.3
         
         XCTAssertNil(manager.sensor(tag: "noSensorForThisTag"))
-        XCTAssertEqual(manager.defaultValueForUndefinedSensor, manager.value(sensorTag: "noSensorForThisTag", spriteObject: nil))
+        XCTAssertEqual(manager.defaultValueForUndefinedSensor, manager.value(sensorTag: "noSensorForThisTag", spriteObject: nil) as! Double)
     }
     
     func testValueForTag() {

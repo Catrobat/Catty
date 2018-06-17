@@ -20,22 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
-
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
+@objc class LocationAccuracySensor : NSObject, DeviceSensor {
+    
+    static let tag = "LOCATION_ACCURACY"
+    static let name = kUIFESensorLocationAccuracy
     static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
-
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
-    }
-
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    static let requiredResource = ResourceType.location
+    
+    let getLocationManager: () -> LocationManager?
+    
+    func rawValue() -> Double {
+        return self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultValue
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    func standardizedValue() -> Double {
+        return self.rawValue()
+    }
+    
+    func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    init(locationManagerGetter: @escaping () -> LocationManager?) {
+        self.getLocationManager = locationManagerGetter
     }
 }

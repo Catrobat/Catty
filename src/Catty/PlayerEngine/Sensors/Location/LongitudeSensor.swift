@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LongitudeSensor : DeviceSensor {
+@objc class LongitudeSensor : NSObject, DeviceSensor {
     
     static let tag = "LONGITUDE"
     static let name = kUIFESensorLongitude

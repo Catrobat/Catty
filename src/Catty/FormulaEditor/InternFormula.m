@@ -118,23 +118,28 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
+- (void)handleKeyInputWithSensor:(id<CBSensor>)sensor
+{
+    NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListBySensor:sensor];
+    [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:TOKEN_TYPE_SENSOR];
+}
+
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
 {
     NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListByResourceId:resourceId name:name];
-    
+    [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:resourceId];
+}
+
+- (void)handleKeyInputWithInternTokenList:(NSMutableArray*)keyInputInternTokenList andResourceId:(int)resourceId
+{
     CursorTokenPropertiesAfterModification cursorTokenPropertiesAfterInput = DO_NOT_MODIFY;
-    if(resourceId == CLEAR)
-    {
+    if(resourceId == CLEAR) {
         cursorTokenPropertiesAfterInput = [self handleDeletion];
-    }else if ([self isTokenSelected])
-    {
+    } else if ([self isTokenSelected]) {
         cursorTokenPropertiesAfterInput = [self replaceSelection:keyInputInternTokenList];
-        
-    }else if(self.cursorTokenPosition == 0)
-    {
+    } else if(self.cursorTokenPosition == 0) {
         cursorTokenPropertiesAfterInput = [self insertRightToCurrentToken:keyInputInternTokenList];
-    }
-    else{
+    } else {
         switch (self.cursorTokenPosition) {
             case LEFT:
                 cursorTokenPropertiesAfterInput = [self insertLeftToCurrentToken:keyInputInternTokenList];

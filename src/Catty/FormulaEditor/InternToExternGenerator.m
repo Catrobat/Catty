@@ -21,6 +21,7 @@
  */
 
 #import "InternToExternGenerator.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InternToExternGenerator ()
 
@@ -205,7 +206,7 @@
             return returnValue;
             break;
         case TOKEN_TYPE_SENSOR:
-            return [SensorManager getExternName:[internToken getTokenStringValue]];
+            return [[CBSensorManager shared] nameWithTag:[internToken getTokenStringValue]];
             break;
         default:
             return [internToken getTokenStringValue];

@@ -35,6 +35,7 @@
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "ShapeButton.h"
+#import "FormulaEditorSensorButton.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
@@ -309,7 +310,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     for (id sensor in [[CBSensorManager shared] objectSensors]) {
         if ([sensor showInFormulaEditorFor:self.object]) {
-            topAnchorView = [self addButtonToScrollView:self.objectScrollView withTag:1 andTitle:[[sensor class] name] andTopAnchor:topAnchorView];
+            topAnchorView = [self addButtonToScrollView:self.objectScrollView withSensor:sensor andTopAnchor:topAnchorView];
             buttonCount++;
         }
     }
@@ -322,87 +323,31 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)initSensorView
 {
     NSInteger buttonCount = 0;
-    NSMutableArray<NSNumber*> *sensorArray = [NSMutableArray arrayWithObjects:
-                     [NSNumber numberWithInteger:X_INCLINATION],
-                     [NSNumber numberWithInteger:Y_INCLINATION],
-                     [NSNumber numberWithInteger:X_ACCELERATION],
-                     [NSNumber numberWithInteger:Y_ACCELERATION],
-                     [NSNumber numberWithInteger:Z_ACCELERATION],
-                     [NSNumber numberWithInteger:COMPASS_DIRECTION],
-                     [NSNumber numberWithInteger:LATITUDE],
-                     [NSNumber numberWithInteger:LONGITUDE],
-                     [NSNumber numberWithInteger:LOCATION_ACCURACY],
-                     [NSNumber numberWithInteger:ALTITUDE],
-                     [NSNumber numberWithInteger:FINGER_TOUCHED],
-                     [NSNumber numberWithInteger:FINGER_X],
-                     [NSNumber numberWithInteger:FINGER_Y],
-                     [NSNumber numberWithInteger:LAST_FINGER_INDEX],
-                     [NSNumber numberWithInteger:LOUDNESS],
-                     [NSNumber numberWithInteger:DATE_YEAR],
-                     [NSNumber numberWithInteger:DATE_MONTH],
-                     [NSNumber numberWithInteger:DATE_DAY],
-                     [NSNumber numberWithInteger:DATE_WEEKDAY],
-                     [NSNumber numberWithInteger:TIME_HOUR],
-                     [NSNumber numberWithInteger:TIME_MINUTE],
-                     [NSNumber numberWithInteger:TIME_SECOND],
-                     nil];
-    
-    NSArray<NSNumber*> *functionSensorArray = [NSArray arrayWithObjects:
-                                               [NSNumber numberWithInteger:MULTI_FINGER_TOUCHED],
-                                               [NSNumber numberWithInteger:MULTI_FINGER_X],
-                                               [NSNumber numberWithInteger:MULTI_FINGER_Y],
-                                               nil];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseFaceDetectionSensors]) {
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_DETECTED]];
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_SIZE]];
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_POSITION_X]];
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_POSITION_Y]];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_front_left]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_front_right]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_side_left]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_side_right]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_bottom_left]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_bottom_left]];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
-        [sensorArray addObject: [NSNumber numberWithInteger:arduino_analogPin]];
-        [sensorArray addObject: [NSNumber numberWithInteger:arduino_digitalPin]];
-    }
-    
     UIView* topAnchorView = nil;
-    for (NSNumber *tag in sensorArray) {
-        NSString *title = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[tag integerValue]]];
-        topAnchorView = [self addButtonToScrollView:self.sensorScrollView withTag:[tag integerValue] andTitle:title andTopAnchor:topAnchorView];
-        buttonCount++;
-    }
     
-    for (NSNumber *tag in functionSensorArray) {
-        NSString *title = [[Functions getExternName:[Functions getName:(Function)[tag integerValue]]] stringByAppendingString:@"(1)"];
-        topAnchorView = [self addButtonToScrollView:self.sensorScrollView withTag:[tag integerValue] andTitle:title andTopAnchor:topAnchorView];
-        buttonCount++;
+    for (id sensor in [[CBSensorManager shared] deviceSensors]) {
+        if ([sensor showInFormulaEditor]) {
+            topAnchorView = [self addButtonToScrollView:self.sensorScrollView withSensor:sensor andTopAnchor:topAnchorView];
+            buttonCount++;
+        }
     }
     
     self.sensorScrollView.frame = CGRectMake(self.sensorScrollView.frame.origin.x, self.sensorScrollView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
     self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
 }
 
--(UIButton*)addButtonToScrollView:(UIScrollView*)scrollView withTag:(NSInteger)tag andTitle:(NSString*)title andTopAnchor:(UIView*)topAnchorView
+-(UIButton*)addButtonToScrollView:(UIScrollView*)scrollView withSensor:(id)sensor andTopAnchor:(UIView*)topAnchorView
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    FormulaEditorSensorButton *button = [FormulaEditorSensorButton buttonWithType:UIButtonTypeRoundedRect];
     
     [button addTarget:self
                action:@selector(buttonPressed:)
      forControlEvents:UIControlEventTouchUpInside];
     
-    button.tag = tag;
+    button.sensor = sensor;
     button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
     button.translatesAutoresizingMaskIntoConstraints = NO;
-    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitle:[[sensor class] name] forState:UIControlStateNormal];
     
     [scrollView addSubview:button];
     
@@ -463,7 +408,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
-    if([sender isKindOfClass:[UIButton class]]) {
+    if([sender isKindOfClass:[FormulaEditorSensorButton class]]) {
+        FormulaEditorSensorButton *button = (FormulaEditorSensorButton *)sender;
+        NSString *title = button.titleLabel.text;
+        
+        [self handleInputWithTitle:title AndSensor:button.sensor];
+        
+    } else if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
         NSString *title = button.titleLabel.text;
         
@@ -471,11 +422,20 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-//3011 for string
+- (void)handleInputWithTitle:(NSString*)title AndSensor:(id<CBSensor>)sensor
+{
+    [self.internFormula handleKeyInputWithSensor:sensor];
+    [self handleInput];
+}
 
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
+    [self handleInput];
+}
+
+- (void)handleInput
+{
     NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];

@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
+@objc class ColorSensor: NSObject, ObjectSensor {
 
-    static let tag = "OBJECT_BRIGHTNESS"
-    static let name = kUIFEObjectBrightness
+    static let tag = "OBJECT_COLOR"
+    static let name = kUIFEObjectColor
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
+        return Double(spriteObject.spriteNode.colorValue)
     }
 
     func standardizedValue(for spriteObject: SpriteObject) -> Double {

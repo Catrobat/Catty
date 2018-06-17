@@ -24,13 +24,14 @@ import XCTest
 
 @testable import Pocket_Code
 
+// TODO create unit test for each sensor and remove this test
 final class SensorHandlerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
     }
     
-    func testObjectLookName() {
+    /*func testObjectLookName() {
         let object = SpriteObject()
         let program = Program.defaultProgram(withName: "a", programID: kNoProgramIDYetPlaceholder)
         let spriteNode = CBSpriteNode(spriteObject: object)
@@ -244,5 +245,5 @@ final class SensorHandlerTests: XCTestCase {
         XCTAssertEqual(formula?.bufferedResult as? Int, components.second)
         
         Program.removeProgramFromDisk(withProgramName: program.header.programName, programID: program.header.programID)
-    }
+    }*/
 }

@@ -266,7 +266,7 @@ static SensorHandler* sharedSensorHandler = nil;
         case phiro_bottom_right:
         {
             if ([[BluetoothService sharedInstance] getSensorPhiro]) {
-                result = [[[BluetoothService sharedInstance] getSensorPhiro] getSensorValue:sensor-phiro_side_right];
+                //result = [[[BluetoothService sharedInstance] getSensorPhiro] getSensorValue:sensor-phiro_side_right];
             }
             break;
         }
