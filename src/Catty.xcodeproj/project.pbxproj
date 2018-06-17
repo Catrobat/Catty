@@ -401,6 +401,9 @@
 		4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A320D6710F00F93AB5 /* FingerYSensor.swift */; };
 		4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */; };
 		4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */; };
+		4CF072AB20D673C200F93AB5 /* StringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AA20D673C200F93AB5 /* StringSensor.swift */; };
+		4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */; };
+		4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */; };
 		4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */; };
 		4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
@@ -1581,6 +1584,9 @@
 		4CF072A320D6710F00F93AB5 /* FingerYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerYSensor.swift; sourceTree = "<group>"; };
 		4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerXSensor.swift; sourceTree = "<group>"; };
 		4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensor.swift; sourceTree = "<group>"; };
+		4CF072AA20D673C200F93AB5 /* StringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringSensor.swift; sourceTree = "<group>"; };
+		4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateYearSensor.swift; sourceTree = "<group>"; };
+		4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateYearSensorTest.swift; sourceTree = "<group>"; };
 		4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecording.swift"; sourceTree = "<group>"; };
 		4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecordingPreview.swift"; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
@@ -3642,6 +3648,7 @@
 			isa = PBXGroup;
 			children = (
 				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
+				4CF072AF20D6764E00F93AB5 /* Date */,
 				59D008EE208E435B000539E7 /* Mocks */,
 				4C994DED207A3CEF00C415FD /* Motion */,
 				4C11795A20AED57D006C6E32 /* Object */,
@@ -3663,7 +3670,7 @@
 			isa = PBXGroup;
 			children = (
 				4C994E05207A3D4100C415FD /* Audio */,
-				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
+				4CF072AC20D6751E00F93AB5 /* Date */,
 				4C11795220AEC351006C6E32 /* Extensions */,
 				4C994E1A207A55E400C415FD /* Heading */,
 				4C11794D20AEBE08006C6E32 /* Location */,
@@ -3672,6 +3679,7 @@
 				4CF0728220D657EB00F93AB5 /* Phiro */,
 				592EF6E42094B3C700BD6000 /* Protocols */,
 				4CF072A120D670CF00F93AB5 /* Touch */,
+				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
 			);
 			name = Sensors;
 			path = PlayerEngine/Sensors;
@@ -3998,6 +4006,22 @@
 			path = Touch;
 			sourceTree = "<group>";
 		};
+		4CF072AC20D6751E00F93AB5 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		4CF072AF20D6764E00F93AB5 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
 		4CF16E301D90310100B8C99A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -4043,6 +4067,7 @@
 				59D008E8208E3FDC000539E7 /* MotionManager.swift */,
 				592EF6E72094B52E00BD6000 /* ObjectSensor.swift */,
 				4C994DFE207A3D4100C415FD /* Sensor.swift */,
+				4CF072AA20D673C200F93AB5 /* StringSensor.swift */,
 				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
 				592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */,
 				4CF0728020D6577500F93AB5 /* PhiroSensor.swift */,
@@ -7588,6 +7613,7 @@
 				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
@@ -7655,6 +7681,7 @@
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				4C0F9F82204BD20A00E71B2D /* SpeakAndWaitBrick+Instruction.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
+				4CF072AB20D673C200F93AB5 /* StringSensor.swift in Sources */,
 				929CC0CD1BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m in Sources */,
 				4C0F9F8E204BD27200E71B2D /* RepeatUntilBrickCell.m in Sources */,
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
@@ -7896,6 +7923,7 @@
 				59697DA8201F4D0400A0071A /* MediaItem.swift in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
 				591596D6203563850015F74A /* UIBarButtonItem+InvisibleButton.swift in Sources */,
+				4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */,
 				4C994E1C207A55E500C415FD /* CompassDirectionSensor.swift in Sources */,
 				9200C2D51C8082EF002F5CA4 /* HideTextBrickCell.m in Sources */,
 				AA74EF001BC057C900D1E954 /* ShowBrick+CBXMLHandler.m in Sources */,

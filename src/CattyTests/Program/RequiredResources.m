@@ -149,14 +149,15 @@
 
 - (void)testSetBrightnessBrick2Resources
 {
-    /*SetBrightnessBrick *brick = [SetBrightnessBrick new];
+    SetBrightnessBrick *brick = [SetBrightnessBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:CompassDirectionSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.brightness = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kCompass, @"Resourses SetBrightnessBrick not correctly calculated");*/
+    XCTAssertEqual(resources, kCompass, @"Resourses SetBrightnessBrick not correctly calculated");
 }
+
 - (void)testClearGraphicEffectBrickResources
 {
     ClearGraphicEffectBrick *brick = [ClearGraphicEffectBrick new];
@@ -165,6 +166,7 @@
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(resources, kNoResources, @"Resourses ClearGraphicEffectBrick not correctly calculated");
 }
+
 - (void)testChangeTransparencyByNBrickResources
 {
     ChangeTransparencyByNBrick *brick = [ChangeTransparencyByNBrick new];

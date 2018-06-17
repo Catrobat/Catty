@@ -69,15 +69,15 @@ import CoreLocation
             FingerYSensor(),
             LastFingerIndexSensor(),
             
-            /*DateYearSensor(),
-            DateMonthSensor(),
-            DateDaySensor(),
-            DateWeekdaySensor(),
-            TimeHourSensor(),
-            TimeMinuteSensor(),
-            TimeSecondSensor(),
+            DateYearSensor(),
+            //DateMonthSensor(),
+            //DateDaySensor(),
+            //DateWeekdaySensor(),
+            //TimeHourSensor(),
+            //TimeMinuteSensor(),
+            //TimeSecondSensor(),
             
-            MultiFingerTouchedSensor(),
+            /*MultiFingerTouchedSensor(),
             MultiFingerXSensor(),
             MultiFingerYSensor(),
             
@@ -154,11 +154,15 @@ import CoreLocation
 
     @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
         guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor as AnyObject }
+        
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
             return sensor.standardizedValue(for: spriteObject) as AnyObject
         } else if let sensor = sensor as? DeviceSensor {
             return sensor.standardizedValue() as AnyObject
+        } else if let sensor = sensor as? StringSensor {
+            return sensor.value() as AnyObject
         }
+        
         return type(of: sensor).defaultValue as AnyObject
     }
     

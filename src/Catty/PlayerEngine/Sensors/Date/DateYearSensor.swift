@@ -20,28 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class CompassDirectionSensor : NSObject, DeviceSensor {
+class DateYearSensor : DeviceSensor {
     
-    static let tag = "COMPASS_DIRECTION"
-    static let name = kUIFESensorCompass
+    static let tag = "DATE_YEAR"
+    static let name = kUIFESensorDateYear
     static let defaultValue = 0.0
-    static let requiredResource = ResourceType.compass
-
-    let getLocationManager: () -> LocationManager?
-
+    static let requiredResource = ResourceType.noResources
+    
     func rawValue() -> Double {
-        return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultValue
+        return Double(Calendar.current.component(.year, from: Date()))
     }
-
+    
     func standardizedValue() -> Double {
-        return -self.rawValue()
+        return self.rawValue()
     }
     
     func showInFormulaEditor() -> Bool {
         return true
-    }
-
-    init(locationManagerGetter: @escaping () -> LocationManager?) {
-        self.getLocationManager = locationManagerGetter
     }
 }

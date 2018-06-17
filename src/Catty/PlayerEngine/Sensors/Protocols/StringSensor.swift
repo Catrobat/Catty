@@ -20,28 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class CompassDirectionSensor : NSObject, DeviceSensor {
-    
-    static let tag = "COMPASS_DIRECTION"
-    static let name = kUIFESensorCompass
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.compass
+@objc protocol StringSensor: CBSensor {
 
-    let getLocationManager: () -> LocationManager?
+    func value() -> String
 
-    func rawValue() -> Double {
-        return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultValue
-    }
-
-    func standardizedValue() -> Double {
-        return -self.rawValue()
-    }
-    
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-
-    init(locationManagerGetter: @escaping () -> LocationManager?) {
-        self.getLocationManager = locationManagerGetter
-    }
+    func showInFormulaEditor() -> Bool
 }

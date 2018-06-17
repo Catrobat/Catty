@@ -20,28 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class CompassDirectionSensor : NSObject, DeviceSensor {
+import XCTest
+
+@testable import Pocket_Code
+
+final class DateYearSensorTest: XCTestCase {
     
-    static let tag = "COMPASS_DIRECTION"
-    static let name = kUIFESensorCompass
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.compass
-
-    let getLocationManager: () -> LocationManager?
-
-    func rawValue() -> Double {
-        return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultValue
-    }
-
-    func standardizedValue() -> Double {
-        return -self.rawValue()
+    var sensor: DateYearSensor!
+    
+    override func setUp() {
+        self.sensor = DateYearSensor()
     }
     
-    func showInFormulaEditor() -> Bool {
-        return true
+    override func tearDown() {
+        self.sensor = nil
     }
-
-    init(locationManagerGetter: @escaping () -> LocationManager?) {
-        self.getLocationManager = locationManagerGetter
+    
+    func testTag() {
+        XCTAssertEqual("DATE_YEAR", type(of: sensor).tag)
+    }
+    
+    func testRequiredResources() {
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+    }
+    
+    func testRawValue() {
+        XCTAssertEqual(Calendar.current.component(.year, from: Date()), Int(sensor.rawValue()))
+    }
+    
+    func testStandardizedValue() {
+        XCTAssertEqual(sensor.rawValue(), sensor.standardizedValue())
     }
 }
