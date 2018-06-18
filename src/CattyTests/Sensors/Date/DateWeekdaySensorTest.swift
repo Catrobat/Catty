@@ -55,11 +55,11 @@ final class DateWeekdaySensorTest: XCTestCase {
     func testRawValue() {
         // Monday
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529280000)
-        XCTAssertEqual(2, Int(sensor.rawValue()))
+        XCTAssertEqual(1, Int(sensor.rawValue()))
         
         // Sunday
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529193600)
-        XCTAssertEqual(1, Int(sensor.rawValue()))
+        XCTAssertEqual(7, Int(sensor.rawValue()))
     }
     
     func testStandardizedValue() {

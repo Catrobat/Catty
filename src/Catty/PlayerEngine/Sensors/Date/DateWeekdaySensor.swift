@@ -27,8 +27,19 @@ class DateWeekdaySensor : DateSensor {
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
     
+    func convertGregorianCalendar() -> Double {
+        var day = Double(Calendar.current.component(.weekday, from: self.date()))
+        
+        if day == 1 {
+            day = 7 //Sunday
+        } else {
+            day -= 1
+        }
+        return day
+    }
+    
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.weekday, from: self.date()))
+        return convertGregorianCalendar()
     }
     
     func standardizedValue() -> Double {
