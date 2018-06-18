@@ -54,8 +54,8 @@ final class TimeHourSensorTest: XCTestCase {
     
     func testRawValue() {
         // test one digit
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529301600)
-        XCTAssertEqual(6, Int(sensor.rawValue()))
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1533970800)
+        XCTAssertEqual(7, Int(sensor.rawValue()))
         
         // test two digits
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529323200)
