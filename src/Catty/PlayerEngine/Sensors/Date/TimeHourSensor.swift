@@ -27,8 +27,12 @@ class TimeHourSensor : DateSensor {
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
     
+    func convertUTCToGMT() -> Double {
+        return Double(Calendar.current.component(.hour, from: self.date()) - 3) 
+    }
+    
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.hour, from: self.date()))
+        return convertUTCToGMT()
     }
     
     func standardizedValue() -> Double {
@@ -42,5 +46,6 @@ class TimeHourSensor : DateSensor {
     func date() -> Date {
         return Date()
     }
+
 }
 
