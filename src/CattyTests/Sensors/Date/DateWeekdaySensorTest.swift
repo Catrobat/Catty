@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class DateMonthSensorMock: DateMonthSensor {
+final class DateWeekdaySensorMock: DateWeekdaySensor {
     var mockDate: Date = Date()
     
     override func date() -> Date {
@@ -32,12 +32,12 @@ final class DateMonthSensorMock: DateMonthSensor {
     }
 }
 
-final class DateMonthSensorTest: XCTestCase {
+final class DateWeekdaySensorTest: XCTestCase {
     
-    var sensor: DateMonthSensorMock!
+    var sensor: DateWeekdaySensorMock!
     
     override func setUp() {
-        self.sensor = DateMonthSensorMock()
+        self.sensor = DateWeekdaySensorMock()
     }
     
     override func tearDown() {
@@ -45,7 +45,7 @@ final class DateMonthSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("DATE_MONTH", type(of: sensor).tag)
+        XCTAssertEqual("DATE_WEEKDAY", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
@@ -53,13 +53,13 @@ final class DateMonthSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        // test one digit
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1526515200)
-        XCTAssertEqual(5, Int(sensor.rawValue()))
+        // Monday
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529280000)
+        XCTAssertEqual(2, Int(sensor.rawValue()))
         
-        // test two digits
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1544659200)
-        XCTAssertEqual(12, Int(sensor.rawValue()))
+        // Sunday
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529193600)
+        XCTAssertEqual(1, Int(sensor.rawValue()))
     }
     
     func testStandardizedValue() {
