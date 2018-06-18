@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DateWeekdaySensor : DateSensor {
+class TimeMinuteSensor : DateSensor {
     
-    static let tag = "DATE_WEEKDAY"
-    static let name = kUIFESensorDateWeekday
+    static let tag = "TIME_MINUTE"
+    static let name = kUIFESensorTimeMinute
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.weekday, from: self.date()))
+        return Double(Calendar.current.component(.minute, from: self.date()))
     }
     
     func standardizedValue() -> Double {
