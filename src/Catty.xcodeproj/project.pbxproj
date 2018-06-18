@@ -1029,10 +1029,12 @@
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
 		F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
-		F4201CF520D79C900030181B /* DateHourSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF420D79C900030181B /* DateHourSensorTest.swift */; };
-		F4201CF920D79CA80030181B /* DateHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* DateHourSensor.swift */; };
-		F4201CFB20D7A1060030181B /* DateMinuteSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFA20D7A1060030181B /* DateMinuteSensor.swift */; };
-		F4201CFD20D7A11F0030181B /* DateMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* DateMinuteSensorTest.swift */; };
+		F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF420D79C900030181B /* TimeHourSensorTest.swift */; };
+		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
+		F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFA20D7A1060030181B /* TimeMinuteSensor.swift */; };
+		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
+		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
+		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
@@ -2649,10 +2651,12 @@
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensorTest.swift; sourceTree = "<group>"; };
 		F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensor.swift; sourceTree = "<group>"; };
-		F4201CF420D79C900030181B /* DateHourSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHourSensorTest.swift; sourceTree = "<group>"; };
-		F4201CF820D79CA80030181B /* DateHourSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHourSensor.swift; sourceTree = "<group>"; };
-		F4201CFA20D7A1060030181B /* DateMinuteSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMinuteSensor.swift; sourceTree = "<group>"; };
-		F4201CFC20D7A11F0030181B /* DateMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMinuteSensorTest.swift; sourceTree = "<group>"; };
+		F4201CF420D79C900030181B /* TimeHourSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHourSensorTest.swift; sourceTree = "<group>"; };
+		F4201CF820D79CA80030181B /* TimeHourSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHourSensor.swift; sourceTree = "<group>"; };
+		F4201CFA20D7A1060030181B /* TimeMinuteSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensor.swift; sourceTree = "<group>"; };
+		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
+		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
+		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
@@ -4035,8 +4039,9 @@
 				F48E946220D6F221007E782E /* DateMonthSensor.swift */,
 				F48E946A20D6F869007E782E /* DateDaySensor.swift */,
 				F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */,
-				F4201CFA20D7A1060030181B /* DateMinuteSensor.swift */,
-				F4201CF820D79CA80030181B /* DateHourSensor.swift */,
+				F4201CFA20D7A1060030181B /* TimeMinuteSensor.swift */,
+				F4201CF820D79CA80030181B /* TimeHourSensor.swift */,
+				F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -4048,8 +4053,9 @@
 				F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */,
 				F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */,
 				F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */,
-				F4201CF420D79C900030181B /* DateHourSensorTest.swift */,
-				F4201CFC20D7A11F0030181B /* DateMinuteSensorTest.swift */,
+				F4201CF420D79C900030181B /* TimeHourSensorTest.swift */,
+				F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */,
+				F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -7574,6 +7580,7 @@
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				4C994DF2207A3CF000C415FD /* CBSensorManagerTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
+				F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */,
 				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
 				F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */,
 				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
@@ -7613,7 +7620,7 @@
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
-				F4201CFD20D7A11F0030181B /* DateMinuteSensorTest.swift in Sources */,
+				F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
@@ -7654,7 +7661,7 @@
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
-				F4201CF520D79C900030181B /* DateHourSensorTest.swift in Sources */,
+				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
@@ -7886,7 +7893,7 @@
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				59697DB0201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
-				F4201CF920D79CA80030181B /* DateHourSensor.swift in Sources */,
+				F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */,
 				4C0F9F74204BD1CE00E71B2D /* CameraBrick+Instruction.swift in Sources */,
 				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
 				AA74EEE51BC057B900D1E954 /* WaitBrick+CBXMLHandler.m in Sources */,
@@ -8039,6 +8046,7 @@
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
+				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				4CF0727F20D6458900F93AB5 /* FormulaEditorSensorButton.m in Sources */,
@@ -8260,7 +8268,7 @@
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
-				F4201CFB20D7A1060030181B /* DateMinuteSensor.swift in Sources */,
+				F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
