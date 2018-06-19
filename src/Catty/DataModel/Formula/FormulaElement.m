@@ -29,7 +29,6 @@
 #import "Util.h"
 #import "InternFormulaParserException.h"
 #import "Pocket_Code-Swift.h"
-#import "TouchHandler.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 #define kEmptyStringFallback @""
@@ -149,23 +148,14 @@
             
         case SENSOR: {
             //NSDebug(@"SENSOR");
-            Sensor sensor = [SensorManager sensorForString:self.value];
-            if([SensorManager isObjectSensor:sensor]) {
-                if([SensorManager isStringSensor:sensor]){
-                    result = [self interpretLookStringSensor:sensor forSprite:sprite];
-                } else{
-                    result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];
-                }
-            } else {
-                result = [NSNumber numberWithDouble:[[SensorHandler sharedSensorHandler] valueForSensor:sensor]];
-            }
+            result = [[CBSensorManager shared] valueWithSensorTag:self.value spriteObject:sprite];
             break;
         }
             
         case BRACKET: {
            // NSDebug(@"BRACKET");
             result = [self.rightChild interpretRecursiveForSprite:sprite];
-            break;
+            break;  
         }
         case STRING:
     
@@ -198,82 +188,6 @@
     
     return result;
 }
-
-
-#pragma mark deprecated
-//- (id)interpretString:(NSString *)value
-//{
-//    if(self.parent == nil && self.type != USER_VARIABLE)
-//    {
-//        if(![self isStringDecimalNumber:self.value])
-//        {
-//            return value;
-//        }else{
-//             NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
-//            return anotherValue;
-//        }
-//    }
-//    
-//    if(self.parent != nil)
-//    {
-//        BOOL isAParentFunction = [Functions getFunctionByValue:self.parent.value] != NO_FUNCTION;
-//        if(isAParentFunction && self.parent.type == STRING)
-//        {
-//               if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)
-//               {
-//                  
-//                   
-//                if(![self isStringDecimalNumber:self.value])
-//                   {
-//                       return [NSNumber numberWithDouble:0.0f];
-//                   }else{
-//                        NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
-//                       return anotherValue;
-//                   }
-//               }
-//            return value;
-//        }
-//        
-//        if(isAParentFunction)
-//        {
-//            if(![self isStringDecimalNumber:self.value])
-//            {
-//                return value;
-//            }else{
-//                 NSNumber *anotherValue = [NSNumber numberWithDouble:[self.value doubleValue]];
-//                return anotherValue;
-//            }
-//        }
-//        
-//        BOOL isParentAnOperator = [Operators getOperatorByValue:self.parent.value] != NO_OPERATOR;
-//        
-//        if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
-//                                  [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
-//        {
-//            NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
-//            NSNumber * anotherValue = nil;
-//            if(![[NSDecimalNumber notANumber] isEqual:number])
-//            {
-//                anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
-//            }
-//            return anotherValue;
-//        }
-//    }
-//    
-//    if([value length] == 0)
-//    {
-//        return [NSNumber numberWithDouble:0.0f];
-//    }
-//    
-//    NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:value];
-//    NSNumber * anotherValue = nil;
-//    if(![[NSDecimalNumber notANumber] isEqual:number])    {
-//        anotherValue = [NSNumber numberWithDouble:[number doubleValue]];
-//    }
-//    
-//    return anotherValue;
-//    
-//}
 
 -(id) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
 {
@@ -465,21 +379,6 @@
         }
         case CONTAINS : {
             result = [self interpretFunctionCONTAINS:sprite];
-            break;
-        }
-        case MULTI_FINGER_TOUCHED: {
-            BOOL screenTouched = [[TouchHandler shared] screenIsTouched];
-            BOOL isRequestedTouch = ([[TouchHandler shared] numberOfTouches] == (NSUInteger)left);
-            
-            result = screenTouched && isRequestedTouch ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
-            break;
-        }
-        case MULTI_FINGER_X: {
-            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:(NSUInteger)left].x];
-            break;
-        }
-        case MULTI_FINGER_Y: {
-            result = [NSNumber numberWithFloat:[[TouchHandler shared] getPositionInSceneForTouchNumber:(NSUInteger)left].y];
             break;
         }
         default:
@@ -837,85 +736,6 @@
     return nil;
 }
 
-
-- (NSString*) interpretLookStringSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
-{
-    NSString* result = @"";
-    
-    switch (sensor){
-        case OBJECT_LOOK_NAME:
-        case OBJECT_BACKGROUND_NAME:
-        {
-            if (sprite.spriteNode.currentLook.name != nil){
-                result = sprite.spriteNode.currentLook.name;
-            }
-            break;
-        }
-        default: {
-            abort();
-            break;
-        }
-    }
-    
-    return result;
-}
-
-- (double) interpretLookSensor:(Sensor)sensor forSprite:(SpriteObject*)sprite
-{
-    double result = 0;
-    
-    switch (sensor) {
-            
-        case OBJECT_X: {
-            result = sprite.spriteNode.scenePosition.x;
-            break;
-        }
-        case OBJECT_Y: {
-            result = sprite.spriteNode.scenePosition.y;
-            break;
-        }
-        case OBJECT_GHOSTEFFECT: {
-            result = sprite.spriteNode.alpha;
-            break;
-        }
-        case OBJECT_BRIGHTNESS: {
-            result = sprite.spriteNode.brightness;
-            break;
-        }
-        case OBJECT_COLOR: {
-            result = sprite.spriteNode.colorValue;
-            break;
-        }
-        case OBJECT_LOOK_NUMBER:
-        case OBJECT_BACKGROUND_NUMBER: {
-            result = 1;
-            if (sprite.spriteNode.currentLook != nil && sprite.lookList.count > 0){
-                result = [sprite.lookList indexOfObject:sprite.spriteNode.currentLook] + 1;
-            }
-            break;
-        }
-        case OBJECT_SIZE: {
-            result = sprite.spriteNode.scaleX;
-            break;
-        }
-        case OBJECT_ROTATION: {
-            result = sprite.spriteNode.rotation;
-            break;
-        }
-        case OBJECT_LAYER: {
-            result = sprite.spriteNode.zIndex;
-            break;
-        }
-            
-        default:
-            abort();
-            break;
-    }
-    
-    return result;
-}
-
-
 - (ElementType)elementTypeForString:(NSString*)type
 {
     NSDictionary *dict = kelementTypeStringDict;
@@ -1174,51 +994,7 @@
         resources |= [self.rightChild getRequiredResources];
     }
     if (self.type == SENSOR) {
-        Sensor sensor = [SensorManager sensorForString:self.value];
-        switch (sensor) {
-            case FACE_DETECTED:
-            case FACE_SIZE:
-            case FACE_POSITION_X:
-            case FACE_POSITION_Y:
-                resources |= kFaceDetection;
-                break;
-                
-            case phiro_bottom_left:
-            case phiro_bottom_right:
-            case phiro_front_left:
-            case phiro_front_right:
-            case phiro_side_left:
-            case phiro_side_right:
-                resources |= kBluetoothPhiro;
-                break;
-            case arduino_analogPin:
-            case arduino_digitalPin:
-                resources |= kBluetoothArduino;
-                break;
-            case X_ACCELERATION:
-            case Y_ACCELERATION:
-            case Z_ACCELERATION:
-                resources |= kAccelerometer;
-                break;
-            case X_INCLINATION:
-            case Y_INCLINATION:
-                resources |= kAccelerometer;
-                break;
-            case COMPASS_DIRECTION:
-                resources |= kCompass;
-                break;
-            case LATITUDE:
-            case LONGITUDE:
-            case LOCATION_ACCURACY:
-            case ALTITUDE:
-                resources |= kLocation;
-                break;
-            case LOUDNESS:
-                resources |= kLoudness;
-                break;
-            default:
-                resources |= kNoResources;
-        }
+        resources |= [[CBSensorManager shared] requiredResourceWithSensorTag:self.value];
     }
     if (self.type == FUNCTION) {
         Function function = [Functions getFunctionByValue:self.value];

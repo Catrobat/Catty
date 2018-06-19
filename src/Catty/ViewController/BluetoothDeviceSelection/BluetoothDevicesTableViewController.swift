@@ -28,11 +28,13 @@ class BluetoothDevicesTableViewController: UITableViewController {
 
     weak var delegate : BluetoothPopupVC?
     weak var loadingView: LoadingView!
+    var scenePresenterVC : ScenePresenterViewController!
 
     override func viewDidLoad() {
         let loadingView = LoadingView() // helper variable due to self.loadingView being a weak property
         self.view.addSubview(loadingView)
         self.loadingView = loadingView
+        self.scenePresenterVC = ScenePresenterViewController()
         self.tableView.backgroundColor = UIColor.background()
     }
     
@@ -77,7 +79,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
                         Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText: klocalizedBluetoothConnectionTryResetting )
-                        delegate.dismissView()
+                        self.delegate?.dismissAndDisconnect()
                     }
                     return
                 }
@@ -86,7 +88,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
                 guard let _ = BluetoothService.sharedInstance().selectionManager else {
                     DispatchQueue.main.async {
                         Util.alert(withTitle: klocalizedBluetoothConnectionNotPossible, andText:  klocalizedBluetoothConnectionTryResetting)
-                        self.delegate?.dismissView()
+                        self.delegate?.dismissAndDisconnect()
                     }
                     return
                 }
@@ -162,12 +164,10 @@ class BluetoothDevicesTableViewController: UITableViewController {
         if central.isScanning {
             central.stopScanning()
         }
-        delegate?.rightButton.isEnabled = false
-//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
-//        dispatch_after(time, dispatch_get_main_queue()) {
+        delegate!.rightButton.isEnabled = false
         DispatchQueue.main.async {
-            self.delegate?.startScene()
             self.loadingView?.hide()
+            self.scenePresenterVC.checkResourcesAndPushTo(navigationController: self.navigationController!)
         }
     }
 

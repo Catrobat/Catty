@@ -28,6 +28,10 @@
 // Data model classes
 //------------------------------------------------------------------------------------------------------------
 
+// Sensors
+#import "FaceDetection.h"
+#import "FlashHelper.h"
+
 // Scripts
 #import "StartScript.h"
 #import "WhenScript.h"
@@ -155,6 +159,7 @@
 //------------------------------------------------------------------------------------------------------------
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
+#import "KeychainUserDefaultsDefines.h"
 //#import "LanguageTranslationDefines.h"
 
 #import "BrickFormulaProtocol.h"

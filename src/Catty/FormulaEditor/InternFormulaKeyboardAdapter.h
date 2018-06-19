@@ -24,10 +24,12 @@
 #import "InternToken.h"
 #import "Functions.h"
 #import "Operators.h"
-#import "SensorManager.h"
+
+@protocol CBSensor;
 
 @interface InternFormulaKeyboardAdapter : NSObject
 
 - (NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name;
+- (NSMutableArray *)createInternTokenListBySensor:(id<CBSensor>)sensor;
 
 @end

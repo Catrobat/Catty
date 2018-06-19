@@ -57,6 +57,7 @@ typedef enum TokenSelectionType{
               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
                      externCursorPosition:(int)externCursorPosition;
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId;
+- (void)handleKeyInputWithSensor:(id<CBSensor>)sensor;
 - (NSString *)getExternFormulaString;
 - (void)generateExternFormulaStringAndInternExternMapping;
 - (void)setCursorAndSelection:(int)externCursorPosition

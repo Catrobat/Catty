@@ -189,28 +189,31 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     
     //MARK: getter
-    @objc func getSensorValue(_ sensor:Int) -> Double{
-        let value = getAnalogPin(sensor)
+    @objc func getSensorValue(_ pinNumber:Int) -> Double{
+        let value = getAnalogPin(pinNumber)
         return Double(value)
     }
     
-    private func getAnalogPin(_ analogPinNumber: Int) -> Double {
-        switch (analogPinNumber) {
-        case PIN_SENSOR_FRONT_LEFT:
+    private func getAnalogPin(_ pinNumber: Int) -> Double {
+        if pinNumber == 0 {
             return Double(getFrontLeftSensor())
-        case PIN_SENSOR_FRONT_RIGHT:
-            return Double(getFrontRightSensor())
-        case PIN_SENSOR_SIDE_LEFT:
-            return Double(getSideLeftSensor())
-        case PIN_SENSOR_SIDE_RIGHT:
-            return Double(getSideRightSensor())
-        case PIN_SENSOR_BOTTOM_LEFT:
-            return Double(getBottomLeftSensor())
-        case PIN_SENSOR_BOTTOM_RIGHT:
-            return Double(getBottomRightSensor())
-        default:
-            return 0
         }
+        if pinNumber == 1 {
+            return Double(getFrontRightSensor())
+        }
+        if pinNumber == 2 {
+            return Double(getSideLeftSensor())
+        }
+        if pinNumber == 3 {
+            return Double(getSideRightSensor())
+        }
+        if pinNumber == 4 {
+            return Double(getBottomLeftSensor())
+        }
+        if pinNumber == 5 {
+            return Double(getBottomRightSensor())
+        }
+        return 0
     }
 
     // MARK: Sensor Values

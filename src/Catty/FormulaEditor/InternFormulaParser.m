@@ -22,10 +22,10 @@
 
 #import "InternFormulaParser.h"
 #import "InternFormulaUtils.h"
-#import "SensorManager.h"
 #import "InternFormulaParserException.h"
 #import "InternFormulaParserEmptyStackException.h"
 #import "SpriteObject.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation InternFormulaParser
 
@@ -310,7 +310,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)sensor
 {
-    if ((NSInteger)[SensorManager sensorForString:self.currentToken.tokenStringValue] == -1) {
+    if ([[CBSensorManager shared] sensorWithTag:self.currentToken.tokenStringValue] == nil) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          

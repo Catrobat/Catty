@@ -101,7 +101,6 @@ final class CBScene: SKScene {
 
     override func didMove(to view: SKView) {
         view.isMultipleTouchEnabled = true
-        startProgram()
     }
 
     @objc

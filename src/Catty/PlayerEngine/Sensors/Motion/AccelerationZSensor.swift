@@ -20,18 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "Pocket_Code-Swift.h"
+class AccelerationZSensor : DeviceSensor {
+    
+    static let tag = "Z_ACCELERATION"
+    static let name = kUIFESensorAccelerationZ
+    static let defaultValue = 0.0
+    static let requiredResource = ResourceType.accelerometer
 
-#import <CoreBluetooth/CoreBluetooth.h>
-@class BluetoothPopupVC;
+    let getMotionManager: () -> MotionManager?
 
-@protocol ResourceNotAvailableDelegate <NSObject>
--(void)userAgreedToContinueAnyway;
-@end
+    func rawValue() -> Double {
+        return self.getMotionManager()?.accelerometerData?.acceleration.z ?? type(of: self).defaultValue
+    }
 
-@interface ResourceHelper : NSObject
+    func standardizedValue() -> Double {
+        return self.rawValue()
+    }
+    
+    func showInFormulaEditor() -> Bool {
+        return true
+    }
 
-+ (BOOL)checkResources:(NSInteger)requiredResources delegate:(id<BluetoothSelection,ResourceNotAvailableDelegate>)delegate;
-
-@end
+    init(motionManagerGetter: @escaping () -> MotionManager?) {
+        self.getMotionManager = motionManagerGetter
+    }
+}

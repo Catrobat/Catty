@@ -25,6 +25,7 @@
 #import "InternToken.h"
 #import "Operators.h"
 #import "InternFormula.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InternFormulaTest : XCTestCase
 
@@ -691,7 +692,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:OBJECT_BRIGHTNESS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:BrightnessSensor.tag]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
@@ -701,7 +702,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:OBJECT_BRIGHTNESS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:BrightnessSensor.tag]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];

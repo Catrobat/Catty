@@ -35,24 +35,36 @@
 #import "RuntimeImageCache.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
+@property (nonatomic, strong) CBScene *scene;
+@property (nonatomic, strong) SKView *skView;
+
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
-@property (nonatomic, strong) LoadingView* loadingView;
-@property (nonatomic, strong) SKView *skView;
-@property (nonatomic) BOOL restartProgram;
-@property (nonatomic, strong) CBScene *scene;
 @end
 
 @implementation ScenePresenterViewController
+
+- (void)stopProgram
+{
+    [self.scene stopProgram];
+    
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[SensorHandler sharedSensorHandler] stopSensors];
+    [CameraPreviewHandler resetSharedInstance];
+    
+    [[FlashHelper sharedFlashHandler] reset];
+    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
+    
+    [[BluetoothService sharedInstance] setScenePresenter:nil];
+    [[BluetoothService sharedInstance] resetBluetoothDevice];
+}
 
 #pragma mark - View Event Handling
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.restartProgram = NO;
-    [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     self.skView.backgroundColor = UIColor.backgroundColor;
 }
@@ -60,7 +72,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupScene];
+    
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -70,7 +82,9 @@
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
     self.menuOpen = NO;
+    
     [self.view addSubview:self.skView];
+    
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"SceneMenuView" owner:self options:nil];
     self.menuView = [subviewArray objectAtIndex:0];
     self.menuView.frame = CGRectMake(self.menuView.frame.origin.x, self.menuView.frame.origin.y, self.menuView.frame.size.width, [Util screenHeight]);
@@ -79,26 +93,24 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
-    [[BluetoothService sharedInstance] setScenePresenter:self];
+    
+    [self setupSceneAndStart];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self continueProgramAction:nil withDuration:kfirstSwipeDuration];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = self.restartProgram;
-    self.navigationController.toolbarHidden = self.restartProgram;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.toolbarHidden = NO;
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
-    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
-
+    
     // reenable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
@@ -120,9 +132,8 @@
 
 - (void)freeRessources
 {
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[SensorHandler sharedSensorHandler] stopSensors];
-    [CameraPreviewHandler resetSharedInstance];
+    self.program = nil;
+    self.scene = nil;
     
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -148,12 +159,12 @@
         [self setupLabel:labelTextArray[i]
                  andView:labelArray[i]];
     }
-    [self.menuBackLabel addTarget:self action:@selector(stopProgramAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuBackLabel addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuContinueLabel addTarget:self action:@selector(continueProgramAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuRestartLabel addTarget:self action:@selector(restartProgramAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRecordLabel addTarget:self action:@selector(recordProgram:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRecordLabel addTarget:self action:@selector(record:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupLabel:(NSString*)name andView:(UIButton*)label
@@ -169,11 +180,11 @@
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
-                    andSelector:@selector(stopProgramAction:)];
+                    andSelector:@selector(stopAction:)];
     [self setupButtonWithButton:self.menuContinueButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
-                    andSelector:@selector(continueProgramAction:withDuration:)];
+                    andSelector:@selector(continueAction:withDuration:)];
     [self setupButtonWithButton:self.menuScreenshotButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
@@ -181,7 +192,7 @@
     [self setupButtonWithButton:self.menuRestartButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_restart"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"]
-                    andSelector:@selector(restartProgramAction:)];
+                    andSelector:@selector(restartAction:)];
     [self setupButtonWithButton:self.menuAxisButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
@@ -193,7 +204,7 @@
     [self setupButtonWithButton:self.menuRecordButton
                 ImageNameNormal:[UIImage imageNamed:@"record"]
         andImageNameHighlighted:[UIImage imageNamed:@"record"]
-                    andSelector:@selector(recordProgram:)];
+                    andSelector:@selector(record:)];
     self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
     self.menuRecordLabel.hidden = (! self.scene.isScreenRecorderAvailable);
 }
@@ -257,27 +268,41 @@
     }
 }
 
-- (void)setupScene
+- (void)setupSceneAndStart
 {
-    if (! self.scene) {
-        
-        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
-        [scene initializeScreenRecording];
-        scene.name = self.program.header.programName;
-        scene.screenRecordingDelegate = self;
-        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-            scene.scaleMode = SKSceneScaleModeFill;
-        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-            scene.scaleMode = SKSceneScaleModeAspectFit;
-        } else {
-            scene.scaleMode = SKSceneScaleModeFill;
-        }
-        self.skView.paused = NO;
-        [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
-        [[CameraPreviewHandler shared] setCamView:self.view];
-        [self.skView presentScene:scene];
-        self.scene = scene;
+    NSInteger requiredResources = [self.program getRequiredResources];
+    
+    // Initialize sensors
+    [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
+    
+    // Initialize scene
+    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+    [scene initializeScreenRecording];
+    scene.name = self.program.header.programName;
+    scene.screenRecordingDelegate = self;
+    
+    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+        scene.scaleMode = SKSceneScaleModeFill;
+    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+    } else {
+        scene.scaleMode = SKSceneScaleModeFill;
     }
+    self.skView.paused = NO;
+    self.scene = scene;
+    
+    [[BluetoothService sharedInstance] setScenePresenter:self];
+    [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
+    [[CameraPreviewHandler shared] setCamView:self.view];
+    
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    
+    [self.skView presentScene:self.scene];
+    [self.scene startProgram];
+    
+    [self hideLoadingView];
+    [self continueAction:nil withDuration:kfirstSwipeDuration];
 }
 
 -(void)resaveLooks
@@ -296,8 +321,7 @@
     return YES;
 }
 
-# pragma mark - Touch Event Handling
-
+#pragma mark - Touch Event Handling
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     if (self.menuOpen) {
@@ -310,7 +334,6 @@
         [self.scene touchedWithTouch:touch];
     }
 }
-
 
 #pragma mark - Game Event Handling
 - (void)pauseAction
@@ -336,7 +359,7 @@
     [self.scene resumeScheduler];
 }
 
-- (void)continueProgramAction:(UIButton*)sender withDuration:(CGFloat)duration
+- (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
@@ -353,6 +376,7 @@
                      animations:^{[self continueAnimation];}
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
+                         self.menuView.userInteractionEnabled = YES;
                          if (animateDuration == duration) {
                              [self takeAutomaticScreenshot];
                          }
@@ -365,7 +389,7 @@
     }
 }
 
-- (void)stopProgramAction:(UIButton*)sender
+- (void)stopAction:(UIButton*)sender
 {
     CBScene *previousScene = self.scene;
     if (previousScene.isScreenRecording) {
@@ -376,90 +400,57 @@
         return;
     }
     
-    self.menuView.userInteractionEnabled = NO;
-    previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[FlashHelper sharedFlashHandler] reset];
-    previousScene.userInteractionEnabled = YES;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        self.menuView.userInteractionEnabled = NO;
+        previousScene.userInteractionEnabled = NO;
+        [self stopProgram];
+        previousScene.userInteractionEnabled = YES;
+    });
+    
     
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
-    [[BluetoothService sharedInstance] setScenePresenter:nil];
-    [[BluetoothService sharedInstance] resetBluetoothDevice];
 }
 
+- (void)restartAction:(UIButton*)sender
+{
+    [self showLoadingView];
+    
+    self.menuView.userInteractionEnabled = NO;
+    self.scene.userInteractionEnabled = NO;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self stopProgram];
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+            [self setupSceneAndStart];
+        });
+    });
+}
+
+#pragma mark - Bluetooth Event Handling
 -(void)connectionLost
 {
-    [self.loadingView show];
+    [self showLoadingView];
     self.menuView.userInteractionEnabled = NO;
     CBScene *previousScene = self.scene;
     previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[FlashHelper sharedFlashHandler] reset];
+    [self stopProgram];
     previousScene.userInteractionEnabled = YES;
-    [self.loadingView hide];
+    [self hideLoadingView];
     
     [[[[AlertControllerBuilder alertWithTitle:@"Lost Bluetooth Connection" message:kLocalizedPocketCode]
-     addCancelActionWithTitle:kLocalizedOK handler:^{
-         [self.parentViewController.navigationController setToolbarHidden:NO];
-         [self.parentViewController.navigationController setNavigationBarHidden:NO];
-         [self.navigationController popViewControllerAnimated:YES];
-     }] build]
+       addCancelActionWithTitle:kLocalizedOK handler:^{
+           [self.parentViewController.navigationController setToolbarHidden:NO];
+           [self.parentViewController.navigationController setNavigationBarHidden:NO];
+           [self.navigationController popViewControllerAnimated:YES];
+       }] build]
      showWithController:self];
 }
 
-- (void)restartProgramAction:(UIButton*)sender
-{
-    [self.loadingView show];
-    self.menuView.userInteractionEnabled = NO;
-    CBScene *previousScene = self.scene;
-    previousScene.userInteractionEnabled = NO;
-    [previousScene stopProgram];
-    [[FlashHelper sharedFlashHandler] reset];
-
-    [self freeRessources];
-    NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
-    [controllers removeLastObject];
-    UIViewController *previousVC = (UIViewController*)controllers.lastObject; // previous object
-    if ([previousVC respondsToSelector:@selector(playSceneAction:animated:)]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [((BaseTableViewController*)previousVC) playSceneAction:sender animated:NO];
-        });
-    } else {
-        assert("PLEASE IMPLEMENT playSceneAction:animated method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
-    }
-    self.menuView.userInteractionEnabled = YES;
-    previousScene.userInteractionEnabled = YES;
-    [self.loadingView hide];
-
-    UIView *loadingView = [[self class] sharedLoadingView];
-    [self.parentViewController.view addSubview:loadingView];
-    [self.parentViewController.view bringSubviewToFront:loadingView];
-    self.restartProgram = YES;
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-+ (UIView*)sharedLoadingView
-{
-    static UIView *loadingView = nil;
-    if (loadingView == nil) {
-        loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        UILabel *label = [[UILabel alloc] initWithFrame:loadingView.frame];
-        label.font = [UIFont systemFontOfSize:36];
-        label.text = [NSString stringWithFormat:@"%@...", kLocalizedLoading];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor whiteColor];
-        [loadingView addSubview:label];
-        loadingView.backgroundColor = [UIColor backgroundColor];
-        loadingView.alpha = 1.0;
-    }
-    return loadingView;
-}
-
-#pragma mark User Event Handling
+#pragma mark - User Event Handling
 - (void)backButtonAction:(UIButton*)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -474,7 +465,7 @@
     }
 }
 
-- (void)recordProgram:(UIButton*)sender
+- (void)record:(UIButton*)sender
 {
     if (! self.scene.isScreenRecorderAvailable) {
         return;
@@ -495,7 +486,7 @@
         [self setupLabel:kLocalizedStop
                  andView:self.menuRecordLabel];
         [self.menuView setNeedsDisplay];
-        [self continueProgramAction:nil withDuration:0];
+        [self continueAction:nil withDuration:0];
     }
 }
 
@@ -546,11 +537,8 @@
             NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png",[self.program projectPath]];
             NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
             [data writeToFile:pngFilePath atomically:YES];
-            
         });
-
     }
-    
 }
 
 #pragma mark - Action Sheet & Alert View Handling
@@ -672,7 +660,6 @@
     }
 }
 
-
 - (void)handlePositvePan:(CGPoint)translate
 {
     [self.view bringSubviewToFront:self.menuView];
@@ -740,10 +727,18 @@
         _loadingView = [LoadingView new];
         [self.view addSubview:_loadingView];
         [self.view bringSubviewToFront:_loadingView];
-        _loadingView.backgroundColor = [UIColor whiteColor];
-        _loadingView.alpha = 1.0;
     }
     return _loadingView;
+}
+
+- (void)showLoadingView
+{
+    [self.loadingView show];
+}
+
+- (void)hideLoadingView
+{
+    [self.loadingView hide];
 }
 
 - (SKView*)skView
@@ -786,5 +781,7 @@
 - (void)hideMenuRecordButton {
     self.menuRecordButton.hidden = YES;
 }
+
+
 
 @end

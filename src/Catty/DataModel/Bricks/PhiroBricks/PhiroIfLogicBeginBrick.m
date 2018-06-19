@@ -22,6 +22,7 @@
 
 #import "PhiroIfLogicBeginBrick.h"
 #import "SensorHandler.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PhiroIfLogicBeginBrick
 
@@ -56,15 +57,10 @@
         self.sensor = sensor;
 }
 
--(Sensor)phiroSensor
-{
-    return [SensorManager sensorForString:self.sensor];
-}
-
 - (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
-    return [[SensorHandler sharedSensorHandler] valueForSensor:[self phiroSensor]];
+    return [[CBSensorManager shared] valueWithSensorTag:self.sensor spriteObject:nil];
 }
 
 - (void)resetCondition
@@ -75,9 +71,8 @@
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.sensor =  [SensorManager stringForSensor:phiro_front_left];
+    self.sensor =  PhiroFrontLeftSensor.tag;
 }
-
 
 -(BOOL)isPhiroBrick
 {
