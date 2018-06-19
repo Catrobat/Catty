@@ -53,12 +53,16 @@ final class DateDaySensorTest: XCTestCase {
     }
     
     func testRawValue() {
+        /* test one digit */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1528243200)
-        // test one digit
         XCTAssertEqual(6, Int(sensor.rawValue()))
         
-        // test two digits
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529280000)
+        /* test two digits */
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1534914000)
+        XCTAssertEqual(22, Int(sensor.rawValue()))
+        
+        /* test edge case - almost the beginning of the next day - 18/06/2018 23:00 */
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529362800)
         XCTAssertEqual(18, Int(sensor.rawValue()))
     }
     

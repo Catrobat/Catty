@@ -53,13 +53,17 @@ final class DateMonthSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        // test one digit
+        /* test one digit */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1526515200)
         XCTAssertEqual(5, Int(sensor.rawValue()))
         
-        // test two digits
+        /* test two digits */
         self.sensor.mockDate = Date.init(timeIntervalSince1970: 1544659200)
         XCTAssertEqual(12, Int(sensor.rawValue()))
+        
+        /* test edge case - almost the beginning of the next month - 31/10/2018 23:00 */
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1541026800)
+        XCTAssertEqual(10, Int(sensor.rawValue()))
     }
     
     func testStandardizedValue() {

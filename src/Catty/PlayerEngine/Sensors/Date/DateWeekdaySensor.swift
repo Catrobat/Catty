@@ -28,11 +28,18 @@ class DateWeekdaySensor : DateSensor {
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.weekday, from: self.date()))
+        let roundedDown = Double(TimeZone.current.secondsFromGMT(for: Date()))
+        return Double(Calendar.current.component(.weekday, from: self.date() - roundedDown))
     }
     
     func standardizedValue() -> Double {
-        return Double(Int((self.rawValue()) + 1) % 7)
+        var weekday = self.rawValue()
+        if weekday == 1 {
+            weekday = 7
+        } else {
+            weekday -= 1
+        }
+        return Double(weekday)
     }
     
     func showInFormulaEditor() -> Bool {
