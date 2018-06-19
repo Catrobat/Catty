@@ -54,11 +54,11 @@ final class DateYearSensorTest: XCTestCase {
     
     func testRawValue() {
         /* test during the year */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1497657600)
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 6, day: 7, hour: 10))!
         XCTAssertEqual(2017, Int(sensor.rawValue()))
         
-        /* test edge case - almost the beginning of the next year - 31/12/2018 23:00 */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1546297200)
+        /* test edge case - almost the beginning of the next year  */
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 12, day: 31, hour: 23))!
         XCTAssertEqual(2018, Int(sensor.rawValue()))
     }
     

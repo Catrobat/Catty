@@ -28,13 +28,12 @@ class DateWeekdaySensor : DateSensor {
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        let roundedDown = Double(TimeZone.current.secondsFromGMT(for: Date()))
-        return Double(Calendar.current.component(.weekday, from: self.date() - roundedDown))
+        return Double(Calendar.current.component(.weekday, from: self.date()))
     }
     
     func standardizedValue() -> Double {
         var weekday = self.rawValue()
-        if weekday == 1 {
+        if weekday == 1.0 { //Sunday
             weekday = 7
         } else {
             weekday -= 1

@@ -28,8 +28,7 @@ class DateDaySensor : DateSensor {
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        let roundedDown = Double(TimeZone.current.secondsFromGMT(for: Date()))
-        return Double(Calendar.current.component(.day, from: self.date() - roundedDown))
+        return Double(Calendar.current.component(.day, from: self.date()))
     }
     
     func standardizedValue() -> Double {

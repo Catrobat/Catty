@@ -54,15 +54,15 @@ final class DateMonthSensorTest: XCTestCase {
     
     func testRawValue() {
         /* test one digit */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1526515200)
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 5, day: 3, hour: 10))!
         XCTAssertEqual(5, Int(sensor.rawValue()))
         
         /* test two digits */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1544659200)
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 12, day: 16, hour: 17))!
         XCTAssertEqual(12, Int(sensor.rawValue()))
         
-        /* test edge case - almost the beginning of the next month - 31/10/2018 23:00 */
-        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1541026800)
+        /* test edge case - almost the beginning of the next month */
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 10, day: 31, hour: 23))!
         XCTAssertEqual(10, Int(sensor.rawValue()))
     }
     

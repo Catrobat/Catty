@@ -28,8 +28,7 @@ class DateYearSensor : DateSensor {
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        let roundedDown = Double(TimeZone.current.secondsFromGMT(for: Date()))
-        return Double(Calendar.current.component(.year, from: self.date() - roundedDown))
+        return Double(Calendar.current.component(.year, from: self.date()))
     }
     
     func standardizedValue() -> Double {
