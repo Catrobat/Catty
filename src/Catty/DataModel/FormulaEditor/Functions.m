@@ -94,7 +94,7 @@
         return CEIL;
     if([value isEqualToString:@"NUMBER_OF_ITEMS"])
         return NUMBEROFITEMS;
-    if([value isEqualToString:@"ELEMENT"])
+    if([value isEqualToString:@"LIST_ITEM"])
         return ELEMENT;
     if([value isEqualToString:@"CONTAINS"])
         return CONTAINS;
@@ -202,7 +202,7 @@
             return @"MULTI_FINGER_Y";
             break;
         case ELEMENT:
-            return @"ELEMENT";
+            return @"LIST_ITEM";
             break;
         case NUMBEROFITEMS:
             return @"NUMBER_OF_ITEMS";

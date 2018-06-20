@@ -972,6 +972,8 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
+		F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
 /* End PBXBuildFile section */
 
@@ -2526,6 +2528,7 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6092,6 +6095,7 @@
 			children = (
 				F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */,
 				BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */,
+				F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */,
 				4C994DD8207A26D700C415FD /* AddItemToUserListBrick0991.xml */,
 				4C994DD2207A25F600C415FD /* DeleteItemOfUserListBrick098.xml */,
 				4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */,
@@ -6815,6 +6819,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6914,6 +6919,7 @@
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */,
 				4C0FA00B204BD52900E71B2D /* Solar_System_v1.0_0991.xml in Resources */,
+				F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
 				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,

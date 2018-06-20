@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.24</applicationVersion>
+    <catrobatLanguageVersion>0.991</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description></description>
+    <deviceName>Samsung Galaxy S6 - 6.0.0 - API 23 - 1440x2560</deviceName>
+    <landscapeMode>false</landscapeMode>
+    <mediaLicense></mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>23.0</platformVersion>
+    <programLicense></programLicense>
+    <programName>ElementOfUserListTest</programName>
+    <remixOf></remixOf>
+    <screenHeight>2560</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1440</screenWidth>
+    <tags></tags>
+    <url></url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object name="Background">
+      <lookList/>
+      <soundList/>
+      <scriptList>
+        <script type="StartScript">
+          <brickList>
+            <brick type="WaitBrick">
+              <formulaList>
+                <formula category="TIME_TO_WAIT_IN_SECONDS">
+                  <leftChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_LIST</type>
+                    <value>test</value>
+                  </rightChild>
+                  <type>FUNCTION</type>
+                  <value>LIST_ITEM</value>
+                </formula>
+              </formulaList>
+            </brick>
+          </brickList>
+          <isUserScript>false</isUserScript>
+        </script>
+      </scriptList>
+      <userBricks/>
+      <nfcTagList/>
+    </object>
+  </objectList>
+  <data>
+    <objectListOfList>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+    </objectListOfList>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programListOfLists>
+      <userList>
+        <name>test</name>
+      </userList>
+    </programListOfLists>
+    <programVariableList/>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
+</program>
