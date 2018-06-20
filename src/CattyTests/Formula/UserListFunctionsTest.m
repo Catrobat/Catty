@@ -48,7 +48,7 @@
     [program.variables.programListOfLists addObject:var];
     
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
-    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"NUMBEROFITEMS" leftChild:leftChild rightChild:nil parent:nil];
+    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"NUMBER_OF_ITEMS" leftChild:leftChild rightChild:nil parent:nil];
     formulaTree = formulaTree;
     
     double numberOfItems = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
@@ -74,7 +74,7 @@
     
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"2" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *rightChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
-    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"ELEMENT" leftChild:leftChild rightChild:rightChild parent:nil];
+    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"LIST_ITEM" leftChild:leftChild rightChild:rightChild parent:nil];
     formulaTree = formulaTree;
     
     double element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
