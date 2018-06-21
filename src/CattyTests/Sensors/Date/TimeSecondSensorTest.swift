@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class DateYearSensorMock: DateYearSensor {
+final class TimeSecondSensorMock: TimeSecondSensor {
     var mockDate: Date = Date()
     
     override func date() -> Date {
@@ -32,12 +32,12 @@ final class DateYearSensorMock: DateYearSensor {
     }
 }
 
-final class DateYearSensorTest: XCTestCase {
+final class TimeSecondSensorTest: XCTestCase {
     
-    var sensor: DateYearSensorMock!
+    var sensor: TimeSecondSensorMock!
     
     override func setUp() {
-        self.sensor = DateYearSensorMock()
+        self.sensor = TimeSecondSensorMock()
     }
     
     override func tearDown() {
@@ -45,7 +45,7 @@ final class DateYearSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("DATE_YEAR", type(of: sensor).tag)
+        XCTAssertEqual("TIME_SECOND", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
@@ -53,13 +53,13 @@ final class DateYearSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        /* test during the year */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 6, day: 7, hour: 10))!
-        XCTAssertEqual(2017, Int(sensor.rawValue()))
+        /* test one digit */
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1529301965)
+        XCTAssertEqual(5, Int(sensor.rawValue()))
         
-        /* test edge case - almost the beginning of the next year  */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 12, day: 31, hour: 23))!
-        XCTAssertEqual(2018, Int(sensor.rawValue()))
+        /* test two digits */
+        self.sensor.mockDate = Date.init(timeIntervalSince1970: 1528265185)
+        XCTAssertEqual(25, Int(sensor.rawValue()))
     }
     
     func testStandardizedValue() {
@@ -70,3 +70,4 @@ final class DateYearSensorTest: XCTestCase {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
 }
+

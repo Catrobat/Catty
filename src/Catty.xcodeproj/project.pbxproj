@@ -1027,6 +1027,19 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */; };
+		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
+		F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF420D79C900030181B /* TimeHourSensorTest.swift */; };
+		F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF820D79CA80030181B /* TimeHourSensor.swift */; };
+		F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFA20D7A1060030181B /* TimeMinuteSensor.swift */; };
+		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
+		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
+		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
+		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
+		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
+		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
+		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
+		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
 /* End PBXBuildFile section */
 
@@ -2636,6 +2649,19 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensorTest.swift; sourceTree = "<group>"; };
+		F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensor.swift; sourceTree = "<group>"; };
+		F4201CF420D79C900030181B /* TimeHourSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHourSensorTest.swift; sourceTree = "<group>"; };
+		F4201CF820D79CA80030181B /* TimeHourSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHourSensor.swift; sourceTree = "<group>"; };
+		F4201CFA20D7A1060030181B /* TimeMinuteSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensor.swift; sourceTree = "<group>"; };
+		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
+		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
+		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
+		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
+		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
+		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
+		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
+		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4010,6 +4036,12 @@
 			isa = PBXGroup;
 			children = (
 				4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */,
+				F48E946220D6F221007E782E /* DateMonthSensor.swift */,
+				F48E946A20D6F869007E782E /* DateDaySensor.swift */,
+				F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */,
+				F4201CFA20D7A1060030181B /* TimeMinuteSensor.swift */,
+				F4201CF820D79CA80030181B /* TimeHourSensor.swift */,
+				F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -4018,6 +4050,12 @@
 			isa = PBXGroup;
 			children = (
 				4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */,
+				F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */,
+				F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */,
+				F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */,
+				F4201CF420D79C900030181B /* TimeHourSensorTest.swift */,
+				F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */,
+				F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -4072,6 +4110,7 @@
 				592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */,
 				4CF0728020D6577500F93AB5 /* PhiroSensor.swift */,
 				4CF0729F20D670C400F93AB5 /* TouchSensor.swift */,
+				F48E945820D6955E007E782E /* DateSensor.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -7000,7 +7039,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 8FL5R8726S;
+						DevelopmentTeam = J3BZCRPTAA;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -7523,6 +7562,7 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				4C0F9FCE204BD37300E71B2D /* XMLSerializerTests.m in Sources */,
+				F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
@@ -7540,7 +7580,9 @@
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				4C994DF2207A3CF000C415FD /* CBSensorManagerTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
+				F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */,
 				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
+				F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */,
 				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
@@ -7578,6 +7620,7 @@
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
+				F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
@@ -7608,6 +7651,7 @@
 				4C994DF8207A3D0600C415FD /* SensorHandlerDeviceTests.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
+				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
@@ -7617,6 +7661,7 @@
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
+				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
@@ -7848,6 +7893,7 @@
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				59697DB0201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift in Sources */,
 				92B46FA81BC7C2A5004980C1 /* ArduinoSendPWMValueBrick+Instruction.swift in Sources */,
+				F4201CF920D79CA80030181B /* TimeHourSensor.swift in Sources */,
 				4C0F9F74204BD1CE00E71B2D /* CameraBrick+Instruction.swift in Sources */,
 				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
 				AA74EEE51BC057B900D1E954 /* WaitBrick+CBXMLHandler.m in Sources */,
@@ -7887,6 +7933,7 @@
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
 				921D46881BDF698A0086AD20 /* ChangeTransparencyBrick+Instruction.swift in Sources */,
+				F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
@@ -7999,6 +8046,7 @@
 				4C0F9F66204BD18600E71B2D /* SayBubbleBrick+CBXMLHandler.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
 				4C11795120AEBE38006C6E32 /* LongitudeSensor.swift in Sources */,
+				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				4CF0727F20D6458900F93AB5 /* FormulaEditorSensorButton.m in Sources */,
@@ -8043,6 +8091,7 @@
 				92D56C331BF202E700A54750 /* ArduinoProtocol.swift in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
 				4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */,
+				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
@@ -8072,6 +8121,7 @@
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				4C0F9F3A204ADC4E00E71B2D /* SayForBubbleBrick.m in Sources */,
+				F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				4CF0728A20D659F700F93AB5 /* PhiroFrontRightSensor.swift in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
@@ -8198,6 +8248,7 @@
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
+				F48E945920D6955E007E782E /* DateSensor.swift in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				AA74F09B1BC05FCE00D1E954 /* BrickCell.m in Sources */,
 				59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */,
@@ -8217,6 +8268,7 @@
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
+				F4201CFB20D7A1060030181B /* TimeMinuteSensor.swift in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				9218B2151CC4AB75007B4C60 /* ColorPickerViewController.m in Sources */,
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
@@ -8662,7 +8714,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = J3BZCRPTAA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -8708,7 +8760,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 8FL5R8726S;
+				DEVELOPMENT_TEAM = J3BZCRPTAA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DateYearSensor : DateSensor {
+class DateMonthSensor : DateSensor {
     
-    static let tag = "DATE_YEAR"
-    static let name = kUIFESensorDateYear
+    static let tag = "DATE_MONTH"
+    static let name = kUIFESensorDateMonth
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.year, from: self.date()))
+        return Double(Calendar.current.component(.month, from: self.date()))
     }
     
     func standardizedValue() -> Double {
@@ -43,3 +43,4 @@ class DateYearSensor : DateSensor {
         return Date()
     }
 }
+

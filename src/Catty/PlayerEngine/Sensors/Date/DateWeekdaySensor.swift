@@ -20,19 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class DateYearSensor : DateSensor {
+class DateWeekdaySensor : DateSensor {
     
-    static let tag = "DATE_YEAR"
-    static let name = kUIFESensorDateYear
+    static let tag = "DATE_WEEKDAY"
+    static let name = kUIFESensorDateWeekday
     static let defaultValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
-        return Double(Calendar.current.component(.year, from: self.date()))
+        return Double(Calendar.current.component(.weekday, from: self.date()))
     }
     
     func standardizedValue() -> Double {
-        return self.rawValue()
+        var weekday = self.rawValue()
+        if weekday == 1.0 { //Sunday
+            weekday = 7
+        } else {
+            weekday -= 1
+        }
+        return Double(weekday)
     }
     
     func showInFormulaEditor() -> Bool {
@@ -43,3 +49,4 @@ class DateYearSensor : DateSensor {
         return Date()
     }
 }
+

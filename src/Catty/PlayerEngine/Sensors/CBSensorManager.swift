@@ -70,17 +70,18 @@ import CoreLocation
             LastFingerIndexSensor(),
             
             DateYearSensor(),
-            //DateMonthSensor(),
-            //DateDaySensor(),
-            //DateWeekdaySensor(),
-            //TimeHourSensor(),
-            //TimeMinuteSensor(),
-            //TimeSecondSensor(),
+            DateMonthSensor(),
+            DateDaySensor(),
+            DateWeekdaySensor(),
+            TimeHourSensor(),
+            TimeMinuteSensor(),
+            TimeSecondSensor(),
             
             /*MultiFingerTouchedSensor(),
             MultiFingerXSensor(),
             MultiFingerYSensor(),
             
+             
             FaceDetectedSensor(),
             FaceSizeSensor(),
             FacePositionXSensor(),

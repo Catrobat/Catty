@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class DateYearSensorMock: DateYearSensor {
+final class TimeHourSensorMock: TimeHourSensor {
     var mockDate: Date = Date()
     
     override func date() -> Date {
@@ -32,12 +32,12 @@ final class DateYearSensorMock: DateYearSensor {
     }
 }
 
-final class DateYearSensorTest: XCTestCase {
+final class TimeHourSensorTest: XCTestCase {
     
-    var sensor: DateYearSensorMock!
+    var sensor: TimeHourSensorMock!
     
     override func setUp() {
-        self.sensor = DateYearSensorMock()
+        self.sensor = TimeHourSensorMock()
     }
     
     override func tearDown() {
@@ -45,7 +45,7 @@ final class DateYearSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("DATE_YEAR", type(of: sensor).tag)
+        XCTAssertEqual("TIME_HOUR", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
@@ -53,13 +53,18 @@ final class DateYearSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        /* test during the year */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 6, day: 7, hour: 10))!
-        XCTAssertEqual(2017, Int(sensor.rawValue()))
+        /* test one digit */
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 6, hour: 7))!
+        XCTAssertEqual(7, Int(sensor.rawValue()))
         
-        /* test edge case - almost the beginning of the next year  */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 12, day: 31, hour: 23))!
-        XCTAssertEqual(2018, Int(sensor.rawValue()))
+        /* test two digits */
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2017, month: 8, day: 10, hour: 16))!
+        XCTAssertEqual(16, Int(sensor.rawValue()))
+        
+        /* test edge case - almost the beginning of the next day */
+        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 8, day: 22, hour: 23))!
+        XCTAssertEqual(23, Int(sensor.rawValue()))
+        
     }
     
     func testStandardizedValue() {
