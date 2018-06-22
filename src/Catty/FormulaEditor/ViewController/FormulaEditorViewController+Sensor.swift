@@ -61,7 +61,7 @@
     @objc func addButtonToScrollView(scrollView: UIScrollView, sensor: Any, topAnchorView: UIView) -> UIButton {
         
         var button: FormulaEditorSensorButton
-        
+        button.addTarget() // ugh
         [button addTarget:self
             action:@selector(buttonPressed:)
             forControlEvents:UIControlEventTouchUpInside];
@@ -73,17 +73,6 @@
         
         scrollView.addSubview(button)
         
-        if (topAnchorView == nil) {
-            [button.topAnchor constraintEqualToAnchor:scrollView.topAnchor constant: 0].active = YES;
-        } else {
-            [button.topAnchor constraintEqualToAnchor:topAnchorView.bottomAnchor constant: 0].active = YES;
-        }
-        
-        [button.heightAnchor constraintEqualToAnchor:self.calcButton.heightAnchor constant:0].active = YES;
-        [button.widthAnchor constraintEqualToAnchor:scrollView.widthAnchor constant:0].active = YES;
-        [button.leadingAnchor constraintEqualToAnchor:scrollView.leadingAnchor constant:0].active = YES;
-        
-        self.normalTypeButton.addObject(button)
         return button;
     }
 }
