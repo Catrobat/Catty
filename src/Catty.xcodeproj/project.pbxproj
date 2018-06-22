@@ -275,6 +275,8 @@
 		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
 		4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD085DC1CD9EE59009A6428 /* SceneTests.m */; };
 		4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */; };
+		4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */; };
+		4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */; };
 		4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */; };
 		4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */; };
 		4CDE4CE5203DBBF500B43034 /* ImageHelper.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCD203DBBF200B43034 /* ImageHelper.license */; };
@@ -1469,6 +1471,8 @@
 		4CD085DB1CD9EE59009A6428 /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneTests.h; path = Scene/SceneTests.h; sourceTree = "<group>"; };
 		4CD085DC1CD9EE59009A6428 /* SceneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneTests.m; path = Scene/SceneTests.m; sourceTree = "<group>"; };
 		4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeVariableBrickTests.swift; sourceTree = "<group>"; };
+		4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
+		4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNumberSensorTest.swift; sourceTree = "<group>"; };
 		4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NKOColorPickerView.license; sourceTree = "<group>"; };
 		4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4CDE4CCD203DBBF200B43034 /* ImageHelper.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImageHelper.license; sourceTree = "<group>"; };
@@ -2922,6 +2926,7 @@
 			children = (
 				4C11795D20AED5B6006C6E32 /* PositionXSensorTest.swift */,
 				F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */,
+				4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -4212,6 +4217,7 @@
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
 				4C994E12207A3E8000C415FD /* SensorMock.swift */,
 				4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */,
+				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -7589,6 +7595,7 @@
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
+				4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
@@ -7671,6 +7678,7 @@
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				4C994DF3207A3CF000C415FD /* InclinationXSensorTest.swift in Sources */,
+				4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,

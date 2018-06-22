@@ -20,22 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LookNameSensor: NSObject, ObjectSensor {
+@testable import Pocket_Code
 
-    static let tag = "OBJECT_LOOK_NAME"
-    static let name = kUIFEObjectLookName
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
+final class SpriteObjectMock: SpriteObject {
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        return 0 // TODO
-    }
-
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    var background: Bool
+    
+    override init() {
+        background = false
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true // TODO
+    override func isBackground() -> Bool {
+        return self.background
     }
 }
