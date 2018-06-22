@@ -1035,6 +1035,7 @@
 		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
+		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
@@ -2657,6 +2658,7 @@
 		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
+		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
@@ -2919,6 +2921,7 @@
 			isa = PBXGroup;
 			children = (
 				4C11795D20AED5B6006C6E32 /* PositionXSensorTest.swift */,
+				F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -7039,7 +7042,6 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = J3BZCRPTAA;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -7614,6 +7616,7 @@
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
+				F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
@@ -8714,7 +8717,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = J3BZCRPTAA;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -8760,7 +8763,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = J3BZCRPTAA;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
