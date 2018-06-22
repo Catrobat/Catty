@@ -51,13 +51,27 @@ final class PositionXSensorTest: XCTestCase {
         XCTAssertEqual(sensor.standardizedValue(for: self.spriteObject), PositionXSensor.defaultValue, accuracy: 0.0001)
     }
     
-    func testStandardization() {
+    func testRawValue() {
         self.spriteNode.pos = CGPoint(x: 12, y: 34)
         XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 12, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 12, accuracy: 0.0001)
+        //XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 12, accuracy: 0.0001)
 
         // TODO: add more cases
     }
+    
+    func testStandardizeValue() {
+        //TODO
+    }
 
-    // TODO: add more tests
+    func testTag() {
+        XCTAssertEqual("OBJECT_X", type(of: sensor).tag)
+    }
+    
+    func testRequiredResources() {
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+    }
+    
+    func testShowInFormulaEditor() {
+        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+    }
 }
