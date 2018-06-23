@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 @objc extension FormulaEditorViewController {
  
     @objc func initObjectView() {
@@ -29,15 +28,14 @@
         var sensor: Any
         
         for sensor in CBSensorManager.shared.objectSensors() {
-            
             if (sensor.showInFormulaEditorFor(self.object)) {
-                topAnchorView = self.addButtonToScrollView(scrollView: self.objectScrollView, withSensor: sensor, andTopAnchorView: topAnchorView)
+                topAnchorView = self.addButtonToScrollView(scrollView: self.objectScrollView, sensor: sensor, topAnchorView: topAnchorView)
                 buttonCount++;
             }
         }
         
-        self.objectScrollView.frame = CGRectMake(self.objectScrollView.frame.origin.x, self.objectScrollView.frame.origin.y, self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height)
-        self.objectScrollView.contentSize = CGSizeMake(self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height)
+        self.objectScrollView.frame = CGRect(x: self.objectScrollView.frame.origin.x, y: self.objectScrollView.frame.origin.y, width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
+        self.objectScrollView.contentSize = CGSize(width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
     }
     
     @objc func initSensorView() {
@@ -48,28 +46,37 @@
         
         for sensor in CBSensorManager.shared.deviceSensors() {
             if (sensor.showInFormulaEditorFor(self.object)) {
-                topAnchorView = self.addButtonToScrollView(scrollView: self.sensorScrollView, withSensor: sensor, andTopAnchorView: topAnchorView)
+                topAnchorView = self.addButtonToScrollView(scrollView: self.sensorScrollView, sensor: sensor, topAnchorView: topAnchorView)
                 buttonCount++;
             }
         }
         
-        self.sensorScrollView.frame = CGRectMake(self.sensorScrollView.frame.origin.x, self.sensorScrollView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height)
-        self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height)
+        self.sensorScrollView.frame = CGRect(x: self.objectScrollView.frame.origin.x, y: self.objectScrollView.frame.origin.y, width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
+        self.sensorScrollView.contentSize = CGSize(width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
         
     }
     
     @objc func addButtonToScrollView(scrollView: UIScrollView, sensor: Any, topAnchorView: UIView) -> UIButton {
-        
+    
         var button: FormulaEditorSensorButton
-        button.addTarget() // ugh
-        [button addTarget:self
-            action:@selector(buttonPressed:)
-            forControlEvents:UIControlEventTouchUpInside];
+        //[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
         button.sensor = sensor
         button.titleLabel.font = UIFont(size: 18)
         button.translatesAutoresizingMaskIntoConstraints = NO
         button.setTitle(sensor.class.name, forState: .normal)
+        
+        if (topAnchorView == nil) {
+            [button.topAnchor constraintEqualToAnchor:scrollView.topAnchor constant: 0].active = YES;
+        } else {
+            [button.topAnchor constraintEqualToAnchor:topAnchorView.bottomAnchor constant: 0].active = YES;
+        }
+        
+        [button.heightAnchor constraintEqualToAnchor:self.calcButton.heightAnchor constant:0].active = YES;
+        [button.widthAnchor constraintEqualToAnchor:scrollView.widthAnchor constant:0].active = YES;
+        [button.leadingAnchor constraintEqualToAnchor:scrollView.leadingAnchor constant:0].active = YES;
+        
+        [self.normalTypeButton addObject:button];
         
         scrollView.addSubview(button)
         
