@@ -28,7 +28,7 @@
         var sensor: Any
         
         for sensor in CBSensorManager.shared.objectSensors() {
-            if (sensor.showInFormulaEditorFor(self.object)) {
+            if (sensor.showInFormulaEditor(for: self.object)) {
                 topAnchorView = self.addButtonToScrollView(scrollView: self.objectScrollView, sensor: sensor, topAnchorView: topAnchorView)
                 buttonCount++;
             }
@@ -45,7 +45,7 @@
         var sensor: Any
         
         for sensor in CBSensorManager.shared.deviceSensors() {
-            if (sensor.showInFormulaEditorFor(self.object)) {
+            if (sensor.showInFormulaEditor()) {
                 topAnchorView = self.addButtonToScrollView(scrollView: self.sensorScrollView, sensor: sensor, topAnchorView: topAnchorView)
                 buttonCount++;
             }
@@ -65,20 +65,6 @@
         button.titleLabel.font = UIFont(size: 18)
         button.translatesAutoresizingMaskIntoConstraints = NO
         button.setTitle(sensor.class.name, forState: .normal)
-        
-        if (topAnchorView == nil) {
-            [button.topAnchor constraintEqualToAnchor:scrollView.topAnchor constant: 0].active = YES;
-        } else {
-            [button.topAnchor constraintEqualToAnchor:topAnchorView.bottomAnchor constant: 0].active = YES;
-        }
-        
-        [button.heightAnchor constraintEqualToAnchor:self.calcButton.heightAnchor constant:0].active = YES;
-        [button.widthAnchor constraintEqualToAnchor:scrollView.widthAnchor constant:0].active = YES;
-        [button.leadingAnchor constraintEqualToAnchor:scrollView.leadingAnchor constant:0].active = YES;
-        
-        [self.normalTypeButton addObject:button];
-        
-        scrollView.addSubview(button)
         
         return button;
     }
