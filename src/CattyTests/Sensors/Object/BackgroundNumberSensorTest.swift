@@ -45,33 +45,56 @@ final class BackgroundNumberSensorTest: XCTestCase {
     func testReturnDefaultValue() {
         // TODO
         // hint: what happens if object does not have a background?
+        //self.spriteObject.lookList = []
+        //self.spriteNode.currentLook = nil
+        
+        self.spriteNode = nil
+        XCTAssertEqual(BackgroundNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
+        
     }
     
     func testRawValue() {
-        // TODO
-        // hint: internally index starts at 0
+        let lookArray = [Look(name: "first", andPath: "test1.png"),
+                         Look(name: "second", andPath: "test2.png"),
+                         Look(name: "third", andPath: "test3.png")]
+        self.spriteObject.lookList = lookArray as! NSMutableArray
+        self.spriteNode.currentLook = lookArray[0]
+        XCTAssertEqual(0, self.sensor.rawValue(for: self.spriteObject))
         
-        // hint: this code might be useful
-        // let lookA = Look(name: "name", andPath: "test.png")
-        // spriteObject.lookList = [lookA!]
-        // spriteNode.currentLook = lookA
+        self.spriteNode.currentLook = lookArray[1]
+        XCTAssertEqual(1, self.sensor.rawValue(for: self.spriteObject))
+        
+        self.spriteNode.currentLook = lookArray[2]
+        XCTAssertEqual(2, self.sensor.rawValue(for: self.spriteObject))
     }
     
     func testStandardizeValue() {
-        // TODO
-        // hint: where does standarized index start?
+        let lookArray = [Look(name: "first", andPath: "test1.png"),
+                         Look(name: "second", andPath: "test2.png"),
+                         Look(name: "third", andPath: "test3.png")]
+        self.spriteObject.lookList = [lookArray]
+        self.spriteNode.currentLook = lookArray[0]
+        XCTAssertEqual(1, self.sensor.rawValue(for: self.spriteObject))
+        
+        self.spriteNode.currentLook = lookArray[1]
+        XCTAssertEqual(2, self.sensor.rawValue(for: self.spriteObject))
+        
+        self.spriteNode.currentLook = lookArray[2]
+        XCTAssertEqual(3, self.sensor.rawValue(for: self.spriteObject))
     }
     
     func testTag() {
-        // TODO
+        XCTAssertEqual("OBJECT_BACKGROUND_NUMBER", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
-        // TODO
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
     
     func testShowInFormulaEditor() {
         // TODO
         // hint: use self.spriteObject.background to set object as "background object"
+        
+        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
     }
 }
