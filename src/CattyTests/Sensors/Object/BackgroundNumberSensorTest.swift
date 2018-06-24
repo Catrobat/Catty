@@ -54,33 +54,33 @@ final class BackgroundNumberSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        let lookArray = [Look(name: "first", andPath: "test1.png"),
-                         Look(name: "second", andPath: "test2.png"),
-                         Look(name: "third", andPath: "test3.png")]
-        self.spriteObject.lookList = lookArray as! NSMutableArray
-        self.spriteNode.currentLook = lookArray[0]
+        self.spriteObject.lookList = [Look(name: "first", andPath: "test1.png"),
+                                      Look(name: "second", andPath: "test2.png"),
+                                      Look(name: "third", andPath: "test3.png")]
+        
+        self.spriteNode.currentLook = (self.spriteObject.lookList[0] as! Look)
         XCTAssertEqual(0, self.sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.currentLook = lookArray[1]
+        self.spriteNode.currentLook = (self.spriteObject.lookList[1] as! Look)
         XCTAssertEqual(1, self.sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.currentLook = lookArray[2]
+        self.spriteNode.currentLook = (self.spriteObject.lookList[2] as! Look)
         XCTAssertEqual(2, self.sensor.rawValue(for: self.spriteObject))
     }
     
     func testStandardizeValue() {
-        let lookArray = [Look(name: "first", andPath: "test1.png"),
-                         Look(name: "second", andPath: "test2.png"),
-                         Look(name: "third", andPath: "test3.png")]
-        self.spriteObject.lookList = [lookArray]
-        self.spriteNode.currentLook = lookArray[0]
-        XCTAssertEqual(1, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteObject.lookList = [Look(name: "first", andPath: "test1.png"),
+                                     Look(name: "second", andPath: "test2.png"),
+                                     Look(name: "third", andPath: "test3.png")]
         
-        self.spriteNode.currentLook = lookArray[1]
-        XCTAssertEqual(2, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.currentLook = (self.spriteObject.lookList[0] as! Look)
+        XCTAssertEqual(1, self.sensor.standardizedValue(for: self.spriteObject))
         
-        self.spriteNode.currentLook = lookArray[2]
-        XCTAssertEqual(3, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.currentLook = (self.spriteObject.lookList[1] as! Look)
+        XCTAssertEqual(2, self.sensor.standardizedValue(for: self.spriteObject))
+        
+        self.spriteNode.currentLook = (self.spriteObject.lookList[2] as! Look)
+        XCTAssertEqual(3, self.sensor.standardizedValue(for: self.spriteObject))
     }
     
     func testTag() {
