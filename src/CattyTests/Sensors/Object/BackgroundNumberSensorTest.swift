@@ -43,10 +43,8 @@ final class BackgroundNumberSensorTest: XCTestCase {
     }
     
     func testReturnDefaultValue() {
-        // TODO
-        // hint: what happens if object does not have a background?
-        //self.spriteObject.lookList = []
-        //self.spriteNode.currentLook = nil
+
+        self.spriteNode.currentLook = nil
         
         self.spriteNode = nil
         XCTAssertEqual(BackgroundNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
@@ -92,9 +90,10 @@ final class BackgroundNumberSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        // TODO
-        // hint: use self.spriteObject.background to set object as "background object"
-        
+        self.spriteObject.background = true
         XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+        
+        self.spriteObject.background = false
+        XCTAssertFalse(sensor.showInFormulaEditor(for: self.spriteObject))
     }
 }
