@@ -1043,6 +1043,7 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
+		F49A802220E1266900F30667 /* InternFormulaKeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49A802120E1266900F30667 /* InternFormulaKeyboardAdapter.swift */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
 /* End PBXBuildFile section */
 
@@ -2668,6 +2669,7 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
+		F49A802120E1266900F30667 /* InternFormulaKeyboardAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternFormulaKeyboardAdapter.swift; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4648,6 +4650,7 @@
 				92DFAFF31A38949E00FA9B0F /* InternFormula.m */,
 				92DFAFF41A38949E00FA9B0F /* InternFormulaKeyboardAdapter.h */,
 				92DFAFF51A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m */,
+				F49A802120E1266900F30667 /* InternFormulaKeyboardAdapter.swift */,
 				92DFAFF61A38949E00FA9B0F /* InternFormulaParser.h */,
 				92DFAFF71A38949E00FA9B0F /* InternFormulaParser.m */,
 				92DFAFF81A38949E00FA9B0F /* InternFormulaParserEmptyStackException.h */,
@@ -8297,6 +8300,7 @@
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,
+				F49A802220E1266900F30667 /* InternFormulaKeyboardAdapter.swift in Sources */,
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
