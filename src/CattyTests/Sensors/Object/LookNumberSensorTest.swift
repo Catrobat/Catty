@@ -43,6 +43,9 @@ final class LookNumberSensorTest: XCTestCase {
     }
     
     func testReturnDefaultValue() {
+        self.spriteNode.currentLook = nil
+        XCTAssertEqual(LookNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
+        
         self.spriteNode = nil
         XCTAssertEqual(LookNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
         
@@ -86,7 +89,11 @@ final class LookNumberSensorTest: XCTestCase {
         XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
     
-    func testShowInFormulaEditor() {        
+    func testShowInFormulaEditor() {
+        spriteObject.background = true
+        XCTAssertFalse(sensor.showInFormulaEditor(for: self.spriteObject))
+        
+        spriteObject.background = false
         XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
     }
 }

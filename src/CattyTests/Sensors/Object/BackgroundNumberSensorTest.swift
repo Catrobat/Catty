@@ -45,6 +45,7 @@ final class BackgroundNumberSensorTest: XCTestCase {
     func testReturnDefaultValue() {
 
         self.spriteNode.currentLook = nil
+        XCTAssertEqual(BackgroundNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
         
         self.spriteNode = nil
         XCTAssertEqual(BackgroundNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))

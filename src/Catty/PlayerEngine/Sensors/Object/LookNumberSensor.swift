@@ -29,7 +29,8 @@
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return LookNumberSensor.defaultValue }
-        let index = spriteObject.lookList.index(of: spriteNode.currentLook!)
+        guard let currentLook = spriteNode.currentLook else { return LookNumberSensor.defaultValue }
+        let index = spriteObject.lookList.index(of: currentLook)
         return Double(index)
     }
 
@@ -38,6 +39,6 @@
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true // TODO
+        return !spriteObject.isBackground()
     }
 }
