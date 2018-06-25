@@ -189,49 +189,51 @@ class InternFormulaKeyboardAdapter: NSObject {
             // OPERATOR
             
             case PLUS:
-                //add return
+                return buildOperator(PLUS)
                 break
             case MINUS:
-                //add return
+                return buildOperator(MINUS)
                 break
             case MULT:
-                //add return
+                return buildOperator(MULT)
                 break
             case DIVIDE:
-                //add return
+                return buildOperator(DIVIDE)
                 break
             case EQUAL:
-                //add return
+                return buildOperator(EQUAL)
                 break
             case NOT_EQUAL:
-                //add return
+                return buildOperator(NOT_EQUAL)
                 break
             case SMALLER_THAN:
-                //add return
+                return buildOperator(SMALLER_THAN)
                 break
             case SMALLER_OR_EQUAL:
-                //add return
+                return buildOperator(SMALLER_OR_EQUAL)
                 break
             case GREATER_THAN:
-                //add return
+                return buildOperator(GREATER_THAN)
                 break
             case GREATER_OR_EQUAL:
-                //add return
+                return buildOperator(GREATER_OR_EQUAL)
                 break
             case LOGICAL_AND:
-                //add return
+                return buildOperator(LOGICAL_AND)
                 break
             case LOGICAL_OR:
-                //add return
+                return buildOperator(LOGICAL_OR)
                 break
             case LOGICAL_NOT:
-                //add return
+                return buildOperator(LOGICAL_NOT)
                 break
+            
+            // BRACKETS
             case BRACKET_OPEN:
-                //add return
+                return buildOperator(BRACKET_OPEN)
                 break
             case BRACKET_CLOSE:
-                //add return
+                return buildOperator(BRACKET_CLOSE)
                 break
             
             default:
@@ -240,59 +242,63 @@ class InternFormulaKeyboardAdapter: NSObject {
         }
     }
     
-    func createInternTokenListBySensor(sensor: [CBSensor]) -> [CBSensor] {
+    func createInternTokenListBySensor(sensor: [CBSensor]) -> [Any] {
+        // TODO arduino: buildSingleParameterFunction
+        return buildSensor(sensor)
+    }
+    
+    func buildUserVariable(name: String) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
+        return returnList
+    }
+    
+    func buildUserList(name: String) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
+        return returnList
+    }
+    
+    func buildString(name: String) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
+        return returnList
+    }
+    
+    func buildNumber(numberValue: String) -> [Any] {
         
     }
     
-    func buildUserVariable(name: String) -> [] {
+    func buildSingleParameterFunction() -> [Any] {
         
     }
     
-    func buildUserList(name: String) -> [] {
+    func buildFunctionWithoutParametersAndBrackets() -> [Any] {
         
     }
     
-    func buildString(name: String) -> [] {
+    func buildDoubleParameterFunction() -> [Any] {
         
     }
     
-    func buildNumber(numberValue: String) -> [] {
+    func buildPeriod() -> [Any] {
         
     }
     
-    func buildSingleParameterFunction() -> [] {
+    func buildBracketOpen() -> [Any] {
         
     }
     
-    func buildFunctionWithoutParametersAndBrackets() -> [] {
+    func buildBracketClose() -> [Any] {
         
     }
     
-    func buildDoubleParameterFunction() -> [] {
-        
-    }
-    
-    func buildPeriod() -> [] {
-        
-    }
-    
-    func buildBracketOpen() -> [] {
-        
-    }
-    
-    func buildBracketClose() -> [] {
-        
-    }
-    
-    func buildOperator(operator: Operator) -> [] {
+    func buildOperator(operator: Operator) -> [Any] {
         
     }
 
-    func buildSensor(sensor: CBSensor) -> [] {
+    func buildSensor(sensor: CBSensor) -> [Any] {
         
     }
     
-    func buildSingleParameterSensor(sensor: Any, firstParameterType: String) -> [] {
+    func buildSingleParameterSensor(sensor: Any, firstParameterType: String) -> [Any] {
         
     }
 }
