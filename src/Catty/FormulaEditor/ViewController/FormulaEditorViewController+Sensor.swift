@@ -22,49 +22,50 @@
 
 @objc extension FormulaEditorViewController {
  
-    @objc func initObjectView() {
+    @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat) {
         var buttonCount = 0
         var topAnchorView = UIView()
-        var sensor: Any
         
         for sensor in CBSensorManager.shared.objectSensors() {
             if (sensor.showInFormulaEditor(for: self.object)) {
-                topAnchorView = self.addButtonToScrollView(scrollView: self.objectScrollView, sensor: sensor, topAnchorView: topAnchorView)
-                buttonCount++;
+                topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView)
+                buttonCount += 1
             }
         }
         
-        self.objectScrollView.frame = CGRect(x: self.objectScrollView.frame.origin.x, y: self.objectScrollView.frame.origin.y, width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
-        self.objectScrollView.contentSize = CGSize(width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
+        objectScrollView.frame = CGRect(x: objectScrollView.frame.origin.x, y: objectScrollView.frame.origin.y, width: objectScrollView.frame.size.width, height: CGFloat(buttonCount) * buttonHeight)
+        objectScrollView.contentSize = CGSize(width: objectScrollView.frame.size.width, height: CGFloat(buttonCount) * buttonHeight)
+        
     }
     
-    @objc func initSensorView() {
+    @objc func initSensorView(sensorScrollView: UIScrollView, buttonHeight: CGFloat) {
         
         var buttonCount = 0
         var topAnchorView = UIView()
-        var sensor: Any
         
         for sensor in CBSensorManager.shared.deviceSensors() {
             if (sensor.showInFormulaEditor()) {
-                topAnchorView = self.addButtonToScrollView(scrollView: self.sensorScrollView, sensor: sensor, topAnchorView: topAnchorView)
-                buttonCount++;
+                topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView)
+                buttonCount += 1
             }
         }
         
-        self.sensorScrollView.frame = CGRect(x: self.objectScrollView.frame.origin.x, y: self.objectScrollView.frame.origin.y, width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
-        self.sensorScrollView.contentSize = CGSize(width: self.objectScrollView.frame.size.width, height: buttonCount * self.calcButton.frame.size.height)
+        sensorScrollView.frame = CGRect(x: sensorScrollView.frame.origin.x, y: sensorScrollView.frame.origin.y, width: sensorScrollView.frame.size.width, height: CGFloat(buttonCount) * buttonHeight)
+        sensorScrollView.contentSize = CGSize(width: sensorScrollView.frame.size.width, height: CGFloat(buttonCount) * buttonHeight)
         
     }
     
-    @objc func addButtonToScrollView(scrollView: UIScrollView, sensor: Any, topAnchorView: UIView) -> UIButton {
+    func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView, selector: IBAction) -> UIButton {
     
-        var button: FormulaEditorSensorButton
-        //[button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        var button = FormulaEditorSensorButton(type: .roundedRect)
+        button.addTarget(self, action:#selector(selector) , for: .touchUpInside)
         
         button.sensor = sensor
-        button.titleLabel.font = UIFont(size: 18)
-        button.translatesAutoresizingMaskIntoConstraints = NO
-        button.setTitle(sensor.class.name, forState: .normal)
+        button.titleLabel?.font.withSize(18)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(, for: .normal)
+        
+        // Constraints
         
         return button;
     }
