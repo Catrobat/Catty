@@ -30,7 +30,6 @@
     func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return BackgroundNumberSensor.defaultValue }
         let index = spriteObject.lookList.index(of: spriteNode.currentLook!)
-        print(index)
         return Double(index)
     }
 
