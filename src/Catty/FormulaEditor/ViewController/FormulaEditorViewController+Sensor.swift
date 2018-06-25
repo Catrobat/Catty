@@ -20,15 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@available(iOS 11.0, *)
 @objc extension FormulaEditorViewController {
  
-    @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat) {
+    @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat, normalTypeButton: [UIButton], calcButton: UIButton) {
         var buttonCount = 0
         var topAnchorView = UIView()
         
         for sensor in CBSensorManager.shared.objectSensors() {
             if (sensor.showInFormulaEditor(for: self.object)) {
-                topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView)
+                topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, calcButton: calcButton)
                 buttonCount += 1
             }
         }
@@ -38,14 +39,14 @@
         
     }
     
-    @objc func initSensorView(sensorScrollView: UIScrollView, buttonHeight: CGFloat) {
+    @objc func initSensorView(sensorScrollView: UIScrollView, buttonHeight: CGFloat, normalTypeButton: [UIButton], calcButton: UIButton) {
         
         var buttonCount = 0
         var topAnchorView = UIView()
         
         for sensor in CBSensorManager.shared.deviceSensors() {
             if (sensor.showInFormulaEditor()) {
-                topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView)
+                topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, calcButton: calcButton)
                 buttonCount += 1
             }
         }
@@ -55,17 +56,25 @@
         
     }
     
-    func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView, selector: IBAction) -> UIButton {
+    @objc func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, calcButton: UIButton) -> UIButton {
     
-        var button = FormulaEditorSensorButton(type: .roundedRect)
-        button.addTarget(self, action:#selector(selector) , for: .touchUpInside)
+        let button = FormulaEditorSensorButton(type: .roundedRect)
         
         button.sensor = sensor
         button.titleLabel?.font.withSize(18)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(, for: .normal)
+        button.setTitle(type(of: sensor).name, for: .normal)
         
-        // Constraints
+        scrollView.addSubview(button)
+        if (topAnchorView == nil) {
+            button.topAnchor.constraintEqualToSystemSpacingBelow(scrollView.topAnchor, multiplier: 0).isActive = true
+        } else {
+            button.topAnchor.constraintEqualToSystemSpacingBelow((topAnchorView?.bottomAnchor)!, multiplier: 0).isActive = true
+        }
+        
+        button.heightAnchor.constraint(equalTo: calcButton.heightAnchor, constant: 0).isActive = true
+        button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 0).isActive = true
+        button.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0).isActive = true
         
         return button;
     }

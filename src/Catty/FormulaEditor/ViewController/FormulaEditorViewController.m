@@ -305,7 +305,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark initObjectView
 -(void)initObjectView
 {
-    NSInteger buttonCount = 0;
+    
+    /*NSInteger buttonCount = 0;
     UIView* topAnchorView = nil;
     
     for (id sensor in [[CBSensorManager shared] objectSensors]) {
@@ -316,7 +317,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
     self.objectScrollView.frame = CGRectMake(self.objectScrollView.frame.origin.x, self.objectScrollView.frame.origin.y, self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-    self.objectScrollView.contentSize = CGSizeMake(self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
+    self.objectScrollView.contentSize = CGSizeMake(self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height); */
 }
 
 #pragma mark initSensorView
