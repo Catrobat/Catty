@@ -29,7 +29,7 @@
         
         for sensor in CBSensorManager.shared.objectSensors() {
             if (sensor.showInFormulaEditor(for: self.object)) {
-                topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, calcButton: calcButton)
+                topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, calcButton: calcButton, normalTypeButton: normalTypeButton)
                 buttonCount += 1
             }
         }
@@ -46,7 +46,7 @@
         
         for sensor in CBSensorManager.shared.deviceSensors() {
             if (sensor.showInFormulaEditor()) {
-                topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, calcButton: calcButton)
+                topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, calcButton: calcButton, normalTypeButton: normalTypeButton)
                 buttonCount += 1
             }
         }
@@ -56,7 +56,7 @@
         
     }
     
-    @objc func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, calcButton: UIButton) -> UIButton {
+    func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, calcButton: UIButton, normalTypeButton: [UIButton], selector: (_ sender: Any) -> ()) -> UIButton {
     
         let button = FormulaEditorSensorButton(type: .roundedRect)
         
@@ -75,6 +75,8 @@
         button.heightAnchor.constraint(equalTo: calcButton.heightAnchor, constant: 0).isActive = true
         button.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 0).isActive = true
         button.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0).isActive = true
+        
+        normalTypeButton.append(button)
         
         return button;
     }
