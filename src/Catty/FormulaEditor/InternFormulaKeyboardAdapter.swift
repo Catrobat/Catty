@@ -22,17 +22,9 @@
 
 import UIKit
 
-struct resourceId {
-    var resource: Int
-    var name: String
-}
-
 class InternFormulaKeyboardAdapter: NSObject {
     
-    var createInternTokenListByResourceId: [resourceId]
-    var createInternTokenListBySensor: [CBSensor]
-    
-    func createInternTokenListByResourceId(resource: Int, name: String) {
+    func createInternTokenListByResourceId(resource: Int, name: String) -> [InternToken?] {
         // USER VARIABLES
         if (resource == 0 && name.count != 0) {
             return buildUserVariable(name: name)
@@ -44,40 +36,40 @@ class InternFormulaKeyboardAdapter: NSObject {
         }
         
         // STRING
-        if(resource == TOKEN_TYPE_STRING) {
+        if(resource == Int(TOKEN_TYPE_STRING.rawValue)) {
             return buildString(name: name)
         }
         
         switch (resource) {
-            case TOKEN_TYPE_NUMBER_0:
-                return buildNumber("0")
+            case Int(TOKEN_TYPE_NUMBER_0.rawValue):
+                return buildNumber(numberValue: "0")
                 break
-            case TOKEN_TYPE_NUMBER_1:
-                return buildNumber("1")
+            case Int(TOKEN_TYPE_NUMBER_1.rawValue):
+                return buildNumber(numberValue: "1")
                 break
-            case TOKEN_TYPE_NUMBER_2:
-                return buildNumber("2")
+            case Int(TOKEN_TYPE_NUMBER_2.rawValue):
+                return buildNumber(numberValue: "2")
                 break
             case TOKEN_TYPE_NUMBER_3:
-                return buildNumber("3")
+                return buildNumber(numberValue: "3")
                 break
             case TOKEN_TYPE_NUMBER_4:
-                return buildNumber("4")
+                return buildNumber(numberValue: "4")
                 break
             case TOKEN_TYPE_NUMBER_5:
-                return buildNumber("5")
+                return buildNumber(numberValue: "5")
                 break
             case TOKEN_TYPE_NUMBER_6:
-                return buildNumber("6")
+                return buildNumber(numberValue: "6")
                 break
             case TOKEN_TYPE_NUMBER_7:
-                return buildNumber("7")
+                return buildNumber(numberValue: "7")
                 break
             case TOKEN_TYPE_NUMBER_8:
-                return buildNumber("8")
+                return buildNumber(numberValue: "8")
                 break
             case TOKEN_TYPE_NUMBER_9:
-                return buildNumber("9")
+                return buildNumber(numberValue: "9")
                 break
             
             // FUNCTIONS
@@ -112,7 +104,7 @@ class InternFormulaKeyboardAdapter: NSObject {
                 return buildSingleParameterFunction(function: ROUND, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case MOD:
-                return buildDoubleParameterFunction(function: MOD, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
+                return buildDoubleParameterFunction(function: MOD, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case ARCSIN:
                 return buildSingleParameterFunction(function: ARCSIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
@@ -127,10 +119,10 @@ class InternFormulaKeyboardAdapter: NSObject {
                 return buildSingleParameterFunction(function: EXP, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
                 break
             case MAX:
-                return buildDoubleParameterFunction(function: MAX, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
+                return buildDoubleParameterFunction(function: MAX, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case MIN:
-                return buildDoubleParameterFunction(function: MIN, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
+                return buildDoubleParameterFunction(function: MIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case TRUE_F:
                 return buildFunctionWithoutParametersAndBrackets(function: TRUE_F)
@@ -139,16 +131,16 @@ class InternFormulaKeyboardAdapter: NSObject {
                 return buildFunctionWithoutParametersAndBrackets(function: FALSE_F)
                 break
             case POW:
-                return buildDoubleParameterFunction(function: POW, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
+                return buildDoubleParameterFunction(function: POW, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case LETTER:
-                return buildDoubleParameterFunction(function: LETTER, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_STRING, secondParameterValue: "hello world")
+                return buildDoubleParameterFunction(function: LETTER, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_STRING, secondParameterValue: "hello world")
                 break
             case LENGTH:
                 return buildSingleParameterFunction(function: LENGTH, firstParameterType: TOKEN_TYPE_STRING, firstParameterValue: "hello world")
                 break
             case JOIN:
-                return buildDoubleParameterFunction(function: JOIN, firstParameter: TOKEN_TYPE_STRING, firstParameterValue: "hello", secondParameter: TOKEN_TYPE_STRING, secondParameterValue: " world")
+                return buildDoubleParameterFunction(function: JOIN, firstParameterType: TOKEN_TYPE_STRING, firstParameterValue: "hello", secondParameterType: TOKEN_TYPE_STRING, secondParameterValue: " world")
                 break
             case ARDUINODIGITAL:
                 buildSingleParameterFunction(function: ARDUINODIGITAL, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
@@ -166,10 +158,10 @@ class InternFormulaKeyboardAdapter: NSObject {
                 buildSingleParameterFunction(function: NUMBEROFITEMS, firstParameterType: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name")
                 break
             case ELEMENT:
-                return buildDoubleParameterFunction(function: ELEMENT, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_USER_LIST, secondParameterValue: "list name")
+                return buildDoubleParameterFunction(function: ELEMENT, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_USER_LIST, secondParameterValue: "list name")
                 break
             case CONTAINS:
-                return buildDoubleParameterFunction(function: CONTAINS, firstParameter: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
+                return buildDoubleParameterFunction(function: CONTAINS, firstParameterType: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case MULTI_FINGER_TOUCHED:
                 buildSingleParameterFunction(function: MULTI_FINGER_TOUCHED, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
@@ -189,51 +181,51 @@ class InternFormulaKeyboardAdapter: NSObject {
             // OPERATOR
             
             case PLUS:
-                return buildOperator(PLUS)
+                return buildOperator(operator: PLUS)
                 break
             case MINUS:
-                return buildOperator(MINUS)
+                return buildOperator(operator: MINUS)
                 break
             case MULT:
-                return buildOperator(MULT)
+                return buildOperator(operator: MULT)
                 break
             case DIVIDE:
-                return buildOperator(DIVIDE)
+                return buildOperator(operator: DIVIDE)
                 break
             case EQUAL:
-                return buildOperator(EQUAL)
+                return buildOperator(operator: EQUAL)
                 break
             case NOT_EQUAL:
-                return buildOperator(NOT_EQUAL)
+                return buildOperator(operator: NOT_EQUAL)
                 break
             case SMALLER_THAN:
-                return buildOperator(SMALLER_THAN)
+                return buildOperator(operator: SMALLER_THAN)
                 break
             case SMALLER_OR_EQUAL:
-                return buildOperator(SMALLER_OR_EQUAL)
+                return buildOperator(operator: SMALLER_OR_EQUAL)
                 break
             case GREATER_THAN:
-                return buildOperator(GREATER_THAN)
+                return buildOperator(operator: GREATER_THAN)
                 break
             case GREATER_OR_EQUAL:
-                return buildOperator(GREATER_OR_EQUAL)
+                return buildOperator(operator: GREATER_OR_EQUAL)
                 break
             case LOGICAL_AND:
-                return buildOperator(LOGICAL_AND)
+                return buildOperator(operator: LOGICAL_AND)
                 break
             case LOGICAL_OR:
-                return buildOperator(LOGICAL_OR)
+                return buildOperator(operator: LOGICAL_OR)
                 break
             case LOGICAL_NOT:
-                return buildOperator(LOGICAL_NOT)
+                return buildOperator(operator: LOGICAL_NOT)
                 break
             
             // BRACKETS
             case BRACKET_OPEN:
-                return buildOperator(BRACKET_OPEN)
+                return buildOperator(operator: BRACKET_OPEN)
                 break
             case BRACKET_CLOSE:
-                return buildOperator(BRACKET_CLOSE)
+                return buildOperator(operator: BRACKET_CLOSE)
                 break
             
             default:
@@ -242,33 +234,33 @@ class InternFormulaKeyboardAdapter: NSObject {
         }
     }
     
-    func createInternTokenListBySensor(sensor: [CBSensor]) -> [Any] {
+    func createInternTokenListBySensor(sensor: CBSensor) -> [InternToken?] {
         // TODO arduino: buildSingleParameterFunction
-        return buildSensor(sensor)
+        return buildSensor(sensor: sensor)
     }
     
-    func buildUserVariable(name: String) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
+    func buildUserVariable(name: String) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
         return returnList
     }
     
-    func buildUserList(name: String) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
+    func buildUserList(name: String) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
         return returnList
     }
     
-    func buildString(name: String) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
+    func buildString(name: String) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
         return returnList
     }
     
-    func buildNumber(numberValue: String) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
+    func buildNumber(numberValue: String) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
         return returnList
     }
     
-    func buildSingleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
+    func buildSingleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
                           InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
                           InternToken.init(type: firstParameterType, andValue: firstParameterValue),
                           InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)
@@ -277,14 +269,14 @@ class InternFormulaKeyboardAdapter: NSObject {
         
     }
     
-    func buildFunctionWithoutParametersAndBrackets(function: Function) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function))]
+    func buildFunctionWithoutParametersAndBrackets(function: Function) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function))]
         return returnList
         
     }
     
-    func buildDoubleParameterFunction(function: Function, firstParameter:InternTokenType, firstParameterValue: String, secondParameter:InternTokenType, secondParameterValue: String) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
+    func buildDoubleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String, secondParameterType:InternTokenType, secondParameterValue: String) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
                           InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
                           InternToken.init(type: firstParameterType, andValue: firstParameterValue),
                           InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER),
@@ -295,37 +287,37 @@ class InternFormulaKeyboardAdapter: NSObject {
         
     }
     
-    func buildPeriod() -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_PERIOD)]
+    func buildPeriod() -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_PERIOD)]
         return returnList
     }
     
-    func buildBracketOpen() -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
+    func buildBracketOpen() -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
         return returnList
     }
     
-    func buildBracketClose() -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
+    func buildBracketClose() -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
         return returnList
     }
     
-    func buildOperator(operator: Operator) -> [Any] {
-        var returnList = [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(self.operator))]
-        return returnLists
+    func buildOperator(operator: Operator) -> [InternToken?] {
+        let returnList = [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(operator))]
+        return returnList
     }
 
-    func buildSensor(sensor: CBSensor) -> [Any] {
+    func buildSensor(sensor: CBSensor) -> [InternToken?] {
         let sensorTag: String
         sensorTag = CBSensorManager.shared.tag(sensor: sensor)
-        var returnList = [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensorTag)]
+        let returnList = [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensorTag)]
         return returnList
     }
     
-    func buildSingleParameterSensor(sensor: Any, firstParameterType: InternTokenType, firstParameterValue: String) -> [Any] {
+    func buildSingleParameterSensor(sensor: Any, firstParameterType: InternTokenType, firstParameterValue: String) -> [InternToken?] {
         let sensorTag: String
-        sensorTag = CBSensorManager.shared.tag(sensor: sensor)
-        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: sensorTag),
+        sensorTag = CBSensorManager.shared.tag(sensor: sensor as! CBSensor)
+        let returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: sensorTag),
                           InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
                           InternToken.init(type: firstParameterType, andValue: firstParameterValue),
                           InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)]
