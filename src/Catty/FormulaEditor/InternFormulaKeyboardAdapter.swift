@@ -82,108 +82,108 @@ class InternFormulaKeyboardAdapter: NSObject {
             
             // FUNCTIONS
             case SIN:
-                //add return
+                return buildSingleParameterFunction(function: SIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case COS:
-                //add return
+                return buildSingleParameterFunction(function: COS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case TAN:
-                //add return
+                return buildSingleParameterFunction(function: TAN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case LN:
-                //add return
+                return buildSingleParameterFunction(function: LN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case LOG:
-                //add return
+                return buildSingleParameterFunction(function: LOG, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case PI_F:
-                //add return
+                return buildFunctionWithoutParametersAndBrackets(function: PI_F)
                 break
             case SQRT:
-                //add return
+                return buildSingleParameterFunction(function: SQRT, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case RAND:
-                //add return
+                return buildSingleParameterFunction(function: RAND, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case ABS:
-                //add return
+                return buildSingleParameterFunction(function: ABS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case ROUND:
-                //add return
+                return buildSingleParameterFunction(function: ROUND, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case MOD:
-                //add return
+                return buildDoubleParameterFunction(function: MOD, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case ARCSIN:
-                //add return
+                return buildSingleParameterFunction(function: ARCSIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case ARCCOS:
-                //add return
+                return buildSingleParameterFunction(function: ARCCOS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case ARCTAN:
-                //add return
+                return buildSingleParameterFunction(function: ARCTAN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case EXP:
-                //add return
+                return buildSingleParameterFunction(function: EXP, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
                 break
             case MAX:
-                //add return
+                return buildDoubleParameterFunction(function: MAX, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case MIN:
-                //add return
+                return buildDoubleParameterFunction(function: MIN, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case TRUE_F:
-                //add return
+                return buildFunctionWithoutParametersAndBrackets(function: TRUE_F)
                 break
             case FALSE_F:
-                //add return
+                return buildFunctionWithoutParametersAndBrackets(function: FALSE_F)
                 break
             case POW:
-                //add return
+                return buildDoubleParameterFunction(function: POW, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case LETTER:
-                //add return
+                return buildDoubleParameterFunction(function: LETTER, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_STRING, secondParameterValue: "hello world")
                 break
             case LENGTH:
-                //add return
+                return buildSingleParameterFunction(function: LENGTH, firstParameterType: TOKEN_TYPE_STRING, firstParameterValue: "hello world")
                 break
             case JOIN:
-                //add return
+                return buildDoubleParameterFunction(function: JOIN, firstParameter: TOKEN_TYPE_STRING, firstParameterValue: "hello", secondParameter: TOKEN_TYPE_STRING, secondParameterValue: " world")
                 break
             case ARDUINODIGITAL:
-                //add return
+                buildSingleParameterFunction(function: ARDUINODIGITAL, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case ARDUINOANALOG:
-                //add return
+                buildSingleParameterFunction(function: ARDUINOANALOG, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case FLOOR:
-                //add return
+                buildSingleParameterFunction(function: FLOOR, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case CEIL:
-                //add return
+                buildSingleParameterFunction(function: CEIL, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
                 break
             case NUMBEROFITEMS:
-                //add return
+                buildSingleParameterFunction(function: NUMBEROFITEMS, firstParameterType: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name")
                 break
             case ELEMENT:
-                //add return
+                return buildDoubleParameterFunction(function: ELEMENT, firstParameter: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameter: TOKEN_TYPE_USER_LIST, secondParameterValue: "list name")
                 break
             case CONTAINS:
-                //add return
+                return buildDoubleParameterFunction(function: CONTAINS, firstParameter: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name", secondParameter: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
                 break
             case MULTI_FINGER_TOUCHED:
-                //add return
+                buildSingleParameterFunction(function: MULTI_FINGER_TOUCHED, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
                 break
             case MULTI_FINGER_X:
-                //add return
+                buildSingleParameterFunction(function: MULTI_FINGER_X, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
                 break
             case MULTI_FINGER_Y:
-                //add return
+                buildSingleParameterFunction(function: MULTI_FINGER_Y, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
                 break
             
             // PERIOD
             case DECIMAL_MARK:
-                //add return
+                return buildPeriod()
                 break
             
             // OPERATOR
@@ -263,42 +263,72 @@ class InternFormulaKeyboardAdapter: NSObject {
     }
     
     func buildNumber(numberValue: String) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
+        return returnList
+    }
+    
+    func buildSingleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
+                          InternToken.init(type: firstParameterType, andValue: firstParameterValue),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)
+                        ]
+        return returnList
         
     }
     
-    func buildSingleParameterFunction() -> [Any] {
+    func buildFunctionWithoutParametersAndBrackets(function: Function) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function))]
+        return returnList
         
     }
     
-    func buildFunctionWithoutParametersAndBrackets() -> [Any] {
-        
-    }
-    
-    func buildDoubleParameterFunction() -> [Any] {
+    func buildDoubleParameterFunction(function: Function, firstParameter:InternTokenType, firstParameterValue: String, secondParameter:InternTokenType, secondParameterValue: String) -> [Any] {
+        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
+                          InternToken.init(type: firstParameterType, andValue: firstParameterValue),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER),
+                          InternToken.init(type: secondParameterType, andValue: secondParameterValue),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)
+        ]
+        return returnList
         
     }
     
     func buildPeriod() -> [Any] {
-        
+        var returnList = [InternToken.init(type: TOKEN_TYPE_PERIOD)]
+        return returnList
     }
     
     func buildBracketOpen() -> [Any] {
-        
+        var returnList = [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
+        return returnList
     }
     
     func buildBracketClose() -> [Any] {
-        
+        var returnList = [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
+        return returnList
     }
     
     func buildOperator(operator: Operator) -> [Any] {
-        
+        var returnList = [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(self.operator))]
+        return returnLists
     }
 
     func buildSensor(sensor: CBSensor) -> [Any] {
-        
+        let sensorTag: String
+        sensorTag = CBSensorManager.shared.tag(sensor: sensor)
+        var returnList = [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensorTag)]
+        return returnList
     }
     
-    func buildSingleParameterSensor(sensor: Any, firstParameterType: String) -> [Any] {
-        
+    func buildSingleParameterSensor(sensor: Any, firstParameterType: InternTokenType, firstParameterValue: String) -> [Any] {
+        let sensorTag: String
+        sensorTag = CBSensorManager.shared.tag(sensor: sensor)
+        var returnList = [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: sensorTag),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
+                          InternToken.init(type: firstParameterType, andValue: firstParameterValue),
+                          InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE)]
+        return returnList
     }
 }
