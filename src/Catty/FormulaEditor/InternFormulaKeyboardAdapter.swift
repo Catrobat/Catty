@@ -36,7 +36,7 @@ class InternFormulaKeyboardAdapter: NSObject {
         }
         
         // STRING
-        if(resource == Int(TOKEN_TYPE_STRING.rawValue)) {
+        if(resource == Int((TOKEN_TYPE_STRING).rawValue)) {
             return buildString(name: name)
         }
         
@@ -50,25 +50,25 @@ class InternFormulaKeyboardAdapter: NSObject {
             case Int(TOKEN_TYPE_NUMBER_2.rawValue):
                 return buildNumber(numberValue: "2")
                 break
-            case TOKEN_TYPE_NUMBER_3:
+            case Int(TOKEN_TYPE_NUMBER_3.rawValue):
                 return buildNumber(numberValue: "3")
                 break
-            case TOKEN_TYPE_NUMBER_4:
+            case Int(TOKEN_TYPE_NUMBER_4.rawValue):
                 return buildNumber(numberValue: "4")
                 break
-            case TOKEN_TYPE_NUMBER_5:
+            case Int(TOKEN_TYPE_NUMBER_5.rawValue):
                 return buildNumber(numberValue: "5")
                 break
-            case TOKEN_TYPE_NUMBER_6:
+            case Int(TOKEN_TYPE_NUMBER_6.rawValue):
                 return buildNumber(numberValue: "6")
                 break
-            case TOKEN_TYPE_NUMBER_7:
+            case Int(TOKEN_TYPE_NUMBER_7.rawValue):
                 return buildNumber(numberValue: "7")
                 break
-            case TOKEN_TYPE_NUMBER_8:
+            case Int(TOKEN_TYPE_NUMBER_8.rawValue):
                 return buildNumber(numberValue: "8")
                 break
-            case TOKEN_TYPE_NUMBER_9:
+            case Int(TOKEN_TYPE_NUMBER_9.rawValue):
                 return buildNumber(numberValue: "9")
                 break
             
@@ -174,62 +174,62 @@ class InternFormulaKeyboardAdapter: NSObject {
                 break
             
             // PERIOD
-            case DECIMAL_MARK:
+            case Int(DECIMAL_MARK.rawValue):
                 return buildPeriod()
                 break
             
             // OPERATOR
             
-            case PLUS:
+            case Int(PLUS.rawValue):
                 return buildOperator(operator: PLUS)
                 break
-            case MINUS:
+            case Int(MINUS.rawValue):
                 return buildOperator(operator: MINUS)
                 break
-            case MULT:
+            case Int(MULT.rawValue):
                 return buildOperator(operator: MULT)
                 break
-            case DIVIDE:
+            case Int(DIVIDE.rawValue):
                 return buildOperator(operator: DIVIDE)
                 break
-            case EQUAL:
+            case Int(EQUAL.rawValue):
                 return buildOperator(operator: EQUAL)
                 break
-            case NOT_EQUAL:
+            case Int(NOT_EQUAL.rawValue):
                 return buildOperator(operator: NOT_EQUAL)
                 break
-            case SMALLER_THAN:
+            case Int(SMALLER_THAN.rawValue):
                 return buildOperator(operator: SMALLER_THAN)
                 break
-            case SMALLER_OR_EQUAL:
+            case Int(SMALLER_OR_EQUAL.rawValue):
                 return buildOperator(operator: SMALLER_OR_EQUAL)
                 break
-            case GREATER_THAN:
+            case Int(GREATER_THAN.rawValue):
                 return buildOperator(operator: GREATER_THAN)
                 break
-            case GREATER_OR_EQUAL:
+            case Int(GREATER_OR_EQUAL.rawValue):
                 return buildOperator(operator: GREATER_OR_EQUAL)
                 break
-            case LOGICAL_AND:
+            case Int(LOGICAL_AND.rawValue):
                 return buildOperator(operator: LOGICAL_AND)
                 break
-            case LOGICAL_OR:
+            case Int(LOGICAL_OR.rawValue):
                 return buildOperator(operator: LOGICAL_OR)
                 break
-            case LOGICAL_NOT:
+            case Int(LOGICAL_NOT.rawValue):
                 return buildOperator(operator: LOGICAL_NOT)
                 break
             
             // BRACKETS
-            case BRACKET_OPEN:
-                return buildOperator(operator: BRACKET_OPEN)
+            case Int(BRACKET_OPEN.rawValue):
+                return buildBracketOpen()
                 break
-            case BRACKET_CLOSE:
-                return buildOperator(operator: BRACKET_CLOSE)
+        case Int(BRACKET_CLOSE.rawValue):
+                return buildBracketClose()
                 break
             
             default:
-                return nil
+                return []
                 break
         }
     }
