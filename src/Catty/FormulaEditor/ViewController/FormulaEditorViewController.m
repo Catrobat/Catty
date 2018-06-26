@@ -305,7 +305,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark initObjectView
 -(void)initObjectView
 {
-    
     /*NSInteger buttonCount = 0;
     UIView* topAnchorView = nil;
     

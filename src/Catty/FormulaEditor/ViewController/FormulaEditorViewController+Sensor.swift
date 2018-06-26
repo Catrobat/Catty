@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@available(iOS 11.0, *)
 @objc extension FormulaEditorViewController {
 
     @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat, calcButton: UIButton) -> [UIButton] {
         var buttonCount = 0
-        var topAnchorView = UIView()
+        var topAnchorView: UIView?
         var normalTypeButton = [UIButton]()
         
         for sensor in CBSensorManager.shared.objectSensors() {
@@ -44,7 +43,7 @@
     @objc func initSensorView(sensorScrollView: UIScrollView, buttonHeight: CGFloat, calcButton: UIButton) -> [UIButton] {
         
         var buttonCount = 0
-        var topAnchorView = UIView()
+        var topAnchorView: UIView?
         var normalTypeButton = [UIButton]()
         
         for sensor in CBSensorManager.shared.deviceSensors() {
@@ -67,15 +66,15 @@
         let button = FormulaEditorSensorButton(type: .roundedRect)
         button.addTarget(self, action: #selector(self.buttonPressed(sender:)), for: .touchUpInside)
         button.sensor = sensor
-        button.titleLabel?.font.withSize(18)
+        button.titleLabel?.font = .systemFont(ofSize: 18.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(type(of: sensor).name, for: .normal)
         
         scrollView.addSubview(button)
         if (topAnchorView == nil) {
-            button.topAnchor.constraintEqualToSystemSpacingBelow(scrollView.topAnchor, multiplier: 0).isActive = true
+            button.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
         } else {
-            button.topAnchor.constraintEqualToSystemSpacingBelow((topAnchorView?.bottomAnchor)!, multiplier: 0).isActive = true
+            button.topAnchor.constraint(equalTo: (topAnchorView?.bottomAnchor)!, constant: 0).isActive = true
         }
         
         button.heightAnchor.constraint(equalTo: calcButton.heightAnchor, constant: 0).isActive = true
