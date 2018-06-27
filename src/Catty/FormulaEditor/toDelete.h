@@ -27,7 +27,7 @@
 
 @protocol CBSensor;
 
-@interface InternFormulaKeyboardAdapter : NSObject
+@interface toDelete : NSObject
 
 - (NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name;
 - (NSMutableArray *)createInternTokenListBySensor:(id<CBSensor>)sensor;

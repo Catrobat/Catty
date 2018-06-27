@@ -120,13 +120,15 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 - (void)handleKeyInputWithSensor:(id<CBSensor>)sensor
 {
-    NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListBySensor:sensor];
+    //NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListBySensor:sensor];
+    NSMutableArray *keyInputInternTokenList = [InternFormulaKeyboardAdaptor createInternTokenListBySensorWithSensor:sensor];
     [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:TOKEN_TYPE_SENSOR];
 }
 
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
 {
-    NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListByResourceId:resourceId name:name];
+    //NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListByResourceId:resourceId name:name];
+    NSMutableArray *keyInputInternTokenList = [InternFormulaKeyboardAdaptor createInternTokenListByResourceIdWithResource: resourceId name: name];
     [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:resourceId];
 }
 

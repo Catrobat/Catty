@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "InternFormulaKeyboardAdapter.h"
+#import "toDelete.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation InternFormulaKeyboardAdapter
+@implementation toDelete
 
 - (NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name
 {

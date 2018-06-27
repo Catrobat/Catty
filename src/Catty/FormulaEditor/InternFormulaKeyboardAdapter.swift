@@ -172,7 +172,6 @@ import UIKit
             default:
                 return []
         }
-        return []
     }
     
     @objc func createInternTokenListBySensor(sensor: CBSensor) -> [InternToken] {
