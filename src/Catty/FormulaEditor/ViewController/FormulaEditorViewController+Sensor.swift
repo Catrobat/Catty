@@ -85,9 +85,8 @@
     func buttonPressed(sender: UIButton) {
         let title = sender.titleLabel?.text
         if (sender is FormulaEditorSensorButton) {
-            //handle input
-        } else { // is UIButton
-            //handle input
-        }
+            let button = sender as! FormulaEditorSensorButton
+            self.handleInput(withTitle: title, andSensor: button.sensor)
+        } 
     }
 }

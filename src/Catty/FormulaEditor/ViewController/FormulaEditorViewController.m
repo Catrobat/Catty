@@ -348,13 +348,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
-    if([sender isKindOfClass:[FormulaEditorSensorButton class]]) {
-        FormulaEditorSensorButton *button = (FormulaEditorSensorButton *)sender;
-        NSString *title = button.titleLabel.text;
-        
-        [self handleInputWithTitle:title AndSensor:button.sensor];
-        
-    } else if([sender isKindOfClass:[UIButton class]]) {
+    if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
         NSString *title = button.titleLabel.text;
         
