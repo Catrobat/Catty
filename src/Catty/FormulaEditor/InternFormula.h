@@ -26,7 +26,7 @@
 #import "InternToken.h"
 #import "InternFormulaParser.h"
 #import "InternFormulaUtils.h"
-#import "InternFormulaKeyboardAdapter.h"
+//#import "InternFormulaKeyboardAdapter.h"
 #import "InternToExternGenerator.h"
 #import "InternFormulaState.h"
 

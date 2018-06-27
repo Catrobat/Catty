@@ -21,7 +21,7 @@
  */
 
 #import "InternFormulaKeyboardAdapter.h"
-// #import "Pocket_Code-Swift.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation InternFormulaKeyboardAdapter
 
