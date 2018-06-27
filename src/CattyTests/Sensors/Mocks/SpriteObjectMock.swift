@@ -20,24 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PositionYSensor: ObjectSensor {
+@testable import Pocket_Code
+
+final class SpriteObjectMock: SpriteObject {
+
+    var background: Bool
     
-    static let tag = "OBJECT_Y"
-    static let name = kUIFEObjectPositionY
-    static let defaultValue = 0.0
-    static let requiredResource = ResourceType.noResources
-    
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else { return PositionYSensor.defaultValue }
-        
-        return Double(spriteNode.scenePosition.y)
+    override init() {
+        background = false
     }
     
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
-    }
-    
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
+    override func isBackground() -> Bool {
+        return self.background
     }
 }

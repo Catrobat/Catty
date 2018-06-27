@@ -51,13 +51,85 @@ final class PositionXSensorTest: XCTestCase {
         XCTAssertEqual(sensor.standardizedValue(for: self.spriteObject), PositionXSensor.defaultValue, accuracy: 0.0001)
     }
     
-    func testStandardization() {
+    func testRawValue() {
+        // test point inside the screen, positive X value
         self.spriteNode.pos = CGPoint(x: 12, y: 34)
         XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 12, accuracy: 0.0001)
+        
+        // test point inside the screen, negative X value
+        self.spriteNode.pos = CGPoint(x: -55, y: 34)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), -55, accuracy: 0.0001)
+        
+        // test middle of the screen
+        self.spriteNode.pos = CGPoint(x: 0, y: 0)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 0, accuracy: 0.0001)
+        
+        // test right edge of the screen iPhone 8 Plus
+        self.spriteNode.pos = CGPoint(x: 187, y: 100)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 187, accuracy: 0.0001)
+        
+        // test left edge of the screen iPhone 8 Plus
+        self.spriteNode.pos = CGPoint(x: -187, y: 100)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), -187, accuracy: 0.0001)
+        
+        // test outside of the screen
+        self.spriteNode.pos = CGPoint(x: 10000, y: 30)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 10000, accuracy: 0.0001)
+        
+        // test float value
+        self.spriteNode.pos = CGPoint(x: 20.22, y: 44)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 20.22, accuracy: 0.0001)
+        
+        // test random point
+        let random_x = drand48() * 100
+        self.spriteNode.pos = CGPoint(x: random_x, y: 34)
+        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), random_x, accuracy: 0.0001)
+    }
+    
+    func testStandardizeValue() {
+        // test point inside the screen, positive X value
+        self.spriteNode.pos = CGPoint(x: 12, y: 34)
         XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 12, accuracy: 0.0001)
-
-        // TODO: add more cases
+        
+        // test point inside the screen, negative X value
+        self.spriteNode.pos = CGPoint(x: -55, y: 34)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), -55, accuracy: 0.0001)
+        
+        // test middle of the screen
+        self.spriteNode.pos = CGPoint(x: 0, y: 0)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 0, accuracy: 0.0001)
+        
+        // test right edge of the screen iPhone 8 Plus
+        self.spriteNode.pos = CGPoint(x: 187, y: 100)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 187, accuracy: 0.0001)
+        
+        // test left edge of the screen iPhone 8 Plus
+        self.spriteNode.pos = CGPoint(x: -187, y: 100)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), -187, accuracy: 0.0001)
+        
+        // test outside of the screen
+        self.spriteNode.pos = CGPoint(x: 10000, y: 30)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 10000, accuracy: 0.0001)
+        
+        // test float value
+        self.spriteNode.pos = CGPoint(x: 20.22, y: 44)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 20.22, accuracy: 0.0001)
+        
+        // test random point
+        let random_x = drand48() * 100
+        self.spriteNode.pos = CGPoint(x: random_x, y: 34)
+        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), random_x, accuracy: 0.0001)
     }
 
-    // TODO: add more tests
+    func testTag() {
+        XCTAssertEqual("OBJECT_X", type(of: sensor).tag)
+    }
+    
+    func testRequiredResources() {
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+    }
+    
+    func testShowInFormulaEditor() {
+        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+    }
 }
