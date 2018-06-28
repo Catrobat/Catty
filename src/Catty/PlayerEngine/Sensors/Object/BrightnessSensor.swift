@@ -28,36 +28,39 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
+        return BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(spriteObject.spriteNode.brightness))
+    }
+    
+    func standardizedValue(for spriteObject: SpriteObject) -> Double {
+        return BrightnessSensor.convertRawToStandarized(rawValue: Double(spriteObject.spriteNode.brightness))
     }
 
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
-    }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
     
+    // f:[-1, 1] -> [0, 100]
     static func convertRawToStandarized(rawValue: Double) -> Double {
-        // TODO check conversion
-        return 100 * rawValue;
+        
+        if rawValue >= 1 {
+            return 100.0
+        } else if rawValue <= -1 {
+            return 0.0
+        }
+        
+        return 50 * rawValue + 50
     }
     
+    // f:[0, 100] -> [-1, 1]
     static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
-        // TODO check conversion
-        var brightnessValue = standardizedValue / 100
-        
-        if (brightnessValue > 2) {
-            brightnessValue = 1.0;
-        }
-        else if (brightnessValue < 0){
-            brightnessValue = -1.0;
-        }
-        else{
-            brightnessValue -= 1.0;
+    
+        if standardizedValue >= 100 {
+            return 1.0
+        } else if standardizedValue <= 0 {
+            return -1.0
         }
         
-        return brightnessValue
+        return (standardizedValue - 50) / 50
     }
 }
