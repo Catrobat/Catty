@@ -42,51 +42,95 @@ final class BrightnessTest: XCTestCase {
         self.sensor = nil
     }
     
+    func testDefaultValue() {
+        self.spriteObject.spriteNode = nil
+        XCTAssertEqual(sensor.rawValue(for: self.spriteObject), BrightnessSensor.defaultValue)
+        XCTAssertEqual(sensor.standardizedValue(for: self.spriteObject), BrightnessSensor.defaultValue)
+    }
+    
     func testRawValue() {
-        // test minimum value
-        self.spriteNode.brightness = -1.0
-        XCTAssertEqual(0, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedBrightness = -1.0
+        XCTAssertEqual(-1.0, sensor.rawValue(for: self.spriteObject))
         
-        // test maximum value
-        self.spriteNode.brightness = 1.0
-        XCTAssertEqual(100, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedBrightness = 1.0
+        XCTAssertEqual(1.0, sensor.rawValue(for: self.spriteObject))
         
-        // test mean value
-        self.spriteNode.brightness = 0.0
-        XCTAssertEqual(50, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedBrightness = 0.5
+        XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
         
-        // test lower than minimum value
-        self.spriteNode.brightness = -2.5
-        XCTAssertEqual(0, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedBrightness = 2
+        XCTAssertEqual(2, sensor.rawValue(for: self.spriteObject))
         
-        // test bigger than maximum value
-        self.spriteNode.brightness = 22
-        XCTAssertEqual(100, self.sensor.rawValue(for: self.spriteObject))
-        
-        // test random value
-        self.spriteNode.brightness = 0.75
-        XCTAssertEqual(87.5, self.sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedBrightness = -2
+        XCTAssertEqual(-2, sensor.rawValue(for: self.spriteObject))
+    }
+    
+    func testStandardizedValue() {
         
     }
     
-    func testStandardizeValue() {
+    func testConvertRawToStandarized() {
         // test minimum value
-        self.spriteNode.brightness = 0
-        XCTAssertEqual(87.5, self.sensor.standardizeValue(for: self.spriteObject))
+        self.spriteNode.mockedBrightness = -1.0
+        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
         
         // test maximum value
-        self.spriteNode.brightness = 100
+        self.spriteNode.mockedBrightness = 1.0
+        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
         
         // test mean value
-        self.spriteNode.brightness = 50
+        self.spriteNode.mockedBrightness = 0.0
+        XCTAssertEqual(50, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
         
         // test lower than minimum value
-        self.spriteNode.brightness = -10
+        self.spriteNode.mockedBrightness = -2.5
+        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
         
         // test bigger than maximum value
-        self.spriteNode.brightness = 180
+        self.spriteNode.mockedBrightness = 22
+        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
         
         // test random value
-        self.spriteNode.brightness = 83
+        self.spriteNode.mockedBrightness = 0.75
+        XCTAssertEqual(87.5, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        
+    }
+    
+    func testConvertStandardizedToRaw() {
+        // test minimum value
+        self.spriteNode.mockedBrightness = 0
+        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        
+        // test maximum value
+        self.spriteNode.mockedBrightness = 100
+        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        
+        // test mean value
+        self.spriteNode.mockedBrightness = 50
+        XCTAssertEqual(0, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        
+        // test lower than minimum value
+        self.spriteNode.mockedBrightness = -10
+        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        
+        // test bigger than maximum value
+        self.spriteNode.mockedBrightness = 180
+        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        
+        // test random value
+        self.spriteNode.mockedBrightness = 83
+        XCTAssertEqual(0.66, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+    }
+    
+    func testTag() {
+        XCTAssertEqual("OBJECT_BRIGHTNESS", type(of: sensor).tag)
+    }
+    
+    func testRequiredResources() {
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+    }
+    
+    func testShowInFormulaEditor() {
+        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
     }
 }

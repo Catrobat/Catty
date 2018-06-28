@@ -28,11 +28,22 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(spriteObject.spriteNode.brightness))
+        guard let spriteNode = spriteObject.spriteNode else {
+            return BrightnessSensor.defaultValue
+        }
+        if spriteNode.brightness > 1 {
+            return 1.0
+        } else if spriteNode.brightness < -1 {
+            return -1.0
+        }
+        return Double(spriteNode.brightness)
     }
     
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return BrightnessSensor.convertRawToStandarized(rawValue: Double(spriteObject.spriteNode.brightness))
+        guard let spriteNode = spriteObject.spriteNode else {
+            return BrightnessSensor.defaultValue
+        }
+        return BrightnessSensor.convertRawToStandarized(rawValue: Double(spriteNode.brightness))
     }
 
     
