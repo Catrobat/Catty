@@ -24,5 +24,5 @@ import UIKit
 
 class FormulaEditorSensorButton: UIButton {
     
-    var sensor: CBSensor
+    var sensor: CBSensor!
 }

@@ -382,7 +382,6 @@
 		4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */; };
 		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
 		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
-		4CF0727F20D6458900F93AB5 /* FormulaEditorSensorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0727E20D6458900F93AB5 /* FormulaEditorSensorButton.m */; };
 		4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0728020D6577500F93AB5 /* PhiroSensor.swift */; };
 		4CF0728420D6581900F93AB5 /* PhiroFrontLeftSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0728320D6581900F93AB5 /* PhiroFrontLeftSensor.swift */; };
 		4CF0728A20D659F700F93AB5 /* PhiroFrontRightSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0728520D659F600F93AB5 /* PhiroFrontRightSensor.swift */; };
@@ -1038,8 +1037,9 @@
 		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
-		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
+		F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
+		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
@@ -1582,8 +1582,6 @@
 		4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_096.xml; sourceTree = "<group>"; };
 		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
 		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
-		4CF0727D20D6458900F93AB5 /* FormulaEditorSensorButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormulaEditorSensorButton.h; sourceTree = "<group>"; };
-		4CF0727E20D6458900F93AB5 /* FormulaEditorSensorButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorSensorButton.m; sourceTree = "<group>"; };
 		4CF0728020D6577500F93AB5 /* PhiroSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroSensor.swift; sourceTree = "<group>"; };
 		4CF0728320D6581900F93AB5 /* PhiroFrontLeftSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroFrontLeftSensor.swift; sourceTree = "<group>"; };
 		4CF0728520D659F600F93AB5 /* PhiroFrontRightSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroFrontRightSensor.swift; sourceTree = "<group>"; };
@@ -2665,8 +2663,9 @@
 		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
-		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
+		F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSensorButton.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
+		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
@@ -4703,10 +4702,9 @@
 			children = (
 				92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */,
 				92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */,
+				F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */,
 				81D46EA21CC29E3000653EAB /* ShapeButton.h */,
 				81D46EA31CC29E3000653EAB /* ShapeButton.m */,
-				4CF0727D20D6458900F93AB5 /* FormulaEditorSensorButton.h */,
-				4CF0727E20D6458900F93AB5 /* FormulaEditorSensorButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7864,6 +7862,7 @@
 				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
+				F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */,
 				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
@@ -8069,7 +8068,6 @@
 				F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
-				4CF0727F20D6458900F93AB5 /* FormulaEditorSensorButton.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				92B46F911BC7B3E5004980C1 /* ArduinoBrick.m in Sources */,
 				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
