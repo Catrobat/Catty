@@ -65,7 +65,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -102,7 +102,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -139,7 +139,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -153,7 +153,6 @@
     XCTAssertEqualWithAccuracy(spriteNode.colorValue, 30.0f,0.1f, @"SetColorBrick - Color not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
-
 
 - (void)testSetColorBrickWrongInput
 {
@@ -178,7 +177,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];

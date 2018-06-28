@@ -1029,6 +1029,7 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */; };
 		F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
 		F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF420D79C900030181B /* TimeHourSensorTest.swift */; };
@@ -1037,6 +1038,7 @@
 		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
+		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
@@ -2654,6 +2656,7 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookNumberSensorTest.swift; sourceTree = "<group>"; };
 		F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensorTest.swift; sourceTree = "<group>"; };
 		F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensor.swift; sourceTree = "<group>"; };
 		F4201CF420D79C900030181B /* TimeHourSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHourSensorTest.swift; sourceTree = "<group>"; };
@@ -2662,6 +2665,7 @@
 		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
+		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
@@ -2927,6 +2931,7 @@
 				4C11795D20AED5B6006C6E32 /* PositionXSensorTest.swift */,
 				F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */,
 				4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */,
+				F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -4688,6 +4693,7 @@
 			children = (
 				92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */,
 				92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */,
+				F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -7048,6 +7054,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
+						DevelopmentTeam = J3BZCRPTAA;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -7605,6 +7612,7 @@
 				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
 				4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */,
+				F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */,
 				99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
@@ -7951,6 +7959,7 @@
 				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */,
 				925819881C0208E8003247A9 /* CALayer+XibConfiguration.m in Sources */,
+				F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */,
 				4C0F9F65204BD18600E71B2D /* PreviousLookBrick+CBXMLHandler.m in Sources */,
 				5977B2A620298BD0008753ED /* MediaLibraryDownloader.swift in Sources */,
 				4C0F9F3D204ADC5900E71B2D /* SetBackgroundBrick.m in Sources */,
@@ -8725,7 +8734,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J3BZCRPTAA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -8771,7 +8780,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = J3BZCRPTAA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

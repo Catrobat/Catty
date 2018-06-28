@@ -40,11 +40,13 @@
             
             let texture = SKTexture(image: image)
             spriteNode.currentUIImageLook = image
-            spriteNode.currentLookBrightness = 0
+            spriteNode.brightness = CGFloat(BrightnessSensor.defaultValue)
             spriteNode.currentLookColor = 0
+            
             for (paramName, _) in spriteNode.filterDict {
                 spriteNode.filterDict[paramName] = false
             }
+            
             let xScale = spriteNode.xScale
             let yScale = spriteNode.yScale
             spriteNode.xScale = 1.0

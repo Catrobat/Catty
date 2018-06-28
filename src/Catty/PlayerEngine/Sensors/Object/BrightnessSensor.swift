@@ -24,7 +24,7 @@
 
     static let tag = "OBJECT_BRIGHTNESS"
     static let name = kUIFEObjectBrightness
-    static let defaultValue = 0.0
+    static let defaultValue = 100.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -37,5 +37,27 @@
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
+    }
+    
+    static func convertRawToStandarized(rawValue: Double) -> Double {
+        // TODO check conversion
+        return 100 * rawValue;
+    }
+    
+    static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
+        // TODO check conversion
+        var brightnessValue = standardizedValue / 100
+        
+        if (brightnessValue > 2) {
+            brightnessValue = 1.0;
+        }
+        else if (brightnessValue < 0){
+            brightnessValue = -1.0;
+        }
+        else{
+            brightnessValue -= 1.0;
+        }
+        
+        return brightnessValue
     }
 }

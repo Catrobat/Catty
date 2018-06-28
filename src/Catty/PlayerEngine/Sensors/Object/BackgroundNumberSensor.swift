@@ -28,14 +28,18 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return 0 // TODO
+        guard let spriteNode = spriteObject.spriteNode else { return BackgroundNumberSensor.defaultValue }
+        guard let currentLook = spriteNode.currentLook else { return
+            BackgroundNumberSensor.defaultValue }
+        let index = spriteObject.lookList.index(of: currentLook)
+        return Double(index)
     }
 
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+        return self.rawValue(for: spriteObject) + 1
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true // TODO
+        return spriteObject.isBackground()
     }
 }
