@@ -604,7 +604,6 @@
 		92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEE1A38949E00FA9B0F /* FormulaEditorHistory.m */; };
 		92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */; };
 		92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF31A38949E00FA9B0F /* InternFormula.m */; };
-		92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF51A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m */; };
 		92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF71A38949E00FA9B0F /* InternFormulaParser.m */; };
 		92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF91A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m */; };
 		92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFB1A38949E00FA9B0F /* InternFormulaState.m */; };
@@ -1037,13 +1036,13 @@
 		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
+		F441BA9B20E52EE5006EA794 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9A20E52EE5006EA794 /* InternFormula+KeyboardAdapter.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
-		F49A802220E1266900F30667 /* InternFormulaKeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49A802120E1266900F30667 /* InternFormulaKeyboardAdapter.swift */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
 /* End PBXBuildFile section */
 
@@ -1927,8 +1926,6 @@
 		92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Reverse.m"; sourceTree = "<group>"; };
 		92DFAFF21A38949E00FA9B0F /* InternFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormula.h; sourceTree = "<group>"; };
 		92DFAFF31A38949E00FA9B0F /* InternFormula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormula.m; sourceTree = "<group>"; };
-		92DFAFF41A38949E00FA9B0F /* InternFormulaKeyboardAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaKeyboardAdapter.h; sourceTree = "<group>"; };
-		92DFAFF51A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaKeyboardAdapter.m; sourceTree = "<group>"; };
 		92DFAFF61A38949E00FA9B0F /* InternFormulaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParser.h; sourceTree = "<group>"; };
 		92DFAFF71A38949E00FA9B0F /* InternFormulaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParser.m; sourceTree = "<group>"; };
 		92DFAFF81A38949E00FA9B0F /* InternFormulaParserEmptyStackException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserEmptyStackException.h; sourceTree = "<group>"; };
@@ -2663,13 +2660,13 @@
 		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
+		F441BA9A20E52EE5006EA794 /* InternFormula+KeyboardAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InternFormula+KeyboardAdapter.swift"; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
-		F49A802120E1266900F30667 /* InternFormulaKeyboardAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternFormulaKeyboardAdapter.swift; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4648,9 +4645,7 @@
 				92DFAFEF1A38949E00FA9B0F /* Helper */,
 				92DFAFF21A38949E00FA9B0F /* InternFormula.h */,
 				92DFAFF31A38949E00FA9B0F /* InternFormula.m */,
-				92DFAFF41A38949E00FA9B0F /* InternFormulaKeyboardAdapter.h */,
-				92DFAFF51A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m */,
-				F49A802120E1266900F30667 /* InternFormulaKeyboardAdapter.swift */,
+				F441BA9A20E52EE5006EA794 /* InternFormula+KeyboardAdapter.swift */,
 				92DFAFF61A38949E00FA9B0F /* InternFormulaParser.h */,
 				92DFAFF71A38949E00FA9B0F /* InternFormulaParser.m */,
 				92DFAFF81A38949E00FA9B0F /* InternFormulaParserEmptyStackException.h */,
@@ -7783,7 +7778,6 @@
 				4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
 				9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */,
-				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */,
@@ -8024,6 +8018,7 @@
 				59697DA4201F46AD00A0071A /* LibraryImageCollectionViewCell.swift in Sources */,
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,
 				AAF6D9DC1BC0BFFE00686849 /* SetSizeToBrick+Instruction.swift in Sources */,
+				F441BA9B20E52EE5006EA794 /* InternFormula+KeyboardAdapter.swift in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
 				92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */,
 				5947F6D9200D08430079DBCE /* MediaType.swift in Sources */,
@@ -8300,7 +8295,6 @@
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,
 				AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */,
-				F49A802220E1266900F30667 /* InternFormulaKeyboardAdapter.swift in Sources */,
 				AA74F0091BC05B5F00D1E954 /* TurnRightBrick.m in Sources */,
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,

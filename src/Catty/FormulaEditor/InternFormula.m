@@ -21,6 +21,7 @@
  */
 
 #import "InternFormula.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InternFormula()
 
@@ -120,15 +121,13 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 - (void)handleKeyInputWithSensor:(id<CBSensor>)sensor
 {
-    //NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListBySensor:sensor];
-    NSMutableArray *keyInputInternTokenList = [InternFormulaKeyboardAdaptor createInternTokenListBySensorWithSensor:sensor];
+    NSMutableArray<InternToken*> *keyInputInternTokenList = [[NSMutableArray alloc] initWithArray:[self createInternTokenListBySensorWithSensor:sensor]];
     [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:TOKEN_TYPE_SENSOR];
 }
 
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
 {
-    //NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListByResourceId:resourceId name:name];
-    NSMutableArray *keyInputInternTokenList = [InternFormulaKeyboardAdaptor createInternTokenListByResourceIdWithResource: resourceId name: name];
+    NSMutableArray<InternToken*> *keyInputInternTokenList = [[NSMutableArray alloc] initWithArray:[self createInternTokenListByResourceIdWithResource:resourceId name:name]];
     [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:resourceId];
 }
 
