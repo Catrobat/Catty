@@ -65,7 +65,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 0.0f;
+    object.spriteNode.brightness = 0;
     
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -103,7 +103,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = 100;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -141,7 +141,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 0.0f;
+    object.spriteNode.brightness = 0;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -152,7 +152,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 50.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, 50.0f, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -179,7 +179,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = 100;
 
     Formula* brightness = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
