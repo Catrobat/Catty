@@ -65,7 +65,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = -100;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -102,7 +102,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = -100;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -140,7 +140,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = 0;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -151,7 +151,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f, 0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -178,7 +178,7 @@
     [object.lookList addObject:look];
     spriteNode.currentLook = look;
     spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    spriteNode.currentLookBrightness = 1.0f;
+    spriteNode.brightness = 50;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -216,7 +216,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = 100;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -227,7 +227,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

@@ -21,7 +21,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "Pocket_Code-Swift.h"
+
+@protocol CBSensor;
 
 @interface FormulaEditorSensorButton : UIButton
 

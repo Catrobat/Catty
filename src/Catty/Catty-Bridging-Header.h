@@ -153,6 +153,13 @@
 
 #import "BaseTableViewController.h"
 #import "LooksTableViewController.h"
+#import "FormulaEditorViewController.h"
+
+
+//------------------------------------------------------------------------------------------------------------
+// View
+//------------------------------------------------------------------------------------------------------------
+#import "FormulaEditorSensorButton.h"
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -164,4 +171,5 @@
 #import "KeychainUserDefaultsDefines.h"
 
 #import "BrickFormulaProtocol.h"
+
 

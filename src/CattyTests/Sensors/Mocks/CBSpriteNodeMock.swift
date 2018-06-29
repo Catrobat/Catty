@@ -22,7 +22,8 @@
 
 class CBSpriteNodeMock: CBSpriteNode {
     
-    var pos : CGPoint?
+    var mockedPosition : CGPoint?
+    var mockedBrightness: CGFloat?
     
     required init(spriteObject: SpriteObject) {
         super.init(spriteObject: spriteObject)
@@ -38,10 +39,19 @@ class CBSpriteNodeMock: CBSpriteNode {
     
     override var scenePosition: CGPoint {
         get {
-            return pos!
+            return mockedPosition!
         }
         set {
-            self.pos = newValue
+            self.mockedPosition = newValue
+        }
+    }
+    
+    override var brightness: CGFloat {
+        get {
+            return mockedBrightness!
+        }
+        set {
+            self.mockedBrightness = newValue
         }
     }
 }

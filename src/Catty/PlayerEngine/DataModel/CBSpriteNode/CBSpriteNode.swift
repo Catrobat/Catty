@@ -27,12 +27,10 @@ class CBSpriteNode: SKSpriteNode {
     @objc var spriteObject: SpriteObject?
     @objc var currentLook: Look?
     @objc var currentUIImageLook: UIImage?
-    @objc var currentLookBrightness: CGFloat = 1.0
     @objc var currentLookColor: CGFloat = 0.0
+    @objc var filterDict = ["brightness": false, "color": false]
     
-    @objc var filterDict = ["brightness": false,
-                               "color": false]
-    
+    private var ciBrightness: CGFloat = 1.0 // CoreImage specific brightness
     
     @objc var scenePosition: CGPoint {
         set {
@@ -44,8 +42,18 @@ class CBSpriteNode: SKSpriteNode {
             return CBSceneHelper.convertSceneCoordinateToPoint(self.position, sceneSize: scene.size)
         }
     }
+    
     @objc var zIndex: CGFloat { return zPosition }
-    @objc var brightness: CGFloat { return (100 * self.currentLookBrightness) }
+    
+    @objc var brightness: CGFloat {
+        set {
+            self.ciBrightness = CGFloat(BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(newValue)))
+        }
+        get {
+            return CGFloat(BrightnessSensor.convertRawToStandarized(rawValue: Double(self.ciBrightness)))
+        }
+    }
+    
     @objc var colorValue: CGFloat { return (self.currentLookColor*100/CGFloat(Double.pi)) }
     @objc var scaleX: CGFloat { return (100 * xScale) }
     @objc var scaleY: CGFloat { return (100 * yScale) }
@@ -95,10 +103,10 @@ class CBSpriteNode: SKSpriteNode {
     }
 
     // MARK: - Operations
-    @objc func returnFIlterInstance(_ filterName: String, image: CIImage) -> CIFilter?{
+    func returnFilterInstance(_ filterName: String, image: CIImage) -> CIFilter?{
         var filter: CIFilter? = nil;
         if (filterName == "brightness"){
-            filter = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputImageKey:image, "inputBrightness":self.currentLookBrightness])
+            filter = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputImageKey:image, "inputBrightness":self.ciBrightness])
         }
         if (filterName == "color"){
             filter = CIFilter(name: "CIHueAdjust", withInputParameters: [kCIInputImageKey:image, "inputAngle":self.currentLookColor])
@@ -110,11 +118,16 @@ class CBSpriteNode: SKSpriteNode {
         guard let lookImage = inputImage?.cgImage else { preconditionFailure() }
 
         var ciImage = CIImage(cgImage: lookImage)
-        /////
         let context = CIContext(options: nil)
         
+        if (Double(self.brightness) != BrightnessSensor.defaultValue) {
+            self.filterDict["brightness"] = true
+        } else {
+            self.filterDict["brightness"] = false
+        }
+        
         for (filterName, isActive) in filterDict {
-            if isActive, let outputImage = returnFIlterInstance(filterName, image: ciImage)?.outputImage {
+            if isActive, let outputImage = returnFilterInstance(filterName, image: ciImage)?.outputImage {
                 ciImage = outputImage
             }
         }
@@ -139,9 +152,7 @@ class CBSpriteNode: SKSpriteNode {
         if(yScale != 1.0) {
             self.yScale = yScale;
         }
-        
     }
-    
     
     @objc func nextLook() -> Look? {
         guard let currentLook = currentLook,
@@ -219,7 +230,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc func start(_ zPosition: CGFloat) {
         self.scenePosition = CGPoint(x: 0, y: 0)
         self.zRotation = 0
-        self.currentLookBrightness = 0
+        self.brightness = CGFloat(BrightnessSensor.defaultValue)
         if self.spriteObject?.isBackground() == true {
             self.zPosition = 0
         } else {

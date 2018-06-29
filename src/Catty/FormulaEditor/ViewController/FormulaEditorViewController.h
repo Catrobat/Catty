@@ -49,5 +49,7 @@
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andForce:(BOOL)forceChange;
+//TODO: transfer to Swift
+- (void)handleInputWithTitle:(NSString*)title AndSensor:(id<CBSensor>)sensor;
 
 @end

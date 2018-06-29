@@ -67,7 +67,7 @@
     [object.lookList addObject:look1];
     spriteNode.currentLook = look1;
     spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    spriteNode.currentLookBrightness = 0.0f;
+    spriteNode.brightness = BrightnessSensor.defaultValue;
     
     dispatch_block_t action = [brick actionBlock];
     
