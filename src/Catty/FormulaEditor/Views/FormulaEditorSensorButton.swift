@@ -32,7 +32,6 @@ class FormulaEditorSensorButton: UIButton {
         self.titleLabel?.font = .systemFont(ofSize: 18.0)
         self.setTitle(type(of: sensor).name, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
-        //self.buttonType = UIButtonType.roundedRect
     }
     
     required init?(coder aDecoder: NSCoder) {
