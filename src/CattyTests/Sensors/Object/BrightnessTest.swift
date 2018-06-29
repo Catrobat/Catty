@@ -59,14 +59,15 @@ final class BrightnessTest: XCTestCase {
         XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
         
         self.spriteNode.mockedBrightness = 2
-        XCTAssertEqual(2, sensor.rawValue(for: self.spriteObject))
+        XCTAssertEqual(1, sensor.rawValue(for: self.spriteObject))
         
         self.spriteNode.mockedBrightness = -2
-        XCTAssertEqual(-2, sensor.rawValue(for: self.spriteObject))
+        XCTAssertEqual(-1, sensor.rawValue(for: self.spriteObject))
     }
     
     func testStandardizedValue() {
-        
+        self.spriteNode.mockedBrightness = 0.78
+        XCTAssertEqual(sensor.standardizedValue(for: spriteObject), BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
     }
     
     func testConvertRawToStandarized() {
