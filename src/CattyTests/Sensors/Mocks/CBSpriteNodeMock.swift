@@ -24,6 +24,7 @@ class CBSpriteNodeMock: CBSpriteNode {
     
     var mockedPosition : CGPoint?
     var mockedBrightness: CGFloat?
+    var mockedTransparency: CGFloat? 
     
     required init(spriteObject: SpriteObject) {
         super.init(spriteObject: spriteObject)
@@ -54,4 +55,5 @@ class CBSpriteNodeMock: CBSpriteNode {
             self.mockedBrightness = newValue
         }
     }
+
 }

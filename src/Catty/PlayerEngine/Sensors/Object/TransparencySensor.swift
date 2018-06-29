@@ -35,6 +35,31 @@ class TransparencySensor: ObjectSensor {
         return self.rawValue(for: spriteObject)
     }
     
+    
+    // f:[-1, 1] -> [0, 100]
+    static func convertRawToStandarized(rawValue: Double) -> Double {
+        
+        if rawValue >= 1 {
+            return 100.0
+        } else if rawValue <= -1 {
+            return 0.0
+        }
+        
+        return 50 * rawValue + 50
+    }
+    
+    // f:[0, 100] -> [-1, 1]
+    static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
+        
+        if standardizedValue >= 100 {
+            return 1.0
+        } else if standardizedValue <= 0 {
+            return -1.0
+        }
+        
+        return (standardizedValue - 50) / 50
+    }
+    
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
