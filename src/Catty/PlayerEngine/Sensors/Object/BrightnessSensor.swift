@@ -51,27 +51,27 @@
         return true
     }
     
-    // f:[-1, 1] -> [0, 100]
+    // f:[-1, 1] -> [0, 200]
     static func convertRawToStandarized(rawValue: Double) -> Double {
         
         if rawValue >= 1 {
-            return 100.0
+            return 200.0
         } else if rawValue <= -1 {
             return 0.0
         }
         
-        return 50 * rawValue + 50
+        return 100 * rawValue + 100
     }
     
-    // f:[0, 100] -> [-1, 1]
+    // f:[0, 200] -> [-1, 1]
     static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
     
-        if standardizedValue >= 100 {
+        if standardizedValue >= 200 {
             return 1.0
         } else if standardizedValue <= 0 {
             return -1.0
         }
         
-        return (standardizedValue - 50) / 50
+        return (standardizedValue - 100) / 100
     }
 }
