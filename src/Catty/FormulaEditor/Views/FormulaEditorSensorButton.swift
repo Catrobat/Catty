@@ -24,5 +24,19 @@ import UIKit
 
 class FormulaEditorSensorButton: UIButton {
     
-    var sensor: CBSensor!
+    var sensor: CBSensor
+    
+    public init(sensor: CBSensor) {
+        self.sensor = sensor
+        super.init(frame: .zero)
+        self.titleLabel?.font = .systemFont(ofSize: 18.0)
+        self.setTitle(type(of: sensor).name, for: .normal)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        //self.buttonType = UIButtonType.roundedRect
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
