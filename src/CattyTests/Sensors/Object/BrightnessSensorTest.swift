@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class BrightnessTest: XCTestCase {
+final class BrightnessSensorTest: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
@@ -72,55 +72,43 @@ final class BrightnessTest: XCTestCase {
     
     func testConvertRawToStandarized() {
         // test minimum value
-        self.spriteNode.mockedBrightness = -1.0
-        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: -1.0))
         
         // test maximum value
-        self.spriteNode.mockedBrightness = 1.0
-        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: 1.0))
         
         // test mean value
-        self.spriteNode.mockedBrightness = 0.0
-        XCTAssertEqual(50, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(50, BrightnessSensor.convertRawToStandarized(rawValue: 0.0))
         
         // test lower than minimum value
-        self.spriteNode.mockedBrightness = -2.5
-        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: -2.5))
         
         // test bigger than maximum value
-        self.spriteNode.mockedBrightness = 22
-        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: 22.0))
         
         // test random value
-        self.spriteNode.mockedBrightness = 0.75
-        XCTAssertEqual(87.5, BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(87.5, BrightnessSensor.convertRawToStandarized(rawValue: 0.75))
         
     }
     
     func testConvertStandardizedToRaw() {
         // test minimum value
-        self.spriteNode.mockedBrightness = 0
-        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 0.0))
         
         // test maximum value
-        self.spriteNode.mockedBrightness = 100
-        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 100.0))
         
         // test mean value
-        self.spriteNode.mockedBrightness = 50
-        XCTAssertEqual(0, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(0, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 50.0))
         
         // test lower than minimum value
-        self.spriteNode.mockedBrightness = -10
-        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: -10.0))
         
         // test bigger than maximum value
-        self.spriteNode.mockedBrightness = 180
-        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 180.0))
         
         // test random value
-        self.spriteNode.mockedBrightness = 83
-        XCTAssertEqual(0.66, BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(self.spriteNode.mockedBrightness!)))
+        XCTAssertEqual(0.66, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 83.0))
     }
     
     func testTag() {
