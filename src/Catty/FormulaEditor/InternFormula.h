@@ -28,9 +28,8 @@
 #import "InternFormulaUtils.h"
 #import "InternToExternGenerator.h"
 #import "InternFormulaState.h"
-// #import "Pocket_Code-Swift.h" - not found
 
-@protocol CBSensor; //is this okay? 
+@protocol CBSensor;
 
 typedef enum {
     LEFT = 600,
