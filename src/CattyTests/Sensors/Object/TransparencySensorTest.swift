@@ -49,8 +49,8 @@ final class TransparencySensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        self.spriteNode.mockedTransparency = -1.0
-        XCTAssertEqual(-1.0, sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedTransparency = 0.0
+        XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject))
         
         self.spriteNode.mockedTransparency = 1.0
         XCTAssertEqual(1.0, sensor.rawValue(for: self.spriteObject))
@@ -58,11 +58,11 @@ final class TransparencySensorTest: XCTestCase {
         self.spriteNode.mockedTransparency = 0.5
         XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedTransparency = 2
+        self.spriteNode.mockedTransparency = 2.0
         XCTAssertEqual(1, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedTransparency = -2
-        XCTAssertEqual(-1, sensor.rawValue(for: self.spriteObject))
+        self.spriteNode.mockedTransparency = -2.0
+        XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject))
     }
     
     func testStandardizedValue() {
@@ -72,13 +72,13 @@ final class TransparencySensorTest: XCTestCase {
     
     func testConvertRawToStandarized() {
         // test minimum value
-        XCTAssertEqual(0, TransparencySensor.convertRawToStandarized(rawValue: -1.0))
+        XCTAssertEqual(0, TransparencySensor.convertRawToStandarized(rawValue: 0))
         
         // test maximum value
         XCTAssertEqual(100, TransparencySensor.convertRawToStandarized(rawValue: 1.0))
         
         // test mean value
-        XCTAssertEqual(50, TransparencySensor.convertRawToStandarized(rawValue: 0.0))
+        XCTAssertEqual(50, TransparencySensor.convertRawToStandarized(rawValue: 0.5))
         
         // test lower than minimum value
         XCTAssertEqual(0, TransparencySensor.convertRawToStandarized(rawValue: -2.5))
@@ -87,28 +87,28 @@ final class TransparencySensorTest: XCTestCase {
         XCTAssertEqual(100, TransparencySensor.convertRawToStandarized(rawValue: 22.0))
         
         // test random value
-        XCTAssertEqual(87.5, TransparencySensor.convertRawToStandarized(rawValue: 0.75))
+        XCTAssertEqual(87.5, TransparencySensor.convertRawToStandarized(rawValue: 0.875))
         
     }
     
     func testConvertStandardizedToRaw() {
         // test minimum value
-        XCTAssertEqual(-1, TransparencySensor.convertStandarizedToRaw(standardizedValue: 0.0))
+        XCTAssertEqual(0, TransparencySensor.convertStandarizedToRaw(standardizedValue: 0.0))
         
         // test maximum value
         XCTAssertEqual(1, TransparencySensor.convertStandarizedToRaw(standardizedValue: 100.0))
         
         // test mean value
-        XCTAssertEqual(0, TransparencySensor.convertStandarizedToRaw(standardizedValue: 50.0))
+        XCTAssertEqual(0.5, TransparencySensor.convertStandarizedToRaw(standardizedValue: 50.0))
         
         // test lower than minimum value
-        XCTAssertEqual(-1, TransparencySensor.convertStandarizedToRaw(standardizedValue: -10.0))
+        XCTAssertEqual(0, TransparencySensor.convertStandarizedToRaw(standardizedValue: -10.0))
         
         // test bigger than maximum value
         XCTAssertEqual(1, TransparencySensor.convertStandarizedToRaw(standardizedValue: 180.0))
         
         // test random value
-        XCTAssertEqual(0.66, TransparencySensor.convertStandarizedToRaw(standardizedValue: 83.0))
+        XCTAssertEqual(0.66, TransparencySensor.convertStandarizedToRaw(standardizedValue: 66.0))
     }
     
     func testTag() {

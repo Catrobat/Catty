@@ -41,28 +41,28 @@ class TransparencySensor: ObjectSensor {
         return TransparencySensor.convertRawToStandarized(rawValue: Double(spriteNode.alpha))
     }
     
-    // f:[-1, 1] -> [0, 100]
+    // f:[0, 1] -> [0, 100]
     static func convertRawToStandarized(rawValue: Double) -> Double {
         
         if rawValue >= 1 {
             return 100.0
-        } else if rawValue <= -1 {
+        } else if rawValue <= 0 {
             return 0.0
         }
         
-        return 50 * rawValue + 50
+        return 100 * rawValue
     }
     
-    // f:[0, 100] -> [-1, 1]
+    // f:[0, 100] -> [0, 1]
     static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
         
         if standardizedValue >= 100 {
             return 1.0
         } else if standardizedValue <= 0 {
-            return -1.0
+            return 0.0
         }
         
-        return (standardizedValue - 50) / 50
+        return standardizedValue / 100
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
