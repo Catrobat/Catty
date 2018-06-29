@@ -28,13 +28,18 @@ class TransparencySensor: ObjectSensor {
     static let requiredResource = ResourceType.noResources
     
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.alpha)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return TransparencySensor.defaultValue
+        }
+        return Double(spriteNode.alpha)
     }
     
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return TransparencySensor.defaultValue
+        }
+        return TransparencySensor.convertRawToStandarized(rawValue: Double(spriteNode.alpha))
     }
-    
     
     // f:[-1, 1] -> [0, 100]
     static func convertRawToStandarized(rawValue: Double) -> Double {
