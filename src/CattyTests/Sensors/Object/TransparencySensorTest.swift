@@ -49,25 +49,25 @@ final class TransparencySensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        self.spriteNode.mockedTransparency = 0.0
+        self.spriteNode.alpha = 0.0
         XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedTransparency = 1.0
+        self.spriteNode.alpha = 1.0
         XCTAssertEqual(1.0, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedTransparency = 0.5
+        self.spriteNode.alpha = 0.5
         XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedTransparency = 2.0
+        self.spriteNode.alpha = 2.0
         XCTAssertEqual(1, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedTransparency = -2.0
+        self.spriteNode.alpha = -2.0
         XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject))
     }
     
     func testStandardizedValue() {
-        self.spriteNode.mockedTransparency = 0.78
-        XCTAssertEqual(sensor.standardizedValue(for: spriteObject), TransparencySensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedTransparency!)))
+        self.spriteNode.alpha = 0.78
+        XCTAssertEqual(sensor.standardizedValue(for: spriteObject), TransparencySensor.convertRawToStandarized(rawValue: Double(self.spriteNode.alpha)))
     }
     
     func testConvertRawToStandarized() {

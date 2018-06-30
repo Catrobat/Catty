@@ -31,6 +31,13 @@ class TransparencySensor: ObjectSensor {
         guard let spriteNode = spriteObject.spriteNode else {
             return TransparencySensor.defaultValue
         }
+        if spriteNode.alpha > 1.0 {
+            return 1.0
+        }
+        if spriteNode.alpha < 0.0 {
+            return 0.0
+        }
+        
         return Double(spriteNode.alpha)
     }
     
@@ -46,7 +53,8 @@ class TransparencySensor: ObjectSensor {
         
         if rawValue >= 1 {
             return 100.0
-        } else if rawValue <= 0 {
+        }
+        if rawValue <= 0 {
             return 0.0
         }
         
@@ -58,7 +66,8 @@ class TransparencySensor: ObjectSensor {
         
         if standardizedValue >= 100 {
             return 1.0
-        } else if standardizedValue <= 0 {
+        }
+        if standardizedValue <= 0 {
             return 0.0
         }
         
