@@ -603,6 +603,7 @@
 		92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEE1A38949E00FA9B0F /* FormulaEditorHistory.m */; };
 		92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */; };
 		92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF31A38949E00FA9B0F /* InternFormula.m */; };
+		92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF51A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m */; };
 		92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF71A38949E00FA9B0F /* InternFormulaParser.m */; };
 		92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF91A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m */; };
 		92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFB1A38949E00FA9B0F /* InternFormulaState.m */; };
@@ -1038,6 +1039,7 @@
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
 		F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */; };
+		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
@@ -2663,6 +2665,7 @@
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
 		F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSensorButton.swift; sourceTree = "<group>"; };
+		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
