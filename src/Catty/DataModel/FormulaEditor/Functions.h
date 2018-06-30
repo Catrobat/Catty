@@ -30,7 +30,7 @@
 //          you add a new function here!!
 //
 
-typedef NS_ENUM(NSInteger, Function) {
+typedef enum {
     SIN = 500,
     COS,
     TAN,
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger, Function) {
     MULTI_FINGER_X,
     MULTI_FINGER_Y,
     NO_FUNCTION = -1
-};
+} Function;
 
 #define kNonIdempotentFunctions @[@(RAND),@(ARDUINODIGITAL),@(ARDUINOANALOG)]
 //**************************************************************************************************

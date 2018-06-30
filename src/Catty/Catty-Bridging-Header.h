@@ -156,8 +156,10 @@
 #import "FormulaEditorViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
+
 // Defines
 //------------------------------------------------------------------------------------------------------------
+
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
 #import "KeychainUserDefaultsDefines.h"
