@@ -35,7 +35,6 @@
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "ShapeButton.h"
-#import "FormulaEditorSensorButton.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
