@@ -78,7 +78,7 @@ import UIKit
         case Int(SQRT.rawValue):
             return buildSingleParameterFunction(function: SQRT, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
         case Int(RAND.rawValue):
-            return buildDoubleParameterFunction(function: MOD, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
+            return buildDoubleParameterFunction(function: RAND, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
         case Int(ABS.rawValue):
             return buildSingleParameterFunction(function: ABS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
         case Int(ROUND.rawValue):
