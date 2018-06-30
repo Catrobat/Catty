@@ -35,7 +35,6 @@
 #import "BDKNotifyHUD.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "ShapeButton.h"
-#import "FormulaEditorSensorButton.h"
 #import "Pocket_Code-Swift.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
@@ -190,8 +189,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
-    [self initObjectView];
-    [self initSensorView];
+    
+    
+    [self.normalTypeButton addObjectsFromArray:[self initObjectViewWithObjectScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
+    [self.normalTypeButton addObjectsFromArray:[self initSensorViewWithSensorScrollView:self.sensorScrollView buttonHeight:self.calcButton.frame.size.height]];
+    
     [self initSegmentedControls];
     [self colorFormulaEditor];
     [self hideScrollViews];
@@ -302,69 +304,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.varOrListSegmentedControl.tintColor = [UIColor globalTintColor];
 }
 
-#pragma mark initObjectView
--(void)initObjectView
-{
-    NSInteger buttonCount = 0;
-    UIView* topAnchorView = nil;
-    
-    for (id sensor in [[CBSensorManager shared] objectSensors]) {
-        if ([sensor showInFormulaEditorFor:self.object]) {
-            topAnchorView = [self addButtonToScrollView:self.objectScrollView withSensor:sensor andTopAnchor:topAnchorView];
-            buttonCount++;
-        }
-    }
-    
-    self.objectScrollView.frame = CGRectMake(self.objectScrollView.frame.origin.x, self.objectScrollView.frame.origin.y, self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-    self.objectScrollView.contentSize = CGSizeMake(self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-}
-
-#pragma mark initSensorView
--(void)initSensorView
-{
-    NSInteger buttonCount = 0;
-    UIView* topAnchorView = nil;
-    
-    for (id sensor in [[CBSensorManager shared] deviceSensors]) {
-        if ([sensor showInFormulaEditor]) {
-            topAnchorView = [self addButtonToScrollView:self.sensorScrollView withSensor:sensor andTopAnchor:topAnchorView];
-            buttonCount++;
-        }
-    }
-    
-    self.sensorScrollView.frame = CGRectMake(self.sensorScrollView.frame.origin.x, self.sensorScrollView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-    self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-}
-
--(UIButton*)addButtonToScrollView:(UIScrollView*)scrollView withSensor:(id)sensor andTopAnchor:(UIView*)topAnchorView
-{
-    FormulaEditorSensorButton *button = [FormulaEditorSensorButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [button addTarget:self
-               action:@selector(buttonPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    button.sensor = sensor;
-    button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [button setTitle:[[sensor class] name] forState:UIControlStateNormal];
-    
-    [scrollView addSubview:button];
-    
-    if (topAnchorView == nil) {
-        [button.topAnchor constraintEqualToAnchor:scrollView.topAnchor constant: 0].active = YES;
-    } else {
-        [button.topAnchor constraintEqualToAnchor:topAnchorView.bottomAnchor constant: 0].active = YES;
-    }
-    
-    [button.heightAnchor constraintEqualToAnchor:self.calcButton.heightAnchor constant:0].active = YES;
-    [button.widthAnchor constraintEqualToAnchor:scrollView.widthAnchor constant:0].active = YES;
-    [button.leadingAnchor constraintEqualToAnchor:scrollView.leadingAnchor constant:0].active = YES;
-    
-    [self.normalTypeButton addObject:button];
-    return button;
-}
-
 #pragma mark - localizeView
 - (void)localizeView
 {
@@ -408,13 +347,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
-    if([sender isKindOfClass:[FormulaEditorSensorButton class]]) {
-        FormulaEditorSensorButton *button = (FormulaEditorSensorButton *)sender;
-        NSString *title = button.titleLabel.text;
-        
-        [self handleInputWithTitle:title AndSensor:button.sensor];
-        
-    } else if([sender isKindOfClass:[UIButton class]]) {
+    if([sender isKindOfClass:[UIButton class]]) {
         UIButton *button = (UIButton *)sender;
         NSString *title = button.titleLabel.text;
         

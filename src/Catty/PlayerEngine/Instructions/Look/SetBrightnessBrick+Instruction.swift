@@ -37,29 +37,10 @@
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-
-            var brightnessValue = bright.interpretDouble(forSprite: object) / 100
-            if (brightnessValue > 2) {
-                brightnessValue = 1.0;
-            }
-            else if (brightnessValue < 0){
-                brightnessValue = -1.0;
-            }
-            else{
-                brightnessValue -= 1.0;
-            }
-
+            spriteNode.brightness = CGFloat(bright.interpretDouble(forSprite: object))
+            
             let lookImage = UIImage(contentsOfFile:self.path(for: look))
-            let brightnessDefaultValue:CGFloat = 0.0
-            spriteNode.currentLookBrightness = CGFloat(brightnessValue)
-            
-            if (CGFloat(brightnessValue) != brightnessDefaultValue){
-                spriteNode.filterDict["brightness"] = true
-            }else{
-                spriteNode.filterDict["brightness"] = false
-            }
             spriteNode.executeFilter(lookImage)
-            
         }
     }
 }

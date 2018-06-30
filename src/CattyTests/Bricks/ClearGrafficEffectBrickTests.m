@@ -74,9 +74,11 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = 20;
     brick.script = script;
     brick.transparency = transparency;
+    
+    XCTAssertNotEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f);
 
     dispatch_block_t action = [brick actionBlock];
     action();
@@ -86,7 +88,8 @@
     action = [clearBrick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0, 0.0001f, @"ClearGraphic alpha is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -122,9 +125,11 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.brightness = 10;
     brick.script = script;
     brick.transparency = transparency;
+    
+    XCTAssertNotEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f);
 
     dispatch_block_t action = [brick actionBlock];
     action();
@@ -136,56 +141,7 @@
     action();
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
-}
-
-- (void)testClearGraphicEffectBrick3
-{
-    SpriteObject *object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
-    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
-    object.spriteNode = spriteNode;
-    object.program = program;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
-
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString * filePath = [bundle pathForResource:@"test.png"
-                                           ofType:nil];
-    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
-    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-
-    Formula* brightness =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"50";
-    brightness.formulaTree = formulaTree;
-
-    Script *script = [[WhenScript alloc] init];
-    script.object = object;
-
-    SetBrightnessBrick *brick = [[SetBrightnessBrick alloc]init];
-    brick.script = script;
-    [object.lookList addObject:look];
-    [object.lookList addObject:look];
-    spriteNode.currentLook = look;
-    spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    spriteNode.currentLookBrightness = 1.0f;
-    brick.script = script;
-    brick.brightness = brightness;
-
-    dispatch_block_t action = [brick actionBlock];
-    action();
-
-    ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
-    clearBrick.script = script;
-
-    action = [clearBrick actionBlock];
-    action();
-
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 0.0f,0.0001f, @"ClearGraphic is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

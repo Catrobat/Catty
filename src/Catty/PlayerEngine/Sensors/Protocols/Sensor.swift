@@ -22,13 +22,14 @@
 
 @objc protocol CBSensor {
 
-    /// Tag for serialization
+    // Tag for serialization
     static var tag: String { get }
 
-    /// Name for formula editor
+    // Name for formula editor
     static var name: String { get }
 
-    /// TODO: is this value standardized or platform specific?
+    // Standardized default value
+    // TODO rename
     static var defaultValue: Double { get }
     
     static var requiredResource: ResourceType { get }
