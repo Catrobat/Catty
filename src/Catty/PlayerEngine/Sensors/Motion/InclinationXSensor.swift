@@ -30,10 +30,32 @@ class InclinationXSensor: DeviceSensor {
     let getMotionManager: () -> MotionManager?
 
     func rawValue() -> Double {
-        return self.getMotionManager()?.deviceMotion?.attitude.roll ?? type(of: self).defaultValue
+        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultValue }
+        
+        let roll = inclinationSensor.deviceMotion?.attitude.roll
+        let rollInt = Int(roll! * pow(10, 4))
+        
+        if rollInt > Int(Double.pi * pow(10, 4)) {
+            return Double.pi
+        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
+            return -Double.pi
+        }
+ 
+        return roll!
     }
 
     func standardizedValue() -> Double {
+        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultValue }
+        
+        let roll = inclinationSensor.deviceMotion?.attitude.roll
+        let rollInt = Int(roll! * pow(10, 4))
+        
+        if rollInt > Int(Double.pi * pow(10, 4)) {
+            return Double.pi - roll!
+        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
+            return Double.pi + roll!
+        }
+        
         return Util.radians(toDegree: self.rawValue() * -4)
     }
     
