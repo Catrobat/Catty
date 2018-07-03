@@ -48,21 +48,7 @@ class InclinationXSensor: DeviceSensor {
     }
 
     func standardizedValue() -> Double {
-        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultValue }
-        guard let deviceMotion = inclinationSensor.deviceMotion else {
-            return InclinationXSensor.defaultValue
-        }
-        
-        var pitch = deviceMotion.attitude.pitch
-        let pitchInt = Int(pitch * pow(10, 4))
-        
-        if pitchInt > Int(Double.pi * pow(10, 4)) {
-            pitch = Double.pi - pitch
-        } else if pitchInt < -Int(Double.pi * pow(10, 4)) {
-            pitch = -Double.pi - pitch
-        }
-
-        return InclinationXSensor.convertRadiansToDegress(radians: pitch)
+        return InclinationXSensor.convertRadiansToDegress(radians: rawValue())
     }
     
     static func convertRadiansToDegress(radians: Double) -> Double {

@@ -30,25 +30,32 @@ class InclinationYSensor : DeviceSensor {
     let getMotionManager: () -> MotionManager?
 
     func rawValue() -> Double {
-        if ( self.getMotionManager()?.accelerometerData == nil) {
-            return type(of: self).defaultValue
+        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else {
+            return InclinationXSensor.defaultValue
         }
-        return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultValue
+        
+        let roll = deviceMotion.attitude.roll
+        let rollInt = Int(roll * pow(10, 4))
+        
+        if rollInt > Int(Double.pi * pow(10, 4)) {
+            return Double.pi - roll
+        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
+            return -Double.pi - roll
+        }
+        
+        return roll
     }
-
+    
     func standardizedValue() -> Double {
-        var value = Util.radians(toDegree: self.rawValue() * -4)
-
-        if ((self.getMotionManager()?.accelerometerData!.acceleration.z)! > 0.0) { // Face Down
-            if(value < 0.0) {
-                value = -180.0 - value;
-            } else {
-                value = 180.0 - value;
-            }
-        }
-
-        return value
+        return InclinationXSensor.convertRadiansToDegress(radians: rawValue())
     }
+    
+    static func convertRadiansToDegress(radians: Double) -> Double {
+        // pi radians = 180 degrees
+        return 180 * radians / Double.pi
+    }
+    
     
     func showInFormulaEditor() -> Bool {
         return true
