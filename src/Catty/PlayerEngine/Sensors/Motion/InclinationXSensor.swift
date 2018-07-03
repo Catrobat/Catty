@@ -31,32 +31,43 @@ class InclinationXSensor: DeviceSensor {
 
     func rawValue() -> Double {
         guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else {
+            return InclinationXSensor.defaultValue
+        }
         
-        let roll = inclinationSensor.deviceMotion?.attitude.roll
-        let rollInt = Int(roll! * pow(10, 4))
+        let pitch = deviceMotion.attitude.pitch
+        let pitchInt = Int(pitch * pow(10, 4))
         
-        if rollInt > Int(Double.pi * pow(10, 4)) {
-            return Double.pi
-        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
-            return -Double.pi
+        if pitchInt > Int(Double.pi * pow(10, 4)) {
+            return Double.pi - pitch
+        } else if pitchInt < -Int(Double.pi * pow(10, 4)) {
+            return -Double.pi - pitch
         }
  
-        return roll!
+        return pitch
     }
 
     func standardizedValue() -> Double {
         guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultValue }
-        
-        let roll = inclinationSensor.deviceMotion?.attitude.roll
-        let rollInt = Int(roll! * pow(10, 4))
-        
-        if rollInt > Int(Double.pi * pow(10, 4)) {
-            return Double.pi - roll!
-        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
-            return Double.pi + roll!
+        guard let deviceMotion = inclinationSensor.deviceMotion else {
+            return InclinationXSensor.defaultValue
         }
         
-        return Util.radians(toDegree: self.rawValue() * -4)
+        var pitch = deviceMotion.attitude.pitch
+        let pitchInt = Int(pitch * pow(10, 4))
+        
+        if pitchInt > Int(Double.pi * pow(10, 4)) {
+            pitch = Double.pi - pitch
+        } else if pitchInt < -Int(Double.pi * pow(10, 4)) {
+            pitch = -Double.pi - pitch
+        }
+
+        return InclinationXSensor.convertRadiansToDegress(radians: pitch)
+    }
+    
+    static func convertRadiansToDegress(radians: Double) -> Double {
+        // pi radians = 180 degrees
+        return 180 * radians / Double.pi
     }
     
     func showInFormulaEditor() -> Bool {
