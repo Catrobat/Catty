@@ -38,17 +38,8 @@ class InclinationXSensor: DeviceSensor {
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return InclinationXSensor.defaultRawValue
         }
-        
-        let pitch = deviceMotion.attitude.pitch
-        let pitchInt = Int(pitch * pow(10, 4))
-        
-        if pitchInt > Int(Double.pi * pow(10, 4)) {
-            return Double.pi - pitch
-        } else if pitchInt < -Int(Double.pi * pow(10, 4)) {
-            return -Double.pi - pitch
-        }
-        
-        return pitch
+    
+        return deviceMotion.attitude.pitch
     }
 
     func convertToStandardized(rawValue: Double) -> Double {

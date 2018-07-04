@@ -53,20 +53,6 @@ final class InclinationXSensorTest: XCTestCase {
         self.motionManager.attitude = (pitch: -Double.pi, roll: 0)
         XCTAssertEqual(self.sensor.rawValue(), -Double.pi, accuracy: 0.0001)
         
-        // test bigger than maximum value
-        self.motionManager.attitude = (pitch: Double.pi * 2, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi, accuracy: 0.0001)
-        
-        self.motionManager.attitude = (pitch: Double.pi + Double.pi/2, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/2, accuracy: 0.0001)
-        
-        // test lower than minimum value
-        self.motionManager.attitude = (pitch: -Double.pi * 2, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), Double.pi, accuracy: 0.0001)
-        
-        self.motionManager.attitude = (pitch: -Double.pi - Double.pi/2, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
-        
         // test no inclination
         self.motionManager.attitude = (pitch: 0, roll: 0)
         XCTAssertEqual(self.sensor.rawValue(), 0, accuracy: 0.0001)
