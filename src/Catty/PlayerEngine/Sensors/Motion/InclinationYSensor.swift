@@ -34,14 +34,33 @@ class InclinationYSensor : DeviceSensor {
     }
 
     func rawValue() -> Double {
-        if ( self.getMotionManager()?.accelerometerData == nil) {
-            return type(of: self).defaultRawValue
+        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultRawValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else {
+            return InclinationXSensor.defaultRawValue
         }
-        return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultRawValue
+        
+        let roll = deviceMotion.attitude.roll
+        let rollInt = Int(roll * pow(10, 4))
+        
+        if rollInt > Int(Double.pi * pow(10, 4)) {
+            return Double.pi - roll
+        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
+            return -Double.pi - roll
+        }
+        
+        return roll
     }
-
+    
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        let rawValueInt = Int(rawValue * pow(10, 4))
+        var radians = rawValue
+        
+        if rawValueInt > Int(Double.pi * pow(10, 4)) {
+            radians = Double.pi - rawValue
+        } else if rawValueInt < -Int(Double.pi * pow(10, 4)) {
+            radians = -Double.pi - rawValue
+        }
+        return Util.radians(toDegree: radians)
     }
     
     func showInFormulaEditor() -> Bool {
