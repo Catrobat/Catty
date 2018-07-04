@@ -39,16 +39,8 @@ class InclinationYSensor : DeviceSensor {
             return InclinationXSensor.defaultRawValue
         }
         
-        let roll = deviceMotion.attitude.roll
-        let rollInt = Int(roll * pow(10, 4))
-        
-        if rollInt > Int(Double.pi * pow(10, 4)) {
-            return Double.pi - roll
-        } else if rollInt < -Int(Double.pi * pow(10, 4)) {
-            return -Double.pi - roll
-        }
-        
-        return roll
+        return deviceMotion.attitude.roll
+      
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
