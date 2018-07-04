@@ -22,15 +22,13 @@
 
 import Foundation
 
-class PhiroHelper {
+@objc class PhiroHelper: NSObject {
     var frontLeftSensor:Int = 0;
     var frontRightSensor:Int = 0;
     var sideLeftSensor:Int = 0;
     var sideRightSensor:Int = 0;
     var bottomLeftSensor:Int = 0;
     var bottomRightSensor:Int = 0;
-    
-    
     
     func didReceiveAnalogMessage(_ pin:Int,value:Int){
         switch (pin) {
@@ -56,6 +54,51 @@ class PhiroHelper {
         default: break
             //NOT USED SENSOR
         }
+    }
+    
+    @objc static func sensorTags() -> [String] {
+        var tags = [String]()
         
+        for sensor in CBSensorManager.shared.phiroSensors() {
+            tags.append(type(of: sensor).tag)
+        }
+        
+        return tags
+    }
+    
+    @objc static func defaultTag() -> String {
+        return self.defaultSensor().tag
+    }
+    
+    @objc static func pinNumber(tag: String) -> Int {
+        guard let sensor = sensor(tag: tag) else { return defaultSensor().pinNumber }
+        return type(of: sensor).pinNumber
+    }
+    
+    @objc static func tag(pinNumber: Int) -> String {
+        guard let sensor = sensor(pinNumber: pinNumber) else { return defaultSensor().tag }
+        return type(of: sensor).tag
+    }
+    
+    static func sensor(tag: String) -> PhiroSensor? {
+        for sensor in CBSensorManager.shared.phiroSensors() {
+            if type(of: sensor).tag == tag {
+                return sensor
+            }
+        }
+        return nil
+    }
+    
+    static func sensor(pinNumber: Int) -> PhiroSensor? {
+        for sensor in CBSensorManager.shared.phiroSensors() {
+            if type(of: sensor).pinNumber == pinNumber {
+                return sensor
+            }
+        }
+        return nil
+    }
+    
+    static func defaultSensor() -> PhiroSensor.Type {
+        return PhiroFrontLeftSensor.self
     }
 }

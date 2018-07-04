@@ -28,6 +28,8 @@ protocol SensorManagerProtocol {
     
     func sensor(tag: String) -> CBSensor?
     
+    func sensor<T: CBSensor>(type: T.Type) -> T?
+    
     func value(sensorTag: String, spriteObject: SpriteObject?) -> AnyObject
     
     func stopSensors()

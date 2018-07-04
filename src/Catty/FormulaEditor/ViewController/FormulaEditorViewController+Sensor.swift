@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension FormulaEditorViewController {
+extension FormulaEditorViewController {
 
     @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         
@@ -59,8 +59,8 @@
         
     }
     
-    func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
-    
+    private func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
+
         let button = FormulaEditorSensorButton(sensor: sensor)
         
         button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
@@ -79,11 +79,16 @@
         return button;
     }
     
-    func buttonPressed(sender: UIButton) {
-        let title = sender.titleLabel?.text
+    @objc func buttonPressed(sender: UIButton) {
         if (sender is FormulaEditorSensorButton) {
             let button = sender as! FormulaEditorSensorButton
-            self.handleInput(withTitle: title, andSensor: button.sensor)
+            self.handleInput(withSensor: button.sensor)
         } 
+    }
+    
+    private func handleInput(withSensor sensor:CBSensor)
+    {
+        self.internFormula.handleKeyInput(withSensor: sensor)
+        self.handleInput()
     }
 }

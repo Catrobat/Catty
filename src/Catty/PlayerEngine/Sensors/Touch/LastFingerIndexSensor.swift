@@ -24,15 +24,15 @@
 
     static let tag = "LAST_FINGER_INDEX"
     static let name = kUIFESensorLastFingerIndex
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue() -> Double {
         return 0 // TODO
     }
 
-    func standardizedValue() -> Double {
-        return self.rawValue()
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {

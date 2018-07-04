@@ -213,6 +213,9 @@
 		4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E1F1B4D3E8C00E27479 /* TestParser.m */; };
 		4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */; };
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
+		4C73A59420EC93E90073DB52 /* ReadWriteSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C73A59320EC93E90073DB52 /* ReadWriteSensor.swift */; };
+		4C73A5A120ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */; };
+		4C73A5A320ECB4460073DB52 /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
 		4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A84821DCCE1F9000F366B /* XMLParserTests098.m */; };
 		4C7A84861DCCE270000F366B /* LedFlashBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C7A84851DCCE270000F366B /* LedFlashBrick098.xml */; };
@@ -234,7 +237,6 @@
 		4C994E0A207A3D4100C415FD /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFE207A3D4100C415FD /* Sensor.swift */; };
 		4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E06207A3D4100C415FD /* LoudnessSensor.swift */; };
 		4C994E11207A3D4100C415FD /* SensorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */; };
-		4C994E13207A3E8000C415FD /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E12207A3E8000C415FD /* SensorMock.swift */; };
 		4C994E1C207A55E500C415FD /* CompassDirectionSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E1B207A55E400C415FD /* CompassDirectionSensor.swift */; };
 		4C994E23207A56D500C415FD /* AccelerationZSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E1E207A56D500C415FD /* AccelerationZSensor.swift */; };
 		4C994E25207A56D500C415FD /* AccelerationYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E20207A56D500C415FD /* AccelerationYSensor.swift */; };
@@ -402,7 +404,6 @@
 		4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A320D6710F00F93AB5 /* FingerYSensor.swift */; };
 		4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */; };
 		4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */; };
-		4CF072AB20D673C200F93AB5 /* StringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AA20D673C200F93AB5 /* StringSensor.swift */; };
 		4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */; };
 		4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */; };
 		4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */; };
@@ -603,7 +604,6 @@
 		92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEE1A38949E00FA9B0F /* FormulaEditorHistory.m */; };
 		92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */; };
 		92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF31A38949E00FA9B0F /* InternFormula.m */; };
-		92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF51A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m */; };
 		92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF71A38949E00FA9B0F /* InternFormulaParser.m */; };
 		92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFF91A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m */; };
 		92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFB1A38949E00FA9B0F /* InternFormulaState.m */; };
@@ -1039,7 +1039,6 @@
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
 		F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */; };
-		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
@@ -1047,7 +1046,6 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
-		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
 		F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -1403,6 +1401,9 @@
 		4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
 		4C724E641B4D3EC500E27479 /* CBXMLSerializerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializerContext.h; sourceTree = "<group>"; };
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
+		4C73A59320EC93E90073DB52 /* ReadWriteSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteSensor.swift; sourceTree = "<group>"; };
+		4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = NumberOfItemsInListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/NumberOfItemsInListFunction0991.xml; sourceTree = SOURCE_ROOT; };
+		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
 		4C79F5531B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentProgramsStoreViewControllerTests.h; path = Download/RecentProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentProgramsStoreViewControllerTests.m; path = Download/RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
@@ -1427,7 +1428,6 @@
 		4C994DFE207A3D4100C415FD /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		4C994E06207A3D4100C415FD /* LoudnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoudnessSensor.swift; sourceTree = "<group>"; };
 		4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerProtocol.swift; sourceTree = "<group>"; };
-		4C994E12207A3E8000C415FD /* SensorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
 		4C994E1B207A55E400C415FD /* CompassDirectionSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassDirectionSensor.swift; sourceTree = "<group>"; };
 		4C994E1E207A56D500C415FD /* AccelerationZSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationZSensor.swift; sourceTree = "<group>"; };
 		4C994E20207A56D500C415FD /* AccelerationYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationYSensor.swift; sourceTree = "<group>"; };
@@ -1605,7 +1605,6 @@
 		4CF072A320D6710F00F93AB5 /* FingerYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerYSensor.swift; sourceTree = "<group>"; };
 		4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerXSensor.swift; sourceTree = "<group>"; };
 		4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensor.swift; sourceTree = "<group>"; };
-		4CF072AA20D673C200F93AB5 /* StringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringSensor.swift; sourceTree = "<group>"; };
 		4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateYearSensor.swift; sourceTree = "<group>"; };
 		4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateYearSensorTest.swift; sourceTree = "<group>"; };
 		4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecording.swift"; sourceTree = "<group>"; };
@@ -2666,7 +2665,6 @@
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
 		F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSensorButton.swift; sourceTree = "<group>"; };
-		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
@@ -2674,7 +2672,6 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
-		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4117,17 +4114,17 @@
 		592EF6E42094B3C700BD6000 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F48E945820D6955E007E782E /* DateSensor.swift */,
 				592EF6E92094B84900BD6000 /* DeviceSensor.swift */,
 				59D008EC208E4249000539E7 /* LocationManager.swift */,
 				59D008E8208E3FDC000539E7 /* MotionManager.swift */,
 				592EF6E72094B52E00BD6000 /* ObjectSensor.swift */,
+				4CF0728020D6577500F93AB5 /* PhiroSensor.swift */,
+				4C73A59320EC93E90073DB52 /* ReadWriteSensor.swift */,
 				4C994DFE207A3D4100C415FD /* Sensor.swift */,
-				4CF072AA20D673C200F93AB5 /* StringSensor.swift */,
 				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
 				592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */,
-				4CF0728020D6577500F93AB5 /* PhiroSensor.swift */,
 				4CF0729F20D670C400F93AB5 /* TouchSensor.swift */,
-				F48E945820D6955E007E782E /* DateSensor.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -4224,7 +4221,6 @@
 			children = (
 				59D008EF208E4370000539E7 /* LocationManagerMock.swift */,
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
-				4C994E12207A3E8000C415FD /* SensorMock.swift */,
 				4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */,
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
 			);
@@ -6423,13 +6419,14 @@
 		BAD47DC01F12935F001C38BC /* ListBricks */ = {
 			isa = PBXGroup;
 			children = (
-				F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */,
 				BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */,
+				4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */,
 				4C994DD8207A26D700C415FD /* AddItemToUserListBrick0991.xml */,
 				4C994DD2207A25F600C415FD /* DeleteItemOfUserListBrick098.xml */,
 				4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */,
 				BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */,
 				4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */,
+				4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */,
 				4C994DD6207A260300C415FD /* ReplaceItemInUserListBrick098.xml */,
 				4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */,
 			);
@@ -7162,7 +7159,6 @@
 				BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
-				F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
 				4C0F9FEF204BD47F00E71B2D /* Gossip_Girl_0991.xml in Resources */,
 				4CEF0CDC1B9C642A003C9B20 /* Pong_Starter_096.xml in Resources */,
@@ -7226,6 +7222,7 @@
 				4C2EE3ED1B55571D006DE9B8 /* Compass_0.1_095.xml in Resources */,
 				4CE2D4131C29506E00938B5E /* Skydiving_Steve_097.xml in Resources */,
 				4CE2D41D1C2950AB00938B5E /* ValidProgram097.xml in Resources */,
+				4C73A5A120ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml in Resources */,
 				4C0F9FF6204BD4B000E71B2D /* Memory_0991.xml in Resources */,
 				4C6D15FE1D7AC64000CE53CD /* ValidProgramAllBricks098.xml in Resources */,
 				4CEF0CC61B9C637D003C9B20 /* Demonstration_096.xml in Resources */,
@@ -7321,6 +7318,7 @@
 				4CEF0CDA1B9C641E003C9B20 /* Piano_096.xml in Resources */,
 				4C0FA00F204BD54200E71B2D /* ValidHeader0991.xml in Resources */,
 				4CC85CE71B9C717C0097E470 /* ValidProgram095.xml in Resources */,
+				4C73A5A320ECB4460073DB52 /* ElementOfListFunction0991.xml in Resources */,
 				CAE3E5471B4C50B300CC88BD /* Gossip_Girl_091.xml in Resources */,
 				4C6D15E01D7AC5E700CE53CD /* Memory_098.xml in Resources */,
 				4C994DDF207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml in Resources */,
@@ -7693,7 +7691,6 @@
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
-				4C994E13207A3E8000C415FD /* SensorMock.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
@@ -7748,7 +7745,6 @@
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				4C0F9F82204BD20A00E71B2D /* SpeakAndWaitBrick+Instruction.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
-				4CF072AB20D673C200F93AB5 /* StringSensor.swift in Sources */,
 				929CC0CD1BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m in Sources */,
 				4C0F9F8E204BD27200E71B2D /* RepeatUntilBrickCell.m in Sources */,
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
@@ -8249,6 +8245,7 @@
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
+				4C73A59420EC93E90073DB52 /* ReadWriteSensor.swift in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				4C994E31207A594100C415FD /* InclinationYSensor.swift in Sources */,
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,

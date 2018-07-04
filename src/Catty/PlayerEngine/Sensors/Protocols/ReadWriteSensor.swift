@@ -20,9 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol StringSensor: CBSensor {
-
-    func value() -> String
-
-    func showInFormulaEditor() -> Bool
+@objc protocol ReadWriteSensor {
+    
+    // Convert the Pocket Code standardized sensor value to the iOS specific value (rawValue)
+    func convertToRaw(standardizedValue: Double) -> Double
 }

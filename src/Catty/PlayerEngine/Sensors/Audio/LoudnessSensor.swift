@@ -20,25 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LoudnessSensor: CBSensor { // TODO: finish implementation
+class LoudnessSensor: CBSensor {
+    // TODO: finish implementation
     
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.loudness
 
     let getAudioRecorder: () -> AVAudioRecorder?
+    
+    init(audioRecorderGetter: @escaping () -> AVAudioRecorder?) {
+        self.getAudioRecorder = audioRecorderGetter
+    }
 
     var rawValue: Double {
         // TODO implement
         return 0
     }
-
-    var standardizedValue: Double {
-        return rawValue
-    }
     
-    init(audioRecorderGetter: @escaping () -> AVAudioRecorder?) {
-        self.getAudioRecorder = audioRecorderGetter
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
 }

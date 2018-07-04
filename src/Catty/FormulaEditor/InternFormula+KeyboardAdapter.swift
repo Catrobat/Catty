@@ -22,7 +22,7 @@
 
 import UIKit
 
-@objc extension InternFormula {
+extension InternFormula {
     
     @objc func createInternTokenListByResourceId(resource: Int, name: String) -> [InternToken] {
         // USER VARIABLES
@@ -174,28 +174,33 @@ import UIKit
         }
     }
     
-    @objc func createInternTokenListBySensor(sensor: CBSensor) -> [InternToken] {
+    func handleKeyInput(withSensor sensor: CBSensor) {
+        let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListBySensor(sensor: sensor))
+        self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_SENSOR.rawValue))
+    }
+    
+    private func createInternTokenListBySensor(sensor: CBSensor) -> [InternToken] {
         // TODO arduino: buildSingleParameterFunction
         return buildSensor(sensor: sensor)
     }
     
-    func buildUserVariable(name: String) -> [InternToken] {
+    private func buildUserVariable(name: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_USER_VARIABLE, andValue: name)]
     }
     
-    func buildUserList(name: String) -> [InternToken] {
+    private func buildUserList(name: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: name)]
     }
     
-    func buildString(name: String) -> [InternToken] {
+    private func buildString(name: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_STRING, andValue: name)]
     }
     
-    func buildNumber(numberValue: String) -> [InternToken] {
+    private func buildNumber(numberValue: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: numberValue)]
     }
     
-    func buildSingleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String) -> [InternToken] {
+    private func buildSingleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
                 InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
                 InternToken.init(type: firstParameterType, andValue: firstParameterValue),
@@ -203,11 +208,11 @@ import UIKit
         ]
     }
     
-    func buildFunctionWithoutParametersAndBrackets(function: Function) -> [InternToken] {
+    private func buildFunctionWithoutParametersAndBrackets(function: Function) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function))]
     }
     
-    func buildDoubleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String, secondParameterType:InternTokenType, secondParameterValue: String) -> [InternToken] {
+    private func buildDoubleParameterFunction(function: Function, firstParameterType:InternTokenType, firstParameterValue: String, secondParameterType:InternTokenType, secondParameterValue: String) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: Functions.getName(function)),
                 InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN),
                 InternToken.init(type: firstParameterType, andValue: firstParameterValue),
@@ -217,28 +222,28 @@ import UIKit
         ]
     }
     
-    func buildPeriod() -> [InternToken] {
+    private func buildPeriod() -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_PERIOD)]
     }
     
-    func buildBracketOpen() -> [InternToken] {
+    private func buildBracketOpen() -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_BRACKET_OPEN)]
     }
     
-    func buildBracketClose() -> [InternToken] {
+    private func buildBracketClose() -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_BRACKET_CLOSE)]
     }
     
-    func buildOperator(mathOperator: Operator) -> [InternToken] {
+    private func buildOperator(mathOperator: Operator) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(mathOperator))]
     }
     
-    func buildSensor(sensor: CBSensor) -> [InternToken] {
+    private func buildSensor(sensor: CBSensor) -> [InternToken] {
         let sensorTag = CBSensorManager.shared.tag(sensor: sensor)
         return [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensorTag)]
     }
     
-    func buildSingleParameterSensor(sensor: Any, firstParameterType: InternTokenType, firstParameterValue: String) -> [InternToken] {
+    private func buildSingleParameterSensor(sensor: Any, firstParameterType: InternTokenType, firstParameterValue: String) -> [InternToken] {
         let sensorTag: String
         sensorTag = CBSensorManager.shared.tag(sensor: sensor as! CBSensor)
         return [InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: sensorTag),

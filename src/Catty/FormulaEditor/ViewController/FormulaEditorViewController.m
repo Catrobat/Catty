@@ -355,12 +355,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (void)handleInputWithTitle:(NSString*)title AndSensor:(id<CBSensor>)sensor
-{
-    [self.internFormula handleKeyInputWithSensor:sensor];
-    [self handleInput];
-}
-
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];

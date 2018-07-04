@@ -119,12 +119,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
-- (void)handleKeyInputWithSensor:(id<CBSensor>)sensor
-{
-    NSMutableArray<InternToken*> *keyInputInternTokenList = [[NSMutableArray alloc] initWithArray:[self createInternTokenListBySensorWithSensor:sensor]];
-    [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:TOKEN_TYPE_SENSOR];
-}
-
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
 {
     NSMutableArray<InternToken*> *keyInputInternTokenList = [[NSMutableArray alloc] initWithArray:[self createInternTokenListByResourceIdWithResource:resourceId name:name]];

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol PhiroSensor: DeviceSensor {
+protocol PhiroSensor: DeviceSensor {
     
-    @objc func pinNumber() -> Int
+    static var pinNumber: Int { get }
 }

@@ -20,39 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor {
-
+@objc class BrightnessSensor: NSObject, ObjectSensor, ReadWriteSensor {
+    
     static let tag = "OBJECT_BRIGHTNESS"
     static let name = kUIFEObjectBrightness
-    static let defaultValue = 100.0
+    static let defaultRawValue = 100.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else {
-            return BrightnessSensor.defaultValue
-        }
-        if spriteNode.brightness > 1 {
-            return 1.0
-        } else if spriteNode.brightness < -1 {
-            return -1.0
-        }
-        return Double(spriteNode.brightness)
-    }
-    
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else {
-            return BrightnessSensor.defaultValue
-        }
-        return BrightnessSensor.convertRawToStandarized(rawValue: Double(spriteNode.brightness))
-    }
-
-    
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
+        guard let spriteNode = spriteObject.spriteNode else { return BrightnessSensor.defaultRawValue }
+        return Double(spriteNode.ciBrightness)
     }
     
     // f:[-1, 1] -> [0, 200]
-    static func convertRawToStandarized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         
         if rawValue >= 1 {
             return 200.0
@@ -64,8 +45,8 @@
     }
     
     // f:[0, 200] -> [-1, 1]
-    static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
-    
+    func convertToRaw(standardizedValue: Double) -> Double {
+        
         if standardizedValue >= 200 {
             return 1.0
         } else if standardizedValue <= 0 {
@@ -73,5 +54,9 @@
         }
         
         return (standardizedValue - 100) / 100
+    }
+    
+    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+        return true
     }
 }

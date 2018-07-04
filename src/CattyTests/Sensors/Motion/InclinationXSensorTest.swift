@@ -39,23 +39,12 @@ final class InclinationXSensorTest: XCTestCase {
         self.motionManager = nil
     }
 
-    func testReturnDefaultValue() {
+    func testDefaultRawValue() {
         let sensor = InclinationXSensor { nil }
-        XCTAssertEqual(sensor.rawValue(), InclinationXSensor.defaultValue, accuracy: 0.0001)
-        XCTAssertEqual(sensor.standardizedValue(), InclinationXSensor.defaultValue, accuracy: 0.0001)
+        XCTAssertEqual(InclinationXSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
-    func testStandardization() {
-        self.motionManager.attitude = (roll: -Double.pi/2, pitch: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/2, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.standardizedValue(), 0, accuracy: 0.0001)
-
-        self.motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/3, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.standardizedValue(), 240, accuracy: 0.0001)
-
-        // TODO: add more cases
+    func testConvertToStandardized() {
+        // TODO
     }
-
-    // TODO: add more tests
 }

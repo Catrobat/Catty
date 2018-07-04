@@ -24,15 +24,15 @@ class TimeSecondSensor : DateSensor {
     
     static let tag = "TIME_SECOND"
     static let name = kUIFESensorTimeSecond
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
         return Double(Calendar.current.component(.second, from: self.date()))
     }
     
-    func standardizedValue() -> Double {
-        return self.rawValue()
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {

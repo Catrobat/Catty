@@ -29,8 +29,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc var currentUIImageLook: UIImage?
     @objc var currentLookColor: CGFloat = 0.0
     @objc var filterDict = ["brightness": false, "color": false]
-    
-    private var ciBrightness: CGFloat = 1.0 // CoreImage specific brightness
+    @objc var ciBrightness: CGFloat = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
     
     @objc var scenePosition: CGPoint {
         set {
@@ -44,15 +43,6 @@ class CBSpriteNode: SKSpriteNode {
     }
     
     @objc var zIndex: CGFloat { return zPosition }
-    
-    @objc var brightness: CGFloat {
-        set {
-            self.ciBrightness = CGFloat(BrightnessSensor.convertStandarizedToRaw(standardizedValue: Double(newValue)))
-        }
-        get {
-            return CGFloat(BrightnessSensor.convertRawToStandarized(rawValue: Double(self.ciBrightness)))
-        }
-    }
     
     @objc var colorValue: CGFloat { return (self.currentLookColor*100/CGFloat(Double.pi)) }
     @objc var scaleX: CGFloat { return (100 * xScale) }
@@ -120,7 +110,7 @@ class CBSpriteNode: SKSpriteNode {
         var ciImage = CIImage(cgImage: lookImage)
         let context = CIContext(options: nil)
         
-        if (Double(self.brightness) != BrightnessSensor.defaultValue) {
+        if (Double(self.ciBrightness) != BrightnessSensor.defaultRawValue) {
             self.filterDict["brightness"] = true
         } else {
             self.filterDict["brightness"] = false
@@ -230,7 +220,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc func start(_ zPosition: CGFloat) {
         self.scenePosition = CGPoint(x: 0, y: 0)
         self.zRotation = 0
-        self.brightness = CGFloat(BrightnessSensor.defaultValue)
+        self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
         if self.spriteObject?.isBackground() == true {
             self.zPosition = 0
         } else {

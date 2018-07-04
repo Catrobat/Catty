@@ -310,7 +310,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)sensor
 {
-    if ([[CBSensorManager shared] sensorWithTag:self.currentToken.tokenStringValue] == nil) {
+    if (! [[CBSensorManager shared] existsWithTag:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          

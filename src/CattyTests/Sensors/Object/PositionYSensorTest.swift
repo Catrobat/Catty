@@ -42,13 +42,12 @@ final class PositionYSensorTest: XCTestCase {
         self.sensor = nil
     }
     
-    func testReturnDefaultValue() {
+    func testDefaultRawValue() {
         self.spriteNode.mockedPosition = CGPoint(x: 34, y: 12)
-        XCTAssertNotEqual(sensor.rawValue(for: self.spriteObject), PositionYSensor.defaultValue, accuracy: 0.0001)
+        XCTAssertNotEqual(sensor.rawValue(for: self.spriteObject), PositionYSensor.defaultRawValue, accuracy: 0.0001)
         
         self.spriteObject.spriteNode = nil
-        XCTAssertEqual(sensor.rawValue(for: self.spriteObject), PositionYSensor.defaultValue, accuracy: 0.0001)
-        XCTAssertEqual(sensor.standardizedValue(for: self.spriteObject), PositionYSensor.defaultValue, accuracy: 0.0001)
+        XCTAssertEqual(sensor.rawValue(for: self.spriteObject), PositionYSensor.defaultRawValue, accuracy: 0.0001)
     }
     
     func testRawValue() {
@@ -86,39 +85,8 @@ final class PositionYSensorTest: XCTestCase {
         XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), random_y, accuracy: 0.0001)
     }
     
-    func testStandardizeValue() {
-        // test point inside the screen, positive Y value
-        self.spriteNode.mockedPosition = CGPoint(x: 22, y: 33)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 33, accuracy: 0.0001)
-        
-        // test point inside the screen, negative Y value
-        self.spriteNode.mockedPosition = CGPoint(x: 55, y: -78)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), -78, accuracy: 0.0001)
-        
-        // test middle of the screen
-        self.spriteNode.mockedPosition = CGPoint(x: 0, y: 0)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 0, accuracy: 0.0001)
-        
-        // test top edge of the screen iPhone 8 Plus
-        self.spriteNode.mockedPosition = CGPoint(x: 150, y: 333)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 333, accuracy: 0.0001)
-        
-        // test bottom edge of the screen iPhone 8 Plus
-        self.spriteNode.mockedPosition = CGPoint(x: 150, y: -333)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), -333, accuracy: 0.0001)
-        
-        // test outside of the screen
-        self.spriteNode.mockedPosition = CGPoint(x: 25, y: 9999)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 9999, accuracy: 0.0001)
-        
-        // test float value
-        self.spriteNode.mockedPosition = CGPoint(x: 21, y: 15.765)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), 15.765, accuracy: 0.0001)
-        
-        // test random point
-        let random_y = drand48() * 100
-        self.spriteNode.mockedPosition = CGPoint(x: 180, y: random_y)
-        XCTAssertEqual(self.sensor.standardizedValue(for: self.spriteObject), random_y, accuracy: 0.0001)
+    func testConvertToStandardized() {
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
     
     func testTag() {

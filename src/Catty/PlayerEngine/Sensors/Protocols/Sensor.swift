@@ -28,9 +28,11 @@
     // Name for formula editor
     static var name: String { get }
 
-    // Standardized default value
-    // TODO rename
-    static var defaultValue: Double { get }
+    // Default value for the iOS specific raw value (rawValue)
+    static var defaultRawValue: Double { get }
     
     static var requiredResource: ResourceType { get }
+    
+    // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
+    func convertToStandardized(rawValue: Double) -> Double
 }

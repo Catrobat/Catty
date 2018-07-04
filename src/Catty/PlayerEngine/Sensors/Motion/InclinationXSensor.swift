@@ -24,24 +24,24 @@ class InclinationXSensor: DeviceSensor {
     
     static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
-
-    func rawValue() -> Double {
-        return self.getMotionManager()?.deviceMotion?.attitude.roll ?? type(of: self).defaultValue
+    
+    init(motionManagerGetter: @escaping () -> MotionManager?) {
+        self.getMotionManager = motionManagerGetter
     }
 
-    func standardizedValue() -> Double {
-        return Util.radians(toDegree: self.rawValue() * -4)
+    func rawValue() -> Double {
+        return self.getMotionManager()?.deviceMotion?.attitude.roll ?? type(of: self).defaultRawValue
+    }
+
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {
         return true
-    }
-    
-    init(motionManagerGetter: @escaping () -> MotionManager?) {
-        self.getMotionManager = motionManagerGetter
     }
 }

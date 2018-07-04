@@ -40,7 +40,8 @@
             
             let texture = SKTexture(image: image)
             spriteNode.currentUIImageLook = image
-            spriteNode.brightness = CGFloat(BrightnessSensor.defaultValue)
+            // TODO
+            spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
             spriteNode.currentLookColor = 0
             
             for (paramName, _) in spriteNode.filterDict {

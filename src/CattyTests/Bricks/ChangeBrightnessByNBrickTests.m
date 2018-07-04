@@ -26,6 +26,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeBrightnessByNBrickTests : AbstractBrickTests
+@property (nonatomic, strong) BrightnessSensor* brightnessSensor;
 @end
 
 @implementation ChangeBrightnessByNBrickTests
@@ -33,7 +34,7 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.brightnessSensor = [BrightnessSensor new];
 }
 
 - (void)tearDown
@@ -65,7 +66,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = 0;
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:0];
     
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -76,7 +77,10 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
+    XCTAssertEqualWithAccuracy(100.0f, standardizedValue, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -103,7 +107,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = 100;
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:100];
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -114,7 +118,10 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
+    XCTAssertEqualWithAccuracy(100.0f, standardizedValue, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -141,7 +148,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = 0;
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:0];
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -152,7 +159,10 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 50.0f, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
+    XCTAssertEqualWithAccuracy(50.0f, standardizedValue, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -179,7 +189,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = 100;
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:100];
 
     Formula* brightness = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
@@ -190,7 +200,10 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 50.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
+    XCTAssertEqualWithAccuracy(50.0f, standardizedValue, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

@@ -74,11 +74,11 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = 20;
+    object.spriteNode.ciBrightness = 0.5;
     brick.script = script;
     brick.transparency = transparency;
     
-    XCTAssertNotEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f);
+    XCTAssertNotEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f);
 
     dispatch_block_t action = [brick actionBlock];
     action();
@@ -89,7 +89,7 @@
     action();
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0, 0.0001f, @"ClearGraphic alpha is not correctly calculated");
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -125,11 +125,11 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = 10;
+    object.spriteNode.ciBrightness = 1;
     brick.script = script;
     brick.transparency = transparency;
     
-    XCTAssertNotEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f);
+    XCTAssertNotEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f);
 
     dispatch_block_t action = [brick actionBlock];
     action();
@@ -141,7 +141,7 @@
     action();
 
     XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, BrightnessSensor.defaultValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

@@ -24,37 +24,27 @@ class InclinationYSensor : DeviceSensor {
 
     static let tag = "Y_INCLINATION"
     static let name = kUIFESensorInclinationY
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
+    
+    init(motionManagerGetter: @escaping () -> MotionManager?) {
+        self.getMotionManager = motionManagerGetter
+    }
 
     func rawValue() -> Double {
         if ( self.getMotionManager()?.accelerometerData == nil) {
-            return type(of: self).defaultValue
+            return type(of: self).defaultRawValue
         }
-        return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultValue
+        return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultRawValue
     }
 
-    func standardizedValue() -> Double {
-        var value = Util.radians(toDegree: self.rawValue() * -4)
-
-        if ((self.getMotionManager()?.accelerometerData!.acceleration.z)! > 0.0) { // Face Down
-            if(value < 0.0) {
-                value = -180.0 - value;
-            } else {
-                value = 180.0 - value;
-            }
-        }
-
-        return value
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {
         return true
-    }
-
-    init(motionManagerGetter: @escaping () -> MotionManager?) {
-        self.getMotionManager = motionManagerGetter
     }
 }

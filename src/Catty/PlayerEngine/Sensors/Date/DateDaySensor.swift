@@ -24,15 +24,15 @@ class DateDaySensor : DateSensor {
     
     static let tag = "DATE_DAY"
     static let name = kUIFESensorDateDay
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
         return Double(Calendar.current.component(.day, from: self.date()))
     }
     
-    func standardizedValue() -> Double {
-        return self.rawValue()
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {

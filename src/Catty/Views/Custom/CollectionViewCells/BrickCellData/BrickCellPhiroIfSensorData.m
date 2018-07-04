@@ -36,38 +36,15 @@
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
-        NSMutableArray *options = [[NSMutableArray alloc] init];
-        int currentOptionIndex = 0;
+        
+        [self setValues:[[PhiroHelper class] sensorTags]];
+        
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
             Brick<BrickPhiroIfSensorProtocol> *ifSensorBrick = (Brick<BrickPhiroIfSensorProtocol>*)brickCell.scriptOrBrick;
-            NSString* currentSensor = [ifSensorBrick sensorForLineNumber:line andParameterNumber:parameter];
-            
-            id sensor = [[CBSensorManager shared] sensorWithTag:currentSensor];
-            
-            if ([sensor isKindOfClass:[PhiroFrontLeftSensor class]]) {
-                currentOptionIndex = 0;
-            } else if ([sensor isKindOfClass:[PhiroFrontRightSensor class]]) {
-                currentOptionIndex = 1;
-            } else if ([sensor isKindOfClass:[PhiroBottomLeftSensor class]]) {
-                currentOptionIndex = 2;
-            } else if ([sensor isKindOfClass:[PhiroBottomRightSensor class]]) {
-                currentOptionIndex = 3;
-            } else if ([sensor isKindOfClass:[PhiroSideLeftSensor class]]) {
-                currentOptionIndex = 4;
-            } else if ([sensor isKindOfClass:[PhiroSideRightSensor class]]) {
-                currentOptionIndex = 5;
-            } else {
-                [NSException raise:NSGenericException format:@"Unexpected FormatType."];
-            }
+            NSString* currentSensorTag = [ifSensorBrick sensorForLineNumber:line andParameterNumber:parameter];
+            [self setCurrentValue:currentSensorTag];
         }
-        [options addObject:PhiroFrontLeftSensor.tag];
-        [options addObject:PhiroFrontRightSensor.tag];
-        [options addObject:PhiroBottomLeftSensor.tag];
-        [options addObject:PhiroBottomRightSensor.tag];
-        [options addObject:PhiroSideLeftSensor.tag];
-        [options addObject:PhiroSideRightSensor.tag];
-        [self setValues:options];
-        [self setCurrentValue:options[currentOptionIndex]];
+        
         [self setDelegate:(id<iOSComboboxDelegate>)self];
     }
     return self;

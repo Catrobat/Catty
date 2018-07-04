@@ -24,28 +24,25 @@
     
     static let tag = "side_right"
     static let name = kUIFESensorPhiroSideRight
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
+    static let pinNumber = 5
     
     let getBluetoothService: () -> BluetoothService?
     
+    init(bluetoothServiceGetter: @escaping () -> BluetoothService?) {
+        self.getBluetoothService = bluetoothServiceGetter
+    }
+    
     func rawValue() -> Double {
-        return self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(self.pinNumber()) ?? type(of: self).defaultValue
+        return self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(type(of: self).pinNumber) ?? type(of: self).defaultRawValue
     }
     
-    func standardizedValue() -> Double {
-        return self.rawValue()
-    }
-    
-    func pinNumber() -> Int {
-        return 5
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {
         return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
-    }
-    
-    init(bluetoothServiceGetter: @escaping () -> BluetoothService?) {
-        self.getBluetoothService = bluetoothServiceGetter
     }
 }

@@ -89,10 +89,10 @@ import CoreLocation
             
             PhiroFrontLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroFrontRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroBottomLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroBottomRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             
             /*ArduinoAnalogPinSensor(), // only show if [[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]
             ArduinoDigitalPinSensor(),*/
@@ -114,37 +114,45 @@ import CoreLocation
         self.sensors.forEach { self.sensorMap[type(of: $0).tag] = $0 }
     }
     
-    @objc func sensorList() -> [CBSensor] {
+    func sensorList() -> [CBSensor] {
         return self.sensors
     }
     
-    @objc func deviceSensors() -> [DeviceSensor] {
+    func deviceSensors() -> [DeviceSensor] {
         return self.sensors.filter{$0 is DeviceSensor}.map{ $0 as! DeviceSensor }
     }
     
-    @objc func objectSensors() -> [ObjectSensor] {
+    func objectSensors() -> [ObjectSensor] {
         return self.sensors.filter{$0 is ObjectSensor}.map{ $0 as! ObjectSensor }
     }
     
-    @objc func phiroSensors() -> [PhiroSensor] {
+    func phiroSensors() -> [PhiroSensor] {
         return self.sensors.filter{$0 is PhiroSensor}.map{ $0 as! PhiroSensor }
     }
     
-    @objc func sensor(tag: String) -> CBSensor? {
+    func sensor(tag: String) -> CBSensor? {
         return self.sensorMap[tag]
     }
     
-    @objc func tag(sensor: CBSensor) -> String {
+    func sensor<T: CBSensor>(type: T.Type) -> T? {
+        return self.sensors.filter{$0 is T}.first as? T
+    }
+    
+    func tag(sensor: CBSensor) -> String {
         return type(of: sensor).tag
     }
     
-    @objc func name(sensor: CBSensor) -> String {
+    func name(sensor: CBSensor) -> String {
         return type(of: sensor).name
     }
     
     @objc func name(tag: String) -> String? {
         guard let sensor = self.sensor(tag: tag) else { return nil }
         return type(of: sensor).name
+    }
+    
+    @objc func exists(tag: String) -> Bool {
+        return self.sensor(tag: tag) != nil
     }
     
     // TODO write test
@@ -155,16 +163,15 @@ import CoreLocation
 
     @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
         guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor as AnyObject }
+        var rawValue = type(of: sensor).defaultRawValue
         
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
-            return sensor.standardizedValue(for: spriteObject) as AnyObject
+            rawValue = sensor.rawValue(for: spriteObject)
         } else if let sensor = sensor as? DeviceSensor {
-            return sensor.standardizedValue() as AnyObject
-        } else if let sensor = sensor as? StringSensor {
-            return sensor.value() as AnyObject
+            rawValue = sensor.rawValue()
         }
         
-        return type(of: sensor).defaultValue as AnyObject
+        return sensor.convertToStandardized(rawValue: rawValue) as AnyObject
     }
     
     @objc(setupSensorsForRequiredResources:)

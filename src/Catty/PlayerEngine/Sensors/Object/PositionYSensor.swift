@@ -24,17 +24,17 @@ class PositionYSensor: ObjectSensor {
     
     static let tag = "OBJECT_Y"
     static let name = kUIFEObjectPositionY
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else { return PositionYSensor.defaultValue }
+        guard let spriteNode = spriteObject.spriteNode else { return PositionYSensor.defaultRawValue }
         
         return Double(spriteNode.scenePosition.y)
     }
     
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

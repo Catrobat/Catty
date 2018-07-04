@@ -24,19 +24,18 @@
 
     static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else { return BackgroundNumberSensor.defaultValue }
-        guard let currentLook = spriteNode.currentLook else { return
-            BackgroundNumberSensor.defaultValue }
+        guard let spriteNode = spriteObject.spriteNode else { return BackgroundNumberSensor.defaultRawValue }
+        guard let currentLook = spriteNode.currentLook else { return BackgroundNumberSensor.defaultRawValue }
         let index = spriteObject.lookList.index(of: currentLook)
         return Double(index)
     }
-
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject) + 1
+    
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue + 1
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

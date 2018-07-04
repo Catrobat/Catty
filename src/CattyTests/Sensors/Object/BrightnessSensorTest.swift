@@ -42,73 +42,60 @@ final class BrightnessSensorTest: XCTestCase {
         self.sensor = nil
     }
     
-    func testDefaultValue() {
+    func testDefaultRawValue() {
         self.spriteObject.spriteNode = nil
-        XCTAssertEqual(sensor.rawValue(for: self.spriteObject), BrightnessSensor.defaultValue)
-        XCTAssertEqual(sensor.standardizedValue(for: self.spriteObject), BrightnessSensor.defaultValue)
+        XCTAssertEqual(BrightnessSensor.defaultRawValue, sensor.rawValue(for: self.spriteObject))
     }
     
     func testRawValue() {
-        self.spriteNode.mockedBrightness = -1.0
+        self.spriteNode.ciBrightness = -1.0
         XCTAssertEqual(-1.0, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedBrightness = 1.0
+        self.spriteNode.ciBrightness = 1.0
         XCTAssertEqual(1.0, sensor.rawValue(for: self.spriteObject))
         
-        self.spriteNode.mockedBrightness = 0.5
+        self.spriteNode.ciBrightness = 0.5
         XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
-        
-        self.spriteNode.mockedBrightness = 2
-        XCTAssertEqual(1, sensor.rawValue(for: self.spriteObject))
-        
-        self.spriteNode.mockedBrightness = -2
-        XCTAssertEqual(-1, sensor.rawValue(for: self.spriteObject))
     }
     
-    func testStandardizedValue() {
-        self.spriteNode.mockedBrightness = 0.78
-        XCTAssertEqual(sensor.standardizedValue(for: spriteObject), BrightnessSensor.convertRawToStandarized(rawValue: Double(self.spriteNode.mockedBrightness!)))
-    }
-    
-    func testConvertRawToStandarized() {
+    func testConvertToStandardized() {
         // test minimum value
-        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: -1.0))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -1.0))
         
         // test maximum value
-        XCTAssertEqual(200, BrightnessSensor.convertRawToStandarized(rawValue: 1.0))
+        XCTAssertEqual(200, sensor.convertToStandardized(rawValue: 1.0))
         
         // test mean value
-        XCTAssertEqual(100, BrightnessSensor.convertRawToStandarized(rawValue: 0.0))
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 0.0))
         
         // test lower than minimum value
-        XCTAssertEqual(0, BrightnessSensor.convertRawToStandarized(rawValue: -2.5))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -2.5))
         
         // test bigger than maximum value
-        XCTAssertEqual(200, BrightnessSensor.convertRawToStandarized(rawValue: 22.0))
+        XCTAssertEqual(200, sensor.convertToStandardized(rawValue: 22.0))
         
         // test random value
-        XCTAssertEqual(175, BrightnessSensor.convertRawToStandarized(rawValue: 0.75))
-        
+        XCTAssertEqual(175, sensor.convertToStandardized(rawValue: 0.75))
     }
     
-    func testConvertStandardizedToRaw() {
+    func testConvertToRaw() {
         // test minimum value
-        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 0.0))
+        XCTAssertEqual(-1, sensor.convertToRaw(standardizedValue: 0.0))
         
         // test maximum value
-        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 200.0))
+        XCTAssertEqual(1, sensor.convertToRaw(standardizedValue: 200.0))
         
         // test mean value
-        XCTAssertEqual(0, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 100.0))
+        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 100.0))
         
         // test lower than minimum value
-        XCTAssertEqual(-1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: -10.0))
+        XCTAssertEqual(-1, sensor.convertToRaw(standardizedValue: -10.0))
         
         // test bigger than maximum value
-        XCTAssertEqual(1, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 280.0))
+        XCTAssertEqual(1, sensor.convertToRaw(standardizedValue: 280.0))
         
         // test random value
-        XCTAssertEqual(-0.17, BrightnessSensor.convertStandarizedToRaw(standardizedValue: 83.0))
+        XCTAssertEqual(-0.17, sensor.convertToRaw(standardizedValue: 83.0))
     }
     
     func testTag() {

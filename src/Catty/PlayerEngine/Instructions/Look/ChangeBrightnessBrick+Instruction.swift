@@ -32,12 +32,15 @@
     @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let bright = self.changeBrightness
+            let bright = self.changeBrightness,
+            let brightnessSensor = CBSensorManager.shared.sensor(type: BrightnessSensor.self)
             else { fatalError("This should never happen!") }
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-            spriteNode.brightness = spriteNode.brightness + CGFloat(bright.interpretDouble(forSprite: object))
+            let standardizedValue = brightnessSensor.convertToStandardized(rawValue: Double(spriteNode.ciBrightness)) + bright.interpretDouble(forSprite: object)
+            let rawValue = brightnessSensor.convertToRaw(standardizedValue: standardizedValue)
+            spriteNode.ciBrightness = CGFloat(rawValue)
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))
             spriteNode.executeFilter(lookImage)

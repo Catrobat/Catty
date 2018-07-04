@@ -24,24 +24,24 @@
     
     static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.accelerometer
 
     let getMotionManager: () -> MotionManager?
-
-    func rawValue() -> Double {
-        return self.getMotionManager()?.accelerometerData?.acceleration.y ?? type(of: self).defaultValue
+    
+    init(motionManagerGetter: @escaping () -> MotionManager?) {
+        self.getMotionManager = motionManagerGetter
     }
 
-    func standardizedValue() -> Double {
-        return self.rawValue()
+    func rawValue() -> Double {
+        return self.getMotionManager()?.accelerometerData?.acceleration.y ?? type(of: self).defaultRawValue
+    }
+
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {
         return true
-    }
-
-    init(motionManagerGetter: @escaping () -> MotionManager?) {
-        self.getMotionManager = motionManagerGetter
     }
 }

@@ -71,7 +71,7 @@
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.sensor =  PhiroFrontLeftSensor.tag;
+    self.sensor = [[PhiroHelper class] defaultTag];
 }
 
 -(BOOL)isPhiroBrick

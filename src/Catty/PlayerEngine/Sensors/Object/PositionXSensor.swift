@@ -25,17 +25,17 @@ class PositionXSensor: NSObject, ObjectSensor {
 
     static let tag = "OBJECT_X"
     static let name = kUIFEObjectPositionX
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else { return PositionXSensor.defaultValue }
+        guard let spriteNode = spriteObject.spriteNode else { return PositionXSensor.defaultRawValue }
         
         return Double(spriteNode.scenePosition.x)
     }
 
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

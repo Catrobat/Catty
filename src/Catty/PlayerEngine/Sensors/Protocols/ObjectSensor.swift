@@ -20,13 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol ObjectSensor: CBSensor {
+protocol ObjectSensor: CBSensor {
 
-    /// TODO: description
+    // The iOS device specific value of the sensor
     func rawValue(for spriteObject: SpriteObject) -> Double
-
-    /// TODO: description
-    func standardizedValue(for spriteObject: SpriteObject) -> Double
     
+    // True if the sensor should be shown in the Formula Editor
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool
+}
+
+extension ObjectSensor {
+    // The Pocket Code standardized sensor value
+    func standardizedValue(for spriteObject: SpriteObject) -> Double {
+        return self.convertToStandardized(rawValue: self.rawValue(for: spriteObject))
+    }
 }

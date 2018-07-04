@@ -24,24 +24,24 @@
     
     static let tag = "LOCATION_ACCURACY"
     static let name = kUIFESensorLocationAccuracy
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.location
     
     let getLocationManager: () -> LocationManager?
     
-    func rawValue() -> Double {
-        return self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultValue
+    init(locationManagerGetter: @escaping () -> LocationManager?) {
+        self.getLocationManager = locationManagerGetter
     }
     
-    func standardizedValue() -> Double {
-        return self.rawValue()
+    func rawValue() -> Double {
+        return self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultRawValue
+    }
+    
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor() -> Bool {
         return true
-    }
-    
-    init(locationManagerGetter: @escaping () -> LocationManager?) {
-        self.getLocationManager = locationManagerGetter
     }
 }

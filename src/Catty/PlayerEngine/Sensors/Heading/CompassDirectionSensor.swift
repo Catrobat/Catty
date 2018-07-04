@@ -24,24 +24,24 @@
     
     static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.compass
 
     let getLocationManager: () -> LocationManager?
-
-    func rawValue() -> Double {
-        return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultValue
+    
+    init(locationManagerGetter: @escaping () -> LocationManager?) {
+        self.getLocationManager = locationManagerGetter
     }
 
-    func standardizedValue() -> Double {
-        return -self.rawValue()
+    func rawValue() -> Double {
+        return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
+    }
+
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue * -1
     }
     
     func showInFormulaEditor() -> Bool {
         return true
-    }
-
-    init(locationManagerGetter: @escaping () -> LocationManager?) {
-        self.getLocationManager = locationManagerGetter
     }
 }

@@ -24,15 +24,15 @@ class LayerSensor: ObjectSensor {
 
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.zIndex)
     }
 
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
+    func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

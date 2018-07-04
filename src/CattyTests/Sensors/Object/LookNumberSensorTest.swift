@@ -42,12 +42,12 @@ final class LookNumberSensorTest: XCTestCase {
         self.sensor = nil
     }
     
-    func testReturnDefaultValue() {
+    func testDefaultRawValue() {
         self.spriteNode.currentLook = nil
-        XCTAssertEqual(LookNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
+        XCTAssertEqual(LookNumberSensor.defaultRawValue, self.sensor.rawValue(for: self.spriteObject))
         
         self.spriteNode = nil
-        XCTAssertEqual(LookNumberSensor.defaultValue, self.sensor.rawValue(for: self.spriteObject))
+        XCTAssertEqual(LookNumberSensor.defaultRawValue, self.sensor.rawValue(for: self.spriteObject))
         
     }
     
@@ -66,19 +66,10 @@ final class LookNumberSensorTest: XCTestCase {
         XCTAssertEqual(2, self.sensor.rawValue(for: self.spriteObject))
     }
     
-    func testStandardizeValue() {
-        self.spriteObject.lookList = [Look(name: "first", andPath: "test1.png"),
-                                      Look(name: "second", andPath: "test2.png"),
-                                      Look(name: "third", andPath: "test3.png")]
-        
-        self.spriteNode.currentLook = (self.spriteObject.lookList[0] as! Look)
-        XCTAssertEqual(1, self.sensor.standardizedValue(for: self.spriteObject))
-        
-        self.spriteNode.currentLook = (self.spriteObject.lookList[1] as! Look)
-        XCTAssertEqual(2, self.sensor.standardizedValue(for: self.spriteObject))
-        
-        self.spriteNode.currentLook = (self.spriteObject.lookList[2] as! Look)
-        XCTAssertEqual(3, self.sensor.standardizedValue(for: self.spriteObject))
+    func testConvertToStandardized() {
+        XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: 0))
+        XCTAssertEqual(2, self.sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(3, self.sensor.convertToStandardized(rawValue: 2))
     }
     
     func testTag() {

@@ -42,13 +42,7 @@
     GDataXMLElement *sensorSpinnerPosition = [xmlElement childWithElementName:@"sensorSpinnerPosition"];
     
     // Default value
-    ifLogicBeginBrick.sensor = PhiroFrontLeftSensor.tag;
-    
-    for (id<PhiroSensor> sensor in [[CBSensorManager shared] phiroSensors]) {
-        if ([sensorSpinnerPosition.stringValue isEqualToString:[[NSNumber numberWithInteger:[sensor pinNumber]] stringValue]]) {
-            ifLogicBeginBrick.sensor = [[CBSensorManager shared] tagWithSensor:sensor];
-        }
-    }
+    ifLogicBeginBrick.sensor = [[PhiroHelper class] tagWithPinNumber:[sensorSpinnerPosition.stringValue intValue]];
     
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicBeginBrick];
@@ -75,15 +69,10 @@
     
     [brick addChild:formulaList context:context];
     
-    NSString *sensorSpinnerPosition = PhiroFrontLeftSensor.tag;
-    id phiroSensor = [[CBSensorManager shared] sensorWithTag:self.sensor];
-    
-    if (phiroSensor != nil && [phiroSensor conformsToProtocol:@protocol(PhiroSensor)]) {
-        sensorSpinnerPosition = [[NSNumber numberWithInteger:[phiroSensor pinNumber]] stringValue];
-    }
-    
+    NSString *sensorSpinnerPosition = [[NSNumber numberWithInteger:[[PhiroHelper class] pinNumberWithTag:self.sensor]] stringValue];
     GDataXMLElement *value = [GDataXMLElement elementWithName:@"sensorSpinnerPosition" stringValue:sensorSpinnerPosition context:context];
     [brick addChild:value context:context];
+    
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;

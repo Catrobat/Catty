@@ -65,7 +65,6 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -102,7 +101,6 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -139,7 +137,6 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -177,7 +174,6 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.brightness = BrightnessSensor.defaultValue;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];

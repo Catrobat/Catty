@@ -24,15 +24,15 @@ class DateWeekdaySensor : DateSensor {
     
     static let tag = "DATE_WEEKDAY"
     static let name = kUIFESensorDateWeekday
-    static let defaultValue = 0.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue() -> Double {
         return Double(Calendar.current.component(.weekday, from: self.date()))
     }
     
-    func standardizedValue() -> Double {
-        var weekday = self.rawValue()
+    func convertToStandardized(rawValue: Double) -> Double {
+        var weekday = rawValue
         if weekday == 1.0 { //Sunday
             weekday = 7
         } else {

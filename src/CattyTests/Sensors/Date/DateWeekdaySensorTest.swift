@@ -86,38 +86,27 @@ final class DateWeekdaySensorTest: XCTestCase {
         XCTAssertEqual(3, Int(sensor.rawValue()))
     }
     
-    func testStandardizedValue() {
+    func testConvertToStandardized() {
         /* test Sunday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 17, hour: 10))!
-        XCTAssertEqual(7, Int(sensor.standardizedValue()))
+        XCTAssertEqual(7, Int(sensor.convertToStandardized(rawValue: 1)))
         
         /* test Monday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 18, hour: 10))!
-        XCTAssertEqual(1, Int(sensor.standardizedValue()))
+        XCTAssertEqual(1, Int(sensor.convertToStandardized(rawValue: 2)))
         
         /* test Tuesday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 10))!
-        XCTAssertEqual(2, Int(sensor.standardizedValue()))
+        XCTAssertEqual(2, Int(sensor.convertToStandardized(rawValue: 3)))
         
         /* test Wednesday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 20, hour: 10))!
-        XCTAssertEqual(3, Int(sensor.standardizedValue()))
+        XCTAssertEqual(3, Int(sensor.convertToStandardized(rawValue: 4)))
         
         /* test Thursday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 21, hour: 10))!
-        XCTAssertEqual(4, Int(sensor.standardizedValue()))
+        XCTAssertEqual(4, Int(sensor.convertToStandardized(rawValue: 5)))
         
         /* test Friday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 22, hour: 10))!
-        XCTAssertEqual(5, Int(sensor.standardizedValue()))
+        XCTAssertEqual(5, Int(sensor.convertToStandardized(rawValue: 6)))
         
         /* test Saturday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 23, hour: 10))!
-        XCTAssertEqual(6, Int(sensor.standardizedValue()))
-        
-        /* test edge case - almost the beginning of the next day - Tuesday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 23))!
-        XCTAssertEqual(2, Int(sensor.standardizedValue()))
+        XCTAssertEqual(6, Int(sensor.convertToStandardized(rawValue: 7)))
     }
     
     func testShowInFormulaEditor() {

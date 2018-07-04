@@ -67,7 +67,8 @@ final class DateDaySensorTest: XCTestCase {
     }
     
     func testStandardizedValue() {
-        XCTAssertEqual(sensor.rawValue(), sensor.standardizedValue())
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
     
     func testShowInFormulaEditor() {
