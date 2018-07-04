@@ -28,36 +28,50 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.brightness)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return BrightnessSensor.defaultValue
+        }
+        if spriteNode.brightness > 1 {
+            return 1.0
+        } else if spriteNode.brightness < -1 {
+            return -1.0
+        }
+        return Double(spriteNode.brightness)
+    }
+    
+    func standardizedValue(for spriteObject: SpriteObject) -> Double {
+        guard let spriteNode = spriteObject.spriteNode else {
+            return BrightnessSensor.defaultValue
+        }
+        return BrightnessSensor.convertRawToStandarized(rawValue: Double(spriteNode.brightness))
     }
 
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.rawValue(for: spriteObject)
-    }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
     
+    // f:[-1, 1] -> [0, 200]
     static func convertRawToStandarized(rawValue: Double) -> Double {
-        // TODO check conversion
-        return 100 * rawValue;
+        
+        if rawValue >= 1 {
+            return 200.0
+        } else if rawValue <= -1 {
+            return 0.0
+        }
+        
+        return 100 * rawValue + 100
     }
     
+    // f:[0, 200] -> [-1, 1]
     static func convertStandarizedToRaw(standardizedValue: Double) -> Double {
-        // TODO check conversion
-        var brightnessValue = standardizedValue / 100
-        
-        if (brightnessValue > 2) {
-            brightnessValue = 1.0;
-        }
-        else if (brightnessValue < 0){
-            brightnessValue = -1.0;
-        }
-        else{
-            brightnessValue -= 1.0;
+    
+        if standardizedValue >= 200 {
+            return 1.0
+        } else if standardizedValue <= 0 {
+            return -1.0
         }
         
-        return brightnessValue
+        return (standardizedValue - 100) / 100
     }
 }
