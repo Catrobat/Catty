@@ -56,12 +56,6 @@ final class TransparencySensorTest: XCTestCase {
         
         self.spriteNode.alpha = 0.5
         XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
-        
-        self.spriteNode.alpha = 2.0
-        XCTAssertEqual(1, sensor.rawValue(for: self.spriteObject))
-        
-        self.spriteNode.alpha = -2.0
-        XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject))
     }
     
     func testConvertToStandarized() {

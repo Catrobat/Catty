@@ -32,12 +32,6 @@ class TransparencySensor: ObjectSensor {
             return TransparencySensor.defaultRawValue
         }
         
-        if spriteNode.alpha > 1 {
-            return 1.0
-        }
-        if spriteNode.alpha < 0 {
-            return 0.0
-        }
         return Double(spriteNode.alpha)
     }
     
