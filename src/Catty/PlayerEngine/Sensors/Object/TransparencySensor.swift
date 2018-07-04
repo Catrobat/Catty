@@ -28,7 +28,17 @@ class TransparencySensor: ObjectSensor {
     static let requiredResource = ResourceType.noResources
     
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.alpha)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return TransparencySensor.defaultRawValue
+        }
+        
+        if spriteNode.alpha > 1 {
+            return 1.0
+        }
+        if spriteNode.alpha < 0 {
+            return 0.0
+        }
+        return Double(spriteNode.alpha)
     }
     
     // f:[0, 1] -> [0, 100]
