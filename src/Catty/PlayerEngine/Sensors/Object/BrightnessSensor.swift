@@ -24,7 +24,7 @@
     
     static let tag = "OBJECT_BRIGHTNESS"
     static let name = kUIFEObjectBrightness
-    static let defaultRawValue = 100.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {

@@ -24,7 +24,7 @@ class TransparencySensor: ObjectSensor, ReadWriteSensor {
     
     static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency
-    static let defaultRawValue = 0.0
+    static let defaultRawValue = 1.0
     static let requiredResource = ResourceType.noResources
     
     func rawValue(for spriteObject: SpriteObject) -> Double {
