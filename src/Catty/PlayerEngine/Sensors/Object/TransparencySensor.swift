@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TransparencySensor: ObjectSensor {
+class TransparencySensor: ObjectSensor, ReadWriteSensor {
     
     static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency
@@ -35,28 +35,39 @@ class TransparencySensor: ObjectSensor {
         return Double(spriteNode.alpha)
     }
     
+    /*  on iOS, the transparency function is descending:
+        1.0 - no transparency
+        0.0 - maximum transaprency
+ 
+        on Android the transparency function is ascending:
+        0.0 - no transparency
+        100.0 - maximum transparency
+     
+        And they also have different ranges and scales.
+     */
+    
     // f:[0, 1] -> [0, 100]
     func convertToStandardized(rawValue: Double) -> Double {
         
         if rawValue >= 1 {
-            return 100.0
+            return 0.0 // maximum transparency
         }
         if rawValue <= 0 {
-            return 0.0
+            return 100.0 // no transparency
         }
-        return 100 * rawValue
+        return 100 - 100 * rawValue
     }
     
     // f:[0, 100] -> [0, 1]
     func convertToRaw(standardizedValue: Double) -> Double {
         
         if standardizedValue >= 100 {
-            return 1.0
+            return 0.0 // maximum transparency
         }
         if standardizedValue <= 0 {
-            return 0.0
+            return 1.0 // no transparency
         }
-        return standardizedValue / 100
+        return (100 - standardizedValue) / 100
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

@@ -59,44 +59,44 @@ final class TransparencySensorTest: XCTestCase {
     }
     
     func testConvertToStandarized() {
-        // test minimum value
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
+        // test minimum value of transparency on iOS
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 1.0))
         
-        // test maximum value
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 1.0))
+        // test maximum value of transparency on iOS
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 0.0))
         
-        // test mean value
+        // test mean value of transparency on iOS
         XCTAssertEqual(50, sensor.convertToStandardized(rawValue: 0.5))
         
-        // test lower than minimum value
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -2.5))
+        // test lower than minimum value of transparency on iOS
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 2.5))
         
-        // test bigger than maximum value
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 22.0))
+        // test bigger than maximum value of transparency on iOS
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: -22.0))
         
         // test random value
-        XCTAssertEqual(87.5, sensor.convertToStandardized(rawValue: 0.875))
+        XCTAssertEqual(87.5, sensor.convertToStandardized(rawValue: 0.125))
         
     }
     
     func testConvertToRaw() {
-        // test minimum value
-        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 0.0))
+        // test minimum value of transparency on Android
+        XCTAssertEqual(1.0, sensor.convertToRaw(standardizedValue: 0.0))
         
-        // test maximum value
-        XCTAssertEqual(1, sensor.convertToRaw(standardizedValue: 100.0))
+        // test maximum value of transparency on Android
+        XCTAssertEqual(0.0, sensor.convertToRaw(standardizedValue: 100.0))
         
-        // test mean value
+        // test mean value of transparency on Android
         XCTAssertEqual(0.5, sensor.convertToRaw(standardizedValue: 50.0))
         
-        // test lower than minimum value
-        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: -10.0))
+        // test lower than minimum value of transparency on Android
+        XCTAssertEqual(1.0, sensor.convertToRaw(standardizedValue: -10.0))
         
-        // test bigger than maximum value
-        XCTAssertEqual(1, sensor.convertToRaw(standardizedValue: 180.0))
+        // test bigger than maximum value of transparency on Android
+        XCTAssertEqual(0.0, sensor.convertToRaw(standardizedValue: 180.0))
         
-        // test random value
-        XCTAssertEqual(0.66, sensor.convertToRaw(standardizedValue: 66.0))
+        // test random value of transparency on Android
+        XCTAssertEqual(0.34, sensor.convertToRaw(standardizedValue: 66.0))
     }
     
     func testTag() {
