@@ -77,8 +77,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedVaue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
-    XCTAssertEqualWithAccuracy(180.0f, standardizedVaue, 0.1f, @"SetBrightnessBrick - Brightness not correct");
+    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
+    XCTAssertEqualWithAccuracy(180.0f, standardizedValue, 0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
