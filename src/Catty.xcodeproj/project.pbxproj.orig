@@ -1051,7 +1051,11 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
+<<<<<<< HEAD
+		F499438620EE9557009A7582 /* LongitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499438520EE9557009A7582 /* LongitudeSensorTest.swift */; };
+=======
 		F4B10F8120EF49430054E79A /* CompassDirectionSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */; };
+>>>>>>> 8b21ff11498d1cd91e2f646948c53b62b98c1a80
 		F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */; };
 		F4FCA7B920ECBDB0000761C7 /* TransparencySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */; };
 /* End PBXBuildFile section */
@@ -2684,7 +2688,11 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		F499438520EE9557009A7582 /* LongitudeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongitudeSensorTest.swift; sourceTree = "<group>"; };
+=======
 		F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompassDirectionSensorTest.swift; path = CattyTests/Sensors/Heading/CompassDirectionSensorTest.swift; sourceTree = SOURCE_ROOT; };
+>>>>>>> 8b21ff11498d1cd91e2f646948c53b62b98c1a80
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
 		F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparencySensorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -6985,6 +6993,17 @@
 			name = Keychain;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+		F499438220EE952E009A7582 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				F499438520EE9557009A7582 /* LongitudeSensorTest.swift */,
+				F459906C20EF774B003C7484 /* AltitudeSensorTest.swift */,
+				F459907020EF7B1D003C7484 /* LatitudeSensorTest.swift */,
+				F459907220EF7B31003C7484 /* LocationAccuracySensorTest.swift */,
+			);
+			path = Location;
+=======
 		F4B10F7F20EF49110054E79A /* Heading */ = {
 			isa = PBXGroup;
 			children = (
@@ -6992,6 +7011,7 @@
 			);
 			name = Heading;
 			path = "New Group";
+>>>>>>> 8b21ff11498d1cd91e2f646948c53b62b98c1a80
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
