@@ -1046,6 +1046,7 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
+		F4B10F8120EF49430054E79A /* CompassDirectionSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */; };
 		F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */; };
 		F4FCA7B920ECBDB0000761C7 /* TransparencySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */; };
 /* End PBXBuildFile section */
@@ -2673,6 +2674,7 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
+		F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompassDirectionSensorTest.swift; path = CattyTests/Sensors/Heading/CompassDirectionSensorTest.swift; sourceTree = SOURCE_ROOT; };
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
 		F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparencySensorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3691,6 +3693,7 @@
 			isa = PBXGroup;
 			children = (
 				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
+				F4B10F7F20EF49110054E79A /* Heading */,
 				4CF072AF20D6764E00F93AB5 /* Date */,
 				59D008EE208E435B000539E7 /* Mocks */,
 				4C994DED207A3CEF00C415FD /* Motion */,
@@ -6969,6 +6972,15 @@
 			name = Keychain;
 			sourceTree = "<group>";
 		};
+		F4B10F7F20EF49110054E79A /* Heading */ = {
+			isa = PBXGroup;
+			children = (
+				F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */,
+			);
+			name = Heading;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7685,6 +7697,7 @@
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
+				F4B10F8120EF49430054E79A /* CompassDirectionSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,

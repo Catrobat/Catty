@@ -38,7 +38,10 @@
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * -1
+        if rawValue <= 180 {
+            return -rawValue
+        }
+        return 360 - rawValue
     }
     
     func showInFormulaEditor() -> Bool {
