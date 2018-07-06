@@ -65,35 +65,27 @@ final class CompassDirectionSensorTest: XCTestCase {
     
     func testConvertToStandardized() {
         // N
-        self.locationManager.magneticHeading = 0
         XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: 0))
         
         // N-E
-        self.locationManager.magneticHeading = 45
         XCTAssertEqual(-45, self.sensor.convertToStandardized(rawValue: 45))
         
         // E
-        self.locationManager.magneticHeading = 90
         XCTAssertEqual(-90, self.sensor.convertToStandardized(rawValue: 90))
         
         // S-E
-        self.locationManager.magneticHeading = 135
         XCTAssertEqual(-135, self.sensor.convertToStandardized(rawValue: 135))
         
         // S
-        self.locationManager.magneticHeading = 180
         XCTAssertEqual(-180, self.sensor.convertToStandardized(rawValue: 180))
         
         // S-W
-        self.locationManager.magneticHeading = 225
         XCTAssertEqual(135, self.sensor.convertToStandardized(rawValue: 225))
         
         // W
-        self.locationManager.magneticHeading = 270
         XCTAssertEqual(90, self.sensor.convertToStandardized(rawValue: 270))
         
         // Kanye's daughter
-        self.locationManager.magneticHeading = 315
         XCTAssertEqual(45, self.sensor.convertToStandardized(rawValue: 315))
     }
     
