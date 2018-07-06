@@ -38,11 +38,12 @@ class InclinationXSensor: DeviceSensor {
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return InclinationXSensor.defaultRawValue
         }
-    
-        return deviceMotion.attitude.pitch
+        
+        return deviceMotion.attitude.roll
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
+        
         let rawValueInt = Int(rawValue * pow(10, 4))
         var radians = rawValue
         
@@ -51,7 +52,7 @@ class InclinationXSensor: DeviceSensor {
         } else if rawValueInt < -Int(Double.pi * pow(10, 4)) {
             radians = -Double.pi - rawValue
         }
-        return Util.radians(toDegree: radians)
+        return Util.radians(toDegree: -radians)
     }
     
     func showInFormulaEditor() -> Bool {

@@ -38,12 +38,12 @@ class InclinationYSensor : DeviceSensor {
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return InclinationXSensor.defaultRawValue
         }
-        
-        return deviceMotion.attitude.roll
+        return deviceMotion.attitude.pitch
       
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
+        
         let rawValueInt = Int(rawValue * pow(10, 4))
         var radians = rawValue
         

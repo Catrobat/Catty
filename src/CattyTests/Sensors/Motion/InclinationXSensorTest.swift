@@ -46,46 +46,46 @@ final class InclinationXSensorTest: XCTestCase {
     
     func testRawValue() {
         // test maximum value
-        self.motionManager.attitude = (pitch: Double.pi, roll: 0)
+        self.motionManager.attitude = (roll: Double.pi, pitch: 0)
         XCTAssertEqual(self.sensor.rawValue(), Double.pi, accuracy: 0.0001)
         
         // test minimum value
-        self.motionManager.attitude = (pitch: -Double.pi, roll: 0)
+        self.motionManager.attitude = (roll: -Double.pi, pitch: 0)
         XCTAssertEqual(self.sensor.rawValue(), -Double.pi, accuracy: 0.0001)
         
         // test no inclination
-        self.motionManager.attitude = (pitch: 0, roll: 0)
+        self.motionManager.attitude = (roll: 0, pitch: 0)
         XCTAssertEqual(self.sensor.rawValue(), 0, accuracy: 0.0001)
         
         // tests inside the range
-        self.motionManager.attitude = (pitch: Double.pi/2, roll: 0)
+        self.motionManager.attitude = (roll: Double.pi/2, pitch: 0)
         XCTAssertEqual(self.sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
         
-        self.motionManager.attitude = (pitch: -Double.pi/3, roll: 0)
+        self.motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
         XCTAssertEqual(self.sensor.rawValue(), -Double.pi/3, accuracy: 0.0001)
     }
     
     func testConvertToStandardized() {
         // test maximum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), 180, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
         
         // test minimum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi), -180, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: 0.0001)
         
         // test bigger than maximum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi * 2), -180, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi + Double.pi/2), -90, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi * 2), 180, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi + Double.pi/2), 90, accuracy: 0.0001)
         
         // test lower than minimum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi * 2), 180, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi - Double.pi/2), 90, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi * 2), -180, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi - Double.pi/2), -90, accuracy: 0.0001)
         
         // test no inclination
         XCTAssertEqual(self.sensor.standardizedValue(), 0, accuracy: 0.0001)
         
         // tests inside the range
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/3), 60, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), -45, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/3), -60, accuracy: 0.0001)
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
     }
     
     func testTag() {
