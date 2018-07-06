@@ -24,14 +24,14 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class LongitudeSensorTest: XCTestCase {
+final class LocationAccuracySensorTest: XCTestCase {
     
     var locationManager: LocationManagerMock!
-    var sensor: LongitudeSensor!
+    var sensor: LocationAccuracySensor!
     
     override func setUp() {
         self.locationManager = LocationManagerMock()
-        self.sensor = LongitudeSensor { [weak self] in self?.locationManager }
+        self.sensor = LocationAccuracySensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
@@ -40,43 +40,20 @@ final class LongitudeSensorTest: XCTestCase {
     }
     
     func testDefaultRawValue() {
-        let sensor = LongitudeSensor { nil }
-        XCTAssertEqual(LongitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        let sensor = LocationAccuracySensor { nil }
+        XCTAssertEqual(LocationAccuracySensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testRawValue() {
-        // min value
-        self.locationManager.longitude = -180
-        XCTAssertEqual(-180, self.sensor.rawValue())
-        
-        // max value
-        self.locationManager.longitude = 180
-        XCTAssertEqual(180, self.sensor.rawValue())
-        
-        // center
-        self.locationManager.longitude = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
-        
-        // London
-        self.locationManager.longitude = -0.127
-        XCTAssertEqual(-0.127, self.sensor.rawValue())
-        
-        // Cape Town
-        self.locationManager.longitude = 18.424
-        XCTAssertEqual(18.424, self.sensor.rawValue())
-        
-        // Alaska
-        self.locationManager.longitude = -149.49
-        XCTAssertEqual(-149.49, self.sensor.rawValue())
+    
     }
     
     func testConvertToStandardized() {
-        self.locationManager.longitude = 100
-        XCTAssertEqual(self.sensor.rawValue(), self.sensor.convertToStandardized(rawValue: self.locationManager.longitude!))
+        
     }
     
     func testTag() {
-        XCTAssertEqual("LONGITUDE", type(of: sensor).tag)
+        XCTAssertEqual("LOCATION_ACCURACY", type(of: sensor).tag)
     }
     
     func testRequiredResources() {

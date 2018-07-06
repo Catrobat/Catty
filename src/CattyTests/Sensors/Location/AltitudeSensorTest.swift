@@ -24,14 +24,14 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class LongitudeSensorTest: XCTestCase {
+final class AltitudeSensorTest: XCTestCase {
     
     var locationManager: LocationManagerMock!
-    var sensor: LongitudeSensor!
+    var sensor: AltitudeSensor!
     
     override func setUp() {
         self.locationManager = LocationManagerMock()
-        self.sensor = LongitudeSensor { [weak self] in self?.locationManager }
+        self.sensor = AltitudeSensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
@@ -40,43 +40,43 @@ final class LongitudeSensorTest: XCTestCase {
     }
     
     func testDefaultRawValue() {
-        let sensor = LongitudeSensor { nil }
-        XCTAssertEqual(LongitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        let sensor = AltitudeSensor { nil }
+        XCTAssertEqual(AltitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testRawValue() {
-        // min value
-        self.locationManager.longitude = -180
-        XCTAssertEqual(-180, self.sensor.rawValue())
-        
-        // max value
-        self.locationManager.longitude = 180
-        XCTAssertEqual(180, self.sensor.rawValue())
-        
-        // center
-        self.locationManager.longitude = 0
+        // sea level
+        self.locationManager.altitude = 0
         XCTAssertEqual(0, self.sensor.rawValue())
         
-        // London
-        self.locationManager.longitude = -0.127
-        XCTAssertEqual(-0.127, self.sensor.rawValue())
+        // below sea level
+        self.locationManager.altitude = -250
+        XCTAssertEqual(-250, self.sensor.rawValue())
         
-        // Cape Town
-        self.locationManager.longitude = 18.424
-        XCTAssertEqual(18.424, self.sensor.rawValue())
+        // field
+        self.locationManager.altitude = 600
+        XCTAssertEqual(600, self.sensor.rawValue())
         
-        // Alaska
-        self.locationManager.longitude = -149.49
-        XCTAssertEqual(-149.49, self.sensor.rawValue())
+        // mountain
+        self.locationManager.altitude = 1500
+        XCTAssertEqual(1500, self.sensor.rawValue())
+        
+        // Mt. Everest
+        self.locationManager.altitude = 8848
+        XCTAssertEqual(8848, self.sensor.rawValue())
+        
+        // float attitude
+        self.locationManager.altitude = 2555.875
+        XCTAssertEqual(2555.875, self.sensor.rawValue())
     }
     
     func testConvertToStandardized() {
-        self.locationManager.longitude = 100
-        XCTAssertEqual(self.sensor.rawValue(), self.sensor.convertToStandardized(rawValue: self.locationManager.longitude!))
+        self.locationManager.altitude = 100
+        XCTAssertEqual(self.sensor.rawValue(), self.sensor.convertToStandardized(rawValue: self.locationManager.altitude!))
     }
     
     func testTag() {
-        XCTAssertEqual("LONGITUDE", type(of: sensor).tag)
+        XCTAssertEqual("ALTITUDE", type(of: sensor).tag)
     }
     
     func testRequiredResources() {

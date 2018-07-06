@@ -27,7 +27,7 @@ final class LocationManagerMock: LocationManager {
     var latitude: Double?
     var longitude: Double?
     var altitude: Double?
-    var horizontalAccuracy: Double?
+    var locationAccuracy: Double?
 
     var heading: Heading? {
         guard let magneticHeading = self.magneticHeading else { return nil }
@@ -35,7 +35,14 @@ final class LocationManagerMock: LocationManager {
     }
     
     var location: Location? {
-        return LocationMock(coordinate: LocationCoordinate2DMock(longitude: self.longitude!, latitude: self.latitude!), altitude: self.altitude!, horizontalAccuracy: self.horizontalAccuracy!)
+        guard let latitude = self.latitude,
+              let longitude = self.longitude,
+              let altitude = self.altitude,
+              let locationAccuracy = self.locationAccuracy
+              else {
+                    return nil
+                }
+        return LocationMock(coordinate: LocationCoordinate2DMock(longitude: longitude, latitude: latitude), altitude: altitude, horizontalAccuracy: locationAccuracy)
     }
 }
 
@@ -50,8 +57,6 @@ struct LocationCoordinate2DMock: LocationCoordinate2D {
 
 struct LocationMock: Location {
     var coordinate: LocationCoordinate2D
-    
     var altitude: Double
-    
     var horizontalAccuracy: Double
 }
