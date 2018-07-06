@@ -34,8 +34,7 @@
     }
     
     func rawValue() -> Double {
-        //return self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
-        return (self.getLocationManager()?.location?.altitude)!
+        return self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
     }
     
     func convertToStandardized(rawValue: Double) -> Double {

@@ -1041,7 +1041,7 @@
 		F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */; };
 		F459906D20EF774B003C7484 /* AltitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459906C20EF774B003C7484 /* AltitudeSensorTest.swift */; };
 		F459907120EF7B1D003C7484 /* LatitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459907020EF7B1D003C7484 /* LatitudeSensorTest.swift */; };
-		F459907320EF7B31003C7484 /* HorizontalAccuracySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459907220EF7B31003C7484 /* HorizontalAccuracySensorTest.swift */; };
+		F459907320EF7B31003C7484 /* LocationAccuracySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459907220EF7B31003C7484 /* LocationAccuracySensorTest.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
@@ -2671,7 +2671,7 @@
 		F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSensorButton.swift; sourceTree = "<group>"; };
 		F459906C20EF774B003C7484 /* AltitudeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltitudeSensorTest.swift; sourceTree = "<group>"; };
 		F459907020EF7B1D003C7484 /* LatitudeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatitudeSensorTest.swift; sourceTree = "<group>"; };
-		F459907220EF7B31003C7484 /* HorizontalAccuracySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalAccuracySensorTest.swift; sourceTree = "<group>"; };
+		F459907220EF7B31003C7484 /* LocationAccuracySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAccuracySensorTest.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
@@ -6981,7 +6981,7 @@
 				F499438520EE9557009A7582 /* LongitudeSensorTest.swift */,
 				F459906C20EF774B003C7484 /* AltitudeSensorTest.swift */,
 				F459907020EF7B1D003C7484 /* LatitudeSensorTest.swift */,
-				F459907220EF7B31003C7484 /* HorizontalAccuracySensorTest.swift */,
+				F459907220EF7B31003C7484 /* LocationAccuracySensorTest.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -7675,7 +7675,7 @@
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
-				F459907320EF7B31003C7484 /* HorizontalAccuracySensorTest.swift in Sources */,
+				F459907320EF7B31003C7484 /* LocationAccuracySensorTest.swift in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
