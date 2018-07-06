@@ -20,29 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LoudnessSensor: DeviceSensor {
+@objc protocol AudioManagerProtocol {
     
-    static let tag = "LOUDNESS"
-    static let name = kUIFESensorLoudness
-    static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.loudness
-
-    let getAudioManager: () -> AudioManagerProtocol?
+    func startLoudnessRecorder() -> Void
     
-    init(audioManagerGetter: @escaping () -> AudioManagerProtocol?) {
-        self.getAudioManager = audioManagerGetter
-    }
-
-    func rawValue() -> Double {
-        // TODO implement
-        return self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
-    }
+    func stopLoudnessRecorder() -> Void
     
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
-    }
+    func loudness() -> Double
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
+    func loudnessAvailable() -> Bool
 }

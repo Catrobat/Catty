@@ -34,6 +34,8 @@
 
 @interface AudioManager : NSObject <AVAudioPlayerDelegate>
 
+@property(nonatomic, strong) AVAudioRecorder* recorder;
+
 + (instancetype)sharedAudioManager;
 
 - (BOOL)playSoundWithFileName:(NSString*)fileName

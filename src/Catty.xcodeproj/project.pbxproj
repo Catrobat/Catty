@@ -147,6 +147,8 @@
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
 		4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */; };
 		4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE65A1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m */; };
+		4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */; };
+		4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
 		4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */; };
@@ -1305,6 +1307,8 @@
 		4C3BE6591B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeaturedProgramsStoreViewControllerTests.h; path = Download/FeaturedProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C3BE65A1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeaturedProgramsStoreViewControllerTests.m; path = Download/FeaturedProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
+		4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerProtocol.swift; sourceTree = "<group>"; };
+		4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioManager+Loudness.swift"; sourceTree = "<group>"; };
 		4C4A71901B52733C00BBE32B /* CBXMLAbstractContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLAbstractContext.h; sourceTree = "<group>"; };
 		4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLAbstractContext.m; sourceTree = "<group>"; };
 		4C4A719F1B527E2F00BBE32B /* CBXMLParserContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserContext.h; sourceTree = "<group>"; };
@@ -4120,6 +4124,7 @@
 		592EF6E42094B3C700BD6000 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */,
 				F48E945820D6955E007E782E /* DateSensor.swift */,
 				592EF6E92094B84900BD6000 /* DeviceSensor.swift */,
 				59D008EC208E4249000539E7 /* LocationManager.swift */,
@@ -4995,6 +5000,7 @@
 			children = (
 				92FF2E4E1A24C7D800093DA7 /* AudioManager.h */,
 				92FF2E4F1A24C7D800093DA7 /* AudioManager.m */,
+				4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */,
 				92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */,
 				92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */,
 				9276B7091C9EA68A008BC594 /* CatrobatPlayerItem.h */,
@@ -7861,6 +7867,7 @@
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
 				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
+				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
@@ -8130,6 +8137,7 @@
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
+				4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */,
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
 				929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */,
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
