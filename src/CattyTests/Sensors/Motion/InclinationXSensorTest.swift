@@ -66,26 +66,26 @@ final class InclinationXSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        // test maximum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
+        // test no inclination
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
         
-        // test minimum value
+        // test screen half left
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
+        
+        // test screen half right
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/4), -45, accuracy: 0.0001)
+        
+        // test screen left
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/2), 90, accuracy: 0.0001)
+        
+        // test screen right
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/2), -90, accuracy: 0.0001)
+        
+        // test screen left, then down
         XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: 0.0001)
         
-        // test bigger than maximum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi * 2), 180, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi + Double.pi/2), 90, accuracy: 0.0001)
-        
-        // test lower than minimum value
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi * 2), -180, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi - Double.pi/2), -90, accuracy: 0.0001)
-        
-        // test no inclination
-        XCTAssertEqual(self.sensor.standardizedValue(), 0, accuracy: 0.0001)
-        
-        // tests inside the range
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/3), -60, accuracy: 0.0001)
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
+        // test screen right, then down
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
     }
     
     func testTag() {
