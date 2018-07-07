@@ -45,11 +45,31 @@ final class AccelerationYSensorTest: XCTestCase {
     }
     
     func testRawValue() {
+        motionManager.yAcceleration = 0
+        XCTAssertEqual(0, sensor.rawValue(), accuracy: 0.0001)
         
+        motionManager.yAcceleration = 9.8
+        XCTAssertEqual(9.8, sensor.rawValue(), accuracy: 0.0001)
+        
+        motionManager.yAcceleration = -9.8
+        XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testConvertToStandardized() {
-        // TODO
+        // phone front & up
+        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        
+        // half front & half right & half left & half right
+        XCTAssertEqual(6.9, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        
+        // down, then half up & right tilt, then down
+        XCTAssertEqual(-6.9, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        
+        // backwards & upside down
+        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        
+        // screen back, then up & screen front, then down & screen tilt left & screen tilt right
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
     }
     
     func testTag() {
