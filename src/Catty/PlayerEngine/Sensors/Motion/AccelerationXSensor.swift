@@ -33,7 +33,7 @@
         self.getMotionManager = motionManagerGetter
     }
     
-    var rawValue: Double {
+    func rawValue() -> Double {
         return self.getMotionManager()?.accelerometerData?.acceleration.x ?? type(of: self).defaultRawValue
     }
 
