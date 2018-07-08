@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import CoreMotion
+
 protocol MotionManager {
     var accelerometerData: AccelerometerData? { get }
     var deviceMotion: DeviceMotion? { get }
@@ -30,13 +32,7 @@ protocol MotionManager {
 }
 
 protocol AccelerometerData {
-    var acceleration: Acceleration { get }
-}
-
-protocol Acceleration {
-    var x: Double { get }
-    var y: Double { get }
-    var z: Double { get }
+    var acceleration: CMAcceleration { get }
 }
 
 protocol DeviceMotion {

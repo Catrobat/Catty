@@ -185,7 +185,9 @@ import CoreLocation
         let unavailableResource = getUnavailableResources(for: requiredResources)
         
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
+            // TODO add new resource type
             motionManager.startDeviceMotionUpdates()
+            motionManager.startAccelerometerUpdates()
         }
         
         if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
