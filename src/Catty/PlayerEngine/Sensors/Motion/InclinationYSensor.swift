@@ -36,9 +36,9 @@ class InclinationYSensor : DeviceSensor {
     }
 
     func rawValue() -> Double {
-        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultRawValue }
+        guard let inclinationSensor = self.getMotionManager() else { return InclinationYSensor.defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
-            return InclinationXSensor.defaultRawValue
+            return InclinationYSensor.defaultRawValue
         }
         return deviceMotion.attitude.pitch
       
@@ -49,15 +49,24 @@ class InclinationYSensor : DeviceSensor {
     // going backwards, it is negative on both iOS and Android
     func convertToStandardized(rawValue: Double) -> Double {
         
-        let screenOrientation = CMDeviceMotion().gravity.z
-        if screenOrientation < 0 {
+        var screenOrientation: Double = 0
+        let manager = CMMotionManager()
+        
+        if manager.isDeviceMotionAvailable {
+            manager.deviceMotionUpdateInterval = 1.0 / 60
+            manager.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: { (data, error) in
+                if let deviceMotion = data {
+                    screenOrientation = deviceMotion.gravity.z
+                }
+            })
+        }
+       
+        if screenOrientation <= 0 {
             // screen up
             return Util.radians(toDegree: rawValue)
         } else {
             return Util.radians(toDegree: Double.pi - rawValue)
         }
-        
-        
     }
     
     func showInFormulaEditor() -> Bool {
