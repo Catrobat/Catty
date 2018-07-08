@@ -28,18 +28,13 @@ final class MotionManagerMock: MotionManager {
     var isGyroAvailable = true
     var isMagnetometerAvailable = true
     
-    var xAcceleration: Double?
-    var yAcceleration: Double?
-    var zAcceleration: Double?
+    var xAcceleration: Double = 0
+    var yAcceleration: Double = 0
+    var zAcceleration: Double = 0
 
     var attitude: (pitch: Double, roll: Double)?
 
     var accelerometerData: AccelerometerData? {
-        guard let xAcceleration = self.xAcceleration,
-            let yAcceleration = self.yAcceleration,
-            let zAcceleration = self.zAcceleration
-            else { return nil }
-
         return AccelerometerDataMock(
             acceleration: AccelerationMock(
                 x: xAcceleration, y: yAcceleration, z: zAcceleration
