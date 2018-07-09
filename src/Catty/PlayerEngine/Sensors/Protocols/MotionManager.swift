@@ -38,6 +38,7 @@ protocol AccelerometerData {
 
 protocol DeviceMotion {
     var attitude: Attitude { get }
+    var gravity: CMAcceleration { get }
 }
 
 protocol GyroData {
