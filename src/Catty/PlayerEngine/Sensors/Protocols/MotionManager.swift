@@ -25,6 +25,7 @@ import CoreMotion
 protocol MotionManager {
     var accelerometerData: AccelerometerData? { get }
     var deviceMotion: DeviceMotion? { get }
+    var gyroData: GyroData? { get }
     var isDeviceMotionAvailable: Bool { get }
     var isAccelerometerAvailable: Bool { get }
     var isGyroAvailable: Bool { get }
@@ -37,6 +38,11 @@ protocol AccelerometerData {
 
 protocol DeviceMotion {
     var attitude: Attitude { get }
+    var gravity: CMAcceleration { get }
+}
+
+protocol GyroData {
+    var rotationRate: CMRotationRate { get }
 }
 
 protocol Attitude {

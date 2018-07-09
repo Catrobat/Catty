@@ -187,6 +187,7 @@ import CoreLocation
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
             // TODO add new resource type
             motionManager.startDeviceMotionUpdates()
+            
             motionManager.startAccelerometerUpdates()
         }
         
@@ -207,6 +208,9 @@ import CoreLocation
         if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
             audioManager.startLoudnessRecorder()
         }
+        
+        // TODO add rew resource type
+        //motionManager.startGyroUpdates()
     }
     
     @objc(getUnavailableResources:)

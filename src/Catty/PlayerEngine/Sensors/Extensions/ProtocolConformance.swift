@@ -32,8 +32,11 @@ extension CMMotionManager: MotionManager {
     var deviceMotion: DeviceMotion? {
         return self.value(forKey: "deviceMotion") as? CMDeviceMotion
     }
-    
+    var gyroData: GyroData? {
+        return self.value(forKey: "gyroData") as? CMGyroData
+    }
 }
+
 extension CMAccelerometerData: AccelerometerData {
 }
 
@@ -43,6 +46,9 @@ extension CMDeviceMotion: DeviceMotion {
         return attitude
     }
 }
+
+extension CMGyroData: GyroData {}
+
 extension CMAttitude: Attitude {}
 
 // MARK: - CoreLocation protocol conformance
