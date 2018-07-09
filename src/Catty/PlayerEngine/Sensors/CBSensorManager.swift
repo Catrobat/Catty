@@ -187,6 +187,8 @@ import CoreLocation
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
             // TODO add new resource type
             motionManager.startDeviceMotionUpdates()
+            motionManager.startGyroUpdates()
+            
             motionManager.startAccelerometerUpdates()
         }
         

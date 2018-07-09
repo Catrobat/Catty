@@ -32,6 +32,10 @@ final class MotionManagerMock: MotionManager {
     var xAcceleration: Double = 0
     var yAcceleration: Double = 0
     var zAcceleration: Double = 0
+    
+    var xRotation: Double = 0
+    var yRotation: Double = 0
+    var zRotation: Double = 0
 
     var attitude: (pitch: Double, roll: Double)?
 
@@ -39,6 +43,14 @@ final class MotionManagerMock: MotionManager {
         return AccelerometerDataMock(
             acceleration: CMAcceleration(
                 x: self.xAcceleration, y: self.yAcceleration, z: self.zAcceleration
+            )
+        )
+    }
+    
+    var gyroData: GyroData? {
+        return GyroDataMock(
+            rotationRate: CMRotationRate (
+                x: self.xRotation, y: self.yRotation, z: self.zRotation
             )
         )
     }
@@ -65,4 +77,8 @@ struct DeviceMotionMock: DeviceMotion {
 struct AttitudeMock: Attitude {
     var pitch: Double
     var roll: Double
+}
+
+struct GyroDataMock: GyroData {
+    var rotationRate: CMRotationRate
 }
