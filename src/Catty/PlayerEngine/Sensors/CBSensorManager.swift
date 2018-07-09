@@ -34,12 +34,16 @@ import CoreLocation
     private var locationManager: CLLocationManager
     private var bluetoothService: BluetoothService
     private var faceDetectionManager: FaceDetection
+    private var audioManager: AudioManagerProtocol
     
     override private init() {
         motionManager = CMMotionManager()
         locationManager = CLLocationManager()
+        
         bluetoothService = BluetoothService.sharedInstance()
         faceDetectionManager = FaceDetection()
+        audioManager = AudioManager()
+        
         sensors = [CBSensor]()
         sensorMap = [String: CBSensor]()
         super.init()
@@ -51,9 +55,11 @@ import CoreLocation
         let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
         let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
+        let audioManagerGetter: () -> AudioManagerProtocol? = { [weak self] in self?.audioManager }
         
         // In the Formula Editor the sensors appear in the same order
         self.sensors = [
+            LoudnessSensor(audioManagerGetter: audioManagerGetter),
             InclinationXSensor(motionManagerGetter: motionManagerGetter),
             InclinationYSensor(motionManagerGetter: motionManagerGetter),
             AccelerationXSensor(motionManagerGetter: motionManagerGetter),
@@ -179,7 +185,9 @@ import CoreLocation
         let unavailableResource = getUnavailableResources(for: requiredResources)
         
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
+            // TODO add new resource type
             motionManager.startDeviceMotionUpdates()
+            motionManager.startAccelerometerUpdates()
         }
         
         if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
@@ -194,6 +202,10 @@ import CoreLocation
         
         if ((requiredResources & ResourceType.faceDetection.rawValue) > 0) && (unavailableResource & ResourceType.faceDetection.rawValue) == 0 {
             faceDetectionManager.start()
+        }
+        
+        if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
+            audioManager.startLoudnessRecorder()
         }
     }
     
@@ -225,10 +237,9 @@ import CoreLocation
             unavailableResource |= ResourceType.magnetometer.rawValue
         }
         
-        // TODO
-        /*if requiredResources & ResourceType.loudness.rawValue > 0 && ![[SensorHandler sharedSensorHandler] loudnessAvailable] {
+        if requiredResources & ResourceType.loudness.rawValue > 0 && !audioManager.loudnessAvailable() {
             unavailableResource |= ResourceType.loudness.rawValue
-        }*/
+        }
         
         return unavailableResource
     }

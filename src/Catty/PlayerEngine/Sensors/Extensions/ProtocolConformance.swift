@@ -35,12 +35,8 @@ extension CMMotionManager: MotionManager {
     
 }
 extension CMAccelerometerData: AccelerometerData {
-    var acceleration: Acceleration {
-        guard let acceleration = self.value(forKey: "acceleration") as? CMAcceleration else { return CMAcceleration() }
-        return acceleration
-    }
 }
-extension CMAcceleration: Acceleration {}
+
 extension CMDeviceMotion: DeviceMotion {
     var attitude: Attitude {
         guard let attitude = self.value(forKey: "attitude") as? CMAttitude else { return CMAttitude() }

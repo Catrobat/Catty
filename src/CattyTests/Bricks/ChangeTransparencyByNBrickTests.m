@@ -26,6 +26,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeTransparencyByNBrickTests : AbstractBrickTests
+@property (nonatomic, strong) TransparencySensor* transparencySensor;
 @end
 
 @implementation ChangeTransparencyByNBrickTests
@@ -33,7 +34,7 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+    self.transparencySensor = [TransparencySensor new];
 }
 
 - (void)tearDown
@@ -49,7 +50,7 @@
     spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:0.0];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -66,9 +67,10 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 0.8f, @"ChangeTransparencyBrick is not correctly calculated");
+    
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(20.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
-
 
 - (void)testChangeTransparencyByNBrickNegative
 {
@@ -77,8 +79,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-    spriteNode.alpha = 0.4;
+    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:30.0];
 
     Formula *transparency =[[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
@@ -95,9 +96,10 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 0.6f, @"ChangeTransparencyBrick is not correctly calculated");
+    
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
-
 
 - (void)testChangeTransparencyByNBrickOutOfRange
 {
@@ -106,8 +108,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-    spriteNode.alpha = 0.4;
+    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:0.0];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -124,7 +125,9 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 0.0f, @"ChangeTransparencyBrick is not correctly calculated");
+    
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(100.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickWrongInput
@@ -134,7 +137,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:0.0];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -151,7 +154,9 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 1.0f, @"ChangeTransparencyBrick is not correctly calculated");
+    
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(0.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 @end

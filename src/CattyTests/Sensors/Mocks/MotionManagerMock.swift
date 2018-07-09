@@ -21,6 +21,7 @@
  */
 
 @testable import Pocket_Code
+import CoreMotion
 
 final class MotionManagerMock: MotionManager {
     var isDeviceMotionAvailable = true
@@ -28,21 +29,16 @@ final class MotionManagerMock: MotionManager {
     var isGyroAvailable = true
     var isMagnetometerAvailable = true
     
-    var xAcceleration: Double?
-    var yAcceleration: Double?
-    var zAcceleration: Double?
+    var xAcceleration: Double = 0
+    var yAcceleration: Double = 0
+    var zAcceleration: Double = 0
 
     var attitude: (pitch: Double, roll: Double)?
 
     var accelerometerData: AccelerometerData? {
-        guard let xAcceleration = self.xAcceleration,
-            let yAcceleration = self.yAcceleration,
-            let zAcceleration = self.zAcceleration
-            else { return nil }
-
         return AccelerometerDataMock(
-            acceleration: AccelerationMock(
-                x: xAcceleration, y: yAcceleration, z: zAcceleration
+            acceleration: CMAcceleration(
+                x: self.xAcceleration, y: self.yAcceleration, z: self.zAcceleration
             )
         )
     }
@@ -59,13 +55,7 @@ final class MotionManagerMock: MotionManager {
 }
 
 struct AccelerometerDataMock: AccelerometerData {
-    var acceleration: Acceleration
-}
-
-struct AccelerationMock: Acceleration {
-    var x: Double
-    var y: Double
-    var z: Double
+    var acceleration: CMAcceleration
 }
 
 struct DeviceMotionMock: DeviceMotion {
