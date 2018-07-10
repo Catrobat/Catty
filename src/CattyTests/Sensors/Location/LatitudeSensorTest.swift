@@ -71,8 +71,7 @@ final class LatitudeSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        self.locationManager.latitude = 100
-        XCTAssertEqual(self.sensor.rawValue(), self.sensor.convertToStandardized(rawValue: self.locationManager.latitude))
+        XCTAssertEqual(100, self.sensor.convertToStandardized(rawValue: 100))
     }
     
     func testTag() {

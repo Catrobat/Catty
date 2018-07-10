@@ -71,8 +71,7 @@ final class AltitudeSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        self.locationManager.altitude = 100
-        XCTAssertEqual(self.sensor.rawValue(), self.sensor.convertToStandardized(rawValue: self.locationManager.altitude))
+        XCTAssertEqual(100, self.sensor.convertToStandardized(rawValue: 100))
     }
     
     func testTag() {
