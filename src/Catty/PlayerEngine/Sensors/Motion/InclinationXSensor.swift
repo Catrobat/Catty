@@ -34,9 +34,9 @@ class InclinationXSensor: DeviceSensor {
     }
 
     func rawValue() -> Double {
-        guard let inclinationSensor = self.getMotionManager() else { return InclinationXSensor.defaultRawValue }
+        guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
-            return InclinationXSensor.defaultRawValue
+            return type(of: self).defaultRawValue
         }
         
         return deviceMotion.attitude.roll

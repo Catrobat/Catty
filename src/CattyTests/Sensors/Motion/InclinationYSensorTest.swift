@@ -41,7 +41,7 @@ final class InclinationYSensorTest: XCTestCase {
     
     func testDefaultRawValue() {
         let sensor = InclinationYSensor { nil }
-        XCTAssertEqual(InclinationYSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testRawValue() {
@@ -65,28 +65,33 @@ final class InclinationYSensorTest: XCTestCase {
         XCTAssertEqual(self.sensor.rawValue(), -Double.pi/6, accuracy: 0.0001)
     }
     
-    func testConvertToStandardized() {
-        // test no inclination
+    func testConvertToStandardizedScreenUp() {
+        self.motionManager.zAcceleration = -0.5 // or any other negative value read by acceleration the sensors
+        
+        // no inclination
         XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
         
-        // test half front
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/2), 45, accuracy: 0.0001)
+        // half up - home botton down
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/4), 45, accuracy: 0.0001)
         
-        // test half back
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/2), -45, accuracy: 0.0001)
+        // up - face to face to the user
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/2), 90, accuracy: 0.0001)
         
-        // test front
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), 90, accuracy: 0.0001)
+        // half up - home button up
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), -45, accuracy: 0.0001)
+    }
+    
+    func testConvertToStandardizedScreenDown() {
+        self.motionManager.zAcceleration = 0.5 //or any other positive value read by the acceleration sensors
         
-        // test back
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi), -90, accuracy: 0.0001)
+        // half down - home button down
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/4), 135, accuracy: 0.0001)
         
-        // test front, then down
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), 180, accuracy: 0.0001)
+        // up - with the back to the user
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/2), -90, accuracy: 0.0001)
         
-        // test back, then up
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), -180, accuracy: 0.0001)
-        
+        // half down - home button up
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), -135, accuracy: 0.0001)
     }
     
     func testTag() {

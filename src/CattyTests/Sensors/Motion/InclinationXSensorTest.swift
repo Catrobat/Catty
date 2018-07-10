@@ -41,7 +41,7 @@ final class InclinationXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = InclinationXSensor { nil }
-        XCTAssertEqual(InclinationXSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testRawValue() {
