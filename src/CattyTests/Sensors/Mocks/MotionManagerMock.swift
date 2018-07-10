@@ -21,6 +21,7 @@
  */
 
 @testable import Pocket_Code
+import CoreMotion
 
 final class MotionManagerMock: MotionManager {
     var isDeviceMotionAvailable = true
@@ -32,42 +33,58 @@ final class MotionManagerMock: MotionManager {
     var yAcceleration: Double = 0
     var zAcceleration: Double = 0
 
-    var attitude: (pitch: Double, roll: Double)?
+    var xRotation: Double = 0
+    var yRotation: Double = 0
+    var zRotation: Double = 0
+    
+    var xGravity: Double = 0
+    var yGravity: Double = 0
+    var zGravity: Double = 0
+
+    var attitude: (pitch: Double, roll: Double) = (pitch: 0, roll: 0)
 
     var accelerometerData: AccelerometerData? {
         return AccelerometerDataMock(
-            acceleration: AccelerationMock(
-                x: xAcceleration, y: yAcceleration, z: zAcceleration
+            acceleration: CMAcceleration(
+                x: self.xAcceleration, y: self.yAcceleration, z: self.zAcceleration
+            )
+        )
+    }
+    
+    var gyroData: GyroData? {
+        return GyroDataMock(
+            rotationRate: CMRotationRate (
+                x: self.xRotation, y: self.yRotation, z: self.zRotation
             )
         )
     }
 
     var deviceMotion: DeviceMotion? {
-        guard let attitude = self.attitude else { return nil }
-
         return DeviceMotionMock(
             attitude: AttitudeMock(
                 pitch: attitude.pitch, roll: attitude.roll
+            ),
+            gravity: CMAcceleration(
+                x: self.xGravity, y: self.yGravity, z: self.zGravity
             )
         )
     }
 }
 
 struct AccelerometerDataMock: AccelerometerData {
-    var acceleration: Acceleration
-}
-
-struct AccelerationMock: Acceleration {
-    var x: Double
-    var y: Double
-    var z: Double
+    var acceleration: CMAcceleration
 }
 
 struct DeviceMotionMock: DeviceMotion {
     var attitude: Attitude
+    var gravity: CMAcceleration
 }
 
 struct AttitudeMock: Attitude {
     var pitch: Double
     var roll: Double
+}
+
+struct GyroDataMock: GyroData {
+    var rotationRate: CMRotationRate
 }
