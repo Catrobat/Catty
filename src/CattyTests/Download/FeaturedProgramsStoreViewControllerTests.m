@@ -20,66 +20,66 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
-#import "FeaturedProgramsStoreViewControllerTests.h"
-#import "CatrobatProgram.h"
-#import "LanguageTranslationDefines.h"
-#import "Util.h"
-
-#define CONNECTION_TIMEOUT 10
-
-@implementation TestFeaturedProgramsStoreViewController
-- (id)initWithExpectation:(XCTestExpectation*) expectation
-{
-    self = [super init];
-    self.downloadFinished = expectation;
-    return self;
-}
-- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
-{
-    [super loadIDsWith:data andResponse:response];
-    [self.downloadFinished fulfill];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-@end
-
-@implementation FeaturedProgramsStoreViewControllerTests
-
-- (void)setUp
-{
-    [super setUp];
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"featuredDownloadFinished"];
-    self.featuredProgramsStoreViewController = [[TestFeaturedProgramsStoreViewController alloc] initWithExpectation:expectation];
-}
-
-- (void)tearDown
-{
-    self.featuredProgramsStoreViewController = nil;
-    [super tearDown];
-}
-
-- (void)testFeatured
-{
-    [self.featuredProgramsStoreViewController loadFeaturedProjects];
-    
-    [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
-        XCTAssertNil(error, "Expectation Failed with error: %@", error);
-    }];
-    
-    XCTAssertTrue([self.featuredProgramsStoreViewController.projects count] > 0, @"No featured programs loaded!");
-    
-    for(CatrobatProgram *catrobatProject in self.featuredProgramsStoreViewController.projects) {
-        XCTAssertTrue([catrobatProject.author length] > 0, @"Invalid author");
-        XCTAssertTrue([catrobatProject.downloadUrl length] > 0, @"Invalid downloadUrl");
-        XCTAssertTrue([catrobatProject.size length] > 0, @"Invalid fileSize");
-        XCTAssertTrue([catrobatProject.projectName length] > 0, @"Invalid projectName");
-        XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
-        XCTAssertTrue([catrobatProject.featuredImage length] > 0, @"Invalid featuredImage");
-        XCTAssertTrue([catrobatProject.version floatValue] <= [[Util catrobatLanguageVersion] floatValue], @"Version not supported yet");
-    }
-}
-
-@end
+//#import <XCTest/XCTest.h>
+//#import "FeaturedProgramsStoreViewControllerTests.h"
+//#import "CatrobatProgram.h"
+//#import "LanguageTranslationDefines.h"
+//#import "Util.h"
+//
+//#define CONNECTION_TIMEOUT 10
+//
+//@implementation TestFeaturedProgramsStoreViewController
+//- (id)initWithExpectation:(XCTestExpectation*) expectation
+//{
+//    self = [super init];
+//    self.downloadFinished = expectation;
+//    return self;
+//}
+//- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+//{
+//    [super loadIDsWith:data andResponse:response];
+//    [self.downloadFinished fulfill];
+//}
+//- (void)viewDidLoad
+//{
+//    [super viewDidLoad];
+//}
+//@end
+//
+//@implementation FeaturedProgramsStoreViewControllerTests
+//
+//- (void)setUp
+//{
+//    [super setUp];
+//    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"featuredDownloadFinished"];
+//    self.featuredProgramsStoreViewController = [[TestFeaturedProgramsStoreViewController alloc] initWithExpectation:expectation];
+//}
+//
+//- (void)tearDown
+//{
+//    self.featuredProgramsStoreViewController = nil;
+//    [super tearDown];
+//}
+//
+//- (void)testFeatured
+//{
+//    [self.featuredProgramsStoreViewController loadFeaturedProjects];
+//
+//    [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
+//        XCTAssertNil(error, "Expectation Failed with error: %@", error);
+//    }];
+//
+//    XCTAssertTrue([self.featuredProgramsStoreViewController.projects count] > 0, @"No featured programs loaded!");
+//
+//    for(CatrobatProgram *catrobatProject in self.featuredProgramsStoreViewController.projects) {
+//        XCTAssertTrue([catrobatProject.author length] > 0, @"Invalid author");
+//        XCTAssertTrue([catrobatProject.downloadUrl length] > 0, @"Invalid downloadUrl");
+//        XCTAssertTrue([catrobatProject.size length] > 0, @"Invalid fileSize");
+//        XCTAssertTrue([catrobatProject.projectName length] > 0, @"Invalid projectName");
+//        XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
+//        XCTAssertTrue([catrobatProject.featuredImage length] > 0, @"Invalid featuredImage");
+//        XCTAssertTrue([catrobatProject.version floatValue] <= [[Util catrobatLanguageVersion] floatValue], @"Version not supported yet");
+//    }
+//}
+//
+//@end

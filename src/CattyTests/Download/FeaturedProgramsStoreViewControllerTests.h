@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FeaturedProgramsStoreViewController.h"
-
-@interface FeaturedProgramsStoreViewController (Test)
-- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
-- (void)loadFeaturedProjects;
-@end
-
-@interface TestFeaturedProgramsStoreViewController : FeaturedProgramsStoreViewController
-@property (nonatomic, strong) NSMutableArray* projects;
-@property (nonatomic, weak) XCTestExpectation *downloadFinished;
-- (id)initWithExpectation:(XCTestExpectation*) expectation;
-@end
-
-@interface FeaturedProgramsStoreViewControllerTests : XCTestCase
-@property (nonatomic, strong) TestFeaturedProgramsStoreViewController *featuredProgramsStoreViewController;
-@end
+//#import "FeaturedProgramsStoreViewController.h"
+//
+//@interface FeaturedProgramsStoreViewController (Test)
+//- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
+//- (void)loadFeaturedProjects;
+//@end
+//
+//@interface TestFeaturedProgramsStoreViewController : FeaturedProgramsStoreViewController
+//@property (nonatomic, strong) NSMutableArray* projects;
+//@property (nonatomic, weak) XCTestExpectation *downloadFinished;
+//- (id)initWithExpectation:(XCTestExpectation*) expectation;
+//@end
+//
+//@interface FeaturedProgramsStoreViewControllerTests : XCTestCase
+//@property (nonatomic, strong) TestFeaturedProgramsStoreViewController *featuredProgramsStoreViewController;
+//@end
