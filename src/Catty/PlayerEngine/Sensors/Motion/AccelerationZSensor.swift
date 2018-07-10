@@ -38,7 +38,7 @@ class AccelerationZSensor : DeviceSensor {
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return rawValue * 9.8
     }
     
     func showInFormulaEditor() -> Bool {

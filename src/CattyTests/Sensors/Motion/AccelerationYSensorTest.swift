@@ -41,7 +41,7 @@ final class AccelerationYSensorTest: XCTestCase {
     
     func testDefaultRawValue() {
         let sensor = AccelerationYSensor { nil }
-        XCTAssertEqual(AccelerationYSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testRawValue() {
@@ -55,22 +55,13 @@ final class AccelerationYSensorTest: XCTestCase {
         XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: 0.0001)
     }
     
-    /*func testConvertToStandardized() {
-        // phone front & up
-        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        
-        // half front & half right & half left & half right
-        XCTAssertEqual(6.9, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        
-        // down, then half up & right tilt, then down
-        XCTAssertEqual(-6.9, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        
-        // backwards & upside down
-        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        
-        // screen back, then up & screen front, then down & screen tilt left & screen tilt right
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-    }*/
+    func testConvertToStandardized() {
+        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(9.8, self.sensor.convertToStandardized(rawValue: 1), accuracy: 0.0001)
+        XCTAssertEqual(-9.8, self.sensor.convertToStandardized(rawValue: -1), accuracy: 0.0001)
+        XCTAssertEqual(98, self.sensor.convertToStandardized(rawValue: 10), accuracy: 0.0001)
+        XCTAssertEqual(-98, self.sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
+    }
     
     func testTag() {
         XCTAssertEqual("Y_ACCELERATION", type(of: sensor).tag)
