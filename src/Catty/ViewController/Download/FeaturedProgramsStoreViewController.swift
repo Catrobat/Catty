@@ -24,7 +24,7 @@ import Foundation
 let FeaturedProgramsMaxResults = 10
 
 @objc class FeaturedProgramsStoreViewController : BaseTableViewController, NSURLConnectionDataDelegate {
-    private var session: URLSession?
+    //var session: URLSession?
     private var dataTask: URLSessionDataTask?
     private var projects: [AnyHashable] = []
     private var featuredSize: [Any] = []
@@ -32,412 +32,321 @@ let FeaturedProgramsMaxResults = 10
     private var shouldShowAlert = false
     private var shouldHideLoadingView = false
     
-}
+//    override init(style: UITableViewStyle) {
+//    self = super.init(style: style)
+//  }
+//
+//    lazy var session: URLSession = {
+//        // Initialize Session Configuration
+//        let sessionConfiguration = URLSessionConfiguration.default
+//        // Configure Session Configuration
+//        sessionConfiguration.httpAdditionalHeaders = ["Accept": "application/json"]
+//        // Initialize Session
+//        return URLSession(configuration: sessionConfiguration)
+//    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //loadFeaturedProjects()
+        navigationItem.title = kLocalizedFeaturedPrograms
+        //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+        //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .none
+        shouldShowAlert = true
+        shouldHideLoadingView = false
+    }
 
-
-// #import "Pocket_Code-Swift.h"
-//#import "FeaturedProgramsStoreViewController.h"
-//#import "CatrobatInformation.h"
-//#import "CatrobatProgram.h"
-//#import "AppDelegate.h"
-//#import "Util.h"
-//#import "TableUtil.h"
-//#import "CellTagDefines.h"
-//#import "LoadingView.h"
-//#import "NetworkDefines.h"
-//#import "SegueDefines.h"
-//#import "ProgramDetailStoreViewController.h"
-//#import "DarkBlueGradientFeaturedCell.h"
-//
-//#import "UIImage+CatrobatUIImageExtensions.h"
-//
-//#define kFeaturedProgramsMaxResults 10
-//
-//@interface FeaturedProgramsStoreViewController ()
-//
-//@property (strong, nonatomic) NSURLSession *session;
-//@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
-//@property (nonatomic, strong) NSMutableArray *projects;
-//@property (nonatomic, strong) NSArray *featuredSize;
-//@property (nonatomic, strong) LoadingView* loadingView;
-//@property (nonatomic) BOOL shouldShowAlert;
-//@property (nonatomic) BOOL shouldHideLoadingView;
-//
-//@end
-//
-//@implementation FeaturedProgramsStoreViewController
-//
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//    }
-//    return self;
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tabBarController?.tabBar.isTranslucent = true
+//        navigationController?.navigationBar.isTranslucent = true
 //    }
 //
-//    - (NSURLSession *)session {
-//        if (!_session) {
-//            // Initialize Session Configuration
-//            NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//    }
 //
-//            // Configure Session Configuration
-//            [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+//    deinit {
+//        loadingView?.removeFromSuperview()
+//        loadingView = nil
 //
-//            // Initialize Session
-//            _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//    }
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // Return the number of sections.
+//        return 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return projects.count
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        var cell: UITableViewCell? = nil
+//        cell = self.cell(forProjectsTableView: tableView, at: indexPath)
+//        if let aCell = cell {
+//            return aCell
 //        }
+//        return UITableViewCell()
+//    }
 //
-//        return _session;
+//    func cell(forProjectsTableView tableView: UITableView?, at indexPath: IndexPath?) -> UITableViewCell? {
+//        let CellIdentifier = kFeaturedCell
+//        var cell: UITableViewCell? = nil
+//        if let aPath = indexPath {
+//            cell = tableView?.dequeueReusableCell(withIdentifier: CellIdentifier, for: aPath)
 //        }
-//
-//
-//        - (void)viewDidLoad
-//            {
-//                [super viewDidLoad];
-//                [self loadFeaturedProjects];
-//                self.navigationItem.title = kLocalizedFeaturedPrograms;
-//                //  CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-//                //  self.tableView.contentInset = UIEdgeInsetsMake(navigationBarHeight, 0, 0, 0);
-//                self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-//                self.tableView.rowHeight = UITableViewAutomaticDimension;
-//                self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//                self.shouldShowAlert = YES;
-//                self.shouldHideLoadingView = NO;
-//            }
-//
-//            - (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    self.tabBarController.tabBar.translucent = YES;
-//    self.navigationController.navigationBar.translucent =YES;
-//    }
-//
-//    - (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    }
-//
-//    - (void)dealloc
-//        {
-//            [self.loadingView removeFromSuperview];
-//            self.loadingView = nil;
+//        if cell == nil {
+//            print("Should Never happen - since iOS5 Storyboard *always* instantiates our cell!")
+//            abort()
 //        }
-//
-//        - (void)didReceiveMemoryWarning
-//            {
-//                [super didReceiveMemoryWarning];
-//}
-//
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    // Return the number of sections.
-//    return 1;
-//    }
-//
-//    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return self.projects.count;
-//    }
-//
-//    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//    UITableViewCell* cell = nil;
-//    cell = [self cellForProjectsTableView:tableView atIndexPath:indexPath];
-//    return cell;
-//}
-//
-//#pragma mark - Helper
-//- (UITableViewCell*)cellForProjectsTableView:(UITableView*)tableView atIndexPath:(NSIndexPath*)indexPath
-//{
-//    static NSString *CellIdentifier = kFeaturedCell;
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//
-//    if (!cell) {
-//        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
-//        abort();
-//    }
-//
-//    if([cell isKindOfClass:[DarkBlueGradientFeaturedCell class]]) {
-//        CatrobatProgram *project = [self.projects objectAtIndex:indexPath.row];
-//
-//        DarkBlueGradientFeaturedCell *imageCell = (DarkBlueGradientFeaturedCell *)cell;
-//        [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
-//        if (![imageCell.featuredImage.image isEqual:[UIImage imageNamed:@"programs"]]) {
-//            imageCell.featuredImage.frame = cell.frame;
-//            imageCell.featuredImage.frame = CGRectMake(0, 0, imageCell.featuredImage.frame.size.width, imageCell.featuredImage.frame.size.height);
-//            [self loadingIndicator:NO];
-//        }
-//    }
-//
-//    return cell;
-//    }
-//
-//
-//
-//    - (void)loadImage:(NSString*)imageURLString forCell:(DarkBlueGradientFeaturedCell *) imageCell atIndexPath:(NSIndexPath*)indexPath
-//{
-//
-//    [self loadingIndicator:YES];
-//    UIImage* image = [UIImage imageWithContentsOfURL:[NSURL URLWithString:imageURLString]
-//        placeholderImage:[UIImage imageNamed:@"programs"]
-//        onCompletion:^(UIImage *img) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.tableView beginUpdates];
-//        DarkBlueGradientFeaturedCell *cell = (DarkBlueGradientFeaturedCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-//        if(cell) {
-//        cell.featuredImage.image = img;
-//        cell.featuredImage.frame = cell.frame;
-//        cell.featuredImage.frame = CGRectMake(30, 0, self.view.frame.size.width, cell.featuredImage.frame.size.height);
-//        self.featuredSize = @[[NSNumber numberWithFloat:img.size.width],[NSNumber numberWithFloat:img.size.height]];
-//        NSDebug(@"%f",img.size.height/(img.size.width / [Util screenWidth]));
-//        //                                                    CGFloat factor = img.size.width / [Util screenWidth];
-//        //                                                    NSDebug(@"%f",img.size.height/factor);
-//        [self loadingIndicator:NO];
-//        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.featuredImage.frame.size.height);
-//        }
-//        [self.tableView endUpdates];
-//        [self.tableView reloadData];
-//        });
-//        }];
-//    imageCell.featuredImage.image = image;
-//    self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
-//    imageCell.featuredImage.contentMode = UIViewContentModeScaleAspectFit;
-//    }
-//
-//
-//    - (void)loadFeaturedProjects
-//        {
-//            //self.data = [[NSMutableData alloc] init];
-//            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
-//            NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-//
-//            self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                if (error) {
-//                if ([Util isNetworkError:error]) {
-//                [Util defaultAlertForNetworkError];
-//                self.shouldHideLoadingView = YES;
-//                [self hideLoadingView];
-//                }
-//                } else {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                [self loadIDsWith:data andResponse:response];
-//                });
-//
-//                }
-//                }];
-//
-//            if (self.dataTask) {
-//                [self.dataTask resume];
-//                [self showLoadingView];
+//        if (cell is DarkBlueGradientFeaturedCell) {
+//            let project = projects[indexPath?.row ?? 0] as? CatrobatProgram
+//            let imageCell = cell as? DarkBlueGradientFeaturedCell
+//            loadImage(project?.featuredImage, for: imageCell, at: indexPath)
+//            if !(imageCell?.featuredImage.image == UIImage(named: "programs")) {
+//                imageCell?.featuredImage.frame = (cell?.frame)!
+//                imageCell?.featuredImage.frame = CGRect(x: 0, y: 0, width: imageCell?.featuredImage.frame.size.width ?? 0.0, height: imageCell?.featuredImage.frame.size.height ?? 0.0)
+//                loadingIndicator(false)
 //            }
 //        }
-//
-//        - (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
-//{
-//    if (data == nil) {
-//        if (self.shouldShowAlert) {
-//            self.shouldShowAlert = NO;
-//            [Util defaultAlertForNetworkError];
-//        }
-//        return;
+//        return cell
 //    }
-//
-//    NSError *error = nil;
-//    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
-//        options:NSJSONReadingMutableContainers
-//        error:&error];
-//    NSDebug(@"array: %@", jsonObject);
-//
-//
-//    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-//
-//        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-//        CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-//
-//        NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-//
-//
-//        if (catrobatProjects) {
-//            self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-//
-//            for (NSDictionary *projectDict in catrobatProjects) {
-//                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-//                [self.projects addObject:project];
-//            }
-//        } else {
-//            [Util defaultAlertForUnknownError];
-//            self.shouldHideLoadingView = YES;
-//            [self hideLoadingView];
-//            return;
-//        }
-//    }
-//    [self update];
-//
-//    for (CatrobatProgram* project in self.projects) {
-//
-//        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
-//        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-//
-//        NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//            if (error) {
-//            if (error.code != kCFURLErrorCancelled) {
-//            NSLog(@"%@", error);
-//            }
-//
-//            } else {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//            [self loadInfosWith:data andResponse:response];
-//            });
-//
-//            }
-//            }];
-//
-//        if (task) {
-//            [task resume];
-//            [self showLoadingView];
-//        }
-//    }
-//    [self showLoadingView];
-//
-//    }
-//    - (void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
-//{
-//    if (data == nil) {
-//        if (self.shouldShowAlert) {
-//            self.shouldShowAlert = NO;
-//            [Util defaultAlertForNetworkError];
-//        }
-//        return;
-//    }
-//
-//    NSError *error = nil;
-//    id jsonObject = [NSJSONSerialization JSONObjectWithData:data
-//        options:NSJSONReadingMutableContainers
-//        error:&error];
-//    NSDebug(@"array: %@", jsonObject);
-//
-//
-//    if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-//        NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-//
-//        CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-//
-//        NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-//
-//        if (catrobatProjects) {
-//            NSInteger counter=0;
-//            CatrobatProgram *loadedProject;
-//            NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
-//            loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-//
-//            for (CatrobatProgram* project in self.projects) {
-//                if ([project.projectID isEqualToString:loadedProject.projectID ]) {
-//                    @synchronized(self.projects){
-//                        loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
-//                        [self.projects removeObject:project];
-//                        [self.projects insertObject:loadedProject atIndex:counter];
+//    func loadImage(_ imageURLString: String?, for imageCell: DarkBlueGradientFeaturedCell?, at indexPath: IndexPath?) {
+//        loadingIndicator(true)
+//        let image = UIImage(contentsOf: URL(string: imageURLString ?? ""), placeholderImage: UIImage(named: "programs"), onCompletion: { img in
+//                DispatchQueue.main.async(execute: {
+//                    self.tableView.beginUpdates()
+//                    let cell = self.tableView.cellForRow(at: indexPath!) as? DarkBlueGradientFeaturedCell
+//                    if cell != nil {
+//                        cell?.featuredImage.image = img
+//                        cell?.featuredImage.frame = (cell?.frame)!
+//                        cell?.featuredImage.frame = CGRect(x: 30, y: 0, width: self.view.frame.size.width, height: cell?.featuredImage.frame.size.height ?? 0.0)
+//                        self.featuredSize = [Float(img?.size.width ?? 0.0), Float(img?.size.height ?? 0.0)]
+//                        NSLog("%f", (img?.size.height ?? 0.0) / ((img?.size.width ?? 0.0) / Util.screenWidth()))
+//                        //                                                    CGFloat factor = img.size.width / [Util screenWidth];
+//                        //                                                    NSDebug(@"%f",img.size.height/factor);
+//                        self.loadingIndicator(false)
+//                        cell?.frame = CGRect(x: cell?.frame.origin.x ?? 0.0, y: cell?.frame.origin.y ?? 0.0, width: cell?.frame.size.width ?? 0.0, height: cell?.featuredImage.frame.size.height ?? 0.0)
 //                    }
-//                    break;
+//                    self.tableView.endUpdates()
+//                    self.tableView.reloadData()
+//                })
+//            })
+//        imageCell?.featuredImage.image = image
+//        featuredSize = [Float((image?.size.width)!), Float((image?.size.height)!)] //FIXME
+//        imageCell?.featuredImage.contentMode = .scaleAspectFit
+//    }
+//
+//    func loadFeaturedProjects() {
+//            //self.data = [[NSMutableData alloc] init];
+//        let url = NSURL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)%i")
+//        var request: URLRequest? = nil
+//        if let anUrl = url {
+//            request = URLRequest(url: anUrl, cachePolicy: .useProtocolCachePolicy, timeoutInterval: kConnectionTimeout)
+//        }
+//        if let aRequest = request {
+//            dataTask = session.dataTask(with: aRequest, completionHandler: { data, response, error in
+//                if error != nil {
+//                    if try! Util.isNetworkError(error) { //FIXME
+//                        Util.defaultAlertForNetworkError()
+//                        self.shouldHideLoadingView = true
+//                        self.hideLoadingView()
+//                    }
+//                } else {
+//                    DispatchQueue.main.async(execute: {
+//                        self.loadIDs(with: data, andResponse: response)
+//                    })
 //                }
-//                counter++;
-//            }
-//        } else {
-//            [Util defaultAlertForUnknownError];
+//            })
+//        }
+//        if dataTask {
+//            dataTask?.resume()
+//            showLoadingView()
 //        }
 //    }
-//    [self update];
-//    self.shouldHideLoadingView = YES;
-//    [self hideLoadingView];
 //
-//    }
-//
-//    - (void)showLoadingView
-//        {
-//            if(!self.loadingView) {
-//                self.loadingView = [[LoadingView alloc] init];
-//                //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
-//                [self.view addSubview:self.loadingView];
+//    func loadIDs(with data: Data?, andResponse response: URLResponse?) {
+//        if data == nil {
+//            if shouldShowAlert {
+//                shouldShowAlert = false
+//                Util.defaultAlertForNetworkError()
 //            }
-//            [self.loadingView show];
-//            [self loadingIndicator:YES];
+//            return
 //        }
-//
-//        - (void)hideLoadingView
-//            {
-//                if(self.shouldHideLoadingView) {
-//                    [self.loadingView hide];
-//                    [self loadingIndicator:NO];
-//                    self.shouldHideLoadingView = NO;
+//        var error: Error? = nil
+//        var jsonObject: Any? = nil
+//        if let aData = data {
+//            jsonObject = try? JSONSerialization.jsonObject(with: aData, options: .mutableContainers)
+//        }
+//        NSLog("array: %@", jsonObject)
+//        if (jsonObject is [AnyHashable : Any]) {
+//            let catrobatInformation = jsonObject?["CatrobatInformation"] as? [AnyHashable : Any]
+//            let information = CatrobatInformation(dict: catrobatInformation)
+//            let catrobatProjects = jsonObject?["CatrobatProjects"] as? [Any]
+//            if catrobatProjects != nil {
+//                projects = [AnyHashable](repeating: 0, count: catrobatProjects?.count ?? 0)
+//                for projectDict: [AnyHashable : Any]? in catrobatProjects as? [[AnyHashable : Any]?] ?? [[AnyHashable : Any]?]() {
+//                    let project = CatrobatProgram(dict: projectDict, andBaseUrl: information.baseURL)
+//                    projects.append(project)
 //                }
+//            } else {
+//                Util.defaultAlertForUnknownError()
+//                shouldHideLoadingView = true
+//                hideLoadingView()
+//                return
 //            }
-//
-//            - (void)loadingIndicator:(BOOL)value
-//{
-//    UIApplication* app = [UIApplication sharedApplication];
-//    app.networkActivityIndicatorVisible = value;
-//}
-//
-//
-//#pragma mark - Table view delegate
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (self.featuredSize) {
-//        NSNumber* width = self.featuredSize[0];
-//        NSNumber* height = self.featuredSize[1];
-//
-//        CGFloat factor = width.floatValue / [Util screenWidth];
-//        float realCellHeigt = height.floatValue/factor;
-//        float expectedCellHeight = [TableUtil heightForFeaturedCell];
-//
-//        float discrepancy = fabsf(expectedCellHeight - realCellHeigt);
-//        if (discrepancy < [Util screenWidth]/10)
-//        {
-//            return realCellHeigt;
 //        }
-//        else
-//        {
-//            return expectedCellHeight;
+//        update()
+//        for project: CatrobatProgram? in projects {
+//            var url: URL? = nil
+//            if let anID = project?.projectID {
+//                url = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(anID)")
+//            }
+//            var request: URLRequest? = nil
+//            if let anUrl = url {
+//                request = URLRequest(url: anUrl, cachePolicy: .useProtocolCachePolicy, timeoutInterval: kConnectionTimeout)
+//            }
+//            var task: URLSessionDataTask? = nil
+//            if let anError = error, let aRequest = request {
+//                task = session.dataTask(with: aRequest, completionHandler: { data, response, error in
+//                                if error != nil {
+//                                    if (error as NSError?)?.code != CFNetworkErrors.cfurlErrorCancelled.rawValue {
+//                                        print("\(anError)")
+//                                    }
+//                                } else {
+//                                    DispatchQueue.main.async(execute: {
+//                                        self.loadInfos(with: data, andResponse: response)
+//                                    })
+//                                }
+//                            })
+//            }
+//            if task != nil {
+//                task?.resume()
+//                showLoadingView()
+//            }
+//        }
+//        showLoadingView()
+//    }
+//
+//    func loadInfos(with data: Data?, andResponse response: URLResponse?) {
+//        if data == nil {
+//            if shouldShowAlert {
+//                shouldShowAlert = false
+//                Util.defaultAlertForNetworkError()
+//            }
+//            return
+//        }
+//        var error: Error? = nil
+//        var jsonObject: Any? = nil
+//        if let aData = data {
+//            jsonObject = try? JSONSerialization.jsonObject(with: aData, options: .mutableContainers)
+//        }
+//        NSLog("array: %@", jsonObject)
+//        if (jsonObject is [AnyHashable : Any]) {
+//            let catrobatInformation = jsonObject?["CatrobatInformation"] as? [AnyHashable : Any]
+//            let information = CatrobatInformation(dict: catrobatInformation)
+//            let catrobatProjects = jsonObject?["CatrobatProjects"] as? [Any]
+//            if catrobatProjects != nil {
+//                let counter: Int = 0
+//                var loadedProject: CatrobatProgram?
+//                let projectDict = catrobatProjects?[(catrobatProjects?.count ?? 0) - 1] as? [AnyHashable : Any]
+//                loadedProject = CatrobatProgram(dict: projectDict, andBaseUrl: information.baseURL)
+//                for project: CatrobatProgram? in projects {
+//                    if (project?.projectID == loadedProject?.projectID) {
+//                        let lockQueue = DispatchQueue(label: "projects")
+//                        lockQueue.sync {
+//                            loadedProject?.featuredImage = project?.featuredImage ?? ""
+//                            if let aProject = project {
+//                                while let elementIndex = projects.index(of: aProject) { projects.remove(at: elementIndex) }
+//                            }
+//                            if let aProject = loadedProject {
+//                                projects.insert(aProject, at: counter)
+//                            }
+//                        }
+//                        break
+//                    }
+//                    counter += 1
+//                }
+//            } else {
+//                Util.defaultAlertForUnknownError()
+//            }
+//        }
+//        update()
+//        shouldHideLoadingView = true
+//        hideLoadingView()
+//    }
+//
+//    override func showLoadingView() {
+//        if loadingView == nil {
+//            loadingView = LoadingView()
+//            //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+//            view.addSubview(loadingView!)
+//        }
+//        loadingView?.show()
+//        loadingIndicator(true)
+//    }
+//
+//    override func hideLoadingView() {
+//        if shouldHideLoadingView {
+//            loadingView?.hide()
+//            loadingIndicator(false)
+//            shouldHideLoadingView = false
 //        }
 //    }
-//    return [TableUtil heightForFeaturedCell];
+//
+//    func loadingIndicator(_ value: Bool) {
+//        let app = UIApplication.shared
+//        app.isNetworkActivityIndicatorVisible = value
 //    }
 //
-//    - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *segueToProgramDetail = kSegueToProgramDetail;
-//    if (!self.editing) {
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//        if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:cell]) {
-//            [self performSegueWithIdentifier:segueToProgramDetail sender:cell];
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if featuredSize {
+//            let width = featuredSize[0]
+//            let height = featuredSize[1]
+//            let factor = CGFloat(width / Util.screenWidth())
+//            let realCellHeigt = Float(CGFloat(height) / factor)
+//            let expectedCellHeight = TableUtil.heightForFeaturedCell()
+//            let discrepancy = fabsf(expectedCellHeight - realCellHeigt)
+//            if discrepancy < Util.screenWidth() / 10 {
+//                return CGFloat(realCellHeigt)
+//            } else {
+//                return CGFloat(expectedCellHeight)
+//            }
+//        }
+//        return TableUtil.heightForFeaturedCell()
+//    }
 //
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let segueToProgramDetail = kSegueToProgramDetail
+//        if !isEditing {
+//            let cell: UITableViewCell? = tableView.cellForRow(at: indexPath)
+//            if shouldPerformSegue(withIdentifier: segueToProgramDetail, sender: cell) {
+//                performSegue(withIdentifier: segueToProgramDetail, sender: cell)
+//            }
 //        }
 //    }
-//}
-//
-//# pragma mark - Segue delegate
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
-//        NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-//        CatrobatProgram *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
-//        ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
-//        programDetailViewController.project = catrobatProject;
-//
+//    // MARK: - Segue delegate
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == kSegueToProgramDetail) {
+//            let selectedRowIndexPath: IndexPath? = tableView.indexPathForSelectedRow
+//            let catrobatProject = projects[selectedRowIndexPath?.row ?? 0] as? CatrobatProgram
+//            let programDetailViewController = segue.destination as? ProgramDetailStoreViewController
+//            programDetailViewController?.project = catrobatProject
+//        }
 //    }
-//}
-//
-//#pragma mark - update
-//- (void)update {
-//    [self.tableView reloadData];
-//}
-//
-//#pragma mark - BackButtonDelegate
-//- (void)back {
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-//
-//
-//@end
+//    // MARK: - update
+//    func update() {
+//        tableView.reloadData()
+//    }
+//    // MARK: - BackButtonDelegate
+//    func back() {
+//        navigationController?.popViewController(animated: true)
+//    }
+}
