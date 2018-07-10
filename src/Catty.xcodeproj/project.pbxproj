@@ -634,7 +634,6 @@
 		92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */; };
 		92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31311A24DEB300093DA7 /* ProgramTableViewController.m */; };
 		92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */; };
-		92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31361A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m */; };
 		92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */; };
 		92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313A1A24DEB300093DA7 /* RecentProgramsStoreViewController.m */; };
 		92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313C1A24DEB300093DA7 /* SearchStoreViewController.m */; };
@@ -972,6 +971,7 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		E42E975220F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42E975120F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift */; };
 		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
@@ -1987,8 +1987,6 @@
 		92FF31311A24DEB300093DA7 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
 		92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadTabBarController.h; sourceTree = "<group>"; };
 		92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTabBarController.m; sourceTree = "<group>"; };
-		92FF31351A24DEB300093DA7 /* FeaturedProgramsStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProgramsStoreViewController.h; sourceTree = "<group>"; };
-		92FF31361A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProgramsStoreViewController.m; sourceTree = "<group>"; };
 		92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDetailStoreViewController.h; sourceTree = "<group>"; };
 		92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailStoreViewController.m; sourceTree = "<group>"; };
 		92FF31391A24DEB300093DA7 /* RecentProgramsStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProgramsStoreViewController.h; sourceTree = "<group>"; };
@@ -2528,6 +2526,7 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E42E975120F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreViewController.swift; sourceTree = "<group>"; };
 		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5141,10 +5140,9 @@
 		92FF31321A24DEB300093DA7 /* Download */ = {
 			isa = PBXGroup;
 			children = (
+				E42E975120F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
-				92FF31351A24DEB300093DA7 /* FeaturedProgramsStoreViewController.h */,
-				92FF31361A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m */,
 				92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */,
 				92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */,
 				92FF31391A24DEB300093DA7 /* RecentProgramsStoreViewController.h */,
@@ -7573,7 +7571,6 @@
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.m in Sources */,
-				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				AA74EE3D1BC0543700D1E954 /* StopAllSoundsBrick+Instruction.swift in Sources */,
@@ -7800,6 +7797,7 @@
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				4C0F9F54204BD0EB00E71B2D /* ResourceHelper.m in Sources */,
 				9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */,
+				E42E975220F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift in Sources */,
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
