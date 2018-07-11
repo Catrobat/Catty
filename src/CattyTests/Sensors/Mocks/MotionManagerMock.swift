@@ -32,6 +32,10 @@ final class MotionManagerMock: MotionManager {
     var xAcceleration: Double = 0
     var yAcceleration: Double = 0
     var zAcceleration: Double = 0
+    
+    var xUserAcceleration: Double = 0
+    var yUserAcceleration: Double = 0
+    var zUserAcceleration: Double = 0
 
     var xRotation: Double = 0
     var yRotation: Double = 0
@@ -66,6 +70,9 @@ final class MotionManagerMock: MotionManager {
             ),
             gravity: CMAcceleration(
                 x: self.xGravity, y: self.yGravity, z: self.zGravity
+            ),
+            userAcceleration: CMAcceleration(
+                x: self.xUserAcceleration, y: self.yUserAcceleration, z: self.zUserAcceleration
             )
         )
     }
@@ -78,6 +85,7 @@ struct AccelerometerDataMock: AccelerometerData {
 struct DeviceMotionMock: DeviceMotion {
     var attitude: Attitude
     var gravity: CMAcceleration
+    var userAcceleration: CMAcceleration
 }
 
 struct AttitudeMock: Attitude {

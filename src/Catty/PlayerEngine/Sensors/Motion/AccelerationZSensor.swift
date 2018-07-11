@@ -34,7 +34,7 @@ class AccelerationZSensor : DeviceSensor {
     }
 
     func rawValue() -> Double {
-        return self.getMotionManager()?.accelerometerData?.acceleration.z ?? type(of: self).defaultRawValue
+        return self.getMotionManager()?.deviceMotion?.userAcceleration.z ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {

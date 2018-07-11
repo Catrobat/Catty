@@ -45,13 +45,13 @@ final class AccelerationZSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        motionManager.zAcceleration = 0
+        motionManager.zUserAcceleration = 0
         XCTAssertEqual(0, sensor.rawValue(), accuracy: 0.0001)
         
-        motionManager.zAcceleration = 9.8
+        motionManager.zUserAcceleration = 9.8
         XCTAssertEqual(9.8, sensor.rawValue(), accuracy: 0.0001)
         
-        motionManager.zAcceleration = -9.8
+        motionManager.zUserAcceleration = -9.8
         XCTAssertEqual(-9.8, sensor.rawValue(), accuracy: 0.0001)
     }
     

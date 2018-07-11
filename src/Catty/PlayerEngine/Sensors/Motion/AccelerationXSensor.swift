@@ -34,7 +34,7 @@
     }
     
     func rawValue() -> Double {
-        return self.getMotionManager()?.accelerometerData?.acceleration.x ?? type(of: self).defaultRawValue
+        return self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
