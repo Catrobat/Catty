@@ -23,18 +23,18 @@
 @testable import Pocket_Code
 
 final class LocationManagerMock: LocationManager {
-    var magneticHeading: Double?
+    var magneticHeading: Double = 0
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var altitude: Double = 0
+    var locationAccuracy: Double = 0
 
     var heading: Heading? {
-        guard let magneticHeading = self.magneticHeading else { return nil }
         return HeadingMock(magneticHeading: magneticHeading)
     }
     
     var location: Location? {
-        guard let coordinate = self.location?.coordinate else { return nil }
-        guard let altitude = self.location?.altitude else { return nil }
-        guard let horizontalAccuracy = self.location?.horizontalAccuracy else { return nil }
-        return LocationMock(coordinate: coordinate, altitude: altitude, horizontalAccuracy: horizontalAccuracy)
+        return LocationMock(coordinate: LocationCoordinate2DMock(longitude: longitude, latitude: latitude), altitude: altitude, horizontalAccuracy: locationAccuracy)
     }
 }
 
@@ -42,10 +42,13 @@ struct HeadingMock: Heading {
     var magneticHeading: Double
 }
 
+struct LocationCoordinate2DMock: LocationCoordinate2D {
+    var longitude: Double
+    var latitude: Double
+}
+
 struct LocationMock: Location {
     var coordinate: LocationCoordinate2D
-    
     var altitude: Double
-    
     var horizontalAccuracy: Double
 }
