@@ -65,6 +65,7 @@ final class InclinationXSensorTest: XCTestCase {
         XCTAssertEqual(self.sensor.rawValue(), -Double.pi/3, accuracy: 0.0001)
     }
     
+    // does not depend on the orientation of the screen (left/right, up/down)
     func testConvertToStandardized() {
         // test no inclination
         XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
