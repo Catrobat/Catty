@@ -38,6 +38,9 @@
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
+        if rawValue < 0 {
+            return 0
+        }
         return rawValue
     }
     
