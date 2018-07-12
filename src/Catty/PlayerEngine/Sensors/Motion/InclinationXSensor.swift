@@ -34,11 +34,19 @@ class InclinationXSensor: DeviceSensor {
     }
 
     func rawValue() -> Double {
-        return self.getMotionManager()?.deviceMotion?.attitude.roll ?? type(of: self).defaultRawValue
+        guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else {
+            return type(of: self).defaultRawValue
+        }
+        
+        return deviceMotion.attitude.roll
     }
 
+    // roll is between -pi, pi on both iOS and Android
+    // going to right, it is negative on Android and positive on iOS
+    // going to left, it is positive on Android and negative on iOS
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return Util.radians(toDegree: -rawValue)
     }
     
     func showInFormulaEditor() -> Bool {

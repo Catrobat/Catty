@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import CoreMotion
+
 class InclinationYSensor : DeviceSensor {
 
     static let tag = "Y_INCLINATION"
@@ -34,14 +36,29 @@ class InclinationYSensor : DeviceSensor {
     }
 
     func rawValue() -> Double {
-        if ( self.getMotionManager()?.accelerometerData == nil) {
+        guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
+        guard let deviceMotion = inclinationSensor.deviceMotion else {
             return type(of: self).defaultRawValue
         }
-        return self.getMotionManager()?.deviceMotion?.attitude.pitch ?? type(of: self).defaultRawValue
+        return deviceMotion.attitude.pitch
+      
     }
-
+    
+    // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android
+    // going forward, it is positive on both iOS and Android
+    // going backwards, it is negative on both iOS and Android
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) >  0
+        if faceDown == false {
+            // screen up
+            return Util.radians(toDegree: rawValue)
+        } else {
+            if rawValue > 0.0001 {
+                return Util.radians(toDegree: Double.pi - rawValue)
+            } else {
+                return Util.radians(toDegree: -Double.pi - rawValue)
+            }
+        }
     }
     
     func showInFormulaEditor() -> Bool {
