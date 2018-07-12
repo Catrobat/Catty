@@ -21,20 +21,20 @@
  */
 
 struct CatrobatProgram: Codable {
-    let ProjectId: String
+    let ProjectId: Int
     let ProjectName: String
     let ProjectNameShort: String
     let Author: String
     let Description: String
     let Version: String
-    let Views: String
-    let Downloads: String
-    let Private: String
-    let Uploaded: String
+    let Views: Int
+    let Downloads: Int
+    let Private: Bool
+    let Uploaded: Int
     let UploadedString: String
     let ScreenshotBig: String
     let ScreenshotSmall: String
     let ProjectUrl: String
     let DownloadUrl: String
-    let FileSize: String
+    let FileSize: Float
 }

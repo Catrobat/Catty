@@ -22,6 +22,6 @@
 
 struct CatrobatInformation: Codable {
     let BaseUrl: String
-    let TotalProjects: String
+    let TotalProjects: Int
     let ProjectsExtension: String
 }

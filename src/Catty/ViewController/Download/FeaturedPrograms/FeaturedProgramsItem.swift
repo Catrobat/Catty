@@ -20,9 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+struct FeaturedProgramsBaseInformation: Codable {
+    let CatrobatProjects: [CatrobatProgram]
+    let preHeaderMessages: String
+    let CatrobatInformation: CatrobatInformation
+}
+
 struct FeaturedProgramsItem: Codable {
     let CatrobatProjects: [CatrobatProgram]
-    let completeTerm: String?
-    let preHeaderMessages: String?
+    let completeTerm: String
+    let preHeaderMessages: String
     let CatrobatInformation: CatrobatInformation
 }

@@ -23,23 +23,27 @@
 final class FeaturedProgramsStoreDownloader {
 
     let session: URLSession
+    let kFeaturedProgramsMaxResults = 10
 
     init(session: URLSession = URLSession.shared) {
         self.session = session
         
-        let example = self.downloadProgram(withID: 10411) // Example
+        _ = self.downloadKFeaturedPrograms() // Example call
     }
     
     // FIXME: Errors and Return and DispatchQueue.main.async
-    func downloadProgram(withID: Int) {
-        guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(withID)") else { return }
+    // NEXT STEPS: fetch request for the first k featured programs
+    func downloadKFeaturedPrograms() {
+
+        guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
 
         self.session.dataTask(with: indexURL) { (data, response, error) in
             guard let response = response as? HTTPURLResponse else { return }
             guard let data = data, response.statusCode == 200 else { return }
+            var featuredProgramsBaseInformation: FeaturedProgramsBaseInformation
             
             do {
-                let program = try JSONDecoder().decode(FeaturedProgramsItem.self, from: data)
+                featuredProgramsBaseInformation = try JSONDecoder().decode(FeaturedProgramsBaseInformation.self, from: data)
             } catch {
                 return
             }
