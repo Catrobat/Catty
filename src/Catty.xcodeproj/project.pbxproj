@@ -634,6 +634,7 @@
 		92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */; };
 		92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31311A24DEB300093DA7 /* ProgramTableViewController.m */; };
 		92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */; };
+		92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31361A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m */; };
 		92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */; };
 		92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313A1A24DEB300093DA7 /* RecentProgramsStoreViewController.m */; };
 		92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313C1A24DEB300093DA7 /* SearchStoreViewController.m */; };
@@ -971,7 +972,10 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
-		E42E975220F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42E975120F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift */; };
+		E4B1BF4C20F7179200800555 /* CatrobatProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF4B20F7179200800555 /* CatrobatProgram.swift */; };
+		E4B1BF4F20F72C4A00800555 /* CatrobatInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF4E20F72C4A00800555 /* CatrobatInformation.swift */; };
+		E4B1BF5120F72D2C00800555 /* FeaturedProgramsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF5020F72D2C00800555 /* FeaturedProgramsItem.swift */; };
+		E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */; };
 		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
@@ -1987,6 +1991,8 @@
 		92FF31311A24DEB300093DA7 /* ProgramTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewController.m; sourceTree = "<group>"; };
 		92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadTabBarController.h; sourceTree = "<group>"; };
 		92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTabBarController.m; sourceTree = "<group>"; };
+		92FF31351A24DEB300093DA7 /* FeaturedProgramsStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProgramsStoreViewController.h; sourceTree = "<group>"; };
+		92FF31361A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProgramsStoreViewController.m; sourceTree = "<group>"; };
 		92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDetailStoreViewController.h; sourceTree = "<group>"; };
 		92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailStoreViewController.m; sourceTree = "<group>"; };
 		92FF31391A24DEB300093DA7 /* RecentProgramsStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProgramsStoreViewController.h; sourceTree = "<group>"; };
@@ -2526,7 +2532,10 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		E42E975120F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreViewController.swift; sourceTree = "<group>"; };
+		E4B1BF4B20F7179200800555 /* CatrobatProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatrobatProgram.swift; sourceTree = "<group>"; };
+		E4B1BF4E20F72C4A00800555 /* CatrobatInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatrobatInformation.swift; sourceTree = "<group>"; };
+		E4B1BF5020F72D2C00800555 /* FeaturedProgramsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsItem.swift; sourceTree = "<group>"; };
+		E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloader.swift; sourceTree = "<group>"; };
 		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4825,6 +4834,8 @@
 		92FF2EAC1A24C8A700093DA7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				E4B1BF4E20F72C4A00800555 /* CatrobatInformation.swift */,
+				E4B1BF4B20F7179200800555 /* CatrobatProgram.swift */,
 				92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */,
 				92FF2EB01A24C8A700093DA7 /* CatrobatProgram */,
 			);
@@ -5140,9 +5151,11 @@
 		92FF31321A24DEB300093DA7 /* Download */ = {
 			isa = PBXGroup;
 			children = (
-				E42E975120F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift */,
+				E4B1BF4D20F719DB00800555 /* FeaturedPrograms */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
+				92FF31351A24DEB300093DA7 /* FeaturedProgramsStoreViewController.h */,
+				92FF31361A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m */,
 				92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */,
 				92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */,
 				92FF31391A24DEB300093DA7 /* RecentProgramsStoreViewController.h */,
@@ -6637,6 +6650,15 @@
 			name = Keychain;
 			sourceTree = "<group>";
 		};
+		E4B1BF4D20F719DB00800555 /* FeaturedPrograms */ = {
+			isa = PBXGroup;
+			children = (
+				E4B1BF5020F72D2C00800555 /* FeaturedProgramsItem.swift */,
+				E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */,
+			);
+			path = FeaturedPrograms;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7521,6 +7543,7 @@
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
+				E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
@@ -7571,6 +7594,7 @@
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.m in Sources */,
+				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				AA74EE3D1BC0543700D1E954 /* StopAllSoundsBrick+Instruction.swift in Sources */,
@@ -7601,6 +7625,7 @@
 				4C0F9F50204BD0B400E71B2D /* BubbleBrickHelper.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
+				E4B1BF5120F72D2C00800555 /* FeaturedProgramsItem.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
@@ -7797,7 +7822,6 @@
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				4C0F9F54204BD0EB00E71B2D /* ResourceHelper.m in Sources */,
 				9200C2CA1C808006002F5CA4 /* ShowTextBrick.m in Sources */,
-				E42E975220F4D70F00D27251 /* FeaturedProgramsStoreViewController.swift in Sources */,
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
@@ -7811,6 +7835,7 @@
 				9218B2001CC4AB75007B4C60 /* YKImageCropperOverlayView.m in Sources */,
 				4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */,
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
+				E4B1BF4C20F7179200800555 /* CatrobatProgram.swift in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
@@ -7914,6 +7939,7 @@
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
 				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,
+				E4B1BF4F20F72C4A00800555 /* CatrobatInformation.swift in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
