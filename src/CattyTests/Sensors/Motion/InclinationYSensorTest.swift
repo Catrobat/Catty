@@ -99,7 +99,7 @@ final class InclinationYSensorTest: XCTestCase {
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.accelerometer, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.accelerometerAndDeviceMotion, type(of: sensor).requiredResource)
     }
     
     func testShowInFormulaEditor() {

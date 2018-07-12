@@ -185,10 +185,15 @@ import CoreLocation
         let unavailableResource = getUnavailableResources(for: requiredResources)
         
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
-            // TODO add new resource type
-            motionManager.startDeviceMotionUpdates()
-            
             motionManager.startAccelerometerUpdates()
+        }
+        
+        if (requiredResources & ResourceType.deviceMotion.rawValue > 0) && (unavailableResource & ResourceType.deviceMotion.rawValue) == 0  {
+            motionManager.startDeviceMotionUpdates()
+        }
+        
+        if (requiredResources & ResourceType.gyro.rawValue > 0) && (unavailableResource & ResourceType.gyro.rawValue) == 0  {
+            motionManager.startGyroUpdates()
         }
         
         if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
@@ -208,9 +213,6 @@ import CoreLocation
         if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
             audioManager.startLoudnessRecorder()
         }
-        
-        // TODO add rew resource type
-        //motionManager.startGyroUpdates()
     }
     
     @objc(getUnavailableResources:)
@@ -249,10 +251,12 @@ import CoreLocation
     }
     
     func stopSensors() {
-        locationManager.stopUpdatingHeading()
-        locationManager.stopUpdatingLocation()
         motionManager.stopAccelerometerUpdates()
         motionManager.stopDeviceMotionUpdates()
+        motionManager.stopGyroUpdates()
+        locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
         faceDetectionManager.stop()
+        audioManager.stopLoudnessRecorder()
     }
 }
