@@ -41,10 +41,63 @@ final class InclinationXSensorTest: XCTestCase {
 
     func testDefaultRawValue() {
         let sensor = InclinationXSensor { nil }
-        XCTAssertEqual(InclinationXSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
+    func testRawValue() {
+        // test maximum value
+        self.motionManager.attitude = (roll: Double.pi, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue(), Double.pi, accuracy: 0.0001)
+        
+        // test minimum value
+        self.motionManager.attitude = (roll: -Double.pi, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue(), -Double.pi, accuracy: 0.0001)
+        
+        // test no inclination
+        self.motionManager.attitude = (roll: 0, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue(), 0, accuracy: 0.0001)
+        
+        // tests inside the range
+        self.motionManager.attitude = (roll: Double.pi/2, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
+        
+        self.motionManager.attitude = (roll: -Double.pi/3, pitch: 0)
+        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/3, accuracy: 0.0001)
+    }
+    
+    // does not depend on the orientation of the screen (left/right, up/down)
     func testConvertToStandardized() {
-        // TODO
+        // test no inclination
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
+        
+        // test screen half left
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
+        
+        // test screen half right
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/4), -45, accuracy: 0.0001)
+        
+        // test screen left
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/2), 90, accuracy: 0.0001)
+        
+        // test screen right
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/2), -90, accuracy: 0.0001)
+        
+        // test screen left, then down
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: 0.0001)
+        
+        // test screen right, then down
+        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
+    }
+    
+    func testTag() {
+        XCTAssertEqual("X_INCLINATION", type(of: sensor).tag)
+    }
+    
+    func testRequiredResources() {
+        XCTAssertEqual(ResourceType.accelerometer, type(of: sensor).requiredResource)
+    }
+    
+    func testShowInFormulaEditor() {
+        XCTAssertTrue(sensor.showInFormulaEditor())
     }
 }
