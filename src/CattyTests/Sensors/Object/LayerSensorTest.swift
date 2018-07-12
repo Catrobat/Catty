@@ -62,13 +62,21 @@ final class LayerSensorTest: XCTestCase {
     }
     
     func testConvertToStandarized() {
+        // background
+        XCTAssertEqual(-1, self.sensor.convertToStandardized(rawValue: 0), accuracy: 0.001)
+        
+        // objects
         XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: 1), accuracy: 0.001)
         XCTAssertEqual(2, self.sensor.convertToStandardized(rawValue: 2), accuracy: 0.001)
     }
     
     func testConvertToRaw() {
-        XCTAssertEqual(3, self.sensor.convertToStandardized(rawValue: 3), accuracy: 0.001)
-        XCTAssertEqual(4, self.sensor.convertToStandardized(rawValue: 4), accuracy: 0.001)
+        // background
+        XCTAssertEqual(0, self.sensor.convertToRaw(standardizedValue: -1), accuracy: 0.001)
+        
+        // objects
+        XCTAssertEqual(3, self.sensor.convertToRaw(standardizedValue: 3), accuracy: 0.001)
+        XCTAssertEqual(4, self.sensor.convertToRaw(standardizedValue: 4), accuracy: 0.001)
     }
     
     func testTag() {

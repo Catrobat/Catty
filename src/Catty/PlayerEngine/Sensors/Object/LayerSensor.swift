@@ -24,7 +24,7 @@ class LayerSensor: ObjectSensor, ReadWriteSensor {
 
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
-    static let defaultRawValue = -1.0
+    static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -34,12 +34,19 @@ class LayerSensor: ObjectSensor, ReadWriteSensor {
         return Double(spriteNode.zIndex)
     }
 
-    // there is no conversion to make, the layers on objects are the same
     func convertToStandardized(rawValue: Double) -> Double {
+        if rawValue == 0 {
+            // for background
+            return -1
+        }
         return rawValue
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
+        if standardizedValue == -1 {
+            // for background
+            return 0
+        }
         return standardizedValue
     }
     
