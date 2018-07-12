@@ -25,7 +25,7 @@
     static let tag = "X_ACCELERATION"
     static let name = kUIFESensorAccelerationX
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.accelerometer
+    static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
 
