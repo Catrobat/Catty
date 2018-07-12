@@ -20,19 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LayerSensor: ObjectSensor {
+class LayerSensor: ObjectSensor, ReadWriteSensor {
 
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
-    static let defaultRawValue = 0.0
+    static let defaultRawValue = -1.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.zIndex)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
+        return Double(spriteNode.zIndex)
     }
 
+    // there is no conversion to make, the layers on objects are the same
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
+    }
+    
+    func convertToRaw(standardizedValue: Double) -> Double {
+        return standardizedValue
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
