@@ -1054,6 +1054,10 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
+		F4B10F8120EF49430054E79A /* CompassDirectionSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */; };
+		F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */; };
+		F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */; };
+		F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */; };
 		F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */; };
 		F4FCA7B920ECBDB0000761C7 /* TransparencySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */; };
 /* End PBXBuildFile section */
@@ -2689,6 +2693,10 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
+		F4B10F8020EF49420054E79A /* CompassDirectionSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompassDirectionSensorTest.swift; path = CattyTests/Sensors/Heading/CompassDirectionSensorTest.swift; sourceTree = SOURCE_ROOT; };
+		F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationXSensorTest.swift; sourceTree = "<group>"; };
+		F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationYSensorTest.swift; sourceTree = "<group>"; };
+		F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationZSensorTest.swift; sourceTree = "<group>"; };
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
 		F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparencySensorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3731,6 +3739,9 @@
 			isa = PBXGroup;
 			children = (
 				4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */,
+				F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */,
+				F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */,
+				F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */,
 				F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */,
 			);
 			path = Motion;
@@ -7660,6 +7671,7 @@
 				F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */,
 				F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */,
 				99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */,
+				F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
@@ -7711,6 +7723,7 @@
 				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
+				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				F4FCA7B920ECBDB0000761C7 /* TransparencySensorTest.swift in Sources */,
@@ -7733,6 +7746,7 @@
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
+				F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,

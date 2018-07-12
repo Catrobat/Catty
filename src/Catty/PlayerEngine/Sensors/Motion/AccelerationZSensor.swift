@@ -25,7 +25,7 @@ class AccelerationZSensor : DeviceSensor {
     static let tag = "Z_ACCELERATION"
     static let name = kUIFESensorAccelerationZ
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.accelerometer
+    static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
     
@@ -34,11 +34,11 @@ class AccelerationZSensor : DeviceSensor {
     }
 
     func rawValue() -> Double {
-        return self.getMotionManager()?.accelerometerData?.acceleration.z ?? type(of: self).defaultRawValue
+        return self.getMotionManager()?.deviceMotion?.userAcceleration.z ?? type(of: self).defaultRawValue
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return rawValue * 9.8
     }
     
     func showInFormulaEditor() -> Bool {
