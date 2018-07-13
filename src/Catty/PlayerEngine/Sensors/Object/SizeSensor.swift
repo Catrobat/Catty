@@ -20,19 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SizeSensor: ObjectSensor {
+@objc class SizeSensor: NSObject, ObjectSensor, ReadWriteSensor {
     
     static let tag = "OBJECT_SIZE"
     static let name = kUIFEObjectSize
-    static let defaultRawValue = 0.0
+    static let defaultRawValue = 1.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.scaleX)
+        return Double(spriteObject.spriteNode.xScale)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return rawValue * 100
+    }
+    
+    func convertToRaw(standardizedValue: Double) -> Double {
+        return standardizedValue / 100
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

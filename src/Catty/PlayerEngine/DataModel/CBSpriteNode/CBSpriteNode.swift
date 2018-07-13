@@ -45,8 +45,7 @@ class CBSpriteNode: SKSpriteNode {
     @objc var zIndex: CGFloat { return zPosition }
     
     @objc var colorValue: CGFloat { return (self.currentLookColor*100/CGFloat(Double.pi)) }
-    @objc var scaleX: CGFloat { return (100 * xScale) }
-    @objc var scaleY: CGFloat { return (100 * yScale) }
+    
     @objc var rotation: Double {
         set {
             self.zRotation = CGFloat(Util.degree(toRadians: CBSceneHelper.convertDegreesToScene(newValue)))
@@ -196,18 +195,9 @@ class CBSpriteNode: SKSpriteNode {
             //        }
             //        self.size = texture.size()
         //}
-        let xScale = self.xScale
-        let yScale = self.yScale
-        self.xScale = 1.0
-        self.yScale = 1.0
+        
         self.texture = texture
         self.currentLook = look
-        if xScale != 1.0 {
-            self.xScale = xScale
-        }
-        if yScale != 1.0 {
-            self.yScale = yScale
-        }
     }
 
     @objc func setLook() {

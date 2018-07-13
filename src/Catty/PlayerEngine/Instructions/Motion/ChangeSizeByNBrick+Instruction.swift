@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeSizeByNBrick: CBInstructionProtocol{
+@objc extension ChangeSizeByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
         return .action(action: SKAction.run(actionBlock()))
@@ -29,13 +29,14 @@
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let size = self.size
+            let sizeSensor = CBSensorManager.shared.sensor(type: SizeSensor.self)
         else { fatalError("This should never happen!") }
 
         return {
-            let sizeInPercent = size.interpretDouble(forSprite: object)
-            spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
-            spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
+            let sizeInPercent = sizeSensor.convertToStandardized(rawValue: Double(spriteNode.xScale)) + self.size.interpretDouble(forSprite: object)
+            let rawValue = sizeSensor.convertToRaw(standardizedValue: sizeInPercent)
+            spriteNode.xScale = CGFloat(rawValue)
+            spriteNode.yScale = CGFloat(rawValue)
         }
     }
 }

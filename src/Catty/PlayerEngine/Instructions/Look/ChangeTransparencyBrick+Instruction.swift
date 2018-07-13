@@ -36,7 +36,6 @@
               let transparencySensor = CBSensorManager.shared.sensor(type: TransparencySensor.self)
         else { fatalError("This should never happen!") }
 
-
         return {
             let standardizedValue = transparencySensor.convertToStandardized(rawValue: Double(spriteNode.alpha)) + transparency.interpretDouble(forSprite: object)
             let rawValue = transparencySensor.convertToRaw(standardizedValue: standardizedValue)
