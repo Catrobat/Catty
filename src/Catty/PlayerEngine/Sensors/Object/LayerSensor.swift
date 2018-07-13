@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LayerSensor: ObjectSensor {
+class LayerSensor: ObjectSensor, ReadWriteSensor {
 
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
@@ -28,11 +28,26 @@ class LayerSensor: ObjectSensor {
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.zIndex)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
+        return Double(spriteNode.zIndex)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
+        if rawValue == 0 {
+            // for background
+            return -1
+        }
         return rawValue
+    }
+    
+    func convertToRaw(standardizedValue: Double) -> Double {
+        if standardizedValue == -1 {
+            // for background
+            return 0
+        }
+        return standardizedValue
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
