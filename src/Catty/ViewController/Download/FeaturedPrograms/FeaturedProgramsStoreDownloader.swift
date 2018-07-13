@@ -28,25 +28,46 @@ final class FeaturedProgramsStoreDownloader {
     init(session: URLSession = URLSession.shared) {
         self.session = session
         
-        _ = self.downloadKFeaturedPrograms() // Example call
+        // Example call
+        _ = self.fetchKFeaturedPrograms(completion: { (items, error) in
+            guard let fetchedPrograms = items, error == nil else { return }
+        })
     }
     
-    // FIXME: Errors and Return and DispatchQueue.main.async
-    // NEXT STEPS: fetch request for the first k featured programs
-    func downloadKFeaturedPrograms() {
+    func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void) {
 
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
 
         self.session.dataTask(with: indexURL) { (data, response, error) in
-            guard let response = response as? HTTPURLResponse else { return }
-            guard let data = data, response.statusCode == 200 else { return }
-            var featuredProgramsBaseInformation: FeaturedProgramsBaseInformation
-            
-            do {
-                featuredProgramsBaseInformation = try JSONDecoder().decode(FeaturedProgramsBaseInformation.self, from: data)
-            } catch {
-                return
+
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: FeaturedProgramsCollection?, error: FeaturedProgramsDownloadError?)
+
+            handleDataTaskCompletion = { (data, response, error) in
+                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
+                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+                let items: FeaturedProgramsCollection?
+                do {
+                    items = try JSONDecoder().decode(FeaturedProgramsCollection.self, from: data)
+                } catch {
+                    return (nil, .parse(error: error))
+                }
+                return (items, nil)
             }
+
+            let result = handleDataTaskCompletion(data, response, error)
+            DispatchQueue.main.async {
+                completion(result.items, result.error)
+            }
+            
         }.resume()
     }
+}
+
+enum FeaturedProgramsDownloadError: Error {
+    /// Indicates an error with the URLRequest.
+    case request(error: Error?, statusCode: Int)
+    /// Indicates a parsing error of the received data.
+    case parse(error: Error)
+    /// Indicates an unexpected error.
+    case unexpectedError
 }

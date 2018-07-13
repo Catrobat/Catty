@@ -21,7 +21,13 @@
  */
 
 struct CatrobatInformation: Codable {
-    let BaseUrl: String
-    let TotalProjects: Int
-    let ProjectsExtension: String
+    let baseUrl: String
+    let totalProjects: String
+    let projectsExtension: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case baseUrl = "BaseUrl"
+        case totalProjects = "TotalProjects"
+        case projectsExtension = "ProjectsExtension"
+    }
 }

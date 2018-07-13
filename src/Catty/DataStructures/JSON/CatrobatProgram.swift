@@ -21,20 +21,41 @@
  */
 
 struct CatrobatProgram: Codable {
-    let ProjectId: Int
-    let ProjectName: String
-    let ProjectNameShort: String
-    let Author: String
-    let Description: String
-    let Version: String
-    let Views: Int
-    let Downloads: Int
-    let Private: Bool
-    let Uploaded: Int
-    let UploadedString: String
-    let ScreenshotBig: String
-    let ScreenshotSmall: String
-    let ProjectUrl: String
-    let DownloadUrl: String
-    let FileSize: Float
+    let projectId: Int
+    let projectName: String
+    let projectNameShort: String?
+    let author: String
+    let description: String?
+    let version: String?
+    let views: Int?
+    let downloads: Int?
+    let isPrivate: Bool?
+    let uploaded: Int?
+    let uploadedString: String?
+    let screenshotBig: String?
+    let screenshotSmall: String?
+    let projectUrl: String?
+    let downloadUrl: String?
+    let fileSize: Float?
+    let featuredImage: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case projectId = "ProjectId"
+        case projectName = "ProjectName"
+        case projectNameShort = "ProjectNameShort"
+        case author = "Author"
+        case description = "Description"
+        case version = "Version"
+        case views = "Views"
+        case downloads = "Downloads"
+        case isPrivate = "Private"
+        case uploaded = "Uploaded"
+        case uploadedString = "UploadedString"
+        case screenshotBig = "ScreenshotBig"
+        case screenshotSmall = "ScreenshotSmall"
+        case projectUrl = "ProjectUrl"
+        case downloadUrl = "DownloadUrl"
+        case fileSize = "FileSize"
+        case featuredImage = "FeaturedImage"
+    }
 }
