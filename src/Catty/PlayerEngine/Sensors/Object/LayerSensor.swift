@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LayerSensor: ObjectSensor, ReadWriteSensor {
+@objc class LayerSensor: NSObject, ObjectSensor, ReadWriteSensor {
 
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
@@ -43,9 +43,9 @@ class LayerSensor: ObjectSensor, ReadWriteSensor {
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
-        if standardizedValue == -1 {
-            // for background
-            return 0
+        if standardizedValue < 1 {
+            // can not be set for background
+            return 1
         }
         return standardizedValue
     }

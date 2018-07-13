@@ -26,9 +26,9 @@
 
 @implementation ComeToFrontBrick
 
-- (BOOL)isSelectableForObject
+- (BOOL)isDisabledForBackground
 {
-    return (! [self.script.object isBackground]);
+    return YES;
 }
 
 - (NSString*)brickTitle

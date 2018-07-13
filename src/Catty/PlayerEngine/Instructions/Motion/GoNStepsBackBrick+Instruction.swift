@@ -30,13 +30,16 @@
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps,
-            let objectList = self.script?.object?.program?.objectList
+            let objectList = self.script?.object?.program?.objectList,
+            let layerSensor = CBSensorManager.shared.sensor(type: LayerSensor.self)
         else { fatalError("This should never happen!") }
 
         return {
             let zValue = spriteNode.zPosition
             let steps = stepsFormula.interpretDouble(forSprite: object)
-            spriteNode.zPosition = max(1, zValue - CGFloat(steps))
+            let rawValue = layerSensor.convertToRaw(standardizedValue: Double(zValue - CGFloat(steps)))
+            spriteNode.zPosition = CGFloat(rawValue)
+            
             for obj in objectList {
                 guard let objSpriteNode = (obj as AnyObject).spriteNode, let spriteObject = obj as? SpriteObject else {
                     continue
