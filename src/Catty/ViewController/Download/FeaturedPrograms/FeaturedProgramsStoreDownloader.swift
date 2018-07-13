@@ -20,6 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+protocol FeaturedProgramsStoreDownloaderProtocol {
+    func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void)
+    func downloadProgram(for program: CatrobatProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void)
+}
+
 final class FeaturedProgramsStoreDownloader {
 
     let session: URLSession
@@ -27,13 +32,13 @@ final class FeaturedProgramsStoreDownloader {
 
     init(session: URLSession = URLSession.shared) {
         self.session = session
-        
+
         // Example call
         _ = self.fetchKFeaturedPrograms(completion: { (items, error) in
             guard let fetchedPrograms = items, error == nil else { return }
         })
     }
-    
+
     func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void) {
 
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
@@ -58,7 +63,21 @@ final class FeaturedProgramsStoreDownloader {
             DispatchQueue.main.async {
                 completion(result.items, result.error)
             }
-            
+
+        }.resume()
+    }
+
+    func downloadProgram(for program: CatrobatProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void) {
+        guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
+        self.session.dataTask(with: indexURL) { (data, response, error) in
+            DispatchQueue.main.async {
+                guard let response = response as? HTTPURLResponse else { completion(nil, .unexpectedError); return }
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    completion(nil, .request(error: error, statusCode: response.statusCode))
+                    return
+                }
+                completion(data, nil)
+            }
         }.resume()
     }
 }
