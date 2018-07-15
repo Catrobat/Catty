@@ -28,15 +28,19 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.xScale)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
+        return Double(spriteNode.xScale)
     }
 
+    // the sprite on Android is about 2.5 times smaller
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * 100
+        return rawValue * 100 / 2.5
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
-        return standardizedValue / 100
+        return standardizedValue / 100 * 2.5
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
