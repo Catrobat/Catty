@@ -60,7 +60,6 @@ final class SizeSensorTest: XCTestCase {
     
     func testConvertToStandarized() {
         XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: -1.0), accuracy: 0.0001)
         XCTAssertEqual(6, self.sensor.convertToStandardized(rawValue: 0.025), accuracy: 0.0001)
         XCTAssertEqual(60, self.sensor.convertToStandardized(rawValue: 0.25), accuracy: 0.0001)
         XCTAssertEqual(240, self.sensor.convertToStandardized(rawValue: 1.0), accuracy: 0.0001)
@@ -68,6 +67,7 @@ final class SizeSensorTest: XCTestCase {
     
     func testConvertToRaw() {
         XCTAssertEqual(0, self.sensor.convertToRaw(standardizedValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(0, self.sensor.convertToRaw(standardizedValue: -10), accuracy: 0.0001)
         XCTAssertEqual(1, self.sensor.convertToRaw(standardizedValue: 240), accuracy: 0.0001)
         XCTAssertEqual(0.5, self.sensor.convertToRaw(standardizedValue: 120), accuracy: 0.0001)
         XCTAssertEqual(0.25, self.sensor.convertToRaw(standardizedValue: 60), accuracy: 0.0001)
