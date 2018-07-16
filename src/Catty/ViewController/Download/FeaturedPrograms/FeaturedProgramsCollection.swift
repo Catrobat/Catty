@@ -20,14 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct CatrobatInformation: Codable {
-    let baseUrl: String
-    let totalProjects: String
-    let projectsExtension: String
+struct FeaturedProgramsCollection: Codable {
+    let projects: [CBProgram]
+    let completeTerm: String?
+    let preHeaderMessages: String
+    let information: CBInformation
     
     private enum CodingKeys: String, CodingKey {
-        case baseUrl = "BaseUrl"
-        case totalProjects = "TotalProjects"
-        case projectsExtension = "ProjectsExtension"
+        case projects = "CatrobatProjects"
+        case completeTerm
+        case preHeaderMessages
+        case information = "CatrobatInformation"
     }
 }

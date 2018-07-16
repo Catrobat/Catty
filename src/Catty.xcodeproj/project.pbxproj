@@ -978,10 +978,10 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
-		E4B1BF4C20F7179200800555 /* CatrobatProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF4B20F7179200800555 /* CatrobatProgram.swift */; };
-		E4B1BF4F20F72C4A00800555 /* CatrobatInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF4E20F72C4A00800555 /* CatrobatInformation.swift */; };
-		E4B1BF5120F72D2C00800555 /* FeaturedProgramsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF5020F72D2C00800555 /* FeaturedProgramsItem.swift */; };
+		E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */; };
 		E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */; };
+		E4E5599720FCD6AD004B4A08 /* CBInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599520FCD6AB004B4A08 /* CBInformation.swift */; };
+		E4E5599820FCD6AD004B4A08 /* CBProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* CBProgram.swift */; };
 		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
@@ -2540,10 +2540,10 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		E4B1BF4B20F7179200800555 /* CatrobatProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatrobatProgram.swift; sourceTree = "<group>"; };
-		E4B1BF4E20F72C4A00800555 /* CatrobatInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatrobatInformation.swift; sourceTree = "<group>"; };
-		E4B1BF5020F72D2C00800555 /* FeaturedProgramsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsItem.swift; sourceTree = "<group>"; };
+		E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCollection.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloader.swift; sourceTree = "<group>"; };
+		E4E5599520FCD6AB004B4A08 /* CBInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBInformation.swift; sourceTree = "<group>"; };
+		E4E5599620FCD6AD004B4A08 /* CBProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgram.swift; sourceTree = "<group>"; };
 		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4855,8 +4855,8 @@
 		92FF2EAC1A24C8A700093DA7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				E4B1BF4E20F72C4A00800555 /* CatrobatInformation.swift */,
-				E4B1BF4B20F7179200800555 /* CatrobatProgram.swift */,
+				E4E5599520FCD6AB004B4A08 /* CBInformation.swift */,
+				E4E5599620FCD6AD004B4A08 /* CBProgram.swift */,
 				92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */,
 				92FF2EB01A24C8A700093DA7 /* CatrobatProgram */,
 			);
@@ -6672,7 +6672,7 @@
 		E4B1BF4D20F719DB00800555 /* FeaturedPrograms */ = {
 			isa = PBXGroup;
 			children = (
-				E4B1BF5020F72D2C00800555 /* FeaturedProgramsItem.swift */,
+				E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */,
 				E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */,
 			);
 			path = FeaturedPrograms;
@@ -7545,6 +7545,7 @@
 				598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */,
 				AA74F0B11BC05FCE00D1E954 /* SetTransparencyBrickCell.m in Sources */,
 				4C724E581B4D3E8C00E27479 /* Header+CBXMLHandler.m in Sources */,
+				E4E5599820FCD6AD004B4A08 /* CBProgram.swift in Sources */,
 				92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */,
 				AA74F00A1BC05B5F00D1E954 /* ChangeVolumeByNBrick.m in Sources */,
 				9218B2081CC4AB75007B4C60 /* UIImage+FloodFill.m in Sources */,
@@ -7650,7 +7651,7 @@
 				4C0F9F50204BD0B400E71B2D /* BubbleBrickHelper.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
-				E4B1BF5120F72D2C00800555 /* FeaturedProgramsItem.swift in Sources */,
+				E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollection.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
@@ -7792,6 +7793,7 @@
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
+				E4E5599720FCD6AD004B4A08 /* CBInformation.swift in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
@@ -7860,7 +7862,6 @@
 				9218B2001CC4AB75007B4C60 /* YKImageCropperOverlayView.m in Sources */,
 				4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */,
 				4C0F9F2E204ADC2300E71B2D /* CameraBrick.m in Sources */,
-				E4B1BF4C20F7179200800555 /* CatrobatProgram.swift in Sources */,
 				92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
@@ -7964,7 +7965,6 @@
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
 				BA9CAB621EC3853600796056 /* AddItemToUserListBrick+Instruction.swift in Sources */,
-				E4B1BF4F20F72C4A00800555 /* CatrobatInformation.swift in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				59ABDC622021BBFB00061403 /* LooksTableViewController+MediaLibrary.swift in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,

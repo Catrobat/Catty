@@ -22,7 +22,7 @@
 
 protocol FeaturedProgramsStoreDownloaderProtocol {
     func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void)
-    func downloadProgram(for program: CatrobatProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void)
+    func downloadProgram(for program: CBProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void)
 }
 
 final class FeaturedProgramsStoreDownloader {
@@ -67,7 +67,7 @@ final class FeaturedProgramsStoreDownloader {
         }.resume()
     }
 
-    func downloadProgram(for program: CatrobatProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void) {
+    func downloadProgram(for program: CBProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
         self.session.dataTask(with: indexURL) { (data, response, error) in
             DispatchQueue.main.async {
