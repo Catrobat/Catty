@@ -108,7 +108,7 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
 //        let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.success")
 //        let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)
 //
-//        let program = CatrobatProgram(projectId: 821, projectName: "Whack A Mole", author: "VesnaK")
+//        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
 //        let expectation = XCTestExpectation(description: "Download Featured Program")
 //
 //        downloader.downloadProgram(for: program){ data, error in
@@ -119,31 +119,31 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
 //
 //        wait(for: [expectation], timeout: 1.0)
 //    }
-//
-//    func testDownloadDataFailsWithUnexpectedError() {
-//        let mockSession = URLSessionMock()
-//        let downloader = FeaturedProgramsStoreDownloader(session: mockSession)
-//        let program = CatrobatProgram(projectId: 821, projectName: "Whack A Mole", author: "VesnaK")
-//        let expectation = XCTestExpectation(description: "Download Featured Program")
-//
-//        downloader.downloadProgram(for: program) { data, error in
-//            guard let error = error else { XCTFail("no error returned"); return }
-//            switch error {
-//            case .unexpectedError:
-//                break
-//            default:
-//                XCTFail("wrong error type")
-//            }
-//            expectation.fulfill()
-//        }
-//
-//        wait(for: [expectation], timeout: 1.0)
-//    }
-//
+
+    func testDownloadDataFailsWithUnexpectedError() {
+        let mockSession = URLSessionMock()
+        let downloader = FeaturedProgramsStoreDownloader(session: mockSession)
+        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let expectation = XCTestExpectation(description: "Download Featured Program")
+
+        downloader.downloadProgram(for: program) { data, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            switch error {
+            case .unexpectedError:
+                break
+            default:
+                XCTFail("wrong error type")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+
 //    func testDownloadDataFailsWithRequestError() {
-//        let dvrSession = Session(cassetteName: "eaturedProgramsStoreDownloader.downloadData.fail.request")
+//        let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.fail.request")
 //        let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)
-//        let program = CatrobatProgram(projectId: 821, projectName: "Whack A Mole", author: "VesnaK")
+//        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
 //        let expectation = XCTestExpectation(description: "Download Featured Program")
 //
 //        downloader.downloadProgram(for: program) { data, error in
@@ -159,7 +159,6 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
 //
 //        wait(for: [expectation], timeout: 1.0)
 //    }
-
 }
 
 // Equatable conformance is added here in order to be able to compare a download operation's error code.
