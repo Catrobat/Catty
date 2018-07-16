@@ -26,6 +26,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeColorByNBrickTests : AbstractBrickTests
+@property (nonatomic, strong) ColorSensor* colorSensor;
 @end
 
 @implementation ChangeColorByNBrickTests
@@ -33,7 +34,7 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.colorSensor = [ColorSensor new];
 }
 
 - (void)tearDown
@@ -65,7 +66,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = M_PI/4;
+    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithStandardizedValue:0];
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -76,7 +77,10 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 95.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(70.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -103,7 +107,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = M_PI/4;
+    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithStandardizedValue:10];
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -114,7 +118,10 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 25.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -141,18 +148,21 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = M_PI/4;
+    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithStandardizedValue:20];
     
     Formula* color = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
-    formulaTree.value = @"-224";
+    formulaTree.value = @"-10";
     color.formulaTree = formulaTree;
     brick.changeColor = color;
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, -199.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -179,7 +189,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = 0.0f;
+    object.spriteNode.ciHueAdjust = ColorSensor.defaultRawValue;
     
     Formula* color = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
@@ -190,7 +200,10 @@
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, -130.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(-130.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

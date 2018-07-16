@@ -27,9 +27,10 @@ class CBSpriteNode: SKSpriteNode {
     @objc var spriteObject: SpriteObject?
     @objc var currentLook: Look?
     @objc var currentUIImageLook: UIImage?
-    @objc var currentLookColor: CGFloat = 0.0
+    
     @objc var filterDict = ["brightness": false, "color": false]
     @objc var ciBrightness: CGFloat = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
+    @objc var ciHueAdjust: CGFloat = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
     
     @objc var scenePosition: CGPoint {
         set {
@@ -43,8 +44,6 @@ class CBSpriteNode: SKSpriteNode {
     }
     
     @objc var zIndex: CGFloat { return zPosition }
-    
-    @objc var colorValue: CGFloat { return (self.currentLookColor*100/CGFloat(Double.pi)) }
     
     @objc var rotation: Double {
         set {
@@ -95,10 +94,10 @@ class CBSpriteNode: SKSpriteNode {
     func returnFilterInstance(_ filterName: String, image: CIImage) -> CIFilter?{
         var filter: CIFilter? = nil;
         if (filterName == "brightness"){
-            filter = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputImageKey:image, "inputBrightness":self.ciBrightness])
+            filter = CIFilter(name: "CIColorControls", withInputParameters: [kCIInputImageKey:image, "inputBrightness": self.ciBrightness])
         }
         if (filterName == "color"){
-            filter = CIFilter(name: "CIHueAdjust", withInputParameters: [kCIInputImageKey:image, "inputAngle":self.currentLookColor])
+            filter = CIFilter(name: "CIHueAdjust", withInputParameters: [kCIInputImageKey:image, "inputAngle": self.ciHueAdjust])
         }
         return filter
     }
@@ -113,6 +112,12 @@ class CBSpriteNode: SKSpriteNode {
             self.filterDict["brightness"] = true
         } else {
             self.filterDict["brightness"] = false
+        }
+        
+        if (Double(self.ciHueAdjust) != ColorSensor.defaultRawValue) {
+            self.filterDict["color"] = true
+        } else {
+            self.filterDict["color"] = false
         }
         
         for (filterName, isActive) in filterDict {

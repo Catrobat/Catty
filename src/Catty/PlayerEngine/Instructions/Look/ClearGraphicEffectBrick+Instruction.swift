@@ -42,7 +42,7 @@
             spriteNode.currentUIImageLook = image
             // TODO
             spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
-            spriteNode.currentLookColor = 0
+            spriteNode.ciHueAdjust = CGFloat(ColorSensor.defaultRawValue)
             
             for (paramName, _) in spriteNode.filterDict {
                 spriteNode.filterDict[paramName] = false
@@ -62,9 +62,6 @@
             if yScale != 1.0 {
                 spriteNode.yScale = CGFloat(yScale)
             }
-
         }
-
     }
-
 }

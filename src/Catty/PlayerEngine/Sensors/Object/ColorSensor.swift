@@ -20,19 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class ColorSensor: NSObject, ObjectSensor {
-
+@objc class ColorSensor: NSObject, ObjectSensor, ReadWriteSensor {
+    
     static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.colorValue)
+        return Double(spriteObject.spriteNode.ciHueAdjust)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return rawValue * 100 / Double.pi
+    }
+    
+    func convertToRaw(standardizedValue: Double) -> Double {
+        return standardizedValue / 100 * Double.pi
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

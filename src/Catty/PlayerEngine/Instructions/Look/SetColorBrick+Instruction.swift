@@ -32,25 +32,18 @@
     @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let colorFormula = self.color
+            let colorFormula = self.color,
+            let colorSensor = CBSensorManager.shared.sensor(type: ColorSensor.self)
             else { fatalError("This should never happen!") }
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
             
-            let colorValue = colorFormula.interpretDouble(forSprite: object)
+            let standardizedValue = colorFormula.interpretDouble(forSprite: object)
+            let rawValue = colorSensor.convertToRaw(standardizedValue: standardizedValue)
+            spriteNode.ciHueAdjust = CGFloat(rawValue)
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))
-            let colorDefaultValue:CGFloat = 0.0
-            let colorValueRadian = (CGFloat(colorValue)*CGFloat(Double.pi)/100).truncatingRemainder(dividingBy: (2*CGFloat(Double.pi)))
-            spriteNode.currentLookColor = colorValueRadian
-            
-            if (colorValueRadian != colorDefaultValue){
-                spriteNode.filterDict["color"] = true
-            }else{
-                spriteNode.filterDict["color"] = false
-            }
-            
             spriteNode.executeFilter(lookImage)
         }
     }
