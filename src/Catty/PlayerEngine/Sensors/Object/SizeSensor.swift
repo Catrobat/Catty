@@ -34,13 +34,16 @@
         return Double(spriteNode.xScale)
     }
 
-    // the sprite on Android is about 2.5 times smaller
+    // the sprite on Android is about 2.4 times smaller
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * 100 / 2.5
+        if rawValue <= 0 {
+            return 0.0     //Android doesn't have negative values for size
+        }
+        return rawValue * (100 * 2.4)
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
-        return standardizedValue / 100 * 2.5
+        return standardizedValue / (100 * 2.4)
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
