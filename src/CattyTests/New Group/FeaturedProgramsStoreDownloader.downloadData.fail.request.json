@@ -2,7 +2,7 @@
   "interactions" : [
     {
       "response" : {
-        "status" : 200,
+        "status" : 404,
         "headers" : {
           "Content-Type" : "application\/json",
           "Set-Cookie" : "PHPSESSID=s7to5cgb7mb050ll0uqd2autj7; path=\/",
@@ -14,33 +14,10 @@
           "Cache-Control" : "private, must-revalidate"
         },
         "body" : {
-          "CatrobatInformation" : {
-            "BaseUrl" : "https:\/\/share.catrob.at\/",
-            "TotalProjects" : 1,
-            "ProjectsExtension" : ".catrobat"
-          },
-          "completeTerm" : "",
-          "preHeaderMessages" : "",
-          "CatrobatProjects" : [
-            {
-              "Author" : "VesnaK",
-              "Private" : false,
-              "Description" : "",
-              "UploadedString" : "more than one year ago",
-              "Version" : "0.7.1beta",
-              "Views" : 6737,
-              "ProjectUrl" : "pocketcode\/program\/821",
-              "Uploaded" : 1366835078,
-              "ScreenshotBig" : "resources\/screenshots\/screen_821.png",
-              "Downloads" : 6759,
-              "ScreenshotSmall" : "resources\/thumbnails\/screen_821.png",
-              "ProjectNameShort" : "Whack A Mole",
-              "DownloadUrl" : "pocketcode\/download\/821.catrobat",
-              "ProjectName" : "Whack A Mole",
-              "FileSize" : 0.67617511749268,
-              "ProjectId" : 821
-            }
-          ]
+          "error" : {
+          "message" : "Internal Server Error",
+          "code" : 404
+          }
         },
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
       },

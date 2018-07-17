@@ -104,21 +104,21 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
     
     // MARK: - Download Data
     
-//    func testDownloadDataSucceeds() {
-//        let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.success")
-//        let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)
-//
-//        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
-//        let expectation = XCTestExpectation(description: "Download Featured Program")
-//
-//        downloader.downloadProgram(for: program){ data, error in
-//            XCTAssertNil(error, "request failed")
-//            guard let data = data, !data.isEmpty else { XCTFail("no data received"); return }
-//            expectation.fulfill()
-//        }
-//
-//        wait(for: [expectation], timeout: 1.0)
-//    }
+    func testDownloadDataSucceeds() {
+        let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.success")
+        let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)
+
+        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let expectation = XCTestExpectation(description: "Download Featured Program")
+
+        downloader.downloadProgram(for: program){ data, error in
+            XCTAssertNil(error, "request failed")
+            guard let data = data, !data.isEmpty else { XCTFail("no data received"); return }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
 
     func testDownloadDataFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
@@ -140,25 +140,25 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-//    func testDownloadDataFailsWithRequestError() {
-//        let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.fail.request")
-//        let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)
-//        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
-//        let expectation = XCTestExpectation(description: "Download Featured Program")
-//
-//        downloader.downloadProgram(for: program) { data, error in
-//            guard let error = error else { XCTFail("no error received"); return }
-//            switch error {
-//            case let .request(error: _, statusCode: statusCode):
-//                XCTAssertEqual(statusCode, 404)
-//            default:
-//                XCTFail("wrong error received")
-//            }
-//            expectation.fulfill()
-//        }
-//
-//        wait(for: [expectation], timeout: 1.0)
-//    }
+    func testDownloadDataFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.fail.request")
+        let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)
+        let program = CBProgram(projectId: 821, projectName: "Whack A Mole", projectNameShort: "", author: "VesnaK", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        let expectation = XCTestExpectation(description: "Download Featured Program")
+
+        downloader.downloadProgram(for: program) { data, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertEqual(statusCode, 404)
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
 }
 
 // Equatable conformance is added here in order to be able to compare a download operation's error code.

@@ -32,11 +32,6 @@ final class FeaturedProgramsStoreDownloader {
 
     init(session: URLSession = URLSession.shared) {
         self.session = session
-
-        // Example call
-        _ = self.fetchKFeaturedPrograms(completion: { (items, error) in
-            guard let fetchedPrograms = items, error == nil else { return }
-        })
     }
 
     func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void) {
