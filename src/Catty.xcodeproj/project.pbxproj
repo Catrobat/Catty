@@ -974,6 +974,9 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		E4668B3820FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */; };
+		E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */; };
+		E4668B4020FDFBB90021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3F20FDFBB90021FA0B /* FeaturedProgramsCell.swift */; };
 		E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */; };
 		E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */; };
 		E4E5599720FCD6AD004B4A08 /* CBInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599520FCD6AB004B4A08 /* CBInformation.swift */; };
@@ -2531,6 +2534,9 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableViewController.swift; sourceTree = "<group>"; };
+		E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableDataSource.swift; sourceTree = "<group>"; };
+		E4668B3F20FDFBB90021FA0B /* FeaturedProgramsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCell.swift; sourceTree = "<group>"; };
 		E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCollection.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloader.swift; sourceTree = "<group>"; };
 		E4E5599520FCD6AB004B4A08 /* CBInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBInformation.swift; sourceTree = "<group>"; };
@@ -6662,6 +6668,9 @@
 			children = (
 				E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */,
 				E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */,
+				E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */,
+				E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */,
+				E4668B3F20FDFBB90021FA0B /* FeaturedProgramsCell.swift */,
 			);
 			path = FeaturedPrograms;
 			sourceTree = "<group>";
@@ -7408,6 +7417,7 @@
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
+				E4668B4020FDFBB90021FA0B /* FeaturedProgramsCell.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
@@ -7650,6 +7660,7 @@
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
 				AA74EE391BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
+				E4668B3820FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift in Sources */,
 				AA74EE2D1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift in Sources */,
 				9218B2091CC4AB75007B4C60 /* UIImage+Rotate.m in Sources */,
 				4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */,
@@ -7969,6 +7980,7 @@
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
+				E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */,
 				91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */,

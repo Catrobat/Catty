@@ -25,7 +25,7 @@ protocol FeaturedProgramsStoreDownloaderProtocol {
     func downloadProgram(for program: CBProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void)
 }
 
-final class FeaturedProgramsStoreDownloader {
+final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProtocol {
 
     let session: URLSession
     let kFeaturedProgramsMaxResults = 10
