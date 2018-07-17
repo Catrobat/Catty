@@ -24,4 +24,9 @@ import Foundation
 
 class FeaturedProgramsStoreTableViewController: UITableViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
 }

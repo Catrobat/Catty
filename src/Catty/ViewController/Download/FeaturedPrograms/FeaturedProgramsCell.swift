@@ -20,8 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
+import UIKit
 
 class FeaturedProgramsCell: UITableViewCell {
-   
+    
+    @IBOutlet weak var featuredImageView: UIImageView!
+    
+    var featuredImage: UIImage? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    func updateTable() {
+        featuredImageView?.image = featuredImage
+    }
 }

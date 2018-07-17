@@ -1603,7 +1603,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="featuredImage" destination="49q-B8-MBG" id="h2g-uy-T4E"/>
+                                    <outlet property="featuredImage" destination="49q-B8-MBG" id="cS5-zb-tYn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
