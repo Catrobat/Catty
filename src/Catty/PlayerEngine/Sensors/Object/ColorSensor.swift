@@ -28,6 +28,9 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
         return Double(spriteObject.spriteNode.ciHueAdjust)
     }
 

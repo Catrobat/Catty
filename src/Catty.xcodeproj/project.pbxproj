@@ -1031,6 +1031,7 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */; };
 		F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */; };
@@ -2671,6 +2672,7 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSensorTest.swift; sourceTree = "<group>"; };
 		F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InternFormula+KeyboardAdapter.swift"; sourceTree = "<group>"; };
 		F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookNumberSensorTest.swift; sourceTree = "<group>"; };
 		F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensorTest.swift; sourceTree = "<group>"; };
@@ -2972,6 +2974,7 @@
 				F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */,
 				F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */,
 				F42E1E9620FA21540078C89D /* SizeSensorTest.swift */,
+				F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -7636,6 +7639,7 @@
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
+				F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */,
 				4C0F9FCE204BD37300E71B2D /* XMLSerializerTests.m in Sources */,
 				F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
