@@ -405,7 +405,6 @@
 		598319951FBB813C00639BBF /* Introduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598319941FBB813C00639BBF /* Introduction.storyboard */; };
 		598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598319981FBB90CB00639BBF /* IntroductionViewController.swift */; };
 		599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */; };
-		599E649A202D9943009494B5 /* MediaLibraryDownloader.downloadData.fail.data.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E6499202D9943009494B5 /* MediaLibraryDownloader.downloadData.fail.data.json */; };
 		599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599E649D202D9F95009494B5 /* URLSessionMock.swift */; };
 		599E64A0202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */; };
 		599E64A2202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 599E64A1202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json */; };
@@ -1535,7 +1534,6 @@
 		598319941FBB813C00639BBF /* Introduction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Introduction.storyboard; sourceTree = "<group>"; };
 		598319981FBB90CB00639BBF /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.success.json; sourceTree = "<group>"; };
-		599E6499202D9943009494B5 /* MediaLibraryDownloader.downloadData.fail.data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.fail.data.json; sourceTree = "<group>"; };
 		599E649D202D9F95009494B5 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
 		599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
 		599E64A1202DAF75009494B5 /* MediaLibraryDownloader.downloadIndex.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MediaLibraryDownloader.downloadIndex.fail.request.json; sourceTree = "<group>"; };
@@ -3903,7 +3901,6 @@
 		59B9F630202D8F6200937299 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				599E6499202D9943009494B5 /* MediaLibraryDownloader.downloadData.fail.data.json */,
 				599E649F202DACCB009494B5 /* MediaLibraryDownloader.downloadData.fail.request.json */,
 				599E6497202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json */,
 				599E64A3202DB036009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json */,
@@ -7056,7 +7053,6 @@
 				CAE3E55C1B4C50B300CC88BD /* SKYPASCAL_08.xml in Resources */,
 				4C2EE3F51B555766006DE9B8 /* Flappy_v3.0_095.xml in Resources */,
 				CAE3E53C1B4C50B300CC88BD /* Compass_0.1_093.xml in Resources */,
-				599E649A202D9943009494B5 /* MediaLibraryDownloader.downloadData.fail.data.json in Resources */,
 				CAE3E5521B4C50B300CC88BD /* Piano_093.xml in Resources */,
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
 				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
