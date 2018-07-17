@@ -153,7 +153,6 @@ final class CBScene: SKScene {
 
         removeAllChildren() // just to ensure
 
-
         var zPosition = 1
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
@@ -178,6 +177,10 @@ final class CBScene: SKScene {
             if spriteNode.spriteObject?.isBackground() == false {
                 zPosition += 1
             }
+            
+            spriteNode.xScale = CGFloat(SizeSensor.defaultRawValue)
+            spriteNode.yScale = CGFloat(SizeSensor.defaultRawValue)
+            
             scheduler?.registerSpriteNode(spriteNode)
 
             for script in scriptList {

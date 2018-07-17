@@ -22,10 +22,11 @@
 
 @objc class SizeSensor: NSObject, ObjectSensor, ReadWriteSensor {
     
+    static let androidToIOSScale = 2.4
+    
     static let tag = "OBJECT_SIZE"
     static let name = kUIFEObjectSize
-    static let defaultRawValue = 1.0
-    static let androidToIOSScale = 2.4
+    static let defaultRawValue = 1.0 / androidToIOSScale
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {

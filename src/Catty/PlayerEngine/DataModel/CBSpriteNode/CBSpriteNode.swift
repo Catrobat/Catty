@@ -136,15 +136,18 @@ class CBSpriteNode: SKSpriteNode {
         let texture = SKTexture(image: newImage)
         let xScale = self.xScale
         let yScale = self.yScale
-        self.xScale = 1.0
-        self.yScale = 1.0
+        
+        let defaultSize = CGFloat(SizeSensor.defaultRawValue)
+        self.xScale = defaultSize
+        self.yScale = defaultSize
         self.size = texture.size()
+        
         self.texture = texture
-        if(xScale != 1.0) {
-            self.xScale = xScale;
+        if (xScale != defaultSize) {
+            self.xScale = xScale
         }
-        if(yScale != 1.0) {
-            self.yScale = yScale;
+        if (yScale != defaultSize) {
+            self.yScale = yScale
         }
     }
     
