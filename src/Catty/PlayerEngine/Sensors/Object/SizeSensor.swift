@@ -25,18 +25,26 @@
     static let tag = "OBJECT_SIZE"
     static let name = kUIFEObjectSize
     static let defaultRawValue = 1.0
+    static let androidToIOSScale = 2.4
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.xScale)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
+        return Double(spriteNode.xScale)
     }
 
+    // the sprite on Android is about 2.4 times smaller
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * 100
+        return rawValue * (100 * type(of: self).androidToIOSScale)
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
-        return standardizedValue / 100
+        if standardizedValue <= 0 {
+            return 0.0     //Android doesn't have negative values for size
+        }
+        return standardizedValue / (100 * type(of: self).androidToIOSScale)
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
