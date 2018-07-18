@@ -29,7 +29,6 @@ protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
 /// Featured Program table view data source base class
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-
     // MARK: - Properties
     
     weak var delegete: FeaturedProgramsStoreTableDataSourceDelegete?
@@ -51,14 +50,10 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     func fetchItems(completion: @escaping (FeaturedProgramsDownloadError?) -> Void) {
         self.downloader.fetchFeaturedPrograms() {items, error in
-            guard let _ = items, error == nil else { completion(error); return }
+            guard let collection = items, error == nil else { completion(error); return }
+            self.programs = collection.projects
             completion(nil)
         }
-    } /// !!! FIXME !!!
-
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.programs.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +61,8 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeaturedCell", for: indexPath)
+
         return cell
     }
 }

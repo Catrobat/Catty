@@ -48,7 +48,13 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupTableView()
         fetchData()
+    }
+    
+    private func setupTableView() {
+        tableView.dataSource = self.dataSource
+        tableView.delegate = self.dataSource
     }
     
     private func fetchData() {
@@ -56,6 +62,7 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
             if error != nil {
                 return
             }
+            self.tableView.reloadData()
         }
     }
 }
