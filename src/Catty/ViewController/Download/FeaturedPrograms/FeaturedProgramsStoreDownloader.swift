@@ -21,7 +21,7 @@
  */
 
 protocol FeaturedProgramsStoreDownloaderProtocol {
-    func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void)
+    func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void)
     func downloadProgram(for program: CBProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void)
 }
 
@@ -34,7 +34,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         self.session = session
     }
 
-    func fetchKFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void) {
+    func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void) {
 
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
 

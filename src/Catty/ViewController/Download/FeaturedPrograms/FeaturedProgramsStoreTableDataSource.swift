@@ -26,18 +26,40 @@ protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: CBProgram)
 }
 
+/// Featured Program table view data source base class
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+    
+
+    // MARK: - Properties
+    
+    weak var delegete: FeaturedProgramsStoreTableDataSourceDelegete?
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
     fileprivate let programs: [CBProgram]
     
-    let imageCellReuseIdentifier = "image"
-    weak var delegete: FeaturedProgramsStoreTableDataSourceDelegete?
+    // MARK: - Initializer
     
-    /// MARK: - Properties
     fileprivate init(for programs: [CBProgram], with downloader: FeaturedProgramsStoreDownloaderProtocol) {
         self.downloader = downloader
         self.programs = programs
+    }
+    
+    static func dataSource(for programs: CBProgram, with downloader: FeaturedProgramsStoreDownloaderProtocol = FeaturedProgramsStoreDownloader()) -> FeaturedProgramsStoreTableDataSource {
+        return LoadFeaturedProgramsStoreImage(for: [programs], with: downloader)
+    }
+    
+    //MARK: - DataSource
+    
+    func fetchItems(completion: @escaping (FeaturedProgramsDownloadError?) -> Void) {
+        self.downloader.fetchFeaturedPrograms() {items, error in
+            guard let _ = items, error == nil else { completion(error); return }
+            completion(nil)
+        }
+    } /// !!! FIXME !!!
+
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.programs.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,18 +70,12 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
         let cell = UITableViewCell()
         return cell
     }
+}
     
-    
-//    func fetchItems(completion: @escaping (FeaturedProgramsDownloadError?) -> Void) {
-//        self.downloader.downloadIndex(for: self.mediaType) { [weak self] items, error in
-//            guard let items = items, error == nil else { completion(error); return }
-//            self?.items = items
-//            completion(nil)
-//        }
-//    }
-    
-    private func fetchData(for item: CBProgram, completion: @escaping (Data?) -> Void) {
-        guard let downloadUrl = URL(string: item.downloadUrl!) else { return }
+final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSource
+{
+    private func fetchData(for program: CBProgram, completion: @escaping (Data?) -> Void) {
+        guard let downloadUrl = URL(string: program.downloadUrl!) else { return }
         // try to get the image from cache
         let resource = ImageResource(downloadURL: downloadUrl)
         let options: KingfisherOptionsInfo = [.onlyFromCache]
@@ -74,6 +90,13 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
                 }
             }
             return
+        }
+        // download from the library
+        self.downloader.downloadProgram(for: program) { data, _ in
+            DispatchQueue.main.async { completion(data) }
+            if let data = data, let image = UIImage(data: data) {
+                ImageCache.default.store(image, original: data, forKey: resource.cacheKey)
+            }
         }
     }
 }

@@ -20,13 +20,46 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Foundation
+protocol FeaturedProgramsStoreViewControllerImportDelegate: class {
+    func featuredProgramStoreViewController(_ featuredProgramStoreViewController: FeaturedProgramsStoreTableViewController, didPickItemsForImport items: [CBProgram])
+}
 
-class FeaturedProgramsStoreTableViewController: UITableViewController {
+final class FeaturedProgramsStoreTableViewController: UITableViewController {
+    
+    // MARK: - Properties
+    
+    private let dataSource: FeaturedProgramsStoreTableDataSource
+    
+    weak var importDelegate: FeaturedProgramsStoreTableDataSourceDelegete?
+    
+    //MARK: - Initializers
+    
+    init(for program: CBProgram) {
+        self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource(for: program)
+        super.init(style: UITableViewStyle.plain)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
+    }
+    
+    private func fetchData() {
+        self.dataSource.fetchItems() { error in
+            if error != nil {
+                return
+            }
+        }
     }
 }
