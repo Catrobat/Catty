@@ -31,11 +31,17 @@
         guard let spriteNode = spriteObject.spriteNode else {
             return type(of: self).defaultRawValue
         }
-        return Double(spriteObject.spriteNode.ciHueAdjust)
+        return Double(spriteNode.ciHueAdjust)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * 100 / Double.pi
+        var rawValueConverted = rawValue * 100 / Double.pi
+        if rawValueConverted >= 200 {
+            rawValueConverted = remainder(rawValueConverted, 200.0)
+        } else if rawValueConverted < 0 {
+            rawValueConverted = remainder(rawValueConverted, 200.0)
+        }
+        return rawValueConverted
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
