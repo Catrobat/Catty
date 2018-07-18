@@ -55,6 +55,7 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     private func setupTableView() {
         tableView.dataSource = self.dataSource
         tableView.delegate = self.dataSource
+//        tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
     }
     
     private func fetchData() {

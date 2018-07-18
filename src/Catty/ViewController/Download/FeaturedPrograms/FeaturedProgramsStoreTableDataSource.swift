@@ -61,7 +61,14 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeaturedCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
+        
+        if let cell = cell as? FeaturedProgramsCell {
+            let imageUrl = URL(string: kFeaturedImageBaseUrl.appending(programs[indexPath.row].featuredImage!))
+            let data = try? Data(contentsOf: imageUrl!)
+            cell.featuredImage = UIImage(data: data!)
+            cell.backgroundColor = UIColor.black
+        }
 
         return cell
     }
