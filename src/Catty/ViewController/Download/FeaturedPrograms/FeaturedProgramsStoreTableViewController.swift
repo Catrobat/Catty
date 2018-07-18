@@ -34,13 +34,9 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     //MARK: - Initializers
     
-    init(for program: CBProgram) {
-        self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource(for: program)
-        super.init(style: UITableViewStyle.plain)
-    }
-    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
+        super.init(style: UITableViewStyle.plain)
     }
     
     // MARK: - Life Cycle
@@ -63,3 +59,4 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
         }
     }
 }
+

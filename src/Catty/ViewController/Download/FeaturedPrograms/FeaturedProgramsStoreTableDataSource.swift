@@ -35,17 +35,16 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     weak var delegete: FeaturedProgramsStoreTableDataSourceDelegete?
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
-    fileprivate let programs: [CBProgram]
+    fileprivate var programs = [CBProgram]()
     
     // MARK: - Initializer
     
-    fileprivate init(for programs: [CBProgram], with downloader: FeaturedProgramsStoreDownloaderProtocol) {
+    fileprivate init(with downloader: FeaturedProgramsStoreDownloaderProtocol) {
         self.downloader = downloader
-        self.programs = programs
     }
     
-    static func dataSource(for programs: CBProgram, with downloader: FeaturedProgramsStoreDownloaderProtocol = FeaturedProgramsStoreDownloader()) -> FeaturedProgramsStoreTableDataSource {
-        return LoadFeaturedProgramsStoreImage(for: [programs], with: downloader)
+    static func dataSource(with downloader: FeaturedProgramsStoreDownloaderProtocol = FeaturedProgramsStoreDownloader()) -> FeaturedProgramsStoreTableDataSource {
+        return LoadFeaturedProgramsStoreImage(with: downloader)
     }
     
     //MARK: - DataSource
