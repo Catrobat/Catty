@@ -42,12 +42,12 @@
         return rawValue
     }
     
-    func convertToRaw(standardizedValue: Double) -> Double {
-        if standardizedValue < 1 {
+    func convertToRaw(userInput: Double) -> Double {
+        if userInput < 1 {
             // can not be set for background
             return 1
         }
-        return standardizedValue
+        return userInput
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

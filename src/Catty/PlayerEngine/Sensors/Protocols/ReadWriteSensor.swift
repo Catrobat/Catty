@@ -23,5 +23,5 @@
 @objc protocol ReadWriteSensor {
     
     // Convert the Pocket Code standardized sensor value to the iOS specific value (rawValue)
-    func convertToRaw(standardizedValue: Double) -> Double
+    func convertToRaw(userInput: Double) -> Double
 }

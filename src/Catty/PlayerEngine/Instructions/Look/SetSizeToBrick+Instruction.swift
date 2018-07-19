@@ -34,8 +34,8 @@
 
         return {
             let sizeInPercent = self.size.interpretDouble(forSprite: object)
-            spriteNode.xScale = CGFloat(sizeSensor.convertToRaw(standardizedValue: sizeInPercent))
-            spriteNode.yScale = CGFloat(sizeSensor.convertToRaw(standardizedValue: sizeInPercent))
+            spriteNode.xScale = CGFloat(sizeSensor.convertToRaw(userInput: sizeInPercent))
+            spriteNode.yScale = CGFloat(sizeSensor.convertToRaw(userInput: sizeInPercent))
         }
     }
 }

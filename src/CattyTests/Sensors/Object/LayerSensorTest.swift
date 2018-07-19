@@ -72,12 +72,12 @@ final class LayerSensorTest: XCTestCase {
     
     func testConvertToRaw() {
         // can not be set for background
-        XCTAssertEqual(1, self.sensor.convertToRaw(standardizedValue: -1), accuracy: 0.001)
-        XCTAssertEqual(1, self.sensor.convertToRaw(standardizedValue: 0), accuracy: 0.001)
+        XCTAssertEqual(1, self.sensor.convertToRaw(userInput: -1), accuracy: 0.001)
+        XCTAssertEqual(1, self.sensor.convertToRaw(userInput: 0), accuracy: 0.001)
         
         // objects
-        XCTAssertEqual(3, self.sensor.convertToRaw(standardizedValue: 3), accuracy: 0.001)
-        XCTAssertEqual(4, self.sensor.convertToRaw(standardizedValue: 4), accuracy: 0.001)
+        XCTAssertEqual(3, self.sensor.convertToRaw(userInput: 3), accuracy: 0.001)
+        XCTAssertEqual(4, self.sensor.convertToRaw(userInput: 4), accuracy: 0.001)
     }
     
     func testTag() {

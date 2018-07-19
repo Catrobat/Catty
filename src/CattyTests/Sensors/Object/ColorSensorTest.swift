@@ -65,16 +65,16 @@ final class ColorSensorTest: XCTestCase {
     }
     
     func testConvertToRaw() {
-        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, sensor.convertToRaw(standardizedValue: 100), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 4, sensor.convertToRaw(standardizedValue: 25), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 0), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: 100), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 4, sensor.convertToRaw(userInput: 25), accuracy: 0.0001)
         
         // outside the range
-        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 200), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 2, sensor.convertToRaw(standardizedValue: 250), accuracy: 0.0001)
-        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 400), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, sensor.convertToRaw(standardizedValue: -100), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, sensor.convertToRaw(standardizedValue: -300), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 200), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, sensor.convertToRaw(userInput: 250), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 400), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: -100), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: -300), accuracy: 0.0001)
         
     }
     

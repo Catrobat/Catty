@@ -41,11 +41,11 @@
         return rawValue * (100 * type(of: self).androidToIOSScale)
     }
     
-    func convertToRaw(standardizedValue: Double) -> Double {
-        if standardizedValue <= 0 {
+    func convertToRaw(userInput: Double) -> Double {
+        if userInput <= 0 {
             return 0.0     //Android doesn't have negative values for size
         }
-        return standardizedValue / (100 * type(of: self).androidToIOSScale)
+        return userInput / (100 * type(of: self).androidToIOSScale)
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

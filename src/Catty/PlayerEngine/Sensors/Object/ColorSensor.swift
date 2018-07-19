@@ -38,20 +38,20 @@
         return rawValue * 100 / Double.pi
     }
     
-    func convertToRaw(standardizedValue: Double) -> Double {
-        var standardizedValueToConvert = standardizedValue
-        let whole = Int(standardizedValueToConvert)
-        let fraction = standardizedValueToConvert.truncatingRemainder(dividingBy: 1)
+    func convertToRaw(userInput: Double) -> Double {
+        var valueToConvert = userInput
+        let whole = Int(valueToConvert)
+        let fraction = valueToConvert.truncatingRemainder(dividingBy: 1)
         
-        if standardizedValueToConvert >= 200 {
-            standardizedValueToConvert = Double(whole % 200) + fraction
-        } else if standardizedValueToConvert < 0 {
-            standardizedValueToConvert = 200 - (Double(-whole % 200) + fraction)
-            if standardizedValueToConvert == 200 {
-                standardizedValueToConvert = 0
+        if valueToConvert >= 200 {
+            valueToConvert = Double(whole % 200) + fraction
+        } else if valueToConvert < 0 {
+            valueToConvert = 200 - (Double(-whole % 200) + fraction)
+            if valueToConvert == 200 {
+                valueToConvert = 0
             }
         }
-        return standardizedValueToConvert / 100 * Double.pi
+        return valueToConvert / 100 * Double.pi
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

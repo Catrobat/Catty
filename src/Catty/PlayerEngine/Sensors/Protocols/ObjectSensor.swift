@@ -31,7 +31,7 @@ protocol ObjectSensor: CBSensor {
 
 extension ObjectSensor {
     // The Pocket Code standardized sensor value
-    func standardizedValue(for spriteObject: SpriteObject) -> Double {
+    func userInput(for spriteObject: SpriteObject) -> Double {
         return self.convertToStandardized(rawValue: self.rawValue(for: spriteObject))
     }
 }

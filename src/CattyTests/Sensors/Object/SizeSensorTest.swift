@@ -66,11 +66,11 @@ final class SizeSensorTest: XCTestCase {
     }
     
     func testConvertToRaw() {
-        XCTAssertEqual(0, self.sensor.convertToRaw(standardizedValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(0, self.sensor.convertToRaw(standardizedValue: -10), accuracy: 0.0001)
-        XCTAssertEqual(1, self.sensor.convertToRaw(standardizedValue: 240), accuracy: 0.0001)
-        XCTAssertEqual(0.5, self.sensor.convertToRaw(standardizedValue: 120), accuracy: 0.0001)
-        XCTAssertEqual(0.25, self.sensor.convertToRaw(standardizedValue: 60), accuracy: 0.0001)
+        XCTAssertEqual(0, self.sensor.convertToRaw(userInput: 0), accuracy: 0.0001)
+        XCTAssertEqual(0, self.sensor.convertToRaw(userInput: -10), accuracy: 0.0001)
+        XCTAssertEqual(1, self.sensor.convertToRaw(userInput: 240), accuracy: 0.0001)
+        XCTAssertEqual(0.5, self.sensor.convertToRaw(userInput: 120), accuracy: 0.0001)
+        XCTAssertEqual(0.25, self.sensor.convertToRaw(userInput: 60), accuracy: 0.0001)
     }
     
     func testTag() {
