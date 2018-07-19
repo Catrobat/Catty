@@ -66,8 +66,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
         if let cell = cell as? FeaturedProgramsCell {
             let imageUrl = URL(string: kFeaturedImageBaseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
-            cell.featuredImage = #imageLiteral(resourceName: "PocketCode") //UIImage(data: data!)
-//            cell.backgroundColor = UIColor.black
+            cell.featuredImage = UIImage(data: data!)
         }
 
         return cell
