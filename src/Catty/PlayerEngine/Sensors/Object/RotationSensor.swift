@@ -29,7 +29,10 @@
     static let rotationDegreeOffset = 90.0
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.zRotation)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
+        return Double(spriteNode.zRotation)
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
