@@ -51,11 +51,11 @@ final class ColorSensorTest: XCTestCase {
         self.spriteNode.ciHueAdjust = 0.0
         XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
         
-        self.spriteNode.ciHueAdjust = 60
-        XCTAssertEqual(60, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        self.spriteNode.ciHueAdjust = -60
+        XCTAssertEqual(-60, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
         
-        self.spriteNode.ciHueAdjust = 200
-        XCTAssertEqual(200, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        self.spriteNode.ciHueAdjust = 210
+        XCTAssertEqual(210, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToStandarized() {
