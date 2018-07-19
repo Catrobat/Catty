@@ -36,7 +36,7 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
-        super.init(style: UITableViewStyle.plain)
+        super.init(coder: aDecoder)
     }
     
     // MARK: - Life Cycle
@@ -53,7 +53,7 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     private func setupTableView() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
+//        self.tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
