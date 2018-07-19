@@ -26,6 +26,7 @@
     static let name = kUIFEObjectDirection
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
+    static let rotationDegreeOffset = 90.0
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         return Double(spriteObject.spriteNode.zRotation)
@@ -45,10 +46,11 @@
     
     func convertDegreesToScene(_ degrees: Double) -> Double {
         if degrees < 0.0 {
-            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
+            return (-1 * (360.0 - type(of: self).rotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
         }
         
-        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - PlayerConfig.RotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
+        // TODO move to constant here
+        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - type(of: self).rotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
     }
     
     func convertSceneToDegrees(_ scene: Double) -> Double {
