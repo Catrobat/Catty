@@ -1607,10 +1607,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="d7j-dK-UxW" id="fmU-KI-yTp"/>
-                            <outlet property="delegate" destination="d7j-dK-UxW" id="SZF-Wk-Ta2"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="pLa-Ca-Ly5"/>
                     <navigationItem key="navigationItem" id="SWr-4D-2iK"/>

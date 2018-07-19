@@ -43,19 +43,19 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupTableView()
         fetchData()
     }
     
     private func setupTableView() {
-        tableView.dataSource = self.dataSource
-        tableView.delegate = self.dataSource
-//        tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
+        self.tableView.dataSource = self.dataSource
+        self.tableView.delegate = self.dataSource
     }
     
     private func fetchData() {
