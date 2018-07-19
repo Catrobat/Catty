@@ -32,9 +32,10 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    
     var programForSegue: CBProgram?
     weak var importDelegate: FeaturedProgramsStoreTableDataSourceDelegete?
+    var loadingView: LoadingView?
+    var shouldHideLoadingView = false
     
     //MARK: - Initializers
     
@@ -48,6 +49,7 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        shouldHideLoadingView = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,18 +69,44 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
     private func setupTableView() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        self.tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self.dataSource
     }
     
     private func fetchData() {
+        self.showLoadingView()
         self.dataSource.fetchItems() { error in
             if error != nil {
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
                 return
             }
             self.tableView.reloadData()
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
         }
+    }
+    
+    func showLoadingView() {
+        if loadingView == nil {
+            loadingView = LoadingView()
+            view.addSubview(loadingView!)
+        }
+        loadingView!.show()
+        loadingIndicator(true)
+    }
+    
+    func hideLoadingView() {
+        if shouldHideLoadingView {
+            loadingView!.hide()
+            loadingIndicator(false)
+            self.shouldHideLoadingView = false
+        }
+    }
+    
+    func loadingIndicator(_ value: Bool) {
+        let app = UIApplication.shared
+        app.isNetworkActivityIndicatorVisible = value
     }
 }
 
