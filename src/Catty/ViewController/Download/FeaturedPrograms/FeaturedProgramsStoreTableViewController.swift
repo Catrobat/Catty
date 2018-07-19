@@ -26,10 +26,14 @@ protocol FeaturedProgramsStoreViewControllerImportDelegate: class {
 
 final class FeaturedProgramsStoreTableViewController: UITableViewController {
     
-    // MARK: - Properties
+    // MARK: - Constants
     
     private let dataSource: FeaturedProgramsStoreTableDataSource
     
+    // MARK: - Properties
+    
+    
+    var programForSegue: CBProgram?
     weak var importDelegate: FeaturedProgramsStoreTableDataSourceDelegete?
     
     //MARK: - Initializers
@@ -51,6 +55,16 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
         fetchData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kSegueToProgramDetail {
+            if let programDetailStoreViewController = segue.destination as?
+                ProgramDetailStoreViewController, let program = programForSegue {
+                /// only a example!!!
+                programDetailStoreViewController.project.projectID = String(program.projectId)
+            }
+        }
+    }
+    
     private func setupTableView() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
 //        self.tableView.register(FeaturedProgramsCell.self, forCellReuseIdentifier: kFeaturedCell)
@@ -68,3 +82,12 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     }
 }
 
+extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {
+    
+    func imageTapped(sender: FeaturedProgramsCell) {
+        if let program = sender.program {
+            programForSegue = program
+            performSegue(withIdentifier: kSegueToProgramDetail, sender: nil)
+        }
+    }
+}

@@ -22,7 +22,14 @@
 
 import UIKit
 
+protocol FeaturedProgramsCellProtocol: class {
+    func imageTapped(sender: FeaturedProgramsCell)
+}
+
 class FeaturedProgramsCell: UITableViewCell {
+    
+    weak var delegete: FeaturedProgramsCellProtocol?
+    var program: CBProgram?
     
     @IBOutlet weak var featuredImageView: UIImageView!
     
