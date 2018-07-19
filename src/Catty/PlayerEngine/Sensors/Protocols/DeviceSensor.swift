@@ -31,7 +31,7 @@ protocol DeviceSensor: CBSensor {
 
 extension DeviceSensor {
     // The Pocket Code standardized sensor value
-    func userInput() -> Double {
+    func standardizedValue() -> Double {
         return self.convertToStandardized(rawValue: self.rawValue())
     }
 }

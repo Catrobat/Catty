@@ -68,8 +68,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(20.0f, userInput, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(20.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickNegative
@@ -97,8 +97,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(10.0f, userInput, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickOutOfRange
@@ -126,8 +126,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(100.0f, userInput, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(100.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickWrongInput
@@ -155,8 +155,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(0.0f, userInput, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
+    XCTAssertEqualWithAccuracy(0.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 @end

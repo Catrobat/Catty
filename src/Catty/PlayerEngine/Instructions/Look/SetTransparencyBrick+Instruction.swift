@@ -37,8 +37,8 @@
         else { fatalError("This should never happen!") }
 
         return {
-            let userInput = transparency.interpretDouble(forSprite: object)
-            let rawValue = transparencySensor.convertToRaw(userInput: userInput)
+            let standardizedValue = transparency.interpretDouble(forSprite: object)
+            let rawValue = transparencySensor.convertToRaw(userInput: standardizedValue)
             spriteNode.alpha = CGFloat(rawValue);
         }
     }

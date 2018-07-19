@@ -39,8 +39,8 @@
         return {
             guard let look = object.spriteNode?.currentLook else { return }
             
-            let userInput = colorFormula.interpretDouble(forSprite: object)
-            let rawValue = colorSensor.convertToRaw(userInput: userInput)
+            let standardizedValue = colorFormula.interpretDouble(forSprite: object)
+            let rawValue = colorSensor.convertToRaw(userInput: standardizedValue)
             spriteNode.ciHueAdjust = CGFloat(rawValue)
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))

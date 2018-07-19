@@ -78,8 +78,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(70.0f, userInput, 0.1f, @"ChangeColorBrick - Color not correct");
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(70.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
@@ -119,8 +119,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(10.0f, userInput, 0.1f, @"ChangeColorBrick - Color not correct");
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
@@ -160,8 +160,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(10.0f, userInput, 0.1f, @"ChangeColorBrick - Color not correct");
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
@@ -201,8 +201,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat userInput = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(-130.0f, userInput, 0.1f, @"ChangeColorBrick - Color not correct");
+    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
+    XCTAssertEqualWithAccuracy(-130.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
