@@ -66,7 +66,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:0];
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithUserInput:0];
     
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -107,7 +107,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:100];
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithUserInput:100];
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -148,7 +148,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:0];
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithUserInput:0];
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -189,7 +189,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithStandardizedValue:100];
+    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithUserInput:100];
 
     Formula* brightness = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];

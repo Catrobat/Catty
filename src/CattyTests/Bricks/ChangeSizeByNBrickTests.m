@@ -48,8 +48,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = [self.sizeSensor convertToRawWithStandardizedValue:10.0];
-    spriteNode.yScale = [self.sizeSensor convertToRawWithStandardizedValue:10.0];
+    spriteNode.xScale = [self.sizeSensor convertToRawWithUserInput:10.0];
+    spriteNode.yScale = [self.sizeSensor convertToRawWithUserInput:10.0];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -78,8 +78,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = [self.sizeSensor convertToRawWithStandardizedValue:50.0];
-    spriteNode.yScale = [self.sizeSensor convertToRawWithStandardizedValue:50.0];
+    spriteNode.xScale = [self.sizeSensor convertToRawWithUserInput:50.0];
+    spriteNode.yScale = [self.sizeSensor convertToRawWithUserInput:50.0];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -108,8 +108,8 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = [self.sizeSensor convertToRawWithStandardizedValue:10.0];
-    spriteNode.yScale = [self.sizeSensor convertToRawWithStandardizedValue:10.0];
+    spriteNode.xScale = [self.sizeSensor convertToRawWithUserInput:10.0];
+    spriteNode.yScale = [self.sizeSensor convertToRawWithUserInput:10.0];
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
