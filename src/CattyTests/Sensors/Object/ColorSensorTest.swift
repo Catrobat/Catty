@@ -59,29 +59,23 @@ final class ColorSensorTest: XCTestCase {
     }
     
     func testConvertToStandarized() {
-        // start
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        
-        // random color
         XCTAssertEqual(100, sensor.convertToStandardized(rawValue: Double.pi), accuracy: 0.0001)
-        
-        // the end of the current color cycle
         XCTAssertEqual(199.99, sensor.convertToStandardized(rawValue: 1.9999 * Double.pi), accuracy: 0.0001)
-        
-        // next color cycle
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 2 * Double.pi), accuracy: 0.0001)
-        
-        // bigger than maximum value
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 4 * Double.pi), accuracy: 0.0001)
-        
-        // smaller than minimum value
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: -3 * Double.pi), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
         XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 0), accuracy: 0.0001)
         XCTAssertEqual(Double.pi, sensor.convertToRaw(standardizedValue: 100), accuracy: 0.0001)
         XCTAssertEqual(Double.pi / 4, sensor.convertToRaw(standardizedValue: 25), accuracy: 0.0001)
+        
+        // outside the range
+        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 200), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, sensor.convertToRaw(standardizedValue: 250), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 400), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(standardizedValue: -100), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(standardizedValue: -300), accuracy: 0.0001)
+        
     }
     
     func testTag() {
