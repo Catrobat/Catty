@@ -29,7 +29,8 @@
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let pointedObjectPosition = self.pointedObject?.spriteNode?.position
+            let pointedObjectPosition = self.pointedObject?.spriteNode?.position,
+            let rotationSensor = CBSensorManager.shared.sensor(type: RotationSensor.self)
             else { fatalError("This should never happen!") }
 
         return {
@@ -68,12 +69,10 @@
                         rotationDegrees = 270.0 + value
                     }
                 }
-                
             }
 
-//            self.log.info("Performing: \(self.description), Degreees: \(rotationDegrees), Pointed Object: Position: \(NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition))")
-
-            spriteNode.rotation = rotationDegrees
+            let rawValue = rotationSensor.convertToRaw(standardizedValue: rotationDegrees)
+            spriteNode.zRotation = CGFloat(rawValue)
         }
     }
 }

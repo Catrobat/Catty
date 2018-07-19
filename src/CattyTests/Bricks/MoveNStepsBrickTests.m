@@ -32,6 +32,7 @@
 @property(nonatomic, strong) CBSpriteNode *spriteNode;
 @property(nonatomic, strong) Script *script;
 @property(nonatomic, strong) MoveNStepsBrick *brick;
+@property (nonatomic, strong) RotationSensor* rotationSensor;
 
 @end
 
@@ -64,6 +65,8 @@
     
     self.brick = [[MoveNStepsBrick alloc] init];
     self.brick.script = self.script;
+    
+    self.rotationSensor = [RotationSensor new];
 }
 
 - (void)tearDown
@@ -167,7 +170,7 @@
 - (void)setPosition:(CGPoint)position andRotation:(CGFloat)rotation andMoveSteps:(CGFloat)steps
 {
     self.spriteNode.scenePosition = position;
-    self.spriteNode.rotation = rotation;
+    self.spriteNode.zRotation = [self.rotationSensor convertToRawWithStandardizedValue:rotation];
     
     Formula* stepFormula = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];

@@ -43,28 +43,6 @@
         return CGPoint(x: x, y: y);
     }
     
-    @objc class func convertDegreesToScene(_ degrees: Double) -> Double {
-        if degrees < 0.0 {
-            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
-        }
-        
-        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - PlayerConfig.RotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
-    }
-    
-    @objc class func convertSceneToDegrees(_ scene: Double) -> Double {
-        let sceneDegrees = self.convertDegreesToScene(scene)
-        
-        if sceneDegrees > 180.0 {
-            return sceneDegrees - 360.0
-        }
-        
-        if sceneDegrees < -180.0 {
-            return 360 + sceneDegrees
-        }
-        
-        return sceneDegrees
-    }
-    
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize()
         var x = (coordinate.x - screenSize.width/2.0)

@@ -45,14 +45,6 @@ class CBSpriteNode: SKSpriteNode {
     
     @objc var zIndex: CGFloat { return zPosition }
     
-    @objc var rotation: Double {
-        set {
-            self.zRotation = CGFloat(Util.degree(toRadians: CBSceneHelper.convertDegreesToScene(newValue)))
-        }
-        get {
-            return CBSceneHelper.convertSceneToDegrees(Util.radians(toDegree: Double(self.zRotation)))
-        }
-    }
     private var _lastTimeTouchedSpriteNode = [String:Date]()
 
     // MARK: Custom getters and setters
@@ -217,8 +209,12 @@ class CBSpriteNode: SKSpriteNode {
     // MARK: Events
     @objc func start(_ zPosition: CGFloat) {
         self.scenePosition = CGPoint(x: 0, y: 0)
-        self.zRotation = 0
+        self.zRotation = CGFloat(RotationSensor.defaultRawValue)
+        self.xScale = CGFloat(SizeSensor.defaultRawValue)
+        self.yScale = CGFloat(SizeSensor.defaultRawValue)
+        
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
+        
         if self.spriteObject?.isBackground() == true {
             self.zPosition = 0
         } else {

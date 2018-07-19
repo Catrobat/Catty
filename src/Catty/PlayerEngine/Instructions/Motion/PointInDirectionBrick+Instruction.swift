@@ -28,12 +28,13 @@
 
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
+              let spriteNode = object.spriteNode,
+              let rotationSensor = CBSensorManager.shared.sensor(type: RotationSensor.self)
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.rotation = self.degrees.interpretDouble(forSprite: object)
+            let standardizedValue = self.degrees.interpretDouble(forSprite: object)
+            spriteNode.zRotation = CGFloat(rotationSensor.convertToRaw(standardizedValue: standardizedValue))
         }
     }
-
 }

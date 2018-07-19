@@ -40,34 +40,34 @@ final class CBSpriteNodeTests: XCTestCase {
     func testRotation() {
         let epsilon = 0.001
         
-        self.spriteNode.rotation = 20
-        XCTAssertEqual(20, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = 20.0
+        XCTAssertEqual(20.0, Double(self.spriteNode.zRotation), accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = 180
-        XCTAssertEqual(180, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        /*self.spriteNode.rRotation = 180.0
+        XCTAssertEqual(180.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = 181
-        XCTAssertEqual(-179, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = 181.0
+        XCTAssertEqual(-179.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = 220
-        XCTAssertEqual(-140, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = 220.0
+        XCTAssertEqual(-140.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = 359
-        XCTAssertEqual(-1, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = 359.0
+        XCTAssertEqual(-1.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = 360
-        XCTAssertEqual(0, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = 360.0
+        XCTAssertEqual(0.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = 361
-        XCTAssertEqual(1, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = 361.0
+        XCTAssertEqual(CGFloat(1.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = -361
-        XCTAssertEqual(-1, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = -361.0
+        XCTAssertEqual(CGFloat(-1.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = -90
-        XCTAssertEqual(-90, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = -90.0
+        XCTAssertEqual(CGFloat(-90.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
         
-        self.spriteNode.rotation = -185
-        XCTAssertEqual(175, self.spriteNode.rotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        self.spriteNode.zRotation = -185.0
+        XCTAssertEqual(CGFloat(175.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")*/
     }
 }

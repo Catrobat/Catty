@@ -27,6 +27,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface TurnLeftBrickTests : AbstractBrickTests
+@property (nonatomic, strong) RotationSensor* rotationSensor;
 @end
 
 @implementation TurnLeftBrickTests
@@ -34,7 +35,7 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+    self.rotationSensor = [RotationSensor new];
 }
 
 - (void)tearDown
@@ -62,12 +63,11 @@
 
 - (void)turnLeftWithInitialRotation:(CGFloat)initialRotation andRotation:(CGFloat)rotation
 {
-    rotation = fmodf(rotation, 360.0f);
-    
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.rotation = initialRotation;
+    
+    spriteNode.zRotation = [self.rotationSensor convertToRawWithStandardizedValue:initialRotation];
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -85,8 +85,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat expectedRotation = initialRotation - rotation;
-    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.rotation, 0.0001, @"TurnLeftBrick not correct");
+    CGFloat expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:initialRotation - rotation];
+    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.zRotation, 0.0001, @"TurnLeftBrick not correct");
 }
 
 @end

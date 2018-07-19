@@ -132,7 +132,7 @@
     XCTAssertTrue(CGPointEqualToPoint(convertedTopRight, self.pocketCodeTopRight), @"The Top Right is not correctly calculated");
 }
 
-- (void)testDegreesToScene
+/*- (void)testDegreesToScene
 {
     XCTAssertEqual(90, [[CBSceneHelper class] convertDegreesToScene:0], @"Conversion between degrees and scene is not correctly calculated");
     XCTAssertEqual(0, [[CBSceneHelper class] convertDegreesToScene:90], @"Conversion between degrees and scene is not correctly calculated");
@@ -158,7 +158,7 @@
     XCTAssertEqual(0, [[CBSceneHelper class] convertSceneToDegrees:-270], @"Conversion between scene and degrees is not correctly calculated");
     XCTAssertEqual(180, [[CBSceneHelper class] convertSceneToDegrees:270], @"Conversion between scene and degrees is not correctly calculated");
     XCTAssertEqual(180, [[CBSceneHelper class] convertSceneToDegrees:630], @"Conversion between scene and degrees is not correctly calculated");
-}
+}*/
 
 #pragma mark Touch to Pocked Code
 - (void)testTouchConversionCenter

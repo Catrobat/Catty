@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RotationSensor: ObjectSensor {
+@objc class RotationSensor: NSObject, ObjectSensor, ReadWriteSensor {
 
     static let tag = "OBJECT_ROTATION"
     static let name = kUIFEObjectDirection
@@ -28,14 +28,40 @@ class RotationSensor: ObjectSensor {
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.rotation)
+        return Double(spriteObject.spriteNode.zRotation)
     }
-
+    
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return self.convertSceneToDegrees(Util.radians(toDegree: Double(rawValue)))
+    }
+    
+    func convertToRaw(standardizedValue: Double) -> Double {
+        return Util.degree(toRadians: self.convertDegreesToScene(standardizedValue))
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
+    }
+    
+    func convertDegreesToScene(_ degrees: Double) -> Double {
+        if degrees < 0.0 {
+            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
+        }
+        
+        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - PlayerConfig.RotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
+    }
+    
+    func convertSceneToDegrees(_ scene: Double) -> Double {
+        let sceneDegrees = self.convertDegreesToScene(scene)
+        
+        if sceneDegrees > 180.0 {
+            return sceneDegrees - 360.0
+        }
+        
+        if sceneDegrees < -180.0 {
+            return 360 + sceneDegrees
+        }
+        
+        return sceneDegrees
     }
 }

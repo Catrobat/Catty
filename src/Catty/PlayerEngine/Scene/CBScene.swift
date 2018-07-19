@@ -177,10 +177,6 @@ final class CBScene: SKScene {
             if spriteNode.spriteObject?.isBackground() == false {
                 zPosition += 1
             }
-            
-            spriteNode.xScale = CGFloat(SizeSensor.defaultRawValue)
-            spriteNode.yScale = CGFloat(SizeSensor.defaultRawValue)
-            
             scheduler?.registerSpriteNode(spriteNode)
 
             for script in scriptList {

@@ -27,7 +27,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface PointInDirectionBrickTests : AbstractBrickTests
-
+@property (nonatomic, strong) RotationSensor* rotationSensor;
 @end
 
 @implementation PointInDirectionBrickTests
@@ -35,7 +35,7 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+    self.rotationSensor = [RotationSensor new];
 }
 
 - (void)tearDown
@@ -69,8 +69,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    double expectedRotation = 20;
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, expectedRotation, 0.0001, @"PointInDirectionBrick is not correctly calculated");
+    double expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:20];
+    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.zRotation, 0.0001, @"PointInDirectionBrick is not correctly calculated");
 }
 
 @end
