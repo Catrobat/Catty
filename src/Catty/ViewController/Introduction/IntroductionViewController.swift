@@ -26,6 +26,11 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var paragraph: UILabel!
     @IBOutlet weak var image: UIImageView!
 
+    @IBAction func touchDismiss(_ sender: UIButton) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        IntroductionPageViewController.hasBeenShown = true
+    }
+    
     var content: Content?
 
     override func viewDidLoad() {
