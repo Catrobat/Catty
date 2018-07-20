@@ -71,12 +71,21 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
-        delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+        var newProgram: CBProgram = (cell?.program)!
+        
+        self.downloader.downloadProgram(for: newProgram) {program, error in
+            guard let cbprogram = program, error == nil else { return }
+            //self.programs = collection.projects
+            newProgram = cbprogram
+            let programid = cbprogram.projectId
+
+        }
+        //delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
     }
 }
     
-final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSource
-{
+final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSource {
+
     private func fetchData(for program: CBProgram, completion: @escaping (Data?) -> Void) {
         guard let downloadUrl = URL(string: program.downloadUrl!) else { return }
 
@@ -93,12 +102,6 @@ final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSourc
                 }
             }
             return
-        }
-            self.downloader.downloadProgram(for: program) { data, _ in
-            DispatchQueue.main.async { completion(data) }
-            if let data = data, let image = UIImage(data: data) {
-                ImageCache.default.store(image, original: data, forKey: resource.cacheKey)
-            }
         }
     }
 }

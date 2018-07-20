@@ -26,6 +26,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
+    var programForSegue: CBProgram?
 
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
@@ -42,6 +43,15 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kSegueToProgramDetail {
+            if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
+                let program = programForSegue {
+                    programDetailStoreViewController.project.projectID = String(program.projectId)
+            }
+        }
     }
 
     private func setupTableView() {
@@ -87,7 +97,8 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     }
 }
 
-extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {    
+extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {
+    
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
         print(cell.program?.projectName)
         performSegue(withIdentifier: kSegueToProgramDetail, sender: self)

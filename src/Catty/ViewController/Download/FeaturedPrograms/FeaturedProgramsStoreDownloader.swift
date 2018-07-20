@@ -22,11 +22,11 @@
 
 protocol FeaturedProgramsStoreDownloaderProtocol {
     func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollection?, FeaturedProgramsDownloadError?) -> Void)
-    func downloadProgram(for program: CBProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void)
+    func downloadProgram(for program: CBProgram, completion: @escaping (CBProgram?, FeaturedProgramsDownloadError?) -> Void)
 }
 
 final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProtocol {
-
+    
     let session: URLSession
     let kFeaturedProgramsMaxResults = 10
 
@@ -62,16 +62,29 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         }.resume()
     }
 
-    func downloadProgram(for program: CBProgram, completion: @escaping (Data?, FeaturedProgramsDownloadError?) -> Void) {
+    func downloadProgram(for program: CBProgram, completion: @escaping (CBProgram?, FeaturedProgramsDownloadError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
+        
+        
         self.session.dataTask(with: indexURL) { (data, response, error) in
-            DispatchQueue.main.async {
-                guard let response = response as? HTTPURLResponse else { completion(nil, .unexpectedError); return }
-                guard let data = data, response.statusCode == 200, error == nil else {
-                    completion(nil, .request(error: error, statusCode: response.statusCode))
-                    return
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: CBProgram?, error: FeaturedProgramsDownloadError?)
+            
+            handleDataTaskCompletion = { (data, response, error) in
+                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
+                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+                
+                let program: CBProgram?
+                do {
+                    program = try JSONDecoder().decode(CBProgram.self, from: data)
+                } catch {
+                    return (nil, .parse(error: error))
                 }
-                completion(data, nil)
+                return (program, nil)
+            }
+            
+            let result = handleDataTaskCompletion(data, response, error)
+            DispatchQueue.main.async {
+                completion(result.program, result.error)
             }
         }.resume()
     }
