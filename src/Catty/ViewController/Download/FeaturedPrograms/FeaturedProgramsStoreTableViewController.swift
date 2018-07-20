@@ -20,12 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FeaturedProgramsStoreTableViewController: UITableViewController, Test {
+class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedFeaturedProgramsDataSource {
 
     private var dataSource: FeaturedProgramsStoreTableDataSource
 
-    
-    var programForSegue: CBProgram?
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
 
@@ -38,24 +36,14 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, Test {
         super.viewDidLoad()
         setupTableView()
         shouldHideLoadingView = false
-        dataSource.testDeleate = self
+        dataSource.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == kSegueToProgramDetail {
-            if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
-                let program = programForSegue {
-                programDetailStoreViewController.project.projectID = String(program.projectId)
-            }
-        }
-    }
 
-    
     private func setupTableView() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.dataSource = self.dataSource
@@ -73,12 +61,6 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, Test {
             self.tableView.reloadData()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
-        }
-    }
-    public func imageTapped(sender: FeaturedProgramsCell) {
-        if let program = sender.program {
-            programForSegue = program
-            performSegue(withIdentifier: kSegueToProgramDetail, sender: nil)
         }
     }
     
@@ -107,6 +89,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, Test {
 
 extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {    
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
+        print(cell.program?.projectName)
         performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
     }
 }

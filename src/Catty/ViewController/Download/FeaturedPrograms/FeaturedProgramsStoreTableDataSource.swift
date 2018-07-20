@@ -26,15 +26,13 @@ protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: CBProgram)
 }
 
-/// just a test protocol!!!
-protocol Test: class {
+protocol SelectedFeaturedProgramsDataSource: class {
      func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
 }
 
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    weak var delegate: FeaturedProgramsStoreTableDataSourceDelegete?
-    weak var testDeleate: Test?
+    weak var delegate: SelectedFeaturedProgramsDataSource?
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
     fileprivate var programs = [CBProgram]()
@@ -65,6 +63,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
             let imageUrl = URL(string: kFeaturedImageBaseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
             cell.featuredImage = UIImage(data: data!)
+            cell.program = programs[indexPath.row]
         }
 
         return cell
@@ -72,9 +71,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
-        // maybe we can load the whole program here
-        // and call the function selcectCell with the loaded program as parameter (and not the cell -> this is wrong)!
-        testDeleate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+        delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
     }
 }
     
