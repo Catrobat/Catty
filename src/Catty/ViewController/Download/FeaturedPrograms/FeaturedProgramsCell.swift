@@ -23,7 +23,7 @@
 import UIKit
 
 protocol FeaturedProgramsCellProtocol: class {
-    func imageTapped(sender: FeaturedProgramsCell)
+    func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
 }
 
 class FeaturedProgramsCell: UITableViewCell {
@@ -38,7 +38,6 @@ class FeaturedProgramsCell: UITableViewCell {
             self.updateTable()
         }
     }
-    
     func updateTable() {
         featuredImageView?.image = featuredImage
     }

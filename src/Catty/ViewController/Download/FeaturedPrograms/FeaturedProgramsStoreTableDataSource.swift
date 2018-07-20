@@ -26,9 +26,15 @@ protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: CBProgram)
 }
 
+/// just a test protocol!!!
+protocol Test: class {
+     func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
+}
+
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    weak var delegete: FeaturedProgramsStoreTableDataSourceDelegete?
+    weak var delegate: FeaturedProgramsStoreTableDataSourceDelegete?
+    weak var testDeleate: Test?
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
     fileprivate var programs = [CBProgram]()
@@ -55,7 +61,6 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
-        
         if let cell = cell as? FeaturedProgramsCell {
             let imageUrl = URL(string: kFeaturedImageBaseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
@@ -66,11 +71,10 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let segueToProgramDetail = kSegueToProgramDetail
-//        var cell: UITableViewCell? = tableView.cellForRow(at: indexPath)
-//        if shouldPerformSegue(withIdentifier: segueToProgramDetail, sender: cell) {
-//            performSegue(withIdentifier: segueToProgramDetail, sender: cell)
-//        }
+        let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
+        // maybe we can load the whole program here
+        // and call the function selcectCell with the loaded program as parameter (and not the cell -> this is wrong)!
+        testDeleate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
     }
 }
     
@@ -93,8 +97,7 @@ final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSourc
             }
             return
         }
-
-        self.downloader.downloadProgram(for: program) { data, _ in
+            self.downloader.downloadProgram(for: program) { data, _ in
             DispatchQueue.main.async { completion(data) }
             if let data = data, let image = UIImage(data: data) {
                 ImageCache.default.store(image, original: data, forKey: resource.cacheKey)
@@ -102,3 +105,4 @@ final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSourc
         }
     }
 }
+

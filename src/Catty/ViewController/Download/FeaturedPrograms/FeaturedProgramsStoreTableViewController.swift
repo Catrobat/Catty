@@ -20,9 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class FeaturedProgramsStoreTableViewController: UITableViewController {
+class FeaturedProgramsStoreTableViewController: UITableViewController, Test {
 
-    private let dataSource: FeaturedProgramsStoreTableDataSource
+    private var dataSource: FeaturedProgramsStoreTableDataSource
+
     
     var programForSegue: CBProgram?
     var loadingView: LoadingView?
@@ -37,12 +38,23 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         shouldHideLoadingView = false
+        dataSource.testDeleate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchData()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kSegueToProgramDetail {
+            if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
+                let program = programForSegue {
+                programDetailStoreViewController.project.projectID = String(program.projectId)
+            }
+        }
+    }
+
     
     private func setupTableView() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -61,6 +73,12 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
             self.tableView.reloadData()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
+        }
+    }
+    public func imageTapped(sender: FeaturedProgramsCell) {
+        if let program = sender.program {
+            programForSegue = program
+            performSegue(withIdentifier: kSegueToProgramDetail, sender: nil)
         }
     }
     
@@ -84,5 +102,11 @@ final class FeaturedProgramsStoreTableViewController: UITableViewController {
     func loadingIndicator(_ value: Bool) {
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
+    }
+}
+
+extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {    
+    func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
+        performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
     }
 }
