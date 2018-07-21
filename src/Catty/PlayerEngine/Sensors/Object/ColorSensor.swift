@@ -28,15 +28,30 @@
     static let requiredResource = ResourceType.noResources
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
-        return Double(spriteObject.spriteNode.ciHueAdjust)
+        guard let spriteNode = spriteObject.spriteNode else {
+            return type(of: self).defaultRawValue
+        }
+        return Double(spriteNode.ciHueAdjust)
     }
 
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 100 / Double.pi
     }
     
-    func convertToRaw(standardizedValue: Double) -> Double {
-        return standardizedValue / 100 * Double.pi
+    func convertToRaw(userInput: Double) -> Double {
+        var valueToConvert = userInput
+        let whole = Int(valueToConvert)
+        let fraction = valueToConvert.truncatingRemainder(dividingBy: 1)
+        
+        if valueToConvert >= 200 {
+            valueToConvert = Double(whole % 200) + fraction
+        } else if valueToConvert < 0 {
+            valueToConvert = 200 - (Double(-whole % 200) + fraction)
+            if valueToConvert == 200 {
+                valueToConvert = 0
+            }
+        }
+        return valueToConvert / 100 * Double.pi
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

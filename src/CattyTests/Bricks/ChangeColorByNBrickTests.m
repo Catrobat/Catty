@@ -66,7 +66,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithStandardizedValue:0];
+    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithUserInput:0];
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -107,7 +107,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithStandardizedValue:10];
+    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithUserInput:10];
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -148,7 +148,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithStandardizedValue:20];
+    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithUserInput:20];
     
     Formula* color = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];

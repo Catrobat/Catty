@@ -59,15 +59,15 @@
     }
     
     // f:[0, 100] -> [0, 1]
-    func convertToRaw(standardizedValue: Double) -> Double {
+    func convertToRaw(userInput: Double) -> Double {
         
-        if standardizedValue >= 100 {
+        if userInput >= 100 {
             return 0.0 // maximum transparency
         }
-        if standardizedValue <= 0 {
+        if userInput <= 0 {
             return 1.0 // no transparency
         }
-        return (100 - standardizedValue) / 100
+        return (100 - userInput) / 100
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

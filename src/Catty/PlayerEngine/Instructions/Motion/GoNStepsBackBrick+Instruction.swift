@@ -37,7 +37,7 @@
         return {
             let zValue = spriteNode.zPosition
             let steps = stepsFormula.interpretDouble(forSprite: object)
-            let rawValue = layerSensor.convertToRaw(standardizedValue: Double(zValue - CGFloat(steps)))
+            let rawValue = layerSensor.convertToRaw(userInput: Double(zValue - CGFloat(steps)))
             spriteNode.zPosition = CGFloat(rawValue)
             
             for obj in objectList {

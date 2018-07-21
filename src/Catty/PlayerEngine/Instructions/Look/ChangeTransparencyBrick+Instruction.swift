@@ -38,7 +38,7 @@
 
         return {
             let standardizedValue = transparencySensor.convertToStandardized(rawValue: Double(spriteNode.alpha)) + transparency.interpretDouble(forSprite: object)
-            let rawValue = transparencySensor.convertToRaw(standardizedValue: standardizedValue)
+            let rawValue = transparencySensor.convertToRaw(userInput: standardizedValue)
             spriteNode.alpha = CGFloat(rawValue)
         }
     }
