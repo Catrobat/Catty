@@ -39,7 +39,7 @@
         return {
             guard let look = object.spriteNode?.currentLook else { return }
             let standardizedValue = bright.interpretDouble(forSprite: object)
-            let rawValue = brightnessSensor.convertToRaw(standardizedValue: standardizedValue)
+            let rawValue = brightnessSensor.convertToRaw(userInput: standardizedValue)
             spriteNode.ciBrightness = CGFloat(rawValue)
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))

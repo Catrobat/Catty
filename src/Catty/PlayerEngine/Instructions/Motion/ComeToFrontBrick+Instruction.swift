@@ -37,7 +37,7 @@
         return {
             let zValue = spriteNode.zPosition
             let frontValue = program.numberOfNormalObjects()
-            let rawValue = layerSensor.convertToRaw(standardizedValue: Double(frontValue))
+            let rawValue = layerSensor.convertToRaw(userInput: Double(frontValue))
             spriteNode.zPosition = CGFloat(rawValue)
             
             for obj in objectList {

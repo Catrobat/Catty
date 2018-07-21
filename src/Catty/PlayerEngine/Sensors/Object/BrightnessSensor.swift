@@ -45,15 +45,15 @@
     }
     
     // f:[0, 200] -> [-1, 1]
-    func convertToRaw(standardizedValue: Double) -> Double {
+    func convertToRaw(userInput: Double) -> Double {
         
-        if standardizedValue >= 200 {
+        if userInput >= 200 {
             return 1.0
-        } else if standardizedValue <= 0 {
+        } else if userInput <= 0 {
             return -1.0
         }
         
-        return (standardizedValue - 100) / 100
+        return (userInput - 100) / 100
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

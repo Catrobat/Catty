@@ -50,7 +50,7 @@
     spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:0.0];
+    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:0.0];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -79,7 +79,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:30.0];
+    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:30.0];
 
     Formula *transparency =[[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
@@ -108,7 +108,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:0.0];
+    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:0.0];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -137,7 +137,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithStandardizedValue:0.0];
+    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:0.0];
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];

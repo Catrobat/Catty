@@ -24,17 +24,17 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class LayerSensorTest: XCTestCase {
+final class ColorSensorTest: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    var sensor: LayerSensor!
+    var sensor: ColorSensor!
     
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
         
-        self.sensor = LayerSensor()
+        self.sensor = ColorSensor()
     }
     
     override func tearDown() {
@@ -44,44 +44,42 @@ final class LayerSensorTest: XCTestCase {
     
     func testDefaultRawValue() {
         self.spriteObject.spriteNode = nil
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject))
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
     }
     
     func testRawValue() {
-        // background like on Android
-        self.spriteNode.zPosition = -1
-        XCTAssertEqual(-1, self.sensor.rawValue(for: spriteObject), accuracy: 0.0001)
+        self.spriteNode.ciHueAdjust = 0.0
+        XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
         
-        // background raw on iOS
-        self.spriteNode.zPosition = 0
-        XCTAssertEqual(0, self.sensor.rawValue(for: spriteObject), accuracy: 0.0001)
+        self.spriteNode.ciHueAdjust = -60
+        XCTAssertEqual(-60, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
         
-        // third layer
-        self.spriteNode.zPosition = 3
-        XCTAssertEqual(3, self.sensor.rawValue(for: spriteObject), accuracy: 0.0001)
+        self.spriteNode.ciHueAdjust = 210
+        XCTAssertEqual(210, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToStandarized() {
-        // background
-        XCTAssertEqual(-1, self.sensor.convertToStandardized(rawValue: 0), accuracy: 0.001)
-        
-        // objects
-        XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: 1), accuracy: 0.001)
-        XCTAssertEqual(2, self.sensor.convertToStandardized(rawValue: 2), accuracy: 0.001)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: Double.pi), accuracy: 0.0001)
+        XCTAssertEqual(199.99, sensor.convertToStandardized(rawValue: 1.9999 * Double.pi), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
-        // can not be set for background
-        XCTAssertEqual(1, self.sensor.convertToRaw(userInput: -1), accuracy: 0.001)
-        XCTAssertEqual(1, self.sensor.convertToRaw(userInput: 0), accuracy: 0.001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 0), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: 100), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 4, sensor.convertToRaw(userInput: 25), accuracy: 0.0001)
         
-        // objects
-        XCTAssertEqual(3, self.sensor.convertToRaw(userInput: 3), accuracy: 0.001)
-        XCTAssertEqual(4, self.sensor.convertToRaw(userInput: 4), accuracy: 0.001)
+        // outside the range
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 200), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, sensor.convertToRaw(userInput: 250), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 400), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: -100), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: -300), accuracy: 0.0001)
+        
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_LAYER", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_COLOR", type(of: sensor).tag)
     }
     
     func testRequiredResources() {

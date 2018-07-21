@@ -80,22 +80,22 @@ final class BrightnessSensorTest: XCTestCase {
     
     func testConvertToRaw() {
         // test minimum value
-        XCTAssertEqual(-1, sensor.convertToRaw(standardizedValue: 0.0))
+        XCTAssertEqual(-1, sensor.convertToRaw(userInput: 0.0))
         
         // test maximum value
-        XCTAssertEqual(1, sensor.convertToRaw(standardizedValue: 200.0))
+        XCTAssertEqual(1, sensor.convertToRaw(userInput: 200.0))
         
         // test mean value
-        XCTAssertEqual(0, sensor.convertToRaw(standardizedValue: 100.0))
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 100.0))
         
         // test lower than minimum value
-        XCTAssertEqual(-1, sensor.convertToRaw(standardizedValue: -10.0))
+        XCTAssertEqual(-1, sensor.convertToRaw(userInput: -10.0))
         
         // test bigger than maximum value
-        XCTAssertEqual(1, sensor.convertToRaw(standardizedValue: 280.0))
+        XCTAssertEqual(1, sensor.convertToRaw(userInput: 280.0))
         
         // test random value
-        XCTAssertEqual(-0.17, sensor.convertToRaw(standardizedValue: 83.0))
+        XCTAssertEqual(-0.17, sensor.convertToRaw(userInput: 83.0))
     }
     
     func testTag() {
