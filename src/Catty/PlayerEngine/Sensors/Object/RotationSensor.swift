@@ -27,6 +27,7 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
     static let rotationDegreeOffset = 90.0
+    static let circleMaxDegrees = 360.0
 
     func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
@@ -35,38 +36,42 @@
         return Double(spriteNode.zRotation)
     }
     
+    // raw value is in radians, standardized value is in degrees
     func convertToStandardized(rawValue: Double) -> Double {
-        return self.convertSceneToDegrees(Util.radians(toDegree: Double(rawValue)))
+        let rawValueDegrees = Util.radians(toDegree: rawValue)
+        return self.convertSceneToDegrees(rawValueDegrees)
     }
     
     func convertToRaw(standardizedValue: Double) -> Double {
-        return Util.degree(toRadians: self.convertDegreesToScene(standardizedValue))
+        let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(standardizedValue)
+        return Util.degree(toRadians: standardizedValueOnScreen)
+    }
+    
+    func convertMathDegreesToSceneDegrees(_ mathDegrees: Double) -> Double {
+        // converts a given value to make it belong to the interval [0, 360) - moves to the first trigonometric circle due to periodicity 
+        let circleDegrees = type(of: self).circleMaxDegrees
+        if mathDegrees < 0.0 {
+            return (-1 * (circleDegrees - type(of: self).rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
+        }
+        
+        return (circleDegrees - (mathDegrees.truncatingRemainder(dividingBy: circleDegrees) - type(of: self).rotationDegreeOffset)).truncatingRemainder(dividingBy: circleDegrees)
+    }
+    
+    func convertSceneToDegrees(_ mathDegrees: Double) -> Double {
+        //  ensures that the value is reduced to the first trigonometric circle, meaning [0, 360)
+        let sceneDegrees = self.convertMathDegreesToSceneDegrees(mathDegrees)
+        
+        // ensures that the scene degree (direction of the object) is between (-179, 180]
+        if sceneDegrees > 180.0 {
+            return sceneDegrees - 360.0
+        }
+        if sceneDegrees < -180.0 {
+            return 360 + sceneDegrees
+        }
+        return sceneDegrees // it was already in that interval
     }
     
     func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
-    }
-    
-    func convertDegreesToScene(_ degrees: Double) -> Double {
-        if degrees < 0.0 {
-            return (-1 * (360.0 - type(of: self).rotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
-        }
-        
-        // TODO move to constant here
-        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - type(of: self).rotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
-    }
-    
-    func convertSceneToDegrees(_ scene: Double) -> Double {
-        let sceneDegrees = self.convertDegreesToScene(scene)
-        
-        if sceneDegrees > 180.0 {
-            return sceneDegrees - 360.0
-        }
-        
-        if sceneDegrees < -180.0 {
-            return 360 + sceneDegrees
-        }
-        
-        return sceneDegrees
     }
 }
