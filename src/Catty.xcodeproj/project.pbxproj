@@ -977,9 +977,11 @@
 		E4668B3820FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */; };
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */; };
 		E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */; };
-		E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */; };
+		E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollectionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollectionNumber.swift */; };
 		E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */; };
-		E4E5599720FCD6AD004B4A08 /* CBInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599520FCD6AB004B4A08 /* CBInformation.swift */; };
+		E4D0DAE72102FE65007C8052 /* CBInformationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0DAE62102FE65007C8052 /* CBInformationText.swift */; };
+		E4D0DAEB2102FED1007C8052 /* FeaturedProgramsCollectionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0DAEA2102FED1007C8052 /* FeaturedProgramsCollectionText.swift */; };
+		E4E5599720FCD6AD004B4A08 /* CBInformationNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599520FCD6AB004B4A08 /* CBInformationNumber.swift */; };
 		E4E5599820FCD6AD004B4A08 /* CBProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* CBProgram.swift */; };
 		E4E5599C20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4E5599B20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json */; };
 		E4E5599E20FCDA21004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4E5599D20FCDA20004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
@@ -2537,9 +2539,11 @@
 		E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableViewController.swift; sourceTree = "<group>"; };
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableDataSource.swift; sourceTree = "<group>"; };
 		E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCell.swift; sourceTree = "<group>"; };
-		E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCollection.swift; sourceTree = "<group>"; };
+		E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollectionNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCollectionNumber.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloader.swift; sourceTree = "<group>"; };
-		E4E5599520FCD6AB004B4A08 /* CBInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBInformation.swift; sourceTree = "<group>"; };
+		E4D0DAE62102FE65007C8052 /* CBInformationText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBInformationText.swift; sourceTree = "<group>"; };
+		E4D0DAEA2102FED1007C8052 /* FeaturedProgramsCollectionText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCollectionText.swift; sourceTree = "<group>"; };
+		E4E5599520FCD6AB004B4A08 /* CBInformationNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBInformationNumber.swift; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* CBProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgram.swift; sourceTree = "<group>"; };
 		E4E5599B20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		E4E5599D20FCDA20004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
@@ -4849,7 +4853,8 @@
 		92FF2EAC1A24C8A700093DA7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				E4E5599520FCD6AB004B4A08 /* CBInformation.swift */,
+				E4E5599520FCD6AB004B4A08 /* CBInformationNumber.swift */,
+				E4D0DAE62102FE65007C8052 /* CBInformationText.swift */,
 				E4E5599620FCD6AD004B4A08 /* CBProgram.swift */,
 				92FF2EAD1A24C8A700093DA7 /* CatrobatInformation */,
 				92FF2EB01A24C8A700093DA7 /* CatrobatProgram */,
@@ -6666,7 +6671,8 @@
 		E4B1BF4D20F719DB00800555 /* FeaturedPrograms */ = {
 			isa = PBXGroup;
 			children = (
-				E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollection.swift */,
+				E4B1BF5020F72D2C00800555 /* FeaturedProgramsCollectionNumber.swift */,
+				E4D0DAEA2102FED1007C8052 /* FeaturedProgramsCollectionText.swift */,
 				E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */,
 				E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */,
 				E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */,
@@ -7407,6 +7413,7 @@
 			files = (
 				4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */,
 				AA74F0BF1BC05FCE00D1E954 /* PointToBrickCell.m in Sources */,
+				E4D0DAE72102FE65007C8052 /* CBInformationText.swift in Sources */,
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
@@ -7647,7 +7654,7 @@
 				4C0F9F50204BD0B400E71B2D /* BubbleBrickHelper.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
-				E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollection.swift in Sources */,
+				E4B1BF5120F72D2C00800555 /* FeaturedProgramsCollectionNumber.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				923503911BA707DE00021F6A /* LoginViewController.m in Sources */,
@@ -7790,7 +7797,7 @@
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
-				E4E5599720FCD6AD004B4A08 /* CBInformation.swift in Sources */,
+				E4E5599720FCD6AD004B4A08 /* CBInformationNumber.swift in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
@@ -7920,6 +7927,7 @@
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
+				E4D0DAEB2102FED1007C8052 /* FeaturedProgramsCollectionText.swift in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				AA74F09B1BC05FCE00D1E954 /* BrickCell.m in Sources */,
 				59ABDC652021D7DA00061403 /* UIAlertController+AddAction.swift in Sources */,

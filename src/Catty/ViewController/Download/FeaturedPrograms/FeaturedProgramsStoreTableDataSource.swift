@@ -71,16 +71,12 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
-        var newProgram: CBProgram = (cell?.program)!
         
-        self.downloader.downloadProgram(for: newProgram) {program, error in
+        self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
             guard let cbprogram = program, error == nil else { return }
-            //self.programs = collection.projects
-            newProgram = cbprogram
-            let programid = cbprogram.projectId
-
+            cell?.program = cbprogram
+            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
         }
-        //delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
     }
 }
     
@@ -105,4 +101,3 @@ final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSourc
         }
     }
 }
-

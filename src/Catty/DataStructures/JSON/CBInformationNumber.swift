@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct CBInformation: Codable {
+struct CBInformationNumber: Codable {
     let baseUrl: String
-    let totalProjects: String
+    let totalProjects: Int
     let projectsExtension: String
     
     private enum CodingKeys: String, CodingKey {
