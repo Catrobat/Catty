@@ -70,7 +70,7 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
 
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:0];
+    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:0];
     XCTAssertEqualWithAccuracy(expectedRotation, firstSpriteNode.zRotation,0.1f, @"PointToBrick not correct");
 }
 
@@ -98,7 +98,7 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
     
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:0];
+    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:0];
     XCTAssertEqualWithAccuracy(expectedRotation, firstSpriteNode.zRotation, 0.1f, @"PointToBrick not correct");
 }
 
@@ -127,7 +127,7 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
     
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:45.0];
+    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:45.0];
     XCTAssertEqualWithAccuracy(expectedRotation, firstSpriteNode.zRotation, 0.1f, @"PointToBrick not correct");
 }
 

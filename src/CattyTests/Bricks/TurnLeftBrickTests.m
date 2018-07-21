@@ -67,7 +67,7 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     
-    spriteNode.zRotation = [self.rotationSensor convertToRawWithStandardizedValue:initialRotation];
+    spriteNode.zRotation = [self.rotationSensor convertToRawWithUserInput:initialRotation];
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -85,7 +85,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:initialRotation - rotation];
+    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:initialRotation - rotation];
     XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.zRotation, 0.0001, @"TurnLeftBrick not correct");
 }
 

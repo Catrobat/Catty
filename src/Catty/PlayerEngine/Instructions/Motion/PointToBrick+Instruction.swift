@@ -71,7 +71,7 @@
                 }
             }
 
-            let rawValue = rotationSensor.convertToRaw(standardizedValue: rotationDegrees)
+            let rawValue = rotationSensor.convertToRaw(userInput: rotationDegrees)
             spriteNode.zRotation = CGFloat(rawValue)
         }
     }

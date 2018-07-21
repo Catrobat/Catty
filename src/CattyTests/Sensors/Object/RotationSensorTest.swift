@@ -83,18 +83,18 @@ final class RotationSensorTest: XCTestCase {
     
     func testConvertToRaw() {
         // on the first circle
-        XCTAssertEqual(0, self.sensor.convertToRaw(standardizedValue: 90), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi * 3 / 2, self.sensor.convertToRaw(standardizedValue: 180), accuracy: 0.0001)
-        XCTAssertEqual(-Double.pi / 2, self.sensor.convertToRaw(standardizedValue: -180), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 4, self.sensor.convertToRaw(standardizedValue: 45), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 3, self.sensor.convertToRaw(standardizedValue: 30), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 2, self.sensor.convertToRaw(standardizedValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(0, self.sensor.convertToRaw(userInput: 90), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi * 3 / 2, self.sensor.convertToRaw(userInput: 180), accuracy: 0.0001)
+        XCTAssertEqual(-Double.pi / 2, self.sensor.convertToRaw(userInput: -180), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 4, self.sensor.convertToRaw(userInput: 45), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 3, self.sensor.convertToRaw(userInput: 30), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, self.sensor.convertToRaw(userInput: 0), accuracy: 0.0001)
         
         // before the first circle
-        XCTAssertEqual(-Double.pi, self.sensor.convertToRaw(standardizedValue: -450), accuracy: 0.0001)
+        XCTAssertEqual(-Double.pi, self.sensor.convertToRaw(userInput: -450), accuracy: 0.0001)
         
         // after the first circle
-        XCTAssertEqual(Double.pi / 2, self.sensor.convertToRaw(standardizedValue: 720), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, self.sensor.convertToRaw(userInput: 720), accuracy: 0.0001)
     }
     
     func testConvertToSceneDegrees() {

@@ -170,7 +170,7 @@
 - (void)setPosition:(CGPoint)position andRotation:(CGFloat)rotation andMoveSteps:(CGFloat)steps
 {
     self.spriteNode.scenePosition = position;
-    self.spriteNode.zRotation = [self.rotationSensor convertToRawWithStandardizedValue:rotation];
+    self.spriteNode.zRotation = [self.rotationSensor convertToRawWithUserInput:rotation];
     
     Formula* stepFormula = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];

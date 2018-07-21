@@ -34,7 +34,7 @@
 
         return {
             let rotation = rotationSensor.convertToStandardized(rawValue: Double(spriteNode.zRotation)) + self.degrees.interpretDouble(forSprite: object)
-            let rawValue = rotationSensor.convertToRaw(standardizedValue: rotation)
+            let rawValue = rotationSensor.convertToRaw(userInput: rotation)
             spriteNode.zRotation = CGFloat(rawValue)
         }
     }

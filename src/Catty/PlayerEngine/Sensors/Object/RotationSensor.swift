@@ -42,13 +42,13 @@
         return self.convertSceneToDegrees(rawValueDegrees)
     }
     
-    func convertToRaw(standardizedValue: Double) -> Double {
-        let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(standardizedValue)
+    func convertToRaw(userInput: Double) -> Double {
+        let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }
     
     func convertMathDegreesToSceneDegrees(_ mathDegrees: Double) -> Double {
-        // converts a given value to make it belong to the interval [0, 360) - moves to the first trigonometric circle due to periodicity 
+        // converts a given value to make it belong to the interval [0, 360) - moves to the first trigonometric circle due to periodicity
         let circleDegrees = type(of: self).circleMaxDegrees
         if mathDegrees < 0.0 {
             return (-1 * (circleDegrees - type(of: self).rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
