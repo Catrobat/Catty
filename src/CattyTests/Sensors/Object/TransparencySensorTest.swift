@@ -55,6 +55,12 @@ final class TransparencySensorTest: XCTestCase {
         XCTAssertEqual(0.5, sensor.rawValue(for: spriteObject))
     }
     
+    func testSetRawValue() {
+        let expectedRawValue = sensor.convertToRaw(userInput: 50, for: spriteObject)
+        sensor.setRawValue(userInput: 50, for: spriteObject)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.alpha), accuracy: 0.001)
+    }
+    
     func testConvertToStandarized() {
         // test minimum value of transparency on iOS
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 1.0, for: spriteObject))
@@ -73,7 +79,6 @@ final class TransparencySensorTest: XCTestCase {
         
         // test random value
         XCTAssertEqual(87.5, sensor.convertToStandardized(rawValue: 0.125, for: spriteObject))
-        
     }
     
     func testConvertToRaw() {

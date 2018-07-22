@@ -44,6 +44,7 @@ final class LayerSensorTest: XCTestCase {
         XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
     }
     
+    
     func testRawValue() {
         // background like on Android
         self.spriteNode.zPosition = -1
@@ -56,6 +57,12 @@ final class LayerSensorTest: XCTestCase {
         // third layer
         self.spriteNode.zPosition = 3
         XCTAssertEqual(3, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
+    }
+    
+    func testSetRawValue() {
+        let expectedRawValue = sensor.convertToRaw(userInput: 2, for: spriteObject)
+        sensor.setRawValue(userInput: 2, for: spriteObject)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.zPosition), accuracy: 0.001)
     }
     
     func testConvertToStandarized() {

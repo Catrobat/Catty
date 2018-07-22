@@ -83,6 +83,12 @@ final class PositionXSensorTest: XCTestCase {
         XCTAssertEqual(sensor.rawValue(for: spriteObject), random_x, accuracy: 0.0001)
     }
     
+    func testSetRawValue() {
+        let expectedRawValue = sensor.convertToRaw(userInput: 10, for: spriteObject)
+        sensor.setRawValue(userInput: 10, for: spriteObject)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.position.x), accuracy: 0.001)
+    }
+    
     func testConvertToStandardized() {
         XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, for: spriteObject))
         // TODO add tests (center, bottom left/right, top left/right

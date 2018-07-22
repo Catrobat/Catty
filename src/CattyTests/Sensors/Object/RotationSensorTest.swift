@@ -62,6 +62,12 @@ final class RotationSensorTest: XCTestCase {
         XCTAssertEqual(0, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
     }
     
+    func testSetRawValue() {
+        let expectedRawValue = sensor.convertToRaw(userInput: 90, for: spriteObject)
+        sensor.setRawValue(userInput: 90, for: spriteObject)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.zRotation), accuracy: 0.001)
+    }
+    
     func testConvertToStandarized() {
         // on the first circle
         XCTAssertEqual(90, sensor.convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.0001)

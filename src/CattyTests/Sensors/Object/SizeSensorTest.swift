@@ -55,6 +55,13 @@ final class SizeSensorTest: XCTestCase {
         XCTAssertEqual(0.5, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
     }
     
+    func testSetRawValue() {
+        let expectedRawValue = sensor.convertToRaw(userInput: 10, for: spriteObject)
+        sensor.setRawValue(userInput: 10, for: spriteObject)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.xScale), accuracy: 0.001)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.yScale), accuracy: 0.001)
+    }
+    
     func testConvertToStandarized() {
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.0001)
         XCTAssertEqual(6, sensor.convertToStandardized(rawValue: 0.025, for: spriteObject), accuracy: 0.0001)

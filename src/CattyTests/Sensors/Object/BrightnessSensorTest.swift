@@ -55,6 +55,12 @@ final class BrightnessSensorTest: XCTestCase {
         XCTAssertEqual(0.5, sensor.rawValue(for: spriteObject))
     }
     
+    func testSetRawValue() {
+        let expectedRawValue = sensor.convertToRaw(userInput: 0.5, for: spriteObject)
+        sensor.setRawValue(userInput: 0.5, for: spriteObject)
+        XCTAssertEqual(expectedRawValue, Double(spriteNode.ciBrightness), accuracy: 0.001)
+    }
+    
     func testConvertToStandardized() {
         // test minimum value
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: -1.0, for: spriteObject))
