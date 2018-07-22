@@ -27,6 +27,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: CBProgram?
+    var catrobatProject: CBProgram?
 
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
@@ -48,10 +49,31 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToProgramDetail {
             if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
-                let program = programForSegue {
-                    programDetailStoreViewController.project.projectID = String(program.projectId)
+                let catrobatProject = programForSegue {
+                programDetailStoreViewController.project = mapCBProgramToCatrobatProgram(program: catrobatProject)
             }
         }
+    }
+    
+    private func mapCBProgramToCatrobatProgram(program: CBProgram) -> CatrobatProgram {
+        var programDictionary = [String: Any]()
+        programDictionary["ProjectName"] = program.projectName
+        programDictionary["Author"] =  program.author
+        programDictionary["Description"] = program.description ?? ""
+        programDictionary["DownloadUrl"] = program.downloadUrl ?? ""
+        programDictionary["Downloads"] = program.downloads ?? 0
+        programDictionary["ProjectId"] = program.projectId
+        programDictionary["ProjectName"] = program.projectName
+        programDictionary["ProjectUrl"] = program.projectUrl ?? ""
+        programDictionary["ScreenshotBig"] = program.screenshotBig ?? ""
+        programDictionary["ScreenshotSmall"] = program.screenshotSmall ?? ""
+        programDictionary["FeaturedImage"] = program.featuredImage ?? ""
+        programDictionary["Uploaded"] = program.uploaded ?? 0
+        programDictionary["Version"] = program.version ?? ""
+        programDictionary["Views"] = program.views ?? 0
+        programDictionary["FileSize"] = program.fileSize ?? 0.0
+        
+        return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
 
     private func setupTableView() {
@@ -95,12 +117,15 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
+    
 }
 
 extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol {
     
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
-        print(cell.program?.projectName)
-        performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+        if let program = cell.program {
+           programForSegue = program
+           performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+        }
     }
 }
