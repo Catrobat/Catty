@@ -69,7 +69,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    double expectedRotation = [self.rotationSensor convertToRawWithStandardizedValue:20];
+    double expectedRotation = [self.rotationSensor convertToRawWithUserInput:20];
     XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.zRotation, 0.0001, @"PointInDirectionBrick is not correctly calculated");
 }
 

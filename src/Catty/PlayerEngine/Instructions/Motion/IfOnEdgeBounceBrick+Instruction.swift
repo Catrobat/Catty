@@ -79,7 +79,7 @@ private let EPSILON = 0.0001
                 }
             }
             
-            let rawValue = rotationSensor.convertToRaw(standardizedValue: rotation)
+            let rawValue = rotationSensor.convertToRaw(userInput: rotation)
             spriteNode.zRotation = CGFloat(rawValue)
             spriteNode.scenePosition = CGPoint(x: xPosition, y: yPosition)
         }

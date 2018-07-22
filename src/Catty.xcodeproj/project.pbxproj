@@ -1051,6 +1051,7 @@
 		F479930320F4987E0088EE27 /* LongitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FD20F4987E0088EE27 /* LongitudeSensorTest.swift */; };
 		F479930420F4987E0088EE27 /* LocationAccuracySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FE20F4987E0088EE27 /* LocationAccuracySensorTest.swift */; };
 		F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */; };
+		F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4840B30210090BC0024EEAF /* RotationSensorTest.swift */; };
 		F4844BF420F7C9D5009522D6 /* LayerSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
 		F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946220D6F221007E782E /* DateMonthSensor.swift */; };
@@ -2692,6 +2693,7 @@
 		F47992FD20F4987E0088EE27 /* LongitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongitudeSensorTest.swift; sourceTree = "<group>"; };
 		F47992FE20F4987E0088EE27 /* LocationAccuracySensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccuracySensorTest.swift; sourceTree = "<group>"; };
 		F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclinationYSensorTest.swift; sourceTree = "<group>"; };
+		F4840B30210090BC0024EEAF /* RotationSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationSensorTest.swift; sourceTree = "<group>"; };
 		F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerSensorTest.swift; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
 		F48E946220D6F221007E782E /* DateMonthSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensor.swift; sourceTree = "<group>"; };
@@ -2974,6 +2976,7 @@
 				F4FCA7B820ECBDB0000761C7 /* TransparencySensorTest.swift */,
 				F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */,
 				F42E1E9620FA21540078C89D /* SizeSensorTest.swift */,
+				F4840B30210090BC0024EEAF /* RotationSensorTest.swift */,
 				F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */,
 			);
 			path = Object;
@@ -7772,6 +7775,7 @@
 				4C11795E20AED5B6006C6E32 /* PositionXSensorTest.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
+				F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
 				59D008F4208E4BF9000539E7 /* MotionManagerMock.swift in Sources */,
 			);

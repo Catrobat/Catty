@@ -280,7 +280,7 @@
 - (void)setPosition:(CGPoint)position AndRotation:(CGFloat)rotation
 {
     self.spriteObject.spriteNode.scenePosition = position;
-    self.spriteObject.spriteNode.zRotation = [self.rotationSensor convertToRawWithStandardizedValue:rotation];
+    self.spriteObject.spriteNode.zRotation = [self.rotationSensor convertToRawWithUserInput:rotation];
     
     dispatch_block_t action = [self.brick actionBlock];
     action();
