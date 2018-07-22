@@ -34,7 +34,7 @@
 
         return {
             let yMov = yMovement.interpretDouble(forSprite: object)
-            spriteNode.scenePosition = CGPoint(x: spriteNode.scenePosition.x, y: spriteNode.scenePosition.y + CGFloat(yMov));
+            spriteNode.catrobatPositionY = spriteNode.catrobatPositionY + yMov
         }
     }
 }

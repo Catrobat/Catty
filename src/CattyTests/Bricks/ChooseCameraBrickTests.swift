@@ -26,6 +26,17 @@ import XCTest
 
 final class ChooseCameraBrickTests: XCTestCase {
     
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    
+    override func setUp() {
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+    }
+    
     func testDefaultCameraPosition() {
         // front camera should be default
         CameraPreviewHandler.resetSharedInstance()
@@ -33,19 +44,13 @@ final class ChooseCameraBrickTests: XCTestCase {
     }
     
     func testChooseCameraBrick() {
-        
         let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
+        spriteObject.program = program;
         
         let brick = ChooseCameraBrick();
         
         let script = Script();
-        script.object = object;
+        script.object = spriteObject;
         brick.script = script;
         
         let instruction = brick.instruction();
@@ -64,19 +69,13 @@ final class ChooseCameraBrickTests: XCTestCase {
     }
     
     func testChooseCameraBrickInitWithZero() {
-        
         let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
+        spriteObject.program = program;
         
         let brick = ChooseCameraBrick(choice: 0);
         
         let script = Script();
-        script.object = object;
+        script.object = spriteObject;
         brick?.script = script;
         
         let instruction = brick?.instruction();
@@ -95,19 +94,13 @@ final class ChooseCameraBrickTests: XCTestCase {
     }
     
     func testChooseCameraBrickInitWithOne() {
-        
         let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
+        spriteObject.program = program;
         
         let brick = ChooseCameraBrick(choice: 1);
         
         let script = Script();
-        script.object = object;
+        script.object = spriteObject;
         brick?.script = script;
         
         let instruction = brick?.instruction();

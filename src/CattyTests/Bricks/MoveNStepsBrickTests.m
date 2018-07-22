@@ -56,7 +56,7 @@
     [self.scene addChild:self.spriteNode];
     
     spriteObject.spriteNode = self.spriteNode;
-    self.spriteNode.scenePosition = CGPointMake(0, 0);
+    self.spriteNode.catrobatPosition = CGPointMake(0, 0);
     spriteObject.name = @"Test";
     
     self.script = [[WhenScript alloc] init];
@@ -166,7 +166,7 @@
 
 - (void)setPosition:(CGPoint)position andRotation:(CGFloat)rotation andMoveSteps:(CGFloat)steps
 {
-    self.spriteNode.scenePosition = position;
+    self.spriteNode.catrobatPosition = position;
     self.spriteNode.catrobatRotation = rotation;
     
     Formula* stepFormula = [[Formula alloc] init];
@@ -183,8 +183,8 @@
 
 - (void)checkPosition:(CGPoint)position
 {
-    XCTAssertEqualWithAccuracy(position.x, self.spriteNode.scenePosition.x, EPSILON, @"Wrong x after MoveNStepsBrick");
-    XCTAssertEqualWithAccuracy(position.y, self.spriteNode.scenePosition.y, EPSILON, @"Wrong y after MoveNStepsBrick");
+    XCTAssertEqualWithAccuracy(position.x, self.spriteNode.catrobatPosition.x, EPSILON, @"Wrong x after MoveNStepsBrick");
+    XCTAssertEqualWithAccuracy(position.y, self.spriteNode.catrobatPosition.y, EPSILON, @"Wrong y after MoveNStepsBrick");
 }
 
 - (void)testTitleSingular

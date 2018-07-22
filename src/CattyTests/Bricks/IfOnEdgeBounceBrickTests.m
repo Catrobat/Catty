@@ -61,7 +61,7 @@
     spriteNode.color = [UIColor blackColor];
     spriteNode.size = CGSizeMake(OBJECT_WIDTH, OBJECT_HEIGHT);
     self.spriteObject.spriteNode = spriteNode;
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
     self.spriteObject.name = @"Test";
 
     self.script = [[WhenScript alloc] init];
@@ -276,7 +276,7 @@
 
 - (void)setPosition:(CGPoint)position AndRotation:(CGFloat)rotation
 {
-    self.spriteObject.spriteNode.scenePosition = position;
+    self.spriteObject.spriteNode.catrobatPosition = position;
     self.spriteObject.spriteNode.catrobatRotation = rotation;
     
     dispatch_block_t action = [self.brick actionBlock];
@@ -285,8 +285,8 @@
 
 - (void)checkPosition:(CGPoint)position AndRotation:(CGFloat)expectedStandardizedRotation
 {
-    XCTAssertEqualWithAccuracy(position.x, self.spriteObject.spriteNode.scenePosition.x, EPSILON, @"Wrong x after bounce");
-    XCTAssertEqualWithAccuracy(position.y, self.spriteObject.spriteNode.scenePosition.y, EPSILON, @"Wrong y after bounce");
+    XCTAssertEqualWithAccuracy(position.x, self.spriteObject.spriteNode.catrobatPosition.x, EPSILON, @"Wrong x after bounce");
+    XCTAssertEqualWithAccuracy(position.y, self.spriteObject.spriteNode.catrobatPosition.y, EPSILON, @"Wrong y after bounce");
     
     XCTAssertEqualWithAccuracy(expectedStandardizedRotation, self.spriteObject.spriteNode.catrobatRotation, EPSILON, @"Wrong rotation after bounce");
 }

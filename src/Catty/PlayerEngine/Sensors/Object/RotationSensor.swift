@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class RotationSensor: NSObject, ObjectSensor, ReadWriteSensor {
+@objc class RotationSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
 
     static let tag = "OBJECT_ROTATION"
     static let name = kUIFEObjectDirection
@@ -29,20 +29,25 @@
     static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
-            return type(of: self).defaultRawValue
+            return self.defaultRawValue
         }
         return Double(spriteNode.zRotation)
     }
     
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
+        spriteObject.spriteNode.zRotation = CGFloat(rawValue)
+    }
+    
     // raw value is in radians, standardized value is in degrees
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees)
     }
     
-    static func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }

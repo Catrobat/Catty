@@ -56,11 +56,11 @@ final class AccelerationZSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(9.8, type(of: sensor).convertToStandardized(rawValue: 1), accuracy: 0.0001)
-        XCTAssertEqual(-9.8, type(of: sensor).convertToStandardized(rawValue: -1), accuracy: 0.0001)
-        XCTAssertEqual(98, type(of: sensor).convertToStandardized(rawValue: 10), accuracy: 0.0001)
-        XCTAssertEqual(-98, type(of: sensor).convertToStandardized(rawValue: -10), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(9.8, sensor.convertToStandardized(rawValue: 1), accuracy: 0.0001)
+        XCTAssertEqual(-9.8, sensor.convertToStandardized(rawValue: -1), accuracy: 0.0001)
+        XCTAssertEqual(98, sensor.convertToStandardized(rawValue: 10), accuracy: 0.0001)
+        XCTAssertEqual(-98, sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
     }
     
     func testTag() {
@@ -72,6 +72,6 @@ final class AccelerationZSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
+        XCTAssertTrue(sensor.showInFormulaEditor())
     }
 }

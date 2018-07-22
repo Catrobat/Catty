@@ -28,63 +28,60 @@ final class LookNumberSensorTest: XCTestCase {
     
     var spriteObject: SpriteObjectMock!
     var spriteNode: CBSpriteNodeMock!
-    var sensor: LookNumberSensor!
+    var sensor = LookNumberSensor.self
     
     override func setUp() {
         self.spriteObject = SpriteObjectMock()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        
-        self.sensor = LookNumberSensor()
     }
     
     override func tearDown() {
         self.spriteObject = nil
-        self.sensor = nil
     }
     
     func testDefaultRawValue() {
-        self.spriteNode.currentLook = nil
-        XCTAssertEqual(LookNumberSensor.defaultRawValue, self.sensor.rawValue(for: self.spriteObject))
+        spriteNode.currentLook = nil
+        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
         
-        self.spriteNode = nil
-        XCTAssertEqual(LookNumberSensor.defaultRawValue, self.sensor.rawValue(for: self.spriteObject))
+        spriteNode = nil
+        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
         
     }
     
     func testRawValue() {
-        self.spriteObject.lookList = [Look(name: "first", andPath: "test1.png"),
-                                      Look(name: "second", andPath: "test2.png"),
-                                      Look(name: "third", andPath: "test3.png")]
+        spriteObject.lookList = [Look(name: "first", andPath: "test1.png"),
+                                 Look(name: "second", andPath: "test2.png"),
+                                 Look(name: "third", andPath: "test3.png")]
         
-        self.spriteNode.currentLook = (self.spriteObject.lookList[0] as! Look)
-        XCTAssertEqual(0, self.sensor.rawValue(for: self.spriteObject))
+        spriteNode.currentLook = (spriteObject.lookList[0] as! Look)
+        XCTAssertEqual(0, sensor.rawValue(for: spriteObject))
         
-        self.spriteNode.currentLook = (self.spriteObject.lookList[1] as! Look)
-        XCTAssertEqual(1, self.sensor.rawValue(for: self.spriteObject))
+        spriteNode.currentLook = (spriteObject.lookList[1] as! Look)
+        XCTAssertEqual(1, sensor.rawValue(for: spriteObject))
         
-        self.spriteNode.currentLook = (self.spriteObject.lookList[2] as! Look)
-        XCTAssertEqual(2, self.sensor.rawValue(for: self.spriteObject))
+        spriteNode.currentLook = (spriteObject.lookList[2] as! Look)
+        XCTAssertEqual(2, sensor.rawValue(for: spriteObject))
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(1, type(of: sensor).convertToStandardized(rawValue: 0))
-        XCTAssertEqual(2, type(of: sensor).convertToStandardized(rawValue: 1))
-        XCTAssertEqual(3, type(of: sensor).convertToStandardized(rawValue: 2))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 0, for: spriteObject))
+        XCTAssertEqual(2, sensor.convertToStandardized(rawValue: 1, for: spriteObject))
+        XCTAssertEqual(3, sensor.convertToStandardized(rawValue: 2, for: spriteObject))
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_LOOK_NUMBER", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_LOOK_NUMBER", sensor.tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
     
     func testShowInFormulaEditor() {
         spriteObject.background = true
-        XCTAssertFalse(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
+        XCTAssertFalse(sensor.showInFormulaEditor(for: spriteObject))
         
         spriteObject.background = false
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
 }

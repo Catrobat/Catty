@@ -49,7 +49,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula *xPosition = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -66,7 +66,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)20, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)20, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickNegative
@@ -76,7 +76,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula* xPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -93,7 +93,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)-20, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)-20, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickOutOfRange
@@ -103,7 +103,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula *xPosition =[[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
@@ -120,7 +120,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)50000, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)50000, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickWrongInput
@@ -130,7 +130,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula* xPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -147,7 +147,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)0, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)0, @"SetxBrick is not correctly calculated");
 }
 
 @end

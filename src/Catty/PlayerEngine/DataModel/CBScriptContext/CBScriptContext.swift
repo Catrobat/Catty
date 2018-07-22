@@ -58,9 +58,8 @@ class CBScriptContext: CBScriptContextProtocol {
     }
 
     init?(script: Script, spriteNode: CBSpriteNode, state: CBScriptContextState, instructionList: [CBInstruction]) {
-        guard let spriteNodeName = spriteNode.name,
-            let nodeIndex = spriteNode.spriteObject?.scriptList.index(of: script)
-            else { return nil }
+        guard let spriteNodeName = spriteNode.name else { return nil }
+        let nodeIndex = spriteNode.spriteObject.scriptList.index(of: script)
 
         self.spriteNode = spriteNode
         self.script = script

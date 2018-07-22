@@ -35,11 +35,11 @@ class TimeHourSensor : DateSensor {
         return Double(Calendar.current.component(.hour, from: self.date()))
     }
     
-    static func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    static func showInFormulaEditor() -> Bool {
+    func showInFormulaEditor() -> Bool {
         return true
     }
 }

@@ -20,19 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class TransparencySensor: NSObject, ObjectSensor, ReadWriteSensor {
-    
+@objc class TransparencySensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+
     static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency
     static let defaultRawValue = 1.0
     static let requiredResource = ResourceType.noResources
     
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
             return TransparencySensor.defaultRawValue
         }
         
         return Double(spriteNode.alpha)
+    }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
+        spriteObject.spriteNode.alpha = CGFloat(rawValue)
     }
     
     /*  on iOS, the transparency function is descending:
@@ -47,7 +52,7 @@
      */
     
     // f:[0, 1] -> [0, 100]
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         
         if rawValue >= 1 {
             return 0.0 // maximum transparency
@@ -59,7 +64,7 @@
     }
     
     // f:[0, 100] -> [0, 1]
-    static func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         
         if userInput >= 100 {
             return 0.0 // maximum transparency

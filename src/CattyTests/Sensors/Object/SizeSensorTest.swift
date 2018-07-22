@@ -28,60 +28,57 @@ final class SizeSensorTest: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    var sensor: SizeSensor!
+    var sensor = SizeSensor.self
     
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        
-        self.sensor = SizeSensor()
     }
     
     override func tearDown() {
         self.spriteObject = nil
-        self.sensor = nil
     }
     
     func testDefaultRawValue() {
-        self.spriteObject.spriteNode = nil
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject))
+        spriteObject.spriteNode = nil
+        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
     }
     
     func testRawValue() {
-        self.spriteNode.xScale = 1.0
-        XCTAssertEqual(1.0, self.sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        spriteNode.xScale = 1.0
+        XCTAssertEqual(1.0, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
         
-        self.spriteNode.xScale = 0.0
-        XCTAssertEqual(0, self.sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        spriteNode.xScale = 0.0
+        XCTAssertEqual(0, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
         
-        self.spriteNode.xScale = 0.5
-        XCTAssertEqual(0.5, self.sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        spriteNode.xScale = 0.5
+        XCTAssertEqual(0.5, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToStandarized() {
-        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(6, type(of: sensor).convertToStandardized(rawValue: 0.025), accuracy: 0.0001)
-        XCTAssertEqual(60, type(of: sensor).convertToStandardized(rawValue: 0.25), accuracy: 0.0001)
-        XCTAssertEqual(240, type(of: sensor).convertToStandardized(rawValue: 1.0), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(6, sensor.convertToStandardized(rawValue: 0.025, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(60, sensor.convertToStandardized(rawValue: 0.25, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(240, sensor.convertToStandardized(rawValue: 1.0, for: spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0), accuracy: 0.0001)
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: -10), accuracy: 0.0001)
-        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 240), accuracy: 0.0001)
-        XCTAssertEqual(0.5, type(of: sensor).convertToRaw(userInput: 120), accuracy: 0.0001)
-        XCTAssertEqual(0.25, type(of: sensor).convertToRaw(userInput: 60), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 0, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: -10, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(1, sensor.convertToRaw(userInput: 240, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0.5, sensor.convertToRaw(userInput: 120, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0.25, sensor.convertToRaw(userInput: 60, for: spriteObject), accuracy: 0.0001)
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_SIZE", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_SIZE", sensor.tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
 }

@@ -40,8 +40,8 @@
 
             spriteNode.currentUIImageLook = image
             
-            spriteNode.catrobatBrightness = BrightnessSensor.defaultStandardizedValue()
-            spriteNode.catrobatColor = ColorSensor.defaultStandardizedValue()
+            spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
+            spriteNode.ciHueAdjust = CGFloat(ColorSensor.defaultRawValue)
             
             for (paramName, _) in spriteNode.filterDict {
                 spriteNode.filterDict[paramName] = false
@@ -50,9 +50,10 @@
             let currentsize = spriteNode.catrobatSize
             let texture = SKTexture(image: image)
             
-            spriteNode.catrobatSize = SizeSensor.defaultStandardizedValue()
-            spriteNode.catrobatTransparency = TransparencySensor.defaultStandardizedValue()
-
+            spriteNode.xScale = CGFloat(SizeSensor.defaultRawValue)
+            spriteNode.yScale = CGFloat(SizeSensor.defaultRawValue)
+            spriteNode.alpha = CGFloat(TransparencySensor.defaultRawValue)
+            
             spriteNode.size = texture.size()
             spriteNode.texture = texture
             

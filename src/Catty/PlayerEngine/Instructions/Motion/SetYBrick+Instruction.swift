@@ -32,10 +32,7 @@
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.scenePosition = CGPoint(
-                x: spriteNode.scenePosition.x,
-                y: CGFloat(self.yPosition.interpretDouble(forSprite: object))
-            )
+            spriteNode.catrobatPositionY = self.yPosition.interpretDouble(forSprite: object)
         }
     }
 }

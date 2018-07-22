@@ -25,17 +25,22 @@ import XCTest
 @testable import Pocket_Code
 
 final class SetVariableBrickTests: XCTestCase {
+    
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    
+    override func setUp() {
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+    }
 
     func testSetVariableBrickUserVariablesNil() {
-
         let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
         spriteNode.position = CGPoint(x: 0, y: 0);
-        object.program = program;
+        spriteObject.program = program;
         
         let formula = Formula();
         let formulaTree = FormulaElement();
@@ -44,13 +49,13 @@ final class SetVariableBrickTests: XCTestCase {
         formula.formulaTree = formulaTree;
 
         let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
+        program.variables = varContainer;
         
         let brick = SetVariableBrick();
         brick.variableFormula = formula;
         
         let script = Script();
-        script.object = object;
+        script.object = spriteObject;
         brick.script = script;
         
         let instruction = brick.instruction();

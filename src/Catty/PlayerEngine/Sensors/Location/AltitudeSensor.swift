@@ -37,11 +37,11 @@ class AltitudeSensor : NSObject, DeviceSensor {
         return self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
     }
     
-    static func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    static func showInFormulaEditor() -> Bool {
+    func showInFormulaEditor() -> Bool {
         return true
     }
 }

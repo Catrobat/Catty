@@ -71,7 +71,7 @@ final class AltitudeSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: 100))
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
     
     func testTag() {
@@ -83,7 +83,7 @@ final class AltitudeSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
+        XCTAssertTrue(sensor.showInFormulaEditor())
     }
 }
 

@@ -20,21 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LayerSensor: NSObject, ObjectSensor, ReadWriteSensor {
-
+@objc class LayerSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+    
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
-            return type(of: self).defaultRawValue
+            return defaultRawValue
         }
-        return Double(spriteNode.zIndex)
+        return Double(spriteNode.zPosition)
+    }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        let rawValue = convertToRaw(userInput: userInput, for: spriteObject)
+        spriteObject.spriteNode.zPosition = CGFloat(rawValue)
     }
 
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         if rawValue == 0 {
             // for background
             return -1
@@ -42,7 +47,7 @@
         return rawValue
     }
     
-    static func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         if userInput < 1 {
             // can not be set for background
             return 1

@@ -20,25 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class ColorSensor: NSObject, ObjectSensor, ReadWriteSensor {
-    
+@objc class ColorSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+
     static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
-            return type(of: self).defaultRawValue
+            return self.defaultRawValue
         }
         return Double(spriteNode.ciHueAdjust)
     }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
+        spriteObject.spriteNode.ciHueAdjust = CGFloat(rawValue)
+    }
 
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue * 100 / Double.pi
     }
     
-    static func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         var valueToConvert = userInput
         let whole = Int(valueToConvert)
         let fraction = valueToConvert.truncatingRemainder(dividingBy: 1)

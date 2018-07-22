@@ -20,21 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PositionXSensor: ObjectSensor {
+class PositionXSensor: ObjectSensor, ObjectReadWriteSensor {
 
     static let tag = "OBJECT_X"
     static let name = kUIFEObjectPositionX
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
-        guard let spriteNode = spriteObject.spriteNode else { return PositionXSensor.defaultRawValue }
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
+        guard let spriteNode = spriteObject.spriteNode else { return defaultRawValue }
         
-        return Double(spriteNode.scenePosition.x)
+        return Double(spriteNode.position.x)
+    }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        let rawValue = convertToRaw(userInput: userInput, for: spriteObject)
+        spriteObject.spriteNode.position.x = CGFloat(rawValue)
+    }
+    
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
+        guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
+        return Double(scene.size.width)/2.0 + userInput
     }
 
-    static func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+        guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
+        return rawValue - Double(scene.size.width)/2.0
     }
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {

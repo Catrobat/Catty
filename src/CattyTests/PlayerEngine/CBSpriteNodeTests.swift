@@ -27,33 +27,44 @@ import XCTest
 final class CBSpriteNodeTests: XCTestCase {
 
     final let epsilon = 0.001
-    var spriteNode = CBSpriteNode()
+    var spriteNode: CBSpriteNodeMock!
     
     override func setUp() {
-        spriteNode = CBSpriteNode()
-        
         let spriteObject = SpriteObject()
-        spriteNode.spriteObject = spriteObject
         spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        spriteNode.mockedScene = CBScene(size: CGSize(width: 1000, height: 1000))
+        
         spriteObject.spriteNode = spriteNode
+    }
+    
+    func testPosition() {
+        spriteNode.catrobatPosition = CGPoint(x: 10, y: 20)
+        
+        XCTAssertEqual(PositionXSensor.convertToRaw(userInput: 10, for: spriteNode.spriteObject), Double(spriteNode.position.x), accuracy: epsilon, "SpriteNode catrobatPosition not correct")
+        XCTAssertEqual(PositionYSensor.convertToRaw(userInput: 20, for: spriteNode.spriteObject), Double(spriteNode.position.y), accuracy: epsilon, "SpriteNode catrobatPosition not correct")
+    }
+    
+    func testPositionX() {
+        spriteNode.catrobatPositionX = 10
+        XCTAssertEqual(PositionXSensor.convertToRaw(userInput: 10, for: spriteNode.spriteObject), Double(spriteNode.position.x), accuracy: epsilon, "SpriteNode catrobatPosition not correct")
+    }
+    
+    func testPositionY() {
+        spriteNode.catrobatPositionY = 20
+        XCTAssertEqual(PositionYSensor.convertToRaw(userInput: 20, for: spriteNode.spriteObject), Double(spriteNode.position.y), accuracy: epsilon, "SpriteNode catrobatPosition not correct")
     }
     
     func testSize() {
         spriteNode.catrobatSize = 30.0
-        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 30.0), Double(spriteNode.xScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
-        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 30.0), Double(spriteNode.yScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
-        
-        spriteNode.catrobatSize = 60.0
-        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 60.0), Double(spriteNode.xScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
-        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 60.0), Double(spriteNode.yScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
+        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 30.0, for: spriteNode.spriteObject), Double(spriteNode.xScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
+        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 30.0, for: spriteNode.spriteObject), Double(spriteNode.yScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
     }
     
     func testRotation() {
         spriteNode.catrobatRotation = 10.0
-        XCTAssertEqual(RotationSensor.convertToRaw(userInput: 10.0), Double(spriteNode.zRotation), accuracy: epsilon, "SpriteNode catrobatRotation not correct")
-        
-        spriteNode.catrobatRotation = 20.0
-        XCTAssertEqual(RotationSensor.convertToRaw(userInput: 20.0), Double(spriteNode.zRotation), accuracy: epsilon, "SpriteNode catrobatRotation not correct")
+        XCTAssertEqual(RotationSensor.convertToRaw(userInput: 10.0, for: spriteNode.spriteObject), Double(spriteNode.zRotation), accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
         spriteNode.catrobatRotation = 180.0
         XCTAssertEqual(180.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
@@ -84,34 +95,22 @@ final class CBSpriteNodeTests: XCTestCase {
     }
     
     func testLayer() {
-        spriteNode.catrobatLayer = 1.0
-        XCTAssertEqual(LayerSensor.convertToRaw(userInput: 1.0), Double(spriteNode.zPosition), accuracy: epsilon, "SpriteNode catrobatLayer not correct")
-        
         spriteNode.catrobatLayer = 2.0
-        XCTAssertEqual(LayerSensor.convertToRaw(userInput: 2.0), Double(spriteNode.zPosition), accuracy: epsilon, "SpriteNode catrobatLayer not correct")
+        XCTAssertEqual(LayerSensor.convertToRaw(userInput: 2.0, for: spriteNode.spriteObject), Double(spriteNode.zPosition), accuracy: epsilon, "SpriteNode catrobatLayer not correct")
     }
     
     func testTransparency() {
-        spriteNode.catrobatTransparency = 50.0
-        XCTAssertEqual(TransparencySensor.convertToRaw(userInput: 50.0), Double(spriteNode.alpha), accuracy: epsilon, "SpriteNode catrobatTransparency not correct")
-        
         spriteNode.catrobatTransparency = 90.0
-        XCTAssertEqual(TransparencySensor.convertToRaw(userInput: 90.0), Double(spriteNode.alpha), accuracy: epsilon, "SpriteNode catrobatTransparency not correct")
+        XCTAssertEqual(TransparencySensor.convertToRaw(userInput: 90.0, for: spriteNode.spriteObject), Double(spriteNode.alpha), accuracy: epsilon, "SpriteNode catrobatTransparency not correct")
     }
     
     func testBrightness() {
-        spriteNode.catrobatBrightness = 100.0
-        XCTAssertEqual(BrightnessSensor.convertToRaw(userInput: 100.0), Double(spriteNode.ciBrightness), accuracy: epsilon, "SpriteNode catrobatBrightness not correct")
-        
         spriteNode.catrobatBrightness = 30.0
-        XCTAssertEqual(BrightnessSensor.convertToRaw(userInput: 30.0), Double(spriteNode.ciBrightness), accuracy: epsilon, "SpriteNode catrobatBrightness not correct")
+        XCTAssertEqual(BrightnessSensor.convertToRaw(userInput: 30.0, for: spriteNode.spriteObject), Double(spriteNode.ciBrightness), accuracy: epsilon, "SpriteNode catrobatBrightness not correct")
     }
     
     func testColor() {
-        spriteNode.catrobatColor = 20.0
-        XCTAssertEqual(ColorSensor.convertToRaw(userInput: 20.0), Double(spriteNode.ciHueAdjust), accuracy: epsilon, "SpriteNode catrobatColor not correct")
-        
         spriteNode.catrobatColor = 40.0
-        XCTAssertEqual(ColorSensor.convertToRaw(userInput: 40.0), Double(spriteNode.ciHueAdjust), accuracy: epsilon, "SpriteNode catrobatColor not correct")
+        XCTAssertEqual(ColorSensor.convertToRaw(userInput: 40.0, for: spriteNode.spriteObject), Double(spriteNode.ciHueAdjust), accuracy: epsilon, "SpriteNode catrobatColor not correct")
     }
 }

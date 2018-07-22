@@ -29,14 +29,14 @@ class InclinationYSensor : DeviceSensor {
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.accelerometerAndDeviceMotion
 
-    static var getMotionManager: () -> MotionManager? = { nil }
+    let getMotionManager: () -> MotionManager?
     
     init(motionManagerGetter: @escaping () -> MotionManager?) {
-        type(of: self).getMotionManager = motionManagerGetter
+        self.getMotionManager = motionManagerGetter
     }
 
     func rawValue() -> Double {
-        guard let inclinationSensor = type(of: self).getMotionManager() else { return type(of: self).defaultRawValue }
+        guard let inclinationSensor = getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {
             return type(of: self).defaultRawValue
         }
@@ -47,7 +47,7 @@ class InclinationYSensor : DeviceSensor {
     // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android
     // going forward, it is positive on both iOS and Android
     // going backwards, it is negative on both iOS and Android
-    static func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         let faceDown = (getMotionManager()?.accelerometerData?.acceleration.z ?? 0) >  0
         if faceDown == false {
             // screen up
@@ -61,7 +61,7 @@ class InclinationYSensor : DeviceSensor {
         }
     }
     
-    static func showInFormulaEditor() -> Bool {
+    func showInFormulaEditor() -> Bool {
         return true
     }
 }

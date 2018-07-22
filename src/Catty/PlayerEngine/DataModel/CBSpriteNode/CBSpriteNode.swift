@@ -24,60 +24,13 @@
 class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
-    @objc var spriteObject: SpriteObject?
+    @objc var spriteObject: SpriteObject
     @objc var currentLook: Look?
     @objc var currentUIImageLook: UIImage?
     
     @objc var filterDict = ["brightness": false, "color": false]
     @objc var ciBrightness: CGFloat = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
     @objc var ciHueAdjust: CGFloat = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
-    
-    // Computed properties to get and set values within the standardized range
-    @objc var catrobatSize: Double {
-        set {
-            self.xScale = CGFloat(SizeSensor.convertToRaw(userInput: newValue))
-            self.yScale = CGFloat(SizeSensor.convertToRaw(userInput: newValue))
-        }
-        get { return SizeSensor.convertToStandardized(rawValue: Double(self.xScale)) }
-    }
-    
-    @objc var catrobatRotation: Double {
-        set { self.zRotation = CGFloat(RotationSensor.convertToRaw(userInput: newValue)) }
-        get { return RotationSensor.convertToStandardized(rawValue: Double(self.zRotation)) }
-    }
-    
-    @objc var catrobatLayer: Double {
-        set { self.zPosition = CGFloat(LayerSensor.convertToRaw(userInput: newValue)) }
-        get { return LayerSensor.convertToStandardized(rawValue: Double(self.zPosition)) }
-    }
-    
-    @objc var catrobatTransparency: Double {
-        set { self.alpha = CGFloat(TransparencySensor.convertToRaw(userInput: newValue)) }
-        get { return TransparencySensor.convertToStandardized(rawValue: Double(self.alpha)) }
-    }
-    
-    @objc var catrobatBrightness: Double {
-        set { self.ciBrightness = CGFloat(BrightnessSensor.convertToRaw(userInput: newValue)) }
-        get { return BrightnessSensor.convertToStandardized(rawValue: Double(self.ciBrightness)) }
-    }
-    
-    @objc var catrobatColor: Double {
-        set { self.ciHueAdjust = CGFloat(ColorSensor.convertToRaw(userInput: newValue)) }
-        get { return ColorSensor.convertToStandardized(rawValue: Double(self.ciHueAdjust)) }
-    }
-    
-    @objc var scenePosition: CGPoint {
-        set {
-            guard let scene = self.scene else { preconditionFailure() }
-            self.position = CBSceneHelper.convertPointToScene(newValue, sceneSize: scene.size)
-        }
-        get {
-            guard let scene = self.scene else { preconditionFailure() }
-            return CBSceneHelper.convertSceneCoordinateToPoint(self.position, sceneSize: scene.size)
-        }
-    }
-    
-    @objc var zIndex: CGFloat { return zPosition }
     
     private var _lastTimeTouchedSpriteNode = [String:Date]()
 
@@ -89,6 +42,8 @@ class CBSpriteNode: SKSpriteNode {
     // MARK: - Initializers
     @objc required init(spriteObject: SpriteObject) {
         let color = UIColor.clear
+        self.spriteObject = spriteObject
+        
         if let firstLook = spriteObject.lookList.firstObject as? Look,
            let filePathForLook = spriteObject.path(for: firstLook),
            let image = UIImage(contentsOfFile:filePathForLook)
@@ -99,19 +54,15 @@ class CBSpriteNode: SKSpriteNode {
             self.currentLook = firstLook
             self.currentLook = firstLook
         } else {
-            super.init(color: color, size: CGSize.zero)
+            super.init(texture: nil, color: color, size: CGSize.zero)
         }
-        self.spriteObject = spriteObject
-        spriteObject.spriteNode = self
+        
+        self.spriteObject.spriteNode = self
         self.name = spriteObject.name
         self.isUserInteractionEnabled = false
         setLook()
     }
-
-    @objc required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
-    }
-
+    
     @objc required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -178,8 +129,7 @@ class CBSpriteNode: SKSpriteNode {
     }
     
     @objc func nextLook() -> Look? {
-        guard let currentLook = currentLook,
-            let spriteObject = self.spriteObject
+        guard let currentLook = currentLook
             else { return nil }
 
         let currentIndex = spriteObject.lookList.index(of: currentLook)
@@ -191,18 +141,16 @@ class CBSpriteNode: SKSpriteNode {
         if currentLook == nil {
             return nil
         }
-        if let spriteObject = self.spriteObject {
-            var index = spriteObject.lookList.index(of: currentLook!)
-            index -= 1
-            index = index < 0 ? spriteObject.lookList.count - 1 : index
-            return spriteObject.lookList[index] as? Look
-        }
-        return nil
+        
+        var index = spriteObject.lookList.index(of: currentLook!)
+        index -= 1
+        index = index < 0 ? spriteObject.lookList.count - 1 : index
+        return spriteObject.lookList[index] as? Look
     }
     
     @objc func changeLook(_ look: Look?) {
         guard let look = look,
-            let filePathForLook = spriteObject?.path(for: look),
+            let filePathForLook = spriteObject.path(for: look),
             let image = UIImage(contentsOfFile:filePathForLook)
             else { return }
 
@@ -235,26 +183,25 @@ class CBSpriteNode: SKSpriteNode {
     }
 
     @objc func setLook() {
-        if let count = spriteObject?.lookList.count, count > 0, let look = spriteObject?.lookList[0] as? Look {
+        if spriteObject.lookList.count > 0, let look = spriteObject.lookList[0] as? Look {
             changeLook(look)
         }
     }
 
     // MARK: Events
     @objc func start(_ zPosition: CGFloat) {
-        self.scenePosition = CGPoint(x: 0, y: 0)
+        self.position = CGPoint(x: PositionXSensor.defaultRawValue, y: PositionYSensor.defaultRawValue)
         self.zRotation = CGFloat(RotationSensor.defaultRawValue)
         self.xScale = CGFloat(SizeSensor.defaultRawValue)
         self.yScale = CGFloat(SizeSensor.defaultRawValue)
         
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
         
-        if self.spriteObject?.isBackground() == true {
+        if self.spriteObject.isBackground() == true {
             self.zPosition = 0
         } else {
             self.zPosition = zPosition
         }
-        
     }
     
     @objc func touchedWithTouch(_ touch: UITouch, atPosition position: CGPoint) -> Bool {
@@ -263,8 +210,7 @@ class CBSpriteNode: SKSpriteNode {
               let imageLook = currentUIImageLook, scheduler.running
         else { return false }
 
-        guard let spriteObject = spriteObject,
-              let spriteName = spriteObject.name
+        guard let spriteName = spriteObject.name
         else { preconditionFailure("Invalid SpriteObject!") }
         let touchedPoint = touch.location(in: self)
         

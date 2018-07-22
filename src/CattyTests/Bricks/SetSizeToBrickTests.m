@@ -26,7 +26,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface SetSizeToBrickTests : AbstractBrickTests
-@property (nonatomic, strong) SizeSensor* sizeSensor;
 @end
 
 @implementation SetSizeToBrickTests
@@ -34,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.sizeSensor = [SizeSensor new];
 }
 
 - (void)tearDown

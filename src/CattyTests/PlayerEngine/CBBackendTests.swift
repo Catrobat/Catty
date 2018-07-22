@@ -27,17 +27,22 @@ import XCTest
 final class CBBackendTests: XCTestCase {
 
     let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)!
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    
+    override func setUp() {
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+    }
 
     func testActionInstruction() {
         let frontend = CBFrontend(logger: self.logger, program: nil)
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let showBrick = ShowBrick()
@@ -72,11 +77,6 @@ final class CBBackendTests: XCTestCase {
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let setLookBrick = SetLookBrick()
@@ -111,11 +111,6 @@ final class CBBackendTests: XCTestCase {
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let setYBrick = SetYBrick()
@@ -150,12 +145,6 @@ final class CBBackendTests: XCTestCase {
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.name = "SpriteNodeName"
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let setYBrick = SetYBrick()
@@ -226,12 +215,6 @@ final class CBBackendTests: XCTestCase {
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.name = "SpriteNodeName"
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let setYBrick = SetYBrick()
@@ -297,12 +280,6 @@ final class CBBackendTests: XCTestCase {
         let backend = CBBackend(logger: self.logger)
         
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.name = "SpriteNodeName"
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let loopBeginBrick = LoopBeginBrick()
@@ -382,12 +359,6 @@ final class CBBackendTests: XCTestCase {
         
         let whenScript = WhenScript()
         whenScript.action = kWhenScriptDefaultAction
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.name = "SpriteNodeName"
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         spriteObject.program = program
         whenScript.object = spriteObject
         
@@ -505,12 +476,6 @@ final class CBBackendTests: XCTestCase {
         let backend = CBBackend(logger: self.logger)
 
         let startScript = StartScript()
-        let spriteObject = SpriteObject()
-        let spriteNode = CBSpriteNode()
-        spriteNode.name = "SpriteNodeName"
-        spriteNode.spriteObject = spriteObject
-        spriteObject.name = "SpriteObjectName"
-        spriteObject.spriteNode = spriteNode
         startScript.object = spriteObject
         
         let setBrightnessBrick = SetBrightnessBrick()

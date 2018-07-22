@@ -83,7 +83,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:initialRotation - rotation];
+    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:(initialRotation - rotation) for: object];
     XCTAssertEqualWithAccuracy(expectedRawRotation, spriteNode.zRotation, 0.0001, @"TurnLeftBrick not correct");
 }
 

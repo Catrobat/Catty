@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SizeSensor: NSObject, ObjectSensor, ReadWriteSensor {
-    
+class SizeSensor: ObjectSensor, ObjectReadWriteSensor {
+
     static let androidToIOSScale = 2.4
     
     static let tag = "OBJECT_SIZE"
@@ -29,19 +29,25 @@ class SizeSensor: NSObject, ObjectSensor, ReadWriteSensor {
     static let defaultRawValue = 1.0 / androidToIOSScale
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
-            return type(of: self).defaultRawValue
+            return self.defaultRawValue
         }
         return Double(spriteNode.xScale)
     }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
+        spriteObject.spriteNode.xScale = CGFloat(rawValue)
+        spriteObject.spriteNode.yScale = CGFloat(rawValue)
+    }
 
     // the sprite on Android is about 2.4 times smaller
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue * (100 * androidToIOSScale)
     }
     
-    static func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         if userInput <= 0 {
             return 0.0     //Android doesn't have negative values for size
         }

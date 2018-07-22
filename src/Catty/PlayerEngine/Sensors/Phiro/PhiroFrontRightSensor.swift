@@ -38,11 +38,11 @@
         return self.getBluetoothService()?.getSensorPhiro()?.getSensorValue(type(of: self).pinNumber) ?? type(of: self).defaultRawValue
     }
     
-    static func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    static func showInFormulaEditor() -> Bool {
+    func showInFormulaEditor() -> Bool {
         return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
     }
 }

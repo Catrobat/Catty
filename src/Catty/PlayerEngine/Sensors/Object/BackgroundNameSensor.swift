@@ -20,18 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class BackgroundNameSensor: NSObject, ObjectSensor {
+@objc class BackgroundNameSensor: NSObject, ObjectSensor {
 
     static let tag = "OBJECT_BACKGROUND_NAME"
     static let name = kUIFEObjectBackgroundName
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         return 0 // TODO
     }
 
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }
     

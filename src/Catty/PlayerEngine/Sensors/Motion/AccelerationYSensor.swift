@@ -37,11 +37,11 @@ class AccelerationYSensor : NSObject, DeviceSensor {
         return self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
     }
 
-    static func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 9.8
     }
     
-    static func showInFormulaEditor() -> Bool {
+    func showInFormulaEditor() -> Bool {
         return true
     }
 }

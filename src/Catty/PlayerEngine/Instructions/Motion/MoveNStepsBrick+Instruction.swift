@@ -36,12 +36,12 @@
             let steps = stepsFormula.interpretDouble(forSprite: object)
             let standardizedRotation = spriteNode.catrobatRotation
             let rotationRadians = Util.degree(toRadians: Double(standardizedRotation))
-            let position = spriteNode.scenePosition
             
-            let xPosition = Double(position.x) + (steps * sin(rotationRadians))
-            let yPosition = Double(position.y) + (steps * cos(rotationRadians))
+            let xPosition = spriteNode.catrobatPositionX + (steps * sin(rotationRadians))
+            let yPosition = spriteNode.catrobatPositionY + (steps * cos(rotationRadians))
             
-            spriteNode.scenePosition = CGPoint(x: CGFloat(xPosition), y: CGFloat(yPosition))
+            spriteNode.catrobatPositionX = xPosition
+            spriteNode.catrobatPositionY = yPosition
         }
     }
 }

@@ -51,7 +51,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
+    spriteNode.catrobatPosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
@@ -104,7 +104,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
+    spriteNode.catrobatPosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];

@@ -67,11 +67,11 @@ final class DateMonthSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(1, type(of: sensor).convertToStandardized(rawValue: 1))
-        XCTAssertEqual(10, type(of: sensor).convertToStandardized(rawValue: 10))
+        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
+        XCTAssertTrue(sensor.showInFormulaEditor())
     }
 }

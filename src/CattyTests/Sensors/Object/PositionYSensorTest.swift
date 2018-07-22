@@ -28,76 +28,79 @@ final class PositionYSensorTest: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    var sensor: PositionYSensor!
+    let sensor = PositionYSensor.self
     
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        
-        self.sensor = PositionYSensor()
+        self.spriteNode.mockedScene = CBScene(size: CGSize(width: 500, height: 500))
     }
     
     override func tearDown() {
         self.spriteObject = nil
-        self.sensor = nil
     }
     
     func testDefaultRawValue() {
-        self.spriteNode.mockedPosition = CGPoint(x: 34, y: 12)
-        XCTAssertNotEqual(sensor.rawValue(for: self.spriteObject), PositionYSensor.defaultRawValue, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 34, y: 12)
+        XCTAssertNotEqual(sensor.rawValue(for: spriteObject), sensor.defaultRawValue, accuracy: 0.0001)
         
-        self.spriteObject.spriteNode = nil
-        XCTAssertEqual(sensor.rawValue(for: self.spriteObject), PositionYSensor.defaultRawValue, accuracy: 0.0001)
+        spriteObject.spriteNode = nil
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), sensor.defaultRawValue, accuracy: 0.0001)
     }
     
     func testRawValue() {
         // test point inside the screen, positive Y value
-        self.spriteNode.mockedPosition = CGPoint(x: 22, y: 33)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 33, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 22, y: 33)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), 33, accuracy: 0.0001)
         
         // test point inside the screen, negative Y value
-        self.spriteNode.mockedPosition = CGPoint(x: 55, y: -78)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), -78, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 55, y: -78)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), -78, accuracy: 0.0001)
         
         // test middle of the screen
-        self.spriteNode.mockedPosition = CGPoint(x: 0, y: 0)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 0, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 0, y: 0)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), 0, accuracy: 0.0001)
         
         // test top edge of the screen iPhone 8 Plus
-        self.spriteNode.mockedPosition = CGPoint(x: 150, y: 333)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 333, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 150, y: 333)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), 333, accuracy: 0.0001)
         
         // test bottom edge of the screen iPhone 8 Plus
-        self.spriteNode.mockedPosition = CGPoint(x: 150, y: -333)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), -333, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 150, y: -333)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), -333, accuracy: 0.0001)
         
         // test outside of the screen
-        self.spriteNode.mockedPosition = CGPoint(x: 25, y: 9999)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 9999, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 25, y: 9999)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), 9999, accuracy: 0.0001)
         
         // test float value
-        self.spriteNode.mockedPosition = CGPoint(x: 21, y: 15.765)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), 15.765, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 21, y: 15.765)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), 15.765, accuracy: 0.0001)
         
         // test random point
         let random_y = drand48() * 100
-        self.spriteNode.mockedPosition = CGPoint(x: 180, y: random_y)
-        XCTAssertEqual(self.sensor.rawValue(for: self.spriteObject), random_y, accuracy: 0.0001)
+        spriteNode.mockedPosition = CGPoint(x: 180, y: random_y)
+        XCTAssertEqual(sensor.rawValue(for: spriteObject), random_y, accuracy: 0.0001)
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(10, type(of: sensor).convertToStandardized(rawValue: 10))
+        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, for: spriteObject))
+        // TODO add tests (center, bottom left/right, top left/right
+    }
+    
+    func testConvertToRaw() {
+        // TODO add tests (center, bottom left/right, top left/right
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_Y", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_Y", sensor.tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
 }

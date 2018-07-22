@@ -133,7 +133,7 @@
         initialRotation = initialRotation + 360.0f;
     }
     
-    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:initialRotation + rotation];
+    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:(initialRotation + rotation) for: object];
     XCTAssertEqualWithAccuracy(expectedRawRotation, spriteNode.zRotation, 0.0001, @"TurnRightBrick not correct");
 }
 

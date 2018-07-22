@@ -23,25 +23,31 @@
 class CBSpriteNodeMock: CBSpriteNode {
     
     var mockedPosition : CGPoint?
+    var mockedScene : SKScene?
     
     required init(spriteObject: SpriteObject) {
         super.init(spriteObject: spriteObject)
-    }
-    
-    required init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        super.init(texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override var scenePosition: CGPoint {
+    override var position: CGPoint {
         get {
-            return mockedPosition!
+            return mockedPosition ?? super.position
         }
         set {
             self.mockedPosition = newValue
+        }
+    }
+    
+    override var scene: SKScene {
+        get {
+            return mockedScene ?? super.scene!
+        }
+        set {
+            self.mockedScene = newValue
         }
     }
 }

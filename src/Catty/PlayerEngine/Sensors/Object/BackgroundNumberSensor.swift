@@ -20,21 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class BackgroundNumberSensor: NSObject, ObjectSensor {
+@objc class BackgroundNumberSensor: NSObject, ObjectSensor {
 
     static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    func rawValue(for spriteObject: SpriteObject) -> Double {
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return BackgroundNumberSensor.defaultRawValue }
         guard let currentLook = spriteNode.currentLook else { return BackgroundNumberSensor.defaultRawValue }
         let index = spriteObject.lookList.index(of: currentLook)
         return Double(index)
     }
     
-    static func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue + 1
     }
     

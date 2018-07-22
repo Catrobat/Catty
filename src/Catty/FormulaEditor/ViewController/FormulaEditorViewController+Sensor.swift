@@ -44,7 +44,7 @@ extension FormulaEditorViewController {
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.deviceSensors() {
-            if (type(of: sensor).showInFormulaEditor()) {
+            if (sensor.showInFormulaEditor()) {
                 topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
                 buttons.append(topAnchorView as! UIButton)
             }

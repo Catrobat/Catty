@@ -26,24 +26,30 @@ import XCTest
 
 final class ShowTextBrickTests: XCTestCase {
     
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    
+    override func setUp() {
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+    }
+    
     func testShowTextBrickUserVariablesNil() {
         
         let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
         spriteNode.position = CGPoint(x: 0, y: 0);
-        object.program = program;
+        spriteObject.program = program;
         
         let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
+        spriteObject.program.variables = varContainer;
         
         let brick = ShowTextBrick();
         
         let script = Script();
-        script.object = object;
+        script.object = spriteObject;
         brick.script = script;
         
         let xFormula = Formula();

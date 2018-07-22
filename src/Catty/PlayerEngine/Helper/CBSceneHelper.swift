@@ -23,26 +23,6 @@
 @objc class CBSceneHelper: NSObject {
     
     // MARK: - Operations (Helpers)
-    @objc class func convertPointToScene(_ point: CGPoint, sceneSize: CGSize) -> CGPoint {
-        let x = convertXCoordinateToScene(point.x, sceneSize: sceneSize)
-        let y = convertYCoordinateToScene(point.y, sceneSize: sceneSize)
-        return CGPoint(x: x, y: y)
-    }
-    
-    @objc class func convertXCoordinateToScene(_ x: CGFloat, sceneSize: CGSize) -> CGFloat {
-        return (sceneSize.width/2.0 + x)
-    }
-    
-    @objc class func convertYCoordinateToScene(_ y: CGFloat, sceneSize: CGSize) -> CGFloat {
-        return (sceneSize.height/2.0 + y)
-    }
-    
-    @objc class func convertSceneCoordinateToPoint(_ point: CGPoint, sceneSize: CGSize) -> CGPoint {
-        let x = point.x - sceneSize.width/2.0
-        let y = point.y - sceneSize.height/2.0
-        return CGPoint(x: x, y: y);
-    }
-    
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
         let screenSize = Util.screenSize()
         var x = (coordinate.x - screenSize.width/2.0)
@@ -51,5 +31,4 @@
         y = y * (sceneSize.height / screenSize.height)
         return CGPoint(x: x, y: y)
     }
-
 }

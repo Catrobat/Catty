@@ -37,14 +37,14 @@ class CompassDirectionSensor : NSObject, DeviceSensor {
         return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
     }
 
-    static func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double) -> Double {
         if rawValue <= 180 {
             return -rawValue
         }
         return 360 - rawValue
     }
     
-    static func showInFormulaEditor() -> Bool {
+    func showInFormulaEditor() -> Bool {
         return true
     }
 }

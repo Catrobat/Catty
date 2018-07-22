@@ -28,86 +28,83 @@ final class TransparencySensorTest: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    var sensor: TransparencySensor!
+    let sensor = TransparencySensor.self
     
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        
-        self.sensor = TransparencySensor()
     }
     
     override func tearDown() {
         self.spriteObject = nil
-        self.sensor = nil
     }
     
     func testDefaultRawValue() {
-        self.spriteObject.spriteNode = nil
-        XCTAssertEqual(TransparencySensor.defaultRawValue, sensor.rawValue(for: self.spriteObject))
+        spriteObject.spriteNode = nil
+        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
     }
     
     func testRawValue() {
-        self.spriteNode.alpha = 0.0
-        XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject))
+        spriteNode.alpha = 0.0
+        XCTAssertEqual(0, sensor.rawValue(for: spriteObject))
         
-        self.spriteNode.alpha = 1.0
-        XCTAssertEqual(1.0, sensor.rawValue(for: self.spriteObject))
+        spriteNode.alpha = 1.0
+        XCTAssertEqual(1.0, sensor.rawValue(for: spriteObject))
         
-        self.spriteNode.alpha = 0.5
-        XCTAssertEqual(0.5, sensor.rawValue(for: self.spriteObject))
+        spriteNode.alpha = 0.5
+        XCTAssertEqual(0.5, sensor.rawValue(for: spriteObject))
     }
     
     func testConvertToStandarized() {
         // test minimum value of transparency on iOS
-        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 1.0))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 1.0, for: spriteObject))
         
         // test maximum value of transparency on iOS
-        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: 0.0))
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 0.0, for: spriteObject))
         
         // test mean value of transparency on iOS
-        XCTAssertEqual(50, type(of: sensor).convertToStandardized(rawValue: 0.5))
+        XCTAssertEqual(50, sensor.convertToStandardized(rawValue: 0.5, for: spriteObject))
         
         // test lower than minimum value of transparency on iOS
-        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 2.5))
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 2.5, for: spriteObject))
         
         // test bigger than maximum value of transparency on iOS
-        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: -22.0))
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: -22.0, for: spriteObject))
         
         // test random value
-        XCTAssertEqual(87.5, type(of: sensor).convertToStandardized(rawValue: 0.125))
+        XCTAssertEqual(87.5, sensor.convertToStandardized(rawValue: 0.125, for: spriteObject))
         
     }
     
     func testConvertToRaw() {
         // test minimum value of transparency on Android
-        XCTAssertEqual(1.0, type(of: sensor).convertToRaw(userInput: 0.0))
+        XCTAssertEqual(1.0, sensor.convertToRaw(userInput: 0.0, for: spriteObject))
         
         // test maximum value of transparency on Android
-        XCTAssertEqual(0.0, type(of: sensor).convertToRaw(userInput: 100.0))
+        XCTAssertEqual(0.0, sensor.convertToRaw(userInput: 100.0, for: spriteObject))
         
         // test mean value of transparency on Android
-        XCTAssertEqual(0.5, type(of: sensor).convertToRaw(userInput: 50.0))
+        XCTAssertEqual(0.5, sensor.convertToRaw(userInput: 50.0, for: spriteObject))
         
         // test lower than minimum value of transparency on Android
-        XCTAssertEqual(1.0, type(of: sensor).convertToRaw(userInput: -10.0))
+        XCTAssertEqual(1.0, sensor.convertToRaw(userInput: -10.0, for: spriteObject))
         
         // test bigger than maximum value of transparency on Android
-        XCTAssertEqual(0.0, type(of: sensor).convertToRaw(userInput: 180.0))
+        XCTAssertEqual(0.0, sensor.convertToRaw(userInput: 180.0, for: spriteObject))
         
         // test random value of transparency on Android
-        XCTAssertEqual(0.34, type(of: sensor).convertToRaw(userInput: 66.0))
+        XCTAssertEqual(0.34, sensor.convertToRaw(userInput: 66.0, for: spriteObject))
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_GHOSTEFFECT", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_GHOSTEFFECT", sensor.tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
 }

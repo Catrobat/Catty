@@ -20,9 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol ReadWriteSensor {
+@objc protocol ObjectReadWriteSensor {
     
     // Convert the Pocket Code standardized sensor value to the iOS specific value (rawValue)
-    static func convertToRaw(userInput: Double) -> Double
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) -> Void
 }
-

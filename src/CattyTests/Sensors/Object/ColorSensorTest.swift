@@ -28,65 +28,62 @@ final class ColorSensorTest: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
-    var sensor: ColorSensor!
+    var sensor = ColorSensor.self
     
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        
-        self.sensor = ColorSensor()
     }
     
     override func tearDown() {
         self.spriteObject = nil
-        self.sensor = nil
     }
     
     func testDefaultRawValue() {
         self.spriteObject.spriteNode = nil
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
     }
     
     func testRawValue() {
         self.spriteNode.ciHueAdjust = 0.0
-        XCTAssertEqual(0, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
         
         self.spriteNode.ciHueAdjust = -60
-        XCTAssertEqual(-60, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(-60, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
         
         self.spriteNode.ciHueAdjust = 210
-        XCTAssertEqual(210, sensor.rawValue(for: self.spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(210, sensor.rawValue(for: spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToStandarized() {
-        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: Double.pi), accuracy: 0.0001)
-        XCTAssertEqual(199.99, type(of: sensor).convertToStandardized(rawValue: 1.9999 * Double.pi), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: Double.pi, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(199.99, sensor.convertToStandardized(rawValue: 1.9999 * Double.pi, for: spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: 100), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 4, type(of: sensor).convertToRaw(userInput: 25), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 0, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: 100, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 4, sensor.convertToRaw(userInput: 25, for: spriteObject), accuracy: 0.0001)
         
         // outside the range
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 200), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 2, type(of: sensor).convertToRaw(userInput: 250), accuracy: 0.0001)
-        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 400), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -100), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi, type(of: sensor).convertToRaw(userInput: -300), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 200, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, sensor.convertToRaw(userInput: 250, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0, sensor.convertToRaw(userInput: 400, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: -100, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi, sensor.convertToRaw(userInput: -300, for: spriteObject), accuracy: 0.0001)
         
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_COLOR", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_COLOR", sensor.tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
     }
 }
