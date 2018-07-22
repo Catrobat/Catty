@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class CompassDirectionSensor : NSObject, DeviceSensor {
+class CompassDirectionSensor : NSObject, DeviceSensor {
     
     static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
@@ -37,14 +37,14 @@
         return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         if rawValue <= 180 {
             return -rawValue
         }
         return 360 - rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

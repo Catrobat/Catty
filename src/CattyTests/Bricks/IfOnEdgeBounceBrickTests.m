@@ -32,7 +32,6 @@
 @property(nonatomic, strong) SpriteObject *spriteObject;
 @property(nonatomic, strong) Script *script;
 @property(nonatomic, strong) IfOnEdgeBounceBrick *brick;
-@property (nonatomic, strong) RotationSensor *rotationSensor;
 
 @end
 
@@ -70,8 +69,6 @@
 
     self.brick = [[IfOnEdgeBounceBrick alloc] init];
     self.brick.script = self.script;
-    
-    self.rotationSensor = [RotationSensor new];
 }
 
 - (void)tearDown
@@ -280,7 +277,7 @@
 - (void)setPosition:(CGPoint)position AndRotation:(CGFloat)rotation
 {
     self.spriteObject.spriteNode.scenePosition = position;
-    self.spriteObject.spriteNode.zRotation = [self.rotationSensor convertToRawWithUserInput:rotation];
+    self.spriteObject.spriteNode.catrobatRotation = rotation;
     
     dispatch_block_t action = [self.brick actionBlock];
     action();
@@ -291,8 +288,7 @@
     XCTAssertEqualWithAccuracy(position.x, self.spriteObject.spriteNode.scenePosition.x, EPSILON, @"Wrong x after bounce");
     XCTAssertEqualWithAccuracy(position.y, self.spriteObject.spriteNode.scenePosition.y, EPSILON, @"Wrong y after bounce");
     
-    CGFloat standardizedRotation = [self.rotationSensor convertToStandardizedWithRawValue:self.spriteObject.spriteNode.zRotation];
-    XCTAssertEqualWithAccuracy(expectedStandardizedRotation, standardizedRotation, EPSILON, @"Wrong rotation after bounce");
+    XCTAssertEqualWithAccuracy(expectedStandardizedRotation, self.spriteObject.spriteNode.catrobatRotation, EPSILON, @"Wrong rotation after bounce");
 }
 
 @end

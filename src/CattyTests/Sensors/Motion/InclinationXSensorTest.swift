@@ -68,25 +68,25 @@ final class InclinationXSensorTest: XCTestCase {
     // does not depend on the orientation of the screen (left/right, up/down)
     func testConvertToStandardized() {
         // test no inclination
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
         
         // test screen half left
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: -Double.pi/4), 45, accuracy: 0.0001)
         
         // test screen half right
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/4), -45, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: Double.pi/4), -45, accuracy: 0.0001)
         
         // test screen left
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi/2), 90, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: -Double.pi/2), 90, accuracy: 0.0001)
         
         // test screen right
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi/2), -90, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: Double.pi/2), -90, accuracy: 0.0001)
         
         // test screen left, then down
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: -Double.pi), 180, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: -Double.pi), 180, accuracy: 0.0001)
         
         // test screen right, then down
-        XCTAssertEqual(self.sensor.convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
+        XCTAssertEqual(type(of: sensor).convertToStandardized(rawValue: Double.pi), -180, accuracy: 0.0001)
     }
     
     func testTag() {
@@ -98,6 +98,6 @@ final class InclinationXSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
     }
 }

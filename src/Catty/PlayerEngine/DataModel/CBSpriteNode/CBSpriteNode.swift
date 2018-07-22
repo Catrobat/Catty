@@ -32,6 +32,40 @@ class CBSpriteNode: SKSpriteNode {
     @objc var ciBrightness: CGFloat = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
     @objc var ciHueAdjust: CGFloat = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
     
+    // Computed properties to get and set values within the standardized range
+    @objc var catrobatSize: Double {
+        set {
+            self.xScale = CGFloat(SizeSensor.convertToRaw(userInput: newValue))
+            self.yScale = CGFloat(SizeSensor.convertToRaw(userInput: newValue))
+        }
+        get { return SizeSensor.convertToStandardized(rawValue: Double(self.xScale)) }
+    }
+    
+    @objc var catrobatRotation: Double {
+        set { self.zRotation = CGFloat(RotationSensor.convertToRaw(userInput: newValue)) }
+        get { return RotationSensor.convertToStandardized(rawValue: Double(self.zRotation)) }
+    }
+    
+    @objc var catrobatLayer: Double {
+        set { self.zPosition = CGFloat(LayerSensor.convertToRaw(userInput: newValue)) }
+        get { return LayerSensor.convertToStandardized(rawValue: Double(self.zPosition)) }
+    }
+    
+    @objc var catrobatTransparency: Double {
+        set { self.alpha = CGFloat(TransparencySensor.convertToRaw(userInput: newValue)) }
+        get { return TransparencySensor.convertToStandardized(rawValue: Double(self.alpha)) }
+    }
+    
+    @objc var catrobatBrightness: Double {
+        set { self.ciBrightness = CGFloat(BrightnessSensor.convertToRaw(userInput: newValue)) }
+        get { return BrightnessSensor.convertToStandardized(rawValue: Double(self.ciBrightness)) }
+    }
+    
+    @objc var catrobatColor: Double {
+        set { self.ciHueAdjust = CGFloat(ColorSensor.convertToRaw(userInput: newValue)) }
+        get { return ColorSensor.convertToStandardized(rawValue: Double(self.ciHueAdjust)) }
+    }
+    
     @objc var scenePosition: CGPoint {
         set {
             guard let scene = self.scene else { preconditionFailure() }

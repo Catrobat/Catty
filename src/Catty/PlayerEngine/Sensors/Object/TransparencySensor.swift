@@ -47,7 +47,7 @@
      */
     
     // f:[0, 1] -> [0, 100]
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         
         if rawValue >= 1 {
             return 0.0 // maximum transparency
@@ -59,7 +59,7 @@
     }
     
     // f:[0, 100] -> [0, 1]
-    func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double) -> Double {
         
         if userInput >= 100 {
             return 0.0 // maximum transparency
@@ -70,7 +70,7 @@
         return (100 - userInput) / 100
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

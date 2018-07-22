@@ -37,27 +37,27 @@
     }
     
     // raw value is in radians, standardized value is in degrees
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees)
     }
     
-    func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double) -> Double {
         let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }
     
-    func convertMathDegreesToSceneDegrees(_ mathDegrees: Double) -> Double {
+    static func convertMathDegreesToSceneDegrees(_ mathDegrees: Double) -> Double {
         // converts a given value to make it belong to the interval [0, 360) - moves to the first trigonometric circle due to periodicity
-        let circleDegrees = type(of: self).circleMaxDegrees
+        let circleDegrees = circleMaxDegrees
         if mathDegrees < 0.0 {
-            return (-1 * (circleDegrees - type(of: self).rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
+            return (-1 * (circleDegrees - rotationDegreeOffset) - (mathDegrees.truncatingRemainder(dividingBy: -circleDegrees))).truncatingRemainder(dividingBy: -circleDegrees)
         }
         
-        return (circleDegrees - (mathDegrees.truncatingRemainder(dividingBy: circleDegrees) - type(of: self).rotationDegreeOffset)).truncatingRemainder(dividingBy: circleDegrees)
+        return (circleDegrees - (mathDegrees.truncatingRemainder(dividingBy: circleDegrees) - rotationDegreeOffset)).truncatingRemainder(dividingBy: circleDegrees)
     }
     
-    func convertSceneToDegrees(_ mathDegrees: Double) -> Double {
+    static func convertSceneToDegrees(_ mathDegrees: Double) -> Double {
         //  ensures that the value is reduced to the first trigonometric circle, meaning [0, 360)
         let sceneDegrees = self.convertMathDegreesToSceneDegrees(mathDegrees)
         
@@ -71,7 +71,7 @@
         return sceneDegrees // it was already in that interval
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

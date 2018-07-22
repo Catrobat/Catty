@@ -26,7 +26,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeSizeByNBrickTests : AbstractBrickTests
-@property (nonatomic, strong) SizeSensor* sizeSensor;
 @end
 
 @implementation ChangeSizeByNBrickTests
@@ -34,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.sizeSensor = [SizeSensor new];
 }
 
 - (void)tearDown
@@ -48,8 +46,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = [self.sizeSensor convertToRawWithUserInput:10.0];
-    spriteNode.yScale = [self.sizeSensor convertToRawWithUserInput:10.0];
+    spriteNode.catrobatSize = 10.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -67,10 +64,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
 
-    CGFloat standardizedValueX = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.xScale];
-    CGFloat standardizedValueY = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.yScale];
-    XCTAssertEqualWithAccuracy(40.0f, standardizedValueX, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(40.0f, standardizedValueY, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(40.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 - (void)testChangeSizeByNBrickNegative
@@ -78,8 +72,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = [self.sizeSensor convertToRawWithUserInput:50.0];
-    spriteNode.yScale = [self.sizeSensor convertToRawWithUserInput:50.0];
+    spriteNode.catrobatSize = 50.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -97,10 +90,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
 
-    CGFloat standardizedValueX = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.xScale];
-    CGFloat standardizedValueY = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.yScale];
-    XCTAssertEqualWithAccuracy(20.0f, standardizedValueX, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(20.0f, standardizedValueY, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 - (void)testChangeSizeByNBrickWrongInput
@@ -108,8 +98,7 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = [self.sizeSensor convertToRawWithUserInput:10.0];
-    spriteNode.yScale = [self.sizeSensor convertToRawWithUserInput:10.0];
+    spriteNode.catrobatSize = 10.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -127,10 +116,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
 
-    CGFloat standardizedValueX = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.xScale];
-    CGFloat standardizedValueY = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.yScale];
-    XCTAssertEqualWithAccuracy(10.0f, standardizedValueX, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(10.0f, standardizedValueY, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 @end

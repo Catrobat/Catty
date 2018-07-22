@@ -38,11 +38,11 @@ class LoudnessSensor: DeviceSensor {
         return self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

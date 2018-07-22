@@ -172,12 +172,12 @@ import CoreLocation
         var rawValue = type(of: sensor).defaultRawValue
         
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
-            rawValue = sensor.rawValue(for: spriteObject)
+            rawValue = sensor.standardizedValue(for: spriteObject)
         } else if let sensor = sensor as? DeviceSensor {
-            rawValue = sensor.rawValue()
+            rawValue = sensor.standardizedValue()
         }
         
-        return sensor.convertToStandardized(rawValue: rawValue) as AnyObject
+        return rawValue as AnyObject
     }
     
     @objc(setupSensorsForRequiredResources:)

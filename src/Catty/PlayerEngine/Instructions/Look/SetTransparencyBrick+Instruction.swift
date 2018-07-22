@@ -32,14 +32,12 @@
     @objc func actionBlock() -> (()->())? {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
-              let transparency = self.transparency,
-              let transparencySensor = CBSensorManager.shared.sensor(type: TransparencySensor.self)
+              let transparency = self.transparency
         else { fatalError("This should never happen!") }
 
         return {
-            let standardizedValue = transparency.interpretDouble(forSprite: object)
-            let rawValue = transparencySensor.convertToRaw(userInput: standardizedValue)
-            spriteNode.alpha = CGFloat(rawValue);
+            let transparency = transparency.interpretDouble(forSprite: object)
+            spriteNode.catrobatTransparency = transparency;
         }
     }
 }

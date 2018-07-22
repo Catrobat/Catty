@@ -34,5 +34,11 @@
     static var requiredResource: ResourceType { get }
     
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
-    func convertToStandardized(rawValue: Double) -> Double
+    static func convertToStandardized(rawValue: Double) -> Double
+}
+
+extension CBSensor {
+    static func defaultStandardizedValue() -> Double {
+        return convertToStandardized(rawValue: defaultRawValue)
+    }
 }

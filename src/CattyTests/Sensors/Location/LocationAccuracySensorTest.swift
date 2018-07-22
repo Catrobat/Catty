@@ -56,10 +56,10 @@ final class LocationAccuracySensorTest: XCTestCase {
     
     func testConvertToStandardized() {
         // valid location
-        XCTAssertEqual(100, self.sensor.convertToStandardized(rawValue: 100))
+        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: 100))
         
         // invalid location
-        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: -1))
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: -1))
     }
     
     func testTag() {
@@ -71,7 +71,7 @@ final class LocationAccuracySensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
     }
 }
 

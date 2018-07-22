@@ -28,14 +28,12 @@
 
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let sizeSensor = CBSensorManager.shared.sensor(type: SizeSensor.self)
+              let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
             let sizeInPercent = self.size.interpretDouble(forSprite: object)
-            spriteNode.xScale = CGFloat(sizeSensor.convertToRaw(userInput: sizeInPercent))
-            spriteNode.yScale = CGFloat(sizeSensor.convertToRaw(userInput: sizeInPercent))
+            spriteNode.catrobatSize = sizeInPercent
         }
     }
 }

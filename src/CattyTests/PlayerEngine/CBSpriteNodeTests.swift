@@ -26,10 +26,11 @@ import XCTest
 
 final class CBSpriteNodeTests: XCTestCase {
 
+    final let epsilon = 0.001
     var spriteNode = CBSpriteNode()
     
     override func setUp() {
-        self.spriteNode = CBSpriteNode()
+        spriteNode = CBSpriteNode()
         
         let spriteObject = SpriteObject()
         spriteNode.spriteObject = spriteObject
@@ -37,37 +38,80 @@ final class CBSpriteNodeTests: XCTestCase {
         spriteObject.spriteNode = spriteNode
     }
     
+    func testSize() {
+        spriteNode.catrobatSize = 30.0
+        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 30.0), Double(spriteNode.xScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
+        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 30.0), Double(spriteNode.yScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
+        
+        spriteNode.catrobatSize = 60.0
+        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 60.0), Double(spriteNode.xScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
+        XCTAssertEqual(SizeSensor.convertToRaw(userInput: 60.0), Double(spriteNode.yScale), accuracy: epsilon, "SpriteNode catrobatSize not correct")
+    }
+    
     func testRotation() {
-        let epsilon = 0.001
+        spriteNode.catrobatRotation = 10.0
+        XCTAssertEqual(RotationSensor.convertToRaw(userInput: 10.0), Double(spriteNode.zRotation), accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = 20.0
-        XCTAssertEqual(20.0, Double(self.spriteNode.zRotation), accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 20.0
+        XCTAssertEqual(RotationSensor.convertToRaw(userInput: 20.0), Double(spriteNode.zRotation), accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        /*self.spriteNode.rRotation = 180.0
-        XCTAssertEqual(180.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 180.0
+        XCTAssertEqual(180.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = 181.0
-        XCTAssertEqual(-179.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 181.0
+        XCTAssertEqual(-179.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = 220.0
-        XCTAssertEqual(-140.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 220.0
+        XCTAssertEqual(-140.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = 359.0
-        XCTAssertEqual(-1.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 359.0
+        XCTAssertEqual(-1.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = 360.0
-        XCTAssertEqual(0.0, self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 360.0
+        XCTAssertEqual(0.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = 361.0
-        XCTAssertEqual(CGFloat(1.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = 361.0
+        XCTAssertEqual(1.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = -361.0
-        XCTAssertEqual(CGFloat(-1.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = -361.0
+        XCTAssertEqual(-1.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = -90.0
-        XCTAssertEqual(CGFloat(-90.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")
+        spriteNode.catrobatRotation = -90.0
+        XCTAssertEqual(-90.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
         
-        self.spriteNode.zRotation = -185.0
-        XCTAssertEqual(CGFloat(175.0), self.spriteNode.zRotation, accuracy: epsilon, "SpriteNode rotation not correct")*/
+        spriteNode.catrobatRotation = -185.0
+        XCTAssertEqual(175.0, spriteNode.catrobatRotation, accuracy: epsilon, "SpriteNode catrobatRotation not correct")
+    }
+    
+    func testLayer() {
+        spriteNode.catrobatLayer = 1.0
+        XCTAssertEqual(LayerSensor.convertToRaw(userInput: 1.0), Double(spriteNode.zPosition), accuracy: epsilon, "SpriteNode catrobatLayer not correct")
+        
+        spriteNode.catrobatLayer = 2.0
+        XCTAssertEqual(LayerSensor.convertToRaw(userInput: 2.0), Double(spriteNode.zPosition), accuracy: epsilon, "SpriteNode catrobatLayer not correct")
+    }
+    
+    func testTransparency() {
+        spriteNode.catrobatTransparency = 50.0
+        XCTAssertEqual(TransparencySensor.convertToRaw(userInput: 50.0), Double(spriteNode.alpha), accuracy: epsilon, "SpriteNode catrobatTransparency not correct")
+        
+        spriteNode.catrobatTransparency = 90.0
+        XCTAssertEqual(TransparencySensor.convertToRaw(userInput: 90.0), Double(spriteNode.alpha), accuracy: epsilon, "SpriteNode catrobatTransparency not correct")
+    }
+    
+    func testBrightness() {
+        spriteNode.catrobatBrightness = 100.0
+        XCTAssertEqual(BrightnessSensor.convertToRaw(userInput: 100.0), Double(spriteNode.ciBrightness), accuracy: epsilon, "SpriteNode catrobatBrightness not correct")
+        
+        spriteNode.catrobatBrightness = 30.0
+        XCTAssertEqual(BrightnessSensor.convertToRaw(userInput: 30.0), Double(spriteNode.ciBrightness), accuracy: epsilon, "SpriteNode catrobatBrightness not correct")
+    }
+    
+    func testColor() {
+        spriteNode.catrobatColor = 20.0
+        XCTAssertEqual(ColorSensor.convertToRaw(userInput: 20.0), Double(spriteNode.ciHueAdjust), accuracy: epsilon, "SpriteNode catrobatColor not correct")
+        
+        spriteNode.catrobatColor = 40.0
+        XCTAssertEqual(ColorSensor.convertToRaw(userInput: 40.0), Double(spriteNode.ciHueAdjust), accuracy: epsilon, "SpriteNode catrobatColor not correct")
     }
 }

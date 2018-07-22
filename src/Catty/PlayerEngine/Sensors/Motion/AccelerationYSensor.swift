@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class AccelerationYSensor : NSObject, DeviceSensor {
+class AccelerationYSensor : NSObject, DeviceSensor {
     
     static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
@@ -37,11 +37,11 @@
         return self.getMotionManager()?.deviceMotion?.userAcceleration.y ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 9.8
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

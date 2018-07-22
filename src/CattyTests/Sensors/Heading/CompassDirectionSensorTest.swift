@@ -65,28 +65,28 @@ final class CompassDirectionSensorTest: XCTestCase {
     
     func testConvertToStandardized() {
         // N
-        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: 0))
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0))
         
         // N-E
-        XCTAssertEqual(-45, self.sensor.convertToStandardized(rawValue: 45))
+        XCTAssertEqual(-45, type(of: sensor).convertToStandardized(rawValue: 45))
         
         // E
-        XCTAssertEqual(-90, self.sensor.convertToStandardized(rawValue: 90))
+        XCTAssertEqual(-90, type(of: sensor).convertToStandardized(rawValue: 90))
         
         // S-E
-        XCTAssertEqual(-135, self.sensor.convertToStandardized(rawValue: 135))
+        XCTAssertEqual(-135, type(of: sensor).convertToStandardized(rawValue: 135))
         
         // S
-        XCTAssertEqual(-180, self.sensor.convertToStandardized(rawValue: 180))
+        XCTAssertEqual(-180, type(of: sensor).convertToStandardized(rawValue: 180))
         
         // S-W
-        XCTAssertEqual(135, self.sensor.convertToStandardized(rawValue: 225))
+        XCTAssertEqual(135, type(of: sensor).convertToStandardized(rawValue: 225))
         
         // W
-        XCTAssertEqual(90, self.sensor.convertToStandardized(rawValue: 270))
+        XCTAssertEqual(90, type(of: sensor).convertToStandardized(rawValue: 270))
         
         // Kanye's daughter
-        XCTAssertEqual(45, self.sensor.convertToStandardized(rawValue: 315))
+        XCTAssertEqual(45, type(of: sensor).convertToStandardized(rawValue: 315))
     }
     
     func testTag() {
@@ -98,6 +98,6 @@ final class CompassDirectionSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
     }
 }

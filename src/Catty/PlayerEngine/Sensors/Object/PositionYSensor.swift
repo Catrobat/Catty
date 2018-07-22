@@ -33,11 +33,11 @@ class PositionYSensor: ObjectSensor {
         return Double(spriteNode.scenePosition.y)
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

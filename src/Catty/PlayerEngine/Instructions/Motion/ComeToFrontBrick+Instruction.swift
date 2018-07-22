@@ -30,22 +30,20 @@
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let program = self.script?.object?.program,
-            let objectList = self.script?.object?.program?.objectList,
-            let layerSensor = CBSensorManager.shared.sensor(type: LayerSensor.self)
+            let objectList = self.script?.object?.program?.objectList
             else { fatalError("This should never happen!") }
         
         return {
-            let zValue = spriteNode.zPosition
-            let frontValue = program.numberOfNormalObjects()
-            let rawValue = layerSensor.convertToRaw(userInput: Double(frontValue))
-            spriteNode.zPosition = CGFloat(rawValue)
+            let currentLayer = spriteNode.catrobatLayer
+            let frontValue = Double(program.numberOfNormalObjects())
+            spriteNode.catrobatLayer = frontValue
             
             for obj in objectList {
                 guard let objSpriteNode = (obj as AnyObject).spriteNode, let spriteObject = obj as? SpriteObject else {
                     continue
                 }
-                if objSpriteNode.zPosition > zValue && objSpriteNode.zPosition <= CGFloat(frontValue) && spriteObject != object {
-                    objSpriteNode.zPosition -= 1
+                if objSpriteNode.catrobatLayer > currentLayer && objSpriteNode.catrobatLayer <= frontValue && spriteObject != object {
+                    objSpriteNode.catrobatLayer -= 1
                 }
             }
         }

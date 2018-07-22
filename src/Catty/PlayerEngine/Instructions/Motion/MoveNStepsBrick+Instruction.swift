@@ -29,14 +29,13 @@
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
-            let stepsFormula = self.steps,
-            let rotationSensor = CBSensorManager.shared.sensor(type: RotationSensor.self)
+            let stepsFormula = self.steps
         else { fatalError("This should never happen!") }
 
         return {
             let steps = stepsFormula.interpretDouble(forSprite: object)
-            let standardizedRotation = rotationSensor.convertToStandardized(rawValue: Double(spriteNode.zRotation))
-            let rotationRadians = Util.degree(toRadians: standardizedRotation)
+            let standardizedRotation = spriteNode.catrobatRotation
+            let rotationRadians = Util.degree(toRadians: Double(standardizedRotation))
             let position = spriteNode.scenePosition
             
             let xPosition = Double(position.x) + (steps * sin(rotationRadians))

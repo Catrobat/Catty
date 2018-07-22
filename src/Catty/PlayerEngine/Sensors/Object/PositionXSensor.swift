@@ -20,8 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc
-class PositionXSensor: NSObject, ObjectSensor {
+class PositionXSensor: ObjectSensor {
 
     static let tag = "OBJECT_X"
     static let name = kUIFEObjectPositionX
@@ -34,11 +33,11 @@ class PositionXSensor: NSObject, ObjectSensor {
         return Double(spriteNode.scenePosition.x)
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

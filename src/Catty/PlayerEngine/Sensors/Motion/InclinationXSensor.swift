@@ -45,11 +45,11 @@ class InclinationXSensor: DeviceSensor {
     // roll is between -pi, pi on both iOS and Android
     // going to right, it is negative on Android and positive on iOS
     // going to left, it is positive on Android and negative on iOS
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return Util.radians(toDegree: -rawValue)
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

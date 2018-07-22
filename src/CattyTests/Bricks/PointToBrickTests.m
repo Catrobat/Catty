@@ -27,7 +27,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface PointToBrickTests : AbstractBrickTests
-@property (nonatomic, strong) RotationSensor* rotationSensor;
 @end
 
 @implementation PointToBrickTests
@@ -35,7 +34,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.rotationSensor = [RotationSensor new];
 }
 
 - (void)tearDown
@@ -70,8 +68,7 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
 
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:0];
-    XCTAssertEqualWithAccuracy(expectedRotation, firstSpriteNode.zRotation,0.1f, @"PointToBrick not correct");
+    XCTAssertEqualWithAccuracy(0, firstSpriteNode.catrobatRotation, 0.1f, @"PointToBrick not correct");
 }
 
 - (void)testPointToBrickSamePosition
@@ -98,8 +95,7 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
     
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:0];
-    XCTAssertEqualWithAccuracy(expectedRotation, firstSpriteNode.zRotation, 0.1f, @"PointToBrick not correct");
+    XCTAssertEqualWithAccuracy(0, firstSpriteNode.catrobatRotation, 0.1f, @"PointToBrick not correct");
 }
 
 - (void)testPointToBrick45Degrees
@@ -127,8 +123,7 @@
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
     
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:45.0];
-    XCTAssertEqualWithAccuracy(expectedRotation, firstSpriteNode.zRotation, 0.1f, @"PointToBrick not correct");
+    XCTAssertEqualWithAccuracy(45.0, firstSpriteNode.catrobatRotation, 0.1f, @"PointToBrick not correct");
 }
 
 @end

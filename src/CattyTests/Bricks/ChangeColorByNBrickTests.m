@@ -26,7 +26,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeColorByNBrickTests : AbstractBrickTests
-@property (nonatomic, strong) ColorSensor* colorSensor;
 @end
 
 @implementation ChangeColorByNBrickTests
@@ -34,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.colorSensor = [ColorSensor new];
 }
 
 - (void)tearDown
@@ -66,7 +64,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithUserInput:0];
+    object.spriteNode.catrobatColor = 0.0;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -78,8 +76,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(70.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(70.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
@@ -107,7 +104,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithUserInput:10];
+    object.spriteNode.catrobatColor = 10.0;
     
     Formula *color = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -119,8 +116,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
@@ -148,7 +144,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciHueAdjust = [self.colorSensor convertToRawWithUserInput:20];
+    object.spriteNode.catrobatColor = 20.0;
     
     Formula* color = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
@@ -160,8 +156,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
@@ -201,8 +196,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.colorSensor convertToStandardizedWithRawValue:spriteNode.ciHueAdjust];
-    XCTAssertEqualWithAccuracy(-130.0f, standardizedValue, 0.1f, @"ChangeColorBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(-130.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }

@@ -68,9 +68,9 @@ final class BackgroundNumberSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: 0))
-        XCTAssertEqual(2, self.sensor.convertToStandardized(rawValue: 1))
-        XCTAssertEqual(3, self.sensor.convertToStandardized(rawValue: 2))
+        XCTAssertEqual(1, type(of: sensor).convertToStandardized(rawValue: 0))
+        XCTAssertEqual(2, type(of: sensor).convertToStandardized(rawValue: 1))
+        XCTAssertEqual(3, type(of: sensor).convertToStandardized(rawValue: 2))
     }
     
     func testTag() {
@@ -83,9 +83,9 @@ final class BackgroundNumberSensorTest: XCTestCase {
     
     func testShowInFormulaEditor() {
         self.spriteObject.background = true
-        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
         
         self.spriteObject.background = false
-        XCTAssertFalse(sensor.showInFormulaEditor(for: self.spriteObject))
+        XCTAssertFalse(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
     }
 }

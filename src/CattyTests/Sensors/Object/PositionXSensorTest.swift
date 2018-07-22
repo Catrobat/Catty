@@ -86,7 +86,7 @@ final class PositionXSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10))
+        XCTAssertEqual(10, type(of: sensor).convertToStandardized(rawValue: 10))
     }
 
     func testTag() {
@@ -98,6 +98,6 @@ final class PositionXSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
     }
 }

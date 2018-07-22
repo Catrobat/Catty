@@ -26,12 +26,16 @@ protocol ObjectSensor: CBSensor {
     func rawValue(for spriteObject: SpriteObject) -> Double
     
     // True if the sensor should be shown in the Formula Editor
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool
 }
 
 extension ObjectSensor {
     // The Pocket Code standardized sensor value
     func standardizedValue(for spriteObject: SpriteObject) -> Double {
-        return self.convertToStandardized(rawValue: self.rawValue(for: spriteObject))
+        return type(of: self).convertToStandardized(rawValue: self.rawValue(for: spriteObject))
+    }
+    
+    static func standardizedRawValue() -> Double {
+        return convertToStandardized(rawValue: defaultRawValue)
     }
 }

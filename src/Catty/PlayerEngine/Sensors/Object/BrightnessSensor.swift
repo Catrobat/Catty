@@ -33,7 +33,7 @@
     }
     
     // f:[-1, 1] -> [0, 200]
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         
         if rawValue >= 1 {
             return 200.0
@@ -45,7 +45,7 @@
     }
     
     // f:[0, 200] -> [-1, 1]
-    func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double) -> Double {
         
         if userInput >= 200 {
             return 1.0
@@ -56,7 +56,7 @@
         return (userInput - 100) / 100
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

@@ -27,7 +27,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface SetBrightnessBrickTests : AbstractBrickTests
-@property (nonatomic, strong) BrightnessSensor* brightnessSensor;
 @end
 
 @implementation SetBrightnessBrickTests
@@ -35,7 +34,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.brightnessSensor = [BrightnessSensor new];
 }
 
 - (void)tearDown
@@ -77,8 +75,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
-    XCTAssertEqualWithAccuracy(180.0f, standardizedValue, 0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(180.0f, spriteNode.catrobatBrightness, 0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -115,8 +112,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
-    XCTAssertEqualWithAccuracy(0.0f, standardizedValue, 0.1f ,@"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatBrightness, 0.1f ,@"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -154,8 +150,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
-    XCTAssertEqualWithAccuracy(200.0f, standardizedValue, 0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(200.0f, spriteNode.catrobatBrightness, 0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -182,7 +177,7 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.ciBrightness = [self.brightnessSensor convertToRawWithUserInput:100];
+    object.spriteNode.catrobatBrightness = 100.0;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -194,8 +189,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.brightnessSensor convertToStandardizedWithRawValue:spriteNode.ciBrightness];
-    XCTAssertEqualWithAccuracy(0.0f, standardizedValue, 0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatBrightness, 0.1f, @"SetBrightnessBrick - Brightness not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }

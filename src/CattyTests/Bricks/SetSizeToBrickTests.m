@@ -64,10 +64,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValueX = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.xScale];
-    CGFloat standardizedValueY = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.yScale];
-    XCTAssertEqualWithAccuracy(130.0f, standardizedValueX, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(130.0f, standardizedValueY, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(130.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 - (void)testSetSizeToBrickNegative
@@ -90,10 +87,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValueX = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.xScale];
-    CGFloat standardizedValueY = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.yScale];
-    XCTAssertEqualWithAccuracy(-130.0f, standardizedValueX, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(-130.0f, standardizedValueY, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 - (void)testSetSizeToBrickWrongInput
@@ -117,10 +111,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValueX = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.xScale];
-    CGFloat standardizedValueY = [self.sizeSensor convertToStandardizedWithRawValue:spriteNode.yScale];
-    XCTAssertEqualWithAccuracy(0.0f, standardizedValueX, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(0.0f, standardizedValueY, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 @end

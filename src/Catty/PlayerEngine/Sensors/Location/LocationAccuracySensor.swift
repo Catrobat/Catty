@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LocationAccuracySensor : NSObject, DeviceSensor {
+class LocationAccuracySensor : NSObject, DeviceSensor {
     
     static let tag = "LOCATION_ACCURACY"
     static let name = kUIFESensorLocationAccuracy
@@ -37,14 +37,14 @@
         return self.getLocationManager()?.location?.horizontalAccuracy ?? type(of: self).defaultRawValue
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         if rawValue < 0 {
             return 0
         }
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

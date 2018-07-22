@@ -31,8 +31,7 @@ private let EPSILON = 0.0001
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
-              let scene = spriteNode.scene,
-              let rotationSensor = CBSensorManager.shared.sensor(type: RotationSensor.self)
+              let scene = spriteNode.scene
         else { fatalError("This should never happen!") }
         
         return {
@@ -45,7 +44,7 @@ private let EPSILON = 0.0001
             
             var xPosition = spriteNode.scenePosition.x
             var yPosition = spriteNode.scenePosition.y
-            var rotation = rotationSensor.convertToStandardized(rawValue: Double(spriteNode.zRotation))
+            var rotation = spriteNode.catrobatRotation
             
             //Check left/right edge
             let leftEdge = -virtualScreenWidth + (width/2.0)
@@ -79,8 +78,7 @@ private let EPSILON = 0.0001
                 }
             }
             
-            let rawValue = rotationSensor.convertToRaw(userInput: rotation)
-            spriteNode.zRotation = CGFloat(rawValue)
+            spriteNode.catrobatRotation = rotation
             spriteNode.scenePosition = CGPoint(x: xPosition, y: yPosition)
         }
     }

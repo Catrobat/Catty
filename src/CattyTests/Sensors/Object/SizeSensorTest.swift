@@ -59,18 +59,18 @@ final class SizeSensorTest: XCTestCase {
     }
     
     func testConvertToStandarized() {
-        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(6, self.sensor.convertToStandardized(rawValue: 0.025), accuracy: 0.0001)
-        XCTAssertEqual(60, self.sensor.convertToStandardized(rawValue: 0.25), accuracy: 0.0001)
-        XCTAssertEqual(240, self.sensor.convertToStandardized(rawValue: 1.0), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(6, type(of: sensor).convertToStandardized(rawValue: 0.025), accuracy: 0.0001)
+        XCTAssertEqual(60, type(of: sensor).convertToStandardized(rawValue: 0.25), accuracy: 0.0001)
+        XCTAssertEqual(240, type(of: sensor).convertToStandardized(rawValue: 1.0), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
-        XCTAssertEqual(0, self.sensor.convertToRaw(userInput: 0), accuracy: 0.0001)
-        XCTAssertEqual(0, self.sensor.convertToRaw(userInput: -10), accuracy: 0.0001)
-        XCTAssertEqual(1, self.sensor.convertToRaw(userInput: 240), accuracy: 0.0001)
-        XCTAssertEqual(0.5, self.sensor.convertToRaw(userInput: 120), accuracy: 0.0001)
-        XCTAssertEqual(0.25, self.sensor.convertToRaw(userInput: 60), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: -10), accuracy: 0.0001)
+        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 240), accuracy: 0.0001)
+        XCTAssertEqual(0.5, type(of: sensor).convertToRaw(userInput: 120), accuracy: 0.0001)
+        XCTAssertEqual(0.25, type(of: sensor).convertToRaw(userInput: 60), accuracy: 0.0001)
     }
     
     func testTag() {
@@ -82,6 +82,6 @@ final class SizeSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
     }
 }

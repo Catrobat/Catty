@@ -34,11 +34,11 @@
         return Double(spriteNode.ciHueAdjust)
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 100 / Double.pi
     }
     
-    func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double) -> Double {
         var valueToConvert = userInput
         let whole = Int(valueToConvert)
         let fraction = valueToConvert.truncatingRemainder(dividingBy: 1)
@@ -54,7 +54,7 @@
         return valueToConvert / 100 * Double.pi
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

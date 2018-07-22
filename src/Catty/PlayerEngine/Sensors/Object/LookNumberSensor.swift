@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LookNumberSensor: NSObject, ObjectSensor {
+class LookNumberSensor: NSObject, ObjectSensor {
 
     static let tag = "OBJECT_LOOK_NUMBER"
     static let name = kUIFEObjectLookNumber
@@ -34,11 +34,11 @@
         return Double(index)
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue + 1
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return !spriteObject.isBackground()
     }
 }

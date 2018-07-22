@@ -34,7 +34,7 @@
         return Double(spriteNode.zIndex)
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         if rawValue == 0 {
             // for background
             return -1
@@ -42,7 +42,7 @@
         return rawValue
     }
     
-    func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double) -> Double {
         if userInput < 1 {
             // can not be set for background
             return 1
@@ -50,7 +50,7 @@
         return userInput
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

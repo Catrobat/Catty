@@ -26,7 +26,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeTransparencyByNBrickTests : AbstractBrickTests
-@property (nonatomic, strong) TransparencySensor* transparencySensor;
 @end
 
 @implementation ChangeTransparencyByNBrickTests
@@ -34,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.transparencySensor = [TransparencySensor new];
 }
 
 - (void)tearDown
@@ -50,7 +48,7 @@
     spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:0.0];
+    spriteNode.catrobatTransparency = 0.0;
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -68,8 +66,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(20.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickNegative
@@ -79,7 +76,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:30.0];
+    spriteNode.catrobatTransparency = 30.0;
 
     Formula *transparency =[[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
@@ -97,8 +94,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(10.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickOutOfRange
@@ -108,7 +104,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:0.0];
+    spriteNode.catrobatTransparency = 0.0;
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -126,8 +122,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(100.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    XCTAssertEqualWithAccuracy(100.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 - (void)testChangeTransparencyByNBrickWrongInput
@@ -137,7 +132,7 @@
     object.spriteNode = spriteNode;
     CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
-    spriteNode.alpha = [self.transparencySensor convertToRawWithUserInput:0.0];
+    spriteNode.catrobatTransparency = 0.0;
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -155,8 +150,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat standardizedValue = [self.transparencySensor convertToStandardizedWithRawValue:spriteNode.alpha];
-    XCTAssertEqualWithAccuracy(0.0f, standardizedValue, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
+    XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 @end

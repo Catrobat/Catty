@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class SizeSensor: NSObject, ObjectSensor, ReadWriteSensor {
+class SizeSensor: NSObject, ObjectSensor, ReadWriteSensor {
     
     static let androidToIOSScale = 2.4
     
@@ -37,18 +37,18 @@
     }
 
     // the sprite on Android is about 2.4 times smaller
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue * (100 * type(of: self).androidToIOSScale)
+    static func convertToStandardized(rawValue: Double) -> Double {
+        return rawValue * (100 * androidToIOSScale)
     }
     
-    func convertToRaw(userInput: Double) -> Double {
+    static func convertToRaw(userInput: Double) -> Double {
         if userInput <= 0 {
             return 0.0     //Android doesn't have negative values for size
         }
-        return userInput / (100 * type(of: self).androidToIOSScale)
+        return userInput / (100 * androidToIOSScale)
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
 }

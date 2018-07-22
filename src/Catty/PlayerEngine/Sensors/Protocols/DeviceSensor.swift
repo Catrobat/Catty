@@ -24,14 +24,14 @@ protocol DeviceSensor: CBSensor {
 
     // The iOS device specific value of the sensor
     func rawValue() -> Double
-
+    
     // True if the sensor should be shown in the Formula Editor
-    func showInFormulaEditor() -> Bool
+    static func showInFormulaEditor() -> Bool
 }
 
 extension DeviceSensor {
     // The Pocket Code standardized sensor value
     func standardizedValue() -> Double {
-        return self.convertToStandardized(rawValue: self.rawValue())
+        return type(of: self).self.convertToStandardized(rawValue: self.rawValue())
     }
 }

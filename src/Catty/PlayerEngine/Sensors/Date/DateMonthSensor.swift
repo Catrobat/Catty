@@ -27,20 +27,20 @@ class DateMonthSensor : DateSensor {
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
     
+    func date() -> Date {
+        return Date()
+    }
+    
     func rawValue() -> Double {
         return Double(Calendar.current.component(.month, from: self.date()))
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
-    }
-    
-    func date() -> Date {
-        return Date()
     }
 }
 

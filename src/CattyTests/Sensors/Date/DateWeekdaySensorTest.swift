@@ -88,28 +88,28 @@ final class DateWeekdaySensorTest: XCTestCase {
     
     func testConvertToStandardized() {
         /* test Sunday */
-        XCTAssertEqual(7, Int(sensor.convertToStandardized(rawValue: 1)))
+        XCTAssertEqual(7, Int(type(of: sensor).convertToStandardized(rawValue: 1)))
         
         /* test Monday */
-        XCTAssertEqual(1, Int(sensor.convertToStandardized(rawValue: 2)))
+        XCTAssertEqual(1, Int(type(of: sensor).convertToStandardized(rawValue: 2)))
         
         /* test Tuesday */
-        XCTAssertEqual(2, Int(sensor.convertToStandardized(rawValue: 3)))
+        XCTAssertEqual(2, Int(type(of: sensor).convertToStandardized(rawValue: 3)))
         
         /* test Wednesday */
-        XCTAssertEqual(3, Int(sensor.convertToStandardized(rawValue: 4)))
+        XCTAssertEqual(3, Int(type(of: sensor).convertToStandardized(rawValue: 4)))
         
         /* test Thursday */
-        XCTAssertEqual(4, Int(sensor.convertToStandardized(rawValue: 5)))
+        XCTAssertEqual(4, Int(type(of: sensor).convertToStandardized(rawValue: 5)))
         
         /* test Friday */
-        XCTAssertEqual(5, Int(sensor.convertToStandardized(rawValue: 6)))
+        XCTAssertEqual(5, Int(type(of: sensor).convertToStandardized(rawValue: 6)))
         
         /* test Saturday */
-        XCTAssertEqual(6, Int(sensor.convertToStandardized(rawValue: 7)))
+        XCTAssertEqual(6, Int(type(of: sensor).convertToStandardized(rawValue: 7)))
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor())
     }
 }

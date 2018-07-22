@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LatitudeSensor : NSObject, DeviceSensor {
+class LatitudeSensor : NSObject, DeviceSensor {
     
     static let tag = "LATITUDE"
     static let name = kUIFESensorLatitude
@@ -37,11 +37,11 @@
         return self.getLocationManager()?.location?.coordinate.latitude ?? type(of: self).defaultRawValue
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

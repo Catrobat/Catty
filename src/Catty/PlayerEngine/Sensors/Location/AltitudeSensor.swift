@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class AltitudeSensor : NSObject, DeviceSensor {
+class AltitudeSensor : NSObject, DeviceSensor {
     
     static let tag = "ALTITUDE"
     static let name = kUIFESensorAltitude
@@ -37,11 +37,11 @@
         return self.getLocationManager()?.location?.altitude ?? type(of: self).defaultRawValue
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

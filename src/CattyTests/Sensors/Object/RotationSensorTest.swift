@@ -67,52 +67,52 @@ final class RotationSensorTest: XCTestCase {
     
     func testConvertToStandarized() {
         // on the first circle
-        XCTAssertEqual(90, self.sensor.convertToStandardized(rawValue: 0), accuracy: 0.0001)
-        XCTAssertEqual(-90, self.sensor.convertToStandardized(rawValue: Double.pi), accuracy: 0.0001)
-        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: Double.pi / 2), accuracy: 0.0001)
-        XCTAssertEqual(90, self.sensor.convertToStandardized(rawValue: Double.pi * 2), accuracy: 0.0001)
-        XCTAssertEqual(60, self.sensor.convertToStandardized(rawValue: Double.pi / 6), accuracy: 0.0001)
+        XCTAssertEqual(90, type(of: sensor).convertToStandardized(rawValue: 0), accuracy: 0.0001)
+        XCTAssertEqual(-90, type(of: sensor).convertToStandardized(rawValue: Double.pi), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: Double.pi / 2), accuracy: 0.0001)
+        XCTAssertEqual(90, type(of: sensor).convertToStandardized(rawValue: Double.pi * 2), accuracy: 0.0001)
+        XCTAssertEqual(60, type(of: sensor).convertToStandardized(rawValue: Double.pi / 6), accuracy: 0.0001)
         
         // after the first circle (360)
-        XCTAssertEqual(-90, self.sensor.convertToStandardized(rawValue: Double.pi * 5), accuracy: 0.0001)
+        XCTAssertEqual(-90, type(of: sensor).convertToStandardized(rawValue: Double.pi * 5), accuracy: 0.0001)
         
         // before the first circle circle (0)
-        XCTAssertEqual(90, self.sensor.convertToStandardized(rawValue: -Double.pi * 4), accuracy: 0.0001)
-        XCTAssertEqual(135, self.sensor.convertToStandardized(rawValue: -Double.pi / 4), accuracy: 0.0001)
+        XCTAssertEqual(90, type(of: sensor).convertToStandardized(rawValue: -Double.pi * 4), accuracy: 0.0001)
+        XCTAssertEqual(135, type(of: sensor).convertToStandardized(rawValue: -Double.pi / 4), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
         // on the first circle
-        XCTAssertEqual(0, self.sensor.convertToRaw(userInput: 90), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi * 3 / 2, self.sensor.convertToRaw(userInput: 180), accuracy: 0.0001)
-        XCTAssertEqual(-Double.pi / 2, self.sensor.convertToRaw(userInput: -180), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 4, self.sensor.convertToRaw(userInput: 45), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 3, self.sensor.convertToRaw(userInput: 30), accuracy: 0.0001)
-        XCTAssertEqual(Double.pi / 2, self.sensor.convertToRaw(userInput: 0), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 90), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi * 3 / 2, type(of: sensor).convertToRaw(userInput: 180), accuracy: 0.0001)
+        XCTAssertEqual(-Double.pi / 2, type(of: sensor).convertToRaw(userInput: -180), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 4, type(of: sensor).convertToRaw(userInput: 45), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 3, type(of: sensor).convertToRaw(userInput: 30), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, type(of: sensor).convertToRaw(userInput: 0), accuracy: 0.0001)
         
         // before the first circle
-        XCTAssertEqual(-Double.pi, self.sensor.convertToRaw(userInput: -450), accuracy: 0.0001)
+        XCTAssertEqual(-Double.pi, type(of: sensor).convertToRaw(userInput: -450), accuracy: 0.0001)
         
         // after the first circle
-        XCTAssertEqual(Double.pi / 2, self.sensor.convertToRaw(userInput: 720), accuracy: 0.0001)
+        XCTAssertEqual(Double.pi / 2, type(of: sensor).convertToRaw(userInput: 720), accuracy: 0.0001)
     }
     
     func testConvertToSceneDegrees() {
         // rotationDegreeOffset = ± 90
         
         // on the first trigonometric circle, in absolute value
-        XCTAssertEqual(90, self.sensor.convertSceneToDegrees(0), accuracy: 0.0001)
-        XCTAssertEqual(0, self.sensor.convertSceneToDegrees(90), accuracy: 0.0001)
-        XCTAssertEqual(-90, self.sensor.convertSceneToDegrees(-180), accuracy: 0.0001)
-        XCTAssertEqual(-90, self.sensor.convertSceneToDegrees(180), accuracy: 0.0001)
-        XCTAssertEqual(-130, self.sensor.convertSceneToDegrees(220), accuracy: 0.0001)
-        XCTAssertEqual(150, self.sensor.convertSceneToDegrees(-60), accuracy: 0.0001)
+        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(0), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(90), accuracy: 0.0001)
+        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(-180), accuracy: 0.0001)
+        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(180), accuracy: 0.0001)
+        XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(220), accuracy: 0.0001)
+        XCTAssertEqual(150, type(of: sensor).convertSceneToDegrees(-60), accuracy: 0.0001)
         
         // on other trigonometric circles => periodicity
-        XCTAssertEqual(0, self.sensor.convertSceneToDegrees(450), accuracy: 0.0001)
-        XCTAssertEqual(-90, self.sensor.convertSceneToDegrees(900), accuracy: 0.0001)
-        XCTAssertEqual(-130, self.sensor.convertSceneToDegrees(-500), accuracy: 0.0001)
-        XCTAssertEqual(90, self.sensor.convertSceneToDegrees(-1080), accuracy: 0.0001)
+        XCTAssertEqual(0, type(of: sensor).convertSceneToDegrees(450), accuracy: 0.0001)
+        XCTAssertEqual(-90, type(of: sensor).convertSceneToDegrees(900), accuracy: 0.0001)
+        XCTAssertEqual(-130, type(of: sensor).convertSceneToDegrees(-500), accuracy: 0.0001)
+        XCTAssertEqual(90, type(of: sensor).convertSceneToDegrees(-1080), accuracy: 0.0001)
         
         // Note: the values returned are always between (-179, 180) - a single circle rotated
     }
@@ -126,6 +126,6 @@ final class RotationSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
+        XCTAssertTrue(type(of: sensor).showInFormulaEditor(for: self.spriteObject))
     }
 }

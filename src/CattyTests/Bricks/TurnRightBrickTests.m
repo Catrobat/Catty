@@ -26,7 +26,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface TurnRightBrickTests : AbstractBrickTests
-@property (nonatomic, strong) RotationSensor* rotationSensor;
 @end
 
 @implementation TurnRightBrickTests
@@ -34,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.rotationSensor = [RotationSensor new];
 }
 
 - (void)tearDown
@@ -84,7 +82,7 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.zRotation = [self.rotationSensor convertToRawWithUserInput:0];
+    spriteNode.catrobatRotation = 0.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -102,8 +100,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    CGFloat expectedRotation = [self.rotationSensor convertToStandardizedWithRawValue:spriteNode.zRotation];
-    XCTAssertEqualWithAccuracy(0.0, expectedRotation, 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy(0.0, spriteNode.catrobatRotation, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)turnRightWithInitialRotation:(CGFloat)initialRotation andRotation:(CGFloat)rotation
@@ -112,7 +109,7 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     
-    spriteNode.zRotation = [self.rotationSensor convertToRawWithUserInput:initialRotation];
+    spriteNode.catrobatRotation = initialRotation;
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -136,8 +133,8 @@
         initialRotation = initialRotation + 360.0f;
     }
     
-    CGFloat expectedRotation = [self.rotationSensor convertToRawWithUserInput:initialRotation + rotation];
-    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.zRotation, 0.0001, @"TurnRightBrick not correct");
+    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:initialRotation + rotation];
+    XCTAssertEqualWithAccuracy(expectedRawRotation, spriteNode.zRotation, 0.0001, @"TurnRightBrick not correct");
 }
 
 @end

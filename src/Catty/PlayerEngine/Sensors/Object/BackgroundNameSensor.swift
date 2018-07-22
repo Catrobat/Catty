@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BackgroundNameSensor: NSObject, ObjectSensor {
+class BackgroundNameSensor: NSObject, ObjectSensor {
 
     static let tag = "OBJECT_BACKGROUND_NAME"
     static let name = kUIFEObjectBackgroundName
@@ -31,11 +31,11 @@
         return 0 // TODO
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
+    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true // TODO
     }
 }

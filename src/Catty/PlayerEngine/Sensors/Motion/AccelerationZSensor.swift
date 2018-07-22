@@ -37,11 +37,11 @@ class AccelerationZSensor : DeviceSensor {
         return self.getMotionManager()?.deviceMotion?.userAcceleration.z ?? type(of: self).defaultRawValue
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    static func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 9.8
     }
     
-    func showInFormulaEditor() -> Bool {
+    static func showInFormulaEditor() -> Bool {
         return true
     }
 }

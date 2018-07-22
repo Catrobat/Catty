@@ -23,12 +23,11 @@
 extension FormulaEditorViewController {
 
     @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.objectSensors() {
-            if (sensor.showInFormulaEditor(for: self.object)) {
+            if (type(of: sensor).showInFormulaEditor(for: self.object)) {
                 topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
                 buttons.append(topAnchorView as! UIButton)
             }
@@ -41,12 +40,11 @@ extension FormulaEditorViewController {
     }
     
     @objc func initSensorView(sensorScrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.deviceSensors() {
-            if (sensor.showInFormulaEditor()) {
+            if (type(of: sensor).showInFormulaEditor()) {
                 topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
                 buttons.append(topAnchorView as! UIButton)
             }
@@ -60,7 +58,6 @@ extension FormulaEditorViewController {
     }
     
     private func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
-
         let button = FormulaEditorSensorButton(sensor: sensor)
         
         button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
@@ -86,8 +83,7 @@ extension FormulaEditorViewController {
         } 
     }
     
-    private func handleInput(withSensor sensor:CBSensor)
-    {
+    private func handleInput(withSensor sensor:CBSensor) {
         self.internFormula.handleKeyInput(withSensor: sensor)
         self.handleInput()
     }

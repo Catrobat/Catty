@@ -37,31 +37,27 @@
         return {
             guard let look = spriteNode.currentLook,
                   let image = UIImage(contentsOfFile: self.path(for: look)) else {return}
-            
-            let texture = SKTexture(image: image)
+
             spriteNode.currentUIImageLook = image
-            // TODO
-            spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
-            spriteNode.ciHueAdjust = CGFloat(ColorSensor.defaultRawValue)
+            
+            spriteNode.catrobatBrightness = BrightnessSensor.defaultStandardizedValue()
+            spriteNode.catrobatColor = ColorSensor.defaultStandardizedValue()
             
             for (paramName, _) in spriteNode.filterDict {
                 spriteNode.filterDict[paramName] = false
             }
             
-            let xScale = spriteNode.xScale
-            let yScale = spriteNode.yScale
-            spriteNode.xScale = 1.0
-            spriteNode.yScale = 1.0
-            spriteNode.alpha = 1.0
+            let currentsize = spriteNode.catrobatSize
+            let texture = SKTexture(image: image)
+            
+            spriteNode.catrobatSize = SizeSensor.defaultStandardizedValue()
+            spriteNode.catrobatTransparency = TransparencySensor.defaultStandardizedValue()
+
             spriteNode.size = texture.size()
             spriteNode.texture = texture
+            
             spriteNode.currentLook = look
-            if xScale != 1.0 {
-                spriteNode.xScale = CGFloat(xScale)
-            }
-            if yScale != 1.0 {
-                spriteNode.yScale = CGFloat(yScale)
-            }
+            spriteNode.catrobatSize = currentsize
         }
     }
 }
