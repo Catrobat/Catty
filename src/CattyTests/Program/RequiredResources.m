@@ -113,7 +113,7 @@
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kAccelerometer, @"Resourses ShowBrick not correctly calculated");
+    XCTAssertEqual(resources, kDeviceMotion, @"Resourses ShowBrick not correctly calculated");
 }
 
 - (void)testSetSizeBrickResources
@@ -134,7 +134,7 @@
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(resources, kAccelerometer, @"Resourses SetSizeToBrick not correctly calculated");
+    XCTAssertEqual(resources, kDeviceMotion, @"Resourses SetSizeToBrick not correctly calculated");
 }
 
 - (void)testSetBrightnessBrickResources
@@ -782,7 +782,7 @@
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kCompass, resources & kCompass, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
@@ -803,7 +803,7 @@
     
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kFaceDetection, resources & kFaceDetection, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
@@ -835,7 +835,7 @@
     
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");
@@ -907,7 +907,7 @@
     Program *prog = [self getProgramWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
@@ -941,7 +941,7 @@
     Program *prog = [self getProgramWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
@@ -1000,7 +1000,7 @@
     Program *prog = [self getProgramWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kBluetoothPhiro, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
@@ -1035,7 +1035,7 @@
     Program *prog = [self getProgramWithTwoSpritesWithBricks:brickArray andBrickArray2:brickArray2];
     
     NSInteger resources = [prog getRequiredResources];
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");

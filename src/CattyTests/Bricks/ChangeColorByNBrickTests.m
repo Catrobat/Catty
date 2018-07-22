@@ -196,7 +196,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     
-    XCTAssertEqualWithAccuracy(-130.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
+    XCTAssertEqualWithAccuracy(200-130.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
     
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
