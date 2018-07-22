@@ -100,6 +100,7 @@
                         <viewLayoutGuide key="safeArea" id="m8n-XE-GBT"/>
                     </view>
                     <connections>
+                        <outlet property="dismissButton" destination="HFn-rT-tSZ" id="P4N-gp-aCm"/>
                         <outlet property="headline" destination="2pt-28-dhX" id="CBB-xX-E94"/>
                         <outlet property="image" destination="7Gy-IL-zzz" id="KMI-Ue-WEx"/>
                         <outlet property="paragraph" destination="n8s-GX-5m5" id="Ma7-dh-Lgf"/>

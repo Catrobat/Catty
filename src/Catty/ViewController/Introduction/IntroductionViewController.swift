@@ -25,7 +25,9 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var headline: UILabel!
     @IBOutlet weak var paragraph: UILabel!
     @IBOutlet weak var image: UIImageView!
-
+    
+    @IBOutlet var dismissButton: UIButton!
+    
     @IBAction func touchDismiss(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         IntroductionPageViewController.hasBeenShown = true
@@ -41,6 +43,7 @@ class IntroductionViewController: UIViewController {
         self.headline.text = self.content?.title
         self.paragraph.text = self.content?.description
         self.image.image = self.content?.image
+        self.dismissButton.isHidden = self.content == nil
     }
 }
 
