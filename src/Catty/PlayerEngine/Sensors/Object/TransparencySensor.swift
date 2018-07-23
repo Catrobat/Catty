@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class TransparencySensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+@objc class TransparencySensor: NSObject, ObjectDoubleSensor {
 
     static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency

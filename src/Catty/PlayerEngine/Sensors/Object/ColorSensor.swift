@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class ColorSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+@objc class ColorSensor: NSObject, ObjectDoubleSensor {
 
     static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BackgroundNumberSensor: NSObject, ObjectSensor {
+@objc class BackgroundNumberSensor: NSObject, ObjectDoubleSensor {
 
     static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
@@ -40,5 +40,13 @@
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return spriteObject.isBackground()
+    }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
+        fatalError("This sensor is read-only")
+    }
+    
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
+        fatalError("This sensor is read-only")
     }
 }

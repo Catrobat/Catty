@@ -20,22 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BackgroundNameSensor: NSObject, ObjectStringSensor {
-    
-    static let tag = "OBJECT_BACKGROUND_NAME"
-    static let name = kUIFEObjectBackgroundName
-    static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.noResources
+@objc protocol ObjectStringSensor: ObjectSensor {
 
-    static func rawValue(for spriteObject: SpriteObject) -> String {
-        return "" // TODO
-    }
-
-    static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
-        return rawValue
-    }
+    // The iOS device specific value of the sensor
+    static func rawValue(for spriteObject: SpriteObject) -> String
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true // TODO
+    // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
+    static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String
+}
+
+extension ObjectStringSensor {
+    // The Pocket Code standardized sensor value
+    static func standardizedValue(for spriteObject: SpriteObject) -> String {
+        let rawValue = self.rawValue(for: spriteObject)
+        return convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
 }

@@ -216,7 +216,6 @@
 		4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E1F1B4D3E8C00E27479 /* TestParser.m */; };
 		4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */; };
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
-		4C73A59420EC93E90073DB52 /* ObjectReadWriteSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C73A59320EC93E90073DB52 /* ObjectReadWriteSensor.swift */; };
 		4C73A5A120ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */; };
 		4C73A5A320ECB4460073DB52 /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
@@ -388,6 +387,9 @@
 		4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */; };
 		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
 		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
+		4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */; };
+		4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */; };
+		4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */; };
 		4CF0728120D6577500F93AB5 /* PhiroSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0728020D6577500F93AB5 /* PhiroSensor.swift */; };
 		4CF0728420D6581900F93AB5 /* PhiroFrontLeftSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0728320D6581900F93AB5 /* PhiroFrontLeftSensor.swift */; };
 		4CF0728A20D659F700F93AB5 /* PhiroFrontRightSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0728520D659F600F93AB5 /* PhiroFrontRightSensor.swift */; };
@@ -420,7 +422,6 @@
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
 		591596D6203563850015F74A /* UIBarButtonItem+InvisibleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */; };
 		592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */; };
-		592EF6E82094B52E00BD6000 /* ObjectSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E72094B52E00BD6000 /* ObjectSensor.swift */; };
 		592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EF6E92094B84900BD6000 /* DeviceSensor.swift */; };
 		593624C21F76F36F008A588D /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A601F76F04B00BD634F /* TTTAttributedLabel.framework */; };
 		593624C51F76F374008A588D /* Bohr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59473A641F76F05000BD634F /* Bohr.framework */; };
@@ -1421,7 +1422,6 @@
 		4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
 		4C724E641B4D3EC500E27479 /* CBXMLSerializerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializerContext.h; sourceTree = "<group>"; };
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
-		4C73A59320EC93E90073DB52 /* ObjectReadWriteSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectReadWriteSensor.swift; sourceTree = "<group>"; };
 		4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = NumberOfItemsInListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/NumberOfItemsInListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
@@ -1606,6 +1606,9 @@
 		4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_096.xml; sourceTree = "<group>"; };
 		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
 		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
+		4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
+		4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStringSensor.swift; sourceTree = "<group>"; };
+		4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDoubleSensor.swift; sourceTree = "<group>"; };
 		4CF0728020D6577500F93AB5 /* PhiroSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroSensor.swift; sourceTree = "<group>"; };
 		4CF0728320D6581900F93AB5 /* PhiroFrontLeftSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroFrontLeftSensor.swift; sourceTree = "<group>"; };
 		4CF0728520D659F600F93AB5 /* PhiroFrontRightSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroFrontRightSensor.swift; sourceTree = "<group>"; };
@@ -1641,7 +1644,6 @@
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
 		591596D5203563850015F74A /* UIBarButtonItem+InvisibleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+InvisibleButton.swift"; sourceTree = "<group>"; };
 		592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectProtocol.swift; sourceTree = "<group>"; };
-		592EF6E72094B52E00BD6000 /* ObjectSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSensor.swift; sourceTree = "<group>"; };
 		592EF6E92094B84900BD6000 /* DeviceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceSensor.swift; sourceTree = "<group>"; };
 		5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundsTableViewController+MediaLibrary.swift"; sourceTree = "<group>"; };
 		593E4DDD1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
@@ -4173,8 +4175,9 @@
 				592EF6E92094B84900BD6000 /* DeviceSensor.swift */,
 				59D008EC208E4249000539E7 /* LocationManager.swift */,
 				59D008E8208E3FDC000539E7 /* MotionManager.swift */,
-				4C73A59320EC93E90073DB52 /* ObjectReadWriteSensor.swift */,
-				592EF6E72094B52E00BD6000 /* ObjectSensor.swift */,
+				4CEFFAD92105E46400DC5CFE /* ObjectDoubleSensor.swift */,
+				4CEFFAD82105E46400DC5CFE /* ObjectStringSensor.swift */,
+				4CEFFAD02105DE4800DC5CFE /* ObjectSensor.swift */,
 				4CF0728020D6577500F93AB5 /* PhiroSensor.swift */,
 				4C994DFE207A3D4100C415FD /* Sensor.swift */,
 				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
@@ -7970,7 +7973,6 @@
 				92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
-				592EF6E82094B52E00BD6000 /* ObjectSensor.swift in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
@@ -8048,6 +8050,7 @@
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				4C0F9F50204BD0B400E71B2D /* BubbleBrickHelper.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
+				4CEFFADB2105E46500DC5CFE /* ObjectDoubleSensor.swift in Sources */,
 				921D46871BDF698A0086AD20 /* ChangeBrightnessBrick+Instruction.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
@@ -8256,6 +8259,7 @@
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
+				4CEFFADA2105E46500DC5CFE /* ObjectStringSensor.swift in Sources */,
 				AA74F0C41BC05FCE00D1E954 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				92B46FA71BC7C2A5004980C1 /* ArduinoSendDigitalValueBrick+Instruction.swift in Sources */,
@@ -8329,7 +8333,6 @@
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
 				BA1FA9981F02AD770084184D /* InsertItemIntoUserListBrick+CBXMLHandler.m in Sources */,
 				9218B2021CC4AB75007B4C60 /* ImageHelper.m in Sources */,
-				4C73A59420EC93E90073DB52 /* ObjectReadWriteSensor.swift in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				4C994E31207A594100C415FD /* InclinationYSensor.swift in Sources */,
 				BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */,
@@ -8348,6 +8351,7 @@
 				4C0F9F43204ADC6600E71B2D /* ThinkBubbleBrick.m in Sources */,
 				AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */,
 				593E4DDE1FE11D410016DCB9 /* CatrobatReorderableCollectionViewFlowLayout.m in Sources */,
+				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,

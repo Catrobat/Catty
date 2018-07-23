@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SizeSensor: ObjectSensor, ObjectReadWriteSensor {
+class SizeSensor: ObjectDoubleSensor {
 
     static let androidToIOSScale = 2.4
     

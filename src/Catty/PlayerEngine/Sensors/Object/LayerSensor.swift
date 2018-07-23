@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LayerSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+@objc class LayerSensor: NSObject, ObjectDoubleSensor {
     
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer

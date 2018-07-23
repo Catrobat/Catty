@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PositionYSensor: ObjectSensor, ObjectReadWriteSensor {
+class PositionYSensor: ObjectDoubleSensor {
     
     static let tag = "OBJECT_Y"
     static let name = kUIFEObjectPositionY

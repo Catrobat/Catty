@@ -168,15 +168,20 @@ import CoreLocation
 
     @objc func value(sensorTag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
         guard let sensor = sensor(tag: sensorTag) else { return defaultValueForUndefinedSensor as AnyObject }
-        var rawValue = type(of: sensor).defaultRawValue
+        var rawValue: AnyObject = type(of: sensor).defaultRawValue as AnyObject
         
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
-            rawValue = type(of: sensor).standardizedValue(for: spriteObject)
+            if let sensor = sensor as? ObjectDoubleSensor {
+                rawValue = type(of: sensor).standardizedValue(for: spriteObject) as AnyObject
+            }
+            if let sensor = sensor as? ObjectStringSensor {
+                rawValue = type(of: sensor).standardizedValue(for: spriteObject) as AnyObject
+            }
         } else if let sensor = sensor as? DeviceSensor {
-            rawValue = sensor.standardizedValue()
+            rawValue = sensor.standardizedValue() as AnyObject
         }
         
-        return rawValue as AnyObject
+        return rawValue
     }
     
     @objc(setupSensorsForRequiredResources:)

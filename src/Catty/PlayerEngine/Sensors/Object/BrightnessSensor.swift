@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class BrightnessSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+@objc class BrightnessSensor: NSObject, ObjectDoubleSensor {
 
     static let tag = "OBJECT_BRIGHTNESS"
     static let name = kUIFEObjectBrightness

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class RotationSensor: NSObject, ObjectSensor, ObjectReadWriteSensor {
+@objc class RotationSensor: NSObject, ObjectDoubleSensor {
 
     static let tag = "OBJECT_ROTATION"
     static let name = kUIFEObjectDirection
