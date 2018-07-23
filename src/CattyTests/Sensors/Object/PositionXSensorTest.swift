@@ -90,14 +90,33 @@ final class PositionXSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(10, sensor.convertToStandardized(rawValue: 10, for: spriteObject))
-        // TODO add tests (center, bottom left/right, top left/right
+        // random
+        XCTAssertEqual(-240, sensor.convertToStandardized(rawValue: 10, for: spriteObject))
+        
+        // center
+        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 250, for: spriteObject))
+        
+        // left
+        XCTAssertEqual(-187, sensor.convertToStandardized(rawValue: 63, for: spriteObject))
+        
+        // right
+        XCTAssertEqual(187, sensor.convertToStandardized(rawValue: 437, for: spriteObject))
     }
     
     func testConvertToRaw() {
-        // TODO add tests (center, bottom left/right, top left/right
+        // random
+        XCTAssertEqual(260, sensor.convertToRaw(userInput: 10, for: spriteObject))
+        
+        // center
+        XCTAssertEqual(250, sensor.convertToRaw(userInput: 0, for: spriteObject))
+        
+        // left
+        XCTAssertEqual(63, sensor.convertToRaw(userInput: -187, for: spriteObject))
+        
+        // right
+        XCTAssertEqual(437, sensor.convertToRaw(userInput: 187, for: spriteObject))
     }
-
+    
     func testTag() {
         XCTAssertEqual("OBJECT_X", sensor.tag)
     }
