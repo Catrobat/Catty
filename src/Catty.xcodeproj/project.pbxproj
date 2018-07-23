@@ -978,6 +978,7 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		E438738A210623230062209F /* TimerWithBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4387389210623230062209F /* TimerWithBlock.swift */; };
 		E4668B3820FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */; };
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */; };
 		E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */; };
@@ -2542,6 +2543,7 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E4387389210623230062209F /* TimerWithBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWithBlock.swift; sourceTree = "<group>"; };
 		E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableViewController.swift; sourceTree = "<group>"; };
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableDataSource.swift; sourceTree = "<group>"; };
 		E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCell.swift; sourceTree = "<group>"; };
@@ -4837,6 +4839,7 @@
 				92FF2E8B1A24C7D800093DA7 /* Util.m */,
 				CA2D44451B123B7E00A3B53D /* Util.swift */,
 				A9F511821BE6A07A00B59540 /* SwiftBridge.swift */,
+				E4387389210623230062209F /* TimerWithBlock.swift */,
 			);
 			name = Utils;
 			path = Util;
@@ -7812,6 +7815,7 @@
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
+				E438738A210623230062209F /* TimerWithBlock.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,

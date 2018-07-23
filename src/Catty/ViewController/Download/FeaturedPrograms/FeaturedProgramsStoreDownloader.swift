@@ -29,17 +29,24 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
     
     let session: URLSession
     let kFeaturedProgramsMaxResults = 10
-
+    
     init(session: URLSession = URLSession.shared) {
         self.session = session
     }
-
+    
     func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
 
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
+        
+        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+            completion(nil, .timeout)
+            timer.invalidate()
+        }
 
         self.session.dataTask(with: indexURL) { (data, response, error) in
 
+            guard timer.isValid else { return }
+            
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: FeaturedProgramsCollectionText?, error: FeaturedProgramsDownloadError?)
 
             handleDataTaskCompletion = { (data, response, error) in
@@ -94,6 +101,8 @@ enum FeaturedProgramsDownloadError: Error {
     case request(error: Error?, statusCode: Int)
     /// Indicates a parsing error of the received data.
     case parse(error: Error)
+    /// Indicates a server timeout.
+    case timeout
     /// Indicates an unexpected error.
     case unexpectedError
 }
