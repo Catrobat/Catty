@@ -100,8 +100,8 @@ import CoreLocation
             PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             
-            /*ArduinoAnalogPinSensor(), // only show if [[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]
-            ArduinoDigitalPinSensor(),*/
+            ArduinoAnalogPinSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            ArduinoDigitalPinSensor(bluetoothServiceGetter: bluetoothServiceGetter)
         ]
         
         self.deviceSensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }

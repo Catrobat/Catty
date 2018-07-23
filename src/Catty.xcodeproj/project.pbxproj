@@ -267,6 +267,8 @@
 		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CC6358F2105E9210053BD68 /* ArduinoAnalogPinSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6358E2105E9210053BD68 /* ArduinoAnalogPinSensor.swift */; };
+		4CC635912105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC635902105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift */; };
 		4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */; };
 		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
 		4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */; };
@@ -1483,6 +1485,8 @@
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CC6358E2105E9210053BD68 /* ArduinoAnalogPinSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinSensor.swift; sourceTree = "<group>"; };
+		4CC635902105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinSensor.swift; sourceTree = "<group>"; };
 		4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
 		4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_096.xml; sourceTree = "<group>"; };
 		4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_096.xml; sourceTree = "<group>"; };
@@ -3765,6 +3769,7 @@
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				4CC6358B2105E8FE0053BD68 /* Arduino */,
 				4C994E05207A3D4100C415FD /* Audio */,
 				4CF072AC20D6751E00F93AB5 /* Date */,
 				4C11795220AEC351006C6E32 /* Extensions */,
@@ -3870,6 +3875,15 @@
 				4CB4FE051B95DF2900431757 /* BrickMoveManager.m */,
 			);
 			path = BrickManager;
+			sourceTree = "<group>";
+		};
+		4CC6358B2105E8FE0053BD68 /* Arduino */ = {
+			isa = PBXGroup;
+			children = (
+				4CC6358E2105E9210053BD68 /* ArduinoAnalogPinSensor.swift */,
+				4CC635902105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift */,
+			);
+			path = Arduino;
 			sourceTree = "<group>";
 		};
 		4CC85CD91B9C717C0097E470 /* ValidHeader */ = {
@@ -7839,6 +7853,7 @@
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				AA74EE331BC0542C00D1E954 /* VibrationBrick+Instruction.swift in Sources */,
+				4CC6358F2105E9210053BD68 /* ArduinoAnalogPinSensor.swift in Sources */,
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
@@ -8225,6 +8240,7 @@
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
+				4CC635912105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift in Sources */,
 				4C0F9F3A204ADC4E00E71B2D /* SayForBubbleBrick.m in Sources */,
 				F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
