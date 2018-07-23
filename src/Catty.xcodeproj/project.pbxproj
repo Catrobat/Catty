@@ -15,6 +15,9 @@
 		2D9D4CFD20FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D9D4CF520FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
 		2D9D4D0020FCB1680031A39D /* FeaturedProgramsStoreDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D4CFF20FCB1670031A39D /* FeaturedProgramsStoreDownloaderTests.swift */; };
 		2DE384FB2105C32D004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE384FA2105C32C004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
+		2DE385082105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
+		2DE385092105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
+		2DE3850B2105ECFC004D8180 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3850A2105ECFC004D8180 /* FeaturedProgramStoreDataSourceTests.swift */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C0F9F1C204ADB5900E71B2D /* ChooseCameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */; };
@@ -1052,6 +1055,8 @@
 		2D9D4CF520FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
 		2D9D4CFF20FCB1670031A39D /* FeaturedProgramsStoreDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloaderTests.swift; sourceTree = "<group>"; };
 		2DE384FA2105C32C004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
+		2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDownloaderMock.swift; sourceTree = "<group>"; };
+		2DE3850A2105ECFC004D8180 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
@@ -3096,6 +3101,7 @@
 			children = (
 				2D9D4CFE20FCB0F70031A39D /* Fixtures */,
 				2D9D4CFF20FCB1670031A39D /* FeaturedProgramsStoreDownloaderTests.swift */,
+				2DE3850A2105ECFC004D8180 /* FeaturedProgramStoreDataSourceTests.swift */,
 			);
 			name = Download;
 			sourceTree = "<group>";
@@ -3886,6 +3892,7 @@
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
+				2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -7324,6 +7331,7 @@
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
+				2DE385092105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
@@ -7370,6 +7378,7 @@
 				4C0FA01B204BD59100E71B2D /* SensorHandlerTests.swift in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
+				2DE3850B2105ECFC004D8180 /* FeaturedProgramStoreDataSourceTests.swift in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
@@ -7836,6 +7845,7 @@
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
+				2DE385082105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,

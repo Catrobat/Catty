@@ -53,6 +53,10 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
         }
     }
     
+    func numberOfRows(in tableView: UITableView) -> Int {
+        return self.programs.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.programs.count
     }
