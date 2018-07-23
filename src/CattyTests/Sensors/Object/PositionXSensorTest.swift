@@ -33,7 +33,7 @@ final class PositionXSensorTest: XCTestCase {
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        self.spriteNode.mockedScene = CBScene(size: CGSize(width: 500, height: 500))
+        self.spriteNode.mockedScene = CBScene(size: CGSize(width: spriteNode.scene.size.width, height: spriteNode.scene.size.height))
     }
 
     override func tearDown() {
@@ -46,6 +46,10 @@ final class PositionXSensorTest: XCTestCase {
         
         spriteObject.spriteNode = nil
         XCTAssertEqual(sensor.rawValue(for: spriteObject), sensor.defaultRawValue, accuracy: 0.0001)
+        
+        spriteNode.mockedScene = nil
+        XCTAssertEqual(sensor.defaultRawValue, sensor.convertToStandardized(rawValue: 10, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(sensor.defaultRawValue, sensor.convertToRaw(userInput: 10, for: spriteObject), accuracy: 0.0001)
     }
     
     func testRawValue() {
