@@ -5,23 +5,46 @@
         "status" : 404,
         "headers" : {
           "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=s7to5cgb7mb050ll0uqd2autj7; path=\/",
+          "Set-Cookie" : "PHPSESSID=p50buh367402cog4p79f5fjvb1; path=\/",
           "Expires" : "-1",
           "Pragma" : "no-cache",
           "Strict-Transport-Security" : "max-age=15768000",
           "Server" : "nginx",
-          "Date" : "Mon, 16 Jul 2018 13:49:56 GMT",
+          "Date" : "Mon, 23 Jul 2018 08:00:17 GMT",
           "Cache-Control" : "private, must-revalidate"
         },
         "body" : {
-          "error" : {
-          "message" : "Internal Server Error",
-          "code" : 404
-          }
+          "CatrobatInformation" : {
+            "BaseUrl" : "https:\/\/share.catrob.at\/",
+            "TotalProjects" : 1,
+            "ProjectsExtension" : ".catrobat"
+          },
+          "completeTerm" : "",
+          "preHeaderMessages" : "",
+          "CatrobatProjects" : [
+            {
+              "Author" : "VesnaK",
+              "Private" : false,
+              "Description" : "",
+              "UploadedString" : "more than one year ago",
+              "Version" : "0.7.1beta",
+              "Views" : 6737,
+              "ProjectUrl" : "pocketcode\/program\/821",
+              "Uploaded" : 1366835078,
+              "ScreenshotBig" : "resources\/screenshots\/screen_821.png",
+              "Downloads" : 6760,
+              "ScreenshotSmall" : "resources\/thumbnails\/screen_821.png",
+              "ProjectNameShort" : "Whack A Mole",
+              "DownloadUrl" : "pocketcode\/download\/821.catrobat",
+              "ProjectName" : "Whack A Mole",
+              "FileSize" : 0.67617511749268,
+              "ProjectId" : 821
+            }
+          ]
         },
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
       },
-      "recorded_at" : 1531748996.3483529,
+      "recorded_at" : 1532332817.7451649,
       "request" : {
         "method" : "GET",
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"

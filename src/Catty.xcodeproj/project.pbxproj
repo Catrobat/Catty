@@ -14,6 +14,7 @@
 		2D9D4CFC20FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D9D4CF520FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
 		2D9D4CFD20FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D9D4CF520FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
 		2D9D4D0020FCB1680031A39D /* FeaturedProgramsStoreDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9D4CFF20FCB1670031A39D /* FeaturedProgramsStoreDownloaderTests.swift */; };
+		2DE384FB2105C32D004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE384FA2105C32C004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C0F9F1C204ADB5900E71B2D /* ChooseCameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */; };
@@ -984,7 +985,6 @@
 		E4E5599720FCD6AD004B4A08 /* CBInformationNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599520FCD6AB004B4A08 /* CBInformationNumber.swift */; };
 		E4E5599820FCD6AD004B4A08 /* CBProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* CBProgram.swift */; };
 		E4E5599C20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4E5599B20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json */; };
-		E4E5599E20FCDA21004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4E5599D20FCDA20004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
 		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */; };
@@ -1051,6 +1051,7 @@
 		2D9D4CF320FCB0EC0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json; sourceTree = "<group>"; };
 		2D9D4CF520FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
 		2D9D4CFF20FCB1670031A39D /* FeaturedProgramsStoreDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloaderTests.swift; sourceTree = "<group>"; };
+		2DE384FA2105C32C004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
@@ -2546,7 +2547,6 @@
 		E4E5599520FCD6AB004B4A08 /* CBInformationNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBInformationNumber.swift; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* CBProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgram.swift; sourceTree = "<group>"; };
 		E4E5599B20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.success.json; sourceTree = "<group>"; };
-		E4E5599D20FCDA20004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
 		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2666,8 +2666,8 @@
 				2D9D4CF520FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */,
 				2D9D4CF320FCB0EC0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */,
 				2D9D4CF020FCB0EB0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */,
+				2DE384FA2105C32C004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */,
 				E4E5599B20FCD97A004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.success.json */,
-				E4E5599D20FCDA20004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */,
 			);
 			name = Fixtures;
 			path = "New Group";
@@ -6967,7 +6967,6 @@
 				4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */,
 				4C6D15EA1D7AC60500CE53CD /* Pong_Starter_098.xml in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
-				E4E5599E20FCDA21004B4A08 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */,
 				CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */,
 				4C6D15E61D7AC5F900CE53CD /* Nyancat_1.0_098.xml in Resources */,
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
@@ -7072,6 +7071,7 @@
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
 				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				2D9D4CF920FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */,
+				2DE384FB2105C32D004D8180 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
 				2D9D4CFD20FCB0ED0031A39D /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */,
 			);
