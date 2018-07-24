@@ -20,8 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Kingfisher
-
 protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: CBProgram)
 }
@@ -32,10 +30,14 @@ protocol SelectedFeaturedProgramsDataSource: class {
 
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
 
+    // MARK: - Properties
+    
     weak var delegate: SelectedFeaturedProgramsDataSource?
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
     fileprivate var programs = [CBProgram]()
+    
+    // MARK: - Initializer
     
     fileprivate init(with downloader: FeaturedProgramsStoreDownloaderProtocol) {
         self.downloader = downloader
@@ -44,6 +46,8 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     static func dataSource(with downloader: FeaturedProgramsStoreDownloaderProtocol = FeaturedProgramsStoreDownloader()) -> FeaturedProgramsStoreTableDataSource {
         return FeaturedProgramsStoreTableDataSource(with: downloader)
     }
+    
+    // MARK: - DataSource
     
     func fetchItems(completion: @escaping (FeaturedProgramsDownloadError?) -> Void) {
         self.downloader.fetchFeaturedPrograms() {items, error in
@@ -72,6 +76,8 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
 
         return cell
     }
+    
+    // MARK: - Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell

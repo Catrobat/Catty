@@ -46,9 +46,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         self.session.dataTask(with: indexURL) { (data, response, error) in
 
             guard timer.isValid else { return }
-            
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: FeaturedProgramsCollectionText?, error: FeaturedProgramsDownloadError?)
-
             handleDataTaskCompletion = { (data, response, error) in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
@@ -61,7 +59,6 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
                 }
                 return (items, nil)
             }
-
             let result = handleDataTaskCompletion(data, response, error)
             DispatchQueue.main.async {
                 completion(result.items, result.error)
@@ -75,7 +72,6 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         
         self.session.dataTask(with: indexURL) { (data, response, error) in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: CBProgram?, error: FeaturedProgramsDownloadError?)
-            
             handleDataTaskCompletion = { (data, response, error) in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
@@ -88,7 +84,6 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
                 }
                 return (collection?.projects.first, nil)
             }
-            
             let result = handleDataTaskCompletion(data, response, error)
             DispatchQueue.main.async {
                 completion(result.program, result.error)

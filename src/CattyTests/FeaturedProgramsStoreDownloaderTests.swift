@@ -104,7 +104,6 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
     
     // MARK: - Download Data
 
-    
     func testDownloadDataSucceeds() {
         let dvrSession = Session(cassetteName: "FeaturedProgramsStoreDownloader.downloadData.success")
         let downloader = FeaturedProgramsStoreDownloader(session: dvrSession)

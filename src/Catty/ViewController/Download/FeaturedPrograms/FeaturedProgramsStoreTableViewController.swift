@@ -21,18 +21,24 @@
  */
 
 class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedFeaturedProgramsDataSource {
-
+    
+    // MARK: - Properties
+    
     private var dataSource: FeaturedProgramsStoreTableDataSource
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: CBProgram?
     var catrobatProject: CBProgram?
+    
+    // MARK: - Initializers
 
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
         super.init(coder: aDecoder)
     }
+    
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +60,8 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
             }
         }
     }
+    
+    // MARK: - Helper Methods
     
     private func mapCBProgramToCatrobatProgram(program: CBProgram) -> CatrobatProgram {
         var programDictionary = [String: Any]()
