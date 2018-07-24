@@ -35,7 +35,7 @@ import CoreLocation
     private var motionManager: CMMotionManager
     private var locationManager: CLLocationManager
     private var bluetoothService: BluetoothService
-    private var faceDetectionManager: FaceDetection
+    private var faceDetectionManager: FaceDetectionManagerProtocol
     private var audioManager: AudioManagerProtocol
     
     override private init() {
@@ -43,7 +43,7 @@ import CoreLocation
         locationManager = CLLocationManager()
         
         bluetoothService = BluetoothService.sharedInstance()
-        faceDetectionManager = FaceDetection()
+        faceDetectionManager = FaceDetectionManager()
         audioManager = AudioManager()
 
         super.init()
@@ -57,6 +57,7 @@ import CoreLocation
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
         let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         let audioManagerGetter: () -> AudioManagerProtocol? = { [weak self] in self?.audioManager }
+        let faceDetectionManagerGetter: () -> FaceDetectionManagerProtocol? = { [weak self] in self?.faceDetectionManager }
         
         // In the Formula Editor the sensors appear in the same order
         self.deviceSensorList = [
@@ -86,10 +87,10 @@ import CoreLocation
             
             /*MultiFingerTouchedSensor(),
             MultiFingerXSensor(),
-            MultiFingerYSensor(),
+            MultiFingerYSensor(),*/
              
-            FaceDetectedSensor(),
-            FaceSizeSensor(),
+            FaceDetectedSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
+            /*FaceSizeSensor(),
             FacePositionXSensor(),
             FacePositionYSensor(),*/
             
@@ -247,6 +248,10 @@ import CoreLocation
             unavailableResource |= ResourceType.magnetometer.rawValue
         }
         
+        if requiredResources & ResourceType.faceDetection.rawValue > 0 && !faceDetectionManager.available() {
+            unavailableResource |= ResourceType.faceDetection.rawValue
+        }
+        
         if requiredResources & ResourceType.loudness.rawValue > 0 && !audioManager.loudnessAvailable() {
             unavailableResource |= ResourceType.loudness.rawValue
         }
@@ -254,7 +259,7 @@ import CoreLocation
         return unavailableResource
     }
     
-    func stopSensors() {
+    @objc func stopSensors() {
         motionManager.stopAccelerometerUpdates()
         motionManager.stopDeviceMotionUpdates()
         motionManager.stopGyroUpdates()
