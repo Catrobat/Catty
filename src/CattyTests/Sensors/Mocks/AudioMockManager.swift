@@ -20,13 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol AudioManagerProtocol {
+final class AudioManagerMock: AudioManagerProtocol {
     
-    func startLoudnessRecorder() -> Void
+    var mockedLoudnessInDecibels: Double?
     
-    func stopLoudnessRecorder() -> Void
+    func startLoudnessRecorder() {
+    }
     
-    func loudness() -> Double?
+    func stopLoudnessRecorder() {
+    }
     
-    func loudnessAvailable() -> Bool
+    func loudness() -> Double? {
+        return mockedLoudnessInDecibels
+    }
+    
+    func loudnessAvailable() -> Bool {
+        return true
+    }
 }

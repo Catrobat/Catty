@@ -21,26 +21,68 @@
  */
 
 extension AudioManager: AudioManagerProtocol {
+    private var noiseRecogniserTimeIntervalInSeconds: Double { get { return 0.05 } }
+    private var noiseRecorderChannel: Int { get { return 0 } }
     
     func startLoudnessRecorder() -> Void {
-        // TODO init recorder
-        //self.recorder
+        if self.recorder == nil {
+            self.initRecorder()
+        }
+        
+        self.loudnessTimer = Timer.scheduledTimer(timeInterval: noiseRecogniserTimeIntervalInSeconds,
+                                                  target: self,
+                                                  selector: #selector(self.programTimerCallback),
+                                                  userInfo: nil,
+                                                  repeats: true)
+        
+        self.recorder.isMeteringEnabled = true
+        self.recorder.record()
     }
     
     func stopLoudnessRecorder() -> Void {
-        // TODO
-        //self.recorder
+        if self.recorder != nil {
+            self.recorder.stop()
+            self.recorder = nil
+            self.loudnessTimer.invalidate()
+            self.loudnessTimer = nil
+        }
     }
     
-    func loudness() -> Double {
-        // TODO
-        //self.recorder
-        return 0.0
+    func loudness() -> Double? {
+        if self.loudnessInDecibels == nil || self.recorder == nil {
+            return nil // no sound
+        }
+        return self.loudnessInDecibels as? Double
+    }
+    
+    func initRecorder() {
+        let url = URL(fileURLWithPath: "/dev/null")
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatAppleLossless),
+            AVSampleRateKey: 44100.0,
+            AVNumberOfChannelsKey: 0,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            ] as [String : Any]
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setActive(true)
+        try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try! audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+        try! self.recorder = AVAudioRecorder(url: url, settings: settings)
     }
     
     func loudnessAvailable() -> Bool {
-        // TODO
-        //self.recorder
-        return false
+        if self.recorder == nil {
+            self.initRecorder()
+            return self.recorder.prepareToRecord()
+        }
+        return true
     }
+    
+    @objc func programTimerCallback() {
+        self.recorder.updateMeters()
+        self.loudnessInDecibels = self.recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
+    }
+    
 }
