@@ -34,3 +34,4 @@ let kMediaLibraryDownloadBaseURL = kBaseUrl.replacingOccurrences(of: "/pocketcod
 //************************************************************************************************************
 
 let kConnectionHost = kBaseUrl.appending("api/projects")
+let kFeaturedProgramsMaxResults = 10

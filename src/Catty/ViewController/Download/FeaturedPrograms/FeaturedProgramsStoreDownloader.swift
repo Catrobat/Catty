@@ -28,7 +28,6 @@ protocol FeaturedProgramsStoreDownloaderProtocol {
 final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProtocol {
     
     let session: URLSession
-    let kFeaturedProgramsMaxResults = 10
     
     init(session: URLSession = URLSession.shared) {
         self.session = session

@@ -38,6 +38,7 @@ class FeaturedProgramsCell: UITableViewCell {
             self.updateTable()
         }
     }
+    
     func updateTable() {
         featuredImageView?.image = featuredImage
     }
