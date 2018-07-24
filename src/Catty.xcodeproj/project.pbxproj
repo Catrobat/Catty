@@ -1050,6 +1050,7 @@
 		F430169221068590002B1444 /* ArduinoAnalogPinSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */; };
 		F4301694210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */; };
 		F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */; };
+		F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
 		F479930120F4987E0088EE27 /* LatitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FB20F4987E0088EE27 /* LatitudeSensorTest.swift */; };
@@ -2698,6 +2699,7 @@
 		F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinSensorTest.swift; sourceTree = "<group>"; };
 		F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinSensorTest.swift; sourceTree = "<group>"; };
 		F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSensorButton.swift; sourceTree = "<group>"; };
+		F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroSensorTest.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
 		F47992FB20F4987E0088EE27 /* LatitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatitudeSensorTest.swift; sourceTree = "<group>"; };
@@ -3746,6 +3748,7 @@
 			isa = PBXGroup;
 			children = (
 				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
+				F45A8D58210714AE007C0D38 /* Phiro */,
 				F430168E2106856B002B1444 /* Arduino */,
 				4CF072AF20D6764E00F93AB5 /* Date */,
 				4C1023E720F5C7C1004702C3 /* Heading */,
@@ -7053,6 +7056,14 @@
 			path = Arduino;
 			sourceTree = "<group>";
 		};
+		F45A8D58210714AE007C0D38 /* Phiro */ = {
+			isa = PBXGroup;
+			children = (
+				F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */,
+			);
+			path = Phiro;
+			sourceTree = "<group>";
+		};
 		F47992FA20F4987E0088EE27 /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -7675,6 +7686,7 @@
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
+				F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */,
 				4C0F9FCE204BD37300E71B2D /* XMLSerializerTests.m in Sources */,

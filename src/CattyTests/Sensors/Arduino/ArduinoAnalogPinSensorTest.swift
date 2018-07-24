@@ -27,17 +27,24 @@ import XCTest
 final class ArduinoAnalogPinSensorTest: XCTestCase {
     
     var sensor: ArduinoAnalogPinSensor!
+    var bluetoothService: BluetoothService!
     
     func testDefaultRawValue() {
         let sensor = ArduinoAnalogPinSensor { nil }
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
+    func testRawValue() {
+        // TODO: add tests
+    }
+    
     override func setUp() {
-        // self.sensor = ArduinoAnalogPinSensor()
+        self.bluetoothService = BluetoothService.sharedInstance()
+        self.sensor = ArduinoAnalogPinSensor { [ weak self ] in self?.bluetoothService }
     }
     
     override func tearDown() {
+        self.bluetoothService = nil
         self.sensor = nil
     }
     
@@ -56,6 +63,10 @@ final class ArduinoAnalogPinSensorTest: XCTestCase {
     }
     
     func testShowInFormulaEditor() {
-        XCTAssertEqual(Bool(kUseArduinoBricks), sensor.showInFormulaEditor())
+        UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
+        XCTAssertTrue(sensor.showInFormulaEditor())
+        
+        UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
+        XCTAssertFalse(sensor.showInFormulaEditor())
     }
 }
