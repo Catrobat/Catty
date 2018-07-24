@@ -725,6 +725,13 @@ let kLocalizedMediaLibrarySoundPlayFailureTitle = NSLocalizedString("Failed to p
 let kLocalizedMediaLibrarySoundPlayFailureMessage = NSLocalizedString("The sound item cannot be played", comment: "")
 
 //************************************************************************************************************
+//**********************************       FeaturedPrograms        *******************************************
+//************************************************************************************************************
+
+let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", comment: "")
+let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
+
+//************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
 let kLocalizedDebugModeTitle = NSLocalizedString("Debug mode", comment: "")

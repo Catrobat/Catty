@@ -1367,6 +1367,9 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Set Arduino digital pin";
 
 /* No comment provided by engineer. */

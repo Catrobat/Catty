@@ -88,12 +88,25 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
             if error != nil {
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
+                self.showConnectionIssueAlertAndDismiss(error: error!)
                 return
             }
             self.tableView.reloadData()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
         }
+    }
+    
+    private func showConnectionIssueAlertAndDismiss(error: FeaturedProgramsDownloadError) {
+        let title = kLocalizedServerTimeoutIssueTitle
+        let message = kLocalizedServerTimeoutIssueMessage
+        let buttonTitle = kLocalizedOK
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func showLoadingView() {
