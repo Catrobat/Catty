@@ -21,7 +21,6 @@
  */
 
 class LoudnessSensor: NSObject, DeviceSensor {
-    
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultRawValue = 0.0

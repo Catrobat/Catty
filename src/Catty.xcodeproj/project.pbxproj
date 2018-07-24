@@ -1048,7 +1048,6 @@
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
 		F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E1E9620FA21540078C89D /* SizeSensorTest.swift */; };
 		F441BAA120E53821006EA794 /* FormulaEditorSensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */; };
-		F45A8D6521072DD5007C0D38 /* AudioMockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D6421072DD5007C0D38 /* AudioMockManager.swift */; };
 		F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */; };
@@ -1056,6 +1055,7 @@
 		F479930220F4987E0088EE27 /* AltitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FC20F4987E0088EE27 /* AltitudeSensorTest.swift */; };
 		F479930320F4987E0088EE27 /* LongitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FD20F4987E0088EE27 /* LongitudeSensorTest.swift */; };
 		F479930420F4987E0088EE27 /* LocationAccuracySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FE20F4987E0088EE27 /* LocationAccuracySensorTest.swift */; };
+		F47DA83A210731E700167FC4 /* AudioManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47DA839210731E700167FC4 /* AudioManagerMock.swift */; };
 		F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */; };
 		F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4840B30210090BC0024EEAF /* RotationSensorTest.swift */; };
 		F4844BF420F7C9D5009522D6 /* LayerSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */; };
@@ -2696,7 +2696,6 @@
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
 		F42E1E9620FA21540078C89D /* SizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSensorTest.swift; sourceTree = "<group>"; };
 		F441BA9E20E53820006EA794 /* FormulaEditorSensorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorSensorButton.swift; sourceTree = "<group>"; };
-		F45A8D6421072DD5007C0D38 /* AudioMockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMockManager.swift; sourceTree = "<group>"; };
 		F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoudnessSensorTest.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Sensor.swift"; sourceTree = "<group>"; };
@@ -2704,6 +2703,7 @@
 		F47992FC20F4987E0088EE27 /* AltitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeSensorTest.swift; sourceTree = "<group>"; };
 		F47992FD20F4987E0088EE27 /* LongitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongitudeSensorTest.swift; sourceTree = "<group>"; };
 		F47992FE20F4987E0088EE27 /* LocationAccuracySensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccuracySensorTest.swift; sourceTree = "<group>"; };
+		F47DA839210731E700167FC4 /* AudioManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerMock.swift; sourceTree = "<group>"; };
 		F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclinationYSensorTest.swift; sourceTree = "<group>"; };
 		F4840B30210090BC0024EEAF /* RotationSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationSensorTest.swift; sourceTree = "<group>"; };
 		F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerSensorTest.swift; sourceTree = "<group>"; };
@@ -4298,8 +4298,8 @@
 			children = (
 				59D008EF208E4370000539E7 /* LocationManagerMock.swift */,
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
-				F45A8D6421072DD5007C0D38 /* AudioMockManager.swift */,
 				4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */,
+				F47DA839210731E700167FC4 /* AudioManagerMock.swift */,
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
 			);
 			path = Mocks;
@@ -7738,7 +7738,6 @@
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
 				F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */,
-				F45A8D6521072DD5007C0D38 /* AudioMockManager.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
@@ -8357,6 +8356,7 @@
 				AA74EEDE1BC057B900D1E954 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
 				92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */,
+				F47DA83A210731E700167FC4 /* AudioManagerMock.swift in Sources */,
 				AA74F0C31BC05FCE00D1E954 /* TurnRightBrickCell.m in Sources */,
 				AA74F0A01BC05FCE00D1E954 /* IfLogicElseBrickCell.m in Sources */,
 				AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */,
