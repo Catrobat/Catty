@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LookNameSensor: NSObject, ObjectSensor {
+@objc class LookNameSensor: NSObject, ObjectStringSensor {
     
     static let tag = "OBJECT_LOOK_NAME"
     static let name = kUIFEObjectLookName
