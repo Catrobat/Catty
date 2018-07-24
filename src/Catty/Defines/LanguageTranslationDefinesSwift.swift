@@ -728,6 +728,13 @@ let kLocalizedMediaLibrarySoundPlayFailureMessage = NSLocalizedString("The sound
 //**********************************       FeaturedPrograms        *******************************************
 //************************************************************************************************************
 
+let kLocalizedFeaturedProgramsLoadFailureTitle = NSLocalizedString("Failed to load featured programs", comment: "")
+let kLocalizedFeaturedProgramsLoadFailureMessage = NSLocalizedString("The featured programs cannot be loaded", comment: "")
+
+//************************************************************************************************************
+//**************************************       Networking        *********************************************
+//************************************************************************************************************
+
 let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", comment: "")
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
 

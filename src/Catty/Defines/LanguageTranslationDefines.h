@@ -728,6 +728,13 @@
 //**********************************       FeaturedPrograms        *******************************************
 //************************************************************************************************************
 
+#define kLocalizedFeaturedProgramsLoadFailureTitle NSLocalizedString(@"Failed to load featured programs", nil)
+#define kLocalizedFeaturedProgramsLoadFailureMessage NSLocalizedString(@"The featured programs cannot be loaded", nil)
+
+//************************************************************************************************************
+//**************************************       Networking        *********************************************
+//************************************************************************************************************
+
 #define kLocalizedServerTimeoutIssueTitle NSLocalizedString(@"Connection failed", nil)
 #define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
 

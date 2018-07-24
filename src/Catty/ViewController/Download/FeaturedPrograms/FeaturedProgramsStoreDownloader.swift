@@ -54,6 +54,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
                 let items: FeaturedProgramsCollectionText?
                 do {
+                    timer.invalidate()
                     items = try JSONDecoder().decode(FeaturedProgramsCollectionText.self, from: data)
                 } catch {
                     return (nil, .parse(error: error))

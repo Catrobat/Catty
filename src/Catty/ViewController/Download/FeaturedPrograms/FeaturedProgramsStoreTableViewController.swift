@@ -83,24 +83,35 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     }
     
     private func fetchData() {
-        self.showLoadingView()
-        self.dataSource.fetchItems() { error in
-            if error != nil {
+        if tableView.visibleCells.isEmpty {
+            self.showLoadingView()
+            self.dataSource.fetchItems() { error in
+                if error != nil {
+                    self.shouldHideLoadingView = true
+                    self.hideLoadingView()
+                    self.showConnectionIssueAlertAndDismiss(error: error!)
+                    return
+                }
+                self.tableView.reloadData()
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
-                self.showConnectionIssueAlertAndDismiss(error: error!)
-                return
             }
-            self.tableView.reloadData()
-            self.shouldHideLoadingView = true
-            self.hideLoadingView()
         }
     }
     
     private func showConnectionIssueAlertAndDismiss(error: FeaturedProgramsDownloadError) {
-        let title = kLocalizedServerTimeoutIssueTitle
-        let message = kLocalizedServerTimeoutIssueMessage
+        var title = ""
+        var message = ""
         let buttonTitle = kLocalizedOK
+        
+        switch error {
+            case .timeout:
+                title = kLocalizedServerTimeoutIssueTitle
+                message = kLocalizedServerTimeoutIssueMessage
+            default:
+                title = kLocalizedFeaturedProgramsLoadFailureTitle
+                message = kLocalizedFeaturedProgramsLoadFailureMessage
+        }
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in

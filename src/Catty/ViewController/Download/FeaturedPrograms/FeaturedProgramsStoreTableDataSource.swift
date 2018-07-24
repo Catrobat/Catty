@@ -42,7 +42,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     }
     
     static func dataSource(with downloader: FeaturedProgramsStoreDownloaderProtocol = FeaturedProgramsStoreDownloader()) -> FeaturedProgramsStoreTableDataSource {
-        return LoadFeaturedProgramsStoreImage(with: downloader)
+        return FeaturedProgramsStoreTableDataSource(with: downloader)
     }
     
     func fetchItems(completion: @escaping (FeaturedProgramsDownloadError?) -> Void) {
@@ -80,28 +80,6 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
             guard let cbprogram = program, error == nil else { return }
             cell?.program = cbprogram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
-        }
-    }
-}
-    
-final class LoadFeaturedProgramsStoreImage : FeaturedProgramsStoreTableDataSource {
-
-    private func fetchData(for program: CBProgram, completion: @escaping (Data?) -> Void) {
-        guard let downloadUrl = URL(string: program.downloadUrl!) else { return }
-
-        let resource = ImageResource(downloadURL: downloadUrl)
-        let options: KingfisherOptionsInfo = [.onlyFromCache]
-        if ImageCache.default.imageCachedType(forKey: resource.cacheKey).cached {
-            ImageCache.default.retrieveImage(forKey: resource.cacheKey, options: options) { image, _ in
-                guard let image = image else { completion(nil); return }
-                DispatchQueue.global().async {
-                    let data = UIImagePNGRepresentation(image)
-                    DispatchQueue.main.async {
-                        completion(data)
-                    }
-                }
-            }
-            return
         }
     }
 }
