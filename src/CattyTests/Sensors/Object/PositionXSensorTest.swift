@@ -26,6 +26,9 @@ import XCTest
 
 final class PositionXSensorTest: XCTestCase {
 
+    let screenWidth = 500
+    let screenHeight = 500
+    
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNodeMock!
     let sensor = PositionXSensor.self
@@ -33,7 +36,7 @@ final class PositionXSensorTest: XCTestCase {
     override func setUp() {
         self.spriteObject = SpriteObject()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        self.spriteNode.mockedScene = CBScene(size: CGSize(width: spriteNode.scene.size.width, height: spriteNode.scene.size.height))
+        self.spriteNode.mockedScene = CBScene(size: CGSize(width: screenWidth, height: screenHeight))
     }
 
     override func tearDown() {
@@ -46,10 +49,6 @@ final class PositionXSensorTest: XCTestCase {
         
         spriteObject.spriteNode = nil
         XCTAssertEqual(sensor.rawValue(for: spriteObject), sensor.defaultRawValue, accuracy: 0.0001)
-        
-        spriteNode.mockedScene = nil
-        XCTAssertEqual(sensor.defaultRawValue, sensor.convertToStandardized(rawValue: 10, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(sensor.defaultRawValue, sensor.convertToRaw(userInput: 10, for: spriteObject), accuracy: 0.0001)
     }
     
     func testRawValue() {
@@ -95,30 +94,30 @@ final class PositionXSensorTest: XCTestCase {
     
     func testConvertToStandardized() {
         // random
-        XCTAssertEqual(-240, sensor.convertToStandardized(rawValue: 10, for: spriteObject))
+        XCTAssertEqual(Double(10 - screenWidth / 2), sensor.convertToStandardized(rawValue: 10, for: spriteObject))
         
         // center
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 250, for: spriteObject))
+        XCTAssertEqual(Double(250 - screenWidth / 2), sensor.convertToStandardized(rawValue: 250, for: spriteObject))
         
         // left
-        XCTAssertEqual(-187, sensor.convertToStandardized(rawValue: 63, for: spriteObject))
+        XCTAssertEqual(Double(63 - screenWidth / 2), sensor.convertToStandardized(rawValue: 63, for: spriteObject))
         
         // right
-        XCTAssertEqual(187, sensor.convertToStandardized(rawValue: 437, for: spriteObject))
+        XCTAssertEqual(Double(437 - screenWidth / 2), sensor.convertToStandardized(rawValue: 437, for: spriteObject))
     }
     
     func testConvertToRaw() {
         // random
-        XCTAssertEqual(260, sensor.convertToRaw(userInput: 10, for: spriteObject))
+        XCTAssertEqual(Double(10 + screenWidth / 2), sensor.convertToRaw(userInput: 10, for: spriteObject))
         
         // center
-        XCTAssertEqual(250, sensor.convertToRaw(userInput: 0, for: spriteObject))
+        XCTAssertEqual(Double(0 + screenWidth / 2), sensor.convertToRaw(userInput: 0, for: spriteObject))
         
         // left
-        XCTAssertEqual(63, sensor.convertToRaw(userInput: -187, for: spriteObject))
+        XCTAssertEqual(Double(-187 + screenWidth / 2), sensor.convertToRaw(userInput: -187, for: spriteObject))
         
         // right
-        XCTAssertEqual(437, sensor.convertToRaw(userInput: 187, for: spriteObject))
+        XCTAssertEqual(Double(187 + screenWidth / 2), sensor.convertToRaw(userInput: 187, for: spriteObject))
     }
     
     func testTag() {
