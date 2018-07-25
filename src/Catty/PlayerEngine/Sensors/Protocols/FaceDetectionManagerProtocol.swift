@@ -23,10 +23,15 @@
 protocol FaceDetectionManagerProtocol {
     
     var isFaceDetected: Bool? { get }
+    var facePositionX: Double? { get }
+    var facePositionY: Double? { get }
+    var faceSize: CGRect? { get }
     
     func start() -> Void
     
     func stop() -> Void
+    
+    func reset() -> Void
     
     func available() -> Bool
 }
