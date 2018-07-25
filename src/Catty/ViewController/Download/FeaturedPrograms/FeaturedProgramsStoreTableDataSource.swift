@@ -36,6 +36,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
     fileprivate var programs = [StoreProgram]()
+    fileprivate var baseUrl = ""
     
     // MARK: - Initializer
     
@@ -53,6 +54,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
         self.downloader.fetchFeaturedPrograms() {items, error in
             guard let collection = items, error == nil else { completion(error); return }
             self.programs = collection.projects
+            self.baseUrl = collection.information.baseUrl
             completion(nil)
         }
     }
@@ -68,7 +70,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
         if let cell = cell as? FeaturedProgramsCell {
-            let imageUrl = URL(string: kFeaturedImageBaseUrl.appending(programs[indexPath.row].featuredImage!))
+            let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
             cell.featuredImage = UIImage(data: data!)
             cell.program = programs[indexPath.row]
