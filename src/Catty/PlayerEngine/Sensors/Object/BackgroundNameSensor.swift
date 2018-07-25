@@ -25,11 +25,12 @@
     static let tag = "OBJECT_BACKGROUND_NAME"
     static let name = kUIFEObjectBackgroundName
     static let defaultRawValue = 0.0
+    static let defaultStringValue = ""
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
-        guard let spriteNode = spriteObject.spriteNode else { return String(BackgroundNameSensor.defaultRawValue) }
-        guard let currentLook = spriteNode.currentLook else { return String(BackgroundNameSensor.defaultRawValue) }
+        guard let spriteNode = spriteObject.spriteNode else { return BackgroundNameSensor.defaultStringValue }
+        guard let currentLook = spriteNode.currentLook else { return BackgroundNameSensor.defaultStringValue }
         return currentLook.name
     }
 
