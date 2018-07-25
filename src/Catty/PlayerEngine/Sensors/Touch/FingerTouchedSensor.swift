@@ -25,16 +25,23 @@
     static let tag = "FINGER_TOUCHED"
     static let name = kUIFESensorFingerTouched
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.noResources
+    static let requiredResource = ResourceType.touchHandler
 
-    func rawValue() -> Double {
-        return 0 // TODO
+    let getTouchManager: () -> TouchManagerProtocol?
+    
+    init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
+        self.getTouchManager = touchManagerGetter
     }
-
+    
+    func rawValue() -> Double {
+        guard let isTouched = getTouchManager()?.screenTouched() else { return type(of: self).defaultRawValue }
+        return isTouched ? 1.0 : 0.0
+    }
+    
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
+
     func showInFormulaEditor() -> Bool {
         return true
     }

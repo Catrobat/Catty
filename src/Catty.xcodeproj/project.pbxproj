@@ -217,6 +217,8 @@
 		4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E211B4D3E8C00E27479 /* XMLObjectReference.m */; };
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
 		4C72EA392108EADA00E7407F /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C72EA362108EADA00E7407F /* ElementOfListFunction0991.xml */; };
+		4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */; };
+		4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3C2108ED0800E7407F /* TouchManager.swift */; };
 		4C73A5A120ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */; };
 		4C73A5A320ECB4460073DB52 /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
@@ -1434,6 +1436,8 @@
 		4C724E641B4D3EC500E27479 /* CBXMLSerializerContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializerContext.h; sourceTree = "<group>"; };
 		4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerContext.m; sourceTree = "<group>"; };
 		4C72EA362108EADA00E7407F /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
+		4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
+		4C72EA3C2108ED0800E7407F /* TouchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
 		4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = NumberOfItemsInListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/NumberOfItemsInListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
@@ -4153,6 +4157,7 @@
 				4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */,
 				4CF072A320D6710F00F93AB5 /* FingerYSensor.swift */,
 				4CF072A220D6710F00F93AB5 /* LastFingerIndexSensor.swift */,
+				4C72EA3C2108ED0800E7407F /* TouchManager.swift */,
 			);
 			path = Touch;
 			sourceTree = "<group>";
@@ -4239,6 +4244,7 @@
 				4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */,
 				592EF6E52094B3D700BD6000 /* SpriteObjectProtocol.swift */,
 				4CF0729F20D670C400F93AB5 /* TouchSensor.swift */,
+				4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -7913,6 +7919,7 @@
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
+				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
@@ -8314,6 +8321,7 @@
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				4CF0728A20D659F700F93AB5 /* PhiroFrontRightSensor.swift in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
+				4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */,
 				9200C2CF1C808206002F5CA4 /* HideTextBrick+Instruction.swift in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,

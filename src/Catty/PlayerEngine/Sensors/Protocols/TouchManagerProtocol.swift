@@ -20,22 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LastFingerIndexSensor: NSObject, TouchSensor {
-
-    static let tag = "LAST_FINGER_INDEX"
-    static let name = kUIFESensorLastFingerIndex
-    static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.touchHandler
-
-    func rawValue() -> Double {
-        return 0 // TODO
-    }
-
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
-    }
+protocol TouchManagerProtocol {
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
+    func startTrackingTouches(for scene: CBScene) -> Void
+    
+    func stopTrackingTouches() -> Void
+    
+    func reset()
+    
+    // Returns true if screen is currently touched
+    func screenTouched() -> Bool
+    
+    func numberOfTouches() -> Int
+    
+    // Returns a SpriteKit speficic position which needs to be converted
+    func lastPositionInScene() -> CGPoint?
+    
+    // Returns a SpriteKit speficic position which needs to be converted
+    func getPositionInScene(for touchNumber: Int) -> CGPoint?
 }

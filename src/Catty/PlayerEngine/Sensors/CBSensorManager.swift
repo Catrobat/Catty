@@ -34,17 +34,18 @@ import CoreLocation
     
     private var motionManager: CMMotionManager
     private var locationManager: CLLocationManager
-    private var bluetoothService: BluetoothService
     private var faceDetectionManager: FaceDetectionManagerProtocol
     private var audioManager: AudioManagerProtocol
+    private var touchManager: TouchManagerProtocol
+    private var bluetoothService: BluetoothService
     
     override private init() {
         motionManager = CMMotionManager()
         locationManager = CLLocationManager()
-        
-        bluetoothService = BluetoothService.sharedInstance()
         faceDetectionManager = FaceDetectionManager()
         audioManager = AudioManager()
+        touchManager = TouchManager()
+        bluetoothService = BluetoothService.sharedInstance()
 
         super.init()
         
@@ -55,9 +56,10 @@ import CoreLocation
     func registerDeviceSensors() {
         let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
-        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         let audioManagerGetter: () -> AudioManagerProtocol? = { [weak self] in self?.audioManager }
         let faceDetectionManagerGetter: () -> FaceDetectionManagerProtocol? = { [weak self] in self?.faceDetectionManager }
+        let touchManagerGetter: () -> TouchManagerProtocol? = { [weak self] in self?.touchManager }
+        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         
         // In the Formula Editor the sensors appear in the same order
         self.deviceSensorList = [
@@ -72,7 +74,7 @@ import CoreLocation
             LongitudeSensor(locationManagerGetter: locationManagerGetter),
             LocationAccuracySensor(locationManagerGetter: locationManagerGetter),
             AltitudeSensor(locationManagerGetter: locationManagerGetter),
-            FingerTouchedSensor(),
+            FingerTouchedSensor(touchManagerGetter: touchManagerGetter),
             FingerXSensor(),
             FingerYSensor(),
             LastFingerIndexSensor(),
@@ -185,8 +187,9 @@ import CoreLocation
         return rawValue
     }
     
-    @objc(setupSensorsForRequiredResources:)
-    func setupSensors(for requiredResources: NSInteger) {
+    @objc(setupSensorsForProgram: andScene:)
+    func setupSensors(for program: Program, and scene:CBScene) {
+        let requiredResources = program.getRequiredResources()
         let unavailableResource = getUnavailableResources(for: requiredResources)
         
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
@@ -217,6 +220,10 @@ import CoreLocation
         
         if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
             audioManager.startLoudnessRecorder()
+        }
+        
+        if ((requiredResources & ResourceType.touchHandler.rawValue) > 0) && (unavailableResource & ResourceType.touchHandler.rawValue) == 0 {
+            touchManager.startTrackingTouches(for: scene)
         }
     }
     
@@ -267,5 +274,6 @@ import CoreLocation
         locationManager.stopUpdatingLocation()
         faceDetectionManager.stop()
         audioManager.stopLoudnessRecorder()
+        touchManager.stopTrackingTouches()
     }
 }
