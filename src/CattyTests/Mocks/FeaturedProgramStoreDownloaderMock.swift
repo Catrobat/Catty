@@ -24,17 +24,17 @@
 
 final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
     
-    var program: CBProgram?
-    var collection: FeaturedProgramsCollectionText?
+    var program: StoreProgram?
+    var collection: StoreProgramCollection.StoreProgramCollectionText?
     
-    func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
+    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collection, nil)
         }
 
     }
     
-    func downloadProgram(for program: CBProgram, completion: @escaping (CBProgram?, FeaturedProgramsDownloadError?) -> Void) {
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.program, nil)
         }

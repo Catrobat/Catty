@@ -48,7 +48,7 @@ class FeaturedProgramsStoreDataSourceTests: XCTestCase {
     }
     
     func testProgramEmpty() {
-        self.downloaderMock.program = CBProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
 
         let dataSource = FeaturedProgramsStoreTableDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch items from data source")

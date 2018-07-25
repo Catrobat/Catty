@@ -20,16 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct FeaturedProgramsCollectionText: Codable {
-    let projects: [CBProgram]
-    let completeTerm: String?
-    let preHeaderMessages: String
-    let information: CBInformationText
-    
-    private enum CodingKeys: String, CodingKey {
-        case projects = "CatrobatProjects"
-        case completeTerm
-        case preHeaderMessages
-        case information = "CatrobatInformation"
-    }
-}
+#import "SearchStoreViewController.h"
+
+@interface SearchStoreViewController (Test)
+- (void)processResults:(NSArray *)results;
+- (void)performSearch;
+@end
+
+@interface TestSearchStoreViewController : SearchStoreViewController
+@property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, weak) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
+@end
+
+@interface SearchStoreViewControllerTests : XCTestCase
+@property (nonatomic, strong) TestSearchStoreViewController *searchStoreViewController;
+@end

@@ -21,7 +21,7 @@
  */
 
 protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
-    func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: CBProgram)
+    func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: StoreProgram)
 }
 
 protocol SelectedFeaturedProgramsDataSource: class {
@@ -35,7 +35,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     weak var delegate: SelectedFeaturedProgramsDataSource?
     
     fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
-    fileprivate var programs = [CBProgram]()
+    fileprivate var programs = [StoreProgram]()
     
     // MARK: - Initializer
     
@@ -83,8 +83,8 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
         let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
         
         self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
-            guard let cbprogram = program, error == nil else { return }
-            cell?.program = cbprogram
+            guard let StoreProgram = program, error == nil else { return }
+            cell?.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
         }
     }

@@ -20,14 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct CBInformationText: Codable {
-    let baseUrl: String
-    let totalProjects: String
-    let projectsExtension: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case baseUrl = "BaseUrl"
-        case totalProjects = "TotalProjects"
-        case projectsExtension = "ProjectsExtension"
-    }
-}
+#import "RecentProgramsStoreViewController.h"
+
+@class CatrobatInformation;
+
+@interface RecentProgramsStoreViewController (Test)
+- (void)loadProjectsWithIndicator:(NSInteger)indicator;
+- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response;
+- (void)initSegmentedControl;
+@end
+
+@interface TestRecentProgramsStoreViewController : RecentProgramsStoreViewController
+@property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
+@property (nonatomic, strong) NSMutableArray* mostViewedProjects;
+@property (nonatomic, strong) NSMutableArray* mostRecentProjects;
+@property (nonatomic, weak) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
+@end
+
+@interface RecentProgramsStoreViewControllerTests : XCTestCase
+@property (nonatomic, strong) TestRecentProgramsStoreViewController *recentProgramsStoreViewController;
+@end

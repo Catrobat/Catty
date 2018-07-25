@@ -21,8 +21,8 @@
  */
 
 protocol FeaturedProgramsStoreDownloaderProtocol {
-    func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollectionText?, FeaturedProgramsDownloadError?) -> Void)
-    func downloadProgram(for program: CBProgram, completion: @escaping (CBProgram?, FeaturedProgramsDownloadError?) -> Void)
+    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void)
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void)
 }
 
 final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProtocol {
@@ -33,7 +33,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         self.session = session
     }
     
-    func fetchFeaturedPrograms(completion: @escaping (FeaturedProgramsCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
+    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
 
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
         
@@ -45,14 +45,14 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         self.session.dataTask(with: indexURL) { (data, response, error) in
 
             guard timer.isValid else { return }
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: FeaturedProgramsCollectionText?, error: FeaturedProgramsDownloadError?)
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: FeaturedProgramsDownloadError?)
             handleDataTaskCompletion = { (data, response, error) in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
-                let items: FeaturedProgramsCollectionText?
+                let items: StoreProgramCollection.StoreProgramCollectionText?
                 do {
                     timer.invalidate()
-                    items = try JSONDecoder().decode(FeaturedProgramsCollectionText.self, from: data)
+                    items = try JSONDecoder().decode(StoreProgramCollection.StoreProgramCollectionText.self, from: data)
                 } catch {
                     return (nil, .parse(error: error))
                 }
@@ -66,18 +66,18 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         }.resume()
     }
 
-    func downloadProgram(for program: CBProgram, completion: @escaping (CBProgram?, FeaturedProgramsDownloadError?) -> Void) {
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
         
         self.session.dataTask(with: indexURL) { (data, response, error) in
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: CBProgram?, error: FeaturedProgramsDownloadError?)
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: StoreProgram?, error: FeaturedProgramsDownloadError?)
             handleDataTaskCompletion = { (data, response, error) in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
                 
-                let collection: FeaturedProgramsCollectionNumber?
+                let collection: StoreProgramCollection.StoreProgramCollectionNumber?
                 do {
-                    collection = try JSONDecoder().decode(FeaturedProgramsCollectionNumber.self, from: data)
+                    collection = try JSONDecoder().decode(StoreProgramCollection.StoreProgramCollectionNumber.self, from: data)
                 } catch {
                     return (nil, .parse(error: error))
                 }

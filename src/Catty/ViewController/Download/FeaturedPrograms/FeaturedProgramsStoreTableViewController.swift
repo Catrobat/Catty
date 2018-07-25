@@ -28,8 +28,8 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
-    var programForSegue: CBProgram?
-    var catrobatProject: CBProgram?
+    var programForSegue: StoreProgram?
+    var catrobatProject: StoreProgram?
     
     // MARK: - Initializers
 
@@ -56,14 +56,14 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         if segue.identifier == kSegueToProgramDetail {
             if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
                 let catrobatProject = programForSegue {
-                programDetailStoreViewController.project = mapCBProgramToCatrobatProgram(program: catrobatProject)
+                programDetailStoreViewController.project = mapStoreProgramToCatrobatProgram(program: catrobatProject)
             }
         }
     }
     
     // MARK: - Helper Methods
     
-    private func mapCBProgramToCatrobatProgram(program: CBProgram) -> CatrobatProgram {
+    private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
         var programDictionary = [String: Any]()
         programDictionary["ProjectName"] = program.projectName
         programDictionary["Author"] =  program.author
@@ -105,6 +105,8 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
                 self.hideLoadingView()
             }
         }
+        self.shouldHideLoadingView = true
+        self.hideLoadingView()
     }
     
     private func showConnectionIssueAlertAndDismiss(error: FeaturedProgramsDownloadError) {
@@ -156,6 +158,7 @@ extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol
     
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
         if let program = cell.program {
+           self.showLoadingView()
            programForSegue = program
            performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
         }

@@ -29,7 +29,7 @@ protocol FeaturedProgramsCellProtocol: class {
 class FeaturedProgramsCell: UITableViewCell {
     
     weak var delegete: FeaturedProgramsCellProtocol?
-    var program: CBProgram?
+    var program: StoreProgram?
     
     @IBOutlet weak var featuredImageView: UIImageView!
     

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-struct CBProgram: Codable {
+struct StoreProgram: Codable {
     let projectId: Int
     let projectName: String
     let projectNameShort: String?
