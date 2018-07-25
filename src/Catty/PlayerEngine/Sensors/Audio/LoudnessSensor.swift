@@ -21,9 +21,6 @@
  */
 
 class LoudnessSensor: DeviceSensor {
-    static var formulaEditorSection = FormulaEditorSectionType.device
-    
-    
     
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness

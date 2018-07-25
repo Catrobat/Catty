@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc enum FormulaEditorSectionType: Int {
-    case device, object, hidden
+enum FormulaEditorSection {
+    case device(position: Int)
+    case object(position: Int)
+    case hidden
 }
