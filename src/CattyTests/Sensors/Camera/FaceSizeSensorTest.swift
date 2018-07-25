@@ -24,19 +24,19 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FaceDetectionSensorTest: XCTestCase {
+final class FaceSizeSensorTest: XCTestCase {
     
-    var sensor: FaceDetectedSensor!
+    var sensor: FaceSizeSensor!
     var cameraManagerMock: FaceDetectionManagerMock!
     
     func testDefaultRawValue() {
-        let sensor = FaceDetectedSensor { nil }
+        let sensor = FaceSizeSensor { nil }
         XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     override func setUp() {
         self.cameraManagerMock = FaceDetectionManagerMock()
-        self.sensor = FaceDetectedSensor { [ weak self ] in self?.cameraManagerMock }
+        self.sensor = FaceSizeSensor { [ weak self ] in self?.cameraManagerMock }
     }
     
     override func tearDown() {
@@ -45,11 +45,7 @@ final class FaceDetectionSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        self.cameraManagerMock.isFaceDetected = true
-        XCTAssertEqual(1, self.sensor.rawValue())
-        
-        self.cameraManagerMock.isFaceDetected = false
-        XCTAssertEqual(0, self.sensor.rawValue())
+        //TO DO
     }
     
     
@@ -59,7 +55,7 @@ final class FaceDetectionSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("FACE_DETECTED", type(of: sensor).tag)
+        XCTAssertEqual("FACE_SIZE", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
