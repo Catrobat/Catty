@@ -20,24 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LookNameSensor: NSObject, ObjectStringSensor {
+class FaceDetectedSensor: DeviceSensor {
     
-    static let tag = "OBJECT_LOOK_NAME"
-    static let name = kUIFEObjectLookName
+    static let tag = "FACE_DETECTED"
+    static let name = kUIFESensorFaceDetected
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.noResources
-
-    static func rawValue(for spriteObject: SpriteObject) -> String {
-        guard let spriteNode = spriteObject.spriteNode else { return String(LookNameSensor.defaultRawValue) }
-        guard let currentLook = spriteNode.currentLook else { return String(LookNameSensor.defaultRawValue) }
-        return currentLook.name
+    static let requiredResource = ResourceType.faceDetection
+    
+    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
+    
+    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+        self.getFaceDetectionManager = faceDetectionManagerGetter
     }
-
-    static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
+    
+    func rawValue() -> Double {
+        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
+        return isFaceDetected ? 1.0 : 0.0
+    }
+    
+    func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return !spriteObject.isBackground()
+    func showInFormulaEditor() -> Bool {
+        return true
     }
 }

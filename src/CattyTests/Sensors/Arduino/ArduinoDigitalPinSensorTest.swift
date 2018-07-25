@@ -1,0 +1,72 @@
+/**
+ *  Copyright (C) 2010-2018 The Catrobat Team
+ *  (http://developer.catrobat.org/credits)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  An additional term exception under section 7 of the GNU Affero
+ *  General Public License, version 3, is available at
+ *  (http://developer.catrobat.org/license_additional_term)
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
+import XCTest
+
+@testable import Pocket_Code
+
+final class ArduinoDigitalPinSensorTest: XCTestCase {
+    
+    var sensor: ArduinoDigitalPinSensor!
+    var bluetoothService: BluetoothService!
+    
+    func testDefaultRawValue() {
+        let sensor = ArduinoDigitalPinSensor { nil }
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+    }
+    
+    func testRawValue() {
+        // TODO: add tests
+    }
+    
+    override func setUp() {
+        self.bluetoothService = BluetoothService.sharedInstance()
+        self.sensor = ArduinoDigitalPinSensor { [ weak self ] in self?.bluetoothService }
+    }
+    
+    override func tearDown() {
+        self.bluetoothService = nil
+        self.sensor = nil
+    }
+    
+    func testConvertToStandardized() {
+        XCTAssertEqual(20, sensor.convertToStandardized(rawValue: 20))
+        XCTAssertEqual(5, sensor.convertToStandardized(rawValue: 5))
+        XCTAssertEqual(36, sensor.convertToStandardized(rawValue: 36))
+    }
+    
+    func testTag() {
+        XCTAssertEqual("digitalPin", type(of: sensor).tag)
+    }
+    
+    func testRequiredResources() {
+        XCTAssertEqual(ResourceType.bluetoothArduino, type(of: sensor).requiredResource)
+    }
+    
+    func testShowInFormulaEditor() {
+        UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
+        XCTAssertTrue(sensor.showInFormulaEditor())
+        
+        UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
+        XCTAssertFalse(sensor.showInFormulaEditor())
+    }
+}
