@@ -22,7 +22,7 @@
 
 class CompassDirectionSensor : NSObject, DeviceSensor {
     
-    static let tag = "COMPASS_DIRECTION"
+    @objc static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.compass

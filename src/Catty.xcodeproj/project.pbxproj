@@ -219,6 +219,7 @@
 		4C72EA392108EADA00E7407F /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C72EA362108EADA00E7407F /* ElementOfListFunction0991.xml */; };
 		4C72EA3B2108EC3600E7407F /* TouchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */; };
 		4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3C2108ED0800E7407F /* TouchManager.swift */; };
+		4C72EA3F2108F7C800E7407F /* FormulaEditorSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C72EA3E2108F7C800E7407F /* FormulaEditorSectionType.swift */; };
 		4C73A5A120ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */; };
 		4C73A5A320ECB4460073DB52 /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
@@ -1438,6 +1439,7 @@
 		4C72EA362108EADA00E7407F /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C72EA3A2108EC3600E7407F /* TouchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManagerProtocol.swift; sourceTree = "<group>"; };
 		4C72EA3C2108ED0800E7407F /* TouchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchManager.swift; sourceTree = "<group>"; };
+		4C72EA3E2108F7C800E7407F /* FormulaEditorSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorSectionType.swift; sourceTree = "<group>"; };
 		4C73A5A020ECB43B0073DB52 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = NumberOfItemsInListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/NumberOfItemsInListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C73A5A220ECB4450073DB52 /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C74BD081DA6476A0079336C /* Pocket Code.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pocket Code.entitlements"; sourceTree = "<group>"; };
@@ -4813,6 +4815,7 @@
 				92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */,
 				92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */,
 				F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Sensor.swift */,
+				4C72EA3E2108F7C800E7407F /* FormulaEditorSectionType.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -7959,6 +7962,7 @@
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
 				9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
+				4C72EA3F2108F7C800E7407F /* FormulaEditorSectionType.swift in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,

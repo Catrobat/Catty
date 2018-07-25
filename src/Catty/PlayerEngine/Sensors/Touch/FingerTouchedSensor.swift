@@ -22,7 +22,7 @@
 
 @objc class FingerTouchedSensor: NSObject, TouchSensor {
     
-    static let tag = "FINGER_TOUCHED"
+    @objc static let tag = "FINGER_TOUCHED"
     static let name = kUIFESensorFingerTouched
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler

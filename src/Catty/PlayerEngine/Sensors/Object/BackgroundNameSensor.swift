@@ -22,7 +22,7 @@
 
 @objc class BackgroundNameSensor: NSObject, ObjectStringSensor {
     
-    static let tag = "OBJECT_BACKGROUND_NAME"
+    @objc static let tag = "OBJECT_BACKGROUND_NAME"
     static let name = kUIFEObjectBackgroundName
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources

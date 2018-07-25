@@ -42,12 +42,12 @@
     }
     
     // raw value is in radians, standardized value is in degrees
-    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+    @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees)
     }
     
-    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
+    @objc static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBSensor {
+protocol CBSensor {
 
     // Tag for serialization
     static var tag: String { get }
@@ -32,4 +32,8 @@
     static var defaultRawValue: Double { get }
     
     static var requiredResource: ResourceType { get }
+    
+    // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
+    // Use .hidden to not show the sensor at all
+    //static func formulaEditorSection(for spriteObject: SpriteObject) -> (FormulaEditorSectionType, Int)
 }

@@ -22,7 +22,7 @@
 
 @objc class LookNumberSensor: NSObject, ObjectDoubleSensor {
     
-    static let tag = "OBJECT_LOOK_NUMBER"
+    @objc static let tag = "OBJECT_LOOK_NUMBER"
     static let name = kUIFEObjectLookNumber
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources

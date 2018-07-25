@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol ObjectSensor: CBSensor {
+protocol ObjectSensor: CBSensor {
     
     // True if the sensor should be shown in the Formula Editor
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool

@@ -22,9 +22,9 @@
 
 @objc class ColorSensor: NSObject, ObjectDoubleSensor {
 
-    static let tag = "OBJECT_COLOR"
+    @objc static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
-    static let defaultRawValue = 0.0
+    @objc static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {

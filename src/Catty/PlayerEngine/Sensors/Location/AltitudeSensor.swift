@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AltitudeSensor : NSObject, DeviceSensor {
+@objc class AltitudeSensor : NSObject, DeviceSensor {
     
-    static let tag = "ALTITUDE"
+    @objc static let tag = "ALTITUDE"
     static let name = kUIFESensorAltitude
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.location

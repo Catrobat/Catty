@@ -22,7 +22,7 @@
 
 @objc class LastFingerIndexSensor: NSObject, TouchSensor {
 
-    static let tag = "LAST_FINGER_INDEX"
+    @objc static let tag = "LAST_FINGER_INDEX"
     static let name = kUIFESensorLastFingerIndex
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler

@@ -22,7 +22,7 @@
 
 class LongitudeSensor : NSObject, DeviceSensor {
     
-    static let tag = "LONGITUDE"
+    @objc static let tag = "LONGITUDE"
     static let name = kUIFESensorLongitude
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.location

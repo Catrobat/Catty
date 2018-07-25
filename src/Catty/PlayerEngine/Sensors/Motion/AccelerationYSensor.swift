@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AccelerationYSensor : NSObject, DeviceSensor {
+@objc class AccelerationYSensor : NSObject, DeviceSensor {
     
-    static let tag = "Y_ACCELERATION"
+    @objc static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.deviceMotion
