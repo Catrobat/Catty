@@ -28,7 +28,9 @@
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
-        return "" // TODO
+        guard let spriteNode = spriteObject.spriteNode else { return String(BackgroundNameSensor.defaultRawValue) }
+        guard let currentLook = spriteNode.currentLook else { return String(BackgroundNameSensor.defaultRawValue) }
+        return currentLook.name
     }
 
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
@@ -36,6 +38,6 @@
     }
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true // TODO
+        return spriteObject.isBackground()
     }
 }

@@ -1039,6 +1039,8 @@
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
 		F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */; };
+		F40CC11B21074211000C35E4 /* BackgroundNameSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CC11A21074211000C35E4 /* BackgroundNameSensorTest.swift */; };
+		F40CC11F21074221000C35E4 /* LookNameSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CC11E21074221000C35E4 /* LookNameSensorTest.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */; };
 		F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */; };
@@ -2688,6 +2690,8 @@
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSensorTest.swift; sourceTree = "<group>"; };
+		F40CC11A21074211000C35E4 /* BackgroundNameSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNameSensorTest.swift; sourceTree = "<group>"; };
+		F40CC11E21074221000C35E4 /* LookNameSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookNameSensorTest.swift; sourceTree = "<group>"; };
 		F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InternFormula+KeyboardAdapter.swift"; sourceTree = "<group>"; };
 		F418699720DFBB2100FF356B /* LookNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookNumberSensorTest.swift; sourceTree = "<group>"; };
 		F4201CED20D795C90030181B /* DateWeekdaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensorTest.swift; sourceTree = "<group>"; };
@@ -2992,6 +2996,8 @@
 				F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */,
 				F42E1E9620FA21540078C89D /* SizeSensorTest.swift */,
 				F4840B30210090BC0024EEAF /* RotationSensorTest.swift */,
+				F40CC11A21074211000C35E4 /* BackgroundNameSensorTest.swift */,
+				F40CC11E21074221000C35E4 /* LookNameSensorTest.swift */,
 				F406DE4220FE0E7B00F795D0 /* ColorSensorTest.swift */,
 			);
 			path = Object;
@@ -7691,6 +7697,7 @@
 				4C0F9FD1204BD37300E71B2D /* XMLParserBlackBoxTests0991.m in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
 				4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */,
+				F40CC11F21074221000C35E4 /* LookNameSensorTest.swift in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
@@ -7812,6 +7819,7 @@
 				4C11795E20AED5B6006C6E32 /* PositionXSensorTest.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
+				F40CC11B21074211000C35E4 /* BackgroundNameSensorTest.swift in Sources */,
 				F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
 				59D008F4208E4BF9000539E7 /* MotionManagerMock.swift in Sources */,

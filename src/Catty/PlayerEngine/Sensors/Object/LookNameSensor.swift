@@ -20,22 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LookNameSensor: NSObject, ObjectSensor {
+@objc class LookNameSensor: NSObject, ObjectStringSensor {
     
     static let tag = "OBJECT_LOOK_NAME"
     static let name = kUIFEObjectLookName
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
 
-    static func rawValue(for spriteObject: SpriteObject) -> Double {
-        return 0 // TODO
+    static func rawValue(for spriteObject: SpriteObject) -> String {
+        guard let spriteNode = spriteObject.spriteNode else { return String(LookNameSensor.defaultRawValue) }
+        guard let currentLook = spriteNode.currentLook else { return String(LookNameSensor.defaultRawValue) }
+        return currentLook.name
     }
 
-    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue // TODO
+    static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
+        return rawValue
     }
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true // TODO
+        return !spriteObject.isBackground()
     }
 }
