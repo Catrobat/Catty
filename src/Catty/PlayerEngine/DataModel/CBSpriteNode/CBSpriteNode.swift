@@ -31,8 +31,6 @@ class CBSpriteNode: SKSpriteNode {
     @objc var filterDict = ["brightness": false, "color": false]
     @objc var ciBrightness: CGFloat = CGFloat(BrightnessSensor.defaultRawValue) // CoreImage specific brightness
     @objc var ciHueAdjust: CGFloat = CGFloat(ColorSensor.defaultRawValue) // CoreImage specific hue adjust
-    
-    private var _lastTimeTouchedSpriteNode = [String:Date]()
 
     // MARK: Custom getters and setters
     @objc func setPositionForCropping(_ position: CGPoint) {
@@ -220,15 +218,6 @@ class CBSpriteNode: SKSpriteNode {
             print("\(spriteName): \"I'm transparent at this point\"")
             return false
         }
-
-        if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
-            let duration = Date().timeIntervalSince(lastTime)
-            // ignore multiple touches on same sprite node within a certain amount of time...
-            if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
-                return true
-            }
-        }
-        _lastTimeTouchedSpriteNode[spriteName] = Date()
 
         scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
 
