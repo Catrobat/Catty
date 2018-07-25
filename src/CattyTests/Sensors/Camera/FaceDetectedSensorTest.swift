@@ -19,30 +19,4 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-
-class FaceDetectedSensor: DeviceSensor {
-    
-    static let tag = "FACE_DETECTED"
-    static let name = kUIFESensorFaceDetected
-    static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.faceDetection
-    
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    
-    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
-    }
-    
-    func rawValue() -> Double {
-        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
-        return isFaceDetected ? 1.0 : 0.0
-    }
-    
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
-    }
-    
-    func showInFormulaEditor() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUseFaceDetectionSensors)
-    }
-}
+import Foundation
