@@ -72,17 +72,35 @@ extension AudioManager: AudioManagerProtocol {
         try! self.recorder = AVAudioRecorder(url: url, settings: settings)
     }
     
-    func loudnessAvailable() -> Bool {
-        if self.recorder == nil {
-            self.initRecorder()
-            return self.recorder.prepareToRecord()
-        }
-        return true
-    }
-    
     @objc func programTimerCallback() {
         self.recorder.updateMeters()
         self.loudnessInDecibels = self.recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
+    }
+    
+    func loudnessAvailable() -> Bool {
+        var isGranted = false
+        let dispatchGroup = DispatchGroup()
+        
+        switch AVAudioSession.sharedInstance().recordPermission() {
+        case AVAudioSessionRecordPermission.denied:
+            isGranted = false
+        case AVAudioSessionRecordPermission.undetermined:
+            dispatchGroup.enter()
+            AVAudioSession.sharedInstance().requestRecordPermission({ (granted: Bool) in
+                isGranted = granted
+                dispatchGroup.leave()
+            })
+            dispatchGroup.wait()
+        case AVAudioSessionRecordPermission.granted:
+            isGranted = true
+        }
+        
+        if isGranted && self.recorder == nil {
+            self.initRecorder()
+            return self.recorder.prepareToRecord()
+        }
+        
+        return isGranted
     }
     
 }
