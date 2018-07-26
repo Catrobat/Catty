@@ -46,6 +46,9 @@ class ArduinoAnalogPinSensor: DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
+            return .hidden
+        }
+        return .device(position: 360)
     }
 }

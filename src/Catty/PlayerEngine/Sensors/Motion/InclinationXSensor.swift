@@ -54,6 +54,6 @@ class InclinationXSensor: DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        return .device(position: 50)
     }
 }

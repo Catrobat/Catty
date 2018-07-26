@@ -47,6 +47,9 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
+            return .hidden
+        }
+        return .device(position: 330)
     }
 }

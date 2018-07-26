@@ -51,6 +51,9 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        if spriteObject.isBackground() == false {
+            return .hidden
+        }
+        return .object(position: 40)
     }
 }

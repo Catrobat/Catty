@@ -80,6 +80,6 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        return .object(position: 10)
     }
 }

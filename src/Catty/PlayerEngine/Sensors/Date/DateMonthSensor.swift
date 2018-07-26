@@ -44,7 +44,7 @@ class DateMonthSensor : DateSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        return .device(position: 240)
     }
 }
 
