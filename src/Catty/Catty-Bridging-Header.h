@@ -156,6 +156,17 @@
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
 //#import "LanguageTranslationDefines.h"
-
 #import "BrickFormulaProtocol.h"
 
+//-----------------------------------------------------------------------------------------------------------
+// Headers to sort
+//-----------------------------------------------------------------------------------------------------------
+#import "CatrobatInformation.h"
+#import "CatrobatProgram.h"
+#import "AppDelegate.h"
+#import "TableUtil.h"
+#import "CellTagDefines.h"
+#import "SegueDefines.h"
+#import "ProgramDetailStoreViewController.h"
+#import "DarkBlueGradientFeaturedCell.h"
+#import "LoadingView.h"

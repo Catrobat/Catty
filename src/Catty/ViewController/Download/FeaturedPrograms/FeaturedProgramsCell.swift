@@ -20,19 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FeaturedProgramsStoreViewController.h"
+import UIKit
 
-@interface FeaturedProgramsStoreViewController (Test)
-- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
-- (void)loadFeaturedProjects;
-@end
+protocol FeaturedProgramsCellProtocol: class {
+    func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
+}
 
-@interface TestFeaturedProgramsStoreViewController : FeaturedProgramsStoreViewController
-@property (nonatomic, strong) NSMutableArray* projects;
-@property (nonatomic, weak) XCTestExpectation *downloadFinished;
-- (id)initWithExpectation:(XCTestExpectation*) expectation;
-@end
-
-@interface FeaturedProgramsStoreViewControllerTests : XCTestCase
-@property (nonatomic, strong) TestFeaturedProgramsStoreViewController *featuredProgramsStoreViewController;
-@end
+class FeaturedProgramsCell: UITableViewCell {
+    
+    weak var delegete: FeaturedProgramsCellProtocol?
+    var program: StoreProgram?
+    
+    @IBOutlet weak var featuredImageView: UIImageView!
+    
+    var featuredImage: UIImage? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    func updateTable() {
+        featuredImageView?.image = featuredImage
+    }
+}

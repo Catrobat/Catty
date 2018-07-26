@@ -20,9 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+@testable import Pocket_Code
 
-@interface FeaturedProgramsStoreViewController : BaseTableViewController <NSURLConnectionDataDelegate>
+final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
+    
+    var program: StoreProgram?
+    var collection: StoreProgramCollection.StoreProgramCollectionText?
+    
+    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            completion(self.collection, nil)
+        }
 
-@end
+    }
+    
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            completion(self.program, nil)
+        }
+    }
+}
