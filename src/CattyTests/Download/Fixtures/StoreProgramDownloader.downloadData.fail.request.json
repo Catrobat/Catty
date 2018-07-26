@@ -2,15 +2,15 @@
   "interactions" : [
     {
       "response" : {
-        "status" : 200,
+        "status" : 404,
         "headers" : {
           "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=bvm9j2t195j64oruqa6ii9sdb3; path=\/",
+          "Set-Cookie" : "PHPSESSID=p50buh367402cog4p79f5fjvb1; path=\/",
           "Expires" : "-1",
           "Pragma" : "no-cache",
           "Strict-Transport-Security" : "max-age=15768000",
           "Server" : "nginx",
-          "Date" : "Mon, 16 Jul 2018 13:41:36 GMT",
+          "Date" : "Mon, 23 Jul 2018 08:00:17 GMT",
           "Cache-Control" : "private, must-revalidate"
         },
         "body" : {
@@ -32,7 +32,7 @@
               "ProjectUrl" : "pocketcode\/program\/821",
               "Uploaded" : 1366835078,
               "ScreenshotBig" : "resources\/screenshots\/screen_821.png",
-              "Downloads" : 6759,
+              "Downloads" : 6760,
               "ScreenshotSmall" : "resources\/thumbnails\/screen_821.png",
               "ProjectNameShort" : "Whack A Mole",
               "DownloadUrl" : "pocketcode\/download\/821.catrobat",
@@ -44,12 +44,12 @@
         },
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
       },
-      "recorded_at" : 1531748496.0202169,
+      "recorded_at" : 1532332817.7451649,
       "request" : {
         "method" : "GET",
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
       }
     }
   ],
-  "name" : "FeaturedProgramsStoreDownloader.downloadData.success"
+  "name" : "StoreProgramDownloader.downloadData.fail.request"
 }

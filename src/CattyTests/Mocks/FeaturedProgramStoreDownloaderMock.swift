@@ -22,19 +22,19 @@
 
 @testable import Pocket_Code
 
-final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
+final class FeaturedProgramsStoreDownloaderMock: StoreProgramDownloaderProtocol {
     
     var program: StoreProgram?
     var collection: StoreProgramCollection.StoreProgramCollectionText?
     
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
+    func fetchPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collection, nil)
         }
 
     }
     
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.program, nil)
         }

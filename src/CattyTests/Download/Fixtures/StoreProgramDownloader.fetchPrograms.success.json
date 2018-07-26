@@ -44,5 +44,5 @@
       }
     }
   ],
-  "name" : "FeaturedProgramsDownloader.downloadFeaturedPrograms.success"
+  "name" : "StoreProgramDownloader.fetchPrograms.success"
 }

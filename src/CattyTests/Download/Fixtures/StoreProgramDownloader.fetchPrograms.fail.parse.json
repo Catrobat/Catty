@@ -40,5 +40,5 @@
       }
     }
   ],
-  "name" : "FeaturedProgramsDownloader.downloadFeaturedPrograms.fail.parse"
+  "name" : "StoreProgramDownloader.fetchPrograms.fail.parse"
 }

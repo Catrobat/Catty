@@ -975,16 +975,16 @@
 		E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */; };
 		E4AEC86D210843D20081A980 /* ProgramInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC86C210843D20081A980 /* ProgramInformation.swift */; };
 		E4AEC8712108445D0081A980 /* StoreProgramCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */; };
-		E4AEC8942108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
-		E4AEC8962108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */; };
-		E4AEC8982108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */; };
-		E4AEC89A2108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
-		E4AEC89C2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */; };
+		E4AEC8942108513D0081A980 /* StoreProgramDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88E210851380081A980 /* StoreProgramDownloader.downloadData.fail.request.json */; };
+		E4AEC8962108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88F210851390081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json */; };
+		E4AEC8982108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */; };
+		E4AEC89A2108513D0081A980 /* StoreProgramDownloader.fetchPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */; };
+		E4AEC89C2108513D0081A980 /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */; };
 		E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
 		E4AEC8A3210853130081A980 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */; };
 		E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */; };
-		E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */; };
+		E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */; };
 		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
 		F48E945620D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
@@ -2540,18 +2540,18 @@
 		E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCell.swift; sourceTree = "<group>"; };
 		E4AEC86C210843D20081A980 /* ProgramInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramInformation.swift; sourceTree = "<group>"; };
 		E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramCollection.swift; sourceTree = "<group>"; };
-		E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
-		E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json; sourceTree = "<group>"; };
-		E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json; sourceTree = "<group>"; };
-		E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
-		E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.success.json; sourceTree = "<group>"; };
+		E4AEC88E210851380081A980 /* StoreProgramDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
+		E4AEC88F210851390081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.fail.request.json; sourceTree = "<group>"; };
+		E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.fail.parse.json; sourceTree = "<group>"; };
+		E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.success.json; sourceTree = "<group>"; };
+		E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
 		E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
 		E4AEC8A5210853630081A980 /* RecentProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
 		E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
-		E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloader.swift; sourceTree = "<group>"; };
+		E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloader.swift; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgram.swift; sourceTree = "<group>"; };
 		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
 		F49AA89920C9203100D119C0 /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NumberOfItemsInListFunction0991.xml; sourceTree = "<group>"; };
@@ -5157,6 +5157,7 @@
 			isa = PBXGroup;
 			children = (
 				E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */,
+				E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */,
 				E4B1BF4D20F719DB00800555 /* FeaturedPrograms */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
@@ -6671,11 +6672,11 @@
 		E4AEC8872108506A0081A980 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */,
-				E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */,
-				E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */,
-				E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */,
-				E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */,
+				E4AEC88E210851380081A980 /* StoreProgramDownloader.downloadData.fail.request.json */,
+				E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */,
+				E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */,
+				E4AEC88F210851390081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json */,
+				E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -6683,7 +6684,6 @@
 		E4B1BF4D20F719DB00800555 /* FeaturedPrograms */ = {
 			isa = PBXGroup;
 			children = (
-				E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */,
 				E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */,
 				E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */,
 				E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */,
@@ -6955,7 +6955,7 @@
 				CAE3E53F1B4C50B300CC88BD /* Drink_more_water_09.xml in Resources */,
 				4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */,
 				4CE2D4031C29502300938B5E /* Memory_097.xml in Resources */,
-				E4AEC8962108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */,
+				E4AEC8962108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json in Resources */,
 				4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */,
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
 				4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */,
@@ -6990,20 +6990,20 @@
 				4C6D15E21D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml in Resources */,
 				599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
 				4C0F9FFC204BD4D400E71B2D /* Nyancat_1.0_0991.xml in Resources */,
-				E4AEC8942108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */,
+				E4AEC8942108513D0081A980 /* StoreProgramDownloader.downloadData.fail.request.json in Resources */,
 				4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */,
 				4C6D15D61D7AC5C500CE53CD /* Encapsulated_098.xml in Resources */,
 				4C0F9FFE204BD4DE00E71B2D /* Piano_0991.xml in Resources */,
 				4CE2D4091C29503B00938B5E /* Nyancat_1.0_097.xml in Resources */,
 				4C0FA015204BD56800E71B2D /* Word_balloon_demo_0991.xml in Resources */,
-				E4AEC8982108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */,
+				E4AEC8982108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json in Resources */,
 				4C6D16001D7AC65400CE53CD /* ValidProgramAllBricks093.xml in Resources */,
 				4C0FA011204BD54E00E71B2D /* ValidProgram0991.xml in Resources */,
 				4CE2D3FB1C294FFE00938B5E /* Flap_Pac_Man_097.xml in Resources */,
 				4C0FA013204BD55B00E71B2D /* ValidProgramAllBricks0991.xml in Resources */,
 				4C2EE3EF1B55572D006DE9B8 /* Demonstration_095.xml in Resources */,
 				4CE2D4171C29508A00938B5E /* Word_balloon_demo_097.xml in Resources */,
-				E4AEC89C2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */,
+				E4AEC89C2108513D0081A980 /* StoreProgramDownloader.downloadData.success.json in Resources */,
 				CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */,
 				CAE3E5511B4C50B300CC88BD /* Piano_09.xml in Resources */,
 				4C0FA002204BD4F400E71B2D /* Pythagorean_Theorem_0991.xml in Resources */,
@@ -7083,7 +7083,7 @@
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
 				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
-				E4AEC89A2108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */,
+				E4AEC89A2108513D0081A980 /* StoreProgramDownloader.fetchPrograms.success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7583,7 +7583,7 @@
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
-				E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */,
+				E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,

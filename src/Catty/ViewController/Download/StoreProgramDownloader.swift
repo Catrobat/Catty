@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FeaturedProgramsStoreDownloaderProtocol {
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void)
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void)
+protocol StoreProgramDownloaderProtocol {
+    func fetchPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void)
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void)
 }
 
-final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProtocol {
+final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
     
     let session: URLSession
     
@@ -33,7 +33,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         self.session = session
     }
     
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
+    func fetchPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
 
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
         
@@ -45,7 +45,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         self.session.dataTask(with: indexURL) { (data, response, error) in
 
             guard timer.isValid else { return }
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: FeaturedProgramsDownloadError?)
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: StoreProgramDownloaderError?)
             handleDataTaskCompletion = { (data, response, error) in
                 timer.invalidate()
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
@@ -66,11 +66,11 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
         }.resume()
     }
 
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
+    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
         
         self.session.dataTask(with: indexURL) { (data, response, error) in
-            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: StoreProgram?, error: FeaturedProgramsDownloadError?)
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (program: StoreProgram?, error: StoreProgramDownloaderError?)
             handleDataTaskCompletion = { (data, response, error) in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
@@ -91,7 +91,7 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
     }
 }
 
-enum FeaturedProgramsDownloadError: Error {
+enum StoreProgramDownloaderError: Error {
     /// Indicates an error with the URLRequest.
     case request(error: Error?, statusCode: Int)
     /// Indicates a parsing error of the received data.

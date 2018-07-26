@@ -111,7 +111,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         }
     }
     
-    private func showConnectionIssueAlertAndDismiss(error: FeaturedProgramsDownloadError) {
+    private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
         var title = ""
         var message = ""
         let buttonTitle = kLocalizedOK
