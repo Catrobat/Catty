@@ -28,8 +28,6 @@ import CoreLocation
     @objc public static let shared = CBSensorManager()
     public var defaultValueForUndefinedSensor: Double = 0
     
-    private var deviceSensorList = [DeviceSensor]()
-    private var objectSensorList = [ObjectSensor]()
     private var sensorMap = [String: CBSensor]()
     
     private var motionManager: CMMotionManager
@@ -48,12 +46,10 @@ import CoreLocation
         bluetoothService = BluetoothService.sharedInstance()
 
         super.init()
-        
-        registerDeviceSensors()
-        registerObjectSensors()
+        registerSensors()
     }
     
-    func registerDeviceSensors() {
+    func registerSensors() {
         let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
         let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
         let audioManagerGetter: () -> AudioManagerProtocol? = { [weak self] in self?.audioManager }
@@ -61,8 +57,7 @@ import CoreLocation
         let touchManagerGetter: () -> TouchManagerProtocol? = { [weak self] in self?.touchManager }
         let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         
-        // In the Formula Editor the sensors appear in the same order
-        self.deviceSensorList = [
+        let sensorList: [CBSensor] = [
             LoudnessSensor(audioManagerGetter: audioManagerGetter),
             InclinationXSensor(motionManagerGetter: motionManagerGetter),
             InclinationYSensor(motionManagerGetter: motionManagerGetter),
@@ -104,15 +99,8 @@ import CoreLocation
             PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             
             ArduinoAnalogPinSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            ArduinoDigitalPinSensor(bluetoothServiceGetter: bluetoothServiceGetter)
-        ]
-        
-        self.deviceSensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }
-    }
-    
-    func registerObjectSensors() {
-        // In the Formula Editor the sensors appear in the same order
-        self.objectSensorList = [
+            ArduinoDigitalPinSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            
             PositionXSensor(),
             PositionYSensor(),
             TransparencySensor(),
@@ -127,19 +115,39 @@ import CoreLocation
             LookNameSensor() // only for look
         ]
         
-        self.objectSensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }
+        sensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }
     }
     
-    func deviceSensors() -> [DeviceSensor] {
-        return self.deviceSensorList.map{ $0 }
+    func deviceSensors(for spriteObject: SpriteObject) -> [CBSensor] {
+        var sensors = [Int: CBSensor]()
+        
+        for sensor in self.sensorMap.values {
+            switch (type(of: sensor).formulaEditorSection(for: spriteObject)) {
+            case let .device(position):
+                sensors[position] = sensor
+            default:
+                break;
+            }
+        }
+        return sensors.sorted(by: { $0.0 < $1.0 }).map{ $1}
     }
     
-    func objectSensors() -> [ObjectSensor] {
-        return self.objectSensorList.map{ $0 }
+    func objectSensors(for spriteObject: SpriteObject) -> [CBSensor] {
+        var sensors = [Int: CBSensor]()
+        
+        for sensor in self.sensorMap.values {
+            switch (type(of: sensor).formulaEditorSection(for: spriteObject)) {
+            case let .object(position):
+                sensors[position] = sensor
+            default:
+                break;
+            }
+        }
+        return sensors.sorted(by: { $0.0 < $1.0 }).map{ $1}
     }
     
     func phiroSensors() -> [PhiroSensor] {
-        return self.deviceSensorList.filter{$0 is PhiroSensor}.map{ $0 as! PhiroSensor }
+        return self.sensorMap.values.filter{$0 is PhiroSensor}.map{ $0 as! PhiroSensor }
     }
     
     func sensor(tag: String) -> CBSensor? {
