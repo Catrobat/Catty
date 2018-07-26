@@ -975,15 +975,10 @@
 		E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */; };
 		E4AEC86D210843D20081A980 /* ProgramInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC86C210843D20081A980 /* ProgramInformation.swift */; };
 		E4AEC8712108445D0081A980 /* StoreProgramCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */; };
-		E4AEC8932108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
 		E4AEC8942108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
-		E4AEC8952108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */; };
 		E4AEC8962108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */; };
-		E4AEC8972108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */; };
 		E4AEC8982108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */; };
-		E4AEC8992108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
 		E4AEC89A2108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
-		E4AEC89B2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */; };
 		E4AEC89C2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */; };
 		E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
@@ -6064,12 +6059,6 @@
 				B46B270417703F9400172837 /* Supporting Files */,
 				B496F5131775996D004BF78A /* Scene */,
 				E4AEC8732108503D0081A980 /* Download */,
-				E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */,
-				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
-				E4AEC8A5210853630081A980 /* RecentProgramsStoreViewControllerTests.h */,
-				E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */,
-				E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */,
-				E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */,
 				4C1608A31A095480002C7032 /* Resources */,
 			);
 			path = CattyTests;
@@ -6669,6 +6658,12 @@
 			isa = PBXGroup;
 			children = (
 				E4AEC8872108506A0081A980 /* Fixtures */,
+				E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */,
+				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
+				E4AEC8A5210853630081A980 /* RecentProgramsStoreViewControllerTests.h */,
+				E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */,
+				E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */,
+				E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -7119,7 +7114,6 @@
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
 				92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */,
 				4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */,
-				E4AEC89B2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */,
 				9218B1FD1CC4AB75007B4C60 /* nko_brightness_guide@2x.png in Resources */,
 				4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */,
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
@@ -7127,11 +7121,9 @@
 				92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */,
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
 				59697DA3201F46AD00A0071A /* LibraryImageCollectionViewCell.xib in Resources */,
-				E4AEC8932108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */,
 				4CDE4CEA203DBBF500B43034 /* Reachability.license in Resources */,
 				4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */,
 				4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */,
-				E4AEC8972108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */,
 				BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CDE4CEB203DBBF500B43034 /* UIViewController+KNSemiModal.license in Resources */,
 				4CDE4CEC203DBBF500B43034 /* BDKNotifyHUD.license in Resources */,
@@ -7143,7 +7135,6 @@
 				92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */,
 				4CDE4CF6203DBBF500B43034 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */,
-				E4AEC8952108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */,
 				4CDE4CF0203DBBF500B43034 /* SPUserResizableView.license in Resources */,
 				CADBD6F419B0E8C200C62836 /* Settings.bundle in Resources */,
 				597AB56F202081E8007CD10D /* LibrarySoundCollectionViewCell.xib in Resources */,
@@ -7151,7 +7142,6 @@
 				4CDE4CFC203DBC8100B43034 /* Siren.license in Resources */,
 				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
 				92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */,
-				E4AEC8992108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
