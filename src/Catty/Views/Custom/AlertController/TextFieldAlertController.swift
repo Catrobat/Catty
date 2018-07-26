@@ -80,7 +80,6 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
             $0.returnKeyType = .done
             $0.keyboardType = .default
             $0.delegate = self
-            $0.becomeFirstResponder()
         }
     }
     
