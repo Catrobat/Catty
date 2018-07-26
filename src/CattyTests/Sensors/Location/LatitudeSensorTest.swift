@@ -85,5 +85,9 @@ final class LatitudeSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 80), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }
 

@@ -112,4 +112,8 @@ final class BrightnessSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.object(position: 20), sensor.formulaEditorSection(for: spriteObject))
+    }
 }

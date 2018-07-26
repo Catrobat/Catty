@@ -74,4 +74,8 @@ final class AccelerationYSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 30), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }

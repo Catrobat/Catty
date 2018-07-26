@@ -131,4 +131,8 @@ final class PositionYSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.object(position: 70), sensor.formulaEditorSection(for: spriteObject))
+    }
 }

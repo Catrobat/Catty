@@ -85,5 +85,9 @@ final class AltitudeSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 110), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }
 

@@ -112,4 +112,8 @@ final class TransparencySensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.object(position: 10), sensor.formulaEditorSection(for: spriteObject))
+    }
 }

@@ -70,4 +70,8 @@ final class DateYearSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 230), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }

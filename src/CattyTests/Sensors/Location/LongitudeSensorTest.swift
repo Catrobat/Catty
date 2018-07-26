@@ -85,5 +85,9 @@ final class LongitudeSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 90), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }
 

@@ -73,5 +73,9 @@ final class LocationAccuracySensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 100), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }
 

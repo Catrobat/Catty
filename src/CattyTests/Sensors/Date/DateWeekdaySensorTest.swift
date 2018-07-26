@@ -112,4 +112,8 @@ final class DateWeekdaySensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 260), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }

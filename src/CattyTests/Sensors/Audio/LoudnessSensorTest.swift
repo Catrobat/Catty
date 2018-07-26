@@ -83,4 +83,8 @@ final class LoudnessSensorTest: XCTestCase {
     func testShowInFormulaEditor() {
         XCTAssertTrue(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        XCTAssertEqual(.device(position: 10), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
 }
