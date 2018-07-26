@@ -105,8 +105,10 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
                 self.hideLoadingView()
             }
         }
-        self.shouldHideLoadingView = true
-        self.hideLoadingView()
+        else {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+        }
     }
     
     private func showConnectionIssueAlertAndDismiss(error: FeaturedProgramsDownloadError) {
