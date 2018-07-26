@@ -25,6 +25,7 @@
     @objc static let tag = "Y_ACCELERATION"
     static let name = kUIFESensorAccelerationY
     static let defaultRawValue = 0.0
+    static let position = 30
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
@@ -43,5 +44,9 @@
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: position)
     }
 }

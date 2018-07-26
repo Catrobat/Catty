@@ -25,6 +25,7 @@
     @objc static let tag = "LATITUDE"
     static let name = kUIFESensorLatitude
     static let defaultRawValue = 0.0
+    static let position = 80
     static let requiredResource = ResourceType.location
     
     let getLocationManager: () -> LocationManager?
@@ -43,5 +44,9 @@
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: position)
     }
 }

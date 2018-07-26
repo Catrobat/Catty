@@ -69,4 +69,14 @@ final class ArduinoDigitalPinSensorTest: XCTestCase {
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
         XCTAssertFalse(sensor.showInFormulaEditor())
     }
+    
+    func testFormulaEditorSection() {
+        UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
+        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        
+        UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
+        XCTAssertEqual(.hidden, type(of: sensor).formulaEditorSection(for: SpriteObject()))
+    }
+    
+    
 }

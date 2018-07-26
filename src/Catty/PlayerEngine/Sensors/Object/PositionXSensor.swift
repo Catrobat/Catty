@@ -25,6 +25,7 @@ class PositionXSensor: ObjectDoubleSensor {
     static let tag = "OBJECT_X"
     static let name = kUIFEObjectPositionX
     static let defaultRawValue = 0.0
+    static let position = 60
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -50,5 +51,9 @@ class PositionXSensor: ObjectDoubleSensor {
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .object(position: position)
     }
 }

@@ -25,6 +25,7 @@ class ArduinoAnalogPinSensor: DeviceSensor {
     static let tag = "analogPin"
     static let name = kUIFESensorArduinoAnalog
     static let defaultRawValue = 0.0
+    static let position = 360
     static let requiredResource = ResourceType.bluetoothArduino
     
     let getBluetoothService: () -> BluetoothService?
@@ -43,5 +44,12 @@ class ArduinoAnalogPinSensor: DeviceSensor {
     
     func showInFormulaEditor() -> Bool {
         return UserDefaults.standard.bool(forKey: kUseArduinoBricks)
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
+            return .hidden
+        }
+        return .device(position: position)
     }
 }

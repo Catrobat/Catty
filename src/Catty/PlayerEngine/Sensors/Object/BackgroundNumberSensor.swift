@@ -25,6 +25,7 @@
     @objc static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
     static let defaultRawValue = 0.0
+    static let position = 40
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -48,5 +49,12 @@
     
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         fatalError("This sensor is read-only")
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        if spriteObject.isBackground() == false {
+            return .hidden
+        }
+        return .object(position: position)
     }
 }

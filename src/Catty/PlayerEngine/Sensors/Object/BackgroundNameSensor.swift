@@ -26,6 +26,7 @@
     static let name = kUIFEObjectBackgroundName
     static let defaultRawValue = 0.0
     static let defaultStringValue = ""
+    static let position = 50
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
@@ -40,5 +41,12 @@
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return spriteObject.isBackground()
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        if spriteObject.isBackground() == false {
+            return .hidden
+        }
+        return .object(position: position)
     }
 }
