@@ -90,9 +90,9 @@ import CoreLocation
             MultiFingerYSensor(),*/
              
             FaceDetectedSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
-            /*FaceSizeSensor(),
-            FacePositionXSensor(),
-            FacePositionYSensor(),*/
+            FaceSizeSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
+            FacePositionXSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
+            FacePositionYSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
             
             PhiroFrontLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroFrontRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
