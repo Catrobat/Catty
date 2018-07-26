@@ -25,3 +25,21 @@ enum FormulaEditorSection {
     case object(position: Int)
     case hidden
 }
+
+extension FormulaEditorSection: Equatable {
+    static func ==(left: FormulaEditorSection, right: FormulaEditorSection) -> Bool {
+        switch (left, right) {
+        case (let .device(positionLeft), let .device(positionRight)):
+            return positionLeft == positionRight
+            
+        case (let .object(positionLeft), let .object(positionRight)):
+            return positionLeft == positionRight
+            
+        case (.hidden, .hidden):
+            return true
+            
+        default:
+            return false
+        }
+    }
+}
