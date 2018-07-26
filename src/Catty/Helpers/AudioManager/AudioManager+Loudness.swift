@@ -43,6 +43,9 @@ extension AudioManager: AudioManagerProtocol {
         if self.recorder != nil {
             self.recorder.stop()
             self.recorder = nil
+        }
+        
+        if self.loudnessTimer != nil {
             self.loudnessTimer.invalidate()
             self.loudnessTimer = nil
         }
@@ -73,8 +76,12 @@ extension AudioManager: AudioManagerProtocol {
     }
     
     @objc func programTimerCallback() {
-        self.recorder.updateMeters()
-        self.loudnessInDecibels = self.recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
+        guard let recorder = self.recorder else { return }
+        recorder.updateMeters()
+        
+        if (self.loudnessInDecibels != nil) {
+            self.loudnessInDecibels = recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
+        }
     }
     
     func loudnessAvailable() -> Bool {
