@@ -25,11 +25,12 @@
     @objc static let tag = "OBJECT_LOOK_NAME"
     static let name = kUIFEObjectLookName
     static let defaultRawValue = 0.0
+    static let defaultStringValue = ""
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
-        guard let spriteNode = spriteObject.spriteNode else { return String(LookNameSensor.defaultRawValue) }
-        guard let currentLook = spriteNode.currentLook else { return String(LookNameSensor.defaultRawValue) }
+        guard let spriteNode = spriteObject.spriteNode else { return LookNameSensor.defaultStringValue }
+        guard let currentLook = spriteNode.currentLook else { return LookNameSensor.defaultStringValue }
         return currentLook.name
     }
 

@@ -41,10 +41,10 @@ final class LookNameSensorTest: XCTestCase {
     
     func testDefaultRawValue() {
         spriteNode.currentLook = nil
-        XCTAssertEqual(String(sensor.defaultRawValue), sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(sensor.defaultStringValue, sensor.rawValue(for: spriteObject))
         
         spriteNode = nil
-        XCTAssertEqual(String(sensor.defaultRawValue), sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(sensor.defaultStringValue, sensor.rawValue(for: spriteObject))
         
     }
     
