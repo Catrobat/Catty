@@ -47,6 +47,6 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        <#code#>
+        return .hidden
     }
 }
