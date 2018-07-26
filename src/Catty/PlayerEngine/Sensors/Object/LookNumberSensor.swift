@@ -49,4 +49,8 @@
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         fatalError("This sensor is read-only")
     }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        <#code#>
+    }
 }

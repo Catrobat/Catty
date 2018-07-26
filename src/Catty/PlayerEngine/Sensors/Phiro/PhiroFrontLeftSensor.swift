@@ -45,4 +45,8 @@
     func showInFormulaEditor() -> Bool {
         return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
     }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        <#code#>
+    }
 }

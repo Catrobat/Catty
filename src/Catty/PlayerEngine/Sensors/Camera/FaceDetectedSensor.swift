@@ -45,4 +45,8 @@ class FaceDetectedSensor: DeviceSensor {
     func showInFormulaEditor() -> Bool {
         return true
     }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        <#code#>
+    }
 }

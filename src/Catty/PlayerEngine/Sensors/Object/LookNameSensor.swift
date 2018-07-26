@@ -40,4 +40,8 @@
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return !spriteObject.isBackground()
     }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        <#code#>
+    }
 }

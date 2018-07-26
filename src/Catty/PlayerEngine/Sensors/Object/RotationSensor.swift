@@ -79,4 +79,8 @@
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
     }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        <#code#>
+    }
 }
