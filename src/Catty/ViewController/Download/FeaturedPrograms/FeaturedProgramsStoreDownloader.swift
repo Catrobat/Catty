@@ -47,11 +47,11 @@ final class FeaturedProgramsStoreDownloader: FeaturedProgramsStoreDownloaderProt
             guard timer.isValid else { return }
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: FeaturedProgramsDownloadError?)
             handleDataTaskCompletion = { (data, response, error) in
+                timer.invalidate()
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
                 let items: StoreProgramCollection.StoreProgramCollectionText?
                 do {
-                    timer.invalidate()
                     items = try JSONDecoder().decode(StoreProgramCollection.StoreProgramCollectionText.self, from: data)
                 } catch {
                     return (nil, .parse(error: error))
