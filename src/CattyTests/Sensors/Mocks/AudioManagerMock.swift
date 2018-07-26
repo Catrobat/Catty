@@ -20,32 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TimeMinuteSensor : DateSensor {
+final class AudioManagerMock: AudioManagerProtocol {
     
-    static let tag = "TIME_MINUTE"
-    static let name = kUIFESensorTimeMinute
-    static let defaultRawValue = 0.0
-    static let position = 280
-    static let requiredResource = ResourceType.noResources
+    var mockedLoudnessInDecibels: Double?
     
-    func date() -> Date {
-        return Date()
+    func startLoudnessRecorder() {
     }
     
-    func rawValue() -> Double {
-        return Double(Calendar.current.component(.minute, from: self.date()))
+    func stopLoudnessRecorder() {
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+    func loudness() -> Double? {
+        return mockedLoudnessInDecibels
     }
     
-    func showInFormulaEditor() -> Bool {
+    func loudnessAvailable() -> Bool {
         return true
     }
-    
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
-    }
 }
-

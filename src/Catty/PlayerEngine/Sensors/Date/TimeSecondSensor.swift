@@ -25,6 +25,7 @@ class TimeSecondSensor : DateSensor {
     static let tag = "TIME_SECOND"
     static let name = kUIFESensorTimeSecond
     static let defaultRawValue = 0.0
+    static let position = 290
     static let requiredResource = ResourceType.noResources
     
     func date() -> Date {
@@ -41,6 +42,10 @@ class TimeSecondSensor : DateSensor {
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: position)
     }
 }
 

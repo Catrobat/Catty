@@ -25,6 +25,7 @@ class InclinationXSensor: DeviceSensor {
     static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
     static let defaultRawValue = 0.0
+    static let position = 50
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
@@ -51,5 +52,9 @@ class InclinationXSensor: DeviceSensor {
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: position)
     }
 }

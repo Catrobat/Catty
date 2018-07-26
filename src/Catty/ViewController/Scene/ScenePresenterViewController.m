@@ -270,16 +270,14 @@
 
 - (void)setupSceneAndStart
 {
-    NSInteger requiredResources = [self.program getRequiredResources];
-    
-    // Initialize sensors
-    [[CBSensorManager shared] setupSensorsForRequiredResources:requiredResources];
-    
     // Initialize scene
     CBScene *scene = [SetupScene setupSceneForProgram:self.program];
     [scene initializeScreenRecording];
     scene.name = self.program.header.programName;
     scene.screenRecordingDelegate = self;
+    
+    // Initialize sensors
+    [[CBSensorManager shared] setupSensorsForProgram:self.program andScene:scene];
     
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -292,6 +290,8 @@
     self.scene = scene;
     
     [[BluetoothService sharedInstance] setScenePresenter:self];
+    
+    // TODO remove
     [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
     [[CameraPreviewHandler shared] setCamView:self.view];
     

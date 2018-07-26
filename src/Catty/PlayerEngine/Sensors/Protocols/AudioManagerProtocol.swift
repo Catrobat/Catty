@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol AudioManagerProtocol {
+protocol AudioManagerProtocol {
     
     func startLoudnessRecorder() -> Void
     
     func stopLoudnessRecorder() -> Void
     
-    func loudness() -> Double
+    func loudness() -> Double?
     
     func loudnessAvailable() -> Bool
 }

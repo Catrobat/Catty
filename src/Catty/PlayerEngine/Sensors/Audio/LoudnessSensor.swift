@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LoudnessSensor: DeviceSensor {
-    
+class LoudnessSensor: NSObject, DeviceSensor {
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultRawValue = 0.0
+    static let position = 10
     static let requiredResource = ResourceType.loudness
 
     let getAudioManager: () -> AudioManagerProtocol?
@@ -34,15 +34,22 @@ class LoudnessSensor: DeviceSensor {
     }
 
     func rawValue() -> Double {
-        // TODO implement
         return self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        let standardLoudness = 3 * rawValue + 100
+        if standardLoudness < 0 {
+            return 0
+        }
+        return standardLoudness
     }
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: position)
     }
 }

@@ -41,10 +41,10 @@ final class BackgroundNameSensorTest: XCTestCase {
     
     func testDefaultRawValue() {
         spriteNode.currentLook = nil
-        XCTAssertEqual(String(sensor.defaultRawValue), sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(sensor.defaultStringValue, sensor.rawValue(for: spriteObject))
         
         spriteNode = nil
-        XCTAssertEqual(String(sensor.defaultRawValue), sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(sensor.defaultStringValue, sensor.rawValue(for: spriteObject))
     }
     
     func testRawValue() {
@@ -82,5 +82,13 @@ final class BackgroundNameSensorTest: XCTestCase {
         
         spriteObject.background = false
         XCTAssertFalse(sensor.showInFormulaEditor(for: spriteObject))
+    }
+    
+    func testFormulaEditorSection() {
+        spriteObject.background = false
+        XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
+        
+        spriteObject.background = true
+        XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
     }
 }

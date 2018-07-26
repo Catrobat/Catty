@@ -20,32 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TimeMinuteSensor : DateSensor {
-    
-    static let tag = "TIME_MINUTE"
-    static let name = kUIFESensorTimeMinute
-    static let defaultRawValue = 0.0
-    static let position = 280
-    static let requiredResource = ResourceType.noResources
-    
-    func date() -> Date {
-        return Date()
-    }
-    
-    func rawValue() -> Double {
-        return Double(Calendar.current.component(.minute, from: self.date()))
-    }
-    
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
-    }
-    
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
-    }
+enum FormulaEditorSection {
+    case device(position: Int)
+    case object(position: Int)
+    case hidden
 }
 
+extension FormulaEditorSection: Equatable {
+    static func ==(left: FormulaEditorSection, right: FormulaEditorSection) -> Bool {
+        switch (left, right) {
+        case (let .device(positionLeft), let .device(positionRight)):
+            return positionLeft == positionRight
+            
+        case (let .object(positionLeft), let .object(positionRight)):
+            return positionLeft == positionRight
+            
+        case (.hidden, .hidden):
+            return true
+            
+        default:
+            return false
+        }
+    }
+}

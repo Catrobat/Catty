@@ -24,62 +24,60 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class LatitudeSensorTest: XCTestCase {
+final class LoudnessSensorTest: XCTestCase {
     
-    var locationManager: LocationManagerMock!
-    var sensor: LatitudeSensor!
+    var audioManager: AudioManagerMock!
+    var sensor: LoudnessSensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = LatitudeSensor { [weak self] in self?.locationManager }
+        self.audioManager = AudioManagerMock()
+        self.sensor = LoudnessSensor { [weak self] in self?.audioManager }
     }
     
     override func tearDown() {
         self.sensor = nil
-        self.locationManager = nil
+        self.audioManager = nil
     }
     
     func testDefaultRawValue() {
-        let sensor = LatitudeSensor { nil }
-        XCTAssertEqual(LatitudeSensor.defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
+        let sensor = LoudnessSensor { nil }
+        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testRawValue() {
-        // min value - South Pole
-        self.locationManager.latitude = -90
-        XCTAssertEqual(-90, self.sensor.rawValue())
+        self.audioManager.mockedLoudnessInDecibels = 3
+        XCTAssertEqual(3, self.sensor.rawValue(), accuracy: 0.0001)
         
-        // max value - North Pole
-        self.locationManager.latitude = 90
-        XCTAssertEqual(90, self.sensor.rawValue())
+        self.audioManager.mockedLoudnessInDecibels = -50
+        XCTAssertEqual(-50, self.sensor.rawValue(), accuracy: 0.0001)
         
-        // center
-        self.locationManager.latitude = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
-        
-        // London
-        self.locationManager.latitude = 51.5
-        XCTAssertEqual(51.5, self.sensor.rawValue())
-        
-        // Cape Town
-        self.locationManager.latitude = -33.92
-        XCTAssertEqual(-33.92, self.sensor.rawValue())
-        
-        // Munich
-        self.locationManager.latitude = 48.13
-        XCTAssertEqual(48.13, self.sensor.rawValue())
+        self.audioManager.mockedLoudnessInDecibels = 10.786
+        XCTAssertEqual(10.786, self.sensor.rawValue(), accuracy: 0.0001)
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
+        // smaller than 0 - Android does not have negative values
+        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: -60), accuracy: 0.0001)
+        
+        // background noise
+        XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: -33), accuracy: 0.0001)
+        
+        // whisper
+        XCTAssertEqual(19, self.sensor.convertToStandardized(rawValue: -27), accuracy: 0.0001)
+        
+        // normal voice
+        XCTAssertEqual(70, self.sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
+        
+        // shouting
+        XCTAssertEqual(91, self.sensor.convertToStandardized(rawValue: -3), accuracy: 0.0001)
     }
     
     func testTag() {
-        XCTAssertEqual("LATITUDE", type(of: sensor).tag)
+        XCTAssertEqual("LOUDNESS", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.location, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.loudness, type(of: sensor).requiredResource)
     }
     
     func testShowInFormulaEditor() {
@@ -90,4 +88,3 @@ final class LatitudeSensorTest: XCTestCase {
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
     }
 }
-

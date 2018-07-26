@@ -30,5 +30,7 @@ protocol SensorManagerProtocol {
     
     func value(sensorTag: String, spriteObject: SpriteObject?) -> AnyObject
     
+    func setupSensors(for program: Program, and scene:CBScene)
+    
     func stopSensors()
 }

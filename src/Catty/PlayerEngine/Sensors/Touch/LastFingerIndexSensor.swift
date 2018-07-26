@@ -22,10 +22,10 @@
 
 @objc class LastFingerIndexSensor: NSObject, TouchSensor {
 
-    static let tag = "LAST_FINGER_INDEX"
+    @objc static let tag = "LAST_FINGER_INDEX"
     static let name = kUIFESensorLastFingerIndex
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.noResources
+    static let requiredResource = ResourceType.touchHandler
 
     func rawValue() -> Double {
         return 0 // TODO
@@ -37,5 +37,9 @@
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .hidden
     }
 }

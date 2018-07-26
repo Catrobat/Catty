@@ -86,6 +86,7 @@ typedef NS_ENUM(NSInteger, ResourceType) {
     kLED =                  1 << 10,
     kCompass =              1 << 11,
     kDeviceMotion =         1 << 12,
+    kTouchHandler =         1 << 13,
     kAccelerometerAndDeviceMotion = kAccelerometer | kDeviceMotion // TODO Pass ResourceType parameters as array (e.g. in "CBSensor")
 };
 

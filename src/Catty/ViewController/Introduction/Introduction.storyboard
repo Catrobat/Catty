@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fC6-2I-Hv7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fC6-2I-Hv7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pt-28-dhX">
-                                <rect key="frame" x="127" y="50" width="122" height="24"/>
+                                <rect key="frame" x="126.5" y="50" width="122" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -34,18 +34,65 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7Gy-IL-zzz">
                                 <rect key="frame" x="25" y="225" width="325" height="402"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z1p-sK-A7p">
+                                <rect key="frame" x="160" y="609" width="54" height="30"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g7Y-Jj-i3j">
+                                        <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="58L-E7-xWK">
+                                                <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lcd-6q-owk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zxg-ys-Ynt">
+                                                                <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="k19-yW-Fok">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cvo-Go-6ul">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFn-rT-tSZ">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="54" height="30"/>
+                                                                                        <state key="normal" title="Dismiss">
+                                                                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="touchDismiss:" destination="fC6-2I-Hv7" eventType="touchUpInside" id="zHL-KB-LhE"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="58L-E7-xWK" firstAttribute="centerX" secondItem="7Gy-IL-zzz" secondAttribute="centerX" id="2Jq-M1-HOg"/>
                             <constraint firstItem="m8n-XE-GBT" firstAttribute="trailing" secondItem="n8s-GX-5m5" secondAttribute="trailing" constant="25" id="9IF-Ba-tlU"/>
                             <constraint firstItem="2pt-28-dhX" firstAttribute="centerX" secondItem="m8n-XE-GBT" secondAttribute="centerX" id="AdT-yJ-nCO"/>
                             <constraint firstItem="m8n-XE-GBT" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Gy-IL-zzz" secondAttribute="bottom" constant="40" id="EH4-Lg-I1M"/>
                             <constraint firstItem="n8s-GX-5m5" firstAttribute="leading" secondItem="m8n-XE-GBT" secondAttribute="leading" constant="25" id="GRV-In-doP"/>
+                            <constraint firstItem="Zxg-ys-Ynt" firstAttribute="centerX" secondItem="m8n-XE-GBT" secondAttribute="centerX" id="Jtr-TK-hJy"/>
                             <constraint firstItem="7Gy-IL-zzz" firstAttribute="leading" secondItem="n8s-GX-5m5" secondAttribute="leading" id="Klb-fo-yiI"/>
                             <constraint firstItem="m8n-XE-GBT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2pt-28-dhX" secondAttribute="trailing" constant="25" id="R6P-d0-IqW"/>
                             <constraint firstItem="n8s-GX-5m5" firstAttribute="top" secondItem="2pt-28-dhX" secondAttribute="bottom" constant="20" id="YFa-I1-QuK"/>
                             <constraint firstItem="2pt-28-dhX" firstAttribute="top" secondItem="m8n-XE-GBT" secondAttribute="top" constant="30" id="aAt-Zy-Jke"/>
                             <constraint firstItem="7Gy-IL-zzz" firstAttribute="top" secondItem="n8s-GX-5m5" secondAttribute="bottom" constant="23.5" id="acp-4B-Ypt"/>
+                            <constraint firstItem="m8n-XE-GBT" firstAttribute="bottom" secondItem="z1p-sK-A7p" secondAttribute="bottom" constant="28" id="elf-Fh-S6G"/>
                             <constraint firstItem="m8n-XE-GBT" firstAttribute="bottom" secondItem="7Gy-IL-zzz" secondAttribute="bottom" constant="40" placeholder="YES" id="hbM-FG-p30"/>
                             <constraint firstItem="7Gy-IL-zzz" firstAttribute="trailing" secondItem="n8s-GX-5m5" secondAttribute="trailing" id="j9r-UA-JJf"/>
                             <constraint firstItem="2pt-28-dhX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m8n-XE-GBT" secondAttribute="leading" constant="25" id="xRG-rD-3mh"/>
@@ -53,6 +100,7 @@
                         <viewLayoutGuide key="safeArea" id="m8n-XE-GBT"/>
                     </view>
                     <connections>
+                        <outlet property="dismissButton" destination="HFn-rT-tSZ" id="P4N-gp-aCm"/>
                         <outlet property="headline" destination="2pt-28-dhX" id="CBB-xX-E94"/>
                         <outlet property="image" destination="7Gy-IL-zzz" id="KMI-Ue-WEx"/>
                         <outlet property="paragraph" destination="n8s-GX-5m5" id="Ma7-dh-Lgf"/>

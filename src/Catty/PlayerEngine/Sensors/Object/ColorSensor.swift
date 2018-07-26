@@ -22,9 +22,10 @@
 
 @objc class ColorSensor: NSObject, ObjectDoubleSensor {
 
-    static let tag = "OBJECT_COLOR"
+    @objc static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
-    static let defaultRawValue = 0.0
+    @objc static let defaultRawValue = 0.0
+    static let position = 30
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -61,5 +62,9 @@
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .object(position: position)
     }
 }

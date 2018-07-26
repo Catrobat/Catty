@@ -36,10 +36,9 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         self.reset()
         
         self.session = CameraPreviewHandler.shared().getSession()
-        let cameraPosition: AVCaptureDevice.Position = UserDefaults.standard.bool(forKey: kUseFrontCamera) ? .front : .back
         
         guard let session = self.session,
-              let device = camera(for: cameraPosition),
+              let device = camera(for: cameraPosition()),
               let deviceInput = try? AVCaptureDeviceInput(device: device)
         else { return }
         
@@ -87,7 +86,10 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     }
     
     func available() -> Bool {
-        // TODO
+        guard let _ = CameraPreviewHandler.shared().getSession(),
+            let device = camera(for: cameraPosition()),
+            let _ = try? AVCaptureDeviceInput(device: device) else { return false }
+        
         return true
     }
     
@@ -136,6 +138,10 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         return nil
     }
     
+    private func cameraPosition() -> AVCaptureDevice.Position {
+        return UserDefaults.standard.bool(forKey: kUseFrontCamera) ? .front : .back
+    }
+    
     private func exifOrientation(currentDeviceOrientation: UIDeviceOrientation) -> Int {
         /* kCGImagePropertyOrientation values
          The intended display orientation of the image. If present, this key is a CFNumber value with the same value as defined
@@ -156,8 +162,15 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
             case leftBottom       = 8  //   8  =  0th row is on the left, and 0th column is the bottom.
         }
         
-        // TODO
-        
-        return ExifOrientation.rightTop.rawValue
+        switch currentDeviceOrientation {
+        case .portraitUpsideDown:
+            return ExifOrientation.leftBottom.rawValue
+        case .landscapeLeft:
+            return cameraPosition() == .front ? ExifOrientation.bottomRight.rawValue : ExifOrientation.topLeft.rawValue
+        case .landscapeRight:
+            return cameraPosition() == .front ? ExifOrientation.topLeft.rawValue : ExifOrientation.bottomRight.rawValue
+        default:
+            return ExifOrientation.rightTop.rawValue
+        }
     }
 }

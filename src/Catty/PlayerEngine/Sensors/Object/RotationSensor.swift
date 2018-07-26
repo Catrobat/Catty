@@ -28,6 +28,7 @@
     static let requiredResource = ResourceType.noResources
     static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
+    static let position = 90
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
@@ -42,12 +43,12 @@
     }
     
     // raw value is in radians, standardized value is in degrees
-    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+    @objc static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         let rawValueDegrees = Util.radians(toDegree: rawValue)
         return self.convertSceneToDegrees(rawValueDegrees)
     }
     
-    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
+    @objc static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         let standardizedValueOnScreen = convertMathDegreesToSceneDegrees(userInput)
         return Util.degree(toRadians: standardizedValueOnScreen)
     }
@@ -78,5 +79,9 @@
     
     static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .object(position: position)
     }
 }

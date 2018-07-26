@@ -20,32 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TimeMinuteSensor : DateSensor {
+protocol TouchManagerProtocol {
     
-    static let tag = "TIME_MINUTE"
-    static let name = kUIFESensorTimeMinute
-    static let defaultRawValue = 0.0
-    static let position = 280
-    static let requiredResource = ResourceType.noResources
+    func startTrackingTouches(for scene: CBScene) -> Void
     
-    func date() -> Date {
-        return Date()
-    }
+    func stopTrackingTouches() -> Void
     
-    func rawValue() -> Double {
-        return Double(Calendar.current.component(.minute, from: self.date()))
-    }
+    func reset()
     
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
-    }
+    // Returns true if screen is currently touched
+    func screenTouched() -> Bool
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
+    func numberOfTouches() -> Int
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
-    }
+    // Returns a SpriteKit speficic position which needs to be converted
+    func lastPositionInScene() -> CGPoint?
+    
+    // Returns a SpriteKit speficic position which needs to be converted
+    func getPositionInScene(for touchNumber: Int) -> CGPoint?
 }
-

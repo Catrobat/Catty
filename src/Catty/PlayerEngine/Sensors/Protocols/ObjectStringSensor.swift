@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol ObjectStringSensor: ObjectSensor {
+protocol ObjectStringSensor: ObjectSensor {
 
     // The iOS device specific value of the sensor
     static func rawValue(for spriteObject: SpriteObject) -> String

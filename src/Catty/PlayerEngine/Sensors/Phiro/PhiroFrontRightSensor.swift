@@ -27,6 +27,7 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
     static let pinNumber = 1
+    static let position = 310
     
     let getBluetoothService: () -> BluetoothService?
     
@@ -44,5 +45,12 @@
     
     func showInFormulaEditor() -> Bool {
         return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
+            return .hidden
+        }
+        return .device(position: position)
     }
 }

@@ -22,7 +22,7 @@
 
 @objc class FingerXSensor: NSObject, TouchSensor {
 
-    static let tag = "FINGER_X"
+    @objc static let tag = "FINGER_X"
     static let name = kUIFESensorFingerX
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.noResources
@@ -37,5 +37,9 @@
     
     func showInFormulaEditor() -> Bool {
         return true
+    }
+    
+    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .hidden
     }
 }
