@@ -1737,8 +1737,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Charts" image="top_charts" id="cyM-fk-ZFD"/>
                     <connections>
-                        <outlet property="downloadSegmentedControl" destination="jxg-mt-dvB" id="2Ib-94-qEx"/>
-                        <outlet property="tableView" destination="fJr-Rh-VKf" id="1cb-fm-aRb"/>
                         <segue destination="5oV-85-Xov" kind="show" identifier="segueToProgramDetail" id="5UD-6W-Ykq"/>
                     </connections>
                 </viewController>
@@ -2521,7 +2519,7 @@
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="83p-dA-kpt"/>
+        <segue reference="5UD-6W-Ykq"/>
         <segue reference="mUB-CR-2KD"/>
     </inferredMetricsTieBreakers>
 </document>

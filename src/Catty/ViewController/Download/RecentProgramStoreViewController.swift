@@ -20,26 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramStoreDelegate.h"
-#import "BaseTableViewController.h"
-#import "CatrobatProgram.h"
+class RecentProgramsStoreViewController: UITableViewController {
+    
+ 
+    // MARK: - Properties
 
-#define kRecentProgramsMaxResults 20
+    ///private var dataSource: RecentProgramStoreDataSource
 
-@protocol RecentProgramsStoreDelegate <NSObject>
+    var loadingView: LoadingView?
+    var shouldHideLoadingView = false
+    var programForSegue: StoreProgram?
+    var catrobatProject: StoreProgram?
 
-- (void)reloadWithProject:(CatrobatProgram *)loadedProject;
+    // MARK: - Initializers
+    
+    required init?(coder aDecoder: NSCoder) {
+        //self.dataSource = RecentProgramStoreDataSource.dataSource()
+        super.init(coder: aDecoder)
+    }
 
-@end
+    // MARK: - Life Cycle
 
-@interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate, UITableViewDelegate,
-                                                                UITableViewDataSource,UIScrollViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *downloadSegmentedControl;
-@property (strong, nonatomic) UIView *footerView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *segmentedControlView;
-@property (weak, nonatomic) id<RecentProgramsStoreDelegate>delegate;
-
-@end
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //setupTableView()
+        shouldHideLoadingView = false
+        //dataSource.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //fetchData()
+    }
+}
