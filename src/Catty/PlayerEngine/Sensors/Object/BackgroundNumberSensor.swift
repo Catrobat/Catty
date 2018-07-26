@@ -25,6 +25,7 @@
     @objc static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
     static let defaultRawValue = 0.0
+    static let position = 40
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -54,6 +55,6 @@
         if spriteObject.isBackground() == false {
             return .hidden
         }
-        return .object(position: 40)
+        return .object(position: position)
     }
 }

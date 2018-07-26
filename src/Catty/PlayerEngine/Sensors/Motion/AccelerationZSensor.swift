@@ -25,6 +25,7 @@ class AccelerationZSensor : DeviceSensor {
     static let tag = "Z_ACCELERATION"
     static let name = kUIFESensorAccelerationZ
     static let defaultRawValue = 0.0
+    static let position = 40
     static let requiredResource = ResourceType.deviceMotion
 
     let getMotionManager: () -> MotionManager?
@@ -46,6 +47,6 @@ class AccelerationZSensor : DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 40)
+        return .device(position: position)
     }
 }

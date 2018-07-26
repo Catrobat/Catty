@@ -25,6 +25,7 @@
     @objc static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency
     @objc static let defaultRawValue = 1.0
+    static let position = 10
     static let requiredResource = ResourceType.noResources
     
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -80,6 +81,6 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: 10)
+        return .object(position: position)
     }
 }

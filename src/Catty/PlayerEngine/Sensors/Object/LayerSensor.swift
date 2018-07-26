@@ -25,6 +25,7 @@
     static let tag = "OBJECT_LAYER"
     static let name = kUIFEObjectLayer
     static let defaultRawValue = 0.0
+    static let position = 100
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
@@ -60,6 +61,6 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: 100)
+        return .object(position: position)
     }
 }

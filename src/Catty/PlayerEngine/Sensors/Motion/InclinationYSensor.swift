@@ -27,6 +27,7 @@ class InclinationYSensor : DeviceSensor {
     static let tag = "Y_INCLINATION"
     static let name = kUIFESensorInclinationY
     static let defaultRawValue = 0.0
+    static let position = 60
     static let requiredResource = ResourceType.accelerometerAndDeviceMotion
 
     let getMotionManager: () -> MotionManager?
@@ -66,6 +67,6 @@ class InclinationYSensor : DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 60)
+        return .device(position: position)
     }
 }

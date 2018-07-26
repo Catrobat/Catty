@@ -25,6 +25,7 @@ class DateWeekdaySensor : DateSensor {
     static let tag = "DATE_WEEKDAY"
     static let name = kUIFESensorDateWeekday
     static let defaultRawValue = 0.0
+    static let position = 260
     static let requiredResource = ResourceType.noResources
     
     func date() -> Date {
@@ -50,7 +51,7 @@ class DateWeekdaySensor : DateSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 260)
+        return .device(position: position)
     }
 }
 

@@ -25,6 +25,7 @@ class CompassDirectionSensor : NSObject, DeviceSensor {
     @objc static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass
     static let defaultRawValue = 0.0
+    static let position = 70
     static let requiredResource = ResourceType.compass
 
     let getLocationManager: () -> LocationManager?
@@ -49,6 +50,6 @@ class CompassDirectionSensor : NSObject, DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 70)
+        return .device(position: position)
     }
 }

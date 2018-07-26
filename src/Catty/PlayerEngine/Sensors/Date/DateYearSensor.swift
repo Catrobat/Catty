@@ -25,6 +25,7 @@ class DateYearSensor : DateSensor {
     static let tag = "DATE_YEAR"
     static let name = kUIFESensorDateYear
     static let defaultRawValue = 0.0
+    static let position = 230
     static let requiredResource = ResourceType.noResources
     
     func date() -> Date {
@@ -44,6 +45,6 @@ class DateYearSensor : DateSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 230)
+        return .device(position: position)
     }
 }

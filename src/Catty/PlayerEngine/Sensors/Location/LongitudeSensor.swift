@@ -25,6 +25,7 @@ class LongitudeSensor : NSObject, DeviceSensor {
     @objc static let tag = "LONGITUDE"
     static let name = kUIFESensorLongitude
     static let defaultRawValue = 0.0
+    static let position = 90
     static let requiredResource = ResourceType.location
     
     let getLocationManager: () -> LocationManager?
@@ -46,6 +47,6 @@ class LongitudeSensor : NSObject, DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 90)
+        return .device(position: position)
     }
 }

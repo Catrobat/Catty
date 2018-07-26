@@ -28,6 +28,7 @@ class SizeSensor: ObjectDoubleSensor {
     static let name = kUIFEObjectSize
     static let defaultRawValue = 1.0 / androidToIOSScale
     static let requiredResource = ResourceType.noResources
+    static let position = 80
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
@@ -59,6 +60,6 @@ class SizeSensor: ObjectDoubleSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: 80)
+        return .object(position: position)
     }
 }

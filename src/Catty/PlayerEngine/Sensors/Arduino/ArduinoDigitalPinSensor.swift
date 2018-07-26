@@ -25,6 +25,7 @@ class ArduinoDigitalPinSensor: DeviceSensor {
     static let tag = "digitalPin"
     static let name = kUIFESensorArduinoDigital
     static let defaultRawValue = 0.0
+    static let position = 350
     static let requiredResource = ResourceType.bluetoothArduino
     
     let getBluetoothService: () -> BluetoothService?
@@ -49,6 +50,6 @@ class ArduinoDigitalPinSensor: DeviceSensor {
         if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
             return .hidden
         }
-        return .device(position: 370)
+        return .device(position: position)
     }
 }

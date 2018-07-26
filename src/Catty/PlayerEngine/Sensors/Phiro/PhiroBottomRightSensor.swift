@@ -27,6 +27,7 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
     static let pinNumber = 3
+    static let position = 350
     
     let getBluetoothService: () -> BluetoothService?
     
@@ -50,6 +51,6 @@
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return .hidden
         }
-        return .device(position: 350)
+        return .device(position: position)
     }
 }

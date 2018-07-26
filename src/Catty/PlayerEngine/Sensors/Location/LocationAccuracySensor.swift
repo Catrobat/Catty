@@ -25,6 +25,7 @@
     @objc static let tag = "LOCATION_ACCURACY"
     static let name = kUIFESensorLocationAccuracy
     static let defaultRawValue = 0.0
+    static let position = 100
     static let requiredResource = ResourceType.location
     
     let getLocationManager: () -> LocationManager?
@@ -49,6 +50,6 @@
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 100)
+        return .device(position: position)
     }
 }

@@ -26,6 +26,7 @@
     static let name = kUIFEObjectLookName
     static let defaultRawValue = 0.0
     static let defaultStringValue = ""
+    static let position = 50
     static let requiredResource = ResourceType.noResources
 
     static func rawValue(for spriteObject: SpriteObject) -> String {
@@ -46,6 +47,6 @@
         if spriteObject.isBackground() == true {
             return .hidden
         }
-        return .object(position: 50)
+        return .object(position: position)
     }
 }

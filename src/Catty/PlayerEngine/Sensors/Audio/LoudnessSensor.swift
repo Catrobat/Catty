@@ -24,6 +24,7 @@ class LoudnessSensor: NSObject, DeviceSensor {
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultRawValue = 0.0
+    static let position = 10
     static let requiredResource = ResourceType.loudness
 
     let getAudioManager: () -> AudioManagerProtocol?
@@ -49,6 +50,6 @@ class LoudnessSensor: NSObject, DeviceSensor {
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: 10)
+        return .device(position: position)
     }
 }
