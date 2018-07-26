@@ -90,6 +90,6 @@ final class LookNumberSensorTest: XCTestCase {
         XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
         
         spriteObject.background = false
-        XCTAssertEqual(.object(position: 40), sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
     }
 }

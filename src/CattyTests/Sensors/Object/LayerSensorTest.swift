@@ -97,6 +97,6 @@ final class LayerSensorTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.object(position: 100), sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
     }
 }

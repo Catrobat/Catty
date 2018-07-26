@@ -89,6 +89,6 @@ final class BackgroundNumberSensorTest: XCTestCase {
         XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
         
         spriteObject.background = true
-        XCTAssertEqual(.object(position: 40), sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
     }
 }
