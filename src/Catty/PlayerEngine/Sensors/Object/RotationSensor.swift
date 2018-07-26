@@ -77,10 +77,6 @@
         return sceneDegrees // it was already in that interval
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: position)
     }

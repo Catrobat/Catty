@@ -44,11 +44,7 @@ class LoudnessSensor: NSObject, DeviceSensor {
         }
         return standardLoudness
     }
-    
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
+   
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: position)
     }

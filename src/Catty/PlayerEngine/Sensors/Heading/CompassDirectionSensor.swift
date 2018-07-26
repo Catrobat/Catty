@@ -45,10 +45,6 @@ class CompassDirectionSensor : NSObject, DeviceSensor {
         return 360 - rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: position)
     }

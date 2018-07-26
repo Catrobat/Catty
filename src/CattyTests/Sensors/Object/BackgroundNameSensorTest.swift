@@ -76,14 +76,6 @@ final class BackgroundNameSensorTest: XCTestCase {
         XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
     
-    func testShowInFormulaEditor() {
-        spriteObject.background = true
-        XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
-        
-        spriteObject.background = false
-        XCTAssertFalse(sensor.showInFormulaEditor(for: spriteObject))
-    }
-    
     func testFormulaEditorSection() {
         spriteObject.background = false
         XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))

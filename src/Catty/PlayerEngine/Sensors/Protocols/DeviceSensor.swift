@@ -27,9 +27,6 @@ protocol DeviceSensor: CBSensor {
     
     // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
     func convertToStandardized(rawValue: Double) -> Double
-    
-    // True if the sensor should be shown in the Formula Editor
-    func showInFormulaEditor() -> Bool
 }
 
 extension DeviceSensor {

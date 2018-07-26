@@ -62,14 +62,6 @@ final class ArduinoDigitalPinSensorTest: XCTestCase {
         XCTAssertEqual(ResourceType.bluetoothArduino, type(of: sensor).requiredResource)
     }
     
-    func testShowInFormulaEditor() {
-        UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
-        XCTAssertTrue(sensor.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
-        XCTAssertFalse(sensor.showInFormulaEditor())
-    }
-    
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))

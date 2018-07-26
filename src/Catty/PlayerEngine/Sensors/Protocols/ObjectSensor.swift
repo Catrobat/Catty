@@ -22,6 +22,4 @@
 
 protocol ObjectSensor: CBSensor {
     
-    // True if the sensor should be shown in the Formula Editor
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool
 }

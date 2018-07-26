@@ -60,10 +60,6 @@
         return valueToConvert / 100 * Double.pi
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: position)
     }
