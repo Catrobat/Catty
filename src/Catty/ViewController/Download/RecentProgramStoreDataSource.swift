@@ -51,7 +51,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     // MARK: - DataSource
 
     func fetchItems(completion: @escaping (StoreProgramDownloaderError?) -> Void) {
-        self.downloader.fetchPrograms() {items, error in
+        self.downloader.fetchPrograms(forType: .featured) {items, error in   // FIXME: change to other type
             guard let collection = items, error == nil else { completion(error); return }
             self.programs = collection.projects
             self.baseUrl = collection.information.baseUrl

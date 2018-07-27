@@ -21,7 +21,7 @@
  */
 
 protocol StoreProgramDownloaderProtocol {
-    func fetchPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void)
+    func fetchPrograms(forType: ProgramType, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void)
     func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void)
 }
 
@@ -33,9 +33,16 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         self.session = session
     }
     
-    func fetchPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
+    func fetchPrograms(forType: ProgramType, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
 
-        guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
+        let indexURL: URL
+        
+        switch forType {
+        case .featured:
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
+            indexURL = url
+        }
+        //guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
         
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
             completion(nil, .timeout)
@@ -100,4 +107,8 @@ enum StoreProgramDownloaderError: Error {
     case timeout
     /// Indicates an unexpected error.
     case unexpectedError
+}
+
+enum ProgramType {
+    case featured
 }

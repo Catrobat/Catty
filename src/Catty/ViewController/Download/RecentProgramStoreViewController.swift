@@ -20,12 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RecentProgramsStoreViewController: UITableViewController {
+class RecentProgramsStoreViewController: UITableViewController, SelectedFeaturedProgramsDataSource {
+    func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
+        //
+    }
+    
     
  
     // MARK: - Properties
 
-    ///private var dataSource: RecentProgramStoreDataSource
+    private var dataSource: RecentProgramStoreDataSource
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
@@ -35,7 +39,7 @@ class RecentProgramsStoreViewController: UITableViewController {
     // MARK: - Initializers
     
     required init?(coder aDecoder: NSCoder) {
-        //self.dataSource = RecentProgramStoreDataSource.dataSource()
+        self.dataSource = RecentProgramStoreDataSource.dataSource()
         super.init(coder: aDecoder)
     }
 
@@ -45,7 +49,7 @@ class RecentProgramsStoreViewController: UITableViewController {
         super.viewDidLoad()
         //setupTableView()
         shouldHideLoadingView = false
-        //dataSource.delegate = self
+        dataSource.delegate = self as? SelectedRecentProgramsDataSource
     }
     
     override func viewWillAppear(_ animated: Bool) {
