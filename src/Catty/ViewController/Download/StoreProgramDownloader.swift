@@ -42,7 +42,6 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             guard let url = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
             indexURL = url
         }
-        //guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
         
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
             completion(nil, .timeout)

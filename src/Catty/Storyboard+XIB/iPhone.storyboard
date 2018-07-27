@@ -1659,7 +1659,7 @@
         <!--Charts-->
         <scene sceneID="SIN-nq-kFT">
             <objects>
-                <viewController id="NKa-LQ-PR2" customClass="RecentProgramsStoreViewController" sceneMemberID="viewController">
+                <viewController id="NKa-LQ-PR2" customClass="RecentProgramsStoreViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oUZ-xk-9ov"/>
                         <viewControllerLayoutGuide type="bottom" id="LnA-7Y-Ybh"/>
@@ -1737,6 +1737,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Charts" image="top_charts" id="cyM-fk-ZFD"/>
                     <connections>
+                        <outlet property="RecentProgramsSegmentedControl" destination="jxg-mt-dvB" id="5Pf-Cy-QwJ"/>
+                        <outlet property="RecentProgramsTableView" destination="fJr-Rh-VKf" id="lyC-cq-O1d"/>
                         <segue destination="5oV-85-Xov" kind="show" identifier="segueToProgramDetail" id="5UD-6W-Ykq"/>
                     </connections>
                 </viewController>

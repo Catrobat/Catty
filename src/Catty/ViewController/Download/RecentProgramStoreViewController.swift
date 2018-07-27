@@ -20,12 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RecentProgramsStoreViewController: UITableViewController, SelectedFeaturedProgramsDataSource {
+class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgramsDataSource {
+    
+    
+    @IBOutlet weak var RecentProgramsTableView: UITableView!
+    @IBOutlet weak var RecentProgramsSegmentedControl: UISegmentedControl!
+    
     func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
         //
     }
-    
-    
  
     // MARK: - Properties
 
