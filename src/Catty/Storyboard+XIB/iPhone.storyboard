@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="62e-MX-z1C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1569,16 +1569,16 @@
             </objects>
             <point key="canvasLocation" x="-4590" y="317"/>
         </scene>
-        <!--Featured Programs Store View Controller-->
+        <!--Featured Programs Store Table View Controller-->
         <scene sceneID="lCH-B5-MNk">
             <objects>
-                <tableViewController id="d7j-dK-UxW" customClass="FeaturedProgramsStoreViewController" sceneMemberID="viewController">
+                <tableViewController id="d7j-dK-UxW" customClass="FeaturedProgramsStoreTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="123" sectionHeaderHeight="22" sectionFooterHeight="22" id="16s-BO-70Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedCell" rowHeight="123" id="EfC-3p-1xF" customClass="DarkBlueGradientFeaturedCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeaturedCell" rowHeight="123" id="EfC-3p-1xF" customClass="FeaturedProgramsCell" customModule="Pocket_Code" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="375" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EfC-3p-1xF" id="Jm9-AW-RhL">
@@ -1603,14 +1603,10 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="featuredImage" destination="49q-B8-MBG" id="h2g-uy-T4E"/>
+                                    <outlet property="featuredImageView" destination="49q-B8-MBG" id="wu0-0L-cVC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="d7j-dK-UxW" id="fmU-KI-yTp"/>
-                            <outlet property="delegate" destination="d7j-dK-UxW" id="SZF-Wk-Ta2"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="pLa-Ca-Ly5"/>
                     <navigationItem key="navigationItem" id="SWr-4D-2iK"/>
@@ -2525,7 +2521,7 @@
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5UD-6W-Ykq"/>
+        <segue reference="83p-dA-kpt"/>
         <segue reference="mUB-CR-2KD"/>
     </inferredMetricsTieBreakers>
 </document>

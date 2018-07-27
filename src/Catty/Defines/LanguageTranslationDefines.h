@@ -725,6 +725,20 @@
 #define kLocalizedMediaLibrarySoundPlayFailureMessage NSLocalizedString(@"The sound item cannot be played", nil)
 
 //************************************************************************************************************
+//**********************************       FeaturedPrograms        *******************************************
+//************************************************************************************************************
+
+#define kLocalizedFeaturedProgramsLoadFailureTitle NSLocalizedString(@"Failed to load featured programs", nil)
+#define kLocalizedFeaturedProgramsLoadFailureMessage NSLocalizedString(@"The featured programs cannot be loaded", nil)
+
+//************************************************************************************************************
+//**************************************       Networking        *********************************************
+//************************************************************************************************************
+
+#define kLocalizedServerTimeoutIssueTitle NSLocalizedString(@"Connection failed", nil)
+#define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
+
+//************************************************************************************************************
 //****************************************       Debug        ************************************************
 //************************************************************************************************************
 #define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)

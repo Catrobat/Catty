@@ -29,7 +29,6 @@
 //------------------------------------------------------------------------------------------------------------
 
 // Sensors
-#import "FaceDetection.h"
 #import "FlashHelper.h"
 
 // Scripts
@@ -164,6 +163,19 @@
 #import "ProgramDefines.h"
 #import "KeychainUserDefaultsDefines.h"
 
+//#import "LanguageTranslationDefines.h"
 #import "BrickFormulaProtocol.h"
 
 
+//-----------------------------------------------------------------------------------------------------------
+// Headers to sort
+//-----------------------------------------------------------------------------------------------------------
+#import "CatrobatInformation.h"
+#import "CatrobatProgram.h"
+#import "AppDelegate.h"
+#import "TableUtil.h"
+#import "CellTagDefines.h"
+#import "SegueDefines.h"
+#import "ProgramDetailStoreViewController.h"
+#import "DarkBlueGradientFeaturedCell.h"
+#import "LoadingView.h"

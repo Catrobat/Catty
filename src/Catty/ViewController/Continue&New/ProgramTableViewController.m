@@ -130,6 +130,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
          if (!result.valid) {
              return result;
          }
+         // Alert for Objects with same name
          if ([[self.program allObjectNames] containsObject:name]) {
              return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
          }
