@@ -81,11 +81,7 @@ final class LongitudeSensorTest: XCTestCase {
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.location, type(of: sensor).requiredResource)
     }
-    
-    func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
-    }
-    
+  
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
     }

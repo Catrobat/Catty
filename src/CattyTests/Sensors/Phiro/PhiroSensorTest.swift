@@ -56,54 +56,6 @@ final class PhiroSensorTest: XCTestCase {
         self.phiroBottomRight = nil
     }
     
-    func testShowInFormulaEditorForPhiroSideLeft() {
-        UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
-        XCTAssertTrue(phiroSideLeft.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
-        XCTAssertFalse(phiroSideLeft.showInFormulaEditor())
-    }
-    
-    func testShowInFormulaEditorForPhiroSideRight() {
-        UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
-        XCTAssertTrue(phiroSideRight.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
-        XCTAssertFalse(phiroSideRight.showInFormulaEditor())
-    }
-    
-    func testShowInFormulaEditorForPhiroFrontLeft() {
-        UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
-        XCTAssertTrue(phiroFrontLeft.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
-        XCTAssertFalse(phiroFrontLeft.showInFormulaEditor())
-    }
-    
-    func testShowInFormulaEditorForPhiroFrontRight() {
-        UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
-        XCTAssertTrue(phiroFrontRight.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
-        XCTAssertFalse(phiroFrontRight.showInFormulaEditor())
-    }
-    
-    func testShowInFormulaEditorForPhiroBottomLeft() {
-        UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
-        XCTAssertTrue(phiroBottomLeft.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
-        XCTAssertFalse(phiroBottomLeft.showInFormulaEditor())
-    }
-    
-    func testShowInFormulaEditorForPhiroBottomRight() {
-        UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
-        XCTAssertTrue(phiroBottomRight.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUsePhiroBricks)
-        XCTAssertFalse(phiroBottomRight.showInFormulaEditor())
-    }
-    
     func testFormulaEditorSectionFrontLeft() {
         UserDefaults.standard.set(true, forKey: kUsePhiroBricks)
         XCTAssertEqual(.device(position: type(of: phiroFrontLeft).position), type(of: phiroFrontLeft).formulaEditorSection(for: SpriteObject()))

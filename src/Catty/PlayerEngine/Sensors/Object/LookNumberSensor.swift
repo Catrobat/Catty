@@ -39,10 +39,6 @@
         return rawValue + 1
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return !spriteObject.isBackground()
-    }
-    
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         fatalError("This sensor is read-only")
     }

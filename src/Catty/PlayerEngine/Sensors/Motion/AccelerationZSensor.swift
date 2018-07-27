@@ -42,10 +42,6 @@ class AccelerationZSensor : DeviceSensor {
         return rawValue * 9.8
     }
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: position)
     }

@@ -49,10 +49,6 @@ class PositionYSensor: ObjectDoubleSensor {
         return rawValue - Double(scene.size.height)/2.0
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: position)
     }

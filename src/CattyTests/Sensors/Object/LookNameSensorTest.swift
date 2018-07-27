@@ -76,15 +76,7 @@ final class LookNameSensorTest: XCTestCase {
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
-    
-    func testShowInFormulaEditor() {
-        spriteObject.background = true
-        XCTAssertFalse(sensor.showInFormulaEditor(for: spriteObject))
-        
-        spriteObject.background = false
-        XCTAssertTrue(sensor.showInFormulaEditor(for: spriteObject))
-    }
-    
+  
     func testFormulaEditorSection() {
         spriteObject.background = true
         XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))

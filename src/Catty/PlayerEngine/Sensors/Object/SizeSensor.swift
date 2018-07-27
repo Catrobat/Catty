@@ -55,10 +55,6 @@ class SizeSensor: ObjectDoubleSensor {
         return userInput / (100 * androidToIOSScale)
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .object(position: position)
     }

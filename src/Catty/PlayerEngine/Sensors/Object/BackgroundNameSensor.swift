@@ -39,10 +39,6 @@
         return rawValue
     }
     
-    static func showInFormulaEditor(for spriteObject: SpriteObject) -> Bool {
-        return spriteObject.isBackground()
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if spriteObject.isBackground() == false {
             return .hidden

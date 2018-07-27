@@ -88,11 +88,7 @@ final class ColorSensorTest: XCTestCase {
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
     }
-    
-    func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor(for: self.spriteObject))
-    }
-    
+   
     func testFormulaEditorSection() {
         XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
     }
