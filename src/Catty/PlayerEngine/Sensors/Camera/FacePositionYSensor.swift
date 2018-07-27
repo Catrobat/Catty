@@ -23,7 +23,7 @@
 class FacePositionYSensor: DeviceSensor {
     
     static let tag = "FACE_Y_POSITION"
-    static let name = kUIFESensorFaceDetected
+    static let name = kUIFESensorFaceY
     static let defaultRawValue = 0.0
     static let position = 220
     static let requiredResource = ResourceType.faceDetection
@@ -41,10 +41,6 @@ class FacePositionYSensor: DeviceSensor {
     
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
-    }
-    
-    func showInFormulaEditor() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUseFaceDetectionSensors)
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

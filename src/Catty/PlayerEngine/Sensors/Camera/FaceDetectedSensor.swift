@@ -43,10 +43,6 @@ class FaceDetectedSensor: DeviceSensor {
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUseFaceDetectionSensors)
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUseFaceDetectionSensors) == false {
             return .hidden

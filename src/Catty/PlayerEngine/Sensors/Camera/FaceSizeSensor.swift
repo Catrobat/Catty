@@ -23,7 +23,7 @@
 class FaceSizeSensor: DeviceSensor {
     
     static let tag = "FACE_SIZE"
-    static let name = kUIFESensorFaceDetected
+    static let name = kUIFESensorFaceSize
     static let defaultRawValue = 0.0
     static let position = 200
     static let requiredResource = ResourceType.faceDetection
@@ -41,10 +41,6 @@ class FaceSizeSensor: DeviceSensor {
     
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
-    }
-    
-    func showInFormulaEditor() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUseFaceDetectionSensors)
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

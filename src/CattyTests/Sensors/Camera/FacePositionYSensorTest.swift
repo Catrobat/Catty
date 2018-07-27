@@ -68,14 +68,6 @@ final class FacePositionYSensorTest: XCTestCase {
         XCTAssertEqual(ResourceType.faceDetection, type(of: sensor).requiredResource)
     }
     
-    func testShowInFormulaEditor() {
-        UserDefaults.standard.set(true, forKey: kUseFaceDetectionSensors)
-        XCTAssertTrue(sensor.showInFormulaEditor())
-        
-        UserDefaults.standard.set(false, forKey: kUseFaceDetectionSensors)
-        XCTAssertFalse(sensor.showInFormulaEditor())
-    }
-    
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseFaceDetectionSensors)
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
