@@ -1,0 +1,48 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "PHPSESSID=7vqulnj9re8hf7vnic7rgad5b4; path=\/",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Server" : "nginx",
+          "Date" : "Mon, 16 Jul 2018 09:46:12 GMT",
+          "Cache-Control" : "private, must-revalidate"
+        },
+        "body" : {
+          "CatrobatInformation" : {
+            "BaseUrl" : "https:\/\/share.catrob.at\/",
+            "TotalProjects" : "2",
+            "ProjectsExtension" : ".catrobat"
+          },
+          "CatrobatProjects" : [
+            {
+              "FeaturedImage" : "resources\/featured\/featured_28.jpeg",
+              "ProjectName" : "Galaxy War",
+              "ProjectId" : 719,
+              "Author" : "DavidR"
+            },
+            {
+              "FeaturedImage" : "resources\/featured\/featured_29.jpeg",
+              "ProjectName" : "Whack A Mole",
+              "ProjectId" : 821,
+              "Author" : "VesnaK"
+            }
+          ],
+          "preHeaderMessages" : ""
+        },
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
+      },
+      "recorded_at" : 1531734372.5984221,
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
+      }
+    }
+  ],
+  "name" : "FeaturedProgramsDownloader.downloadFeaturedPrograms.success"
+}

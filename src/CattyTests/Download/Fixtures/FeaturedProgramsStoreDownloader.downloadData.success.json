@@ -1,0 +1,55 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Set-Cookie" : "PHPSESSID=bvm9j2t195j64oruqa6ii9sdb3; path=\/",
+          "Expires" : "-1",
+          "Pragma" : "no-cache",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Server" : "nginx",
+          "Date" : "Mon, 16 Jul 2018 13:41:36 GMT",
+          "Cache-Control" : "private, must-revalidate"
+        },
+        "body" : {
+          "CatrobatInformation" : {
+            "BaseUrl" : "https:\/\/share.catrob.at\/",
+            "TotalProjects" : 1,
+            "ProjectsExtension" : ".catrobat"
+          },
+          "completeTerm" : "",
+          "preHeaderMessages" : "",
+          "CatrobatProjects" : [
+            {
+              "Author" : "VesnaK",
+              "Private" : false,
+              "Description" : "",
+              "UploadedString" : "more than one year ago",
+              "Version" : "0.7.1beta",
+              "Views" : 6737,
+              "ProjectUrl" : "pocketcode\/program\/821",
+              "Uploaded" : 1366835078,
+              "ScreenshotBig" : "resources\/screenshots\/screen_821.png",
+              "Downloads" : 6759,
+              "ScreenshotSmall" : "resources\/thumbnails\/screen_821.png",
+              "ProjectNameShort" : "Whack A Mole",
+              "DownloadUrl" : "pocketcode\/download\/821.catrobat",
+              "ProjectName" : "Whack A Mole",
+              "FileSize" : 0.67617511749268,
+              "ProjectId" : 821
+            }
+          ]
+        },
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
+      },
+      "recorded_at" : 1531748496.0202169,
+      "request" : {
+        "method" : "GET",
+        "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/getInfoById.json?id=821"
+      }
+    }
+  ],
+  "name" : "FeaturedProgramsStoreDownloader.downloadData.success"
+}

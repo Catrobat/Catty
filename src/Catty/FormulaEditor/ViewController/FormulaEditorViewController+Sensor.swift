@@ -26,11 +26,9 @@ extension FormulaEditorViewController {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
-        for sensor in CBSensorManager.shared.objectSensors() {
-            if (type(of: sensor).showInFormulaEditor(for: self.object)) {
-                topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
-                buttons.append(topAnchorView as! UIButton)
-            }
+        for sensor in CBSensorManager.shared.objectSensors(for: self.object) {
+            topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
+            buttons.append(topAnchorView as! UIButton)
         }
         
         objectScrollView.frame = CGRect(x: objectScrollView.frame.origin.x, y: objectScrollView.frame.origin.y, width: objectScrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
@@ -43,11 +41,9 @@ extension FormulaEditorViewController {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
-        for sensor in CBSensorManager.shared.deviceSensors() {
-            if (sensor.showInFormulaEditor()) {
-                topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
-                buttons.append(topAnchorView as! UIButton)
-            }
+        for sensor in CBSensorManager.shared.deviceSensors(for: self.object) {
+            topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
+            buttons.append(topAnchorView as! UIButton)
         }
         
         sensorScrollView.frame = CGRect(x: sensorScrollView.frame.origin.x, y: sensorScrollView.frame.origin.y, width: sensorScrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)

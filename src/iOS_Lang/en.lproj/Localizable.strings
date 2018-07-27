@@ -557,6 +557,9 @@
 "Failed to import item" = "Failed to import item";
 
 /* No comment provided by engineer. */
+"Failed to load featured programs" = "Failed to load featured programs";
+
+/* No comment provided by engineer. */
 "Failed to load sound" = "Failed to load sound";
 
 /* No comment provided by engineer. */
@@ -1367,6 +1370,9 @@
 "September" = "September";
 
 /* No comment provided by engineer. */
+"Server is taking to long to respond, please try again later." = "Server is taking to long to respond, please try again later.";
+
+/* No comment provided by engineer. */
 "Set Arduino digital pin" = "Set Arduino digital pin";
 
 /* No comment provided by engineer. */
@@ -1506,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* No comment provided by engineer. */
+"The featured programs cannot be loaded" = "The featured programs cannot be loaded";
 
 /* No comment provided by engineer. */
 "The following item could not be imported from the Media Library:" = "The following item could not be imported from the Media Library:";

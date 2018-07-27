@@ -67,10 +67,6 @@ final class TimeMinuteSensorTest: XCTestCase {
         XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 100))
     }
     
-    func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
-    }
-    
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
     }

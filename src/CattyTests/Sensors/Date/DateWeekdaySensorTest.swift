@@ -109,10 +109,6 @@ final class DateWeekdaySensorTest: XCTestCase {
         XCTAssertEqual(6, Int(sensor.convertToStandardized(rawValue: 7)))
     }
     
-    func testShowInFormulaEditor() {
-        XCTAssertTrue(sensor.showInFormulaEditor())
-    }
-    
     func testFormulaEditorSection() {
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
     }

@@ -46,10 +46,6 @@ class DateWeekdaySensor : DateSensor {
         return Double(weekday)
     }
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: position)
     }
