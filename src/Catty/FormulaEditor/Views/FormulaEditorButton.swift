@@ -22,15 +22,28 @@
 
 import UIKit
 
-class FormulaEditorSensorButton: UIButton {
+class FormulaEditorButton: UIButton {
     
-    var sensor: CBSensor
+    var sensor: CBSensor? = nil
+    var function: CBFunction? = nil
     
-    public init(sensor: CBSensor) {
+    public convenience init(sensor: CBSensor) {
+        self.init()
+        
+        self.setTitle(type(of: sensor).name, for: .normal)
         self.sensor = sensor
+    }
+    
+    public convenience init(function: CBFunction) {
+        self.init()
+        
+        self.setTitle(type(of: function).name, for: .normal)
+        self.function = function
+    }
+    
+    private init() {
         super.init(frame: .zero)
         self.titleLabel?.font = .systemFont(ofSize: 18.0)
-        self.setTitle(type(of: sensor).name, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -25,15 +25,22 @@ protocol CBFunction { // TODO remove CB prefix
     // Tag for serialization
     static var tag: String { get }
     
+    // Display name (e.g. for formula editor)
+    static var name: String { get }
+    
+    // Default value if function can not be computed
+    static var defaultValue: AnyObject { get }
+    
     // Resources required in order to get value of this function (e.g. Aceelerometer)
     static var requiredResource: ResourceType { get }
-    
-    // Name for formula editor
-    static func name() -> String
     
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all
     static func formulaEditorSection() -> FormulaEditorSection
+}
+
+protocol ZeroParameterFunction: CBFunction {
+    func value() -> AnyObject
 }
 
 protocol SingleParameterFunction: CBFunction {

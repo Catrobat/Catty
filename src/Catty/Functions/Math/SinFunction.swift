@@ -20,30 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-enum FormulaEditorSection {
-    case math(position: Int)
-    case device(position: Int)
-    case object(position: Int)
-    case hidden
-}
-
-extension FormulaEditorSection: Equatable {
-    static func ==(left: FormulaEditorSection, right: FormulaEditorSection) -> Bool {
-        switch (left, right) {
-        case (let .device(positionLeft), let .device(positionRight)):
-            return positionLeft == positionRight
-            
-        case (let .math(positionLeft), let .math(positionRight)):
-            return positionLeft == positionRight
-            
-        case (let .object(positionLeft), let .object(positionRight)):
-            return positionLeft == positionRight
-            
-        case (.hidden, .hidden):
-            return true
-            
-        default:
-            return false
-        }
+class SinFunction: SingleParameterFunction {
+    
+    static var tag = "SIN"
+    static var name = "sin"
+    static var defaultValue = 0.0 as AnyObject
+    static var requiredResource = ResourceType.noResources
+    static let position = 10
+    
+    static func firstParameter() -> FunctionParameter {
+        return .number(defaultValue: 0.0)
+    }
+    
+    func value(parameter: AnyObject?) -> AnyObject {
+        //guard let degree = parameter as Number else { return type(of: self).defaultValue }
+        return 1 as AnyObject //sin(Util.degree(toRadians: degree))
+    }
+    
+    static func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: position)
     }
 }

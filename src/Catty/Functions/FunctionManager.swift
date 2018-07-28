@@ -32,7 +32,7 @@ class FunctionManager: FunctionManagerProtocol {
     
     private func registerFunctions() {
         let functionList: [CBFunction] = [
-            
+            SinFunction()
         ]
         
         functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }
@@ -48,12 +48,12 @@ class FunctionManager: FunctionManagerProtocol {
     }
     
     func name(function: CBFunction) -> String {
-        return type(of: function).name()
+        return type(of: function).name
     }
     
     func name(tag: String) -> String? {
         guard let function = self.function(tag: tag) else { return nil }
-        return type(of: function).name()
+        return type(of: function).name
     }
     
     func exists(tag: String) -> Bool {
@@ -78,7 +78,9 @@ class FunctionManager: FunctionManagerProtocol {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
-        if let function = function as? SingleParameterFunction {
+        if let function = function as? ZeroParameterFunction {
+            value = function.value()
+        } else if let function = function as? SingleParameterFunction {
             value = function.value(parameter: firstParameter)
         } else if let function = function as? DoubleParameterFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter)

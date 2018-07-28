@@ -191,7 +191,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self showFormulaEditor];
     
     
-    //[self.normalTypeButton addObjectsFromArray:[self initMathViewWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
+    [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initSensorSectionWithScrollView:self.sensorScrollView buttonHeight:self.calcButton.frame.size.height]];
     

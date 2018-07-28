@@ -21,13 +21,27 @@
  */
 
 extension FormulaEditorViewController {
+    
+    @objc func initMathSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
+        var topAnchorView: UIView?
+        var buttons = [UIButton]()
+        
+        for function in FunctionManager.shared.functions() {
+            let button = FormulaEditorButton(function: function)
+            topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
+            buttons.append(topAnchorView as! UIButton)
+        }
+        
+        resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
+        return buttons
+    }
 
     @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.objectSensors(for: self.object) {
-            let button = FormulaEditorSensorButton(sensor: sensor)
+            let button = FormulaEditorButton(sensor: sensor)
             topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
             buttons.append(topAnchorView as! UIButton)
         }
@@ -41,7 +55,7 @@ extension FormulaEditorViewController {
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.deviceSensors(for: self.object) {
-            let button = FormulaEditorSensorButton(sensor: sensor)
+            let button = FormulaEditorButton(sensor: sensor)
             topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
             buttons.append(topAnchorView as! UIButton)
         }
@@ -52,13 +66,16 @@ extension FormulaEditorViewController {
     }
     
     @objc func buttonPressed(sender: UIButton) {
-        if (sender is FormulaEditorSensorButton) {
-            let button = sender as! FormulaEditorSensorButton
-            self.handleInput(withSensor: button.sensor)
+        if let button = sender as? FormulaEditorButton {
+            if let sensor = button.sensor {
+                self.handleInput(for: sensor)
+            } else if let function = button.function {
+                self.handleInput(for: function)
+            }
         }
     }
     
-    private func addButtonToScrollView(button: UIButton, scrollView: UIScrollView, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
+    private func addButtonToScrollView(button: FormulaEditorButton, scrollView: UIScrollView, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
         button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         
         scrollView.addSubview(button)
@@ -80,8 +97,13 @@ extension FormulaEditorViewController {
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
     }
     
-    private func handleInput(withSensor sensor:CBSensor) {
-        self.internFormula.handleKeyInput(withSensor: sensor)
+    private func handleInput(for sensor: CBSensor) {
+        self.internFormula.handleKeyInput(for: sensor)
+        self.handleInput()
+    }
+    
+    private func handleInput(for function: CBFunction) {
+        self.internFormula.handleKeyInput(for: function)
         self.handleInput()
     }
 }
