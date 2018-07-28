@@ -135,7 +135,6 @@ extension InternFormula {
             return buildPeriod()
             
         // OPERATOR
-            
         case Int(PLUS.rawValue):
             return buildOperator(mathOperator: PLUS)
         case Int(MINUS.rawValue):
@@ -180,7 +179,6 @@ extension InternFormula {
     }
     
     private func createInternTokenListBySensor(sensor: CBSensor) -> [InternToken] {
-        // TODO arduino: buildSingleParameterFunction
         return buildSensor(sensor: sensor)
     }
     

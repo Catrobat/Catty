@@ -98,8 +98,8 @@ import CoreLocation
             PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             
-            ArduinoAnalogPinSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            ArduinoDigitalPinSensor(bluetoothServiceGetter: bluetoothServiceGetter),
+            ArduinoAnalogPinSensor(bluetoothServiceGetter: bluetoothServiceGetter), // TODO implement as function with one parameter
+            ArduinoDigitalPinSensor(bluetoothServiceGetter: bluetoothServiceGetter), // TODO implement as function with one parameter
             
             PositionXSensor(),
             PositionYSensor(),
