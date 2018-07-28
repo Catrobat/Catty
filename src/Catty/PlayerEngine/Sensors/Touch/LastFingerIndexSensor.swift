@@ -26,20 +26,23 @@
     static let name = kUIFESensorLastFingerIndex
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
-
-    func rawValue() -> Double {
-        return 0 // TODO
+    
+    let getTouchManager: () -> TouchManagerProtocol?
+    
+    init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
+        self.getTouchManager = touchManagerGetter
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func rawValue() -> Double {
+        guard let numberOfTouches = getTouchManager()?.numberOfTouches() else { return type(of: self).defaultRawValue }
+        return Double(numberOfTouches)
+    }
+
+    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .hidden
+        return .hidden // TODO
     }
 }

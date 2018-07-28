@@ -20,6 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol TouchSensor: DeviceSensor {
+protocol TouchSensor: CBSensor {
     
+    // The iOS device specific value of the sensor
+    func rawValue() -> Double
+    
+    // Convert the iOS specific value (rawValue) to the Pocket Code standardized sensor value
+    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double
+}
+
+extension TouchSensor {
+    // The Pocket Code standardized sensor value
+    func standardizedValue(for spriteObject: SpriteObject) -> Double {
+        let rawValue = self.rawValue()
+        return convertToStandardized(rawValue: rawValue, for: spriteObject)
+    }
+    
+    func standardizedRawValue(for spriteObject: SpriteObject) -> Double {
+        return convertToStandardized(rawValue: type(of: self).defaultRawValue, for: spriteObject)
+    }
 }

@@ -27,19 +27,23 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
 
+    let getTouchManager: () -> TouchManagerProtocol?
+    
+    init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
+        self.getTouchManager = touchManagerGetter
+    }
+    
     func rawValue() -> Double {
-        return 0 // TODO
+        // TODO see FingerXSensor
+        return 0
     }
 
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+        // TODO see FingerXSensor
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .hidden
+        return .hidden // TODO
     }
 }

@@ -43,10 +43,6 @@
         return rawValue
     }
     
-    func showInFormulaEditor() -> Bool {
-        return UserDefaults.standard.bool(forKey: kUsePhiroBricks)
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return .hidden

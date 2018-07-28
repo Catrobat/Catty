@@ -25,8 +25,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Util.h"
 #import "Pocket_Code-Swift.h"
-#import "FaceDetection.h"
-#import "TouchHandler.h"
 #import "AppDelegate.h"
 
 #define kSensorUpdateInterval 0.8
@@ -45,7 +43,7 @@
 @property (nonatomic,   strong) NSTimer* loudnessTimer;
 @property (nonatomic)           CGFloat loudnessInPercent;
 @property (nonatomic,   strong) ArduinoDevice* arduino;
-@property (nonatomic,   strong) FaceDetection* faceDetection;
+//@property (nonatomic,   strong) FaceDetection* faceDetection;
 @property (nonatomic,   strong) dispatch_semaphore_t loudnessSemaphore;
 @end
 
@@ -179,7 +177,7 @@ static SensorHandler* sharedSensorHandler = nil;
             result = [self altitude];
             break;
         }
-        case FINGER_TOUCHED: {
+        /*case FINGER_TOUCHED: {
             result = [[TouchHandler shared] screenIsTouched];
             break;
         }
@@ -194,7 +192,7 @@ static SensorHandler* sharedSensorHandler = nil;
         case LAST_FINGER_INDEX: {
             result = [TouchHandler shared].numberOfTouches;
             break;
-        }
+        }*/
         case X_INCLINATION: {
             result = [self xInclination];
             NSDebug(@"X-inclination: %f degrees", result);
@@ -216,7 +214,7 @@ static SensorHandler* sharedSensorHandler = nil;
             NSDebug(@"Loudness: %f %%", result);
             break;
         }
-        case FACE_DETECTED: {
+        /*case FACE_DETECTED: {
             if (!self.faceDetection.session.isRunning) {
                 [self.faceDetection startFaceDetection];
                 [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
@@ -255,7 +253,7 @@ static SensorHandler* sharedSensorHandler = nil;
 //            [self.faceDetection pauseFaceDetection];
             NSDebug(@"FACE_POSITION_Y: %f %%", result);
             break;
-        }
+        }*/
 
             
         case phiro_front_left:
@@ -312,10 +310,10 @@ static SensorHandler* sharedSensorHandler = nil;
     if([self.motionManager isDeviceMotionActive]) {
         [self.motionManager stopDeviceMotionUpdates];
     }
-    if (self.faceDetection) {
+    /*if (self.faceDetection) {
         [self.faceDetection stopFaceDetection];
         self.faceDetection = nil;
-    }
+    }*/
     if(self.recorder)
     {
         [self.recorder stop];
@@ -323,7 +321,7 @@ static SensorHandler* sharedSensorHandler = nil;
         self.loudnessTimer = nil;
         self.recorder = nil;
     }
-    [[TouchHandler shared] stopTrackingTouches];
+    //[[TouchHandler shared] stopTrackingTouches];
 }
 
 - (CMRotationRate)rotationRate
@@ -501,8 +499,8 @@ static SensorHandler* sharedSensorHandler = nil;
 
 -(void)faceDetectionInit
 {
-    self.faceDetection = [[FaceDetection alloc] init];
-    [self.faceDetection startFaceDetection];
+    //self.faceDetection = [[FaceDetection alloc] init];
+    //[self.faceDetection startFaceDetection];
 }
 
 -(double)checkFaceSize:(CGSize)faceSize

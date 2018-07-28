@@ -70,9 +70,9 @@ import CoreLocation
             LocationAccuracySensor(locationManagerGetter: locationManagerGetter),
             AltitudeSensor(locationManagerGetter: locationManagerGetter),
             FingerTouchedSensor(touchManagerGetter: touchManagerGetter),
-            FingerXSensor(),
-            FingerYSensor(),
-            LastFingerIndexSensor(),
+            FingerXSensor(touchManagerGetter: touchManagerGetter),
+            FingerYSensor(touchManagerGetter: touchManagerGetter),
+            LastFingerIndexSensor(touchManagerGetter: touchManagerGetter),
             
             DateYearSensor(),
             DateMonthSensor(),
@@ -109,10 +109,10 @@ import CoreLocation
             SizeSensor(),
             RotationSensor(),
             LayerSensor(),
-            BackgroundNumberSensor(), // only for background
-            BackgroundNameSensor(), // only for background
-            LookNumberSensor(), // only for look
-            LookNameSensor() // only for look
+            BackgroundNumberSensor(),
+            BackgroundNameSensor(),
+            LookNumberSensor(),
+            LookNameSensor()
         ]
         
         sensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }
@@ -184,10 +184,11 @@ import CoreLocation
         if let sensor = sensor as? ObjectSensor, let spriteObject = spriteObject {
             if let sensor = sensor as? ObjectDoubleSensor {
                 rawValue = type(of: sensor).standardizedValue(for: spriteObject) as AnyObject
-            }
-            if let sensor = sensor as? ObjectStringSensor {
+            } else if let sensor = sensor as? ObjectStringSensor {
                 rawValue = type(of: sensor).standardizedValue(for: spriteObject) as AnyObject
             }
+        } else if let sensor = sensor as? TouchSensor, let spriteObject = spriteObject {
+            rawValue = sensor.standardizedValue(for: spriteObject) as AnyObject
         } else if let sensor = sensor as? DeviceSensor {
             rawValue = sensor.standardizedValue() as AnyObject
         }

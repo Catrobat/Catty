@@ -28,7 +28,6 @@
 #import "SaveToProjectActivity.h"
 #import "LoadingView.h"
 #import "FlashHelper.h"
-#import "TouchHandler.h"
 #import "CameraPreviewHandler.h"
 #import "CatrobatLanguageDefines.h"
 #import "Pocket_Code-Swift.h"
@@ -290,9 +289,6 @@
     self.scene = scene;
     
     [[BluetoothService sharedInstance] setScenePresenter:self];
-    
-    // TODO remove
-    [[TouchHandler shared] startTrackingTouchesForScene:scene];    //To initialize UIGestureRecognizer on window, and to reset touch data log.
     [[CameraPreviewHandler shared] setCamView:self.view];
     
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];

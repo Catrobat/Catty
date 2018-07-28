@@ -31,7 +31,6 @@
 		4C0F9F49204ADD0C00E71B2D /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F48204ADD0C00E71B2D /* OrderedDictionary.swift */; };
 		4C0F9F4F204BD0B400E71B2D /* CameraPreviewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F4D204BD0B400E71B2D /* CameraPreviewHandler.m */; };
 		4C0F9F50204BD0B400E71B2D /* BubbleBrickHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F4E204BD0B400E71B2D /* BubbleBrickHelper.m */; };
-		4C0F9F57204BD11D00E71B2D /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F56204BD11D00E71B2D /* TouchHandler.m */; };
 		4C0F9F5A204BD16300E71B2D /* CameraBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F59204BD16300E71B2D /* CameraBrick+CBXMLHandler.m */; };
 		4C0F9F5D204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F5C204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.m */; };
 		4C0F9F64204BD18600E71B2D /* SayForBubbleBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F60204BD18500E71B2D /* SayForBubbleBrick+CBXMLHandler.m */; };
@@ -539,7 +538,6 @@
 		921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46861BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift */; };
 		921E84E81CC9F3E400F7EE9F /* TextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */; };
 		921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EE9B51BA8045A00834711 /* JNKeychain.m */; };
-		922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 922123CC1BCAEB1D008AAE45 /* FaceDetection.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
@@ -1193,8 +1191,6 @@
 		4C0F9F4C204BD0B400E71B2D /* BubbleBrickHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleBrickHelper.h; sourceTree = "<group>"; };
 		4C0F9F4D204BD0B400E71B2D /* CameraPreviewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPreviewHandler.m; sourceTree = "<group>"; };
 		4C0F9F4E204BD0B400E71B2D /* BubbleBrickHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleBrickHelper.m; sourceTree = "<group>"; };
-		4C0F9F55204BD11D00E71B2D /* TouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchHandler.h; sourceTree = "<group>"; };
-		4C0F9F56204BD11D00E71B2D /* TouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchHandler.m; sourceTree = "<group>"; };
 		4C0F9F58204BD16300E71B2D /* CameraBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CameraBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/CameraBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		4C0F9F59204BD16300E71B2D /* CameraBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CameraBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/CameraBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		4C0F9F5B204BD16F00E71B2D /* ChooseCameraBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChooseCameraBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Look/ChooseCameraBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -1819,8 +1815,6 @@
 		921E84E71CC9F3E400F7EE9F /* TextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputViewController.m; sourceTree = "<group>"; };
 		921EE9B41BA8045A00834711 /* JNKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JNKeychain.h; path = Keychain/JNKeychain.h; sourceTree = "<group>"; };
 		921EE9B51BA8045A00834711 /* JNKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JNKeychain.m; path = Keychain/JNKeychain.m; sourceTree = "<group>"; };
-		922123CB1BCAEB1D008AAE45 /* FaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetection.h; sourceTree = "<group>"; };
-		922123CC1BCAEB1D008AAE45 /* FaceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetection.m; sourceTree = "<group>"; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		92289A461A42F2A3008C771A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		92289A471A42F2A3008C771A /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCombobox.h; sourceTree = "<group>"; };
@@ -5227,14 +5221,10 @@
 		92FF2E761A24C7D800093DA7 /* SensorHelper */ = {
 			isa = PBXGroup;
 			children = (
-				922123CB1BCAEB1D008AAE45 /* FaceDetection.h */,
-				922123CC1BCAEB1D008AAE45 /* FaceDetection.m */,
 				92FF2E771A24C7D800093DA7 /* SensorHandler.h */,
 				92FF2E781A24C7D800093DA7 /* SensorHandler.m */,
 				92FF2E791A24C7D800093DA7 /* SensorManager.h */,
 				92FF2E7A1A24C7D800093DA7 /* SensorManager.m */,
-				4C0F9F55204BD11D00E71B2D /* TouchHandler.h */,
-				4C0F9F56204BD11D00E71B2D /* TouchHandler.m */,
 			);
 			path = SensorHelper;
 			sourceTree = "<group>";
@@ -8095,7 +8085,6 @@
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
-				4C0F9F57204BD11D00E71B2D /* TouchHandler.m in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
 				9218B20A1CC4AB75007B4C60 /* UIViewController+KNSemiModal.m in Sources */,
 				598319931FBB812D00639BBF /* IntroductionPageViewController.swift in Sources */,
@@ -8334,7 +8323,6 @@
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
-				922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,

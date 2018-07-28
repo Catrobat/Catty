@@ -26,6 +26,7 @@
     static let name = kUIFESensorFingerTouched
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
+    static let position = 300 // TODO change
 
     let getTouchManager: () -> TouchManagerProtocol?
     
@@ -38,15 +39,11 @@
         return isTouched ? 1.0 : 0.0
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
+    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }
 
-    func showInFormulaEditor() -> Bool {
-        return true
-    }
-    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .hidden
+        return .device(position: position)
     }
 }
