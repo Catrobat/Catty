@@ -60,7 +60,7 @@
 - (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
-    return [[CBSensorManager shared] valueWithSensorTag:self.sensor spriteObject:nil];
+    return [[CBSensorManager shared] valueWithTag:self.sensor spriteObject:nil];
 }
 
 - (void)resetCondition

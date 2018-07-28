@@ -20,31 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
+protocol CBFunction { // TODO remove CB prefix
+    
+    // Tag for serialization
+    static var tag: String { get }
+    
+    // Resources required in order to get value of this function (e.g. Aceelerometer)
+    static var requiredResource: ResourceType { get }
+    
+    // Name for formula editor
+    static func name() -> String
+    
+    // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
+    // Use .hidden to not show the sensor at all
+    static func formulaEditorSection() -> FormulaEditorSection
+}
 
-protocol SensorManagerProtocol {
+protocol SingleParameterFunction: CBFunction {
+    static func firstParameter() -> FunctionParameter
     
-    static var defaultValueForUndefinedSensor: Double { get set }
+    func value(parameter: AnyObject?) -> AnyObject
+}
+
+protocol DoubleParameterFunction: CBFunction {
+    static func firstParameter() -> FunctionParameter
+    static func secondParameter() -> FunctionParameter
     
-    func exists(tag: String) -> Bool
-    
-    func sensor(tag: String) -> CBSensor?
-    
-    func requiredResource(tag: String) -> ResourceType
-    
-    func name(sensor: CBSensor) -> String
-    
-    func name(tag: String) -> String?
-    
-    func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
-    
-    func deviceSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func objectSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func phiroSensors() -> [PhiroSensor]
-    
-    func setup(for program: Program, and scene:CBScene)
-    
-    func stop()
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
 }

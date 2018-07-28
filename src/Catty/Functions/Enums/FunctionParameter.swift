@@ -20,31 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
+enum FunctionParameter {
+    case number(defaultValue: Double)
+    case string(defaultValue: String)
+}
 
-protocol SensorManagerProtocol {
-    
-    static var defaultValueForUndefinedSensor: Double { get set }
-    
-    func exists(tag: String) -> Bool
-    
-    func sensor(tag: String) -> CBSensor?
-    
-    func requiredResource(tag: String) -> ResourceType
-    
-    func name(sensor: CBSensor) -> String
-    
-    func name(tag: String) -> String?
-    
-    func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
-    
-    func deviceSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func objectSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func phiroSensors() -> [PhiroSensor]
-    
-    func setup(for program: Program, and scene:CBScene)
-    
-    func stop()
+extension FunctionParameter: Equatable {
+    static func ==(left: FunctionParameter, right: FunctionParameter) -> Bool {
+        switch (left, right) {
+        case ( .number(_), .number(_)):
+            return true
+            
+        case ( .string(_), .string(_)):
+            return true
+            
+        default:
+            return false
+        }
+    }
 }

@@ -20,31 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
-
-protocol SensorManagerProtocol {
+protocol FunctionManagerProtocol {
     
-    static var defaultValueForUndefinedSensor: Double { get set }
+    static var defaultValueForUndefinedFunction: Double { get set }
     
     func exists(tag: String) -> Bool
     
-    func sensor(tag: String) -> CBSensor?
+    func function(tag: String) -> CBFunction?
     
     func requiredResource(tag: String) -> ResourceType
     
-    func name(sensor: CBSensor) -> String
+    func name(function: CBFunction) -> String
     
     func name(tag: String) -> String?
     
-    func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
+    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
     
-    func deviceSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func objectSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func phiroSensors() -> [PhiroSensor]
+    func parameters(tag: String) -> [FunctionParameter]
     
     func setup(for program: Program, and scene:CBScene)
     
     func stop()
+    
+    func functions() -> [CBFunction]
 }

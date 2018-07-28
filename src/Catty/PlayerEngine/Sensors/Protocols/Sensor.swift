@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSensor {
+protocol CBSensor { // TODO remove CB prefix
 
     // Tag for serialization
     static var tag: String { get }

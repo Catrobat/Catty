@@ -341,6 +341,11 @@
 		4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */; };
 		4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56D1E0AD71800FD021C /* ProgramTests.m */; };
 		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
+		4CE67888210C4B1D00D90B5D /* CBFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67887210C4B1D00D90B5D /* CBFunction.swift */; };
+		4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */; };
+		4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788C210C503600D90B5D /* FunctionManager.swift */; };
+		4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */; };
+		4CE67894210C5E5000D90B5D /* FunctionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */; };
 		4CE9ADA51EEB2DAF00F5766B /* TextFieldAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
 		4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */; };
@@ -1581,6 +1586,11 @@
 		4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
 		4CE5C56D1E0AD71800FD021C /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
+		4CE67887210C4B1D00D90B5D /* CBFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFunction.swift; sourceTree = "<group>"; };
+		4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionParameter.swift; sourceTree = "<group>"; };
+		4CE6788C210C503600D90B5D /* FunctionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManager.swift; sourceTree = "<group>"; };
+		4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerProtocol.swift; sourceTree = "<group>"; };
+		4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionManagerTests.swift; sourceTree = "<group>"; };
 		4CE9ADA41EEB2DAF00F5766B /* TextFieldAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlertController.swift; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
@@ -3819,7 +3829,6 @@
 				4CC6358B2105E8FE0053BD68 /* Arduino */,
 				4C994E05207A3D4100C415FD /* Audio */,
 				4CE3D6862107A80000005629 /* Camera */,
-				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
 				4CF072AC20D6751E00F93AB5 /* Date */,
 				4C11795220AEC351006C6E32 /* Extensions */,
 				4C994E1A207A55E400C415FD /* Heading */,
@@ -3829,6 +3838,7 @@
 				4CF0728220D657EB00F93AB5 /* Phiro */,
 				592EF6E42094B3C700BD6000 /* Protocols */,
 				4CF072A120D670CF00F93AB5 /* Touch */,
+				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
 			);
 			name = Sensors;
 			path = PlayerEngine/Sensors;
@@ -4031,6 +4041,41 @@
 				4CE5C56E1E0AD71800FD021C /* RequiredResources.m */,
 			);
 			path = Program;
+			sourceTree = "<group>";
+		};
+		4CE67884210C4AE000D90B5D /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				4CE67889210C4E0600D90B5D /* Enums */,
+				4CE67886210C4B0200D90B5D /* Protocols */,
+				4CE6788C210C503600D90B5D /* FunctionManager.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		4CE67886210C4B0200D90B5D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4CE67887210C4B1D00D90B5D /* CBFunction.swift */,
+				4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		4CE67889210C4E0600D90B5D /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		4CE67890210C5CCC00D90B5D /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */,
+			);
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		4CEB222C1B95E47500B3BE2F /* Bricks */ = {
@@ -5890,6 +5935,8 @@
 				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
 				AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */,
 				4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */,
+				4CE67890210C5CCC00D90B5D /* Functions */,
+				4C994DEB207A3CEF00C415FD /* Sensors */,
 			);
 			name = PlayerEngine;
 			sourceTree = "<group>";
@@ -6511,7 +6558,6 @@
 				4C26506D1A6566C60050775B /* SpriteObject */,
 				B46B270417703F9400172837 /* Supporting Files */,
 				B496F5131775996D004BF78A /* Scene */,
-				4C994DEB207A3CEF00C415FD /* Sensors */,
 				E4AEC8732108503D0081A980 /* Download */,
 				4C1608A31A095480002C7032 /* Resources */,
 			);
@@ -6596,18 +6642,19 @@
 		CA3E72D31B0BA46A00D6B184 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
+				CAE485D41B13AA5200DC4485 /* Backend */,
+				CA43C4B81B165BB1009B604F /* BroadcastHandler */,
+				AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */,
+				AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */,
+				CAD232181B10F12600570370 /* DataModel */,
+				CAE485D31B13AA4E00DC4485 /* Frontend */,
+				4CE67884210C4AE000D90B5D /* Functions */,
+				4C9E07691CD9D47E00B14B2F /* Helper */,
 				AA401FE51BBEF5F5001BC49F /* Instructions */,
 				AAD498B51B8D2431005894C4 /* Protocols */,
 				92FF30AF1A24DCAA00093DA7 /* Scene */,
-				CAE485D31B13AA4E00DC4485 /* Frontend */,
-				CAE485D41B13AA5200DC4485 /* Backend */,
 				CA2D44471B1249C400A3B53D /* Scheduler */,
 				4C994DFA207A3D4100C415FD /* Sensors */,
-				CA43C4B81B165BB1009B604F /* BroadcastHandler */,
-				CAD232181B10F12600570370 /* DataModel */,
-				4C9E07691CD9D47E00B14B2F /* Helper */,
-				AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */,
-				AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */,
 			);
 			name = PlayerEngine;
 			sourceTree = "<group>";
@@ -7805,6 +7852,7 @@
 				F40CC11F21074221000C35E4 /* LookNameSensorTest.swift in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
+				4CE67894210C5E5000D90B5D /* FunctionManagerTests.swift in Sources */,
 				4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */,
 				4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
@@ -8045,6 +8093,7 @@
 				9218B20F1CC4AB75007B4C60 /* MirrorRotationZoomTool.m in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
+				4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
@@ -8097,6 +8146,7 @@
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
 				BACDF35C1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */,
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
+				4CE67888210C4B1D00D90B5D /* CBFunction.swift in Sources */,
 				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
@@ -8298,6 +8348,7 @@
 				9218B20D1CC4AB75007B4C60 /* HandTool.m in Sources */,
 				4C0F9F49204ADD0C00E71B2D /* OrderedDictionary.swift in Sources */,
 				4C0F9F46204ADC7900E71B2D /* SpeakAndWaitBrick.m in Sources */,
+				4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */,
 				929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */,
 				4C0F9F7A204BD1E300E71B2D /* SayBubbleBrick+Instruction.swift in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
@@ -8410,6 +8461,7 @@
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,
+				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
 				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,

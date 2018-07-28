@@ -24,26 +24,26 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class CBSensorManagerTest: XCTestCase {
-
-    private var manager: SensorManagerProtocol = CBSensorManager.shared
-
+final class FunctionManagerTest: XCTestCase {
+    
+    private var manager: FunctionManagerProtocol = FunctionManager.shared
+    
     override func setUp() {
     }
     
-    func testDefaultValueForUndefinedSensor() {
-        let defaultValue = 12.3
-        type(of: manager).defaultValueForUndefinedSensor = defaultValue
+    func testDefaultValueForUndefinedFunction() {
+        let defaultValue = 34.56
+        type(of: manager).defaultValueForUndefinedFunction = defaultValue
         
-        XCTAssertNil(manager.sensor(tag: "noSensorForThisTag"))
-        XCTAssertEqual(defaultValue, manager.value(tag: "noSensorForThisTag", spriteObject: nil) as! Double)
+        XCTAssertNil(manager.function(tag: "noFunctionForThisTag"))
+        XCTAssertEqual(defaultValue, manager.value(tag: "noFunctionForThisTag", firstParameter: nil, secondParameter: nil) as! Double)
     }
     
     func testExists() {
         // TODO
     }
     
-    func testSensor() {
+    func testFunction() {
         // TODO
     }
     
@@ -52,23 +52,14 @@ final class CBSensorManagerTest: XCTestCase {
     }
     
     func testName() {
-        // TODO test name for sensor and tag
+        // TODO test name for function and tag
     }
     
     func testValue() {
         // TODO
     }
     
-    func deviceSensors() {
-        // TODO
-    }
-    
-    func objectSensors() {
-        // TODO
-        // add tests for Background/Look
-    }
-    
-    func phiroSensors() {
+    func functions() {
         // TODO
     }
 }

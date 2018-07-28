@@ -50,7 +50,7 @@
     [self.scene stopProgram];
     
     [[AudioManager sharedAudioManager] stopAllSounds];
-    [[CBSensorManager shared] stopSensors];
+    [[CBSensorManager shared] stop];
     [CameraPreviewHandler resetSharedInstance];
     
     [[FlashHelper sharedFlashHandler] reset];

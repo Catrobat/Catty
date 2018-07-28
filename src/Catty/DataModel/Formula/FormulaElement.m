@@ -148,7 +148,7 @@
             
         case SENSOR: {
             //NSDebug(@"SENSOR");
-            result = [[CBSensorManager shared] valueWithSensorTag:self.value spriteObject:sprite];
+            result = [[CBSensorManager shared] valueWithTag:self.value spriteObject:sprite];
             break;
         }
             
@@ -203,10 +203,10 @@
         if([leftId isKindOfClass:[NSNumber class]])
         {
             left = [leftId doubleValue];
-        } else if ([leftId isKindOfClass:[NSString class]] && (function != LENGTH || function != JOIN))
+        }/* else if ([leftId isKindOfClass:[NSString class]] && (function != LENGTH || function != JOIN))
         {
             // ERROR
-        }
+        }*/
     }
     if (self.rightChild) {
         rightId = [self.rightChild interpretRecursiveForSprite:sprite];
@@ -994,7 +994,7 @@
         resources |= [self.rightChild getRequiredResources];
     }
     if (self.type == SENSOR) {
-        resources |= [[CBSensorManager shared] requiredResourceWithSensorTag:self.value];
+        resources |= [[CBSensorManager shared] requiredResourceWithTag:self.value];
     }
     if (self.type == FUNCTION) {
         Function function = [Functions getFunctionByValue:self.value];
