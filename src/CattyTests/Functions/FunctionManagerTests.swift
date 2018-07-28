@@ -59,7 +59,7 @@ final class FunctionManagerTest: XCTestCase {
         // TODO
     }
     
-    func functions() {
+    func testFunctions() {
         // TODO
     }
 }

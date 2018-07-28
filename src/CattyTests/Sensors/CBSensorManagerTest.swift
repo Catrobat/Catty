@@ -59,16 +59,16 @@ final class CBSensorManagerTest: XCTestCase {
         // TODO
     }
     
-    func deviceSensors() {
+    func testDeviceSensors() {
         // TODO
     }
     
-    func objectSensors() {
+    func testObjectSensors() {
         // TODO
         // add tests for Background/Look
     }
     
-    func phiroSensors() {
+    func testPhiroSensors() {
         // TODO
     }
 }
