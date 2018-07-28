@@ -195,22 +195,22 @@ class Phiro: FirmataDevice,PhiroProtocol {
     }
     
     private func getAnalogPin(_ pinNumber: Int) -> Double {
-        if pinNumber == 0 {
+        if pinNumber == PIN_SENSOR_FRONT_LEFT {
             return Double(getFrontLeftSensor())
         }
-        if pinNumber == 1 {
+        if pinNumber == PIN_SENSOR_FRONT_RIGHT {
             return Double(getFrontRightSensor())
         }
-        if pinNumber == 2 {
+        if pinNumber == PIN_SENSOR_SIDE_LEFT {
             return Double(getSideLeftSensor())
         }
-        if pinNumber == 3 {
+        if pinNumber == PIN_SENSOR_SIDE_RIGHT {
             return Double(getSideRightSensor())
         }
-        if pinNumber == 4 {
+        if pinNumber == PIN_SENSOR_BOTTOM_LEFT {
             return Double(getBottomLeftSensor())
         }
-        if pinNumber == 5 {
+        if pinNumber == PIN_SENSOR_BOTTOM_RIGHT {
             return Double(getBottomRightSensor())
         }
         return 0
