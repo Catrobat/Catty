@@ -22,40 +22,43 @@
 
 extension FormulaEditorViewController {
 
-    @objc func initObjectView(objectScrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
+    @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.objectSensors(for: self.object) {
-            topAnchorView = self.addButtonToScrollView(scrollView: objectScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
+            let button = FormulaEditorSensorButton(sensor: sensor)
+            topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
             buttons.append(topAnchorView as! UIButton)
         }
         
-        objectScrollView.frame = CGRect(x: objectScrollView.frame.origin.x, y: objectScrollView.frame.origin.y, width: objectScrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
-        objectScrollView.contentSize = CGSize(width: objectScrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
-        
+        resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
         return buttons
     }
     
-    @objc func initSensorView(sensorScrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
+    @objc func initSensorSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
         for sensor in CBSensorManager.shared.deviceSensors(for: self.object) {
-            topAnchorView = self.addButtonToScrollView(scrollView: sensorScrollView, sensor: sensor, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
+            let button = FormulaEditorSensorButton(sensor: sensor)
+            topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
             buttons.append(topAnchorView as! UIButton)
         }
         
-        sensorScrollView.frame = CGRect(x: sensorScrollView.frame.origin.x, y: sensorScrollView.frame.origin.y, width: sensorScrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
-        sensorScrollView.contentSize = CGSize(width: sensorScrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
-        
+        resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
         return buttons
         
     }
     
-    private func addButtonToScrollView(scrollView: UIScrollView, sensor: CBSensor, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
-        let button = FormulaEditorSensorButton(sensor: sensor)
-        
+    @objc func buttonPressed(sender: UIButton) {
+        if (sender is FormulaEditorSensorButton) {
+            let button = sender as! FormulaEditorSensorButton
+            self.handleInput(withSensor: button.sensor)
+        }
+    }
+    
+    private func addButtonToScrollView(button: UIButton, scrollView: UIScrollView, topAnchorView: UIView?, buttonHeight: CGFloat) -> UIButton {
         button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         
         scrollView.addSubview(button)
@@ -72,11 +75,9 @@ extension FormulaEditorViewController {
         return button;
     }
     
-    @objc func buttonPressed(sender: UIButton) {
-        if (sender is FormulaEditorSensorButton) {
-            let button = sender as! FormulaEditorSensorButton
-            self.handleInput(withSensor: button.sensor)
-        } 
+    private func resizeSection(scrollView: UIScrollView, for buttons: [UIButton], with buttonHeight: CGFloat) {
+        scrollView.frame = CGRect(x: scrollView.frame.origin.x, y: scrollView.frame.origin.y, width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
     }
     
     private func handleInput(withSensor sensor:CBSensor) {
