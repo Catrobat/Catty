@@ -27,6 +27,7 @@ class FacePositionXSensor: DeviceSensor {
     static let defaultRawValue = 0.0
     static let position = 210
     static let requiredResource = ResourceType.faceDetection
+    var lastValue = 0.0
     
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     
@@ -36,7 +37,10 @@ class FacePositionXSensor: DeviceSensor {
     
     func rawValue() -> Double {
         guard let positionX = self.getFaceDetectionManager()?.facePositionX else { return type(of: self).defaultRawValue }
-        return positionX
+        if positionX > 0 {
+            lastValue = positionX
+        }
+        return lastValue
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
