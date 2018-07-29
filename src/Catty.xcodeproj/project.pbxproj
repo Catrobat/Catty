@@ -1096,6 +1096,9 @@
 		F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */; };
 		F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */; };
 		F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */; };
+		F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */; };
+		F4E6E57D210DDDA300D86FE6 /* CosFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57C210DDDA300D86FE6 /* CosFunctionTest.swift */; };
+		F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57F210DE61900D86FE6 /* PowFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2766,6 +2769,9 @@
 		F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationYSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationZSensorTest.swift; sourceTree = "<group>"; };
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
+		F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosFunction.swift; sourceTree = "<group>"; };
+		F4E6E57C210DDDA300D86FE6 /* CosFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E57F210DE61900D86FE6 /* PowFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4025,6 +4031,7 @@
 			isa = PBXGroup;
 			children = (
 				4CD9A45A210DC5D00073D0A3 /* SinFunctionTest.swift */,
+				F4E6E57C210DDDA300D86FE6 /* CosFunctionTest.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -4088,6 +4095,8 @@
 			isa = PBXGroup;
 			children = (
 				4CE67898210C6EEE00D90B5D /* SinFunction.swift */,
+				F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */,
+				F4E6E57F210DE61900D86FE6 /* PowFunction.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -7963,6 +7972,7 @@
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
+				F4E6E57D210DDDA300D86FE6 /* CosFunctionTest.swift in Sources */,
 				F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
@@ -8586,6 +8596,7 @@
 				99B2C3751D884F2D00736769 /* FlashBrick+Instruction.swift in Sources */,
 				9218B2111CC4AB75007B4C60 /* PointerTool.m in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
+				F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */,
 				92FF31601A24DEB300093DA7 /* SaveToProjectActivity.m in Sources */,
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
@@ -8597,6 +8608,7 @@
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
 				AA74F0B91BC05FCE00D1E954 /* GlideToBrickCell.m in Sources */,
 				9218B2071CC4AB75007B4C60 /* SPUserResizableView.m in Sources */,
+				F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */,
 				92FF2E3B1A24C5A700093DA7 /* Program+CustomExtensions.m in Sources */,
 				AA74EFE11BC05B5F00D1E954 /* BroadcastBrick.m in Sources */,
 				4CB0F9F620A1741400D1BE2F /* LayerSensor.swift in Sources */,
