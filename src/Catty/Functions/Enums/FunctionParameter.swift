@@ -37,11 +37,11 @@ enum FunctionParameter {
 extension FunctionParameter: Equatable {
     static func ==(left: FunctionParameter, right: FunctionParameter) -> Bool {
         switch (left, right) {
-        case ( .number(_), .number(_)):
-            return true
+        case (let .number(defaultValueLeft), let .number(defaultValueRight)):
+            return defaultValueLeft == defaultValueRight
             
-        case ( .string(_), .string(_)):
-            return true
+        case (let .string(defaultValueLeft), let .string(defaultValueRight)):
+            return defaultValueLeft == defaultValueRight
             
         default:
             return false

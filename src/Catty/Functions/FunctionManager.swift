@@ -67,11 +67,17 @@
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
         if let function = function as? ZeroParameterFunction {
-            value = function.value()
+            value = function.value() as AnyObject
         } else if let function = function as? SingleParameterFunction {
-            value = function.value(parameter: firstParameter)
+            value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterFunction {
-            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter)
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
+        } else if let function = function as? ZeroParameterStringFunction {
+            value = function.value() as AnyObject
+        } else if let function = function as? SingleParameterStringFunction {
+            value = function.value(parameter: firstParameter) as AnyObject
+        } else if let function = function as? DoubleParameterStringFunction {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
         }
         
         return value

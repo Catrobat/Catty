@@ -24,7 +24,7 @@ class SinFunction: SingleParameterFunction {
     
     static var tag = "SIN"
     static var name = "sin"
-    static var defaultValue = 0.0 as AnyObject
+    static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 10
@@ -33,9 +33,9 @@ class SinFunction: SingleParameterFunction {
         return .number(defaultValue: 0)
     }
     
-    func value(parameter: AnyObject?) -> AnyObject {
+    func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
-        return sin(Util.degree(toRadians: degree)) as AnyObject
+        return sin(Util.degree(toRadians: degree))
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

@@ -28,9 +28,6 @@ protocol CBFunction { // TODO remove CB prefix
     // Display name (e.g. for formula editor)
     static var name: String { get }
     
-    // Default value if function can not be computed
-    static var defaultValue: AnyObject { get }
-    
     // Resources required in order to get value of this function (e.g. Aceelerometer)
     static var requiredResource: ResourceType { get }
     
@@ -50,9 +47,9 @@ extension CBFunction {
     func parameters() -> [FunctionParameter] {
         var parameters = [FunctionParameter]()
         
-        if let function = self as? SingleParameterFunction {
+        if let function = self as? SingleParameterFunctionProtocol {
             parameters.append(type(of: function).firstParameter())
-        } else if let function = self as? DoubleParameterFunction {
+        } else if let function = self as? DoubleParameterFunctionProtocol {
             parameters.append(type(of: function).firstParameter())
             parameters.append(type(of: function).secondParameter())
         }
@@ -79,19 +76,45 @@ extension CBFunction {
     }
 }
 
-protocol ZeroParameterFunction: CBFunction {
-    func value() -> AnyObject
+protocol DoubleFunction: CBFunction {
+    // Default value if function can not be computed
+    static var defaultValue: Double { get }
 }
 
-protocol SingleParameterFunction: CBFunction {
+protocol StringFunction: CBFunction {
+    // Default value if function can not be computed
+    static var defaultValue: String { get }
+}
+
+protocol SingleParameterFunctionProtocol: CBFunction {
     static func firstParameter() -> FunctionParameter
-    
-    func value(parameter: AnyObject?) -> AnyObject
 }
 
-protocol DoubleParameterFunction: CBFunction {
+protocol DoubleParameterFunctionProtocol: CBFunction {
     static func firstParameter() -> FunctionParameter
     static func secondParameter() -> FunctionParameter
-    
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
+}
+
+protocol ZeroParameterFunction: DoubleFunction {
+    func value() -> Double
+}
+
+protocol SingleParameterFunction: DoubleFunction, SingleParameterFunctionProtocol {
+    func value(parameter: AnyObject?) -> Double
+}
+
+protocol DoubleParameterFunction: DoubleFunction, DoubleParameterFunctionProtocol {
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double
+}
+
+protocol ZeroParameterStringFunction: StringFunction {
+    func value() -> String
+}
+
+protocol SingleParameterStringFunction: StringFunction, SingleParameterFunction {
+    func value(parameter: AnyObject?) -> String
+}
+
+protocol DoubleParameterStringFunction: StringFunction, DoubleParameterFunctionProtocol {
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String
 }

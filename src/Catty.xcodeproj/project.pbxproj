@@ -285,6 +285,7 @@
 		4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */; };
 		4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */; };
 		4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */; };
+		4CD9A45B210DC5D00073D0A3 /* SinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9A45A210DC5D00073D0A3 /* SinFunctionTest.swift */; };
 		4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */; };
 		4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */; };
 		4CDE4CE5203DBBF500B43034 /* ImageHelper.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCD203DBBF200B43034 /* ImageHelper.license */; };
@@ -1528,6 +1529,7 @@
 		4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNumberSensorTest.swift; sourceTree = "<group>"; };
+		4CD9A45A210DC5D00073D0A3 /* SinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinFunctionTest.swift; sourceTree = "<group>"; };
 		4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NKOColorPickerView.license; sourceTree = "<group>"; };
 		4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4CDE4CCD203DBBF200B43034 /* ImageHelper.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImageHelper.license; sourceTree = "<group>"; };
@@ -4019,6 +4021,14 @@
 			name = CatrobatLanguage0.92;
 			sourceTree = "<group>";
 		};
+		4CD9A458210DC5B40073D0A3 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				4CD9A45A210DC5D00073D0A3 /* SinFunctionTest.swift */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
 		4CE3D6862107A80000005629 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -4068,6 +4078,7 @@
 		4CE67890210C5CCC00D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				4CD9A458210DC5B40073D0A3 /* Math */,
 				4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */,
 			);
 			path = Functions;
@@ -7946,6 +7957,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
+				4CD9A45B210DC5D00073D0A3 /* SinFunctionTest.swift in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
