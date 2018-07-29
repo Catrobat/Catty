@@ -26,6 +26,7 @@
     static let name = kUIFESensorFingerY
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
+    static let position = 140
 
     let getTouchManager: () -> TouchManagerProtocol?
     
@@ -34,16 +35,16 @@
     }
     
     func rawValue() -> Double {
-        // TODO see FingerXSensor
-        return 0
+        guard let lastPosition = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
+        return Double(lastPosition.y)
     }
-
+    
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        // TODO see FingerXSensor
-        return rawValue
+        guard let _ = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
+        return -PositionYSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .hidden // TODO
+        return .device(position: position)
     }
 }

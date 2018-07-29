@@ -1098,6 +1098,11 @@
 		F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */; };
 		F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */; };
 		F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */; };
+		F4E6E56D210DA57500D86FE6 /* FingerTouchedSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E56C210DA57500D86FE6 /* FingerTouchedSensorTest.swift */; };
+		F4E6E56F210DA5A500D86FE6 /* FingerXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E56E210DA5A500D86FE6 /* FingerXSensorTest.swift */; };
+		F4E6E571210DA5B300D86FE6 /* FingerYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E570210DA5B300D86FE6 /* FingerYSensorTest.swift */; };
+		F4E6E573210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E572210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift */; };
+		F4E6E575210DA6CD00D86FE6 /* TouchSensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E574210DA6CD00D86FE6 /* TouchSensorMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2771,6 +2776,11 @@
 		F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationYSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationZSensorTest.swift; sourceTree = "<group>"; };
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
+		F4E6E56C210DA57500D86FE6 /* FingerTouchedSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensorTest.swift; sourceTree = "<group>"; };
+		F4E6E56E210DA5A500D86FE6 /* FingerXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerXSensorTest.swift; sourceTree = "<group>"; };
+		F4E6E570210DA5B300D86FE6 /* FingerYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerYSensorTest.swift; sourceTree = "<group>"; };
+		F4E6E572210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFingerIndexSensorTest.swift; sourceTree = "<group>"; };
+		F4E6E574210DA6CD00D86FE6 /* TouchSensorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchSensorMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3798,6 +3808,7 @@
 			isa = PBXGroup;
 			children = (
 				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
+				F4E6E569210DA55100D86FE6 /* Touch */,
 				F45A8D6821072DE6007C0D38 /* Audio */,
 				F45A8D58210714AE007C0D38 /* Phiro */,
 				F430168E2106856B002B1444 /* Arduino */,
@@ -4409,6 +4420,7 @@
 			children = (
 				4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */,
 				59D008EF208E4370000539E7 /* LocationManagerMock.swift */,
+				F4E6E574210DA6CD00D86FE6 /* TouchSensorMock.swift */,
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
 				F47DA839210731E700167FC4 /* AudioManagerMock.swift */,
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
@@ -7231,6 +7243,17 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		F4E6E569210DA55100D86FE6 /* Touch */ = {
+			isa = PBXGroup;
+			children = (
+				F4E6E56C210DA57500D86FE6 /* FingerTouchedSensorTest.swift */,
+				F4E6E56E210DA5A500D86FE6 /* FingerXSensorTest.swift */,
+				F4E6E570210DA5B300D86FE6 /* FingerYSensorTest.swift */,
+				F4E6E572210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift */,
+			);
+			path = Touch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7951,6 +7974,7 @@
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
+				F4E6E573210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */,
@@ -7973,6 +7997,7 @@
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
 				F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */,
+				F4E6E56F210DA5A500D86FE6 /* FingerXSensorTest.swift in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
@@ -7982,12 +8007,14 @@
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
+				F4E6E56D210DA57500D86FE6 /* FingerTouchedSensorTest.swift in Sources */,
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				4C11795E20AED5B6006C6E32 /* PositionXSensorTest.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
+				F4E6E571210DA5B300D86FE6 /* FingerYSensorTest.swift in Sources */,
 				F40CC11B21074211000C35E4 /* BackgroundNameSensorTest.swift in Sources */,
 				F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
@@ -8298,6 +8325,7 @@
 				9218B20E1CC4AB75007B4C60 /* LineTool.m in Sources */,
 				AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
+				F4E6E575210DA6CD00D86FE6 /* TouchSensorMock.swift in Sources */,
 				AA74EFE81BC05B5F00D1E954 /* LoopEndBrick.m in Sources */,
 				9200C2DB1C8084AA002F5CA4 /* HideTextBrick+CBXMLHandler.m in Sources */,
 				AA74EEDD1BC057B900D1E954 /* ForeverBrick+CBXMLHandler.m in Sources */,

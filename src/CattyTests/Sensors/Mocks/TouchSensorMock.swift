@@ -20,30 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class FingerTouchedSensor: NSObject, TouchSensor {
+final class TouchManagerMock: TouchManagerProtocol {
     
-    @objc static let tag = "FINGER_TOUCHED"
-    static let name = kUIFESensorFingerTouched
-    static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.touchHandler
-    static let position = 120 
-
-    let getTouchManager: () -> TouchManagerProtocol?
+    var touchRecognizer: UILongPressGestureRecognizer?
+    var scene: CBScene?
+    var isScreenTouched: Bool?
+    var touches: [CGPoint] = []
+    var lastTouch: CGPoint?
     
-    init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
-        self.getTouchManager = touchManagerGetter
+    func startTrackingTouches(for scene: CBScene) {
     }
     
-    func rawValue() -> Double {
-        guard let isTouched = getTouchManager()?.screenTouched() else { return type(of: self).defaultRawValue }
-        return isTouched ? 1.0 : 0.0
+    func stopTrackingTouches() {
     }
     
-    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue
+    func reset() {
     }
-
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
+    
+    func screenTouched() -> Bool {
+        return isScreenTouched!
+    }
+    
+    func numberOfTouches() -> Int {
+        return touches.count
+    }
+    
+    func lastPositionInScene() -> CGPoint? {
+        return lastTouch
+    }
+    
+    func getPositionInScene(for touchNumber: Int) -> CGPoint? {
+        if touches.count < touchNumber {
+            return nil
+        }
+        return touches[touchNumber - 1]
     }
 }
