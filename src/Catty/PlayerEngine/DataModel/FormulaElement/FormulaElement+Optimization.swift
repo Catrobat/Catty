@@ -23,7 +23,6 @@
 @objc extension FormulaElement {
 
     @objc func isIdempotent() -> Bool {
-
         if idempotenceState != .NOT_CHECKED { // cached result!
             return (idempotenceState == .IDEMPOTENT)
         }
@@ -38,7 +37,7 @@
         }
 
         if type == .FUNCTION {
-            let result = Functions.isIdempotentFunction(Functions.getFunctionByValue(self.value))
+            let result = FunctionManager.shared.isIdempotent(tag: self.value)
             idempotenceState = result ? .IDEMPOTENT : .NOT_IDEMPOTENT // cache result!
             return result
         }

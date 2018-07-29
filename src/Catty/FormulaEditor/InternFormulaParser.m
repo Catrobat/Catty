@@ -282,13 +282,11 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)functionForSpriteObject:(SpriteObject*)object
 {
-    FormulaElement *functionTree;
-    
-    if (![Functions isFunction:self.currentToken.tokenStringValue]) {
+    if (! [[FunctionManager shared] existsWithTag:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
     
-    functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
 
     [self getNextToken];
     

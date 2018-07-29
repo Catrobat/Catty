@@ -155,7 +155,6 @@
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */; };
 		4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */; };
-		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
 		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
 		4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */; };
 		4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */; };
@@ -682,7 +681,6 @@
 		92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302D1A24DCAA00093DA7 /* Brick.m */; };
 		92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30991A24DCAA00093DA7 /* Formula.m */; };
 		92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309B1A24DCAA00093DA7 /* FormulaElement.m */; };
-		92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309E1A24DCAA00093DA7 /* Functions.m */; };
 		92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */; };
 		92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A21A24DCAA00093DA7 /* Operators.m */; };
 		92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A51A24DCAA00093DA7 /* Header.m */; };
@@ -937,7 +935,6 @@
 		AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFF1A38949E00FA9B0F /* InternFormulaUtils.m */; };
 		AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */; };
 		AAF6D9CE1BC0915800686849 /* FormulaElement+Optimization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9CB1BC0915800686849 /* FormulaElement+Optimization.swift */; };
-		AAF6D9CF1BC0915800686849 /* Function+Optimization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9CD1BC0915800686849 /* Function+Optimization.swift */; };
 		AAF6D9D21BC0966700686849 /* Formula+Optimization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9D11BC0966700686849 /* Formula+Optimization.swift */; };
 		AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9D31BC0B9EA00686849 /* HideBrick+Instruction.swift */; };
 		AAF6D9D81BC0BAF300686849 /* ShowBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9D71BC0BAF300686849 /* ShowBrick+Instruction.swift */; };
@@ -1370,7 +1367,6 @@
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C647C7D1D48E19C0060E70D /* Air_fight_0.5_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_098.xml; path = CattyTests/Resources/ParserTests/Air_fight_0.5/Air_fight_0.5_098.xml; sourceTree = SOURCE_ROOT; };
 		4C647C841D48E1F70060E70D /* XMLParserBlackBoxTests098.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests098.m; sourceTree = "<group>"; };
-		4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaEditorUtilTests.m; path = Formula/FormulaEditorUtilTests.m; sourceTree = "<group>"; };
 		4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementTest.m; path = Formula/FormulaElementTest.m; sourceTree = "<group>"; };
 		4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaFunctionsTest.m; path = Formula/FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserErrorDetectionTest.m; path = Formula/FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
@@ -2126,8 +2122,6 @@
 		92FF30991A24DCAA00093DA7 /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
 		92FF309A1A24DCAA00093DA7 /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
 		92FF309B1A24DCAA00093DA7 /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
-		92FF309D1A24DCAA00093DA7 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
-		92FF309E1A24DCAA00093DA7 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
 		92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserException.h; sourceTree = "<group>"; };
 		92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
 		92FF30A11A24DCAA00093DA7 /* Operators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
@@ -2582,7 +2576,6 @@
 		AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBCustomTypes.swift; path = PlayerEngine/CBCustomTypes.swift; sourceTree = "<group>"; };
 		AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerConfig.swift; path = PlayerEngine/CBPlayerConfig.swift; sourceTree = "<group>"; };
 		AAF6D9CB1BC0915800686849 /* FormulaElement+Optimization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FormulaElement+Optimization.swift"; sourceTree = "<group>"; };
-		AAF6D9CD1BC0915800686849 /* Function+Optimization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function+Optimization.swift"; sourceTree = "<group>"; };
 		AAF6D9D11BC0966700686849 /* Formula+Optimization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Formula+Optimization.swift"; path = "Catty/PlayerEngine/DataModel/Formula/Formula+Optimization.swift"; sourceTree = SOURCE_ROOT; };
 		AAF6D9D31BC0B9EA00686849 /* HideBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "HideBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/HideBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9D71BC0BAF300686849 /* ShowBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ShowBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ShowBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -3254,7 +3247,6 @@
 			isa = PBXGroup;
 			children = (
 				4C14CF1A1EC991DA00E53B25 /* UserVariable */,
-				4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
 				4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */,
 				4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */,
@@ -5462,8 +5454,6 @@
 		92FF309C1A24DCAA00093DA7 /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
-				92FF309D1A24DCAA00093DA7 /* Functions.h */,
-				92FF309E1A24DCAA00093DA7 /* Functions.m */,
 				92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */,
 				92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */,
 				92FF30A11A24DCAA00093DA7 /* Operators.h */,
@@ -6522,15 +6512,6 @@
 			path = Catty/PlayerEngine/DataModel/FormulaElement;
 			sourceTree = SOURCE_ROOT;
 		};
-		AAF6D9CC1BC0915800686849 /* Function */ = {
-			isa = PBXGroup;
-			children = (
-				AAF6D9CD1BC0915800686849 /* Function+Optimization.swift */,
-			);
-			name = Function;
-			path = Catty/PlayerEngine/DataModel/Function;
-			sourceTree = SOURCE_ROOT;
-		};
 		AAF6D9D01BC0963300686849 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
@@ -6734,7 +6715,6 @@
 				CAEE3BEA1ABDFADE009FDA72 /* CBSequence */,
 				AAF6D9D01BC0963300686849 /* Formula */,
 				AAF6D9CA1BC0915800686849 /* FormulaElement */,
-				AAF6D9CC1BC0915800686849 /* Function */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -7936,7 +7916,6 @@
 				4C647C8A1D48E1F70060E70D /* XMLParserBlackBoxTests098.m in Sources */,
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
-				4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */,
@@ -8004,7 +7983,6 @@
 				AA74EF771BC0589700D1E954 /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AA74EF571BC0586F00D1E954 /* SetXBrick+CBXMLHandler.m in Sources */,
-				AAF6D9CF1BC0915800686849 /* Function+Optimization.swift in Sources */,
 				4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */,
 				AA74F00E1BC05B5F00D1E954 /* StopAllSoundsBrick.m in Sources */,
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
@@ -8474,7 +8452,6 @@
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				598319991FBB90CB00639BBF /* IntroductionViewController.swift in Sources */,
 				4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */,
-				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,

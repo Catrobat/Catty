@@ -26,15 +26,16 @@ class SinFunction: SingleParameterFunction {
     static var name = "sin"
     static var defaultValue = 0.0 as AnyObject
     static var requiredResource = ResourceType.noResources
+    static var isIdempotent = true
     static let position = 10
     
     static func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0.0)
+        return .number(defaultValue: 0)
     }
     
     func value(parameter: AnyObject?) -> AnyObject {
-        //guard let degree = parameter as Number else { return type(of: self).defaultValue }
-        return 1 as AnyObject //sin(Util.degree(toRadians: degree))
+        guard let degree = parameter as? Double else { return type(of: self).defaultValue }
+        return sin(Util.degree(toRadians: degree)) as AnyObject
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

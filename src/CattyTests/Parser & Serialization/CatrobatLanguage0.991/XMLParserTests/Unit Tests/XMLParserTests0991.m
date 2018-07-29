@@ -429,9 +429,7 @@
     
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
-    XCTAssertEqual(NUMBEROFITEMS, [Functions getFunctionByValue:formula.formulaTree.value]);
-    
-    XCTAssertTrue([formula.formulaTree.value isEqualToString:[Functions getName:NUMBEROFITEMS]]);
+    XCTAssertEqual(@"NUMBER_OF_ITEMS", formula.formulaTree.value);
 }
 
 - (void)testElementOfListFunction
@@ -457,9 +455,7 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
-    XCTAssertEqual(ELEMENT, [Functions getFunctionByValue:formula.formulaTree.value]);
-    
-    XCTAssertTrue([formula.formulaTree.value isEqualToString:[Functions getName:ELEMENT]]);
+    XCTAssertEqual(@"LIST_ITEM", formula.formulaTree.value);
 }
 
 - (void)testDeleteItemOfUserListBrick

@@ -663,6 +663,8 @@
 #define kUIFESensorFaceX NSLocalizedString(@"faceposition_x", nil)
 #define kUIFESensorFaceY NSLocalizedString(@"faceposition_y", nil)
 
+#define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
+
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
 //************************************************************************************************************

@@ -37,7 +37,7 @@ class FormulaEditorButton: UIButton {
     public convenience init(function: CBFunction) {
         self.init()
         
-        self.setTitle(type(of: function).name, for: .normal)
+        self.setTitle(function.nameWithParameters(), for: .normal)
         self.function = function
     }
     

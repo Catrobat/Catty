@@ -21,7 +21,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Functions.h"
 #import "Operators.h"
 #import "CBMutableCopying.h"
 
@@ -103,10 +102,6 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 - (NSMutableArray*)getInternTokenList;
 
 - (BOOL)isLogicalOperator;
-
-- (BOOL)isLogicalFunction;
-
-//- (BOOL)hasFunctionStringReturnType;
 
 - (BOOL)isSingleNumberFormula;
 

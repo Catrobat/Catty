@@ -163,7 +163,7 @@
     XCTAssertTrue([formulaElement containsElement:USER_VARIABLE], @"ContainsElement: uservariable not found");
     
     formulaElement = [[FormulaElement alloc] initWithElementType:FUNCTION
-                                                           value:[Functions getName:SIN]
+                                                           value:@"SIN" // TODO use Function property
                                                        leftChild:[[FormulaElement alloc] initWithElementType:OPERATOR
                                                                                                        value:@"+"
                                                                                                    leftChild:nil

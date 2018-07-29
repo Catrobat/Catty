@@ -30,13 +30,9 @@ protocol FunctionManagerProtocol {
     
     func requiredResource(tag: String) -> ResourceType
     
-    func name(function: CBFunction) -> String
-    
     func name(tag: String) -> String?
     
     func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
-    
-    func parameters(tag: String) -> [FunctionParameter]
     
     func setup(for program: Program, and scene:CBScene)
     

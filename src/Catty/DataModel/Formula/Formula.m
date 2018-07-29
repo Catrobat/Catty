@@ -236,12 +236,6 @@
     if ([self.formulaTree isLogicalOperator]) {
         BOOL bool_result = [self interpretBOOLForSprite:sprite];
         result = bool_result ? @"TRUE" : @"FALSE";	
-    } else if ([self.formulaTree isLogicalFunction]) {
-        double double_result = [self interpretDoubleForSprite:sprite];
-        if (double_result == 0.0f)
-            result = @"FALSE";
-        else
-            result = @"TRUE";
     } else if(self.formulaTree.type == STRING) {
         return [self interpretString:sprite];
     } else {

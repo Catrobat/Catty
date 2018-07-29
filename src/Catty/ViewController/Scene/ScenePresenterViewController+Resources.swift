@@ -61,6 +61,7 @@ import BluetoothHelper
         
         if unconnectedBluetoothDevices.count > 0 {
             bluetoothDevicesUnconnected(navigationController: navigationController, bluetoothDevices: unconnectedBluetoothDevices)
+            return false
         }
         
         // All other resources

@@ -34,13 +34,9 @@
 
 - (void)setUp {
     [super setUp];
-    //ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    //VariablesContainer *container = programManager.program.variables;
-    //UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:object];
-    //TODO: Add tests for UserVariables if strings are possible
 }
 
-- (FormulaElement*)getFormulaElementForFunction:(Function)function WithLeftValue:(NSString*)leftValue AndRightValue:(NSString*)rightValue
+- (FormulaElement*)getFormulaElementForFunction:(NSString*)tag WithLeftValue:(NSString*)leftValue AndRightValue:(NSString*)rightValue
 {
     FormulaElement *leftElement = [[FormulaElement alloc] initWithType:@"STRING" value:leftValue leftChild:nil rightChild:nil parent:nil];
     FormulaElement *rightElement = nil;
@@ -48,48 +44,18 @@
     if(rightValue != nil)
         rightElement = [[FormulaElement alloc] initWithType:@"STRING" value:rightValue leftChild:nil rightChild:nil parent:nil];
     
-    FormulaElement *formula = [[FormulaElement alloc] initWithType:@"FUNCTION" value:[Functions getName:function] leftChild:leftElement rightChild:rightElement parent:nil];
+    FormulaElement *formula = [[FormulaElement alloc] initWithType:@"FUNCTION" value:tag leftChild:leftElement rightChild:rightElement parent:nil];
     
     return formula;
 }
 
-- (void)testLenght
+- (void)testLength
 {
     NSString *firstParameter = @"testString";
-    FormulaElement *formula = [self getFormulaElementForFunction:LENGTH WithLeftValue:firstParameter AndRightValue:nil];
+    FormulaElement *formula = [self getFormulaElementForFunction:@"LENGTH" WithLeftValue:firstParameter AndRightValue:nil]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly!");
     XCTAssertEqual([[formula interpretRecursiveForSprite:nil] doubleValue], [firstParameter length], @"Formula interpretation is not as expected!");
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

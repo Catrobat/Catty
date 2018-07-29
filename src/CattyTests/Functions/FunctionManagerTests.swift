@@ -51,8 +51,12 @@ final class FunctionManagerTest: XCTestCase {
         // TODO
     }
     
+    func testIsIdempotent() {
+        // TODO
+    }
+    
     func testName() {
-        // TODO test name for function and tag
+        // TODO
     }
     
     func testValue() {
@@ -61,5 +65,13 @@ final class FunctionManagerTest: XCTestCase {
     
     func testFunctions() {
         // TODO
+    }
+    
+    func testParameters() {
+        // TODO test CBFunction.parameters() method for one ZeroParameterFunction, one SingleParameterFunction and one DoubleParameterFunction
+    }
+    
+    func testNameWithParameters() {
+        // TODO test CBFunction.nameWithParameters() method for one ZeroParameterFunction, one SingleParameterFunction and one DoubleParameterFunction
     }
 }

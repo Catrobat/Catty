@@ -42,35 +42,35 @@
 
 - (void) testSin
 {
-    FormulaElement *parseTree = [self getFormulaElement:SIN value:@"90"];
+    FormulaElement *parseTree = [self getFormulaElement:@"SIN" value:@"90"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: sin(90)");
     XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
 }
 
 - (void) testCos
 {
-    FormulaElement *parseTree = [self getFormulaElement:COS value:@"180"];
+    FormulaElement *parseTree = [self getFormulaElement:@"COS" value:@"180"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: cos(180)");
     XCTAssertEqual(-1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
 }
 
 - (void) testTan
 {
-    FormulaElement *parseTree = [self getFormulaElement:TAN value:@"180"];
+    FormulaElement *parseTree = [self getFormulaElement:@"TAN" value:@"180"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: tan(180)");
     XCTAssertEqualWithAccuracy(0, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testLn
 {
-    FormulaElement *parseTree = [self getFormulaElement:LN value:@"2.7182818"];
+    FormulaElement *parseTree = [self getFormulaElement:@"LN" value:@"2.7182818"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: ln(e)");
     XCTAssertEqualWithAccuracy(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testLog
 {
-    FormulaElement *parseTree = [self getFormulaElement:LOG value:@"10"];
+    FormulaElement *parseTree = [self getFormulaElement:@"LOG" value:@"10"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: log(10)");
     XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
 }
@@ -78,7 +78,7 @@
 - (void) testPi
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:PI_F]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"PI"]]; // TODO use Function property
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
@@ -89,14 +89,14 @@
 
 - (void) testSqrt
 {
-    FormulaElement *parseTree = [self getFormulaElement:SQRT value:@"100"];
+    FormulaElement *parseTree = [self getFormulaElement:@"SQRT" value:@"100"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: sqrt(100)");
     XCTAssertEqual(10, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
 }
 
 - (void) testExp
 {
-    FormulaElement *parseTree = [self getFormulaElement:EXP value:@"3"];
+    FormulaElement *parseTree = [self getFormulaElement:@"EXP" value:@"3"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: exp(0)");
     XCTAssertEqualWithAccuracy(20.08f, [[parseTree interpretRecursiveForSprite:nil] doubleValue], 0.1f, @"Formula interpretation is not as expected");
 }
@@ -104,7 +104,7 @@
 - (void) testRandomNaturalNumbers
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:RAND]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"RAND"]]; // TODO use Function property
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"0"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -121,7 +121,7 @@
 
 - (void) testRound
 {
-    FormulaElement *parseTree = [self getFormulaElement:ROUND value:@"1.33333"];
+    FormulaElement *parseTree = [self getFormulaElement:@"ROUND" value:@"1.33333"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: round(1.33333)");
     XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
 }
@@ -133,7 +133,7 @@
         int divisor = 1 + offset;
         
         NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:MOD]]];
+        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"MOD"]]; // TODO use Function property
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:[NSString stringWithFormat:@"%i", dividend]]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -152,7 +152,7 @@
         int divisor = 2 + offset;
         
         NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:MOD]]];
+        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"MOD"]]; // TODO use Function property
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:[NSString stringWithFormat:@"%i", dividend]]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -171,7 +171,7 @@
         int divisor = 5 + offset;
         
         NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:MOD]]];
+        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"MOD"]]; // TODO use Function property
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:[NSString stringWithFormat:@"%i", dividend]]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -190,7 +190,7 @@
         int divisor = 2 + offset;
         
         NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:MOD]]];
+        [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"MOD"]]; // TODO use Function property
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]]];
         [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:[NSString stringWithFormat:@"%i", abs(dividend)]]];
@@ -209,7 +209,7 @@
 - (void) testAbs
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:ABS]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"ABS"]]; // TODO use Function property
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1"]];
@@ -240,7 +240,7 @@
 - (void) testTrue
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:TRUE_F]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"TRUE"]]; // TODO use Function property
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
@@ -252,7 +252,7 @@
 - (void) testFalse
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:FALSE_F]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"FALSE"]]; // TODO use Function property
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
@@ -263,21 +263,21 @@
 
 - (void) testArcsin
 {
-    FormulaElement *parseTree = [self getFormulaElement:ARCSIN value:@"1"];
+    FormulaElement *parseTree = [self getFormulaElement:@"ARCSIN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arcsin(1)");
     XCTAssertEqualWithAccuracy(90, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArccos
 {
-    FormulaElement *parseTree = [self getFormulaElement:ARCCOS value:@"0"];
+    FormulaElement *parseTree = [self getFormulaElement:@"ARCCOS" value:@"0"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arccos(0)");
     XCTAssertEqualWithAccuracy(90, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArctan
 {
-    FormulaElement *parseTree = [self getFormulaElement:ARCTAN value:@"1"];
+    FormulaElement *parseTree = [self getFormulaElement:@"ARCTAN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arctan(1)");
     XCTAssertEqualWithAccuracy(45, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
@@ -285,7 +285,7 @@
 - (void) testMax
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:MAX]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"MAX"]]; // TODO use Function property
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"3"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -302,7 +302,7 @@
 - (void) testMin
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:MIN]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"MIN"]]; // TODO use Function property
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"3"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -316,19 +316,15 @@
     XCTAssertEqual(3, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
 }
 
-- (NSMutableArray*)getFunctionTokenList:(Function)function value:(NSString*)value
+- (FormulaElement*)getFormulaElement:(NSString*)tag value:(NSString*)value
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:function]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:tag]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:value]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    return internTokenList;
-}
-
-- (FormulaElement*)getFormulaElement:(Function)function value:(NSString*)value
-{
-    InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:[self getFunctionTokenList:function value:value]];
+    
+    InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     return [internParser parseFormulaForSpriteObject:nil];
 }
 

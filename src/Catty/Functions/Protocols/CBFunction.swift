@@ -34,9 +34,49 @@ protocol CBFunction { // TODO remove CB prefix
     // Resources required in order to get value of this function (e.g. Aceelerometer)
     static var requiredResource: ResourceType { get }
     
+    // True if the value does not change when executed multiple times (e.g. sin(0)) or false if the value changes (e.g. random(0, 1))
+    static var isIdempotent: Bool { get }
+    
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all
     static func formulaEditorSection() -> FormulaEditorSection
+}
+
+extension CBFunction {
+    static var parameterDelimiter: String { get { return "," } }
+    static var bracketOpen: String { get { return "(" } }
+    static var bracketClose: String { get { return ")" } }
+    
+    func parameters() -> [FunctionParameter] {
+        var parameters = [FunctionParameter]()
+        
+        if let function = self as? SingleParameterFunction {
+            parameters.append(type(of: function).firstParameter())
+        } else if let function = self as? DoubleParameterFunction {
+            parameters.append(type(of: function).firstParameter())
+            parameters.append(type(of: function).secondParameter())
+        }
+        
+        return parameters
+    }
+    
+    func nameWithParameters() -> String {
+        var name = type(of: self).name + type(of: self).bracketOpen
+        let params = self.parameters()
+        var paramCount = 0
+        
+        for param in params {
+            name += param.defaultValueString()
+            paramCount += 1
+            
+            if paramCount > 1 && paramCount < params.count {
+                name += type(of: self).parameterDelimiter
+            }
+        }
+        
+        name += type(of: self).bracketClose
+        return name
+    }
 }
 
 protocol ZeroParameterFunction: CBFunction {

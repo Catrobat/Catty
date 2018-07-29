@@ -147,7 +147,7 @@
 - (void)testSingleNonIdempotentFunction
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:RAND]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"RAND"]];  // TODO use Function property
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"3"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -166,7 +166,7 @@
 - (void)testSingleFunctionSin
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"90"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
@@ -176,35 +176,6 @@
     
     XCTAssertEqual(1, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
     XCTAssertTrue([formulaElement isIdempotent], @"FormulaElement should be idempotent");
-}
-
-- (void)testIdempotentFunctions
-{
-    NSArray *functions = [NSArray arrayWithObjects:
-                          [Functions getName:SIN],
-                          [Functions getName:COS],
-                          [Functions getName:TAN],
-                          [Functions getName:LOG],
-                          [Functions getName:ARCSIN],
-                          [Functions getName:TRUE_F],
-                          [Functions getName:FALSE_F],
-                          [Functions getName:MOD],
-                          [Functions getName:POW],
-                          [Functions getName:EXP],
-                          [Functions getName:SQRT],
-                          [Functions getName:ROUND],
-                          [Functions getName:PI_F],
-                          nil];
-    
-    for (NSString *function in functions) {
-        NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
-            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:function]];
-        
-        InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
-        FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
-        
-        XCTAssertTrue([formulaElement isIdempotent], @"FormulaElement should be idempotent (%@)", function);
-    }
 }
 
 - (void)testSingleUserVariable

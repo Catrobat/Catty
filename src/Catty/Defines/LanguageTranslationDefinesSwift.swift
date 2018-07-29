@@ -663,6 +663,8 @@ let kUIFESensorFaceSize = NSLocalizedString("facesize", comment: "")
 let kUIFESensorFaceX = NSLocalizedString("faceposition_x", comment: "")
 let kUIFESensorFaceY = NSLocalizedString("faceposition_y", comment: "")
 
+let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
+
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
 //************************************************************************************************************

@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FunctionManager: FunctionManagerProtocol {
+@objc class FunctionManager: NSObject, FunctionManagerProtocol {
     
-    public static let shared = FunctionManager()
+    @objc public static let shared = FunctionManager()
     public static var defaultValueForUndefinedFunction: Double = 0
     private var functionMap = [String: CBFunction]()
     
-    private init() {
+    private override init() {
+        super.init()
         registerFunctions()
     }
     
@@ -38,7 +39,7 @@ class FunctionManager: FunctionManagerProtocol {
         functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }
     }
     
-    func requiredResource(tag: String) -> ResourceType {
+    @objc func requiredResource(tag: String) -> ResourceType {
         guard let function = self.function(tag: tag) else { return .noResources }
         return type(of: function).requiredResource
     }
@@ -47,34 +48,21 @@ class FunctionManager: FunctionManagerProtocol {
         return self.functionMap[tag]
     }
     
-    func name(function: CBFunction) -> String {
-        return type(of: function).name
-    }
-    
-    func name(tag: String) -> String? {
+    @objc func name(tag: String) -> String? {
         guard let function = self.function(tag: tag) else { return nil }
         return type(of: function).name
     }
     
-    func exists(tag: String) -> Bool {
+    @objc func exists(tag: String) -> Bool {
         return self.function(tag: tag) != nil
     }
     
-    func parameters(tag: String) -> [FunctionParameter] {
-        var parameters = [FunctionParameter]()
-        guard let function = self.function(tag: tag) else { return parameters }
-        
-        if let function = function as? SingleParameterFunction {
-            parameters.append(type(of: function).firstParameter())
-        } else if let function = function as? DoubleParameterFunction {
-            parameters.append(type(of: function).firstParameter())
-            parameters.append(type(of: function).secondParameter())
-        }
-        
-        return parameters
+    func isIdempotent(tag: String) -> Bool {
+        guard let function = self.function(tag: tag) else { return false }
+        return type(of: function).isIdempotent
     }
     
-    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
+    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         

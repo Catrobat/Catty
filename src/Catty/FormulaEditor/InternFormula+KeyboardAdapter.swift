@@ -230,29 +230,34 @@ extension InternFormula {
     
     private func buildFunction(function: CBFunction) -> [InternToken] {
         var tokenList = [InternToken]()
+        var paramList = [InternToken]()
         
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: type(of: function).tag))
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN))
         
-        if let singleParameterFunction = function as? SingleParameterFunction {
-            tokenList.append(self.functionParameter(parameter: type(of: singleParameterFunction).firstParameter()))
+        let parameters = function.parameters()
+        for parameter in parameters {
+            paramList.append(functionParameter(parameter: parameter))
             
-        } else if let doubleParameterFunction = function as? DoubleParameterFunction {
-            tokenList.append(self.functionParameter(parameter: type(of: doubleParameterFunction).firstParameter()))
-            tokenList.append(self.functionParameter(parameter: type(of: doubleParameterFunction).secondParameter()))
+            if paramList.count > 1 && paramList.count < tokenList.count {
+                tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER))
+            }
         }
         
+        tokenList = tokenList + paramList
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE))
     
         return tokenList
     }
     
     private func functionParameter(parameter: FunctionParameter) -> InternToken {
+        let defaultValueString = parameter.defaultValueString()
+        
         switch parameter {
-        case let .number(defaultValue):
-            return InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: String(defaultValue))
-        case let .string(defaultValue):
-            return InternToken.init(type: TOKEN_TYPE_STRING, andValue: defaultValue)
+        case .number(_):
+            return InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: defaultValueString)
+        case .string(_):
+            return InternToken.init(type: TOKEN_TYPE_STRING, andValue: defaultValueString)
         }
     }
 }
