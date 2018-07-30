@@ -1099,6 +1099,47 @@
 		F4E6E579210DDD5C00D86FE6 /* CosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */; };
 		F4E6E57D210DDDA300D86FE6 /* CosFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57C210DDDA300D86FE6 /* CosFunctionTest.swift */; };
 		F4E6E580210DE61900D86FE6 /* PowFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E57F210DE61900D86FE6 /* PowFunction.swift */; };
+		F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E583210DFD4300D86FE6 /* TanFunction.swift */; };
+		F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E585210DFE0800D86FE6 /* LnFunction.swift */; };
+		F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E587210DFE8800D86FE6 /* LogFunction.swift */; };
+		F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E589210DFECA00D86FE6 /* SqrtFunction.swift */; };
+		F4E6E58C210DFEFE00D86FE6 /* PiFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E58B210DFEFE00D86FE6 /* PiFunction.swift */; };
+		F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E58D210E00E100D86FE6 /* ModFunction.swift */; };
+		F4E6E590210E026500D86FE6 /* AbsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E58F210E026500D86FE6 /* AbsFunction.swift */; };
+		F4E6E592210E032000D86FE6 /* AsinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E591210E032000D86FE6 /* AsinFunction.swift */; };
+		F4E6E594210E038700D86FE6 /* AcosFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E593210E038700D86FE6 /* AcosFunction.swift */; };
+		F4E6E596210E03B700D86FE6 /* AtanFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E595210E03B700D86FE6 /* AtanFunction.swift */; };
+		F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E597210E03FE00D86FE6 /* ExpFunction.swift */; };
+		F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E599210E048700D86FE6 /* MaxFunction.swift */; };
+		F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E59B210E051200D86FE6 /* MinFunction.swift */; };
+		F4E6E59E210E057900D86FE6 /* TanFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E59D210E057900D86FE6 /* TanFunctionTest.swift */; };
+		F4E6E5A0210E065D00D86FE6 /* AsinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E59F210E065D00D86FE6 /* AsinFunctionTest.swift */; };
+		F4E6E5A2210E082E00D86FE6 /* AcosFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5A1210E082E00D86FE6 /* AcosFunctionTest.swift */; };
+		F4E6E5A4210E08AF00D86FE6 /* AtanFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5A3210E08AF00D86FE6 /* AtanFunctionTest.swift */; };
+		F4E6E5A6210E0AAF00D86FE6 /* LnFuntionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5A5210E0AAF00D86FE6 /* LnFuntionTest.swift */; };
+		F4E6E5A8210E1CBC00D86FE6 /* LogFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5A7210E1CBC00D86FE6 /* LogFunctionTest.swift */; };
+		F4E6E5AA210E1CFD00D86FE6 /* SqrtFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5A9210E1CFD00D86FE6 /* SqrtFunctionTest.swift */; };
+		F4E6E5AC210E1DFA00D86FE6 /* AbsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5AB210E1DFA00D86FE6 /* AbsFunctionTest.swift */; };
+		F4E6E5AE210E1E0800D86FE6 /* RandFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5AD210E1E0800D86FE6 /* RandFunctionTest.swift */; };
+		F4E6E5B0210E1E1500D86FE6 /* RoundFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5AF210E1E1500D86FE6 /* RoundFunctionTest.swift */; };
+		F4E6E5B2210E1E2700D86FE6 /* PiFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5B1210E1E2700D86FE6 /* PiFunctionTest.swift */; };
+		F4E6E5B4210E1E3400D86FE6 /* ModFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5B3210E1E3400D86FE6 /* ModFunctionTest.swift */; };
+		F4E6E5B6210E1E4300D86FE6 /* PowFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5B5210E1E4300D86FE6 /* PowFunctionTest.swift */; };
+		F4E6E5B8210E1E5400D86FE6 /* MaxFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5B7210E1E5400D86FE6 /* MaxFunctionTest.swift */; };
+		F4E6E5BA210E1E6500D86FE6 /* MinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5B9210E1E6500D86FE6 /* MinFunctionTest.swift */; };
+		F4E6E5BC210E1E7200D86FE6 /* ExpFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5BB210E1E7200D86FE6 /* ExpFunctionTest.swift */; };
+		F4E6E5BE210E1FA400D86FE6 /* RoundFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5BD210E1FA400D86FE6 /* RoundFunction.swift */; };
+		F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5BF210E1FE900D86FE6 /* RandFunction.swift */; };
+		F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C1210E23D500D86FE6 /* CeilFunction.swift */; };
+		F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */; };
+		F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */; };
+		F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */; };
+		F4E6E5CA210E257700D86FE6 /* ElementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C9210E257700D86FE6 /* ElementFunction.swift */; };
+		F4E6E5D6210E318500D86FE6 /* TrueFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5D5210E318500D86FE6 /* TrueFunctionTest.swift */; };
+		F4E6E5D8210E31B800D86FE6 /* FalseFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5D7210E31B800D86FE6 /* FalseFunctionTest.swift */; };
+		F4E6E5DA210E31DA00D86FE6 /* FloorFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5D9210E31DA00D86FE6 /* FloorFunctionTest.swift */; };
+		F4E6E5DC210E31F900D86FE6 /* CeilFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5DB210E31F900D86FE6 /* CeilFunctionTest.swift */; };
+		F4E6E5DE210E321500D86FE6 /* ElementFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5DD210E321500D86FE6 /* ElementFunctionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2772,6 +2813,47 @@
 		F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosFunction.swift; sourceTree = "<group>"; };
 		F4E6E57C210DDDA300D86FE6 /* CosFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosFunctionTest.swift; sourceTree = "<group>"; };
 		F4E6E57F210DE61900D86FE6 /* PowFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowFunction.swift; sourceTree = "<group>"; };
+		F4E6E583210DFD4300D86FE6 /* TanFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanFunction.swift; sourceTree = "<group>"; };
+		F4E6E585210DFE0800D86FE6 /* LnFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LnFunction.swift; sourceTree = "<group>"; };
+		F4E6E587210DFE8800D86FE6 /* LogFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFunction.swift; sourceTree = "<group>"; };
+		F4E6E589210DFECA00D86FE6 /* SqrtFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqrtFunction.swift; sourceTree = "<group>"; };
+		F4E6E58B210DFEFE00D86FE6 /* PiFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiFunction.swift; sourceTree = "<group>"; };
+		F4E6E58D210E00E100D86FE6 /* ModFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModFunction.swift; sourceTree = "<group>"; };
+		F4E6E58F210E026500D86FE6 /* AbsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsFunction.swift; sourceTree = "<group>"; };
+		F4E6E591210E032000D86FE6 /* AsinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsinFunction.swift; sourceTree = "<group>"; };
+		F4E6E593210E038700D86FE6 /* AcosFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcosFunction.swift; sourceTree = "<group>"; };
+		F4E6E595210E03B700D86FE6 /* AtanFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtanFunction.swift; sourceTree = "<group>"; };
+		F4E6E597210E03FE00D86FE6 /* ExpFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpFunction.swift; sourceTree = "<group>"; };
+		F4E6E599210E048700D86FE6 /* MaxFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxFunction.swift; sourceTree = "<group>"; };
+		F4E6E59B210E051200D86FE6 /* MinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinFunction.swift; sourceTree = "<group>"; };
+		F4E6E59D210E057900D86FE6 /* TanFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E59F210E065D00D86FE6 /* AsinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsinFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5A1210E082E00D86FE6 /* AcosFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcosFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5A3210E08AF00D86FE6 /* AtanFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtanFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5A5210E0AAF00D86FE6 /* LnFuntionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LnFuntionTest.swift; sourceTree = "<group>"; };
+		F4E6E5A7210E1CBC00D86FE6 /* LogFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5A9210E1CFD00D86FE6 /* SqrtFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqrtFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5AB210E1DFA00D86FE6 /* AbsFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5AD210E1E0800D86FE6 /* RandFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5AF210E1E1500D86FE6 /* RoundFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5B1210E1E2700D86FE6 /* PiFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5B3210E1E3400D86FE6 /* ModFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5B5210E1E4300D86FE6 /* PowFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5B7210E1E5400D86FE6 /* MaxFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5B9210E1E6500D86FE6 /* MinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5BB210E1E7200D86FE6 /* ExpFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5BD210E1FA400D86FE6 /* RoundFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFunction.swift; sourceTree = "<group>"; };
+		F4E6E5BF210E1FE900D86FE6 /* RandFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandFunction.swift; sourceTree = "<group>"; };
+		F4E6E5C1210E23D500D86FE6 /* CeilFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeilFunction.swift; sourceTree = "<group>"; };
+		F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorFunction.swift; sourceTree = "<group>"; };
+		F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueFunction.swift; sourceTree = "<group>"; };
+		F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
+		F4E6E5C9210E257700D86FE6 /* ElementFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunction.swift; sourceTree = "<group>"; };
+		F4E6E5D5210E318500D86FE6 /* TrueFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5D7210E31B800D86FE6 /* FalseFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5D9210E31DA00D86FE6 /* FloorFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5DB210E31F900D86FE6 /* CeilFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeilFunctionTest.swift; sourceTree = "<group>"; };
+		F4E6E5DD210E321500D86FE6 /* ElementFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunctionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4032,6 +4114,27 @@
 			children = (
 				4CD9A45A210DC5D00073D0A3 /* SinFunctionTest.swift */,
 				F4E6E57C210DDDA300D86FE6 /* CosFunctionTest.swift */,
+				F4E6E59D210E057900D86FE6 /* TanFunctionTest.swift */,
+				F4E6E5A1210E082E00D86FE6 /* AcosFunctionTest.swift */,
+				F4E6E59F210E065D00D86FE6 /* AsinFunctionTest.swift */,
+				F4E6E5A3210E08AF00D86FE6 /* AtanFunctionTest.swift */,
+				F4E6E5A5210E0AAF00D86FE6 /* LnFuntionTest.swift */,
+				F4E6E5A7210E1CBC00D86FE6 /* LogFunctionTest.swift */,
+				F4E6E5AB210E1DFA00D86FE6 /* AbsFunctionTest.swift */,
+				F4E6E5AD210E1E0800D86FE6 /* RandFunctionTest.swift */,
+				F4E6E5A9210E1CFD00D86FE6 /* SqrtFunctionTest.swift */,
+				F4E6E5AF210E1E1500D86FE6 /* RoundFunctionTest.swift */,
+				F4E6E5BB210E1E7200D86FE6 /* ExpFunctionTest.swift */,
+				F4E6E5B1210E1E2700D86FE6 /* PiFunctionTest.swift */,
+				F4E6E5B3210E1E3400D86FE6 /* ModFunctionTest.swift */,
+				F4E6E5B7210E1E5400D86FE6 /* MaxFunctionTest.swift */,
+				F4E6E5B9210E1E6500D86FE6 /* MinFunctionTest.swift */,
+				F4E6E5B5210E1E4300D86FE6 /* PowFunctionTest.swift */,
+				F4E6E5D5210E318500D86FE6 /* TrueFunctionTest.swift */,
+				F4E6E5D7210E31B800D86FE6 /* FalseFunctionTest.swift */,
+				F4E6E5D9210E31DA00D86FE6 /* FloorFunctionTest.swift */,
+				F4E6E5DB210E31F900D86FE6 /* CeilFunctionTest.swift */,
+				F4E6E5DD210E321500D86FE6 /* ElementFunctionTest.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -4097,6 +4200,26 @@
 				4CE67898210C6EEE00D90B5D /* SinFunction.swift */,
 				F4E6E578210DDD5C00D86FE6 /* CosFunction.swift */,
 				F4E6E57F210DE61900D86FE6 /* PowFunction.swift */,
+				F4E6E583210DFD4300D86FE6 /* TanFunction.swift */,
+				F4E6E585210DFE0800D86FE6 /* LnFunction.swift */,
+				F4E6E587210DFE8800D86FE6 /* LogFunction.swift */,
+				F4E6E589210DFECA00D86FE6 /* SqrtFunction.swift */,
+				F4E6E58B210DFEFE00D86FE6 /* PiFunction.swift */,
+				F4E6E58D210E00E100D86FE6 /* ModFunction.swift */,
+				F4E6E58F210E026500D86FE6 /* AbsFunction.swift */,
+				F4E6E591210E032000D86FE6 /* AsinFunction.swift */,
+				F4E6E593210E038700D86FE6 /* AcosFunction.swift */,
+				F4E6E595210E03B700D86FE6 /* AtanFunction.swift */,
+				F4E6E597210E03FE00D86FE6 /* ExpFunction.swift */,
+				F4E6E599210E048700D86FE6 /* MaxFunction.swift */,
+				F4E6E59B210E051200D86FE6 /* MinFunction.swift */,
+				F4E6E5BD210E1FA400D86FE6 /* RoundFunction.swift */,
+				F4E6E5BF210E1FE900D86FE6 /* RandFunction.swift */,
+				F4E6E5C1210E23D500D86FE6 /* CeilFunction.swift */,
+				F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */,
+				F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */,
+				F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */,
+				F4E6E5C9210E257700D86FE6 /* ElementFunction.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -7842,6 +7965,7 @@
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
 				F479930320F4987E0088EE27 /* LongitudeSensorTest.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
+				F4E6E5DE210E321500D86FE6 /* ElementFunctionTest.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
@@ -7849,6 +7973,8 @@
 				F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */,
+				F4E6E5BC210E1E7200D86FE6 /* ExpFunctionTest.swift in Sources */,
+				F4E6E5A6210E0AAF00D86FE6 /* LnFuntionTest.swift in Sources */,
 				4C0F9FCE204BD37300E71B2D /* XMLSerializerTests.m in Sources */,
 				F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
@@ -7895,19 +8021,26 @@
 				F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */,
 				F430169221068590002B1444 /* ArduinoAnalogPinSensorTest.swift in Sources */,
 				99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */,
+				F4E6E5A4210E08AF00D86FE6 /* AtanFunctionTest.swift in Sources */,
 				F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
+				F4E6E5B2210E1E2700D86FE6 /* PiFunctionTest.swift in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
+				F4E6E5B4210E1E3400D86FE6 /* ModFunctionTest.swift in Sources */,
 				4C6D14EA210B12AB006147BD /* TransparencySensorTest.swift in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
+				F4E6E5DA210E31DA00D86FE6 /* FloorFunctionTest.swift in Sources */,
+				F4E6E5A2210E082E00D86FE6 /* AcosFunctionTest.swift in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
+				F4E6E5A0210E065D00D86FE6 /* AsinFunctionTest.swift in Sources */,
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
 				F4844BF420F7C9D5009522D6 /* LayerSensorTest.swift in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
 				4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */,
 				4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */,
 				4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */,
+				F4E6E5B6210E1E4300D86FE6 /* PowFunctionTest.swift in Sources */,
 				4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */,
 				4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */,
 				59A58D83202C714A008B1A8F /* MediaLibraryDownloaderTests.swift in Sources */,
@@ -7916,8 +8049,10 @@
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
 				F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
+				F4E6E5A8210E1CBC00D86FE6 /* LogFunctionTest.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
+				F4E6E5DC210E31F900D86FE6 /* CeilFunctionTest.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				4C6D14E8210B1291006147BD /* CompassDirectionSensorTest.swift in Sources */,
@@ -7945,8 +8080,11 @@
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
+				F4E6E5AE210E1E0800D86FE6 /* RandFunctionTest.swift in Sources */,
 				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
+				F4E6E5B8210E1E5400D86FE6 /* MaxFunctionTest.swift in Sources */,
 				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
+				F4E6E5B0210E1E1500D86FE6 /* RoundFunctionTest.swift in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
@@ -7956,6 +8094,8 @@
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
+				F4E6E5D8210E31B800D86FE6 /* FalseFunctionTest.swift in Sources */,
+				F4E6E5AA210E1CFD00D86FE6 /* SqrtFunctionTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				E4AEC8A3210853130081A980 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
@@ -7964,9 +8104,12 @@
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				F4E6E5D6210E318500D86FE6 /* TrueFunctionTest.swift in Sources */,
 				4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */,
+				F4E6E5AC210E1DFA00D86FE6 /* AbsFunctionTest.swift in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4CD9A45B210DC5D00073D0A3 /* SinFunctionTest.swift in Sources */,
+				F4E6E59E210E057900D86FE6 /* TanFunctionTest.swift in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				59D008F1208E439E000539E7 /* LocationManagerMock.swift in Sources */,
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
@@ -7978,6 +8121,7 @@
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
 				4C994DF3207A3CF000C415FD /* InclinationXSensorTest.swift in Sources */,
+				F4E6E5BA210E1E6500D86FE6 /* MinFunctionTest.swift in Sources */,
 				4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
@@ -8031,6 +8175,7 @@
 				4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
+				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				4C994E08207A3D4100C415FD /* CBSensorManager.swift in Sources */,
@@ -8128,6 +8273,7 @@
 				4CF0729420D66A7F00F93AB5 /* AltitudeSensor.swift in Sources */,
 				9218B2131CC4AB75007B4C60 /* UndoManager.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
+				F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */,
 				4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */,
 				4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
@@ -8183,6 +8329,7 @@
 				CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */,
 				929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */,
 				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
+				F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */,
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */,
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
@@ -8242,6 +8389,7 @@
 				AA74EF501BC0586F00D1E954 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				BACDF3571F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */,
 				921D468A1BDF698A0086AD20 /* NextLookBrick+Instruction.swift in Sources */,
+				F4E6E5CA210E257700D86FE6 /* ElementFunction.swift in Sources */,
 				9218B2141CC4AB75007B4C60 /* BrushPickerViewController.m in Sources */,
 				AA74EE2B1BC0541E00D1E954 /* GlideToBrick+Instruction.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
@@ -8276,9 +8424,11 @@
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				AA74EF581BC0586F00D1E954 /* SetYBrick+CBXMLHandler.m in Sources */,
 				AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */,
+				F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */,
 				4CF0728B20D659F700F93AB5 /* PhiroBottomLeftSensor.swift in Sources */,
 				AA74F09F1BC05FCE00D1E954 /* IfLogicBeginBrickCell.m in Sources */,
 				592EF6EA2094B84900BD6000 /* DeviceSensor.swift in Sources */,
+				F4E6E592210E032000D86FE6 /* AsinFunction.swift in Sources */,
 				AA74EE391BC0543600D1E954 /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				E4668B3820FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift in Sources */,
@@ -8326,6 +8476,7 @@
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
+				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				59697DA4201F46AD00A0071A /* LibraryImageCollectionViewCell.swift in Sources */,
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,
@@ -8349,6 +8500,8 @@
 				AA74EF7E1BC05A3400D1E954 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
+				F4E6E58A210DFECA00D86FE6 /* SqrtFunction.swift in Sources */,
+				F4E6E586210DFE0800D86FE6 /* LnFunction.swift in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
 				4C0F9F8B204BD26100E71B2D /* IfThenLogicBeginBrickCell.m in Sources */,
@@ -8385,6 +8538,7 @@
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */,
+				F4E6E590210E026500D86FE6 /* AbsFunction.swift in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				9218B20C1CC4AB75007B4C60 /* FillTool.m in Sources */,
 				4C0F9F85204BD24600E71B2D /* IfThenLogicBeginBrick+CBXMLHandler.m in Sources */,
@@ -8395,6 +8549,7 @@
 				4CE67896210C668C00D90B5D /* FormulaEditorButton.swift in Sources */,
 				BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */,
+				F4E6E594210E038700D86FE6 /* AcosFunction.swift in Sources */,
 				AA74EFE61BC05B5F00D1E954 /* IfLogicEndBrick.m in Sources */,
 				92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */,
 				AA74EFE91BC05B5F00D1E954 /* NoteBrick.m in Sources */,
@@ -8435,12 +8590,15 @@
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
+				F4E6E59C210E051200D86FE6 /* MinFunction.swift in Sources */,
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				E438738A210623230062209F /* TimerWithBlock.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
+				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
 				592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */,
+				F4E6E5BE210E1FA400D86FE6 /* RoundFunction.swift in Sources */,
 				99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
@@ -8465,9 +8623,13 @@
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
 				BA9CAB601EC383E800796056 /* AddItemToUserListBrickCell.m in Sources */,
 				9218B2051CC4AB75007B4C60 /* LinkedListStack.m in Sources */,
+				F4E6E584210DFD4300D86FE6 /* TanFunction.swift in Sources */,
 				92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */,
+				F4E6E596210E03B700D86FE6 /* AtanFunction.swift in Sources */,
+				F4E6E588210DFE8800D86FE6 /* LogFunction.swift in Sources */,
 				9218B1FF1CC4AB75007B4C60 /* NKOColorPickerView.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
+				F4E6E58C210DFEFE00D86FE6 /* PiFunction.swift in Sources */,
 				4CF0729220D6697300F93AB5 /* LocationAccuracySensor.swift in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
@@ -8590,6 +8752,7 @@
 				4CF0728E20D659F700F93AB5 /* PhiroBottomRightSensor.swift in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
 				921D468B1BDF698A0086AD20 /* SetBrightnessBrick+Instruction.swift in Sources */,
+				F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,
 				929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */,
@@ -8639,6 +8802,7 @@
 				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
+				F4E6E5C2210E23D500D86FE6 /* CeilFunction.swift in Sources */,
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,

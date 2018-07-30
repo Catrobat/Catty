@@ -20,28 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PowFunction: DoubleParameterFunction {
-    static var tag = "POW"
-    static var name = "power"
-    static var defaultValue = 8.0
+class AtanFunction: SingleParameterFunction {
+    
+    static var tag = "ATAN"
+    static var name = "arctan"
+    static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
-    static let position = 160
+    static let position = 140
     
     static func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 2)
+        return .number(defaultValue: 0)
     }
     
-    static func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 3)
-    }
-    
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let base = firstParameter,
-            let exponent = secondParameter else {
-                return type(of: self).defaultValue
-        }
-        return pow(base as! Double, exponent as! Double)
+    func value(parameter: AnyObject?) -> Double {
+        guard let degree = parameter as? Double else { return type(of: self).defaultValue }
+        return atan(Util.degree(toRadians: degree))
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

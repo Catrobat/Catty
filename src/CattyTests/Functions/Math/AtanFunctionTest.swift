@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class CosFunctionTest: XCTestCase {
+class AtanFunctionTest: XCTestCase {
     
-    var function: CosFunction!
+    var function: AtanFunction!
     
     override func setUp() {
-        self.function = CosFunction()
+        self.function = AtanFunction()
     }
     
     override func tearDown() {
@@ -42,9 +42,9 @@ class CosFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(atan(Util.degree(toRadians: 160)), function.value(parameter: 160 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(atan(Util.degree(toRadians: -200)), function.value(parameter: -200 as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {
@@ -52,11 +52,11 @@ class CosFunctionTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("COS", type(of: function).tag)
+        XCTAssertEqual("ATAN", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("cos", type(of: function).name)
+        XCTAssertEqual("arctan", type(of: function).name)
     }
     
     func testRequiredResources() {

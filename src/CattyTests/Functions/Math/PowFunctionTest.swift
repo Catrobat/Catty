@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class CosFunctionTest: XCTestCase {
+class PowFunctionTest: XCTestCase {
     
-    var function: CosFunction!
+    var function: MinFunction!
     
     override func setUp() {
-        self.function = CosFunction()
+        self.function = MinFunction()
     }
     
     override func tearDown() {
@@ -37,26 +37,32 @@ class CosFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        //XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
     }
     
     func testValue() {
-        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(pow(10, 7), function.value(firstParameter: 10 as AnyObject, secondParameter: 7 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(pow(-3, 5), function.value(firstParameter: -3 as AnyObject, secondParameter: 5 as AnyObject), accuracy: 0.0001)
+        
+        XCTAssertEqual(pow(13, -2), function.value(firstParameter: 13 as AnyObject, secondParameter: -2 as AnyObject), accuracy: 0.0001)
     }
     
-    func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
+    func testFirstParameter() {
+        XCTAssertEqual(.number(defaultValue: 2), type(of: function).firstParameter())
+    }
+    
+    func testSecondParameter() {
+        XCTAssertEqual(.number(defaultValue: 3), type(of: function).secondParameter())
     }
     
     func testTag() {
-        XCTAssertEqual("COS", type(of: function).tag)
+        XCTAssertEqual("POW", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("cos", type(of: function).name)
+        XCTAssertEqual("pow", type(of: function).name)
     }
     
     func testRequiredResources() {
@@ -71,3 +77,4 @@ class CosFunctionTest: XCTestCase {
         XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
     }
 }
+

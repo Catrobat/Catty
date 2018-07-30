@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class CosFunctionTest: XCTestCase {
+class ElementFunctionTest: XCTestCase {
     
-    var function: CosFunction!
+    var function: ElementFunction!
     
     override func setUp() {
-        self.function = CosFunction()
+        self.function = ElementFunction()
     }
     
     override func tearDown() {
@@ -37,26 +37,26 @@ class CosFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        //XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
     }
     
     func testValue() {
-        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
     }
     
-    func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
+    func testFirstParameter() {
+        XCTAssertEqual(.number(defaultValue: 0.0), type(of: function).firstParameter())
     }
+    
+    // test second parameter !
     
     func testTag() {
-        XCTAssertEqual("COS", type(of: function).tag)
+        XCTAssertEqual("ELEMENT", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("cos", type(of: function).name)
+        XCTAssertEqual("element", type(of: function).name)
     }
     
     func testRequiredResources() {
@@ -71,3 +71,4 @@ class CosFunctionTest: XCTestCase {
         XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
     }
 }
+

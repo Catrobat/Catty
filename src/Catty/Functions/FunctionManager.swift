@@ -33,7 +33,29 @@
     
     private func registerFunctions() {
         let functionList: [CBFunction] = [
-            SinFunction()
+            SinFunction(),
+            CosFunction(),
+            TanFunction(),
+            LnFunction(),
+            LogFunction(),
+            PiFunction(),
+            SqrtFunction(),
+            RandFunction(),
+            AbsFunction(),
+            RoundFunction(),
+            ModFunction(),
+            AsinFunction(),
+            AcosFunction(),
+            AtanFunction(),
+            ExpFunction(),
+            PowFunction(),
+            FloorFunction(),
+            CeilFunction(),
+            MaxFunction(),
+            MinFunction(),
+            ElementFunction(),
+            TrueFunction(),
+            FalseFunction()
         ]
         
         functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }

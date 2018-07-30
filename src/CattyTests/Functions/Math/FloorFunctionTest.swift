@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class CosFunctionTest: XCTestCase {
+class FloorFunctionTest: XCTestCase {
     
-    var function: CosFunction!
+    var function: FloorFunction!
     
     override func setUp() {
-        self.function = CosFunction()
+        self.function = FloorFunction()
     }
     
     override func tearDown() {
@@ -42,9 +42,9 @@ class CosFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(floor(13.45), function.value(parameter: 13.45 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(floor(-4.66), function.value(parameter: -4.66 as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {
@@ -52,11 +52,11 @@ class CosFunctionTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("COS", type(of: function).tag)
+        XCTAssertEqual("FLOOR", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("cos", type(of: function).name)
+        XCTAssertEqual("floor", type(of: function).name)
     }
     
     func testRequiredResources() {
