@@ -69,7 +69,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         app.alerts["New Program"].buttons["OK"].tap()
         
         // check if worked to create new Program
-        XCTAssert(app.navigationBars[programName].staticTexts[programName].exists)
+        XCTAssert(app.navigationBars[programName].exists)
         
         // go back and try to add program with same name
         app.navigationBars[programName].buttons["Pocket Code"].tap()
@@ -100,14 +100,14 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
         let app = XCUIApplication()
         
-        for (programName, errorMessage) in progNamesErrorMsgMap {
+        for (programName, _) in progNamesErrorMsgMap {
             app.tables.staticTexts["New"].tap()
             let alertQuery = app.alerts["New Program"]
             alertQuery.textFields["Enter your program name here..."].tap()
             alertQuery.textFields["Enter your program name here..."].typeText(programName)
             alertQuery.buttons["OK"].tap()
         
-            XCTAssert(app.alerts["Pocket Code"].staticTexts[errorMessage].exists)
+            XCTAssert(app.alerts["Pocket Code"].exists)
             app.alerts["Pocket Code"].buttons["OK"].tap()
             alertQuery.buttons["Cancel"].tap()
         }
@@ -123,7 +123,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         alertQuery.textFields["Enter your program name here..."].typeText("testprogramToCancel")
         alertQuery.buttons["Cancel"].tap()
         
-        XCTAssertTrue(app.navigationBars["Pocket Code"].staticTexts["Pocket Code"].exists)
+        XCTAssertTrue(app.navigationBars["Pocket Code"].exists)
     }
     
     func testPrograms() {
@@ -135,7 +135,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         
-        XCTAssert(app.navigationBars["Programs"].staticTexts["Programs"].exists)
+        XCTAssert(app.navigationBars["Programs"].exists)
 
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         

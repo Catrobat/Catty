@@ -75,7 +75,7 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.buttons["Delete"].exists)
 
         app.buttons["Delete"].tap()
-        let yesButton = app.alerts["Delete this object"].buttons["No"]
+        let yesButton = app.alerts["Delete this object"].buttons["Cancel"]
         yesButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
     }

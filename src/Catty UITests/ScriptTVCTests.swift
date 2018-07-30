@@ -53,13 +53,17 @@ class ScriptTVCTests: XCTestCase, UITestProtocol {
     func testDeleteBrickWhereDuplicateExists() {
         let app = XCUIApplication()
         
+        /*let webView = app.webViews.element
+        let coordinate = webView.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10))
+        coordinate.tap()*/
+        
         app.tables.staticTexts["Continue"].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts["Scripts"].tap()
         
         // delete the wait brick
-        app.collectionViews.cells.element(boundBy: 4).tap()
-        app.buttons["Delete Brick"].tap()
+        app.collectionViews.cells.element(boundBy: 4).tap() //ERROR tap event opens the Formulaeditor and not the Menu for Refactoring
+        app.buttons["Delete Brick"].tap()                   //This happens because the tap event opens the formulaeditor and not the options
         
         // check if show brick is now where wait was before
         app.navigationBars["Scripts"].buttons["Mole 1"].tap()
