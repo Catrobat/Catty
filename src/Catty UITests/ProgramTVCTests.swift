@@ -64,7 +64,7 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.tables.staticTexts["Mole 4"].exists)
     }
 
-    func testCanAbortDeleteSingleProgramViaSwipe() {
+    func testCanAbortDeleteSingleObjectViaSwipe() {
         restoreDefaultProgram()
         
         let app = XCUIApplication()
@@ -79,8 +79,24 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         yesButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
     }
+    
+    func testCanDeleteSingelObjectViaSwipe() {
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        XCTAssert(app.buttons["Delete"].exists)
+        
+        app.buttons["Delete"].tap()
+        let yesButton = app.alerts["Delete this object"].buttons["Yes"]
+        yesButton.tap()
+        XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
+    }
 
-    func testCanRenameSingleProgramViaSwipe() {
+    func testCanRenameSingleObjectViaSwipe() {
         restoreDefaultProgram()
         
         let app = XCUIApplication()
@@ -97,8 +113,39 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         alertQuery.textFields["Enter your object name here..."].typeText("Mole 5")
         alertQuery.buttons["OK"].tap()
         XCTAssert(app.tables.staticTexts["Mole 5"].exists)
-        
-        
     }
-
+    
+    func testCanCopySingleObjectViaSwipe() {
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        XCTAssert(app.buttons["More"].exists)
+        
+        app.buttons["More"].tap()
+        app.buttons["Copy"].tap()
+        XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
+    }
+    
+    func testCanAbortRenameSingleObjectViaSwipe() {
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        XCTAssert(app.buttons["More"].exists)
+        
+        app.buttons["More"].tap()
+        app.buttons["Rename"].tap()
+        let alertQuery = app.alerts["Rename object"]
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your object name here..."].typeText("Mole 5")
+        alertQuery.buttons["Cancel"].tap()
+        XCTAssert(app.tables.staticTexts["Mole 1"].exists)
+    }
 }
