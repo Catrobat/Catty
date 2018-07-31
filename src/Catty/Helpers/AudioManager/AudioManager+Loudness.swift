@@ -79,9 +79,7 @@ extension AudioManager: AudioManagerProtocol {
         guard let recorder = self.recorder else { return }
         recorder.updateMeters()
         
-        if (self.loudnessInDecibels != nil) {
-            self.loudnessInDecibels = recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
-        }
+        self.loudnessInDecibels = recorder.averagePower(forChannel: noiseRecorderChannel) as NSNumber
     }
     
     func loudnessAvailable() -> Bool {
