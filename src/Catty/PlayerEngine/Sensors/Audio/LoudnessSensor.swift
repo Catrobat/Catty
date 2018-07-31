@@ -38,11 +38,8 @@ class LoudnessSensor: NSObject, DeviceSensor {
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
-        let standardLoudness = 3 * rawValue + 100
-        if standardLoudness < 0 {
-            return 0
-        }
-        return standardLoudness
+        let rawValueConverted = pow(10, 0.05 * rawValue)
+        return rawValueConverted * 100
     }
    
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
