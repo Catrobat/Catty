@@ -37,8 +37,8 @@ class LogFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertTrue(function.value(parameter: "invalidParameter" as AnyObject).isInfinite)
+        XCTAssertTrue(function.value(parameter: nil).isInfinite)
     }
     
     func testValue() {
