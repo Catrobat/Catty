@@ -23,7 +23,7 @@
 class LoudnessSensor: NSObject, DeviceSensor {
     static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
-    static let defaultRawValue = 0.0
+    static let defaultRawValue = -160.0
     static let position = 10
     static let requiredResource = ResourceType.loudness
 
@@ -38,9 +38,6 @@ class LoudnessSensor: NSObject, DeviceSensor {
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
-        if !(self.getAudioManager()?.loudnessAvailable())! {
-            return type(of: self).defaultRawValue
-        }
         let rawValueConverted = pow(10, 0.05 * rawValue)
         return rawValueConverted * 100
     }
