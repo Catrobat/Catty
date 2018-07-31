@@ -230,23 +230,25 @@ extension InternFormula {
     
     private func buildFunction(function: CBFunction) -> [InternToken] {
         var tokenList = [InternToken]()
-        var paramList = [InternToken]()
+        let parameters = function.parameters()
+        var count = 0
         
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: type(of: function).tag))
-        tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN))
+        if parameters.count == 0 {
+            return tokenList    // no parameter
+        }
         
-        let parameters = function.parameters()
+        tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN))
         for parameter in parameters {
-            paramList.append(functionParameter(parameter: parameter))
+            tokenList.append(functionParameter(parameter: parameter))
+            count += 1
             
-            if paramList.count > 1 && paramList.count < tokenList.count {
+            if count < parameters.count && parameters.count > 1 {
                 tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER))
             }
         }
         
-        tokenList = tokenList + paramList
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE))
-    
         return tokenList
     }
     

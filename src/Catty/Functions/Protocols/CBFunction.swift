@@ -58,15 +58,20 @@ extension CBFunction {
     }
     
     func nameWithParameters() -> String {
-        var name = type(of: self).name + type(of: self).bracketOpen
+        var name = type(of: self).name
         let params = self.parameters()
-        var paramCount = 0
+        var count = 0
         
+        if params.count == 0 {
+            return name        // no parameter function
+        }
+        
+        name += type(of: self).bracketOpen
         for param in params {
             name += param.defaultValueString()
-            paramCount += 1
+            count += 1
             
-            if paramCount > 1 && paramCount < params.count {
+            if count < params.count && params.count > 1 {
                 name += type(of: self).parameterDelimiter
             }
         }
