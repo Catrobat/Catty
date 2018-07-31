@@ -44,7 +44,7 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         super.tearDown()
     }
 
-    func testCanDeleteMultipleProgramsViaEditMode() {
+    func testCanDeleteMultipleObjectsViaEditMode() {
         restoreDefaultProgram()
         
         let app = XCUIApplication()
@@ -62,6 +62,85 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.tables.staticTexts["Mole 2"].exists == false)
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
         XCTAssert(app.tables.staticTexts["Mole 4"].exists)
+    }
+    
+    func testCanRenameProgramViaEditMode(){
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        app.buttons["Rename Program"].tap()
+        
+        XCTAssert(app.alerts["Rename Program"].exists)
+        let alertQuery = app.alerts["Rename Program"]
+        XCTAssert(alertQuery.buttons["Clear text"].exists)
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText("My renamed program")
+        XCTAssert(alertQuery.buttons["OK"].exists)
+        alertQuery.buttons["OK"].tap()
+        
+        XCTAssert(app.navigationBars["My renamed program"].exists)
+        
+        // go back and forth to force reload table view!!
+        app.navigationBars["My renamed program"].buttons["Programs"].tap()
+        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+        app.tables.staticTexts["Programs"].tap()
+        
+        // check again
+        XCTAssert(app.tables.staticTexts["My renamed program"].exists)
+        
+    }
+    
+    func testCanAbortRenameProgramViaEditMode(){
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        app.buttons["Rename Program"].tap()
+        
+        XCTAssert(app.alerts["Rename Program"].exists)
+        let alertQuery = app.alerts["Rename Program"]
+        XCTAssert(alertQuery.buttons["Clear text"].exists)
+        alertQuery.buttons["Clear text"].tap()
+        alertQuery.textFields["Enter your program name here..."].typeText("My renamed program")
+        XCTAssert(alertQuery.buttons["Cancel"].exists)
+        alertQuery.buttons["Cancel"].tap()
+        
+        XCTAssert(app.navigationBars["My first program"].exists)
+        
+        // go back and forth to force reload table view!!
+        app.navigationBars["My first program"].buttons["Programs"].tap()
+        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+        app.tables.staticTexts["Programs"].tap()
+        
+        // check again
+        XCTAssert(app.tables.staticTexts["My first program"].exists)
+    }
+    
+    func testCanShowAndHideDetailsViaEditMode(){
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        
+        XCTAssert(app.buttons["Show Details"].exists)
+        app.buttons["Show Details"].tap()
+        
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        XCTAssert(app.buttons["Hide Details"].exists)
+        app.buttons["Hide Details"].tap()
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        
+        XCTAssert(app.buttons["Show Details"].exists)
+        app.buttons["Cancel"].tap()
+        
+        XCTAssert(app.navigationBars["My first program"].exists)
     }
 
     func testCanAbortDeleteSingleObjectViaSwipe() {
@@ -115,21 +194,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.tables.staticTexts["Mole 5"].exists)
     }
     
-    func testCanCopySingleObjectViaSwipe() {
-        restoreDefaultProgram()
-        
-        let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
-        app.tables.staticTexts["My first program"].tap()
-        let tablesQuery = app.tables
-        tablesQuery.staticTexts["Mole 1"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
-        
-        app.buttons["More"].tap()
-        app.buttons["Copy"].tap()
-        XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
-    }
-    
     func testCanAbortRenameSingleObjectViaSwipe() {
         restoreDefaultProgram()
         
@@ -147,5 +211,34 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         alertQuery.textFields["Enter your object name here..."].typeText("Mole 5")
         alertQuery.buttons["Cancel"].tap()
         XCTAssert(app.tables.staticTexts["Mole 1"].exists)
+    }
+    
+    func testCanCopySingleObjectViaSwipe() {
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        XCTAssert(app.buttons["More"].exists)
+        
+        app.buttons["More"].tap()
+        app.buttons["Copy"].tap()
+        XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
+    }
+    
+    func testCanAbortSwipe() {
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Mole 1"].swipeLeft()
+        XCTAssert(app.buttons["More"].exists)
+        
+        app.buttons["More"].tap()
+        app.buttons["Cancel"].tap()
     }
 }
