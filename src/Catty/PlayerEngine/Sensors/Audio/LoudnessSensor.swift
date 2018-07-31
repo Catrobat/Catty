@@ -38,6 +38,9 @@ class LoudnessSensor: NSObject, DeviceSensor {
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
+        if !(self.getAudioManager()?.loudnessAvailable())! {
+            return type(of: self).defaultRawValue
+        }
         let rawValueConverted = pow(10, 0.05 * rawValue)
         return rawValueConverted * 100
     }
