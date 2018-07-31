@@ -60,6 +60,7 @@ extension CBFunction {
     func nameWithParameters() -> String {
         var name = type(of: self).name
         let params = self.parameters()
+        var count = 0
         
         if params.count == 0 {
             return name        // no parameter function
@@ -68,16 +69,13 @@ extension CBFunction {
         name += type(of: self).bracketOpen
         for param in params {
             name += param.defaultValueString()
+            count += 1
             
-            if params.count != 1 {
+            if count < params.count && params.count > 1 {
                 name += type(of: self).parameterDelimiter
             }
         }
-        
-        if params.count >= 2 {
-            name = String(name.dropLast(2))
-        }
-        
+
         name += type(of: self).bracketClose
         return name
     }

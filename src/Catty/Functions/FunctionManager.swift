@@ -114,6 +114,16 @@
     }
     
     func functions() -> [CBFunction] {
-        return self.functionMap.values.map{ $0 }
+        var functions = [Int: CBFunction]()
+        
+        for function in self.functionMap.values {
+            switch (type(of: function).formulaEditorSection()) {
+            case let .math(position):
+                functions[position] = function
+            default:
+                break;
+            }
+        }
+        return functions.sorted(by: { $0.0 < $1.0 }).map{ $1}
     }
 }
