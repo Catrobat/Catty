@@ -1134,12 +1134,10 @@
 		F4E6E5C4210E242D00D86FE6 /* FloorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */; };
 		F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */; };
 		F4E6E5C8210E255D00D86FE6 /* FalseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */; };
-		F4E6E5CA210E257700D86FE6 /* ElementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5C9210E257700D86FE6 /* ElementFunction.swift */; };
 		F4E6E5D6210E318500D86FE6 /* TrueFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5D5210E318500D86FE6 /* TrueFunctionTest.swift */; };
 		F4E6E5D8210E31B800D86FE6 /* FalseFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5D7210E31B800D86FE6 /* FalseFunctionTest.swift */; };
 		F4E6E5DA210E31DA00D86FE6 /* FloorFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5D9210E31DA00D86FE6 /* FloorFunctionTest.swift */; };
 		F4E6E5DC210E31F900D86FE6 /* CeilFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5DB210E31F900D86FE6 /* CeilFunctionTest.swift */; };
-		F4E6E5DE210E321500D86FE6 /* ElementFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E6E5DD210E321500D86FE6 /* ElementFunctionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2848,12 +2846,10 @@
 		F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorFunction.swift; sourceTree = "<group>"; };
 		F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueFunction.swift; sourceTree = "<group>"; };
 		F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunction.swift; sourceTree = "<group>"; };
-		F4E6E5C9210E257700D86FE6 /* ElementFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunction.swift; sourceTree = "<group>"; };
 		F4E6E5D5210E318500D86FE6 /* TrueFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrueFunctionTest.swift; sourceTree = "<group>"; };
 		F4E6E5D7210E31B800D86FE6 /* FalseFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalseFunctionTest.swift; sourceTree = "<group>"; };
 		F4E6E5D9210E31DA00D86FE6 /* FloorFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorFunctionTest.swift; sourceTree = "<group>"; };
 		F4E6E5DB210E31F900D86FE6 /* CeilFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeilFunctionTest.swift; sourceTree = "<group>"; };
-		F4E6E5DD210E321500D86FE6 /* ElementFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunctionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4134,7 +4130,6 @@
 				F4E6E5D7210E31B800D86FE6 /* FalseFunctionTest.swift */,
 				F4E6E5D9210E31DA00D86FE6 /* FloorFunctionTest.swift */,
 				F4E6E5DB210E31F900D86FE6 /* CeilFunctionTest.swift */,
-				F4E6E5DD210E321500D86FE6 /* ElementFunctionTest.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -4219,7 +4214,6 @@
 				F4E6E5C3210E242D00D86FE6 /* FloorFunction.swift */,
 				F4E6E5C5210E24F900D86FE6 /* TrueFunction.swift */,
 				F4E6E5C7210E255D00D86FE6 /* FalseFunction.swift */,
-				F4E6E5C9210E257700D86FE6 /* ElementFunction.swift */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -7965,7 +7959,6 @@
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
 				F479930320F4987E0088EE27 /* LongitudeSensorTest.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
-				F4E6E5DE210E321500D86FE6 /* ElementFunctionTest.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,
@@ -8389,7 +8382,6 @@
 				AA74EF501BC0586F00D1E954 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				BACDF3571F1F9BB000346167 /* DeleteItemOfUserListBrick+CBXMLHandler.m in Sources */,
 				921D468A1BDF698A0086AD20 /* NextLookBrick+Instruction.swift in Sources */,
-				F4E6E5CA210E257700D86FE6 /* ElementFunction.swift in Sources */,
 				9218B2141CC4AB75007B4C60 /* BrushPickerViewController.m in Sources */,
 				AA74EE2B1BC0541E00D1E954 /* GlideToBrick+Instruction.swift in Sources */,
 				AA74F09A1BC05FCE00D1E954 /* BrickCellInlineView.m in Sources */,
