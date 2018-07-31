@@ -70,4 +70,38 @@ class ScriptTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Scripts"].tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["Show"].exists)
     }
+    
+    func testDeleteBrickSetSizeTo() {
+        let app = XCUIApplication()
+        
+        app.tables.staticTexts["Continue"].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        
+        //delete the SetSizeTo brick
+        app.collectionViews.cells.element(boundBy: 1).tap()
+        app.buttons["Delete Brick"].tap()
+        
+        //Check if Forever brick is now where SetSizeTo was before
+        app.navigationBars["Scripts"].buttons["Mole 1"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Forever"].exists)
+    }
+    
+    func testCopyForeverBrick() {
+        let app = XCUIApplication()
+        
+        app.tables.staticTexts["Continue"].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        
+        //copy the Forever brick
+        app.collectionViews.cells.element(boundBy: 2).tap()
+        app.buttons["Copy Brick"].tap()
+        
+        //Check if copied successfull
+        app.navigationBars["Scripts"].buttons["Mole 1"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        XCTAssert(app.collectionViews.cells.element(boundBy: 3).staticTexts["End of Loop"].exists)
+    }
 }
