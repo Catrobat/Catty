@@ -24,7 +24,7 @@ class CosFunction: SingleParameterFunction {
     
     static var tag = "COS"
     static var name = "cos"
-    static var defaultValue = 0.0
+    static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 20

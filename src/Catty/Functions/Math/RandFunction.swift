@@ -37,19 +37,24 @@ class RandFunction: DoubleParameterFunction {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let firstValue = firstParameter,
-            let secondValue = secondParameter else {
+        guard let firstValue = firstParameter as? Double,
+            let secondValue = secondParameter as? Double else {
                 return type(of: self).defaultValue
         }
-        
-        var firstValueNumber = Double(truncating: firstValue as! NSNumber)
-        var secondValueNumber = Double(truncating: secondValue as! NSNumber)
-        if firstValueNumber > secondValueNumber {
-            let aux = firstValueNumber
-            firstValueNumber = secondValueNumber
-            secondValueNumber = aux
+        var minimum = firstValue
+        var maximum = secondValue
+        if minimum > maximum {
+            let aux = minimum
+            minimum = maximum
+            maximum = aux
         }
-        return drand48()
+        let random = arc4random() / UInt32.max
+        var result = minimum + Double(random) * (maximum - minimum)
+        
+        if floor(firstValue) == firstValue && floor(secondValue) == secondValue {
+            result = round(result)
+        }
+        return result
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

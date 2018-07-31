@@ -40,7 +40,7 @@ protocol CBFunction { // TODO remove CB prefix
 }
 
 extension CBFunction {
-    static var parameterDelimiter: String { get { return "," } }
+    static var parameterDelimiter: String { get { return ", " } }
     static var bracketOpen: String { get { return "(" } }
     static var bracketClose: String { get { return ")" } }
     
@@ -58,17 +58,24 @@ extension CBFunction {
     }
     
     func nameWithParameters() -> String {
-        var name = type(of: self).name + type(of: self).bracketOpen
+        var name = type(of: self).name
         let params = self.parameters()
-        var paramCount = 0
         
+        if params.count == 0 {
+            return name        // no parameter function
+        }
+        
+        name += type(of: self).bracketOpen
         for param in params {
             name += param.defaultValueString()
-            paramCount += 1
             
-            if paramCount > 1 && paramCount < params.count {
+            if params.count != 1 {
                 name += type(of: self).parameterDelimiter
             }
+        }
+        
+        if params.count >= 2 {
+            name = String(name.dropLast(2))
         }
         
         name += type(of: self).bracketClose

@@ -48,7 +48,7 @@ class CeilFunctionTest: XCTestCase {
     }
     
     func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), type(of: function).firstParameter())
+        XCTAssertEqual(.number(defaultValue: 0.3), type(of: function).firstParameter())
     }
     
     func testTag() {

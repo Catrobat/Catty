@@ -24,13 +24,13 @@ class CeilFunction: SingleParameterFunction {
     
     static var tag = "CEIL"
     static var name = "ceil"
-    static var defaultValue = 0.3
+    static var defaultValue = 1.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 180
     
     static func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 1)
+        return .number(defaultValue: 0.3)
     }
     
     func value(parameter: AnyObject?) -> Double {

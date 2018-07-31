@@ -24,7 +24,7 @@ class ExpFunction: SingleParameterFunction {
     
     static var tag = "EXP"
     static var name = "exp"
-    static var defaultValue = 0.0
+    static var defaultValue = M_E
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 150

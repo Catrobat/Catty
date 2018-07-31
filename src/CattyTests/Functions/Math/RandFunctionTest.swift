@@ -42,11 +42,15 @@ class RandFunctionTest: XCTestCase {
     }
     
     func testValue() {
-      
+        // Assigned to: Chuck Norris
     }
     
-    func testParameter() {
+    func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
+    }
+    
+    func testSecondParameter() {
+        XCTAssertEqual(.number(defaultValue: 1), type(of: function).secondParameter())
     }
     
     func testTag() {
@@ -62,7 +66,7 @@ class RandFunctionTest: XCTestCase {
     }
     
     func testIsIdempotent() {
-        XCTAssertTrue(type(of: function).isIdempotent)
+        XCTAssertFalse(type(of: function).isIdempotent)
     }
     
     func testFormulaEditorSection() {

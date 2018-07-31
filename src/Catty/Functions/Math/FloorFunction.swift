@@ -21,16 +21,15 @@
  */
 
 class FloorFunction: SingleParameterFunction {
-    
     static var tag = "FLOOR"
     static var name = "floor"
-    static var defaultValue = 0.7
+    static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 170
     
     static func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 0)
+        return .number(defaultValue: 0.7)
     }
     
     func value(parameter: AnyObject?) -> Double {

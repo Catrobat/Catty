@@ -26,10 +26,10 @@ import XCTest
 
 class PowFunctionTest: XCTestCase {
     
-    var function: MinFunction!
+    var function: PowFunction!
     
     override func setUp() {
-        self.function = MinFunction()
+        self.function = PowFunction()
     }
     
     override func tearDown() {
@@ -37,7 +37,7 @@ class PowFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        //XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
     }
     
@@ -62,7 +62,7 @@ class PowFunctionTest: XCTestCase {
     }
     
     func testName() {
-        XCTAssertEqual("pow", type(of: function).name)
+        XCTAssertEqual("power", type(of: function).name)
     }
     
     func testRequiredResources() {

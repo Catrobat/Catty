@@ -37,13 +37,14 @@ class ModFunction: DoubleParameterFunction {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let firstValue = firstParameter,
-            let secondValue = secondParameter else {
+        guard let firstValue = firstParameter as? Double,
+            let secondValue = secondParameter as? Double else {
                 return type(of: self).defaultValue
         }
-        let firstValueInt = Int(truncating: firstValue as! NSNumber)
-        let secondValueInt = Int(truncating: secondValue as! NSNumber)
-        return Double(firstValueInt % secondValueInt)
+        
+        let whole = Int(firstValue / secondValue)
+        return firstValue - secondValue * Double(whole)
+        
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

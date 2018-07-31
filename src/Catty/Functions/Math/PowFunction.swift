@@ -37,11 +37,11 @@ class PowFunction: DoubleParameterFunction {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let base = firstParameter,
-            let exponent = secondParameter else {
+        guard let base = firstParameter as? Double,
+            let exponent = secondParameter as? Double else {
                 return type(of: self).defaultValue
         }
-        return pow(base as! Double, exponent as! Double)
+        return pow(base, exponent)
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

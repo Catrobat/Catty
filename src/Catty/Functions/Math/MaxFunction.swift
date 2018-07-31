@@ -37,11 +37,11 @@ class MaxFunction: DoubleParameterFunction {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let firstValue = firstParameter,
-            let secondValue = secondParameter else {
+        guard let firstValue = firstParameter as? Double,
+            let secondValue = secondParameter as? Double else {
                 return type(of: self).defaultValue
         }
-        return max(Double(truncating: firstValue as! NSNumber), Double(truncating: secondValue as! NSNumber))
+        return max(firstValue, secondValue)
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

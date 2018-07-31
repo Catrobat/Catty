@@ -24,7 +24,7 @@ class AcosFunction: SingleParameterFunction {
     
     static var tag = "ACOS"
     static var name = "arccos"
-    static var defaultValue = 0.0
+    static var defaultValue = Double.pi/2
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 130

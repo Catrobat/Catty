@@ -24,7 +24,7 @@ class LnFunction: SingleParameterFunction {
     
     static var tag = "LN"
     static var name = "ln"
-    static var defaultValue = 0.0
+    static var defaultValue = -Double.infinity
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 40
