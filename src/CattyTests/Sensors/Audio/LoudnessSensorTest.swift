@@ -56,20 +56,17 @@ final class LoudnessSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        // smaller than 0 - Android does not have negative values
-        XCTAssertEqual(0, self.sensor.convertToStandardized(rawValue: -60), accuracy: 0.0001)
-        
         // background noise
-        XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: -33), accuracy: 0.0001)
+        XCTAssertEqual(1, self.sensor.convertToStandardized(rawValue: -40), accuracy: 0.0001)
         
         // whisper
-        XCTAssertEqual(19, self.sensor.convertToStandardized(rawValue: -27), accuracy: 0.0001)
+        XCTAssertEqual(6.3095, self.sensor.convertToStandardized(rawValue: -24), accuracy: 0.0001)
         
         // normal voice
-        XCTAssertEqual(70, self.sensor.convertToStandardized(rawValue: -10), accuracy: 0.0001)
+        XCTAssertEqual(17.7827, self.sensor.convertToStandardized(rawValue: -15), accuracy: 0.0001)
         
         // shouting
-        XCTAssertEqual(91, self.sensor.convertToStandardized(rawValue: -3), accuracy: 0.0001)
+        XCTAssertEqual(89.2277, self.sensor.convertToStandardized(rawValue: -0.99), accuracy: 0.0001)
     }
     
     func testTag() {
