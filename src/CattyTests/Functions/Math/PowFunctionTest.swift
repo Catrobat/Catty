@@ -39,6 +39,7 @@ class PowFunctionTest: XCTestCase {
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
     }
     
     func testValue() {
