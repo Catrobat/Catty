@@ -1092,6 +1092,12 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
+		F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB42110D48C00C53234 /* JoinFunction.swift */; };
+		F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB62110D49900C53234 /* LetterFunction.swift */; };
+		F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFB82110D4A800C53234 /* LengthFunction.swift */; };
+		F4A2AFBC2110DC2300C53234 /* JoinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFBB2110DC2300C53234 /* JoinFunctionTest.swift */; };
+		F4A2AFBE2110DC4100C53234 /* LetterFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFBD2110DC4100C53234 /* LetterFunctionTest.swift */; };
+		F4A2AFC02110DC5000C53234 /* LengthFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFBF2110DC5000C53234 /* LengthFunctionTest.swift */; };
 		F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */; };
 		F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */; };
 		F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */; };
@@ -2762,6 +2768,12 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
+		F4A2AFB42110D48C00C53234 /* JoinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFunction.swift; sourceTree = "<group>"; };
+		F4A2AFB62110D49900C53234 /* LetterFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterFunction.swift; sourceTree = "<group>"; };
+		F4A2AFB82110D4A800C53234 /* LengthFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthFunction.swift; sourceTree = "<group>"; };
+		F4A2AFBB2110DC2300C53234 /* JoinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFunctionTest.swift; sourceTree = "<group>"; };
+		F4A2AFBD2110DC4100C53234 /* LetterFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterFunctionTest.swift; sourceTree = "<group>"; };
+		F4A2AFBF2110DC5000C53234 /* LengthFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthFunctionTest.swift; sourceTree = "<group>"; };
 		F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationXSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationYSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationZSensorTest.swift; sourceTree = "<group>"; };
@@ -4050,6 +4062,7 @@
 		4CE67884210C4AE000D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F4A2AFB12110D47500C53234 /* Text */,
 				4CE67897210C6EBB00D90B5D /* Math */,
 				4CE67889210C4E0600D90B5D /* Enums */,
 				4CE67886210C4B0200D90B5D /* Protocols */,
@@ -4078,6 +4091,7 @@
 		4CE67890210C5CCC00D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F4A2AFBA2110DBFE00C53234 /* Text */,
 				4CD9A458210DC5B40073D0A3 /* Math */,
 				4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */,
 			);
@@ -7222,6 +7236,26 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		F4A2AFB12110D47500C53234 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2AFB42110D48C00C53234 /* JoinFunction.swift */,
+				F4A2AFB62110D49900C53234 /* LetterFunction.swift */,
+				F4A2AFB82110D4A800C53234 /* LengthFunction.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		F4A2AFBA2110DBFE00C53234 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2AFBB2110DC2300C53234 /* JoinFunctionTest.swift */,
+				F4A2AFBD2110DC4100C53234 /* LetterFunctionTest.swift */,
+				F4A2AFBF2110DC5000C53234 /* LengthFunctionTest.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7883,6 +7917,7 @@
 				4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */,
 				F4301694210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift in Sources */,
 				F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */,
+				F4A2AFBC2110DC2300C53234 /* JoinFunctionTest.swift in Sources */,
 				F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */,
 				F430169221068590002B1444 /* ArduinoAnalogPinSensorTest.swift in Sources */,
 				99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */,
@@ -7910,6 +7945,7 @@
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
+				F4A2AFC02110DC5000C53234 /* LengthFunctionTest.swift in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				4C6D14E8210B1291006147BD /* CompassDirectionSensorTest.swift in Sources */,
 				92BCDC851BF1DE2A00F9CB23 /* FirmataTests.swift in Sources */,
@@ -7973,6 +8009,7 @@
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
+				F4A2AFBE2110DC4100C53234 /* LetterFunctionTest.swift in Sources */,
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
@@ -8036,6 +8073,7 @@
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
+				F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */,
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				AA74EE331BC0542C00D1E954 /* VibrationBrick+Instruction.swift in Sources */,
@@ -8338,6 +8376,7 @@
 				4C0F9F2B204ADBFD00E71B2D /* RepeatUntilBrick+CBXMLHandler.m in Sources */,
 				AA74EF7E1BC05A3400D1E954 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
+				F4A2AFB92110D4A800C53234 /* LengthFunction.swift in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
@@ -8569,6 +8608,7 @@
 				4CEFFAD32105DE4800DC5CFE /* ObjectSensor.swift in Sources */,
 				921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */,
 				4CB0F9F220A1739400D1BE2F /* SizeSensor.swift in Sources */,
+				F4A2AFB52110D48C00C53234 /* JoinFunction.swift in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
 				F48E945920D6955E007E782E /* DateSensor.swift in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
