@@ -50,14 +50,101 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         super.tearDown()
     }
     
+    func testScriptsCanEnterScripts(){
+        
+        let app = XCUIApplication()
+        
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        
+        XCTAssert(app.navigationBars["Scripts"].exists)
+    }
     
-    func testBackgroundsCanCopyAndDeleteSingelBackgroundViaEditMode(){
+    func testScriptsCanDeleteAllScriptsViaDelete(){
+        
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
+        
+        testScriptsCanEnterScripts()
+        
+        app.navigationBars.buttons["Delete"].tap()
+        toolbarsQuery.buttons["Select All"].tap()
+        toolbarsQuery.buttons["Delete"].tap()
+        
+        let yesButton = app.alerts["Delete these Bricks?"].buttons["Yes"]
+        yesButton.tap()
+        
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).exists == false)
+    }
+    
+    func testScriptsCanDeleteWhenProgramStartsViaTap(){
+        
+        let app = XCUIApplication()
+        
+        testScriptsCanEnterScripts()
+        
+        app.collectionViews.cells.element(boundBy: 0).tap()
+        app.buttons["Delete Script"].tap()
+        
+        let yesButton = app.alerts["Delete this Script?"].buttons["Yes"]
+        yesButton.tap()
+        
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).exists == false)
+    }
+    
+    //TODO: Tests for Bricks with Textfields in the middle
+
+    /*func testScriptCanAddScriptWhenProgramStarted(){
+        
+        let app = XCUIApplication()
+        
+        testScriptsCanEnterScripts()
+        
+        app.toolbars.buttons["Add"].tap()
+        app.collectionViews.cells.element(boundBy: 0).tap()
+        
+        app.collectionViews.cells.element(boundBy: 0).tap()
+        
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["When program started"].exists)
+    }*/
+    
+    func testBackgroundsCanEnterBackgrounds(){
+        
+        let app = XCUIApplication()
         
         app.tables.staticTexts["Continue"].tap()
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Backgrounds"].tap()
+        
+        XCTAssert(app.navigationBars["Backgrounds"].exists)
+        
+    }
+    
+    func testBackgroundCanAddBackgroundViaMediaLibrary(){
+        
+        let app = XCUIApplication()
+        let toolbarsQuery = app.toolbars
+        
+        testBackgroundsCanEnterBackgrounds()
+        
+        toolbarsQuery.buttons["Add"].tap()
+        app.buttons["Media Library"].tap()
+        
+        XCTAssert(app.navigationBars["Media Library"].exists)
+        
+        app.collectionViews.cells.element(boundBy: 0).tap()
+        
+        XCTAssert(app.tables.staticTexts["Cornfield"].exists)
+    }
+    
+    func testBackgroundsCanCopyAndDeleteSingelBackgroundViaEditMode(){
+        
+        let app = XCUIApplication()
+        let toolbarsQuery = app.toolbars
+        
+        testBackgroundsCanEnterBackgrounds()
         
         //copy background
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
@@ -81,9 +168,7 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
         
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
+        testBackgroundsCanEnterBackgrounds()
         
         //copy background
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
@@ -110,14 +195,10 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
     func testBackgroundsCanAbortDeleteAllBackgroundsViaEditMode() {
         
-        restoreDefaultProgram()
-        
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
         
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
+        testBackgroundsCanEnterBackgrounds()
         
         //copy background
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
@@ -149,9 +230,8 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         let tablesQuery = app.tables
         
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
+        testBackgroundsCanEnterBackgrounds()
+        
         tablesQuery.staticTexts["Background"].swipeLeft()
         
         XCTAssert(app.buttons["Delete"].exists)
@@ -162,14 +242,13 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.tables.staticTexts["Background"].exists == false)
     }
     
-    func testBackgroundsCanAbortDeleteSingleBackgroundBySwiping() {
+    func testBackgroundsCanAbortDeleteSingleBackgroundViaSwipe() {
         
         let app = XCUIApplication()
         let tablesQuery = app.tables
         
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
+        testBackgroundsCanEnterBackgrounds()
+        
         tablesQuery.staticTexts["Background"].swipeLeft()
         
         XCTAssert(app.buttons["Delete"].exists)
@@ -182,13 +261,8 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     
     func testBackgroundsCanShowAndHideDetailsForBackgroundViaEditMode(){
         
-        restoreDefaultProgram()
-        
         let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
-        app.tables.staticTexts["My first program"].tap()
-        app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Backgrounds"].tap()
+        testBackgroundsCanEnterBackgrounds()
         
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
         
@@ -206,35 +280,26 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.navigationBars["Backgrounds"].exists)
     }
     
-    func testScriptsCanEnterScripts(){
+    func testSoundsCanEnterSounds(){
         
         let app = XCUIApplication()
+        
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
         app.tables.staticTexts["Background"].tap()
-        app.tables.staticTexts["Scripts"].tap()
+        app.tables.staticTexts["Sounds"].tap()
         
-        XCTAssert(app.navigationBars["Scripts"].exists)
+        XCTAssert(app.navigationBars["Sounds"].exists)
     }
     
-    func testScriptsCanDeleteAllScriptsViaDelete(){
+    /*func testSoundsCanAddSoundViaMediaLibrary(){
         
         let app = XCUIApplication()
-        let toolbarsQuery = app.toolbars
+        testSoundsCanEnterSounds()
         
-        testScriptCanEnterScripts()
+        app.toolbars.buttons["Add"].tap()
+        app.buttons["Media Library"].tap()
         
-        app.navigationBars.buttons["Delete"].tap()
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Delete"].tap()
-        
-        let yesButton = app.alerts["Delete these Bricks?"].buttons["Yes"]
-        yesButton.tap()
-        
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).exists == false)
-    }
-    
-    /*func testScriptCanDeleteSingleScriptViaDelete(){
-        
+        XCTAssert(app.tables.staticTexts["Bird"].exists)
     }*/
 }

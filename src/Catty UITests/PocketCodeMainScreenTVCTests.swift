@@ -37,6 +37,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         
         dismissWelcomeScreenIfShown()
+        restoreDefaultProgram()
     }
     
     override func tearDown() {
@@ -58,8 +59,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testNew() {
-        
-        restoreDefaultProgram()
         
         let programName = "testProgram"
         
@@ -91,8 +90,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     
     func testNewInvalidNames() {
         
-        restoreDefaultProgram()
-        
         let progNamesErrorMsgMap = ["":"No input. Please enter at least 1 character.",
                                     "i am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooogi am tooooooo looooog": "The input is too long. Please enter maximal 250 character(s).",
                                     ".":"Only special characters are not allowed. Please enter at least 1 other character.",
@@ -119,8 +116,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     
     func testNewCanceled() {
         
-        restoreDefaultProgram()
-        
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()
         
@@ -132,8 +127,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testPrograms() {
-        
-        restoreDefaultProgram()
         
         let programNames = ["testProgram1", "testProgram2", "testProgram3"]
         
@@ -200,4 +193,10 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     }
     
     //TODO: Add tests for Settings
+    /*func testSettings(){
+        
+        let app = XCUIApplication()
+        app.navigationBars.buttons["Settings"].tap()
+        
+    }*/
 }

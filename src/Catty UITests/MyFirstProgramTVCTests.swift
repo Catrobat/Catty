@@ -22,8 +22,8 @@
 
 import XCTest
 
-class ProgramTVCTests: XCTestCase, UITestProtocol {
-
+class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
+    
     override func setUp() {
         super.setUp()
         
@@ -33,19 +33,17 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         
         dismissWelcomeScreenIfShown()
+        restoreDefaultProgram()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
+    
     func testCanDeleteMultipleObjectsViaEditMode() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -65,7 +63,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanRenameProgramViaEditMode(){
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -94,7 +91,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanAbortRenameProgramViaEditMode(){
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -122,7 +118,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanShowAndHideDetailsViaEditMode(){
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -144,7 +139,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanAbortAddDescriptionViaEditMode(){
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -153,13 +147,12 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         
         XCTAssert(app.buttons["Description"].exists)
         app.buttons["Description"].tap()
-    
+        
         app.navigationBars.buttons["Cancel"].tap()
         XCTAssert(app.navigationBars["My first program"].exists)
     }
     
     func testCanAbortDeleteSingleObjectViaSwipe() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -167,7 +160,7 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 3"].swipeLeft()
         XCTAssert(app.buttons["Delete"].exists)
-
+        
         app.buttons["Delete"].tap()
         let yesButton = app.alerts["Delete this object"].buttons["Cancel"]
         yesButton.tap()
@@ -175,7 +168,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanDeleteSingelObjectViaSwipe() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -189,9 +181,8 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         yesButton.tap()
         XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
     }
-
+    
     func testCanRenameSingleObjectViaSwipe() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -199,7 +190,7 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Mole 3"].swipeLeft()
         XCTAssert(app.buttons["More"].exists)
-
+        
         app.buttons["More"].tap()
         app.buttons["Rename"].tap()
         let alertQuery = app.alerts["Rename object"]
@@ -210,7 +201,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanAbortRenameSingleObjectViaSwipe() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -229,7 +219,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanCopySingleObjectViaSwipe() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -244,7 +233,6 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testCanAbortSwipe() {
-        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
