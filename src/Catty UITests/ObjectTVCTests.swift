@@ -47,51 +47,26 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         super.tearDown()
     }
     
-    func testScriptsViaBackground() {
-    
-        let app = XCUIApplication()
-        let testElement = "Scripts"
-        
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        
-        app.tables.staticTexts[testElement].tap()
-        XCTAssert(app.navigationBars[testElement].staticTexts[testElement].exists)
-    }
-    
-    func testScriptsViaObjectsOfMyFirstProgram() {
+    func testScriptsCanEnterScripts() {
     
         let app = XCUIApplication()
         let appTables = app.tables
-        
-        let testElement = "Scripts"
-        
         let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
         
         appTables.staticTexts["Continue"].tap()
+        
+        //check every mole for script
         for object in programObjects {
             appTables.staticTexts[object].tap()
-            appTables.staticTexts[testElement].tap()
-            XCTAssert(app.navigationBars[testElement].staticTexts[testElement].exists)
-            app.navigationBars[testElement].buttons[object].tap()
+            appTables.staticTexts["Scripts"].tap()
+            XCTAssert(app.navigationBars["Scripts"].buttons[object].exists)
+            app.navigationBars["Scripts"].buttons[object].tap()
             app.navigationBars[object].buttons["My first program"].tap()
-            XCTAssert(app.navigationBars["My first program"].staticTexts["My first program"].exists)
+            XCTAssert(app.navigationBars["My first program"].exists)
         }
     }
     
-    func testBackgroundsViaBackground() {
-        
-        let app = XCUIApplication()
-        let testElement = "Backgrounds"
-        
-        app.tables.staticTexts["Continue"].tap()
-        app.tables.staticTexts["Background"].tap()
-        
-        app.tables.staticTexts[testElement].tap()
-        XCTAssert(app.navigationBars["Looks"].staticTexts["Looks"].exists) // Should be Backgrounds as we came here via "Backgrounds"
-    }
-    
-    func testLooksViaObjectsOfMyFirstProgram() {
+    func testLooksCaneEnterLooks() {
         
         let app = XCUIApplication()
         let appTables = app.tables
@@ -101,13 +76,14 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
         
         appTables.staticTexts["Continue"].tap()
+        
         for object in programObjects {
             appTables.staticTexts[object].tap()
             appTables.staticTexts[testElement].tap()
-            XCTAssert(app.navigationBars[testElement].staticTexts[testElement].exists)
+            XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
             app.navigationBars[object].buttons["My first program"].tap()
-            XCTAssert(app.navigationBars["My first program"].staticTexts["My first program"].exists)
+            XCTAssert(app.navigationBars["My first program"].buttons["Pocket Code"].exists)
         }
     }
     
@@ -120,7 +96,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Background"].tap()
         
         app.tables.staticTexts[testElement].tap()
-        XCTAssert(app.navigationBars[testElement].staticTexts[testElement].exists)
+        XCTAssert(app.navigationBars[testElement].buttons["Background"].exists)
     }
     
     func testSoundsViaObjectsOfMyFirstProgram() {
@@ -136,10 +112,10 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         for object in programObjects {
             appTables.staticTexts[object].tap()
             appTables.staticTexts[testElement].tap()
-            XCTAssert(app.navigationBars[testElement].staticTexts[testElement].exists)
+            XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
             app.navigationBars[object].buttons["My first program"].tap()
-            XCTAssert(app.navigationBars["My first program"].staticTexts["My first program"].exists)
+            XCTAssert(app.navigationBars["My first program"].buttons["Pocket Code"].exists)
         }
     }
 }

@@ -22,8 +22,8 @@
 
 import XCTest
 
-class CatrobatTVCTests: XCTestCase, UITestProtocol {
-        
+class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
+    
     override func setUp() {
         super.setUp()
         
@@ -33,18 +33,20 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
-
+        
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         
         dismissWelcomeScreenIfShown()
     }
     
     override func tearDown() {
+        
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
     func testContinue() {
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         restoreDefaultProgram()
@@ -56,6 +58,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testNew() {
+        
         restoreDefaultProgram()
         
         let programName = "testProgram"
@@ -87,6 +90,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testNewInvalidNames() {
+        
         restoreDefaultProgram()
         
         let progNamesErrorMsgMap = ["":"No input. Please enter at least 1 character.",
@@ -106,7 +110,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
             alertQuery.textFields["Enter your program name here..."].tap()
             alertQuery.textFields["Enter your program name here..."].typeText(programName)
             alertQuery.buttons["OK"].tap()
-        
+            
             XCTAssert(app.alerts["Pocket Code"].exists)
             app.alerts["Pocket Code"].buttons["OK"].tap()
             alertQuery.buttons["Cancel"].tap()
@@ -114,6 +118,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testNewCanceled() {
+        
         restoreDefaultProgram()
         
         let app = XCUIApplication()
@@ -136,7 +141,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Programs"].tap()
         
         XCTAssert(app.navigationBars["Programs"].exists)
-
+        
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         
         let tablesQuery = app.tables
@@ -153,7 +158,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         }
         
         tablesQuery.staticTexts["Programs"].tap()
-    
+        
         for programName in programNames {
             XCTAssert(app.tables.staticTexts[programName].exists)
         }
@@ -182,4 +187,17 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
         XCTAssert(app.navigationBars["Login"].exists)
     }
+    
+    func testDebugMode(){
+        
+        let app = XCUIApplication()
+        app.navigationBars.buttons["Debug mode"].tap()
+        
+        let alertQuery = app.alerts["Debug mode"]
+        alertQuery.buttons["OK"].tap()
+        
+        XCTAssert(app.navigationBars["Pocket Code"].exists)
+    }
+    
+    //TODO: Add tests for Settings
 }

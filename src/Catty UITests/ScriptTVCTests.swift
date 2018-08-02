@@ -52,10 +52,6 @@ class ScriptTVCTests: XCTestCase, UITestProtocol {
     func testDeleteBrickWhereDuplicateExists() {
         let app = XCUIApplication()
         
-        /*let webView = app.webViews.element
-        let coordinate = webView.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10))
-        coordinate.tap()*/
-        
         app.tables.staticTexts["Continue"].tap()
         app.tables.staticTexts["Mole 1"].tap()
         app.tables.staticTexts["Scripts"].tap()

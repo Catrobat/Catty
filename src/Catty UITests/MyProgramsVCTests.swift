@@ -279,7 +279,6 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
     * test minimum + maximum number of characters for "create new program", "copy program", "rename program", "description"
     * test invalid characters for "create new program", "copy program", "rename program", "description"
     * test automatic slide back mechanism after user canceled action... (optional)
-    * test "show/hide details" (maybe not so crucial/important... => optional)
     */
 
 }

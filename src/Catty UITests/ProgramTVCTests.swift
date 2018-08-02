@@ -142,7 +142,22 @@ class ProgramTVCTests: XCTestCase, UITestProtocol {
         
         XCTAssert(app.navigationBars["My first program"].exists)
     }
-
+    
+    func testCanAbortAddDescriptionViaEditMode(){
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        
+        XCTAssert(app.buttons["Description"].exists)
+        app.buttons["Description"].tap()
+    
+        app.navigationBars.buttons["Cancel"].tap()
+        XCTAssert(app.navigationBars["My first program"].exists)
+    }
+    
     func testCanAbortDeleteSingleObjectViaSwipe() {
         restoreDefaultProgram()
         
