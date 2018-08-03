@@ -53,7 +53,6 @@
             CeilFunction(),
             MaxFunction(),
             MinFunction(),
-            //ElementFunction(),
             TrueFunction(),
             FalseFunction()
         ]
