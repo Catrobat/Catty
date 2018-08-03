@@ -29,6 +29,7 @@ enum FunctionParameter {
         case let .number(defaultValue):
             return defaultValue.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", defaultValue) : String(defaultValue)
         case let .string(defaultValue):
+            //return "'" + defaultValue + "'"
             return defaultValue
         }
     }

@@ -30,7 +30,7 @@ class LengthFunction: SingleParameterFunction {
     static let position = 210
     
     static func firstParameter() -> FunctionParameter {
-        return .string(defaultValue: "'hello world'")
+        return .string(defaultValue: "hello world")
     }
     
     func value(parameter: AnyObject?) -> Double {

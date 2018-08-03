@@ -48,11 +48,11 @@ class JoinFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.string(defaultValue: "'hello '"), type(of: function).firstParameter())
+        XCTAssertEqual(.string(defaultValue: "hello "), type(of: function).firstParameter())
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.string(defaultValue: "'world'"), type(of: function).secondParameter())
+        XCTAssertEqual(.string(defaultValue: "world"), type(of: function).secondParameter())
     }
     
     func testTag() {

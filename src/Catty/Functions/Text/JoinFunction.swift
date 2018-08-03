@@ -29,11 +29,11 @@ class JoinFunction: DoubleParameterStringFunction {
     static let position = 230
     
     static func firstParameter() -> FunctionParameter {
-        return .string(defaultValue: "'hello '")
+        return .string(defaultValue: "hello ")
     }
     
     static func secondParameter() -> FunctionParameter {
-        return .string(defaultValue: "'world'")
+        return .string(defaultValue: "world")
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {

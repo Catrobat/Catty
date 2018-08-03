@@ -40,7 +40,7 @@ protocol CBFunction { // TODO remove CB prefix
 }
 
 extension CBFunction {
-    static var parameterDelimiter: String { get { return "," } }
+    static var parameterDelimiter: String { get { return ", " } }
     static var bracketOpen: String { get { return "(" } }
     static var bracketClose: String { get { return ")" } }
     
