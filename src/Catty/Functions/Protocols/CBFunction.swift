@@ -58,26 +58,46 @@ extension CBFunction {
     }
     
     func nameWithParameters() -> String {
-        var name = type(of: self).name
+        var functionHeader = type(of: self).name
+        let functionName = type(of: self).name
         let params = self.parameters()
         var count = 0
         
         if params.count == 0 {
-            return name        // no parameter function
+            return functionHeader       // no parameter function
         }
         
-        name += type(of: self).bracketOpen
+        functionHeader += type(of: self).bracketOpen
         for param in params {
-            name += param.defaultValueString()
+            
+            // add apostrophe at the beginning of a string
+            if ((functionName == "join" && (count == 0 || count == 1)) ||
+                (functionName == "letter" && count == 1) ||
+                functionName == "length") {
+                
+                functionHeader += "'"
+            }
+            
+            // add the parameter value
+            functionHeader += param.defaultValueString()
             count += 1
             
+            // add apostrophe at the end of a string
+            if ((functionName == "join" && (count == 1 || count == 2)) ||
+                (functionName == "letter" && count == 2) ||
+                functionName == "length") {
+                
+                functionHeader += "'"
+            }
+            
+            // add delimiter between parameters
             if count < params.count && params.count > 1 {
-                name += type(of: self).parameterDelimiter
+                functionHeader += type(of: self).parameterDelimiter
             }
         }
         
-        name += type(of: self).bracketClose
-        return name
+        functionHeader += type(of: self).bracketClose
+        return functionHeader
     }
 }
 
