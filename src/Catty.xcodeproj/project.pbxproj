@@ -1092,6 +1092,12 @@
 		F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */; };
 		F48E946B20D6F869007E782E /* DateDaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946A20D6F869007E782E /* DateDaySensor.swift */; };
 		F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */; };
+		F4A2AFA42110CC7F00C53234 /* ElementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFA32110CC7F00C53234 /* ElementFunction.swift */; };
+		F4A2AFA62110CC8D00C53234 /* NumberOfItemsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFA52110CC8D00C53234 /* NumberOfItemsFunction.swift */; };
+		F4A2AFA82110CC9F00C53234 /* ContainsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFA72110CC9F00C53234 /* ContainsFunction.swift */; };
+		F4A2AFAB2110D11100C53234 /* ElementSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFAA2110D11100C53234 /* ElementSensorTest.swift */; };
+		F4A2AFAD2110D11F00C53234 /* ContainsSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFAC2110D11F00C53234 /* ContainsSensorTest.swift */; };
+		F4A2AFAF2110D12F00C53234 /* NumberOfElementsSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AFAE2110D12F00C53234 /* NumberOfElementsSensorTest.swift */; };
 		F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */; };
 		F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */; };
 		F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */; };
@@ -2762,6 +2768,12 @@
 		F48E946820D6F4BC007E782E /* DateMonthSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthSensorTest.swift; sourceTree = "<group>"; };
 		F48E946A20D6F869007E782E /* DateDaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensor.swift; sourceTree = "<group>"; };
 		F48E946C20D6F89F007E782E /* DateDaySensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaySensorTest.swift; sourceTree = "<group>"; };
+		F4A2AFA32110CC7F00C53234 /* ElementFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunction.swift; sourceTree = "<group>"; };
+		F4A2AFA52110CC8D00C53234 /* NumberOfItemsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfItemsFunction.swift; sourceTree = "<group>"; };
+		F4A2AFA72110CC9F00C53234 /* ContainsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainsFunction.swift; sourceTree = "<group>"; };
+		F4A2AFAA2110D11100C53234 /* ElementSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSensorTest.swift; sourceTree = "<group>"; };
+		F4A2AFAC2110D11F00C53234 /* ContainsSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainsSensorTest.swift; sourceTree = "<group>"; };
+		F4A2AFAE2110D12F00C53234 /* NumberOfElementsSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfElementsSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99620F09BAF00C067A0 /* AccelerationXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationXSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99A20F09BBB00C067A0 /* AccelerationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationYSensorTest.swift; sourceTree = "<group>"; };
 		F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationZSensorTest.swift; sourceTree = "<group>"; };
@@ -4050,6 +4062,7 @@
 		4CE67884210C4AE000D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F4A2AFA02110CC2900C53234 /* List */,
 				4CE67897210C6EBB00D90B5D /* Math */,
 				4CE67889210C4E0600D90B5D /* Enums */,
 				4CE67886210C4B0200D90B5D /* Protocols */,
@@ -4078,6 +4091,7 @@
 		4CE67890210C5CCC00D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F4A2AFA92110D0F200C53234 /* List */,
 				4CD9A458210DC5B40073D0A3 /* Math */,
 				4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */,
 			);
@@ -7222,6 +7236,26 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		F4A2AFA02110CC2900C53234 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2AFA32110CC7F00C53234 /* ElementFunction.swift */,
+				F4A2AFA52110CC8D00C53234 /* NumberOfItemsFunction.swift */,
+				F4A2AFA72110CC9F00C53234 /* ContainsFunction.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		F4A2AFA92110D0F200C53234 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F4A2AFAA2110D11100C53234 /* ElementSensorTest.swift */,
+				F4A2AFAC2110D11F00C53234 /* ContainsSensorTest.swift */,
+				F4A2AFAE2110D12F00C53234 /* NumberOfElementsSensorTest.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7867,6 +7901,7 @@
 				F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */,
 				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
+				F4A2AFAB2110D11100C53234 /* ElementSensorTest.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C6D14EC210B12D9006147BD /* SensorHandlerDeviceTests.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
@@ -7916,6 +7951,7 @@
 				F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */,
 				F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
+				F4A2AFAD2110D11F00C53234 /* ContainsSensorTest.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
@@ -7983,6 +8019,7 @@
 				F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */,
 				4CEB22671B95E47500B3BE2F /* SetYBrickTests.m in Sources */,
 				59D008F4208E4BF9000539E7 /* MotionManagerMock.swift in Sources */,
+				F4A2AFAF2110D12F00C53234 /* NumberOfElementsSensorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8053,6 +8090,7 @@
 				4CB2CFA11D7AD762009F3034 /* SetColorBrick.m in Sources */,
 				4C0F9F94204BD29600E71B2D /* ChooseCameraBrickCell.m in Sources */,
 				AAF6D9CE1BC0915800686849 /* FormulaElement+Optimization.swift in Sources */,
+				F4A2AFA62110CC8D00C53234 /* NumberOfItemsFunction.swift in Sources */,
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */,
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
@@ -8195,6 +8233,7 @@
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
+				F4A2AFA82110CC9F00C53234 /* ContainsFunction.swift in Sources */,
 				5947F6DE200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				59697DB0201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift in Sources */,
@@ -8428,6 +8467,7 @@
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				E438738A210623230062209F /* TimerWithBlock.swift in Sources */,
+				F4A2AFA42110CC7F00C53234 /* ElementFunction.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
 				592EF6E62094B3D700BD6000 /* SpriteObjectProtocol.swift in Sources */,
