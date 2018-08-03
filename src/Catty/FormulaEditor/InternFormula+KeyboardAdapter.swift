@@ -247,7 +247,7 @@ extension InternFormula {
                 tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER))
             }
         }
-    
+        
         tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE))
         return tokenList
     }
