@@ -135,6 +135,19 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When tapped"].exists)
     }
     
+    func testScriptsCanDeleteWaitBrick(){
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Continue"].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        
+        app.collectionViews.cells.element(boundBy: 4).staticTexts["Wait"].tap()
+        app.buttons["Delete Brick"].tap()
+        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["Show"].exists)
+        
+    }
+    
     func testLooksCanEnterSingleLook(){
         
         let app = XCUIApplication()

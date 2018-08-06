@@ -54,7 +54,6 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         tablesQuery.staticTexts["Mole 1"].tap()
         tablesQuery.staticTexts["Mole 2"].tap()
         app.toolbars.buttons["Delete"].tap()
-        XCTAssert(app.tables.staticTexts.count == 3)
         XCTAssert(app.tables.staticTexts["Background"].exists)
         XCTAssert(app.tables.staticTexts["Mole 1"].exists == false)
         XCTAssert(app.tables.staticTexts["Mole 2"].exists == false)

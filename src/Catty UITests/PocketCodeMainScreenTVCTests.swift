@@ -192,11 +192,57 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.navigationBars["Pocket Code"].exists)
     }
     
-    //TODO: Add tests for Settings
-    /*func testSettings(){
+    func testSettings(){
         
         let app = XCUIApplication()
+        app.navigationBars.buttons["Item"].tap()
+        
+        app.switches["Use face detection"].tap()
+        XCTAssert(app.staticTexts["Face detection camera"].exists)
+        XCTAssert(app.staticTexts["Back camera"].exists)
+        app.staticTexts["Face detection camera"].tap()
+        app.staticTexts["Front camera"].tap()
+        app.navigationBars.buttons["Settings"].tap()
+        XCTAssert(app.staticTexts["Front camera"].exists)
+        app.staticTexts["Face detection camera"].tap()
+        app.staticTexts["Back camera"].tap()
+        app.navigationBars.buttons["Settings"].tap()
+        XCTAssert(app.staticTexts["Back camera"].exists)
+        app.switches["Use face detection"].tap()
+        XCTAssert(app.navigationBars["Settings"].exists)
+        
+        app.switches["Download only with WiFi"].tap()
+        app.switches["Download only with WiFi"].tap()
+        
+        app.switches["Use Arduino bricks"].tap()
+        app.navigationBars.buttons["Pocket Code"].tap()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.tables.staticTexts["Mole 1"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        app.toolbars.buttons["Add"].tap()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["Set Arduino digital pin"].exists)
+        app.navigationBars.buttons["Cancel"].tap()
+        app.navigationBars.buttons["Mole 1"].tap()
+        app.navigationBars.buttons["My first program"].tap()
+        app.navigationBars.buttons["Programs"].tap()
+        app.navigationBars.buttons["Pocket Code"].tap()
+        app.navigationBars.buttons["Item"].tap()
+        app.switches["Use Arduino bricks"].tap()
+        XCTAssert(app.navigationBars["Settings"].exists)
+        
+        app.staticTexts["About Pocket Code"].tap()
+        XCTAssert(app.navigationBars["About Pocket Code"].exists)
         app.navigationBars.buttons["Settings"].tap()
         
-    }*/
+        app.staticTexts["Terms of Use and Services"].tap()
+        XCTAssert(app.navigationBars["Terms of Use and Services"].exists)
+        app.navigationBars.buttons["Settings"].tap()
+        XCTAssert(app.navigationBars["Settings"].exists)
+    }
 }
