@@ -151,7 +151,8 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         app.buttons["Copy Looks"].tap()
         app.tables.staticTexts["Background"].tap()
         toolbarsQuery.buttons["Copy"].tap()
-        XCTAssertEqual(app.tables.staticTexts.count, 2)
+        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
         
         //delete background
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
@@ -160,7 +161,7 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
         toolbarsQuery.buttons["Delete"].tap()
         
-        XCTAssertEqual(app.tables.staticTexts.count, 1)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
     }
     
     func testBackgroundsCanDeleteAllBackgroundsViaEditMode() {
@@ -175,14 +176,18 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         app.buttons["Copy Looks"].tap()
         app.tables.staticTexts["Background"].tap()
         toolbarsQuery.buttons["Copy"].tap()
-        XCTAssertEqual(app.tables.staticTexts.count, 2)
+        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
         
         //copy all backgrounds
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
         app.buttons["Copy Looks"].tap()
         toolbarsQuery.buttons["Select All"].tap()
         toolbarsQuery.buttons["Copy"].tap()
-        XCTAssertEqual(app.tables.staticTexts.count, 4)
+        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
+        XCTAssert(app.tables.staticTexts["Background (2)"].exists)
+        XCTAssert(app.tables.staticTexts["Background (3)"].exists)
         
         //delete all backgrounds
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
@@ -205,14 +210,18 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         app.buttons["Copy Looks"].tap()
         app.tables.staticTexts["Background"].tap()
         toolbarsQuery.buttons["Copy"].tap()
-        XCTAssertEqual(app.tables.staticTexts.count, 2)
+        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
         
         //copy all backgrounds
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
         app.buttons["Copy Looks"].tap()
         toolbarsQuery.buttons["Select All"].tap()
         toolbarsQuery.buttons["Copy"].tap()
-        XCTAssertEqual(app.tables.staticTexts.count, 4)
+        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
+        XCTAssert(app.tables.staticTexts["Background (2)"].exists)
+        XCTAssert(app.tables.staticTexts["Background (3)"].exists)
         
         //delete all backgrounds
         app.navigationBars["Backgrounds"].buttons["Edit"].tap()
@@ -221,7 +230,10 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         toolbarsQuery.buttons["Select All"].tap()
         app.navigationBars.buttons["Cancel"].tap()
         
-        XCTAssertEqual(app.tables.staticTexts.count, 4)
+        XCTAssert(app.tables.staticTexts["Background"].exists)
+        XCTAssert(app.tables.staticTexts["Background (1)"].exists)
+        XCTAssert(app.tables.staticTexts["Background (2)"].exists)
+        XCTAssert(app.tables.staticTexts["Background (3)"].exists)
     }
     
     
