@@ -197,20 +197,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.navigationBars.buttons["Item"].tap()
         
-        app.switches["Use face detection"].tap()
-        XCTAssert(app.staticTexts["Face detection camera"].exists)
-        XCTAssert(app.staticTexts["Back camera"].exists)
-        app.staticTexts["Face detection camera"].tap()
-        app.staticTexts["Front camera"].tap()
-        app.navigationBars.buttons["Settings"].tap()
-        XCTAssert(app.staticTexts["Front camera"].exists)
-        app.staticTexts["Face detection camera"].tap()
-        app.staticTexts["Back camera"].tap()
-        app.navigationBars.buttons["Settings"].tap()
-        XCTAssert(app.staticTexts["Back camera"].exists)
-        app.switches["Use face detection"].tap()
-        XCTAssert(app.navigationBars["Settings"].exists)
-        
         app.switches["Download only with WiFi"].tap()
         app.switches["Download only with WiFi"].tap()
         
