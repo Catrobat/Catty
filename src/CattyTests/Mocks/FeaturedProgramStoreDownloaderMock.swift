@@ -31,7 +31,6 @@ final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloader
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.collection, nil)
         }
-
     }
     
     func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
