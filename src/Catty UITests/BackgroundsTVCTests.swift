@@ -43,6 +43,7 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         dismissWelcomeScreenIfShown()
         
         restoreDefaultProgram()
+        
     }
     
     override func tearDown() {
