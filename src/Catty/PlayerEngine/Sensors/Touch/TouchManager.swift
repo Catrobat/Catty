@@ -97,7 +97,6 @@ class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate 
         }
         if gestureRecognizer.state == UIGestureRecognizerState.ended {
             isScreenTouched = false
-            touches.append(position)
         }
     }
 }

@@ -66,10 +66,10 @@ final class FingerYSensorTest: XCTestCase {
     func testConvertToStandardized() {
         self.touchManager.lastTouch = CGPoint(x: 200, y: 200) // a random point to mock the screen touching
         
-        XCTAssertEqual(-Double(0 - screenHeight / 2), self.sensor.convertToStandardized(rawValue: 0, for: spriteObject))
-        XCTAssertEqual(-Double(100 - screenHeight / 2), self.sensor.convertToStandardized(rawValue: 100, for: spriteObject))
-        XCTAssertEqual(-Double(333 - screenHeight / 2), self.sensor.convertToStandardized(rawValue: 333, for: spriteObject))
-        XCTAssertEqual(-Double(-333 - screenHeight / 2), self.sensor.convertToStandardized(rawValue: -333, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight/2), self.sensor.convertToStandardized(rawValue: 0, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight/2) - 100, self.sensor.convertToStandardized(rawValue: 100, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight/2) - 333, self.sensor.convertToStandardized(rawValue: 333, for: spriteObject))
+        XCTAssertEqual(Double(screenHeight/2) + 333, self.sensor.convertToStandardized(rawValue: -333, for: spriteObject))
     }
     
     func testTag() {

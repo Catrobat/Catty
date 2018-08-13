@@ -55,9 +55,8 @@ final class LastFingerIndexSensorTest: XCTestCase {
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(2, self.sensor.convertToStandardized(rawValue: 4, for: SpriteObject()))
-        XCTAssertEqual(10, self.sensor.convertToStandardized(rawValue: 20, for: SpriteObject()))
-        XCTAssertEqual(50, self.sensor.convertToStandardized(rawValue: 100, for: SpriteObject()))
+        XCTAssertEqual(2, self.sensor.convertToStandardized(rawValue: 2, for: SpriteObject()))
+        XCTAssertEqual(10, self.sensor.convertToStandardized(rawValue: 10, for: SpriteObject()))
     }
     
     func testTag() {
