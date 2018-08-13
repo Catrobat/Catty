@@ -28,18 +28,32 @@ protocol StoreProgramDownloaderProtocol {
 final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
     
     let session: URLSession
+    var programListOffset: Int
     
     init(session: URLSession = URLSession.shared) {
         self.session = session
+        self.programListOffset = 0
     }
     
     func fetchPrograms(forType: ProgramType, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
-
+        
         let indexURL: URL
         
         switch forType {
         case .featured:
             guard let url = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
+            indexURL = url
+            
+        case .mostDownloaded:
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)") else { return }
+            indexURL = url
+            
+        case .mostViewed:
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostViewed)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)") else { return }
+            indexURL = url
+            
+        case .mostRecent:
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)") else { return }
             indexURL = url
         }
         
@@ -47,9 +61,9 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             completion(nil, .timeout)
             timer.invalidate()
         }
-
+        
         self.session.dataTask(with: indexURL) { (data, response, error) in
-
+            
             guard timer.isValid else { return }
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: StoreProgramDownloaderError?)
             handleDataTaskCompletion = { (data, response, error) in
@@ -68,10 +82,10 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             DispatchQueue.main.async {
                 completion(result.items, result.error)
             }
-
-        }.resume()
+            
+            }.resume()
     }
-
+    
     func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void) {
         guard let indexURL = URL(string: "\(kConnectionHost)/\(kConnectionIDQuery)?id=\(program.projectId)") else { return }
         
@@ -93,7 +107,7 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             DispatchQueue.main.async {
                 completion(result.program, result.error)
             }
-        }.resume()
+            }.resume()
     }
 }
 
@@ -110,4 +124,8 @@ enum StoreProgramDownloaderError: Error {
 
 enum ProgramType {
     case featured
+    case mostDownloaded
+    case mostViewed
+    case mostRecent
 }
+
