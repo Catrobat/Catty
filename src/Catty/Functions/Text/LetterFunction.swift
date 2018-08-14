@@ -41,6 +41,9 @@ class LetterFunction: DoubleParameterStringFunction {
             let text = secondParameter as? String else {
                 return type(of: self).defaultValue
         }
+        if number - 1 < 0 || number - 1 >= text.count {
+            return type(of: self).defaultValue
+        }
         let index = text.index(text.startIndex, offsetBy: number - 1)
         return String(text[index])
     }

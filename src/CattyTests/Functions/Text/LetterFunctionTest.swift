@@ -51,6 +51,15 @@ class LetterFunctionTest: XCTestCase {
         number = 6
         index = text.index(text.startIndex, offsetBy: number - 1)
         XCTAssertEqual(String(text[index]), function.value(firstParameter:number as AnyObject, secondParameter:text as AnyObject))
+        
+        // outside of boundaries test
+        text = "hello"
+        number = 10
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter:number as AnyObject, secondParameter:text as AnyObject))
+        
+        text = "summer"
+        number = -2
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter:number as AnyObject, secondParameter:text as AnyObject))
     }
     
     func testFirstParameter() {

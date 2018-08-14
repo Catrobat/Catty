@@ -36,12 +36,51 @@ class JoinFunction: DoubleParameterStringFunction {
         return .string(defaultValue: "world")
     }
     
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
-        guard let firstText = firstParameter as? String,
-            let secondText = secondParameter as? String else {
-                return type(of: self).defaultValue
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {        
+        // both parameters are string
+        if let firstText = firstParameter as? String,
+            let secondText = secondParameter as? String {
+            return firstText + secondText
         }
-        return firstText + secondText
+        
+        // both parameters are numbers
+        if let firstNumber = firstParameter as? Double,
+            let secondNumber = secondParameter as? Double {
+            if floor(firstNumber) == firstNumber && floor(secondNumber) == secondNumber {
+                return String(Int(firstNumber)) + String(Int(secondNumber))
+            }
+            if floor(firstNumber) == firstNumber && floor(secondNumber) != secondNumber {
+                return String(Int(firstNumber)) + String(secondNumber)
+            }
+            if floor(firstNumber) != firstNumber && floor(secondNumber) == secondNumber {
+                return String(firstNumber) + String(Int(secondNumber))
+            }
+            if floor(firstNumber) != firstNumber && floor(secondNumber) != secondNumber {
+                return String(firstNumber) + String(secondNumber)
+            }
+        }
+        
+        // first parameter string, second parameter number
+        if let firstText = firstParameter as? String,
+            let secondNumber = secondParameter as? Double {
+            if floor(secondNumber) == secondNumber {
+                return firstText + String(Int(secondNumber))
+            } else {
+                return firstText + String(secondNumber)
+            }
+        }
+        
+        // first parameter number, second parameter string
+        if let firstNumber = firstParameter as? Double,
+            let secondText = secondParameter as? String {
+            if floor(firstNumber) == firstNumber {
+                return String(Int(firstNumber)) + secondText
+            } else {
+                return String(firstNumber) + secondText
+            }
+        }
+        
+        return type(of: self).defaultValue
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {
