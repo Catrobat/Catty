@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D6E3F39210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift */; };
 		2D6E3F3B210A0AB700FB8139 /* RecentProgramStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* RecentProgramStoreViewController.swift */; };
+		2D8E23C32123134B003E7EE4 /* RecentProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E23C22123134B003E7EE4 /* RecentProgramCell.swift */; };
 		2DE385082105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
 		2DE385092105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
@@ -1051,6 +1052,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentProgramStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* RecentProgramStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentProgramStoreViewController.swift; sourceTree = "<group>"; };
+		2D8E23C22123134B003E7EE4 /* RecentProgramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentProgramCell.swift; sourceTree = "<group>"; };
 		2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDownloaderMock.swift; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
@@ -5164,6 +5166,7 @@
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
 				92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */,
 				92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */,
+				2D8E23C22123134B003E7EE4 /* RecentProgramCell.swift */,
 				2D6E3F38210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift */,
 				2D6E3F3A210A0AB700FB8139 /* RecentProgramStoreViewController.swift */,
 				92FF313B1A24DEB300093DA7 /* SearchStoreViewController.h */,
@@ -7490,6 +7493,7 @@
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
 				AA74F00C1BC05B5F00D1E954 /* SetVolumeToBrick.m in Sources */,
 				CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */,
+				2D8E23C32123134B003E7EE4 /* RecentProgramCell.swift in Sources */,
 				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
 				AA74F0BD1BC05FCE00D1E954 /* PlaceAtBrickCell.m in Sources */,
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,

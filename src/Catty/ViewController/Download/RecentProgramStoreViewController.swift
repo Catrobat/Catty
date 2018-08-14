@@ -42,6 +42,8 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
     
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = RecentProgramStoreDataSource.dataSource()
+//        RecentProgramsTableView.register(RecentProgramCell.self, forCellReuseIdentifier: "ImageCell")
+
         super.init(coder: aDecoder)
     }
 

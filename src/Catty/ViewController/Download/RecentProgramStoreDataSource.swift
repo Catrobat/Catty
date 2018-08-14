@@ -60,22 +60,22 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
     
     func numberOfRows(in tableView: UITableView) -> Int {
-        return 5
+        return self.programs.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.programs.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
-        if let cell = cell as? FeaturedProgramsCell {
+        if let cell = cell as? RecentProgramCell {
             let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
-            cell.featuredImage = UIImage(data: data!)
+            cell.recentImage = UIImage(data: data!)
+            cell.recentTitle = programs[indexPath.row].projectName
             cell.program = programs[indexPath.row]
         }
-
         return cell
     }
 

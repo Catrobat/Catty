@@ -1683,7 +1683,7 @@
                                 <rect key="frame" x="0.0" y="93" width="375" height="525"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="pIz-Fj-Dju" customClass="DarkBlueGradientImageCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="pIz-Fj-Dju" customClass="RecentProgramCell" customModule="Pocket_Code" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIz-Fj-Dju" id="q6e-Z0-ush">
@@ -1721,6 +1721,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="iconImageView" destination="mCK-b7-9dt" id="QBZ-AN-2co"/>
+                                            <outlet property="recentProgramImage" destination="mCK-b7-9dt" id="L7I-FK-cBA"/>
+                                            <outlet property="recentProgramTitle" destination="8c6-q5-WBJ" id="jkU-mA-7op"/>
                                             <outlet property="titleLabel" destination="8c6-q5-WBJ" id="yIa-Ey-elj"/>
                                         </connections>
                                     </tableViewCell>
