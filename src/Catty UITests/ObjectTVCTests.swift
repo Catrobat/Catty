@@ -73,7 +73,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["Scripts"].tap()
         
         //delete the SetSizeTo brick
-        app.collectionViews.cells.element(boundBy: 1).tap()
+        app.collectionViews.cells.element(boundBy: 1).staticTexts["Set size to"].tap()
         app.buttons["Delete Brick"].tap()
         
         //Check if Forever brick is now where SetSizeTo was before
@@ -144,6 +144,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         
         app.collectionViews.cells.element(boundBy: 4).staticTexts["Wait"].tap()
         app.buttons["Delete Brick"].tap()
+        app.swipeDown()
         XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["Show"].exists)
         
     }

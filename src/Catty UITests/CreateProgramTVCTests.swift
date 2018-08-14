@@ -79,13 +79,24 @@ class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
         app.tables.staticTexts["testObject1"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
+        if(app.navigationBars["Frequently Used"].exists){
+            app.swipeLeft()
+        }
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When program started"].exists)
         app.toolbars.buttons["Add"].tap()
-        app.swipeLeft()
-        app.swipeLeft()
-        app.collectionViews.cells.element(boundBy: 7).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Show"].exists)
+        if(app.navigationBars["Frequently Used"].exists) {
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+        }
+        else {
+            app.swipeLeft()
+            app.swipeLeft()
+        }
+        
+        app.collectionViews.cells.element(boundBy: 0).tap()
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Switch to look"].exists)
         
         //Add Sound to Object
         app.navigationBars.buttons["testObject1"].tap()
@@ -101,13 +112,21 @@ class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars.buttons["Add"].tap()
+        if(app.navigationBars["Frequently Used"].exists){
+            app.swipeLeft()
+        }
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When program started"].exists)
         app.toolbars.buttons["Add"].tap()
+        if(app.navigationBars["Frequently Used"].exists){
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+        }
         app.swipeLeft()
         app.swipeLeft()
-        app.collectionViews.cells.element(boundBy: 6).tap()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Show"].exists)
+        app.collectionViews.cells.element(boundBy: 1).tap()
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
         
         //Add Sound to Background
         app.navigationBars.buttons["Background"].tap()

@@ -212,6 +212,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         app.swipeLeft()
         app.swipeLeft()
         app.swipeLeft()
+        app.swipeLeft()
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["Set Arduino digital pin"].exists)
         app.navigationBars.buttons["Cancel"].tap()
         app.navigationBars.buttons["Mole 1"].tap()

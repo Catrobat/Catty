@@ -228,6 +228,7 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         
         app.buttons["More"].tap()
         app.buttons["Copy"].tap()
+        app.swipeDown()
         XCTAssert(app.tables.staticTexts["Mole 1 (1)"].exists)
     }
     
