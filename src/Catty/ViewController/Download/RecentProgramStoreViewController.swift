@@ -22,7 +22,6 @@
 
 class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgramsDataSource {
     
-    
     @IBOutlet weak var RecentProgramsTableView: UITableView!
     @IBOutlet weak var RecentProgramsSegmentedControl: UISegmentedControl!
     
@@ -50,13 +49,31 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupTableView()
+         initSegmentedControl()
         shouldHideLoadingView = false
         dataSource.delegate = self as? SelectedRecentProgramsDataSource
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //fetchData()
+    func initSegmentedControl() {
+        RecentProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
+        RecentProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
+        RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
+        
+        //        if(IS_IPHONE4||IS_IPHONE5) { } FIXME: implement
+        let font = UIFont.systemFont(ofSize: 10)
+        RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+    }
+    
+    @IBAction func segmentTapped(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("first")
+        case 1:
+            print("second")
+        case 2:
+            print("third")
+        default:
+            break
+        }
     }
 }

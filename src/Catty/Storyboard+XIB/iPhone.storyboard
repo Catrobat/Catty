@@ -1675,6 +1675,9 @@
                                     <segment title="2"/>
                                     <segment title="3"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentTapped:" destination="NKa-LQ-PR2" eventType="valueChanged" id="POq-TJ-J5r"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fJr-Rh-VKf">
                                 <rect key="frame" x="0.0" y="93" width="375" height="525"/>
