@@ -32,6 +32,15 @@ enum FunctionParameter {
             return defaultValue
         }
     }
+    
+    func defaultApostropheForStringParameter() -> String {
+        switch self {
+        case .number(_):
+            return ""
+        case .string(_):
+            return "'"
+        }
+    }
 }
 
 extension FunctionParameter: Equatable {

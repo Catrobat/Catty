@@ -59,7 +59,6 @@ extension CBFunction {
     
     func nameWithParameters() -> String {
         var functionHeader = type(of: self).name
-        let functionName = type(of: self).name
         let params = self.parameters()
         var count = 0
         
@@ -70,25 +69,11 @@ extension CBFunction {
         functionHeader += type(of: self).bracketOpen
         for param in params {
             
-            // add apostrophe at the beginning of a string
-            if ((functionName == "join" && (count == 0 || count == 1)) ||
-                (functionName == "letter" && count == 1) ||
-                functionName == "length") {
-                
-                functionHeader += "'"
-            }
-            
             // add the parameter value
+            functionHeader += param.defaultApostropheForStringParameter()
             functionHeader += param.defaultValueString()
+            functionHeader += param.defaultApostropheForStringParameter()
             count += 1
-            
-            // add apostrophe at the end of a string
-            if ((functionName == "join" && (count == 1 || count == 2)) ||
-                (functionName == "letter" && count == 2) ||
-                functionName == "length") {
-                
-                functionHeader += "'"
-            }
             
             // add delimiter between parameters
             if count < params.count && params.count > 1 {
