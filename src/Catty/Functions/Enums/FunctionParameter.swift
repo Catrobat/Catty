@@ -33,12 +33,12 @@ enum FunctionParameter {
         }
     }
     
-    func defaultApostropheForStringParameter() -> String {
+    func defaultValueForFunctionSignature() -> String {
         switch self {
-        case .number(_):
-            return ""
-        case .string(_):
-            return "'"
+            case .number(_):
+                return defaultValueString()
+            case .string(_):
+                return "'" + defaultValueString() + "'"
         }
     }
 }

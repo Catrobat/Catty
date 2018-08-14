@@ -70,9 +70,7 @@ extension CBFunction {
         for param in params {
             
             // add the parameter value
-            functionHeader += param.defaultApostropheForStringParameter()
-            functionHeader += param.defaultValueString()
-            functionHeader += param.defaultApostropheForStringParameter()
+            functionHeader += param.defaultValueForFunctionSignature()
             count += 1
             
             // add delimiter between parameters
