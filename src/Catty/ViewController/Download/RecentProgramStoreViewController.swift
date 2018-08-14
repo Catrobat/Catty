@@ -49,7 +49,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
 
     override func viewDidLoad() {
         super.viewDidLoad()
-         initSegmentedControl()
+        initSegmentedControl()
         shouldHideLoadingView = false
         dataSource.delegate = self as? SelectedRecentProgramsDataSource
     }
@@ -58,6 +58,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
         RecentProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
         RecentProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
         RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
+        fetchData(type: .mostDownloaded)
         
         //        if(IS_IPHONE4||IS_IPHONE5) { } FIXME: implement
         let font = UIFont.systemFont(ofSize: 10)
@@ -68,12 +69,57 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
         switch sender.selectedSegmentIndex {
         case 0:
             print("first")
+            fetchData(type: .mostDownloaded)
         case 1:
             print("second")
+            fetchData(type: .mostViewed)
         case 2:
             print("third")
+            fetchData(type: .mostRecent)
         default:
             break
+        }
+    }
+    
+    func showLoadingView() {
+        if loadingView == nil {
+            loadingView = LoadingView()
+            view.addSubview(loadingView!)
+        }
+        loadingView!.show()
+        loadingIndicator(true)
+    }
+    
+    func hideLoadingView() {
+        if shouldHideLoadingView {
+            loadingView!.hide()
+            loadingIndicator(false)
+            self.shouldHideLoadingView = false
+        }
+    }
+    
+    func loadingIndicator(_ value: Bool) {
+        let app = UIApplication.shared
+        app.isNetworkActivityIndicatorVisible = value
+    }
+    
+    private func fetchData(type: ProgramType) {
+        if RecentProgramsTableView.visibleCells.isEmpty {
+            self.showLoadingView()
+            self.dataSource.fetchItems(type: type) { error in
+                if error != nil {
+                    self.shouldHideLoadingView = true
+                    self.hideLoadingView()
+                    return
+                }
+                self.RecentProgramsTableView.reloadData()
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
+            }
+        }
+        else {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
         }
     }
 }
