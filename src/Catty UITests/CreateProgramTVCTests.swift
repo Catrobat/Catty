@@ -22,7 +22,7 @@
 
 import XCTest
 
-class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
+class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
     
     override func setUp() {
         super.setUp()
@@ -42,8 +42,7 @@ class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testCanCreateProgram(){
+    func testCanCreateProgramWithDrawNewImage(){
         
         let app = XCUIApplication()
         
@@ -58,20 +57,28 @@ class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
         app.toolbars.buttons["Add"].tap()
         app.alerts["Add object"].textFields["Enter your object name here..."].typeText("testObject1")
         app.alerts["Add object"].buttons["OK"].tap()
-        app.buttons["Media Library"].tap()
-        XCTAssert(app.navigationBars["Media Library"].exists)
-        app.collectionViews.cells.element(boundBy: 1).tap()
-        XCTAssert(app.tables.staticTexts["testObject1"].exists)
-        
+        app.buttons["Draw new image"].tap()
+        app.tap()
+        app.navigationBars.buttons["Looks"].tap()
+        XCTAssert(app.alerts["Save to PocketCode"].exists)
+        app.alerts["Save to PocketCode"].buttons["Yes"].tap()
+        app.staticTexts["testObject1"].tap()
+        app.staticTexts["Looks"].tap()
+        XCTAssert(app.staticTexts["look"].exists)
+        app.navigationBars.buttons["testObject1"].tap()
+        app.navigationBars.buttons["testProgram"].tap()
+    
         //Add Background
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Backgrounds"].tap()
         app.toolbars.buttons["Add"].tap()
-        app.buttons["Media Library"].tap()
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.tables.staticTexts["Cornfield"].exists)
-        
-        //Back to testProgram
+        app.buttons["Draw new image"].tap()
+        app.tap()
+        app.navigationBars.buttons["Backgrounds"].tap()
+        XCTAssert(app.alerts["Save to PocketCode"].exists)
+        app.alerts["Save to PocketCode"].buttons["Yes"].tap()
+        app.alerts["Add image"].buttons["OK"].tap()
+        XCTAssert(app.staticTexts["look"].exists)
         app.navigationBars.buttons["Background"].tap()
         app.navigationBars.buttons["testProgram"].tap()
         
@@ -98,13 +105,14 @@ class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Switch to look"].exists)
         
+        /*
         //Add Sound to Object
         app.navigationBars.buttons["testObject1"].tap()
         app.tables.staticTexts["Sounds"].tap()
         app.toolbars.buttons["Add"].tap()
         app.buttons["Media Library"].tap()
         app.collectionViews.cells.element(boundBy: 0).staticTexts["Bird"].tap()
-        XCTAssert(app.tables.staticTexts["Bird"].exists)
+        XCTAssert(app.tables.staticTexts["Bird"].exists)*/
         
         //Add Script to Background
         app.navigationBars.buttons["testObject1"].tap()
@@ -128,13 +136,14 @@ class CreateProgramTVCtests: XCTestCase, UITestProtocol  {
         app.collectionViews.cells.element(boundBy: 1).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
         
+        /*
         //Add Sound to Background
         app.navigationBars.buttons["Background"].tap()
         app.tables.staticTexts["Sounds"].tap()
         app.toolbars.buttons["Add"].tap()
         app.buttons["Media Library"].tap()
         app.collectionViews.cells.element(boundBy: 0).staticTexts["Bird"].tap()
-        XCTAssert(app.tables.staticTexts["Bird"].exists)
+        XCTAssert(app.tables.staticTexts["Bird"].exists)*/
         
     }
 }
