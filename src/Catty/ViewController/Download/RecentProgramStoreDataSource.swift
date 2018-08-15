@@ -68,7 +68,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? RecentProgramCell {
             let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
@@ -77,6 +77,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
             cell.program = programs[indexPath.row]
         }
         return cell
+        
     }
 
     // MARK: - Delegate

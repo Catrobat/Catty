@@ -46,9 +46,29 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     override func viewDidLoad() {
         super.viewDidLoad()
         initSegmentedControl()
+        //setupTableView()
         shouldHideLoadingView = false
         dataSource.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    @IBAction func segmentTapped(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            fetchData(type: .mostDownloaded)
+        case 1:
+            fetchData(type: .mostViewed)
+        case 2:
+            fetchData(type: .mostRecent)
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Helper Methods
     
     func initSegmentedControl() {
         RecentProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
@@ -56,25 +76,35 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
         
-//        if(IS_IPHONE4||IS_IPHONE5) {
-//            let font = UIFont.systemFont(ofSize: 10)
-//            RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
-//        }
+        //        if(IS_IPHONE4||IS_IPHONE5) {
+        //            let font = UIFont.systemFont(ofSize: 10)
+        //            RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+        //        }
     }
     
-    @IBAction func segmentTapped(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            print("first")
-            fetchData(type: .mostDownloaded)
-        case 1:
-            print("second")
-            fetchData(type: .mostViewed)
-        case 2:
-            print("third")
-            fetchData(type: .mostRecent)
-        default:
-            break
+    private func setupTableView() {
+        self.RecentProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.RecentProgramsTableView.dataSource = self.dataSource
+        self.RecentProgramsTableView.delegate = self.dataSource
+    }
+    
+    private func fetchData(type: ProgramType) {
+        if RecentProgramsTableView.visibleCells.isEmpty {
+            self.showLoadingView()
+            self.dataSource.fetchItems(type: type) { error in
+                if error != nil {
+                    self.shouldHideLoadingView = true
+                    self.hideLoadingView()
+                    return
+                }
+                self.RecentProgramsTableView.reloadData()
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
+            }
+        }
+        else {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
         }
     }
     
@@ -99,26 +129,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
-    
-    private func fetchData(type: ProgramType) {
-        if RecentProgramsTableView.visibleCells.isEmpty {
-            self.showLoadingView()
-            self.dataSource.fetchItems(type: type) { error in
-                if error != nil {
-                    self.shouldHideLoadingView = true
-                    self.hideLoadingView()
-                    return
-                }
-                self.RecentProgramsTableView.reloadData()
-                self.shouldHideLoadingView = true
-                self.hideLoadingView()
-            }
-        }
-        else {
-            self.shouldHideLoadingView = true
-            self.hideLoadingView()
-        }
-    }
+
 }
 
 extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
