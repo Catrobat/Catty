@@ -20,15 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgramsDataSource {
+class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgramsDataSource {
     
     @IBOutlet weak var RecentProgramsTableView: UITableView!
     @IBOutlet weak var RecentProgramsSegmentedControl: UISegmentedControl!
     
-    func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
-        //
-    }
- 
     // MARK: - Properties
 
     private var dataSource: RecentProgramStoreDataSource
@@ -42,8 +38,6 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
     
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = RecentProgramStoreDataSource.dataSource()
-//        RecentProgramsTableView.register(RecentProgramCell.self, forCellReuseIdentifier: "ImageCell")
-
         super.init(coder: aDecoder)
     }
 
@@ -53,7 +47,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
         super.viewDidLoad()
         initSegmentedControl()
         shouldHideLoadingView = false
-        dataSource.delegate = self as? SelectedRecentProgramsDataSource
+        dataSource.delegate = self
     }
     
     func initSegmentedControl() {
@@ -62,9 +56,10 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
         RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
         
-        //        if(IS_IPHONE4||IS_IPHONE5) { } FIXME: implement
-        let font = UIFont.systemFont(ofSize: 10)
-        RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+//        if(IS_IPHONE4||IS_IPHONE5) {
+//            let font = UIFont.systemFont(ofSize: 10)
+//            RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+//        }
     }
     
     @IBAction func segmentTapped(_ sender: UISegmentedControl) {
@@ -123,5 +118,11 @@ class RecentProgramsStoreViewController: UIViewController, SelectedFeaturedProgr
             self.shouldHideLoadingView = true
             self.hideLoadingView()
         }
+    }
+}
+
+extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
+    func selectedCell(dataSource datasource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell) {
+        // segue
     }
 }

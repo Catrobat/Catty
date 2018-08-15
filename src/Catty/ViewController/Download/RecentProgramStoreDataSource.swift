@@ -21,11 +21,11 @@
  */
 
 protocol RecentProgramStoreDataSourceDelegate: class {
-    func featuredProgramsStoreTableDataSource(_ dataSource: RecentProgramStoreDataSource, didSelectCellWith item: StoreProgram)
+    func recentProgramsStoreTableDataSource(_ dataSource: RecentProgramStoreDataSource, didSelectCellWith item: StoreProgram)
 }
 
 protocol SelectedRecentProgramsDataSource: class {
-    func selectedCell(dataSource: RecentProgramStoreDataSource, didSelectCellWith cell: FeaturedProgramsCell)
+    func selectedCell(dataSource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell)
 }
 
 class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
@@ -51,7 +51,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     // MARK: - DataSource
 
     func fetchItems(type: ProgramType, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
-        self.downloader.fetchPrograms(forType: type) {items, error in   // FIXME: change to other type
+        self.downloader.fetchPrograms(forType: type) {items, error in
             guard let collection = items, error == nil else { completion(error); return }
             self.programs = collection.projects
             self.baseUrl = collection.information.baseUrl
@@ -68,7 +68,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kFeaturedCell, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath)
         if let cell = cell as? RecentProgramCell {
             let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].featuredImage!))
             let data = try? Data(contentsOf: imageUrl!)
@@ -82,7 +82,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     // MARK: - Delegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell: FeaturedProgramsCell? = tableView.cellForRow(at: indexPath) as? FeaturedProgramsCell
+        let cell: RecentProgramCell? = tableView.cellForRow(at: indexPath) as? RecentProgramCell
 
         self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
             guard let StoreProgram = program, error == nil else { return }
