@@ -38,6 +38,7 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
     func fetchPrograms(forType: ProgramType, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
         
         let indexURL: URL
+        let version: String = Util.catrobatLanguageVersion()
         
         switch forType {
         case .featured:
@@ -45,15 +46,15 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             indexURL = url
             
         case .mostDownloaded:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostDownloaded)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
             
         case .mostViewed:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostViewed)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionMostViewed)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
             
         case .mostRecent:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProgramsOffset)\(programListOffset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
         }
         
