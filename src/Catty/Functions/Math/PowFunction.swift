@@ -23,7 +23,7 @@
 class PowFunction: DoubleParameterFunction {
     static var tag = "POW"
     static var name = "power"
-    static var defaultValue = 8.0
+    static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 160

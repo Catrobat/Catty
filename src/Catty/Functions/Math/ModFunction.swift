@@ -23,7 +23,7 @@
 class ModFunction: DoubleParameterFunction {
     static var tag = "MOD"
     static var name = "mod"
-    static var defaultValue = 1.0
+    static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 110
@@ -40,6 +40,10 @@ class ModFunction: DoubleParameterFunction {
         guard let firstValue = firstParameter as? Double,
             let secondValue = secondParameter as? Double else {
                 return type(of: self).defaultValue
+        }
+        
+        if secondValue == 0.0 {
+            return type(of: self).defaultValue
         }
         
         let whole = Int(firstValue / secondValue)

@@ -24,7 +24,7 @@ class LogFunction: SingleParameterFunction {
     
     static var tag = "LOG"
     static var name = "log"
-    static var defaultValue = -Double.infinity
+    static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = true
     static let position = 50
