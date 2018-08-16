@@ -36,21 +36,6 @@ class LetterFunction: DoubleParameterStringFunction {
         return .string(defaultValue: "hello world")
     }
     
-    static func interpretParameter(parameter: AnyObject?) -> String {
-        if let text = parameter as? String {
-            return text
-        }
-        if let number = parameter as? Double {
-            if floor(number) == number {
-                if number > Double(Int.min) && number < Double(Int.max) {
-                    return String(format: "%.0f", number)
-                }
-            }
-            return String(number)
-        }
-        return defaultValue
-    }
-    
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         guard let number = firstParameter as? Int else {
                 return type(of: self).defaultValue

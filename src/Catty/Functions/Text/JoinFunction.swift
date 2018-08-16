@@ -36,21 +36,6 @@ class JoinFunction: DoubleParameterStringFunction {
         return .string(defaultValue: "world")
     }
     
-    static func interpretParameter(parameter: AnyObject?) -> String {
-        if let text = parameter as? String {
-            return text
-        }
-        if let number = parameter as? Double {
-            if floor(number) == number {
-                if number > Double(Int.min) && number < Double(Int.max) {
-                    return String(format: "%.0f", number)
-                }
-            }
-            return String(number)
-        }
-        return defaultValue
-    }
-    
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {        
         let firstText = type(of: self).interpretParameter(parameter: firstParameter)
         let secondText = type(of: self).interpretParameter(parameter: secondParameter)

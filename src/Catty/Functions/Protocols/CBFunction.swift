@@ -82,6 +82,23 @@ extension CBFunction {
         functionHeader += type(of: self).bracketClose
         return functionHeader
     }
+    
+    /* this function is used for the text functions and it allows to
+     add both string and numbers (or math equations) as parameters,
+     interpreting them as strings */
+    static func interpretParameter(parameter: AnyObject?) -> String {
+        if let text = parameter as? String {
+            return text
+        }
+        if let number = parameter as? Double {
+            if floor(number) == number {
+                return String(format: "%.0f", number)
+            }
+            return String(number)
+        }
+        return ""
+    }
+    
 }
 
 protocol DoubleFunction: CBFunction {
