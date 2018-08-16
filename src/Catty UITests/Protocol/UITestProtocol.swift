@@ -107,16 +107,12 @@ extension UITestProtocol {
         }
     }
     
-    func dismissWelcomeScreenIfShown() {
-        let app = XCUIApplication()
-        let elementsQuery = app.scrollViews.otherElements
-        if(!elementsQuery.staticTexts["Welcome to Pocket Code"].exists) {
-            return
-        }
-        if(!app.otherElements.containing(.navigationBar, identifier:"Pocket Code").children(matching: .other).element(boundBy: 1).children(matching: .button).matching(identifier: "Skip").element(boundBy: 1).exists) {
-            return
-        }
+    func dismissWelcomeScreenIfShown(){
         
-        app.otherElements.containing(.navigationBar, identifier:"Pocket Code").children(matching: .other).element(boundBy: 1).children(matching: .button).matching(identifier: "Skip").element(boundBy: 1).tap()
+        let app = XCUIApplication()
+        
+        if(app.buttons["Dismiss"].exists) {
+            app.buttons["Dismiss"].tap()
+        }
     }
 }
