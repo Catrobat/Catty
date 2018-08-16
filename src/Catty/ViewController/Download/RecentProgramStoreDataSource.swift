@@ -35,13 +35,48 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     weak var delegate: SelectedRecentProgramsDataSource?
 
     fileprivate let downloader: StoreProgramDownloaderProtocol
-    fileprivate var programs = [StoreProgram]()
     fileprivate var baseUrl = ""
+    fileprivate var programType: ProgramType
+    
+    fileprivate var mostDownloadedPrograms = [StoreProgram]()
+    fileprivate var mostViewedPrograms = [StoreProgram]()
+    fileprivate var mostRecentPrograms = [StoreProgram]()
+    
+    fileprivate var mostDownloadedOffset = 0
+    fileprivate var mostViewedOffset = 0
+    fileprivate var mostRecentOffset = 0
+    
+    fileprivate var programs: [StoreProgram] {
+        switch programType {
+        case .mostDownloaded:
+            return mostDownloadedPrograms
+        case .mostViewed:
+            return mostViewedPrograms
+        case .mostRecent:
+            return mostRecentPrograms
+        default:
+            return [StoreProgram]()
+        }
+    }
+    
+    fileprivate var programOffset: Int {
+        switch programType {
+        case .mostDownloaded:
+            return mostDownloadedOffset
+        case .mostViewed:
+            return mostViewedOffset
+        case .mostRecent:
+            return mostRecentOffset
+        default:
+            return 0
+        }
+    }
 
     // MARK: - Initializer
 
     fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
+        self.programType = .mostDownloaded
     }
 
     static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> RecentProgramStoreDataSource {
@@ -51,10 +86,32 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     // MARK: - DataSource
 
     func fetchItems(type: ProgramType, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
-        self.downloader.fetchPrograms(forType: type) {items, error in
-            guard let collection = items, error == nil else { completion(error); return }
-            self.programs = collection.projects
-            self.baseUrl = collection.information.baseUrl
+        
+        programType = type
+        
+        if (self.programOffset != programs.count) || (programs.count == 0) {
+            self.downloader.fetchPrograms(forType: type) {items, error in
+                guard let collection = items, error == nil else { completion(error); return }
+                
+                switch self.programType {
+                case .mostDownloaded:
+                    self.mostDownloadedPrograms.append(contentsOf: collection.projects)
+                    self.mostDownloadedOffset += collection.projects.count
+                case .mostViewed:
+                    self.mostViewedPrograms.append(contentsOf: collection.projects)
+                    self.mostViewedOffset += collection.projects.count
+                case .mostRecent:
+                    self.mostRecentPrograms.append(contentsOf: collection.projects)
+                    self.mostRecentOffset += collection.projects.count
+                default:
+                    return
+                }
+                
+                self.baseUrl = collection.information.baseUrl
+                completion(nil)
+            }
+        }
+        else {
             completion(nil)
         }
     }
