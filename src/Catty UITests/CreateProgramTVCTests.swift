@@ -105,15 +105,6 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Switch to look"].exists)
         
-        /*
-        //Add Sound to Object
-        app.navigationBars.buttons["testObject1"].tap()
-        app.tables.staticTexts["Sounds"].tap()
-        app.toolbars.buttons["Add"].tap()
-        app.buttons["Media Library"].tap()
-        app.collectionViews.cells.element(boundBy: 0).staticTexts["Bird"].tap()
-        XCTAssert(app.tables.staticTexts["Bird"].exists)*/
-        
         //Add Script to Background
         app.navigationBars.buttons["testObject1"].tap()
         app.navigationBars.buttons["testProgram"].tap()
@@ -135,15 +126,6 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         app.swipeLeft()
         app.collectionViews.cells.element(boundBy: 1).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
-        
-        /*
-        //Add Sound to Background
-        app.navigationBars.buttons["Background"].tap()
-        app.tables.staticTexts["Sounds"].tap()
-        app.toolbars.buttons["Add"].tap()
-        app.buttons["Media Library"].tap()
-        app.collectionViews.cells.element(boundBy: 0).staticTexts["Bird"].tap()
-        XCTAssert(app.tables.staticTexts["Bird"].exists)*/
         
     }
 }

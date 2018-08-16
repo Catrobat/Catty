@@ -123,23 +123,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
     }
     
-    func testBackgroundCanAddBackgroundViaMediaLibrary(){
-        
-        let app = XCUIApplication()
-        let toolbarsQuery = app.toolbars
-        
-        testBackgroundsCanEnterBackgrounds()
-        
-        toolbarsQuery.buttons["Add"].tap()
-        app.buttons["Media Library"].tap()
-        
-        XCTAssert(app.navigationBars["Media Library"].exists)
-        
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        
-        XCTAssert(app.tables.staticTexts["Cornfield"].exists)
-    }
-    
     func testBackgroundsCanCopyAndDeleteSingelBackgroundViaEditMode(){
         
         let app = XCUIApplication()
@@ -304,15 +287,4 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
         XCTAssert(app.navigationBars["Sounds"].exists)
     }
-    
-    /*func testSoundsCanAddSoundViaMediaLibrary(){
-        
-        let app = XCUIApplication()
-        testSoundsCanEnterSounds()
-        
-        app.toolbars.buttons["Add"].tap()
-        app.buttons["Media Library"].tap()
-        
-        XCTAssert(app.tables.staticTexts["Bird"].exists)
-    }*/
 }

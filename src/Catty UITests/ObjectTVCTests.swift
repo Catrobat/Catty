@@ -160,18 +160,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         XCTAssert(app.navigationBars["Looks"].exists)
     }
     
-    func testLooksCanAddLookViaMediaLibrary(){
-        
-        let app = XCUIApplication()
-        testLooksCanEnterSingleLook()
-        
-        app.toolbars.buttons["Add"].tap()
-        app.buttons["Media Library"].tap()
-        
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        XCTAssert(app.tables.staticTexts["alien"].exists)
-    }
-    
     func testLooksCanEnterLooksOfAllMoles() {
         
         let app = XCUIApplication()
