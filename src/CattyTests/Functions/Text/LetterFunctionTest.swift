@@ -37,11 +37,13 @@ class LetterFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 5 as AnyObject))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "hello" as AnyObject))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject))
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil))
     }
     
     func testValue() {
+        // string
         var text = "amazing"
         var number = 3
         var index = text.index(text.startIndex, offsetBy: number - 1)
@@ -51,6 +53,13 @@ class LetterFunctionTest: XCTestCase {
         number = 6
         index = text.index(text.startIndex, offsetBy: number - 1)
         XCTAssertEqual(String(text[index]), function.value(firstParameter:number as AnyObject, secondParameter:text as AnyObject))
+        
+        // numbers
+        let textNumber = 100
+        text = String(textNumber)
+        number = 2
+        index = text.index(text.startIndex, offsetBy: number - 1)
+        XCTAssertEqual(String(text[index]), function.value(firstParameter:number as AnyObject, secondParameter:textNumber as AnyObject))
         
         // outside of boundaries test
         text = "hello"

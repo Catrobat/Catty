@@ -36,23 +36,25 @@ class JoinFunction: DoubleParameterStringFunction {
         return .string(defaultValue: "world")
     }
     
-    func interpretParameter(parameter: AnyObject?) -> String? {
+    static func interpretParameter(parameter: AnyObject?) -> String {
         if let text = parameter as? String {
             return text
         }
         if let number = parameter as? Double {
             if floor(number) == number {
-                return String(Int(number))
+                if number > Double(Int.min) && number < Double(Int.max) {
+                    return String(format: "%.0f", number)
+                }
             }
             return String(number)
         }
-        return type(of: self).defaultValue
+        return defaultValue
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {        
-        let firstText = interpretParameter(parameter: firstParameter)
-        let secondText = interpretParameter(parameter: secondParameter)
-        return firstText! + secondText!
+        let firstText = type(of: self).interpretParameter(parameter: firstParameter)
+        let secondText = type(of: self).interpretParameter(parameter: secondParameter)
+        return firstText + secondText
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

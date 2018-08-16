@@ -37,7 +37,6 @@ class LengthFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 13 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
     }
     
@@ -50,6 +49,9 @@ class LengthFunctionTest: XCTestCase {
         
         text = ""
         XCTAssertEqual(Double(text.count), function.value(parameter:text as AnyObject), accuracy: 0.0001)
+        
+        let number = 100
+        XCTAssertEqual(Double(String(number).count), function.value(parameter:number as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {

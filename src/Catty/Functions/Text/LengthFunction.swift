@@ -33,8 +33,23 @@ class LengthFunction: SingleParameterFunction {
         return .string(defaultValue: "hello world")
     }
     
+    static func interpretParameter(parameter: AnyObject?) -> String {
+        if let text = parameter as? String {
+            return text
+        }
+        if let number = parameter as? Double {
+            if floor(number) == number {
+                if number > Double(Int.min) && number < Double(Int.max) {
+                    return String(format: "%.0f", number)
+                }
+            }
+            return String(number)
+        }
+        return ""
+    }
+    
     func value(parameter: AnyObject?) -> Double {
-        guard let text = parameter as? String else { return type(of: self).defaultValue }
+        let text = type(of: self).interpretParameter(parameter: parameter)
         return Double(text.count)
     }
     
