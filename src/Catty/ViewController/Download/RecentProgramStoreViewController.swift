@@ -46,7 +46,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     override func viewDidLoad() {
         super.viewDidLoad()
         initSegmentedControl()
-        //setupTableView()
+        setupTableView()
         shouldHideLoadingView = false
         dataSource.delegate = self
     }

@@ -70,7 +70,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? RecentProgramCell {
-            let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].featuredImage!))
+            let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
             let data = try? Data(contentsOf: imageUrl!)
             cell.recentImage = UIImage(data: data!)
             cell.recentTitle = programs[indexPath.row].projectName

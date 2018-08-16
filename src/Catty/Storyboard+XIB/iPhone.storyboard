@@ -1720,10 +1720,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="iconImageView" destination="mCK-b7-9dt" id="QBZ-AN-2co"/>
                                             <outlet property="recentProgramImage" destination="mCK-b7-9dt" id="L7I-FK-cBA"/>
                                             <outlet property="recentProgramTitle" destination="8c6-q5-WBJ" id="jkU-mA-7op"/>
-                                            <outlet property="titleLabel" destination="8c6-q5-WBJ" id="yIa-Ey-elj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
