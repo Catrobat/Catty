@@ -55,6 +55,15 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         super.viewWillAppear(animated)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kSegueToProgramDetail {
+            if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
+                let catrobatProject = programForSegue {
+                programDetailStoreViewController.project = mapStoreProgramToCatrobatProgram(program: catrobatProject)
+            }
+        }
+    }
+    
     @IBAction func segmentTapped(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -69,6 +78,27 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     // MARK: - Helper Methods
+    
+    private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
+        var programDictionary = [String: Any]()
+        programDictionary["ProjectName"] = program.projectName
+        programDictionary["Author"] =  program.author
+        programDictionary["Description"] = program.description ?? ""
+        programDictionary["DownloadUrl"] = program.downloadUrl ?? ""
+        programDictionary["Downloads"] = program.downloads ?? 0
+        programDictionary["ProjectId"] = program.projectId
+        programDictionary["ProjectName"] = program.projectName
+        programDictionary["ProjectUrl"] = program.projectUrl ?? ""
+        programDictionary["ScreenshotBig"] = program.screenshotBig ?? ""
+        programDictionary["ScreenshotSmall"] = program.screenshotSmall ?? ""
+        programDictionary["FeaturedImage"] = program.featuredImage ?? ""
+        programDictionary["Uploaded"] = program.uploaded ?? 0
+        programDictionary["Version"] = program.version ?? ""
+        programDictionary["Views"] = program.views ?? 0
+        programDictionary["FileSize"] = program.fileSize ?? 0.0
+        
+        return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
+    }
     
     func initSegmentedControl() {
         RecentProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
@@ -89,7 +119,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     private func fetchData(type: ProgramType) {
-        if RecentProgramsTableView.visibleCells.isEmpty {
+        //if RecentProgramsTableView.visibleCells.isEmpty {
             self.showLoadingView()
             self.dataSource.fetchItems(type: type) { error in
                 if error != nil {
@@ -101,11 +131,11 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
             }
-        }
-        else {
-            self.shouldHideLoadingView = true
-            self.hideLoadingView()
-        }
+       // }
+//        else {
+//            self.shouldHideLoadingView = true
+//            self.hideLoadingView()
+//        }
     }
     
     func showLoadingView() {
@@ -134,6 +164,11 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
 
 extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
     func selectedCell(dataSource datasource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell) {
-        // segue
+        if let program = cell.program {
+            self.showLoadingView()
+            programForSegue = program
+            performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+        }
+
     }
 }
