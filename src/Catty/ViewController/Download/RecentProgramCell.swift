@@ -49,5 +49,6 @@ class RecentProgramCell: UITableViewCell {
     func updateTable() {
         recentProgramImage?.image = recentImage
         recentProgramTitle?.text = recentTitle
+        recentProgramTitle.textColor = UIColor.globalTint()
     }
 }
