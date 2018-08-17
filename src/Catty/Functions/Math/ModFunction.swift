@@ -46,8 +46,7 @@ class ModFunction: DoubleParameterFunction {
             return type(of: self).defaultValue
         }
         
-        let whole = Int(firstValue / secondValue)
-        return firstValue - secondValue * Double(whole)
+        return firstValue.truncatingRemainder(dividingBy: secondValue)
         
     }
     
