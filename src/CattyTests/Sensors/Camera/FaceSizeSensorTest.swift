@@ -45,13 +45,25 @@ final class FaceSizeSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        //TO DO
+        self.cameraManagerMock.faceSize = CGRect(x: 0, y: 0, width: 10, height: 10)
+        XCTAssertEqual(Double((self.cameraManagerMock.faceSize?.width)!) * Double((self.cameraManagerMock.faceSize?.height)!), sensor.rawValue(), accuracy: 0.0001)
+        
+        self.cameraManagerMock.faceSize = CGRect(x: 0, y: 0, width: 50, height: 70)
+        XCTAssertEqual(Double((self.cameraManagerMock.faceSize?.width)!) * Double((self.cameraManagerMock.faceSize?.height)!), sensor.rawValue(), accuracy: 0.0001)
     }
     
     
     func testConvertToStandardized() {
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        let screenSize = Util.screenHeight() * Util.screenWidth() / 50
+        
+        // arm-length from the face
+        XCTAssertEqual(28, sensor.convertToStandardized(rawValue: Double(28 * screenSize)))
+        
+        // good-looking selfie length
+        XCTAssertEqual(48, sensor.convertToStandardized(rawValue: Double(48 * screenSize)))
+        
+        // awkward selfie level -  too close
+        XCTAssertEqual(80, sensor.convertToStandardized(rawValue: Double(80 * screenSize)))
     }
     
     func testTag() {

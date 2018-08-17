@@ -1069,6 +1069,7 @@
 		F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */; };
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
+		F42479A32125FD3A00895478 /* FacePositionXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42479A22125FD3A00895478 /* FacePositionXSensorTest.swift */; };
 		F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E1E9620FA21540078C89D /* SizeSensorTest.swift */; };
 		F430169221068590002B1444 /* ArduinoAnalogPinSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */; };
 		F4301694210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */; };
@@ -1086,6 +1087,8 @@
 		F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */; };
 		F4813971210BBE4C00B3A278 /* FaceSizeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4813970210BBE4C00B3A278 /* FaceSizeSensor.swift */; };
 		F4813973210BBE7500B3A278 /* FacePositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4813972210BBE7500B3A278 /* FacePositionXSensor.swift */; };
+		F483E30E2125F7C500F0D21C /* FaceSizeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F483E30D2125F7C500F0D21C /* FaceSizeSensorTest.swift */; };
+		F483E3102125F87700F0D21C /* FaceDetectionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F483E30F2125F87700F0D21C /* FaceDetectionManagerMock.swift */; };
 		F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4840B30210090BC0024EEAF /* RotationSensorTest.swift */; };
 		F4844BF420F7C9D5009522D6 /* LayerSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */; };
 		F48E945920D6955E007E782E /* DateSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E945820D6955E007E782E /* DateSensor.swift */; };
@@ -2743,6 +2746,7 @@
 		F4201CFC20D7A11F0030181B /* TimeMinuteSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMinuteSensorTest.swift; sourceTree = "<group>"; };
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
+		F42479A22125FD3A00895478 /* FacePositionXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionXSensorTest.swift; sourceTree = "<group>"; };
 		F42E1E9620FA21540078C89D /* SizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSensorTest.swift; sourceTree = "<group>"; };
 		F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinSensorTest.swift; sourceTree = "<group>"; };
 		F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinSensorTest.swift; sourceTree = "<group>"; };
@@ -2760,6 +2764,8 @@
 		F47F379D20ED340800F6724D /* InclinationYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclinationYSensorTest.swift; sourceTree = "<group>"; };
 		F4813970210BBE4C00B3A278 /* FaceSizeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceSizeSensor.swift; sourceTree = "<group>"; };
 		F4813972210BBE7500B3A278 /* FacePositionXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionXSensor.swift; sourceTree = "<group>"; };
+		F483E30D2125F7C500F0D21C /* FaceSizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceSizeSensorTest.swift; sourceTree = "<group>"; };
+		F483E30F2125F87700F0D21C /* FaceDetectionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerMock.swift; sourceTree = "<group>"; };
 		F4840B30210090BC0024EEAF /* RotationSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationSensorTest.swift; sourceTree = "<group>"; };
 		F4844BF320F7C9D5009522D6 /* LayerSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerSensorTest.swift; sourceTree = "<group>"; };
 		F48E945820D6955E007E782E /* DateSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSensor.swift; sourceTree = "<group>"; };
@@ -2772,9 +2778,6 @@
 		F4C5A99C20F09BC700C067A0 /* AccelerationZSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerationZSensorTest.swift; sourceTree = "<group>"; };
 		F4E1BC6920E4EE9D00EDD525 /* BrightnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessSensorTest.swift; sourceTree = "<group>"; };
 		F4E8F5A321086321006E0B32 /* FaceDetectedSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectedSensorTest.swift; sourceTree = "<group>"; };
-		F4EE948A2108D1C8001DDA1D /* FaceDetectionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerMock.swift; sourceTree = "<group>"; };
-		F4EE948E2108D529001DDA1D /* FaceSizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceSizeSensorTest.swift; sourceTree = "<group>"; };
-		F4EE94902108D53B001DDA1D /* FacePositionXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionXSensorTest.swift; sourceTree = "<group>"; };
 		F4EE94922108D54D001DDA1D /* FacePositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionYSensorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -4377,7 +4380,7 @@
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
 				F47DA839210731E700167FC4 /* AudioManagerMock.swift */,
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
-				F4EE948A2108D1C8001DDA1D /* FaceDetectionManagerMock.swift */,
+				F483E30F2125F87700F0D21C /* FaceDetectionManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -7203,8 +7206,8 @@
 			isa = PBXGroup;
 			children = (
 				F4E8F5A321086321006E0B32 /* FaceDetectedSensorTest.swift */,
-				F4EE948E2108D529001DDA1D /* FaceSizeSensorTest.swift */,
-				F4EE94902108D53B001DDA1D /* FacePositionXSensorTest.swift */,
+				F483E30D2125F7C500F0D21C /* FaceSizeSensorTest.swift */,
+				F42479A22125FD3A00895478 /* FacePositionXSensorTest.swift */,
 				F4EE94922108D54D001DDA1D /* FacePositionYSensorTest.swift */,
 			);
 			path = Camera;
@@ -7895,6 +7898,7 @@
 				F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
+				F483E3102125F87700F0D21C /* FaceDetectionManagerMock.swift in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
@@ -7926,6 +7930,7 @@
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
 				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
 				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
+				F42479A32125FD3A00895478 /* FacePositionXSensorTest.swift in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
@@ -7937,6 +7942,7 @@
 				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
 				E4AEC8A3210853130081A980 /* RecentProgramsStoreViewControllerTests.m in Sources */,
+				F483E30E2125F7C500F0D21C /* FaceSizeSensorTest.swift in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				F479930120F4987E0088EE27 /* LatitudeSensorTest.swift in Sources */,
 				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,

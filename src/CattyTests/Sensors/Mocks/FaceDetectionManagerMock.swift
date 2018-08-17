@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
     var isFaceDetected: Bool?
     var facePositionX: Double?
@@ -38,7 +40,5 @@ final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
     func available() -> Bool {
         return true
     }
-    
-    
     
 }

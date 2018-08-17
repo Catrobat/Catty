@@ -36,7 +36,7 @@ class FacePositionYSensor: DeviceSensor {
     }
     
     func rawValue() -> Double {
-        guard let positionY = self.getFaceDetectionManager()?.facePositionY else { return type(of: self).defaultRawValue }
+        guard let positionY = self.getFaceDetectionManager()?.facePositionX else { return type(of: self).defaultRawValue }
         if positionY > 0 {
             lastValue = positionY
         }

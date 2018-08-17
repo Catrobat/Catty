@@ -57,8 +57,17 @@ final class FacePositionXSensorTest: XCTestCase {
     
     
     func testConvertToStandardized() {
+        // the face is in the middle of the screen
+        XCTAssertEqual(-100, sensor.convertToStandardized(rawValue: 0))
+        
+        // mathematical middle
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
+        
+        // half right
+        XCTAssertEqual(-250, sensor.convertToStandardized(rawValue: 0))
+        
+        // half left
+        XCTAssertEqual(250, sensor.convertToStandardized(rawValue: 0))
     }
     
     func testTag() {
@@ -68,7 +77,7 @@ final class FacePositionXSensorTest: XCTestCase {
     func testRequiredResources() {
         XCTAssertEqual(ResourceType.faceDetection, type(of: sensor).requiredResource)
     }
-
+    
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseFaceDetectionSensors)
         XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
