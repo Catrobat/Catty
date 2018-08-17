@@ -52,6 +52,9 @@ class LengthFunctionTest: XCTestCase {
         
         let number = 100
         XCTAssertEqual(Double(String(number).count), function.value(parameter:number as AnyObject), accuracy: 0.0001)
+        
+        text = "inf"
+        XCTAssertEqual(Double(text.count), function.value(parameter:Double.infinity as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {

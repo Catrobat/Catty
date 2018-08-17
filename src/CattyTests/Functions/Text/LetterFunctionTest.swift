@@ -48,6 +48,7 @@ class LetterFunctionTest: XCTestCase {
         var number = 3
         var index = text.index(text.startIndex, offsetBy: number - 1)
         XCTAssertEqual(String(text[index]), function.value(firstParameter:number as AnyObject, secondParameter:text as AnyObject))
+        XCTAssertEqual(String(text[index]), function.value(firstParameter:2+1 as AnyObject, secondParameter:text as AnyObject))
         
         text = "great!"
         number = 6
@@ -60,6 +61,13 @@ class LetterFunctionTest: XCTestCase {
         number = 2
         index = text.index(text.startIndex, offsetBy: number - 1)
         XCTAssertEqual(String(text[index]), function.value(firstParameter:number as AnyObject, secondParameter:textNumber as AnyObject))
+        
+        // infinity
+        text = "inf"
+        number = 1
+        index = text.index(text.startIndex, offsetBy: number - 1)
+        XCTAssertEqual(String(text[index]), function.value(firstParameter:number as AnyObject, secondParameter:Double.infinity as AnyObject))
+        
         
         // outside of boundaries test
         text = "hello"

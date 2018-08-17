@@ -40,6 +40,7 @@ class LetterFunction: DoubleParameterStringFunction {
         guard let number = firstParameter as? Int else {
                 return type(of: self).defaultValue
         }
+        
         let text = type(of: self).interpretParameter(parameter: secondParameter)
         if number - 1 < 0 || number - 1 >= text.count {
             return type(of: self).defaultValue
