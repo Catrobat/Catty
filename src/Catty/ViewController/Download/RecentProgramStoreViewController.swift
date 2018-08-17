@@ -113,7 +113,10 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     private func setupTableView() {
-        self.RecentProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        RecentProgramsTableView.separatorStyle = .singleLine
+        self.RecentProgramsTableView.backgroundColor = UIColor.background()
+        RecentProgramsTableView.separatorColor = UIColor.globalTint()
+        RecentProgramsTableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 55.0 + 44, 0)
         self.RecentProgramsTableView.dataSource = self.dataSource
         self.RecentProgramsTableView.delegate = self.dataSource
     }
