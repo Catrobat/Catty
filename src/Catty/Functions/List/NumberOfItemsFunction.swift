@@ -43,7 +43,7 @@ class NumberOfItemsFunction: SingleParameterDoubleFunctionWithSpriteObject {
             return type(of: self).defaultValue
         }
         
-        let elements = list?.value as! [Double]
+        let elements = list?.value as! [AnyObject]
         return Double(elements.count)
     }
     

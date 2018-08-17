@@ -51,13 +51,21 @@ class NumberOfElementsFunctionTest: XCTestCase {
         userVariable.name = "mylist"
         userVariable.isList = true
     
+        // number list
         let myListNumber = [1, 5, -7]
         userVariable.value = myListNumber
+        program.variables.programListOfLists.add(userVariable)
         XCTAssertEqual(Double(myListNumber.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
         
+        // strin list
         let myListString = ["a", "b", "c", "d"]
         userVariable.value = myListString
         XCTAssertEqual(Double(myListString.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        
+        // empty list
+        let emptyList = [Double]()
+        userVariable.value = emptyList
+        XCTAssertEqual(Double(emptyList.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
     }
     
     func testParameter() {

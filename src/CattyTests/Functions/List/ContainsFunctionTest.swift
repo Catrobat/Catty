@@ -51,12 +51,21 @@ class ContainsFunctionTest: XCTestCase {
         let userVariable = UserVariable()
         userVariable.name = "mylist"
         userVariable.isList = true
-        let myList = [1, 5, -7]
-        userVariable.value = myList
+        
+        // number list
+        userVariable.value = [1, 5, -7]
+        program.variables.programListOfLists.add(userVariable)
         
         XCTAssertEqual(1.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: 1 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
         XCTAssertEqual(1.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: -7 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
         XCTAssertEqual(0.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: 10 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        
+        // string list
+        userVariable.value = ["a", "b", "c"]
+        
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: "a" as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: "b" as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: "x" as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
     }
     
     func testFirstParameter() {

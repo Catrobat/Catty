@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ElementFunction: DoubleParameterDoubleFunctionWithSpriteObject {
+class ElementFunction: DoubleParameterStringFunctionWithSpriteObject {
     static var tag = "ELEMENT"
     static var name = "element"
-    static var defaultValue = 0.0
+    static var defaultValue = ""
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static let position = 250
@@ -36,8 +36,8 @@ class ElementFunction: DoubleParameterDoubleFunctionWithSpriteObject {
         return .string(defaultValue: "*list name*")
     }
     
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> Double {
-        guard let elementNumber = firstParameter as? Double,
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> String {
+        guard let elementNumber = firstParameter as? Int,
             let listName = secondParameter as? String else {
                 return type(of: self).defaultValue
         }
@@ -47,8 +47,13 @@ class ElementFunction: DoubleParameterDoubleFunctionWithSpriteObject {
             return type(of: self).defaultValue
         }
         
-        let elements = list?.value as! [Double]
-        return elements[Int(elementNumber) - 1]
+        let elements = list?.value as! [AnyObject]
+        if elementNumber - 1 < 0 || elementNumber - 1 > elements.count {
+            return type(of: self).defaultValue
+        }
+        
+        let index = elements.index(elements.startIndex, offsetBy: elementNumber - 1)
+        return String(format:"%@", elements[index] as! CVarArg)
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {
