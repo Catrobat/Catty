@@ -32,7 +32,7 @@ protocol FunctionManagerProtocol {
     
     func name(tag: String) -> String?
     
-    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
+    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject
     
     func setup(for program: Program, and scene:CBScene)
     

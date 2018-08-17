@@ -37,8 +37,7 @@ class ContainsFunction: DoubleParameterDoubleFunctionWithSpriteObject {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> Double {
-        guard let listName = firstParameter as? String,
-            let element = secondParameter as? Double else {
+        guard let listName = firstParameter as? String else {
                 return type(of: self).defaultValue
         }
         
@@ -47,11 +46,23 @@ class ContainsFunction: DoubleParameterDoubleFunctionWithSpriteObject {
             return type(of: self).defaultValue
         }
         
-        let elements = list?.value as! [Double]
-        if elements.contains(element) {
+        guard let elements = list?.value as? [AnyObject] else {
+            return type(of: self).defaultValue
+        }
+        
+        if elements.contains(where: { self.parameterMatch(firstParam: $0, secondParam: secondParameter) }) {
             return 1.0
         }
         return 0.0
+    }
+    
+    private func parameterMatch(firstParam: AnyObject?, secondParam: AnyObject?) -> Bool {
+        // check if first is string and second is string -> compare
+        // check if first is number and second is number -> compare
+        // check if first is number and second is string -> compare
+        // check if first is string and second is number -> compare
+        
+        return false // TODO
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

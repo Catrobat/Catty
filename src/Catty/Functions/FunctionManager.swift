@@ -65,7 +65,7 @@
         return type(of: function).isIdempotent
     }
     
-    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
+    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
@@ -81,7 +81,7 @@
             value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterStringFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
-        }
+        } 
         
         return value
     }

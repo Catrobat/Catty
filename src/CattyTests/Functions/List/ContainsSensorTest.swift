@@ -46,8 +46,9 @@ class ContainsFunctionTest: XCTestCase {
     
     func testValue() {
         let listName = "elements"
-        self.spriteObjectMock.program.objectList = [1, 2, 3]
+        //self.spriteObjectMock.program.variables = [1, 2, 3] // add to user list
         // add list name
+        // USER FUNCTION LIST TEST :D
         
         XCTAssertEqual(1.0, function.value(firstParameter: listName as AnyObject, secondParameter: 2 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
         XCTAssertEqual(1.0, function.value(firstParameter: listName as AnyObject, secondParameter: 3 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)

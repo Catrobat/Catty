@@ -144,7 +144,7 @@
             id leftId = self.leftChild != nil ? [self.leftChild interpretRecursiveForSprite:sprite] : nil;
             id rightId = self.rightChild != nil ? [self.rightChild interpretRecursiveForSprite:sprite] : nil;
             
-            result = [[FunctionManager shared] valueWithTag:self.value firstParameter:leftId secondParameter:rightId];
+            result = [[FunctionManager shared] valueWithTag:self.value firstParameter:leftId secondParameter:rightId spriteObject:sprite];
             break;
             break;
         }
