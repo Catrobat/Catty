@@ -123,6 +123,10 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.programs.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return TableUtil.heightForImageCell()
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
