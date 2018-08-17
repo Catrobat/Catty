@@ -494,7 +494,6 @@
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
-		84887C7B1F55981F002FAC2D /* ScriptTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84887C7A1F55981F002FAC2D /* ScriptTVCTests.swift */; };
 		91FC87CEFA4B1008B213EA31 /* AlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */; };
 		91FC8B6AB3345BC25B02DF81 /* BaseAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8E53F7F6FEA7225F910E /* BaseAlertController.swift */; };
 		9200C2C91C808006002F5CA4 /* HideTextBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9200C2C61C808006002F5CA4 /* HideTextBrick.m */; };
@@ -744,7 +743,6 @@
 		99EBDBFF1D5621D3008D6860 /* ChangeColorByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDBFE1D5621D3008D6860 /* ChangeColorByNBrick.m */; };
 		99EBDC021D5623B3008D6860 /* ChangeColorByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */; };
 		99EBDC041D5624D2008D6860 /* ChangeColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EBDC031D5624D2008D6860 /* ChangeColorBrick+Instruction.swift */; };
-		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; };
@@ -909,11 +907,9 @@
 		AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F08E1BC05FCE00D1E954 /* BroadcastScriptCell.m */; };
 		AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */; };
 		AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */; };
-		AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */; };
 		AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E781A24C7D800093DA7 /* SensorHandler.m */; };
 		AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
 		AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
-		AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */; };
 		AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22831BC0CA0F0076F11E /* SetXBrick+Instruction.swift */; };
 		AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */; };
 		AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22871BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift */; };
@@ -966,6 +962,12 @@
 		BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BA1F165C6E00F06741 /* ReplaceItemInUserListBrick.m */; };
 		BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */; };
 		BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */; };
+		BC19327F21186504009DE43A /* CreateProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC19327E21186504009DE43A /* CreateProgramTVCTests.swift */; };
+		BC1EB70F2111905800D95C53 /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; };
+		BCFED6ED2111C04000BE57BF /* BackgroundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6EC2111C04000BE57BF /* BackgroundsTVCTests.swift */; };
+		BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTVCTests.swift */; };
+		BCFED6F62113188700BE57BF /* MyFirstProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F52113188700BE57BF /* MyFirstProgramTVCTests.swift */; };
+		BCFED6F8211318A100BE57BF /* ProgramsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFED6F7211318A100BE57BF /* ProgramsTVCTests.swift */; };
 		C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FC8B8C0B21945B560F7272 /* AlertController.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1746,7 +1748,6 @@
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		81D46EA21CC29E3000653EAB /* ShapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeButton.h; sourceTree = "<group>"; };
 		81D46EA31CC29E3000653EAB /* ShapeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeButton.m; sourceTree = "<group>"; };
-		84887C7A1F55981F002FAC2D /* ScriptTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptTVCTests.swift; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91FC8B4C21851D2F18232470 /* AlertControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilder.swift; sourceTree = "<group>"; };
 		91FC8B8C0B21945B560F7272 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -2248,9 +2249,7 @@
 		99EBDC001D5623B3008D6860 /* ChangeColorByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeColorByNBrickCell.h; sourceTree = "<group>"; };
 		99EBDC011D5623B3008D6860 /* ChangeColorByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeColorByNBrickCell.m; sourceTree = "<group>"; };
 		99EBDC031D5624D2008D6860 /* ChangeColorBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeColorBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChangeColorBrick+Instruction.swift"; sourceTree = "<group>"; };
-		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
-		A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
@@ -2564,9 +2563,7 @@
 		AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScriptCell.m; sourceTree = "<group>"; };
 		AA74F0911BC05FCE00D1E954 /* WhenScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScriptCell.h; sourceTree = "<group>"; };
 		AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScriptCell.m; sourceTree = "<group>"; };
-		AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTVCTests.swift; sourceTree = "<group>"; };
 		AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProgramsVCTests.swift; sourceTree = "<group>"; };
 		AAADA0081B9B29D500E0CA9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAAF22831BC0CA0F0076F11E /* SetXBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetXBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/SetXBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAAF22851BC0CA590076F11E /* SetYBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetYBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/SetYBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2631,6 +2628,11 @@
 		BAEE49BC1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ReplaceItemInUserListBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ReplaceItemInUserListBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ReplaceItemInUserListBrick+CBXMLHandler.m"; path = "Catty/Parser&Serialializer/New Parser & Serializer/XMLHandler/Bricks/Data/ReplaceItemInUserListBrick+CBXMLHandler.m"; sourceTree = SOURCE_ROOT; };
 		BAEE49BF1F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ReplaceItemInUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/ReplaceItemInUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BC19327E21186504009DE43A /* CreateProgramTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramTVCTests.swift; sourceTree = "<group>"; };
+		BCFED6EC2111C04000BE57BF /* BackgroundsTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundsTVCTests.swift; sourceTree = "<group>"; };
+		BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCodeMainScreenTVCTests.swift; sourceTree = "<group>"; };
+		BCFED6F52113188700BE57BF /* MyFirstProgramTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFirstProgramTVCTests.swift; sourceTree = "<group>"; };
+		BCFED6F7211318A100BE57BF /* ProgramsTVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramsTVCTests.swift; sourceTree = "<group>"; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
 		CA2D44401B122E8500A3B53D /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		CA2D44421B12305400A3B53D /* Swell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Swell.plist; sourceTree = "<group>"; };
@@ -6503,13 +6505,13 @@
 			isa = PBXGroup;
 			children = (
 				4CB1FB721BC2D74F0000A2FE /* Protocol */,
-				AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */,
-				AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */,
-				A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */,
-				84887C7A1F55981F002FAC2D /* ScriptTVCTests.swift */,
+				BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTVCTests.swift */,
+				BCFED6F7211318A100BE57BF /* ProgramsTVCTests.swift */,
+				BCFED6F52113188700BE57BF /* MyFirstProgramTVCTests.swift */,
+				BCFED6EC2111C04000BE57BF /* BackgroundsTVCTests.swift */,
 				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
-				A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
+				BC19327E21186504009DE43A /* CreateProgramTVCTests.swift */,
 			);
 			path = "Catty UITests";
 			sourceTree = "<group>";
@@ -7840,11 +7842,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */,
-				A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */,
-				84887C7B1F55981F002FAC2D /* ScriptTVCTests.swift in Sources */,
+				BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTVCTests.swift in Sources */,
+				BC1EB70F2111905800D95C53 /* ObjectTVCTests.swift in Sources */,
+				BCFED6F62113188700BE57BF /* MyFirstProgramTVCTests.swift in Sources */,
+				BCFED6F8211318A100BE57BF /* ProgramsTVCTests.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
-				AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */,
+				BC19327F21186504009DE43A /* CreateProgramTVCTests.swift in Sources */,
+				BCFED6ED2111C04000BE57BF /* BackgroundsTVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

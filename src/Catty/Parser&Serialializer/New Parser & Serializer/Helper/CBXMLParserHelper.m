@@ -153,7 +153,6 @@
     }
     return nil;
 }
-
 + (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName
 {
     for (Look *look in lookList) {
