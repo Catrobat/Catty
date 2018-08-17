@@ -29,8 +29,9 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     }
     
     override func setUp() {
+        XCUIApplication().terminate()
         super.setUp()
-        
+
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -49,6 +50,7 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        XCUIApplication().terminate()
     }
     
     func testScriptsCanEnterScripts(){
@@ -94,22 +96,6 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).exists == false)
     }
-    
-    //TODO: Tests for Bricks with Textfields in the middle
-
-    /*func testScriptCanAddScriptWhenProgramStarted(){
-        
-        let app = XCUIApplication()
-        
-        testScriptsCanEnterScripts()
-        
-        app.toolbars.buttons["Add"].tap()
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        
-        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["When program started"].exists)
-    }*/
     
     func testBackgroundsCanEnterBackgrounds(){
         
