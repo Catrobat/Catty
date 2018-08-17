@@ -79,6 +79,19 @@ extension CBFunction {
         name += type(of: self).bracketClose
         return name
     }
+    
+    static func interpretParameter(parameter: AnyObject?) -> String {
+        if let text = parameter as? String {
+            return text
+        }
+        if let number = parameter as? Double {
+            if floor(number) == number {
+                return String(format: "%.0f", number)
+            }
+            return String(number)
+        }
+        return ""
+    }
 }
 
 protocol DoubleFunction: CBFunction {

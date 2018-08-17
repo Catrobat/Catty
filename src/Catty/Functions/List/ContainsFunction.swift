@@ -57,12 +57,9 @@ class ContainsFunction: DoubleParameterDoubleFunctionWithSpriteObject {
     }
     
     private func parameterMatch(firstParam: AnyObject?, secondParam: AnyObject?) -> Bool {
-        // check if first is string and second is string -> compare
-        // check if first is number and second is number -> compare
-        // check if first is number and second is string -> compare
-        // check if first is string and second is number -> compare
-        
-        return false // TODO
+        let first = type(of: self).interpretParameter(parameter: firstParam)
+        let second = type(of: self).interpretParameter(parameter: secondParam)
+        return first == second
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

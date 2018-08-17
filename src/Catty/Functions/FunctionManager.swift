@@ -81,7 +81,19 @@
             value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterStringFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
-        } 
+        } else if let function = function as? ZeroParameterDoubleFunctionWithSpriteObject {
+            value = function.value(spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? ZeroParameterStringFunctionWithSpriteObject {
+            value = function.value(spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? SingleParameterDoubleFunctionWithSpriteObject {
+            value = function.value(parameter: firstParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? SingleParameterStringFunctionWithSpriteObject {
+            value = function.value(parameter: firstParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? DoubleParameterDoubleFunctionWithSpriteObject {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? DoubleParameterStringFunctionWithSpriteObject {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
+        }
         
         return value
     }

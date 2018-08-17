@@ -36,6 +36,7 @@ class ContainsFunctionTest: XCTestCase {
     
     override func tearDown() {
         self.function = nil
+        self.spriteObjectMock = nil
     }
     
     func testDefaultValue() {
@@ -45,14 +46,17 @@ class ContainsFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        let listName = "elements"
-        //self.spriteObjectMock.program.variables = [1, 2, 3] // add to user list
-        // add list name
-        // USER FUNCTION LIST TEST :D
+        let program = Program()
+        spriteObjectMock.program = program
+        let userVariable = UserVariable()
+        userVariable.name = "mylist"
+        userVariable.isList = true
+        let myList = [1, 5, -7]
+        userVariable.value = myList
         
-        XCTAssertEqual(1.0, function.value(firstParameter: listName as AnyObject, secondParameter: 2 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
-        XCTAssertEqual(1.0, function.value(firstParameter: listName as AnyObject, secondParameter: 3 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
-        XCTAssertEqual(0.0, function.value(firstParameter: listName as AnyObject, secondParameter: 10 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: 1 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        XCTAssertEqual(1.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: -7 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        XCTAssertEqual(0.0, function.value(firstParameter: userVariable.name as AnyObject, secondParameter: 10 as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
     }
     
     func testFirstParameter() {

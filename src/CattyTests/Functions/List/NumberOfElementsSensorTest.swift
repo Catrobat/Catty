@@ -27,13 +27,16 @@ import XCTest
 class NumberOfElementsFunctionTest: XCTestCase {
     
     var function: NumberOfItemsFunction!
+    var spriteObjectMock: SpriteObjectMock!
     
     override func setUp() {
         self.function = NumberOfItemsFunction()
+        self.spriteObjectMock = SpriteObjectMock()
     }
     
     override func tearDown() {
         self.function = nil
+        self.spriteObjectMock = nil
     }
     
     func testDefaultValue() {
@@ -42,6 +45,19 @@ class NumberOfElementsFunctionTest: XCTestCase {
     }
     
     func testValue() {
+        let program = Program()
+        spriteObjectMock.program = program
+        let userVariable = UserVariable()
+        userVariable.name = "mylist"
+        userVariable.isList = true
+    
+        let myListNumber = [1, 5, -7]
+        userVariable.value = myListNumber
+        XCTAssertEqual(Double(myListNumber.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        
+        let myListString = ["a", "b", "c", "d"]
+        userVariable.value = myListString
+        XCTAssertEqual(Double(myListString.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
     }
     
     func testParameter() {
