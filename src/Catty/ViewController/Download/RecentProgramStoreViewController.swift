@@ -113,7 +113,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     private func setupTableView() {
-        RecentProgramsTableView.separatorStyle = .singleLine
+        self.RecentProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.RecentProgramsTableView.backgroundColor = UIColor.background()
         RecentProgramsTableView.separatorColor = UIColor.globalTint()
         RecentProgramsTableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 55.0 + 44, 0)
@@ -128,11 +128,13 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 if error != nil {
                     self.shouldHideLoadingView = true
                     self.hideLoadingView()
+                    self.RecentProgramsTableView.separatorStyle = .singleLine
                     return
                 }
                 self.RecentProgramsTableView.reloadData()
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
+                self.RecentProgramsTableView.separatorStyle = .singleLine
             }
        // }
 //        else {
