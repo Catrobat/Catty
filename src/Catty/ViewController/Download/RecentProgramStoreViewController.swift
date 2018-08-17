@@ -51,10 +51,6 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         dataSource.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kSegueToProgramDetail {
             if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
@@ -116,13 +112,12 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         self.RecentProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.RecentProgramsTableView.backgroundColor = UIColor.background()
         RecentProgramsTableView.separatorColor = UIColor.globalTint()
-        RecentProgramsTableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 55.0 + 44, 0)
         self.RecentProgramsTableView.dataSource = self.dataSource
         self.RecentProgramsTableView.delegate = self.dataSource
     }
     
     private func fetchData(type: ProgramType) {
-        //if RecentProgramsTableView.visibleCells.isEmpty {
+       // if loadingViewFlag == false {
             self.showLoadingView()
             self.dataSource.fetchItems(type: type) { error in
                 if error != nil {
@@ -136,10 +131,11 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 self.hideLoadingView()
                 self.RecentProgramsTableView.separatorStyle = .singleLine
             }
-       // }
+      //  }
 //        else {
 //            self.shouldHideLoadingView = true
 //            self.hideLoadingView()
+//            loadingViewFlag = false
 //        }
     }
     
@@ -174,6 +170,5 @@ extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
             programForSegue = program
             performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
         }
-
     }
 }
