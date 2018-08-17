@@ -192,10 +192,8 @@ class CBSpriteNode: SKSpriteNode {
         self.catrobatPositionY = PositionYSensor.defaultRawValue
         
         self.zRotation = CGFloat(RotationSensor.defaultRawValue)
-        //self.xScale = CGFloat(SizeSensor.defaultRawValue)
-        //self.yScale = CGFloat(SizeSensor.defaultRawValue)
-        self.xScale = 1.0
-        self.yScale = 1.0
+        self.xScale = CGFloat(SizeSensor.defaultRawValue)
+        self.yScale = CGFloat(SizeSensor.defaultRawValue)
         
         self.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
         
