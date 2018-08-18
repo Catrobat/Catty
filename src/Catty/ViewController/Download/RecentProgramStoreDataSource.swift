@@ -140,6 +140,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     // MARK: - Delegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let cell: RecentProgramCell? = tableView.cellForRow(at: indexPath) as? RecentProgramCell
 
         self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
