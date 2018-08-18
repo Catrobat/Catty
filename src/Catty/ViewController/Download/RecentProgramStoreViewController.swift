@@ -21,7 +21,7 @@
  */
 
 class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgramsDataSource {
-    
+
     @IBOutlet weak var RecentProgramsTableView: UITableView!
     @IBOutlet weak var RecentProgramsSegmentedControl: UISegmentedControl!
     
@@ -184,5 +184,11 @@ extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
             programForSegue = program
             performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
         }
+    }
+}
+
+extension RecentProgramsStoreViewController {
+    func scrollViewHandler(dataSource: RecentProgramStoreDataSource) {
+        RecentProgramsTableView.reloadData()
     }
 }

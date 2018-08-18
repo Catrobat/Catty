@@ -26,6 +26,7 @@ protocol RecentProgramStoreDataSourceDelegate: class {
 
 protocol SelectedRecentProgramsDataSource: class {
     func selectedCell(dataSource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell)
+    func scrollViewHandler(dataSource: RecentProgramStoreDataSource)
 }
 
 class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
@@ -116,6 +117,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         }
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.programs.count
     }
@@ -148,6 +150,10 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
             cell?.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
         }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.delegate?.scrollViewHandler(dataSource: self)
     }
 }
 
