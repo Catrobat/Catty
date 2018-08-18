@@ -48,32 +48,39 @@ class ElementFunctionTest: XCTestCase {
     func testValue() {
         let program = Program()
         spriteObjectMock.program = program
-        let userVariable = UserVariable()
-        userVariable.name = "mylist"
-        userVariable.isList = true
         
         // number list
-        let myListNumber = [1, 5, -7]
-        userVariable.value = myListNumber
-        program.variables.programListOfLists.add(userVariable)
+        let userVariableNumber = UserVariable()
+        userVariableNumber.name = "myListNumber"
+        userVariableNumber.isList = true
+        program.variables.programListOfLists.add(userVariableNumber)
+        program.variables.add(toUserList: userVariableNumber, value: 1)
+        program.variables.add(toUserList: userVariableNumber, value: 5)
+        program.variables.add(toUserList: userVariableNumber, value: -7)
         
-        XCTAssertEqual(String(myListNumber[1]), function.value(firstParameter: 2 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
-        XCTAssertEqual(String(myListNumber[2]), function.value(firstParameter: 3 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual(String(5), function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableNumber.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual(String(-7), function.value(firstParameter: 3 as AnyObject, secondParameter: userVariableNumber.name as AnyObject, spriteObject: spriteObjectMock))
         
         // out of bounds
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 0 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 10 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 0 as AnyObject, secondParameter: userVariableNumber.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 10 as AnyObject, secondParameter: userVariableNumber.name as AnyObject, spriteObject: spriteObjectMock))
         
         // string list
-        let myListString = ["a", "b", "c"]
-        userVariable.value = myListString
+        let userVariableString = UserVariable()
+        userVariableString.name = "myListString"
+        userVariableString.isList = true
         
-        XCTAssertEqual(String(myListString[1]), function.value(firstParameter: 2 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
-        XCTAssertEqual(String(myListString[0]), function.value(firstParameter: 1 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
+        program.variables.programListOfLists.add(userVariableString)
+        program.variables.add(toUserList: userVariableString, value: "a")
+        program.variables.add(toUserList: userVariableString, value: "b")
+        program.variables.add(toUserList: userVariableString, value: "c")
+        
+        XCTAssertEqual("b", function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableString.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual("a", function.value(firstParameter: 1 as AnyObject, secondParameter: userVariableString.name as AnyObject, spriteObject: spriteObjectMock))
         
         // out of bounds
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: -1 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
-        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 10 as AnyObject, secondParameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: -1 as AnyObject, secondParameter: userVariableString.name as AnyObject, spriteObject: spriteObjectMock))
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 10 as AnyObject, secondParameter: userVariableString.name as AnyObject, spriteObject: spriteObjectMock))
     }
     
     func testFirstParameter() {

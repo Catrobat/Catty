@@ -47,25 +47,33 @@ class NumberOfElementsFunctionTest: XCTestCase {
     func testValue() {
         let program = Program()
         spriteObjectMock.program = program
-        let userVariable = UserVariable()
-        userVariable.name = "mylist"
-        userVariable.isList = true
-    
-        // number list
-        let myListNumber = [1, 5, -7]
-        userVariable.value = myListNumber
-        program.variables.programListOfLists.add(userVariable)
-        XCTAssertEqual(Double(myListNumber.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
         
-        // strin list
-        let myListString = ["a", "b", "c", "d"]
-        userVariable.value = myListString
-        XCTAssertEqual(Double(myListString.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        // number list
+        let userVariableNumber = UserVariable()
+        userVariableNumber.name = "myListNumber"
+        userVariableNumber.isList = true
+        program.variables.programListOfLists.add(userVariableNumber)
+        program.variables.add(toUserList: userVariableNumber, value: 1)
+        program.variables.add(toUserList: userVariableNumber, value: 5)
+        program.variables.add(toUserList: userVariableNumber, value: -7)
+        
+        XCTAssertEqual(Double(3), function.value(parameter: userVariableNumber.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        
+        // string list
+        let userVariableString = UserVariable()
+        userVariableString.name = "myListString"
+        userVariableString.isList = true
+        program.variables.programListOfLists.add(userVariableString)
+        program.variables.add(toUserList: userVariableString, value: "a")
+        program.variables.add(toUserList: userVariableString, value: "b")
+        program.variables.add(toUserList: userVariableString, value: "c")
+        program.variables.add(toUserList: userVariableString, value: "d")
+        XCTAssertEqual(Double(4), function.value(parameter: userVariableString.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
         
         // empty list
-        let emptyList = [Double]()
-        userVariable.value = emptyList
-        XCTAssertEqual(Double(emptyList.count), function.value(parameter: userVariable.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
+        let userVariableEmpty = UserVariable()
+        userVariableEmpty.value = [Double]()
+        XCTAssertEqual(Double(0), function.value(parameter: userVariableEmpty.name as AnyObject, spriteObject: spriteObjectMock), accuracy: 0.0001)
     }
     
     func testParameter() {
