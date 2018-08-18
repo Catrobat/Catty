@@ -44,7 +44,7 @@ class FacePositionYSensor: DeviceSensor {
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue - Double(Util.screenHeight()) / 2.0
+        return rawValue - Double(Util.screenHeight()) / 1.05
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

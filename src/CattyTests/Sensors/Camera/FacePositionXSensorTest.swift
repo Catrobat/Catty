@@ -56,13 +56,13 @@ final class FacePositionXSensorTest: XCTestCase {
     
     func testConvertToStandardized() {
         // middle
-        XCTAssertEqual(180 - Double(Util.screenWidth()) / 2.0, sensor.convertToStandardized(rawValue: 180))
+        XCTAssertEqual(180 - Double(Util.screenWidth()) / 3.8, sensor.convertToStandardized(rawValue: 180))
         
         // half right
-        XCTAssertEqual(80 - Double(Util.screenWidth()) / 2.0, sensor.convertToStandardized(rawValue: 80))
+        XCTAssertEqual(80 - Double(Util.screenWidth()) / 3.8, sensor.convertToStandardized(rawValue: 80))
         
         // half left
-        XCTAssertEqual(280 - Double(Util.screenWidth()) / 2.0, sensor.convertToStandardized(rawValue: 280))
+        XCTAssertEqual(280 - Double(Util.screenWidth()) / 3.8, sensor.convertToStandardized(rawValue: 280))
     }
     
     func testTag() {
