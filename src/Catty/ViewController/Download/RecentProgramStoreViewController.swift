@@ -33,6 +33,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
+    var loadingViewFlag = false
 
     // MARK: - Initializers
     
@@ -49,6 +50,11 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         setupTableView()
         shouldHideLoadingView = false
         dataSource.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadingViewHandlerAfterFetchData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -117,7 +123,6 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     private func fetchData(type: ProgramType) {
-       // if loadingViewFlag == false {
             self.showLoadingView()
             self.dataSource.fetchItems(type: type) { error in
                 if error != nil {
@@ -131,12 +136,20 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 self.hideLoadingView()
                 self.RecentProgramsTableView.separatorStyle = .singleLine
             }
-      //  }
-//        else {
-//            self.shouldHideLoadingView = true
-//            self.hideLoadingView()
-//            loadingViewFlag = false
-//        }
+    }
+    
+    func loadingViewHandlerAfterFetchData() {
+        if loadingViewFlag == false {
+            self.showLoadingView()
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+        }
+        else {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+            loadingViewFlag = false
+        }
+        
     }
     
     func showLoadingView() {
@@ -167,6 +180,7 @@ extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
     func selectedCell(dataSource datasource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell) {
         if let program = cell.program {
             self.showLoadingView()
+            loadingViewFlag = true
             programForSegue = program
             performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
         }
