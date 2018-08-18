@@ -36,7 +36,10 @@
             SinFunction(),
             ContainsFunction(),
             ElementFunction(),
-            NumberOfItemsFunction()
+            NumberOfItemsFunction(),
+            JoinFunction(),
+            LetterFunction(),
+            LengthFunction()
         ]
         
         functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }

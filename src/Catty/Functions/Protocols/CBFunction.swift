@@ -40,7 +40,7 @@ protocol CBFunction { // TODO remove CB prefix
 }
 
 extension CBFunction {
-    static var parameterDelimiter: String { get { return "," } }
+    static var parameterDelimiter: String { get { return ", " } }
     static var bracketOpen: String { get { return "(" } }
     static var bracketClose: String { get { return ")" } }
     
@@ -58,28 +58,35 @@ extension CBFunction {
     }
     
     func nameWithParameters() -> String {
-        var name = type(of: self).name
+        var functionHeader = type(of: self).name
         let params = self.parameters()
         var count = 0
         
         if params.count == 0 {
-            return name        // no parameter function
+            return functionHeader       // no parameter function
         }
         
-        name += type(of: self).bracketOpen
+        functionHeader += type(of: self).bracketOpen
         for param in params {
-            name += param.defaultValueString()
+            
+            // add the parameter value
+            functionHeader += param.defaultValueForFunctionSignature()
             count += 1
             
+            // add delimiter between parameters
             if count < params.count && params.count > 1 {
-                name += type(of: self).parameterDelimiter
+                functionHeader += type(of: self).parameterDelimiter
             }
         }
         
-        name += type(of: self).bracketClose
-        return name
+        functionHeader += type(of: self).bracketClose
+        return functionHeader
     }
     
+    /*  this function is used for the text functions and it allows to
+     add both string and numbers as parameters, interpreting them as strings;
+        if the number does not have a floating part, then it is
+     interpreted as a whole number  */
     static func interpretParameter(parameter: AnyObject?) -> String {
         if let text = parameter as? String {
             return text
@@ -92,6 +99,7 @@ extension CBFunction {
         }
         return ""
     }
+    
 }
 
 protocol DoubleFunction: CBFunction {
@@ -159,4 +167,28 @@ protocol SingleParameterStringFunctionWithSpriteObject: StringFunction, SinglePa
 
 protocol DoubleParameterStringFunctionWithSpriteObject: StringFunction, DoubleParameterFunctionProtocol {
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> String
+}
+
+protocol ZeroParameterObjectFunction: DoubleFunction {
+    func value(spriteObject: SpriteObject) -> Double
+}
+
+protocol SingleParameterObjectFunction: DoubleFunction, SingleParameterFunctionProtocol {
+    func value(spriteObject: SpriteObject, parameter: AnyObject?) -> Double
+}
+
+protocol DoubleParameterObjectFunction: DoubleFunction, DoubleParameterFunctionProtocol {
+    func value(spriteObject: SpriteObject, firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double
+}
+
+protocol ZeroParameterStringObjectFunction: StringFunction {
+    func value(spriteObject: SpriteObject) -> String
+}
+
+protocol SingleParameterStringObjectFunction: StringFunction, SingleParameterFunction {
+    func value(spriteObject: SpriteObject, parameter: AnyObject?) -> String
+}
+
+protocol DoubleParameterStringObjectFunction: StringFunction, DoubleParameterFunctionProtocol {
+    func value(spriteObject: SpriteObject, firstParameter: AnyObject?, secondParameter: AnyObject?) -> String
 }

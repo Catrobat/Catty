@@ -20,22 +20,39 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
-
-final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
+final class TouchManagerMock: TouchManagerProtocol {
     
-    var program: StoreProgram?
-    var collection: StoreProgramCollection.StoreProgramCollectionText?
+    var touchRecognizer: UILongPressGestureRecognizer?
+    var scene: CBScene?
+    var isScreenTouched: Bool?
+    var touches: [CGPoint] = []
+    var lastTouch: CGPoint?
     
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collection, nil)
-        }
+    func startTrackingTouches(for scene: CBScene) {
     }
     
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.program, nil)
+    func stopTrackingTouches() {
+    }
+    
+    func reset() {
+    }
+    
+    func screenTouched() -> Bool {
+        return isScreenTouched!
+    }
+    
+    func numberOfTouches() -> Int {
+        return touches.count
+    }
+    
+    func lastPositionInScene() -> CGPoint? {
+        return lastTouch
+    }
+    
+    func getPositionInScene(for touchNumber: Int) -> CGPoint? {
+        if touches.count < touchNumber {
+            return nil
         }
+        return touches[touchNumber - 1]
     }
 }

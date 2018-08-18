@@ -22,8 +22,8 @@
 
 import XCTest
 
-class MyProgramsVCTests: XCTestCase, UITestProtocol  {
-
+class ProgramsTVCTests: XCTestCase, UITestProtocol {
+    
     override func setUp() {
         super.setUp()
         
@@ -34,59 +34,87 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
         
+        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        
         dismissWelcomeScreenIfShown()
+        restoreDefaultProgram()
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
-    // MARK: edit menu tests
-    func testCanCancelEditActionSheetMenu() {
+    
+    func testCanAddNewProgram(){
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.toolbars.buttons["Add"].tap()
+        
+        let alertQuery = app.alerts["New Program"]
+        alertQuery.textFields["Enter your program name here..."].typeText("testProgram")
+        
+        app.alerts["New Program"].buttons["OK"].tap()
+        
+        XCTAssert(app.navigationBars["testProgram"].exists)
+        
+        app.navigationBars.buttons["Programs"].tap()
+        
+        XCTAssert(app.tables.staticTexts["testProgram"].exists)
+    }
+    
+    func testCanCancelAddNewProgram(){
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.toolbars.buttons["Add"].tap()
+        
+        let alertQuery = app.alerts["New Program"]
+        alertQuery.textFields["Enter your program name here..."].typeText("testProgram")
+        
+        app.alerts["New Program"].buttons["Cancel"].tap()
+        
+        XCTAssert(app.navigationBars["Programs"].exists)
+    }
+    
+    func testCanCancelEdit() {
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.navigationBars["Programs"].buttons["Edit"].tap()
         XCTAssert(app.buttons["Cancel"].exists)
         app.buttons["Cancel"].tap()
-        XCTAssert(!app.buttons["Cancel"].exists)
+        XCTAssert(app.navigationBars["Programs"].exists)
     }
-
-    // deletes all programs i.e. only one single program is preserved
-    // 'My first program' will be (re)created
-    func testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted() {
-        restoreDefaultProgram()
-    }
-
-    // MARK: slide menu tests
+    
     func testCanCancelMoreActionSheetMenu() {
-        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts["My first program"].swipeLeft()
         XCTAssert(app.buttons["More"].exists)
-
+        
         app.buttons["More"].tap()
         XCTAssert(app.buttons["Cancel"].exists)
         app.buttons["Cancel"].tap()
         XCTAssert(!app.buttons["Cancel"].exists)
     }
-
+    
     func testCanCopyMyFirstProgram() {
-        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
-
+        
         let tablesQuery = app.tables
         tablesQuery.staticTexts["My first program"].swipeLeft()
         XCTAssert(app.buttons["More"].exists)
-
+        
         app.buttons["More"].tap()
         XCTAssert(app.buttons["Copy"].exists)
         app.buttons["Copy"].tap()
-
+        
         XCTAssert(app.alerts["Copy program"].exists)
         let alertQuery = app.alerts["Copy program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
@@ -94,31 +122,31 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         alertQuery.textFields["Enter your program name here..."].typeText("My second program")
         XCTAssert(alertQuery.buttons["OK"].exists)
         alertQuery.buttons["OK"].tap()
-
+        
         XCTAssert(app.tables.staticTexts.count == 2)
         XCTAssert(app.tables.staticTexts["My second program"].exists)
-
+        
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
-
+        
         XCTAssert(app.tables.staticTexts.count == 2)
         XCTAssert(app.tables.staticTexts["My second program"].exists)
     }
-
+    
     func testCanCancelCopyMyFirstProgram() {
-        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
-
+        
         let tablesQuery = app.tables
         tablesQuery.staticTexts["My first program"].swipeLeft()
         XCTAssert(app.buttons["More"].exists)
-
+        
         app.buttons["More"].tap()
         XCTAssert(app.buttons["Copy"].exists)
         app.buttons["Copy"].tap()
-
+        
         XCTAssert(app.alerts["Copy program"].exists)
         let alertQuery = app.alerts["Copy program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
@@ -126,31 +154,31 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         alertQuery.textFields["Enter your program name here..."].typeText("My second program")
         XCTAssert(alertQuery.buttons["Cancel"].exists)
         alertQuery.buttons["Cancel"].tap()
-
+        
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
-
+        
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
-
+        
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
     }
-
+    
     func testCanRenameMyFirstProgram() {
-        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
-
+        
         let tablesQuery = app.tables
         tablesQuery.staticTexts["My first program"].swipeLeft()
         XCTAssert(app.buttons["More"].exists)
-
+        
         app.buttons["More"].tap()
         XCTAssert(app.buttons["Rename"].exists)
         app.buttons["Rename"].tap()
-
+        
         XCTAssert(app.alerts["Rename Program"].exists)
         let alertQuery = app.alerts["Rename Program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
@@ -158,32 +186,32 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         alertQuery.textFields["Enter your program name here..."].typeText("My renamed program")
         XCTAssert(alertQuery.buttons["OK"].exists)
         alertQuery.buttons["OK"].tap()
-
+        
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My renamed program"].exists)
-
+        
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
-
+        
         // check again
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My renamed program"].exists)
     }
-
+    
     func testCanCancelRenameMyFirstProgram() {
-        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
-
+        
         let tablesQuery = app.tables
         tablesQuery.staticTexts["My first program"].swipeLeft()
         XCTAssert(app.buttons["More"].exists)
-
+        
         app.buttons["More"].tap()
         XCTAssert(app.buttons["Rename"].exists)
         app.buttons["Rename"].tap()
-
+        
         XCTAssert(app.alerts["Rename Program"].exists)
         let alertQuery = app.alerts["Rename Program"]
         XCTAssert(alertQuery.buttons["Clear text"].exists)
@@ -191,95 +219,16 @@ class MyProgramsVCTests: XCTestCase, UITestProtocol  {
         alertQuery.textFields["Enter your program name here..."].typeText("My renamed program")
         XCTAssert(alertQuery.buttons["Cancel"].exists)
         alertQuery.buttons["Cancel"].tap()
-
+        
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
-
+        
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
-
+        
         // check again
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
     }
-
-    // TODO: support for accesibility API
-//    func testCanSetDescriptionOfMyFirstProgram() {
-//        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
-//        let app = XCUIApplication()
-//        app.tables.staticTexts["Programs"].tap()
-//
-//        let tablesQuery = app.tables
-//        tablesQuery.staticTexts["My first program"].swipeLeft()
-//        XCTAssert(app.buttons["More"].exists)
-//
-//        app.buttons["More"].tap()
-//        XCTAssert(app.buttons["Description"].exists)
-//        app.buttons["Description"].tap()
-//
-//        let descriptionText = "Yet another whack a mole program"
-//        XCTAssert(app.alerts["Set description"].exists)
-//        let alertQuery = app.alerts["Set description"]
-//        XCTAssert(!alertQuery.buttons["Clear text"].exists) // empty description is expected by default!
-//        alertQuery.textFields["Enter your program description here..."].typeText(descriptionText)
-//        XCTAssert(alertQueryy.buttons["OK"].exists)
-//        alertQuery.buttons["OK"].tap()
-//
-//        // go back and forth to force reload table view!!
-//        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
-//        app.tables.staticTexts["Programs"].tap()
-//
-//        tablesQuery.staticTexts["My first program"].swipeLeft()
-//        XCTAssert(app.buttons["More"].exists)
-//
-//        app.buttons["More"].tap()
-//        XCTAssert(app.buttons["Description"].exists)
-//        app.buttons["Description"].tap()
-//        XCTAssert(alertQuery.textFields[descriptionText].exists)
-//    }
-//
-//    func testCanCancelSettingDescriptionOfMyFirstProgram() {
-//        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
-//        let app = XCUIApplication()
-//        app.tables.staticTexts["Programs"].tap()
-//
-//        let tablesQuery = app.tables
-//        tablesQuery.staticTexts["My first program"].swipeLeft()
-//        XCTAssert(app.buttons["More"].exists)
-//
-//        app.buttons["More"].tap()
-//        XCTAssert(app.buttons["Description"].exists)
-//        app.buttons["Description"].tap()
-//
-//        let descriptionText = "Yet another whack a mole program"
-//        XCTAssert(app.alerts["Set description"].exists)
-//        let alertQuery = app.alerts["Set description"]
-//        XCTAssert(!alertQuery.buttons["Clear text"].exists) // empty description is expected by default!
-//        alertQuery.textFields["Enter your program description here..."].typeText(descriptionText)
-//        XCTAssert(alertQuery.buttons["Cancel"].exists)
-//        alertQuery.buttons["Cancel"].tap()
-//
-//        // go back and forth to force reload table view!!
-//        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
-//        app.tables.staticTexts["Programs"].tap()
-//
-//        tablesQuery.staticTexts["My first program"].swipeLeft()
-//        XCTAssert(app.buttons["More"].exists)
-//
-//        app.buttons["More"].tap()
-//        XCTAssert(app.buttons["Description"].exists)
-//        app.buttons["Description"].tap()
-//        XCTAssert(!alertQuery.textFields[descriptionText].exists)
-//    }
-
-    /**
-    TODO:
-    * test create new program
-    * test minimum + maximum number of characters for "create new program", "copy program", "rename program", "description"
-    * test invalid characters for "create new program", "copy program", "rename program", "description"
-    * test automatic slide back mechanism after user canceled action... (optional)
-    * test "show/hide details" (maybe not so crucial/important... => optional)
-    */
-
 }
