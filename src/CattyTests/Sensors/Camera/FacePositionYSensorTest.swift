@@ -45,28 +45,24 @@ final class FacePositionYSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        self.cameraManagerMock.facePositionY = 0
+        // only positive values - (0, 0) is at the bottom left
+        self.cameraManagerMock.facePositionX = 0
         XCTAssertEqual(0, self.sensor.rawValue())
         
-        self.cameraManagerMock.facePositionY = 256
+        self.cameraManagerMock.facePositionX = 256
         XCTAssertEqual(256, self.sensor.rawValue())
-        
-        self.cameraManagerMock.facePositionY = -150
-        XCTAssertEqual(-150, self.sensor.rawValue())
     }
     
     func testConvertToStandardized() {
-        // the face is in the middle of the screen
-        XCTAssertEqual(-300, sensor.convertToStandardized(rawValue: 0))
         
-        // mathematical middle
-        XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
-        
-        // half up
-        XCTAssertEqual(-450, sensor.convertToStandardized(rawValue: 0))
-        
-        // half down
-        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: 0))
+        // middle
+         XCTAssertEqual(330 - Double(Util.screenHeight()) / 2.0, sensor.convertToStandardized(rawValue: 330))
+         
+         // half up
+         XCTAssertEqual(480 - Double(Util.screenHeight()) / 2.0, sensor.convertToStandardized(rawValue: 480))
+         
+         // half down
+         XCTAssertEqual(180 - Double(Util.screenHeight()) / 2.0, sensor.convertToStandardized(rawValue: 180))
     }
     
     func testTag() {
