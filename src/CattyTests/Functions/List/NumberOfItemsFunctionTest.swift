@@ -57,7 +57,7 @@ class NumberOfElementsFunctionTest: XCTestCase {
         userVariableString.isList = true
         userVariableString.value = ["a", "b", "c"]
         
-        XCTAssertEqual(Double(4), function.value(parameter: userVariableString as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Double(3), function.value(parameter: userVariableString as AnyObject), accuracy: 0.0001)
         
         // empty list
         let userVariableEmpty = UserVariable()

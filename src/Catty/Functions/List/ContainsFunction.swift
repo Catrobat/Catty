@@ -37,18 +37,15 @@ class ContainsFunction: DoubleParameterFunction {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let list = firstParameter as? [String],
-            let element = secondParameter as? String else {
+        guard let list = firstParameter as? UserVariable else {
             return type(of: self).defaultValue
         }
-        
-        /*if list.contains({ self.parameterMatch(firstParam: $0, secondParam: secondParameter) }) {
-            return 1.0
-        }*/
-        if list.contains(element) {
+    
+        if (list.value as AnyObject).contains( { self.parameterMatch(firstParam: $0, secondParam: secondParameter) }) {
             return 1.0
         }
         return 0.0
+        
     }
     
     private func parameterMatch(firstParam: AnyObject?, secondParam: AnyObject?) -> Bool {

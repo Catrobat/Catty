@@ -34,11 +34,11 @@ class NumberOfItemsFunction: SingleParameterFunction {
     }
     
     func value(parameter: AnyObject?) -> Double {
-        guard let list = parameter as? [String] else {
+        guard let list = parameter as? UserVariable else {
             return type(of: self).defaultValue
         }
         
-        return Double(list.count)
+        return Double((list.value as AnyObject).count)
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {
