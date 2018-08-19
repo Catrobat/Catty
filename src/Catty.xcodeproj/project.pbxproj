@@ -1081,6 +1081,12 @@
 		F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */; };
+		F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */; };
+		F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2E42129DF42005EC9A3 /* NumberOfItemsFunction.swift */; };
+		F470A2E72129DFD5005EC9A3 /* ContainsFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2E62129DFD5005EC9A3 /* ContainsFunction.swift */; };
+		F470A2EA2129E273005EC9A3 /* ElementFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2E92129E273005EC9A3 /* ElementFunctionTest.swift */; };
+		F470A2EC2129E285005EC9A3 /* NumberOfItemsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2EB2129E285005EC9A3 /* NumberOfItemsFunctionTest.swift */; };
+		F470A2EE2129E2A3005EC9A3 /* ContainsFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2ED2129E2A3005EC9A3 /* ContainsFunctionTest.swift */; };
 		F479930120F4987E0088EE27 /* LatitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FB20F4987E0088EE27 /* LatitudeSensorTest.swift */; };
 		F479930220F4987E0088EE27 /* AltitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FC20F4987E0088EE27 /* AltitudeSensorTest.swift */; };
 		F479930320F4987E0088EE27 /* LongitudeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47992FD20F4987E0088EE27 /* LongitudeSensorTest.swift */; };
@@ -2762,6 +2768,12 @@
 		F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoudnessSensorTest.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Section.swift"; sourceTree = "<group>"; };
+		F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunction.swift; sourceTree = "<group>"; };
+		F470A2E42129DF42005EC9A3 /* NumberOfItemsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfItemsFunction.swift; sourceTree = "<group>"; };
+		F470A2E62129DFD5005EC9A3 /* ContainsFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainsFunction.swift; sourceTree = "<group>"; };
+		F470A2E92129E273005EC9A3 /* ElementFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunctionTest.swift; sourceTree = "<group>"; };
+		F470A2EB2129E285005EC9A3 /* NumberOfItemsFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfItemsFunctionTest.swift; sourceTree = "<group>"; };
+		F470A2ED2129E2A3005EC9A3 /* ContainsFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainsFunctionTest.swift; sourceTree = "<group>"; };
 		F47992FB20F4987E0088EE27 /* LatitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatitudeSensorTest.swift; sourceTree = "<group>"; };
 		F47992FC20F4987E0088EE27 /* AltitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltitudeSensorTest.swift; sourceTree = "<group>"; };
 		F47992FD20F4987E0088EE27 /* LongitudeSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongitudeSensorTest.swift; sourceTree = "<group>"; };
@@ -4075,6 +4087,7 @@
 		4CE67884210C4AE000D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F470A2DF2129DAE1005EC9A3 /* List */,
 				F4A2AFB12110D47500C53234 /* Text */,
 				4CE67897210C6EBB00D90B5D /* Math */,
 				4CE67889210C4E0600D90B5D /* Enums */,
@@ -4104,6 +4117,7 @@
 		4CE67890210C5CCC00D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F470A2E82129E25E005EC9A3 /* List */,
 				F4A2AFBA2110DBFE00C53234 /* Text */,
 				4CD9A458210DC5B40073D0A3 /* Math */,
 				4CE67893210C5E5000D90B5D /* FunctionManagerTests.swift */,
@@ -7239,6 +7253,26 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		F470A2DF2129DAE1005EC9A3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */,
+				F470A2E42129DF42005EC9A3 /* NumberOfItemsFunction.swift */,
+				F470A2E62129DFD5005EC9A3 /* ContainsFunction.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		F470A2E82129E25E005EC9A3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F470A2E92129E273005EC9A3 /* ElementFunctionTest.swift */,
+				F470A2EB2129E285005EC9A3 /* NumberOfItemsFunctionTest.swift */,
+				F470A2ED2129E2A3005EC9A3 /* ContainsFunctionTest.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		F47992FA20F4987E0088EE27 /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -7928,8 +7962,10 @@
 				F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */,
 				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
+				F470A2EE2129E2A3005EC9A3 /* ContainsFunctionTest.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C6D14EC210B12D9006147BD /* SensorHandlerDeviceTests.m in Sources */,
+				F470A2EC2129E285005EC9A3 /* NumberOfItemsFunctionTest.swift in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
 				4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
@@ -8036,6 +8072,7 @@
 				4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
+				F470A2EA2129E273005EC9A3 /* ElementFunctionTest.swift in Sources */,
 				4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
 				F4A2AFBE2110DC4100C53234 /* LetterFunctionTest.swift in Sources */,
@@ -8085,6 +8122,7 @@
 				BACDF3521F1F9B7E00346167 /* DeleteItemOfUserListBrick.m in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				92D56C311BF202E700A54750 /* ArduinoDevice.swift in Sources */,
+				F470A2E52129DF42005EC9A3 /* NumberOfItemsFunction.swift in Sources */,
 				92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */,
 				4C0F9F31204ADC2E00E71B2D /* ChooseCameraBrick.m in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
@@ -8442,6 +8480,7 @@
 				AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */,
 				4C994E25207A56D500C415FD /* AccelerationYSensor.swift in Sources */,
 				921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */,
+				F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
@@ -8600,6 +8639,7 @@
 				929CC0FC1BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift in Sources */,
 				AA74F0A81BC05FCE00D1E954 /* ChangeVariableBrickCell.m in Sources */,
 				92FF2E8E1A24C7D800093DA7 /* CBFileManager.m in Sources */,
+				F470A2E72129DFD5005EC9A3 /* ContainsFunction.swift in Sources */,
 				921D468C1BDF698A0086AD20 /* SetTransparencyBrick+Instruction.swift in Sources */,
 				9276B7051C9E8F6C008BC594 /* SoundCache.m in Sources */,
 				C6A06BEC1EC8CA4C0000C656 /* AlertController.swift in Sources */,
