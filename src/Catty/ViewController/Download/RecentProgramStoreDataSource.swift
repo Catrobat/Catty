@@ -116,6 +116,9 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         }
     }
     
+    func numberOfRows(in tableView: UITableView) -> Int {
+        return self.programs.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.programs.count
@@ -152,7 +155,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        fetchItems(type: programType) {error in }
+        fetchItems(type: programType) { _ in }
         self.delegate?.scrollViewHandler(dataSource: self)
     }
 }

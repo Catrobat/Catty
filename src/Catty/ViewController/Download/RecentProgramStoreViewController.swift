@@ -128,6 +128,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 if error != nil {
                     self.shouldHideLoadingView = true
                     self.hideLoadingView()
+                    self.showConnectionIssueAlertAndDismiss(error: error!)
                     self.RecentProgramsTableView.separatorStyle = .singleLine
                     return
                 }
@@ -136,6 +137,27 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 self.hideLoadingView()
                 self.RecentProgramsTableView.separatorStyle = .singleLine
             }
+    }
+    
+    private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
+        var title = ""
+        var message = ""
+        let buttonTitle = kLocalizedOK
+        
+        switch error {
+        case .timeout:
+            title = kLocalizedServerTimeoutIssueTitle
+            message = kLocalizedServerTimeoutIssueMessage
+        default:
+            title = kLocalizedRecentProgramsLoadFailureTitle
+            message = kLocalizedRecentProgramsLoadFailureMessage
+        }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func loadingViewHandlerAfterFetchData() {

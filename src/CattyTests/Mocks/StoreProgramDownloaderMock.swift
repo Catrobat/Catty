@@ -22,7 +22,7 @@
 
 @testable import Pocket_Code
 
-final class FeaturedProgramsStoreDownloaderMock: StoreProgramDownloaderProtocol {
+final class StoreProgramDownloaderMock: StoreProgramDownloaderProtocol {
     
     var program: StoreProgram?
     var collection: StoreProgramCollection.StoreProgramCollectionText?

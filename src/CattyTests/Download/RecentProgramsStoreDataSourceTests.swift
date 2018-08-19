@@ -23,7 +23,7 @@
 import XCTest
 @testable import Pocket_Code
 
-class FeaturedProgramsStoreDataSourceTests: XCTestCase {
+class RecentProgramsStoreDataSourceTests: XCTestCase {
     
     var downloaderMock: StoreProgramDownloaderMock!
     var tableView: UITableView!
@@ -40,20 +40,20 @@ class FeaturedProgramsStoreDataSourceTests: XCTestCase {
         super.tearDown()
     }
     
-    // MARK: - FeaturedProgramsStoreDataSource Tests
+    // MARK: - RecentProgramsStoreDataSource Tests
     
     func testProgramsNotFetched() {
-        let dataSource = FeaturedProgramsStoreTableDataSource.dataSource(with: self.downloaderMock)
+        let dataSource = RecentProgramStoreDataSource.dataSource(with: self.downloaderMock)
         XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
     }
     
     func testProgramEmpty() {
         self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
-
-        let dataSource = FeaturedProgramsStoreTableDataSource.dataSource(with: self.downloaderMock)
-        let expectation = XCTestExpectation(description: "Fetch items from data source")
         
-        dataSource.fetchItems { [unowned self] error in
+        let dataSource = RecentProgramStoreDataSource.dataSource(with: self.downloaderMock)
+        let expectation = XCTestExpectation(description: "Fetch program from data source")
+        
+        dataSource.fetchItems(type: .mostDownloaded) { [unowned self] error in
             XCTAssertNil(error)
             XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
             expectation.fulfill()

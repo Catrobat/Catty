@@ -560,6 +560,9 @@
 "Failed to load featured programs" = "Failed to load featured programs";
 
 /* No comment provided by engineer. */
+"Failed to load recent programs" = "Failed to load recent programs";
+
+/* No comment provided by engineer. */
 "Failed to load sound" = "Failed to load sound";
 
 /* No comment provided by engineer. */
@@ -1524,6 +1527,9 @@
 
 /* No comment provided by engineer. */
 "The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
+
+/* No comment provided by engineer. */
+"The recent programs cannot be loaded" = "The recent programs cannot be loaded";
 
 /* No comment provided by engineer. */
 "The requested program can not be found. Please choose a different one." = "The requested program can not be found. Please choose a different one.";
