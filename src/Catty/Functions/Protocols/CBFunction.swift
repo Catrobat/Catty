@@ -40,7 +40,7 @@ protocol CBFunction { // TODO remove CB prefix
 }
 
 extension CBFunction {
-    static var parameterDelimiter: String { get { return "," } }
+    static var parameterDelimiter: String { get { return ", " } }
     static var bracketOpen: String { get { return "(" } }
     static var bracketClose: String { get { return ")" } }
     
@@ -58,27 +58,48 @@ extension CBFunction {
     }
     
     func nameWithParameters() -> String {
-        var name = type(of: self).name
+        var functionHeader = type(of: self).name
         let params = self.parameters()
         var count = 0
         
         if params.count == 0 {
-            return name        // no parameter function
+            return functionHeader       // no parameter function
         }
         
-        name += type(of: self).bracketOpen
+        functionHeader += type(of: self).bracketOpen
         for param in params {
-            name += param.defaultValueString()
+            
+            // add the parameter value
+            functionHeader += param.defaultValueForFunctionSignature()
             count += 1
             
+            // add delimiter between parameters
             if count < params.count && params.count > 1 {
-                name += type(of: self).parameterDelimiter
+                functionHeader += type(of: self).parameterDelimiter
             }
         }
         
-        name += type(of: self).bracketClose
-        return name
+        functionHeader += type(of: self).bracketClose
+        return functionHeader
     }
+    
+    /*  this function is used for the text functions and it allows to
+     add both string and numbers as parameters, interpreting them as strings;
+        if the number does not have a floating part, then it is
+     interpreted as a whole number  */
+    static func interpretParameter(parameter: AnyObject?) -> String {
+        if let text = parameter as? String {
+            return text
+        }
+        if let number = parameter as? Double {
+            if floor(number) == number {
+                return String(format: "%.0f", number)
+            }
+            return String(number)
+        }
+        return ""
+    }
+    
 }
 
 protocol DoubleFunction: CBFunction {

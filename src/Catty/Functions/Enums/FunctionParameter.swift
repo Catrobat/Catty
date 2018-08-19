@@ -46,6 +46,15 @@ enum FunctionParameter {
                 return "*" + defaultValueString() + "*"
         }
     }
+    
+    func defaultValueForFunctionSignature() -> String {
+        switch self {
+            case .number(_):
+                return defaultValueString()
+            case .string(_):
+                return "'" + defaultValueString() + "'"
+        }
+    }
 }
 
 extension FunctionParameter: Equatable {
