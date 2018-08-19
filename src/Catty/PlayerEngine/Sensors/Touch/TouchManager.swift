@@ -49,6 +49,7 @@ class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate 
     
     func stopTrackingTouches() {
         scene = nil
+        reset()
         
         guard let touchRecognizer = self.touchRecognizer else { return }
         touchRecognizer.isEnabled = false
@@ -59,6 +60,7 @@ class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate 
     func reset() {
         touches.removeAll()
         isScreenTouched = false
+        lastTouch = nil
     }
     
     func screenTouched() -> Bool {

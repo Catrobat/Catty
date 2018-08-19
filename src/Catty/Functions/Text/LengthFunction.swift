@@ -20,22 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
-
-final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
+class LengthFunction: SingleParameterFunction {
     
-    var program: StoreProgram?
-    var collection: StoreProgramCollection.StoreProgramCollectionText?
+    static var tag = "LENGTH"
+    static var name = "length"
+    static var defaultValue = 0.0
+    static var requiredResource = ResourceType.noResources
+    static var isIdempotent = true
+    static let position = 210
     
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collection, nil)
-        }
+    static func firstParameter() -> FunctionParameter {
+        return .string(defaultValue: "hello world")
     }
     
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.program, nil)
-        }
+    func value(parameter: AnyObject?) -> Double {
+        let text = type(of: self).interpretParameter(parameter: parameter)
+        return Double(text.count)
+    }
+    
+    static func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: position)
     }
 }

@@ -20,22 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@testable import Pocket_Code
-
-final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
+class JoinFunction: DoubleParameterStringFunction {
+    static var tag = "JOIN"
+    static var name = "join"
+    static var defaultValue = ""
+    static var requiredResource = ResourceType.noResources
+    static var isIdempotent = true
+    static let position = 230
     
-    var program: StoreProgram?
-    var collection: StoreProgramCollection.StoreProgramCollectionText?
-    
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collection, nil)
-        }
+    static func firstParameter() -> FunctionParameter {
+        return .string(defaultValue: "hello ")
     }
     
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.program, nil)
-        }
+    static func secondParameter() -> FunctionParameter {
+        return .string(defaultValue: "world")
+    }
+    
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {        
+        let firstText = type(of: self).interpretParameter(parameter: firstParameter)
+        let secondText = type(of: self).interpretParameter(parameter: secondParameter)
+        return firstText + secondText
+    }
+    
+    static func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: position)
     }
 }

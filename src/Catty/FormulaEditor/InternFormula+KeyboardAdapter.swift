@@ -260,6 +260,8 @@ extension InternFormula {
             return InternToken.init(type: TOKEN_TYPE_NUMBER, andValue: defaultValueString)
         case .string(_):
             return InternToken.init(type: TOKEN_TYPE_STRING, andValue: defaultValueString)
+        case .list(_):
+            return InternToken.init(type: TOKEN_TYPE_USER_LIST, andValue: defaultValueString)
         }
     }
 }
