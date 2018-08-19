@@ -90,8 +90,8 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         
         programType = type
         
-        if (self.programOffset != programs.count) || (programs.count == 0) {
-            self.downloader.fetchPrograms(forType: type) {items, error in
+        if (self.programOffset == programs.count) || (programs.count == 0) {
+            self.downloader.fetchPrograms(forType: type, offset: programOffset) {items, error in
                 guard let collection = items, error == nil else { completion(error); return }
                 
                 switch self.programType {
@@ -107,7 +107,6 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
                 default:
                     return
                 }
-                
                 self.baseUrl = collection.information.baseUrl
                 completion(nil)
             }
@@ -153,6 +152,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        fetchItems(type: programType) {error in }
         self.delegate?.scrollViewHandler(dataSource: self)
     }
 }
