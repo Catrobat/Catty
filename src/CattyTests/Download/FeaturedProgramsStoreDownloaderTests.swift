@@ -33,7 +33,7 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
 
-        downloader.fetchPrograms() { programs, error in
+        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
             XCTAssertNil(error, "request failed")
             guard let programs = programs else { XCTFail("no featured programs found"); return }
             guard let item = programs.projects.first else { XCTFail("no featured programs in array"); return }
@@ -55,7 +55,7 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
         
-        downloader.fetchPrograms() { programs, error in
+        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
             guard let error = error else { XCTFail("no error returned"); return }
             XCTAssertEqual(error, .unexpectedError)
             expectation.fulfill()
@@ -69,7 +69,7 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
         
-        downloader.fetchPrograms() { programs, error in
+        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case let .request(error: _, statusCode: statusCode):
@@ -88,7 +88,7 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
         
-        downloader.fetchPrograms() { programs, error in
+        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):
