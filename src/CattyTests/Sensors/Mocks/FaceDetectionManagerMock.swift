@@ -20,30 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FaceDetectedSensor: DeviceSensor {
+@testable import Pocket_Code
+
+final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
+    var isFaceDetected: Bool?
+    var facePositionX: Double?
+    var facePositionY: Double?
+    var faceSize: CGRect?
     
-    static let tag = "FACE_DETECTED"
-    static let name = kUIFESensorFaceDetected
-    static let defaultRawValue = 0.0
-    static let position = 190
-    static let requiredResource = ResourceType.faceDetection
-    
-    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
-    
-    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
-        self.getFaceDetectionManager = faceDetectionManagerGetter
+    func start() {
     }
     
-    func rawValue() -> Double {
-        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
-        return isFaceDetected ? 1.0 : 0.0
+    func stop() {
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+    func reset() {
     }
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
+    func available() -> Bool {
+        return true
     }
+    
 }
