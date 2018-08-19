@@ -141,8 +141,8 @@
             
         case FUNCTION: {
             //NSDebug(@"FUNCTION");
-            id leftId = self.leftChild != nil ? [self.leftChild interpretRecursiveForSprite:sprite] : nil;
-            id rightId = self.rightChild != nil ? [self.rightChild interpretRecursiveForSprite:sprite] : nil;
+            id leftId = [self functionParameter:self.leftChild andSpriteObject:sprite];
+            id rightId = [self functionParameter:self.rightChild andSpriteObject:sprite];
             
             result = [[FunctionManager shared] valueWithTag:self.value firstParameter:leftId secondParameter:rightId];
             break;
@@ -173,7 +173,19 @@
     }
     
     return result;
+}
+
+- (id)functionParameter:(FormulaElement*)formulaElement andSpriteObject:(SpriteObject*)spriteObject
+{
+    if (formulaElement == nil) {
+        return nil;
+    }
     
+    if (formulaElement.type == USER_LIST) {
+        return [spriteObject.program.variables getUserListNamed:formulaElement.value forSpriteObject:spriteObject];
+    }
+    
+    return [formulaElement interpretRecursiveForSprite:spriteObject];
 }
 
 - (bool) isStringDecimalNumber:(NSString *)stringValue

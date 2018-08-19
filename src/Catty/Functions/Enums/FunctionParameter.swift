@@ -23,6 +23,7 @@
 enum FunctionParameter {
     case number(defaultValue: Double)
     case string(defaultValue: String)
+    case list(defaultValue: String)
     
     func defaultValueString() -> String {
         switch self {
@@ -30,6 +31,19 @@ enum FunctionParameter {
             return defaultValue.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", defaultValue) : String(defaultValue)
         case let .string(defaultValue):
             return defaultValue
+        case let .list(defaultValue):
+            return defaultValue
+        }
+    }
+    
+    func defaultValueForFunctionSignature() -> String {
+        switch self {
+            case .number(_):
+                return defaultValueString()
+            case .string(_):
+                return "'" + defaultValueString() + "'"
+            case .list(_):
+                return "*" + defaultValueString() + "*"
         }
     }
 }
@@ -41,6 +55,9 @@ extension FunctionParameter: Equatable {
             return defaultValueLeft == defaultValueRight
             
         case (let .string(defaultValueLeft), let .string(defaultValueRight)):
+            return defaultValueLeft == defaultValueRight
+
+        case (let .list(defaultValueLeft), let .list(defaultValueRight)):
             return defaultValueLeft == defaultValueRight
             
         default:
