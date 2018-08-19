@@ -35,7 +35,7 @@ class AsinFunction: SingleParameterFunction {
     
     func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
-        return asin(Util.degree(toRadians: degree))
+        return Util.radians(toDegree: asin(degree))
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

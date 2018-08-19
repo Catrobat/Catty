@@ -35,7 +35,7 @@ class AcosFunction: SingleParameterFunction {
     
     func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
-        return acos(Util.degree(toRadians: degree))
+        return Util.radians(toDegree: acos(degree))
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

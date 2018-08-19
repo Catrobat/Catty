@@ -54,8 +54,7 @@
             MaxFunction(),
             MinFunction(),
             TrueFunction(),
-            FalseFunction()
-            SinFunction(),
+            FalseFunction(),
             JoinFunction(),
             LetterFunction(),
             LengthFunction()

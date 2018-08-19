@@ -46,7 +46,20 @@ class ModFunction: DoubleParameterFunction {
             return type(of: self).defaultValue
         }
         
-        return firstValue.truncatingRemainder(dividingBy: secondValue)
+        if firstValue * secondValue > 0 {
+            // they have the same sign
+            return firstValue.truncatingRemainder(dividingBy: secondValue)
+        } else {
+            // they have different signs
+            let div = Int(abs(firstValue / secondValue))
+            let newNumerator = abs(secondValue) * Double((div + 1))
+            
+            if firstValue < 0 {
+                return firstValue + newNumerator
+            } else {
+                return firstValue - newNumerator
+            }
+        }
         
     }
     

@@ -48,13 +48,43 @@ class RandFunction: DoubleParameterFunction {
             minimum = maximum
             maximum = aux
         }
-        let random = arc4random() / UInt32.max
-        var result = minimum + Double(random) * (maximum - minimum)
         
-        if floor(firstValue) == firstValue && floor(secondValue) == secondValue {
-            result = round(result)
+        if Int(maximum) - Int(minimum) <= 1 {
+            // the range is too small
+            let result = arc4random() % 10
+            if result % 2 == 0 {
+                if floor(minimum) == minimum && floor(maximum) == maximum {
+                    return minimum
+                } else {
+                    return minimum + 1 / Double(result)
+                }
+            }
+            if floor(maximum) == maximum && floor(minimum) == minimum {
+                return maximum
+            } else {
+                return maximum - 1 / Double(result)
+            }
         }
-        return result
+        
+        let result = arc4random_uniform(UInt32(maximum - minimum)) + UInt32(minimum);
+        let resultDouble = Double(result)
+        if floor(minimum) == minimum && floor(maximum) == maximum {
+            // parameters are whole numbers, so the result will be a whole number
+            return resultDouble
+        }
+        
+        // at least one of the parameters is a float number, so the result should be a float
+        var newResult = resultDouble + 1 / resultDouble
+        
+        // make sure the result is in the correct range
+        while newResult > maximum {
+            newResult -= 1 / newResult
+        }
+        while newResult < minimum {
+            newResult += 1 / newResult
+        }
+        
+        return newResult
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

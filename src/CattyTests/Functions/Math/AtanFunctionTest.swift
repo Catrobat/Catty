@@ -42,9 +42,9 @@ class AtanFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        XCTAssertEqual(atan(Util.degree(toRadians: 160)), function.value(parameter: 160 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: atan(160)), function.value(parameter: 160 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(atan(Util.degree(toRadians: -200)), function.value(parameter: -200 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: atan(-200)), function.value(parameter: -200 as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {

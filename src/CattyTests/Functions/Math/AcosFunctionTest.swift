@@ -42,9 +42,9 @@ class AcosFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        XCTAssertEqual(acos(Util.degree(toRadians: -0.5)), function.value(parameter: -0.5 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: acos(-0.5)), function.value(parameter: -0.5 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(acos(Util.degree(toRadians: 0.7)), function.value(parameter: 0.7 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: acos(0.7)), function.value(parameter: 0.7 as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {

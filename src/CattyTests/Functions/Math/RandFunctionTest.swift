@@ -43,7 +43,20 @@ class RandFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        // Assigned to: Chuck Norris
+        let firstCall = function.value(firstParameter: 10 as AnyObject, secondParameter: 100 as AnyObject)
+        XCTAssertGreaterThan(firstCall, 9.9999)
+        XCTAssertLessThan(firstCall, 99.9999)
+        
+        let secondCall = function.value(firstParameter: 100 as AnyObject, secondParameter: 10 as AnyObject)
+        XCTAssertGreaterThan(secondCall, 9.9999)
+        XCTAssertLessThan(secondCall, 99.9999)
+        
+        // there are 1 / [(max - min) + 1] ^ 2 chances of having the same number twice
+        XCTAssertNotEqual(firstCall, secondCall)
+        
+        let float = function.value(firstParameter: 10.5 as AnyObject, secondParameter: 20.8 as AnyObject)
+        XCTAssertGreaterThan(float, 10.4999)
+        XCTAssertLessThan(float, 20.7999)
     }
     
     func testFirstParameter() {

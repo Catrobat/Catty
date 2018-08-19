@@ -51,6 +51,19 @@ class ModFunctionTest: XCTestCase {
         XCTAssertEqual(Double(1356 % 76), function.value(firstParameter: 1356 as AnyObject, secondParameter: 76 as AnyObject), accuracy: 0.0001)
         
         XCTAssertEqual(Double(56 % 76), function.value(firstParameter: 56 as AnyObject, secondParameter: 76 as AnyObject), accuracy: 0.0001)
+        
+        // infinity test
+        XCTAssertEqual(Double(5), function.value(firstParameter: 5 as AnyObject, secondParameter: Double.infinity as AnyObject), accuracy: 0.0001)
+        
+        // sign test
+        XCTAssertEqual(Double(1), function.value(firstParameter: 10 as AnyObject, secondParameter: 3 as AnyObject), accuracy: 0.0001)
+        
+        XCTAssertEqual(Double(-2), function.value(firstParameter: 10 as AnyObject, secondParameter: -3 as AnyObject), accuracy: 0.0001)
+        
+        XCTAssertEqual(Double(2), function.value(firstParameter: -10 as AnyObject, secondParameter: 3 as AnyObject), accuracy: 0.0001)
+        
+        XCTAssertEqual(Double(-1), function.value(firstParameter: -10 as AnyObject, secondParameter: -3 as AnyObject), accuracy: 0.0001)
+        
     }
     
     func testFirstParameter() {

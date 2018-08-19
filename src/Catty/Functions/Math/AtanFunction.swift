@@ -35,7 +35,7 @@ class AtanFunction: SingleParameterFunction {
     
     func value(parameter: AnyObject?) -> Double {
         guard let degree = parameter as? Double else { return type(of: self).defaultValue }
-        return atan(Util.degree(toRadians: degree))
+        return Util.radians(toDegree: atan(degree))
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

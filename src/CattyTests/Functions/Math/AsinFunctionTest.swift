@@ -42,9 +42,9 @@ class AsinFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        XCTAssertEqual(asin(Util.degree(toRadians: 1)), function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: asin(1)), function.value(parameter: 1 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(asin(Util.degree(toRadians: -0.2)), function.value(parameter: -0.2 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(Util.radians(toDegree: asin(-0.2)), function.value(parameter: -0.2 as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {
