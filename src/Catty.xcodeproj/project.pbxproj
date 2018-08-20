@@ -983,7 +983,7 @@
 		E4AEC8982108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */; };
 		E4AEC89A2108513D0081A980 /* StoreProgramDownloader.fetchPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */; };
 		E4AEC89C2108513D0081A980 /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */; };
-		E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */; };
+		E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
 		E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */; };
 		E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */; };
@@ -2549,7 +2549,7 @@
 		E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.fail.parse.json; sourceTree = "<group>"; };
 		E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.success.json; sourceTree = "<group>"; };
 		E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
-		E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloaderTests.swift; sourceTree = "<group>"; };
+		E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
 		E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
@@ -6662,7 +6662,7 @@
 			isa = PBXGroup;
 			children = (
 				E4AEC8872108506A0081A980 /* Fixtures */,
-				E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */,
+				E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */,
 				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
 				E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */,
 				E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */,
@@ -7392,7 +7392,7 @@
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
-				E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */,
+				E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */,
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
