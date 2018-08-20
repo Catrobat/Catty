@@ -123,20 +123,20 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     private func fetchData(type: ProgramType) {
-            self.showLoadingView()
-            self.dataSource.fetchItems(type: type) { error in
-                if error != nil {
-                    self.shouldHideLoadingView = true
-                    self.hideLoadingView()
-                    self.showConnectionIssueAlertAndDismiss(error: error!)
-                    self.RecentProgramsTableView.separatorStyle = .singleLine
-                    return
-                }
-                self.RecentProgramsTableView.reloadData()
+        self.showLoadingView()
+        self.dataSource.fetchItems(type: type) { error in
+            if error != nil {
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
+                self.showConnectionIssueAlertAndDismiss(error: error!)
                 self.RecentProgramsTableView.separatorStyle = .singleLine
+                return
             }
+            self.RecentProgramsTableView.reloadData()
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+            self.RecentProgramsTableView.separatorStyle = .singleLine
+        }
     }
     
     private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {

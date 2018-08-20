@@ -35,19 +35,19 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
 
     weak var delegate: SelectedRecentProgramsDataSource?
 
-    fileprivate let downloader: StoreProgramDownloaderProtocol
-    fileprivate var baseUrl = ""
-    fileprivate var programType: ProgramType
+    let downloader: StoreProgramDownloaderProtocol
+    var baseUrl = ""
+    var programType: ProgramType
     
-    fileprivate var mostDownloadedPrograms = [StoreProgram]()
-    fileprivate var mostViewedPrograms = [StoreProgram]()
-    fileprivate var mostRecentPrograms = [StoreProgram]()
+    var mostDownloadedPrograms = [StoreProgram]()
+    var mostViewedPrograms = [StoreProgram]()
+    var mostRecentPrograms = [StoreProgram]()
     
-    fileprivate var mostDownloadedOffset = 0
-    fileprivate var mostViewedOffset = 0
-    fileprivate var mostRecentOffset = 0
+    var mostDownloadedOffset = 0
+    var mostViewedOffset = 0
+    var mostRecentOffset = 0
     
-    fileprivate var programs: [StoreProgram] {
+    var programs: [StoreProgram] {
         switch programType {
         case .mostDownloaded:
             return mostDownloadedPrograms
@@ -60,7 +60,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         }
     }
     
-    fileprivate var programOffset: Int {
+    var programOffset: Int {
         switch programType {
         case .mostDownloaded:
             return mostDownloadedOffset
@@ -91,19 +91,19 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         programType = type
         
         if (self.programOffset == programs.count) || (programs.count == 0) {
-            self.downloader.fetchPrograms(forType: type, offset: programOffset) {items, error in
+            self.downloader.fetchPrograms(forType: type, offset: self.programOffset) {items, error in
                 guard let collection = items, error == nil else { completion(error); return }
                 
                 switch self.programType {
                 case .mostDownloaded:
                     self.mostDownloadedPrograms.append(contentsOf: collection.projects)
-                    self.mostDownloadedOffset += collection.projects.count
+                    self.mostDownloadedOffset += kRecentProgramsMaxResults
                 case .mostViewed:
                     self.mostViewedPrograms.append(contentsOf: collection.projects)
-                    self.mostViewedOffset += collection.projects.count
+                    self.mostViewedOffset += kRecentProgramsMaxResults
                 case .mostRecent:
                     self.mostRecentPrograms.append(contentsOf: collection.projects)
-                    self.mostRecentOffset += collection.projects.count
+                    self.mostRecentOffset += kRecentProgramsMaxResults
                 default:
                     return
                 }
@@ -131,11 +131,13 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? RecentProgramCell {
-            let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
-            let data = try? Data(contentsOf: imageUrl!)
-            cell.recentImage = UIImage(data: data!)
-            cell.recentTitle = programs[indexPath.row].projectName
-            cell.program = programs[indexPath.row]
+            if programs.isEmpty == false {
+                let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
+                let data = try? Data(contentsOf: imageUrl!)
+                cell.recentImage = UIImage(data: data!)
+                cell.recentTitle = programs[indexPath.row].projectName
+                cell.program = programs[indexPath.row]
+            }
         }
         return cell
         
@@ -154,12 +156,12 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let checkPoint = Float(scrollView.contentSize.height * 0.7)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let checkPoint = Float(scrollView.contentSize.height - TableUtil.heightForImageCell())
         let currentViewBottomEdge = Float(scrollView.contentOffset.y + scrollView.frame.size.height)
         
         if currentViewBottomEdge >= checkPoint {
-            fetchItems(type: programType) { _ in }
+            self.fetchItems(type: self.programType) { _ in }
             self.delegate?.scrollViewHandler(dataSource: self)
         }
     }
