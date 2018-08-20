@@ -29,7 +29,7 @@ class ContainsFunction: DoubleParameterFunction {
     static let position = 260
     
     static func firstParameter() -> FunctionParameter {
-        return .list(defaultValue: "*list name*")
+        return .list(defaultValue: "list name")
     }
     
     static func secondParameter() -> FunctionParameter {

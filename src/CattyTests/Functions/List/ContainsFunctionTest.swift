@@ -65,7 +65,7 @@ class ContainsFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.list(defaultValue: "*list name*"), type(of: function).firstParameter())
+        XCTAssertEqual(.list(defaultValue: "list name"), type(of: function).firstParameter())
     }
     
     func testSecondParameter() {

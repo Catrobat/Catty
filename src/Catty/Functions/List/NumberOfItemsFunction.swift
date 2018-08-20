@@ -30,7 +30,7 @@ class NumberOfItemsFunction: SingleParameterFunction {
     static let position = 240
     
     static func firstParameter() -> FunctionParameter {
-        return .list(defaultValue: "*list name*")
+        return .list(defaultValue: "list name")
     }
     
     func value(parameter: AnyObject?) -> Double {

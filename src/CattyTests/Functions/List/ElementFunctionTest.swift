@@ -75,7 +75,7 @@ class ElementFunctionTest: XCTestCase {
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.list(defaultValue: "*list name*"), type(of: function).secondParameter())
+        XCTAssertEqual(.list(defaultValue: "list name"), type(of: function).secondParameter())
     }
     
     func testTag() {

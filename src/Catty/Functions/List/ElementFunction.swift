@@ -33,7 +33,7 @@ class ElementFunction: DoubleParameterStringFunction {
     }
     
     static func secondParameter() -> FunctionParameter {
-        return .list(defaultValue: "*list name*")
+        return .list(defaultValue: "list name")
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {

@@ -68,7 +68,7 @@ class NumberOfElementsFunctionTest: XCTestCase {
     }
     
     func testParameter() {
-        XCTAssertEqual(.list(defaultValue: "*list name*"), type(of: function).firstParameter())
+        XCTAssertEqual(.list(defaultValue: "list name"), type(of: function).firstParameter())
     }
     
     func testTag() {
