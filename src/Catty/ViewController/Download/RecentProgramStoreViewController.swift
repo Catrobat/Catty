@@ -108,10 +108,10 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
         
-        //        if(IS_IPHONE4||IS_IPHONE5) {
-        //            let font = UIFont.systemFont(ofSize: 10)
-        //            RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
-        //        }
+//                if(IS_IPHONE4||IS_IPHONE5) {
+//                    let font = UIFont.systemFont(ofSize: 10)
+//                    RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+//                }
     }
     
     private func setupTableView() {

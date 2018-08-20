@@ -47,6 +47,12 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     var mostViewedOffset = 0
     var mostRecentOffset = 0
     
+    var mostDownloadedScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
+    var mostViewedScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
+    var mostRecentScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
+
+    var scrollView: UIScrollView = UIScrollView()
+    
     var programs: [StoreProgram] {
         switch programType {
         case .mostDownloaded:
@@ -72,6 +78,19 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
             return 0
         }
     }
+    
+    var scrollViewOffset: CGPoint {
+        switch programType {
+        case .mostDownloaded:
+            return mostDownloadedScrollViewOffset
+        case .mostViewed:
+            return mostViewedScrollViewOffset
+        case .mostRecent:
+            return mostRecentScrollViewOffset
+        default:
+            return CGPoint(x: 0,y: 0)
+        }
+    }
 
     // MARK: - Initializer
 
@@ -89,6 +108,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     func fetchItems(type: ProgramType, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
         
         programType = type
+        scrollView.setContentOffset(scrollViewOffset, animated: false)
         
         if (self.programOffset == programs.count) || (programs.count == 0) {
             self.downloader.fetchPrograms(forType: type, offset: self.programOffset) {items, error in
@@ -157,6 +177,19 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        self.scrollView = scrollView
+        
+        switch programType {
+        case .mostDownloaded:
+            mostDownloadedScrollViewOffset = scrollView.contentOffset
+        case .mostViewed:
+            mostViewedScrollViewOffset = scrollView.contentOffset
+        case .mostRecent:
+            mostRecentScrollViewOffset = scrollView.contentOffset
+        default:
+            return
+        }
         let checkPoint = Float(scrollView.contentSize.height - TableUtil.heightForImageCell())
         let currentViewBottomEdge = Float(scrollView.contentOffset.y + scrollView.frame.size.height)
         
