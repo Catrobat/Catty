@@ -34,6 +34,9 @@
     private func registerFunctions() {
         let functionList: [CBFunction] = [
             SinFunction(),
+            ContainsFunction(),
+            ElementFunction(),
+            NumberOfItemsFunction(),
             JoinFunction(),
             LetterFunction(),
             LengthFunction()
@@ -65,7 +68,7 @@
         return type(of: function).isIdempotent
     }
     
-    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
+    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
@@ -81,6 +84,18 @@
             value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterStringFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
+        } else if let function = function as? ZeroParameterDoubleFunctionWithSpriteObject {
+            value = function.value(spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? ZeroParameterStringFunctionWithSpriteObject {
+            value = function.value(spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? SingleParameterDoubleFunctionWithSpriteObject {
+            value = function.value(parameter: firstParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? SingleParameterStringFunctionWithSpriteObject {
+            value = function.value(parameter: firstParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? DoubleParameterDoubleFunctionWithSpriteObject {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? DoubleParameterStringFunctionWithSpriteObject {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
         }
         
         return value

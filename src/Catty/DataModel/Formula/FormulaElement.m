@@ -144,7 +144,7 @@
             id leftId = [self functionParameter:self.leftChild andSpriteObject:sprite];
             id rightId = [self functionParameter:self.rightChild andSpriteObject:sprite];
             
-            result = [[FunctionManager shared] valueWithTag:self.value firstParameter:leftId secondParameter:rightId];
+            result = [[FunctionManager shared] valueWithTag:self.value firstParameter:leftId secondParameter:rightId spriteObject:sprite];
             break;
             break;
         }
