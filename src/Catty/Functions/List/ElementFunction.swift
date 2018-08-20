@@ -42,13 +42,13 @@ class ElementFunction: DoubleParameterStringFunction {
                 return type(of: self).defaultValue
         }
         
-        let elements = list.value as! [String]
+        let elements = list.value as! [AnyObject]
         if elementNumber - 1 < 0 || elementNumber - 1 > elements.count {
             return type(of: self).defaultValue
         }
         
         let index = elements.index(elements.startIndex, offsetBy: elementNumber - 1)
-        return String(format:"%@", elements[index] as CVarArg)
+        return String(format:"%@", elements[index] as! CVarArg)
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {
