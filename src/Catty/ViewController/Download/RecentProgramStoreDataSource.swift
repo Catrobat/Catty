@@ -155,8 +155,13 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        fetchItems(type: programType) { _ in }
-        self.delegate?.scrollViewHandler(dataSource: self)
+        let checkPoint = Float(scrollView.contentSize.height * 0.7)
+        let currentViewBottomEdge = Float(scrollView.contentOffset.y + scrollView.frame.size.height)
+        
+        if currentViewBottomEdge >= checkPoint {
+            fetchItems(type: programType) { _ in }
+            self.delegate?.scrollViewHandler(dataSource: self)
+        }
     }
 }
 
