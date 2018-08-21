@@ -68,7 +68,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         app.tables.staticTexts["New"].tap()
         
         let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
+        alertQuery.textFields["Enter your program name here..."].typeText("testProgram")
         
         app.alerts["New Program"].buttons["OK"].tap()
         
@@ -79,7 +79,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         app.navigationBars[programName].buttons["Pocket Code"].tap()
         app.tables.staticTexts["New"].tap()
         
-        alertQuery.textFields["Enter your program name here..."].typeText(programName)
+        alertQuery.textFields["Enter your program name here..."].typeText("testProgram")
         app.buttons["OK"].tap()
         // check if error message is displayed
         XCTAssert(app.alerts["Pocket Code"].staticTexts["A program with the same name already exists, try again."].exists)

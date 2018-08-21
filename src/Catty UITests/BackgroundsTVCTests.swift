@@ -78,8 +78,9 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
         let yesButton = app.alerts["Delete these Bricks?"].buttons["Yes"]
         yesButton.tap()
-        
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).exists == false)
+        app.navigationBars.buttons["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
     }
     
     func testScriptsCanDeleteWhenProgramStartsViaTap(){
@@ -93,25 +94,10 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
         let yesButton = app.alerts["Delete this Script?"].buttons["Yes"]
         yesButton.tap()
-        
-        XCTAssert(app.collectionViews.cells.element(boundBy: 0).exists == false)
+        app.navigationBars.buttons["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)
     }
-    
-    //TODO: Tests for Bricks with Textfields in the middle
-
-    /*func testScriptCanAddScriptWhenProgramStarted(){
-        
-        let app = XCUIApplication()
-        
-        testScriptsCanEnterScripts()
-        
-        app.toolbars.buttons["Add"].tap()
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        
-        app.collectionViews.cells.element(boundBy: 0).tap()
-        
-        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["When program started"].exists)
-    }*/
     
     func testBackgroundsCanEnterBackgrounds(){
         
