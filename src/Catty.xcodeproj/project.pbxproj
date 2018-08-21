@@ -986,7 +986,6 @@
 		E4AEC89C2108513D0081A980 /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */; };
 		E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
-		E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */; };
 		E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */; };
 		F48E945520D141DB007E782E /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */; };
@@ -2552,8 +2551,6 @@
 		E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
-		E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
-		E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloader.swift; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgram.swift; sourceTree = "<group>"; };
 		F48E945420D141DB007E782E /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ElementOfListFunction0991.xml; sourceTree = "<group>"; };
@@ -6681,8 +6678,6 @@
 				E4AEC8872108506A0081A980 /* Fixtures */,
 				E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */,
 				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
-				E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */,
-				E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */,
 				2DF67A26212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift */,
 			);
 			path = Download;
@@ -7399,7 +7394,6 @@
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */,
-				E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,

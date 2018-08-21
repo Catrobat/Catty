@@ -108,10 +108,16 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
         RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
         
-//                if(IS_IPHONE4||IS_IPHONE5) {
-//                    let font = UIFont.systemFont(ofSize: 10)
-//                    RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
-//                }
+        if(checkIphoneScreenSize()) {
+            let font = UIFont.systemFont(ofSize: 10)
+            RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+        }
+    }
+    
+    // check iPhone4 or iphone5
+    private func checkIphoneScreenSize() -> Bool {
+        let screenHeight = Float(Util.screenHeight())
+        return (((screenHeight - kIphone4ScreenHeight) == 0) || ((screenHeight - kIphone5ScreenHeight) == 0)) ? true : false
     }
     
     private func setupTableView() {
