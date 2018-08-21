@@ -1416,7 +1416,7 @@
         <!--Search Store View Controller-->
         <scene sceneID="FTZ-2Z-KbS">
             <objects>
-                <viewController id="gUe-7f-4Ts" customClass="SearchStoreViewController" sceneMemberID="viewController">
+                <viewController id="gUe-7f-4Ts" customClass="SearchStoreViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ung-cw-cbv"/>
                         <viewControllerLayoutGuide type="bottom" id="NrY-Yp-4I6"/>
@@ -1501,8 +1501,8 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="f0u-I2-K26"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
-                        <outlet property="searchBar" destination="2Ht-uC-rkW" id="HTV-Fh-pm8"/>
-                        <outlet property="tableView" destination="wOw-Ve-PBF" id="W3e-9D-HCI"/>
+                        <outlet property="SearchStoreTableView" destination="wOw-Ve-PBF" id="UpX-nm-JZa"/>
+                        <outlet property="searchBar" destination="2Ht-uC-rkW" id="PZ9-ZW-OxV"/>
                         <segue destination="5oV-85-Xov" kind="show" identifier="segueToProgramDetail" id="Gbh-WU-doT"/>
                     </connections>
                 </viewController>
@@ -2524,7 +2524,7 @@
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5UD-6W-Ykq"/>
+        <segue reference="Gbh-WU-doT"/>
         <segue reference="mUB-CR-2KD"/>
     </inferredMetricsTieBreakers>
 </document>

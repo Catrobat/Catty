@@ -24,7 +24,6 @@
 #import "ProgramStoreDelegate.h"
 #import "CBFileManager.h"
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
-#import "SearchStoreViewController.h"
 #import "BaseTableViewController.h"
 #import "UIViewController+CWPopup.h"
 
@@ -35,8 +34,6 @@
 @property (nonatomic, strong) CatrobatProgram *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollViewOutlet;
-@property (nonatomic, strong) SearchStoreViewController *searchStoreController;
-
 @end
 
 
