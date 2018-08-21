@@ -47,8 +47,12 @@ class FaceSizeSensor: DeviceSensor {
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
-        let screenSize = Util.screenHeight() * Util.screenWidth() / 50
-        return rawValue / Double(screenSize)
+        let screenSize = Util.screenHeight() * Util.screenWidth() / 100
+        let faceSize = rawValue / Double(screenSize)
+        if faceSize > 100 {
+            return 100
+        }
+        return faceSize
     }
     
     static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

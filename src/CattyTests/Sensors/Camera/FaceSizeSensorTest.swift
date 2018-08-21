@@ -54,7 +54,7 @@ final class FaceSizeSensorTest: XCTestCase {
     
     
     func testConvertToStandardized() {
-        let screenSize = Util.screenHeight() * Util.screenWidth() / 50
+        let screenSize = Util.screenHeight() * Util.screenWidth() / 100
         
         // arm-length from the face
         XCTAssertEqual(28, sensor.convertToStandardized(rawValue: Double(28 * screenSize)))
