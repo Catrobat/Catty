@@ -30,9 +30,9 @@ class ChartProgramCell: UITableViewCell {
     
     weak var delegete: ChartProgramCellProtocol?
     var program: StoreProgram?
-    
-    @IBOutlet weak var chartProgramTitle: UILabel!
+
     @IBOutlet weak var chartProgramImage: UIImageView!
+    @IBOutlet weak var chartProgramTitle: UILabel!
     
     var chartImage: UIImage? {
         didSet {

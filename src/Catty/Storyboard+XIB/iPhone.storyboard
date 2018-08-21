@@ -1659,7 +1659,7 @@
         <!--Charts-->
         <scene sceneID="SIN-nq-kFT">
             <objects>
-                <viewController id="NKa-LQ-PR2" customClass="RecentProgramsStoreViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NKa-LQ-PR2" customClass="ChartProgramsStoreViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oUZ-xk-9ov"/>
                         <viewControllerLayoutGuide type="bottom" id="LnA-7Y-Ybh"/>
@@ -1683,7 +1683,7 @@
                                 <rect key="frame" x="0.0" y="93" width="375" height="525"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="pIz-Fj-Dju" customClass="RecentProgramCell" customModule="Pocket_Code" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="pIz-Fj-Dju" customClass="ChartProgramCell" customModule="Pocket_Code" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIz-Fj-Dju" id="q6e-Z0-ush">
@@ -1720,8 +1720,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="recentProgramImage" destination="mCK-b7-9dt" id="L7I-FK-cBA"/>
-                                            <outlet property="recentProgramTitle" destination="8c6-q5-WBJ" id="jkU-mA-7op"/>
+                                            <outlet property="chartProgramImage" destination="mCK-b7-9dt" id="ypv-oU-cQN"/>
+                                            <outlet property="chartProgramTitle" destination="8c6-q5-WBJ" id="wxk-KZ-Wic"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1740,8 +1740,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Charts" image="top_charts" id="cyM-fk-ZFD"/>
                     <connections>
-                        <outlet property="RecentProgramsSegmentedControl" destination="jxg-mt-dvB" id="5Pf-Cy-QwJ"/>
-                        <outlet property="RecentProgramsTableView" destination="fJr-Rh-VKf" id="lyC-cq-O1d"/>
+                        <outlet property="ChartProgramsSegmentedControl" destination="jxg-mt-dvB" id="bR1-Hf-UdL"/>
+                        <outlet property="ChartProgramsTableView" destination="fJr-Rh-VKf" id="9mV-oM-UFt"/>
                         <segue destination="5oV-85-Xov" kind="show" identifier="segueToProgramDetail" id="5UD-6W-Ykq"/>
                     </connections>
                 </viewController>
@@ -2524,7 +2524,7 @@
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gbh-WU-doT"/>
+        <segue reference="5UD-6W-Ykq"/>
         <segue reference="mUB-CR-2KD"/>
     </inferredMetricsTieBreakers>
 </document>

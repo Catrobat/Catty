@@ -41,6 +41,10 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         self.downloader = downloader
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("hello")
+    }
+    
     static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> SearchStoreDataSource {
         return SearchStoreDataSource(with: downloader)
     }
