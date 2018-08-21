@@ -64,6 +64,9 @@ final class FaceSizeSensorTest: XCTestCase {
         
         // awkward selfie level -  too close
         XCTAssertEqual(80, sensor.convertToStandardized(rawValue: Double(80 * screenSize)))
+        
+        // too big
+        XCTAssertEqual(100, sensor.convertToStandardized(rawValue: Double(120 * screenSize)))
     }
     
     func testTag() {
