@@ -34,6 +34,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     weak var searchBarDelegate: UISearchBarDelegate?
     
     let downloader: StoreProgramDownloaderProtocol
+    var programs = [StoreProgram]()
     var baseUrl = ""
     
     var searchBar = UISearchBar()
@@ -43,7 +44,22 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("hello")
+        if searchBar.text?.isEmpty == false {
+            fetchItems(searchTerm: searchBar.text) { error in
+                print("hello")
+            }
+        }
+    }
+    
+    func fetchItems(searchTerm: String?, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
+        if let searchTerm: String = searchTerm {
+            self.downloader.fetchPrograms(forType: .search, offset: 0, searchTerm: searchTerm) {items, error in
+                guard let collection = items, error == nil else { completion(error); return }
+                self.programs = collection.projects
+                self.baseUrl = collection.information.baseUrl
+                completion(nil)
+            }
+        }
     }
     
     static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> SearchStoreDataSource {
@@ -60,12 +76,10 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("hallo")
         return TableUtil.heightForImageCell()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("hallo")
         return UITableViewCell()
     }
 }

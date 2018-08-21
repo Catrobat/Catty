@@ -51,7 +51,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     // MARK: - DataSource
     
     func fetchItems(completion: @escaping (StoreProgramDownloaderError?) -> Void) {
-        self.downloader.fetchPrograms(forType: .featured, offset: 0) {items, error in
+        self.downloader.fetchPrograms(forType: .featured, offset: 0, searchTerm: "") {items, error in
             guard let collection = items, error == nil else { completion(error); return }
             self.programs = collection.projects
             self.baseUrl = collection.information.baseUrl

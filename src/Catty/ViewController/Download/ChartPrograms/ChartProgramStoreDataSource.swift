@@ -111,7 +111,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         scrollView.setContentOffset(scrollViewOffset, animated: false)
         
         if (self.programOffset == programs.count) || (programs.count == 0) {
-            self.downloader.fetchPrograms(forType: type, offset: self.programOffset) {items, error in
+            self.downloader.fetchPrograms(forType: type, offset: self.programOffset, searchTerm: "") {items, error in
                 guard let collection = items, error == nil else { completion(error); return }
                 
                 switch self.programType {
