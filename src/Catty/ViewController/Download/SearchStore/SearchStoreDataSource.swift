@@ -31,6 +31,7 @@ protocol SelectedSearchStoreDataSource: class {
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     weak var delegate: SelectedSearchStoreDataSource?
+    weak var searchBarDelegate: UISearchBarDelegate?
     
     let downloader: StoreProgramDownloaderProtocol
     var baseUrl = ""
@@ -54,14 +55,17 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("hallo")
         return TableUtil.heightForImageCell()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("hallo")
         return UITableViewCell()
     }
 }

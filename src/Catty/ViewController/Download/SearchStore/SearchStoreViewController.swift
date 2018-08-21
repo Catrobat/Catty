@@ -59,6 +59,9 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     
     private func setupTableView() {
         self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.SearchStoreTableView.dataSource = self.dataSource
+        self.SearchStoreTableView.delegate = self.dataSource
+        self.searchBar.delegate  = self.dataSource
 
     }
     
