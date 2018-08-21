@@ -732,11 +732,11 @@ let kLocalizedFeaturedProgramsLoadFailureTitle = NSLocalizedString("Failed to lo
 let kLocalizedFeaturedProgramsLoadFailureMessage = NSLocalizedString("The featured programs cannot be loaded", comment: "")
 
 //************************************************************************************************************
-//**********************************       RecentdPrograms        *******************************************
+//***********************************       ChartPrograms        *********************************************
 //************************************************************************************************************
 
-let kLocalizedRecentProgramsLoadFailureTitle = NSLocalizedString("Failed to load recent programs", comment: "")
-let kLocalizedRecentProgramsLoadFailureMessage = NSLocalizedString("The recent programs cannot be loaded", comment: "")
+let kLocalizedChartProgramsLoadFailureTitle = NSLocalizedString("Failed to load recent programs", comment: "")
+let kLocalizeChartProgramsLoadFailureMessage = NSLocalizedString("The recent programs cannot be loaded", comment: "")
 
 //************************************************************************************************************
 //**************************************       Networking        *********************************************

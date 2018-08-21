@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D6E3F39210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift */; };
-		2D6E3F3B210A0AB700FB8139 /* RecentProgramStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* RecentProgramStoreViewController.swift */; };
-		2D8E23C32123134B003E7EE4 /* RecentProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E23C22123134B003E7EE4 /* RecentProgramCell.swift */; };
+		2D6E3F39210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */; };
+		2D6E3F3B210A0AB700FB8139 /* ChartProgramStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */; };
+		2D8E23C32123134B003E7EE4 /* ChartProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */; };
 		2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */; };
 		2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */; };
 		2DE385082105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
@@ -1050,9 +1050,9 @@
 
 /* Begin PBXFileReference section */
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2D6E3F38210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentProgramStoreDataSource.swift; sourceTree = "<group>"; };
-		2D6E3F3A210A0AB700FB8139 /* RecentProgramStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentProgramStoreViewController.swift; sourceTree = "<group>"; };
-		2D8E23C22123134B003E7EE4 /* RecentProgramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentProgramCell.swift; sourceTree = "<group>"; };
+		2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreDataSource.swift; sourceTree = "<group>"; };
+		2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreViewController.swift; sourceTree = "<group>"; };
+		2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartProgramCell.swift; sourceTree = "<group>"; };
 		2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreViewController.swift; sourceTree = "<group>"; };
 		2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSource.swift; sourceTree = "<group>"; };
 		2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
@@ -2666,14 +2666,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2DA8790F212BD67700FE0585 /* RecentPrograms */ = {
+		2DA8790F212BD67700FE0585 /* ChartPrograms */ = {
 			isa = PBXGroup;
 			children = (
-				2D6E3F38210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift */,
-				2D6E3F3A210A0AB700FB8139 /* RecentProgramStoreViewController.swift */,
-				2D8E23C22123134B003E7EE4 /* RecentProgramCell.swift */,
+				2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */,
+				2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */,
+				2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */,
 			);
-			path = RecentPrograms;
+			path = ChartPrograms;
 			sourceTree = "<group>";
 		};
 		2DA87910212BD6C000FE0585 /* SearchStore */ = {
@@ -5178,7 +5178,7 @@
 				E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */,
 				E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */,
 				E4B1BF4D20F719DB00800555 /* FeaturedPrograms */,
-				2DA8790F212BD67700FE0585 /* RecentPrograms */,
+				2DA8790F212BD67700FE0585 /* ChartPrograms */,
 				2DA87910212BD6C000FE0585 /* SearchStore */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
@@ -7502,7 +7502,7 @@
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
 				AA74F00C1BC05B5F00D1E954 /* SetVolumeToBrick.m in Sources */,
 				CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */,
-				2D8E23C32123134B003E7EE4 /* RecentProgramCell.swift in Sources */,
+				2D8E23C32123134B003E7EE4 /* ChartProgramCell.swift in Sources */,
 				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
 				AA74F0BD1BC05FCE00D1E954 /* PlaceAtBrickCell.m in Sources */,
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
@@ -7516,7 +7516,7 @@
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */,
-				2D6E3F3B210A0AB700FB8139 /* RecentProgramStoreViewController.swift in Sources */,
+				2D6E3F3B210A0AB700FB8139 /* ChartProgramStoreViewController.swift in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
@@ -7801,7 +7801,7 @@
 				4C724E5A1B4D3E8C00E27479 /* Program+CBXMLHandler.m in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
-				2D6E3F39210A0A9F00FB8139 /* RecentProgramStoreDataSource.swift in Sources */,
+				2D6E3F39210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift in Sources */,
 				4C0F9F76204BD1D600E71B2D /* PreviousLookBrick+Instruction.swift in Sources */,
 				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,

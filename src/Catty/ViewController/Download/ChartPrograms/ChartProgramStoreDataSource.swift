@@ -20,20 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol RecentProgramStoreDataSourceDelegate: class {
-    func recentProgramsStoreTableDataSource(_ dataSource: RecentProgramStoreDataSource, didSelectCellWith item: StoreProgram)
+protocol ChartProgramStoreDataSourceDelegate: class {
+    func chartProgramsStoreTableDataSource(_ dataSource: ChartProgramStoreDataSource, didSelectCellWith item: StoreProgram)
 }
 
-protocol SelectedRecentProgramsDataSource: class {
-    func selectedCell(dataSource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell)
-    func scrollViewHandler(dataSource: RecentProgramStoreDataSource)
+protocol SelectedChartProgramsDataSource: class {
+    func selectedCell(dataSource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
+    func scrollViewHandler(dataSource: ChartProgramStoreDataSource)
 }
 
-class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
 
-    weak var delegate: SelectedRecentProgramsDataSource?
+    weak var delegate: SelectedChartProgramsDataSource?
 
     let downloader: StoreProgramDownloaderProtocol
     var baseUrl = ""
@@ -99,8 +99,8 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
         self.programType = .mostDownloaded
     }
 
-    static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> RecentProgramStoreDataSource {
-        return RecentProgramStoreDataSource(with: downloader)
+    static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> ChartProgramStoreDataSource {
+        return ChartProgramStoreDataSource(with: downloader)
     }
 
     // MARK: - DataSource
@@ -150,12 +150,12 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
-        if let cell = cell as? RecentProgramCell {
+        if let cell = cell as? ChartProgramCell {
             if programs.isEmpty == false {
                 let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
                 let data = try? Data(contentsOf: imageUrl!)
-                cell.recentImage = UIImage(data: data!)
-                cell.recentTitle = programs[indexPath.row].projectName
+                cell.chartImage = UIImage(data: data!)
+                cell.chartTitle = programs[indexPath.row].projectName
                 cell.program = programs[indexPath.row]
             }
         }
@@ -167,7 +167,7 @@ class RecentProgramStoreDataSource: NSObject, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell: RecentProgramCell? = tableView.cellForRow(at: indexPath) as? RecentProgramCell
+        let cell: ChartProgramCell? = tableView.cellForRow(at: indexPath) as? ChartProgramCell
 
         self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
             guard let StoreProgram = program, error == nil else { return }

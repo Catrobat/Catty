@@ -732,11 +732,11 @@
 #define kLocalizedFeaturedProgramsLoadFailureMessage NSLocalizedString(@"The featured programs cannot be loaded", nil)
 
 //************************************************************************************************************
-//**********************************       RecentdPrograms        *******************************************
+//***********************************       ChartPrograms        *********************************************
 //************************************************************************************************************
 
-#define kLocalizedRecentProgramsLoadFailureTitle NSLocalizedString(@"Failed to load recent programs", nil)
-#define kLocalizedRecentProgramsLoadFailureMessage NSLocalizedString(@"The recent programs cannot be loaded", nil)
+#define kLocalizedChartProgramsLoadFailureTitle NSLocalizedString(@"Failed to load recent programs", nil)
+#define kLocalizeChartProgramsLoadFailureMessage NSLocalizedString(@"The recent programs cannot be loaded", nil)
 
 //************************************************************************************************************
 //**************************************       Networking        *********************************************

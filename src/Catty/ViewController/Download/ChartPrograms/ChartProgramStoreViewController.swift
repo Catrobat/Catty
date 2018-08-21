@@ -20,14 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgramsDataSource {
+class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsDataSource {
 
-    @IBOutlet weak var RecentProgramsTableView: UITableView!
-    @IBOutlet weak var RecentProgramsSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var ChartProgramsTableView: UITableView!
+    @IBOutlet weak var ChartProgramsSegmentedControl: UISegmentedControl!
     
     // MARK: - Properties
 
-    private var dataSource: RecentProgramStoreDataSource
+    private var dataSource: ChartProgramStoreDataSource
 
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
@@ -38,7 +38,7 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     // MARK: - Initializers
     
     required init?(coder aDecoder: NSCoder) {
-        self.dataSource = RecentProgramStoreDataSource.dataSource()
+        self.dataSource = ChartProgramStoreDataSource.dataSource()
         super.init(coder: aDecoder)
     }
 
@@ -103,14 +103,14 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     func initSegmentedControl() {
-        RecentProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
-        RecentProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
-        RecentProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
+        ChartProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
+        ChartProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
+        ChartProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
         
         if(checkIphoneScreenSize()) {
             let font = UIFont.systemFont(ofSize: 10)
-            RecentProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+            ChartProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         }
     }
     
@@ -121,11 +121,11 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
     }
     
     private func setupTableView() {
-        self.RecentProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.RecentProgramsTableView.backgroundColor = UIColor.background()
-        RecentProgramsTableView.separatorColor = UIColor.globalTint()
-        self.RecentProgramsTableView.dataSource = self.dataSource
-        self.RecentProgramsTableView.delegate = self.dataSource
+        self.ChartProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.ChartProgramsTableView.backgroundColor = UIColor.background()
+        self.ChartProgramsTableView.separatorColor = UIColor.globalTint()
+        self.ChartProgramsTableView.dataSource = self.dataSource
+        self.ChartProgramsTableView.delegate = self.dataSource
     }
     
     private func fetchData(type: ProgramType) {
@@ -135,13 +135,13 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
                 self.showConnectionIssueAlertAndDismiss(error: error!)
-                self.RecentProgramsTableView.separatorStyle = .singleLine
+                self.ChartProgramsTableView.separatorStyle = .singleLine
                 return
             }
-            self.RecentProgramsTableView.reloadData()
+            self.ChartProgramsTableView.reloadData()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
-            self.RecentProgramsTableView.separatorStyle = .singleLine
+            self.ChartProgramsTableView.separatorStyle = .singleLine
         }
     }
     
@@ -155,8 +155,8 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
             title = kLocalizedServerTimeoutIssueTitle
             message = kLocalizedServerTimeoutIssueMessage
         default:
-            title = kLocalizedRecentProgramsLoadFailureTitle
-            message = kLocalizedRecentProgramsLoadFailureMessage
+            title = kLocalizedChartProgramsLoadFailureTitle
+            message = kLocalizeChartProgramsLoadFailureMessage
         }
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -204,8 +204,8 @@ class RecentProgramsStoreViewController: UIViewController, SelectedRecentProgram
 
 }
 
-extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
-    func selectedCell(dataSource datasource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell) {
+extension ChartProgramsStoreViewController: ChartProgramCellProtocol{
+    func selectedCell(dataSource datasource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell) {
         if let program = cell.program {
             self.showLoadingView()
             loadingViewFlag = true
@@ -215,8 +215,8 @@ extension RecentProgramsStoreViewController: RecentProgramCellProtocol{
     }
 }
 
-extension RecentProgramsStoreViewController {
-    func scrollViewHandler(dataSource: RecentProgramStoreDataSource) {
-        RecentProgramsTableView.reloadData()
+extension ChartProgramsStoreViewController {
+    func scrollViewHandler(dataSource: ChartProgramStoreDataSource) {
+        ChartProgramsTableView.reloadData()
     }
 }

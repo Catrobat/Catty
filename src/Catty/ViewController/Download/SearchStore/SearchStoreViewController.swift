@@ -86,7 +86,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
 }
 
 extension SearchStoreViewController {
-    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: RecentProgramCell) {
+    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: ChartProgramCell) {
         //segue
     }
 }

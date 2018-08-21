@@ -25,7 +25,7 @@ protocol SearchStoreDataSourceDelegate: class {
 }
 
 protocol SelectedSearchStoreDataSource: class {
-    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: RecentProgramCell)
+    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: ChartProgramCell)
 }
 
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {

@@ -22,33 +22,33 @@
 
 import UIKit
 
-protocol RecentProgramCellProtocol: class {
-    func selectedCell(dataSource datasource: RecentProgramStoreDataSource, didSelectCellWith cell: RecentProgramCell)
+protocol ChartProgramCellProtocol: class {
+    func selectedCell(dataSource datasource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
 }
 
-class RecentProgramCell: UITableViewCell {
+class ChartProgramCell: UITableViewCell {
     
-    weak var delegete: RecentProgramCellProtocol?
+    weak var delegete: ChartProgramCellProtocol?
     var program: StoreProgram?
     
-    @IBOutlet weak var recentProgramTitle: UILabel!
-    @IBOutlet weak var recentProgramImage: UIImageView!
+    @IBOutlet weak var chartProgramTitle: UILabel!
+    @IBOutlet weak var chartProgramImage: UIImageView!
     
-    var recentImage: UIImage? {
+    var chartImage: UIImage? {
         didSet {
             self.updateTable()
         }
     }
     
-    var recentTitle: String? {
+    var chartTitle: String? {
         didSet {
             self.updateTable()
         }
     }
     
     func updateTable() {
-        recentProgramImage?.image = recentImage
-        recentProgramTitle?.text = recentTitle
-        recentProgramTitle.textColor = UIColor.globalTint()
+        chartProgramImage?.image = chartImage
+        chartProgramTitle?.text = chartTitle
+        chartProgramTitle.textColor = UIColor.globalTint()
     }
 }
