@@ -51,7 +51,12 @@ class RandFunction: DoubleParameterFunction {
         
         if Int(maximum) - Int(minimum) <= 1 {
             // the range is too small
-            let result = arc4random() % 10
+            
+            var result: UInt32
+            repeat {
+                result = arc4random() % 10
+            } while result == 0 || result == 1
+            
             if result % 2 == 0 {
                 if floor(minimum) == minimum && floor(maximum) == maximum {
                     return minimum
