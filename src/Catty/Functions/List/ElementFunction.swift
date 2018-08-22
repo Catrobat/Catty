@@ -21,7 +21,7 @@
  */
 
 class ElementFunction: DoubleParameterFunction {
-    static var tag = "ELEMENT"
+    static var tag = "LIST_ITEM"
     static var name = "element"
     static var defaultValue = "" as AnyObject
     static var requiredResource = ResourceType.noResources
