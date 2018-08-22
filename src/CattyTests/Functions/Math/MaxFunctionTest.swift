@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class SinFunctionTest: XCTestCase {
+class MaxFunctionTest: XCTestCase {
     
-    var function: SinFunction!
+    var function: MaxFunction!
     
     override func setUp() {
-        self.function = SinFunction()
+        self.function = MaxFunction()
     }
     
     override func tearDown() {
@@ -37,26 +37,33 @@ class SinFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 3 as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
     }
     
     func testValue() {
-        XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(max(100, 200), function.value(firstParameter: 100 as AnyObject, secondParameter: 200 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(max(-100, -200), function.value(firstParameter: -100 as AnyObject, secondParameter: -200 as AnyObject), accuracy: 0.0001)
     }
     
-    func testParameter() {
+    func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
     }
     
+    func testSecondParameter() {
+        XCTAssertEqual(.number(defaultValue: 1), type(of: function).secondParameter())
+    }
+    
     func testTag() {
-        XCTAssertEqual("SIN", type(of: function).tag)
+        XCTAssertEqual("MAX", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("sin", type(of: function).name)
+        XCTAssertEqual("max", type(of: function).name)
     }
     
     func testRequiredResources() {
@@ -71,3 +78,4 @@ class SinFunctionTest: XCTestCase {
         XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
     }
 }
+

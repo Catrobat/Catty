@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class SinFunctionTest: XCTestCase {
+class RandFunctionTest: XCTestCase {
     
-    var function: SinFunction!
+    var function: RandFunction!
     
     override func setUp() {
-        self.function = SinFunction()
+        self.function = RandFunction()
     }
     
     override func tearDown() {
@@ -37,26 +37,42 @@ class SinFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: nil), accuracy: 0.0001)
     }
     
     func testValue() {
-        XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: 0.0001)
+        let firstCall = function.value(firstParameter: 10 as AnyObject, secondParameter: 100 as AnyObject)
+        XCTAssertGreaterThan(firstCall, 9.9999)
+        XCTAssertLessThan(firstCall, 99.9999)
         
-        XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
+        let secondCall = function.value(firstParameter: 100 as AnyObject, secondParameter: 10 as AnyObject)
+        XCTAssertGreaterThan(secondCall, 9.9999)
+        XCTAssertLessThan(secondCall, 99.9999)
+        
+        // there are 1 / [(max - min) + 1] ^ 2 chances of having the same number twice
+        XCTAssertNotEqual(firstCall, secondCall)
+        
+        let float = function.value(firstParameter: 10.5 as AnyObject, secondParameter: 20.8 as AnyObject)
+        XCTAssertGreaterThan(float, 10.4999)
+        XCTAssertLessThan(float, 20.7999)
     }
     
-    func testParameter() {
+    func testFirstParameter() {
         XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
     }
     
+    func testSecondParameter() {
+        XCTAssertEqual(.number(defaultValue: 1), type(of: function).secondParameter())
+    }
+    
     func testTag() {
-        XCTAssertEqual("SIN", type(of: function).tag)
+        XCTAssertEqual("RAND", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("sin", type(of: function).name)
+        XCTAssertEqual("rand", type(of: function).name)
     }
     
     func testRequiredResources() {
@@ -64,7 +80,7 @@ class SinFunctionTest: XCTestCase {
     }
     
     func testIsIdempotent() {
-        XCTAssertTrue(type(of: function).isIdempotent)
+        XCTAssertFalse(type(of: function).isIdempotent)
     }
     
     func testFormulaEditorSection() {

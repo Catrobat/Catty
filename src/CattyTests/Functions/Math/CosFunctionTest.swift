@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class SinFunctionTest: XCTestCase {
+class CosFunctionTest: XCTestCase {
     
-    var function: SinFunction!
+    var function: CosFunction!
     
     override func setUp() {
-        self.function = SinFunction()
+        self.function = CosFunction()
     }
     
     override func tearDown() {
@@ -42,9 +42,9 @@ class SinFunctionTest: XCTestCase {
     }
     
     func testValue() {
-        XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(cos(Util.degree(toRadians: 15)), function.value(parameter: 15 as AnyObject), accuracy: 0.0001)
         
-        XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(cos(Util.degree(toRadians: -90)), function.value(parameter: -90 as AnyObject), accuracy: 0.0001)
     }
     
     func testParameter() {
@@ -52,11 +52,11 @@ class SinFunctionTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("SIN", type(of: function).tag)
+        XCTAssertEqual("COS", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("sin", type(of: function).name)
+        XCTAssertEqual("cos", type(of: function).name)
     }
     
     func testRequiredResources() {

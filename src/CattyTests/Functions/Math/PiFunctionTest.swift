@@ -24,12 +24,12 @@ import XCTest
 
 @testable import Pocket_Code
 
-class SinFunctionTest: XCTestCase {
+class PiFunctionTest: XCTestCase {
     
-    var function: SinFunction!
+    var function: PiFunction!
     
     override func setUp() {
-        self.function = SinFunction()
+        self.function = PiFunction()
     }
     
     override func tearDown() {
@@ -37,26 +37,19 @@ class SinFunctionTest: XCTestCase {
     }
     
     func testDefaultValue() {
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
-        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(), accuracy: 0.0001)
     }
     
     func testValue() {
-        XCTAssertEqual(sin(Util.degree(toRadians: 45)), function.value(parameter: 45 as AnyObject), accuracy: 0.0001)
-        
-        XCTAssertEqual(sin(Util.degree(toRadians: -15)), function.value(parameter: -15 as AnyObject), accuracy: 0.0001)
-    }
-    
-    func testParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
+        XCTAssertEqual(Double.pi, function.value(), accuracy: 0.0001)
     }
     
     func testTag() {
-        XCTAssertEqual("SIN", type(of: function).tag)
+        XCTAssertEqual("PI", type(of: function).tag)
     }
     
     func testName() {
-        XCTAssertEqual("sin", type(of: function).name)
+        XCTAssertEqual("pi", type(of: function).name)
     }
     
     func testRequiredResources() {
