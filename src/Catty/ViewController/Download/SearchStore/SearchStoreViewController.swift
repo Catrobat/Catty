@@ -34,6 +34,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
     var loadingViewFlag = false
+    var noSearchResultsLabel: UILabel!
     
     // MARK: - Initializers
     
@@ -88,8 +89,41 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
     
+    func initNoSearchResultsLabel() {
+        noSearchResultsLabel = UILabel(frame: view.frame)
+        noSearchResultsLabel.text = kLocalizedNoSearchResults
+        noSearchResultsLabel.textAlignment = .center
+        noSearchResultsLabel.textColor = UIColor.globalTint()
+        noSearchResultsLabel.tintColor = UIColor.globalTint()
+        noSearchResultsLabel.isHidden = true
+        view.addSubview(noSearchResultsLabel)
+    }
+    
+    private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
+        var title = ""
+        var message = ""
+        let buttonTitle = kLocalizedOK
+        
+        switch error {
+        case .timeout:
+            title = kLocalizedServerTimeoutIssueTitle
+            message = kLocalizedServerTimeoutIssueMessage
+        default:
+            title = kLocalizedFeaturedProgramsLoadFailureTitle
+            message = kLocalizedFeaturedProgramsLoadFailureMessage
+        }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     private func setupTableView() {
         self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.SearchStoreTableView.backgroundColor = UIColor.background()
+        self.SearchStoreTableView.separatorColor = UIColor.globalTint()
         self.SearchStoreTableView.dataSource = self.dataSource
         self.SearchStoreTableView.delegate = self.dataSource
         self.searchBar.delegate  = self.dataSource
@@ -145,11 +179,23 @@ extension SearchStoreViewController {
 
     func updateTableView() {
         self.SearchStoreTableView.reloadData()
+        self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
-    func deleteLoadingView() {
-        loadingView!.hide()
-        loadingIndicator(false)
-        self.shouldHideLoadingView = false
+    func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm: String) {
+        self.showLoadingView()
+        self.dataSource.fetchItems(searchTerm: searchTerm) { error in
+            if error != nil {
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
+                self.showConnectionIssueAlertAndDismiss(error: error!)
+                self.SearchStoreTableView.separatorStyle = .singleLine
+                return
+            }
+            self.SearchStoreTableView.reloadData()
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+            self.SearchStoreTableView.separatorStyle = .singleLine
+        }
     }
 }

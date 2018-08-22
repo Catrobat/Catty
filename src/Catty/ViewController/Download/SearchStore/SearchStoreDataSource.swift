@@ -26,9 +26,8 @@ protocol SearchStoreDataSourceDelegate: class {
 
 protocol SelectedSearchStoreDataSource: class {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
+    func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm term: String)
     func updateTableView()
-    func showLoadingView()
-    func deleteLoadingView()
 }
 
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -51,23 +50,6 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     // MARK: - DataSource
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        DispatchQueue.main.async {
-            self.delegate?.showLoadingView()
-        }
-        if searchBar.text != "" {
-            fetchItems(searchTerm: searchBar.text) { error in
-            }
-        }
-        else {
-            programs.removeAll()
-            self.delegate?.updateTableView()
-        }
-        DispatchQueue.main.async {
-            self.delegate?.deleteLoadingView()
-        }
-    }
     
     func fetchItems(searchTerm: String?, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
         if let searchTerm: String = searchTerm {
@@ -122,6 +104,18 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
             guard let StoreProgram = program, error == nil else { return }
             cell?.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != "" {
+            if let searchTerm = searchBar.text {
+                self.delegate?.searchBarHandler(dataSource: self, searchTerm: searchTerm)
+            }
+        }
+        else {
+            programs.removeAll()
+            self.delegate?.updateTableView()
         }
     }
 }
