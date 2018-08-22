@@ -25,7 +25,6 @@ import XCTest
 class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
     
     override func setUp() {
-        XCUIApplication().terminate()
         super.setUp()
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
