@@ -144,27 +144,3 @@ protocol SingleParameterStringFunction: StringFunction, SingleParameterFunction 
 protocol DoubleParameterStringFunction: StringFunction, DoubleParameterFunctionProtocol {
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String
 }
-
-protocol ZeroParameterObjectFunction: DoubleFunction {
-    func value(spriteObject: SpriteObject) -> Double
-}
-
-protocol SingleParameterObjectFunction: DoubleFunction, SingleParameterFunctionProtocol {
-    func value(spriteObject: SpriteObject, parameter: AnyObject?) -> Double
-}
-
-protocol DoubleParameterObjectFunction: DoubleFunction, DoubleParameterFunctionProtocol {
-    func value(spriteObject: SpriteObject, firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double
-}
-
-protocol ZeroParameterStringObjectFunction: StringFunction {
-    func value(spriteObject: SpriteObject) -> String
-}
-
-protocol SingleParameterStringObjectFunction: StringFunction, SingleParameterFunction {
-    func value(spriteObject: SpriteObject, parameter: AnyObject?) -> String
-}
-
-protocol DoubleParameterStringObjectFunction: StringFunction, DoubleParameterFunctionProtocol {
-    func value(spriteObject: SpriteObject, firstParameter: AnyObject?, secondParameter: AnyObject?) -> String
-}
