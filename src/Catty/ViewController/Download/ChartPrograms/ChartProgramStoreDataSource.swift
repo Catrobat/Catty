@@ -160,7 +160,6 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             }
         }
         return cell
-        
     }
 
     // MARK: - Delegate

@@ -25,7 +25,6 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     @IBOutlet weak var SearchStoreTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
     // MARK: - Properties
     
     private var dataSource: SearchStoreDataSource
@@ -55,14 +54,43 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         super.viewWillAppear(animated)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == kSegueToProgramDetail {
+            if let programDetailStoreViewController = segue.destination as? ProgramDetailStoreViewController,
+                let catrobatProject = programForSegue {
+                programDetailStoreViewController.project = mapStoreProgramToCatrobatProgram(program: catrobatProject)
+            }
+        }
+    }
+    
     // MARK: - Helper Methods
+    
+    private func mapStoreProgramToCatrobatProgram(program: StoreProgram) -> CatrobatProgram {
+        var programDictionary = [String: Any]()
+        programDictionary["ProjectName"] = program.projectName
+        programDictionary["Author"] =  program.author
+        programDictionary["Description"] = program.description ?? ""
+        programDictionary["DownloadUrl"] = program.downloadUrl ?? ""
+        programDictionary["Downloads"] = program.downloads ?? 0
+        programDictionary["ProjectId"] = program.projectId
+        programDictionary["ProjectName"] = program.projectName
+        programDictionary["ProjectUrl"] = program.projectUrl ?? ""
+        programDictionary["ScreenshotBig"] = program.screenshotBig ?? ""
+        programDictionary["ScreenshotSmall"] = program.screenshotSmall ?? ""
+        programDictionary["FeaturedImage"] = program.featuredImage ?? ""
+        programDictionary["Uploaded"] = program.uploaded ?? 0
+        programDictionary["Version"] = program.version ?? ""
+        programDictionary["Views"] = program.views ?? 0
+        programDictionary["FileSize"] = program.fileSize ?? 0.0
+        
+        return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
+    }
     
     private func setupTableView() {
         self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.SearchStoreTableView.dataSource = self.dataSource
         self.SearchStoreTableView.delegate = self.dataSource
         self.searchBar.delegate  = self.dataSource
-
     }
     
     func showLoadingView() {
@@ -88,8 +116,19 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
 }
 
+extension SearchStoreViewController: SearchStoreCellProtocol {
+    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell) {
+        if let program = cell.program {
+            self.showLoadingView()
+            programForSegue = program
+            performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+        }
+    }
+}
+
 extension SearchStoreViewController {
-    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: ChartProgramCell) {
-        //segue
+
+    func updateTableView() {
+        self.SearchStoreTableView.reloadData()
     }
 }

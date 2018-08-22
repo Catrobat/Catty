@@ -25,7 +25,8 @@ protocol SearchStoreDataSourceDelegate: class {
 }
 
 protocol SelectedSearchStoreDataSource: class {
-    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: ChartProgramCell)
+    func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
+    func updateTableView()
 }
 
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -44,10 +45,13 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.isEmpty == false {
+        if searchBar.text != "" {
             fetchItems(searchTerm: searchBar.text) { error in
-                print("hello")
             }
+        }
+        else {
+            programs.removeAll()
+            self.delegate?.updateTableView()
         }
     }
     
@@ -57,6 +61,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                 guard let collection = items, error == nil else { completion(error); return }
                 self.programs = collection.projects
                 self.baseUrl = collection.information.baseUrl
+                self.delegate?.updateTableView()
                 completion(nil)
             }
         }
@@ -67,12 +72,12 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func numberOfRows(in tableView: UITableView) -> Int {
-        return 1
+        return programs.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return 1
+        return programs.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -80,6 +85,29 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: kSearchCell, for: indexPath)
+        if let cell = cell as? SearchStoreCell {
+            if programs.isEmpty == false {
+                let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
+                let data = try? Data(contentsOf: imageUrl!)
+                cell.searchImage = UIImage(data: data!)
+                cell.searchTitle = programs[indexPath.row].projectName
+                cell.program = programs[indexPath.row]
+            }
+        }
+        return cell
+    }
+    
+    // MARK: - Delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell: SearchStoreCell? = tableView.cellForRow(at: indexPath) as? SearchStoreCell
+        
+        self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
+            guard let StoreProgram = program, error == nil else { return }
+            cell?.program = StoreProgram
+            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+        }
     }
 }

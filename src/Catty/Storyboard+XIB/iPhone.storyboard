@@ -1436,7 +1436,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="498"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="pKA-7M-1Hn" customClass="DarkBlueGradientImageCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="79" id="pKA-7M-1Hn" customClass="SearchStoreCell" customModule="Pocket_Code" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pKA-7M-1Hn" id="kSt-1q-BiB">
@@ -1473,8 +1473,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="iconImageView" destination="idW-ZC-ZwS" id="oVa-Py-qN1"/>
-                                            <outlet property="titleLabel" destination="F3H-t7-Eut" id="vke-5A-UYs"/>
+                                            <outlet property="searchProgramImage" destination="idW-ZC-ZwS" id="p3D-HM-xtq"/>
+                                            <outlet property="searchProgramTitle" destination="F3H-t7-Eut" id="zY8-OS-8No"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2524,7 +2524,7 @@
         <image name="top_charts" width="25" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5UD-6W-Ykq"/>
+        <segue reference="Gbh-WU-doT"/>
         <segue reference="mUB-CR-2KD"/>
     </inferredMetricsTieBreakers>
 </document>
