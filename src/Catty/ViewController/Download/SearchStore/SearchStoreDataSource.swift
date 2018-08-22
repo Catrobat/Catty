@@ -53,7 +53,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     
     func fetchItems(searchTerm: String?, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
         if let searchTerm: String = searchTerm {
-            self.downloader.fetchPrograms(forType: .search, offset: 0, searchTerm: searchTerm) {items, error in
+            self.downloader.fetchSearchQuery(searchTerm: searchTerm) { items,error in
                 guard let collection = items, error == nil else { completion(error); return }
                 self.programs = collection.projects
                 self.baseUrl = collection.information.baseUrl

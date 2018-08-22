@@ -21,7 +21,8 @@
  */
 
 protocol StoreProgramDownloaderProtocol {
-    func fetchPrograms(forType: ProgramType, offset: Int, searchTerm: String ,completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void)
+    func fetchPrograms(forType: ProgramType, offset: Int, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void)
+    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProgramCollection.StoreProgramCollectionNumber?, StoreProgramDownloaderError?) -> Void)
     func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, StoreProgramDownloaderError?) -> Void)
 }
 
@@ -33,7 +34,38 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         self.session = session
     }
     
-    func fetchPrograms(forType: ProgramType, offset: Int , searchTerm: String, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
+    func fetchSearchQuery(searchTerm: String, completion: @escaping (StoreProgramCollection.StoreProgramCollectionNumber?, StoreProgramDownloaderError?) -> Void) {
+        
+        guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "", kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, Util.catrobatLanguageVersion())) else { return }
+        
+        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+            completion(nil, .timeout)
+            timer.invalidate()
+        }
+        
+        self.session.dataTask(with: indexURL) { (data, response, error) in
+            guard timer.isValid else { return }
+            let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionNumber?, error: StoreProgramDownloaderError?)
+            handleDataTaskCompletion = { (data, response, error) in
+                timer.invalidate()
+                guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
+                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+                let items: StoreProgramCollection.StoreProgramCollectionNumber?
+                do {
+                    items = try JSONDecoder().decode(StoreProgramCollection.StoreProgramCollectionNumber.self, from: data)
+                } catch {
+                    return (nil, .parse(error: error))
+                }
+                return (items, nil)
+            }
+            let result = handleDataTaskCompletion(data, response, error)
+            DispatchQueue.main.async {
+                completion(result.items, result.error)
+            }
+        }.resume()
+    }
+    
+    func fetchPrograms(forType: ProgramType, offset: Int, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {
         
         let indexURL: URL
         let version: String = Util.catrobatLanguageVersion()
@@ -53,10 +85,6 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             
         case .mostRecent:
             guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProgramsOffset)\(offset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
-            indexURL = url
-            
-        case .search:
-            guard let url = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "", kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, Util.catrobatLanguageVersion())) else { return }
             indexURL = url
         }
 
@@ -130,6 +158,5 @@ enum ProgramType {
     case mostDownloaded
     case mostViewed
     case mostRecent
-    case search
 }
 
