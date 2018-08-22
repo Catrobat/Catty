@@ -93,11 +93,11 @@
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
-        if let function = function as? ZeroParameterFunction {
+        if let function = function as? ZeroParameterDoubleFunction {
             value = function.value() as AnyObject
-        } else if let function = function as? SingleParameterFunction {
+        } else if let function = function as? SingleParameterDoubleFunction {
             value = function.value(parameter: firstParameter) as AnyObject
-        } else if let function = function as? DoubleParameterFunction {
+        } else if let function = function as? DoubleParameterDoubleFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
         } else if let function = function as? ZeroParameterStringFunction {
             value = function.value() as AnyObject
@@ -105,6 +105,12 @@
             value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterStringFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
+        } else if let function = function as? ZeroParameterFunction {
+            value = function.value()
+        } else if let function = function as? SingleParameterFunction {
+            value = function.value(parameter: firstParameter)
+        } else if let function = function as? DoubleParameterFunction {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter)
         }
         
         return value

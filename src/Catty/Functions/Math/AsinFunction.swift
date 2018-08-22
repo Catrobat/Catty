@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AsinFunction: SingleParameterFunction {
+class AsinFunction: SingleParameterDoubleFunction {
     
     static var tag = "ASIN"
     static var name = "arcsin"

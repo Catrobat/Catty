@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LnFunction: SingleParameterFunction {
+class LnFunction: SingleParameterDoubleFunction {
     
     static var tag = "LN"
     static var name = "ln"

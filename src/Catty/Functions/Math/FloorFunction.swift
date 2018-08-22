@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FloorFunction: SingleParameterFunction {
+class FloorFunction: SingleParameterDoubleFunction {
     static var tag = "FLOOR"
     static var name = "floor"
     static var defaultValue = 0.0

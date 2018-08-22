@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ModFunction: DoubleParameterFunction {
+class ModFunction: DoubleParameterDoubleFunction {
     static var tag = "MOD"
     static var name = "mod"
     static var defaultValue = 0.0

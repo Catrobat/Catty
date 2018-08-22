@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class MaxFunction: DoubleParameterFunction {
+class MaxFunction: DoubleParameterDoubleFunction {
     static var tag = "MAX"
     static var name = "max"
     static var defaultValue = 0.0

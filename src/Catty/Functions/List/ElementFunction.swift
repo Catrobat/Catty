@@ -20,10 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ElementFunction: DoubleParameterStringFunction {
+class ElementFunction: DoubleParameterFunction {
     static var tag = "ELEMENT"
     static var name = "element"
-    static var defaultValue = ""
+    static var defaultValue = "" as AnyObject
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static let position = 250
@@ -36,7 +36,7 @@ class ElementFunction: DoubleParameterStringFunction {
         return .list(defaultValue: "list name")
     }
     
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
         guard let elementNumber = firstParameter as? Int,
             let list = secondParameter as? UserVariable,
             let elements = list.value as? [AnyObject] else {
@@ -48,7 +48,7 @@ class ElementFunction: DoubleParameterStringFunction {
         }
         
         let index = elements.index(elements.startIndex, offsetBy: elementNumber - 1)
-        return String(format:"%@", elements[index] as! CVarArg)
+        return elements[index]
     }
     
     static func formulaEditorSection() -> FormulaEditorSection {

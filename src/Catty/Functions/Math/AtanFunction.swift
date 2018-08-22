@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AtanFunction: SingleParameterFunction {
+class AtanFunction: SingleParameterDoubleFunction {
     
     static var tag = "ATAN"
     static var name = "arctan"

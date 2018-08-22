@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PowFunction: DoubleParameterFunction {
+class PowFunction: DoubleParameterDoubleFunction {
     static var tag = "POW"
     static var name = "power"
     static var defaultValue = 0.0

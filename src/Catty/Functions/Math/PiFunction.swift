@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PiFunction: ZeroParameterFunction {
+class PiFunction: ZeroParameterDoubleFunction {
     static var tag = "PI"
     static var name = "pi"
     static var defaultValue = Double.pi

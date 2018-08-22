@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AcosFunction: SingleParameterFunction {
+class AcosFunction: SingleParameterDoubleFunction {
     
     static var tag = "ACOS"
     static var name = "arccos"

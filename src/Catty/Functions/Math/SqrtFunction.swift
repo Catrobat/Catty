@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SqrtFunction: SingleParameterFunction {
+class SqrtFunction: SingleParameterDoubleFunction {
     
     static var tag = "SQRT"
     static var name = "sqrt"

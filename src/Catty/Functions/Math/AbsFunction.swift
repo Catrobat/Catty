@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class AbsFunction: SingleParameterFunction {
+class AbsFunction: SingleParameterDoubleFunction {
     
     static var tag = "ABS"
     static var name = "abs"

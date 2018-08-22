@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LengthFunction: SingleParameterFunction {
+class LengthFunction: SingleParameterDoubleFunction {
     
     static var tag = "LENGTH"
     static var name = "length"

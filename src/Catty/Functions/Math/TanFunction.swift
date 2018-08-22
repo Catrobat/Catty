@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TanFunction: SingleParameterFunction {
+class TanFunction: SingleParameterDoubleFunction {
     
     static var tag = "TAN"
     static var name = "tan"

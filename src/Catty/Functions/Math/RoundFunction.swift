@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RoundFunction: SingleParameterFunction {
+class RoundFunction: SingleParameterDoubleFunction {
     
     static var tag = "ROUND"
     static var name = "round"

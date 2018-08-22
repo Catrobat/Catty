@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class RandFunction: DoubleParameterFunction {
+class RandFunction: DoubleParameterDoubleFunction {
     static var tag = "RAND"
     static var name = "rand"
     static var defaultValue = 0.0

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class TrueFunction: ZeroParameterFunction {
+class TrueFunction: ZeroParameterDoubleFunction {
     static var tag = "TRUE"
     static var name = "true"
     static var defaultValue = 1.0

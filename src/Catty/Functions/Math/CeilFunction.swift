@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CeilFunction: SingleParameterFunction {
+class CeilFunction: SingleParameterDoubleFunction {
     
     static var tag = "CEIL"
     static var name = "ceil"

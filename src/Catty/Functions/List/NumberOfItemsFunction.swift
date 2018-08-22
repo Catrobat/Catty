@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class NumberOfItemsFunction: SingleParameterFunction {
+class NumberOfItemsFunction: SingleParameterDoubleFunction {
     
     static var tag = "NUMBER_OF_ITEMS"
     static var name = "number_of_items"

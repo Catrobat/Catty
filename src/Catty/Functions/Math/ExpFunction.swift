@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ExpFunction: SingleParameterFunction {
+class ExpFunction: SingleParameterDoubleFunction {
     
     static var tag = "EXP"
     static var name = "exp"

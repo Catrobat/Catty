@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SinFunction: SingleParameterFunction {
+class SinFunction: SingleParameterDoubleFunction {
     
     static var tag = "SIN"
     static var name = "sin"

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ContainsFunction: DoubleParameterFunction {
+class ContainsFunction: DoubleParameterDoubleFunction {
     static var tag = "CONTAINS"
     static var name = "contains"
     static var defaultValue = 0.0

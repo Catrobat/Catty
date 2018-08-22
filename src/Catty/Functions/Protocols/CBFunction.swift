@@ -112,6 +112,11 @@ protocol StringFunction: CBFunction {
     static var defaultValue: String { get }
 }
 
+protocol AnyFunction: CBFunction {
+    // Default value if function can not be computed
+    static var defaultValue: AnyObject { get }
+}
+
 protocol SingleParameterFunctionProtocol: CBFunction {
     static func firstParameter() -> FunctionParameter
 }
@@ -121,15 +126,15 @@ protocol DoubleParameterFunctionProtocol: CBFunction {
     static func secondParameter() -> FunctionParameter
 }
 
-protocol ZeroParameterFunction: DoubleFunction {
+protocol ZeroParameterDoubleFunction: DoubleFunction {
     func value() -> Double
 }
 
-protocol SingleParameterFunction: DoubleFunction, SingleParameterFunctionProtocol {
+protocol SingleParameterDoubleFunction: DoubleFunction, SingleParameterFunctionProtocol {
     func value(parameter: AnyObject?) -> Double
 }
 
-protocol DoubleParameterFunction: DoubleFunction, DoubleParameterFunctionProtocol {
+protocol DoubleParameterDoubleFunction: DoubleFunction, DoubleParameterFunctionProtocol {
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double
 }
 
@@ -137,10 +142,22 @@ protocol ZeroParameterStringFunction: StringFunction {
     func value() -> String
 }
 
-protocol SingleParameterStringFunction: StringFunction, SingleParameterFunction {
+protocol SingleParameterStringFunction: StringFunction, SingleParameterDoubleFunction {
     func value(parameter: AnyObject?) -> String
 }
 
 protocol DoubleParameterStringFunction: StringFunction, DoubleParameterFunctionProtocol {
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String
+}
+
+protocol ZeroParameterFunction: AnyFunction {
+    func value() -> AnyObject
+}
+
+protocol SingleParameterFunction: AnyFunction, SingleParameterDoubleFunction {
+    func value(parameter: AnyObject?) -> AnyObject
+}
+
+protocol DoubleParameterFunction: AnyFunction, DoubleParameterFunctionProtocol {
+    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
 }

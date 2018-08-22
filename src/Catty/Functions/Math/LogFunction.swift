@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LogFunction: SingleParameterFunction {
+class LogFunction: SingleParameterDoubleFunction {
     
     static var tag = "LOG"
     static var name = "log"

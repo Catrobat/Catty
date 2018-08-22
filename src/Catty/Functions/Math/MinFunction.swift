@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class MinFunction: DoubleParameterFunction {
+class MinFunction: DoubleParameterDoubleFunction {
     static var tag = "MIN"
     static var name = "min"
     static var defaultValue = 0.0
