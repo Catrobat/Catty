@@ -37,6 +37,11 @@
     NSUInteger childCount = [xmlElement.childrenWithoutComments count];
     GDataXMLElement *userVariableElement = nil;
     
+    GDataXMLElement *userVariableName = [xmlElement childWithElementName:@"userVariableName"];
+    if (userVariableName != nil) {
+        childCount -= 1;
+    }
+    
     if (childCount == 3) {
         userVariableElement = [xmlElement childWithElementName:@"userVariable"];
         [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
