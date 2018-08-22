@@ -27,10 +27,14 @@ protocol SearchStoreDataSourceDelegate: class {
 protocol SelectedSearchStoreDataSource: class {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
     func updateTableView()
+    func showLoadingView()
+    func deleteLoadingView()
 }
 
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
+    // MARK: - Properties
+    
     weak var delegate: SelectedSearchStoreDataSource?
     weak var searchBarDelegate: UISearchBarDelegate?
     
@@ -40,11 +44,18 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     
     var searchBar = UISearchBar()
     
+    // MARK: - Initializer
+    
     fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
     
+    // MARK: - DataSource
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        DispatchQueue.main.async {
+            self.delegate?.showLoadingView()
+        }
         if searchBar.text != "" {
             fetchItems(searchTerm: searchBar.text) { error in
             }
@@ -52,6 +63,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         else {
             programs.removeAll()
             self.delegate?.updateTableView()
+        }
+        DispatchQueue.main.async {
+            self.delegate?.deleteLoadingView()
         }
     }
     

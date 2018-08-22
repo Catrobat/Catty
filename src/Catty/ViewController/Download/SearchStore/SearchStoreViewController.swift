@@ -21,7 +21,7 @@
  */
 
 class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource {
-    
+  
     @IBOutlet weak var SearchStoreTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -33,6 +33,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
+    var loadingViewFlag = false
     
     // MARK: - Initializers
     
@@ -52,6 +53,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadingViewHandlerAfterFetchData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -93,6 +95,19 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         self.searchBar.delegate  = self.dataSource
     }
     
+    func loadingViewHandlerAfterFetchData() {
+        if loadingViewFlag == false {
+            self.showLoadingView()
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+        }
+        else {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+            loadingViewFlag = false
+        }
+    }
+        
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
@@ -130,5 +145,11 @@ extension SearchStoreViewController {
 
     func updateTableView() {
         self.SearchStoreTableView.reloadData()
+    }
+    
+    func deleteLoadingView() {
+        loadingView!.hide()
+        loadingIndicator(false)
+        self.shouldHideLoadingView = false
     }
 }
