@@ -40,6 +40,12 @@ class ElementFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "invalidParameter" as AnyObject, secondParameter: "list name" as AnyObject))
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 2 as AnyObject, secondParameter: -3 as AnyObject))
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil))
+        
+        let userVariableNumber = UserVariable()
+        userVariableNumber.isList = true
+        userVariableNumber.value = nil
+        
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableNumber as AnyObject))
     }
     
     func testValue() {

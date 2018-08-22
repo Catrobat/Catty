@@ -38,11 +38,11 @@ class ElementFunction: DoubleParameterStringFunction {
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> String {
         guard let elementNumber = firstParameter as? Int,
-            let list = secondParameter as? UserVariable else {
+            let list = secondParameter as? UserVariable,
+            let elements = list.value as? [AnyObject] else {
                 return type(of: self).defaultValue
         }
         
-        let elements = list.value as! [AnyObject]
         if elementNumber - 1 < 0 || elementNumber - 1 > elements.count {
             return type(of: self).defaultValue
         }

@@ -40,6 +40,12 @@ class ContainsFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: "list name" as AnyObject, secondParameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: 100 as AnyObject, secondParameter: 2 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: nil, secondParameter: nil), accuracy: 0.0001)
+        
+        let userVariable = UserVariable()
+        userVariable.isList = true
+        userVariable.value = nil
+    
+        XCTAssertEqual(type(of: function).defaultValue, function.value(firstParameter: userVariable as AnyObject, secondParameter: 1 as AnyObject), accuracy: 0.0001)
     }
     
     func testValue() {

@@ -37,11 +37,8 @@ class ContainsFunction: DoubleParameterFunction {
     }
     
     func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let list = firstParameter as? UserVariable else {
-            return type(of: self).defaultValue
-        }
-        
-        guard let elements = list.value as? [AnyObject] else {
+        guard let list = firstParameter as? UserVariable,
+              let elements = list.value as? [AnyObject] else {
             return type(of: self).defaultValue
         }
         

@@ -39,6 +39,12 @@ class NumberOfElementsFunctionTest: XCTestCase {
     func testDefaultValue() {
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: -2 as AnyObject), accuracy: 0.0001)
         XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: nil), accuracy: 0.0001)
+        
+        let userVariable = UserVariable()
+        userVariable.isList = true
+        userVariable.value = nil
+        
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: userVariable as AnyObject), accuracy: 0.0001)
     }
     
     func testValue() {
