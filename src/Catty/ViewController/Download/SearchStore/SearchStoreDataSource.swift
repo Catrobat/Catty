@@ -27,6 +27,7 @@ protocol SearchStoreDataSourceDelegate: class {
 protocol SelectedSearchStoreDataSource: class {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
     func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm term: String)
+    func showNoResultsAlert()
     func updateTableView()
 }
 
@@ -59,6 +60,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                 self.baseUrl = collection.information.baseUrl
                 self.delegate?.updateTableView()
                 completion(nil)
+                if self.programs.isEmpty {
+                    self.delegate?.showNoResultsAlert()
+                }
             }
         }
     }

@@ -48,6 +48,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        initNoSearchResultsLabel()
         shouldHideLoadingView = false
         dataSource.delegate = self
     }
@@ -197,5 +198,10 @@ extension SearchStoreViewController {
             self.hideLoadingView()
             self.SearchStoreTableView.separatorStyle = .singleLine
         }
+    }
+    
+    func showNoResultsAlert() {
+        self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        noSearchResultsLabel.isHidden = false
     }
 }
