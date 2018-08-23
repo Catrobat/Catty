@@ -2,7 +2,7 @@
   "interactions" : [
     {
       "response" : {
-        "status" : 200,
+        "status" : 404,
         "headers" : {
           "Content-Type" : "application\/json",
           "Set-Cookie" : "PHPSESSID=se5r3qic873objadhhmd8p1996; path=\/",
