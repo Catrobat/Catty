@@ -72,7 +72,7 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         
         switch forType {
         case .featured:
-            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kFeaturedProgramsMaxResults)") else { return }
+            guard let url = URL(string: "\(kConnectionHost)/\(kConnectionFeatured)?\(kProgramsLimit)\(kChartProgramsMaxResults)") else { return }
             indexURL = url
             
         case .mostDownloaded:

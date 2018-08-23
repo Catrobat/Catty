@@ -22,8 +22,8 @@
 
 class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsDataSource {
 
-    @IBOutlet weak var ChartProgramsTableView: UITableView!
-    @IBOutlet weak var ChartProgramsSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var chartProgramsTableView: UITableView!
+    @IBOutlet weak var chartProgramsSegmentedControl: UISegmentedControl!
     
     // MARK: - Properties
 
@@ -103,14 +103,14 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
     }
     
     func initSegmentedControl() {
-        ChartProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
-        ChartProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
-        ChartProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
+        chartProgramsSegmentedControl?.setTitle(kLocalizedMostDownloaded, forSegmentAt: 0)
+        chartProgramsSegmentedControl?.setTitle(kLocalizedMostViewed, forSegmentAt: 1)
+        chartProgramsSegmentedControl?.setTitle(kLocalizedNewest, forSegmentAt: 2)
         fetchData(type: .mostDownloaded)
         
         if(checkIphoneScreenSize()) {
             let font = UIFont.systemFont(ofSize: 10)
-            ChartProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+            chartProgramsSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         }
     }
     
@@ -121,11 +121,11 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
     }
     
     private func setupTableView() {
-        self.ChartProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.ChartProgramsTableView.backgroundColor = UIColor.background()
-        self.ChartProgramsTableView.separatorColor = UIColor.globalTint()
-        self.ChartProgramsTableView.dataSource = self.dataSource
-        self.ChartProgramsTableView.delegate = self.dataSource
+        self.chartProgramsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.chartProgramsTableView.backgroundColor = UIColor.background()
+        self.chartProgramsTableView.separatorColor = UIColor.globalTint()
+        self.chartProgramsTableView.dataSource = self.dataSource
+        self.chartProgramsTableView.delegate = self.dataSource
     }
     
     private func fetchData(type: ProgramType) {
@@ -135,13 +135,13 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
                 self.showConnectionIssueAlertAndDismiss(error: error!)
-                self.ChartProgramsTableView.separatorStyle = .singleLine
+                self.chartProgramsTableView.separatorStyle = .singleLine
                 return
             }
-            self.ChartProgramsTableView.reloadData()
+            self.chartProgramsTableView.reloadData()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
-            self.ChartProgramsTableView.separatorStyle = .singleLine
+            self.chartProgramsTableView.separatorStyle = .singleLine
         }
     }
     
@@ -215,6 +215,6 @@ extension ChartProgramsStoreViewController: ChartProgramCellProtocol{
 
 extension ChartProgramsStoreViewController {
     func scrollViewHandler(dataSource: ChartProgramStoreDataSource) {
-        ChartProgramsTableView.reloadData()
+        chartProgramsTableView.reloadData()
     }
 }

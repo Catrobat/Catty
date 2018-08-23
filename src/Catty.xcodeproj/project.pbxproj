@@ -28,7 +28,7 @@
 		2DCB4938212EAB36005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */; };
 		2DE385082105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
 		2DE385092105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
-		2DF67A27212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF67A26212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift */; };
+		2DF67A27212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF67A26212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C0F9F1C204ADB5900E71B2D /* ChooseCameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */; };
@@ -1080,7 +1080,7 @@
 		2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
 		2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
-		2DF67A26212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentProgramsStoreDataSourceTests.swift; sourceTree = "<group>"; };
+		2DF67A26212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartProgramsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
@@ -6699,7 +6699,7 @@
 				E4AEC8872108506A0081A980 /* Fixtures */,
 				E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */,
 				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
-				2DF67A26212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift */,
+				2DF67A26212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -7366,7 +7366,7 @@
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
-				2DF67A27212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift in Sources */,
+				2DF67A27212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift in Sources */,
 				4C0F9FD1204BD37300E71B2D /* XMLParserBlackBoxTests0991.m in Sources */,
 				4C0F9FD5204BD3C200E71B2D /* ChooseCameraBrickTests.swift in Sources */,
 				4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */,
