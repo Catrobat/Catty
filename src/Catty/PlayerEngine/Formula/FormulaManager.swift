@@ -20,15 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import CoreMotion
+import CoreLocation
+
 @objc class FormulaManager: NSObject, FormulaManagerProtocol {
     
-    let sensorManager: SensorManagerProtocol
-    let functionManager: FunctionManagerProtocol
+    private let sensorManager: SensorManagerProtocol
+    private let functionManager: FunctionManagerProtocol
     
     override init() {
         // TODO remove Singleton
-        self.sensorManager = CBSensorManager.shared
-        self.functionManager = FunctionManager.shared
+        sensorManager = CBSensorManager.shared
+        functionManager = FunctionManager.shared
+    }
+    
+    init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
+        self.sensorManager = sensorManager
+        self.functionManager = functionManager
+        
+        super.init()
     }
     
     @objc(setupForProgram: andScene:)
@@ -70,30 +80,30 @@
     }
     
     private func formulaEditorItems(for spriteObject: SpriteObject, mathSection: Bool, objectSection: Bool, deviceSection: Bool) -> [FormulaEditorItem] {
-        var items = [Int: FormulaEditorItem]()
+        var items = [FormulaEditorItem]()
         let allItems = sensorManager.formulaEditorItems(for: spriteObject) + functionManager.formulaEditorItems()
         
         for item in allItems {
             switch (item.section) {
-            case let .math(position):
+            case .math(_):
                 if (mathSection) {
-                    items[position] = item
+                    items += item
                 }
                 
-            case let .object(position):
+            case .object(_):
                 if (objectSection) {
-                    items[position] = item
+                    items += item
                 }
                 
-            case let .device(position):
+            case .device(_):
                 if (deviceSection) {
-                    items[position] = item
+                    items += item
                 }
                 
             default:
                 break;
             }
         }
-        return items.sorted(by: { $0.0 < $1.0 }).map{ $1}
+        return items.sorted(by: { $0.section.position() < $1.section.position() }).map{ $0 }
     }
 }

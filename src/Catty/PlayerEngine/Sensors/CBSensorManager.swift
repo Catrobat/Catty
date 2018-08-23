@@ -29,14 +29,14 @@ import CoreLocation
     public static var defaultValueForUndefinedSensor: Double = 0
     private var sensorMap = [String: CBSensor]()
     
-    private var motionManager: CMMotionManager
-    private var locationManager: CLLocationManager
-    private var faceDetectionManager: FaceDetectionManagerProtocol
-    private var audioManager: AudioManagerProtocol
-    private var touchManager: TouchManagerProtocol
-    private var bluetoothService: BluetoothService
+    private let motionManager: CMMotionManager
+    private let locationManager: CLLocationManager
+    private let faceDetectionManager: FaceDetectionManagerProtocol
+    private let audioManager: AudioManagerProtocol
+    private let touchManager: TouchManagerProtocol
+    private let bluetoothService: BluetoothService
     
-    override private init() {
+    private override init() {
         motionManager = CMMotionManager()
         locationManager = CLLocationManager()
         faceDetectionManager = FaceDetectionManager()

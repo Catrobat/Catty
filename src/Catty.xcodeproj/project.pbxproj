@@ -302,6 +302,12 @@
 		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
+		4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B9212EA90A006E4720 /* FunctionMock.swift */; };
+		4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BB212EAC1F006E4720 /* SensorMock.swift */; };
+		4CC614BE212EAD8F006E4720 /* FormulaManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */; };
+		4CC614C0212EB330006E4720 /* SensorManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BF212EB330006E4720 /* SensorManagerMock.swift */; };
+		4CC614C2212EB5F8006E4720 /* FunctionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */; };
 		4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */; };
 		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
 		4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */; };
@@ -1609,6 +1615,12 @@
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItemTest.swift; sourceTree = "<group>"; };
+		4CC614B9212EA90A006E4720 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
+		4CC614BB212EAC1F006E4720 /* SensorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
+		4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaManagerTest.swift; sourceTree = "<group>"; };
+		4CC614BF212EB330006E4720 /* SensorManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorManagerMock.swift; sourceTree = "<group>"; };
+		4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerMock.swift; sourceTree = "<group>"; };
 		4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
 		4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_096.xml; sourceTree = "<group>"; };
 		4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_096.xml; sourceTree = "<group>"; };
@@ -3400,6 +3412,7 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
+				4CC614B3212EA838006E4720 /* Dto */,
 				4C14CF1A1EC991DA00E53B25 /* UserVariable */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
 				4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */,
@@ -3416,6 +3429,7 @@
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
 				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
+				4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -3537,8 +3551,9 @@
 			isa = PBXGroup;
 			children = (
 				4C37A0A1212DBF2C0074F417 /* Arduino */,
-				4C6FE13A212D2D2E0067B7D5 /* Math */,
 				4C6FE153212D2D2E0067B7D5 /* List */,
+				4C6FE13A212D2D2E0067B7D5 /* Math */,
+				4CC614B8212EA8FE006E4720 /* Mocks */,
 				4C6FE157212D2D2E0067B7D5 /* Text */,
 			);
 			name = Functions;
@@ -4143,6 +4158,23 @@
 			path = BrickManager;
 			sourceTree = "<group>";
 		};
+		4CC614B3212EA838006E4720 /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		4CC614B8212EA8FE006E4720 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4CC614B9212EA90A006E4720 /* FunctionMock.swift */,
+				4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		4CC85CD91B9C717C0097E470 /* ValidHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -4635,6 +4667,8 @@
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
 				F47DA839210731E700167FC4 /* AudioManagerMock.swift */,
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
+				4CC614BB212EAC1F006E4720 /* SensorMock.swift */,
+				4CC614BF212EB330006E4720 /* SensorManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -8183,6 +8217,7 @@
 				4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
+				4CC614C0212EB330006E4720 /* SensorManagerMock.swift in Sources */,
 				4C6FE164212D2D2E0067B7D5 /* TrueFunctionTest.swift in Sources */,
 				F479930220F4987E0088EE27 /* AltitudeSensorTest.swift in Sources */,
 				4CB2CFAD1D7AD8A5009F3034 /* SetColorBrickTests.m in Sources */,
@@ -8194,6 +8229,7 @@
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
+				4CC614C2212EB5F8006E4720 /* FunctionManagerMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */,
 				E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
@@ -8204,13 +8240,16 @@
 				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
+				4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */,
 				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
 				4C6FE172212D2D2E0067B7D5 /* FunctionManagerTests.swift in Sources */,
 				F4E6E573210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
+				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */,
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
+				4CC614BE212EAD8F006E4720 /* FormulaManagerTest.swift in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
@@ -8253,6 +8292,7 @@
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
+				4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				F4E6E571210DA5B300D86FE6 /* FingerYSensorTest.swift in Sources */,
 				F40CC11B21074211000C35E4 /* BackgroundNameSensorTest.swift in Sources */,

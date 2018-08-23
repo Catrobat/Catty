@@ -46,4 +46,20 @@ extension FormulaEditorSection: Equatable {
             return false
         }
     }
+    
+    func position() -> Int {
+        switch (self) {
+        case let .device(position):
+            return position
+            
+        case let .math(position):
+            return position
+            
+        case let .object(position):
+            return position
+            
+        default:
+            return 0
+        }
+    }
 }
