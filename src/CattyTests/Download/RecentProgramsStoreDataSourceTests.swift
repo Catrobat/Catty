@@ -47,13 +47,43 @@ class RecentProgramsStoreDataSourceTests: XCTestCase {
         XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
     }
     
-    func testProgramEmpty() {
+    func testMostDownloadedProgramEmpty() {
         self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
         
         let dataSource = ChartProgramStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch program from data source")
         
         dataSource.fetchItems(type: .mostDownloaded) { [unowned self] error in
+            XCTAssertNil(error)
+            XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testMostViewedProgramEmpty() {
+        self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        
+        let dataSource = ChartProgramStoreDataSource.dataSource(with: self.downloaderMock)
+        let expectation = XCTestExpectation(description: "Fetch program from data source")
+        
+        dataSource.fetchItems(type: .mostViewed) { [unowned self] error in
+            XCTAssertNil(error)
+            XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testMostRecentProgramEmpty() {
+        self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
+        
+        let dataSource = ChartProgramStoreDataSource.dataSource(with: self.downloaderMock)
+        let expectation = XCTestExpectation(description: "Fetch program from data source")
+        
+        dataSource.fetchItems(type: .mostRecent) { [unowned self] error in
             XCTAssertNil(error)
             XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
             expectation.fulfill()
