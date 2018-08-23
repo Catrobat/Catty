@@ -31,6 +31,8 @@
 @end
 
 @class BrickCellFormulaData;
+@class FormulaManager;
+
 @interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
@@ -42,6 +44,7 @@
 @property (strong, nonatomic) NSMutableArray *listSource;
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
+@property (strong, nonatomic) FormulaManager *formulaManager;
 
 - (id)initWithBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)setBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;

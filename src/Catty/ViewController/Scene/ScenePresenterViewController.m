@@ -49,8 +49,8 @@
 {
     [self.scene stopProgram];
     
+    // TODO remove Singletons
     [[AudioManager sharedAudioManager] stopAllSounds];
-    [[CBSensorManager shared] stop];
     [CameraPreviewHandler resetSharedInstance];
     
     [[FlashHelper sharedFlashHandler] reset];
@@ -272,11 +272,7 @@
     // Initialize scene
     CBScene *scene = [SetupScene setupSceneForProgram:self.program];
     [scene initializeScreenRecording];
-    scene.name = self.program.header.programName;
     scene.screenRecordingDelegate = self;
-    
-    // Initialize sensors
-    [[CBSensorManager shared] setupSensorsForProgram:self.program andScene:scene];
     
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;

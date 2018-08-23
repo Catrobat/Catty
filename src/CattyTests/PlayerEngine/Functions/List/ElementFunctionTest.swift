@@ -85,7 +85,7 @@ class ElementFunctionTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("ELEMENT", type(of: function).tag)
+        XCTAssertEqual("LIST_ITEM", type(of: function).tag)
     }
     
     func testName() {

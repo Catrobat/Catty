@@ -147,6 +147,11 @@
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
 		4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */; };
+		4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */; };
+		4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */; };
+		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
+		4C37A0A7212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A6212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift */; };
+		4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */; };
 		4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2420EF9A1D00784CD5 /* AudioManagerProtocol.swift */; };
 		4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48ED2820EF9AEC00784CD5 /* AudioManager+Loudness.swift */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
@@ -297,8 +302,6 @@
 		4CB2CFAE1D7ADA1D009F3034 /* SetColorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB2CFA71D7AD833009F3034 /* SetColorBrick+Instruction.swift */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
-		4CC6358F2105E9210053BD68 /* ArduinoAnalogPinSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6358E2105E9210053BD68 /* ArduinoAnalogPinSensor.swift */; };
-		4CC635912105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC635902105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift */; };
 		4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */; };
 		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
 		4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */; };
@@ -458,6 +461,8 @@
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
+		4CF85924212E817C008571B8 /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF85923212E817C008571B8 /* FormulaManager.swift */; };
+		4CF85926212E81A5008571B8 /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */; };
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
@@ -1102,8 +1107,6 @@
 		F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */; };
 		F4201D0120D7A3B60030181B /* TimeSecondSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */; };
 		F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E1E9620FA21540078C89D /* SizeSensorTest.swift */; };
-		F430169221068590002B1444 /* ArduinoAnalogPinSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */; };
-		F4301694210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */; };
 		F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */; };
 		F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
@@ -1407,6 +1410,11 @@
 		4C2EE41C1B555B55006DE9B8 /* CBXMLPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLPropertyMapping.h; sourceTree = "<group>"; };
 		4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPropertyMapping.m; sourceTree = "<group>"; };
 		4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserUserVariableTests095.m; sourceTree = "<group>"; };
+		4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunction.swift; sourceTree = "<group>"; };
+		4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunctionTest.swift; sourceTree = "<group>"; };
+		4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunction.swift; sourceTree = "<group>"; };
+		4C37A0A6212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPingFunctionTest.swift; sourceTree = "<group>"; };
+		4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItem.swift; sourceTree = "<group>"; };
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
@@ -1601,8 +1609,6 @@
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
-		4CC6358E2105E9210053BD68 /* ArduinoAnalogPinSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinSensor.swift; sourceTree = "<group>"; };
-		4CC635902105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinSensor.swift; sourceTree = "<group>"; };
 		4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
 		4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_096.xml; sourceTree = "<group>"; };
 		4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_096.xml; sourceTree = "<group>"; };
@@ -1768,6 +1774,8 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
+		4CF85923212E817C008571B8 /* FormulaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManager.swift; path = Catty/PlayerEngine/Formula/FormulaManager.swift; sourceTree = SOURCE_ROOT; };
+		4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerProtocol.swift; path = Catty/PlayerEngine/Formula/FormulaManagerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
@@ -2831,8 +2839,6 @@
 		F4201CFE20D7A2F10030181B /* TimeSecondSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensorTest.swift; sourceTree = "<group>"; };
 		F4201D0020D7A3B60030181B /* TimeSecondSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSecondSensor.swift; sourceTree = "<group>"; };
 		F42E1E9620FA21540078C89D /* SizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSensorTest.swift; sourceTree = "<group>"; };
-		F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinSensorTest.swift; sourceTree = "<group>"; };
-		F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinSensorTest.swift; sourceTree = "<group>"; };
 		F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroSensorTest.swift; sourceTree = "<group>"; };
 		F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoudnessSensorTest.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
@@ -3365,6 +3371,32 @@
 			path = CBXMLPropertyMapping;
 			sourceTree = "<group>";
 		};
+		4C37A09C212DBD990074F417 /* Arduino */ = {
+			isa = PBXGroup;
+			children = (
+				4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */,
+				4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */,
+			);
+			path = Arduino;
+			sourceTree = "<group>";
+		};
+		4C37A0A1212DBF2C0074F417 /* Arduino */ = {
+			isa = PBXGroup;
+			children = (
+				4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */,
+				4C37A0A6212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift */,
+			);
+			path = Arduino;
+			sourceTree = "<group>";
+		};
+		4C37A0A8212E7E3D0074F417 /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				4C37A0A9212E7E540074F417 /* FormulaEditorItem.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
@@ -3504,6 +3536,7 @@
 		4C6FE139212D2D2E0067B7D5 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				4C37A0A1212DBF2C0074F417 /* Arduino */,
 				4C6FE13A212D2D2E0067B7D5 /* Math */,
 				4C6FE153212D2D2E0067B7D5 /* List */,
 				4C6FE157212D2D2E0067B7D5 /* Text */,
@@ -3975,7 +4008,6 @@
 				F4E6E569210DA55100D86FE6 /* Touch */,
 				F45A8D6821072DE6007C0D38 /* Audio */,
 				F45A8D58210714AE007C0D38 /* Phiro */,
-				F430168E2106856B002B1444 /* Arduino */,
 				4CF072AF20D6764E00F93AB5 /* Date */,
 				4C1023E720F5C7C1004702C3 /* Heading */,
 				F47992FA20F4987E0088EE27 /* Location */,
@@ -4003,7 +4035,6 @@
 		4C994DFA207A3D4100C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
-				4CC6358B2105E8FE0053BD68 /* Arduino */,
 				4C994E05207A3D4100C415FD /* Audio */,
 				4CE3D6862107A80000005629 /* Camera */,
 				4CF072AC20D6751E00F93AB5 /* Date */,
@@ -4112,15 +4143,6 @@
 			path = BrickManager;
 			sourceTree = "<group>";
 		};
-		4CC6358B2105E8FE0053BD68 /* Arduino */ = {
-			isa = PBXGroup;
-			children = (
-				4CC6358E2105E9210053BD68 /* ArduinoAnalogPinSensor.swift */,
-				4CC635902105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift */,
-			);
-			path = Arduino;
-			sourceTree = "<group>";
-		};
 		4CC85CD91B9C717C0097E470 /* ValidHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -4223,6 +4245,7 @@
 		4CE67884210C4AE000D90B5D /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				4C37A09C212DBD990074F417 /* Arduino */,
 				F470A2DF2129DAE1005EC9A3 /* List */,
 				F4A2AFB12110D47500C53234 /* Text */,
 				4CE67897210C6EBB00D90B5D /* Math */,
@@ -4457,6 +4480,15 @@
 			name = Extensions;
 			path = Catty/PlayerEngine/Scene/Extensions;
 			sourceTree = SOURCE_ROOT;
+		};
+		4CF85922212E8149008571B8 /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				4CF85923212E817C008571B8 /* FormulaManager.swift */,
+				4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */,
+			);
+			path = Formula;
+			sourceTree = "<group>";
 		};
 		591596D22035635F0015F74A /* UIBarButtonItem+InvisibleButton */ = {
 			isa = PBXGroup;
@@ -5022,6 +5054,7 @@
 		92DFAFE81A38949E00FA9B0F /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
+				4C37A0A8212E7E3D0074F417 /* Dto */,
 				92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */,
 				92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */,
 				92DFAFEB1A38949E00FA9B0F /* ExternToken.h */,
@@ -6839,6 +6872,7 @@
 				AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */,
 				AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */,
 				CAD232181B10F12600570370 /* DataModel */,
+				4CF85922212E8149008571B8 /* Formula */,
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
 				4CE67884210C4AE000D90B5D /* Functions */,
 				4C9E07691CD9D47E00B14B2F /* Helper */,
@@ -7373,15 +7407,6 @@
 				E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */,
 			);
 			path = FeaturedPrograms;
-			sourceTree = "<group>";
-		};
-		F430168E2106856B002B1444 /* Arduino */ = {
-			isa = PBXGroup;
-			children = (
-				F430169121068590002B1444 /* ArduinoAnalogPinSensorTest.swift */,
-				F4301693210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift */,
-			);
-			path = Arduino;
 			sourceTree = "<group>";
 		};
 		F45A8D58210714AE007C0D38 /* Phiro */ = {
@@ -8099,6 +8124,7 @@
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C6D14EC210B12D9006147BD /* SensorHandlerDeviceTests.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
+				4C37A0A7212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift in Sources */,
 				4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
@@ -8112,10 +8138,8 @@
 				4C6FE176212D2D2E0067B7D5 /* LetterFunctionTest.swift in Sources */,
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
 				4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */,
-				F4301694210685A8002B1444 /* ArduinoDigitalPinSensorTest.swift in Sources */,
 				F418699820DFBB2100FF356B /* LookNumberSensorTest.swift in Sources */,
 				F4E1BC6A20E4EE9D00EDD525 /* BrightnessSensorTest.swift in Sources */,
-				F430169221068590002B1444 /* ArduinoAnalogPinSensorTest.swift in Sources */,
 				99E770521D7091BC00BEF91F /* ChangeColorByNBrickTests.m in Sources */,
 				F4C5A99D20F09BC700C067A0 /* AccelerationZSensorTest.swift in Sources */,
 				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
@@ -8125,6 +8149,7 @@
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
+				4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */,
 				4C6FE175212D2D2E0067B7D5 /* ContainsFunctionTest.swift in Sources */,
 				F4844BF420F7C9D5009522D6 /* LayerSensorTest.swift in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
@@ -8295,7 +8320,6 @@
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				AA74EE331BC0542C00D1E954 /* VibrationBrick+Instruction.swift in Sources */,
-				4CC6358F2105E9210053BD68 /* ArduinoAnalogPinSensor.swift in Sources */,
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
@@ -8453,6 +8477,7 @@
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
+				4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */,
 				5947F6DE200D20040079DBCE /* MediaLibraryCollectionViewDataSource.swift in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				59697DB0201F855C00A0071A /* LibraryCategoryCollectionReusableView.swift in Sources */,
@@ -8575,6 +8600,7 @@
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
+				4CF85926212E81A5008571B8 /* FormulaManagerProtocol.swift in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
 				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
@@ -8594,6 +8620,7 @@
 				92EC985E1BC3ABB90003A891 /* PhiroMotorStopBrick+CBXMLHandler.m in Sources */,
 				4C0F9F9F204BD2B100E71B2D /* SayForBubbleBrickCell.m in Sources */,
 				AA74EE261BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift in Sources */,
+				4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */,
 				AA74F0B81BC05FCE00D1E954 /* ComeToFrontBrickCell.m in Sources */,
 				AA74F0981BC05FCE00D1E954 /* BrickCellTextData.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
@@ -8673,6 +8700,7 @@
 				4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */,
 				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
+				4CF85924212E817C008571B8 /* FormulaManager.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
 				4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */,
@@ -8706,7 +8734,6 @@
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				4C6D14E6210B1273006147BD /* InclinationXSensor.swift in Sources */,
-				4CC635912105EAAC0053BD68 /* ArduinoDigitalPinSensor.swift in Sources */,
 				4C0F9F3A204ADC4E00E71B2D /* SayForBubbleBrick.m in Sources */,
 				F48E946320D6F221007E782E /* DateMonthSensor.swift in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
@@ -8913,6 +8940,7 @@
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,
 				92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
+				4C37A0AA212E7E540074F417 /* FormulaEditorItem.swift in Sources */,
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
 				4C0F9F7C204BD1EC00E71B2D /* SetBackgroundBrick+Instruction.swift in Sources */,
 				4C0F9FA6204BD2C200E71B2D /* ThinkBubbleBrickCell.m in Sources */,

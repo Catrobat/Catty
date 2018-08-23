@@ -24,51 +24,56 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class ArduinoDigitalPinSensorTest: XCTestCase {
+class ArduinoDigitalPingFunctionTest: XCTestCase {
     
-    var sensor: ArduinoDigitalPinSensor!
+    var function: ArduinoDigitalPinFunction!
     var bluetoothService: BluetoothService!
-    
-    func testDefaultRawValue() {
-        let sensor = ArduinoDigitalPinSensor { nil }
-        XCTAssertEqual(type(of: sensor).defaultRawValue, sensor.rawValue(), accuracy: 0.0001)
-    }
-    
-    func testRawValue() {
-        // TODO: add tests
-    }
     
     override func setUp() {
         self.bluetoothService = BluetoothService.sharedInstance()
-        self.sensor = ArduinoDigitalPinSensor { [ weak self ] in self?.bluetoothService }
+        self.function = ArduinoDigitalPinFunction { [ weak self ] in self?.bluetoothService }
     }
     
     override func tearDown() {
         self.bluetoothService = nil
-        self.sensor = nil
+        self.function = nil
     }
     
-    func testConvertToStandardized() {
-        XCTAssertEqual(20, sensor.convertToStandardized(rawValue: 20))
-        XCTAssertEqual(5, sensor.convertToStandardized(rawValue: 5))
-        XCTAssertEqual(36, sensor.convertToStandardized(rawValue: 36))
+    func testDefaultValue() {
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: "invalidParameter" as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 120 as AnyObject), accuracy: 0.0001)
+        XCTAssertEqual(type(of: function).defaultValue, function.value(parameter: 1.5 as AnyObject), accuracy: 0.0001)
+    }
+    
+    func testValue() {
+        // TODO: add tests
+    }
+    
+    func testParameter() {
+        XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
     }
     
     func testTag() {
-        XCTAssertEqual("digitalPin", type(of: sensor).tag)
+        XCTAssertEqual("digitalPin", type(of: function).tag)
+    }
+    
+    func testName() {
+        XCTAssertEqual(kUIFESensorArduinoDigital, type(of: function).name)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.bluetoothArduino, type(of: sensor).requiredResource)
+        XCTAssertEqual(ResourceType.bluetoothArduino, type(of: function).requiredResource)
+    }
+    
+    func testIsIdempotent() {
+        XCTAssertFalse(type(of: function).isIdempotent)
     }
     
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: function).position), type(of: function).formulaEditorSection())
         
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
-        XCTAssertEqual(.hidden, type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.hidden, type(of: function).formulaEditorSection())
     }
-    
-    
 }

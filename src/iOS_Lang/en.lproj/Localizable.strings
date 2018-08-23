@@ -398,6 +398,9 @@
 "Device disconnected." = "Device disconnected.";
 
 /* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
 "direction" = "direction";
 
 /* No comment provided by engineer. */

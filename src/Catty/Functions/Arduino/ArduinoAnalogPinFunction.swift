@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ArduinoAnalogPinSensor: DeviceSensor {
+class ArduinoAnalogPinFunction: SingleParameterDoubleFunction {
     
-    static let tag = "analogPin"
-    static let name = kUIFESensorArduinoAnalog
-    static let defaultRawValue = 0.0
-    static let position = 350
-    static let requiredResource = ResourceType.bluetoothArduino
+    static var tag = "analogPin"
+    static var name = kUIFESensorArduinoAnalog
+    static var defaultValue = 0.0
+    static var position = 350
+    static var isIdempotent = false
+    static var requiredResource = ResourceType.bluetoothArduino
     
     let getBluetoothService: () -> BluetoothService?
     
@@ -34,15 +35,17 @@ class ArduinoAnalogPinSensor: DeviceSensor {
         self.getBluetoothService = bluetoothServiceGetter
     }
     
-    func rawValue() -> Double {
-        return self.getBluetoothService()?.getSensorArduino()?.getAnalogPin(0) ?? type(of: self).defaultRawValue
+    static func firstParameter() -> FunctionParameter {
+        return .number(defaultValue: 0)
     }
     
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+    func value(parameter: AnyObject?) -> Double {
+        guard let pin = parameter as? Int else { return type(of: self).defaultValue }
+        
+        return self.getBluetoothService()?.getSensorArduino()?.getAnalogPin(pin) ?? type(of: self).defaultValue
     }
-   
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    
+    static func formulaEditorSection() -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
             return .hidden
         }

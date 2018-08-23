@@ -773,7 +773,7 @@
 - (void)testNestedResources
 {
     GlideToBrick *brick = [GlideToBrick new];
-    FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:arduino_analogPin] leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *element = [[FormulaElement alloc] initWithElementType:FUNCTION value:[SensorManager stringForSensor:arduino_analogPin] leftChild:nil rightChild:nil parent:nil];
     brick.durationInSeconds = [[Formula alloc] initWithFormulaElement:element];
     element = [[FormulaElement alloc] initWithElementType:SENSOR value:[SensorManager stringForSensor:X_ACCELERATION] leftChild:nil rightChild:nil parent:nil];
     brick.xDestination = [[Formula alloc] initWithFormulaElement:element];
@@ -852,7 +852,7 @@
     
     NSInteger resources = [prog getRequiredResources];
     XCTAssertEqual(kBluetoothArduino, resources & kBluetoothArduino, @"Resourses nested not correctly calculated");
-    XCTAssertEqual(kAccelerometer, resources & kAccelerometer, @"Resourses nested not correctly calculated");
+    XCTAssertEqual(kDeviceMotion, resources & kDeviceMotion, @"Resourses nested not correctly calculated");
     XCTAssertEqual(kLoudness, resources & kLoudness, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kBluetoothPhiro, @"Resourses nested not correctly calculated");
     XCTAssertEqual(0, resources & kMagnetometer, @"Resourses nested not correctly calculated");

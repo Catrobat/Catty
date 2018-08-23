@@ -23,46 +23,32 @@
 extension FormulaEditorViewController {
     
     @objc func initMathSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        var topAnchorView: UIView?
-        var buttons = [UIButton]()
-        
-        for function in FunctionManager.shared.functions() {
-            let button = FormulaEditorButton(function: function)
-            topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
-            buttons.append(topAnchorView as! UIButton)
-        }
-        
-        resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
-        return buttons
+        let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: self.object)
+        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
 
     @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        var topAnchorView: UIView?
-        var buttons = [UIButton]()
-        
-        for sensor in CBSensorManager.shared.objectSensors(for: self.object) {
-            let button = FormulaEditorButton(sensor: sensor)
-            topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
-            buttons.append(topAnchorView as! UIButton)
-        }
-        
-        resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
-        return buttons
+        let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: self.object)
+        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
     
     @objc func initSensorSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
+        let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: self.object)
+        return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
+    }
+    
+    private func initWithItems(formulaEditorItems: [FormulaEditorItem], scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         var topAnchorView: UIView?
         var buttons = [UIButton]()
         
-        for sensor in CBSensorManager.shared.deviceSensors(for: self.object) {
-            let button = FormulaEditorButton(sensor: sensor)
+        for item in formulaEditorItems {
+            let button = FormulaEditorButton(formulaEditorItem: item)
             topAnchorView = addButtonToScrollView(button: button, scrollView: scrollView, topAnchorView: topAnchorView, buttonHeight: buttonHeight)
             buttons.append(topAnchorView as! UIButton)
         }
         
         resizeSection(scrollView: scrollView, for: buttons, with: buttonHeight)
         return buttons
-        
     }
     
     @objc func buttonPressed(sender: UIButton) {

@@ -36,7 +36,9 @@ protocol FunctionManagerProtocol {
     
     func setup(for program: Program, and scene:CBScene)
     
+    func setup(for formula: Formula)
+    
     func stop()
     
-    func functions() -> [CBFunction]
+    func formulaEditorItems() -> [FormulaEditorItem]
 }

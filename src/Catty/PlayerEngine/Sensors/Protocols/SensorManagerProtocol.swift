@@ -32,19 +32,21 @@ protocol SensorManagerProtocol {
     
     func requiredResource(tag: String) -> ResourceType
     
+    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
+    
     func name(sensor: CBSensor) -> String
     
     func name(tag: String) -> String?
     
     func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
     
-    func deviceSensors(for spriteObject: SpriteObject) -> [CBSensor]
-    
-    func objectSensors(for spriteObject: SpriteObject) -> [CBSensor]
+    func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem]
     
     func phiroSensors() -> [PhiroSensor]
     
     func setup(for program: Program, and scene:CBScene)
+    
+    func setup(for formula: Formula)
     
     func stop()
 }

@@ -20,18 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import BluetoothHelper
+
 @objc class FunctionManager: NSObject, FunctionManagerProtocol {
     
     @objc public static let shared = FunctionManager()
     public static var defaultValueForUndefinedFunction: Double = 0
     private var functionMap = [String: CBFunction]()
     
+    private var bluetoothService: BluetoothService
+    
     private override init() {
+        bluetoothService = BluetoothService.sharedInstance()
+        
         super.init()
         registerFunctions()
     }
     
     private func registerFunctions() {
+        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
+        
         let functionList: [CBFunction] = [
             SinFunction(),
             CosFunction(),
@@ -60,7 +68,10 @@
             LengthFunction(),
             ElementFunction(),
             NumberOfItemsFunction(),
-            ContainsFunction()
+            ContainsFunction(),
+            
+            ArduinoAnalogPinFunction(bluetoothServiceGetter: bluetoothServiceGetter),
+            ArduinoDigitalPinFunction(bluetoothServiceGetter: bluetoothServiceGetter)
         ]
         
         functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }
@@ -116,25 +127,28 @@
         return value
     }
     
+    @objc(setupFunctionsForProgram: andScene:)
     func setup(for program: Program, and scene: CBScene) {
-        // TODO setup dependencies
+        // Start dependencies
     }
     
+    @objc(setupFunctionsForFormula:)
+    func setup(for formula: Formula) {
+        // Start dependencies
+    }
+    
+    @objc
     func stop() {
-        // TODO stop dependencies
+        // Stop dependencies
     }
     
-    func functions() -> [CBFunction] {
-        var functions = [Int: CBFunction]()
+    func formulaEditorItems() -> [FormulaEditorItem] {
+        var items = [FormulaEditorItem]()
         
         for function in self.functionMap.values {
-            switch (type(of: function).formulaEditorSection()) {
-            case let .math(position):
-                functions[position] = function
-            default:
-                break;
-            }
+            items.append(FormulaEditorItem(function: function))
         }
-        return functions.sorted(by: { $0.0 < $1.0 }).map{ $1}
+        
+        return items
     }
 }

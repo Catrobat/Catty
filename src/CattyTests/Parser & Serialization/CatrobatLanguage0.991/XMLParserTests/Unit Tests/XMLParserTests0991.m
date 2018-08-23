@@ -426,10 +426,9 @@
     Formula *formula = addItemToUserListBrick.listFormula;
     
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"NUMBER_OF_ITEMS"]);
-    
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
-    XCTAssertEqual(@"NUMBER_OF_ITEMS", formula.formulaTree.value);
+    XCTAssertTrue([(NSString*)formula.formulaTree.value isEqualToString:@"NUMBER_OF_ITEMS"]);
 }
 
 - (void)testElementOfListFunction
@@ -455,7 +454,7 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
-    XCTAssertEqual(@"LIST_ITEM", formula.formulaTree.value);
+    XCTAssertTrue([(NSString*)formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
 }
 
 - (void)testDeleteItemOfUserListBrick

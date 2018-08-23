@@ -97,9 +97,6 @@ import CoreLocation
             PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             
-            ArduinoAnalogPinSensor(bluetoothServiceGetter: bluetoothServiceGetter), // TODO implement as function with one parameter
-            ArduinoDigitalPinSensor(bluetoothServiceGetter: bluetoothServiceGetter), // TODO implement as function with one parameter
-            
             PositionXSensor(),
             PositionYSensor(),
             TransparencySensor(),
@@ -117,32 +114,14 @@ import CoreLocation
         sensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }
     }
     
-    func deviceSensors(for spriteObject: SpriteObject) -> [CBSensor] {
-        var sensors = [Int: CBSensor]()
+    func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {
+        var items = [FormulaEditorItem]()
         
         for sensor in self.sensorMap.values {
-            switch (type(of: sensor).formulaEditorSection(for: spriteObject)) {
-            case let .device(position):
-                sensors[position] = sensor
-            default:
-                break;
-            }
+            items.append(FormulaEditorItem(sensor: sensor, spriteObject: spriteObject))
         }
-        return sensors.sorted(by: { $0.0 < $1.0 }).map{ $1}
-    }
-    
-    func objectSensors(for spriteObject: SpriteObject) -> [CBSensor] {
-        var sensors = [Int: CBSensor]()
         
-        for sensor in self.sensorMap.values {
-            switch (type(of: sensor).formulaEditorSection(for: spriteObject)) {
-            case let .object(position):
-                sensors[position] = sensor
-            default:
-                break;
-            }
-        }
-        return sensors.sorted(by: { $0.0 < $1.0 }).map{ $1}
+        return items
     }
     
     func phiroSensors() -> [PhiroSensor] {
@@ -195,12 +174,15 @@ import CoreLocation
         return rawValue
     }
     
-    @objc(getUnavailableResources:)
-    func getUnavailableResources(for requiredResources: NSInteger) -> NSInteger {
+    func unavailableResources(for requiredResources: NSInteger) -> NSInteger {
         var unavailableResource: NSInteger = ResourceType.noResources.rawValue
         
         if requiredResources & ResourceType.accelerometer.rawValue > 0 && !motionManager.isAccelerometerAvailable {
             unavailableResource |= ResourceType.accelerometer.rawValue
+        }
+        
+        if requiredResources & ResourceType.deviceMotion.rawValue > 0 && !motionManager.isDeviceMotionAvailable {
+            unavailableResource |= ResourceType.deviceMotion.rawValue
         }
         
         if requiredResources & ResourceType.location.rawValue > 0 && !type(of: locationManager).locationServicesEnabled() {
@@ -234,10 +216,18 @@ import CoreLocation
         return unavailableResource
     }
     
-    @objc(setupSensorsForProgram: andScene:)
     func setup(for program: Program, and scene:CBScene) {
         let requiredResources = program.getRequiredResources()
-        let unavailableResource = getUnavailableResources(for: requiredResources)
+        setup(for: requiredResources, and: scene)
+    }
+    
+    func setup(for formula: Formula) {
+        let requiredResources = formula.getRequiredResources()
+        setup(for: requiredResources, and: nil)
+    }
+    
+    private func setup(for requiredResources: Int, and scene:CBScene?) {
+        let unavailableResource = unavailableResources(for: requiredResources)
         
         if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
             motionManager.startAccelerometerUpdates()
@@ -270,7 +260,8 @@ import CoreLocation
         }
         
         if ((requiredResources & ResourceType.touchHandler.rawValue) > 0) && (unavailableResource & ResourceType.touchHandler.rawValue) == 0 {
-            touchManager.startTrackingTouches(for: scene)
+            guard let sc = scene else { return }
+            touchManager.startTrackingTouches(for: sc)
         }
     }
     

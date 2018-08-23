@@ -20,32 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ArduinoDigitalPinSensor: DeviceSensor {
+class FormulaEditorItem {
     
-    static let tag = "digitalPin"
-    static let name = kUIFESensorArduinoDigital
-    static let defaultRawValue = 0.0
-    static let position = 360
-    static let requiredResource = ResourceType.bluetoothArduino
+    var sensor: CBSensor? = nil
+    var function: CBFunction? = nil
+    var title: String
+    var section: FormulaEditorSection
     
-    let getBluetoothService: () -> BluetoothService?
-    
-    init(bluetoothServiceGetter: @escaping () -> BluetoothService?) {
-        self.getBluetoothService = bluetoothServiceGetter
+    public init(sensor: CBSensor, spriteObject: SpriteObject) {
+        self.title = type(of: sensor).name
+        self.sensor = sensor
+        self.section = type(of: sensor).formulaEditorSection(for: spriteObject)
     }
     
-    func rawValue() -> Double {
-        return self.getBluetoothService()?.getSensorArduino()?.getDigitalArduinoPin(0) ?? type(of: self).defaultRawValue
-    }
-    
-    func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
-    }
-   
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        if UserDefaults.standard.bool(forKey: kUseArduinoBricks) == false {
-            return .hidden
-        }
-        return .device(position: position)
+    public init(function: CBFunction) {
+        self.title = function.nameWithParameters()
+        self.function = function
+        self.section = type(of: function).formulaEditorSection()
     }
 }

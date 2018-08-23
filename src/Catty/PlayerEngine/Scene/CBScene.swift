@@ -45,6 +45,7 @@ final class CBScene: SKScene {
     private(set) var frontend: CBFrontendProtocol?
     private(set) var backend: CBBackendProtocol?
     private(set) var broadcastHandler: CBBroadcastHandlerProtocol?
+    private(set) var formulaManager: FormulaManagerProtocol?
     @objc var isScreenRecorderAvailable: Bool {
     return RPScreenRecorder.shared().isAvailable
     
@@ -70,18 +71,20 @@ final class CBScene: SKScene {
         frontend = nil
         backend = nil
         broadcastHandler = nil
+        formulaManager = nil
         super.init(size: size)
     }
 
     // MARK: Designated initializer
     init(size: CGSize, logger: CBLogger, scheduler: CBScheduler, frontend: CBFrontend,
-        backend: CBBackend, broadcastHandler: CBBroadcastHandlerProtocol)
+         backend: CBBackend, broadcastHandler: CBBroadcastHandlerProtocol, formulaManager: FormulaManagerProtocol)
     {
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend
         self.backend = backend
         self.broadcastHandler = broadcastHandler
+        self.formulaManager = formulaManager
         super.init(size: size)
         backgroundColor = UIColor.white
     }
@@ -147,12 +150,18 @@ final class CBScene: SKScene {
 
     // MARK: - Start program
     @objc func startProgram() {
-        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject], let variableList = frontend?.program?.variables.allVariables() as NSArray? as? [UserVariable]
-        else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
+        guard let program = frontend?.program else {
+            fatalError("Invalid program. This should never happen!")
+        }
+        
+        guard let spriteObjectList = program.objectList as NSArray? as? [SpriteObject],
+              let variableList = frontend?.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
+                fatalError("!! Invalid sprite object list given !! This should never happen!")
+        }
         assert(Thread.current.isMainThread)
 
         removeAllChildren() // just to ensure
-
+        
         var zPosition = 1
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
@@ -218,6 +227,7 @@ final class CBScene: SKScene {
             addChild(variable.textLabel)
         }
 
+        formulaManager?.setup(for: program, and: self)
         scheduler?.run()
     }
 
@@ -256,6 +266,7 @@ final class CBScene: SKScene {
         scheduler?.shutdown() // stops all script contexts of all objects and removes all ressources
         removeAllChildren() // remove all CBSpriteNodes from Scene
         frontend?.program?.removeReferences() // remove all references in program hierarchy
+        formulaManager?.stop()
         logger?.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
 

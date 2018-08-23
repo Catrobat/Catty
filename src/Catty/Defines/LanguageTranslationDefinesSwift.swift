@@ -646,6 +646,7 @@ let kUIFESensorArduinoDigital = NSLocalizedString("arduino_digital", comment: ""
 
 let kLocalizedSensorCompass = NSLocalizedString("compass", comment: "")
 let kLocalizedSensorLocation = NSLocalizedString("location", comment: "")
+let kLocalizedSensorDeviceMotion = NSLocalizedString("device motion-sensor", comment: "")
 let kLocalizedSensorAcceleration = NSLocalizedString("acceleration-sensor", comment: "")
 let kLocalizedSensorRotation = NSLocalizedString("gyro-sensor", comment: "")
 let kLocalizedSensorMagnetic = NSLocalizedString("magnetic-sensor", comment: "")
