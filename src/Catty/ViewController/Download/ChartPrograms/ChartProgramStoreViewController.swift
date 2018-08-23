@@ -177,7 +177,6 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             self.hideLoadingView()
             loadingViewFlag = false
         }
-        
     }
     
     func showLoadingView() {
@@ -201,7 +200,6 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
-
 }
 
 extension ChartProgramsStoreViewController: ChartProgramCellProtocol{

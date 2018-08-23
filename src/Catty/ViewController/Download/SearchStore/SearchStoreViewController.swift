@@ -92,13 +92,15 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
     
     func initNoSearchResultsLabel() {
-        noSearchResultsLabel = UILabel(frame: view.frame)
-        noSearchResultsLabel.text = kLocalizedNoSearchResults
-        noSearchResultsLabel.textAlignment = .center
-        noSearchResultsLabel.textColor = UIColor.globalTint()
-        noSearchResultsLabel.tintColor = UIColor.globalTint()
-        noSearchResultsLabel.isHidden = true
-        view.addSubview(noSearchResultsLabel)
+        DispatchQueue.main.async {
+            self.noSearchResultsLabel = UILabel(frame: self.view.frame)
+            self.noSearchResultsLabel.text = kLocalizedNoSearchResults
+            self.noSearchResultsLabel.textAlignment = .center
+            self.noSearchResultsLabel.textColor = UIColor.globalTint()
+            self.noSearchResultsLabel.tintColor = UIColor.globalTint()
+            self.noSearchResultsLabel.isHidden = true
+            self.view.addSubview(self.noSearchResultsLabel)
+        }
     }
     
     private func showConnectionIssueAlertAndDismiss(error: StoreProgramDownloaderError) {
@@ -111,8 +113,8 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             title = kLocalizedServerTimeoutIssueTitle
             message = kLocalizedServerTimeoutIssueMessage
         default:
-            title = kLocalizedFeaturedProgramsLoadFailureTitle
-            message = kLocalizedFeaturedProgramsLoadFailureMessage
+            title = kLocalizedUnexpectedErrorTitle
+            message = kLocalizedUnexpectedErrorMessage
         }
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

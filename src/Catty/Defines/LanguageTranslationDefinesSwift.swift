@@ -744,6 +744,8 @@ let kLocalizeChartProgramsLoadFailureMessage = NSLocalizedString("The recent pro
 
 let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", comment: "")
 let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
+let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", comment: "")
+let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

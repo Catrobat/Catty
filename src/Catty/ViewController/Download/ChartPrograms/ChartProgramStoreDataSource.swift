@@ -51,7 +51,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     var mostViewedScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
     var mostRecentScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
 
-    var scrollView: UIScrollView = UIScrollView()
+    var scrollView = UIScrollView()
     
     var programs: [StoreProgram] {
         switch programType {
