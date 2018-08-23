@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
+protocol FeaturedProgramsStoreTableDataSourceDelegate: class {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: StoreProgram)
 }
 
