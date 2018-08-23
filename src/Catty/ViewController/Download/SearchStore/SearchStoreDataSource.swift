@@ -28,6 +28,7 @@ protocol SelectedSearchStoreDataSource: class {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
     func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm term: String)
     func showNoResultsAlert()
+    func hideNoResultsAlert()
     func updateTableView()
 }
 
@@ -112,10 +113,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text != "" {
-            if let searchTerm = searchBar.text {
-                self.delegate?.searchBarHandler(dataSource: self, searchTerm: searchTerm)
-            }
+        if searchText.count > 2 {
+            self.delegate?.hideNoResultsAlert()
+            self.delegate?.searchBarHandler(dataSource: self, searchTerm: searchText)
         }
         else {
             programs.removeAll()

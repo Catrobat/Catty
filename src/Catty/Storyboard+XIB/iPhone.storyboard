@@ -1425,7 +1425,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="2Ht-uC-rkW">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" translatesAutoresizingMaskIntoConstraints="NO" id="2Ht-uC-rkW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -2525,6 +2525,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gbh-WU-doT"/>
-        <segue reference="mUB-CR-2KD"/>
+        <segue reference="Ynr-aF-UI3"/>
     </inferredMetricsTieBreakers>
 </document>

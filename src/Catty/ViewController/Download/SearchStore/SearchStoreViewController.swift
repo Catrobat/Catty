@@ -204,4 +204,8 @@ extension SearchStoreViewController {
         self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         noSearchResultsLabel.isHidden = false
     }
+    
+    func hideNoResultsAlert() {
+        noSearchResultsLabel.isHidden = true
+    }
 }
