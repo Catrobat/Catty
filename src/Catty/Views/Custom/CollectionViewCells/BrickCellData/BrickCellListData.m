@@ -78,7 +78,6 @@
     if (combobox.values.count == 1) {
         [self comboboxDonePressed: combobox withValue:combobox.values.firstObject];
     }
-
 }
 
 # pragma mark - User interaction
