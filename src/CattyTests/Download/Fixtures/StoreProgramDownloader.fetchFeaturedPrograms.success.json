@@ -5,22 +5,26 @@
         "status" : 200,
         "headers" : {
           "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=6travre8d1enbbu8498fhkomq6; path=\/",
+          "Set-Cookie" : "PHPSESSID=sutvur5uani4jenn7cvqq5nmq0; path=\/",
           "Expires" : "-1",
           "Pragma" : "no-cache",
           "Strict-Transport-Security" : "max-age=15768000",
           "Server" : "nginx",
-          "Date" : "Mon, 16 Jul 2018 10:04:33 GMT",
+          "Date" : "Thu, 23 Aug 2018 07:31:28 GMT",
           "Cache-Control" : "private, must-revalidate"
         },
         "body" : {
           "CatrobatInformation" : {
             "BaseUrl" : "https:\/\/share.catrob.at\/",
             "TotalProjects" : "2",
+            "ProjectsExtension" : ".catrobat"
           },
           "CatrobatProjects" : [
             {
-              "ProjectId" : 719
+              "FeaturedImage" : "resources\/featured\/featured_28.jpeg",
+              "ProjectName" : "Galaxy War",
+              "ProjectId" : 719,
+              "Author" : "DavidR"
             },
             {
               "FeaturedImage" : "resources\/featured\/featured_29.jpeg",
@@ -33,12 +37,12 @@
         },
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
       },
-      "recorded_at" : 1531735473.5853071,
+      "recorded_at" : 1535009488.094846,
       "request" : {
         "method" : "GET",
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
       }
     }
   ],
-  "name" : "StoreProgramDownloader.fetchPrograms.fail.parse"
+  "name" : "StoreProgramDownloader.fetchFeaturedPrograms.success"
 }

@@ -12,6 +12,20 @@
 		2D8E23C32123134B003E7EE4 /* ChartProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */; };
 		2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */; };
 		2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */; };
+		2DCB4916212E9B56005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */; };
+		2DCB4918212E9BF4005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4917212E9BF3005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json */; };
+		2DCB491E212EA006005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB491D212EA005005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json */; };
+		2DCB4920212EA096005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB491F212EA095005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json */; };
+		2DCB4922212EA251005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4921212EA250005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json */; };
+		2DCB4924212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4923212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json */; };
+		2DCB4928212EA477005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4927212EA476005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json */; };
+		2DCB492A212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4929212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json */; };
+		2DCB492E212EA7EC005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB492D212EA7EB005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json */; };
+		2DCB4930212EA88E005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB492F212EA88D005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json */; };
+		2DCB4932212EA923005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4931212EA922005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json */; };
+		2DCB4934212EA9BF005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */; };
+		2DCB4936212EAAEF005E8E3D /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */; };
+		2DCB4938212EAB36005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */; };
 		2DE385082105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
 		2DE385092105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
 		2DF67A27212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF67A26212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift */; };
@@ -980,11 +994,6 @@
 		E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */; };
 		E4AEC86D210843D20081A980 /* ProgramInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC86C210843D20081A980 /* ProgramInformation.swift */; };
 		E4AEC8712108445D0081A980 /* StoreProgramCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */; };
-		E4AEC8942108513D0081A980 /* StoreProgramDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88E210851380081A980 /* StoreProgramDownloader.downloadData.fail.request.json */; };
-		E4AEC8962108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88F210851390081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json */; };
-		E4AEC8982108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */; };
-		E4AEC89A2108513D0081A980 /* StoreProgramDownloader.fetchPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */; };
-		E4AEC89C2108513D0081A980 /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */; };
 		E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
 		E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */; };
@@ -1056,6 +1065,20 @@
 		2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartProgramCell.swift; sourceTree = "<group>"; };
 		2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreViewController.swift; sourceTree = "<group>"; };
 		2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSource.swift; sourceTree = "<group>"; };
+		2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
+		2DCB4917212E9BF3005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostDownloadedPrograms.success.json; sourceTree = "<group>"; };
+		2DCB491D212EA005005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostViewedPrograms.success.json; sourceTree = "<group>"; };
+		2DCB491F212EA095005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.success.json; sourceTree = "<group>"; };
+		2DCB4921212EA250005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB4923212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB4927212EA476005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB4929212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB492D212EA7EB005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB492F212EA88D005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB4931212EA922005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
+		2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
 		2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
 		2DF67A26212993D600235CFB /* RecentProgramsStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentProgramsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
@@ -2546,11 +2569,6 @@
 		E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCell.swift; sourceTree = "<group>"; };
 		E4AEC86C210843D20081A980 /* ProgramInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramInformation.swift; sourceTree = "<group>"; };
 		E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramCollection.swift; sourceTree = "<group>"; };
-		E4AEC88E210851380081A980 /* StoreProgramDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
-		E4AEC88F210851390081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.fail.request.json; sourceTree = "<group>"; };
-		E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.fail.parse.json; sourceTree = "<group>"; };
-		E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchPrograms.success.json; sourceTree = "<group>"; };
-		E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloader.swift; sourceTree = "<group>"; };
@@ -6689,11 +6707,20 @@
 		E4AEC8872108506A0081A980 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				E4AEC88E210851380081A980 /* StoreProgramDownloader.downloadData.fail.request.json */,
-				E4AEC8922108513D0081A980 /* StoreProgramDownloader.downloadData.success.json */,
-				E4AEC8902108513A0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json */,
-				E4AEC88F210851390081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json */,
-				E4AEC8912108513C0081A980 /* StoreProgramDownloader.fetchPrograms.success.json */,
+				2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */,
+				2DCB4917212E9BF3005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json */,
+				2DCB491D212EA005005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json */,
+				2DCB491F212EA095005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json */,
+				2DCB4921212EA250005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json */,
+				2DCB4923212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json */,
+				2DCB4927212EA476005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json */,
+				2DCB4929212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json */,
+				2DCB492D212EA7EB005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json */,
+				2DCB492F212EA88D005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json */,
+				2DCB4931212EA922005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json */,
+				2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */,
+				2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */,
+				2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -6901,6 +6928,7 @@
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
 				BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
+				2DCB4918212E9BF4005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
 				F49AA89C20C9203200D119C0 /* NumberOfItemsInListFunction0991.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
@@ -6909,12 +6937,15 @@
 				CAE3E55D1B4C50B300CC88BD /* SKYPASCAL_093.xml in Resources */,
 				4C2EE3F11B555740006DE9B8 /* Drink_more_water_095.xml in Resources */,
 				4C994DD7207A260300C415FD /* ReplaceItemInUserListBrick098.xml in Resources */,
+				2DCB492E212EA7EC005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */,
 				4C2EE3FB1B55579D006DE9B8 /* Memory_095.xml in Resources */,
 				4C2EE3FF1B5557BF006DE9B8 /* Minions__095.xml in Resources */,
 				4CE2D3F51C294F2000938B5E /* Compass_0.1_097.xml in Resources */,
 				CAE3E5391B4C50B300CC88BD /* Airplane_with_shadow_091.xml in Resources */,
+				2DCB492A212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json in Resources */,
 				CAE3E53E1B4C50B300CC88BD /* Demonstration_093.xml in Resources */,
 				599E64A4202DB037009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */,
+				2DCB4920212EA096005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json in Resources */,
 				4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */,
 				4C2EE3F91B55578C006DE9B8 /* Gossip_Girl_095.xml in Resources */,
 				4C0F9FDF204BD41B00E71B2D /* Airplane_with_shadow_0991.xml in Resources */,
@@ -6934,6 +6965,7 @@
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				4C0FA004204BD4FF00E71B2D /* Rock_paper_scissors_0991.xml in Resources */,
+				2DCB4922212EA251005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json in Resources */,
 				4C994DD9207A26D700C415FD /* AddItemToUserListBrick0991.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
@@ -6972,19 +7004,22 @@
 				CAE3E53F1B4C50B300CC88BD /* Drink_more_water_09.xml in Resources */,
 				4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */,
 				4CE2D4031C29502300938B5E /* Memory_097.xml in Resources */,
-				E4AEC8962108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.request.json in Resources */,
 				4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */,
+				2DCB4938212EAB36005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json in Resources */,
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
 				4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */,
 				4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */,
 				4C6D15F41D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml in Resources */,
+				2DCB4932212EA923005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json in Resources */,
 				4C0F9FF4204BD4A000E71B2D /* LogicBricks_0991.xml in Resources */,
+				2DCB4934212EA9BF005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json in Resources */,
 				CAE3E54F1B4C50B300CC88BD /* Nyancat_1.0_091.xml in Resources */,
 				4CEF0CC81B9C63A2003C9B20 /* Drink_more_water_096.xml in Resources */,
 				CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */,
 				4C0F9FDD204BD40A00E71B2D /* Air_fight_0.5_0991.xml in Resources */,
 				4CE2D4191C29509400938B5E /* X_Ray_phone_097.xml in Resources */,
 				4C0FA00D204BD53400E71B2D /* Tic_Tac_Toe_Master_0991.xml in Resources */,
+				2DCB4930212EA88E005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json in Resources */,
 				4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */,
@@ -6999,6 +7034,7 @@
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
 				4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */,
 				4CE2D4051C29502C00938B5E /* Minecraft_Work_In_Progress_097.xml in Resources */,
+				2DCB491E212EA006005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json in Resources */,
 				4CE2D41B1C2950A200938B5E /* ValidHeader097.xml in Resources */,
 				CAE3E4EB1B4C509800CC88BD /* test.png in Resources */,
 				4C0FA017204BD57400E71B2D /* X_Ray_phone_0991.xml in Resources */,
@@ -7007,20 +7043,19 @@
 				4C6D15E21D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml in Resources */,
 				599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
 				4C0F9FFC204BD4D400E71B2D /* Nyancat_1.0_0991.xml in Resources */,
-				E4AEC8942108513D0081A980 /* StoreProgramDownloader.downloadData.fail.request.json in Resources */,
 				4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */,
 				4C6D15D61D7AC5C500CE53CD /* Encapsulated_098.xml in Resources */,
 				4C0F9FFE204BD4DE00E71B2D /* Piano_0991.xml in Resources */,
 				4CE2D4091C29503B00938B5E /* Nyancat_1.0_097.xml in Resources */,
 				4C0FA015204BD56800E71B2D /* Word_balloon_demo_0991.xml in Resources */,
-				E4AEC8982108513D0081A980 /* StoreProgramDownloader.fetchPrograms.fail.parse.json in Resources */,
 				4C6D16001D7AC65400CE53CD /* ValidProgramAllBricks093.xml in Resources */,
+				2DCB4924212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json in Resources */,
+				2DCB4916212E9B56005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json in Resources */,
 				4C0FA011204BD54E00E71B2D /* ValidProgram0991.xml in Resources */,
 				4CE2D3FB1C294FFE00938B5E /* Flap_Pac_Man_097.xml in Resources */,
 				4C0FA013204BD55B00E71B2D /* ValidProgramAllBricks0991.xml in Resources */,
 				4C2EE3EF1B55572D006DE9B8 /* Demonstration_095.xml in Resources */,
 				4CE2D4171C29508A00938B5E /* Word_balloon_demo_097.xml in Resources */,
-				E4AEC89C2108513D0081A980 /* StoreProgramDownloader.downloadData.success.json in Resources */,
 				CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */,
 				CAE3E5511B4C50B300CC88BD /* Piano_09.xml in Resources */,
 				4C0FA002204BD4F400E71B2D /* Pythagorean_Theorem_0991.xml in Resources */,
@@ -7041,6 +7076,7 @@
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
+				2DCB4936212EAAEF005E8E3D /* StoreProgramDownloader.downloadData.success.json in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
 				CAE3E5591B4C50B300CC88BD /* Rock_paper_scissors_093.xml in Resources */,
@@ -7048,6 +7084,7 @@
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
 				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
+				2DCB4928212EA477005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json in Resources */,
 				4C6D15F21D7AC61C00CE53CD /* Solar_System_v1.0_098.xml in Resources */,
 				4C994DD5207A25F600C415FD /* DeleteItemOfUserListBrick098.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
@@ -7100,7 +7137,6 @@
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
 				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
-				E4AEC89A2108513D0081A980 /* StoreProgramDownloader.fetchPrograms.success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

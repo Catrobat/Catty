@@ -28,29 +28,92 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
     
     // MARK: - Fetch Featured Programs
     
-    func testfetchProgramsSucceeds() {
-        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchPrograms.success")
+        func testfetchFeaturedProgramsSucceeds() {
+            let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.success")
+            let downloader = StoreProgramDownloader(session: dvrSession)
+            let expectation = XCTestExpectation(description: "Fetch Featured Programs")
+    
+            downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
+                XCTAssertNil(error, "request failed")
+                guard let programs = programs else { XCTFail("no featured programs found"); return }
+                guard let item = programs.projects.first else { XCTFail("no featured programs in array"); return }
+    
+                // check that the first item in the first category has no empty properties (except cachedData)
+                XCTAssertNotEqual(item.projectId, 0)
+                XCTAssertNotEqual(item.projectName, "")
+                XCTAssertNotEqual(item.author, "")
+    
+                expectation.fulfill()
+            }
+    
+            wait(for: [expectation], timeout: 1.0)
+        }
+    
+    func testfetchMostDownloadedProgramsSucceeds() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostDownloadedPrograms.success")
         let downloader = StoreProgramDownloader(session: dvrSession)
-        let expectation = XCTestExpectation(description: "Fetch Featured Programs")
-
-        downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
+        let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
+        
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
             XCTAssertNil(error, "request failed")
-            guard let programs = programs else { XCTFail("no featured programs found"); return }
-            guard let item = programs.projects.first else { XCTFail("no featured programs in array"); return }
-
+            guard let programs = programs else { XCTFail("no most downloaded programs found"); return }
+            guard let item = programs.projects.first else { XCTFail("no most downloaded programs in array"); return }
+            
             // check that the first item in the first category has no empty properties (except cachedData)
             XCTAssertNotEqual(item.projectId, 0)
             XCTAssertNotEqual(item.projectName, "")
             XCTAssertNotEqual(item.author, "")
-
+            
             expectation.fulfill()
-
         }
         
         wait(for: [expectation], timeout: 1.0)
     }
     
-    func testfetchProgramsFailsWithUnexpectedError() {
+    func testfetchMostViewedProgramsSucceeds() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostViewedPrograms.success")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
+        
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+            XCTAssertNil(error, "request failed")
+            guard let programs = programs else { XCTFail("no most viewed programs found"); return }
+            guard let item = programs.projects.first else { XCTFail("no most viewed programs in array"); return }
+            
+            // check that the first item in the first category has no empty properties (except cachedData)
+            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectName, "")
+            XCTAssertNotEqual(item.author, "")
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostRecentProgramsSucceeds() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostRecentPrograms.success")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
+        
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
+            XCTAssertNil(error, "request failed")
+            guard let programs = programs else { XCTFail("no most recent programs found"); return }
+            guard let item = programs.projects.first else { XCTFail("no most recent programs in array"); return }
+            
+            // check that the first item in the first category has no empty properties (except cachedData)
+            XCTAssertNotEqual(item.projectId, 0)
+            XCTAssertNotEqual(item.projectName, "")
+            XCTAssertNotEqual(item.author, "")
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    
+    func testfetchFeaturedProgramsFailsWithUnexpectedError() {
         let mockSession = URLSessionMock()
         let downloader = StoreProgramDownloader(session: mockSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
@@ -64,8 +127,50 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
-    func testfetchProgramsFailsWithRequestError() {
-        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchPrograms.fail.request")
+    func testfetchMostDownloadedProgramsFailsWithUnexpectedError() {
+        let mockSession = URLSessionMock()
+        let downloader = StoreProgramDownloader(session: mockSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
+        
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            XCTAssertEqual(error, .unexpectedError)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostViewedProgramsFailsWithUnexpectedError() {
+        let mockSession = URLSessionMock()
+        let downloader = StoreProgramDownloader(session: mockSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
+        
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            XCTAssertEqual(error, .unexpectedError)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostRecentProgramsFailsWithUnexpectedError() {
+        let mockSession = URLSessionMock()
+        let downloader = StoreProgramDownloader(session: mockSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
+        
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error returned"); return }
+            XCTAssertEqual(error, .unexpectedError)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchFeaturedProgramsFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.fail.request")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
         
@@ -83,12 +188,126 @@ class FeaturedProgramsStoreViewControllerTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
-    func testfetchProgramsFailsWithParseError() {
-        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchPrograms.fail.parse")
+    func testfetchMostDownloadedProgramsFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
+        
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertNotEqual(statusCode, 200)
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostViewedProgramsFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostViewedPrograms.fail.request")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
+        
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertNotEqual(statusCode, 200)
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostRecentProgramsFailsWithRequestError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostRecentPrograms.fail.request")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
+        
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case let .request(error: _, statusCode: statusCode):
+                XCTAssertNotEqual(statusCode, 200)
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testfetchFeaturedProgramsFailsWithParseError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.fail.parse")
         let downloader = StoreProgramDownloader(session: dvrSession)
         let expectation = XCTestExpectation(description: "Fetch Featured Programs")
         
         downloader.fetchPrograms(forType: .featured, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostDownloadedProgramsFailsWithParseError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Downloaded Programs")
+        
+        downloader.fetchPrograms(forType: .mostDownloaded, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostViewedProgramsFailsWithParseError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostViewedPrograms.fail.parse")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Viewed Programs")
+        
+        downloader.fetchPrograms(forType: .mostViewed, offset: 0) { programs, error in
+            guard let error = error else { XCTFail("no error received"); return }
+            switch error {
+            case .parse(error: _):
+                break
+            default:
+                XCTFail("wrong error received")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
+    func testfetchMostRecentProgramsFailsWithParseError() {
+        let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchMostRecentPrograms.fail.parse")
+        let downloader = StoreProgramDownloader(session: dvrSession)
+        let expectation = XCTestExpectation(description: "Fetch Most Recent Programs")
+        
+        downloader.fetchPrograms(forType: .mostRecent, offset: 0) { programs, error in
             guard let error = error else { XCTFail("no error received"); return }
             switch error {
             case .parse(error: _):

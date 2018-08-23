@@ -43,14 +43,14 @@ class RecentProgramsStoreDataSourceTests: XCTestCase {
     // MARK: - RecentProgramsStoreDataSource Tests
     
     func testProgramsNotFetched() {
-        let dataSource = RecentProgramStoreDataSource.dataSource(with: self.downloaderMock)
+        let dataSource = ChartProgramStoreDataSource.dataSource(with: self.downloaderMock)
         XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
     }
     
     func testProgramEmpty() {
         self.downloaderMock.program = StoreProgram(projectId: 0, projectName: "", projectNameShort: "", author: "", description: "", version: "", views: 0, downloads: 0, isPrivate: false, uploaded: 0, uploadedString: "", screenshotBig: "", screenshotSmall: "", projectUrl: "", downloadUrl: "", fileSize: 1.0, featuredImage: "")
         
-        let dataSource = RecentProgramStoreDataSource.dataSource(with: self.downloaderMock)
+        let dataSource = ChartProgramStoreDataSource.dataSource(with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch program from data source")
         
         dataSource.fetchItems(type: .mostDownloaded) { [unowned self] error in
