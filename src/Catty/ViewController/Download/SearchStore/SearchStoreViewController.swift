@@ -51,6 +51,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         initNoSearchResultsLabel()
         shouldHideLoadingView = false
         dataSource.delegate = self
+        SearchStoreTableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,7 +191,6 @@ extension SearchStoreViewController {
                 self.shouldHideLoadingView = true
                 self.hideLoadingView()
                 self.showConnectionIssueAlertAndDismiss(error: error!)
-                self.SearchStoreTableView.separatorStyle = .singleLine
                 return
             }
             self.SearchStoreTableView.reloadData()
