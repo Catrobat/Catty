@@ -92,7 +92,6 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
-@property (nonatomic,strong) Script *moveHelperScript;
 @end
 
 @implementation ScriptCollectionViewController
@@ -205,11 +204,12 @@
     CGSize size = CGSizeZero;
     if (indexPath.section < self.object.scriptList.count) {
         Script *script = self.object.scriptList[indexPath.section];
-        size = ((indexPath.item == 0)
-             ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
-             : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])]);
-        if (script.brickList.count <=1 && script == self.moveHelperScript) {
-            size =[BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
+        
+        if (indexPath.item == 0) {
+           size =  [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
+        }
+        else {
+            size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])];
         }
     }
     return size;
@@ -432,7 +432,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         
     } else {
-        self.moveHelperScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
