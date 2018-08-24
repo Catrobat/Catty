@@ -36,7 +36,7 @@ protocol CBFunction { // TODO remove CB prefix
     
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all
-    static func formulaEditorSection() -> FormulaEditorSection
+    func formulaEditorSection() -> FormulaEditorSection
 }
 
 extension CBFunction {
