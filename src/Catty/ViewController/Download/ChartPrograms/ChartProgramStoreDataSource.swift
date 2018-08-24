@@ -113,25 +113,24 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         if (self.programOffset == programs.count) || (programs.count == 0) {
             self.downloader.fetchPrograms(forType: type, offset: self.programOffset) {items, error in
                 
-                DispatchQueue.main.async {
-                    guard let collection = items, error == nil else { completion(error); return }
-                    
-                    switch self.programType {
-                    case .mostDownloaded:
-                        self.mostDownloadedPrograms.append(contentsOf: collection.projects)
-                        self.mostDownloadedOffset += kRecentProgramsMaxResults
-                    case .mostViewed:
-                        self.mostViewedPrograms.append(contentsOf: collection.projects)
-                        self.mostViewedOffset += kRecentProgramsMaxResults
-                    case .mostRecent:
-                        self.mostRecentPrograms.append(contentsOf: collection.projects)
-                        self.mostRecentOffset += kRecentProgramsMaxResults
-                    default:
-                        return
-                    }
-                    self.baseUrl = collection.information.baseUrl
-                    completion(nil)
+                guard let collection = items, error == nil else { completion(error); return }
+                
+                switch self.programType {
+                case .mostDownloaded:
+                    self.mostDownloadedPrograms.append(contentsOf: collection.projects)
+                    self.mostDownloadedOffset += kRecentProgramsMaxResults
+                case .mostViewed:
+                    self.mostViewedPrograms.append(contentsOf: collection.projects)
+                    self.mostViewedOffset += kRecentProgramsMaxResults
+                case .mostRecent:
+                    self.mostRecentPrograms.append(contentsOf: collection.projects)
+                    self.mostRecentOffset += kRecentProgramsMaxResults
+                default:
+                    return
                 }
+                self.baseUrl = collection.information.baseUrl
+                completion(nil)
+                
             }
         }
         else {
