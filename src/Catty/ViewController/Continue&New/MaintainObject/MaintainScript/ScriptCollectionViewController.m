@@ -92,7 +92,6 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
-@property (nonatomic,strong) Script *moveHelperScript;
 @end
 
 @implementation ScriptCollectionViewController
@@ -433,7 +432,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         
     } else {
-        self.moveHelperScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
