@@ -153,10 +153,20 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? ChartProgramCell {
-            if programs.isEmpty == false {
-                let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
-                let data = try? Data(contentsOf: imageUrl!)
-                cell.chartImage = UIImage(data: data!)
+            cell.tag = indexPath.row
+            if programs.isEmpty == false, self.programs.count >= indexPath.row {
+                cell.chartImage = nil
+                DispatchQueue.global().async {
+                    guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
+                    guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
+                    guard let data = try? Data(contentsOf: imageUrl) else { return }
+                    DispatchQueue.main.async {
+                        // this check is supposed to prevent setting an asynchronously downloaded
+                        // image into a cell that has already been reused since then
+                        guard cell.tag == indexPath.row else { return }
+                        cell.chartImage = UIImage(data: data)
+                    }
+                }
                 cell.chartTitle = programs[indexPath.row].projectName
                 cell.program = programs[indexPath.row]
             }
@@ -168,12 +178,13 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell: ChartProgramCell? = tableView.cellForRow(at: indexPath) as? ChartProgramCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? ChartProgramCell else { return }
+        guard let cellProgram = cell.program else { return }
 
-        self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
+        self.downloader.downloadProgram(for: cellProgram) { program, error in
             guard let StoreProgram = program, error == nil else { return }
-            cell?.program = StoreProgram
-            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+            cell.program = StoreProgram
+            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
         }
     }
     
