@@ -83,12 +83,12 @@ extension FormulaEditorViewController {
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
     }
     
-    private func handleInput(for sensor: CBSensor) {
+    private func handleInput(for sensor: Sensor) {
         self.internFormula.handleKeyInput(for: sensor)
         self.handleInput()
     }
     
-    private func handleInput(for function: CBFunction) {
+    private func handleInput(for function: Function) {
         self.internFormula.handleKeyInput(for: function)
         self.handleInput()
     }

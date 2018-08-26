@@ -28,13 +28,13 @@ protocol SensorManagerProtocol {
     
     func exists(tag: String) -> Bool
     
-    func sensor(tag: String) -> CBSensor?
+    func sensor(tag: String) -> Sensor?
     
     func requiredResource(tag: String) -> ResourceType
     
     func unavailableResources(for requiredResources: NSInteger) -> NSInteger
     
-    func name(sensor: CBSensor) -> String
+    func name(sensor: Sensor) -> String
     
     func name(tag: String) -> String?
     

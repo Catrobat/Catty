@@ -24,8 +24,8 @@ import UIKit
 
 class FormulaEditorButton: UIButton {
     
-    var sensor: CBSensor? = nil
-    var function: CBFunction? = nil
+    var sensor: Sensor? = nil
+    var function: Function? = nil
     
     public convenience init(formulaEditorItem: FormulaEditorItem) {
         self.init()

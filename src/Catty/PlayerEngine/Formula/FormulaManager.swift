@@ -30,7 +30,7 @@ import CoreLocation
     
     override init() {
         // TODO remove Singleton
-        sensorManager = CBSensorManager.shared
+        sensorManager = SensorManager.shared
         functionManager = FunctionManager.shared
     }
     

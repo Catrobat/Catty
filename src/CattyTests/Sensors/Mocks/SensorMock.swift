@@ -22,7 +22,7 @@
 
 @testable import Pocket_Code
 
-final class SensorMock: CBSensor {
+final class SensorMock: Sensor {
     static var tag = "tag"
     static var name = "name"
     static var defaultRawValue: Double = 0

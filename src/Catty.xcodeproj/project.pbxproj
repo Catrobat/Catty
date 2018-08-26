@@ -268,10 +268,10 @@
 		4C994DDB207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */; };
 		4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */; };
 		4C994DDF207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */; };
-		4C994DF2207A3CF000C415FD /* CBSensorManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */; };
+		4C994DF2207A3CF000C415FD /* SensorManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEC207A3CEF00C415FD /* SensorManagerTest.swift */; };
 		4C994DF3207A3CF000C415FD /* InclinationXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */; };
 		4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */; };
-		4C994E08207A3D4100C415FD /* CBSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFB207A3D4100C415FD /* CBSensorManager.swift */; };
+		4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFB207A3D4100C415FD /* SensorManager.swift */; };
 		4C994E0A207A3D4100C415FD /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFE207A3D4100C415FD /* Sensor.swift */; };
 		4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E06207A3D4100C415FD /* LoudnessSensor.swift */; };
 		4C994E11207A3D4100C415FD /* SensorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */; };
@@ -380,7 +380,7 @@
 		4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */; };
 		4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56D1E0AD71800FD021C /* ProgramTests.m */; };
 		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
-		4CE67888210C4B1D00D90B5D /* CBFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67887210C4B1D00D90B5D /* CBFunction.swift */; };
+		4CE67888210C4B1D00D90B5D /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67887210C4B1D00D90B5D /* Function.swift */; };
 		4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */; };
 		4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788C210C503600D90B5D /* FunctionManager.swift */; };
 		4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */; };
@@ -703,7 +703,6 @@
 		92FF2E991A24C7D800093DA7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6E1A24C7D800093DA7 /* zip.c */; };
 		92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E721A24C7D800093DA7 /* NavigationController.m */; };
 		92FF2E9B1A24C7D800093DA7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E751A24C7D800093DA7 /* Reachability.m */; };
-		92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7A1A24C7D800093DA7 /* SensorManager.m */; };
 		92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */; };
 		92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */; };
 		92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E811A24C7D800093DA7 /* SSZipArchive.m */; };
@@ -945,7 +944,6 @@
 		AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F08E1BC05FCE00D1E954 /* BroadcastScriptCell.m */; };
 		AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */; };
 		AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */; };
-		AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E781A24C7D800093DA7 /* SensorHandler.m */; };
 		AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
 		AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22831BC0CA0F0076F11E /* SetXBrick+Instruction.swift */; };
@@ -1574,10 +1572,10 @@
 		4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = DeleteItemOfUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/DeleteItemOfUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ReplaceItemInUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ReplaceItemInUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
-		4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSensorManagerTest.swift; sourceTree = "<group>"; };
+		4C994DEC207A3CEF00C415FD /* SensorManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerTest.swift; sourceTree = "<group>"; };
 		4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InclinationXSensorTest.swift; sourceTree = "<group>"; };
 		4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorHandlerTests.swift; sourceTree = "<group>"; };
-		4C994DFB207A3D4100C415FD /* CBSensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSensorManager.swift; sourceTree = "<group>"; };
+		4C994DFB207A3D4100C415FD /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		4C994DFE207A3D4100C415FD /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		4C994E06207A3D4100C415FD /* LoudnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoudnessSensor.swift; sourceTree = "<group>"; };
 		4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerProtocol.swift; sourceTree = "<group>"; };
@@ -1694,7 +1692,7 @@
 		4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
 		4CE5C56D1E0AD71800FD021C /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
-		4CE67887210C4B1D00D90B5D /* CBFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFunction.swift; sourceTree = "<group>"; };
+		4CE67887210C4B1D00D90B5D /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionParameter.swift; sourceTree = "<group>"; };
 		4CE6788C210C503600D90B5D /* FunctionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManager.swift; sourceTree = "<group>"; };
 		4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -2198,10 +2196,6 @@
 		92FF2E721A24C7D800093DA7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		92FF2E741A24C7D800093DA7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		92FF2E751A24C7D800093DA7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		92FF2E771A24C7D800093DA7 /* SensorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandler.h; sourceTree = "<group>"; };
-		92FF2E781A24C7D800093DA7 /* SensorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandler.m; sourceTree = "<group>"; };
-		92FF2E791A24C7D800093DA7 /* SensorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorManager.h; sourceTree = "<group>"; };
-		92FF2E7A1A24C7D800093DA7 /* SensorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorManager.m; sourceTree = "<group>"; };
 		92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		92FF2E7D1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharkfoodMuteSwitchDetector.h; sourceTree = "<group>"; };
 		92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharkfoodMuteSwitchDetector.m; sourceTree = "<group>"; };
@@ -4019,18 +4013,18 @@
 		4C994DEB207A3CEF00C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
-				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
-				F4E6E569210DA55100D86FE6 /* Touch */,
 				F45A8D6821072DE6007C0D38 /* Audio */,
-				F45A8D58210714AE007C0D38 /* Phiro */,
 				4CF072AF20D6764E00F93AB5 /* Date */,
 				4C1023E720F5C7C1004702C3 /* Heading */,
 				F47992FA20F4987E0088EE27 /* Location */,
 				59D008EE208E435B000539E7 /* Mocks */,
 				4C994DED207A3CEF00C415FD /* Motion */,
 				4C11795A20AED57D006C6E32 /* Object */,
+				F45A8D58210714AE007C0D38 /* Phiro */,
+				F4E6E569210DA55100D86FE6 /* Touch */,
 				4C6D14EB210B12D9006147BD /* SensorHandlerDeviceTests.m */,
 				4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */,
+				4C994DEC207A3CEF00C415FD /* SensorManagerTest.swift */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -4061,7 +4055,7 @@
 				4CF0728220D657EB00F93AB5 /* Phiro */,
 				592EF6E42094B3C700BD6000 /* Protocols */,
 				4CF072A120D670CF00F93AB5 /* Touch */,
-				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
+				4C994DFB207A3D4100C415FD /* SensorManager.swift */,
 			);
 			name = Sensors;
 			path = PlayerEngine/Sensors;
@@ -4301,7 +4295,7 @@
 		4CE67886210C4B0200D90B5D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4CE67887210C4B1D00D90B5D /* CBFunction.swift */,
+				4CE67887210C4B1D00D90B5D /* Function.swift */,
 				4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */,
 			);
 			path = Protocols;
@@ -5423,7 +5417,6 @@
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				92FF2E731A24C7D800093DA7 /* Reachability */,
-				92FF2E761A24C7D800093DA7 /* SensorHelper */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
@@ -5531,17 +5524,6 @@
 				92FF2E751A24C7D800093DA7 /* Reachability.m */,
 			);
 			path = Reachability;
-			sourceTree = "<group>";
-		};
-		92FF2E761A24C7D800093DA7 /* SensorHelper */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E771A24C7D800093DA7 /* SensorHandler.h */,
-				92FF2E781A24C7D800093DA7 /* SensorHandler.m */,
-				92FF2E791A24C7D800093DA7 /* SensorManager.h */,
-				92FF2E7A1A24C7D800093DA7 /* SensorManager.m */,
-			);
-			path = SensorHelper;
 			sourceTree = "<group>";
 		};
 		92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */ = {
@@ -8148,7 +8130,7 @@
 				F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
-				4C994DF2207A3CF000C415FD /* CBSensorManagerTest.swift in Sources */,
+				4C994DF2207A3CF000C415FD /* SensorManagerTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */,
 				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
@@ -8323,7 +8305,6 @@
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
-				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
@@ -8344,7 +8325,7 @@
 				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
-				4C994E08207A3D4100C415FD /* CBSensorManager.swift in Sources */,
+				4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				4C0F9F82204BD20A00E71B2D /* SpeakAndWaitBrick+Instruction.swift in Sources */,
@@ -8469,7 +8450,7 @@
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
 				BACDF35C1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */,
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
-				4CE67888210C4B1D00D90B5D /* CBFunction.swift in Sources */,
+				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
 				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
@@ -8482,7 +8463,6 @@
 				4C0F9F9D204BD2B100E71B2D /* SetBackgroundBrickCell.m in Sources */,
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				AA74EE3A1BC0543700D1E954 /* PlaySoundBrick+Instruction.swift in Sources */,
-				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
 				AA74EFE71BC05B5F00D1E954 /* LoopBeginBrick.m in Sources */,
 				5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */,
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol DeviceSensor: CBSensor {
+protocol DeviceSensor: Sensor {
 
     // The iOS device specific value of the sensor
     func rawValue() -> Double

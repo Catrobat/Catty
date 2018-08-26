@@ -22,15 +22,15 @@
 
 @testable import Pocket_Code
 
-// this class is subject to change when CBSensorManager is no Singleton anymore
+// this class is subject to change when SensorManager is no Singleton anymore
 final class SensorManagerMock: SensorManagerProtocol {
     
     static var defaultValueForUndefinedSensor: Double = 0
-    let sensors: [CBSensor]
+    let sensors: [Sensor]
     let unavailableResources: NSInteger
     var isStarted = false
     
-    init(sensors: [CBSensor], unavailableResources: NSInteger) {
+    init(sensors: [Sensor], unavailableResources: NSInteger) {
         self.sensors = sensors
         self.unavailableResources = unavailableResources
     }
@@ -39,7 +39,7 @@ final class SensorManagerMock: SensorManagerProtocol {
         return false
     }
     
-    func sensor(tag: String) -> CBSensor? {
+    func sensor(tag: String) -> Sensor? {
         return nil
     }
     
@@ -51,7 +51,7 @@ final class SensorManagerMock: SensorManagerProtocol {
         return unavailableResources
     }
     
-    func name(sensor: CBSensor) -> String {
+    func name(sensor: Sensor) -> String {
         return ""
     }
     

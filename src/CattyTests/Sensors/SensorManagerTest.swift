@@ -24,9 +24,9 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class CBSensorManagerTest: XCTestCase {
+final class SensorManagerTest: XCTestCase {
 
-    private var manager: SensorManagerProtocol = CBSensorManager.shared
+    private var manager: SensorManagerProtocol = SensorManager.shared
 
     override func setUp() {
     }

@@ -22,7 +22,7 @@
 
 @testable import Pocket_Code
 
-final class FunctionMock: CBFunction {
+final class FunctionMock: Function {
     
     static var tag = "tag"
     static var name = "name"

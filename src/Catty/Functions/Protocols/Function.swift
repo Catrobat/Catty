@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBFunction { // TODO remove CB prefix
+protocol Function { // TODO remove CB prefix
     
     // Tag for serialization
     static var tag: String { get }
@@ -28,7 +28,7 @@ protocol CBFunction { // TODO remove CB prefix
     // Display name (e.g. for formula editor)
     static var name: String { get }
     
-    // Resources required in order to get value of this function (e.g. Aceelerometer)
+    // Resources required in order to get value of this function (e.g. Accelerometer)
     static var requiredResource: ResourceType { get }
     
     // True if the value does not change when executed multiple times (e.g. sin(0)) or false if the value changes (e.g. random(0, 1))
@@ -39,7 +39,7 @@ protocol CBFunction { // TODO remove CB prefix
     func formulaEditorSection() -> FormulaEditorSection
 }
 
-extension CBFunction {
+extension Function {
     static var parameterDelimiter: String { get { return ", " } }
     static var bracketOpen: String { get { return "(" } }
     static var bracketClose: String { get { return ")" } }
@@ -83,10 +83,11 @@ extension CBFunction {
         return functionHeader
     }
     
-    /*  this function is used for the text functions and it allows to
-     add both string and numbers as parameters, interpreting them as strings;
-        if the number does not have a floating part, then it is
-     interpreted as a whole number  */
+    /* this function is used for the text functions and it allows to
+       add both string and numbers as parameters, interpreting them as strings;
+       if the number does not have a floating part, then it is
+       interpreted as a whole number
+    */
     static func interpretParameter(parameter: AnyObject?) -> String {
         if let text = parameter as? String {
             return text
@@ -102,26 +103,26 @@ extension CBFunction {
     
 }
 
-protocol DoubleFunction: CBFunction {
+protocol DoubleFunction: Function {
     // Default value if function can not be computed
     static var defaultValue: Double { get }
 }
 
-protocol StringFunction: CBFunction {
+protocol StringFunction: Function {
     // Default value if function can not be computed
     static var defaultValue: String { get }
 }
 
-protocol AnyFunction: CBFunction {
+protocol AnyFunction: Function {
     // Default value if function can not be computed
     static var defaultValue: AnyObject { get }
 }
 
-protocol SingleParameterFunctionProtocol: CBFunction {
+protocol SingleParameterFunctionProtocol: Function {
     static func firstParameter() -> FunctionParameter
 }
 
-protocol DoubleParameterFunctionProtocol: CBFunction {
+protocol DoubleParameterFunctionProtocol: Function {
     static func firstParameter() -> FunctionParameter
     static func secondParameter() -> FunctionParameter
 }

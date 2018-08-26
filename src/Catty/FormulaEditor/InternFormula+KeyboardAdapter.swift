@@ -174,21 +174,21 @@ extension InternFormula {
         }
     }
     
-    func handleKeyInput(for sensor: CBSensor) {
+    func handleKeyInput(for sensor: Sensor) {
         let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListForSensor(sensor: sensor))
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_SENSOR.rawValue))
     }
     
-    func handleKeyInput(for function: CBFunction) {
+    func handleKeyInput(for function: Function) {
         let keyInputInternTokenList = NSMutableArray(array: self.createInternTokenListForFunction(function: function))
         self.handleKeyInput(withInternTokenList: keyInputInternTokenList, andResourceId: Int32(TOKEN_TYPE_FUNCTION_NAME.rawValue))
     }
     
-    private func createInternTokenListForSensor(sensor: CBSensor) -> [InternToken] {
+    private func createInternTokenListForSensor(sensor: Sensor) -> [InternToken] {
         return buildSensor(sensor: sensor)
     }
     
-    private func createInternTokenListForFunction(function: CBFunction) -> [InternToken] {
+    private func createInternTokenListForFunction(function: Function) -> [InternToken] {
         return buildFunction(function: function)
     }
     
@@ -224,11 +224,11 @@ extension InternFormula {
         return [InternToken.init(type: TOKEN_TYPE_OPERATOR, andValue: Operators.getName(mathOperator))]
     }
     
-    private func buildSensor(sensor: CBSensor) -> [InternToken] {
+    private func buildSensor(sensor: Sensor) -> [InternToken] {
         return [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: type(of: sensor).tag)]
     }
     
-    private func buildFunction(function: CBFunction) -> [InternToken] {
+    private func buildFunction(function: Function) -> [InternToken] {
         var tokenList = [InternToken]()
         let parameters = function.parameters()
         var count = 0

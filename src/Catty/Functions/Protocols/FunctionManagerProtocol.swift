@@ -26,7 +26,7 @@ protocol FunctionManagerProtocol {
     
     func exists(tag: String) -> Bool
     
-    func function(tag: String) -> CBFunction?
+    func function(tag: String) -> Function?
     
     func requiredResource(tag: String) -> ResourceType
     

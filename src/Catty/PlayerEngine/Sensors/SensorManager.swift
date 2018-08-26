@@ -23,11 +23,11 @@
 import CoreMotion
 import CoreLocation
 
-@objc class CBSensorManager: NSObject, SensorManagerProtocol {
+@objc class SensorManager: NSObject, SensorManagerProtocol {
     
-    @objc public static let shared = CBSensorManager()
+    @objc public static let shared = SensorManager()
     public static var defaultValueForUndefinedSensor: Double = 0
-    private var sensorMap = [String: CBSensor]()
+    private var sensorMap = [String: Sensor]()
     
     private let motionManager: CMMotionManager
     private let locationManager: CLLocationManager
@@ -56,7 +56,7 @@ import CoreLocation
         let touchManagerGetter: () -> TouchManagerProtocol? = { [weak self] in self?.touchManager }
         let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         
-        let sensorList: [CBSensor] = [
+        let sensorList: [Sensor] = [
             LoudnessSensor(audioManagerGetter: audioManagerGetter),
             InclinationXSensor(motionManagerGetter: motionManagerGetter),
             InclinationYSensor(motionManagerGetter: motionManagerGetter),
@@ -124,15 +124,15 @@ import CoreLocation
         return items
     }
     
-    func sensor(tag: String) -> CBSensor? {
+    func sensor(tag: String) -> Sensor? {
         return self.sensorMap[tag]
     }
     
-    func tag(sensor: CBSensor) -> String {
+    func tag(sensor: Sensor) -> String {
         return type(of: sensor).tag
     }
     
-    func name(sensor: CBSensor) -> String {
+    func name(sensor: Sensor) -> String {
         return type(of: sensor).name
     }
     

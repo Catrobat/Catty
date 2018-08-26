@@ -26,14 +26,14 @@
 final class FunctionManagerMock: FunctionManagerProtocol {
     
     static var defaultValueForUndefinedFunction: Double = 0
-    let functions: [CBFunction]
+    let functions: [Function]
     var isStarted = false
     
-    init(functions: [CBFunction]) {
+    init(functions: [Function]) {
         self.functions = functions
     }
 
-    func function(tag: String) -> CBFunction? {
+    func function(tag: String) -> Function? {
         return nil
     }
     

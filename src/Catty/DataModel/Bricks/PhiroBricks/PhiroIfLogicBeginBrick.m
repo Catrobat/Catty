@@ -21,7 +21,6 @@
  */
 
 #import "PhiroIfLogicBeginBrick.h"
-#import "SensorHandler.h"
 #import "Pocket_Code-Swift.h"
 
 @implementation PhiroIfLogicBeginBrick
@@ -60,7 +59,7 @@
 - (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
-    return [[CBSensorManager shared] valueWithTag:self.sensor spriteObject:nil];
+    return [[SensorManager shared] valueWithTag:self.sensor spriteObject:nil];
 }
 
 - (void)resetCondition
