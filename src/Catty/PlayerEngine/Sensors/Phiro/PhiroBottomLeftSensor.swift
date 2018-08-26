@@ -22,7 +22,7 @@
 
 @objc class PhiroBottomLeftSensor : NSObject, PhiroSensor {
     
-    static let tag = "bottom_left"
+    @objc static let tag = "bottom_left"
     static let name = kUIFESensorPhiroBottomLeft
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro

@@ -33,6 +33,10 @@ final class SensorMock: Sensor {
         self.section = formulaEditorSection
     }
     
+    init() {
+        self.section = .hidden
+    }
+    
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return section
     }

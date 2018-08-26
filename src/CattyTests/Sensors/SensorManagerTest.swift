@@ -48,6 +48,9 @@ final class SensorManagerTest: XCTestCase {
     }
     
     func testRequiredResource() {
+        XCTAssertEqual(ResourceType.noResources, manager.requiredResource(tag: "invalidTag"))
+        
+        //let sensor = SensorMock()
         // TODO
     }
     

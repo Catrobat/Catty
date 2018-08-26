@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LoudnessSensor: NSObject, DeviceSensor {
-    static let tag = "LOUDNESS"
+@objc class LoudnessSensor: NSObject, DeviceSensor {
+    @objc static let tag = "LOUDNESS"
     static let name = kUIFESensorLoudness
     static let defaultRawValue = -160.0
     static let position = 10

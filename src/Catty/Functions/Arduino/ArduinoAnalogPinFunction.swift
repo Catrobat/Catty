@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class ArduinoAnalogPinFunction: SingleParameterDoubleFunction {
+@objc class ArduinoAnalogPinFunction: NSObject, SingleParameterDoubleFunction {
     
-    static var tag = "analogPin"
+    @objc static var tag = "analogPin"
     static var name = kUIFESensorArduinoAnalog
     static var defaultValue = 0.0
     static var position = 350

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CompassDirectionSensor : NSObject, DeviceSensor {
+@objc class CompassDirectionSensor : NSObject, DeviceSensor {
     
     @objc static let tag = "COMPASS_DIRECTION"
     static let name = kUIFESensorCompass

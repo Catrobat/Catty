@@ -22,9 +22,9 @@
 
 import CoreMotion
 
-class InclinationYSensor : DeviceSensor {
+@objc class InclinationYSensor : NSObject, DeviceSensor {
 
-    static let tag = "Y_INCLINATION"
+    @objc static let tag = "Y_INCLINATION"
     static let name = kUIFESensorInclinationY
     static let defaultRawValue = 0.0
     static let position = 60
