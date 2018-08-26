@@ -84,6 +84,6 @@ class RandFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

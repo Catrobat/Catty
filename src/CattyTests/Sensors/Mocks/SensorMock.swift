@@ -29,7 +29,7 @@ final class SensorMock: CBSensor {
     static var requiredResource = ResourceType.noResources
     static var section = FormulaEditorSection.math(position: 10)
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return SensorMock.section
     }
 }

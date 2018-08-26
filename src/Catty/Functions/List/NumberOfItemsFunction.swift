@@ -42,7 +42,7 @@ class NumberOfItemsFunction: SingleParameterDoubleFunction {
         return Double(elements.count)
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: (type(of: self).position))
     }
 }

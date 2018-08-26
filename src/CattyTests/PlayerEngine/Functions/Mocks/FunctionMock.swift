@@ -30,7 +30,7 @@ final class FunctionMock: CBFunction {
     static var isIdempotent = false
     static var section = FormulaEditorSection.math(position: 10)
     
-    static func formulaEditorSection() -> FormulaEditorSection {
+    func formulaEditorSection() -> FormulaEditorSection {
         return FunctionMock.section
     }
 }

@@ -39,10 +39,10 @@
         return rawValue
     }
    
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if spriteObject.isBackground() == true {
             return .hidden
         }
-        return .object(position: position)
+        return .object(position: type(of: self).position)
     }
 }

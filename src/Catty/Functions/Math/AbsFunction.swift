@@ -38,7 +38,7 @@ class AbsFunction: SingleParameterDoubleFunction {
         return abs(value)
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: (type(of: self).position))
     }
 }

@@ -42,11 +42,10 @@
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
-    
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return .hidden
         }
-        return .device(position: position)
+        return .device(position: type(of: self).position)
     }
 }

@@ -28,9 +28,10 @@ final class BackgroundNumberSensorTest: XCTestCase {
     
     var spriteObject: SpriteObjectMock!
     var spriteNode: CBSpriteNodeMock!
-    let sensor = BackgroundNumberSensor.self
+    var sensor: CBSensor? = nil
     
     override func setUp() {
+        self.sensor = BackgroundNumberSensor()
         self.spriteObject = SpriteObjectMock()
         self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
     }

@@ -71,9 +71,9 @@ class ArduinoDigitalPingFunctionTest: XCTestCase {
     
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
-        XCTAssertEqual(.device(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.device(position: type(of: function).position), function.formulaEditorSection())
         
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
-        XCTAssertEqual(.hidden, type(of: function).formulaEditorSection())
+        XCTAssertEqual(.hidden, function.formulaEditorSection())
     }
 }

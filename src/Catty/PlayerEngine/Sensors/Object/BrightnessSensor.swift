@@ -62,7 +62,7 @@
         return (userInput - 100) / 100
     }
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .object(position: position)
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .object(position: type(of: self).position)
     }
 }
