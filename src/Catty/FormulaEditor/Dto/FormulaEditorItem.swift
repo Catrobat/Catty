@@ -30,12 +30,12 @@ class FormulaEditorItem {
     public init(sensor: CBSensor, spriteObject: SpriteObject) {
         self.title = type(of: sensor).name
         self.sensor = sensor
-        self.section = type(of: sensor).formulaEditorSection(for: spriteObject)
+        self.section = sensor.formulaEditorSection(for: spriteObject)
     }
     
     public init(function: CBFunction) {
         self.title = function.nameWithParameters()
         self.function = function
-        self.section = type(of: function).formulaEditorSection()
+        self.section = function.formulaEditorSection()
     }
 }

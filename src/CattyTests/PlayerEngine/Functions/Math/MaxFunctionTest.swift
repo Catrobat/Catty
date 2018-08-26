@@ -29,11 +29,11 @@ class MaxFunctionTest: XCTestCase {
     var function: MaxFunction!
     
     override func setUp() {
-        self.function = MaxFunction()
+        function = MaxFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -75,7 +75,7 @@ class MaxFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
 

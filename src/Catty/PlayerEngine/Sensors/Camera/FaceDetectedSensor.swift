@@ -42,7 +42,7 @@ class FaceDetectedSensor: DeviceSensor {
         return rawValue
     }
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .hidden
     }
 }

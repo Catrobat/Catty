@@ -27,9 +27,13 @@ final class SensorMock: CBSensor {
     static var name = "name"
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources
-    static var section = FormulaEditorSection.math(position: 10)
+    private let section: FormulaEditorSection
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return SensorMock.section
+    init(formulaEditorSection: FormulaEditorSection) {
+        self.section = formulaEditorSection
+    }
+    
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return section
     }
 }

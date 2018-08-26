@@ -29,11 +29,11 @@ class RandFunctionTest: XCTestCase {
     var function: RandFunction!
     
     override func setUp() {
-        self.function = RandFunction()
+        function = RandFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -84,6 +84,6 @@ class RandFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

@@ -30,13 +30,13 @@ class ArduinoAnalogPingFunctionTest: XCTestCase {
     var bluetoothService: BluetoothService!
     
     override func setUp() {
-        self.bluetoothService = BluetoothService.sharedInstance()
-        self.function = ArduinoAnalogPinFunction { [ weak self ] in self?.bluetoothService }
+        bluetoothService = BluetoothService.sharedInstance()
+        function = ArduinoAnalogPinFunction { [ weak self ] in self?.bluetoothService }
     }
     
     override func tearDown() {
-        self.bluetoothService = nil
-        self.function = nil
+        bluetoothService = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -71,9 +71,9 @@ class ArduinoAnalogPingFunctionTest: XCTestCase {
     
     func testFormulaEditorSection() {
         UserDefaults.standard.set(true, forKey: kUseArduinoBricks)
-        XCTAssertEqual(.device(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.device(position: type(of: function).position), function.formulaEditorSection())
         
         UserDefaults.standard.set(false, forKey: kUseArduinoBricks)
-        XCTAssertEqual(.hidden, type(of: function).formulaEditorSection())
+        XCTAssertEqual(.hidden, function.formulaEditorSection())
     }
 }

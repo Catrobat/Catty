@@ -29,11 +29,11 @@ class JoinFunctionTest: XCTestCase {
     var function: JoinFunction!
     
     override func setUp() {
-        self.function = JoinFunction()
+        function = JoinFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -81,7 +81,7 @@ class JoinFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
 

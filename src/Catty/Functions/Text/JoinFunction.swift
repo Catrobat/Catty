@@ -42,7 +42,7 @@ class JoinFunction: DoubleParameterStringFunction {
         return firstText + secondText
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: type(of: self).position)
     }
 }

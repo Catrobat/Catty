@@ -38,7 +38,7 @@ class CosFunction: SingleParameterDoubleFunction {
         return cos(Util.degree(toRadians: degree))
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: type(of: self).position)
     }
 }

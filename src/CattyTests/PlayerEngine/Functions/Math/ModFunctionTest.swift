@@ -29,11 +29,11 @@ class ModFunctionTest: XCTestCase {
     var function: ModFunction!
     
     override func setUp() {
-        self.function = ModFunction()
+        function = ModFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -91,7 +91,7 @@ class ModFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
 

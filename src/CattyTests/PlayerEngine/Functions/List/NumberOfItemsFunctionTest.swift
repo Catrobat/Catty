@@ -29,11 +29,11 @@ class NumberOfElementsFunctionTest: XCTestCase {
     var function: NumberOfItemsFunction!
     
     override func setUp() {
-        self.function = NumberOfItemsFunction()
+        function = NumberOfItemsFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -94,6 +94,6 @@ class NumberOfElementsFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

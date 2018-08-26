@@ -32,7 +32,7 @@ class FalseFunction: ZeroParameterDoubleFunction {
         return 0.0
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: type(of: self).position)
     }
 }

@@ -32,7 +32,7 @@ class PiFunction: ZeroParameterDoubleFunction {
         return Double.pi
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: type(of: self).position)
     }
 }

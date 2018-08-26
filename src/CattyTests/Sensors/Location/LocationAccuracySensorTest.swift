@@ -30,8 +30,8 @@ final class LocationAccuracySensorTest: XCTestCase {
     var sensor: LocationAccuracySensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = LocationAccuracySensor { [weak self] in self?.locationManager }
+        locationManager = LocationManagerMock()
+        sensor = LocationAccuracySensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
@@ -71,7 +71,7 @@ final class LocationAccuracySensorTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
 

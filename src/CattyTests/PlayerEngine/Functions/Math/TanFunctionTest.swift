@@ -29,11 +29,11 @@ class TanFunctionTest: XCTestCase {
     var function: TanFunction!
     
     override func setUp() {
-        self.function = TanFunction()
+        function = TanFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -68,6 +68,6 @@ class TanFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

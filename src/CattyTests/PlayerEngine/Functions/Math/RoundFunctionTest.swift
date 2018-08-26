@@ -29,11 +29,11 @@ class RoundFunctionTest: XCTestCase {
     var function: RoundFunction!
     
     override func setUp() {
-        self.function = RoundFunction()
+        function = RoundFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -68,6 +68,6 @@ class RoundFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

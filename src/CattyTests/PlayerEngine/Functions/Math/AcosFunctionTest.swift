@@ -29,11 +29,11 @@ class AcosFunctionTest: XCTestCase {
     var function: AcosFunction!
     
     override func setUp() {
-        self.function = AcosFunction()
+        function = AcosFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -68,6 +68,6 @@ class AcosFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

@@ -29,11 +29,11 @@ class ExpFunctionTest: XCTestCase {
     var function: ExpFunction!
     
     override func setUp() {
-        self.function = ExpFunction()
+        function = ExpFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -68,6 +68,6 @@ class ExpFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

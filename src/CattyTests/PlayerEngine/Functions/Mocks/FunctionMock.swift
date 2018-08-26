@@ -28,9 +28,13 @@ final class FunctionMock: CBFunction {
     static var name = "name"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    static var section = FormulaEditorSection.math(position: 10)
+    private let section: FormulaEditorSection
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return FunctionMock.section
+    init(formulaEditorSection: FormulaEditorSection) {
+        self.section = formulaEditorSection
+    }
+    
+    func formulaEditorSection() -> FormulaEditorSection {
+        return section
     }
 }

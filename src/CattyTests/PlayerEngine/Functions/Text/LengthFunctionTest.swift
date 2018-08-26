@@ -29,11 +29,11 @@ class LengthFunctionTest: XCTestCase {
     var function: LengthFunction!
     
     override func setUp() {
-        self.function = LengthFunction()
+        function = LengthFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -78,6 +78,6 @@ class LengthFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

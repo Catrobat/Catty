@@ -28,23 +28,24 @@ final class LookNameSensorTest: XCTestCase {
     
     var spriteObject: SpriteObjectMock!
     var spriteNode: CBSpriteNodeMock!
-    var sensor = LookNameSensor.self
+    var sensor: LookNameSensor!
     
     override func setUp() {
-        self.spriteObject = SpriteObjectMock()
-        self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        spriteObject = SpriteObjectMock()
+        spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        sensor = LookNameSensor()
     }
     
     override func tearDown() {
-        self.spriteObject = nil
+        spriteObject = nil
     }
     
     func testDefaultRawValue() {
         spriteNode.currentLook = nil
-        XCTAssertEqual(sensor.defaultStringValue, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(type(of: sensor).defaultStringValue, type(of: sensor).rawValue(for: spriteObject))
         
         spriteNode = nil
-        XCTAssertEqual(sensor.defaultStringValue, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(type(of: sensor).defaultStringValue, type(of: sensor).rawValue(for: spriteObject))
         
     }
     
@@ -54,27 +55,27 @@ final class LookNameSensorTest: XCTestCase {
                                  Look(name: "third", andPath: "test3.png")]
         
         spriteNode.currentLook = (spriteObject.lookList[0] as! Look)
-        XCTAssertEqual("first", sensor.rawValue(for: spriteObject))
+        XCTAssertEqual("first", type(of: sensor).rawValue(for: spriteObject))
         
         spriteNode.currentLook = (spriteObject.lookList[1] as! Look)
-        XCTAssertEqual("second", sensor.rawValue(for: spriteObject))
+        XCTAssertEqual("second", type(of: sensor).rawValue(for: spriteObject))
         
         spriteNode.currentLook = (spriteObject.lookList[2] as! Look)
-        XCTAssertEqual("third", sensor.rawValue(for: spriteObject))
+        XCTAssertEqual("third", type(of: sensor).rawValue(for: spriteObject))
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual("Doctor Who", sensor.convertToStandardized(rawValue: "Doctor Who", for: spriteObject))
-        XCTAssertEqual("The grumpy cat", sensor.convertToStandardized(rawValue: "The grumpy cat", for: spriteObject))
-        XCTAssertEqual("Ada Lovelace", sensor.convertToStandardized(rawValue: "Ada Lovelace", for: spriteObject))
+        XCTAssertEqual("Doctor Who", type(of: sensor).convertToStandardized(rawValue: "Doctor Who", for: spriteObject))
+        XCTAssertEqual("The grumpy cat", type(of: sensor).convertToStandardized(rawValue: "The grumpy cat", for: spriteObject))
+        XCTAssertEqual("Ada Lovelace", type(of: sensor).convertToStandardized(rawValue: "Ada Lovelace", for: spriteObject))
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_LOOK_NAME", sensor.tag)
+        XCTAssertEqual("OBJECT_LOOK_NAME", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
   
     func testFormulaEditorSection() {
@@ -82,6 +83,6 @@ final class LookNameSensorTest: XCTestCase {
         XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
         
         spriteObject.background = false
-        XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(.object(position: type(of: sensor).position), sensor.formulaEditorSection(for: spriteObject))
     }
 }

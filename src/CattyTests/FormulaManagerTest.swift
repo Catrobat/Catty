@@ -42,10 +42,10 @@ final class FormulaManagerTest: XCTestCase {
     func testFormulaEditorItems() {
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
         
-        functionManager.functions = [FunctionMock(), FunctionMock()]
+        functionManager.functions = [FunctionMock(formulaEditorSection: .object(position: 1)), FunctionMock(formulaEditorSection: .device(position: 1)), FunctionMock(formulaEditorSection: .hidden)]
         XCTAssertEqual(2, manager.formulaEditorItems(spriteObject: spriteObject).count)
         
-        sensorManager.sensors = [SensorMock()]
+        sensorManager.sensors = [SensorMock(formulaEditorSection: .object(position: 1)), SensorMock(formulaEditorSection: .hidden)]
         XCTAssertEqual(3, manager.formulaEditorItems(spriteObject: spriteObject).count)
     }
 }

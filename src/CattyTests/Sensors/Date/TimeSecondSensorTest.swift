@@ -37,11 +37,11 @@ final class TimeSecondSensorTest: XCTestCase {
     var sensor: TimeSecondSensorMock!
     
     override func setUp() {
-        self.sensor = TimeSecondSensorMock()
+        sensor = TimeSecondSensorMock()
     }
     
     override func tearDown() {
-        self.sensor = nil
+        sensor = nil
     }
     
     func testTag() {
@@ -68,7 +68,7 @@ final class TimeSecondSensorTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
 

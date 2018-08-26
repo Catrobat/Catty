@@ -29,11 +29,11 @@ class FalseFunctionTest: XCTestCase {
     var function: FalseFunction!
     
     override func setUp() {
-        self.function = FalseFunction()
+        function = FalseFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -61,6 +61,6 @@ class FalseFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

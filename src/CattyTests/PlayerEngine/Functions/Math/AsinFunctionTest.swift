@@ -29,11 +29,11 @@ class AsinFunctionTest: XCTestCase {
     var function: AsinFunction!
     
     override func setUp() {
-        self.function = AsinFunction()
+        function = AsinFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -68,6 +68,6 @@ class AsinFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

@@ -286,6 +286,8 @@
 		4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */; };
 		4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */; };
 		4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */; };
+		4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB93392132753A00AEB86D /* FormulaManager.swift */; };
+		4CAB933C2132753A00AEB86D /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */; };
 		4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */; };
 		4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */; };
 		4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */; };
@@ -467,8 +469,6 @@
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
-		4CF85924212E817C008571B8 /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF85923212E817C008571B8 /* FormulaManager.swift */; };
-		4CF85926212E81A5008571B8 /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */; };
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
@@ -1593,6 +1593,8 @@
 		4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextBrickTests.swift; sourceTree = "<group>"; };
+		4CAB93392132753A00AEB86D /* FormulaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManager.swift; sourceTree = "<group>"; };
+		4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerProtocol.swift; sourceTree = "<group>"; };
 		4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSceneTouchTests.swift; path = Scene/CBSceneTouchTests.swift; sourceTree = "<group>"; };
 		4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionYSensor.swift; sourceTree = "<group>"; };
 		4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionXSensor.swift; sourceTree = "<group>"; };
@@ -1786,8 +1788,6 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
-		4CF85923212E817C008571B8 /* FormulaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManager.swift; path = Catty/PlayerEngine/Formula/FormulaManager.swift; sourceTree = SOURCE_ROOT; };
-		4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerProtocol.swift; path = Catty/PlayerEngine/Formula/FormulaManagerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
@@ -4137,6 +4137,16 @@
 			path = Resources/Licenses;
 			sourceTree = "<group>";
 		};
+		4CAB93382132753A00AEB86D /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB93392132753A00AEB86D /* FormulaManager.swift */,
+				4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */,
+			);
+			name = Formula;
+			path = PlayerEngine/Formula;
+			sourceTree = "<group>";
+		};
 		4CB1FB721BC2D74F0000A2FE /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -4512,15 +4522,6 @@
 			name = Extensions;
 			path = Catty/PlayerEngine/Scene/Extensions;
 			sourceTree = SOURCE_ROOT;
-		};
-		4CF85922212E8149008571B8 /* Formula */ = {
-			isa = PBXGroup;
-			children = (
-				4CF85923212E817C008571B8 /* FormulaManager.swift */,
-				4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */,
-			);
-			path = Formula;
-			sourceTree = "<group>";
 		};
 		591596D22035635F0015F74A /* UIBarButtonItem+InvisibleButton */ = {
 			isa = PBXGroup;
@@ -6906,7 +6907,7 @@
 				AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */,
 				AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */,
 				CAD232181B10F12600570370 /* DataModel */,
-				4CF85922212E8149008571B8 /* Formula */,
+				4CAB93382132753A00AEB86D /* Formula */,
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
 				4CE67884210C4AE000D90B5D /* Functions */,
 				4C9E07691CD9D47E00B14B2F /* Helper */,
@@ -8640,7 +8641,7 @@
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
-				4CF85926212E81A5008571B8 /* FormulaManagerProtocol.swift in Sources */,
+				4CAB933C2132753A00AEB86D /* FormulaManagerProtocol.swift in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
 				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
@@ -8740,7 +8741,7 @@
 				4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */,
 				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
-				4CF85924212E817C008571B8 /* FormulaManager.swift in Sources */,
+				4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
 				4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */,

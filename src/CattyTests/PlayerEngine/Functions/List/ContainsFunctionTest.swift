@@ -29,11 +29,11 @@ class ContainsFunctionTest: XCTestCase {
     var function: ContainsFunction!
     
     override func setUp() {
-        self.function = ContainsFunction()
+        function = ContainsFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -95,6 +95,6 @@ class ContainsFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }

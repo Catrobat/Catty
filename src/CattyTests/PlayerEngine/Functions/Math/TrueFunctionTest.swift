@@ -29,11 +29,11 @@ class TrueFunctionTest: XCTestCase {
     var function: TrueFunction!
     
     override func setUp() {
-        self.function = TrueFunction()
+        function = TrueFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
@@ -61,6 +61,6 @@ class TrueFunctionTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.math(position: type(of: function).position), type(of: function).formulaEditorSection())
+        XCTAssertEqual(.math(position: type(of: function).position), function.formulaEditorSection())
     }
 }
