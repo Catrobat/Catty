@@ -124,10 +124,6 @@ import CoreLocation
         return items
     }
     
-    func phiroSensors() -> [PhiroSensor] {
-        return self.sensorMap.values.filter{$0 is PhiroSensor}.map{ $0 as! PhiroSensor }
-    }
-    
     func sensor(tag: String) -> CBSensor? {
         return self.sensorMap[tag]
     }

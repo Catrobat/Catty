@@ -42,8 +42,6 @@ protocol SensorManagerProtocol {
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem]
     
-    func phiroSensors() -> [PhiroSensor]
-    
     func setup(for program: Program, and scene:CBScene)
     
     func setup(for formula: Formula)
