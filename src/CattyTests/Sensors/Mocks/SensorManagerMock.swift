@@ -26,11 +26,13 @@
 final class SensorManagerMock: SensorManagerProtocol {
     
     static var defaultValueForUndefinedSensor: Double = 0
-    public var sensors: [CBSensor]
-    private var isStarted = false
+    let sensors: [CBSensor]
+    let unavailableResources: NSInteger
+    var isStarted = false
     
-    init(sensors: [CBSensor]) {
+    init(sensors: [CBSensor], unavailableResources: NSInteger) {
         self.sensors = sensors
+        self.unavailableResources = unavailableResources
     }
     
     func exists(tag: String) -> Bool {
@@ -46,7 +48,7 @@ final class SensorManagerMock: SensorManagerProtocol {
     }
     
     func unavailableResources(for requiredResources: NSInteger) -> NSInteger {
-        return 0
+        return unavailableResources
     }
     
     func name(sensor: CBSensor) -> String {
@@ -66,15 +68,15 @@ final class SensorManagerMock: SensorManagerProtocol {
     }
     
     func setup(for program: Program, and scene: CBScene) {
-        self.isStarted = true
+        isStarted = true
     }
     
     func setup(for formula: Formula) {
-        self.isStarted = true
+        isStarted = true
     }
     
     func stop() {
-        self.isStarted = false
+        isStarted = false
     }
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {

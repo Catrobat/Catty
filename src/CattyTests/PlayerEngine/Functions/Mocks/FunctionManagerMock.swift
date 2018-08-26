@@ -26,8 +26,8 @@
 final class FunctionManagerMock: FunctionManagerProtocol {
     
     static var defaultValueForUndefinedFunction: Double = 0
-    public var functions: [CBFunction]
-    private var isStarted = false
+    let functions: [CBFunction]
+    var isStarted = false
     
     init(functions: [CBFunction]) {
         self.functions = functions

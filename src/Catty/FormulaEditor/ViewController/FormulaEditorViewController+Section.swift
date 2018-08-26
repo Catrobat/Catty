@@ -23,17 +23,17 @@
 extension FormulaEditorViewController {
     
     @objc func initMathSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: self.object)
+        let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
 
     @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: self.object)
+        let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
     
     @objc func initSensorSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: self.object)
+        let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
     

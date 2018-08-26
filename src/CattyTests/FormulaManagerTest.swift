@@ -26,26 +26,148 @@ import XCTest
 
 final class FormulaManagerTest: XCTestCase {
     
-    var manager: FormulaManagerProtocol!
-    var sensorManager: SensorManagerMock!
-    var functionManager: FunctionManagerMock!
     var spriteObject: SpriteObject!
     
     override func setUp() {
-        self.sensorManager = SensorManagerMock(sensors: [])
-        self.functionManager = FunctionManagerMock(functions: [])
-        self.manager = FormulaManager(sensorManager: sensorManager, functionManager: functionManager)
-        
         self.spriteObject = SpriteObjectMock()
     }
     
-    func testFormulaEditorItems() {
+    func testFormulaEditorItemsEmpty() {
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [], unavailableResources: 0),
+                                     functionManager: FunctionManagerMock(functions: []))
+        
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
+        XCTAssertEqual(0, manager.formulaEditorItemsForMathSection(spriteObject: spriteObject).count)
+        XCTAssertEqual(0, manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject).count)
+        XCTAssertEqual(0, manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject).count)
+    }
+    
+    func testFormulaEditorItems() {
+        let functionA = FunctionMock(formulaEditorSection: .object(position: 1))
+        let functionB = FunctionMock(formulaEditorSection: .device(position: 2))
+        let functionC = FunctionMock(formulaEditorSection: .hidden)
         
-        functionManager.functions = [FunctionMock(formulaEditorSection: .object(position: 1)), FunctionMock(formulaEditorSection: .device(position: 1)), FunctionMock(formulaEditorSection: .hidden)]
-        XCTAssertEqual(2, manager.formulaEditorItems(spriteObject: spriteObject).count)
+        let sensorA = SensorMock(formulaEditorSection: .object(position: 3))
+        let sensorB = SensorMock(formulaEditorSection: .hidden)
         
-        sensorManager.sensors = [SensorMock(formulaEditorSection: .object(position: 1)), SensorMock(formulaEditorSection: .hidden)]
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB], unavailableResources: 0),
+                                     functionManager: FunctionManagerMock(functions: [functionA, functionB, functionC]))
+        
+        let items = manager.formulaEditorItems(spriteObject: spriteObject)
+        XCTAssertEqual(3, items.count)
+        XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
+        XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[2].sensor?.formulaEditorSection(for: spriteObject))
+    }
+    
+    func testFormulaEditorItemsSamePosition() {
+        let functionA = FunctionMock(formulaEditorSection: .object(position: 1))
+        let functionB = FunctionMock(formulaEditorSection: .object(position: 1))
+        
+        let sensorA = SensorMock(formulaEditorSection: .object(position: 1))
+        
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA], unavailableResources: 0),
+                                     functionManager: FunctionManagerMock(functions: [functionA, functionB]))
+        
         XCTAssertEqual(3, manager.formulaEditorItems(spriteObject: spriteObject).count)
+    }
+    
+    func testFormulaEditorItemsForMathSection() {
+        let functionA = FunctionMock(formulaEditorSection: .math(position: 10))
+        let functionB = FunctionMock(formulaEditorSection: .object(position: 1))
+        
+        let sensorA = SensorMock(formulaEditorSection: .math(position: 20))
+        let sensorB = SensorMock(formulaEditorSection: .hidden)
+        
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB], unavailableResources: 0),
+                                     functionManager: FunctionManagerMock(functions: [functionA, functionB]))
+        
+        let items = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual(functionA.formulaEditorSection(), items[0].function?.formulaEditorSection())
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[1].sensor?.formulaEditorSection(for: spriteObject))
+    }
+    
+    func testFormulaEditorItemsForDeviceSection() {
+        let functionA = FunctionMock(formulaEditorSection: .math(position: 10))
+        let functionB = FunctionMock(formulaEditorSection: .device(position: 20))
+        
+        let sensorA = SensorMock(formulaEditorSection: .device(position: 1))
+        let sensorB = SensorMock(formulaEditorSection: .hidden)
+        
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB], unavailableResources: 0),
+                                     functionManager: FunctionManagerMock(functions: [functionA, functionB]))
+        
+        let items = manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
+        XCTAssertEqual(2, items.count)
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(functionB.formulaEditorSection(), items[1].function?.formulaEditorSection())
+    }
+    
+    func testFormulaEditorItemsForObjectSection() {
+        let functionA = FunctionMock(formulaEditorSection: .math(position: 10))
+        let functionB = FunctionMock(formulaEditorSection: .device(position: 20))
+        
+        let sensorA = SensorMock(formulaEditorSection: .object(position: 30))
+        let sensorB = SensorMock(formulaEditorSection: .hidden)
+        
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB], unavailableResources: 0),
+                                     functionManager: FunctionManagerMock(functions: [functionA, functionB]))
+        
+        let items = manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
+        XCTAssertEqual(1, items.count)
+        XCTAssertEqual(sensorA.formulaEditorSection(for: spriteObject), items[0].sensor?.formulaEditorSection(for: spriteObject))
+    }
+    
+    func testSetupForFormula() {
+        let sensorManager = SensorManagerMock(sensors: [], unavailableResources: 0)
+        let functionManager = FunctionManagerMock(functions: [])
+        let manager = FormulaManager(sensorManager: sensorManager, functionManager: functionManager)
+        
+        XCTAssertFalse(sensorManager.isStarted)
+        XCTAssertFalse(functionManager.isStarted)
+        
+        manager.setup(for: Formula())
+        
+        XCTAssertTrue(sensorManager.isStarted)
+        XCTAssertTrue(functionManager.isStarted)
+    }
+    
+    func testSetupForProgram() {
+        let sensorManager = SensorManagerMock(sensors: [], unavailableResources: 0)
+        let functionManager = FunctionManagerMock(functions: [])
+        let manager = FormulaManager(sensorManager: sensorManager, functionManager: functionManager)
+        
+        XCTAssertFalse(sensorManager.isStarted)
+        XCTAssertFalse(functionManager.isStarted)
+        
+        manager.setup(for: Program(), and: CBScene())
+        
+        XCTAssertTrue(sensorManager.isStarted)
+        XCTAssertTrue(functionManager.isStarted)
+    }
+    
+    func testStop() {
+        let sensorManager = SensorManagerMock(sensors: [], unavailableResources: 0)
+        let functionManager = FunctionManagerMock(functions: [])
+        let manager = FormulaManager(sensorManager: sensorManager, functionManager: functionManager)
+        
+        manager.setup(for: Formula())
+        
+        XCTAssertTrue(sensorManager.isStarted)
+        XCTAssertTrue(functionManager.isStarted)
+        
+        manager.stop()
+        
+        XCTAssertFalse(sensorManager.isStarted)
+        XCTAssertFalse(functionManager.isStarted)
+    }
+    
+    func testUnavailableResources() {
+        let expectedUnavailableResources = 123
+        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [], unavailableResources: expectedUnavailableResources),
+                                     functionManager: FunctionManagerMock(functions: []))
+        
+        XCTAssertEqual(expectedUnavailableResources, manager.unavailableResources(for: 0))
     }
 }
