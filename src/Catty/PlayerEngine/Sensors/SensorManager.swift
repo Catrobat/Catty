@@ -25,25 +25,27 @@ import CoreLocation
 
 @objc class SensorManager: NSObject, SensorManagerProtocol {
     
-    @objc public static let shared = SensorManager()
+    @objc public static let shared = SensorManager(motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager(), audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
+    
     public static var defaultValueForUndefinedSensor: Double = 0
     private var sensorMap = [String: Sensor]()
     
-    private let motionManager: CMMotionManager
-    private let locationManager: CLLocationManager
+    private let motionManager: MotionManager
+    private let locationManager: LocationManager
     private let faceDetectionManager: FaceDetectionManagerProtocol
     private let audioManager: AudioManagerProtocol
     private let touchManager: TouchManagerProtocol
     private let bluetoothService: BluetoothService
     
-    private override init() {
-        motionManager = CMMotionManager()
-        locationManager = CLLocationManager()
-        faceDetectionManager = FaceDetectionManager()
-        audioManager = AudioManager()
-        touchManager = TouchManager()
-        bluetoothService = BluetoothService.sharedInstance()
-
+    public required init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+    
+        self.motionManager = motionManager
+        self.locationManager = locationManager
+        self.faceDetectionManager = faceDetectionManager
+        self.audioManager = audioManager
+        self.touchManager = touchManager
+        self.bluetoothService = bluetoothService
+        
         super.init()
         registerSensors()
     }
@@ -168,107 +170,5 @@ import CoreLocation
         }
         
         return rawValue
-    }
-    
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger {
-        var unavailableResource: NSInteger = ResourceType.noResources.rawValue
-        
-        if requiredResources & ResourceType.accelerometer.rawValue > 0 && !motionManager.isAccelerometerAvailable {
-            unavailableResource |= ResourceType.accelerometer.rawValue
-        }
-        
-        if requiredResources & ResourceType.deviceMotion.rawValue > 0 && !motionManager.isDeviceMotionAvailable {
-            unavailableResource |= ResourceType.deviceMotion.rawValue
-        }
-        
-        if requiredResources & ResourceType.location.rawValue > 0 && !type(of: locationManager).locationServicesEnabled() {
-            unavailableResource |= ResourceType.accelerometer.rawValue
-        }
-        
-        if requiredResources & ResourceType.vibration.rawValue > 0 && !Util.isPhone() {
-            unavailableResource |= ResourceType.vibration.rawValue
-        }
-        
-        if requiredResources & ResourceType.compass.rawValue > 0 && !type(of: locationManager).headingAvailable() {
-            unavailableResource |= ResourceType.compass.rawValue
-        }
-        
-        if requiredResources & ResourceType.gyro.rawValue > 0 && !motionManager.isGyroAvailable {
-            unavailableResource |= ResourceType.gyro.rawValue
-        }
-        
-        if requiredResources & ResourceType.magnetometer.rawValue > 0 && !motionManager.isMagnetometerAvailable {
-            unavailableResource |= ResourceType.magnetometer.rawValue
-        }
-        
-        if requiredResources & ResourceType.faceDetection.rawValue > 0 && !faceDetectionManager.available() {
-            unavailableResource |= ResourceType.faceDetection.rawValue
-        }
-        
-        if requiredResources & ResourceType.loudness.rawValue > 0 && !audioManager.loudnessAvailable() {
-            unavailableResource |= ResourceType.loudness.rawValue
-        }
-        
-        return unavailableResource
-    }
-    
-    func setup(for program: Program, and scene:CBScene) {
-        let requiredResources = program.getRequiredResources()
-        setup(for: requiredResources, and: scene)
-    }
-    
-    func setup(for formula: Formula) {
-        let requiredResources = formula.getRequiredResources()
-        setup(for: requiredResources, and: nil)
-    }
-    
-    private func setup(for requiredResources: Int, and scene:CBScene?) {
-        let unavailableResource = unavailableResources(for: requiredResources)
-        
-        if (requiredResources & ResourceType.accelerometer.rawValue > 0) && (unavailableResource & ResourceType.accelerometer.rawValue) == 0  {
-            motionManager.startAccelerometerUpdates()
-        }
-        
-        if (requiredResources & ResourceType.deviceMotion.rawValue > 0) && (unavailableResource & ResourceType.deviceMotion.rawValue) == 0  {
-            motionManager.startDeviceMotionUpdates()
-        }
-        
-        if (requiredResources & ResourceType.gyro.rawValue > 0) && (unavailableResource & ResourceType.gyro.rawValue) == 0  {
-            motionManager.startGyroUpdates()
-        }
-        
-        if (requiredResources & ResourceType.compass.rawValue > 0) && (unavailableResource & ResourceType.compass.rawValue) == 0  {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingHeading()
-        }
-        
-        if (requiredResources & ResourceType.location.rawValue > 0) && (unavailableResource & ResourceType.location.rawValue) == 0  {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        }
-        
-        if ((requiredResources & ResourceType.faceDetection.rawValue) > 0) && (unavailableResource & ResourceType.faceDetection.rawValue) == 0 {
-            faceDetectionManager.start()
-        }
-        
-        if ((requiredResources & ResourceType.loudness.rawValue) > 0) && (unavailableResource & ResourceType.loudness.rawValue) == 0 {
-            audioManager.startLoudnessRecorder()
-        }
-        
-        if ((requiredResources & ResourceType.touchHandler.rawValue) > 0) && (unavailableResource & ResourceType.touchHandler.rawValue) == 0 {
-            guard let sc = scene else { return }
-            touchManager.startTrackingTouches(for: sc)
-        }
-    }
-    
-    @objc func stop() {
-        motionManager.stopAccelerometerUpdates()
-        motionManager.stopDeviceMotionUpdates()
-        motionManager.stopGyroUpdates()
-        locationManager.stopUpdatingHeading()
-        locationManager.stopUpdatingLocation()
-        faceDetectionManager.stop()
-        audioManager.stopLoudnessRecorder()
-        touchManager.stopTrackingTouches()
     }
 }

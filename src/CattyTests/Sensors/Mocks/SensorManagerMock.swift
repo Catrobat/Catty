@@ -24,15 +24,17 @@
 
 // this class is subject to change when SensorManager is no Singleton anymore
 final class SensorManagerMock: SensorManagerProtocol {
-    
+
     static var defaultValueForUndefinedSensor: Double = 0
     let sensors: [Sensor]
-    let unavailableResources: NSInteger
     var isStarted = false
     
-    init(sensors: [Sensor], unavailableResources: NSInteger) {
+    convenience init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+        self.init(sensors: [])
+    }
+    
+    init(sensors: [Sensor]) {
         self.sensors = sensors
-        self.unavailableResources = unavailableResources
     }
     
     func exists(tag: String) -> Bool {
@@ -47,10 +49,6 @@ final class SensorManagerMock: SensorManagerProtocol {
         return ResourceType.noResources
     }
     
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger {
-        return unavailableResources
-    }
-    
     func name(sensor: Sensor) -> String {
         return ""
     }
@@ -61,22 +59,6 @@ final class SensorManagerMock: SensorManagerProtocol {
     
     func value(tag: String, spriteObject: SpriteObject?) -> AnyObject {
         return SensorManagerMock.defaultValueForUndefinedSensor as AnyObject
-    }
-    
-    func phiroSensors() -> [PhiroSensor] {
-        return [PhiroSensor]()
-    }
-    
-    func setup(for program: Program, and scene: CBScene) {
-        isStarted = true
-    }
-    
-    func setup(for formula: Formula) {
-        isStarted = true
-    }
-    
-    func stop() {
-        isStarted = false
     }
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {

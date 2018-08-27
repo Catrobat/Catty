@@ -20,19 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FunctionManagerProtocol {
+@testable import Pocket_Code
+
+final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
     
-    static var defaultValueForUndefinedFunction: Double { get set }
+    var isFaceDetected: Bool? = false
+    var facePositionX: Double? = 0
+    var facePositionY: Double? = 0
+    var faceSize: CGRect? = CGRect.zero
     
-    func exists(tag: String) -> Bool
+    var isAvailable = true
+    var isStarted = false
     
-    func function(tag: String) -> Function?
+    func start() {
+        isStarted = true
+    }
     
-    func requiredResource(tag: String) -> ResourceType
+    func stop() {
+        isStarted = false
+    }
     
-    func name(tag: String) -> String?
+    func reset() {
+        isFaceDetected = false
+        facePositionX = 0
+        facePositionY = 0
+        faceSize = CGRect.zero
+    }
     
-    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
-    
-    func formulaEditorItems() -> [FormulaEditorItem]
+    func available() -> Bool {
+        return isAvailable
+    }
 }

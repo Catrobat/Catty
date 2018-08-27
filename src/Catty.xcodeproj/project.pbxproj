@@ -112,6 +112,10 @@
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */; };
+		4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78A2132A83D00870CE2 /* FormulaMock.swift */; };
+		4C28D78D2132AA2800870CE2 /* FaceDetectionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */; };
+		4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */; };
+		4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
 		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
 		4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */; };
@@ -307,7 +311,6 @@
 		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
 		4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B9212EA90A006E4720 /* FunctionMock.swift */; };
 		4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BB212EAC1F006E4720 /* SensorMock.swift */; };
-		4CC614BE212EAD8F006E4720 /* FormulaManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */; };
 		4CC614C0212EB330006E4720 /* SensorManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BF212EB330006E4720 /* SensorManagerMock.swift */; };
 		4CC614C2212EB5F8006E4720 /* FunctionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */; };
 		4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */; };
@@ -1371,6 +1374,10 @@
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
 		4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectMutableCopyTests.m; path = SpriteObject/SpriteObjectMutableCopyTests.m; sourceTree = "<group>"; };
 		4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNodeTests.swift; path = PlayerEngine/CBSpriteNodeTests.swift; sourceTree = "<group>"; };
+		4C28D78A2132A83D00870CE2 /* FormulaMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaMock.swift; sourceTree = "<group>"; };
+		4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerMock.swift; sourceTree = "<group>"; };
+		4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerResourceTests.swift; path = Formula/FormulaManagerResourceTests.swift; sourceTree = "<group>"; };
+		4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerTests.swift; path = Formula/FormulaManagerTests.swift; sourceTree = "<group>"; };
 		4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserBrickTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.h"; sourceTree = "<group>"; };
 		4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBrickTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.m"; sourceTree = "<group>"; };
 		4C2A00BA1B5546DF00CD4492 /* XMLParserFormulaTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserFormulaTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests093.h"; sourceTree = "<group>"; };
@@ -1618,7 +1625,6 @@
 		4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItemTest.swift; sourceTree = "<group>"; };
 		4CC614B9212EA90A006E4720 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
 		4CC614BB212EAC1F006E4720 /* SensorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
-		4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaManagerTest.swift; sourceTree = "<group>"; };
 		4CC614BF212EB330006E4720 /* SensorManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorManagerMock.swift; sourceTree = "<group>"; };
 		4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerMock.swift; sourceTree = "<group>"; };
 		4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
@@ -3291,6 +3297,14 @@
 			name = SpriteObject;
 			sourceTree = "<group>";
 		};
+		4C28D7872132A82700870CE2 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		4C2A00C41B5547EB00CD4492 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -3406,6 +3420,7 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
+				4C28D7872132A82700870CE2 /* Mock */,
 				4CC614B3212EA838006E4720 /* Dto */,
 				4C14CF1A1EC991DA00E53B25 /* UserVariable */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
@@ -3423,7 +3438,8 @@
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
 				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
-				4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */,
+				4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */,
+				4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -4664,6 +4680,7 @@
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
 				4CC614BB212EAC1F006E4720 /* SensorMock.swift */,
 				4CC614BF212EB330006E4720 /* SensorManagerMock.swift */,
+				4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -8105,6 +8122,7 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
+				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */,
@@ -8194,6 +8212,7 @@
 				F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */,
 				F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
+				4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
@@ -8232,7 +8251,6 @@
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */,
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
-				4CC614BE212EAD8F006E4720 /* FormulaManagerTest.swift in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
@@ -8244,6 +8262,7 @@
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
+				4C28D78D2132AA2800870CE2 /* FaceDetectionManagerMock.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */,
@@ -8255,6 +8274,7 @@
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
+				4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */,
 				F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */,
 				F4E6E56F210DA5A500D86FE6 /* FingerXSensorTest.swift in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,

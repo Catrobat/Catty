@@ -23,11 +23,18 @@
 @testable import Pocket_Code
 
 final class LocationManagerMock: LocationManager {
+    
     var magneticHeading: Double = 0
     var latitude: Double = 0
     var longitude: Double = 0
     var altitude: Double = 0
     var locationAccuracy: Double = 0
+    
+    var isHeadingUpdateStarted = false
+    var isLocationUpdateStarted = false
+    
+    static var isHeadingAvailable = true
+    static var isLocationServicesEnabled = true
 
     var heading: Heading? {
         return HeadingMock(magneticHeading: magneticHeading)
@@ -35,6 +42,33 @@ final class LocationManagerMock: LocationManager {
     
     var location: Location? {
         return LocationMock(coordinate: LocationCoordinate2DMock(longitude: longitude, latitude: latitude), altitude: altitude, horizontalAccuracy: locationAccuracy)
+    }
+    
+    static func headingAvailable() -> Bool {
+        return isHeadingAvailable
+    }
+    
+    static func locationServicesEnabled() -> Bool {
+        return isLocationServicesEnabled
+    }
+    
+    func requestWhenInUseAuthorization() {
+    }
+    
+    func startUpdatingHeading() {
+        isHeadingUpdateStarted = true
+    }
+    
+    func startUpdatingLocation() {
+        isLocationUpdateStarted = true
+    }
+    
+    func stopUpdatingHeading() {
+        isHeadingUpdateStarted = false
+    }
+    
+    func stopUpdatingLocation() {
+        isLocationUpdateStarted = false
     }
 }
 

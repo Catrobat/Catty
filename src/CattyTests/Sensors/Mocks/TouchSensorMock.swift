@@ -28,10 +28,14 @@ final class TouchManagerMock: TouchManagerProtocol {
     var touches: [CGPoint] = []
     var lastTouch: CGPoint?
     
+    var isStarted = false
+    
     func startTrackingTouches(for scene: CBScene) {
+        isStarted = true
     }
     
     func stopTrackingTouches() {
+        isStarted = false
     }
     
     func reset() {

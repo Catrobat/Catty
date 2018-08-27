@@ -20,19 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FunctionManagerProtocol {
+@testable import Pocket_Code
+
+final class FormulaMock: Formula {
+    let requiredResources: Int
     
-    static var defaultValueForUndefinedFunction: Double { get set }
+    init(requiredResource: ResourceType) {
+        self.requiredResources = requiredResource.rawValue
+        super.init()
+    }
     
-    func exists(tag: String) -> Bool
+    init(requiredResources: Int) {
+        self.requiredResources = requiredResources
+        super.init()
+    }
     
-    func function(tag: String) -> Function?
-    
-    func requiredResource(tag: String) -> ResourceType
-    
-    func name(tag: String) -> String?
-    
-    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
-    
-    func formulaEditorItems() -> [FormulaEditorItem]
+    override func getRequiredResources() -> Int {
+        return requiredResources
+    }
 }

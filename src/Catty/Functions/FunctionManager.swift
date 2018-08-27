@@ -127,21 +127,6 @@ import BluetoothHelper
         return value
     }
     
-    @objc(setupFunctionsForProgram: andScene:)
-    func setup(for program: Program, and scene: CBScene) {
-        // Start dependencies
-    }
-    
-    @objc(setupFunctionsForFormula:)
-    func setup(for formula: Formula) {
-        // Start dependencies
-    }
-    
-    @objc
-    func stop() {
-        // Stop dependencies
-    }
-    
     func formulaEditorItems() -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
         

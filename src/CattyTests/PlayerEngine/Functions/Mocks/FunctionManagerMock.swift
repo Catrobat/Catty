@@ -27,7 +27,6 @@ final class FunctionManagerMock: FunctionManagerProtocol {
     
     static var defaultValueForUndefinedFunction: Double = 0
     let functions: [Function]
-    var isStarted = false
     
     init(functions: [Function]) {
         self.functions = functions
@@ -51,18 +50,6 @@ final class FunctionManagerMock: FunctionManagerProtocol {
     
     func name(tag: String) -> String? {
         return ""
-    }
-    
-    func setup(for program: Program, and scene: CBScene) {
-        self.isStarted = true
-    }
-    
-    func setup(for formula: Formula) {
-        self.isStarted = true
-    }
-    
-    func stop() {
-        self.isStarted = false
     }
     
     func formulaEditorItems() -> [FormulaEditorItem] {
