@@ -42,8 +42,8 @@
         let frontend = CBFrontend(logger: frontendLogger, program: program)
         frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
         
-        let backend = CBBackend(logger: backendLogger) // setup backend
         let formulaManager = FormulaManager()
+        let backend = CBBackend(formulaManager: formulaManager, logger: backendLogger) // setup backend
 
         let programSize = CGSize(
             width: CGFloat(program.header.screenWidth.floatValue),

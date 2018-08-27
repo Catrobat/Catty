@@ -148,18 +148,18 @@ extension FormulaManager {
             if let leftDouble = left as? Double, let rightDouble = right as? Double {
                 return boolResult(value: leftDouble == rightDouble)
             }
-            return boolResult(value: true)
+            return boolResult(value: leftDouble == rightDouble)
         case .NOT_EQUAL:
             if let leftString = left as? String, let rightString = right as? String {
-                return boolResult(value: leftString == rightString)
+                return boolResult(value: leftString != rightString)
             }
             if let leftInt = left as? Int, let rightInt = right as? Int {
-                return boolResult(value: leftInt == rightInt)
+                return boolResult(value: leftInt != rightInt)
             }
             if let leftDouble = left as? Double, let rightDouble = right as? Double {
-                return boolResult(value: leftDouble == rightDouble)
+                return boolResult(value: leftDouble != rightDouble)
             }
-            return boolResult(value: true)
+            return boolResult(value: leftDouble != rightDouble)
         default:
             return Double(0)
         }

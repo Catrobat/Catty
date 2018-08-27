@@ -26,8 +26,13 @@ import XCTest
 
 final class BrickTests: XCTestCase {
     
+    var formulaManager: FormulaManager!
+    
+    override func setUp() {
+        formulaManager = FormulaManager()
+    }
+    
     func testRemoveWaitBrick() {
-        
         let script = Script()
         let brick = WaitBrick()
         
@@ -41,7 +46,6 @@ final class BrickTests: XCTestCase {
     }
     
     func testRemoveSetVariableBrick() {
-        
         let script = Script()
         let brickA = SetVariableBrick()
         brickA.variableFormula = Formula.init(float: 1.0)
@@ -59,7 +63,6 @@ final class BrickTests: XCTestCase {
         XCTAssertEqual(1, script.brickList.count, "Invalid number of Bricks")
         
         let brick = script.brickList[0] as! SetVariableBrick
-        
-        XCTAssertEqual(1.0, brick.variableFormula.interpretDouble(forSprite: nil), "Invalid formula");
+        XCTAssertEqual(1.0, formulaManager.interpretDouble(formula: brick.variableFormula, spriteObject: SpriteObject()), "Invalid formula");
     }
 }
