@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D6E3F39210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */; };
 		2D6E3F3B210A0AB700FB8139 /* ChartProgramStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */; };
+		2D6EC6982134093600CBAEC2 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6EC6972134093500CBAEC2 /* StoreProgramDownloaderMock.swift */; };
 		2D8E23C32123134B003E7EE4 /* ChartProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */; };
 		2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */; };
 		2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */; };
@@ -26,8 +27,6 @@
 		2DCB4934212EA9BF005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */; };
 		2DCB4936212EAAEF005E8E3D /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */; };
 		2DCB4938212EAB36005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */; };
-		2DE385082105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
-		2DE385092105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */; };
 		2DF67A27212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF67A26212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
@@ -1064,6 +1063,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreViewController.swift; sourceTree = "<group>"; };
+		2D6EC6972134093500CBAEC2 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
 		2D8E23C22123134B003E7EE4 /* ChartProgramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartProgramCell.swift; sourceTree = "<group>"; };
 		2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreViewController.swift; sourceTree = "<group>"; };
 		2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSource.swift; sourceTree = "<group>"; };
@@ -1081,7 +1081,6 @@
 		2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json; sourceTree = "<group>"; };
 		2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
 		2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
-		2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
 		2DF67A26212993D600235CFB /* ChartProgramsStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartProgramsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
@@ -3912,7 +3911,7 @@
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
-				2DE385072105EC1B004D8180 /* StoreProgramDownloaderMock.swift */,
+				2D6EC6972134093500CBAEC2 /* StoreProgramDownloaderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -7389,7 +7388,6 @@
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
-				2DE385092105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
@@ -7458,6 +7456,7 @@
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
+				2D6EC6982134093600CBAEC2 /* StoreProgramDownloaderMock.swift in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				599E64AA202DB3E8009494B5 /* MediaLibraryCollectionViewDataSourceTests.swift in Sources */,
@@ -7905,7 +7904,6 @@
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
-				2DE385082105EC1B004D8180 /* StoreProgramDownloaderMock.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
