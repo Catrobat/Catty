@@ -43,7 +43,6 @@
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
     
-    XCTAssertEqual(1.0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
     XCTAssertTrue([formulaElement isIdempotent], @"FormulaElement should be idempotent");
 }
 
@@ -57,7 +56,6 @@
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
 
-    XCTAssertEqual(4.0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
     XCTAssertTrue([formulaElement isIdempotent], @"FormulaElement should be idempotent");
 }
 
@@ -75,7 +73,6 @@
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
     
-    XCTAssertEqual(-2.0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
     XCTAssertTrue([formulaElement isIdempotent], @"FormulaElement should be idempotent");
 }
 
@@ -157,9 +154,6 @@
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
     
-    double result = [[formulaElement interpretRecursiveForSprite:nil] doubleValue];
-    
-    XCTAssertTrue(result >= 3 && result <= 4, @"Formula interpretation is not as expected");
     XCTAssertFalse([formulaElement isIdempotent], @"FormulaElement should not be idempotent");
 }
 
@@ -174,7 +168,6 @@
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *formulaElement = [internParser parseFormulaForSpriteObject:nil];
     
-    XCTAssertEqual(1, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
     XCTAssertTrue([formulaElement isIdempotent], @"FormulaElement should be idempotent");
 }
 

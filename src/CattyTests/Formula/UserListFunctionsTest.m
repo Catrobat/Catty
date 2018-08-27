@@ -26,10 +26,16 @@
 #import "Pocket_Code-Swift.h"
 
 @interface UserListFunctionsTest : XCTestCase
-
+@property (nonatomic, strong) FormulaManager *formulaManager;
+@property (nonatomic, strong) SpriteObject *spriteObject;
 @end
 
 @implementation UserListFunctionsTest
+
+- (void)setUp
+{
+    self.formulaManager = [FormulaManager new];
+}
 
 - (void)testNumberOfItems
 {
@@ -51,7 +57,8 @@
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"NUMBER_OF_ITEMS" leftChild:leftChild rightChild:nil parent:nil];
     formulaTree = formulaTree;
     
-    double numberOfItems = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
+    double numberOfItems = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
     
     XCTAssertEqual(numberOfItems, 3, @"Wrong number of Items");
 }
@@ -77,15 +84,17 @@
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"LIST_ITEM" leftChild:leftChild rightChild:rightChild parent:nil];
     formulaTree = formulaTree;
     
-    double element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
+    
+    double element = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
     XCTAssertEqual(element, 4, @"Should be Element of List but is not");
     
     leftChild.value = @"-3";
-    element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    element = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
     XCTAssertEqual(element, 0, @"Invalid default value");
     
     leftChild.value = @"44";
-    element = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    element = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
     XCTAssertEqual(element, 0, @"Invalid default value");
 }
 
@@ -110,7 +119,8 @@
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"CONTAINS" leftChild:leftChild rightChild:rightChild parent:nil];
     formulaTree = formulaTree;
     
-    BOOL contains = [[formulaTree interpretRecursiveForSprite:object] doubleValue];
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
+    BOOL contains = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
     
     XCTAssertEqual(contains, YES, @"Should be Element of List but is not");
 }

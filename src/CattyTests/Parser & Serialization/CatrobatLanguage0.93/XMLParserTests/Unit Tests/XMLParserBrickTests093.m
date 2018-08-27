@@ -26,6 +26,7 @@
 
 - (void)setUp
 {
+    self.formulaManager = [FormulaManager new];
     self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
 }
 
@@ -110,7 +111,7 @@
     XCTAssertTrue(formula.formulaTree.type == NUMBER, @"Invalid variable type");
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"30"], @"Invalid formula value");
     
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 30, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:context.spriteObject], 30, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidForeverBrickAndLoopEndlessBrick
@@ -163,8 +164,8 @@
     XCTAssertNotNil(xPosition, @"Invalid formula for xPosition");
     XCTAssertNotNil(yPosition, @"Invalid formula for yPosition");
     
-    XCTAssertEqualWithAccuracy([xPosition interpretDoubleForSprite:nil], -170, 0.00001, @"Formula not correctly parsed");
-    XCTAssertEqualWithAccuracy([yPosition interpretDoubleForSprite:nil], -115, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:xPosition spriteObject:[SpriteObject new]], -170, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:yPosition spriteObject:[SpriteObject new]], -115, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidWaitBrick
@@ -187,7 +188,7 @@
     XCTAssertNotNil(timeToWaitInSeconds, @"Invalid formula");
     
     // result is either 1 or 2
-    XCTAssertEqualWithAccuracy([timeToWaitInSeconds interpretDoubleForSprite:nil], 1, 1, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:timeToWaitInSeconds spriteObject:[SpriteObject new]], 1, 1, @"Formula not correctly parsed");
 }
 
 - (void)testValidShowBrick
@@ -225,15 +226,15 @@
     
     Formula *durationInSeconds = glideToBrick.durationInSeconds;
     XCTAssertNotNil(durationInSeconds, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([durationInSeconds interpretDoubleForSprite:nil], 0.1, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:durationInSeconds spriteObject:[SpriteObject new]], 0.1, 0.00001, @"Formula not correctly parsed");
     
     Formula *xDestination = glideToBrick.xDestination;
     XCTAssertNotNil(xDestination, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([xDestination interpretDoubleForSprite:nil], -170, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:xDestination spriteObject:[SpriteObject new]], -170, 0.00001, @"Formula not correctly parsed");
 
     Formula *yDestination = glideToBrick.yDestination;
     XCTAssertNotNil(yDestination, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([yDestination interpretDoubleForSprite:nil], -100, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:yDestination spriteObject:[SpriteObject new]], -100, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidHideBrick
@@ -403,7 +404,7 @@
     Formula *formula = changeYByNBrick.yMovement;
     
     XCTAssertNotNil(formula, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 10, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 10, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidMoveNStepsBrick
@@ -425,7 +426,7 @@
     Formula *formula = moveNStepsBrick.steps;
     
     XCTAssertNotNil(formula, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], log10f(sqrt(5)) / log10f(10), 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], log10f(sqrt(5)) / log10f(10), 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidTurnLeftBrick
@@ -447,7 +448,7 @@
     Formula *formula = turnLeftBrick.degrees;
     
     XCTAssertNotNil(formula, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 15, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 15, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidTurnRightBrick
@@ -469,7 +470,7 @@
     Formula *formula = turnRightBrick.degrees;
     
     XCTAssertNotNil(formula, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 15, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 15, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidPointInDirectionBrick
@@ -491,7 +492,7 @@
     Formula *formula = pointInDirectionBrick.degrees;
     
     XCTAssertNotNil(formula, @"Invalid formula");
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 90, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 90, 0.00001, @"Formula not correctly parsed");
 }
 
 - (void)testValidStopAllSoundBrick
@@ -567,7 +568,7 @@
     XCTAssertTrue([brick isKindOfClass:[SetColorBrick class]], @"Invalid brick class");
     
     SetColorBrick *setColorBrick = (SetColorBrick*)brick;
-    XCTAssertEqual(1, [setColorBrick.color interpretIntegerForSprite:nil], @"Invalid formula");
+    XCTAssertEqual(1, [self.formulaManager interpretIntegerWithFormula:setColorBrick.color spriteObject:[SpriteObject new]], @"Invalid formula");
 }
 
 - (void)testValidChangeColorByNBrick
@@ -586,7 +587,7 @@
     XCTAssertTrue([brick isKindOfClass:[ChangeColorByNBrick class]], @"Invalid brick class");
     
     ChangeColorByNBrick *changeColorByNBrick = (ChangeColorByNBrick*)brick;
-    XCTAssertEqual(2, [changeColorByNBrick.changeColor interpretIntegerForSprite:nil], @"Invalid formula");
+    XCTAssertEqual(2, [self.formulaManager interpretIntegerWithFormula:changeColorByNBrick.changeColor spriteObject:[SpriteObject new]], @"Invalid formula");
 }
 
 @end

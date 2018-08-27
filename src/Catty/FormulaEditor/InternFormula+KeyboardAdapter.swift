@@ -62,106 +62,37 @@ extension InternFormula {
         case Int(TOKEN_TYPE_NUMBER_9.rawValue):
             return buildNumber(numberValue: "9")
             
-        // FUNCTIONS
-        /*case Int(SIN.rawValue):
-            return buildSingleParameterFunction(function: SIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(COS.rawValue):
-            return buildSingleParameterFunction(function: COS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(TAN.rawValue):
-            return buildSingleParameterFunction(function: TAN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(LN.rawValue):
-            return buildSingleParameterFunction(function: LN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(LOG.rawValue):
-            return buildSingleParameterFunction(function: LOG, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(PI_F.rawValue):
-            return buildFunctionWithoutParametersAndBrackets(function: PI_F)
-        case Int(SQRT.rawValue):
-            return buildSingleParameterFunction(function: SQRT, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(RAND.rawValue):
-            return buildDoubleParameterFunction(function: RAND, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
-        case Int(ABS.rawValue):
-            return buildSingleParameterFunction(function: ABS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(ROUND.rawValue):
-            return buildSingleParameterFunction(function: ROUND, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(MOD.rawValue):
-            return buildDoubleParameterFunction(function: MOD, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
-        case Int(ARCSIN.rawValue):
-            return buildSingleParameterFunction(function: ARCSIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(ARCCOS.rawValue):
-            return buildSingleParameterFunction(function: ARCCOS, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(ARCTAN.rawValue):
-            return buildSingleParameterFunction(function: ARCTAN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(EXP.rawValue):
-            return buildSingleParameterFunction(function: EXP, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
-        case Int(MAX.rawValue):
-            return buildDoubleParameterFunction(function: MAX, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
-        case Int(MIN.rawValue):
-            return buildDoubleParameterFunction(function: MIN, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
-        case Int(TRUE_F.rawValue):
-            return buildFunctionWithoutParametersAndBrackets(function: TRUE_F)
-        case Int(FALSE_F.rawValue):
-            return buildFunctionWithoutParametersAndBrackets(function: FALSE_F)
-        case Int(POW.rawValue):
-            return buildDoubleParameterFunction(function: POW, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
-        case Int(LETTER.rawValue):
-            return buildDoubleParameterFunction(function: LETTER, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_STRING, secondParameterValue: "hello world")
-        case Int(LENGTH.rawValue):
-            return buildSingleParameterFunction(function: LENGTH, firstParameterType: TOKEN_TYPE_STRING, firstParameterValue: "hello world")
-        case Int(JOIN.rawValue):
-            return buildDoubleParameterFunction(function: JOIN, firstParameterType: TOKEN_TYPE_STRING, firstParameterValue: "hello", secondParameterType: TOKEN_TYPE_STRING, secondParameterValue: " world")
-        case Int(ARDUINODIGITAL.rawValue):
-            return buildSingleParameterFunction(function: ARDUINODIGITAL, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(ARDUINOANALOG.rawValue):
-            return buildSingleParameterFunction(function: ARDUINOANALOG, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(FLOOR.rawValue):
-            return buildSingleParameterFunction(function: FLOOR, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(CEIL.rawValue):
-            return buildSingleParameterFunction(function: CEIL, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "0")
-        case Int(NUMBEROFITEMS.rawValue):
-            return buildSingleParameterFunction(function: NUMBEROFITEMS, firstParameterType: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name")
-        case Int(ELEMENT.rawValue):
-            return buildDoubleParameterFunction(function: ELEMENT, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1", secondParameterType: TOKEN_TYPE_USER_LIST, secondParameterValue: "list name")
-        case Int(CONTAINS.rawValue):
-            return buildDoubleParameterFunction(function: CONTAINS, firstParameterType: TOKEN_TYPE_USER_LIST, firstParameterValue: "list name", secondParameterType: TOKEN_TYPE_NUMBER, secondParameterValue: "1")
-        case Int(MULTI_FINGER_TOUCHED.rawValue):
-            return buildSingleParameterFunction(function: MULTI_FINGER_TOUCHED, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
-        case Int(MULTI_FINGER_X.rawValue):
-            return buildSingleParameterFunction(function: MULTI_FINGER_X, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
-        case Int(MULTI_FINGER_Y.rawValue):
-            return buildSingleParameterFunction(function: MULTI_FINGER_Y, firstParameterType: TOKEN_TYPE_NUMBER, firstParameterValue: "1")
-        */
-            
         // PERIOD
-        case Int(DECIMAL_MARK.rawValue):
+        case Int(Operator.DECIMAL_MARK.rawValue):
             return buildPeriod()
             
         // OPERATOR
-        case Int(PLUS.rawValue):
-            return buildOperator(mathOperator: PLUS)
-        case Int(MINUS.rawValue):
-            return buildOperator(mathOperator: MINUS)
-        case Int(MULT.rawValue):
-            return buildOperator(mathOperator: MULT)
-        case Int(DIVIDE.rawValue):
-            return buildOperator(mathOperator: DIVIDE)
-        case Int(EQUAL.rawValue):
-            return buildOperator(mathOperator: EQUAL)
-        case Int(NOT_EQUAL.rawValue):
-            return buildOperator(mathOperator: NOT_EQUAL)
-        case Int(SMALLER_THAN.rawValue):
-            return buildOperator(mathOperator: SMALLER_THAN)
-        case Int(SMALLER_OR_EQUAL.rawValue):
-            return buildOperator(mathOperator: SMALLER_OR_EQUAL)
-        case Int(GREATER_THAN.rawValue):
-            return buildOperator(mathOperator: GREATER_THAN)
-        case Int(GREATER_OR_EQUAL.rawValue):
-            return buildOperator(mathOperator: GREATER_OR_EQUAL)
-        case Int(LOGICAL_AND.rawValue):
-            return buildOperator(mathOperator: LOGICAL_AND)
-        case Int(LOGICAL_OR.rawValue):
-            return buildOperator(mathOperator: LOGICAL_OR)
-        case Int(LOGICAL_NOT.rawValue):
-            return buildOperator(mathOperator: LOGICAL_NOT)
+        case Operator.PLUS.rawValue:
+            return buildOperator(mathOperator: Operator.PLUS)
+        case Operator.MINUS.rawValue:
+            return buildOperator(mathOperator: Operator.MINUS)
+        case Operator.MULT.rawValue:
+            return buildOperator(mathOperator: Operator.MULT)
+        case Operator.DIVIDE.rawValue:
+            return buildOperator(mathOperator: Operator.DIVIDE)
+        case Operator.EQUAL.rawValue:
+            return buildOperator(mathOperator: Operator.EQUAL)
+        case Operator.NOT_EQUAL.rawValue:
+            return buildOperator(mathOperator: Operator.NOT_EQUAL)
+        case Operator.SMALLER_THAN.rawValue:
+            return buildOperator(mathOperator: Operator.SMALLER_THAN)
+        case Operator.SMALLER_OR_EQUAL.rawValue:
+            return buildOperator(mathOperator: Operator.SMALLER_OR_EQUAL)
+        case Operator.GREATER_THAN.rawValue:
+            return buildOperator(mathOperator: Operator.GREATER_THAN)
+        case Operator.GREATER_OR_EQUAL.rawValue:
+            return buildOperator(mathOperator: Operator.GREATER_OR_EQUAL)
+        case Operator.LOGICAL_AND.rawValue:
+            return buildOperator(mathOperator: Operator.LOGICAL_AND)
+        case Operator.LOGICAL_OR.rawValue:
+            return buildOperator(mathOperator: Operator.LOGICAL_OR)
+        case Operator.LOGICAL_NOT.rawValue:
+            return buildOperator(mathOperator: Operator.LOGICAL_NOT)
             
         // BRACKETS
         case Int(BRACKET_OPEN.rawValue):

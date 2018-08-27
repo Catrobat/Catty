@@ -24,15 +24,17 @@
 #import <XCTest/XCTest.h>
 #import "InternFormulaUtils.h"
 #import "InternFormula.h"
+#import "Pocket_Code-Swift.h"
 
 @interface FormulaParserOperatorsTest : XCTestCase
-
+@property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
 @implementation FormulaParserOperatorsTest
 
 - (void)setUp {
     [super setUp];
+    self.formulaManager = [FormulaManager new];
 }
 
 - (NSMutableArray *)buildBinaryOperator:(InternTokenType)firstTokenType
@@ -75,9 +77,10 @@
     InternFormulaParser *parser = [[InternFormulaParser alloc] initWithTokens:internTokens];
     FormulaElement *parseTree = [parser parseFormulaForSpriteObject:nil];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
-    XCTAssertEqual([[parseTree interpretRecursiveForSprite:nil] doubleValue], [result doubleValue], @"Formula interpretation is not as expected!");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual([self.formulaManager interpretIntegerWithFormula:formula spriteObject:[SpriteObject new]], [result intValue], @"Formula interpretation is not as expected!");
 }
-
 
 - (void)testOperatorChain
 {
@@ -115,7 +118,6 @@
     [self appendOperationToList:firstTerm withOperator:MULT andTokenType:TOKEN_TYPE_NUMBER withValue:@"2"];
     
     [self binaryOperatorTest:firstTerm withExpectedResult:@"-3"];
-
 }
 
 - (void)testUnaryMinus
@@ -127,10 +129,10 @@
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
-    
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 42.42");
-    XCTAssertEqual([[parseTree interpretRecursiveForSprite:nil]doubleValue], -42.42, @"Formula interpretation is not as expected");
     
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], -42.42, @"Formula interpretation is not as expected");
 }
 
 - (void)testGreaterThan
@@ -196,7 +198,6 @@
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:SMALLER_THAN secondTokenType:TOKEN_TYPE_STRING secondValue:@"2"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
-    
 }
 
 - (void)testSmallerOrEqualThan
@@ -218,7 +219,6 @@
     
     secondTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:@"1" withOperator:SMALLER_OR_EQUAL secondTokenType:TOKEN_TYPE_STRING secondValue:@"2"];
     [self binaryOperatorTest:secondTerm withExpectedResult:@"1"];
-    
 }
 
 - (void)testEqual
@@ -306,10 +306,10 @@
     
     internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
-    
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
-    XCTAssertEqual([[parseTree interpretRecursiveForSprite:nil]doubleValue], 1.0, @"Formula interpretation is not as expected");
     
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 1.0, @"Formula interpretation is not as expected");
     
     internTokenList = [[NSMutableArray alloc]init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:LOGICAL_NOT]]];
@@ -317,10 +317,10 @@
     
     internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
-    
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
-    XCTAssertEqual([[parseTree interpretRecursiveForSprite:nil]doubleValue], 0.0, @"Formula interpretation is not as expected");
     
+    formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 0.0, @"Formula interpretation is not as expected");
     
     internTokenList = [[NSMutableArray alloc]init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:LOGICAL_NOT]]];
@@ -328,9 +328,10 @@
     
     internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
-    
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly!");
-    XCTAssertEqual([[parseTree interpretRecursiveForSprite:nil]doubleValue], 1.0, @"Formula interpretation is not as expected");
+    
+    formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], 1.0, @"Formula interpretation is not as expected");
 }
 
 - (void)testAnd

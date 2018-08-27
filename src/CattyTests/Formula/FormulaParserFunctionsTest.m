@@ -31,48 +31,56 @@
 #import "Util.h"
 #import <float.h>
 #include <math.h>
+#import "Pocket_Code-Swift.h"
 
 @interface FormulaParserFunctionsTest : XCTestCase
-
+@property (nonatomic, strong) FormulaManager *formulaManager;
+@property (nonatomic, strong) SpriteObject *spriteObject;
 @end
 
 @implementation FormulaParserFunctionsTest
 
 #define DELTA 0.01
 
+- (void)setUp
+{
+    self.formulaManager = [FormulaManager new];
+    self.spriteObject = [SpriteObject new];
+}
+
 - (void) testSin
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"SIN" value:@"90"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: sin(90)");
-    XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"SIN" value:@"90"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: sin(90)");
+    XCTAssertEqual(1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testCos
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"COS" value:@"180"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: cos(180)");
-    XCTAssertEqual(-1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"COS" value:@"180"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: cos(180)");
+    XCTAssertEqual(-1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testTan
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"TAN" value:@"180"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: tan(180)");
-    XCTAssertEqualWithAccuracy(0, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"TAN" value:@"180"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: tan(180)");
+    XCTAssertEqualWithAccuracy(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testLn
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"LN" value:@"2.7182818"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: ln(e)");
-    XCTAssertEqualWithAccuracy(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"LN" value:@"2.7182818"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: ln(e)");
+    XCTAssertEqualWithAccuracy(1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testLog
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"LOG" value:@"10"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: log(10)");
-    XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"LOG" value:@"10"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: log(10)");
+    XCTAssertEqual(1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testPi
@@ -84,21 +92,23 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: pi");
-    XCTAssertEqual(M_PI, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual(M_PI, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testSqrt
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"SQRT" value:@"100"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: sqrt(100)");
-    XCTAssertEqual(10, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"SQRT" value:@"100"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: sqrt(100)");
+    XCTAssertEqual(10, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testExp
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"EXP" value:@"3"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: exp(0)");
-    XCTAssertEqualWithAccuracy(20.08f, [[parseTree interpretRecursiveForSprite:nil] doubleValue], 0.1f, @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"EXP" value:@"3"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: exp(0)");
+    XCTAssertEqualWithAccuracy(20.08f, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], 0.1f, @"Formula interpretation is not as expected");
 }
 
 - (void) testRandomNaturalNumbers
@@ -115,15 +125,17 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: random(0,1)");
-    double result = [[parseTree interpretRecursiveForSprite:nil] doubleValue];
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    double result = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject];
     XCTAssertTrue(result == 0 || result == 1, @"Formula interpretation is not as expected");
 }
 
 - (void) testRound
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ROUND" value:@"1.33333"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: round(1.33333)");
-    XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"ROUND" value:@"1.33333"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: round(1.33333)");
+    XCTAssertEqual(1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testMod
@@ -144,7 +156,9 @@
         FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
         
         XCTAssertNotNil(parseTree, "Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
-        XCTAssertEqualWithAccuracy(0, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+        
+        Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+        XCTAssertEqualWithAccuracy(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
     }
     
     for (int offset = 0; offset < 100; offset += 2) {
@@ -163,7 +177,9 @@
         FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
         
         XCTAssertNotNil(parseTree, "Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
-        XCTAssertEqualWithAccuracy(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+        
+        Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+        XCTAssertEqualWithAccuracy(1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
     }
     
     for (int offset = 0; offset < 10; offset += 1) {
@@ -182,7 +198,9 @@
         FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
         
         XCTAssertNotNil(parseTree, "Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
-        XCTAssertEqualWithAccuracy(dividend, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, "Formula interpretation is not as expected");
+        
+        Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+        XCTAssertEqualWithAccuracy(dividend, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, "Formula interpretation is not as expected");
     }
     
     for (int offset = 0; offset < 10; offset += 1) {
@@ -202,7 +220,9 @@
         FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
         
         XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: mod(%i, %i)", dividend, divisor);
-        XCTAssertEqualWithAccuracy(1 + offset, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+        
+        Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+        XCTAssertEqualWithAccuracy(1 + offset, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
     }
 }
 
@@ -219,7 +239,9 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: abs(-1)");
-    XCTAssertEqual(1, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual(1, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testInvalidFunction
@@ -246,7 +268,9 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: true");
-    XCTAssertEqual(1.0, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual(1.0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testFalse
@@ -258,28 +282,30 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: false");
-    XCTAssertEqual(0.0, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual(0.0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testArcsin
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ASIN" value:@"1"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arcsin(1)");
-    XCTAssertEqualWithAccuracy(90, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"ASIN" value:@"1"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: arcsin(1)");
+    XCTAssertEqualWithAccuracy(90, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArccos
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ACOS" value:@"0"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arccos(0)");
-    XCTAssertEqualWithAccuracy(90, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"ACOS" value:@"0"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: arccos(0)");
+    XCTAssertEqualWithAccuracy(90, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArctan
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ATAN" value:@"1"]; // TODO use Function property
-    XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arctan(1)");
-    XCTAssertEqualWithAccuracy(45, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
+    Formula *formula = [self getFormula:@"ATAN" value:@"1"]; // TODO use Function property
+    XCTAssertNotNil(formula, @"Formula is not parsed correctly: arctan(1)");
+    XCTAssertEqualWithAccuracy(45, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testMax
@@ -296,7 +322,9 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: max(3,4)");
-    XCTAssertEqual(4, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual(4, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
 - (void) testMin
@@ -313,10 +341,12 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: min(3,4)");
-    XCTAssertEqual(3, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
+    
+    Formula *formula = [[Formula alloc] initWithFormulaElement:parseTree];
+    XCTAssertEqual(3, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:self.spriteObject], @"Formula interpretation is not as expected");
 }
 
-- (FormulaElement*)getFormulaElement:(NSString*)tag value:(NSString*)value
+- (Formula*)getFormula:(NSString*)tag value:(NSString*)value
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:tag]];
@@ -325,7 +355,7 @@
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
     
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
-    return [internParser parseFormulaForSpriteObject:nil];
+    return [[Formula alloc] initWithFormulaElement:[internParser parseFormulaForSpriteObject:nil]];
 }
 
 @end

@@ -24,17 +24,24 @@
 #import "Formula.h"
 #import "FormulaElement.h"
 #import "Operators.h"
+#import "SpriteObject.h"
 #import "InternToken.h"
 #import "InternFormulaParser.h"
 #import "InternFormulaParserException.h"
 #import <float.h>
-#include <math.h>
+#import <math.h>
+#import "Pocket_Code-Swift.h"
 
 @interface FormulaEditorTest : XCTestCase
-
+@property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
 @implementation FormulaEditorTest
+
+- (void)setUp
+{
+    self.formulaManager = [FormulaManager new];
+}
 
 - (void)testGetInternTokenList
 {
@@ -48,7 +55,6 @@
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: ( - 1 )");
-    XCTAssertEqual(-1.0, [[parseTree interpretRecursiveForSprite:nil] doubleValue], @"Formula interpretation is not as expected");
     
     NSMutableArray *internTokenListAfterConversion = [parseTree getInternTokenList];
     XCTAssertEqual([internTokenListAfterConversion count], [internTokenList count], @"Generate InternTokenList from Tree error");
@@ -63,28 +69,33 @@
 
 - (void)testInterpretNonExistingUserVariable
 {
+    // TODO move to FormulaManagerTest
     FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:USER_VARIABLE
                                                                            value:@"notExistingUserVariable"
                                                                        leftChild:nil
                                                                       rightChild:nil
                                                                           parent:nil];
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertEqual(0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Not existing UserVariable misinterpretation");
+    XCTAssertEqual(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], @"Not existing UserVariable misinterpretation");
 }
 
 - (void)testInterpretNonExistingUserList
 {
+    // TODO move to FormulaManagerTest
     FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:USER_LIST
                                                                            value:@"notExistingUserList"
                                                                        leftChild:nil
                                                                       rightChild:nil
                                                                           parent:nil];
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertEqual(0, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Not existing UserList misinterpretation");
+    XCTAssertEqual(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], @"Not existing UserList misinterpretation");
 }
 
 - (void)testInterpretNotExisitingUnaryOperator
 {
+    // TODO move to FormulaManagerTest
     FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR
                                                                            value:[Operators getName:PLUS]
                                                                        leftChild:nil
@@ -93,12 +104,14 @@
                                                                                   value:@"1.0" leftChild:nil
                                                                                   rightChild:nil parent:nil]
                                                                           parent:nil];
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertThrowsSpecific([formulaElement interpretRecursiveForSprite:nil], InternFormulaParserException, @"Not existing unary operator misinterpretation");
+    XCTAssertEqual(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]]);
 }
 
 - (void)testCheckDegeneratedDoubleValues
 {
+    // TODO move to FormulaManagerTest
     FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:NUMBER
                                                                            value:[NSString stringWithFormat:@"%f", DBL_MAX]
                                                                        leftChild:nil
@@ -134,7 +147,9 @@
                                                                                               parent:nil]
                                                    parent:nil];
     
-    XCTAssertTrue(isnan([[formulaElement interpretRecursiveForSprite:nil] doubleValue]), @"Degenerated double values error");
+    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
+    
+    XCTAssertTrue(isnan([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]]), @"Degenerated double values error");
 }
 
 - (void)testIsLogicalOperator
@@ -172,46 +187,7 @@
                                                       rightChild: nil
                                                           parent:nil];
     
-    XCTAssertTrue(![formulaElement containsElement:NUMBER], @"ContainsElement: Operator \" + \" should not have been found!");
-    
+    XCTAssertTrue(![formulaElement containsElement:NUMBER], @"ContainsElement: Operator \" + \" should not have been found!");    
 }
-
-//- (void)testClone
-//{
-//    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:MINUS]
-//                                                                      leftChild:[[FormulaElement alloc] initWithElementType:NUMBER value:@"0.0" leftChild:nil rightChild:nil parent:nil]
-//                                                                      rightChild:[[FormulaElement alloc] initWithElementType:USER_VARIABLE value:@"user-variable" leftChild:nil rightChild:nil parent:nil]
-//                                                                          parent:nil];
-//    
-//    NSMutableArray *internTokenList = [formulaElement getInternTokenList];
-//    
-//    FormulaElement *clonedFormulaElement = [formulaElement clone];
-//    NSMutableArray *internTokenListAfterClone = [clonedFormulaElement getInternTokenList];
-//    
-//    for (int index = 0; index < [internTokenListAfterClone count]; index++) {
-//        XCTAssertTrue(((InternToken*)[internTokenListAfterClone objectAtIndex:index]).internTokenType == ((InternToken*)[internTokenList objectAtIndex:index]).internTokenType
-//                   && [((InternToken*)[internTokenListAfterClone objectAtIndex:index]).tokenStringValue isEqualToString:((InternToken*)[internTokenList objectAtIndex:index]).tokenStringValue],
-//                      @"Clone error");
-//        
-//    }
-//    
-//    formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR value:[Operators getName:MINUS]
-//                                                      leftChild:nil
-//                                                     rightChild:[[FormulaElement alloc] initWithElementType:USER_VARIABLE value:@"user-variable" leftChild:nil rightChild:nil parent:nil]
-//                                                         parent:nil];
-//    
-//    internTokenList = [formulaElement getInternTokenList];
-//    
-//    clonedFormulaElement = [formulaElement clone];
-//    internTokenListAfterClone = [clonedFormulaElement getInternTokenList];
-//    
-//    for (int index = 0; index < [internTokenListAfterClone count]; index++) {
-//        XCTAssertTrue(((InternToken*)[internTokenListAfterClone objectAtIndex:index]).internTokenType == ((InternToken*)[internTokenList objectAtIndex:index]).internTokenType
-//                   && [((InternToken*)[internTokenListAfterClone objectAtIndex:index]).tokenStringValue isEqualToString:((InternToken*)[internTokenList objectAtIndex:index]).tokenStringValue],
-//                      @"Clone error");
-//    }
-//    
-//}
-
 
 @end

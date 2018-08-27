@@ -22,6 +22,18 @@
 
 protocol FormulaManagerProtocol {
     
+    func interpretDouble(formula: Formula, spriteObject: SpriteObject) -> Double
+    
+    func interpretFloat(formula: Formula, spriteObject: SpriteObject) -> Float
+    
+    func interpretInteger(formula: Formula, spriteObject: SpriteObject) -> Int
+    
+    func interpretBool(formula: Formula, spriteObject: SpriteObject) -> Bool
+    
+    func interpretString(formula: Formula, spriteObject: SpriteObject) -> String
+    
+    func interpret(formula: Formula, spriteObject: SpriteObject) -> AnyObject
+    
     func setup(for program: Program, and scene: CBScene)
     
     func setup(for formula: Formula)

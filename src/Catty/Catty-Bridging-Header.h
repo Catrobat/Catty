@@ -116,6 +116,7 @@
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "Operators.h"
 
 // UserVariable
 #import "UserVariable.h"

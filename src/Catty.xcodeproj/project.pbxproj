@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2DE385082105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
 		2DE385092105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
+		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
+		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
+		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */; };
@@ -1228,6 +1231,9 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDownloaderMock.swift; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
+		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
+		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
+		4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Interpreter.swift"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Resources.swift"; sourceTree = "<group>"; };
@@ -4151,7 +4157,9 @@
 			isa = PBXGroup;
 			children = (
 				4CAB93392132753A00AEB86D /* FormulaManager.swift */,
-				4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */,
+				4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */,
+				4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */,
+				4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */,
 			);
 			name = Formula;
 			path = PlayerEngine/Formula;
@@ -6766,6 +6774,7 @@
 				AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */,
 				AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */,
 				AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */,
+				4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -8358,6 +8367,7 @@
 				4C72EA3D2108ED0800E7407F /* TouchManager.swift in Sources */,
 				4C0F9F69204BD19400E71B2D /* SetBackgroundBrick+CBXMLHandler.m in Sources */,
 				4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */,
+				4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */,
 				F4A2AFB72110D49900C53234 /* LetterFunction.swift in Sources */,
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
@@ -8365,6 +8375,7 @@
 				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
+				4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */,
 				9218B2011CC4AB75007B4C60 /* YKImageCropperView.m in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
 				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
@@ -8489,6 +8500,7 @@
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */,
+				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,

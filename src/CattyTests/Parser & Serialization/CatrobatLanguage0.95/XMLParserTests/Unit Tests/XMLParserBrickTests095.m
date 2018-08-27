@@ -20,13 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "XMLParserBrickTests093.h"
+#import "XMLAbstractTest.h"
 #import "CBXMLParserHelper.h"
 #import "ChangeVariableBrick+CBXMLHandler.h"
+#import "Pocket_Code-Swift.h"
 
-@interface XMLParserBrickTests095 : XMLParserBrickTests093
+@interface XMLParserBrickTests095: XMLAbstractTest
 
 @property (nonatomic, strong) CBXMLSerializerContext *serializerContext;
+@property (nonatomic, strong) CBXMLParserContext *parserContext;
+@property (nonatomic, strong) FormulaManager *formulaManager;
+
 @end
 
 @implementation XMLParserBrickTests095

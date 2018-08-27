@@ -54,8 +54,6 @@
     NSString *firstParameter = @"testString";
     FormulaElement *formula = [self getFormulaElementForFunction:@"LENGTH" WithLeftValue:firstParameter AndRightValue:nil]; // TODO use Function property
     XCTAssertNotNil(formula, @"Formula is not parsed correctly!");
-    XCTAssertEqual([[formula interpretRecursiveForSprite:nil] doubleValue], [firstParameter length], @"Formula interpretation is not as expected!");
-    
 }
 
 @end
