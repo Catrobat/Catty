@@ -40,7 +40,6 @@
     }
 
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        //return Double(Int(rawValue / 2))
         return rawValue
     }
     
