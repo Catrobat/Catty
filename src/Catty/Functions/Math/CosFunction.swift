@@ -39,6 +39,6 @@ class CosFunction: SingleParameterDoubleFunction {
     }
     
     func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: (type(of: self).position))
+        return .math(position: type(of: self).position)
     }
 }

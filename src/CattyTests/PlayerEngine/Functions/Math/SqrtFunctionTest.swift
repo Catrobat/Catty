@@ -29,11 +29,11 @@ class SqrtFunctionTest: XCTestCase {
     var function: SqrtFunction!
     
     override func setUp() {
-        self.function = SqrtFunction()
+        function = SqrtFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

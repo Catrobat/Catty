@@ -37,11 +37,11 @@ final class DateWeekdaySensorTest: XCTestCase {
     var sensor: DateWeekdaySensorMock!
     
     override func setUp() {
-        self.sensor = DateWeekdaySensorMock()
+        sensor = DateWeekdaySensorMock()
     }
     
     override func tearDown() {
-        self.sensor = nil
+        sensor = nil
     }
     
     func testTag() {
@@ -54,35 +54,35 @@ final class DateWeekdaySensorTest: XCTestCase {
     
     func testRawValue() {
         /* test Sunday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 17, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 17, hour: 10))!
         XCTAssertEqual(1, Int(sensor.rawValue()))
         
         /* test Monday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 18, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 18, hour: 10))!
         XCTAssertEqual(2, Int(sensor.rawValue()))
         
         /* test Tuesday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 10))!
         XCTAssertEqual(3, Int(sensor.rawValue()))
         
         /* test Wednesday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 20, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 20, hour: 10))!
         XCTAssertEqual(4, Int(sensor.rawValue()))
         
         /* test Thursday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 21, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 21, hour: 10))!
         XCTAssertEqual(5, Int(sensor.rawValue()))
         
         /* test Friday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 22, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 22, hour: 10))!
         XCTAssertEqual(6, Int(sensor.rawValue()))
         
         /* test Saturday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 23, hour: 10))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 23, hour: 10))!
         XCTAssertEqual(7, Int(sensor.rawValue()))
         
         /* test edge case - almost the beginning of the next day - Tuesday */
-        self.sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 23))!
+        sensor.mockDate = Calendar.current.date(from: DateComponents(year: 2018, month: 6, day: 19, hour: 23))!
         XCTAssertEqual(3, Int(sensor.rawValue()))
     }
     

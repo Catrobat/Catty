@@ -29,11 +29,11 @@ class NumberOfElementsFunctionTest: XCTestCase {
     var function: NumberOfItemsFunction!
     
     override func setUp() {
-        self.function = NumberOfItemsFunction()
+        function = NumberOfItemsFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

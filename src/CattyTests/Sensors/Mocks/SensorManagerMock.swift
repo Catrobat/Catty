@@ -22,14 +22,18 @@
 
 @testable import Pocket_Code
 
-// this class is subject to change when CBSensorManager is no Singleton anymore
+// this class is subject to change when SensorManager is no Singleton anymore
 final class SensorManagerMock: SensorManagerProtocol {
-    
+
     static var defaultValueForUndefinedSensor: Double = 0
-    public var sensors: [CBSensor]
-    private var isStarted = false
+    let sensors: [Sensor]
+    var isStarted = false
     
-    init(sensors: [CBSensor]) {
+    convenience init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+        self.init(sensors: [])
+    }
+    
+    init(sensors: [Sensor]) {
         self.sensors = sensors
     }
     
@@ -37,7 +41,7 @@ final class SensorManagerMock: SensorManagerProtocol {
         return false
     }
     
-    func sensor(tag: String) -> CBSensor? {
+    func sensor(tag: String) -> Sensor? {
         return nil
     }
     
@@ -45,11 +49,7 @@ final class SensorManagerMock: SensorManagerProtocol {
         return ResourceType.noResources
     }
     
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger {
-        return 0
-    }
-    
-    func name(sensor: CBSensor) -> String {
+    func name(sensor: Sensor) -> String {
         return ""
     }
     
@@ -59,22 +59,6 @@ final class SensorManagerMock: SensorManagerProtocol {
     
     func value(tag: String, spriteObject: SpriteObject?) -> AnyObject {
         return SensorManagerMock.defaultValueForUndefinedSensor as AnyObject
-    }
-    
-    func phiroSensors() -> [PhiroSensor] {
-        return [PhiroSensor]()
-    }
-    
-    func setup(for program: Program, and scene: CBScene) {
-        self.isStarted = true
-    }
-    
-    func setup(for formula: Formula) {
-        self.isStarted = true
-    }
-    
-    func stop() {
-        self.isStarted = false
     }
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {

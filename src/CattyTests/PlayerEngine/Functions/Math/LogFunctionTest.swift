@@ -29,11 +29,11 @@ class LogFunctionTest: XCTestCase {
     var function: LogFunction!
     
     override func setUp() {
-        self.function = LogFunction()
+        function = LogFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

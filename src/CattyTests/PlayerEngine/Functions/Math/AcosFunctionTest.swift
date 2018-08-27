@@ -29,11 +29,11 @@ class AcosFunctionTest: XCTestCase {
     var function: AcosFunction!
     
     override func setUp() {
-        self.function = AcosFunction()
+        function = AcosFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

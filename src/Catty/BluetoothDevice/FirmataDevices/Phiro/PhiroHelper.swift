@@ -23,6 +23,9 @@
 import Foundation
 
 @objc class PhiroHelper: NSObject {
+    
+    static var defaultSensor = PhiroFrontLeftSensor.self
+    
     var frontLeftSensor:Int = 0;
     var frontRightSensor:Int = 0;
     var sideLeftSensor:Int = 0;
@@ -59,46 +62,51 @@ import Foundation
     @objc static func sensorTags() -> [String] {
         var tags = [String]()
         
-        for sensor in CBSensorManager.shared.phiroSensors() {
-            tags.append(type(of: sensor).tag)
+        for sensor in sensors() {
+            tags.append(sensor.tag)
         }
         
         return tags
     }
     
     @objc static func defaultTag() -> String {
-        return self.defaultSensor().tag
+        return defaultSensor.tag
     }
     
     @objc static func pinNumber(tag: String) -> Int {
-        guard let sensor = sensor(tag: tag) else { return defaultSensor().pinNumber }
-        return type(of: sensor).pinNumber
+        guard let sensor = sensor(tag: tag) else { return defaultSensor.pinNumber }
+        return sensor.pinNumber
     }
     
     @objc static func tag(pinNumber: Int) -> String {
-        guard let sensor = sensor(pinNumber: pinNumber) else { return defaultSensor().tag }
-        return type(of: sensor).tag
+        guard let sensor = sensor(pinNumber: pinNumber) else { return defaultSensor.tag }
+        return sensor.tag
     }
     
-    static func sensor(tag: String) -> PhiroSensor? {
-        for sensor in CBSensorManager.shared.phiroSensors() {
-            if type(of: sensor).tag == tag {
+    static func sensor(tag: String) -> PhiroSensor.Type? {
+        for sensor in sensors() {
+            if sensor.tag == tag {
                 return sensor
             }
         }
         return nil
     }
     
-    static func sensor(pinNumber: Int) -> PhiroSensor? {
-        for sensor in CBSensorManager.shared.phiroSensors() {
-            if type(of: sensor).pinNumber == pinNumber {
+    static func sensor(pinNumber: Int) -> PhiroSensor.Type? {
+        for sensor in sensors() {
+            if sensor.pinNumber == pinNumber {
                 return sensor
             }
         }
         return nil
     }
     
-    static func defaultSensor() -> PhiroSensor.Type {
-        return PhiroFrontLeftSensor.self
+    static func sensors() -> [PhiroSensor.Type] {
+        return [PhiroSideLeftSensor.self,
+                PhiroSideRightSensor.self,
+                PhiroFrontLeftSensor.self,
+                PhiroFrontRightSensor.self,
+                PhiroBottomLeftSensor.self,
+                PhiroBottomLeftSensor.self]
     }
 }

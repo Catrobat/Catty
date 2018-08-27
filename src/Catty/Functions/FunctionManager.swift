@@ -26,7 +26,7 @@ import BluetoothHelper
     
     @objc public static let shared = FunctionManager()
     public static var defaultValueForUndefinedFunction: Double = 0
-    private var functionMap = [String: CBFunction]()
+    private var functionMap = [String: Function]()
     
     private var bluetoothService: BluetoothService
     
@@ -40,7 +40,7 @@ import BluetoothHelper
     private func registerFunctions() {
         let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
         
-        let functionList: [CBFunction] = [
+        let functionList: [Function] = [
             SinFunction(),
             CosFunction(),
             TanFunction(),
@@ -82,7 +82,7 @@ import BluetoothHelper
         return type(of: function).requiredResource
     }
     
-    func function(tag: String) -> CBFunction? {
+    func function(tag: String) -> Function? {
         return self.functionMap[tag]
     }
     
@@ -125,21 +125,6 @@ import BluetoothHelper
         }
         
         return value
-    }
-    
-    @objc(setupFunctionsForProgram: andScene:)
-    func setup(for program: Program, and scene: CBScene) {
-        // Start dependencies
-    }
-    
-    @objc(setupFunctionsForFormula:)
-    func setup(for formula: Formula) {
-        // Start dependencies
-    }
-    
-    @objc
-    func stop() {
-        // Stop dependencies
     }
     
     func formulaEditorItems() -> [FormulaEditorItem] {

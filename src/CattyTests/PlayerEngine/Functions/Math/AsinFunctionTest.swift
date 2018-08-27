@@ -29,11 +29,11 @@ class AsinFunctionTest: XCTestCase {
     var function: AsinFunction!
     
     override func setUp() {
-        self.function = AsinFunction()
+        function = AsinFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

@@ -24,7 +24,6 @@
 #import "Util.h"
 #import "Script.h"
 #import "AudioManager.h"
-#import "SensorHandler.h"
 #import "SaveToProjectActivity.h"
 #import "LoadingView.h"
 #import "FlashHelper.h"

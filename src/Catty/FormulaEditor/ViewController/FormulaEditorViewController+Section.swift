@@ -23,17 +23,17 @@
 extension FormulaEditorViewController {
     
     @objc func initMathSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: self.object)
+        let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
 
     @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: self.object)
+        let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
     
     @objc func initSensorSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
-        let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: self.object)
+        let items = formulaManager.formulaEditorItemsForDeviceSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
     
@@ -83,12 +83,12 @@ extension FormulaEditorViewController {
         scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: CGFloat(buttons.count) * buttonHeight)
     }
     
-    private func handleInput(for sensor: CBSensor) {
+    private func handleInput(for sensor: Sensor) {
         self.internFormula.handleKeyInput(for: sensor)
         self.handleInput()
     }
     
-    private func handleInput(for function: CBFunction) {
+    private func handleInput(for function: Function) {
         self.internFormula.handleKeyInput(for: function)
         self.handleInput()
     }

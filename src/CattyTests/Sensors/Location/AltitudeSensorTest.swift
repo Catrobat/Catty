@@ -30,13 +30,13 @@ final class AltitudeSensorTest: XCTestCase {
     var sensor: AltitudeSensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = AltitudeSensor { [weak self] in self?.locationManager }
+        locationManager = LocationManagerMock()
+        sensor = AltitudeSensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.locationManager = nil
+        sensor = nil
+        locationManager = nil
     }
     
     func testDefaultRawValue() {
@@ -46,28 +46,28 @@ final class AltitudeSensorTest: XCTestCase {
     
     func testRawValue() {
         // sea level
-        self.locationManager.altitude = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
+        locationManager.altitude = 0
+        XCTAssertEqual(0, sensor.rawValue())
         
         // below sea level
-        self.locationManager.altitude = -250
-        XCTAssertEqual(-250, self.sensor.rawValue())
+        locationManager.altitude = -250
+        XCTAssertEqual(-250, sensor.rawValue())
         
         // field
-        self.locationManager.altitude = 600
-        XCTAssertEqual(600, self.sensor.rawValue())
+        locationManager.altitude = 600
+        XCTAssertEqual(600, sensor.rawValue())
         
         // mountain
-        self.locationManager.altitude = 1500
-        XCTAssertEqual(1500, self.sensor.rawValue())
+        locationManager.altitude = 1500
+        XCTAssertEqual(1500, sensor.rawValue())
         
         // Mt. Everest
-        self.locationManager.altitude = 8848
-        XCTAssertEqual(8848, self.sensor.rawValue())
+        locationManager.altitude = 8848
+        XCTAssertEqual(8848, sensor.rawValue())
         
         // float attitude
-        self.locationManager.altitude = 2555.875
-        XCTAssertEqual(2555.875, self.sensor.rawValue())
+        locationManager.altitude = 2555.875
+        XCTAssertEqual(2555.875, sensor.rawValue())
     }
     
     func testConvertToStandardized() {

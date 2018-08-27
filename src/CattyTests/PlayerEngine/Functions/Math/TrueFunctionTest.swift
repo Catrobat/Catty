@@ -29,11 +29,11 @@ class TrueFunctionTest: XCTestCase {
     var function: TrueFunction!
     
     override func setUp() {
-        self.function = TrueFunction()
+        function = TrueFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

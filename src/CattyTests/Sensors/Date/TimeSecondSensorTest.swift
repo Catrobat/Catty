@@ -37,11 +37,11 @@ final class TimeSecondSensorTest: XCTestCase {
     var sensor: TimeSecondSensorMock!
     
     override func setUp() {
-        self.sensor = TimeSecondSensorMock()
+        sensor = TimeSecondSensorMock()
     }
     
     override func tearDown() {
-        self.sensor = nil
+        sensor = nil
     }
     
     func testTag() {

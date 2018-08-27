@@ -29,11 +29,11 @@ class RoundFunctionTest: XCTestCase {
     var function: RoundFunction!
     
     override func setUp() {
-        self.function = RoundFunction()
+        function = RoundFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

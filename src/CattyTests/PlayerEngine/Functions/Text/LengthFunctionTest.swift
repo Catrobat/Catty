@@ -29,11 +29,11 @@ class LengthFunctionTest: XCTestCase {
     var function: LengthFunction!
     
     override func setUp() {
-        self.function = LengthFunction()
+        function = LengthFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

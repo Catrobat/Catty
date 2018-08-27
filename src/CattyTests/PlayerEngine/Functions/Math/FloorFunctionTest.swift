@@ -29,11 +29,11 @@ class FloorFunctionTest: XCTestCase {
     var function: FloorFunction!
     
     override func setUp() {
-        self.function = FloorFunction()
+        function = FloorFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

@@ -29,11 +29,11 @@ class MinFunctionTest: XCTestCase {
     var function: MinFunction!
     
     override func setUp() {
-        self.function = MinFunction()
+        function = MinFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

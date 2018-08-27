@@ -29,11 +29,11 @@ class AtanFunctionTest: XCTestCase {
     var function: AtanFunction!
     
     override func setUp() {
-        self.function = AtanFunction()
+        function = AtanFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

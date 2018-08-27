@@ -29,11 +29,11 @@ class TanFunctionTest: XCTestCase {
     var function: TanFunction!
     
     override func setUp() {
-        self.function = TanFunction()
+        function = TanFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

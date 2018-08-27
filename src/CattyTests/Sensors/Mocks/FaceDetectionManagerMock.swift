@@ -20,32 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-
 @testable import Pocket_Code
 
-final class FormulaManagerTest: XCTestCase {
+final class FaceDetectionManagerMock: FaceDetectionManagerProtocol {
     
-    var manager: FormulaManagerProtocol!
-    var sensorManager: SensorManagerMock!
-    var functionManager: FunctionManagerMock!
-    var spriteObject: SpriteObject!
+    var isFaceDetected: Bool? = false
+    var facePositionX: Double? = 0
+    var facePositionY: Double? = 0
+    var faceSize: CGRect? = CGRect.zero
     
-    override func setUp() {
-        self.sensorManager = SensorManagerMock(sensors: [])
-        self.functionManager = FunctionManagerMock(functions: [])
-        self.manager = FormulaManager(sensorManager: sensorManager, functionManager: functionManager)
-        
-        self.spriteObject = SpriteObjectMock()
+    var isAvailable = true
+    var isStarted = false
+    
+    func start() {
+        isStarted = true
     }
     
-    func testFormulaEditorItems() {
-        XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
-        
-        functionManager.functions = [FunctionMock(), FunctionMock()]
-        XCTAssertEqual(2, manager.formulaEditorItems(spriteObject: spriteObject).count)
-        
-        sensorManager.sensors = [SensorMock()]
-        XCTAssertEqual(3, manager.formulaEditorItems(spriteObject: spriteObject).count)
+    func stop() {
+        isStarted = false
+    }
+    
+    func reset() {
+        isFaceDetected = false
+        facePositionX = 0
+        facePositionY = 0
+        faceSize = CGRect.zero
+    }
+    
+    func available() -> Bool {
+        return isAvailable
     }
 }

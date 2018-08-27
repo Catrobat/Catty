@@ -29,11 +29,11 @@ class MaxFunctionTest: XCTestCase {
     var function: MaxFunction!
     
     override func setUp() {
-        self.function = MaxFunction()
+        function = MaxFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

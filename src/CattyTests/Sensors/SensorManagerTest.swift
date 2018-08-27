@@ -24,9 +24,9 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class CBSensorManagerTest: XCTestCase {
+final class SensorManagerTest: XCTestCase {
 
-    private var manager: SensorManagerProtocol = CBSensorManager.shared
+    private var manager: SensorManagerProtocol = SensorManager.shared
 
     override func setUp() {
     }
@@ -48,6 +48,9 @@ final class CBSensorManagerTest: XCTestCase {
     }
     
     func testRequiredResource() {
+        XCTAssertEqual(ResourceType.noResources, manager.requiredResource(tag: "invalidTag"))
+        
+        //let sensor = SensorMock()
         // TODO
     }
     

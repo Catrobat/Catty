@@ -29,11 +29,11 @@ class RandFunctionTest: XCTestCase {
     var function: RandFunction!
     
     override func setUp() {
-        self.function = RandFunction()
+        function = RandFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

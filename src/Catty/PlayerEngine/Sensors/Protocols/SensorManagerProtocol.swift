@@ -26,27 +26,19 @@ protocol SensorManagerProtocol {
     
     static var defaultValueForUndefinedSensor: Double { get set }
     
+    init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService)
+    
     func exists(tag: String) -> Bool
     
-    func sensor(tag: String) -> CBSensor?
+    func sensor(tag: String) -> Sensor?
     
     func requiredResource(tag: String) -> ResourceType
     
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
-    
-    func name(sensor: CBSensor) -> String
+    func name(sensor: Sensor) -> String
     
     func name(tag: String) -> String?
     
     func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem]
-    
-    func phiroSensors() -> [PhiroSensor]
-    
-    func setup(for program: Program, and scene:CBScene)
-    
-    func setup(for formula: Formula)
-    
-    func stop()
 }

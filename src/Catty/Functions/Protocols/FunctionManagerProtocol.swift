@@ -26,19 +26,13 @@ protocol FunctionManagerProtocol {
     
     func exists(tag: String) -> Bool
     
-    func function(tag: String) -> CBFunction?
+    func function(tag: String) -> Function?
     
     func requiredResource(tag: String) -> ResourceType
     
     func name(tag: String) -> String?
     
     func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
-    
-    func setup(for program: Program, and scene:CBScene)
-    
-    func setup(for formula: Formula)
-    
-    func stop()
     
     func formulaEditorItems() -> [FormulaEditorItem]
 }

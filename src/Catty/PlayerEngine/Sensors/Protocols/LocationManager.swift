@@ -23,6 +23,15 @@
 protocol LocationManager {
     var heading: Heading? { get }
     var location: Location? { get }
+    
+    static func locationServicesEnabled() -> Bool
+    static func headingAvailable() -> Bool
+    
+    func requestWhenInUseAuthorization()
+    func startUpdatingHeading()
+    func startUpdatingLocation()
+    func stopUpdatingHeading()
+    func stopUpdatingLocation()
 }
 
 protocol Heading {

@@ -29,11 +29,11 @@ class ContainsFunctionTest: XCTestCase {
     var function: ContainsFunction!
     
     override func setUp() {
-        self.function = ContainsFunction()
+        function = ContainsFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

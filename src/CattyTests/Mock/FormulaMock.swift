@@ -20,29 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreMotion/CoreMotion.h>
-#import "SensorManager.h"
-#import <AVFoundation/AVFoundation.h>
+@testable import Pocket_Code
 
-@interface SensorHandler : NSObject <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
-
-
-+ (instancetype)sharedSensorHandler;
-
-- (CMRotationRate) rotationRate;
-- (CMAcceleration) acceleration;
-- (CMMagneticField) magneticField;
-
-- (double) valueForSensor:(Sensor)sensor;
-
-- (void) stopSensors;
-- (void)faceDetectionInit;
-
-- (BOOL)locationAvailable;
-- (BOOL)compassAvailable;
-- (BOOL)accelerometerAvailable;
-- (BOOL)gyroAvailable;
-- (BOOL)magnetometerAvailable;
-- (BOOL)loudnessAvailable;
-@end
+final class FormulaMock: Formula {
+    let requiredResources: Int
+    
+    init(requiredResource: ResourceType) {
+        self.requiredResources = requiredResource.rawValue
+        super.init()
+    }
+    
+    init(requiredResources: Int) {
+        self.requiredResources = requiredResources
+        super.init()
+    }
+    
+    override func getRequiredResources() -> Int {
+        return requiredResources
+    }
+}

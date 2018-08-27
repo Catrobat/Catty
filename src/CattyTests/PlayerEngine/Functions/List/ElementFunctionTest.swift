@@ -29,11 +29,11 @@ class ElementFunctionTest: XCTestCase {
     var function: ElementFunction!
     
     override func setUp() {
-        self.function = ElementFunction()
+        function = ElementFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

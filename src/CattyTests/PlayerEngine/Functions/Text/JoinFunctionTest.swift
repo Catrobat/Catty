@@ -29,11 +29,11 @@ class JoinFunctionTest: XCTestCase {
     var function: JoinFunction!
     
     override func setUp() {
-        self.function = JoinFunction()
+        function = JoinFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

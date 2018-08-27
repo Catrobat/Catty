@@ -22,14 +22,22 @@
 
 @testable import Pocket_Code
 
-final class SensorMock: CBSensor {
+final class SensorMock: Sensor {
     static var tag = "tag"
     static var name = "name"
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources
-    static var section = FormulaEditorSection.math(position: 10)
+    private let section: FormulaEditorSection
+    
+    init(formulaEditorSection: FormulaEditorSection) {
+        self.section = formulaEditorSection
+    }
+    
+    init() {
+        self.section = .hidden
+    }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return SensorMock.section
+        return section
     }
 }

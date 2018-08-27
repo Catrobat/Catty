@@ -30,13 +30,13 @@ final class FingerTouchedSensorTest: XCTestCase {
     var sensor: FingerTouchedSensor!
     
     override func setUp() {
-        self.touchManager = TouchManagerMock()
-        self.sensor = FingerTouchedSensor { [weak self] in self?.touchManager }
+        touchManager = TouchManagerMock()
+        sensor = FingerTouchedSensor { [weak self] in self?.touchManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.touchManager = nil
+        sensor = nil
+        touchManager = nil
     }
     
     func testDefaultRawValue() {
@@ -45,11 +45,11 @@ final class FingerTouchedSensorTest: XCTestCase {
     }
     
     func testRawValue() {
-        self.touchManager.isScreenTouched = true
-        XCTAssertEqual(1.0, self.sensor.rawValue())
+        touchManager.isScreenTouched = true
+        XCTAssertEqual(1.0, sensor.rawValue())
         
-        self.touchManager.isScreenTouched = false
-        XCTAssertEqual(0.0, self.sensor.rawValue())
+        touchManager.isScreenTouched = false
+        XCTAssertEqual(0.0, sensor.rawValue())
     }
     
     func testConvertToStandardized() {

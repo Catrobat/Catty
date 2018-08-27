@@ -30,13 +30,13 @@ final class InclinationYSensorTest: XCTestCase {
     var sensor: InclinationYSensor!
     
     override func setUp() {
-        self.motionManager = MotionManagerMock()
-        self.sensor = InclinationYSensor { [weak self] in self?.motionManager }
+        motionManager = MotionManagerMock()
+        sensor = InclinationYSensor { [weak self] in self?.motionManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.motionManager = nil
+        sensor = nil
+        motionManager = nil
     }
     
     func testDefaultRawValue() {
@@ -46,27 +46,27 @@ final class InclinationYSensorTest: XCTestCase {
     
     func testRawValue() {
         // test maximum value
-        self.motionManager.attitude = (pitch: Double.pi/2, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
+        motionManager.attitude = (pitch: Double.pi/2, roll: 0)
+        XCTAssertEqual(sensor.rawValue(), Double.pi/2, accuracy: 0.0001)
         
         // test minimum value
-        self.motionManager.attitude = (pitch: -Double.pi/2, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/2, accuracy: 0.0001)
+        motionManager.attitude = (pitch: -Double.pi/2, roll: 0)
+        XCTAssertEqual(sensor.rawValue(), -Double.pi/2, accuracy: 0.0001)
         
         // test no inclination
-        self.motionManager.attitude = (pitch: 0, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), 0, accuracy: 0.0001)
+        motionManager.attitude = (pitch: 0, roll: 0)
+        XCTAssertEqual(sensor.rawValue(), 0, accuracy: 0.0001)
         
         // tests inside the range
-        self.motionManager.attitude = (pitch: Double.pi/3, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), Double.pi/3, accuracy: 0.0001)
+        motionManager.attitude = (pitch: Double.pi/3, roll: 0)
+        XCTAssertEqual(sensor.rawValue(), Double.pi/3, accuracy: 0.0001)
         
-        self.motionManager.attitude = (pitch: -Double.pi/6, roll: 0)
-        XCTAssertEqual(self.sensor.rawValue(), -Double.pi/6, accuracy: 0.0001)
+        motionManager.attitude = (pitch: -Double.pi/6, roll: 0)
+        XCTAssertEqual(sensor.rawValue(), -Double.pi/6, accuracy: 0.0001)
     }
     
     func testConvertToStandardizedScreenUp() {
-        self.motionManager.zAcceleration = -0.5 // or any other negative value read by acceleration the sensors
+        motionManager.zAcceleration = -0.5 // or any other negative value read by acceleration the sensors
         
         // no inclination
         XCTAssertEqual(sensor.convertToStandardized(rawValue: 0), 0, accuracy: 0.0001)
@@ -82,7 +82,7 @@ final class InclinationYSensorTest: XCTestCase {
     }
     
     func testConvertToStandardizedScreenDown() {
-        self.motionManager.zAcceleration = 0.5 //or any other positive value read by the acceleration sensors
+        motionManager.zAcceleration = 0.5 //or any other positive value read by the acceleration sensors
         
         // half down - home button down
         XCTAssertEqual(sensor.convertToStandardized(rawValue: Double.pi/4), 135, accuracy: 0.0001)

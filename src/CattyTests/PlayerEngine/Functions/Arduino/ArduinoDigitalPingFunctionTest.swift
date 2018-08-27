@@ -30,13 +30,13 @@ class ArduinoDigitalPingFunctionTest: XCTestCase {
     var bluetoothService: BluetoothService!
     
     override func setUp() {
-        self.bluetoothService = BluetoothService.sharedInstance()
-        self.function = ArduinoDigitalPinFunction { [ weak self ] in self?.bluetoothService }
+        bluetoothService = BluetoothService.sharedInstance()
+        function = ArduinoDigitalPinFunction { [ weak self ] in self?.bluetoothService }
     }
     
     override func tearDown() {
-        self.bluetoothService = nil
-        self.function = nil
+        bluetoothService = nil
+        function = nil
     }
     
     func testDefaultValue() {

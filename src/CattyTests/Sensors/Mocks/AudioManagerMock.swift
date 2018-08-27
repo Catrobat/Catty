@@ -24,10 +24,15 @@ final class AudioManagerMock: AudioManagerProtocol {
     
     var mockedLoudnessInDecibels: Double?
     
+    var isAvailable = true
+    var isStarted = false
+    
     func startLoudnessRecorder() {
+        isStarted = true
     }
     
     func stopLoudnessRecorder() {
+        isStarted = false
     }
     
     func loudness() -> Double? {
@@ -35,6 +40,6 @@ final class AudioManagerMock: AudioManagerProtocol {
     }
     
     func loudnessAvailable() -> Bool {
-        return true
+        return isAvailable
     }
 }

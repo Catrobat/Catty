@@ -30,8 +30,8 @@ final class LocationAccuracySensorTest: XCTestCase {
     var sensor: LocationAccuracySensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = LocationAccuracySensor { [weak self] in self?.locationManager }
+        locationManager = LocationManagerMock()
+        sensor = LocationAccuracySensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {

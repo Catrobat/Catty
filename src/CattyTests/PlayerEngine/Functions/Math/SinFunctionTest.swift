@@ -29,11 +29,11 @@ class SinFunctionTest: XCTestCase {
     var function: SinFunction!
     
     override func setUp() {
-        self.function = SinFunction()
+        function = SinFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

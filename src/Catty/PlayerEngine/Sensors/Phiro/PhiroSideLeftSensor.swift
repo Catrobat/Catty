@@ -22,7 +22,7 @@
 
 @objc class PhiroSideLeftSensor : NSObject, PhiroSensor {
     
-    static let tag = "side_left"
+    @objc static let tag = "side_left"
     static let name = kUIFESensorPhiroSideLeft
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
@@ -42,6 +42,7 @@
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue
     }
+    
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return .hidden

@@ -29,11 +29,11 @@ class PowFunctionTest: XCTestCase {
     var function: PowFunction!
     
     override func setUp() {
-        self.function = PowFunction()
+        function = PowFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

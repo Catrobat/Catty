@@ -112,6 +112,10 @@
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */; };
+		4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78A2132A83D00870CE2 /* FormulaMock.swift */; };
+		4C28D78D2132AA2800870CE2 /* FaceDetectionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */; };
+		4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */; };
+		4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
 		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
 		4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */; };
@@ -268,10 +272,10 @@
 		4C994DDB207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */; };
 		4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */; };
 		4C994DDF207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */; };
-		4C994DF2207A3CF000C415FD /* CBSensorManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */; };
+		4C994DF2207A3CF000C415FD /* SensorManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEC207A3CEF00C415FD /* SensorManagerTest.swift */; };
 		4C994DF3207A3CF000C415FD /* InclinationXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */; };
 		4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */; };
-		4C994E08207A3D4100C415FD /* CBSensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFB207A3D4100C415FD /* CBSensorManager.swift */; };
+		4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFB207A3D4100C415FD /* SensorManager.swift */; };
 		4C994E0A207A3D4100C415FD /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFE207A3D4100C415FD /* Sensor.swift */; };
 		4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E06207A3D4100C415FD /* LoudnessSensor.swift */; };
 		4C994E11207A3D4100C415FD /* SensorManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */; };
@@ -286,6 +290,8 @@
 		4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */; };
 		4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */; };
 		4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */; };
+		4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB93392132753A00AEB86D /* FormulaManager.swift */; };
+		4CAB933C2132753A00AEB86D /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */; };
 		4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */; };
 		4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */; };
 		4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */; };
@@ -305,7 +311,6 @@
 		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
 		4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B9212EA90A006E4720 /* FunctionMock.swift */; };
 		4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BB212EAC1F006E4720 /* SensorMock.swift */; };
-		4CC614BE212EAD8F006E4720 /* FormulaManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */; };
 		4CC614C0212EB330006E4720 /* SensorManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BF212EB330006E4720 /* SensorManagerMock.swift */; };
 		4CC614C2212EB5F8006E4720 /* FunctionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */; };
 		4CC6CE592104715700AA2A04 /* CBSpriteNode+Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */; };
@@ -378,7 +383,7 @@
 		4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */; };
 		4CE5C56F1E0AD71800FD021C /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56D1E0AD71800FD021C /* ProgramTests.m */; };
 		4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE5C56E1E0AD71800FD021C /* RequiredResources.m */; };
-		4CE67888210C4B1D00D90B5D /* CBFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67887210C4B1D00D90B5D /* CBFunction.swift */; };
+		4CE67888210C4B1D00D90B5D /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE67887210C4B1D00D90B5D /* Function.swift */; };
 		4CE6788B210C4E1C00D90B5D /* FunctionParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */; };
 		4CE6788D210C503600D90B5D /* FunctionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788C210C503600D90B5D /* FunctionManager.swift */; };
 		4CE6788F210C506B00D90B5D /* FunctionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */; };
@@ -467,8 +472,6 @@
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
-		4CF85924212E817C008571B8 /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF85923212E817C008571B8 /* FormulaManager.swift */; };
-		4CF85926212E81A5008571B8 /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */; };
 		4CFAD35E1CFAB3EC0019C636 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */; };
 		4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */; };
 		4CFAD3611CFAB9AA0019C636 /* transparency-rgba.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */; };
@@ -703,7 +706,6 @@
 		92FF2E991A24C7D800093DA7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6E1A24C7D800093DA7 /* zip.c */; };
 		92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E721A24C7D800093DA7 /* NavigationController.m */; };
 		92FF2E9B1A24C7D800093DA7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E751A24C7D800093DA7 /* Reachability.m */; };
-		92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7A1A24C7D800093DA7 /* SensorManager.m */; };
 		92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */; };
 		92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */; };
 		92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E811A24C7D800093DA7 /* SSZipArchive.m */; };
@@ -945,7 +947,6 @@
 		AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F08E1BC05FCE00D1E954 /* BroadcastScriptCell.m */; };
 		AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */; };
 		AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0921BC05FCE00D1E954 /* WhenScriptCell.m */; };
-		AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E781A24C7D800093DA7 /* SensorHandler.m */; };
 		AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
 		AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAF22831BC0CA0F0076F11E /* SetXBrick+Instruction.swift */; };
@@ -1373,6 +1374,10 @@
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
 		4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectMutableCopyTests.m; path = SpriteObject/SpriteObjectMutableCopyTests.m; sourceTree = "<group>"; };
 		4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNodeTests.swift; path = PlayerEngine/CBSpriteNodeTests.swift; sourceTree = "<group>"; };
+		4C28D78A2132A83D00870CE2 /* FormulaMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaMock.swift; sourceTree = "<group>"; };
+		4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerMock.swift; sourceTree = "<group>"; };
+		4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerResourceTests.swift; path = Formula/FormulaManagerResourceTests.swift; sourceTree = "<group>"; };
+		4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerTests.swift; path = Formula/FormulaManagerTests.swift; sourceTree = "<group>"; };
 		4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserBrickTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.h"; sourceTree = "<group>"; };
 		4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBrickTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.m"; sourceTree = "<group>"; };
 		4C2A00BA1B5546DF00CD4492 /* XMLParserFormulaTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserFormulaTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests093.h"; sourceTree = "<group>"; };
@@ -1574,10 +1579,10 @@
 		4C994DDA207A26DC00C415FD /* DeleteItemOfUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = DeleteItemOfUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/DeleteItemOfUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		4C994DDC207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ReplaceItemInUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ReplaceItemInUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
-		4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSensorManagerTest.swift; sourceTree = "<group>"; };
+		4C994DEC207A3CEF00C415FD /* SensorManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerTest.swift; sourceTree = "<group>"; };
 		4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InclinationXSensorTest.swift; sourceTree = "<group>"; };
 		4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorHandlerTests.swift; sourceTree = "<group>"; };
-		4C994DFB207A3D4100C415FD /* CBSensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSensorManager.swift; sourceTree = "<group>"; };
+		4C994DFB207A3D4100C415FD /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		4C994DFE207A3D4100C415FD /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		4C994E06207A3D4100C415FD /* LoudnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoudnessSensor.swift; sourceTree = "<group>"; };
 		4C994E07207A3D4100C415FD /* SensorManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerProtocol.swift; sourceTree = "<group>"; };
@@ -1593,6 +1598,8 @@
 		4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextBrickTests.swift; sourceTree = "<group>"; };
+		4CAB93392132753A00AEB86D /* FormulaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManager.swift; sourceTree = "<group>"; };
+		4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerProtocol.swift; sourceTree = "<group>"; };
 		4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSceneTouchTests.swift; path = Scene/CBSceneTouchTests.swift; sourceTree = "<group>"; };
 		4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionYSensor.swift; sourceTree = "<group>"; };
 		4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionXSensor.swift; sourceTree = "<group>"; };
@@ -1618,7 +1625,6 @@
 		4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItemTest.swift; sourceTree = "<group>"; };
 		4CC614B9212EA90A006E4720 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
 		4CC614BB212EAC1F006E4720 /* SensorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
-		4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaManagerTest.swift; sourceTree = "<group>"; };
 		4CC614BF212EB330006E4720 /* SensorManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorManagerMock.swift; sourceTree = "<group>"; };
 		4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerMock.swift; sourceTree = "<group>"; };
 		4CC6CE582104715700AA2A04 /* CBSpriteNode+Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CBSpriteNode+Sensor.swift"; sourceTree = "<group>"; };
@@ -1692,7 +1698,7 @@
 		4CE3D68E2107B68600005629 /* FaceDetectionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerProtocol.swift; sourceTree = "<group>"; };
 		4CE5C56D1E0AD71800FD021C /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		4CE5C56E1E0AD71800FD021C /* RequiredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequiredResources.m; sourceTree = "<group>"; };
-		4CE67887210C4B1D00D90B5D /* CBFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBFunction.swift; sourceTree = "<group>"; };
+		4CE67887210C4B1D00D90B5D /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		4CE6788A210C4E1C00D90B5D /* FunctionParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionParameter.swift; sourceTree = "<group>"; };
 		4CE6788C210C503600D90B5D /* FunctionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManager.swift; sourceTree = "<group>"; };
 		4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -1786,8 +1792,6 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
-		4CF85923212E817C008571B8 /* FormulaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManager.swift; path = Catty/PlayerEngine/Formula/FormulaManager.swift; sourceTree = SOURCE_ROOT; };
-		4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerProtocol.swift; path = Catty/PlayerEngine/Formula/FormulaManagerProtocol.swift; sourceTree = SOURCE_ROOT; };
 		4CFAD35C1CFAB3EC0019C636 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomExtensionsTests.m; path = Extensions/CustomExtensionsTests.m; sourceTree = "<group>"; };
 		4CFAD35D1CFAB3EC0019C636 /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageExtensionTests.swift; path = Extensions/UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		4CFAD3601CFAB9AA0019C636 /* transparency-rgba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgba.png"; path = "CattyTests/Resources/Images/transparency-rgba.png"; sourceTree = SOURCE_ROOT; };
@@ -2198,10 +2202,6 @@
 		92FF2E721A24C7D800093DA7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		92FF2E741A24C7D800093DA7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		92FF2E751A24C7D800093DA7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		92FF2E771A24C7D800093DA7 /* SensorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorHandler.h; sourceTree = "<group>"; };
-		92FF2E781A24C7D800093DA7 /* SensorHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandler.m; sourceTree = "<group>"; };
-		92FF2E791A24C7D800093DA7 /* SensorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorManager.h; sourceTree = "<group>"; };
-		92FF2E7A1A24C7D800093DA7 /* SensorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorManager.m; sourceTree = "<group>"; };
 		92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IMPORTANT.caf; sourceTree = "<group>"; };
 		92FF2E7D1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharkfoodMuteSwitchDetector.h; sourceTree = "<group>"; };
 		92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharkfoodMuteSwitchDetector.m; sourceTree = "<group>"; };
@@ -3297,6 +3297,14 @@
 			name = SpriteObject;
 			sourceTree = "<group>";
 		};
+		4C28D7872132A82700870CE2 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				4C28D78A2132A83D00870CE2 /* FormulaMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		4C2A00C41B5547EB00CD4492 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -3412,6 +3420,7 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
+				4C28D7872132A82700870CE2 /* Mock */,
 				4CC614B3212EA838006E4720 /* Dto */,
 				4C14CF1A1EC991DA00E53B25 /* UserVariable */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
@@ -3429,7 +3438,8 @@
 				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
 				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
 				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
-				4CC614BD212EAD8F006E4720 /* FormulaManagerTest.swift */,
+				4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */,
+				4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -4019,18 +4029,18 @@
 		4C994DEB207A3CEF00C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
-				4C994DEC207A3CEF00C415FD /* CBSensorManagerTest.swift */,
-				F4E6E569210DA55100D86FE6 /* Touch */,
 				F45A8D6821072DE6007C0D38 /* Audio */,
-				F45A8D58210714AE007C0D38 /* Phiro */,
 				4CF072AF20D6764E00F93AB5 /* Date */,
 				4C1023E720F5C7C1004702C3 /* Heading */,
 				F47992FA20F4987E0088EE27 /* Location */,
 				59D008EE208E435B000539E7 /* Mocks */,
 				4C994DED207A3CEF00C415FD /* Motion */,
 				4C11795A20AED57D006C6E32 /* Object */,
+				F45A8D58210714AE007C0D38 /* Phiro */,
+				F4E6E569210DA55100D86FE6 /* Touch */,
 				4C6D14EB210B12D9006147BD /* SensorHandlerDeviceTests.m */,
 				4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */,
+				4C994DEC207A3CEF00C415FD /* SensorManagerTest.swift */,
 			);
 			path = Sensors;
 			sourceTree = "<group>";
@@ -4061,7 +4071,7 @@
 				4CF0728220D657EB00F93AB5 /* Phiro */,
 				592EF6E42094B3C700BD6000 /* Protocols */,
 				4CF072A120D670CF00F93AB5 /* Touch */,
-				4C994DFB207A3D4100C415FD /* CBSensorManager.swift */,
+				4C994DFB207A3D4100C415FD /* SensorManager.swift */,
 			);
 			name = Sensors;
 			path = PlayerEngine/Sensors;
@@ -4135,6 +4145,16 @@
 			);
 			name = Licenses;
 			path = Resources/Licenses;
+			sourceTree = "<group>";
+		};
+		4CAB93382132753A00AEB86D /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				4CAB93392132753A00AEB86D /* FormulaManager.swift */,
+				4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */,
+			);
+			name = Formula;
+			path = PlayerEngine/Formula;
 			sourceTree = "<group>";
 		};
 		4CB1FB721BC2D74F0000A2FE /* Protocol */ = {
@@ -4291,7 +4311,7 @@
 		4CE67886210C4B0200D90B5D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4CE67887210C4B1D00D90B5D /* CBFunction.swift */,
+				4CE67887210C4B1D00D90B5D /* Function.swift */,
 				4CE6788E210C506B00D90B5D /* FunctionManagerProtocol.swift */,
 			);
 			path = Protocols;
@@ -4513,15 +4533,6 @@
 			path = Catty/PlayerEngine/Scene/Extensions;
 			sourceTree = SOURCE_ROOT;
 		};
-		4CF85922212E8149008571B8 /* Formula */ = {
-			isa = PBXGroup;
-			children = (
-				4CF85923212E817C008571B8 /* FormulaManager.swift */,
-				4CF85925212E81A5008571B8 /* FormulaManagerProtocol.swift */,
-			);
-			path = Formula;
-			sourceTree = "<group>";
-		};
 		591596D22035635F0015F74A /* UIBarButtonItem+InvisibleButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4669,6 +4680,7 @@
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
 				4CC614BB212EAC1F006E4720 /* SensorMock.swift */,
 				4CC614BF212EB330006E4720 /* SensorManagerMock.swift */,
+				4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -5422,7 +5434,6 @@
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				92FF2E731A24C7D800093DA7 /* Reachability */,
-				92FF2E761A24C7D800093DA7 /* SensorHelper */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
@@ -5530,17 +5541,6 @@
 				92FF2E751A24C7D800093DA7 /* Reachability.m */,
 			);
 			path = Reachability;
-			sourceTree = "<group>";
-		};
-		92FF2E761A24C7D800093DA7 /* SensorHelper */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E771A24C7D800093DA7 /* SensorHandler.h */,
-				92FF2E781A24C7D800093DA7 /* SensorHandler.m */,
-				92FF2E791A24C7D800093DA7 /* SensorManager.h */,
-				92FF2E7A1A24C7D800093DA7 /* SensorManager.m */,
-			);
-			path = SensorHelper;
 			sourceTree = "<group>";
 		};
 		92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */ = {
@@ -6906,7 +6906,7 @@
 				AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */,
 				AAF6D9C81BC0914100686849 /* CBPlayerConfig.swift */,
 				CAD232181B10F12600570370 /* DataModel */,
-				4CF85922212E8149008571B8 /* Formula */,
+				4CAB93382132753A00AEB86D /* Formula */,
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
 				4CE67884210C4AE000D90B5D /* Functions */,
 				4C9E07691CD9D47E00B14B2F /* Helper */,
@@ -8122,6 +8122,7 @@
 				4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */,
 				F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */,
 				4C6FE169212D2D2E0067B7D5 /* ExpFunctionTest.swift in Sources */,
+				4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */,
 				4C6FE163212D2D2E0067B7D5 /* ModFunctionTest.swift in Sources */,
 				5973F245202EF3A000A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
 				F406DE4320FE0E7B00F795D0 /* ColorSensorTest.swift in Sources */,
@@ -8147,7 +8148,7 @@
 				F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
-				4C994DF2207A3CF000C415FD /* CBSensorManagerTest.swift in Sources */,
+				4C994DF2207A3CF000C415FD /* SensorManagerTest.swift in Sources */,
 				926197F01BF3249E006D1A61 /* ArduinoTests.swift in Sources */,
 				F4201CFF20D7A2F10030181B /* TimeSecondSensorTest.swift in Sources */,
 				926197F41BF32500006D1A61 /* PhiroTests.swift in Sources */,
@@ -8211,6 +8212,7 @@
 				F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */,
 				F4201CFD20D7A11F0030181B /* TimeMinuteSensorTest.swift in Sources */,
 				599E64A6202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift in Sources */,
+				4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */,
 				4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */,
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
@@ -8249,7 +8251,6 @@
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
 				E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */,
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
-				4CC614BE212EAD8F006E4720 /* FormulaManagerTest.swift in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				F48E946D20D6F89F007E782E /* DateDaySensorTest.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
@@ -8261,6 +8262,7 @@
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
+				4C28D78D2132AA2800870CE2 /* FaceDetectionManagerMock.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */,
@@ -8272,6 +8274,7 @@
 				F4201CF520D79C900030181B /* TimeHourSensorTest.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
+				4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */,
 				F4C5A99720F09BAF00C067A0 /* AccelerationXSensorTest.swift in Sources */,
 				F4E6E56F210DA5A500D86FE6 /* FingerXSensorTest.swift in Sources */,
 				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
@@ -8322,7 +8325,6 @@
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
-				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
 				AABCB3EC1BB368C2009F67D2 /* CBFrontendSequenceFilters.swift in Sources */,
@@ -8343,7 +8345,7 @@
 				F4E6E598210E03FE00D86FE6 /* ExpFunction.swift in Sources */,
 				4C0F9F25204ADBC800E71B2D /* IfThenLogicEndBrick.m in Sources */,
 				AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */,
-				4C994E08207A3D4100C415FD /* CBSensorManager.swift in Sources */,
+				4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				4C0F9F82204BD20A00E71B2D /* SpeakAndWaitBrick+Instruction.swift in Sources */,
@@ -8468,7 +8470,7 @@
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
 				BACDF35C1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */,
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
-				4CE67888210C4B1D00D90B5D /* CBFunction.swift in Sources */,
+				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
 				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
@@ -8481,7 +8483,6 @@
 				4C0F9F9D204BD2B100E71B2D /* SetBackgroundBrickCell.m in Sources */,
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				AA74EE3A1BC0543700D1E954 /* PlaySoundBrick+Instruction.swift in Sources */,
-				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
 				AA74EFE71BC05B5F00D1E954 /* LoopBeginBrick.m in Sources */,
 				5947F6D5200CF3C70079DBCE /* MediaLibraryViewController.swift in Sources */,
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
@@ -8640,7 +8641,7 @@
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
-				4CF85926212E81A5008571B8 /* FormulaManagerProtocol.swift in Sources */,
+				4CAB933C2132753A00AEB86D /* FormulaManagerProtocol.swift in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
 				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,
@@ -8740,7 +8741,7 @@
 				4CF072A720D6710F00F93AB5 /* FingerYSensor.swift in Sources */,
 				F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
-				4CF85924212E817C008571B8 /* FormulaManager.swift in Sources */,
+				4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				927F79D71BEE39A3008D1635 /* BrickCellPhiroIfSensorData.m in Sources */,
 				4C48ED2920EF9AEC00784CD5 /* AudioManager+Loudness.swift in Sources */,

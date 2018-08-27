@@ -37,11 +37,11 @@ final class DateDaySensorTest: XCTestCase {
     var sensor: DateDaySensorMock!
     
     override func setUp() {
-        self.sensor = DateDaySensorMock()
+        sensor = DateDaySensorMock()
     }
     
     override func tearDown() {
-        self.sensor = nil
+        sensor = nil
     }
     
     func testTag() {

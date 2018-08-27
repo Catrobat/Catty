@@ -30,13 +30,13 @@ final class LatitudeSensorTest: XCTestCase {
     var sensor: LatitudeSensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = LatitudeSensor { [weak self] in self?.locationManager }
+        locationManager = LocationManagerMock()
+        sensor = LatitudeSensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.locationManager = nil
+        sensor = nil
+        locationManager = nil
     }
     
     func testDefaultRawValue() {
@@ -46,28 +46,28 @@ final class LatitudeSensorTest: XCTestCase {
     
     func testRawValue() {
         // min value - South Pole
-        self.locationManager.latitude = -90
-        XCTAssertEqual(-90, self.sensor.rawValue())
+        locationManager.latitude = -90
+        XCTAssertEqual(-90, sensor.rawValue())
         
         // max value - North Pole
-        self.locationManager.latitude = 90
-        XCTAssertEqual(90, self.sensor.rawValue())
+        locationManager.latitude = 90
+        XCTAssertEqual(90, sensor.rawValue())
         
         // center
-        self.locationManager.latitude = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
+        locationManager.latitude = 0
+        XCTAssertEqual(0, sensor.rawValue())
         
         // London
-        self.locationManager.latitude = 51.5
-        XCTAssertEqual(51.5, self.sensor.rawValue())
+        locationManager.latitude = 51.5
+        XCTAssertEqual(51.5, sensor.rawValue())
         
         // Cape Town
-        self.locationManager.latitude = -33.92
-        XCTAssertEqual(-33.92, self.sensor.rawValue())
+        locationManager.latitude = -33.92
+        XCTAssertEqual(-33.92, sensor.rawValue())
         
         // Munich
-        self.locationManager.latitude = 48.13
-        XCTAssertEqual(48.13, self.sensor.rawValue())
+        locationManager.latitude = 48.13
+        XCTAssertEqual(48.13, sensor.rawValue())
     }
     
     func testConvertToStandardized() {

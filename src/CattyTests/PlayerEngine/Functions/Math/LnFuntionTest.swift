@@ -29,11 +29,11 @@ class LnFunctionTest: XCTestCase {
     var function: LnFunction!
     
     override func setUp() {
-        self.function = LnFunction()
+        function = LnFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

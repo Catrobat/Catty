@@ -29,11 +29,11 @@ class LetterFunctionTest: XCTestCase {
     var function: LetterFunction!
     
     override func setUp() {
-        self.function = LetterFunction()
+        function = LetterFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {

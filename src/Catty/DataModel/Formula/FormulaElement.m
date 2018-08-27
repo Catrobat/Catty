@@ -24,7 +24,6 @@
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
-#import "SensorHandler.h"
 #import "SpriteObject.h"
 #import "Util.h"
 #import "InternFormulaParserException.h"
@@ -151,7 +150,7 @@
             
         case SENSOR: {
             //NSDebug(@"SENSOR");
-            result = [[CBSensorManager shared] valueWithTag:self.value spriteObject:sprite];
+            result = [[SensorManager shared] valueWithTag:self.value spriteObject:sprite];
             break;
         }
             
@@ -576,7 +575,7 @@
         resources |= [self.rightChild getRequiredResources];
     }
     if (self.type == SENSOR) {
-        resources |= [[CBSensorManager shared] requiredResourceWithTag: self.value];
+        resources |= [[SensorManager shared] requiredResourceWithTag: self.value];
     }
     if (self.type == FUNCTION) {
         resources |= [[FunctionManager shared] requiredResourceWithTag: self.value];

@@ -29,11 +29,11 @@ class AbsFunctionTest: XCTestCase {
     var function: AbsFunction!
     
     override func setUp() {
-        self.function = AbsFunction()
+        function = AbsFunction()
     }
     
     override func tearDown() {
-        self.function = nil
+        function = nil
     }
     
     func testDefaultValue() {
