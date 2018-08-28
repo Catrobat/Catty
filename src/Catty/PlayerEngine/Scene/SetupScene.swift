@@ -41,20 +41,26 @@
         bcHandler.scheduler = scheduler
         let frontend = CBFrontend(logger: frontendLogger, program: program)
         frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
+        
         let backend = CBBackend(logger: backendLogger) // setup backend
+        let formulaManager = FormulaManager()
 
         let programSize = CGSize(
             width: CGFloat(program.header.screenWidth.floatValue),
             height: CGFloat(program.header.screenHeight.floatValue)
         )
 
-        return CBScene(
+        let scene = CBScene(
             size: programSize,
             logger: sceneLogger,
             scheduler: scheduler,
             frontend: frontend,
             backend: backend,
-            broadcastHandler: bcHandler
+            broadcastHandler: bcHandler,
+            formulaManager: formulaManager
         )
+        
+        scene.name = program.header.programName
+        return scene
     }
 }

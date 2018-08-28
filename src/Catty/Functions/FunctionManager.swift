@@ -20,23 +20,58 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import BluetoothHelper
+
 @objc class FunctionManager: NSObject, FunctionManagerProtocol {
     
     @objc public static let shared = FunctionManager()
     public static var defaultValueForUndefinedFunction: Double = 0
-    private var functionMap = [String: CBFunction]()
+    private var functionMap = [String: Function]()
+    
+    private var bluetoothService: BluetoothService
     
     private override init() {
+        bluetoothService = BluetoothService.sharedInstance()
+        
         super.init()
         registerFunctions()
     }
     
     private func registerFunctions() {
-        let functionList: [CBFunction] = [
+        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
+        
+        let functionList: [Function] = [
             SinFunction(),
+            CosFunction(),
+            TanFunction(),
+            LnFunction(),
+            LogFunction(),
+            PiFunction(),
+            SqrtFunction(),
+            RandFunction(),
+            AbsFunction(),
+            RoundFunction(),
+            ModFunction(),
+            AsinFunction(),
+            AcosFunction(),
+            AtanFunction(),
+            ExpFunction(),
+            PowFunction(),
+            FloorFunction(),
+            CeilFunction(),
+            MaxFunction(),
+            MinFunction(),
+            TrueFunction(),
+            FalseFunction(),
             JoinFunction(),
             LetterFunction(),
-            LengthFunction()
+            LengthFunction(),
+            ElementFunction(),
+            NumberOfItemsFunction(),
+            ContainsFunction(),
+            
+            ArduinoAnalogPinFunction(bluetoothServiceGetter: bluetoothServiceGetter),
+            ArduinoDigitalPinFunction(bluetoothServiceGetter: bluetoothServiceGetter)
         ]
         
         functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }
@@ -47,7 +82,7 @@
         return type(of: function).requiredResource
     }
     
-    func function(tag: String) -> CBFunction? {
+    func function(tag: String) -> Function? {
         return self.functionMap[tag]
     }
     
@@ -69,11 +104,11 @@
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
-        if let function = function as? ZeroParameterFunction {
+        if let function = function as? ZeroParameterDoubleFunction {
             value = function.value() as AnyObject
-        } else if let function = function as? SingleParameterFunction {
+        } else if let function = function as? SingleParameterDoubleFunction {
             value = function.value(parameter: firstParameter) as AnyObject
-        } else if let function = function as? DoubleParameterFunction {
+        } else if let function = function as? DoubleParameterDoubleFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
         } else if let function = function as? ZeroParameterStringFunction {
             value = function.value() as AnyObject
@@ -81,30 +116,24 @@
             value = function.value(parameter: firstParameter) as AnyObject
         } else if let function = function as? DoubleParameterStringFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter) as AnyObject
+        } else if let function = function as? ZeroParameterFunction {
+            value = function.value()
+        } else if let function = function as? SingleParameterFunction {
+            value = function.value(parameter: firstParameter)
+        } else if let function = function as? DoubleParameterFunction {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter)
         }
         
         return value
     }
     
-    func setup(for program: Program, and scene: CBScene) {
-        // TODO setup dependencies
-    }
-    
-    func stop() {
-        // TODO stop dependencies
-    }
-    
-    func functions() -> [CBFunction] {
-        var functions = [Int: CBFunction]()
+    func formulaEditorItems() -> [FormulaEditorItem] {
+        var items = [FormulaEditorItem]()
         
         for function in self.functionMap.values {
-            switch (type(of: function).formulaEditorSection()) {
-            case let .math(position):
-                functions[position] = function
-            default:
-                break;
-            }
+            items.append(FormulaEditorItem(function: function))
         }
-        return functions.sorted(by: { $0.0 < $1.0 }).map{ $1}
+        
+        return items
     }
 }

@@ -37,11 +37,11 @@ final class DateMonthSensorTest: XCTestCase {
     var sensor: DateMonthSensorMock!
     
     override func setUp() {
-        self.sensor = DateMonthSensorMock()
+        sensor = DateMonthSensorMock()
     }
     
     override func tearDown() {
-        self.sensor = nil
+        sensor = nil
     }
     
     func testTag() {
@@ -72,6 +72,6 @@ final class DateMonthSensorTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class LengthFunction: SingleParameterFunction {
+class LengthFunction: SingleParameterDoubleFunction {
     
     static var tag = "LENGTH"
     static var name = "length"
@@ -38,7 +38,7 @@ class LengthFunction: SingleParameterFunction {
         return Double(text.count)
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: type(of: self).position)
     }
 }

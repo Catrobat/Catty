@@ -30,13 +30,13 @@ final class AccelerationZSensorTest: XCTestCase {
     var sensor: AccelerationZSensor!
     
     override func setUp() {
-        self.motionManager = MotionManagerMock()
-        self.sensor = AccelerationZSensor { [weak self] in self?.motionManager }
+        motionManager = MotionManagerMock()
+        sensor = AccelerationZSensor { [weak self] in self?.motionManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.motionManager = nil
+        sensor = nil
+        motionManager = nil
     }
     
     func testDefaultRawValue() {
@@ -72,6 +72,6 @@ final class AccelerationZSensorTest: XCTestCase {
     }
    
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }

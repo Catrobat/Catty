@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class InclinationXSensor: DeviceSensor {
+@objc class InclinationXSensor: NSObject, DeviceSensor {
     
-    static let tag = "X_INCLINATION"
+    @objc static let tag = "X_INCLINATION"
     static let name = kUIFESensorInclinationX
     static let defaultRawValue = 0.0
     static let position = 50
@@ -50,7 +50,7 @@ class InclinationXSensor: DeviceSensor {
         return Util.radians(toDegree: -rawValue)
     }
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: type(of: self).position)
     }
 }

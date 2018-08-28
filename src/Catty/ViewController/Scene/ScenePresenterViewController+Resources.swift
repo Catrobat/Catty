@@ -45,6 +45,7 @@ import BluetoothHelper
     
     @nonobjc func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
         let requiredResources = program.getRequiredResources()
+        let formulaManager = FormulaManager()
         
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
@@ -65,11 +66,14 @@ import BluetoothHelper
         }
         
         // All other resources
-        let unavailableSensorResources = CBSensorManager.shared.getUnavailableResources(for: requiredResources)
+        let unavailableSensorResources = formulaManager.unavailableResources(for: requiredResources)
         var unavailableResourceNames = [String]()
         
         if (unavailableSensorResources & ResourceType.vibration.rawValue) > 0 {
             unavailableResourceNames.append(kLocalizedVibration)
+        }
+        if (unavailableSensorResources & ResourceType.deviceMotion.rawValue) > 0 {
+            unavailableResourceNames.append(kLocalizedSensorDeviceMotion)
         }
         if (unavailableSensorResources & ResourceType.location.rawValue) > 0 {
             unavailableResourceNames.append(kLocalizedSensorLocation)

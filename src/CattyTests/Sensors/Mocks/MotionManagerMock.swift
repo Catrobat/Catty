@@ -29,6 +29,11 @@ final class MotionManagerMock: MotionManager {
     var isGyroAvailable = true
     var isMagnetometerAvailable = true
     
+    var isGyroUpdateStarted = false
+    var isDeviceMotionUpdateStarted = false
+    var isAccelerometerUpdateStarted = false
+    var isMagnetometerUpdateStarted = false
+    
     var xAcceleration: Double = 0
     var yAcceleration: Double = 0
     var zAcceleration: Double = 0
@@ -75,6 +80,38 @@ final class MotionManagerMock: MotionManager {
                 x: self.xUserAcceleration, y: self.yUserAcceleration, z: self.zUserAcceleration
             )
         )
+    }
+    
+    func startGyroUpdates() {
+        isGyroUpdateStarted = true
+    }
+    
+    func startDeviceMotionUpdates() {
+        isDeviceMotionUpdateStarted = true
+    }
+    
+    func startAccelerometerUpdates() {
+        isAccelerometerUpdateStarted = true
+    }
+    
+    func stopAccelerometerUpdates() {
+        isAccelerometerUpdateStarted = false
+    }
+    
+    func startMagnetometerUpdates() {
+        isMagnetometerUpdateStarted = true
+    }
+    
+    func stopDeviceMotionUpdates() {
+        isDeviceMotionUpdateStarted = false
+    }
+    
+    func stopGyroUpdates() {
+        isGyroUpdateStarted = false
+    }
+    
+    func stopMagnetometerUpdates() {
+        isMagnetometerUpdateStarted = false
     }
 }
 

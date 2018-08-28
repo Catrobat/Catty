@@ -37,11 +37,11 @@ final class DateDaySensorTest: XCTestCase {
     var sensor: DateDaySensorMock!
     
     override func setUp() {
-        self.sensor = DateDaySensorMock()
+        sensor = DateDaySensorMock()
     }
     
     override func tearDown() {
-        self.sensor = nil
+        sensor = nil
     }
     
     func testTag() {
@@ -72,6 +72,6 @@ final class DateDaySensorTest: XCTestCase {
     }
    
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }

@@ -436,12 +436,6 @@
             <brick type="CameraBrick">
                 <spinnerSelectionID>0</spinnerSelectionID>
             </brick>
-            <brick type="CameraBrick">
-                <spinnerSelectionID>0</spinnerSelectionID>
-                <spinnerValues>
-                    <string>off</string><string>on</string>
-                </spinnerValues>
-            </brick>
             <brick type="SayBubbleBrick">
                 <formulaList>
                     <formula category="STRING">
@@ -491,6 +485,12 @@
             </brick>
             <brick type="ChooseCameraBrick">
                 <spinnerSelectionID>1</spinnerSelectionID>
+            </brick>
+            <brick type="CameraBrick">
+                <spinnerSelectionID>0</spinnerSelectionID>
+                <spinnerValues>
+                    <string>off</string><string>on</string>
+                </spinnerValues>
             </brick>
           </brickList>
           <isUserScript>false</isUserScript>

@@ -263,21 +263,21 @@
 
 - (void) testArcsin
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ARCSIN" value:@"1"]; // TODO use Function property
+    FormulaElement *parseTree = [self getFormulaElement:@"ASIN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arcsin(1)");
     XCTAssertEqualWithAccuracy(90, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArccos
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ARCCOS" value:@"0"]; // TODO use Function property
+    FormulaElement *parseTree = [self getFormulaElement:@"ACOS" value:@"0"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arccos(0)");
     XCTAssertEqualWithAccuracy(90, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }
 
 - (void) testArctan
 {
-    FormulaElement *parseTree = [self getFormulaElement:@"ARCTAN" value:@"1"]; // TODO use Function property
+    FormulaElement *parseTree = [self getFormulaElement:@"ATAN" value:@"1"]; // TODO use Function property
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: arctan(1)");
     XCTAssertEqualWithAccuracy(45, [[parseTree interpretRecursiveForSprite:nil] doubleValue], DELTA, @"Formula interpretation is not as expected");
 }

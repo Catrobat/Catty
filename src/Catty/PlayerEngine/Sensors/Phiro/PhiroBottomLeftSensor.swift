@@ -22,7 +22,7 @@
 
 @objc class PhiroBottomLeftSensor : NSObject, PhiroSensor {
     
-    static let tag = "bottom_left"
+    @objc static let tag = "bottom_left"
     static let name = kUIFESensorPhiroBottomLeft
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.bluetoothPhiro
@@ -43,10 +43,10 @@
         return rawValue
     }
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if UserDefaults.standard.bool(forKey: kUsePhiroBricks) == false {
             return .hidden
         }
-        return .device(position: position)
+        return .device(position: type(of: self).position)
     }
 }

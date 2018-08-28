@@ -30,13 +30,13 @@ final class LongitudeSensorTest: XCTestCase {
     var sensor: LongitudeSensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = LongitudeSensor { [weak self] in self?.locationManager }
+        locationManager = LocationManagerMock()
+        sensor = LongitudeSensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.locationManager = nil
+        sensor = nil
+        locationManager = nil
     }
     
     func testDefaultRawValue() {
@@ -46,28 +46,28 @@ final class LongitudeSensorTest: XCTestCase {
     
     func testRawValue() {
         // min value
-        self.locationManager.longitude = -180
-        XCTAssertEqual(-180, self.sensor.rawValue())
+        locationManager.longitude = -180
+        XCTAssertEqual(-180, sensor.rawValue())
         
         // max value
-        self.locationManager.longitude = 180
-        XCTAssertEqual(180, self.sensor.rawValue())
+        locationManager.longitude = 180
+        XCTAssertEqual(180, sensor.rawValue())
         
         // center
-        self.locationManager.longitude = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
+        locationManager.longitude = 0
+        XCTAssertEqual(0, sensor.rawValue())
         
         // London
-        self.locationManager.longitude = -0.127
-        XCTAssertEqual(-0.127, self.sensor.rawValue())
+        locationManager.longitude = -0.127
+        XCTAssertEqual(-0.127, sensor.rawValue())
         
         // Cape Town
-        self.locationManager.longitude = 18.424
-        XCTAssertEqual(18.424, self.sensor.rawValue())
+        locationManager.longitude = 18.424
+        XCTAssertEqual(18.424, sensor.rawValue())
         
         // Alaska
-        self.locationManager.longitude = -149.49
-        XCTAssertEqual(-149.49, self.sensor.rawValue())
+        locationManager.longitude = -149.49
+        XCTAssertEqual(-149.49, sensor.rawValue())
     }
     
     func testConvertToStandardized() {
@@ -83,7 +83,7 @@ final class LongitudeSensorTest: XCTestCase {
     }
   
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }
 

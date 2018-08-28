@@ -30,6 +30,15 @@ protocol MotionManager {
     var isAccelerometerAvailable: Bool { get }
     var isGyroAvailable: Bool { get }
     var isMagnetometerAvailable: Bool { get }
+    
+    func startGyroUpdates()
+    func startDeviceMotionUpdates()
+    func startAccelerometerUpdates()
+    func startMagnetometerUpdates()
+    func stopAccelerometerUpdates()
+    func stopDeviceMotionUpdates()
+    func stopGyroUpdates()
+    func stopMagnetometerUpdates()
 }
 
 protocol AccelerometerData {

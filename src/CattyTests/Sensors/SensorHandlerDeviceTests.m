@@ -22,8 +22,6 @@
 
 #import <XCTest/XCTest.h>
 #import <CoreMotion/CoreMotion.h>
-#import "SensorHandler.h"
-#import "SensorManager.h"
 
 @interface SensorHandlerDeviceTests : XCTestCase
 

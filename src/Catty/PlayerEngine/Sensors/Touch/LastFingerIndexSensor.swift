@@ -40,11 +40,10 @@
     }
 
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        //return Double(Int(rawValue / 2))
         return rawValue
     }
     
-    static func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .device(position: position)
+    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
+        return .device(position: type(of: self).position)
     }
 }

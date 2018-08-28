@@ -138,57 +138,57 @@ const double DELTA = 0.001;
 
 - (void)testArcSin
 {
-    FormulaElement *formula = [self getFormulaElementForFunction:@"ARCSIN" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
+    FormulaElement *formula = [self getFormulaElementForFunction:@"ASIN" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(0, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arcsin(0)");
     
     double sin90 = sin([Util degreeToRadians:90]);
-    formula = [self getFormulaElementForFunction:@"ARCSIN" WithLeftValue:[NSString stringWithFormat:@"%f", sin90] AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ASIN" WithLeftValue:[NSString stringWithFormat:@"%f", sin90] AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(90, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arcsin(sin(90))");
     
     double sinMinus90 = sin([Util degreeToRadians:-90]);
-    formula = [self getFormulaElementForFunction:@"ARCSIN" WithLeftValue:[NSString stringWithFormat:@"%f", sinMinus90] AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ASIN" WithLeftValue:[NSString stringWithFormat:@"%f", sinMinus90] AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(-90, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arcsin(sin(-90))");
     
-    formula = [self getFormulaElementForFunction:@"ARCSIN" WithLeftValue:@"1.5" AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ASIN" WithLeftValue:@"1.5" AndRightValue:nil]; // TODO use Function property
     double result = [[formula interpretRecursiveForSprite:nil]doubleValue];
     XCTAssertTrue(isnan(result), @"Wrong result for arcsin(1.5)");
 }
 
 - (void)testArcCos
 {
-    FormulaElement *formula = [self getFormulaElementForFunction:@"ARCCOS" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
+    FormulaElement *formula = [self getFormulaElementForFunction:@"ACOS" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(90, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arccos(0)");
     
-    formula = [self getFormulaElementForFunction:@"ARCCOS" WithLeftValue:@"1" AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ACOS" WithLeftValue:@"1" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(0, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arccos(1)");
     
-    formula = [self getFormulaElementForFunction:@"ARCCOS" WithLeftValue:@"-1" AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ACOS" WithLeftValue:@"-1" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(180, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arccos(-1)");
     
     double cos90 = cos([Util degreeToRadians:90]);
-    formula = [self getFormulaElementForFunction:@"ARCCOS" WithLeftValue:[NSString stringWithFormat:@"%f", cos90] AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ACOS" WithLeftValue:[NSString stringWithFormat:@"%f", cos90] AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(90, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arccos(cos(90))");
     
     double cos180 = cos([Util degreeToRadians:180]);
-    formula = [self getFormulaElementForFunction:@"ARCCOS" WithLeftValue:[NSString stringWithFormat:@"%f", cos180] AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ACOS" WithLeftValue:[NSString stringWithFormat:@"%f", cos180] AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(180, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arccos(cos(180))");
     
-    formula = [self getFormulaElementForFunction:@"ARCCOS" WithLeftValue:@"1.5" AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ACOS" WithLeftValue:@"1.5" AndRightValue:nil]; // TODO use Function property
     double result = [[formula interpretRecursiveForSprite:nil]doubleValue];
     XCTAssertTrue(isnan(result), @"Wrong result for arccos(1.5)");
 }
 
 - (void)testArcTan
 {
-    FormulaElement *formula = [self getFormulaElementForFunction:@"ARCTAN" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
+    FormulaElement *formula = [self getFormulaElementForFunction:@"ATAN" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(0, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arctan(0)");
     
     double tan60 = tan([Util degreeToRadians:60]);
-    formula = [self getFormulaElementForFunction:@"ARCTAN" WithLeftValue:[NSString stringWithFormat:@"%f", tan60] AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ATAN" WithLeftValue:[NSString stringWithFormat:@"%f", tan60] AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(60, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arctan(tan(60))");
     
     double tanMinus60 = tan([Util degreeToRadians:-60]);
-    formula = [self getFormulaElementForFunction:@"ARCTAN" WithLeftValue:[NSString stringWithFormat:@"%f", tanMinus60] AndRightValue:nil]; // TODO use Function property
+    formula = [self getFormulaElementForFunction:@"ATAN" WithLeftValue:[NSString stringWithFormat:@"%f", tanMinus60] AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(-60, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for arctan(tan(-60))");
 }
 

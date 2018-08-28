@@ -28,23 +28,24 @@ final class BackgroundNumberSensorTest: XCTestCase {
     
     var spriteObject: SpriteObjectMock!
     var spriteNode: CBSpriteNodeMock!
-    let sensor = BackgroundNumberSensor.self
+    var sensor: BackgroundNumberSensor!
     
     override func setUp() {
-        self.spriteObject = SpriteObjectMock()
-        self.spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        spriteObject = SpriteObjectMock()
+        spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
+        sensor = BackgroundNumberSensor()
     }
     
     override func tearDown() {
-        self.spriteObject = nil
+        spriteObject = nil
     }
     
     func testDefaultRawValue() {
         spriteNode.currentLook = nil
-        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObject))
         
         spriteNode = nil
-        XCTAssertEqual(sensor.defaultRawValue, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).rawValue(for: spriteObject))
     }
     
     func testRawValue() {
@@ -53,27 +54,27 @@ final class BackgroundNumberSensorTest: XCTestCase {
                                  Look(name: "third", andPath: "test3.png")]
         
         spriteNode.currentLook = (spriteObject.lookList[0] as! Look)
-        XCTAssertEqual(0, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(0, type(of: sensor).rawValue(for: spriteObject))
         
         spriteNode.currentLook = (spriteObject.lookList[1] as! Look)
-        XCTAssertEqual(1, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(1, type(of: sensor).rawValue(for: spriteObject))
         
         spriteNode.currentLook = (spriteObject.lookList[2] as! Look)
-        XCTAssertEqual(2, sensor.rawValue(for: spriteObject))
+        XCTAssertEqual(2, type(of: sensor).rawValue(for: spriteObject))
     }
     
     func testConvertToStandardized() {
-        XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 0, for: spriteObject))
-        XCTAssertEqual(2, sensor.convertToStandardized(rawValue: 1, for: spriteObject))
-        XCTAssertEqual(3, sensor.convertToStandardized(rawValue: 2, for: spriteObject))
+        XCTAssertEqual(1, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject))
+        XCTAssertEqual(2, type(of: sensor).convertToStandardized(rawValue: 1, for: spriteObject))
+        XCTAssertEqual(3, type(of: sensor).convertToStandardized(rawValue: 2, for: spriteObject))
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_BACKGROUND_NUMBER", sensor.tag)
+        XCTAssertEqual("OBJECT_BACKGROUND_NUMBER", type(of: sensor).tag)
     }
     
     func testRequiredResources() {
-        XCTAssertEqual(ResourceType.noResources, sensor.requiredResource)
+        XCTAssertEqual(ResourceType.noResources, type(of: sensor).requiredResource)
     }
     
     func testFormulaEditorSection() {
@@ -81,6 +82,6 @@ final class BackgroundNumberSensorTest: XCTestCase {
         XCTAssertEqual(.hidden, sensor.formulaEditorSection(for: spriteObject))
         
         spriteObject.background = true
-        XCTAssertEqual(.object(position: sensor.position), sensor.formulaEditorSection(for: spriteObject))
+        XCTAssertEqual(.object(position: type(of: sensor).position), sensor.formulaEditorSection(for: spriteObject))
     }
 }

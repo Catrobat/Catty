@@ -23,7 +23,7 @@
 final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
-    var logger: CBLogger
+    let logger: CBLogger
 
     // MARK: - Initializers
     init(logger: CBLogger) {

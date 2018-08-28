@@ -29,8 +29,6 @@
 #import "InternToExternGenerator.h"
 #import "InternFormulaState.h"
 
-@protocol CBSensor;
-
 typedef enum {
     LEFT = 600,
     MIDDLE,

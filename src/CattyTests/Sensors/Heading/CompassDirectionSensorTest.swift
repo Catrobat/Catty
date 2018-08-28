@@ -30,13 +30,13 @@ final class CompassDirectionSensorTest: XCTestCase {
     var sensor: CompassDirectionSensor!
     
     override func setUp() {
-        self.locationManager = LocationManagerMock()
-        self.sensor = CompassDirectionSensor { [weak self] in self?.locationManager }
+        locationManager = LocationManagerMock()
+        sensor = CompassDirectionSensor { [weak self] in self?.locationManager }
     }
     
     override func tearDown() {
-        self.sensor = nil
-        self.locationManager = nil
+        sensor = nil
+        locationManager = nil
     }
     
     func testDefaultRawValue() {
@@ -46,20 +46,20 @@ final class CompassDirectionSensorTest: XCTestCase {
     
     func testRawValue() {
         // N
-        self.locationManager.magneticHeading = 0
-        XCTAssertEqual(0, self.sensor.rawValue())
+        locationManager.magneticHeading = 0
+        XCTAssertEqual(0, sensor.rawValue())
         
         // E
-        self.locationManager.magneticHeading = 90
-        XCTAssertEqual(90, self.sensor.rawValue())
+        locationManager.magneticHeading = 90
+        XCTAssertEqual(90, sensor.rawValue())
         
         // S
-        self.locationManager.magneticHeading = 180
-        XCTAssertEqual(180, self.sensor.rawValue())
+        locationManager.magneticHeading = 180
+        XCTAssertEqual(180, sensor.rawValue())
         
         // W
-        self.locationManager.magneticHeading = 270
-        XCTAssertEqual(270, self.sensor.rawValue())
+        locationManager.magneticHeading = 270
+        XCTAssertEqual(270, sensor.rawValue())
         
     }
     
@@ -98,6 +98,6 @@ final class CompassDirectionSensorTest: XCTestCase {
     }
     
     func testFormulaEditorSection() {
-        XCTAssertEqual(.device(position: type(of: sensor).position), type(of: sensor).formulaEditorSection(for: SpriteObject()))
+        XCTAssertEqual(.device(position: type(of: sensor).position), sensor.formulaEditorSection(for: SpriteObject()))
     }
 }

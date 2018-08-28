@@ -107,6 +107,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setBrickCellFormulaData:brickCellData];
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
         [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+        
+        self.formulaManager = [FormulaManager new];
     }
     
     return self;
@@ -115,6 +117,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
+    self.formulaManager = nil;
 }
 
 - (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
@@ -434,14 +437,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
         Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
-        NSString *computedString;
-
+        
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
-                
-                computedString = [formula getResultForComputeDialog:brick.script.object];
-                [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
-
+                [self showComputeDialog:formula andSpriteObject:brick.script.object];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
                 [self showFormulaTooLongView];
@@ -452,8 +451,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     if (![brick allowsStringFormula]) {
                         [self showSyntaxErrorView];
                     } else {
-                        computedString = [formula getResultForComputeDialog:brick.script.object];
-                        [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
+                        [self showComputeDialog:formula andSpriteObject:brick.script.object];
                     }
                 }
                 
@@ -464,6 +462,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 break;
         }
     }
+}
+
+- (void)showComputeDialog:(Formula*)formula andSpriteObject:(SpriteObject*)spriteObject
+{
+    [self.formulaManager setupForFormula:formula];
+    
+    NSString *computedString = [formula getResultForComputeDialog:spriteObject];
+    [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
+    
+    [self.formulaManager stop];
 }
 
 #pragma mark - UI

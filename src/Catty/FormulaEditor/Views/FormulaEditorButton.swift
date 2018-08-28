@@ -24,21 +24,15 @@ import UIKit
 
 class FormulaEditorButton: UIButton {
     
-    var sensor: CBSensor? = nil
-    var function: CBFunction? = nil
+    var sensor: Sensor? = nil
+    var function: Function? = nil
     
-    public convenience init(sensor: CBSensor) {
+    public convenience init(formulaEditorItem: FormulaEditorItem) {
         self.init()
         
-        self.setTitle(type(of: sensor).name, for: .normal)
-        self.sensor = sensor
-    }
-    
-    public convenience init(function: CBFunction) {
-        self.init()
-        
-        self.setTitle(function.nameWithParameters(), for: .normal)
-        self.function = function
+        self.setTitle(formulaEditorItem.title, for: .normal)
+        self.sensor = formulaEditorItem.sensor
+        self.function = formulaEditorItem.function
     }
     
     private init() {
@@ -50,5 +44,4 @@ class FormulaEditorButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SinFunction: SingleParameterFunction {
+class SinFunction: SingleParameterDoubleFunction {
     
     static var tag = "SIN"
     static var name = "sin"
@@ -38,7 +38,7 @@ class SinFunction: SingleParameterFunction {
         return sin(Util.degree(toRadians: degree))
     }
     
-    static func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: position)
+    func formulaEditorSection() -> FormulaEditorSection {
+        return .math(position: type(of: self).position)
     }
 }
