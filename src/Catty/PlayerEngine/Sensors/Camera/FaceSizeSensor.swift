@@ -27,7 +27,6 @@ class FaceSizeSensor: DeviceSensor {
     static let defaultRawValue = 0.0
     static let position = 200
     static let requiredResource = ResourceType.faceDetection
-    var lastValue = 0.0
     
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     
@@ -37,13 +36,8 @@ class FaceSizeSensor: DeviceSensor {
     
     func rawValue() -> Double {
         guard let faceImage = self.getFaceDetectionManager()?.faceSize?.size else { return type(of: self).defaultRawValue }
-        
         let faceSize = faceImage.width * faceImage.height
-        
-        if faceSize > 0 {
-            lastValue = Double(faceSize)
-        }
-        return lastValue
+        return Double(faceSize)
     }
     
     func convertToStandardized(rawValue: Double) -> Double {

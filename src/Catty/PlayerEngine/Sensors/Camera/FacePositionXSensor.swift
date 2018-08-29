@@ -44,6 +44,9 @@ class FacePositionXSensor: DeviceSensor {
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
+        if rawValue == type(of: self).defaultRawValue {
+            return rawValue
+        }
         return rawValue - Double(Util.screenWidth()) / 3.8
     }
     

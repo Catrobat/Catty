@@ -25,7 +25,8 @@ import CoreLocation
 
 @objc class SensorManager: NSObject, SensorManagerProtocol {
     
-    @objc public static let shared = SensorManager(motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager(), audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
+    // TODO remove Singleton
+    @objc public static let shared = SensorManager(motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
     
     public static var defaultValueForUndefinedSensor: Double = 0
     private var sensorMap = [String: Sensor]()
@@ -88,9 +89,9 @@ import CoreLocation
             MultiFingerYSensor(),*/
              
             FaceDetectedSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
-            /*FaceSizeSensor(),
-            FacePositionXSensor(),
-            FacePositionYSensor(),*/
+            FaceSizeSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
+            FacePositionXSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
+            FacePositionYSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
             
             PhiroFrontLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
             PhiroFrontRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),

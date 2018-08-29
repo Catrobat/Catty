@@ -22,6 +22,9 @@
 
 class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVideoDataOutputSampleBufferDelegate {
     
+    // TODO remove Singleton
+    public static let shared = FaceDetectionManager()
+    
     var isFaceDetected: Bool?
     var facePositionX: Double?
     var facePositionY: Double?
@@ -41,6 +44,10 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
               let device = camera(for: cameraPosition()),
               let deviceInput = try? AVCaptureDeviceInput(device: device)
         else { return }
+        
+        if session.isRunning {
+            session.stopRunning()
+        }
         
         if session.canAddInput(deviceInput) {
             session.addInput(deviceInput)
@@ -103,30 +110,24 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         guard let features = self.faceDetector?.features(in: ciImage, options: imageOptions) else { return }
         
         var isFaceDetected = false
-        var facePositionX = 0.0
-        var facePositionY = 0.0
-        var faceSize = CGRect(x: 0, y: 0, width: 0, height: 0)
         
         for feature in features {
             if feature.type == CIFeatureTypeFace {
                 isFaceDetected = true
-                facePositionX = Double(feature.bounds.origin.x)
-                facePositionY = Double(feature.bounds.origin.y)
-                faceSize = feature.bounds
+                self.facePositionX = Double(feature.bounds.origin.x)
+                self.facePositionY = Double(feature.bounds.origin.y)
+                self.faceSize = feature.bounds
             }
         }
         
         self.isFaceDetected = isFaceDetected
-        self.facePositionX = facePositionX
-        self.facePositionY = facePositionY
-        self.faceSize = faceSize
     }
     
     func reset() -> Void {
         self.isFaceDetected = false
-        self.facePositionX = 0.0
-        self.facePositionY = 0.0
-        self.faceSize = CGRect(x: 0, y: 0, width: 0, height: 0)
+        self.facePositionX = nil
+        self.facePositionY = nil
+        self.faceSize = nil
     }
     
     private func camera(for cameraPosition: AVCaptureDevice.Position) -> AVCaptureDevice? {
@@ -139,7 +140,7 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
     }
     
     private func cameraPosition() -> AVCaptureDevice.Position {
-        return UserDefaults.standard.bool(forKey: kUseFrontCamera) ? .front : .back
+        return CameraPreviewHandler.shared().cameraPosition
     }
     
     private func exifOrientation(currentDeviceOrientation: UIDeviceOrientation) -> Int {

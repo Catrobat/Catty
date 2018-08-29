@@ -50,7 +50,7 @@
     
     // TODO remove Singletons
     [[AudioManager sharedAudioManager] stopAllSounds];
-    [CameraPreviewHandler resetSharedInstance];
+    [[CameraPreviewHandler shared] stopCamera];
     
     [[FlashHelper sharedFlashHandler] reset];
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
