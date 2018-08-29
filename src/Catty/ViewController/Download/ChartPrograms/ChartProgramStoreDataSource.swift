@@ -27,7 +27,7 @@ protocol ChartProgramStoreDataSourceDelegate: class {
 protocol SelectedChartProgramsDataSource: class {
     func selectedCell(dataSource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
     func scrollViewHandler(dataSource: ChartProgramStoreDataSource)
-    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError?)
+    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError)
 }
 
 class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
@@ -210,7 +210,9 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         
         if currentViewBottomEdge >= checkPoint {
             self.fetchItems(type: self.programType) { error in
-                self.delegate?.errorAlertHandler(dataSource: self, error: error)
+                 if error != nil {
+                self.delegate?.errorAlertHandler(dataSource: self, error: error!)
+                }
             }
             self.delegate?.scrollViewHandler(dataSource: self)
         }

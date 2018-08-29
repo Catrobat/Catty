@@ -221,10 +221,10 @@ extension ChartProgramsStoreViewController {
         chartProgramsTableView.reloadData()
     }
     
-    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError?) {
+    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
-        self.showConnectionIssueAlertAndDismiss(error: error!)
+        self.showConnectionIssueAlertAndDismiss(error: error)
         self.chartProgramsTableView.separatorStyle = .singleLine
         return
     }
