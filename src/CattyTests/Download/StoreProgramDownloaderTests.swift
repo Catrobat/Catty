@@ -24,9 +24,9 @@ import XCTest
 @testable import Pocket_Code
 import DVR
 
-class FeaturedProgramsStoreViewControllerTests: XCTestCase {
+class StoreProgramsDowloaderTests: XCTestCase {
     
-    // MARK: - Fetch Featured Programs
+    // MARK: - Fetch Programs
     
     func testfetchFeaturedProgramsSucceeds() {
         let dvrSession = Session(cassetteName: "StoreProgramDownloader.fetchFeaturedPrograms.success")

@@ -46,10 +46,10 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initSegmentedControl()
-        setupTableView()
         shouldHideLoadingView = false
         dataSource.delegate = self
+        setupTableView()
+        initSegmentedControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +129,10 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
     }
     
     private func fetchData(type: ProgramType) {
-        self.showLoadingView()
+        DispatchQueue.main.async {
+            self.showLoadingView()
+        }
+        
         self.dataSource.fetchItems(type: type) { error in
             if error != nil {
                 self.shouldHideLoadingView = true

@@ -154,17 +154,19 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? ChartProgramCell {
             cell.tag = indexPath.row
-            if programs.isEmpty == false, self.programs.count >= indexPath.row {
+            if programs.isEmpty == false {
                 cell.chartImage = nil
                 DispatchQueue.global().async {
-                    guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
-                    guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
-                    guard let data = try? Data(contentsOf: imageUrl) else { return }
-                    DispatchQueue.main.async {
-                        // this check is supposed to prevent setting an asynchronously downloaded
-                        // image into a cell that has already been reused since then
-                        guard cell.tag == indexPath.row else { return }
-                        cell.chartImage = UIImage(data: data)
+                    if indexPath.row < self.programs.count {
+                        guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
+                        guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
+                        guard let data = try? Data(contentsOf: imageUrl) else { return }
+                        DispatchQueue.main.async {
+                            // this check is supposed to prevent setting an asynchronously downloaded
+                            // image into a cell that has already been reused since then
+                            guard cell.tag == indexPath.row else { return }
+                            cell.chartImage = UIImage(data: data)
+                        }
                     }
                 }
                 cell.chartTitle = programs[indexPath.row].projectName

@@ -23,7 +23,7 @@
 import XCTest
 @testable import Pocket_Code
 
-class RecentProgramsStoreDataSourceTests: XCTestCase {
+class ChartProgramsStoreDataSourceTests: XCTestCase {
     
     var downloaderMock: StoreProgramDownloaderMock!
     var tableView: UITableView!
@@ -40,7 +40,7 @@ class RecentProgramsStoreDataSourceTests: XCTestCase {
         super.tearDown()
     }
     
-    // MARK: - RecentProgramsStoreDataSource Tests
+    // MARK: - ChartProgramsStoreDataSource Tests
     
     func testProgramsNotFetched() {
         let dataSource = ChartProgramStoreDataSource.dataSource(with: self.downloaderMock)
