@@ -123,7 +123,12 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         app.tables.staticTexts["My first program"].tap()
         app.navigationBars["My first program"].buttons["Edit"].tap()
         
-        XCTAssert(app.buttons["Show Details"].exists)
+        
+        if(app.buttons["Hide Details"].exists) {
+            app.buttons["Hide Details"].tap()
+            app.navigationBars["My first program"].buttons["Edit"].tap()
+        }
+        
         app.buttons["Show Details"].tap()
         
         app.navigationBars["My first program"].buttons["Edit"].tap()
