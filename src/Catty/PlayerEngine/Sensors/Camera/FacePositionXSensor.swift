@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class FaceDetectedSensor: DeviceSensor {
+class FacePositionXSensor: DeviceSensor {
     
-    static let tag = "FACE_DETECTED"
-    static let name = kUIFESensorFaceDetected
+    static let tag = "FACE_X_POSITION"
+    static let name = kUIFESensorFaceX
     static let defaultRawValue = 0.0
-    static let position = 190
+    static let position = 210
     static let requiredResource = ResourceType.faceDetection
+    var lastValue = 0.0
     
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     
@@ -35,15 +36,19 @@ class FaceDetectedSensor: DeviceSensor {
     }
     
     func rawValue() -> Double {
-        guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
-        return isFaceDetected ? 1.0 : 0.0
+        guard let positionX = self.getFaceDetectionManager()?.facePositionY else { return type(of: self).defaultRawValue }
+        if positionX > 0 {
+            lastValue = positionX
+        }
+        return lastValue
     }
     
     func convertToStandardized(rawValue: Double) -> Double {
-        return rawValue
+        return rawValue - Double(Util.screenWidth()) / 3.8
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }
+    
 }
