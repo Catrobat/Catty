@@ -23,12 +23,10 @@
 final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
-    let formulaManager: FormulaManager
     let logger: CBLogger
-
+    
     // MARK: - Initializers
-    init(formulaManager: FormulaManager, logger: CBLogger) {
-        self.formulaManager = formulaManager
+    init(logger: CBLogger) {
         self.logger = logger
     }
 

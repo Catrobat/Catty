@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeSizeByNBrick: CBInstructionProtocol {
+extension ChangeSizeByNBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+    func instruction() -> CBInstruction {
+        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }

@@ -20,19 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FormulaManagerProtocol {
-    
-    func interpretDouble(formula: Formula, spriteObject: SpriteObject) -> Double
-    
-    func interpretFloat(formula: Formula, spriteObject: SpriteObject) -> Float
-    
-    func interpretInteger(formula: Formula, spriteObject: SpriteObject) -> Int
-    
-    func interpretBool(formula: Formula, spriteObject: SpriteObject) -> Bool
-    
-    func interpretString(formula: Formula, spriteObject: SpriteObject) -> String
-    
-    func interpret(formula: Formula, spriteObject: SpriteObject) -> AnyObject
+protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
     
     func setup(for program: Program, and scene: CBScene)
     

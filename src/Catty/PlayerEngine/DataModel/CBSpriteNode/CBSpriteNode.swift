@@ -205,10 +205,10 @@ class CBSpriteNode: SKSpriteNode {
     }
     
     @objc func touchedWithTouch(_ touch: UITouch, atPosition position: CGPoint) -> Bool {
-        guard let playerScene = (scene as? CBScene),
-              let scheduler = playerScene.scheduler,
-              let imageLook = currentUIImageLook, scheduler.running
-        else { return false }
+        guard let playerScene = (scene as? CBScene) else { return false }
+        let scheduler = playerScene.scheduler
+        
+        guard let imageLook = currentUIImageLook, scheduler.running else { return false }
 
         guard let spriteName = spriteObject.name
         else { preconditionFailure("Invalid SpriteObject!") }

@@ -20,19 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PointInDirectionBrick: CBInstructionProtocol {
-
-    func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
-    }
+@objc protocol FormulaInterpreterProtocol {
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
-        guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
-        return {
-            spriteNode.catrobatRotation = self.degrees.interpretDouble(forSprite: object)
-        }
-    }
+    func interpretDouble(formula: Formula, spriteObject: SpriteObject) -> Double
+    
+    func interpretFloat(formula: Formula, spriteObject: SpriteObject) -> Float
+    
+    func interpretInteger(formula: Formula, spriteObject: SpriteObject) -> Int
+    
+    func interpretBool(formula: Formula, spriteObject: SpriteObject) -> Bool
+    
+    func interpretString(formula: Formula, spriteObject: SpriteObject) -> String
+    
+    func interpret(formula: Formula, spriteObject: SpriteObject) -> AnyObject
 }

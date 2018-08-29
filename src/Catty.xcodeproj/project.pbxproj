@@ -294,7 +294,6 @@
 		4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */; };
 		4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */; };
 		4CAB933B2132753A00AEB86D /* FormulaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB93392132753A00AEB86D /* FormulaManager.swift */; };
-		4CAB933C2132753A00AEB86D /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */; };
 		4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */; };
 		4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */; };
 		4CB0F9ED20A1731700D1BE2F /* PositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */; };
@@ -331,6 +330,8 @@
 		4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */; };
 		4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */; };
 		4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */; };
+		4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */; };
+		4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */; };
 		4CDE4CE3203DBBF500B43034 /* NKOColorPickerView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */; };
 		4CDE4CE4203DBBF500B43034 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */; };
 		4CDE4CE5203DBBF500B43034 /* ImageHelper.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CCD203DBBF200B43034 /* ImageHelper.license */; };
@@ -1605,7 +1606,6 @@
 		4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB93392132753A00AEB86D /* FormulaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManager.swift; sourceTree = "<group>"; };
-		4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerProtocol.swift; sourceTree = "<group>"; };
 		4CAC7DA11DCF444A00EC7D6F /* CBSceneTouchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSceneTouchTests.swift; path = Scene/CBSceneTouchTests.swift; sourceTree = "<group>"; };
 		4CB0F9E920A1731600D1BE2F /* PositionYSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionYSensor.swift; sourceTree = "<group>"; };
 		4CB0F9EA20A1731700D1BE2F /* PositionXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionXSensor.swift; sourceTree = "<group>"; };
@@ -1649,6 +1649,8 @@
 		4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNumberSensorTest.swift; sourceTree = "<group>"; };
+		4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaInterpreterProtocol.swift; path = PlayerEngine/Protocols/FormulaInterpreterProtocol.swift; sourceTree = "<group>"; };
+		4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerProtocol.swift; path = PlayerEngine/Protocols/FormulaManagerProtocol.swift; sourceTree = "<group>"; };
 		4CDE4CCB203DBBF200B43034 /* NKOColorPickerView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NKOColorPickerView.license; sourceTree = "<group>"; };
 		4CDE4CCC203DBBF200B43034 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4CDE4CCD203DBBF200B43034 /* ImageHelper.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImageHelper.license; sourceTree = "<group>"; };
@@ -6774,7 +6776,8 @@
 				AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */,
 				AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */,
 				AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */,
-				4CAB933A2132753A00AEB86D /* FormulaManagerProtocol.swift */,
+				4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */,
+				4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -8554,6 +8557,7 @@
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				4C0E25EF20D3EE9B00A80273 /* CBSpriteNodeMock.swift in Sources */,
+				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,
 				4C0F9FA0204BD2B100E71B2D /* PreviousLookBrickCell.m in Sources */,
@@ -8641,6 +8645,7 @@
 				4CB2CFA61D7AD7E7009F3034 /* SetColorBrick+CBXMLHandler.m in Sources */,
 				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				4C0F9FA5204BD2C200E71B2D /* ThinkForBubbleBrickCell.m in Sources */,
+				4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */,
 				4CF0728D20D659F700F93AB5 /* PhiroSideRightSensor.swift in Sources */,
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
 				4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */,
@@ -8653,7 +8658,6 @@
 				AA74EF531BC0586F00D1E954 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */,
-				4CAB933C2132753A00AEB86D /* FormulaManagerProtocol.swift in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				AAF6D9D41BC0B9EA00686849 /* HideBrick+Instruction.swift in Sources */,
 				F4E6E58E210E00E100D86FE6 /* ModFunction.swift in Sources */,

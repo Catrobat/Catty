@@ -27,6 +27,7 @@ import Foundation
     @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
+        
         return CBInstruction.execClosure{ (context, _) in
             let pinValue = Int(self.pin.interpretInteger(forSprite: object))
             let settingValue = Int(self.value.interpretDouble(forSprite: object))

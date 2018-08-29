@@ -25,7 +25,7 @@ private let EPSILON = 0.0001
 @objc extension IfOnEdgeBounceBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> ()->() {

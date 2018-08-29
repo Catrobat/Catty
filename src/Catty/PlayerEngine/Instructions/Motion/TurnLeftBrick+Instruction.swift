@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension TurnLeftBrick: CBInstructionProtocol {
+extension TurnLeftBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+    func instruction() -> CBInstruction {
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
 
-    @objc func actionBlock() -> ()->() {
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
             else { debugPrint("This should never happen!"); return {}}

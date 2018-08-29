@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension HideBrick: CBInstructionProtocol {
+extension HideBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+    func instruction() -> CBInstruction {
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }

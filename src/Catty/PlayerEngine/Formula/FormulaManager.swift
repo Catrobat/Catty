@@ -23,7 +23,7 @@
 import CoreMotion
 import CoreLocation
 
-@objc class FormulaManager: NSObject, FormulaManagerProtocol {
+@objc class FormulaManager: NSObject, FormulaManagerProtocol, FormulaInterpreterProtocol {
     
     let sensorManager: SensorManagerProtocol
     let functionManager: FunctionManagerProtocol
