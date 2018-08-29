@@ -21,7 +21,7 @@
  */
 
 class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsDataSource {
-
+    
     @IBOutlet weak var chartProgramsTableView: UITableView!
     @IBOutlet weak var chartProgramsSegmentedControl: UISegmentedControl!
     
@@ -219,5 +219,13 @@ extension ChartProgramsStoreViewController: ChartProgramCellProtocol{
 extension ChartProgramsStoreViewController {
     func scrollViewHandler(dataSource: ChartProgramStoreDataSource) {
         chartProgramsTableView.reloadData()
+    }
+    
+    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError?) {
+        self.shouldHideLoadingView = true
+        self.hideLoadingView()
+        self.showConnectionIssueAlertAndDismiss(error: error!)
+        self.chartProgramsTableView.separatorStyle = .singleLine
+        return
     }
 }
