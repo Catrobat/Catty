@@ -492,6 +492,10 @@
                     <string>off</string><string>on</string>
                 </spinnerValues>
             </brick>
+            <brick type="HideTextBrick">
+                <userVariable reference="../../brick[13]/userVariable"/>
+                <userVariableName>global</userVariableName>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>

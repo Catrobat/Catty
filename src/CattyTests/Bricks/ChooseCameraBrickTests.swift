@@ -39,7 +39,7 @@ final class ChooseCameraBrickTests: XCTestCase {
     
     func testDefaultCameraPosition() {
         // front camera should be default
-        CameraPreviewHandler.resetSharedInstance()
+        CameraPreviewHandler.shared().reset()
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
     

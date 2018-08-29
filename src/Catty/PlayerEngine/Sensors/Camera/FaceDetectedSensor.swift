@@ -25,6 +25,7 @@ class FaceDetectedSensor: DeviceSensor {
     static let tag = "FACE_DETECTED"
     static let name = kUIFESensorFaceDetected
     static let defaultRawValue = 0.0
+    static let position = 190
     static let requiredResource = ResourceType.faceDetection
     
     let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
@@ -43,6 +44,6 @@ class FaceDetectedSensor: DeviceSensor {
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return .hidden
+        return .device(position: type(of: self).position)
     }
 }

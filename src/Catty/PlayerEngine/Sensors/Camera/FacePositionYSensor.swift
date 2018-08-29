@@ -20,27 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LastFingerIndexSensor: NSObject, TouchSensor {
-
-    @objc static let tag = "LAST_FINGER_INDEX"
-    static let name = kUIFESensorLastFingerIndex
+class FacePositionYSensor: DeviceSensor {
+    
+    static let tag = "FACE_Y_POSITION"
+    static let name = kUIFESensorFaceY
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.touchHandler
-    static let position = 150
+    static let position = 220
+    static let requiredResource = ResourceType.faceDetection
     
-    let getTouchManager: () -> TouchManagerProtocol?
+    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     
-    init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
-        self.getTouchManager = touchManagerGetter
+    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+        self.getFaceDetectionManager = faceDetectionManagerGetter
     }
-
+    
     func rawValue() -> Double {
-        guard let numberOfTouches = getTouchManager()?.numberOfTouches() else { return type(of: self).defaultRawValue }
-        return Double(numberOfTouches)
+        guard let positionY = self.getFaceDetectionManager()?.facePositionX else { return type(of: self).defaultRawValue }
+        return positionY
     }
-
-    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue
+    
+    func convertToStandardized(rawValue: Double) -> Double {
+        if rawValue == type(of: self).defaultRawValue {
+            return rawValue
+        }
+        return rawValue - Double(Util.screenHeight()) / 1.05
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

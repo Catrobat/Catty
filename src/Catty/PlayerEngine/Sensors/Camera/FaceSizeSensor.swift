@@ -20,27 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class LastFingerIndexSensor: NSObject, TouchSensor {
-
-    @objc static let tag = "LAST_FINGER_INDEX"
-    static let name = kUIFESensorLastFingerIndex
+class FaceSizeSensor: DeviceSensor {
+    
+    static let tag = "FACE_SIZE"
+    static let name = kUIFESensorFaceSize
     static let defaultRawValue = 0.0
-    static let requiredResource = ResourceType.touchHandler
-    static let position = 150
+    static let position = 200
+    static let requiredResource = ResourceType.faceDetection
     
-    let getTouchManager: () -> TouchManagerProtocol?
+    let getFaceDetectionManager: () -> FaceDetectionManagerProtocol?
     
-    init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
-        self.getTouchManager = touchManagerGetter
+    init(faceDetectionManagerGetter: @escaping () -> FaceDetectionManagerProtocol?) {
+        self.getFaceDetectionManager = faceDetectionManagerGetter
     }
-
+    
     func rawValue() -> Double {
-        guard let numberOfTouches = getTouchManager()?.numberOfTouches() else { return type(of: self).defaultRawValue }
-        return Double(numberOfTouches)
+        guard let faceImage = self.getFaceDetectionManager()?.faceSize?.size else { return type(of: self).defaultRawValue }
+        let faceSize = faceImage.width * faceImage.height
+        return Double(faceSize)
     }
-
-    func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue
+    
+    func convertToStandardized(rawValue: Double) -> Double {
+        let screenSize = Util.screenHeight() * Util.screenWidth() / 100
+        let faceSize = rawValue / Double(screenSize)
+        if faceSize > 100 {
+            return 100
+        }
+        return faceSize
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {

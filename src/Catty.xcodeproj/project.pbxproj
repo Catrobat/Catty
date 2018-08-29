@@ -116,7 +116,6 @@
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */; };
 		4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78A2132A83D00870CE2 /* FormulaMock.swift */; };
-		4C28D78D2132AA2800870CE2 /* FaceDetectionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */; };
 		4C28D7912133BC0B00870CE2 /* FormulaManagerResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */; };
 		4C28D7952133BC1D00870CE2 /* FormulaManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
@@ -988,6 +987,7 @@
 		BA1FA99D1F02AEDC0084184D /* InsertItemIntoUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99C1F02AEDC0084184D /* InsertItemIntoUserListBrick.m */; };
 		BA1FA9A01F02B0020084184D /* InsertItemIntoUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */; };
 		BA1FA9A21F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */; };
+		BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6805AD21303B48004F004F /* VariablesTests.swift */; };
 		BA9CAB541EC380CA00796056 /* AddItemToUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */; };
 		BA9CAB5A1EC382DB00796056 /* BrickCellListData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB591EC382DB00796056 /* BrickCellListData.m */; };
 		BA9CAB5D1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9CAB5C1EC3839B00796056 /* AddItemToUserListBrick+CBXMLHandler.m */; };
@@ -1120,6 +1120,14 @@
 		F42E1E9720FA21540078C89D /* SizeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42E1E9620FA21540078C89D /* SizeSensorTest.swift */; };
 		F45A8D5C210714CD007C0D38 /* PhiroSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */; };
 		F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */; };
+		F45AF6FD212960A3000F88A6 /* FacePositionXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF6FC212960A3000F88A6 /* FacePositionXSensor.swift */; };
+		F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF700212960B4000F88A6 /* FaceSizeSensor.swift */; };
+		F45AF703212960D4000F88A6 /* FacePositionYSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF702212960D4000F88A6 /* FacePositionYSensor.swift */; };
+		F45AF708212961E8000F88A6 /* FaceDetectionSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF707212961E8000F88A6 /* FaceDetectionSensorTest.swift */; };
+		F45AF70A212961FA000F88A6 /* FaceSizeSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF709212961FA000F88A6 /* FaceSizeSensorTest.swift */; };
+		F45AF70C21296209000F88A6 /* FacePositionXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF70B21296209000F88A6 /* FacePositionXSensorTest.swift */; };
+		F45AF70E21296217000F88A6 /* FacePositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AF70D21296217000F88A6 /* FacePositionYSensorTest.swift */; };
+		F463FAD62135B74900D24FF3 /* FaceDetectionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463FAD52135B74900D24FF3 /* FaceDetectionManagerMock.swift */; };
 		F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */; };
 		F4664F9220DD7A1700E1519A /* FormulaEditorViewController+Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */; };
 		F470A2E32129DAFB005EC9A3 /* ElementFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */; };
@@ -1382,7 +1390,6 @@
 		4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectMutableCopyTests.m; path = SpriteObject/SpriteObjectMutableCopyTests.m; sourceTree = "<group>"; };
 		4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNodeTests.swift; path = PlayerEngine/CBSpriteNodeTests.swift; sourceTree = "<group>"; };
 		4C28D78A2132A83D00870CE2 /* FormulaMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaMock.swift; sourceTree = "<group>"; };
-		4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerMock.swift; sourceTree = "<group>"; };
 		4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerResourceTests.swift; path = Formula/FormulaManagerResourceTests.swift; sourceTree = "<group>"; };
 		4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerTests.swift; path = Formula/FormulaManagerTests.swift; sourceTree = "<group>"; };
 		4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserBrickTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.h"; sourceTree = "<group>"; };
@@ -2711,6 +2718,7 @@
 		BA1FA99E1F02B0020084184D /* InsertItemIntoUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertItemIntoUserListBrickCell.h; sourceTree = "<group>"; };
 		BA1FA99F1F02B0020084184D /* InsertItemIntoUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertItemIntoUserListBrickCell.m; sourceTree = "<group>"; };
 		BA1FA9A11F02B0C80084184D /* InsertItemIntoUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "InsertItemIntoUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/InsertItemIntoUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
+		BA6805AD21303B48004F004F /* VariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariablesTests.swift; sourceTree = "<group>"; };
 		BA9CAB521EC380CA00796056 /* AddItemToUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemToUserListBrick.h; sourceTree = "<group>"; };
 		BA9CAB531EC380CA00796056 /* AddItemToUserListBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemToUserListBrick.m; sourceTree = "<group>"; };
 		BA9CAB571EC3811400796056 /* BrickListProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickListProtocol.h; sourceTree = "<group>"; };
@@ -2861,6 +2869,14 @@
 		F42E1E9620FA21540078C89D /* SizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSensorTest.swift; sourceTree = "<group>"; };
 		F45A8D5B210714CD007C0D38 /* PhiroSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhiroSensorTest.swift; sourceTree = "<group>"; };
 		F45A8D6921072DFC007C0D38 /* LoudnessSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoudnessSensorTest.swift; sourceTree = "<group>"; };
+		F45AF6FC212960A3000F88A6 /* FacePositionXSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionXSensor.swift; sourceTree = "<group>"; };
+		F45AF700212960B4000F88A6 /* FaceSizeSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceSizeSensor.swift; sourceTree = "<group>"; };
+		F45AF702212960D4000F88A6 /* FacePositionYSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionYSensor.swift; sourceTree = "<group>"; };
+		F45AF707212961E8000F88A6 /* FaceDetectionSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionSensorTest.swift; sourceTree = "<group>"; };
+		F45AF709212961FA000F88A6 /* FaceSizeSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceSizeSensorTest.swift; sourceTree = "<group>"; };
+		F45AF70B21296209000F88A6 /* FacePositionXSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionXSensorTest.swift; sourceTree = "<group>"; };
+		F45AF70D21296217000F88A6 /* FacePositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacePositionYSensorTest.swift; sourceTree = "<group>"; };
+		F463FAD52135B74900D24FF3 /* FaceDetectionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManagerMock.swift; sourceTree = "<group>"; };
 		F4664F8C20DD738E00E1519A /* PositionYSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionYSensorTest.swift; sourceTree = "<group>"; };
 		F4664F9120DD7A1700E1519A /* FormulaEditorViewController+Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaEditorViewController+Section.swift"; sourceTree = "<group>"; };
 		F470A2E22129DAFB005EC9A3 /* ElementFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFunction.swift; sourceTree = "<group>"; };
@@ -4037,6 +4053,7 @@
 		4C994DEB207A3CEF00C415FD /* Sensors */ = {
 			isa = PBXGroup;
 			children = (
+				F45AF706212961C9000F88A6 /* Camera */,
 				F45A8D6821072DE6007C0D38 /* Audio */,
 				4CF072AF20D6764E00F93AB5 /* Date */,
 				4C1023E720F5C7C1004702C3 /* Heading */,
@@ -4290,6 +4307,9 @@
 			isa = PBXGroup;
 			children = (
 				4CE3D68C2107B4E300005629 /* FaceDetectedSensor.swift */,
+				F45AF700212960B4000F88A6 /* FaceSizeSensor.swift */,
+				F45AF6FC212960A3000F88A6 /* FacePositionXSensor.swift */,
+				F45AF702212960D4000F88A6 /* FacePositionYSensor.swift */,
 				4CE3D68A2107A89B00005629 /* FaceDetectionManager.swift */,
 			);
 			path = Camera;
@@ -4688,9 +4708,9 @@
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
 				F47DA839210731E700167FC4 /* AudioManagerMock.swift */,
 				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
+				F463FAD52135B74900D24FF3 /* FaceDetectionManagerMock.swift */,
 				4CC614BB212EAC1F006E4720 /* SensorMock.swift */,
 				4CC614BF212EB330006E4720 /* SensorManagerMock.swift */,
-				4C28D78C2132AA2800870CE2 /* FaceDetectionManagerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -6764,6 +6784,7 @@
 				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 				BC19327E21186504009DE43A /* CreateProgramTVCTests.swift */,
+				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 			);
 			path = "Catty UITests";
 			sourceTree = "<group>";
@@ -7471,6 +7492,17 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		F45AF706212961C9000F88A6 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F45AF707212961E8000F88A6 /* FaceDetectionSensorTest.swift */,
+				F45AF709212961FA000F88A6 /* FaceSizeSensorTest.swift */,
+				F45AF70B21296209000F88A6 /* FacePositionXSensorTest.swift */,
+				F45AF70D21296217000F88A6 /* FacePositionYSensorTest.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		F470A2DF2129DAE1005EC9A3 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -8111,6 +8143,7 @@
 				BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTVCTests.swift in Sources */,
 				BC1EB70F2111905800D95C53 /* ObjectTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProgramTVCTests.swift in Sources */,
+				BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */,
 				BCFED6F8211318A100BE57BF /* ProgramsTVCTests.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
 				BC19327F21186504009DE43A /* CreateProgramTVCTests.swift in Sources */,
@@ -8124,6 +8157,7 @@
 			files = (
 				F479930420F4987E0088EE27 /* LocationAccuracySensorTest.swift in Sources */,
 				4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */,
+				F463FAD62135B74900D24FF3 /* FaceDetectionManagerMock.swift in Sources */,
 				4C6FE165212D2D2E0067B7D5 /* PiFunctionTest.swift in Sources */,
 				F479930320F4987E0088EE27 /* LongitudeSensorTest.swift in Sources */,
 				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
@@ -8240,6 +8274,7 @@
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
+				F45AF708212961E8000F88A6 /* FaceDetectionSensorTest.swift in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
@@ -8258,6 +8293,7 @@
 				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
 				4C6FE172212D2D2E0067B7D5 /* FunctionManagerTests.swift in Sources */,
 				F4E6E573210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift in Sources */,
+				F45AF70C21296209000F88A6 /* FacePositionXSensorTest.swift in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
@@ -8271,10 +8307,10 @@
 				4C6FE15E212D2D2E0067B7D5 /* MaxFunctionTest.swift in Sources */,
 				F479930120F4987E0088EE27 /* LatitudeSensorTest.swift in Sources */,
 				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
+				F45AF70A212961FA000F88A6 /* FaceSizeSensorTest.swift in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				F47F379E20ED340800F6724D /* InclinationYSensorTest.swift in Sources */,
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
-				4C28D78D2132AA2800870CE2 /* FaceDetectionManagerMock.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */,
@@ -8310,6 +8346,7 @@
 				4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				F4E6E571210DA5B300D86FE6 /* FingerYSensorTest.swift in Sources */,
+				F45AF70E21296217000F88A6 /* FacePositionYSensorTest.swift in Sources */,
 				F40CC11B21074211000C35E4 /* BackgroundNameSensorTest.swift in Sources */,
 				4C6FE160212D2D2E0067B7D5 /* RandFunctionTest.swift in Sources */,
 				F4840B31210090BC0024EEAF /* RotationSensorTest.swift in Sources */,
@@ -8333,6 +8370,7 @@
 				AA74EEDF1BC057B900D1E954 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
 				AA74F0941BC05FCE00D1E954 /* BrickCellLookData.m in Sources */,
+				F45AF6FD212960A3000F88A6 /* FacePositionXSensor.swift in Sources */,
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */,
@@ -8404,6 +8442,7 @@
 				AA74EFFE1BC05B5F00D1E954 /* ComeToFrontBrick.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
+				F45AF701212960B4000F88A6 /* FaceSizeSensor.swift in Sources */,
 				9200C2D61C8082EF002F5CA4 /* ShowTextBrickCell.m in Sources */,
 				4CB0F9F420A173B700D1BE2F /* RotationSensor.swift in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
@@ -8628,6 +8667,7 @@
 				AA74EF001BC057C900D1E954 /* ShowBrick+CBXMLHandler.m in Sources */,
 				AA74EFE41BC05B5F00D1E954 /* IfLogicBeginBrick.m in Sources */,
 				9218B20E1CC4AB75007B4C60 /* LineTool.m in Sources */,
+				F45AF703212960D4000F88A6 /* FacePositionYSensor.swift in Sources */,
 				AAAF22841BC0CA0F0076F11E /* SetXBrick+Instruction.swift in Sources */,
 				AA74EFF91BC05B5F00D1E954 /* SetTransparencyBrick.m in Sources */,
 				F4E6E575210DA6CD00D86FE6 /* TouchSensorMock.swift in Sources */,
