@@ -46,15 +46,25 @@ class VariablesTest: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars["Toolbar"].buttons["Add"].tap()
-        let collectionViewsQuery = app.collectionViews
-        let cell = collectionViewsQuery.children(matching: .cell).element(boundBy: 4)
-        cell.swipeLeft()
-        cell.swipeLeft()
-        cell.swipeLeft()
-        cell.swipeLeft()
-        cell.swipeLeft()
-        collectionViewsQuery.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
-        collectionViewsQuery.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
+        
+        if(app.navigationBars["Frequently Used"].exists)
+        {
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+        }
+        else
+        {
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+            app.swipeLeft()
+        }
+        
+        app.collectionViews.staticTexts["Set variable"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
     }
 
@@ -66,6 +76,7 @@ class VariablesTest: XCTestCase, UITestProtocol {
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         app.toolbars["Toolbar"].buttons["Add"].tap()
+        
         let collectionViewsQuery = app.collectionViews
         let cell = collectionViewsQuery.children(matching: .cell).element(boundBy: 4)
         cell.swipeLeft()
@@ -73,6 +84,7 @@ class VariablesTest: XCTestCase, UITestProtocol {
         cell.swipeLeft()
         cell.swipeLeft()
         cell.swipeLeft()
+        app.swipeDown()
         collectionViewsQuery.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
         collectionViewsQuery.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
         XCTAssert(app.sheets["List type"].exists)
