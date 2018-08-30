@@ -23,6 +23,7 @@
 #import <XCTest/XCTest.h>
 #import "AbstractBrickTests.h"
 #import "WhenScript.h"
+#import "ProgramMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface ShowBrickTests : AbstractBrickTests
@@ -47,7 +48,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
+    CBScene *scene = [[[SceneBuilder alloc] initWithProgram:[ProgramMock init]] build];
     [scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
 

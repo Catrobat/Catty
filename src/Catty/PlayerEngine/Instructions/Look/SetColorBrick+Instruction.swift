@@ -35,7 +35,7 @@ extension SetColorBrick: CBInstructionProtocol{
         return {
             guard let look = object.spriteNode?.currentLook else { return }
             
-            let color = colorFormula.interpretDouble(forSprite: object)
+            let color = formulaInterpreter.interpretDouble(colorFormula, for: object)
             spriteNode.catrobatColor = color
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))

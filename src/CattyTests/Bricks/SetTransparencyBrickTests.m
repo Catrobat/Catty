@@ -46,8 +46,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
 
     Formula *transparency =[[Formula alloc] init];
@@ -74,8 +74,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
 
     Formula* transparency =[[Formula alloc] init];
@@ -102,8 +102,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 10.0;
 
     Formula* transparency =[[Formula alloc] init];

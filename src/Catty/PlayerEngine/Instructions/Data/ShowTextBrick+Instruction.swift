@@ -33,10 +33,10 @@
         let userVariable = self.userVariable
 
         return CBInstruction.execClosure { (context, _) in
-//            self.logger.debug("Performing: ShowTextBrick")
-            let xResult = xFormula.interpretDouble(forSprite: spriteObject)
-            let yResult = yFormula.interpretDouble(forSprite: spriteObject)
+            let xResult = context.formulaInterpreter.interpretDouble(xFormula, for: spriteObject)
+            let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)
             var value = ""
+            
             if let userVariable = userVariable {
                 if let userVariableValue = (userVariable.value as? NSNumber) {
                     value = userVariableValue.stringValue

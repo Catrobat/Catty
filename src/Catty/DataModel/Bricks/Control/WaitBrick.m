@@ -67,7 +67,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"WaitBrick"];
 }
 
 #pragma mark - Resources

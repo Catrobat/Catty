@@ -59,8 +59,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"ChangeXBy (%f)", xMov];
+    return [NSString stringWithFormat:@"ChangeXByBrick"];
 }
 
 #pragma mark - Resources

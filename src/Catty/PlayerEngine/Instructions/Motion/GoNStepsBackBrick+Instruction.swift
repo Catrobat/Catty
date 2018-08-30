@@ -35,7 +35,7 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
 
         return {
             let currentLayer = spriteNode.catrobatLayer
-            let steps = stepsFormula.interpretDouble(forSprite: object)
+            let steps = context.formulaInterpreter.interpretDouble(stepsFormula, for: object)
             spriteNode.catrobatLayer = spriteNode.catrobatLayer - steps
             
             for obj in objectList {

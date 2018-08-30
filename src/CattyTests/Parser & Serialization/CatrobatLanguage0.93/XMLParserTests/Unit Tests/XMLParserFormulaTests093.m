@@ -48,7 +48,7 @@
     
     Formula *formula = setVariableBrick.variableFormula;
     // formula value should be: (1 * (-2)) + (3 / 4) = -1,25
-    XCTAssertEqualWithAccuracy([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], -1.25, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], -1.25, 0.00001, @"Formula not correctly parsed");
 }
 
 

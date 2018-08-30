@@ -66,7 +66,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"VibrationBrick (%f Seconds)", [self.durationInSeconds interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"VibrationBrick"];
 }
 
 #pragma mark - Resources

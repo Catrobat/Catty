@@ -29,10 +29,13 @@
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
 
         let durationFormula = self.durationInSeconds
+        
         return CBInstruction.execClosure { (context, scheduler) in
 //            self.logger.debug("Performing: VibrationBrick")
             
-            let durationInSeconds = durationFormula!.interpretDouble(forSprite: spriteObject)
+            guard let duration = durationFormula else { return }
+            
+            let durationInSeconds = context.formulaInterpreter.interpretDouble(duration, for: spriteObject)
             var numberOfVibrations = durationInSeconds*2;
             if ((numberOfVibrations < 1) && (numberOfVibrations > 0)){
                 numberOfVibrations = ceil(numberOfVibrations)

@@ -34,9 +34,9 @@ final class CBSpriteNodeTests: XCTestCase {
         spriteObject.name = "SpriteObjectName"
         
         spriteNode = CBSpriteNodeMock(spriteObject: spriteObject)
-        spriteNode.mockedScene = CBScene(size: CGSize(width: 1000, height: 1000))
-        
         spriteObject.spriteNode = spriteNode
+        
+        spriteNode.mockedScene = SceneBuilder(program: ProgramMock(width: 300, andHeight: 400)).build()
     }
     
     func testPosition() {

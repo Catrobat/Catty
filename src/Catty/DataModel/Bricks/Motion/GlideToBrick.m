@@ -100,10 +100,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
-    double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
+    return [NSString stringWithFormat:@"GlideToBrick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

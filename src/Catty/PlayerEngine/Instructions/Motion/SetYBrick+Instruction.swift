@@ -23,16 +23,17 @@
 extension SetYBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.catrobatPositionY = self.yPosition.interpretDouble(forSprite: object)
+            let positionY = formulaInterpreter.interpretDouble(self.yPosition, for: object)
+            spriteNode.catrobatPositionY = positionY
         }
     }
 }

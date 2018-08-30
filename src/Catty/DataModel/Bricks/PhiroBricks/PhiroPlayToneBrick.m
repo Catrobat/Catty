@@ -34,7 +34,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Play Phiro Tone (Tone: Duration: %f)",[self.durationFormula interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"PhiroPlayToneBrick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

@@ -32,7 +32,8 @@ extension TurnLeftBrick: CBInstructionProtocol {
             else { debugPrint("This should never happen!"); return {}}
 
         return {
-            let rotation = spriteNode.catrobatRotation - self.degrees.interpretDouble(forSprite: object)
+            let degrees = formulaInterpreter.interpretDouble(self.degrees, for: object)
+            let rotation = spriteNode.catrobatRotation - degrees
             spriteNode.catrobatRotation = rotation
         }
     }

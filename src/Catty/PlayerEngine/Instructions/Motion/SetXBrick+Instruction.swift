@@ -32,7 +32,7 @@ extension SetXBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.catrobatPositionX = self.xPosition.interpretDouble(forSprite: object)
+            spriteNode.catrobatPositionX = formulaInterpreter.interpretDouble(self.xPosition, for: object)
         }
     }
 }

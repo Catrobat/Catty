@@ -28,6 +28,9 @@ final class ShowTextBrickTests: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
     
     override func setUp() {
         spriteObject = SpriteObject()
@@ -35,21 +38,25 @@ final class ShowTextBrickTests: XCTestCase {
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
+        spriteObject.program = Program()
+        
+        script = Script()
+        script.object = spriteObject
+        
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
     
     func testShowTextBrickUserVariablesNil() {
-        
-        let program = Program();
         spriteNode.position = CGPoint(x: 0, y: 0);
-        spriteObject.program = program;
         
         let varContainer = VariablesContainer();
         spriteObject.program.variables = varContainer;
         
         let brick = ShowTextBrick();
-        
-        let script = Script();
-        script.object = spriteObject;
         brick.script = script;
         
         let xFormula = Formula();
@@ -66,14 +73,11 @@ final class ShowTextBrickTests: XCTestCase {
         
         let instruction = brick.instruction();
         
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
-        
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
-        default: break;
+            closure(context, scheduler)
+        default:
+            XCTFail();
         }
         
         XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash

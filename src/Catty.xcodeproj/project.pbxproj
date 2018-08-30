@@ -356,6 +356,8 @@
 		4CDE4CFC203DBC8100B43034 /* Siren.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFB203DBC8100B43034 /* Siren.license */; };
 		4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFD203DBCC100B43034 /* Kingfisher.license */; };
 		4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFF203DBD0B00B43034 /* DVR.license */; };
+		4CDF7BB62138735700FFF7F4 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */; };
+		4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */; };
 		4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */; };
 		4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */; };
 		4CE2D3F31C294F1700938B5E /* Airplane_with_shadow_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */; };
@@ -1018,7 +1020,6 @@
 		CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D444E1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift */; };
 		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
 		CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */; };
-		CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C506A1B1C891000BB43E1 /* SetupScene.swift */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
 		CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */; };
 		CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
@@ -1683,6 +1684,9 @@
 		4CDE4CFB203DBC8100B43034 /* Siren.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Siren.license; sourceTree = "<group>"; };
 		4CDE4CFD203DBCC100B43034 /* Kingfisher.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kingfisher.license; sourceTree = "<group>"; };
 		4CDE4CFF203DBD0B00B43034 /* DVR.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DVR.license; sourceTree = "<group>"; };
+		4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
+		4CDF7BBC213875A900FFF7F4 /* ProgramMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramMock.h; sourceTree = "<group>"; };
+		4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgramMock.m; sourceTree = "<group>"; };
 		4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementIdempotenceTest.m; path = Formula/FormulaElementIdempotenceTest.m; sourceTree = "<group>"; };
 		4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_097.xml; sourceTree = "<group>"; };
 		4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_097.xml; sourceTree = "<group>"; };
@@ -2156,7 +2160,6 @@
 		92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDefines.h; sourceTree = "<group>"; };
 		92FF2E061A24C3BE00093DA7 /* SegueDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegueDefines.h; sourceTree = "<group>"; };
 		92FF2E071A24C3BE00093DA7 /* UIDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDefines.h; sourceTree = "<group>"; };
-		92FF2E0A1A24C5A700093DA7 /* Brick+UnitTestingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		92FF2E0C1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+CatrobatCAGradientExtensions.h"; sourceTree = "<group>"; };
 		92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+CatrobatCAGradientExtensions.m"; sourceTree = "<group>"; };
 		92FF2E121A24C5A700093DA7 /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
@@ -2761,7 +2764,6 @@
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBBroadcastHandler.swift; sourceTree = "<group>"; };
-		CA4C506A1B1C891000BB43E1 /* SetupScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupScene.swift; path = Catty/PlayerEngine/Scene/SetupScene.swift; sourceTree = SOURCE_ROOT; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
@@ -4303,6 +4305,23 @@
 			name = CatrobatLanguage0.92;
 			sourceTree = "<group>";
 		};
+		4CDF7BB42138735700FFF7F4 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		4CDF7BB7213873EF00FFF7F4 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4CDF7BBC213875A900FFF7F4 /* ProgramMock.h */,
+				4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		4CE3D6862107A80000005629 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -4318,6 +4337,7 @@
 		4CE5C56C1E0AD71800FD021C /* Program */ = {
 			isa = PBXGroup;
 			children = (
+				4CDF7BB7213873EF00FFF7F4 /* Mocks */,
 				4CE5C56D1E0AD71800FD021C /* ProgramTests.m */,
 				4CE5C56E1E0AD71800FD021C /* RequiredResources.m */,
 			);
@@ -5272,7 +5292,6 @@
 		92FF2E081A24C5A700093DA7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */,
 				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
 				925819851C0208E8003247A9 /* CALayer+XibConfiguration */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
@@ -5292,14 +5311,6 @@
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
-			sourceTree = "<group>";
-		};
-		92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E0A1A24C5A700093DA7 /* Brick+UnitTestingExtensions.h */,
-			);
-			path = "Brick+UnitTestingExtensions";
 			sourceTree = "<group>";
 		};
 		92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */ = {
@@ -5788,8 +5799,8 @@
 		92FF30AF1A24DCAA00093DA7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				4CDF7BB42138735700FFF7F4 /* Builder */,
 				4CF16E301D90310100B8C99A /* Extensions */,
-				CA4C506A1B1C891000BB43E1 /* SetupScene.swift */,
 				AABCB3CC1BB36131009F67D2 /* CBScene.swift */,
 			);
 			name = Scene;
@@ -8245,6 +8256,7 @@
 				4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4C968C401F00288500355C0D /* BrickTests.swift in Sources */,
+				4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */,
 				F4664F8D20DD738E00E1519A /* PositionYSensorTest.swift in Sources */,
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
@@ -8374,6 +8386,7 @@
 				99EBDBFA1D562088008D6860 /* ChangeColorByNBrick+CBXMLHandler.m in Sources */,
 				99C8D1BB1D8AE339003FBC42 /* BrickCellStaticChoiceData.m in Sources */,
 				E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */,
+				4CDF7BB62138735700FFF7F4 /* SceneBuilder.swift in Sources */,
 				AA74F0C91BC05FCE00D1E954 /* BrickShapeFactory.m in Sources */,
 				AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */,
 				AABCB3ED1BB368CF009F67D2 /* CBFrontend.swift in Sources */,
@@ -8430,7 +8443,6 @@
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */,
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
-				CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */,
 				AA74EEFE1BC057C900D1E954 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
 				AA74F00C1BC05B5F00D1E954 /* SetVolumeToBrick.m in Sources */,

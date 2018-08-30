@@ -25,6 +25,7 @@
 #import "Script.h"
 #import "WhenScript.h"
 #import "IfOnEdgeBounceBrick.h"
+#import "ProgramMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface IfOnEdgeBounceBrickTests : AbstractBrickTests
@@ -54,7 +55,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.scene = [[CBScene alloc] initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.scene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:SCREEN_WIDTH andHeight:SCREEN_HEIGHT]] build];
     self.spriteObject = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:self.spriteObject];
     [self.scene addChild:spriteNode];

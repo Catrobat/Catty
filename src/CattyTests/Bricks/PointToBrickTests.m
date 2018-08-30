@@ -24,9 +24,11 @@
 #import "AbstractBrickTests.h"
 #import "PointToBrick.h"
 #import "WhenScript.h"
+#import "ProgramMock.h"
 #import "Pocket_Code-Swift.h"
 
-@interface PointToBrickTests : AbstractBrickTests
+@interface PointToBrickTests : XCTestCase
+@property(nonatomic, strong) CBScene *scene;
 @end
 
 @implementation PointToBrickTests
@@ -34,11 +36,11 @@
 - (void)setUp
 {
     [super setUp];
+    self.scene = [[[SceneBuilder alloc] initWithProgram:[ProgramMock new]] build];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
@@ -51,9 +53,8 @@
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
 
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:firstSpriteNode];
-    [scene addChild:secondSpriteNode];
+    [self.scene addChild:firstSpriteNode];
+    [self.scene addChild:secondSpriteNode];
 
     [firstSpriteNode setPosition:CGPointMake(0, 0)];
     [secondSpriteNode setPosition:CGPointMake(0, 10)];
@@ -80,9 +81,8 @@
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
 
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:firstSpriteNode];
-    [scene addChild:secondSpriteNode];
+    [self.scene addChild:firstSpriteNode];
+    [self.scene addChild:secondSpriteNode];
 
     [firstSpriteNode setPosition:CGPointMake(0, 0)];
     [secondSpriteNode setPosition:CGPointMake(0, 0)];
@@ -107,9 +107,8 @@
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
 
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:firstSpriteNode];
-    [scene addChild:secondSpriteNode];
+    [self.scene addChild:firstSpriteNode];
+    [self.scene addChild:secondSpriteNode];
 
     [firstSpriteNode setPosition:CGPointMake(0, 0)];
     [secondSpriteNode setPosition:CGPointMake(1, 1)];

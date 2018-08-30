@@ -32,7 +32,7 @@
         else { fatalError("This should never happen!") }
 
         return {
-            let sizeInPercent = self.size.interpretDouble(forSprite: object)
+            let sizeInPercent = formulaInterpreter.interpretDouble(self.size, for: object)
             spriteNode.catrobatSize = sizeInPercent
         }
     }

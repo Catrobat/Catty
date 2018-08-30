@@ -58,7 +58,7 @@
     formulaTree = formulaTree;
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
-    double numberOfItems = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
+    double numberOfItems = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     
     XCTAssertEqual(numberOfItems, 3, @"Wrong number of Items");
 }
@@ -86,15 +86,15 @@
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
     
-    double element = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
+    double element = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     XCTAssertEqual(element, 4, @"Should be Element of List but is not");
     
     leftChild.value = @"-3";
-    element = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
+    element = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     XCTAssertEqual(element, 0, @"Invalid default value");
     
     leftChild.value = @"44";
-    element = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
+    element = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     XCTAssertEqual(element, 0, @"Invalid default value");
 }
 
@@ -120,7 +120,7 @@
     formulaTree = formulaTree;
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
-    BOOL contains = [self.formulaManager interpretDoubleWithFormula:formula spriteObject:object];
+    BOOL contains = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     
     XCTAssertEqual(contains, YES, @"Should be Element of List but is not");
 }

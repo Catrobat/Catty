@@ -28,6 +28,9 @@ final class HideTextBrickTests: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
     
     override func setUp() {
         spriteObject = SpriteObject()
@@ -35,30 +38,32 @@ final class HideTextBrickTests: XCTestCase {
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
+        spriteObject.program = Program()
+        
+        script = Script()
+        script.object = spriteObject
+        
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
     
     func testHideTextBrickUserVariablesNil() {
-        let program = Program();
-        spriteObject.program = program;
-        
         let varContainer = VariablesContainer();
         spriteObject.program.variables = varContainer;
         
         let brick = HideTextBrick();
         
         let script = Script();
-        script.object = spriteObject;
         brick.script = script;
         
         let instruction = brick.instruction();
         
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
-        
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
+            closure(context, scheduler)
         default: break;
         }
         

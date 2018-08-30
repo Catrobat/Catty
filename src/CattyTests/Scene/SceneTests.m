@@ -21,10 +21,10 @@
  */
 
 #import "SceneTests.h"
+#import "ProgramMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface SceneTests()
-@property (nonatomic, strong) CBScene *scene;
 @property (nonatomic) CGSize screenSize;
 
 @property (nonatomic) CGPoint pocketCodeCenter;
@@ -47,7 +47,6 @@
 - (void)setUp
 {
     [super setUp];
-    self.scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     self.screenSize = [Util screenSize];
     
     self.pocketCodeCenter = CGPointMake(0, 0);
@@ -71,7 +70,7 @@
 #pragma mark Touch to Pocked Code
 - (void)testTouchConversionCenter
 {
-    CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
+    CBScene *scaledScene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:self.screenSize.width * 2 andHeight: self.screenSize.height * 2]] build];
     CGPoint scaledSceneCenter = CGPointMake(self.screenSize.width/2, self.screenSize.height/2);
     CGPoint convertedCenter = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneCenter sceneSize:scaledScene.size];
     
@@ -80,7 +79,7 @@
 
 - (void)testTouchConversionCenterNoScale
 {
-    CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width, self.screenSize.height)];
+    CBScene *scaledScene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:self.screenSize.width andHeight: self.screenSize.height]] build];
     CGPoint scaledSceneCenter = CGPointMake(self.screenSize.width/2, self.screenSize.height/2);
     CGPoint convertedCenter = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneCenter sceneSize:scaledScene.size];
     
@@ -89,7 +88,7 @@
 
 - (void)testTouchConversionBottomLeft
 {
-    CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
+    CBScene *scaledScene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:self.screenSize.width * 2 andHeight: self.screenSize.height * 2]] build];
     CGPoint scaledSceneBottomLeft = CGPointMake(0, self.screenSize.height);
     CGPoint pocketCodeBottomLeft = CGPointMake(scaledScene.size.width / 2 * -1, scaledScene.size.height / 2 * -1);
     CGPoint convertedBottomLeft = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneBottomLeft sceneSize:scaledScene.size];
@@ -98,7 +97,7 @@
 
 - (void)testTouchConversionBottomRight
 {
-    CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
+    CBScene *scaledScene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:self.screenSize.width * 2 andHeight: self.screenSize.height * 2]] build];
     CGPoint scaledSceneBottomRight = CGPointMake(self.screenSize.width, self.screenSize.height);
     CGPoint pocketCodeBottomRight = CGPointMake(scaledScene.size.width / 2, scaledScene.size.height / 2 * -1);
     CGPoint convertedBottomRight = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneBottomRight sceneSize:scaledScene.size];
@@ -107,7 +106,7 @@
 
 - (void)testTouchConversionTopLeft
 {
-    CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
+    CBScene *scaledScene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:self.screenSize.width * 2 andHeight: self.screenSize.height * 2]] build];
     CGPoint scaledSceneTopLeft = CGPointMake(0, 0);
     CGPoint pocketCodeTopLeft = CGPointMake(scaledScene.size.width / 2 * -1, scaledScene.size.height / 2);
     CGPoint convertedTopLeft = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneTopLeft sceneSize:scaledScene.size];
@@ -116,7 +115,7 @@
 
 - (void)testTouchConversionTopRight
 {
-    CBScene *scaledScene = [[CBScene alloc] initWithSize:CGSizeMake(self.screenSize.width * 2, self.screenSize.height * 2)];
+    CBScene *scaledScene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:self.screenSize.width * 2 andHeight: self.screenSize.height * 2]] build];
     CGPoint scaledSceneTopRight = CGPointMake(self.screenSize.width, 0);
     CGPoint pocketCodeTopRight = CGPointMake(scaledScene.size.width / 2, scaledScene.size.height / 2);
     CGPoint convertedTopRight = [CBSceneHelper convertTouchCoordinateToPointWithCoordinate:scaledSceneTopRight sceneSize:scaledScene.size];

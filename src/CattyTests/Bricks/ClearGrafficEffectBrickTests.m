@@ -33,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
@@ -49,8 +48,8 @@
     object.program = program;
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -102,8 +101,8 @@
     object.program = program;
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];

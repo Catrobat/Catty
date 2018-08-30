@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeBrightnessByNBrick: CBInstructionProtocol {
+@objc extension ChangeBrightnessByNBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let bright = self.changeBrightness
@@ -34,7 +34,7 @@ extension ChangeBrightnessByNBrick: CBInstructionProtocol {
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-            let brightnessIncrease = bright.interpretDouble(forSprite: object)
+            let brightnessIncrease = formulaInterpreter.interpretDouble(bright, for: object)
             spriteNode.catrobatBrightness = spriteNode.catrobatBrightness + brightnessIncrease
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))

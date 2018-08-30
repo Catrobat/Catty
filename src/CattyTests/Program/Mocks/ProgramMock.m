@@ -20,11 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import "ProgramMock.h"
 
-@interface Brick (UnitTestingExtensions)
+@implementation ProgramMock
 
-// Needed for unit testing
-- (dispatch_block_t)actionBlock;
+- (instancetype)init {
+    return [self initWithWidth:300 andHeight:400];
+}
+    
+- (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height {
+    self = [super init];
+    
+    if (self != nil){
+        self.header = [[Header alloc] init];
+        self.header.screenWidth = [[NSNumber alloc] initWithFloat:width];
+        self.header.screenHeight = [[NSNumber alloc] initWithFloat:height];
+    }
+    
+    return self;
+}
 
 @end

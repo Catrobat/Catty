@@ -269,7 +269,7 @@
 - (void)setupSceneAndStart
 {
     // Initialize scene
-    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+    CBScene *scene = [[[SceneBuilder alloc] initWithProgram:self.program] build];
     [scene initializeScreenRecording];
     scene.screenRecordingDelegate = self;
     

@@ -47,8 +47,8 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula *xPosition = [[Formula alloc] init];
@@ -74,8 +74,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula* xPosition =[[Formula alloc] init];
@@ -101,8 +101,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula *xPosition =[[Formula alloc] init];
@@ -128,8 +128,8 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
+    
+    [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Formula* xPosition =[[Formula alloc] init];

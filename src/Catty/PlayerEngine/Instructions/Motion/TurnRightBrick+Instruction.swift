@@ -23,16 +23,16 @@
 extension TurnRightBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            let rotation = spriteNode.catrobatRotation + self.degrees.interpretDouble(forSprite: object)
+            let rotation = spriteNode.catrobatRotation + formulaInterpreter.interpretDouble(self.degrees, for: object)
             spriteNode.catrobatRotation = rotation
         }
     }

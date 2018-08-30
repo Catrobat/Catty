@@ -33,7 +33,7 @@ extension ChangeTransparencyByNBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         return {
-            let transparencyIncrease = transparency.interpretDouble(forSprite: object)
+            let transparencyIncrease = formulaInterpreter.interpretDouble(transparency, for: object)
             spriteNode.catrobatTransparency = spriteNode.catrobatTransparency + transparencyIncrease
         }
     }

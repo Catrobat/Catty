@@ -22,20 +22,20 @@
 
 import Foundation
 
-@objc extension ArduinoSendDigitalValueBrick :CBInstructionProtocol{
+@objc extension ArduinoSendDigitalValueBrick : CBInstructionProtocol{
     
     @nonobjc func instruction() -> CBInstruction {
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
         
         return CBInstruction.execClosure{ (context, _) in
-            let pinValue = Int(self.pin.interpretInteger(forSprite: object))
-            let settingValue = Int(self.value.interpretDouble(forSprite: object))
+            let pinValue = context.formulaInterpreter.interpretInteger(self.pin, for: object)
+            let settingValue = context.formulaInterpreter.interpretInteger(self.value, for: object)
+            
             if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
                 arduino.setDigitalArduinoPin(pinValue, pinValue: settingValue)
             }
             context.state = .runnable
         }
     }
-
 }

@@ -53,15 +53,10 @@
 
     ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
+    
+    brick.size = [[Formula alloc] initWithInteger:30];
 
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"30";
-    size.formulaTree = formulaTree;
-    brick.size = size;
-
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
     XCTAssertEqualWithAccuracy(40.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
@@ -80,14 +75,9 @@
     ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
 
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-30";
-    size.formulaTree = formulaTree;
-    brick.size = size;
+    brick.size = [[Formula alloc] initWithInteger:-30];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
     XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
@@ -106,14 +96,9 @@
     ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
 
-    Formula *size = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    size.formulaTree = formulaTree;
-    brick.size = size;
+    brick.size = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
     XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");

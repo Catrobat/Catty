@@ -77,7 +77,7 @@
                                                                           parent:nil];
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertEqual(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], @"Not existing UserVariable misinterpretation");
+    XCTAssertEqual(0, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Not existing UserVariable misinterpretation");
 }
 
 - (void)testInterpretNonExistingUserList
@@ -90,7 +90,7 @@
                                                                           parent:nil];
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertEqual(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]], @"Not existing UserList misinterpretation");
+    XCTAssertEqual(0, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Not existing UserList misinterpretation");
 }
 
 - (void)testInterpretNotExisitingUnaryOperator
@@ -106,7 +106,7 @@
                                                                           parent:nil];
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertEqual(0, [self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]]);
+    XCTAssertEqual(0, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]]);
 }
 
 - (void)testCheckDegeneratedDoubleValues
@@ -149,7 +149,7 @@
     
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
     
-    XCTAssertTrue(isnan([self.formulaManager interpretDoubleWithFormula:formula spriteObject:[SpriteObject new]]), @"Degenerated double values error");
+    XCTAssertTrue(isnan([self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]]), @"Degenerated double values error");
 }
 
 - (void)testIsLogicalOperator

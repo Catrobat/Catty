@@ -68,14 +68,8 @@ final class CBSceneTouchTests: XCTestCase {
     var spriteNodeB : CBSpriteNode!
     
     override func setUp() {
-        let logger = CBLogger(name: "Logger")
-        let broadcastHandler = CBBroadcastHandler(logger: logger)
-        let formulaManager = FormulaManager()
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler)
-        scheduler.running = true
-        
-        scene = CBScene(size: CGSize(width: 400, height: 800), logger: logger, scheduler: scheduler, frontend: CBFrontend(logger: logger, program: nil),
-                        backend: CBBackend(logger: logger), broadcastHandler: broadcastHandler, formulaManager: formulaManager)
+        scene = SceneBuilder(program: ProgramMock(width: 400, andHeight: 800)).build()
+        scene.scheduler.running = true
         
         let look = Look()
         look.name = "Look"

@@ -22,29 +22,34 @@
 
 extension FormulaManager {
     
-    @objc func interpretDouble(formula: Formula, spriteObject: SpriteObject) -> Double {
-        let value = interpretRecursive(formulaElement: formula.formulaTree, spriteObject: spriteObject)
+    @objc(interpretDouble: forSpriteObject:)
+    func interpretDouble(_ formula: Formula, for spriteObject: SpriteObject) -> Double {
+        let value = interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
         if let doubleValue = value as? Double {
             return doubleValue
         }
         return 0.0
     }
     
-    @objc func interpretFloat(formula: Formula, spriteObject: SpriteObject) -> Float {
-        return Float(interpretDouble(formula: formula, spriteObject: spriteObject))
+    @objc(interpretFloat: forSpriteObject:)
+    func interpretFloat(_ formula: Formula, for spriteObject: SpriteObject) -> Float {
+        return Float(interpretDouble(formula, for: spriteObject))
     }
     
-    @objc func interpretInteger(formula: Formula, spriteObject: SpriteObject) -> Int {
-        return Int(interpretDouble(formula: formula, spriteObject: spriteObject))
+    @objc(interpretInteger: forSpriteObject:)
+    func interpretInteger(_ formula: Formula, for spriteObject: SpriteObject) -> Int {
+        return Int(interpretDouble(formula, for: spriteObject))
     }
     
-    @objc func interpretBool(formula: Formula, spriteObject: SpriteObject) -> Bool {
-        let value = interpretInteger(formula: formula, spriteObject: spriteObject)
+    @objc(interpretBool: forSpriteObject:)
+    func interpretBool(_ formula: Formula, for spriteObject: SpriteObject) -> Bool {
+        let value = interpretInteger(formula, for: spriteObject)
         return value == 1
     }
     
-    @objc func interpretString(formula: Formula, spriteObject: SpriteObject) -> String {
-        let value = interpretRecursive(formulaElement: formula.formulaTree, spriteObject: spriteObject)
+    @objc(interpretString: forSpriteObject:)
+    func interpretString(_ formula: Formula, for spriteObject: SpriteObject) -> String {
+        let value = interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
         if let doubleValue = value as? Double {
             return String(format: "%lf", doubleValue)
         } else if let intValue = value as? Int {
@@ -55,38 +60,39 @@ extension FormulaManager {
         return ""
     }
     
-    @objc func interpret(formula: Formula, spriteObject: SpriteObject) -> AnyObject {
-        return interpretRecursive(formulaElement: formula.formulaTree, spriteObject: spriteObject)
+    @objc(interpret: forSpriteObject:)
+    func interpret(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject {
+        return interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
     }
     
-    private func interpretRecursive(formulaElement: FormulaElement?, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretRecursive(formulaElement: FormulaElement?, for spriteObject: SpriteObject) -> AnyObject {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
         
         switch (formulaElement.type) {
         case .OPERATOR:
-            return interpretOperator(formulaElement: formulaElement, spriteObject: spriteObject)
+            return interpretOperator(formulaElement, for: spriteObject)
         case .FUNCTION:
-            return interpretFunction(formulaElement: formulaElement, spriteObject: spriteObject)
+            return interpretFunction(formulaElement, for: spriteObject)
         case .NUMBER:
-            return interpretDouble(formulaElement: formulaElement, spriteObject: spriteObject)
+            return interpretDouble(formulaElement, for: spriteObject)
         case .SENSOR:
-            return interpretSensor(formulaElement: formulaElement, spriteObject: spriteObject)
+            return interpretSensor(formulaElement, for: spriteObject)
         case .USER_VARIABLE:
-            return interpretVariable(formulaElement: formulaElement, spriteObject: spriteObject)
+            return interpretVariable(formulaElement, for: spriteObject)
         case .USER_LIST:
-            return interpretList(formulaElement: formulaElement, spriteObject: spriteObject)
+            return interpretList(formulaElement, for: spriteObject)
         case .BRACKET:
-            return self.interpretRecursive(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
+            return self.interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
         case .STRING:
             return formulaElement.value as AnyObject
         }
     }
     
-    private func interpretDouble(formulaElement: FormulaElement, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretDouble(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         return Double(formulaElement.value) as AnyObject
     }
     
-    private func interpretOperator(formulaElement: FormulaElement, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretOperator(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         if formulaElement.leftChild != nil {
             return interpretBinaryOperator(formulaElement: formulaElement, spriteObject: spriteObject) as AnyObject
         }
@@ -96,7 +102,7 @@ extension FormulaManager {
     private func interpretUnaryOperator(formulaElement: FormulaElement, spriteObject: SpriteObject) -> Double {
         let op = Operators.getOperatorByValue(formulaElement.value)
         
-        let right = interpretRecursive(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
+        let right = interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
         let rightDouble = doubleParameter(object: right)
         
         switch (op) {
@@ -112,8 +118,8 @@ extension FormulaManager {
     private func interpretBinaryOperator(formulaElement: FormulaElement, spriteObject: SpriteObject) -> Double {
         let op = Operators.getOperatorByValue(formulaElement.value)
         
-        let left = interpretRecursive(formulaElement: formulaElement.leftChild, spriteObject: spriteObject)
-        let right = interpretRecursive(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
+        let left = interpretRecursive(formulaElement: formulaElement.leftChild, for: spriteObject)
+        let right = interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
         let leftDouble = doubleParameter(object: left)
         let rightDouble = doubleParameter(object: right)
         
@@ -169,7 +175,7 @@ extension FormulaManager {
         return Double(value ? 1.0 : 0.0)
     }
     
-    private func interpretVariable(formulaElement: FormulaElement, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretVariable(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         guard let program = spriteObject.program,
               let variable = program.variables.getUserVariableNamed(formulaElement.value, for: spriteObject),
               let value = variable.value else { return 0 as AnyObject }
@@ -177,7 +183,7 @@ extension FormulaManager {
         return value as AnyObject
     }
     
-    private func interpretList(formulaElement: FormulaElement, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretList(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         guard let program = spriteObject.program,
               let list = program.variables.getUserListNamed(formulaElement.value, for: spriteObject),
               let value = list.value,
@@ -198,11 +204,11 @@ extension FormulaManager {
         return stringElements.joined(separator: " ") as AnyObject
     }
     
-    private func interpretSensor(formulaElement: FormulaElement, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretSensor(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         return sensorManager.value(tag: formulaElement.value, spriteObject: spriteObject)
     }
     
-    private func interpretFunction(formulaElement: FormulaElement, spriteObject: SpriteObject) -> AnyObject {
+    private func interpretFunction(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         let leftParam = functionParameter(formulaElement: formulaElement.leftChild, spriteObject: spriteObject)
         let rightParam = functionParameter(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
         
@@ -216,7 +222,7 @@ extension FormulaManager {
             return spriteObject.program.variables.getUserListNamed(formulaElement.value, for: spriteObject)
         }
         
-        return interpretRecursive(formulaElement: formulaElement, spriteObject: spriteObject)
+        return interpretRecursive(formulaElement: formulaElement, for: spriteObject)
     }
     
     private func doubleParameter(object: AnyObject) -> Double {

@@ -20,23 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol FormulaInterpreterProtocol {
-    
-    @objc(interpretDouble: forSpriteObject:)
-    func interpretDouble(_ formula: Formula, for spriteObject: SpriteObject) -> Double
-    
-    @objc(interpretFloat: forSpriteObject:)
-    func interpretFloat(_ formula: Formula, for spriteObject: SpriteObject) -> Float
-    
-    @objc(interpretInteger: forSpriteObject:)
-    func interpretInteger(_ formula: Formula, for spriteObject: SpriteObject) -> Int
-    
-    @objc(interpretBool: forSpriteObject:)
-    func interpretBool(_ formula: Formula, for spriteObject: SpriteObject) -> Bool
-    
-    @objc(interpretString: forSpriteObject:)
-    func interpretString(_ formula: Formula, for spriteObject: SpriteObject) -> String
-    
-    @objc(interpret: forSpriteObject:)
-    func interpret(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject
-}
+#import "Program.h"
+
+@interface ProgramMock : Program
+
+- (instancetype)init;
+- (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height;
+
+@end

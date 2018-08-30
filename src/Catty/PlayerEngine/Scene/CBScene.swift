@@ -55,8 +55,7 @@ final class CBScene: SKScene {
     }
     @objc weak var screenRecordingDelegate: CBScreenRecordingDelegate?
 
-    init(size: CGSize, logger: CBLogger, scheduler: CBScheduler, frontend: CBFrontend, backend: CBBackend, broadcastHandler: CBBroadcastHandlerProtocol, formulaManager: FormulaManagerProtocol)
-    {
+    init(size: CGSize, logger: CBLogger, scheduler: CBSchedulerProtocol, frontend: CBFrontendProtocol, backend: CBBackendProtocol, broadcastHandler: CBBroadcastHandlerProtocol, formulaManager: FormulaManagerProtocol) {
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend

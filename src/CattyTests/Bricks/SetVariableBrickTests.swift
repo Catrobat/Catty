@@ -28,6 +28,9 @@ final class SetVariableBrickTests: XCTestCase {
     
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
     
     override func setUp() {
         spriteObject = SpriteObject()
@@ -35,12 +38,20 @@ final class SetVariableBrickTests: XCTestCase {
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
+        spriteObject.program = Program()
+        
+        script = Script()
+        script.object = spriteObject
+        
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
 
     func testSetVariableBrickUserVariablesNil() {
-        let program = Program();
         spriteNode.position = CGPoint(x: 0, y: 0);
-        spriteObject.program = program;
         
         let formula = Formula();
         let formulaTree = FormulaElement();
@@ -49,28 +60,22 @@ final class SetVariableBrickTests: XCTestCase {
         formula.formulaTree = formulaTree;
 
         let varContainer = VariablesContainer();
-        program.variables = varContainer;
+        spriteObject.program.variables = varContainer;
         
         let brick = SetVariableBrick();
         brick.variableFormula = formula;
-        
-        let script = Script();
-        script.object = spriteObject;
         brick.script = script;
         
         let instruction = brick.instruction();
         
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
-        
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
-        default: break;
+            closure(context, scheduler)
+        default:
+            XCTFail()
         }
         
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
                              // when no UserVariable is selected in the IDE and the brick is executed
     }
 }

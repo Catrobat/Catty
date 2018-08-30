@@ -58,8 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double deg = [self.degrees interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"PointInDirection: %f", deg];
+    return [NSString stringWithFormat:@"PointInDirectionBrick"];
 }
 
 #pragma mark - Resources

@@ -31,14 +31,11 @@
         let spriteObjectName = spriteObject.name
         
         return CBInstruction.execClosure { (context, _) in
-            //            self.logger.debug("Performing: ChangeVolumeByNBrick")
-            if let volume = volumeFormula?.interpretDouble(forSprite: spriteObject) {
-                audioManager?.changeVolume(byPercent: CGFloat(volume), forKey: spriteObjectName)
-                context.state = .runnable
-            }
+            guard let volumeFormula = volumeFormula else { return }
+            
+            let volume = context.formulaInterpreter.interpretDouble(volumeFormula, for: spriteObject)
+            audioManager?.changeVolume(byPercent: CGFloat(volume), forKey: spriteObjectName)
+            context.state = .runnable
         }
-        
     }
-
 }
-

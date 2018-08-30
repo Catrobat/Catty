@@ -32,8 +32,8 @@
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.catrobatPositionX = self.xPosition.interpretDouble(forSprite: object)
-            spriteNode.catrobatPositionY = self.yPosition.interpretDouble(forSprite: object)
+            spriteNode.catrobatPositionX = formulaInterpreter.interpretDouble(self.xPosition, for: object)
+            spriteNode.catrobatPositionY = formulaInterpreter.interpretDouble(self.yPosition, for: object)
         }
     }
 }

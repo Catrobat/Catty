@@ -60,7 +60,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeBrightnessByN (%f%%)", [self.changeBrightness interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ChangeBrightnessByNBrick"];
 }
 
 - (NSString*)pathForLook:(Look*)look

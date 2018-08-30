@@ -33,7 +33,7 @@ extension MoveNStepsBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         return {
-            let steps = stepsFormula.interpretDouble(forSprite: object)
+            let steps = context.formulaInterpreter.interpretDouble(stepsFormula, for: object)
             let standardizedRotation = spriteNode.catrobatRotation
             let rotationRadians = Util.degree(toRadians: Double(standardizedRotation))
             

@@ -68,7 +68,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.script.object] ];
+    return [NSString stringWithFormat:@"MoveNStepsBrick"];
 }
 
 #pragma mark - Resources

@@ -153,15 +153,15 @@ final class CBScheduler: CBSchedulerProtocol {
                 }
             }
 
-            for (context, duration, actionCreateClosure) in nextLongActionElements {
+            for (context, duration, closure) in nextLongActionElements {
                 var durationTime = 0.0
                 switch duration {
                 case let .varTime(formula):
-                    durationTime = formula.interpretDouble(forSprite: context.spriteNode.spriteObject)
+                    durationTime = _formulaInterpreter.interpretDouble(formula, for: context.spriteNode.spriteObject)
                 case let .fixedTime(time):
                     durationTime = time
                 }
-                let action = actionCreateClosure(durationTime)
+                let action = closure(durationTime, context)
                 spriteNode.run(action) { [weak self] in
                     context.state = .runnable
                     self?.runNextInstructionsGroup()

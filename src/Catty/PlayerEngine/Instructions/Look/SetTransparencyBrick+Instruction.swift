@@ -23,17 +23,17 @@
 extension SetTransparencyBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let transparency = self.transparency
         else { fatalError("This should never happen!") }
 
         return {
-            let transparency = transparency.interpretDouble(forSprite: object)
+            let transparency = formulaInterpreter.interpretDouble(transparency, for: object)
             spriteNode.catrobatTransparency = transparency;
         }
     }

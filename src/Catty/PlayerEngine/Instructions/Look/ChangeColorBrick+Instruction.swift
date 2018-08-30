@@ -23,10 +23,10 @@
 extension ChangeColorByNBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let colorFormula = self.changeColor
@@ -34,7 +34,7 @@ extension ChangeColorByNBrick: CBInstructionProtocol {
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-            let colorIncrease = colorFormula.interpretDouble(forSprite: object)
+            let colorIncrease = formulaInterpreter.interpretDouble(colorFormula, for: object)
             spriteNode.catrobatColor = spriteNode.catrobatColor + colorIncrease
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))

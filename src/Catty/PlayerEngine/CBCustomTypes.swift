@@ -21,7 +21,7 @@
  */
 
 // MARK: - Typedefs
-typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, duration: CBDuration, actionClosure: CBLongActionCreateClosure)
+typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, duration: CBDuration, actionClosure: CBLongActionClosure)
 typealias CBScheduleActionElement = (context: CBScriptContextProtocol, closure: CBActionClosure)
 typealias CBHighPriorityScheduleElement = (context: CBScriptContextProtocol, closure: CBHighPriorityExecClosure)
 typealias CBScheduleElement = (context: CBScriptContextProtocol, closure: CBExecClosure)
@@ -31,7 +31,7 @@ typealias CBConditionalFormulaBufferElement = (context: CBScriptContextProtocol,
 typealias CBExecClosure = (_ context: CBScriptContextProtocol, _ scheduler: CBSchedulerProtocol) -> Void
 typealias CBHighPriorityExecClosure = (_ context: CBScriptContextProtocol,
     _ scheduler: CBSchedulerProtocol, _ broadcastHandler: CBBroadcastHandlerProtocol) -> Void
-typealias CBLongActionCreateClosure = (_ duration: TimeInterval) -> SKAction
+typealias CBLongActionClosure = (_ duration: TimeInterval, _ context: CBScriptContextProtocol) -> SKAction
 typealias CBActionClosure = (_ context: CBScriptContextProtocol) -> SKAction
 
 // MARK: - Enums
@@ -39,7 +39,7 @@ indirect enum CBInstruction {
     case highPriorityExecClosure(closure: CBHighPriorityExecClosure)
     case execClosure(closure: CBExecClosure)
     case waitExecClosure(closure: CBExecClosure)
-    case longDurationAction(duration: CBDuration, actionCreateClosure: CBLongActionCreateClosure)
+    case longDurationAction(duration: CBDuration, closure: CBLongActionClosure)
     case action(closure: CBActionClosure)
     case formulaBuffer(brick: BrickFormulaProtocol)
     case conditionalFormulaBuffer(conditionalBrick: CBConditionalSequence)
