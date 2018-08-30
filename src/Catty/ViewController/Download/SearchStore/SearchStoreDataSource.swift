@@ -88,12 +88,19 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kSearchCell, for: indexPath)
         if let cell = cell as? SearchStoreCell {
+            cell.tag = indexPath.row
             if programs.isEmpty == false {
-                let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
-                let data = try? Data(contentsOf: imageUrl!)
-                cell.searchImage = UIImage(data: data!)
-                cell.searchTitle = programs[indexPath.row].projectName
-                cell.program = programs[indexPath.row]
+                DispatchQueue.global().async {
+                    let imageUrl = URL(string: self.baseUrl.appending(self.programs[indexPath.row].screenshotSmall!))
+                    if let data = try? Data(contentsOf: imageUrl!) {
+                        DispatchQueue.main.async {
+                            guard cell.tag == indexPath.row else { return }
+                            cell.searchImage = UIImage(data: data)
+                            cell.searchTitle = self.programs[indexPath.row].projectName
+                            cell.program = self.programs[indexPath.row]
+                        }
+                    }
+                }
             }
         }
         return cell
