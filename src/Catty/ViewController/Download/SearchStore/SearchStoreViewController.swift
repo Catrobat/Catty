@@ -52,6 +52,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         shouldHideLoadingView = false
         dataSource.delegate = self
         SearchStoreTableView.tableFooterView = UIView(frame: CGRect.zero)
+        searchBar.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
