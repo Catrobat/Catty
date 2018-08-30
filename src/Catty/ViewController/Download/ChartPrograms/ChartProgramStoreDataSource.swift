@@ -221,8 +221,13 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         
         if currentViewBottomEdge >= checkPoint {
             self.fetchItems(type: self.programType) { error in
+<<<<<<< HEAD
                 if error != nil {
                     self.delegate?.errorAlertHandler(error: error!)
+=======
+                 if error != nil {
+                    self.delegate?.errorAlertHandler(dataSource: self, error: error!)
+>>>>>>> 3cc4d22e755de5fe5845bb4307ac03ff1cb65970
                 }
             }
             self.delegate?.scrollViewHandler()
