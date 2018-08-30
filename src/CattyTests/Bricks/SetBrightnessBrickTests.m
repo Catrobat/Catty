@@ -65,14 +65,9 @@
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
 
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"180";
-    brightness.formulaTree = formulaTree;
-    brick.brightness = brightness;
+    brick.brightness = [[Formula alloc] initWithInteger:180];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(180.0f, spriteNode.catrobatBrightness, 0.1f, @"SetBrightnessBrick - Brightness not correct");
@@ -102,14 +97,9 @@
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
 
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-10";
-    brightness.formulaTree = formulaTree;
-    brick.brightness = brightness;
+    brick.brightness = [[Formula alloc] initWithInteger:-10];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatBrightness, 0.1f ,@"SetBrightnessBrick - Brightness not correct");
@@ -140,14 +130,9 @@
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"210";
-    brightness.formulaTree = formulaTree;
-    brick.brightness = brightness;
+    brick.brightness = [[Formula alloc] initWithInteger:210];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(200.0f, spriteNode.catrobatBrightness, 0.1f, @"SetBrightnessBrick - Brightness not correct");
@@ -179,14 +164,9 @@
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.spriteNode.catrobatBrightness = 100.0;
 
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    brightness.formulaTree = formulaTree;
-    brick.brightness = brightness;
+    brick.brightness = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatBrightness, 0.1f, @"SetBrightnessBrick - Brightness not correct");

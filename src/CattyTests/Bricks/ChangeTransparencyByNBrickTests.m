@@ -63,7 +63,7 @@
     brick.script = script;
     brick.changeTransparency = transparency;
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
@@ -91,7 +91,7 @@
     brick.script = script;
     brick.changeTransparency = transparency;
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
@@ -119,7 +119,7 @@
     brick.script = script;
     brick.changeTransparency = transparency;
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(100.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
@@ -147,7 +147,7 @@
     brick.script = script;
     brick.changeTransparency = transparency;
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");

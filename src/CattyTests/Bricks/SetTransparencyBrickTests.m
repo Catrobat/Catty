@@ -50,20 +50,14 @@
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
 
-    Formula *transparency =[[Formula alloc] init];
-    FormulaElement *formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"20";
-    transparency.formulaTree = formulaTree;
-
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
-    brick.transparency = transparency;
+    brick.transparency = [[Formula alloc] initWithInteger:20];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
@@ -78,20 +72,14 @@
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
 
-    Formula* transparency =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-20";
-    transparency.formulaTree = formulaTree;
-
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
-    brick.transparency = transparency;
+    brick.transparency = [[Formula alloc] initWithInteger:-20];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");
@@ -106,20 +94,14 @@
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 10.0;
 
-    Formula* transparency =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    transparency.formulaTree = formulaTree;
-
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
-    brick.transparency = transparency;
+    brick.transparency = [[Formula alloc] initWithString:@"a"];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(0.0f, spriteNode.catrobatTransparency, 0.01f, @"ChangeTransparencyBrick is not correctly calculated");

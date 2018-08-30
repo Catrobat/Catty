@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension ChangeTransparencyByNBrick: CBInstructionProtocol {
+@objc extension ChangeTransparencyByNBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
+    @nonobjc func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let transparency = self.changeTransparency

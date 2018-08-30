@@ -51,20 +51,14 @@
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
 
-    Formula *degrees =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"20";
-    degrees.formulaTree = formulaTree;
-
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     PointInDirectionBrick* brick = [[PointInDirectionBrick alloc]init];
     brick.script = script;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithInteger:20];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(20.0, spriteNode.catrobatRotation, 0.0001, @"PointInDirectionBrick is not correctly calculated");

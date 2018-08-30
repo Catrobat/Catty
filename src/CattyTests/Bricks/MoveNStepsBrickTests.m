@@ -170,15 +170,9 @@
     self.spriteNode.catrobatPosition = position;
     self.spriteNode.catrobatRotation = rotation;
     
-    Formula* stepFormula = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = [[NSNumber numberWithFloat:steps] stringValue];
-    stepFormula.formulaTree = formulaTree;
+    self.brick.steps = [[Formula alloc] initWithFloat:steps];
     
-    self.brick.steps = stepFormula;
-    
-    dispatch_block_t action = [self.brick actionBlock];
+    dispatch_block_t action = [self.brick actionBlock:self.formulaInterpreter];
     action();
 }
 

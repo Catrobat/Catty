@@ -58,12 +58,6 @@
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
 
-    Formula* transparency =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"20";
-    transparency.formulaTree = formulaTree;
-
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
@@ -76,12 +70,12 @@
     object.spriteNode.catrobatBrightness = 10;
     object.spriteNode.catrobatTransparency = 10;
     brick.script = script;
-    brick.transparency = transparency;
+    brick.transparency = [[Formula alloc] initWithInteger:20];
     
     XCTAssertNotEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f);
     XCTAssertNotEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.0001f);
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
     ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
@@ -134,7 +128,7 @@
     XCTAssertNotEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.001f);
     XCTAssertNotEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.001f);
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
     ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];

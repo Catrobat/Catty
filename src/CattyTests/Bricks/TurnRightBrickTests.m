@@ -90,14 +90,9 @@
     TurnRightBrick *brick = [[TurnRightBrick alloc] init];
     brick.script = script;
 
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(0.0, spriteNode.catrobatRotation, 0.0001, @"TurnRightBrick not correct");
@@ -117,14 +112,9 @@
     TurnRightBrick* brick = [[TurnRightBrick alloc] init];
     brick.script = script;
     
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = [NSString stringWithFormat:@"%f", rotation];
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithFloat:rotation];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     if (initialRotation > 180.0f) {

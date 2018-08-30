@@ -66,14 +66,9 @@
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.spriteNode.catrobatColor = 0.0;
     
-    Formula *color = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"70";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithInteger:70];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(70.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
@@ -106,14 +101,9 @@
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.spriteNode.catrobatColor = 10.0;
     
-    Formula *color = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithString:@"a"];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
@@ -146,14 +136,9 @@
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.spriteNode.catrobatColor = 20.0;
     
-    Formula* color = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-10";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithInteger:-10];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
@@ -186,14 +171,9 @@
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.spriteNode.ciHueAdjust = ColorSensor.defaultRawValue;
     
-    Formula* color = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-730";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithInteger:-730];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     XCTAssertEqualWithAccuracy(200-130.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");

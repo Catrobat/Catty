@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetBackgroundBrick: CBInstructionProtocol {
+@objc extension SetBackgroundBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+    @nonobjc func instruction() -> CBInstruction {
+        return .action { (context) in SKAction.run(self.actionBlock()) }
     }
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script.object.program.objectList.firstObject as? SpriteObject,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }

@@ -73,14 +73,9 @@
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
     brick.script = script;
     
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = [NSString stringWithFormat:@"%f", rotation];
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithFloat:rotation];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:(initialRotation - rotation) for: object];

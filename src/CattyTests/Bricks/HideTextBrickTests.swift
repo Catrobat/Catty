@@ -26,6 +26,7 @@ import XCTest
 
 final class HideTextBrickTests: XCTestCase {
     
+    var program: Program!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
@@ -33,12 +34,14 @@ final class HideTextBrickTests: XCTestCase {
     var context: CBScriptContextProtocol!
     
     override func setUp() {
+        program = Program()
+        
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = Program()
+        spriteObject.program = program
         
         script = Script()
         script.object = spriteObject

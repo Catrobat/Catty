@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension GoNStepsBackBrick: CBInstructionProtocol {
+@objc extension GoNStepsBackBrick: CBInstructionProtocol {
 
-    func instruction() -> CBInstruction {
-        return .action { (context) in SKAction.run(self.actionBlock(context: context)) }
+    @nonobjc func instruction() -> CBInstruction {
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    func actionBlock(context: CBScriptContextProtocol) -> ()->() {
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps,
@@ -35,7 +35,7 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
 
         return {
             let currentLayer = spriteNode.catrobatLayer
-            let steps = context.formulaInterpreter.interpretDouble(stepsFormula, for: object)
+            let steps = formulaInterpreter.interpretDouble(stepsFormula, for: object)
             spriteNode.catrobatLayer = spriteNode.catrobatLayer - steps
             
             for obj in objectList {
@@ -47,6 +47,5 @@ extension GoNStepsBackBrick: CBInstructionProtocol {
                 }
             }
         }
-
     }
 }
