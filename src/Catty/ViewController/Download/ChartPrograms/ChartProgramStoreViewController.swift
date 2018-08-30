@@ -224,11 +224,7 @@ extension ChartProgramsStoreViewController {
     func errorAlertHandler(error: StoreProgramDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
-<<<<<<< HEAD
         DispatchQueue.global().async {
-=======
-        DispatchQueue.main.async {
->>>>>>> 3cc4d22e755de5fe5845bb4307ac03ff1cb65970
             self.showConnectionIssueAlertAndDismiss(error: error)
         }
         self.chartProgramsTableView.separatorStyle = .singleLine
