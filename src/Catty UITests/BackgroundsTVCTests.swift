@@ -250,7 +250,7 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
         if(app.buttons["Hide Details"].exists) {
             app.buttons["Hide Details"].tap()
-            app.navigationBars["My first program"].buttons["Edit"].tap()
+            app.navigationBars["Backgrounds"].buttons["Edit"].tap()
         }
         
         app.buttons["Show Details"].tap()
