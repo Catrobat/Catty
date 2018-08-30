@@ -26,16 +26,18 @@ protocol ChartProgramStoreDataSourceDelegate: class {
 
 protocol SelectedChartProgramsDataSource: class {
     func selectedCell(dataSource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
-    func scrollViewHandler(dataSource: ChartProgramStoreDataSource)
-    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError)
+    func scrollViewHandler()
+    func errorAlertHandler(error: StoreProgramDownloaderError)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
 class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
-
+    
     weak var delegate: SelectedChartProgramsDataSource?
-
+    
     let downloader: StoreProgramDownloaderProtocol
     var baseUrl = ""
     var programType: ProgramType
@@ -51,7 +53,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     var mostDownloadedScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
     var mostViewedScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
     var mostRecentScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
-
+    
     var scrollView = UIScrollView()
     
     var programs: [StoreProgram] {
@@ -92,20 +94,20 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             return CGPoint(x: 0,y: 0)
         }
     }
-
+    
     // MARK: - Initializer
-
+    
     fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
         self.programType = .mostDownloaded
     }
-
+    
     static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> ChartProgramStoreDataSource {
         return ChartProgramStoreDataSource(with: downloader)
     }
-
+    
     // MARK: - DataSource
-
+    
     func fetchItems(type: ProgramType, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
         
         programType = type
@@ -150,7 +152,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return TableUtil.heightForImageCell()
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? ChartProgramCell {
@@ -176,18 +178,27 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
         return cell
     }
-
+    
     // MARK: - Delegate
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? ChartProgramCell else { return }
         guard let cellProgram = cell.program else { return }
-
+        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+            self.delegate?.errorAlertHandler(error: .timeout)
+            timer.invalidate()
+            self.delegate?.hideLoadingIndicator()
+        }
+        self.delegate?.showLoadingIndicator()
+        
         self.downloader.downloadProgram(for: cellProgram) { program, error in
+            guard timer.isValid else { return }
             guard let StoreProgram = program, error == nil else { return }
             cell.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
+            timer.invalidate()
+            self.delegate?.hideLoadingIndicator()
         }
     }
     
@@ -210,11 +221,11 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         
         if currentViewBottomEdge >= checkPoint {
             self.fetchItems(type: self.programType) { error in
-                 if error != nil {
-                self.delegate?.errorAlertHandler(dataSource: self, error: error!)
+                if error != nil {
+                    self.delegate?.errorAlertHandler(error: error!)
                 }
             }
-            self.delegate?.scrollViewHandler(dataSource: self)
+            self.delegate?.scrollViewHandler()
         }
     }
 }

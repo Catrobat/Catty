@@ -21,8 +21,8 @@
  */
 
 class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource {
-  
-    @IBOutlet weak var SearchStoreTableView: UITableView!
+    
+    @IBOutlet weak var searchStoreTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Properties
@@ -51,7 +51,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         initNoSearchResultsLabel()
         shouldHideLoadingView = false
         dataSource.delegate = self
-        SearchStoreTableView.tableFooterView = UIView(frame: CGRect.zero)
+        searchStoreTableView.tableFooterView = UIView(frame: CGRect.zero)
         searchBar.becomeFirstResponder()
     }
     
@@ -126,11 +126,11 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
     }
     
     private func setupTableView() {
-        self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        self.SearchStoreTableView.backgroundColor = UIColor.background()
-        self.SearchStoreTableView.separatorColor = UIColor.globalTint()
-        self.SearchStoreTableView.dataSource = self.dataSource
-        self.SearchStoreTableView.delegate = self.dataSource
+        self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.searchStoreTableView.backgroundColor = UIColor.background()
+        self.searchStoreTableView.separatorColor = UIColor.globalTint()
+        self.searchStoreTableView.dataSource = self.dataSource
+        self.searchStoreTableView.delegate = self.dataSource
         self.searchBar.delegate  = self.dataSource
     }
     
@@ -146,7 +146,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             loadingViewFlag = false
         }
     }
-        
+    
     func showLoadingView() {
         if loadingView == nil {
             loadingView = LoadingView()
@@ -181,10 +181,10 @@ extension SearchStoreViewController: SearchStoreCellProtocol {
 }
 
 extension SearchStoreViewController {
-
+    
     func updateTableView() {
-        self.SearchStoreTableView.reloadData()
-        self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.searchStoreTableView.reloadData()
+        self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
     
     func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm: String) {
@@ -196,19 +196,41 @@ extension SearchStoreViewController {
                 self.showConnectionIssueAlertAndDismiss(error: error!)
                 return
             }
-            self.SearchStoreTableView.reloadData()
+            self.searchStoreTableView.reloadData()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
-            self.SearchStoreTableView.separatorStyle = .singleLine
+            self.searchStoreTableView.separatorStyle = .singleLine
         }
     }
     
     func showNoResultsAlert() {
-        self.SearchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         noSearchResultsLabel.isHidden = false
     }
     
     func hideNoResultsAlert() {
         noSearchResultsLabel.isHidden = true
+    }
+    
+    func errorAlertHandler(error: StoreProgramDownloaderError) {
+        self.shouldHideLoadingView = true
+        self.hideLoadingView()
+        self.showConnectionIssueAlertAndDismiss(error: error)
+        self.searchStoreTableView.separatorStyle = .singleLine
+        return
+    }
+    
+    func showLoadingIndicator() {
+        DispatchQueue.main.async {
+            self.shouldHideLoadingView = false
+            self.showLoadingView()
+        }
+    }
+    
+    func hideLoadingIndicator() {
+        DispatchQueue.main.async {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+        }
     }
 }

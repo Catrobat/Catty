@@ -26,24 +26,24 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
     @IBOutlet weak var chartProgramsSegmentedControl: UISegmentedControl!
     
     // MARK: - Properties
-
+    
     private var dataSource: ChartProgramStoreDataSource
-
+    
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
     var loadingViewFlag = false
-
+    
     // MARK: - Initializers
     
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = ChartProgramStoreDataSource.dataSource()
         super.init(coder: aDecoder)
     }
-
+    
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         shouldHideLoadingView = false
@@ -217,15 +217,31 @@ extension ChartProgramsStoreViewController: ChartProgramCellProtocol{
 }
 
 extension ChartProgramsStoreViewController {
-    func scrollViewHandler(dataSource: ChartProgramStoreDataSource) {
+    func scrollViewHandler() {
         chartProgramsTableView.reloadData()
     }
     
-    func errorAlertHandler(dataSource: ChartProgramStoreDataSource, error: StoreProgramDownloaderError) {
+    func errorAlertHandler(error: StoreProgramDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
-        self.showConnectionIssueAlertAndDismiss(error: error)
+        DispatchQueue.global().async {
+            self.showConnectionIssueAlertAndDismiss(error: error)
+        }
         self.chartProgramsTableView.separatorStyle = .singleLine
         return
+    }
+    
+    func showLoadingIndicator() {
+        DispatchQueue.main.async {
+            self.shouldHideLoadingView = false
+            self.showLoadingView()
+        }
+    }
+    
+    func hideLoadingIndicator() {
+        DispatchQueue.main.async {
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
+        }
     }
 }

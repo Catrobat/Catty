@@ -30,10 +30,13 @@ protocol SelectedSearchStoreDataSource: class {
     func showNoResultsAlert()
     func hideNoResultsAlert()
     func updateTableView()
+    func errorAlertHandler(error: StoreProgramDownloaderError)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-
+    
     // MARK: - Properties
     
     weak var delegate: SelectedSearchStoreDataSource?
@@ -77,7 +80,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         return programs.count
     }
     
@@ -88,12 +91,19 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kSearchCell, for: indexPath)
         if let cell = cell as? SearchStoreCell {
+            cell.tag = indexPath.row
             if programs.isEmpty == false {
-                let imageUrl = URL(string: self.baseUrl.appending(programs[indexPath.row].screenshotSmall!))
-                let data = try? Data(contentsOf: imageUrl!)
-                cell.searchImage = UIImage(data: data!)
-                cell.searchTitle = programs[indexPath.row].projectName
-                cell.program = programs[indexPath.row]
+                DispatchQueue.global().async {
+                    let imageUrl = URL(string: self.baseUrl.appending(self.programs[indexPath.row].screenshotSmall!))
+                    if let data = try? Data(contentsOf: imageUrl!) {
+                        DispatchQueue.main.async {
+                            guard cell.tag == indexPath.row else { return }
+                            cell.searchImage = UIImage(data: data)
+                            cell.searchTitle = self.programs[indexPath.row].projectName
+                            cell.program = self.programs[indexPath.row]
+                        }
+                    }
+                }
             }
         }
         return cell
@@ -104,11 +114,20 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell: SearchStoreCell? = tableView.cellForRow(at: indexPath) as? SearchStoreCell
+        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+            self.delegate?.errorAlertHandler(error: .timeout)
+            timer.invalidate()
+            self.delegate?.hideLoadingIndicator()
+        }
+        self.delegate?.showLoadingIndicator()
         
         self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
+            guard timer.isValid else { return }
             guard let StoreProgram = program, error == nil else { return }
             cell?.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+            timer.invalidate()
+            self.delegate?.hideLoadingIndicator()
         }
     }
     
