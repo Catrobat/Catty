@@ -45,7 +45,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().alerts["New Program"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
-        app.toolbars["Toolbar"].buttons["Add"].tap()
+        app.toolbars.buttons["Add"].tap()
         
         if(app.navigationBars["Frequently Used"].exists) {
             app.swipeLeft()
@@ -67,22 +67,19 @@ class VariablesTests: XCTestCase, UITestProtocol {
         XCUIApplication().alerts["New Program"].buttons["OK"].tap()
         XCUIApplication().tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
-        app.toolbars["Toolbar"].buttons["Add"].tap()
-        
-        let collectionViewsQuery = app.collectionViews
-        let cell = collectionViewsQuery.children(matching: .cell).element(boundBy: 4)
+        app.toolbars.buttons["Add"].tap()
         
         if(app.navigationBars["Frequently Used"].exists) {
-            cell.swipeLeft()
+            app.swipeLeft()
         }
-        cell.swipeLeft()
-        cell.swipeLeft()
-        cell.swipeLeft()
-        cell.swipeLeft()
-        
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
         app.swipeDown()
-        collectionViewsQuery.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
-        collectionViewsQuery.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
+        
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
         XCTAssert(app.sheets["List type"].exists)
     }
 }
