@@ -26,9 +26,9 @@ extension FormulaManager {
     func interpretDouble(_ formula: Formula, for spriteObject: SpriteObject) -> Double {
         let value = interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
         if let doubleValue = value as? Double {
-            return doubleValue
+            return Double(doubleValue)
         }
-        return 0.0
+        return Double(0)
     }
     
     @objc(interpretFloat: forSpriteObject:)
@@ -44,7 +44,7 @@ extension FormulaManager {
     @objc(interpretBool: forSpriteObject:)
     func interpretBool(_ formula: Formula, for spriteObject: SpriteObject) -> Bool {
         let value = interpretInteger(formula, for: spriteObject)
-        return value == 1
+        return Bool(value == 1)
     }
     
     @objc(interpretString: forSpriteObject:)
@@ -57,7 +57,7 @@ extension FormulaManager {
         } else if let stringValue = value as? String {
             return stringValue
         }
-        return ""
+        return String("")
     }
     
     @objc(interpret: forSpriteObject:)

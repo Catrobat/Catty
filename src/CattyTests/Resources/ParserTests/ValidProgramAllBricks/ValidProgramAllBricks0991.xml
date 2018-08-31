@@ -486,12 +486,6 @@
             <brick type="ChooseCameraBrick">
                 <spinnerSelectionID>1</spinnerSelectionID>
             </brick>
-            <brick type="CameraBrick">
-                <spinnerSelectionID>0</spinnerSelectionID>
-                <spinnerValues>
-                    <string>off</string><string>on</string>
-                </spinnerValues>
-            </brick>
             <brick type="HideTextBrick">
                 <userVariable reference="../../brick[13]/userVariable"/>
                 <userVariableName>global</userVariableName>
