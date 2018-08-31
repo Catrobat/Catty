@@ -29,6 +29,7 @@ protocol StoreProgramDownloaderProtocol {
 final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
     
     let session: URLSession
+    var timers = [TimerWithBlock]()
     
     init(session: URLSession = URLSession.shared) {
         self.session = session
@@ -39,9 +40,12 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "", kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, Util.catrobatLanguageVersion())) else { return }
         
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+            self.session.invalidateAndCancel()
+            self.timers.forEach{b in b.invalidate() }
+            self.timers.removeAll()
             completion(nil, .timeout)
-            timer.invalidate()
         }
+        timers += timer
         
         self.session.dataTask(with: indexURL) { (data, response, error) in
             guard timer.isValid else { return }
@@ -89,9 +93,12 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         }
 
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
+            self.session.invalidateAndCancel()
+            self.timers.forEach{b in b.invalidate() }
+            self.timers.removeAll()
             completion(nil, .timeout)
-            timer.invalidate()
         }
+        timers += timer
         
         self.session.dataTask(with: indexURL) { (data, response, error) in
             
