@@ -26,6 +26,7 @@ import XCTest
 
 final class SetVariableBrickTests: XCTestCase {
     
+    var program: Program!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
@@ -33,12 +34,14 @@ final class SetVariableBrickTests: XCTestCase {
     var context: CBScriptContextProtocol!
     
     override func setUp() {
+        program = Program()
+        
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = Program()
+        spriteObject.program = program
         
         script = Script()
         script.object = spriteObject
@@ -51,22 +54,16 @@ final class SetVariableBrickTests: XCTestCase {
     }
 
     func testSetVariableBrickUserVariablesNil() {
-        spriteNode.position = CGPoint(x: 0, y: 0);
+        spriteNode.position = CGPoint(x: 0, y: 0)
         
-        let formula = Formula();
-        let formulaTree = FormulaElement();
-        formulaTree.type = ElementType.NUMBER;
-        formulaTree.value = "0";
-        formula.formulaTree = formulaTree;
-
-        let varContainer = VariablesContainer();
-        spriteObject.program.variables = varContainer;
+        let varContainer = VariablesContainer()
+        spriteObject.program.variables = varContainer
         
-        let brick = SetVariableBrick();
-        brick.variableFormula = formula;
-        brick.script = script;
+        let brick = SetVariableBrick()
+        brick.variableFormula = Formula(integer: 0)
+        brick.script = script
         
-        let instruction = brick.instruction();
+        let instruction = brick.instruction()
         
         switch instruction {
         case let .execClosure(closure):

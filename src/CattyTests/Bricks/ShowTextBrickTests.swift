@@ -26,6 +26,7 @@ import XCTest
 
 final class ShowTextBrickTests: XCTestCase {
     
+    var program: Program!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var script: Script!
@@ -33,12 +34,14 @@ final class ShowTextBrickTests: XCTestCase {
     var context: CBScriptContextProtocol!
     
     override func setUp() {
+        program = Program()
+        
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = Program()
+        spriteObject.program = program
         
         script = Script()
         script.object = spriteObject
@@ -51,27 +54,17 @@ final class ShowTextBrickTests: XCTestCase {
     }
     
     func testShowTextBrickUserVariablesNil() {
-        spriteNode.position = CGPoint(x: 0, y: 0);
+        spriteNode.position = CGPoint(x: 0, y: 0)
         
-        let varContainer = VariablesContainer();
-        spriteObject.program.variables = varContainer;
+        let varContainer = VariablesContainer()
+        spriteObject.program.variables = varContainer
         
-        let brick = ShowTextBrick();
-        brick.script = script;
+        let brick = ShowTextBrick()
+        brick.script = script
+        brick.xFormula = Formula(integer: 220)
+        brick.yFormula = Formula(integer: 330)
         
-        let xFormula = Formula();
-        let yFormula = Formula();
-        xFormula.formulaTree = FormulaElement();
-        xFormula.formulaTree.value = "220";
-        xFormula.formulaTree.type = ElementType.NUMBER;
-        yFormula.formulaTree = FormulaElement();
-        yFormula.formulaTree.value = "330";
-        yFormula.formulaTree.type = ElementType.NUMBER;
-        
-        brick.xFormula = xFormula;
-        brick.yFormula = yFormula;
-        
-        let instruction = brick.instruction();
+        let instruction = brick.instruction()
         
         switch instruction {
         case let .execClosure(closure):

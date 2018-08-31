@@ -31,7 +31,7 @@
 - (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height {
     self = [super init];
     
-    if (self != nil){
+    if (self != nil) {
         self.header = [[Header alloc] init];
         self.header.screenWidth = [[NSNumber alloc] initWithFloat:width];
         self.header.screenHeight = [[NSNumber alloc] initWithFloat:height];

@@ -22,7 +22,7 @@
 
 class RandFunction: DoubleParameterDoubleFunction {
     static var tag = "RAND"
-    static var name = "rand"
+    static var name = "random"
     static var defaultValue = 0.0
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false

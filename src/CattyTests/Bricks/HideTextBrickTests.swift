@@ -54,15 +54,13 @@ final class HideTextBrickTests: XCTestCase {
     }
     
     func testHideTextBrickUserVariablesNil() {
-        let varContainer = VariablesContainer();
-        spriteObject.program.variables = varContainer;
+        let varContainer = VariablesContainer()
+        spriteObject.program.variables = varContainer
         
-        let brick = HideTextBrick();
+        let brick = HideTextBrick()
+        brick.script = script
         
-        let script = Script();
-        brick.script = script;
-        
-        let instruction = brick.instruction();
+        let instruction = brick.instruction()
         
         switch instruction {
         case let .execClosure(closure):
