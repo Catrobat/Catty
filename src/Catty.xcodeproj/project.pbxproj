@@ -474,6 +474,7 @@
 		4CF072B320D677AE00F93AB5 /* DateYearSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */; };
 		4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */; };
 		4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */; };
+		4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -1805,6 +1806,7 @@
 		4CF072B220D677AE00F93AB5 /* DateYearSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateYearSensorTest.swift; sourceTree = "<group>"; };
 		4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecording.swift"; sourceTree = "<group>"; };
 		4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecordingPreview.swift"; sourceTree = "<group>"; };
+		4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternFormulaKeyboardAdapterTests.swift; path = Formula/InternFormulaKeyboardAdapterTests.swift; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -3466,6 +3468,7 @@
 				BA1FA9901F02A10C0084184D /* UserListFunctionsTest.m */,
 				4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */,
 				4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */,
+				4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -8203,6 +8206,7 @@
 				4C7A84831DCCE1F9000F366B /* XMLParserTests098.m in Sources */,
 				4CEB22521B95E47500B3BE2F /* BrickMoveManagerTests.m in Sources */,
 				F45A8D6A21072DFC007C0D38 /* LoudnessSensorTest.swift in Sources */,
+				4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
 				4C6FE16E212D2D2E0067B7D5 /* AsinFunctionTest.swift in Sources */,
 				4C994DF2207A3CF000C415FD /* SensorManagerTest.swift in Sources */,
