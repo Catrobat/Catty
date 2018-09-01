@@ -42,8 +42,6 @@
 - (id)initWithString:(NSString*)value;
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
-- (NSString*)interpretString:(SpriteObject*)sprite;
-- (id)interpretVariableDataForSprite:(SpriteObject*)sprite;
 - (void)preCalculateFormulaForSprite:(SpriteObject*)sprite;
 
 - (BOOL)isSingularNumber;
@@ -54,6 +52,5 @@
 - (NSString*)getDisplayString;
 - (InternFormula*)getInternFormula;
 - (void)setDisplayString:(NSString*)text;
-- (NSString*)getResultForComputeDialog:(SpriteObject*)sprite;
 - (NSInteger)getRequiredResources;
 @end

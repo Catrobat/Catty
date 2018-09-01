@@ -509,7 +509,7 @@
     insertItemIntoUserListBrick = (InsertItemIntoUserListBrick*)[script.brickList objectAtIndex:1];
     XCTAssertEqualObjects(@"hallo", insertItemIntoUserListBrick.userList.name, @"Invalid list name");
     
-    NSString* stringValue = (NSString*)[insertItemIntoUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    NSString* stringValue = (NSString*)[self.formulaManager interpret:insertItemIntoUserListBrick.elementFormula forSpriteObject:object];
     XCTAssertEqualObjects(@"test", stringValue, @"Invalid list value");
     
     
@@ -532,7 +532,7 @@
     ReplaceItemInUserListBrick *replaceItemInUserListBrick = (ReplaceItemInUserListBrick*)[script.brickList objectAtIndex:2];
     XCTAssertEqualObjects(@"testlist", replaceItemInUserListBrick.userList.name, @"Invalid list name");
     
-    NSString* stringValue = (NSString*)[replaceItemInUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    NSString* stringValue = (NSString*)[self.formulaManager interpret:replaceItemInUserListBrick.elementFormula forSpriteObject:object];
     XCTAssertEqualObjects(@"hello", stringValue, @"Invalid list value");
     
     NSNumber* indexValue = (NSNumber*)[self.formulaManager interpret:replaceItemInUserListBrick.index forSpriteObject:object];

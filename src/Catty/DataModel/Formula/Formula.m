@@ -109,46 +109,6 @@
     self.formulaTree = formulaTree;
 }
 
-- (NSString*)interpretString:(SpriteObject*)sprite {
-    if (self.bufferedResult) {
-        double bufferedResult = 0;
-        if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
-            bufferedResult = [self.bufferedResult doubleValue];
-        } else if ([self.bufferedResult isKindOfClass:[NSString class]]){
-            NSString* returnString = (NSString*)self.bufferedResult;
-            self.bufferedResult = nil;
-            return returnString;
-        }
-        self.bufferedResult = nil;
-        return [NSString stringWithFormat:@"%lf", bufferedResult];
-    }
-    if (self.lastResult) {
-        return [NSString stringWithFormat:@"%lf", self.lastResult.doubleValue];
-    }
-    
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    if([returnValue isKindOfClass:[NSNumber class]]) {
-        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
-        return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
-    } else if ([returnValue isKindOfClass:[NSString class]]){
-        NSString* returnString = (NSString*)returnValue;
-        return returnString;
-    } else{
-        return @"";
-    }
-}
-
-- (id)interpretVariableDataForSprite:(SpriteObject*)sprite {
-    if (self.bufferedResult) {
-        NSNumber* bufferedResult = self.bufferedResult;
-        self.bufferedResult = nil;
-        return bufferedResult;
-    }
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    return returnValue;
-}
-
-
 - (InternFormulaState*)getInternFormulaState {
     return [[self getInternFormula] getInternFormulaState];
 }
@@ -183,31 +143,6 @@
         return YES;
     }
     return NO;
-}
-
-- (NSString *)getResultForComputeDialog:(SpriteObject *)sprite
-{
-    NSString *result;
-    if(self.formulaTree.type == STRING) {
-        return [self interpretString:sprite];
-    } else {
-        id tempResult = [self.formulaTree interpretRecursiveForSprite:sprite];
-        double double_result = 0.0f;
-        
-        if([tempResult isKindOfClass:[NSString class]])
-        {
-            return tempResult;
-        }
-        if([tempResult isKindOfClass:[NSNumber class]])
-        {
-            double_result = [tempResult doubleValue];
-        }
-        
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        result = [formatter stringFromNumber:[NSNumber numberWithDouble:double_result]];
-    }
-    return result;
 }
 
 #pragma mark - Copy

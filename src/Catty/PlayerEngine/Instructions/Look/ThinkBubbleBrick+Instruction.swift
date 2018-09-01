@@ -32,10 +32,10 @@ extension ThinkBubbleBrick: CBInstructionProtocol {
             else { fatalError("This should never happen!") }
         
         return {
-            var speakText = self.formula.interpretString(object)
-            if(Double(speakText!) !=  nil)
+            var speakText = formulaInterpreter.interpretString(self.formula, for: object)
+            if(Double(speakText) !=  nil)
             {
-                let num = (speakText! as NSString).doubleValue
+                let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
             BubbleBrickHelper.addBubble(to: spriteNode, withText: speakText, andType: CBBubbleType.thought)

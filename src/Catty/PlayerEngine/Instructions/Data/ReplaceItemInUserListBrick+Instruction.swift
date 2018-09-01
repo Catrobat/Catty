@@ -25,19 +25,17 @@
     @nonobjc func instruction() -> CBInstruction {
         
         guard let spriteObject = self.script?.object,
-            let variablesContainer = spriteObject.program?.variables
+            let variablesContainer = spriteObject.program?.variables,
+            let elementFormula = self.elementFormula,
+            let position = self.index
             else { fatalError("This should never happen!") }
         
         let userList = self.userList
-        let elementFormula = self.elementFormula
-        let position = self.index
-        
         
         return CBInstruction.execClosure { (context, _) in
-            //            self.logger.debug("Performing: InsertItemIntoUserListBrick")
             if (userList != nil){
-                let valueResult = elementFormula?.interpretVariableData(forSprite: spriteObject)
-                let positionResult = position?.interpretVariableData(forSprite: spriteObject)
+                let valueResult = context.formulaInterpreter.interpret(elementFormula, for: spriteObject)
+                let positionResult = context.formulaInterpreter.interpret(position, for: spriteObject)
                 variablesContainer.replaceItem(inUserList: userList, value: valueResult, atIndex: positionResult)
             }
             context.state = .runnable
