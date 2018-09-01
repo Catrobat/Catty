@@ -100,7 +100,7 @@
 
 - (BOOL)isSingularNumber
 {
-    return [self.formulaTree isSingleNumberFormula] && [self.formulaTree.value doubleValue] == 1.0;
+    return ([self.formulaTree isSingleNumberFormula] || self.formulaTree.type == STRING) && [self.formulaTree.value doubleValue] == 1.0;
 }
 
 - (void)setRoot:(FormulaElement*)formulaTree

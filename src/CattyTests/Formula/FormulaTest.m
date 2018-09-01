@@ -48,7 +48,16 @@
     formula = [[Formula alloc] initWithDouble:1.0];
     XCTAssertTrue([formula isSingularNumber]);
     
-    formula = [[Formula alloc] initWithFloat:2.0];
+    formula = [[Formula alloc] initWithFloat:1.0];
+    XCTAssertTrue([formula isSingularNumber]);
+    
+    formula = [[Formula alloc] initWithString:@"1"];
+    XCTAssertTrue([formula isSingularNumber]);
+    
+    formula = [[Formula alloc] initWithString:@"1.0"];
+    XCTAssertTrue([formula isSingularNumber]);
+    
+    formula = [[Formula alloc] initWithDouble:1.1];
     XCTAssertFalse([formula isSingularNumber]);
     
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
@@ -67,7 +76,7 @@
     [internTokenList removeAllObjects];
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertTrue([formula isSingularNumber], @"Formula should be single number formula");
+    XCTAssertFalse([formula isSingularNumber], @"Formula should be single number formula");
     
     token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
@@ -82,7 +91,7 @@
     [internTokenList removeAllObjects];
 
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertTrue([formula isSingularNumber], @"Formula should be single number formula");
+    XCTAssertFalse([formula isSingularNumber], @"Formula should be single number formula");
 
     token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];

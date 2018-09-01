@@ -23,7 +23,8 @@
 extension RepeatUntilBrick: CBConditionProtocol {
     
     func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
-        let condition = formulaInterpreter.interpretBool(self.repeatCondition, for: self.script.object)
+        guard let object = self.script.object else { return false }
+        let condition = formulaInterpreter.interpretBool(self.repeatCondition, for: object)
         return !condition
     }
     

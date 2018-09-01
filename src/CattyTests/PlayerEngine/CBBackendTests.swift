@@ -269,7 +269,7 @@ final class CBBackendTests: XCTestCase {
         let startScript = StartScript()
         startScript.object = spriteObject
         
-        let loopBeginBrick = LoopBeginBrick()
+        let loopBeginBrick = ForeverBrick()
         loopBeginBrick.script = startScript
         let broadcastBrick = BroadcastBrick()
         broadcastBrick.script = startScript
