@@ -38,7 +38,6 @@
 
 // Bricks
 #import "Brick.h"
-#import "BrickConditionalBranchProtocol.h"
 #import "IfLogicBeginBrick.h"
 #import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
@@ -86,6 +85,7 @@
 #import "PhiroPlayToneBrick.h"
 #import "PhiroMotorMoveForwardBrick.h"
 #import "PhiroMotorMoveBackwardBrick.h"
+#import "PhiroIfLogicBeginBrick.h"
 #import "ArduinoSendDigitalValueBrick.h"
 #import "ArduinoSendPWMValueBrick.h"
 #import "SetTransparencyBrick.h"

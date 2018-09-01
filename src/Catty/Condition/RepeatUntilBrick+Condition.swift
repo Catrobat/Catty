@@ -20,6 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBInstructionProtocol {
-    func instruction() -> CBInstruction
+extension RepeatUntilBrick: CBConditionProtocol {
+    
+    func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
+        let condition = formulaInterpreter.interpretBool(self.repeatCondition, for: self.script.object)
+        return !condition
+    }
+    
+    func resetCondition() {
+        // nothing to do
+    }
+    
+    func conditionFormulas() -> [Formula] {
+        return self.getFormulas()
+    }
 }

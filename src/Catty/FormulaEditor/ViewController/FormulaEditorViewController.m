@@ -468,10 +468,25 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [self.formulaManager setupForFormula:formula];
     
-    NSString *computedString = [formula getResultForComputeDialog:spriteObject];
+    NSString *computedString = [self interpretFormula:formula forSpriteObject:spriteObject];
     [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
     
     [self.formulaManager stop];
+}
+
+- (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject {
+    id result = [self.formulaManager interpret:formula forSpriteObject:spriteObject];
+    
+    if ([result isKindOfClass:[NSString class]]) {
+        return result;
+    }
+    if ([result isKindOfClass:[NSNumber class]]) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        return [formatter stringFromNumber:result];
+    }
+    
+    return @"";
 }
 
 #pragma mark - UI

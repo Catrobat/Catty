@@ -42,11 +42,6 @@
     return self.ifCondition;
 }
 
-- (NSArray*)conditions
-{
-    return [self getFormulas];
-}
-
 - (NSArray*)getFormulas
 {
     return @[self.ifCondition];
@@ -70,17 +65,6 @@
 - (NSString*)brickTitle
 {
     return [kLocalizedIfBegin stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedIfBeginSecondPart]];
-}
-
-- (BOOL)checkCondition
-{
-    NSDebug(@"Performing: %@", self.description);
-    return [self.ifCondition interpretBOOLForSprite:self.script.object];
-}
-
-- (void)resetCondition
-{
-    // nothing to do
 }
 
 #pragma mark - Description

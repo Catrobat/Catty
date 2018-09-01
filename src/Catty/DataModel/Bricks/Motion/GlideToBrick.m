@@ -83,13 +83,7 @@
 
 - (NSString*)brickTitle
 {
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object andUseCache:NO];
-    NSString* localizedSecond;
-    if ([self.durationInSeconds isSingleNumberFormula] && durationInSeconds == 1.0) {
-        localizedSecond = kLocalizedSecond;
-    } else {
-        localizedSecond = kLocalizedSeconds;
-    }
+    NSString* localizedSecond = [self.durationInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
     return [kLocalizedGlide stringByAppendingString:[@"%@ " stringByAppendingString:[localizedSecond stringByAppendingString:[@"\n"
         stringByAppendingString:[kLocalizedToX
         stringByAppendingString:[@"%@ "

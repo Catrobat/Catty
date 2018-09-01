@@ -26,13 +26,13 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     final weak var rootSequenceList: CBScriptSequenceList?
     final let sequenceList: CBSequenceList
     final var lastLoopIterationStartTime: Date = Date()
-    final private weak var _conditionBrick: BrickConditionalBranchProtocol!
+    final let condition: CBConditionProtocol
 
     // MARK: - Initializers
-    init(rootSequenceList: CBScriptSequenceList, conditionBrick: BrickConditionalBranchProtocol, sequenceList: CBSequenceList) {
+    init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, sequenceList: CBSequenceList) {
         self.rootSequenceList = rootSequenceList
         self.sequenceList = sequenceList
-        self._conditionBrick = conditionBrick
+        self.condition = condition
     }
 
     // MARK: - Operations
@@ -40,27 +40,29 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
         return (sequenceList.count == 0)
     }
 
-    final func checkCondition() -> Bool {
-        return _conditionBrick.checkCondition()
+    final func checkCondition(context: CBScriptContextProtocol) -> Bool {
+        return condition.checkCondition(formulaInterpreter: context.formulaInterpreter)
     }
 
     final func resetCondition() {
-        _conditionBrick.resetCondition()
+        condition.resetCondition()
     }
     
     final func bufferCondition(_ sprite:SpriteObject?) {
-        for formula:Formula in _conditionBrick.conditions() {
+        for formula in condition.conditionFormulas() {
             formula.preCalculate(forSprite: sprite)
         }
     }
+    
     final func hasBluetoothFormula() -> Bool {
-        for formula:Formula in _conditionBrick.conditions() {
+        for formula in condition.conditionFormulas() {
             if (formula.getRequiredResources() & ResourceType.bluetoothArduino.rawValue) > 0 {
                 return true
             }
         }
         return false
     }
+    
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }

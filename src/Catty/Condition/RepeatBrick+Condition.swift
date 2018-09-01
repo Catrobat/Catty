@@ -20,6 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBInstructionProtocol {
-    func instruction() -> CBInstruction
+extension RepeatBrick: CBConditionProtocol {
+    
+    func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool {
+        let timesToRepeat = formulaInterpreter.interpretInteger(self.timesToRepeat, for: self.script.object)
+        let condition = self.loopCount < timesToRepeat
+        self.loopCount += 1
+        return condition
+    }
+    
+    func resetCondition() {
+        self.loopCount = 0
+    }
+    
+    func conditionFormulas() -> [Formula] {
+        return self.getFormulas()
+    }
 }

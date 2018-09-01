@@ -21,6 +21,8 @@
  */
 
 // MARK: - Typedefs
+typealias CBCondition = (_ context: CBScriptContextProtocol) -> Bool
+
 typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, duration: CBDuration, actionClosure: CBLongActionClosure)
 typealias CBScheduleActionElement = (context: CBScriptContextProtocol, closure: CBActionClosure)
 typealias CBHighPriorityScheduleElement = (context: CBScriptContextProtocol, closure: CBHighPriorityExecClosure)

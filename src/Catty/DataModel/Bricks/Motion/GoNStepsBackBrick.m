@@ -58,20 +58,14 @@
 
 - (NSString*)brickTitle
 {
-    int layers = [self.steps interpretIntegerForSprite:self.script.object andUseCache:NO];
-    NSString* localizedLayer;
-    if ([self.steps isSingleNumberFormula] && layers == 1) {
-        localizedLayer = kLocalizedLayer;
-    } else {
-        localizedLayer = kLocalizedLayers;
-    }
+    NSString* localizedLayer = [self.steps isSingularNumber] ? kLocalizedLayer : kLocalizedLayers;
     return [kLocalizedGoBack stringByAppendingString:[@"%@ " stringByAppendingString:localizedLayer]];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"GoNStepsBackBrick"];
 }
 #pragma mark - Resources
 - (NSInteger)getRequiredResources

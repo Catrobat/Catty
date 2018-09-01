@@ -39,17 +39,17 @@
     self.formulaManager = [FormulaManager new];
 }
 
-- (void)testIsSingleNumberFormula
+- (void)testIsSingularNumberFormula
 {
     Formula *formula = [[Formula alloc] initWithInteger:1];
     NSDebug(@"Formula display string %@", [formula getDisplayString]);
-    XCTAssertTrue([formula isSingleNumberFormula], @"Formula should be single number formula");
+    XCTAssertTrue([formula isSingularNumber]);
 
     formula = [[Formula alloc] initWithDouble:1.0];
-    XCTAssertTrue([formula isSingleNumberFormula], @"Formula should be single number formula");
+    XCTAssertTrue([formula isSingularNumber]);
     
-    formula = [[Formula alloc] initWithFloat:1.0];
-    XCTAssertTrue([formula isSingleNumberFormula], @"Formula should be single number formula");
+    formula = [[Formula alloc] initWithFloat:2.0];
+    XCTAssertFalse([formula isSingularNumber]);
     
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     
@@ -67,7 +67,7 @@
     [internTokenList removeAllObjects];
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertTrue([formula isSingleNumberFormula], @"Formula should be single number formula");
+    XCTAssertTrue([formula isSingularNumber], @"Formula should be single number formula");
     
     token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
@@ -82,7 +82,7 @@
     [internTokenList removeAllObjects];
 
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertTrue([formula isSingleNumberFormula], @"Formula should be single number formula");
+    XCTAssertTrue([formula isSingularNumber], @"Formula should be single number formula");
 
     token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
@@ -101,7 +101,7 @@
     XCTAssertEqual(-2, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertFalse([formula isSingleNumberFormula], "Should NOT be a single number formula");
+    XCTAssertFalse([formula isSingularNumber], "Should NOT be a single number formula");
     
     [internTokenList removeAllObjects];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"ROUND"]]; // TODO use Function property
@@ -118,7 +118,7 @@
     [internTokenList removeAllObjects];
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertFalse([formula isSingleNumberFormula], "Should NOT be a single number formula");
+    XCTAssertFalse([formula isSingularNumber], "Should NOT be a single number formula");
 }
 
 @end

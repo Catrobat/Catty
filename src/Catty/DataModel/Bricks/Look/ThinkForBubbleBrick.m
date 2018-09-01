@@ -36,14 +36,7 @@
 
 - (NSString*)brickTitle
 {
-    double intFormula = [self.intFormula interpretDoubleForSprite:self.script.object andUseCache:NO];
-    NSString* localizedSecond;
-    if ([self.intFormula isSingleNumberFormula] && intFormula == 1.0) {
-        localizedSecond = kLocalizedSecond;
-    } else {
-        localizedSecond = kLocalizedSeconds;
-    }
-    
+    NSString* localizedSecond = [self.intFormula isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
     return [[[[kLocalizedThink stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedFor] stringByAppendingString:@"%@"] stringByAppendingString:localizedSecond];
 }
 

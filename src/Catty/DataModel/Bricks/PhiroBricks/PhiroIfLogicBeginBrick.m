@@ -56,16 +56,6 @@
         self.sensor = sensor;
 }
 
-- (BOOL)checkCondition
-{
-    return [[SensorManager shared] valueWithTag:self.sensor spriteObject:nil];
-}
-
-- (void)resetCondition
-{
-    // nothing to do
-}
-
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {

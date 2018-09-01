@@ -98,54 +98,9 @@
     self.bufferedResult = [self.formulaTree interpretRecursiveForSprite:sprite];
 }
 
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite {
-    return [self interpretDoubleForSprite:sprite andUseCache:YES];
-}
-
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache {
-    if (useCache && self.bufferedResult) {
-        double bufferedResult = 0;
-        if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
-            bufferedResult = [self.bufferedResult doubleValue];
-        }
-        self.bufferedResult = nil;
-        return bufferedResult;
-    }
-    if (useCache && self.lastResult) {
-        return self.lastResult.doubleValue;
-    }
-    
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    double returnDoubleValue = 0.0f;
-    if ([returnValue isKindOfClass:[NSNumber class]]) {
-        returnDoubleValue = [returnValue doubleValue];
-    }
-    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
-    return returnDoubleValue;
-}
-
-- (float)interpretFloatForSprite:(SpriteObject*)sprite
+- (BOOL)isSingularNumber
 {
-    return (float)[self interpretDoubleForSprite:sprite];
-}
-
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite {
-    return (int)[self interpretDoubleForSprite:sprite];
-}
-
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache {
-    return (int)[self interpretDoubleForSprite:sprite andUseCache:useCache];
-}
-
-- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite
-{
-    int result = [self interpretIntegerForSprite:sprite];
-    return result != 0 ? true : false;
-}
-
-- (BOOL)isSingleNumberFormula
-{
-    return [self.formulaTree isSingleNumberFormula];
+    return [self.formulaTree isSingleNumberFormula] && [self.formulaTree.value doubleValue] == 1.0;
 }
 
 - (void)setRoot:(FormulaElement*)formulaTree
@@ -233,10 +188,7 @@
 - (NSString *)getResultForComputeDialog:(SpriteObject *)sprite
 {
     NSString *result;
-    if ([self.formulaTree isLogicalOperator]) {
-        BOOL bool_result = [self interpretBOOLForSprite:sprite];
-        result = bool_result ? @"TRUE" : @"FALSE";	
-    } else if(self.formulaTree.type == STRING) {
+    if(self.formulaTree.type == STRING) {
         return [self interpretString:sprite];
     } else {
         id tempResult = [self.formulaTree interpretRecursiveForSprite:sprite];
