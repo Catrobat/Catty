@@ -95,8 +95,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
             if programs.isEmpty == false {
                 DispatchQueue.global().async {
                     if indexPath.row < self.programs.count {
-                        let imageUrl = URL(string: self.baseUrl.appending(self.programs[indexPath.row].screenshotSmall!))
-                        if let data = try? Data(contentsOf: imageUrl!) {
+                        guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
+                        guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
+                        if let data = try? Data(contentsOf: imageUrl) {
                             DispatchQueue.main.async {
                                 guard cell.tag == indexPath.row else { return }
                                 cell.searchImage = UIImage(data: data)
@@ -127,8 +128,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         self.downloader.downloadProgram(for: cellProgram) { program, error in
             guard timer.isValid else { return }
             guard let StoreProgram = program, error == nil else { return }
-            cell?.program = StoreProgram
-            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell!)
+            guard let cell = cell else { return }
+            cell.program = StoreProgram
+            self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
             timer.invalidate()
             self.delegate?.hideLoadingIndicator()
         }

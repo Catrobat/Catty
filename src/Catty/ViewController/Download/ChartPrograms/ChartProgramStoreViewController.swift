@@ -187,13 +187,13 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             loadingView = LoadingView()
             view.addSubview(loadingView!)
         }
-        loadingView!.show()
+        loadingView?.show()
         loadingIndicator(true)
     }
     
     func hideLoadingView() {
         if shouldHideLoadingView {
-            loadingView!.hide()
+            loadingView?.hide()
             loadingIndicator(false)
             self.shouldHideLoadingView = false
         }
