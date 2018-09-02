@@ -28,6 +28,8 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
     
     func stop()
     
+    func functionExists(tag: String) -> Bool
+    
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
     
     func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]

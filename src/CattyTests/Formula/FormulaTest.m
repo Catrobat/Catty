@@ -29,14 +29,16 @@
 #import "Pocket_Code-Swift.h"
 
 @interface FormulaTest : XCTestCase
-@property (nonatomic, strong) FormulaManager *formulaManager;
+@property (nonatomic, strong) id<FormulaManagerProtocol> formulaManager;
+@property (nonatomic, strong) id<FormulaInterpreterProtocol> interpreter;
 @end
 
 @implementation FormulaTest
 
 - (void)setUp
 {
-    self.formulaManager = [FormulaManager new];
+    self.formulaManager = (id<FormulaManagerProtocol>)[FormulaManager new];
+    self.interpreter = (id<FormulaInterpreterProtocol>)self.formulaManager;
 }
 
 - (void)testIsSingularNumberFormula
@@ -67,12 +69,12 @@
     [internTokenList addObject:token];
     [internTokenList addObject:tokenNumber];
 
-    InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
+    InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 1");
-    XCTAssertEqual(-1, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
+    XCTAssertEqual(-1, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
     [internTokenList removeAllObjects];
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
@@ -83,11 +85,11 @@
     [internTokenList addObject:token];
     [internTokenList addObject:tokenNumber];
     
-    internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
+    internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 1");
-    XCTAssertEqual(-1, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
+    XCTAssertEqual(-1, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
     [internTokenList removeAllObjects];
 
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
@@ -102,12 +104,12 @@
     [internTokenList addObject:secondToken];
     [internTokenList addObject:secondNumber];
 
-    internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
+    internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 1 - 1");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual(-2, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
+    XCTAssertEqual(-2, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
     XCTAssertFalse([formula isSingularNumber], "Should NOT be a single number formula");
@@ -118,12 +120,12 @@
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.1111"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
     
-    internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
+    internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: round(1.1111)");
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
-    XCTAssertEqual(1, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], "Formula interpretation is not as expected");
+    XCTAssertEqual(1, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], "Formula interpretation is not as expected");
     [internTokenList removeAllObjects];
     
     formula = [[Formula alloc] initWithFormulaElement:parseTree];

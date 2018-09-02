@@ -138,9 +138,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andForce:(BOOL)forceChange
-
 {
-    InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+    InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+    
     Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
     [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
     FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
@@ -434,7 +434,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)compute:(id)sender
 {
     if (self.internFormula != nil) {
-        InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+        InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+        
         Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
         
@@ -600,7 +601,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
-            InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+            InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+            
             Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
             FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];

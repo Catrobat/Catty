@@ -26,9 +26,10 @@ import XCTest
 
 final class FunctionManagerTest: XCTestCase {
     
-    private var manager: FunctionManagerProtocol = FunctionManager.shared
+    private var manager: FunctionManagerProtocol!
     
     override func setUp() {
+        manager = FunctionManager()
     }
     
     func testDefaultValueForUndefinedFunction() {

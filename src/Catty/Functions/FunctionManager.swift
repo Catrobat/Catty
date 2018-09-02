@@ -24,13 +24,11 @@ import BluetoothHelper
 
 @objc class FunctionManager: NSObject, FunctionManagerProtocol {
     
-    @objc public static let shared = FunctionManager()
     public static var defaultValueForUndefinedFunction: Double = 0
-    private var functionMap = [String: Function]()
-    
+    private static var functionMap = [String: Function]()
     private var bluetoothService: BluetoothService
     
-    private override init() {
+    public override init() {
         bluetoothService = BluetoothService.sharedInstance()
         
         super.init()
@@ -74,25 +72,15 @@ import BluetoothHelper
             ArduinoDigitalPinFunction(bluetoothServiceGetter: bluetoothServiceGetter)
         ]
         
-        functionList.forEach { self.functionMap[type(of: $0).tag] = $0 }
-    }
-    
-    @objc func requiredResource(tag: String) -> ResourceType {
-        guard let function = self.function(tag: tag) else { return .noResources }
-        return type(of: function).requiredResource
+        functionList.forEach { type(of: self).functionMap[type(of: $0).tag] = $0 }
     }
     
     func function(tag: String) -> Function? {
-        return self.functionMap[tag]
+        return type(of: self).functionMap[tag]
     }
     
-    @objc func name(tag: String) -> String? {
-        guard let function = self.function(tag: tag) else { return nil }
-        return type(of: function).name
-    }
-    
-    @objc func exists(tag: String) -> Bool {
-        return self.function(tag: tag) != nil
+    func functions() -> [Function] {
+        return Array(type(of: self).functionMap.values)
     }
     
     func isIdempotent(tag: String) -> Bool {
@@ -130,10 +118,24 @@ import BluetoothHelper
     func formulaEditorItems() -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
         
-        for function in self.functionMap.values {
+        for function in self.functions() {
             items.append(FormulaEditorItem(function: function))
         }
         
         return items
+    }
+    
+    func exists(tag: String) -> Bool {
+        return self.function(tag: tag) != nil
+    }
+    
+    @objc static func requiredResource(tag: String) -> ResourceType {
+        guard let function = functionMap[tag] else { return ResourceType.noResources }
+        return type(of: function).requiredResource
+    }
+    
+    @objc static func name(tag: String) -> String? {
+        guard let function = functionMap[tag] else { return nil }
+        return type(of: function).name
     }
 }

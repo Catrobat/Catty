@@ -24,17 +24,21 @@ protocol FunctionManagerProtocol {
     
     static var defaultValueForUndefinedFunction: Double { get set }
     
-    func exists(tag: String) -> Bool
-    
     func isIdempotent(tag: String) -> Bool
     
     func function(tag: String) -> Function?
     
-    func requiredResource(tag: String) -> ResourceType
-    
-    func name(tag: String) -> String?
+    func functions() -> [Function]
     
     func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
     
     func formulaEditorItems() -> [FormulaEditorItem]
+    
+    func exists(tag: String) -> Bool
+    
+    // TODO make instance method
+    static func requiredResource(tag: String) -> ResourceType
+    
+    // TODO make instance method
+    static func name(tag: String) -> String?
 }

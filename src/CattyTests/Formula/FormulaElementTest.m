@@ -33,6 +33,7 @@
 #import "Pocket_Code-Swift.h"
 
 @interface FormulaEditorTest : XCTestCase
+@property(nonatomic, strong) id<FormulaManagerProtocol> formulaManager;
 @end
 
 @implementation FormulaEditorTest
@@ -40,6 +41,7 @@
 - (void)setUp
 {
     [super setUp];
+    self.formulaManager = (id<FormulaManagerProtocol>)[FormulaManager new];
 }
 
 - (void)testGetInternTokenList
@@ -50,7 +52,7 @@
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1"]];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_CLOSE]];
     
-    InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList];
+    InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: ( - 1 )");

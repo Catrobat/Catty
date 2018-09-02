@@ -208,7 +208,7 @@
             break;
             
         case TOKEN_TYPE_FUNCTION_NAME:
-            return [[FunctionManager shared] nameWithTag:[internToken getTokenStringValue]];
+            return [[FunctionManager class] nameWithTag:[internToken getTokenStringValue]];
             break;
             
         case TOKEN_TYPE_SENSOR:

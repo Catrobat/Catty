@@ -26,12 +26,16 @@
 final class FunctionManagerMock: FunctionManagerProtocol {
     
     static var defaultValueForUndefinedFunction: Double = 0
-    let functions: [Function]
+    let functionList: [Function]
     
     init(functions: [Function]) {
-        self.functions = functions
+        self.functionList = functions
     }
 
+    func functions() -> [Function] {
+        return self.functionList
+    }
+    
     func function(tag: String) -> Function? {
         return nil
     }
@@ -44,11 +48,11 @@ final class FunctionManagerMock: FunctionManagerProtocol {
         return false
     }
     
-    func requiredResource(tag: String) -> ResourceType {
+    static func requiredResource(tag: String) -> ResourceType {
         return ResourceType.noResources
     }
     
-    func name(tag: String) -> String? {
+    static func name(tag: String) -> String? {
         return ""
     }
     
@@ -60,7 +64,7 @@ final class FunctionManagerMock: FunctionManagerProtocol {
     func formulaEditorItems() -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
         
-        for function in functions {
+        for function in functionList {
             items.append(FormulaEditorItem(function: function))
         }
         

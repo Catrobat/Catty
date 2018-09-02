@@ -333,7 +333,7 @@
         resources |= [[SensorManager shared] requiredResourceWithTag: self.value];
     }
     if (self.type == FUNCTION) {
-        resources |= [[FunctionManager shared] requiredResourceWithTag: self.value];
+        resources |= [[FunctionManager class] requiredResourceWithTag: self.value];
     }
     return resources;
 }

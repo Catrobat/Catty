@@ -37,7 +37,9 @@ import CoreLocation
     
     override convenience init() {
         // TODO remove Singleton
-        self.init(sensorManager: SensorManager.shared, functionManager: FunctionManager.shared)
+        let functionManager = FunctionManager()
+        
+        self.init(sensorManager: SensorManager.shared, functionManager: functionManager)
     }
     
     convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
@@ -55,5 +57,9 @@ import CoreLocation
         self.audioManager = audioManager
         self.touchManager = touchManager
         self.bluetoothService = bluetoothService
+    }
+    
+    @objc func functionExists(tag: String) -> Bool {
+        return self.functionManager.exists(tag: tag)
     }
 }
