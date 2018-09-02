@@ -94,13 +94,15 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
             cell.tag = indexPath.row
             if programs.isEmpty == false {
                 DispatchQueue.global().async {
-                    let imageUrl = URL(string: self.baseUrl.appending(self.programs[indexPath.row].screenshotSmall!))
-                    if let data = try? Data(contentsOf: imageUrl!) {
-                        DispatchQueue.main.async {
-                            guard cell.tag == indexPath.row else { return }
-                            cell.searchImage = UIImage(data: data)
-                            cell.searchTitle = self.programs[indexPath.row].projectName
-                            cell.program = self.programs[indexPath.row]
+                    if indexPath.row < self.programs.count {
+                        let imageUrl = URL(string: self.baseUrl.appending(self.programs[indexPath.row].screenshotSmall!))
+                        if let data = try? Data(contentsOf: imageUrl!) {
+                            DispatchQueue.main.async {
+                                guard cell.tag == indexPath.row else { return }
+                                cell.searchImage = UIImage(data: data)
+                                cell.searchTitle = self.programs[indexPath.row].projectName
+                                cell.program = self.programs[indexPath.row]
+                            }
                         }
                     }
                 }
@@ -121,7 +123,8 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         }
         self.delegate?.showLoadingIndicator()
         
-        self.downloader.downloadProgram(for: (cell?.program)!) { program, error in
+        guard let cellProgram = cell?.program else { return }
+        self.downloader.downloadProgram(for: cellProgram) { program, error in
             guard timer.isValid else { return }
             guard let StoreProgram = program, error == nil else { return }
             cell?.program = StoreProgram

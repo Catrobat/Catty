@@ -159,8 +159,8 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             cell.tag = indexPath.row
             if programs.isEmpty == false {
                 cell.chartImage = nil
-                DispatchQueue.global().async {
-                    if indexPath.row < self.programs.count {
+                if indexPath.row < self.programs.count {
+                    DispatchQueue.global().async {
                         guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
                         guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
                         guard let data = try? Data(contentsOf: imageUrl) else { return }
@@ -171,9 +171,9 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
                             cell.chartImage = UIImage(data: data)
                         }
                     }
+                    cell.chartTitle = programs[indexPath.row].projectName
+                    cell.program = programs[indexPath.row]
                 }
-                cell.chartTitle = programs[indexPath.row].projectName
-                cell.program = programs[indexPath.row]
             }
         }
         return cell
