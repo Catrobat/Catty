@@ -145,7 +145,7 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.element(boundBy: 4).staticTexts["Wait"].tap()
         app.buttons["Delete Brick"].tap()
         app.swipeDown()
-        XCTAssert(app.collectionViews.cells.element(boundBy: 4).staticTexts["Show"].exists)
+        XCTAssert(app.staticTexts["Show"].exists)
         
     }
     
