@@ -36,10 +36,44 @@ import CoreLocation
     let bluetoothService: BluetoothService
     
     override convenience init() {
-        // TODO remove Singleton
-        let functionManager = FunctionManager()
+        let bluetoothService = BluetoothService.sharedInstance()
+        let bluetoothServiceGetter: () -> BluetoothService? = { bluetoothService }
         
-        self.init(sensorManager: SensorManager.shared, functionManager: functionManager)
+        let functionManager = FunctionManager([
+            SinFunction(),
+            CosFunction(),
+            TanFunction(),
+            LnFunction(),
+            LogFunction(),
+            PiFunction(),
+            SqrtFunction(),
+            RandFunction(),
+            AbsFunction(),
+            RoundFunction(),
+            ModFunction(),
+            AsinFunction(),
+            AcosFunction(),
+            AtanFunction(),
+            ExpFunction(),
+            PowFunction(),
+            FloorFunction(),
+            CeilFunction(),
+            MaxFunction(),
+            MinFunction(),
+            TrueFunction(),
+            FalseFunction(),
+            JoinFunction(),
+            LetterFunction(),
+            LengthFunction(),
+            ElementFunction(),
+            NumberOfItemsFunction(),
+            ContainsFunction(),
+            ArduinoAnalogPinFunction(bluetoothServiceGetter: bluetoothServiceGetter),
+            ArduinoDigitalPinFunction(bluetoothServiceGetter: bluetoothServiceGetter)
+            ])
+        
+        // TODO remove Singleton
+        self.init(sensorManager: SensorManager.shared, functionManager: functionManager, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: bluetoothService)
     }
     
     convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {

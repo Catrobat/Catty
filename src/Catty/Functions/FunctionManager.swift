@@ -26,52 +26,13 @@ import BluetoothHelper
     
     public static var defaultValueForUndefinedFunction: Double = 0
     private static var functionMap = [String: Function]()
-    private var bluetoothService: BluetoothService
     
-    public override init() {
-        bluetoothService = BluetoothService.sharedInstance()
-        
+    init(_ functions: [Function]) {
         super.init()
-        registerFunctions()
+        registerFunctions(functionList: functions)
     }
     
-    private func registerFunctions() {
-        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
-        
-        let functionList: [Function] = [
-            SinFunction(),
-            CosFunction(),
-            TanFunction(),
-            LnFunction(),
-            LogFunction(),
-            PiFunction(),
-            SqrtFunction(),
-            RandFunction(),
-            AbsFunction(),
-            RoundFunction(),
-            ModFunction(),
-            AsinFunction(),
-            AcosFunction(),
-            AtanFunction(),
-            ExpFunction(),
-            PowFunction(),
-            FloorFunction(),
-            CeilFunction(),
-            MaxFunction(),
-            MinFunction(),
-            TrueFunction(),
-            FalseFunction(),
-            JoinFunction(),
-            LetterFunction(),
-            LengthFunction(),
-            ElementFunction(),
-            NumberOfItemsFunction(),
-            ContainsFunction(),
-            
-            ArduinoAnalogPinFunction(bluetoothServiceGetter: bluetoothServiceGetter),
-            ArduinoDigitalPinFunction(bluetoothServiceGetter: bluetoothServiceGetter)
-        ]
-        
+    private func registerFunctions(functionList: [Function]) {
         functionList.forEach { type(of: self).functionMap[type(of: $0).tag] = $0 }
     }
     

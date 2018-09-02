@@ -29,7 +29,7 @@ class SqrtFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 70
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     

@@ -20,31 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class PowFunction: DoubleParameterDoubleFunction {
-    static var tag = "POW"
-    static var name = "power"
-    static var defaultValue = 0.0
+@testable import Pocket_Code
+
+final class ZeroParameterDoubleFunctionMock: ZeroParameterDoubleFunction {
+    
+    static var tag = "zeroParameterDoubleFunctionMockTag"
+    static var name = "zeroParameterDoubleFunctionMockName"
     static var requiredResource = ResourceType.noResources
-    static var isIdempotent = true
-    static let position = 160
+    static var isIdempotent = false
+    static var defaultValue: Double = 0
     
-    func firstParameter() -> FunctionParameter {
-        return .number(defaultValue: 2)
+    private let mockedValue: Double
+    private let mockedSection: FormulaEditorSection
+    
+    convenience init(value: Double) {
+        self.init(value: value, formulaEditorSection: .hidden)
     }
     
-    func secondParameter() -> FunctionParameter {
-        return .number(defaultValue: 3)
-    }
-    
-    func value(firstParameter: AnyObject?, secondParameter: AnyObject?) -> Double {
-        guard let base = firstParameter as? Double,
-            let exponent = secondParameter as? Double else {
-                return type(of: self).defaultValue
-        }
-        return pow(base, exponent)
+    init(value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.mockedValue = value
+        self.mockedSection = formulaEditorSection
     }
     
     func formulaEditorSection() -> FormulaEditorSection {
-        return .math(position: type(of: self).position)
+        return self.mockedSection
+    }
+    
+    func value() -> Double {
+        return self.mockedValue
     }
 }

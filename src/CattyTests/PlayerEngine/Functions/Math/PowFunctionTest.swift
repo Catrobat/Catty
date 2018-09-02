@@ -53,11 +53,11 @@ class PowFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 2), type(of: function).firstParameter())
+        XCTAssertEqual(.number(defaultValue: 2), function.firstParameter())
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.number(defaultValue: 3), type(of: function).secondParameter())
+        XCTAssertEqual(.number(defaultValue: 3), function.secondParameter())
     }
     
     func testTag() {

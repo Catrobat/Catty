@@ -29,7 +29,7 @@ class SinFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 10
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     

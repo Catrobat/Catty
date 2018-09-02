@@ -28,7 +28,7 @@ class FloorFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 170
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0.7)
     }
     

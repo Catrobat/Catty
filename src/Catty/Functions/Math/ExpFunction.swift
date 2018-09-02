@@ -29,7 +29,7 @@ class ExpFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 150
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
     

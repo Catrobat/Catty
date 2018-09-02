@@ -77,11 +77,11 @@ class ElementFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), type(of: function).firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.list(defaultValue: "list name"), type(of: function).secondParameter())
+        XCTAssertEqual(.list(defaultValue: "list name"), function.secondParameter())
     }
     
     func testTag() {

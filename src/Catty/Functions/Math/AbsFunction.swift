@@ -29,7 +29,7 @@ class AbsFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 90
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     

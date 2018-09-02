@@ -28,11 +28,11 @@ class JoinFunction: DoubleParameterStringFunction {
     static var isIdempotent = true
     static let position = 230
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .string(defaultValue: "hello ")
     }
     
-    static func secondParameter() -> FunctionParameter {
+    func secondParameter() -> FunctionParameter {
         return .string(defaultValue: "world")
     }
     

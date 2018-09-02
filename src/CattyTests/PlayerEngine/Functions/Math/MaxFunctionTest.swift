@@ -51,11 +51,11 @@ class MaxFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 0), type(of: function).firstParameter())
+        XCTAssertEqual(.number(defaultValue: 0), function.firstParameter())
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), type(of: function).secondParameter())
+        XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
     }
     
     func testTag() {

@@ -80,11 +80,11 @@ class LetterFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), type(of: function).firstParameter())
+        XCTAssertEqual(.number(defaultValue: 1), function.firstParameter())
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.string(defaultValue: "hello world"), type(of: function).secondParameter())
+        XCTAssertEqual(.string(defaultValue: "hello world"), function.secondParameter())
     }
     
     func testTag() {

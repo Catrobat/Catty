@@ -29,7 +29,7 @@ class AcosFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 130
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     

@@ -28,11 +28,11 @@ class MinFunction: DoubleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 200
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     
-    static func secondParameter() -> FunctionParameter {
+    func secondParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }
     

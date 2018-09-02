@@ -71,11 +71,11 @@ class ContainsFunctionTest: XCTestCase {
     }
     
     func testFirstParameter() {
-        XCTAssertEqual(.list(defaultValue: "list name"), type(of: function).firstParameter())
+        XCTAssertEqual(.list(defaultValue: "list name"), function.firstParameter())
     }
     
     func testSecondParameter() {
-        XCTAssertEqual(.number(defaultValue: 1), type(of: function).secondParameter())
+        XCTAssertEqual(.number(defaultValue: 1), function.secondParameter())
     }
     
     func testTag() {

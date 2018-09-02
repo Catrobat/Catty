@@ -29,7 +29,7 @@ class NumberOfItemsFunction: SingleParameterDoubleFunction {
     static var isIdempotent = false
     static let position = 240
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .list(defaultValue: "list name")
     }
     

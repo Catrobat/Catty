@@ -29,7 +29,7 @@ class CeilFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 180
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0.3)
     }
     

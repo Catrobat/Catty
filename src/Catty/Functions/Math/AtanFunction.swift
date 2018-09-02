@@ -29,7 +29,7 @@ class AtanFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 140
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     

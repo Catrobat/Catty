@@ -26,46 +26,130 @@ import XCTest
 
 final class FunctionManagerTest: XCTestCase {
     
-    private var manager: FunctionManagerProtocol!
-    
     override func setUp() {
-        manager = FunctionManager()
     }
     
     func testDefaultValueForUndefinedFunction() {
+        let manager = FunctionManager([])
         let defaultValue = 34.56
         type(of: manager).defaultValueForUndefinedFunction = defaultValue
         
+        XCTAssertNil(manager.function(tag: SinFunction.tag))
         XCTAssertNil(manager.function(tag: "noFunctionForThisTag"))
         XCTAssertEqual(defaultValue, manager.value(tag: "noFunctionForThisTag", firstParameter: nil, secondParameter: nil) as! Double)
     }
     
     func testExists() {
-        // TODO
+        let functionA = SinFunction()
+        let functionB = CosFunction()
+        let manager = FunctionManager([functionA, functionB])
+        
+        XCTAssertTrue(manager.exists(tag: SinFunction.tag))
+        XCTAssertFalse(manager.exists(tag: TanFunction.tag))
+        XCTAssertFalse(manager.exists(tag: "noFunctionForThisTag"))
+        XCTAssertTrue(manager.exists(tag: CosFunction.tag))
     }
     
     func testFunction() {
-        // TODO
-    }
-    
-    func testRequiredResource() {
-        // TODO
-    }
-    
-    func testIsIdempotent() {
-        // TODO
-    }
-    
-    func testName() {
-        // TODO
-    }
-    
-    func testValue() {
-        // TODO
+        let functionA = SinFunction()
+        let functionB = CosFunction()
+        let manager = FunctionManager([functionA, functionB])
+        
+        XCTAssertNil(manager.function(tag: TanFunction.tag))
+        
+        var foundFunction = manager.function(tag: type(of: functionA).tag)
+        XCTAssertNotNil(foundFunction)
+        XCTAssertEqual(type(of: functionA).name, type(of: foundFunction!).name)
+        
+        foundFunction = manager.function(tag: type(of: functionB).tag)
+        XCTAssertNotNil(foundFunction)
+        XCTAssertEqual(type(of: functionB).name, type(of: foundFunction!).name)
     }
     
     func testFunctions() {
-        // TODO
+        let functionA = SinFunction()
+        let functionB = CosFunction()
+        
+        var manager = FunctionManager([])
+        XCTAssertEqual(0, manager.functions().count)
+        
+        manager = FunctionManager([functionA])
+        XCTAssertEqual(1, manager.functions().count)
+        
+        manager = FunctionManager([functionA, functionB])
+        let functions = manager.functions()
+        
+        XCTAssertEqual(2, functions.count)
+        XCTAssertEqual(type(of: functionA).tag, type(of: functions[0]).tag)
+        XCTAssertEqual(type(of: functionB).tag, type(of: functions[1]).tag)
+    }
+    
+    func testRequiredResource() {
+        let functionA = SinFunction()
+        type(of: functionA).requiredResource = .accelerometer
+        
+        let functionB = CosFunction()
+        type(of: functionB).requiredResource = .compass
+        
+        var manager = FunctionManager([])
+        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: type(of: functionA).tag))
+        
+        manager = FunctionManager([functionA])
+        XCTAssertEqual(type(of: functionA).requiredResource, type(of: manager).requiredResource(tag: type(of: functionA).tag))
+        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: type(of: functionB).tag))
+        
+        manager = FunctionManager([functionA, functionB])
+        XCTAssertEqual(type(of: functionA).requiredResource, type(of: manager).requiredResource(tag: type(of: functionA).tag))
+        XCTAssertEqual(type(of: functionB).requiredResource, type(of: manager).requiredResource(tag: type(of: functionB).tag))
+        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: "unavailableTag"))
+    }
+    
+    func testName() {
+        let functionA = SinFunction()
+        let functionB = CosFunction()
+        type(of: functionB).requiredResource = .compass
+        
+        var manager = FunctionManager([])
+        XCTAssertNil(type(of: manager).name(tag: type(of: functionA).tag))
+        
+        manager = FunctionManager([functionA])
+        XCTAssertEqual(type(of: functionA).name, type(of: manager).name(tag: type(of: functionA).tag))
+        XCTAssertNil(type(of: manager).name(tag: type(of: functionB).tag))
+        
+        manager = FunctionManager([functionA, functionB])
+        XCTAssertEqual(type(of: functionA).name, type(of: manager).name(tag: type(of: functionA).tag))
+        XCTAssertEqual(type(of: functionB).name, type(of: manager).name(tag: type(of: functionB).tag))
+        XCTAssertNil(type(of: manager).name(tag: "unavailableTag"))
+    }
+    
+    func testIsIdempotent() {
+        let functionA = CosFunction()
+        let functionB = RandFunction()
+        
+        var manager = FunctionManager([])
+        XCTAssertFalse(manager.isIdempotent(tag: type(of: functionA).tag))
+        
+        manager = FunctionManager([functionA])
+        XCTAssertTrue(manager.isIdempotent(tag: type(of: functionA).tag))
+        
+        manager = FunctionManager([functionA, functionB])
+        XCTAssertTrue(manager.isIdempotent(tag: type(of: functionA).tag))
+        XCTAssertFalse(manager.isIdempotent(tag: type(of: functionB).tag))
+        XCTAssertFalse(manager.isIdempotent(tag: "unavailableTag"))
+    }
+    
+    func testValue() {
+        let functionA = ZeroParameterDoubleFunctionMock(value: 12.3)
+        let functionB = SingleParameterDoubleFunctionMock(value: 45.6, parameter: FunctionParameter.number(defaultValue: 2))
+        let functionC = DoubleParameterDoubleFunctionMock(value: 45.6, firstParameter: FunctionParameter.number(defaultValue: 2), secondParameter: FunctionParameter.number(defaultValue: 3))
+        
+        var manager = FunctionManager([])
+        XCTAssertEqual(type(of: manager).defaultValueForUndefinedFunction, manager.value(tag: type(of: functionA).tag, firstParameter: nil, secondParameter: nil) as! Double)
+        
+        manager = FunctionManager([functionA, functionB, functionC])
+        XCTAssertEqual(functionA.value(), manager.value(tag: type(of: functionA).tag, firstParameter: nil, secondParameter: nil) as! Double)
+        XCTAssertEqual(functionB.value(parameter: nil), manager.value(tag: type(of: functionB).tag, firstParameter: nil, secondParameter: nil) as! Double)
+        XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil), manager.value(tag: type(of: functionC).tag, firstParameter: nil, secondParameter: nil) as! Double)
     }
     
     func testParameters() {

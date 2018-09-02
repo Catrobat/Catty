@@ -58,7 +58,7 @@ class LengthFunctionTest: XCTestCase {
     }
     
     func testParameter() {
-        XCTAssertEqual(.string(defaultValue: "hello world"), type(of: function).firstParameter())
+        XCTAssertEqual(.string(defaultValue: "hello world"), function.firstParameter())
     }
     
     func testTag() {

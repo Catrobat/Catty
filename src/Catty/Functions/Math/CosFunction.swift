@@ -29,7 +29,7 @@ class CosFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 20
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     

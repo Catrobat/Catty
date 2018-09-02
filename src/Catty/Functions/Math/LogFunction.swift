@@ -29,7 +29,7 @@ class LogFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 50
     
-    static func firstParameter() -> FunctionParameter {
+    func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }
     
