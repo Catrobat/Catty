@@ -24,7 +24,7 @@ import XCTest
 
 @testable import Pocket_Code
 
-final class FormulaManagerInterpreterTest: XCTestCase {
+final class FormulaManagerIdempotenceTest: XCTestCase {
     
     var interpreter: FormulaInterpreterProtocol!
     

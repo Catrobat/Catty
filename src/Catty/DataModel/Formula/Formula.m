@@ -95,7 +95,8 @@
 }
 
 - (void) preCalculateFormulaForSprite:(SpriteObject*)sprite {
-    self.bufferedResult = [self.formulaTree interpretRecursiveForSprite:sprite];
+    // TODO
+    //self.bufferedResult = [self.formulaTree interpretRecursiveForSprite:sprite];
 }
 
 - (BOOL)isSingularNumber

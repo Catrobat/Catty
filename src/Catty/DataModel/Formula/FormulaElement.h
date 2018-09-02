@@ -92,8 +92,6 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 - (id)initWithDouble:(double)value;
 - (id)initWithString:(NSString*)value;
 
-- (id)interpretRecursiveForSprite:(SpriteObject*)sprite;
-
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement;
 
 - (FormulaElement*) getRoot;
@@ -108,11 +106,7 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 
 - (NSMutableArray*)getInternTokenList;
 
-- (BOOL)isLogicalOperator;
-
 - (BOOL)isSingleNumberFormula;
-
-- (BOOL)containsElement:(ElementType)elementType;
 
 - (NSInteger)getRequiredResources;
 

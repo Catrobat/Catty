@@ -33,14 +33,13 @@
 #import "Pocket_Code-Swift.h"
 
 @interface FormulaEditorTest : XCTestCase
-@property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
 @implementation FormulaEditorTest
 
 - (void)setUp
 {
-    self.formulaManager = [FormulaManager new];
+    [super setUp];
 }
 
 - (void)testGetInternTokenList
@@ -65,129 +64,6 @@
     }
     
     [internTokenList removeAllObjects];
-}
-
-- (void)testInterpretNonExistingUserVariable
-{
-    // TODO move to FormulaManagerTest
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:USER_VARIABLE
-                                                                           value:@"notExistingUserVariable"
-                                                                       leftChild:nil
-                                                                      rightChild:nil
-                                                                          parent:nil];
-    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-    
-    XCTAssertEqual(0, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Not existing UserVariable misinterpretation");
-}
-
-- (void)testInterpretNonExistingUserList
-{
-    // TODO move to FormulaManagerTest
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:USER_LIST
-                                                                           value:@"notExistingUserList"
-                                                                       leftChild:nil
-                                                                      rightChild:nil
-                                                                          parent:nil];
-    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-    
-    XCTAssertEqual(0, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Not existing UserList misinterpretation");
-}
-
-- (void)testInterpretNotExisitingUnaryOperator
-{
-    // TODO move to FormulaManagerTest
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR
-                                                                           value:[Operators getName:PLUS]
-                                                                       leftChild:nil
-                                                                      rightChild:[[FormulaElement alloc]
-                                                                                  initWithElementType:NUMBER
-                                                                                  value:@"1.0" leftChild:nil
-                                                                                  rightChild:nil parent:nil]
-                                                                          parent:nil];
-    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-    
-    XCTAssertEqual(0, [self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]]);
-}
-
-- (void)testCheckDegeneratedDoubleValues
-{
-    // TODO move to FormulaManagerTest
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:NUMBER
-                                                                           value:[NSString stringWithFormat:@"%f", DBL_MAX]
-                                                                       leftChild:nil
-                                                                      rightChild:nil
-                                                                          parent:nil];
-    XCTAssertEqual(DBL_MAX, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Degenerated double values error");
-    
-    formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR
-                                                           value:[Operators getName:MINUS]
-                                                       leftChild:[[FormulaElement alloc] initWithElementType:NUMBER
-                                                                                                       value:[NSString stringWithFormat:@"%f", DBL_MAX * -1]
-                                                                                                   leftChild:nil
-                                                                                                  rightChild:nil parent:nil]
-                                                      rightChild:[[FormulaElement alloc] initWithElementType:NUMBER
-                                                                                                       value:[NSString stringWithFormat:@"%f", DBL_MAX]
-                                                                                                   leftChild:nil
-                                                                                                  rightChild:nil
-                                                                                                      parent:nil]
-                                                          parent:nil];
-    
-    XCTAssertEqual(-INFINITY, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Degenerated double values error");
-    
-    formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR
-                                                           value:[Operators getName:DIVIDE]
-                                                       leftChild:[[FormulaElement alloc] initWithElementType:NUMBER value:@"0"
-                                                                                            leftChild:nil
-                                                                                           rightChild:nil
-                                                                                               parent:nil]
-                                                      rightChild:[[FormulaElement alloc] initWithElementType:NUMBER
-                                                                                               value:@"0"
-                                                                                           leftChild:nil
-                                                                                          rightChild:nil
-                                                                                              parent:nil]
-                                                   parent:nil];
-    
-    Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-    
-    XCTAssertTrue(isnan([self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]]), @"Degenerated double values error");
-}
-
-- (void)testIsLogicalOperator
-{
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:USER_VARIABLE value:@"notExistingUserVariable" leftChild:nil
-                                                               rightChild:nil parent:nil];
-    XCTAssertFalse([formulaElement isLogicalOperator], @"isLogicalOperator found logical operator but was userVariable");
-}
-
-- (void) testContainsElement
-{
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR
-                                                                           value:[Operators getName:MINUS]
-                                                                       leftChild:[[FormulaElement alloc] initWithElementType:NUMBER
-                                                                                                                       value:@"0.0"
-                                                                                                                   leftChild:nil
-                                                                                                                  rightChild:nil
-                                                                                                                      parent:nil]
-                                                                      rightChild:[[FormulaElement alloc] initWithElementType:USER_VARIABLE
-                                                                                                                       value:@"user-variable"
-                                                                                                                   leftChild:nil
-                                                                                                                  rightChild:nil
-                                                                                                                      parent:nil]
-                                                                          parent:nil];
-    
-    XCTAssertTrue([formulaElement containsElement:USER_VARIABLE], @"ContainsElement: uservariable not found");
-    
-    formulaElement = [[FormulaElement alloc] initWithElementType:FUNCTION
-                                                           value:@"SIN" // TODO use Function property
-                                                       leftChild:[[FormulaElement alloc] initWithElementType:OPERATOR
-                                                                                                       value:@"+"
-                                                                                                   leftChild:nil
-                                                                                                  rightChild:nil
-                                                                                                      parent:nil]
-                                                      rightChild: nil
-                                                          parent:nil];
-    
-    XCTAssertTrue(![formulaElement containsElement:NUMBER], @"ContainsElement: Operator \" + \" should not have been found!");    
 }
 
 @end

@@ -312,6 +312,7 @@
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
 		4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */; };
+		4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */; };
 		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
 		4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B9212EA90A006E4720 /* FunctionMock.swift */; };
 		4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BB212EAC1F006E4720 /* SensorMock.swift */; };
@@ -1645,6 +1646,7 @@
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
 		4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerIdempotenceTests.swift; path = Formula/FormulaManagerIdempotenceTests.swift; sourceTree = "<group>"; };
+		4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaManagerInterpreterTests.swift; path = Formula/FormulaManagerInterpreterTests.swift; sourceTree = "<group>"; };
 		4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItemTest.swift; sourceTree = "<group>"; };
 		4CC614B9212EA90A006E4720 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
 		4CC614BB212EAC1F006E4720 /* SensorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
@@ -3477,6 +3479,7 @@
 				4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */,
 				4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */,
 				4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */,
+				4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */,
 				4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */,
 			);
 			name = Formula;
@@ -8350,6 +8353,7 @@
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */,
 				4CC50A53213AE386004BC914 /* FormulaManagerIdempotenceTests.swift in Sources */,
+				4CC50A5C213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				4C11795E20AED5B6006C6E32 /* PositionXSensorTest.swift in Sources */,
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
