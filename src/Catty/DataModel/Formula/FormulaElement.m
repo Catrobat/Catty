@@ -65,6 +65,25 @@
     return self;
 }
 
+- (id)initWithElementType:(ElementType)type
+                    value:(NSString*)value
+{
+    return [self initWithElementType:type value:value leftChild:nil rightChild:nil parent:nil];
+}
+
+- (id)initWithInteger:(int)value {
+    return [self initWithType:@"NUMBER" value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
+}
+
+
+- (id)initWithDouble:(double)value {
+    return [self initWithType:@"NUMBER" value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
+}
+
+- (id)initWithString:(NSString*)value {
+    return [self initWithType:@"STRING" value:value leftChild:nil rightChild:nil parent:nil];
+}
+
 - (void)initialize:(ElementType)type
              value:(NSString*)value
          leftChild:(FormulaElement*)leftChild

@@ -58,7 +58,6 @@
     XCTAssertTrue(isNotZero, @"It's very unlikely that x is really zero!");
 }
 
-
 - (void)testGyroY
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
@@ -74,7 +73,6 @@
     BOOL isNotZero = [sensorHandler rotationRate].z != 0.0f;
     XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
-
 
 - (void)testAccelerometerActive
 {
@@ -131,7 +129,6 @@
         BOOL isNotZero = (sensorValue != 0.0);
         XCTAssertTrue(isNotZero, @"It's very unlikely that the sensor (%@) really returned zero!", [SensorManager stringForSensor:sensor]);
     }
-    
 }
 
 - (void)testStopSensors

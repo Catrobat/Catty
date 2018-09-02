@@ -65,6 +65,45 @@ extension FormulaManager {
         return interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
     }
     
+    @objc func isIdempotent(_ formula: Formula) -> Bool {
+        guard let formulaElement = formula.formulaTree else { return false }
+        return isIdempotent(formulaElement)
+    }
+    
+    private func isIdempotent(_ formulaElement: FormulaElement) -> Bool {
+        if formulaElement.idempotenceState != .NOT_CHECKED { // cached result!
+            return (formulaElement.idempotenceState == .IDEMPOTENT)
+        }
+        
+        let isLeftChildIdempotent = formulaElement.leftChild != nil ? self.isIdempotent(formulaElement.leftChild) : true
+        let isRightChildIdempotent = formulaElement.rightChild != nil ? self.isIdempotent(formulaElement.rightChild) : true
+        
+        if isLeftChildIdempotent == false {
+            formulaElement.idempotenceState = .NOT_IDEMPOTENT
+            return false
+        }
+        if isRightChildIdempotent == false {
+            formulaElement.idempotenceState = .NOT_IDEMPOTENT
+            return false
+        }
+        if formulaElement.type == .FUNCTION {
+            let result = functionManager.isIdempotent(tag: formulaElement.value)
+            formulaElement.idempotenceState = result ? .IDEMPOTENT : .NOT_IDEMPOTENT
+            return result
+        }
+        if (formulaElement.type == .OPERATOR) || (formulaElement.type == .NUMBER) || (formulaElement.type == .BRACKET) {
+            formulaElement.idempotenceState = .IDEMPOTENT
+            return true
+        }
+        if (formulaElement.type == .USER_LIST) || (formulaElement.type == .USER_VARIABLE) || (formulaElement.type == .SENSOR) || (formulaElement.type == .STRING) {
+            formulaElement.idempotenceState = .NOT_IDEMPOTENT
+            return false
+        }
+        
+        formulaElement.idempotenceState = .NOT_IDEMPOTENT
+        return false
+    }
+    
     private func interpretRecursive(formulaElement: FormulaElement?, for spriteObject: SpriteObject) -> AnyObject {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
         

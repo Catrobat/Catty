@@ -52,6 +52,11 @@ final class FunctionManagerMock: FunctionManagerProtocol {
         return ""
     }
     
+    func isIdempotent(tag: String) -> Bool {
+        guard let function = self.function(tag: tag) else { return false }
+        return type(of: function).isIdempotent
+    }
+    
     func formulaEditorItems() -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
         

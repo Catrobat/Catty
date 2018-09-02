@@ -39,4 +39,6 @@
     
     @objc(interpret: forSpriteObject:)
     func interpret(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject
+    
+    @objc func isIdempotent(_ formula: Formula) -> Bool
 }
