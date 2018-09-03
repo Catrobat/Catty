@@ -6749,7 +6749,7 @@
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
 				929DC44A1BCB9C5000421443 /* License Validator */,
 				92C6319D1BC5180B00486958 /* CopyFiles */,
-				BCE07DCC213D427900154E4C /* ShellScript */,
+				BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */,
 				4C807B931CF7488C0066CE92 /* Remove git hooks */,
 				59A0599E1F75130D00EB696D /* Carthage Copy Frameworks Run Script */,
 			);
@@ -7229,13 +7229,14 @@
 			shellPath = /bin/bash;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
-		BCE07DCC213D427900154E4C /* ShellScript */ = {
+		BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Display TODO and FIXME comments";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
