@@ -6749,7 +6749,7 @@
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
 				929DC44A1BCB9C5000421443 /* License Validator */,
 				92C6319D1BC5180B00486958 /* CopyFiles */,
-				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
+				BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */,
 				4C807B931CF7488C0066CE92 /* Remove git hooks */,
 				59A0599E1F75130D00EB696D /* Carthage Copy Frameworks Run Script */,
 			);
@@ -7201,20 +7201,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		922123C81BCAB51E008AAE45 /* Todo/Fixme check */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Todo/Fixme check";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "// TODO check\nTAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\n\nfind \"${SRCROOT}\" -not -path \"${SRCROOT}/Pods/*\" \\( -name \"*.swift\" -or -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
-		};
 		929DC44A1BCB9C5000421443 /* License Validator */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7242,6 +7228,20 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/bash;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+		BCE07DCC213D427900154E4C /* Display TODO and FIXME comments */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Display TODO and FIXME comments";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "// TODO check\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n  TAGS=\"TODO:|FIXME:\"\n  echo \"searching ${SRCROOT} for ${TAGS}\"\n\n  find \"${SRCROOT}\" -not -path \"${SRCROOT}/Pods/*\" \\( -name \"*.swift\" -or -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"\nfi";
 		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
