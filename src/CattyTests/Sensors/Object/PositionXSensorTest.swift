@@ -122,7 +122,7 @@ final class PositionXSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_X", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_X", sensor.tag())
     }
     
     func testRequiredResources() {

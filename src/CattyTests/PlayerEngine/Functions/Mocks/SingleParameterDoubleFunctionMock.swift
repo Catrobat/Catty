@@ -24,24 +24,29 @@
 
 final class SingleParameterDoubleFunctionMock: SingleParameterDoubleFunction {
     
-    static var tag: String { return "singleParameterDoubleFunctionMockTag" }
     static var name = "singleParameterDoubleFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static var defaultValue: Double = 0
     
+    private let mockedTag: String
     private let mockedValue: Double
     private let mockedSection: FormulaEditorSection
     private let mockedParameter: FunctionParameter
     
-    convenience init(value: Double, parameter: FunctionParameter) {
-        self.init(value: value, parameter: parameter, formulaEditorSection: .hidden)
+    convenience init(tag: String, value: Double, parameter: FunctionParameter) {
+        self.init(tag: tag, value: value, parameter: parameter, formulaEditorSection: .hidden)
     }
     
-    init(value: Double, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+    init(tag: String, value: Double, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+        self.mockedTag = tag
         self.mockedValue = value
         self.mockedParameter = parameter
         self.mockedSection = formulaEditorSection
+    }
+    
+    func tag() -> String {
+        return self.mockedTag
     }
     
     func firstParameter() -> FunctionParameter {

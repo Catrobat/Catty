@@ -34,6 +34,10 @@
         self.getTouchManager = touchManagerGetter
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         guard let isTouched = getTouchManager()?.screenTouched() else { return type(of: self).defaultRawValue }
         return isTouched ? 1.0 : 0.0

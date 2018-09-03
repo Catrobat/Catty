@@ -156,7 +156,7 @@ extension InternFormula {
     }
     
     private func buildSensor(sensor: Sensor) -> [InternToken] {
-        return [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: type(of: sensor).tag)]
+        return [InternToken.init(type: TOKEN_TYPE_SENSOR, andValue: sensor.tag())]
     }
     
     private func buildFunction(function: Function) -> [InternToken] {
@@ -164,7 +164,7 @@ extension InternFormula {
         let parameters = function.parameters()
         var count = 0
         
-        tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: type(of: function).tag))
+        tokenList.append(InternToken.init(type: TOKEN_TYPE_FUNCTION_NAME, andValue: function.tag()))
         if parameters.count == 0 {
             return tokenList    // no parameter
         }

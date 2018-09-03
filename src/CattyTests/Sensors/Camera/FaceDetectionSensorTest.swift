@@ -52,14 +52,13 @@ final class FaceDetectionSensorTest: XCTestCase {
         XCTAssertEqual(0, self.sensor.rawValue())
     }
     
-    
     func testConvertToStandardized() {
         XCTAssertEqual(0, sensor.convertToStandardized(rawValue: 0))
         XCTAssertEqual(1, sensor.convertToStandardized(rawValue: 1))
     }
     
     func testTag() {
-        XCTAssertEqual("FACE_DETECTED", type(of: sensor).tag)
+        XCTAssertEqual("FACE_DETECTED", sensor.tag())
     }
     
     func testRequiredResources() {

@@ -28,6 +28,8 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
     
     func stop()
     
+    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
+    
     func functionExists(tag: String) -> Bool
     
     func sensorExists(tag: String) -> Bool
@@ -39,6 +41,4 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
     func formulaEditorItemsForObjectSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
     
     func formulaEditorItemsForDeviceSection(spriteObject: SpriteObject) -> [FormulaEditorItem]
-    
-    func unavailableResources(for requiredResources: NSInteger) -> NSInteger
 }

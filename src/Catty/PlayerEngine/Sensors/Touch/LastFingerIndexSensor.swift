@@ -33,6 +33,10 @@
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
         self.getTouchManager = touchManagerGetter
     }
+    
+    func tag() -> String {
+        return type(of: self).tag
+    }
 
     func rawValue() -> Double {
         guard let numberOfTouches = getTouchManager()?.numberOfTouches() else { return type(of: self).defaultRawValue }

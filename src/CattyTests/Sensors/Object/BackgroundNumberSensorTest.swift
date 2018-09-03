@@ -70,7 +70,7 @@ final class BackgroundNumberSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_BACKGROUND_NUMBER", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_BACKGROUND_NUMBER", sensor.tag())
     }
     
     func testRequiredResources() {

@@ -63,7 +63,7 @@ final class LocationAccuracySensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("LOCATION_ACCURACY", type(of: sensor).tag)
+        XCTAssertEqual("LOCATION_ACCURACY", sensor.tag())
     }
     
     func testRequiredResources() {

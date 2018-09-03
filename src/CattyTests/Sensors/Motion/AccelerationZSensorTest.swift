@@ -64,7 +64,7 @@ final class AccelerationZSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("Z_ACCELERATION", type(of: sensor).tag)
+        XCTAssertEqual("Z_ACCELERATION", sensor.tag())
     }
     
     func testRequiredResources() {

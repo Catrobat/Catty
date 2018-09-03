@@ -32,6 +32,10 @@
     init(audioManagerGetter: @escaping () -> AudioManagerProtocol?) {
         self.getAudioManager = audioManagerGetter
     }
+    
+    func tag() -> String {
+        return type(of: self).tag
+    }
 
     func rawValue() -> Double {
         return self.getAudioManager()?.loudness() ?? type(of: self).defaultRawValue

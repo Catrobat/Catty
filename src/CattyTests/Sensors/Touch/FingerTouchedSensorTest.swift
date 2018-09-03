@@ -58,7 +58,7 @@ final class FingerTouchedSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("FINGER_TOUCHED", type(of: sensor).tag)
+        XCTAssertEqual("FINGER_TOUCHED", sensor.tag())
     }
     
     func testRequiredResources() {

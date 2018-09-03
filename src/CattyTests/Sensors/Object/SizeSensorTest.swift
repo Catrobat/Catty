@@ -79,7 +79,7 @@ final class SizeSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_SIZE", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_SIZE", sensor.tag())
     }
     
     func testRequiredResources() {

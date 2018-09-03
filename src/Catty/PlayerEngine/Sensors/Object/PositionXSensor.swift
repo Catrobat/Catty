@@ -27,6 +27,10 @@ class PositionXSensor: ObjectDoubleSensor {
     static let defaultRawValue = 0.0
     static let position = 60
     static let requiredResource = ResourceType.noResources
+    
+    func tag() -> String {
+        return type(of: self).tag
+    }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return defaultRawValue }

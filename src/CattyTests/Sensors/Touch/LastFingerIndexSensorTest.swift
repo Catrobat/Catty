@@ -60,7 +60,7 @@ final class LastFingerIndexSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("LAST_FINGER_INDEX", type(of: sensor).tag)
+        XCTAssertEqual("LAST_FINGER_INDEX", sensor.tag())
     }
     
     func testRequiredResources() {

@@ -34,6 +34,10 @@
         self.getLocationManager = locationManagerGetter
     }
 
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
     }

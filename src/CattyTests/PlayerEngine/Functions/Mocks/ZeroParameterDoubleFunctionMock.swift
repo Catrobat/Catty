@@ -24,22 +24,27 @@
 
 final class ZeroParameterDoubleFunctionMock: ZeroParameterDoubleFunction {
     
-    static var tag: String { return "zeroParameterDoubleFunctionMockTag" }
     static var name = "zeroParameterDoubleFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static var defaultValue: Double = 0
     
+    private let mockedTag: String
     private let mockedValue: Double
     private let mockedSection: FormulaEditorSection
     
-    convenience init(value: Double) {
-        self.init(value: value, formulaEditorSection: .hidden)
+    convenience init(tag: String, value: Double) {
+        self.init(tag: tag, value: value, formulaEditorSection: .hidden)
     }
     
-    init(value: Double, formulaEditorSection: FormulaEditorSection) {
+    init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+        self.mockedTag = tag
         self.mockedValue = value
         self.mockedSection = formulaEditorSection
+    }
+    
+    func tag() -> String {
+        return self.mockedTag
     }
     
     func formulaEditorSection() -> FormulaEditorSection {

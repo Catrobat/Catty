@@ -122,7 +122,7 @@ final class RotationSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_ROTATION", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_ROTATION", sensor.tag())
     }
     
     func testRequiredResources() {

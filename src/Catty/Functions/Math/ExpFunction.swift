@@ -29,6 +29,10 @@ class ExpFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 150
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }

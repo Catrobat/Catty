@@ -71,7 +71,7 @@ final class LookNameSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_LOOK_NAME", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_LOOK_NAME", sensor.tag())
     }
     
     func testRequiredResources() {

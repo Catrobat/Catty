@@ -45,7 +45,7 @@ final class DateYearSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("DATE_YEAR", type(of: sensor).tag)
+        XCTAssertEqual("DATE_YEAR", sensor.tag())
     }
     
     func testRequiredResources() {

@@ -86,7 +86,7 @@ final class LayerSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_LAYER", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_LAYER", sensor.tag())
     }
     
     func testRequiredResources() {

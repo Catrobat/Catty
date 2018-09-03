@@ -30,9 +30,9 @@ final class FunctionTests: XCTestCase {
     }
     
     func testParameters() {
-        let functionA = ZeroParameterDoubleFunctionMock(value: 1.0)
-        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .list(defaultValue: "list"))
-        let functionC = DoubleParameterDoubleFunctionMock(value: 3.0, firstParameter: .number(defaultValue: 2.0), secondParameter: .string(defaultValue: "test"))
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 1.0)
+        let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 2.0, parameter: .list(defaultValue: "list"))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC", value: 3.0, firstParameter: .number(defaultValue: 2.0), secondParameter: .string(defaultValue: "test"))
         
         var parameters = functionA.parameters()
         XCTAssertEqual(0, parameters.count)
@@ -54,9 +54,9 @@ final class FunctionTests: XCTestCase {
     }
     
     func testNameWithParameters() {
-        let functionA = ZeroParameterDoubleFunctionMock(value: 1.0)
-        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .list(defaultValue: "list"))
-        let functionC = DoubleParameterDoubleFunctionMock(value: 3.0, firstParameter: .number(defaultValue: 2.0), secondParameter: .string(defaultValue: "test"))
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 1.0)
+        let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 2.0, parameter: .list(defaultValue: "list"))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC", value: 3.0, firstParameter: .number(defaultValue: 2.0), secondParameter: .string(defaultValue: "test"))
         
         XCTAssertEqual(type(of: functionA).name, functionA.nameWithParameters())
         

@@ -28,6 +28,10 @@ class PowFunction: DoubleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 160
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 2)
     }

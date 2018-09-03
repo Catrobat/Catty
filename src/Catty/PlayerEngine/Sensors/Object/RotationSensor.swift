@@ -29,6 +29,10 @@
     static let rotationDegreeOffset = 90.0
     static let circleMaxDegrees = 360.0
     static let position = 90
+    
+    func tag() -> String {
+        return type(of: self).tag
+    }
 
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {

@@ -34,6 +34,10 @@
         self.getMotionManager = motionManagerGetter
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         return self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
     }

@@ -32,6 +32,10 @@ class TimeHourSensor : DateSensor {
         return Date()
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         return Double(Calendar.current.component(.hour, from: self.date()))
     }

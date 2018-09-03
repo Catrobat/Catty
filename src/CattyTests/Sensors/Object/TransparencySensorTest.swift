@@ -103,7 +103,7 @@ final class TransparencySensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_GHOSTEFFECT", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_GHOSTEFFECT", sensor.tag())
     }
     
     func testRequiredResources() {

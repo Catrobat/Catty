@@ -57,11 +57,11 @@ final class FunctionManagerTests: XCTestCase {
         
         XCTAssertNil(manager.function(tag: TanFunction.tag))
         
-        var foundFunction = manager.function(tag: type(of: functionA).tag)
+        var foundFunction = manager.function(tag: functionA.tag())
         XCTAssertNotNil(foundFunction)
         XCTAssertEqual(type(of: functionA).name, type(of: foundFunction!).name)
         
-        foundFunction = manager.function(tag: type(of: functionB).tag)
+        foundFunction = manager.function(tag: functionB.tag())
         XCTAssertNotNil(foundFunction)
         XCTAssertEqual(type(of: functionB).name, type(of: foundFunction!).name)
     }
@@ -80,27 +80,27 @@ final class FunctionManagerTests: XCTestCase {
         let functions = manager.functions()
         
         XCTAssertEqual(2, functions.count)
-        XCTAssertEqual(type(of: functionA).tag, type(of: functions[0]).tag)
-        XCTAssertEqual(type(of: functionB).tag, type(of: functions[1]).tag)
+        XCTAssertEqual(functionA.tag(), functions[0].tag())
+        XCTAssertEqual(functionB.tag(), functions[1].tag())
     }
     
     func testRequiredResource() {
-        let functionA = ZeroParameterDoubleFunctionMock(value: 0)
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 0)
         type(of: functionA).requiredResource = .accelerometer
         
-        let functionB = SingleParameterDoubleFunctionMock(value: 0, parameter: .number(defaultValue: 1))
+        let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 0, parameter: .number(defaultValue: 1))
         type(of: functionB).requiredResource = .compass
         
         var manager = FunctionManager(functions: [])
-        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: type(of: functionA).tag))
+        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: functionA.tag()))
         
         manager = FunctionManager(functions: [functionA])
-        XCTAssertEqual(type(of: functionA).requiredResource, type(of: manager).requiredResource(tag: type(of: functionA).tag))
-        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: type(of: functionB).tag))
+        XCTAssertEqual(type(of: functionA).requiredResource, type(of: manager).requiredResource(tag: functionA.tag()))
+        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: functionB.tag()))
         
         manager = FunctionManager(functions: [functionA, functionB])
-        XCTAssertEqual(type(of: functionA).requiredResource, type(of: manager).requiredResource(tag: type(of: functionA).tag))
-        XCTAssertEqual(type(of: functionB).requiredResource, type(of: manager).requiredResource(tag: type(of: functionB).tag))
+        XCTAssertEqual(type(of: functionA).requiredResource, type(of: manager).requiredResource(tag: functionA.tag()))
+        XCTAssertEqual(type(of: functionB).requiredResource, type(of: manager).requiredResource(tag: functionB.tag()))
         XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: "unavailableTag"))
     }
     
@@ -139,25 +139,25 @@ final class FunctionManagerTests: XCTestCase {
     }
     
     func testValue() {
-        let functionA = ZeroParameterDoubleFunctionMock(value: 12.3)
-        let functionB = SingleParameterDoubleFunctionMock(value: 45.6, parameter: FunctionParameter.number(defaultValue: 2))
-        let functionC = DoubleParameterDoubleFunctionMock(value: 78.9, firstParameter: FunctionParameter.number(defaultValue: 2), secondParameter: FunctionParameter.number(defaultValue: 3))
-        let functionD = SingleParameterStringFunctionMock(value: "test", parameter: FunctionParameter.number(defaultValue: 2))
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3)
+        let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 45.6, parameter: FunctionParameter.number(defaultValue: 2))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC", value: 78.9, firstParameter: FunctionParameter.number(defaultValue: 2), secondParameter: FunctionParameter.number(defaultValue: 3))
+        let functionD = SingleParameterStringFunctionMock(tag: "tagD", value: "test", parameter: FunctionParameter.number(defaultValue: 2))
         
         var manager = FunctionManager(functions: [])
-        XCTAssertEqual(type(of: manager).defaultValueForUndefinedFunction, manager.value(tag: type(of: functionA).tag, firstParameter: nil, secondParameter: nil) as! Double)
+        XCTAssertEqual(type(of: manager).defaultValueForUndefinedFunction, manager.value(tag: functionA.tag(), firstParameter: nil, secondParameter: nil) as! Double)
         
         manager = FunctionManager(functions: [functionA, functionB, functionC, functionD])
-        XCTAssertEqual(functionA.value(), manager.value(tag: type(of: functionA).tag, firstParameter: nil, secondParameter: nil) as! Double)
-        XCTAssertEqual(functionB.value(parameter: nil), manager.value(tag: type(of: functionB).tag, firstParameter: nil, secondParameter: nil) as! Double)
-        XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil), manager.value(tag: type(of: functionC).tag, firstParameter: nil, secondParameter: nil) as! Double)
-        XCTAssertEqual(functionD.value(parameter: nil), manager.value(tag: type(of: functionD).tag, firstParameter: nil, secondParameter: nil) as! String)
+        XCTAssertEqual(functionA.value(), manager.value(tag: functionA.tag(), firstParameter: nil, secondParameter: nil) as! Double)
+        XCTAssertEqual(functionB.value(parameter: nil), manager.value(tag: functionB.tag(), firstParameter: nil, secondParameter: nil) as! Double)
+        XCTAssertEqual(functionC.value(firstParameter: nil, secondParameter: nil), manager.value(tag: functionC.tag(), firstParameter: nil, secondParameter: nil) as! Double)
+        XCTAssertEqual(functionD.value(parameter: nil), manager.value(tag: functionD.tag(), firstParameter: nil, secondParameter: nil) as! String)
     }
     
     func testFormulaEditorItems() {
-        let functionA = ZeroParameterDoubleFunctionMock(value: 12.3, formulaEditorSection: .hidden)
-        let functionB = SingleParameterDoubleFunctionMock(value: 45.6, parameter: FunctionParameter.list(defaultValue: "list"), formulaEditorSection: .device(position: 1))
-        let functionC = DoubleParameterDoubleFunctionMock(value: 12.3, firstParameter: FunctionParameter.list(defaultValue: "list"), secondParameter: FunctionParameter.number(defaultValue: 1), formulaEditorSection: .object(position: 2))
+        let functionA = ZeroParameterDoubleFunctionMock(tag: "tagA", value: 12.3, formulaEditorSection: .hidden)
+        let functionB = SingleParameterDoubleFunctionMock(tag: "tagB", value: 45.6, parameter: FunctionParameter.list(defaultValue: "list"), formulaEditorSection: .device(position: 1))
+        let functionC = DoubleParameterDoubleFunctionMock(tag: "tagC", value: 12.3, firstParameter: FunctionParameter.list(defaultValue: "list"), secondParameter: FunctionParameter.number(defaultValue: 1), formulaEditorSection: .object(position: 2))
         
         let manager = FunctionManager(functions: [functionA, functionB, functionC])
         let items = manager.formulaEditorItems()

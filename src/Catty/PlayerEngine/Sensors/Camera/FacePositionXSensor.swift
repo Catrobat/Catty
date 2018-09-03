@@ -34,6 +34,10 @@ class FacePositionXSensor: DeviceSensor {
         self.getFaceDetectionManager = faceDetectionManagerGetter
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         guard let positionX = self.getFaceDetectionManager()?.facePositionY else { return type(of: self).defaultRawValue }
         return positionX

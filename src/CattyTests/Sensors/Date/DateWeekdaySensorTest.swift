@@ -45,7 +45,7 @@ final class DateWeekdaySensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("DATE_WEEKDAY", type(of: sensor).tag)
+        XCTAssertEqual("DATE_WEEKDAY", sensor.tag())
     }
     
     func testRequiredResources() {

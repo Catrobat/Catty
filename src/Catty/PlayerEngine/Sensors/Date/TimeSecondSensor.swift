@@ -32,6 +32,10 @@ class TimeSecondSensor : DateSensor {
         return Date()
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         return Double(Calendar.current.component(.second, from: self.date()))
     }

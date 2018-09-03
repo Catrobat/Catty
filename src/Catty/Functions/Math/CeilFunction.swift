@@ -29,6 +29,10 @@ class CeilFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 180
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0.3)
     }

@@ -24,24 +24,29 @@
 
 final class SingleParameterStringFunctionMock: SingleParameterStringFunction {
     
-    static var tag: String { return "singleParameterStringFunctionMockTag" }
     static var name = "singleParameterStringFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
     static var defaultValue: String = ""
     
+    private let mockedTag: String
     private let mockedValue: String
     private let mockedSection: FormulaEditorSection
     private let mockedParameter: FunctionParameter
     
-    convenience init(value: String, parameter: FunctionParameter) {
-        self.init(value: value, parameter: parameter, formulaEditorSection: .hidden)
+    convenience init(tag: String, value: String, parameter: FunctionParameter) {
+        self.init(tag: tag, value: value, parameter: parameter, formulaEditorSection: .hidden)
     }
     
-    init(value: String, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+    init(tag: String, value: String, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+        self.mockedTag = tag
         self.mockedValue = value
         self.mockedParameter = parameter
         self.mockedSection = formulaEditorSection
+    }
+    
+    func tag() -> String {
+        return self.mockedTag
     }
     
     func firstParameter() -> FunctionParameter {

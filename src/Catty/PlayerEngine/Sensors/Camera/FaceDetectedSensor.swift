@@ -34,6 +34,10 @@ class FaceDetectedSensor: DeviceSensor {
         self.getFaceDetectionManager = faceDetectionManagerGetter
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         guard let isFaceDetected = self.getFaceDetectionManager()?.isFaceDetected else { return type(of: self).defaultRawValue }
         return isFaceDetected ? 1.0 : 0.0

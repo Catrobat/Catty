@@ -71,7 +71,7 @@ final class LookNumberSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_LOOK_NUMBER", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_LOOK_NUMBER", sensor.tag())
     }
     
     func testRequiredResources() {

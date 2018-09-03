@@ -28,6 +28,10 @@ class JoinFunction: DoubleParameterStringFunction {
     static var isIdempotent = true
     static let position = 230
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .string(defaultValue: "hello ")
     }

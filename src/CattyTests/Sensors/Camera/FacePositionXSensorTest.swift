@@ -66,7 +66,7 @@ final class FacePositionXSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("FACE_X_POSITION", type(of: sensor).tag)
+        XCTAssertEqual("FACE_X_POSITION", sensor.tag())
     }
     
     func testRequiredResources() {

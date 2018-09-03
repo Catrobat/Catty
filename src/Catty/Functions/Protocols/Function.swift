@@ -22,9 +22,6 @@
 
 protocol Function { // TODO remove CB prefix
     
-    // Tag for serialization
-    static var tag: String { get }
-    
     // Display name (e.g. for formula editor)
     static var name: String { get }
     
@@ -33,6 +30,9 @@ protocol Function { // TODO remove CB prefix
     
     // True if the value does not change when executed multiple times (e.g. sin(0)) or false if the value changes (e.g. random(0, 1))
     static var isIdempotent: Bool { get }
+    
+    // Tag for serialization
+    func tag() -> String
     
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all

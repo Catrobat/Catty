@@ -50,7 +50,7 @@ import CoreLocation
     
     private func registerSensors(sensorList: [Sensor]) {
         type(of: self).sensorMap.removeAll()
-        sensorList.forEach { type(of: self).sensorMap[type(of: $0).tag] = $0 }
+        sensorList.forEach { type(of: self).sensorMap[$0.tag()] = $0 }
     }
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {
@@ -72,7 +72,7 @@ import CoreLocation
     }
     
     func tag(sensor: Sensor) -> String {
-        return type(of: sensor).tag
+        return sensor.tag()
     }
     
     @objc func exists(tag: String) -> Bool {

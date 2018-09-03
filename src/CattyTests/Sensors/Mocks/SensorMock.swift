@@ -24,21 +24,27 @@
 
 final class SensorMock: Sensor {
     
-    static var tag: String { return "sensorTag_" + String(NSDate().timeIntervalSince1970) }
+    static var tag = "sensorTag"
     static var name = "name"
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources
-    private let section: FormulaEditorSection
+    private let mockedSection: FormulaEditorSection
+    private let mockedTag: String
     
-    init(formulaEditorSection: FormulaEditorSection) {
-        self.section = formulaEditorSection
+    init(tag: String, formulaEditorSection: FormulaEditorSection) {
+        self.mockedSection = formulaEditorSection
+        self.mockedTag = tag
     }
     
-    init() {
-        self.section = .hidden
+    convenience init(tag: String) {
+        self.init(tag: tag, formulaEditorSection: .hidden)
+    }
+    
+    func tag() -> String {
+        return mockedTag
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return section
+        return mockedSection
     }
 }

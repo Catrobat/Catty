@@ -28,6 +28,10 @@ class MaxFunction: DoubleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 190
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }

@@ -75,7 +75,7 @@ final class AltitudeSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("ALTITUDE", type(of: sensor).tag)
+        XCTAssertEqual("ALTITUDE", sensor.tag())
     }
     
     func testRequiredResources() {

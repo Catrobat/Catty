@@ -90,7 +90,7 @@ final class CompassDirectionSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("COMPASS_DIRECTION", type(of: sensor).tag)
+        XCTAssertEqual("COMPASS_DIRECTION", sensor.tag())
     }
     
     func testRequiredResources() {

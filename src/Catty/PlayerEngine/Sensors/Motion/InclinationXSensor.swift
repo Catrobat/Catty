@@ -34,6 +34,10 @@
         self.getMotionManager = motionManagerGetter
     }
 
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         guard let inclinationSensor = self.getMotionManager() else { return type(of: self).defaultRawValue }
         guard let deviceMotion = inclinationSensor.deviceMotion else {

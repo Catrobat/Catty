@@ -34,7 +34,7 @@ import BluetoothHelper
     
     private func registerFunctions(functionList: [Function]) {
         type(of: self).functionMap.removeAll()
-        functionList.forEach { type(of: self).functionMap[type(of: $0).tag] = $0 }
+        functionList.forEach { type(of: self).functionMap[$0.tag()] = $0 }
     }
     
     func function(tag: String) -> Function? {

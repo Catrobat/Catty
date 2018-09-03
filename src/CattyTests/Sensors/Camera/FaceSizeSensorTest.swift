@@ -70,7 +70,7 @@ final class FaceSizeSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("FACE_SIZE", type(of: sensor).tag)
+        XCTAssertEqual("FACE_SIZE", sensor.tag())
     }
     
     func testRequiredResources() {

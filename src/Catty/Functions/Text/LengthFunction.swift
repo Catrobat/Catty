@@ -29,6 +29,10 @@ class LengthFunction: SingleParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 210
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .string(defaultValue: "hello world")
     }

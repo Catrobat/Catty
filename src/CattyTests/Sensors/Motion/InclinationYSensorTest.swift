@@ -95,7 +95,7 @@ final class InclinationYSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("Y_INCLINATION", type(of: sensor).tag)
+        XCTAssertEqual("Y_INCLINATION", sensor.tag())
     }
     
     func testRequiredResources() {

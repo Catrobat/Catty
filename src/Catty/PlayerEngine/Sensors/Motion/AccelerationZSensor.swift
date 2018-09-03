@@ -33,6 +33,10 @@
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }
+    
+    func tag() -> String {
+        return type(of: self).tag
+    }
 
     func rawValue() -> Double {
         return self.getMotionManager()?.deviceMotion?.userAcceleration.z ?? type(of: self).defaultRawValue

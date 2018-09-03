@@ -103,7 +103,7 @@ final class BrightnessSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_BRIGHTNESS", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_BRIGHTNESS", sensor.tag())
     }
     
     func testRequiredResources() {

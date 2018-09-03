@@ -28,6 +28,10 @@ class ElementFunction: DoubleParameterFunction {
     static var isIdempotent = false
     static let position = 250
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 1)
     }

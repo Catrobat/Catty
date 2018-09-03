@@ -28,6 +28,10 @@ class RandFunction: DoubleParameterDoubleFunction {
     static var isIdempotent = false
     static let position = 80
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .number(defaultValue: 0)
     }

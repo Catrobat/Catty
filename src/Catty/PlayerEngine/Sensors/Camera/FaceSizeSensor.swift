@@ -34,6 +34,10 @@ class FaceSizeSensor: DeviceSensor {
         self.getFaceDetectionManager = faceDetectionManagerGetter
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         guard let faceImage = self.getFaceDetectionManager()?.faceSize?.size else { return type(of: self).defaultRawValue }
         let faceSize = faceImage.width * faceImage.height

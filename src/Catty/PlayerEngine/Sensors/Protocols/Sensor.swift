@@ -22,9 +22,6 @@
 
 protocol Sensor { // TODO remove CB prefix
 
-    // Tag for serialization
-    static var tag: String { get }
-
     // Name for formula editor
     static var name: String { get }
 
@@ -32,6 +29,9 @@ protocol Sensor { // TODO remove CB prefix
     static var defaultRawValue: Double { get }
     
     static var requiredResource: ResourceType { get }
+    
+    // Tag for serialization
+    func tag() -> String
     
     // Return the section to show sensor in formula editor (FormulaEditorSection) and the position within that section (Int)
     // Use .hidden to not show the sensor at all

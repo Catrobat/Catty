@@ -75,7 +75,7 @@ final class LongitudeSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("LONGITUDE", type(of: sensor).tag)
+        XCTAssertEqual("LONGITUDE", sensor.tag())
     }
     
     func testRequiredResources() {

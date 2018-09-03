@@ -45,7 +45,7 @@ final class TimeSecondSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("TIME_SECOND", type(of: sensor).tag)
+        XCTAssertEqual("TIME_SECOND", sensor.tag())
     }
     
     func testRequiredResources() {

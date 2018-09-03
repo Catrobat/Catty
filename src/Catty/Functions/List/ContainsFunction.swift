@@ -28,6 +28,10 @@ class ContainsFunction: DoubleParameterDoubleFunction {
     static var isIdempotent = false
     static let position = 260
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func firstParameter() -> FunctionParameter {
         return .list(defaultValue: "list name")
     }

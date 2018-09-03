@@ -70,7 +70,7 @@ final class LoudnessSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("LOUDNESS", type(of: sensor).tag)
+        XCTAssertEqual("LOUDNESS", sensor.tag())
     }
     
     func testRequiredResources() {

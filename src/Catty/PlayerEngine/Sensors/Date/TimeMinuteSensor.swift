@@ -28,6 +28,10 @@ class TimeMinuteSensor : DateSensor {
     static let position = 280
     static let requiredResource = ResourceType.noResources
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func date() -> Date {
         return Date()
     }

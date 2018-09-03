@@ -34,6 +34,10 @@ class LongitudeSensor : NSObject, DeviceSensor {
         self.getLocationManager = locationManagerGetter
     }
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func rawValue() -> Double {
         return self.getLocationManager()?.location?.coordinate.longitude ?? type(of: self).defaultRawValue
     }

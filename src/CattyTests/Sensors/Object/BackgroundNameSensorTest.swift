@@ -70,7 +70,7 @@ final class BackgroundNameSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_BACKGROUND_NAME", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_BACKGROUND_NAME", sensor.tag())
     }
     
     func testRequiredResources() {

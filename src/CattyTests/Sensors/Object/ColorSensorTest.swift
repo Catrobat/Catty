@@ -83,7 +83,7 @@ final class ColorSensorTest: XCTestCase {
     }
     
     func testTag() {
-        XCTAssertEqual("OBJECT_COLOR", type(of: sensor).tag)
+        XCTAssertEqual("OBJECT_COLOR", sensor.tag())
     }
     
     func testRequiredResources() {

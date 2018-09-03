@@ -28,6 +28,10 @@ class TrueFunction: ZeroParameterDoubleFunction {
     static var isIdempotent = true
     static let position = 300
     
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     func value() -> Double {
         return 1.0
     }

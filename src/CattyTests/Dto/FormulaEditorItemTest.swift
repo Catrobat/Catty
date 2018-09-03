@@ -34,7 +34,7 @@ class FormulaEditorItemTest: XCTestCase {
     
     func testInitWithFunction() {
         let expectedSection = FormulaEditorSection.math(position: 10)
-        let function = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: expectedSection)
+        let function = ZeroParameterDoubleFunctionMock(tag: "tag", value: 1.0, formulaEditorSection: expectedSection)
         
         let item = FormulaEditorItem(function: function)
         XCTAssertEqual(function.nameWithParameters(), item.title)
@@ -45,7 +45,7 @@ class FormulaEditorItemTest: XCTestCase {
     
     func testInitWithSensor() {
         let expectedSection = FormulaEditorSection.object(position: 10)
-        let sensor = SensorMock(formulaEditorSection: expectedSection)
+        let sensor = SensorMock(tag: "tagA", formulaEditorSection: expectedSection)
         
         let item = FormulaEditorItem(sensor: sensor, spriteObject: SpriteObjectMock())
         XCTAssertEqual(type(of: sensor).name, item.title)

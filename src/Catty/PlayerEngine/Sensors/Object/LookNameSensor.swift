@@ -29,6 +29,10 @@
     static let position = 50
     static let requiredResource = ResourceType.noResources
 
+    func tag() -> String {
+        return type(of: self).tag
+    }
+    
     static func rawValue(for spriteObject: SpriteObject) -> String {
         guard let spriteNode = spriteObject.spriteNode else { return LookNameSensor.defaultStringValue }
         guard let currentLook = spriteNode.currentLook else { return LookNameSensor.defaultStringValue }
