@@ -36,8 +36,106 @@ import CoreLocation
     let bluetoothService: BluetoothService
     
     override convenience init() {
+        let motionManager = CMMotionManager()
+        let locationManager = CLLocationManager()
+        let faceDetectionManager = FaceDetectionManager.shared
+        let audioManager = AudioManager()
+        let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
-        let bluetoothServiceGetter: () -> BluetoothService? = { bluetoothService }
+        
+        let sensorManager = FormulaManager.buildSensorManager(motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
+        
+        let functionManager = FormulaManager.buildFunctionManager(bluetoothService: bluetoothService)
+        
+        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
+    }
+    
+    convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
+        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
+    }
+    
+    init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol, motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManagerProtocol, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+        
+        self.sensorManager = sensorManager
+        self.functionManager = functionManager
+        
+        self.motionManager = motionManager
+        self.locationManager = locationManager
+        self.faceDetectionManager = faceDetectionManager
+        self.audioManager = audioManager
+        self.touchManager = touchManager
+        self.bluetoothService = bluetoothService
+    }
+    
+    @objc func functionExists(tag: String) -> Bool {
+        return self.functionManager.exists(tag: tag)
+    }
+    
+    @objc func sensorExists(tag: String) -> Bool {
+        return self.sensorManager.exists(tag: tag)
+    }
+    
+    private static func buildSensorManager(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> SensorManager {
+    
+        let sensorList: [Sensor] = [
+            LoudnessSensor(audioManagerGetter: { audioManager }),
+            InclinationXSensor(motionManagerGetter: { motionManager }),
+            InclinationYSensor(motionManagerGetter: { motionManager }),
+            AccelerationXSensor(motionManagerGetter: { motionManager }),
+            AccelerationYSensor(motionManagerGetter: { motionManager }),
+            AccelerationZSensor(motionManagerGetter: { motionManager }),
+            CompassDirectionSensor(locationManagerGetter: { locationManager }),
+            LatitudeSensor(locationManagerGetter: { locationManager }),
+            LongitudeSensor(locationManagerGetter: { locationManager }),
+            LocationAccuracySensor(locationManagerGetter: { locationManager }),
+            AltitudeSensor(locationManagerGetter: { locationManager }),
+            FingerTouchedSensor(touchManagerGetter: { touchManager }),
+            FingerXSensor(touchManagerGetter: { touchManager }),
+            FingerYSensor(touchManagerGetter: { touchManager }),
+            LastFingerIndexSensor(touchManagerGetter: { touchManager }),
+            
+            DateYearSensor(),
+            DateMonthSensor(),
+            DateDaySensor(),
+            DateWeekdaySensor(),
+            TimeHourSensor(),
+            TimeMinuteSensor(),
+            TimeSecondSensor(),
+            
+            /*MultiFingerTouchedSensor(),
+             MultiFingerXSensor(),
+             MultiFingerYSensor(),*/
+            
+            FaceDetectedSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+            FaceSizeSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+            FacePositionXSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+            FacePositionYSensor(faceDetectionManagerGetter: { faceDetectionManager }),
+            
+            PhiroFrontLeftSensor(bluetoothServiceGetter: { bluetoothService }),
+            PhiroFrontRightSensor(bluetoothServiceGetter: { bluetoothService }),
+            PhiroBottomLeftSensor(bluetoothServiceGetter: { bluetoothService }),
+            PhiroBottomRightSensor(bluetoothServiceGetter: { bluetoothService }),
+            PhiroSideLeftSensor(bluetoothServiceGetter: { bluetoothService }),
+            PhiroSideRightSensor(bluetoothServiceGetter: { bluetoothService }),
+            
+            PositionXSensor(),
+            PositionYSensor(),
+            TransparencySensor(),
+            BrightnessSensor(),
+            ColorSensor(),
+            SizeSensor(),
+            RotationSensor(),
+            LayerSensor(),
+            BackgroundNumberSensor(),
+            BackgroundNameSensor(),
+            LookNumberSensor(),
+            LookNameSensor()
+        ]
+        
+        return SensorManager(sensors: sensorList, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
+    }
+    
+    private static func buildFunctionManager(bluetoothService: BluetoothService) -> FunctionManager {
         
         let functionManager = FunctionManager(functions: [
             SinFunction(),
@@ -68,32 +166,10 @@ import CoreLocation
             ElementFunction(),
             NumberOfItemsFunction(),
             ContainsFunction(),
-            ArduinoAnalogPinFunction(bluetoothServiceGetter: bluetoothServiceGetter),
-            ArduinoDigitalPinFunction(bluetoothServiceGetter: bluetoothServiceGetter)
+            ArduinoAnalogPinFunction(bluetoothServiceGetter: { bluetoothService }),
+            ArduinoDigitalPinFunction(bluetoothServiceGetter: { bluetoothService })
             ])
         
-        // TODO remove Singleton
-        self.init(sensorManager: SensorManager.shared, functionManager: functionManager, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: bluetoothService)
-    }
-    
-    convenience init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol) {
-        self.init(sensorManager: sensorManager, functionManager: functionManager, motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
-    }
-    
-    init(sensorManager: SensorManagerProtocol, functionManager: FunctionManagerProtocol, motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManagerProtocol, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
-        
-        self.sensorManager = sensorManager
-        self.functionManager = functionManager
-        
-        self.motionManager = motionManager
-        self.locationManager = locationManager
-        self.faceDetectionManager = faceDetectionManager
-        self.audioManager = audioManager
-        self.touchManager = touchManager
-        self.bluetoothService = bluetoothService
-    }
-    
-    @objc func functionExists(tag: String) -> Bool {
-        return self.functionManager.exists(tag: tag)
+        return functionManager
     }
 }

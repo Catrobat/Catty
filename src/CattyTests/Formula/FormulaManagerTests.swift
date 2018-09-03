@@ -27,22 +27,9 @@ import XCTest
 final class FormulaManagerTest: XCTestCase {
     
     var spriteObject: SpriteObject!
-    var motionManager: MotionManagerMock!
-    var locationManager: LocationManagerMock!
-    var faceDetectionManager: FaceDetectionManagerMock!
-    var audioManager: AudioManagerMock!
-    var touchManager: TouchManagerMock!
-    var bluetoothService: BluetoothService!
     
     override func setUp() {
         spriteObject = SpriteObjectMock()
-        
-        motionManager = MotionManagerMock()
-        locationManager = LocationManagerMock()
-        faceDetectionManager = FaceDetectionManagerMock()
-        audioManager = AudioManagerMock()
-        touchManager = TouchManagerMock()
-        bluetoothService = BluetoothService.sharedInstance()
     }
     
     func testFormulaEditorItemsEmpty() {
@@ -57,8 +44,8 @@ final class FormulaManagerTest: XCTestCase {
     
     func testFormulaEditorItems() {
         let functionA = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: .object(position: 1))
-        let functionB = ZeroParameterDoubleFunctionMock(value: 2.0, formulaEditorSection: .device(position: 2))
-        let functionC = ZeroParameterDoubleFunctionMock(value: 3.0, formulaEditorSection: .hidden)
+        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .number(defaultValue: 1), formulaEditorSection: .device(position: 2))
+        let functionC = DoubleParameterDoubleFunctionMock(value: 3.0, firstParameter: .number(defaultValue: 1), secondParameter: .number(defaultValue: 1), formulaEditorSection: .hidden)
         
         let sensorA = SensorMock(formulaEditorSection: .object(position: 3))
         let sensorB = SensorMock(formulaEditorSection: .hidden)
@@ -75,7 +62,7 @@ final class FormulaManagerTest: XCTestCase {
     
     func testFormulaEditorItemsSamePosition() {
         let functionA = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: .object(position: 1))
-        let functionB = ZeroParameterDoubleFunctionMock(value: 2.0, formulaEditorSection: .object(position: 1))
+        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .number(defaultValue: 1), formulaEditorSection: .object(position: 1))
         
         let sensorA = SensorMock(formulaEditorSection: .object(position: 1))
         
@@ -87,7 +74,7 @@ final class FormulaManagerTest: XCTestCase {
     
     func testFormulaEditorItemsForMathSection() {
         let functionA = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = ZeroParameterDoubleFunctionMock(value: 2.0, formulaEditorSection: .object(position: 1))
+        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .number(defaultValue: 1.0), formulaEditorSection: .object(position: 1))
         
         let sensorA = SensorMock(formulaEditorSection: .math(position: 20))
         let sensorB = SensorMock(formulaEditorSection: .hidden)
@@ -103,7 +90,7 @@ final class FormulaManagerTest: XCTestCase {
     
     func testFormulaEditorItemsForDeviceSection() {
         let functionA = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = ZeroParameterDoubleFunctionMock(value: 2.0, formulaEditorSection: .device(position: 20))
+        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .number(defaultValue: 20), formulaEditorSection: .device(position: 20))
         
         let sensorA = SensorMock(formulaEditorSection: .device(position: 1))
         let sensorB = SensorMock(formulaEditorSection: .hidden)
@@ -119,7 +106,7 @@ final class FormulaManagerTest: XCTestCase {
     
     func testFormulaEditorItemsForObjectSection() {
         let functionA = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: .math(position: 10))
-        let functionB = ZeroParameterDoubleFunctionMock(value: 2.0, formulaEditorSection: .device(position: 20))
+        let functionB = SingleParameterDoubleFunctionMock(value: 2.0, parameter: .number(defaultValue: 20), formulaEditorSection: .device(position: 20))
         
         let sensorA = SensorMock(formulaEditorSection: .object(position: 30))
         let sensorB = SensorMock(formulaEditorSection: .hidden)

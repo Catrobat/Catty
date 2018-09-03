@@ -25,7 +25,7 @@ import BluetoothHelper
 @objc class FunctionManager: NSObject, FunctionManagerProtocol {
     
     public static var defaultValueForUndefinedFunction: Double = 0
-    private static var functionMap = [String: Function]()
+    private static var functionMap = [String: Function]() // TODO make instance let
     
     init(functions: [Function]) {
         super.init()
@@ -33,6 +33,7 @@ import BluetoothHelper
     }
     
     private func registerFunctions(functionList: [Function]) {
+        type(of: self).functionMap.removeAll()
         functionList.forEach { type(of: self).functionMap[type(of: $0).tag] = $0 }
     }
     

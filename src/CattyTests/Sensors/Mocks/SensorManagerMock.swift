@@ -20,54 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import CoreMotion
+import CoreLocation
+
 @testable import Pocket_Code
 
-// this class is subject to change when SensorManager is no Singleton anymore
-final class SensorManagerMock: SensorManagerProtocol {
+final class SensorManagerMock: SensorManager {
 
-    static var defaultValueForUndefinedSensor: Double = 0
-    let sensors: [Sensor]
-    var isStarted = false
-    
-    convenience init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
-        self.init(sensors: [])
-    }
-    
-    init(sensors: [Sensor]) {
-        self.sensors = sensors
-    }
-    
-    func exists(tag: String) -> Bool {
-        return false
-    }
-    
-    func sensor(tag: String) -> Sensor? {
-        return nil
-    }
-    
-    func requiredResource(tag: String) -> ResourceType {
-        return ResourceType.noResources
-    }
-    
-    func name(sensor: Sensor) -> String {
-        return ""
-    }
-    
-    func name(tag: String) -> String? {
-        return nil
-    }
-    
-    func value(tag: String, spriteObject: SpriteObject?) -> AnyObject {
-        return SensorManagerMock.defaultValueForUndefinedSensor as AnyObject
-    }
-    
-    func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {
-        var items = [FormulaEditorItem]()
+    convenience init(sensors: [Sensor]) {
+        let motionManager = CMMotionManager()
+        let locationManager = CLLocationManager()
+        let faceDetectionManager = FaceDetectionManager.shared
+        let audioManager = AudioManager()
+        let touchManager = TouchManager()
+        let bluetoothService = BluetoothService.sharedInstance()
         
-        for sensor in sensors {
-            items.append(FormulaEditorItem(sensor: sensor, spriteObject: spriteObject))
-        }
-        
-        return items
+        self.init(sensors: sensors, motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
+    }
+    
+    required init(sensors: [Sensor], motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+        super.init(sensors: sensors, motionManager: motionManager, locationManager: locationManager, faceDetectionManager: faceDetectionManager, audioManager: audioManager, touchManager: touchManager, bluetoothService: bluetoothService)
     }
 }

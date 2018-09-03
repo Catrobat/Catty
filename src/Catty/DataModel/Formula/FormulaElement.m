@@ -330,7 +330,7 @@
         resources |= [self.rightChild getRequiredResources];
     }
     if (self.type == SENSOR) {
-        resources |= [[SensorManager shared] requiredResourceWithTag: self.value];
+        resources |= [[SensorManager class] requiredResourceWithTag: self.value];
     }
     if (self.type == FUNCTION) {
         resources |= [[FunctionManager class] requiredResourceWithTag: self.value];

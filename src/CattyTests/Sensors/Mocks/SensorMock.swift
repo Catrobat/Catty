@@ -23,7 +23,8 @@
 @testable import Pocket_Code
 
 final class SensorMock: Sensor {
-    static var tag = "tag"
+    
+    static var tag: String { return "sensorTag_" + String(NSDate().timeIntervalSince1970) }
     static var name = "name"
     static var defaultRawValue: Double = 0
     static var requiredResource = ResourceType.noResources

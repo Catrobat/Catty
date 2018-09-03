@@ -30,6 +30,8 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
     
     func functionExists(tag: String) -> Bool
     
+    func sensorExists(tag: String) -> Bool
+    
     func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem]
     
     func formulaEditorItemsForMathSection(spriteObject: SpriteObject) -> [FormulaEditorItem]

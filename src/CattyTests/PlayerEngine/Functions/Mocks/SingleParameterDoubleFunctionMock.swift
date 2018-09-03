@@ -24,7 +24,7 @@
 
 final class SingleParameterDoubleFunctionMock: SingleParameterDoubleFunction {
     
-    static var tag = "singleParameterDoubleFunctionMockTag"
+    static var tag: String { return "singleParameterDoubleFunctionMockTag" }
     static var name = "singleParameterDoubleFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false

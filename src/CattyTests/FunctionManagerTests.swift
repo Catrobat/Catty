@@ -85,10 +85,10 @@ final class FunctionManagerTests: XCTestCase {
     }
     
     func testRequiredResource() {
-        let functionA = SinFunction()
+        let functionA = ZeroParameterDoubleFunctionMock(value: 0)
         type(of: functionA).requiredResource = .accelerometer
         
-        let functionB = CosFunction()
+        let functionB = SingleParameterDoubleFunctionMock(value: 0, parameter: .number(defaultValue: 1))
         type(of: functionB).requiredResource = .compass
         
         var manager = FunctionManager(functions: [])

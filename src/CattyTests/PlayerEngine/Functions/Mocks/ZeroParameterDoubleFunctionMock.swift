@@ -24,7 +24,7 @@
 
 final class ZeroParameterDoubleFunctionMock: ZeroParameterDoubleFunction {
     
-    static var tag = "zeroParameterDoubleFunctionMockTag"
+    static var tag: String { return "zeroParameterDoubleFunctionMockTag" }
     static var name = "zeroParameterDoubleFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false

@@ -21,14 +21,17 @@
  */
 
 import XCTest
+import CoreMotion
+import CoreLocation
 
 @testable import Pocket_Code
 
 final class SensorManagerTest: XCTestCase {
 
-    private var manager: SensorManagerProtocol = SensorManager.shared
+    private var manager: SensorManagerProtocol!
 
     override func setUp() {
+        manager = SensorManagerMock(sensors: [])
     }
     
     func testDefaultValueForUndefinedSensor() {
@@ -48,7 +51,7 @@ final class SensorManagerTest: XCTestCase {
     }
     
     func testRequiredResource() {
-        XCTAssertEqual(ResourceType.noResources, manager.requiredResource(tag: "invalidTag"))
+        XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: "invalidTag"))
         
         //let sensor = SensorMock()
         // TODO

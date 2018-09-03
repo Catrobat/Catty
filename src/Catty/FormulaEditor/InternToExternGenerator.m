@@ -212,7 +212,7 @@
             break;
             
         case TOKEN_TYPE_SENSOR:
-            return [[SensorManager shared] nameWithTag:[internToken getTokenStringValue]];
+            return [[SensorManager class] nameWithTag:[internToken getTokenStringValue]];
             break;
             
         default:

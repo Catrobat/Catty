@@ -25,11 +25,8 @@ import CoreLocation
 
 @objc class SensorManager: NSObject, SensorManagerProtocol {
     
-    // TODO remove Singleton
-    @objc public static let shared = SensorManager(motionManager: CMMotionManager(), locationManager: CLLocationManager(), faceDetectionManager: FaceDetectionManager.shared, audioManager: AudioManager(), touchManager: TouchManager(), bluetoothService: BluetoothService.sharedInstance())
-    
     public static var defaultValueForUndefinedSensor: Double = 0
-    private var sensorMap = [String: Sensor]()
+    private static var sensorMap = [String: Sensor]() // TODO make instance let
     
     private let motionManager: MotionManager
     private let locationManager: LocationManager
@@ -38,7 +35,7 @@ import CoreLocation
     private let touchManager: TouchManagerProtocol
     private let bluetoothService: BluetoothService
     
-    public required init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
+    public required init(sensors: [Sensor], motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
     
         self.motionManager = motionManager
         self.locationManager = locationManager
@@ -48,110 +45,38 @@ import CoreLocation
         self.bluetoothService = bluetoothService
         
         super.init()
-        registerSensors()
+        registerSensors(sensorList: sensors)
     }
     
-    private func registerSensors() {
-        let motionManagerGetter: () -> MotionManager? = { [weak self] in self?.motionManager }
-        let locationManagerGetter: () -> LocationManager? = { [weak self] in self?.locationManager }
-        let audioManagerGetter: () -> AudioManagerProtocol? = { [weak self] in self?.audioManager }
-        let faceDetectionManagerGetter: () -> FaceDetectionManagerProtocol? = { [weak self] in self?.faceDetectionManager }
-        let touchManagerGetter: () -> TouchManagerProtocol? = { [weak self] in self?.touchManager }
-        let bluetoothServiceGetter: () -> BluetoothService? = { [weak self] in self?.bluetoothService }
-        
-        let sensorList: [Sensor] = [
-            LoudnessSensor(audioManagerGetter: audioManagerGetter),
-            InclinationXSensor(motionManagerGetter: motionManagerGetter),
-            InclinationYSensor(motionManagerGetter: motionManagerGetter),
-            AccelerationXSensor(motionManagerGetter: motionManagerGetter),
-            AccelerationYSensor(motionManagerGetter: motionManagerGetter),
-            AccelerationZSensor(motionManagerGetter: motionManagerGetter),
-            CompassDirectionSensor(locationManagerGetter: locationManagerGetter),
-            LatitudeSensor(locationManagerGetter: locationManagerGetter),
-            LongitudeSensor(locationManagerGetter: locationManagerGetter),
-            LocationAccuracySensor(locationManagerGetter: locationManagerGetter),
-            AltitudeSensor(locationManagerGetter: locationManagerGetter),
-            FingerTouchedSensor(touchManagerGetter: touchManagerGetter),
-            FingerXSensor(touchManagerGetter: touchManagerGetter),
-            FingerYSensor(touchManagerGetter: touchManagerGetter),
-            LastFingerIndexSensor(touchManagerGetter: touchManagerGetter),
-            
-            DateYearSensor(),
-            DateMonthSensor(),
-            DateDaySensor(),
-            DateWeekdaySensor(),
-            TimeHourSensor(),
-            TimeMinuteSensor(),
-            TimeSecondSensor(),
-            
-            /*MultiFingerTouchedSensor(),
-            MultiFingerXSensor(),
-            MultiFingerYSensor(),*/
-             
-            FaceDetectedSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
-            FaceSizeSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
-            FacePositionXSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
-            FacePositionYSensor(faceDetectionManagerGetter: faceDetectionManagerGetter),
-            
-            PhiroFrontLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroFrontRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroBottomLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroBottomRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroSideLeftSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            PhiroSideRightSensor(bluetoothServiceGetter: bluetoothServiceGetter),
-            
-            PositionXSensor(),
-            PositionYSensor(),
-            TransparencySensor(),
-            BrightnessSensor(),
-            ColorSensor(),
-            SizeSensor(),
-            RotationSensor(),
-            LayerSensor(),
-            BackgroundNumberSensor(),
-            BackgroundNameSensor(),
-            LookNumberSensor(),
-            LookNameSensor()
-        ]
-        
-        sensorList.forEach { self.sensorMap[type(of: $0).tag] = $0 }
+    private func registerSensors(sensorList: [Sensor]) {
+        type(of: self).sensorMap.removeAll()
+        sensorList.forEach { type(of: self).sensorMap[type(of: $0).tag] = $0 }
     }
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem] {
         var items = [FormulaEditorItem]()
         
-        for sensor in self.sensorMap.values {
+        for sensor in self.sensors() {
             items.append(FormulaEditorItem(sensor: sensor, spriteObject: spriteObject))
         }
         
         return items
     }
     
+    func sensors() -> [Sensor] {
+        return Array(type(of: self).sensorMap.values)
+    }
+    
     func sensor(tag: String) -> Sensor? {
-        return self.sensorMap[tag]
+        return type(of: self).sensorMap[tag]
     }
     
     func tag(sensor: Sensor) -> String {
         return type(of: sensor).tag
     }
     
-    func name(sensor: Sensor) -> String {
-        return type(of: sensor).name
-    }
-    
-    @objc func name(tag: String) -> String? {
-        guard let sensor = self.sensor(tag: tag) else { return nil }
-        return type(of: sensor).name
-    }
-    
     @objc func exists(tag: String) -> Bool {
         return self.sensor(tag: tag) != nil
-    }
-    
-    // TODO write test
-    @objc func requiredResource(tag: String) -> ResourceType {
-        guard let sensor = self.sensor(tag: tag) else { return .noResources }
-        return type(of: sensor).requiredResource
     }
 
     @objc func value(tag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
@@ -171,5 +96,15 @@ import CoreLocation
         }
         
         return rawValue
+    }
+    
+    @objc static func requiredResource(tag: String) -> ResourceType {
+        guard let sensor = sensorMap[tag] else { return .noResources }
+        return type(of: sensor).requiredResource
+    }
+    
+    @objc static func name(tag: String) -> String? {
+        guard let sensor = sensorMap[tag] else { return nil }
+        return type(of: sensor).name
     }
 }

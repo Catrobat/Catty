@@ -20,25 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import CoreMotion
-
 protocol SensorManagerProtocol {
     
     static var defaultValueForUndefinedSensor: Double { get set }
     
-    init(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService)
+    init(sensors: [Sensor], motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService)
     
     func exists(tag: String) -> Bool
     
     func sensor(tag: String) -> Sensor?
     
-    func requiredResource(tag: String) -> ResourceType
-    
-    func name(sensor: Sensor) -> String
-    
-    func name(tag: String) -> String?
-    
     func value(tag: String, spriteObject: SpriteObject?) -> AnyObject
     
     func formulaEditorItems(for spriteObject: SpriteObject) -> [FormulaEditorItem]
+    
+    // TODO make instance method
+    static func requiredResource(tag: String) -> ResourceType
+    
+    // TODO make instance method
+    static func name(tag: String) -> String?
 }

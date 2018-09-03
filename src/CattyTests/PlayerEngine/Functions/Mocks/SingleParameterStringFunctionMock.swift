@@ -24,7 +24,7 @@
 
 final class SingleParameterStringFunctionMock: SingleParameterStringFunction {
     
-    static var tag = "singleParameterStringFunctionMockTag"
+    static var tag: String { return "singleParameterStringFunctionMockTag" }
     static var name = "singleParameterStringFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
