@@ -27,7 +27,7 @@ import BluetoothHelper
     public static var defaultValueForUndefinedFunction: Double = 0
     private static var functionMap = [String: Function]()
     
-    init(_ functions: [Function]) {
+    init(functions: [Function]) {
         super.init()
         registerFunctions(functionList: functions)
     }

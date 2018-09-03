@@ -143,7 +143,7 @@ protocol ZeroParameterStringFunction: StringFunction {
     func value() -> String
 }
 
-protocol SingleParameterStringFunction: StringFunction, SingleParameterDoubleFunction {
+protocol SingleParameterStringFunction: StringFunction, SingleParameterFunctionProtocol {
     func value(parameter: AnyObject?) -> String
 }
 

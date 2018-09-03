@@ -22,19 +22,37 @@
 
 @testable import Pocket_Code
 
-final class FunctionMock: Function {
+final class SingleParameterStringFunctionMock: SingleParameterStringFunction {
     
-    static var tag = "tag"
-    static var name = "name"
+    static var tag = "singleParameterStringFunctionMockTag"
+    static var name = "singleParameterStringFunctionMockName"
     static var requiredResource = ResourceType.noResources
     static var isIdempotent = false
-    private let section: FormulaEditorSection
+    static var defaultValue: String = ""
     
-    init(formulaEditorSection: FormulaEditorSection) {
-        self.section = formulaEditorSection
+    private let mockedValue: String
+    private let mockedSection: FormulaEditorSection
+    private let mockedParameter: FunctionParameter
+    
+    convenience init(value: String, parameter: FunctionParameter) {
+        self.init(value: value, parameter: parameter, formulaEditorSection: .hidden)
+    }
+    
+    init(value: String, parameter: FunctionParameter, formulaEditorSection: FormulaEditorSection) {
+        self.mockedValue = value
+        self.mockedParameter = parameter
+        self.mockedSection = formulaEditorSection
+    }
+    
+    func firstParameter() -> FunctionParameter {
+        return self.mockedParameter
     }
     
     func formulaEditorSection() -> FormulaEditorSection {
-        return section
+        return self.mockedSection
+    }
+    
+    func value(parameter: AnyObject?) -> String {
+        return self.mockedValue
     }
 }

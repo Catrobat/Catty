@@ -113,6 +113,8 @@
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
+		4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */; };
+		4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2732A91CE4F30F00CA61AC /* CBSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */; };
 		4C28D78B2132A83D00870CE2 /* FormulaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28D78A2132A83D00870CE2 /* FormulaMock.swift */; };
@@ -317,7 +319,6 @@
 		4CC50A60213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A5F213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift */; };
 		4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC50A61213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift */; };
 		4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */; };
-		4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614B9212EA90A006E4720 /* FunctionMock.swift */; };
 		4CC614BC212EAC1F006E4720 /* SensorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BB212EAC1F006E4720 /* SensorMock.swift */; };
 		4CC614C0212EB330006E4720 /* SensorManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614BF212EB330006E4720 /* SensorManagerMock.swift */; };
 		4CC614C2212EB5F8006E4720 /* FunctionManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */; };
@@ -1395,6 +1396,8 @@
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
+		4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleParameterStringFunctionMock.swift; sourceTree = "<group>"; };
+		4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
@@ -1654,7 +1657,6 @@
 		4CC50A5F213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleParameterDoubleFunctionMock.swift; sourceTree = "<group>"; };
 		4CC50A61213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleParameterDoubleFunctionMock.swift; sourceTree = "<group>"; };
 		4CC614B6212EA84E006E4720 /* FormulaEditorItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaEditorItemTest.swift; sourceTree = "<group>"; };
-		4CC614B9212EA90A006E4720 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
 		4CC614BB212EAC1F006E4720 /* SensorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMock.swift; sourceTree = "<group>"; };
 		4CC614BF212EB330006E4720 /* SensorManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorManagerMock.swift; sourceTree = "<group>"; };
 		4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionManagerMock.swift; sourceTree = "<group>"; };
@@ -3612,6 +3614,7 @@
 				4C6FE13A212D2D2E0067B7D5 /* Math */,
 				4CC614B8212EA8FE006E4720 /* Mocks */,
 				4C6FE157212D2D2E0067B7D5 /* Text */,
+				4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */,
 			);
 			name = Functions;
 			path = PlayerEngine/Functions;
@@ -4242,9 +4245,9 @@
 			isa = PBXGroup;
 			children = (
 				4CC614C1212EB5F8006E4720 /* FunctionManagerMock.swift */,
-				4CC614B9212EA90A006E4720 /* FunctionMock.swift */,
 				4CC50A5D213BE036004BC914 /* ZeroParameterDoubleFunctionMock.swift */,
 				4CC50A5F213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift */,
+				4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */,
 				4CC50A61213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift */,
 			);
 			path = Mocks;
@@ -8198,6 +8201,7 @@
 				F4201CEE20D795C90030181B /* DateWeekdaySensorTest.swift in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4C0F9FD3204BD3B400E71B2D /* BubbleBrickTests.swift in Sources */,
+				4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
@@ -8251,6 +8255,7 @@
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				4C6D14EA210B12AB006147BD /* TransparencySensorTest.swift in Sources */,
+				4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				4C0F9FDB204BD3E100E71B2D /* SetBackgroundBrickTests.m in Sources */,
@@ -8314,7 +8319,6 @@
 				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				5973F239202EF34700A4CED9 /* MediaLibraryCollectionViewDataSourceDelegateMock.swift in Sources */,
-				4CC614BA212EA90A006E4720 /* FunctionMock.swift in Sources */,
 				F4C5A99B20F09BBB00C067A0 /* AccelerationYSensorTest.swift in Sources */,
 				4C6FE172212D2D2E0067B7D5 /* FunctionManagerTests.swift in Sources */,
 				F4E6E573210DA5CE00D86FE6 /* LastFingerIndexSensorTest.swift in Sources */,

@@ -39,7 +39,7 @@ import CoreLocation
         let bluetoothService = BluetoothService.sharedInstance()
         let bluetoothServiceGetter: () -> BluetoothService? = { bluetoothService }
         
-        let functionManager = FunctionManager([
+        let functionManager = FunctionManager(functions: [
             SinFunction(),
             CosFunction(),
             TanFunction(),

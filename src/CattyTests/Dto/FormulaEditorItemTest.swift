@@ -34,7 +34,7 @@ class FormulaEditorItemTest: XCTestCase {
     
     func testInitWithFunction() {
         let expectedSection = FormulaEditorSection.math(position: 10)
-        let function = FunctionMock(formulaEditorSection: expectedSection)
+        let function = ZeroParameterDoubleFunctionMock(value: 1.0, formulaEditorSection: expectedSection)
         
         let item = FormulaEditorItem(function: function)
         XCTAssertEqual(function.nameWithParameters(), item.title)
