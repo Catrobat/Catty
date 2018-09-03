@@ -162,5 +162,8 @@ final class FunctionManagerTests: XCTestCase {
         let manager = FunctionManager(functions: [functionA, functionB, functionC])
         let items = manager.formulaEditorItems()
         XCTAssertEqual(3, items.count)
+        XCTAssertNotNil(items.filter { $0.function?.tag() == functionA.tag() }.first)
+        XCTAssertNotNil(items.filter { $0.function?.tag() == functionB.tag() }.first)
+        XCTAssertNotNil(items.filter { $0.function?.tag() == functionC.tag() }.first)
     }
 }

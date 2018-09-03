@@ -22,29 +22,39 @@
 
 @testable import Pocket_Code
 
-class SensorMock: Sensor {
+final class ObjectDoubleSensorMock: SensorMock, ObjectDoubleSensor {
     
-    static var tag = "sensorTag"
-    static var name = "name"
-    static var defaultRawValue: Double = 0
-    static var requiredResource = ResourceType.noResources
-    private let mockedSection: FormulaEditorSection
-    private let mockedTag: String
+    private static var mockedValue: Double = 0
     
-    init(tag: String, formulaEditorSection: FormulaEditorSection) {
-        self.mockedSection = formulaEditorSection
-        self.mockedTag = tag
+    init(tag: String, value: Double, formulaEditorSection: FormulaEditorSection) {
+        super.init(tag: tag, formulaEditorSection: formulaEditorSection)
+        type(of: self).mockedValue = value
+    }
+    
+    override convenience init(tag: String, formulaEditorSection: FormulaEditorSection) {
+        self.init(tag: tag, value: 0, formulaEditorSection: formulaEditorSection)
+    }
+    
+    convenience init(tag: String, value: Double) {
+        self.init(tag: tag, value: value, formulaEditorSection: .hidden)
     }
     
     convenience init(tag: String) {
         self.init(tag: tag, formulaEditorSection: .hidden)
     }
     
-    func tag() -> String {
-        return mockedTag
+    static func rawValue(for spriteObject: SpriteObject) -> Double {
+        return mockedValue
     }
     
-    func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
-        return mockedSection
+    static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
+        return rawValue
+    }
+    
+    static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
+        return userInput
+    }
+    
+    static func setRawValue(userInput: Double, for spriteObject: SpriteObject) -> Void {
     }
 }
