@@ -210,7 +210,18 @@ final class FormulaManagerResourceTests: XCTestCase {
     }
     
     func testSetupForProgram() {
-        // TODO
+        let program = ProgramMock(requiredResources: ResourceType.compass.rawValue | ResourceType.accelerometer.rawValue | ResourceType.deviceMotion.rawValue)!
+        let scene = SceneBuilder.init(program: program).build()
+        manager.setup(for: program, and: scene)
+        
+        XCTAssertTrue(motionManager.isDeviceMotionUpdateStarted)
+        XCTAssertTrue(locationManager.isHeadingUpdateStarted)
+        XCTAssertTrue(motionManager.isAccelerometerUpdateStarted)
+        XCTAssertFalse(faceDetectionManager.isStarted)
+        XCTAssertFalse(touchManager.isStarted)
+        XCTAssertFalse(audioManager.isStarted)
+        XCTAssertFalse(motionManager.isGyroUpdateStarted)
+        XCTAssertFalse(locationManager.isLocationUpdateStarted)
     }
     
     func testUnavailableResourcesAcceleromater() {

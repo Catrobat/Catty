@@ -28,6 +28,9 @@ extension FormulaManager {
         if let doubleValue = value as? Double {
             return Double(doubleValue)
         }
+        if let stringValue = value as? String, let doubleValue = Double(stringValue) {
+            return doubleValue
+        }
         return Double(0)
     }
     
@@ -44,7 +47,7 @@ extension FormulaManager {
     @objc(interpretBool: forSpriteObject:)
     func interpretBool(_ formula: Formula, for spriteObject: SpriteObject) -> Bool {
         let value = interpretInteger(formula, for: spriteObject)
-        return Bool(value == 1)
+        return Bool(value != 0)
     }
     
     @objc(interpretString: forSpriteObject:)
@@ -187,22 +190,10 @@ extension FormulaManager {
             if let leftString = left as? String, let rightString = right as? String {
                 return boolResult(value: leftString == rightString)
             }
-            if let leftInt = left as? Int, let rightInt = right as? Int {
-                return boolResult(value: leftInt == rightInt)
-            }
-            if let leftDouble = left as? Double, let rightDouble = right as? Double {
-                return boolResult(value: leftDouble == rightDouble)
-            }
             return boolResult(value: leftDouble == rightDouble)
         case .NOT_EQUAL:
             if let leftString = left as? String, let rightString = right as? String {
                 return boolResult(value: leftString != rightString)
-            }
-            if let leftInt = left as? Int, let rightInt = right as? Int {
-                return boolResult(value: leftInt != rightInt)
-            }
-            if let leftDouble = left as? Double, let rightDouble = right as? Double {
-                return boolResult(value: leftDouble != rightDouble)
             }
             return boolResult(value: leftDouble != rightDouble)
         default:

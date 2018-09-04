@@ -22,22 +22,40 @@
 
 #import "ProgramMock.h"
 
+@interface ProgramMock()
+@property(nonatomic, assign) NSInteger mockedRequiredResources;
+@end
+
 @implementation ProgramMock
 
 - (instancetype)init {
     return [self initWithWidth:300 andHeight:400];
 }
-    
+
+- (instancetype)initWithRequiredResources:(NSInteger)requiredResources {
+    return [self initWithWidth:300 andHeight:400 andRequiredResources:requiredResources];
+}
+
 - (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height {
+    return [self initWithWidth:width andHeight:height andRequiredResources:kNoResources];
+}
+
+    
+- (instancetype)initWithWidth:(CGFloat)width andHeight:(CGFloat)height andRequiredResources:(NSInteger)requiredResources {
     self = [super init];
     
     if (self != nil) {
         self.header = [[Header alloc] init];
         self.header.screenWidth = [[NSNumber alloc] initWithFloat:width];
         self.header.screenHeight = [[NSNumber alloc] initWithFloat:height];
+        self.mockedRequiredResources = requiredResources;
     }
     
     return self;
+}
+
+- (NSInteger)getRequiredResources {
+    return self.mockedRequiredResources;
 }
 
 @end
