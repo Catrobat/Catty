@@ -65,17 +65,17 @@ final class SizeSensorTest: XCTestCase {
     
     func testConvertToStandarized() {
         XCTAssertEqual(0, type(of: sensor).convertToStandardized(rawValue: 0, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(6, type(of: sensor).convertToStandardized(rawValue: 0.025, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(60, type(of: sensor).convertToStandardized(rawValue: 0.25, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(240, type(of: sensor).convertToStandardized(rawValue: 1.0, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(2.5, type(of: sensor).convertToStandardized(rawValue: 0.025, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(25, type(of: sensor).convertToStandardized(rawValue: 0.25, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(100, type(of: sensor).convertToStandardized(rawValue: 1.0, for: spriteObject), accuracy: 0.0001)
     }
     
     func testConvertToRaw() {
         XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: 0, for: spriteObject), accuracy: 0.0001)
         XCTAssertEqual(0, type(of: sensor).convertToRaw(userInput: -10, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(1, type(of: sensor).convertToRaw(userInput: 240, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(0.5, type(of: sensor).convertToRaw(userInput: 120, for: spriteObject), accuracy: 0.0001)
-        XCTAssertEqual(0.25, type(of: sensor).convertToRaw(userInput: 60, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(2.4, type(of: sensor).convertToRaw(userInput: 240, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(1.2, type(of: sensor).convertToRaw(userInput: 120, for: spriteObject), accuracy: 0.0001)
+        XCTAssertEqual(0.6, type(of: sensor).convertToRaw(userInput: 60, for: spriteObject), accuracy: 0.0001)
     }
     
     func testTag() {

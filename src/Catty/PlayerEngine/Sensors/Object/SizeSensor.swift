@@ -22,11 +22,9 @@
 
 class SizeSensor: ObjectDoubleSensor {
 
-    static let androidToIOSScale = 2.4
-    
     static let tag = "OBJECT_SIZE"
     static let name = kUIFEObjectSize
-    static let defaultRawValue = 1.0 / androidToIOSScale
+    static let defaultRawValue = 1.0
     static let requiredResource = ResourceType.noResources
     static let position = 80
 
@@ -49,14 +47,14 @@ class SizeSensor: ObjectDoubleSensor {
 
     // the sprite on Android is about 2.4 times smaller
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        return rawValue * (100 * androidToIOSScale)
+        return rawValue * 100
     }
     
     static func convertToRaw(userInput: Double, for spriteObject: SpriteObject) -> Double {
         if userInput <= 0 {
             return 0.0     //Android doesn't have negative values for size
         }
-        return userInput / (100 * androidToIOSScale)
+        return userInput / 100
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
