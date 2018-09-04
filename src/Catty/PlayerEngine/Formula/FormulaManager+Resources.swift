@@ -116,5 +116,7 @@ extension FormulaManager {
         faceDetectionManager.stop()
         audioManager.stopLoudnessRecorder()
         touchManager.stopTrackingTouches()
+        
+        invalidateCache()
     }
 }

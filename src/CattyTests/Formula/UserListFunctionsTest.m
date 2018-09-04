@@ -82,18 +82,22 @@
     FormulaElement *leftChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"2" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *rightChild = [[FormulaElement alloc] initWithType:@"USER_LIST" value:@"TestList" leftChild:nil rightChild:nil parent:nil];
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"LIST_ITEM" leftChild:leftChild rightChild:rightChild parent:nil];
-    formulaTree = formulaTree;
-    
     Formula *formula = [[Formula alloc] initWithFormulaElement:formulaTree];
     
     double element = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     XCTAssertEqual(element, 4, @"Should be Element of List but is not");
     
-    leftChild.value = @"-3";
+    leftChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"-3" leftChild:nil rightChild:nil parent:nil];
+    formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"LIST_ITEM" leftChild:leftChild rightChild:rightChild parent:nil];
+    formula = [[Formula alloc] initWithFormulaElement:formulaTree];
+    
     element = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     XCTAssertEqual(element, 0, @"Invalid default value");
     
-    leftChild.value = @"44";
+    leftChild = [[FormulaElement alloc] initWithType:@"NUMBER" value:@"44" leftChild:nil rightChild:nil parent:nil];
+    formulaTree = [[FormulaElement alloc] initWithType:@"FUNCTION" value:@"LIST_ITEM" leftChild:leftChild rightChild:rightChild parent:nil];
+    formula = [[Formula alloc] initWithFormulaElement:formulaTree];
+    
     element = [self.formulaManager interpretDouble:formula forSpriteObject:object];
     XCTAssertEqual(element, 0, @"Invalid default value");
 }

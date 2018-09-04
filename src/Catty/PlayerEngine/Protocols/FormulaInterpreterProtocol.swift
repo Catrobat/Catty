@@ -41,4 +41,8 @@
     func interpret(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject
     
     @objc func isIdempotent(_ formula: Formula) -> Bool
+    
+    func invalidateCache()
+    
+    func invalidateCache(_ formula: Formula)
 }

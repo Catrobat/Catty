@@ -35,6 +35,8 @@ import CoreLocation
     let touchManager: TouchManagerProtocol
     let bluetoothService: BluetoothService
     
+    var cachedResults = [FormulaElement: AnyObject]()
+    
     override convenience init() {
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()

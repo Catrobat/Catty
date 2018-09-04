@@ -32,8 +32,6 @@
 
 @property (nonatomic, strong) FormulaElement *formulaTree;
 @property (nonatomic, weak) NSString *displayString;
-@property (nonatomic, strong, readonly) NSNumber *lastResult;
-@property (nonatomic, strong, readonly) id bufferedResult;
 
 - (id)initWithZero;
 - (id)initWithInteger:(int)value;

@@ -73,6 +73,27 @@ extension FormulaManager {
         return isIdempotent(formulaElement)
     }
     
+    func invalidateCache() {
+        cachedResults.removeAll()
+    }
+    
+    func invalidateCache(_ formula: Formula) {
+        if let formulaTree = formula.formulaTree {
+            invalidateCache(formulaTree)
+        }
+    }
+    
+    private func invalidateCache(_ formulaElement: FormulaElement) {
+        cachedResults.removeValue(forKey: formulaElement)
+        
+        if let leftChild = formulaElement.leftChild {
+            invalidateCache(leftChild)
+        }
+        if let rightChild = formulaElement.rightChild {
+            invalidateCache(rightChild)
+        }
+    }
+    
     private func isIdempotent(_ formulaElement: FormulaElement) -> Bool {
         if formulaElement.idempotenceState != .NOT_CHECKED { // cached result!
             return (formulaElement.idempotenceState == .IDEMPOTENT)
@@ -109,25 +130,38 @@ extension FormulaManager {
     
     private func interpretRecursive(formulaElement: FormulaElement?, for spriteObject: SpriteObject) -> AnyObject {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
+        let idempotent = isIdempotent(formulaElement)
+        
+        if idempotent, let cachedResult = cachedResults[formulaElement] {
+            return cachedResult
+        }
+        
+        var result: AnyObject
         
         switch (formulaElement.type) {
         case .OPERATOR:
-            return interpretOperator(formulaElement, for: spriteObject)
+            result = interpretOperator(formulaElement, for: spriteObject)
         case .FUNCTION:
-            return interpretFunction(formulaElement, for: spriteObject)
+            result = interpretFunction(formulaElement, for: spriteObject)
         case .NUMBER:
-            return interpretDouble(formulaElement, for: spriteObject)
+            result = interpretDouble(formulaElement, for: spriteObject)
         case .SENSOR:
-            return interpretSensor(formulaElement, for: spriteObject)
+            result = interpretSensor(formulaElement, for: spriteObject)
         case .USER_VARIABLE:
-            return interpretVariable(formulaElement, for: spriteObject)
+            result = interpretVariable(formulaElement, for: spriteObject)
         case .USER_LIST:
-            return interpretList(formulaElement, for: spriteObject)
+            result = interpretList(formulaElement, for: spriteObject)
         case .BRACKET:
-            return self.interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
+            result = self.interpretRecursive(formulaElement: formulaElement.rightChild, for: spriteObject)
         case .STRING:
-            return formulaElement.value as AnyObject
+            result = formulaElement.value as AnyObject
         }
+        
+        if idempotent {
+            cachedResults[formulaElement] = result
+        }
+        
+        return result
     }
     
     private func interpretDouble(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {

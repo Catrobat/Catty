@@ -369,6 +369,7 @@
 		4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */; };
 		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
 		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
+		4CE1D436213E5D700014DAF9 /* FormulaManagerCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D435213E5D700014DAF9 /* FormulaManagerCacheTests.swift */; };
 		4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */; };
 		4CE2D3F31C294F1700938B5E /* Airplane_with_shadow_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */; };
 		4CE2D3F51C294F2000938B5E /* Compass_0.1_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F41C294F2000938B5E /* Compass_0.1_097.xml */; };
@@ -1712,6 +1713,7 @@
 		4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgramMock.m; sourceTree = "<group>"; };
 		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
+		4CE1D435213E5D700014DAF9 /* FormulaManagerCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaManagerCacheTests.swift; sourceTree = "<group>"; };
 		4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_097.xml; sourceTree = "<group>"; };
 		4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_097.xml; sourceTree = "<group>"; };
 		4CE2D3F41C294F2000938B5E /* Compass_0.1_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_097.xml; sourceTree = "<group>"; };
@@ -4368,6 +4370,7 @@
 			children = (
 				4C28D7942133BC1D00870CE2 /* FormulaManagerTests.swift */,
 				4C28D7902133BC0B00870CE2 /* FormulaManagerResourceTests.swift */,
+				4CE1D435213E5D700014DAF9 /* FormulaManagerCacheTests.swift */,
 				4CC50A52213AE385004BC914 /* FormulaManagerIdempotenceTests.swift */,
 				4CC50A5B213BBD7D004BC914 /* FormulaManagerInterpreterTests.swift */,
 			);
@@ -8308,6 +8311,7 @@
 				4C0F9FD9204BD3D500E71B2D /* RepeatUntilBrickTests.swift in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */,
+				4CE1D436213E5D700014DAF9 /* FormulaManagerCacheTests.swift in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4C6FE171212D2D2E0067B7D5 /* CosFunctionTest.swift in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,

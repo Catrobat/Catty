@@ -23,11 +23,6 @@
 #import "Formula.h"
 #import "Pocket_Code-Swift.h"
 
-@interface Formula()
-@property (nonatomic, strong, readwrite) NSNumber *lastResult;
-@property (nonatomic, strong, readwrite) id bufferedResult;
-@end
-
 @implementation Formula
 
 - (id)initWithInteger:(int)value {
@@ -43,7 +38,6 @@
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
             
         }
-        self.lastResult = nil;
     }
     return self;
 }
@@ -60,7 +54,6 @@
         } else {
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
         }
-        self.lastResult = nil;
     }
     return self;
 }
@@ -73,7 +66,6 @@
     self = [super init];
     if (self) {
         self.formulaTree = formulaTree;
-        self.lastResult = nil;
     }
     return self;
 }
