@@ -75,7 +75,7 @@ class RandFunction: DoubleParameterDoubleFunction {
             }
         }
         
-        let result = arc4random_uniform(UInt32(maximum - minimum)) + UInt32(minimum);
+        let result = Double(arc4random_uniform(UInt32(maximum - minimum + 1))) + Double(minimum);
         let resultDouble = Double(result)
         if floor(minimum) == minimum && floor(maximum) == maximum {
             // parameters are whole numbers, so the result will be a whole number

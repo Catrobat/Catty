@@ -57,6 +57,14 @@ class RandFunctionTest: XCTestCase {
         let float = function.value(firstParameter: 10.5 as AnyObject, secondParameter: 20.8 as AnyObject)
         XCTAssertGreaterThan(float, 10.4999)
         XCTAssertLessThan(float, 20.7999)
+        
+        var result = function.value(firstParameter: -350 as AnyObject, secondParameter: 350 as AnyObject)
+        XCTAssertGreaterThan(result, -350)
+        XCTAssertLessThan(result, 350)
+        
+        result = function.value(firstParameter: 350 as AnyObject, secondParameter: -350 as AnyObject)
+        XCTAssertGreaterThan(result, -350)
+        XCTAssertLessThan(result, 350)
     }
     
     func testFirstParameter() {
