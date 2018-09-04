@@ -41,18 +41,6 @@
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedWiFiProgramDownloads key:kUseWiFiDownload handler:^(BOSwitchTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
-            cell.toggleSwitch.tintColor = [UIColor globalTintColor];
-            [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
-        }]];
-        
-    }]];
-    
-    
-    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-        
         if ([Util isPhiroActivated]) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = [UIColor backgroundColor];

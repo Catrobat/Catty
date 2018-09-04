@@ -30,7 +30,6 @@
 #import "PlaceHolderView.h"
 #import "Pocket_Code-Swift.h"
 #import "ResourceHelper.h"
-#import "Reachability.h"
 #import "AppDelegate.h"
 
 @class BluetoothPopupVC;
@@ -46,7 +45,6 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic, strong) Reachability *reachability;
 @end
 
 @implementation BaseTableViewController
@@ -72,12 +70,6 @@
                            selector:@selector(showSavedView)
                                name:kShowSavedViewNotification
                              object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    
-    self.reachability = [Reachability reachabilityForInternetConnection];
-    [self.reachability startNotifier];
-    
   
   NSLayoutConstraint *topConstraint = [NSLayoutConstraint
                                        constraintWithItem:self.placeHolderView
@@ -164,12 +156,8 @@
 //        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
       
-
-      
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
       
-
-
         _placeHolderView.hidden = YES;
     }
     return _placeHolderView;
@@ -280,44 +268,6 @@
     
     return YES;
 }
-
-//- (BOOL)shouldPerformSegueWithIdentifierForWebView:(NSString *)identifier sender:(id)sender
-//{
-//    if([identifier isEqualToString:kSegueToMediaLibrary]){
-//        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-//        
-//        if(remoteHostStatus == NotReachable) {
-//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//            NSDebug(@"not reachable");
-//            return NO;
-//        } else if (remoteHostStatus == ReachableViaWiFi) {
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via Wifi");
-//                return YES;
-//            }else{
-//                NSDebug(@"reachable via wifi but no data");
-//                if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]]) {
-//                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                    return NO;
-//                }
-//                return NO;
-//            }
-//            return YES;
-//        } else if (remoteHostStatus == ReachableViaWWAN){
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via celullar");
-//                return YES;
-//            }else{
-//                NSDebug(@" not reachable via celullar");
-//                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                return NO;
-//            }
-//            return YES;
-//        }
-//    }
-//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-//}
 
 #pragma mark - helpers
 - (void)setupToolBar
@@ -516,52 +466,5 @@
     }
     return _loadingView;
 }
-
-#pragma mark - network status
-- (void)networkStatusChanged:(NSNotification *)notification
-{
-//    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-}
-
-//#pragma mark - segue handling
-//- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
-//{
-//    if([identifier isEqualToString:kSegueToExplore]){
-//        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-//        
-//        if(remoteHostStatus == NotReachable) {
-//            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//            NSDebug(@"not reachable");
-//            return NO;
-//        } else if (remoteHostStatus == ReachableViaWiFi) {
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via Wifi");
-//                return YES;
-//            }else{
-//                NSDebug(@"reachable via wifi but no data");
-//                if ([self.navigationController.topViewController isKindOfClass:[MediaLibraryViewController class]]) {
-//                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                    [self.navigationController popToRootViewControllerAnimated:YES];
-//                    return NO;
-//                }
-//                return NO;
-//            }
-//            return YES;
-//        } else if (remoteHostStatus == ReachableViaWWAN){
-//            if (!self.reachability.connectionRequired) {
-//                NSDebug(@"reachable via celullar");
-//                return YES;
-//            }else{
-//                NSDebug(@" not reachable via celullar");
-//                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-//                return NO;
-//            }
-//            return YES;
-//        }
-//    }
-//    return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-//}
-
-
 
 @end

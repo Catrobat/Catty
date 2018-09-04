@@ -32,7 +32,6 @@
 #import "SegueDefines.h"
 #import "Script.h"
 #import "ProgramTableViewController.h"
-#import "Reachability.h"
 #import "HelpWebViewController.h"
 #import "ProgramsForUploadViewController.h"
 #import "LoginViewController.h"
@@ -55,7 +54,6 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 @property (nonatomic, strong) NSMutableArray *identifiers;
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
-@property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, assign) BOOL freshLogin;
 
 @end
@@ -97,10 +95,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-
-    self.reachability = [Reachability reachabilityForInternetConnection];
-    [self.reachability startNotifier];
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
@@ -375,42 +369,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             return NO;
         }
         return YES;
-    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]||[identifier isEqualToString:kSegueToUpload]){
-        NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-        
-        if(remoteHostStatus == NotReachable) {
-            [Util defaultAlertForNetworkError];
-            NSDebug(@"not reachable");
-            return NO;
-        } else if (remoteHostStatus == ReachableViaWiFi) {
-            if (!self.reachability.connectionRequired) {
-                NSDebug(@"reachable via Wifi");
-                return YES;
-            }else{
-                NSDebug(@"reachable via wifi but no data");
-                if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                    [Util defaultAlertForNetworkError];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    return NO;
-                }
-                return NO;
-            }
-            return YES;
-        } else if (remoteHostStatus == ReachableViaWWAN){
-            if (!self.reachability.connectionRequired) {
-                NSDebug(@"reachable via celullar");
-                return YES;
-            }else{
-                NSDebug(@" not reachable via celullar");
-                [Util defaultAlertForNetworkError];
-                return NO;
-            }
-            return YES;
-        }
     }
+    
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
@@ -437,54 +397,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - network status
-- (void)networkStatusChanged:(NSNotification *)notification
-{
-    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-    if(remoteHostStatus == NotReachable) {
-        if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-            [Util defaultAlertForNetworkError];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
-        NSDebug(@"not reachable");
-    } else if (remoteHostStatus == ReachableViaWiFi) {
-        if (!self.reachability.connectionRequired) {
-            NSDebug(@"reachable via Wifi");
-        }else{
-            NSDebug(@"reachable via wifi but no data");
-            if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
-                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                [Util defaultAlertForNetworkError];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        }
-    }  else if (remoteHostStatus == ReachableViaWWAN){
-        if (! self.reachability.connectionRequired) {
-            NSDebug(@"celluar data ok");
-        } else {
-           NSDebug(@"reachable via cellular but no data");
-            if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
-                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                [Util defaultAlertForNetworkError];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        }
-    }
-}
 
 - (void)dealloc
 {
     [self.identifiers removeAllObjects];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 -(void)addProgramFromInboxWithName:(NSString*)newProgramName
