@@ -196,9 +196,6 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         app.navigationBars.buttons["Item"].tap()
         
-        app.switches["Download only with WiFi"].tap()
-        app.switches["Download only with WiFi"].tap()
-        
         app.switches["Use Arduino bricks"].tap()
         app.navigationBars.buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
