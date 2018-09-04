@@ -15,7 +15,6 @@
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
 		4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */; };
-		4C0E25EF20D3EE9B00A80273 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */; };
 		4C0F9F1C204ADB5900E71B2D /* ChooseCameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */; };
 		4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F1E204ADB9200E71B2D /* IfThenLogicBeginBrick.m */; };
 		4C0F9F22204ADBAF00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F20204ADBAE00E71B2D /* IfThenLogicEndBrick+CBXMLHandler.m */; };
@@ -338,7 +337,6 @@
 		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
 		4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD085DC1CD9EE59009A6428 /* SceneTests.m */; };
 		4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */; };
-		4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */; };
 		4CD8723C20DD8534009E9C06 /* BackgroundNumberSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */; };
 		4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */; };
 		4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */; };
@@ -369,6 +367,8 @@
 		4CDE4D00203DBD0C00B43034 /* DVR.license in Resources */ = {isa = PBXBuildFile; fileRef = 4CDE4CFF203DBD0B00B43034 /* DVR.license */; };
 		4CDF7BB62138735700FFF7F4 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */; };
 		4CDF7BBE213875A900FFF7F4 /* ProgramMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */; };
+		4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */; };
+		4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */; };
 		4CE2D3EF1C294F0D00938B5E /* Air_fight_0.5_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */; };
 		4CE2D3F31C294F1700938B5E /* Airplane_with_shadow_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */; };
 		4CE2D3F51C294F2000938B5E /* Compass_0.1_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE2D3F41C294F2000938B5E /* Compass_0.1_097.xml */; };
@@ -1261,7 +1261,6 @@
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
 		4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Resources.swift"; sourceTree = "<group>"; };
-		4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
 		4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChooseCameraBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChooseCameraBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4C0F9F1D204ADB9200E71B2D /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
 		4C0F9F1E204ADB9200E71B2D /* IfThenLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfThenLogicBeginBrick.m; sourceTree = "<group>"; };
@@ -1680,7 +1679,6 @@
 		4CD085DB1CD9EE59009A6428 /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneTests.h; path = Scene/SceneTests.h; sourceTree = "<group>"; };
 		4CD085DC1CD9EE59009A6428 /* SceneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneTests.m; path = Scene/SceneTests.m; sourceTree = "<group>"; };
 		4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeVariableBrickTests.swift; sourceTree = "<group>"; };
-		4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CD8723B20DD8534009E9C06 /* BackgroundNumberSensorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNumberSensorTest.swift; sourceTree = "<group>"; };
 		4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaInterpreterProtocol.swift; path = PlayerEngine/Protocols/FormulaInterpreterProtocol.swift; sourceTree = "<group>"; };
 		4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerProtocol.swift; path = PlayerEngine/Protocols/FormulaManagerProtocol.swift; sourceTree = "<group>"; };
@@ -1712,6 +1710,8 @@
 		4CDF7BB52138735700FFF7F4 /* SceneBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		4CDF7BBC213875A900FFF7F4 /* ProgramMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramMock.h; sourceTree = "<group>"; };
 		4CDF7BBD213875A900FFF7F4 /* ProgramMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgramMock.m; sourceTree = "<group>"; };
+		4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSpriteNodeMock.swift; sourceTree = "<group>"; };
+		4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteObjectMock.swift; sourceTree = "<group>"; };
 		4CE2D3EE1C294F0D00938B5E /* Air_fight_0.5_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_097.xml; sourceTree = "<group>"; };
 		4CE2D3F21C294F1700938B5E /* Airplane_with_shadow_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_097.xml; sourceTree = "<group>"; };
 		4CE2D3F41C294F2000938B5E /* Compass_0.1_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_097.xml; sourceTree = "<group>"; };
@@ -4357,6 +4357,16 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		4CE1D42F213E5C130014DAF9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4CE1D430213E5C130014DAF9 /* CBSpriteNodeMock.swift */,
+				4CE1D432213E5C6E0014DAF9 /* SpriteObjectMock.swift */,
+			);
+			name = Mocks;
+			path = PlayerEngine/Mocks;
+			sourceTree = "<group>";
+		};
 		4CE3D6862107A80000005629 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -4770,12 +4780,10 @@
 		59D008EE208E435B000539E7 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				4C0E25EE20D3EE9B00A80273 /* CBSpriteNodeMock.swift */,
 				59D008EF208E4370000539E7 /* LocationManagerMock.swift */,
 				F4E6E574210DA6CD00D86FE6 /* TouchSensorMock.swift */,
 				59D008F2208E4BDD000539E7 /* MotionManagerMock.swift */,
 				F47DA839210731E700167FC4 /* AudioManagerMock.swift */,
-				4CD8723720DD84DC009E9C06 /* SpriteObjectMock.swift */,
 				F463FAD52135B74900D24FF3 /* FaceDetectionManagerMock.swift */,
 				4CC614BB212EAC1F006E4720 /* SensorMock.swift */,
 				4CC614BF212EB330006E4720 /* SensorManagerMock.swift */,
@@ -6283,8 +6291,9 @@
 				4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */,
 				AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */,
 				4C2732A81CE4F30F00CA61AC /* CBSpriteNodeTests.swift */,
-				4C6FE139212D2D2E0067B7D5 /* Functions */,
 				4C6FE152212D2D2E0067B7D5 /* FunctionManagerTests.swift */,
+				4C6FE139212D2D2E0067B7D5 /* Functions */,
+				4CE1D42F213E5C130014DAF9 /* Mocks */,
 				4C994DEB207A3CEF00C415FD /* Sensors */,
 			);
 			name = PlayerEngine;
@@ -8215,6 +8224,7 @@
 				4CE5C5701E0AD71800FD021C /* RequiredResources.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
+				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
 				4C0F9FD1204BD37300E71B2D /* XMLParserBlackBoxTests0991.m in Sources */,
 				4C6FE174212D2D2E0067B7D5 /* ElementFunctionTest.swift in Sources */,
@@ -8239,12 +8249,12 @@
 				F48E946920D6F4BC007E782E /* DateMonthSensorTest.swift in Sources */,
 				4C0F9FD0204BD37300E71B2D /* XMLParserTests0991.m in Sources */,
 				599E649E202D9F95009494B5 /* URLSessionMock.swift in Sources */,
+				4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */,
 				4C6FE15D212D2D2E0067B7D5 /* LogFunctionTest.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C6D14EC210B12D9006147BD /* SensorHandlerDeviceTests.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
 				4C37A0A7212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift in Sources */,
-				4CD8723820DD84DC009E9C06 /* SpriteObjectMock.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
@@ -8640,7 +8650,6 @@
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
-				4C0E25EF20D3EE9B00A80273 /* CBSpriteNodeMock.swift in Sources */,
 				4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */,
 				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				4C0F9F7F204BD1F800E71B2D /* ThinkForBubbleBrick+Instruction.swift in Sources */,

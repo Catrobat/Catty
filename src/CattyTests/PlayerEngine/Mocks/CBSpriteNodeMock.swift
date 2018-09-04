@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@testable import Pocket_Code
+
 class CBSpriteNodeMock: CBSpriteNode {
     
     var mockedPosition : CGPoint?
