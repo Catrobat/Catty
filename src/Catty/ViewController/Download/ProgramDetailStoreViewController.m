@@ -326,13 +326,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
-    if ([self isConnectedToWifiWithSettingEnabled]) {
-        EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-        [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-        button.hidden = NO;
-        button.progress = 0;
-        [self downloadWithName:self.project.name];
-    }
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+    button.hidden = NO;
+    button.progress = 0;
+    [self downloadWithName:self.project.name];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -340,33 +338,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self downloadButtonPressed];
 }
 
--(BOOL)isConnectedToWifiWithSettingEnabled
-{
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kUseWiFiDownload])
-    {
-        return YES;
-    }
-    else
-    {
-        [Util alertWithText:kLocalizedNoWifiConnection];
-        return NO;
-    }
-    return NO;
-}
-
 -(void)downloadAgain
 {
-    if ([self isConnectedToWifiWithSettingEnabled]) {
-        EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-        [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
-        UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
-        downloadAgainButton.enabled = NO;
-        button.hidden = NO;
-        button.progress = 0;
-        self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
-        NSDebug(@"%@",[Program allProgramNames]);
-        [self downloadWithName:self.duplicateName];
-    }
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+    [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    downloadAgainButton.enabled = NO;
+    button.hidden = NO;
+    button.progress = 0;
+    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
+    NSDebug(@"%@",[Program allProgramNames]);
+    [self downloadWithName:self.duplicateName];
 }
 
 -(void)downloadWithName:(NSString*)name
