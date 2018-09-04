@@ -29,7 +29,6 @@
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
 #import "Pocket_Code-Swift.h"
-#import "Reachability.h"
 #import "AppDelegate.h"
 
 // identifiers
@@ -43,7 +42,6 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-@property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @end
 
@@ -70,12 +68,6 @@
                            selector:@selector(showSavedView)
                                name:kShowSavedViewNotification
                              object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-    
-    self.reachability = [Reachability reachabilityForInternetConnection];
-    [self.reachability startNotifier];
-    
   
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint
                                          constraintWithItem:self.placeHolderView
@@ -165,12 +157,8 @@
 //        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
       
-
-      
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
       
-
-
         _placeHolderView.hidden = YES;
     }
     return _placeHolderView;

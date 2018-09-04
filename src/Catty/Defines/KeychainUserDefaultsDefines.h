@@ -27,7 +27,6 @@
 
 #define kUsePhiroBricks @"usePhiroBricks"
 #define kUseArduinoBricks @"useArduinoBricks"
-#define kUseWiFiDownload @"useWiFiDownload"
 
 #define kPhiroActivated 0
 #define kArduinoActivated 1
