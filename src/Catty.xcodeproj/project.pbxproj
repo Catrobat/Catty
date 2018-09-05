@@ -125,6 +125,7 @@
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
 		4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */; };
 		4C1C8B14213FE76B003B3AA4 /* ChartProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProgramCell.swift */; };
+		4C1C8B16213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */; };
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
@@ -1265,7 +1266,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreDataSource.swift; sourceTree = "<group>"; };
 		2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreViewController.swift; sourceTree = "<group>"; };
-		2D6EC6972134093500CBAEC2 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
 		2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreViewController.swift; sourceTree = "<group>"; };
 		2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSource.swift; sourceTree = "<group>"; };
 		2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
@@ -1423,6 +1423,7 @@
 		4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBrickTests.h; sourceTree = "<group>"; };
 		4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBrickTests.m; sourceTree = "<group>"; };
 		4C1C8B13213FE76B003B3AA4 /* ChartProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramCell.swift; sourceTree = "<group>"; };
+		4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
 		4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
@@ -4874,7 +4875,7 @@
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
-				2D6EC6972134093500CBAEC2 /* StoreProgramDownloaderMock.swift */,
+				4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -8406,6 +8407,7 @@
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C82267D213FA7A400F3D750 /* PositionYSensorTest.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
+				4C1C8B16213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
