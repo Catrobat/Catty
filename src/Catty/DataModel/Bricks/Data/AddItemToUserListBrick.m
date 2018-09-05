@@ -79,8 +79,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.listFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Add Item TO User List Brick: Userlist: %@, item: %f", self.userList, result];
+    return [NSString stringWithFormat:@"AddItemToUserListBrick (Userlist: %@)", self.userList];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

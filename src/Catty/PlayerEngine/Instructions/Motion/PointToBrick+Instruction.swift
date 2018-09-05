@@ -23,7 +23,7 @@
 @objc extension PointToBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> ()->() {
@@ -68,12 +68,9 @@
                         rotationDegrees = 270.0 + value
                     }
                 }
-                
             }
 
-//            self.log.info("Performing: \(self.description), Degreees: \(rotationDegrees), Pointed Object: Position: \(NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition))")
-
-            spriteNode.rotation = rotationDegrees
+            spriteNode.catrobatRotation = rotationDegrees
         }
     }
 }

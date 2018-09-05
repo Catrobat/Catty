@@ -26,5 +26,4 @@
 
 @property (nonatomic, strong) NSString* sensor;
 
--(Sensor)phiroSensor;
 @end

@@ -26,29 +26,25 @@
             let _ = object.spriteNode
             else { fatalError("This should never happen!") }
         
-        let cachedDuration = self.intFormula.isIdempotent()
-            ? CBDuration.fixedTime(duration: self.intFormula.interpretDouble(forSprite: object))
-            : CBDuration.varTime(formula: self.intFormula)
-        
-        return .longDurationAction(duration: cachedDuration, actionCreateClosure: {
-            (duration) -> SKAction in
-            return SKAction.sequence([SKAction.run(self.actionBlock(object: object)), SKAction.wait(forDuration: duration), SKAction.run(self.removeActionBlock(object: object))])
+        return .longDurationAction(duration: CBDuration.varTime(formula: self.intFormula), closure: {
+            (duration, context) -> SKAction in
+            return SKAction.sequence([SKAction.run(self.actionBlock(object, context.formulaInterpreter)), SKAction.wait(forDuration: duration), SKAction.run(self.removeActionBlock(object))])
         })
     }
     
-    @objc func actionBlock(object: SpriteObject) -> ()->() {
+    @objc func actionBlock(_ object: SpriteObject, _ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         return {
-            var speakText = self.stringFormula.interpretString(object)
-            if(Double(speakText!) !=  nil)
-            {
-                let num = (speakText! as NSString).doubleValue
+            var speakText = formulaInterpreter.interpretString(self.stringFormula, for: object)
+            
+            if(Double(speakText) !=  nil) {
+                let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
             BubbleBrickHelper.addBubble(to: object.spriteNode, withText: speakText, andType: CBBubbleType.thought)
         }
     }
     
-    @objc func removeActionBlock(object: SpriteObject) -> ()->() {
+    @objc func removeActionBlock(_ object: SpriteObject) -> ()->() {
         return {
             let oldBubble = object.spriteNode.childNode(withName: kBubbleBrickNodeName);
             

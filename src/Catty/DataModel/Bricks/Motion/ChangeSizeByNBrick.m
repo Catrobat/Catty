@@ -59,7 +59,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ChangeSizeByNBrick"];
 }
 
 #pragma mark - Resources

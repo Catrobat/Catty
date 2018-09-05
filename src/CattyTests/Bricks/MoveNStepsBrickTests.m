@@ -25,6 +25,7 @@
 #import "Script.h"
 #import "WhenScript.h"
 #import "MoveNStepsBrick.h"
+#import "ProgramMock.h"
 #import "Pocket_Code-Swift.h"
 
 @interface MoveNStepsBrickTests : AbstractBrickTests
@@ -46,7 +47,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.scene = [[CBScene alloc] initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.scene = [[[SceneBuilder alloc] initWithProgram:[[ProgramMock alloc] initWithWidth:SCREEN_WIDTH andHeight:SCREEN_HEIGHT]] build];
     
     SpriteObject *spriteObject = [[SpriteObject alloc] init];
     
@@ -56,7 +57,7 @@
     [self.scene addChild:self.spriteNode];
     
     spriteObject.spriteNode = self.spriteNode;
-    self.spriteNode.scenePosition = CGPointMake(0, 0);
+    self.spriteNode.catrobatPosition = CGPointMake(0, 0);
     spriteObject.name = @"Test";
     
     self.script = [[WhenScript alloc] init];
@@ -166,25 +167,19 @@
 
 - (void)setPosition:(CGPoint)position andRotation:(CGFloat)rotation andMoveSteps:(CGFloat)steps
 {
-    self.spriteNode.scenePosition = position;
-    self.spriteNode.rotation = rotation;
+    self.spriteNode.catrobatPosition = position;
+    self.spriteNode.catrobatRotation = rotation;
     
-    Formula* stepFormula = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = [[NSNumber numberWithFloat:steps] stringValue];
-    stepFormula.formulaTree = formulaTree;
+    self.brick.steps = [[Formula alloc] initWithFloat:steps];
     
-    self.brick.steps = stepFormula;
-    
-    dispatch_block_t action = [self.brick actionBlock];
+    dispatch_block_t action = [self.brick actionBlock:self.formulaInterpreter];
     action();
 }
 
 - (void)checkPosition:(CGPoint)position
 {
-    XCTAssertEqualWithAccuracy(position.x, self.spriteNode.scenePosition.x, EPSILON, @"Wrong x after MoveNStepsBrick");
-    XCTAssertEqualWithAccuracy(position.y, self.spriteNode.scenePosition.y, EPSILON, @"Wrong y after MoveNStepsBrick");
+    XCTAssertEqualWithAccuracy(position.x, self.spriteNode.catrobatPosition.x, EPSILON, @"Wrong x after MoveNStepsBrick");
+    XCTAssertEqualWithAccuracy(position.y, self.spriteNode.catrobatPosition.y, EPSILON, @"Wrong y after MoveNStepsBrick");
 }
 
 - (void)testTitleSingular

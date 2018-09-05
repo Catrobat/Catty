@@ -26,37 +26,46 @@ import XCTest
 
 final class ChooseCameraBrickTests: XCTestCase {
     
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var scheduler: CBScheduler!
+    var script: Script!
+    var context: CBScriptContextProtocol!
+    
+    override func setUp() {
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+        spriteObject.program = Program();
+        
+        script = Script();
+        script.object = spriteObject;
+        
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+    }
+    
     func testDefaultCameraPosition() {
         // front camera should be default
-        CameraPreviewHandler.resetSharedInstance()
+        CameraPreviewHandler.shared().reset()
         XCTAssertEqual(AVCaptureDevice.Position.front, CameraPreviewHandler.shared().cameraPosition)
     }
     
     func testChooseCameraBrick() {
-        
-        let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
-        
         let brick = ChooseCameraBrick();
-        
-        let script = Script();
-        script.object = object;
         brick.script = script;
         
         let instruction = brick.instruction();
         
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
-        
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
+            closure(context, scheduler)
         default: break;
         }
         
@@ -64,30 +73,14 @@ final class ChooseCameraBrickTests: XCTestCase {
     }
     
     func testChooseCameraBrickInitWithZero() {
-        
-        let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
-        
         let brick = ChooseCameraBrick(choice: 0);
-        
-        let script = Script();
-        script.object = object;
         brick?.script = script;
         
         let instruction = brick?.instruction();
         
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
-        
         switch instruction! {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
+            closure(context, scheduler)
         default: break;
         }
         
@@ -95,30 +88,14 @@ final class ChooseCameraBrickTests: XCTestCase {
     }
     
     func testChooseCameraBrickInitWithOne() {
-        
-        let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
-        
         let brick = ChooseCameraBrick(choice: 1);
-        
-        let script = Script();
-        script.object = object;
         brick?.script = script;
         
         let instruction = brick?.instruction();
         
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
-        
         switch instruction! {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
+            closure(context, scheduler)
         default: break;
         }
         

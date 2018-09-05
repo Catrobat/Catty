@@ -23,9 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "ExternInternRepresentationMapping.h"
 #import "Operators.h"
-#import "Functions.h"
 #import "InternToken.h"
-#import "SensorManager.h"
 
 @interface InternToExternGenerator : NSObject
 

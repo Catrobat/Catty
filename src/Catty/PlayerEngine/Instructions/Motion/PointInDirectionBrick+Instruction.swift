@@ -23,17 +23,16 @@
 @objc extension PointInDirectionBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.rotation = self.degrees.interpretDouble(forSprite: object)
+            spriteNode.catrobatRotation = formulaInterpreter.interpretDouble(self.degrees, for: object)
         }
     }
-
 }

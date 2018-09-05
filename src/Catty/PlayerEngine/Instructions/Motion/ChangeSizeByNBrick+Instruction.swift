@@ -20,22 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeSizeByNBrick: CBInstructionProtocol{
+@objc extension ChangeSizeByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
-            let size = self.size
+            let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            let sizeInPercent = size.interpretDouble(forSprite: object)
-            spriteNode.xScale = CGFloat(spriteNode.xScale + CGFloat(sizeInPercent/100.0))
-            spriteNode.yScale = CGFloat(spriteNode.yScale + CGFloat(sizeInPercent/100.0))
+            let sizeIncrease = formulaInterpreter.interpretDouble(self.size, for: object)
+            spriteNode.catrobatSize = spriteNode.catrobatSize + sizeIncrease
         }
     }
 }

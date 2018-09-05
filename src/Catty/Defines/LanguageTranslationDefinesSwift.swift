@@ -645,6 +645,7 @@ let kUIFESensorArduinoDigital = NSLocalizedString("arduino_digital", comment: ""
 
 let kLocalizedSensorCompass = NSLocalizedString("compass", comment: "")
 let kLocalizedSensorLocation = NSLocalizedString("location", comment: "")
+let kLocalizedSensorDeviceMotion = NSLocalizedString("device motion-sensor", comment: "")
 let kLocalizedSensorAcceleration = NSLocalizedString("acceleration-sensor", comment: "")
 let kLocalizedSensorRotation = NSLocalizedString("gyro-sensor", comment: "")
 let kLocalizedSensorMagnetic = NSLocalizedString("magnetic-sensor", comment: "")
@@ -657,6 +658,8 @@ let kUIFESensorFaceDetected = NSLocalizedString("face_detected", comment: "")
 let kUIFESensorFaceSize = NSLocalizedString("facesize", comment: "")
 let kUIFESensorFaceX = NSLocalizedString("faceposition_x", comment: "")
 let kUIFESensorFaceY = NSLocalizedString("faceposition_y", comment: "")
+
+let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************

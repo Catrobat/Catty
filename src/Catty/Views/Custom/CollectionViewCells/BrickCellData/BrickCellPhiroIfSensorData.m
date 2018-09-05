@@ -26,6 +26,7 @@
 #import "Script.h"
 #import "Brick.h"
 #import "BrickPhiroIfSensorProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BrickCellPhiroIfSensorData
 
@@ -35,42 +36,15 @@
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
-        NSMutableArray *options = [[NSMutableArray alloc] init];
-        int currentOptionIndex = 0;
+        
+        [self setValues:[[PhiroHelper class] sensorTags]];
+        
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickPhiroIfSensorProtocol)]) {
             Brick<BrickPhiroIfSensorProtocol> *ifSensorBrick = (Brick<BrickPhiroIfSensorProtocol>*)brickCell.scriptOrBrick;
-            NSString* currentSensor = [ifSensorBrick sensorForLineNumber:line andParameterNumber:parameter];
-            switch([SensorManager sensorForString:currentSensor]) {
-                case phiro_front_left:
-                    currentOptionIndex = 0;
-                    break;
-                case phiro_front_right:
-                    currentOptionIndex = 1;
-                    break;
-                case phiro_bottom_left:
-                    currentOptionIndex = 2;
-                    break;
-                case phiro_bottom_right:
-                    currentOptionIndex = 3;
-                    break;
-                case phiro_side_left:
-                    currentOptionIndex = 4;
-                    break;
-                case phiro_side_right:
-                    currentOptionIndex = 5;
-                    break;
-                default:
-                    [NSException raise:NSGenericException format:@"Unexpected FormatType."];
-            }
+            NSString* currentSensorTag = [ifSensorBrick sensorForLineNumber:line andParameterNumber:parameter];
+            [self setCurrentValue:currentSensorTag];
         }
-        [options addObject:[SensorManager stringForSensor:phiro_front_left]];
-        [options addObject:[SensorManager stringForSensor:phiro_front_right]];
-        [options addObject:[SensorManager stringForSensor:phiro_bottom_left]];
-        [options addObject:[SensorManager stringForSensor:phiro_bottom_right]];
-        [options addObject:[SensorManager stringForSensor:phiro_side_left]];
-        [options addObject:[SensorManager stringForSensor:phiro_side_right]];
-        [self setValues:options];
-        [self setCurrentValue:options[currentOptionIndex]];
+        
         [self setDelegate:(id<iOSComboboxDelegate>)self];
     }
     return self;

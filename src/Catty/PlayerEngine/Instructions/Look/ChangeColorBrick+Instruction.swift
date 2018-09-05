@@ -23,13 +23,10 @@
 @objc extension ChangeColorByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        if let actionClosure = actionBlock() {
-            return .action(action: SKAction.run(actionClosure))
-        }
-        return .invalidInstruction()
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    @objc func actionBlock() -> (()->())? {
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let colorFormula = self.changeColor
@@ -37,22 +34,11 @@
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-            
-            let colorValue = colorFormula.interpretDouble(forSprite: object)
+            let colorIncrease = formulaInterpreter.interpretDouble(colorFormula, for: object)
+            spriteNode.catrobatColor = spriteNode.catrobatColor + colorIncrease
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))
-            let colorDefaultValue:CGFloat = 0.0
-            let colorValueRadian = (spriteNode.currentLookColor + CGFloat(colorValue)*CGFloat(Double.pi)/100).truncatingRemainder(dividingBy: (2*CGFloat(Double.pi)))
-            spriteNode.currentLookColor = colorValueRadian
-            
-            if (colorValueRadian != colorDefaultValue){
-                spriteNode.filterDict["color"] = true
-            }else{
-                spriteNode.filterDict["color"] = false
-            }
-            
             spriteNode.executeFilter(lookImage)
-            
         }
     }
 }

@@ -70,7 +70,7 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     LoopEndBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
-    LoopBeginBrick *beginBrick = [context updatedReferenceForReference:self.loopBeginBrick];
+    LoopBeginBrick<CBConditionProtocol> *beginBrick = [context updatedReferenceForReference:self.loopBeginBrick];
     
     if(beginBrick) {
         brick.loopBeginBrick = beginBrick;

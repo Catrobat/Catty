@@ -25,20 +25,18 @@
     @nonobjc func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object,
-              let variablesContainer = spriteObject.program?.variables
+              let variablesContainer = spriteObject.program?.variables,
+              let listFormula = self.listFormula
         else { fatalError("This should never happen!") }
 
         let userList = self.userList
-        let listFormula = self.listFormula
 
         return CBInstruction.execClosure { (context, _) in
-//            self.logger.debug("Performing: DeleteItemOfUserListBrick")
-            if (userList != nil){
-                let result = listFormula?.interpretVariableData(forSprite: spriteObject)
+            if (userList != nil) {
+                let result = context.formulaInterpreter.interpret(listFormula, for: spriteObject)
                 variablesContainer.delete(fromUserList: userList, atIndex: result)
             }
             context.state = .runnable
         }
-
     }
 }

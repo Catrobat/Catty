@@ -52,13 +52,7 @@
 
 - (NSString*)brickTitle
 {
-    int steps = [self.steps interpretIntegerForSprite:self.script.object andUseCache:NO];
-    NSString* localizedStep;
-    if ([self.steps isSingleNumberFormula] && steps == 1) {
-        localizedStep = kLocalizedStep;
-    } else {
-        localizedStep = kLocalizedSteps;
-    }
+    NSString* localizedStep = [self.steps isSingularNumber] ? kLocalizedStep : kLocalizedSteps;
     return [kLocalizedMove stringByAppendingString:[@"%@ " stringByAppendingString:localizedStep]];
 }
 
@@ -68,7 +62,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.script.object] ];
+    return [NSString stringWithFormat:@"MoveNStepsBrick"];
 }
 
 #pragma mark - Resources

@@ -194,7 +194,7 @@
         ifEndBrick.script = targetScript;
         [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex==0?1:insertionIndex];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-        LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
+        LoopBeginBrick<CBConditionProtocol> *loopBeginBrick = (LoopBeginBrick<CBConditionProtocol>*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
         loopBeginBrick.loopEndBrick = loopEndBrick;
         loopEndBrick.loopBeginBrick = loopBeginBrick;

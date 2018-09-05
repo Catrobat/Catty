@@ -83,13 +83,7 @@
 
 - (NSString*)brickTitle
 {
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object andUseCache:NO];
-    NSString* localizedSecond;
-    if ([self.durationInSeconds isSingleNumberFormula] && durationInSeconds == 1.0) {
-        localizedSecond = kLocalizedSecond;
-    } else {
-        localizedSecond = kLocalizedSeconds;
-    }
+    NSString* localizedSecond = [self.durationInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
     return [kLocalizedGlide stringByAppendingString:[@"%@ " stringByAppendingString:[localizedSecond stringByAppendingString:[@"\n"
         stringByAppendingString:[kLocalizedToX
         stringByAppendingString:[@"%@ "
@@ -100,10 +94,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
-    double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
+    return [NSString stringWithFormat:@"GlideToBrick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

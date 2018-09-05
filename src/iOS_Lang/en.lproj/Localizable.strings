@@ -398,6 +398,9 @@
 "Device disconnected." = "Device disconnected.";
 
 /* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
 "direction" = "direction";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* Description text in alert view if user shakes the device */
 "Undo Typing?" = "Undo Typing?";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
 
 /* No comment provided by engineer. */
 "Unselect All" = "Unselect All";

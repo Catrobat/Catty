@@ -60,7 +60,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeColorByN (%f)", [self.changeColor interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ChangeColorByNBrick"];
 }
 
 - (NSString*)pathForLook:(Look*)look

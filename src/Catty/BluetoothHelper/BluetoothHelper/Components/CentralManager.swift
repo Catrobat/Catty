@@ -30,7 +30,7 @@ import CoreBluetooth
     
     internal let helper = CentralManagerHelper<CentralManager>()
     
-    private var cbCentralManager : CBCentralManager! = nil
+    private let cbCentralManager : CBCentralManager
     
     internal var ownPeripherals   = [CBPeripheral: Peripheral]()
     
@@ -50,15 +50,18 @@ import CoreBluetooth
     
     //MARK: init
     private override init() {
+        self.cbCentralManager = CBCentralManager(delegate:nil, queue:CentralQueue.queue)
         super.init()
-        self.cbCentralManager = CBCentralManager(delegate:self, queue:CentralQueue.queue)
+        
+        self.cbCentralManager.delegate = self
     }
     
     private init(options:[String:AnyObject]?) {
+        self.cbCentralManager = CBCentralManager(delegate:nil, queue:CentralQueue.queue, options:options)
         super.init()
-        self.cbCentralManager = CBCentralManager(delegate:self, queue:CentralQueue.queue, options:options)
+        
+        self.cbCentralManager.delegate = self
     }
-    
     
     //MARK: SCAN
     open func getKnownPeripheralsWithIdentifiers(_ uuids:[UUID])-> [CBPeripheral] {

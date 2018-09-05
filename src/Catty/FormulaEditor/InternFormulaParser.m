@@ -22,20 +22,25 @@
 
 #import "InternFormulaParser.h"
 #import "InternFormulaUtils.h"
-#import "SensorManager.h"
 #import "InternFormulaParserException.h"
 #import "InternFormulaParserEmptyStackException.h"
 #import "SpriteObject.h"
+#import "Pocket_Code-Swift.h"
+
+@interface InternFormulaParser()
+@property(nonatomic, weak) FormulaManager *formulaManager;
+@end
 
 @implementation InternFormulaParser
 
 const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
-- (id)initWithTokens:(NSArray*)tokens
+- (id)initWithTokens:(NSArray*)tokens andFormulaManager:(FormulaManager*)formulaManager
 {
     self = [super init];
     if(self) {
         self.internTokensToParse = [[NSMutableArray alloc] initWithArray:tokens];
+        self.formulaManager = formulaManager;
     }
     return self;
 }
@@ -282,13 +287,11 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)functionForSpriteObject:(SpriteObject*)object
 {
-    FormulaElement *functionTree;
-    
-    if (![Functions isFunction:self.currentToken.tokenStringValue]) {
+    if (! [self.formulaManager functionExistsWithTag:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
     
-    functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
 
     [self getNextToken];
     
@@ -310,7 +313,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)sensor
 {
-    if ((NSInteger)[SensorManager sensorForString:self.currentToken.tokenStringValue] == -1) {
+    if (! [self.formulaManager sensorExistsWithTag:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          

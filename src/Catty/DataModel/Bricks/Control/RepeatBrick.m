@@ -22,12 +22,14 @@
 
 #import "RepeatBrick.h"
 #import "Script.h"
-
-@interface RepeatBrick()
-@property (nonatomic, assign) int loopCount;
-@end
+#import "Util.h"
 
 @implementation RepeatBrick
+
+- (BOOL)isLoopBrick
+{
+    return YES;
+}
 
 - (BOOL)isAnimateable
 {
@@ -49,11 +51,6 @@
     return NO;
 }
 
-- (NSArray*)conditions
-{
-    return [self getFormulas];
-}
-
 - (NSArray*)getFormulas
 {
     return @[self.timesToRepeat];
@@ -66,33 +63,14 @@
 
 - (NSString*)brickTitle
 {
-    int repeatFor = [self.timesToRepeat interpretIntegerForSprite:self.script.object andUseCache:NO];
-    NSString* repeatForStr;
-    if ([self.timesToRepeat isSingleNumberFormula] && repeatFor == 1.0) {
-        repeatForStr = kLocalizedTime;
-    }
-    else {
-        repeatForStr = kLocalizedTimes;
-    }
+    NSString* repeatForStr = [self.timesToRepeat isSingularNumber] ? kLocalizedTime : kLocalizedTimes;
     return [kLocalizedRepeat stringByAppendingString:[@"%@ " stringByAppendingString:repeatForStr]];
-}
-
-- (BOOL)checkCondition
-{
-    NSDebug(@"Loop Count: %d", self.loopCount);
-    int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.script.object];
-    return (self.loopCount++ < timesToRepeat) ? YES : NO;
-}
-
-- (void)resetCondition
-{
-    self.loopCount = 0;
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"RepeatLoop"];
 }
 
 #pragma mark - Copy
@@ -108,5 +86,6 @@
 {
     return [self.timesToRepeat getRequiredResources];
 }
+
 
 @end

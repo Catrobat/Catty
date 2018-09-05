@@ -26,34 +26,45 @@ import XCTest
 
 final class HideTextBrickTests: XCTestCase {
     
+    var program: Program!
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
+    
+    override func setUp() {
+        program = Program()
+        
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+        spriteObject.program = program
+        
+        script = Script()
+        script.object = spriteObject
+        
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+    }
+    
     func testHideTextBrickUserVariablesNil() {
+        let varContainer = VariablesContainer()
+        spriteObject.program.variables = varContainer
         
-        let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        object.program = program;
+        let brick = HideTextBrick()
+        brick.script = script
         
-        let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
-        
-        let brick = HideTextBrick();
-        
-        let script = Script();
-        script.object = object;
-        brick.script = script;
-        
-        let instruction = brick.instruction();
-        
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
+        let instruction = brick.instruction()
         
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
+            closure(context, scheduler)
         default: break;
         }
         

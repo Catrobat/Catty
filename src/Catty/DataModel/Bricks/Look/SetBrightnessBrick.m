@@ -66,7 +66,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-  return [NSString stringWithFormat:@"Set Brightness to: %f%%)", [self.brightness interpretDoubleForSprite:self.script.object]];
+  return [NSString stringWithFormat:@"SetBrightnessBrick"];
 }
 
 #pragma mark - Resources

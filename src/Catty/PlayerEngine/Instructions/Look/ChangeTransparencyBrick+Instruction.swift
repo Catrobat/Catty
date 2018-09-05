@@ -23,33 +23,18 @@
 @objc extension ChangeTransparencyByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        if let actionClosure = actionBlock() {
-            return .action(action: SKAction.run(actionClosure))
-        }
-        return .invalidInstruction()
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> (()->())? {
+    
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let transparency = self.changeTransparency
         else { fatalError("This should never happen!") }
 
-
         return {
-            let trans = transparency.interpretDouble(forSprite: object)
-            let alpha = CGFloat(spriteNode.alpha - CGFloat(trans / 100.0))
-            if (alpha < 0) {
-                spriteNode.alpha = 0;
-            
-            }
-            else if (alpha > 1){
-                spriteNode.alpha = 1;
-            }
-            else{
-                spriteNode.alpha = alpha;
-            }
+            let transparencyIncrease = formulaInterpreter.interpretDouble(transparency, for: object)
+            spriteNode.catrobatTransparency = spriteNode.catrobatTransparency + transparencyIncrease
         }
-
     }
 }

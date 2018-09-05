@@ -774,4 +774,13 @@
     return kProductionServerActivated == 1;
 }
 
++ (BOOL)isPhone
+{
+#ifdef IS_IPHONE
+    return true;
+#else
+    return false;
+#endif
+}
+
 @end

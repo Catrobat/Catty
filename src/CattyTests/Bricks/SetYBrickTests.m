@@ -48,26 +48,20 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-
-    Formula* yPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"20";
-    yPosition.formulaTree = formulaTree;
+    
+    [self.scene addChild:spriteNode];
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetYBrick* brick = [[SetYBrick alloc]init];
     brick.script = script;
-    brick.yPosition = yPosition;
+    brick.yPosition = [[Formula alloc] initWithInteger:20];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.y, (CGFloat)20, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.y, (CGFloat)20, @"SetyBrick is not correctly calculated");
 }
 
 - (void)testSetYBrickNegative
@@ -75,26 +69,20 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-
-    Formula* yPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-20";
-    yPosition.formulaTree = formulaTree;
+    
+    [self.scene addChild:spriteNode];
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetYBrick* brick = [[SetYBrick alloc]init];
     brick.script = script;
-    brick.yPosition = yPosition;
+    brick.yPosition = [[Formula alloc] initWithInteger:-20];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.y, (CGFloat)-20, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.y, (CGFloat)-20, @"SetyBrick is not correctly calculated");
 }
 
 - (void)testSetYBrickOutOfRange
@@ -102,26 +90,20 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-
-    Formula* yPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"50000";
-    yPosition.formulaTree = formulaTree;
+    
+    [self.scene addChild:spriteNode];
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetYBrick* brick = [[SetYBrick alloc]init];
     brick.script = script;
-    brick.yPosition = yPosition;
+    brick.yPosition = [[Formula alloc] initWithInteger:50000];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.y, (CGFloat)50000, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.y, (CGFloat)50000, @"SetyBrick is not correctly calculated");
 }
 
 - (void)testSetYBrickWrongInput
@@ -129,26 +111,20 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
-
-    Formula* yPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    yPosition.formulaTree = formulaTree;
+    
+    [self.scene addChild:spriteNode];
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     SetYBrick* brick = [[SetYBrick alloc]init];
     brick.script = script;
-    brick.yPosition = yPosition;
+    brick.yPosition = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqual(spriteNode.scenePosition.y, (CGFloat)0, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.catrobatPosition.y, (CGFloat)0, @"SetyBrick is not correctly calculated");
 }
 
 @end

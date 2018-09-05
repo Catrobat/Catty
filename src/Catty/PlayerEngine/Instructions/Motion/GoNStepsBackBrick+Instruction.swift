@@ -23,10 +23,10 @@
 @objc extension GoNStepsBackBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps,
@@ -34,18 +34,18 @@
         else { fatalError("This should never happen!") }
 
         return {
-            let zValue = spriteNode.zPosition
-            let steps = stepsFormula.interpretDouble(forSprite: object)
-            spriteNode.zPosition = max(1, zValue - CGFloat(steps))
+            let currentLayer = spriteNode.catrobatLayer
+            let steps = formulaInterpreter.interpretDouble(stepsFormula, for: object)
+            spriteNode.catrobatLayer = spriteNode.catrobatLayer - steps
+            
             for obj in objectList {
                 guard let objSpriteNode = (obj as AnyObject).spriteNode, let spriteObject = obj as? SpriteObject else {
                     continue
                 }
-                if objSpriteNode.zPosition < zValue && objSpriteNode.zPosition >= spriteNode.zPosition && spriteObject != object {
-                    objSpriteNode.zPosition += 1
+                if objSpriteNode.catrobatLayer < currentLayer && objSpriteNode.catrobatLayer >= spriteNode.catrobatLayer && spriteObject != object {
+                    objSpriteNode.catrobatLayer += 1
                 }
             }
         }
-
     }
 }

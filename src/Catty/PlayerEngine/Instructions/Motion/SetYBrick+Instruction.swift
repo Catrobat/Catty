@@ -23,19 +23,17 @@
 @objc extension SetYBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.scenePosition = CGPoint(
-                x: spriteNode.scenePosition.x,
-                y: CGFloat(self.yPosition.interpretDouble(forSprite: object))
-            )
+            let positionY = formulaInterpreter.interpretDouble(self.yPosition, for: object)
+            spriteNode.catrobatPositionY = positionY
         }
     }
 }

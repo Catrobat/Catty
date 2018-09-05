@@ -645,6 +645,7 @@
 
 #define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
 #define kLocalizedSensorLocation NSLocalizedString(@"location", nil)
+#define kLocalizedSensorDeviceMotion NSLocalizedString(@"device motion-sensor", nil)
 #define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
@@ -657,6 +658,8 @@
 #define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
 #define kUIFESensorFaceX NSLocalizedString(@"faceposition_x", nil)
 #define kUIFESensorFaceY NSLocalizedString(@"faceposition_y", nil)
+
+#define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************

@@ -23,7 +23,7 @@
 @objc extension ComeToFrontBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> ()->() {
@@ -34,15 +34,16 @@
             else { fatalError("This should never happen!") }
         
         return {
-            let zValue = spriteNode.zPosition
-            let frontValue = program.numberOfNormalObjects()
-            spriteNode.zPosition = CGFloat(frontValue)
+            let currentLayer = spriteNode.catrobatLayer
+            let frontValue = Double(program.numberOfNormalObjects())
+            spriteNode.catrobatLayer = frontValue
+            
             for obj in objectList {
                 guard let objSpriteNode = (obj as AnyObject).spriteNode, let spriteObject = obj as? SpriteObject else {
                     continue
                 }
-                if objSpriteNode.zPosition > zValue && objSpriteNode.zPosition <= CGFloat(frontValue) && spriteObject != object {
-                    objSpriteNode.zPosition -= 1
+                if objSpriteNode.catrobatLayer > currentLayer && objSpriteNode.catrobatLayer <= frontValue && spriteObject != object {
+                    objSpriteNode.catrobatLayer -= 1
                 }
             }
         }

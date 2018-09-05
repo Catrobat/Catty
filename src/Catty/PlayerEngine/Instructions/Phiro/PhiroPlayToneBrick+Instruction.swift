@@ -28,14 +28,9 @@ import Foundation
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
         return CBInstruction.execClosure { (context, _) in
-            let durationInterpretation = self.durationFormula.interpretDouble(forSprite: object)
+            let durationInterpretation = context.formulaInterpreter.interpretDouble(self.durationFormula, for: object)
             
-            
-            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
-                        //ERROR
-                        return;
-                    }
-            
+            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else { return }
             
             switch (self.phiroTone()) {
             case .DO:
@@ -62,9 +57,5 @@ import Foundation
             }
             context.state = .runnable
         }
-        
     }
-    
 }
-
-

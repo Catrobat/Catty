@@ -26,19 +26,14 @@
 #import "Util.h"
 #import "LoadingView.h"
 #import "PlaceHolderView.h"
-#import "ResourceHelper.h"
-#import "ResourceHelper.h"
-
 
 // tags
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@class BluetoothPopupVC;
-
-@interface BaseCollectionViewController () <ResourceNotAvailableDelegate>
+@interface BaseCollectionViewController ()
 @property (nonatomic, strong) LoadingView* loadingView;
-
+@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @end
 
 @implementation BaseCollectionViewController
@@ -97,6 +92,8 @@
     
     [self.placeHolderView addConstraints:@[centerXConstraint, centerYConstraint]];
     [self.view addConstraints:@[topConstraint, leadingConstraint, widthConstraint, heightConstraint]];
+    
+    self.scenePresenterViewController = [ScenePresenterViewController new];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -122,32 +119,7 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self showLoadingView];
-    [self playSceneAction:sender animated:YES];
-}
-
-- (void)playSceneAction:(id)sender animated:(BOOL)animated
-{
-    if ([self respondsToSelector:@selector(stopAllSounds)]) {
-        [self performSelector:@selector(stopAllSounds)];
-    }
-
-    self.scenePresenterViewController = [ScenePresenterViewController new];
-    self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
-    if ([ResourceHelper checkResources:resources delegate:self]) {
-        [self startSceneWithVC:self.scenePresenterViewController];
-    } else {
-        [self hideLoadingView];
-    }
-}
-
--(void)startSceneWithVC:(ScenePresenterViewController*)vc
-{
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.scenePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
 }
 
 #pragma mark - Setup Toolbar
@@ -213,10 +185,6 @@
     self.navigationController.toolbar.userInteractionEnabled = YES;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self.loadingView hide];
-}
-
-- (void)userAgreedToContinueAnyway {
-    [self startSceneWithVC:self.scenePresenterViewController];
 }
 
 -(LoadingView*)loadingView
