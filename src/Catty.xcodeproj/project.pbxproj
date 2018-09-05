@@ -186,7 +186,6 @@
 		4C6D14E6210B1273006147BD /* InclinationXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D14E5210B1273006147BD /* InclinationXSensor.swift */; };
 		4C6D14E8210B1291006147BD /* CompassDirectionSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D14E7210B1291006147BD /* CompassDirectionSensorTest.swift */; };
 		4C6D14EA210B12AB006147BD /* TransparencySensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D14E9210B12AB006147BD /* TransparencySensorTest.swift */; };
-		4C6D14EC210B12D9006147BD /* SensorHandlerDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D14EB210B12D9006147BD /* SensorHandlerDeviceTests.m */; };
 		4C6D14EE210B13B8006147BD /* NumberOfItemsInListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D14ED210B13B7006147BD /* NumberOfItemsInListFunction0991.xml */; };
 		4C6D14F0210B13C6006147BD /* ElementOfListFunction0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D14EF210B13C6006147BD /* ElementOfListFunction0991.xml */; };
 		4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */; };
@@ -282,7 +281,6 @@
 		4C994DDF207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */; };
 		4C994DF2207A3CF000C415FD /* SensorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEC207A3CEF00C415FD /* SensorManagerTests.swift */; };
 		4C994DF3207A3CF000C415FD /* InclinationXSensorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */; };
-		4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */; };
 		4C994E08207A3D4100C415FD /* SensorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFB207A3D4100C415FD /* SensorManager.swift */; };
 		4C994E0A207A3D4100C415FD /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994DFE207A3D4100C415FD /* Sensor.swift */; };
 		4C994E10207A3D4100C415FD /* LoudnessSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C994E06207A3D4100C415FD /* LoudnessSensor.swift */; };
@@ -727,7 +725,6 @@
 		92FF2E981A24C7D800093DA7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6C1A24C7D800093DA7 /* unzip.c */; };
 		92FF2E991A24C7D800093DA7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E6E1A24C7D800093DA7 /* zip.c */; };
 		92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E721A24C7D800093DA7 /* NavigationController.m */; };
-		92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7A1A24C7D800093DA7 /* SensorManager.m */; };
 		92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = 92FF2E7C1A24C7D800093DA7 /* IMPORTANT.caf */; };
 		92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E7E1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m */; };
 		92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E811A24C7D800093DA7 /* SSZipArchive.m */; };
@@ -1497,7 +1494,6 @@
 		4C6D14E5210B1273006147BD /* InclinationXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InclinationXSensor.swift; sourceTree = "<group>"; };
 		4C6D14E7210B1291006147BD /* CompassDirectionSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassDirectionSensorTest.swift; sourceTree = "<group>"; };
 		4C6D14E9210B12AB006147BD /* TransparencySensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparencySensorTest.swift; sourceTree = "<group>"; };
-		4C6D14EB210B12D9006147BD /* SensorHandlerDeviceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandlerDeviceTests.m; sourceTree = "<group>"; };
 		4C6D14ED210B13B7006147BD /* NumberOfItemsInListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = NumberOfItemsInListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/NumberOfItemsInListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C6D14EF210B13C6006147BD /* ElementOfListFunction0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ElementOfListFunction0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ElementOfListFunction0991.xml; sourceTree = SOURCE_ROOT; };
 		4C6D15CD1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_098.xml; sourceTree = "<group>"; };
@@ -1616,7 +1612,6 @@
 		4C994DDE207A26E400C415FD /* ReplaceItemInUserListBrick0991.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ReplaceItemInUserListBrick0991.xml; path = CattyTests/Resources/ParserTests/ListBricks/ReplaceItemInUserListBrick0991.xml; sourceTree = SOURCE_ROOT; };
 		4C994DEC207A3CEF00C415FD /* SensorManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManagerTests.swift; sourceTree = "<group>"; };
 		4C994DEE207A3CEF00C415FD /* InclinationXSensorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InclinationXSensorTest.swift; sourceTree = "<group>"; };
-		4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorHandlerTests.swift; sourceTree = "<group>"; };
 		4C994DFB207A3D4100C415FD /* SensorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorManager.swift; sourceTree = "<group>"; };
 		4C994DFE207A3D4100C415FD /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		4C994E06207A3D4100C415FD /* LoudnessSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoudnessSensor.swift; sourceTree = "<group>"; };
@@ -4089,8 +4084,6 @@
 				4C11795A20AED57D006C6E32 /* Object */,
 				F45A8D58210714AE007C0D38 /* Phiro */,
 				F4E6E569210DA55100D86FE6 /* Touch */,
-				4C6D14EB210B12D9006147BD /* SensorHandlerDeviceTests.m */,
-				4C994DF7207A3D0600C415FD /* SensorHandlerTests.swift */,
 				4C994DEC207A3CEF00C415FD /* SensorManagerTests.swift */,
 			);
 			path = Sensors;
@@ -5538,8 +5531,6 @@
 				92FF2E701A24C7D800093DA7 /* NavigationController */,
 				4C0F9F47204ADD0C00E71B2D /* OrderedDictionary */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
-				4C0F9F51204BD0EB00E71B2D /* ResourceHelper */,
-				92FF2E761A24C7D800093DA7 /* SensorHelper */,
 				9276B7021C9E8F6C008BC594 /* SoundCache */,
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
@@ -8250,7 +8241,6 @@
 				4CE1D433213E5C6E0014DAF9 /* SpriteObjectMock.swift in Sources */,
 				4C6FE15D212D2D2E0067B7D5 /* LogFunctionTest.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
-				4C6D14EC210B12D9006147BD /* SensorHandlerDeviceTests.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
 				4C37A0A7212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
@@ -8326,7 +8316,6 @@
 				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
 				F45AF708212961E8000F88A6 /* FaceDetectionSensorTest.swift in Sources */,
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
-				4C994DF9207A3D0600C415FD /* SensorHandlerTests.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
 				4CC614C2212EB5F8006E4720 /* FunctionManagerMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */,
