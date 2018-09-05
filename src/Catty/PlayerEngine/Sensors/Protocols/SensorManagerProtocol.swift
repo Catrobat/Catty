@@ -24,7 +24,7 @@ protocol SensorManagerProtocol {
     
     static var defaultValueForUndefinedSensor: Double { get set }
     
-    init(sensors: [Sensor], motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService)
+    init(sensors: [Sensor])
     
     func exists(tag: String) -> Bool
     

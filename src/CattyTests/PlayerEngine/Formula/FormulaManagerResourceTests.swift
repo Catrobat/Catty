@@ -42,8 +42,8 @@ final class FormulaManagerResourceTests: XCTestCase {
         touchManager = TouchManagerMock()
         bluetoothService = BluetoothService.sharedInstance()
         
-        manager = FormulaManager(sensorManager: SensorManagerMock(sensors: []),
-                                 functionManager: FunctionManagerMock(functions: []),
+        manager = FormulaManager(sensorManager: SensorManager(sensors: []),
+                                 functionManager: FunctionManager(functions: []),
                                  motionManager: motionManager,
                                  locationManager: locationManager,
                                  faceDetectionManager: faceDetectionManager,

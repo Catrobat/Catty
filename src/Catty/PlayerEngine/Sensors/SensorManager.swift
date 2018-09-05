@@ -28,22 +28,7 @@ import CoreLocation
     public static var defaultValueForUndefinedSensor: Double = 0
     private static var sensorMap = [String: Sensor]() // TODO make instance let
     
-    private let motionManager: MotionManager
-    private let locationManager: LocationManager
-    private let faceDetectionManager: FaceDetectionManagerProtocol
-    private let audioManager: AudioManagerProtocol
-    private let touchManager: TouchManagerProtocol
-    private let bluetoothService: BluetoothService
-    
-    public required init(sensors: [Sensor], motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) {
-    
-        self.motionManager = motionManager
-        self.locationManager = locationManager
-        self.faceDetectionManager = faceDetectionManager
-        self.audioManager = audioManager
-        self.touchManager = touchManager
-        self.bluetoothService = bluetoothService
-        
+    public required init(sensors: [Sensor]) {
         super.init()
         registerSensors(sensorList: sensors)
     }

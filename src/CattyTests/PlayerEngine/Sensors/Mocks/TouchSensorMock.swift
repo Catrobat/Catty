@@ -26,7 +26,7 @@ final class TouchManagerMock: TouchManagerProtocol {
     
     var touchRecognizer: UILongPressGestureRecognizer?
     var scene: CBScene?
-    var isScreenTouched: Bool?
+    var isScreenTouched: Bool = false
     var touches: [CGPoint] = []
     var lastTouch: CGPoint?
     
@@ -44,7 +44,7 @@ final class TouchManagerMock: TouchManagerProtocol {
     }
     
     func screenTouched() -> Bool {
-        return isScreenTouched!
+        return isScreenTouched
     }
     
     func numberOfTouches() -> Int {
@@ -56,7 +56,7 @@ final class TouchManagerMock: TouchManagerProtocol {
     }
     
     func getPositionInScene(for touchNumber: Int) -> CGPoint? {
-        if touches.count < touchNumber {
+        if touchNumber <= 0 || touches.count < touchNumber {
             return nil
         }
         return touches[touchNumber - 1]

@@ -283,7 +283,7 @@ extension FormulaManager {
         let leftParam = functionParameter(formulaElement: formulaElement.leftChild, spriteObject: spriteObject)
         let rightParam = functionParameter(formulaElement: formulaElement.rightChild, spriteObject: spriteObject)
         
-        return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam)
+        return functionManager.value(tag: formulaElement.value, firstParameter: leftParam, secondParameter: rightParam, spriteObject: spriteObject)
     }
     
     private func functionParameter(formulaElement: FormulaElement?, spriteObject: SpriteObject) -> AnyObject? {

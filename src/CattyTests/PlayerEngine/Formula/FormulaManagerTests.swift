@@ -33,8 +33,8 @@ final class FormulaManagerTest: XCTestCase {
     }
     
     func testFormulaEditorItemsEmpty() {
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: []),
-                                     functionManager: FunctionManagerMock(functions: []))
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
+                                     functionManager: FunctionManager(functions: []))
         
         XCTAssertEqual(0, manager.formulaEditorItems(spriteObject: spriteObject).count)
         XCTAssertEqual(0, manager.formulaEditorItemsForMathSection(spriteObject: spriteObject).count)
@@ -50,7 +50,7 @@ final class FormulaManagerTest: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 3))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB, functionC]))
         
         let items = manager.formulaEditorItems(spriteObject: spriteObject)
@@ -66,7 +66,7 @@ final class FormulaManagerTest: XCTestCase {
         
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 1))
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
         
         XCTAssertEqual(3, manager.formulaEditorItems(spriteObject: spriteObject).count)
@@ -79,7 +79,7 @@ final class FormulaManagerTest: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .math(position: 20))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
         
         let items = manager.formulaEditorItemsForMathSection(spriteObject: spriteObject)
@@ -95,7 +95,7 @@ final class FormulaManagerTest: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .device(position: 1))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
         
         let items = manager.formulaEditorItemsForDeviceSection(spriteObject: spriteObject)
@@ -111,7 +111,7 @@ final class FormulaManagerTest: XCTestCase {
         let sensorA = SensorMock(tag: "sensorTagA", formulaEditorSection: .object(position: 30))
         let sensorB = SensorMock(tag: "sensorTagB", formulaEditorSection: .hidden)
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
         
         let items = manager.formulaEditorItemsForObjectSection(spriteObject: spriteObject)
@@ -123,7 +123,7 @@ final class FormulaManagerTest: XCTestCase {
         let functionA = ZeroParameterDoubleFunctionMock(tag: "functionTagA", value: 1.0, formulaEditorSection: .math(position: 10))
         let functionB = SingleParameterDoubleFunctionMock(tag: "functionTagB", value: 2.0, parameter: .number(defaultValue: 20), formulaEditorSection: .device(position: 20))
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: []),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: []),
                                      functionManager: FunctionManager(functions: [functionA, functionB]))
         
         XCTAssertFalse(manager.functionExists(tag: "unavailableFunctionTag"))
@@ -135,7 +135,7 @@ final class FormulaManagerTest: XCTestCase {
         let sensorA = AccelerationXSensor(motionManagerGetter: { nil })
         let sensorB = AccelerationXSensor(motionManagerGetter: { nil })
         
-        let manager = FormulaManager(sensorManager: SensorManagerMock(sensors: [sensorA, sensorB]),
+        let manager = FormulaManager(sensorManager: SensorManager(sensors: [sensorA, sensorB]),
                                      functionManager: FunctionManager(functions: []))
         
         XCTAssertFalse(manager.sensorExists(tag: "unavailableSensorTag"))

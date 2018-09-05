@@ -50,7 +50,7 @@ import BluetoothHelper
         return type(of: function).isIdempotent
     }
     
-    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject {
+    @objc func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject {
         guard let function = self.function(tag: tag) else { return type(of: self).defaultValueForUndefinedFunction as AnyObject }
         var value: AnyObject = type(of: self).defaultValueForUndefinedFunction as AnyObject
         
@@ -72,6 +72,12 @@ import BluetoothHelper
             value = function.value(parameter: firstParameter)
         } else if let function = function as? DoubleParameterFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter)
+        } else if let function = function as? ZeroParameterDoubleObjectFunction {
+            value = function.value(spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? SingleParameterDoubleObjectFunction {
+            value = function.value(parameter: firstParameter, spriteObject: spriteObject) as AnyObject
+        } else if let function = function as? DoubleParameterDoubleObjectFunction {
+            value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
         }
         
         return value

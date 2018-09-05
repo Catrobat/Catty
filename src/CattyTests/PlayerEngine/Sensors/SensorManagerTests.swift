@@ -33,7 +33,7 @@ final class SensorManagerTests: XCTestCase {
     
     func testDefaultValueForUndefinedSensor() {
         let defaultValue = 12.3
-        let manager = SensorManagerMock(sensors: [])
+        let manager = SensorManager(sensors: [])
         type(of: manager).defaultValueForUndefinedSensor = defaultValue
     
         XCTAssertNil(manager.sensor(tag: "noSensorForThisTag"))
@@ -43,7 +43,7 @@ final class SensorManagerTests: XCTestCase {
     func testExists() {
         let sensorA = SensorMock(tag: "tagA")
         let sensorB = SensorMock(tag: "tagB")
-        let manager = SensorManagerMock(sensors: [sensorA, sensorB])
+        let manager = SensorManager(sensors: [sensorA, sensorB])
         
         XCTAssertFalse(manager.exists(tag: "unavailableSensorTag"))
         XCTAssertTrue(manager.exists(tag: sensorA.tag()))
@@ -53,7 +53,7 @@ final class SensorManagerTests: XCTestCase {
     func testSensor() {
         let sensorA = SensorMock(tag: "tagA")
         let sensorB = SensorMock(tag: "tagB")
-        let manager = SensorManagerMock(sensors: [sensorA, sensorB])
+        let manager = SensorManager(sensors: [sensorA, sensorB])
         
         XCTAssertNil(manager.sensor(tag: "unavailableSensorTag"))
         
@@ -71,7 +71,7 @@ final class SensorManagerTests: XCTestCase {
         let sensorB = SensorMock(tag: "tagB")
         type(of: sensorB).requiredResource = ResourceType.accelerometer
         
-        let manager = SensorManagerMock(sensors: [sensorA, sensorB])
+        let manager = SensorManager(sensors: [sensorA, sensorB])
         
         XCTAssertEqual(ResourceType.noResources, type(of: manager).requiredResource(tag: "invalidTag"))
         XCTAssertEqual(type(of: sensorA).requiredResource, type(of: manager).requiredResource(tag: sensorA.tag()))
@@ -84,7 +84,7 @@ final class SensorManagerTests: XCTestCase {
         let sensorB = SensorMock(tag: "tagB")
         type(of: sensorB).name = "testName"
         
-        let manager = SensorManagerMock(sensors: [sensorA, sensorB])
+        let manager = SensorManager(sensors: [sensorA, sensorB])
         
         XCTAssertNil(type(of: manager).name(tag: "invalidTag"))
         XCTAssertEqual(type(of: sensorA).name, type(of: manager).name(tag: sensorA.tag()))
@@ -97,7 +97,7 @@ final class SensorManagerTests: XCTestCase {
         let sensorB = SensorMock(tag: "tagB", formulaEditorSection: .device(position: 1))
         let sensorC = SensorMock(tag: "tagC", formulaEditorSection: .object(position: 2))
         
-        let manager = SensorManagerMock(sensors: [sensorA, sensorB, sensorC])
+        let manager = SensorManager(sensors: [sensorA, sensorB, sensorC])
         let items = manager.formulaEditorItems(for: SpriteObject())
         
         XCTAssertEqual(3, items.count)
@@ -112,7 +112,7 @@ final class SensorManagerTests: XCTestCase {
         let sensorB = ObjectDoubleSensorMock(tag: "tagB", value: 2.0)
         let sensorC = ObjectStringSensorMock(tag: "tagC", value: "test")
         
-        let manager = SensorManagerMock(sensors: [sensorA, sensorB, sensorC])
+        let manager = SensorManager(sensors: [sensorA, sensorB, sensorC])
         type(of: manager).defaultValueForUndefinedSensor = 12.3
         
         XCTAssertEqual(type(of: manager).defaultValueForUndefinedSensor, manager.value(tag: "undefinedTag", spriteObject: object) as! Double)

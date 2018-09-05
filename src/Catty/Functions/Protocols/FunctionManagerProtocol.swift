@@ -30,7 +30,7 @@ protocol FunctionManagerProtocol {
     
     func functions() -> [Function]
     
-    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?) -> AnyObject
+    func value(tag: String, firstParameter: AnyObject?, secondParameter: AnyObject?, spriteObject: SpriteObject) -> AnyObject
     
     func formulaEditorItems() -> [FormulaEditorItem]
     
