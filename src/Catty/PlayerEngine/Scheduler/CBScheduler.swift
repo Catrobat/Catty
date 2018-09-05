@@ -213,7 +213,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     let index = context.index
                     if let formulaArray = brick.getFormulas() {
                         for formula in formulaArray {
-                            formula.preCalculate(forSprite: context.spriteNode.spriteObject)
+                            let _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
                         }
                     }
                     print("preCalculate")
@@ -240,7 +240,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 }
                 queue.async {
                     let index = context.index
-                    condition.bufferCondition(context.spriteNode.spriteObject)
+                    condition.bufferCondition(context: context)
                     self._lockBufferQueue.async {
                         self._availableBufferQueues += queue
                     }

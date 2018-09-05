@@ -68,7 +68,16 @@ extension FormulaManager {
         return interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
     }
     
-    @objc func isIdempotent(_ formula: Formula) -> Bool {
+    func interpretAndCache(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject {
+        invalidateCache(formula)
+        
+        let result = interpretRecursive(formulaElement: formula.formulaTree, for: spriteObject)
+        cacheResult(formula.formulaTree, result: result)
+        
+        return result
+    }
+    
+    func isIdempotent(_ formula: Formula) -> Bool {
         guard let formulaElement = formula.formulaTree else { return false }
         return isIdempotent(formulaElement)
     }
@@ -130,13 +139,11 @@ extension FormulaManager {
     
     private func interpretRecursive(formulaElement: FormulaElement?, for spriteObject: SpriteObject) -> AnyObject {
         guard let formulaElement = formulaElement else { return 0 as AnyObject }
-        let idempotent = isIdempotent(formulaElement)
+        var result: AnyObject
         
-        if idempotent, let cachedResult = cachedResults[formulaElement] {
+        if let cachedResult = cachedResults[formulaElement] {
             return cachedResult
         }
-        
-        var result: AnyObject
         
         switch (formulaElement.type) {
         case .OPERATOR:
@@ -157,8 +164,8 @@ extension FormulaManager {
             result = formulaElement.value as AnyObject
         }
         
-        if idempotent {
-            cachedResults[formulaElement] = result
+        if isIdempotent(formulaElement) {
+            cacheResult(formulaElement, result: result)
         }
         
         return result
@@ -299,5 +306,9 @@ extension FormulaManager {
             return double
         }
         return 0
+    }
+    
+    private func cacheResult(_ formulaElement: FormulaElement, result: AnyObject) {
+        cachedResults[formulaElement] = result
     }
 }

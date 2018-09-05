@@ -40,8 +40,6 @@
 - (id)initWithString:(NSString*)value;
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
-- (void)preCalculateFormulaForSprite:(SpriteObject*)sprite;
-
 - (BOOL)isSingularNumber;
 - (BOOL)isEqualToFormula:(Formula*)formula;
 

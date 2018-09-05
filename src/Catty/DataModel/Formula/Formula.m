@@ -86,11 +86,6 @@
     return [self initWithInteger:0];
 }
 
-- (void) preCalculateFormulaForSprite:(SpriteObject*)sprite {
-    // TODO
-    //self.bufferedResult = [self.formulaTree interpretRecursiveForSprite:sprite];
-}
-
 - (BOOL)isSingularNumber
 {
     return ([self.formulaTree isSingleNumberFormula] || self.formulaTree.type == STRING) && [self.formulaTree.value doubleValue] == 1.0;

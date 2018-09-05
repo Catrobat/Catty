@@ -37,10 +37,21 @@
     @objc(interpretString: forSpriteObject:)
     func interpretString(_ formula: Formula, for spriteObject: SpriteObject) -> String
     
+    /**
+     Interprets a formula and stores its result in cache if idempotent.
+     - Returns: result of formula
+     */
     @objc(interpret: forSpriteObject:)
     func interpret(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject
     
-    @objc func isIdempotent(_ formula: Formula) -> Bool
+    /**
+     Interprets a formula and stores its result in cache (no matter if idempotent or not).
+     This method invalidates the formula's cache before interpreting.
+     - Returns: result of formula
+     */
+    func interpretAndCache(_ formula: Formula, for spriteObject: SpriteObject) -> AnyObject
+    
+    func isIdempotent(_ formula: Formula) -> Bool
     
     func invalidateCache()
     

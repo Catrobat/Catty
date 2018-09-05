@@ -48,9 +48,9 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
         condition.resetCondition()
     }
     
-    final func bufferCondition(_ sprite:SpriteObject?) {
+    final func bufferCondition(context: CBScriptContextProtocol) {
         for formula in condition.conditionFormulas() {
-            formula.preCalculate(forSprite: sprite)
+            let _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
         }
     }
     
