@@ -61,7 +61,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeTransparencyByNBrick by (%f)", [self.changeTransparency interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ChangeTransparencyByNBrick"];
 }
 
 #pragma mark - Resources

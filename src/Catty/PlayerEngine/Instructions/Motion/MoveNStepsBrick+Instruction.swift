@@ -23,24 +23,25 @@
 @objc extension MoveNStepsBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let stepsFormula = self.steps
         else { fatalError("This should never happen!") }
 
         return {
-            let steps = stepsFormula.interpretDouble(forSprite: object)
-            let rotation = Util.degree(toRadians: spriteNode.rotation)
-            let position = spriteNode.scenePosition
+            let steps = formulaInterpreter.interpretDouble(stepsFormula, for: object)
+            let standardizedRotation = spriteNode.catrobatRotation
+            let rotationRadians = Util.degree(toRadians: Double(standardizedRotation))
             
-            let xPosition = Double(position.x) + (steps * sin(rotation))
-            let yPosition = Double(position.y) + (steps * cos(rotation))
+            let xPosition = spriteNode.catrobatPositionX + (steps * sin(rotationRadians))
+            let yPosition = spriteNode.catrobatPositionY + (steps * cos(rotationRadians))
             
-            spriteNode.scenePosition = CGPoint(x: CGFloat(xPosition), y: CGFloat(yPosition))
+            spriteNode.catrobatPositionX = xPosition
+            spriteNode.catrobatPositionY = yPosition
         }
     }
 }

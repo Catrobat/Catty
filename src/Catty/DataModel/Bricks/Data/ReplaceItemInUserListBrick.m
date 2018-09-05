@@ -88,9 +88,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.elementFormula interpretDoubleForSprite:self.script.object];
-    int index = [self.index interpretIntegerForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Replace Item In User List Brick: Userlist: %@, item: %f, position: %i", self.userList, result, index];
+    return [NSString stringWithFormat:@"ReplaceItemInUserListBrick (Userlist: %@)", self.userList];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

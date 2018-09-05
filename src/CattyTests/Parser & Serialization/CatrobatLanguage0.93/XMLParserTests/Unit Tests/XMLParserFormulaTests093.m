@@ -27,6 +27,7 @@
 - (void)setUp
 {
     self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
+    self.formulaManager = [FormulaManager new];
 }
 
 - (void)testValidFormulaList {
@@ -47,7 +48,7 @@
     
     Formula *formula = setVariableBrick.variableFormula;
     // formula value should be: (1 * (-2)) + (3 / 4) = -1,25
-    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], -1.25, 0.00001, @"Formula not correctly parsed");
+    XCTAssertEqualWithAccuracy([self.formulaManager interpretDouble:formula forSpriteObject:[SpriteObject new]], -1.25, 0.00001, @"Formula not correctly parsed");
 }
 
 

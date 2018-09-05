@@ -29,6 +29,7 @@
 
 - (void)setUp
 {
+    [super setUp];
     self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.95f];
 }
 

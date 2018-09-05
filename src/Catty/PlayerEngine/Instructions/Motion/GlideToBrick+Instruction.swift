@@ -23,29 +23,23 @@
 @objc extension GlideToBrick: CBInstructionProtocol {
     
     @nonobjc func instruction() -> CBInstruction {
+        guard let durationFormula = self.durationInSeconds else { fatalError("This should never happen!") }
         
-        guard let durationFormula = self.durationInSeconds,
-            let object = self.script?.object
-            else { fatalError("This should never happen!") }
-        
-        let cachedDuration = durationFormula.isIdempotent()
-            ? CBDuration.fixedTime(duration: durationFormula.interpretDouble(forSprite: object))
-            : CBDuration.varTime(formula: durationFormula)
-        
-        return .longDurationAction(duration: cachedDuration, actionCreateClosure: {
-            (duration) -> SKAction in
-                return self.action(duration)
+        return .longDurationAction(duration: CBDuration.varTime(formula: durationFormula), closure: {
+            (duration, context) -> SKAction in
+            return self.action(duration, context.formulaInterpreter)
         })
     }
     
-    @objc func action(_ duration : TimeInterval) -> SKAction {
+    @objc func action(_ duration : TimeInterval, _ formulaInterpreter: FormulaInterpreterProtocol) -> SKAction {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode
             else { fatalError("This should never happen!") }
         
-        let xDestination = self.xDestination.interpretFloat(forSprite: object)
-        let yDestination = self.yDestination.interpretFloat(forSprite: object)
-        let duration = self.durationInSeconds.interpretDouble(forSprite: object)
+        let xDestination = formulaInterpreter.interpretFloat(self.xDestination, for: object)
+        let yDestination = formulaInterpreter.interpretFloat(self.yDestination, for: object)
+        let duration = formulaInterpreter.interpretDouble(self.durationInSeconds, for: object)
+        
         guard let scene = spriteNode.scene else {
             fatalError("This should never happen!")
         }

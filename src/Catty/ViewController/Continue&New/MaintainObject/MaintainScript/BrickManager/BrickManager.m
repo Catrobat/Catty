@@ -463,7 +463,7 @@
         CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
         NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
         NSUInteger loopEndIndex = (loopBeginIndex + 1);
-        LoopBeginBrick *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+        LoopBeginBrick<CBConditionProtocol> *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
         LoopEndBrick *copiedLoopEndBrick = [loopEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
         copiedLoopBeginBrick.loopEndBrick = copiedLoopEndBrick;
         copiedLoopEndBrick.loopBeginBrick = copiedLoopBeginBrick;

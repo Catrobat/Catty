@@ -53,21 +53,14 @@
 
 - (NSString*)brickTitle
 {
-    double timeToWait = [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object andUseCache:NO];
-    NSString* timeToWaitStr;
-    if ([self.timeToWaitInSeconds isSingleNumberFormula] && timeToWait == 1.0) {
-        timeToWaitStr = kLocalizedSecond;
-    }
-    else {
-        timeToWaitStr = kLocalizedSeconds;
-    }
+    NSString* timeToWaitStr = [self.timeToWaitInSeconds isSingularNumber] ? kLocalizedSecond : kLocalizedSeconds;
     return [kLocalizedWait stringByAppendingString:[@"%@ " stringByAppendingString:timeToWaitStr]];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"WaitBrick"];
 }
 
 #pragma mark - Resources

@@ -21,7 +21,7 @@
  */
 
 #import "AbstractBrickTests.h"
-
+#import "ProgramMock.h"
 
 @implementation AbstractBrickTests
 
@@ -35,6 +35,8 @@
 - (void)setUp
 {
     [super setUp];
+    self.formulaInterpreter = [FormulaManager new];
+    self.scene = [[[SceneBuilder alloc] initWithProgram:[ProgramMock new]] build];
 }
 
 - (void)tearDown

@@ -23,8 +23,8 @@
 final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
-    var logger: CBLogger
-
+    let logger: CBLogger
+    
     // MARK: - Initializers
     init(logger: CBLogger) {
         self.logger = logger
@@ -74,7 +74,7 @@ final class CBBackend: CBBackendProtocol {
             instructionList += CBInstruction.conditionalFormulaBuffer(conditionalBrick: ifSequence)
         }
         instructionList += CBInstruction.execClosure { (context, scheduler) in
-            if ifSequence.checkCondition() == false {
+            if ifSequence.checkCondition(context: context) == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
                     numberOfInstructionsToJump += 1 // includes jump instr. at the end of if sequence
@@ -108,7 +108,7 @@ final class CBBackend: CBBackendProtocol {
 
         let loopEndInstruction = CBInstruction.highPriorityExecClosure { (context, scheduler, _) in
             var numOfInstructionsToJump = 0
-            if loopSequence.checkCondition() {
+            if loopSequence.checkCondition(context: context) {
                 if loopSequence.hasBluetoothFormula() {
                    numOfInstructionsToJump -= numOfBodyInstructions + 2 // omits loop begin instruction
                 } else {
@@ -145,7 +145,7 @@ final class CBBackend: CBBackendProtocol {
         }
 
         let loopBeginInstruction = CBInstruction.execClosure { (context, scheduler) in
-            if loopSequence.checkCondition() {
+            if loopSequence.checkCondition(context: context) {
                 loopSequence.lastLoopIterationStartTime = Date()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now

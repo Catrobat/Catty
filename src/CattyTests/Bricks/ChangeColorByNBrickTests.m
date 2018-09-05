@@ -33,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
@@ -65,18 +64,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = M_PI/4;
+    object.spriteNode.catrobatColor = 0.0;
     
-    Formula *color = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"70";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithInteger:70];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 95.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    XCTAssertEqualWithAccuracy(70.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -103,18 +99,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = M_PI/4;
+    object.spriteNode.catrobatColor = 10.0;
     
-    Formula *color = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithString:@"a"];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, 25.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -141,18 +134,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = M_PI/4;
+    object.spriteNode.catrobatColor = 20.0;
     
-    Formula* color = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-224";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithInteger:-10];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, -199.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -179,18 +169,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookColor = 0.0f;
+    object.spriteNode.ciHueAdjust = ColorSensor.defaultRawValue;
     
-    Formula* color = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-730";
-    color.formulaTree = formulaTree;
-    brick.changeColor = color;
+    brick.changeColor = [[Formula alloc] initWithInteger:-730];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.colorValue, -130.0f,0.1f, @"ChangeColorBrick - Color not correct");
+    
+    XCTAssertEqualWithAccuracy(200-130.0f, spriteNode.catrobatColor, 0.1f, @"ChangeColorBrick - Color not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

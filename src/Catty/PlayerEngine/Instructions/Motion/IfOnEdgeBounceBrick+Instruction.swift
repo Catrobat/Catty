@@ -25,7 +25,7 @@ private let EPSILON = 0.0001
 @objc extension IfOnEdgeBounceBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
     @objc func actionBlock() -> ()->() {
@@ -42,9 +42,9 @@ private let EPSILON = 0.0001
             let virtualScreenWidth = scene.size.width/2.0
             let virtualScreenHeight = scene.size.height/2.0
             
-            var xPosition = spriteNode.scenePosition.x
-            var yPosition = spriteNode.scenePosition.y
-            var rotation = spriteNode.rotation
+            var xPosition = CGFloat(spriteNode.catrobatPositionX)
+            var yPosition = CGFloat(spriteNode.catrobatPositionY)
+            var rotation = spriteNode.catrobatRotation
             
             //Check left/right edge
             let leftEdge = -virtualScreenWidth + (width/2.0)
@@ -78,8 +78,9 @@ private let EPSILON = 0.0001
                 }
             }
             
-            spriteNode.rotation = rotation
-            spriteNode.scenePosition = CGPoint(x: xPosition, y: yPosition)
+            spriteNode.catrobatRotation = rotation
+            spriteNode.catrobatPositionX = Double(xPosition)
+            spriteNode.catrobatPositionY = Double(yPosition)
         }
     }
     

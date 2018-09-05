@@ -25,6 +25,7 @@
 #import "InternToken.h"
 #import "Operators.h"
 #import "InternFormula.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InternFormulaTest : XCTestCase
 
@@ -151,103 +152,11 @@
     
 }
 
-- (void)testReplaceFunctionByToken
-{
-    NSMutableArray *internTokens = [[NSMutableArray alloc]init];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:COS]]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:ROUND]]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    
-    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
-    [internFormula generateExternFormulaStringAndInternExternMapping];
-    NSString *externFormulaString = [internFormula getExternFormulaString];
-    int doubleClickIndex = (int)[externFormulaString length];
-    
-    [internFormula setCursorAndSelection:doubleClickIndex selected:YES];
-    
-    XCTAssertEqual(0, [[internFormula getSelection]getStartIndex], @"Selection start index not as expected");
-    XCTAssertEqual(9, [[internFormula getSelection]getEndIndex], @"Selection end index not as expected");
-    
-    [internFormula handleKeyInputWithName:@"4" butttonType:5];
-    [internFormula handleKeyInputWithName:@"2" butttonType:3];
-    
-    XCTAssertNil([internFormula getSelection], @"Selection found but should not");
-    
-    externFormulaString = [internFormula getExternFormulaString];
-    doubleClickIndex = (int)[externFormulaString length];
-    
-    [internFormula setCursorAndSelection:doubleClickIndex selected:YES];
-    
-    XCTAssertEqual([[internFormula getSelection]getStartIndex], 0, @"Selection start index not as expected");
-    XCTAssertEqual([[internFormula getSelection]getEndIndex], 0, @"Selection end index not as expected");
-
-    
-}
-
-- (void)testReplaceFunctionButKeepParameters
-{
-    NSMutableArray *internTokens = [[NSMutableArray alloc]init];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:COS]]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:ROUND]]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-    
-    InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
-    [internFormula generateExternFormulaStringAndInternExternMapping];
-    NSString *externFormulaString = [internFormula getExternFormulaString];
-    int doubleClickIndex = (int)[externFormulaString length];
-    
-    [internFormula setCursorAndSelection:doubleClickIndex selected:YES];
-    
-    XCTAssertEqual(0, [[internFormula getSelection]getStartIndex], @"Selection start index not as expected");
-    XCTAssertEqual(9, [[internFormula getSelection]getEndIndex], @"Selection end index not as expected");
-    
-    [internFormula handleKeyInputWithName:@"RAND" butttonType:506];
-    
-    XCTAssertEqual(2, [[internFormula getSelection]getStartIndex], @"Selection start index not as expected");
-    XCTAssertEqual(8, [[internFormula getSelection]getEndIndex], @"Selection end index not as expected");
-    
-    externFormulaString = [internFormula getExternFormulaString];
-    doubleClickIndex = (int)[externFormulaString length];
-    
-    [internFormula setCursorAndSelection:doubleClickIndex selected:YES];
-    
-    XCTAssertEqual(0, [[internFormula getSelection]getStartIndex], @"Selection start index not as expected");
-    XCTAssertEqual(11, [[internFormula getSelection]getEndIndex], @"Selection end index not as expected");
-    
-    [internFormula handleKeyInputWithName:@"SQRT" butttonType:505];
-    
-    externFormulaString = [internFormula getExternFormulaString];
-    doubleClickIndex = (int)[externFormulaString length];
-    
-    XCTAssertEqual(2, [[internFormula getSelection]getStartIndex], @"Selection start index not as expected");
-    XCTAssertEqual(8, [[internFormula getSelection]getEndIndex], @"Selection end index not as expected");
-    
-    [internFormula setCursorAndSelection:doubleClickIndex selected:YES];
-    
-    XCTAssertEqual(0, [[internFormula getSelection]getStartIndex], @"Selection start index not as expected");
-    XCTAssertEqual(9, [[internFormula getSelection]getEndIndex], @"Selection end index not as expected");
-    
-}
-
 - (void)testSelectBrackets
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_OPEN]];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:COS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"COS"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
@@ -292,7 +201,7 @@
 - (void)testSelectFunctionAndSingleTab
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:RAND]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"RAND"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
@@ -431,7 +340,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN AndValue:[Operators getName:PLUS]]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
@@ -448,7 +357,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
@@ -465,7 +374,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
@@ -482,7 +391,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
@@ -596,7 +505,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
@@ -610,7 +519,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
@@ -623,7 +532,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
@@ -635,7 +544,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.42"]];
     
@@ -680,7 +589,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:[Functions getName:SIN]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:@"SIN"]]; // TODO use Function property
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
@@ -691,7 +600,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:OBJECT_BRIGHTNESS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:BrightnessSensor.tag]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
@@ -701,7 +610,7 @@
     
     [internTokens removeAllObjects];
     
-    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:[SensorManager stringForSensor:OBJECT_BRIGHTNESS]]];
+    [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:BrightnessSensor.tag]];
     
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
@@ -712,28 +621,5 @@
     
     XCTAssertEqual(AM_RIGHT, [internFormula replaceCursorPositionInternTokenByTokenList:tokensToReplaceWith],@"Do not modify on error");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

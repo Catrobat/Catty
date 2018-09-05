@@ -31,7 +31,6 @@
 #import "LoadingView.h"
 #import "EVCircularProgressView.h"
 #import "CreateView.h"
-#import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
@@ -45,7 +44,6 @@
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) NSString *duplicateName;
-@property (nonatomic, strong) Reachability *reachability;
 
 @end
 
@@ -61,13 +59,13 @@
 
 - (NSURLSession *)session {
     if (!_session) {
-            // Initialize Session Configuration
+        // Initialize Session Configuration
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         
-            // Configure Session Configuration
+        // Configure Session Configuration
         [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
         
-            // Initialize Session
+        // Initialize Session
         _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     }
     
@@ -92,14 +90,12 @@
     self.view.backgroundColor = [UIColor backgroundColor];
     NSDebug(@"%@",self.project.author);
     [self loadProject:self.project];
-//    self.scrollViewOutlet.exclusiveTouch = YES;
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
+    //    self.scrollViewOutlet.exclusiveTouch = YES;
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadFinishedWithURL:) name:@"finishedloading" object:nil];
     CBFileManager *fileManager = [CBFileManager sharedManager];
     fileManager.delegate = self;
     fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
-    self.reachability = [Reachability reachabilityForInternetConnection];
 }
-
 
 -(void)loadProject:(CatrobatProgram*)project {
     [self.projectView removeFromSuperview];
@@ -131,7 +127,6 @@
 {
     [super viewWillDisappear:animated];
     self.hidesBottomBarWhenPushed = NO;
-    [self.reachability stopNotifier];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -162,8 +157,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification
-                                                        object:self];
 }
 
 - (void)back
@@ -184,10 +177,10 @@
         // The local program name with same program ID could differ from the original program name.
         // That's because the user could have renamed the downloaded program.
         NSString *localProgramName = [Program programNameForProgramID:self.project.projectID];
-
+        
         // check if program loaded successfully -> not nil
         self.loadedProgram = [Program programWithLoadingInfo:[ProgramLoadingInfo programLoadingInfoForProgramWithName:localProgramName programID:self.project.projectID]];
-
+        
         if (self.loadedProgram) {
             return YES;
         }
@@ -239,26 +232,26 @@
     BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
     if (isLoggedIn) {
         [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:kLocalizedReportProgram message:kLocalizedEnterReason]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *report) {
-             [self sendReportWithMessage:report];
-         }]
-         characterValidator:^BOOL(NSString *character) {
-             return ![[self blockedCharacterSet] characterIsMember:[character characterAtIndex:0]];
-         }]
-         valueValidator:^InputValidationResult *(NSString *report) {
-             int minInputLength = 1;
-             int maxInputLength = 10;
-             if (report.length < minInputLength) {
-                 return [InputValidationResult invalidInputWithLocalizedMessage:
-                         [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, minInputLength]];
-             } else if (report.length > maxInputLength) {
-                 return [InputValidationResult invalidInputWithLocalizedMessage:
-                         [NSString stringWithFormat:kLocalizedTooLongInputDescription, maxInputLength]];
-             } else {
-                 return [InputValidationResult validInput];
-             }
-         }] build]
+              addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *report) {
+                 [self sendReportWithMessage:report];
+             }]
+            characterValidator:^BOOL(NSString *character) {
+                return ![[self blockedCharacterSet] characterIsMember:[character characterAtIndex:0]];
+            }]
+           valueValidator:^InputValidationResult *(NSString *report) {
+               int minInputLength = 1;
+               int maxInputLength = 10;
+               if (report.length < minInputLength) {
+                   return [InputValidationResult invalidInputWithLocalizedMessage:
+                           [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription, minInputLength]];
+               } else if (report.length > maxInputLength) {
+                   return [InputValidationResult invalidInputWithLocalizedMessage:
+                           [NSString stringWithFormat:kLocalizedTooLongInputDescription, maxInputLength]];
+               } else {
+                   return [InputValidationResult validInput];
+               }
+           }] build]
          showWithController:self];
     } else {
         [Util alertWithText:kLocalizedLoginToReport];
@@ -284,7 +277,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDebug(@"ReportMessage::::::%@",message);
     
     NSString *reportUrl = [Util isProductionServerActivated] ? kReportProgramUrl : kTestReportProgramUrl;
-
+    
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"program",self.project.projectID,@"note",message];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
@@ -295,7 +288,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
-
+    
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if ([Util isNetworkError:error]) {
@@ -307,11 +300,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSError *error = nil;
                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                 NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
-                    
+                
                 NSDebug(@"StatusCode is %@", statusCode);
                 
                 [Util alertWithText:[dictionary valueForKey:@"answer"]];
-
+                
             });
         }
     }];
@@ -320,7 +313,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.dataTask resume];
         NSDebug(@"Connection Successful");
     } else {
-         NSDebug(@"Connection could not be made");
+        NSDebug(@"Connection could not be made");
     }
 }
 
@@ -332,14 +325,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)downloadButtonPressed
 {
     NSDebug(@"Download Button!");
-    if ([self isConnectedToWifiWithSettingEnabled]) {
-        EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-        [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
-        button.hidden = NO;
-        button.progress = 0;
-        [self downloadWithName:self.project.name];
-    }
-    
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+    [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
+    button.hidden = NO;
+    button.progress = 0;
+    [self downloadWithName:self.project.name];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -347,40 +337,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self downloadButtonPressed];
 }
 
--(BOOL)isConnectedToWifiWithSettingEnabled
-{
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kUseWiFiDownload]) {
-        return YES;
-    } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChanged:) name:kReachabilityChangedNotification object:nil];
-        [self.reachability startNotifier];
-        NetworkStatus status = [self.reachability currentReachabilityStatus];
-        [self.reachability stopNotifier];
-        if (status == ReachableViaWiFi)
-        {
-            return YES;
-        }else{
-            [Util alertWithText:kLocalizedNoWifiConnection];
-            return NO;
-        }
-    }
-    return NO;
-}
-
-
 -(void)downloadAgain
 {
-    if ([self isConnectedToWifiWithSettingEnabled]) {
-        EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
-        [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
-        UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
-        downloadAgainButton.enabled = NO;
-        button.hidden = NO;
-        button.progress = 0;
-        self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
-        NSDebug(@"%@",[Program allProgramNames]);
-        [self downloadWithName:self.duplicateName];
-    }
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+    [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    downloadAgainButton.enabled = NO;
+    button.hidden = NO;
+    button.progress = 0;
+    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
+    NSDebug(@"%@",[Program allProgramNames]);
+    [self downloadWithName:self.duplicateName];
 }
 
 -(void)downloadWithName:(NSString*)name
@@ -442,7 +409,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
-//        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+        //        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
@@ -530,7 +497,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self dismissPopupViewController];
         self.navigationItem.leftBarButtonItem.enabled = YES;
         if (successLogin) {
-                // TODO no trigger because popup is visible
+            // TODO no trigger because popup is visible
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self reportProgram];
             });
@@ -548,18 +515,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self loadProject:self.project];
         [self.view setNeedsDisplay];
     });
-
-}
-
-
-
-#pragma mark NetworkStatus
-- (void)networkStatusChanged:(NSNotification *)notification
-{
-    NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
-    if(remoteHostStatus == ReachableViaWWAN && [[NSUserDefaults standardUserDefaults] boolForKey:kUseWiFiDownload]) {
-        [self stopLoading];
-    }
 }
 
 @end

@@ -26,42 +26,53 @@ import XCTest
 
 final class ChangeVariableBrickTests: XCTestCase {
     
-    func testChangeVariableBrickUserVariablesNil() {
+    var program: Program!
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
+    
+    override func setUp() {
+        program = Program()
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
         
-        let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        spriteNode.position = CGPoint(x: 0, y: 0);
-        object.program = program;
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+        spriteObject.program = program
         
-        let formula = Formula();
-        let formulaTree = FormulaElement();
-        formulaTree.type = ElementType.NUMBER;
-        formulaTree.value = "0";
-        formula.formulaTree = formulaTree;
-        
-        let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
-        
-        let brick = ChangeVariableBrick();
-        brick.variableFormula = formula;
-        
-        let script = Script();
-        script.object = object;
-        brick.script = script;
-        
-        let instruction = brick.instruction();
+        script = Script()
+        script.object = spriteObject
         
         let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+    }
+    
+    func testChangeVariableBrickUserVariablesNil() {
+        spriteNode.position = CGPoint(x: 0, y: 0)
+        
+        let formula = Formula()
+        let formulaTree = FormulaElement()
+        formulaTree.type = ElementType.NUMBER
+        formulaTree.value = "0";
+        formula.formulaTree = formulaTree
+        
+        let varContainer = VariablesContainer()
+        spriteObject.program.variables = varContainer
+        
+        let brick = ChangeVariableBrick()
+        brick.variableFormula = formula
+        brick.script = script
+        
+        let instruction = brick.instruction()
         
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
+            closure(context, scheduler)
         default: break;
         }
         

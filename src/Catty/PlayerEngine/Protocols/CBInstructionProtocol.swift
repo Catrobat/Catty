@@ -23,4 +23,3 @@
 protocol CBInstructionProtocol {
     func instruction() -> CBInstruction
 }
-

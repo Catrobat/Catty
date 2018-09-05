@@ -47,9 +47,9 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBScene *scene = [[CBScene alloc] init];
-    [scene addChild:spriteNode];
-    spriteNode.scenePosition = CGPointMake(0, 0);
+    
+    [self.scene addChild:spriteNode];
+    spriteNode.catrobatPosition = CGPointMake(0, 0);
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;

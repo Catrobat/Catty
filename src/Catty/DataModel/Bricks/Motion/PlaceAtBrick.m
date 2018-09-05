@@ -72,9 +72,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", xPosition, yPosition];
+    return [NSString stringWithFormat:@"PlaceAtBrick"];
 }
 
 #pragma mark - Resources

@@ -23,11 +23,6 @@
 #import "Formula.h"
 #import "Pocket_Code-Swift.h"
 
-@interface Formula()
-@property (nonatomic, strong, readwrite) NSNumber *lastResult;
-@property (nonatomic, strong, readwrite) id bufferedResult;
-@end
-
 @implementation Formula
 
 - (id)initWithInteger:(int)value {
@@ -43,7 +38,6 @@
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
             
         }
-        self.lastResult = nil;
     }
     return self;
 }
@@ -60,7 +54,6 @@
         } else {
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
         }
-        self.lastResult = nil;
     }
     return self;
 }
@@ -73,7 +66,6 @@
     self = [super init];
     if (self) {
         self.formulaTree = formulaTree;
-        self.lastResult = nil;
     }
     return self;
 }
@@ -94,58 +86,9 @@
     return [self initWithInteger:0];
 }
 
-- (void) preCalculateFormulaForSprite:(SpriteObject*)sprite {
-    self.bufferedResult = [self.formulaTree interpretRecursiveForSprite:sprite];
-}
-
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite {
-    return [self interpretDoubleForSprite:sprite andUseCache:YES];
-}
-
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache {
-    if (useCache && self.bufferedResult) {
-        double bufferedResult = 0;
-        if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
-            bufferedResult = [self.bufferedResult doubleValue];
-        }
-        self.bufferedResult = nil;
-        return bufferedResult;
-    }
-    if (useCache && self.lastResult) {
-        return self.lastResult.doubleValue;
-    }
-    
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    double returnDoubleValue = 0.0f;
-    if ([returnValue isKindOfClass:[NSNumber class]]) {
-        returnDoubleValue = [returnValue doubleValue];
-    }
-    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
-    return returnDoubleValue;
-}
-
-- (float)interpretFloatForSprite:(SpriteObject*)sprite
+- (BOOL)isSingularNumber
 {
-    return (float)[self interpretDoubleForSprite:sprite];
-}
-
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite {
-    return (int)[self interpretDoubleForSprite:sprite];
-}
-
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache {
-    return (int)[self interpretDoubleForSprite:sprite andUseCache:useCache];
-}
-
-- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite
-{
-    int result = [self interpretIntegerForSprite:sprite];
-    return result != 0 ? true : false;
-}
-
-- (BOOL)isSingleNumberFormula
-{
-    return [self.formulaTree isSingleNumberFormula];
+    return ([self.formulaTree isSingleNumberFormula] || self.formulaTree.type == STRING) && [self.formulaTree.value doubleValue] == 1.0;
 }
 
 - (void)setRoot:(FormulaElement*)formulaTree
@@ -153,46 +96,6 @@
     self.displayString = nil;
     self.formulaTree = formulaTree;
 }
-
-- (NSString*)interpretString:(SpriteObject*)sprite {
-    if (self.bufferedResult) {
-        double bufferedResult = 0;
-        if ([self.bufferedResult isKindOfClass:[NSNumber class]]) {
-            bufferedResult = [self.bufferedResult doubleValue];
-        } else if ([self.bufferedResult isKindOfClass:[NSString class]]){
-            NSString* returnString = (NSString*)self.bufferedResult;
-            self.bufferedResult = nil;
-            return returnString;
-        }
-        self.bufferedResult = nil;
-        return [NSString stringWithFormat:@"%lf", bufferedResult];
-    }
-    if (self.lastResult) {
-        return [NSString stringWithFormat:@"%lf", self.lastResult.doubleValue];
-    }
-    
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    if([returnValue isKindOfClass:[NSNumber class]]) {
-        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
-        return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
-    } else if ([returnValue isKindOfClass:[NSString class]]){
-        NSString* returnString = (NSString*)returnValue;
-        return returnString;
-    } else{
-        return @"";
-    }
-}
-
-- (id)interpretVariableDataForSprite:(SpriteObject*)sprite {
-    if (self.bufferedResult) {
-        NSNumber* bufferedResult = self.bufferedResult;
-        self.bufferedResult = nil;
-        return bufferedResult;
-    }
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    return returnValue;
-}
-
 
 - (InternFormulaState*)getInternFormulaState {
     return [[self getInternFormula] getInternFormulaState];
@@ -228,40 +131,6 @@
         return YES;
     }
     return NO;
-}
-
-- (NSString *)getResultForComputeDialog:(SpriteObject *)sprite
-{
-    NSString *result;
-    if ([self.formulaTree isLogicalOperator]) {
-        BOOL bool_result = [self interpretBOOLForSprite:sprite];
-        result = bool_result ? @"TRUE" : @"FALSE";	
-    } else if ([self.formulaTree isLogicalFunction]) {
-        double double_result = [self interpretDoubleForSprite:sprite];
-        if (double_result == 0.0f)
-            result = @"FALSE";
-        else
-            result = @"TRUE";
-    } else if(self.formulaTree.type == STRING) {
-        return [self interpretString:sprite];
-    } else {
-        id tempResult = [self.formulaTree interpretRecursiveForSprite:sprite];
-        double double_result = 0.0f;
-        
-        if([tempResult isKindOfClass:[NSString class]])
-        {
-            return tempResult;
-        }
-        if([tempResult isKindOfClass:[NSNumber class]])
-        {
-            double_result = [tempResult doubleValue];
-        }
-        
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        result = [formatter stringFromNumber:[NSNumber numberWithDouble:double_result]];
-    }
-    return result;
 }
 
 #pragma mark - Copy

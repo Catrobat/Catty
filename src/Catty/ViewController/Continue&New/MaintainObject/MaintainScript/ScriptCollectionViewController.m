@@ -84,7 +84,6 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             BluetoothSelection,
                                              UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
@@ -92,6 +91,7 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategoryType;
+@property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
 @implementation ScriptCollectionViewController
@@ -114,6 +114,7 @@
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
+    self.formulaManager = [FormulaManager new];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -151,7 +152,6 @@
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
     [[BrickMoveManager sharedInstance] reset];
 }
-
 
 - (void)showBrickPickerAction:(id)sender
 {
@@ -207,8 +207,7 @@
         
         if (indexPath.item == 0) {
            size =  [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
-        }
-        else {
+        } else {
             size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])];
         }
     }
@@ -750,7 +749,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
     }
 
-    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaData:formulaData];
+    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaData:formulaData andFormulaManager:self.formulaManager];
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;

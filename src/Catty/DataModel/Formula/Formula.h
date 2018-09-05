@@ -32,8 +32,6 @@
 
 @property (nonatomic, strong) FormulaElement *formulaTree;
 @property (nonatomic, weak) NSString *displayString;
-@property (nonatomic, strong, readonly) NSNumber *lastResult;
-@property (nonatomic, strong, readonly) id bufferedResult;
 
 - (id)initWithZero;
 - (id)initWithInteger:(int)value;
@@ -42,17 +40,7 @@
 - (id)initWithString:(NSString*)value;
 - (id)initWithFormulaElement:(FormulaElement*)formulaTree;
 
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite;
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache;
-- (float)interpretFloatForSprite:(SpriteObject*)sprite;
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite;
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite andUseCache:(BOOL)useCache;
-- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
-- (NSString*)interpretString:(SpriteObject*)sprite;
-- (id)interpretVariableDataForSprite:(SpriteObject*)sprite;
-- (void)preCalculateFormulaForSprite:(SpriteObject*)sprite;
-
-- (BOOL)isSingleNumberFormula;
+- (BOOL)isSingularNumber;
 - (BOOL)isEqualToFormula:(Formula*)formula;
 
 - (void)setRoot:(FormulaElement*)formulaTree;
@@ -60,6 +48,5 @@
 - (NSString*)getDisplayString;
 - (InternFormula*)getInternFormula;
 - (void)setDisplayString:(NSString*)text;
-- (NSString*)getResultForComputeDialog:(SpriteObject*)sprite;
 - (NSInteger)getRequiredResources;
 @end

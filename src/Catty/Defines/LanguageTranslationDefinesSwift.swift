@@ -251,7 +251,6 @@ let kLocalizedLoginToReport = NSLocalizedString("Please log in to report this pr
 let kLocalizedName = NSLocalizedString("Name", comment: "")
 let kLocalizedDownloaded = NSLocalizedString("Download sucessful", comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", comment: "")
-let kLocalizedWiFiProgramDownloads = NSLocalizedString("Download only with WiFi", comment: "")
 let kLocalizedNoWifiConnection = NSLocalizedString("Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", comment: "")
 let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
@@ -646,6 +645,7 @@ let kUIFESensorArduinoDigital = NSLocalizedString("arduino_digital", comment: ""
 
 let kLocalizedSensorCompass = NSLocalizedString("compass", comment: "")
 let kLocalizedSensorLocation = NSLocalizedString("location", comment: "")
+let kLocalizedSensorDeviceMotion = NSLocalizedString("device motion-sensor", comment: "")
 let kLocalizedSensorAcceleration = NSLocalizedString("acceleration-sensor", comment: "")
 let kLocalizedSensorRotation = NSLocalizedString("gyro-sensor", comment: "")
 let kLocalizedSensorMagnetic = NSLocalizedString("magnetic-sensor", comment: "")
@@ -658,6 +658,8 @@ let kUIFESensorFaceDetected = NSLocalizedString("face_detected", comment: "")
 let kUIFESensorFaceSize = NSLocalizedString("facesize", comment: "")
 let kUIFESensorFaceX = NSLocalizedString("faceposition_x", comment: "")
 let kUIFESensorFaceY = NSLocalizedString("faceposition_y", comment: "")
+
+let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************

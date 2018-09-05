@@ -205,4 +205,6 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (BOOL)isProductionServerActivated;
 
++ (BOOL)isPhone;
+
 @end

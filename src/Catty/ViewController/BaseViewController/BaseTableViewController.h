@@ -29,7 +29,6 @@
 @property (nonatomic, strong) NSArray *editableSections;
 @property (nonatomic, strong, readonly) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 
 - (void)showPlaceHolder:(BOOL)show;
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath;
@@ -43,11 +42,8 @@
 - (void)changeToEditingMode:(id)sender;
 - (void)changeToMoveMode:(id)sender;
 - (void)exitEditingMode;
-- (void)playSceneAction:(id)sender;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)showLoadingView;
 - (void)hideLoadingView;
-- (void)startSceneWithVC:(ScenePresenterViewController*)vc;
-
+- (void)playSceneAction:(id)sender;
 
 @end

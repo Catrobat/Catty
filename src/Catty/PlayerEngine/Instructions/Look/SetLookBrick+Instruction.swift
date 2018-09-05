@@ -20,16 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension SetLookBrick: CBInstructionProtocol {
+extension SetLookBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
-        if let actionClosure = actionBlock() {
-            return .action(action: SKAction.run(actionClosure))
-        }
-        return .invalidInstruction()
+    func instruction() -> CBInstruction {
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
-    @objc func actionBlock() -> (()->())? {
+    
+    func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }

@@ -30,14 +30,14 @@
             let condition = NSCondition()
             condition.accessibilityHint = "0"
             
-            var speakText = self.formula.interpretString(object)
-            if(Double(speakText!) !=  nil)
+            var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
+            if(Double(speakText) !=  nil)
             {
-                let num = (speakText! as NSString).doubleValue
+                let num = (speakText as NSString).doubleValue
                 speakText = (num as NSNumber).stringValue
             }
             
-            let utterance = AVSpeechUtterance(string: speakText!)
+            let utterance = AVSpeechUtterance(string: speakText)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
             
             let synthesizer = AVSpeechSynthesizer()

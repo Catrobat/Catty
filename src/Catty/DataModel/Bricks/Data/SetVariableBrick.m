@@ -75,8 +75,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
+    return [NSString stringWithFormat:@"SetVariableBrick (Uservariable: %@)", self.userVariable];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

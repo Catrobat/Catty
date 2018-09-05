@@ -43,11 +43,6 @@
     return self.ifCondition;
 }
 
-- (NSArray*)conditions
-{
-    return [self getFormulas];
-}
-
 - (NSArray*)getFormulas
 {
     return @[self.ifCondition];
@@ -80,17 +75,6 @@
     } else {
         return self.brickTitle;
     }
-}
-
-- (BOOL)checkCondition
-{
-    NSDebug(@"Performing: %@", self.description);
-    return [self.ifCondition interpretBOOLForSprite:self.script.object];
-}
-
-- (void)resetCondition
-{
-    // nothing to do
 }
 
 #pragma mark - Description

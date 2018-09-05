@@ -59,7 +59,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetXBrick"];
 }
 
 #pragma mark - Resources

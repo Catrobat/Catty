@@ -398,6 +398,9 @@
 "Device disconnected." = "Device disconnected.";
 
 /* No comment provided by engineer. */
+"device motion-sensor" = "device motion-sensor";
+
+/* No comment provided by engineer. */
 "direction" = "direction";
 
 /* No comment provided by engineer. */
@@ -417,9 +420,6 @@
 
 /* No comment provided by engineer. */
 "Download" = "Download";
-
-/* No comment provided by engineer. */
-"Download only with WiFi" = "Download only with WiFi";
 
 /* No comment provided by engineer. */
 "Download sucessful" = "Download sucessful";
@@ -1617,6 +1617,9 @@
 
 /* No comment provided by engineer. */
 "Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
+
+/* No comment provided by engineer. */
+"Unknown Element" = "Unknown Element";
 
 /* No comment provided by engineer. */
 "Unselect All" = "Unselect All";

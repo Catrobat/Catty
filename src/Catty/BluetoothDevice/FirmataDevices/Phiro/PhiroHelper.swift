@@ -22,15 +22,16 @@
 
 import Foundation
 
-class PhiroHelper {
+@objc class PhiroHelper: NSObject {
+    
+    static var defaultSensor = PhiroFrontLeftSensor.self
+    
     var frontLeftSensor:Int = 0;
     var frontRightSensor:Int = 0;
     var sideLeftSensor:Int = 0;
     var sideRightSensor:Int = 0;
     var bottomLeftSensor:Int = 0;
     var bottomRightSensor:Int = 0;
-    
-    
     
     func didReceiveAnalogMessage(_ pin:Int,value:Int){
         switch (pin) {
@@ -56,6 +57,56 @@ class PhiroHelper {
         default: break
             //NOT USED SENSOR
         }
+    }
+    
+    @objc static func sensorTags() -> [String] {
+        var tags = [String]()
         
+        for sensor in sensors() {
+            tags.append(sensor.tag)
+        }
+        
+        return tags
+    }
+    
+    @objc static func defaultTag() -> String {
+        return defaultSensor.tag
+    }
+    
+    @objc static func pinNumber(tag: String) -> Int {
+        guard let sensor = sensor(tag: tag) else { return defaultSensor.pinNumber }
+        return sensor.pinNumber
+    }
+    
+    @objc static func tag(pinNumber: Int) -> String {
+        guard let sensor = sensor(pinNumber: pinNumber) else { return defaultSensor.tag }
+        return sensor.tag
+    }
+    
+    static func sensor(tag: String) -> PhiroSensor.Type? {
+        for sensor in sensors() {
+            if sensor.tag == tag {
+                return sensor
+            }
+        }
+        return nil
+    }
+    
+    static func sensor(pinNumber: Int) -> PhiroSensor.Type? {
+        for sensor in sensors() {
+            if sensor.pinNumber == pinNumber {
+                return sensor
+            }
+        }
+        return nil
+    }
+    
+    static func sensors() -> [PhiroSensor.Type] {
+        return [PhiroSideLeftSensor.self,
+                PhiroSideRightSensor.self,
+                PhiroFrontLeftSensor.self,
+                PhiroFrontRightSensor.self,
+                PhiroBottomLeftSensor.self,
+                PhiroBottomLeftSensor.self]
     }
 }

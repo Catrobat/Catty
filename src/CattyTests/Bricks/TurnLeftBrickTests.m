@@ -34,7 +34,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
@@ -62,12 +61,11 @@
 
 - (void)turnLeftWithInitialRotation:(CGFloat)initialRotation andRotation:(CGFloat)rotation
 {
-    rotation = fmodf(rotation, 360.0f);
-    
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.rotation = initialRotation;
+    
+    spriteNode.catrobatRotation = initialRotation;
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -75,18 +73,13 @@
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
     brick.script = script;
     
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = [NSString stringWithFormat:@"%f", rotation];
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithFloat:rotation];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
-    CGFloat expectedRotation = initialRotation - rotation;
-    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.rotation, 0.0001, @"TurnLeftBrick not correct");
+    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:(initialRotation - rotation) for: object];
+    XCTAssertEqualWithAccuracy(expectedRawRotation, spriteNode.zRotation, 0.0001, @"TurnLeftBrick not correct");
 }
 
 @end

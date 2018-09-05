@@ -33,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
@@ -47,27 +46,20 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = 10;
-    spriteNode.yScale = 10;
+    spriteNode.catrobatSize = 10.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
     ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
+    
+    brick.size = [[Formula alloc] initWithInteger:30];
 
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"30";
-    size.formulaTree = formulaTree;
-    brick.size = size;
-
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
-    XCTAssertEqualWithAccuracy([spriteNode scaleX], 1030.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy([spriteNode scaleY], 1030.0f, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(40.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 - (void)testChangeSizeByNBrickNegative
@@ -75,8 +67,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = 10;
-    spriteNode.yScale = 10;
+    spriteNode.catrobatSize = 50.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -84,18 +75,12 @@
     ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
 
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-30";
-    size.formulaTree = formulaTree;
-    brick.size = size;
+    brick.size = [[Formula alloc] initWithInteger:-30];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
-    XCTAssertEqualWithAccuracy(spriteNode.scaleX, 970.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy(spriteNode.scaleY, 970.0f, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 - (void)testChangeSizeByNBrickWrongInput
@@ -103,8 +88,7 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.xScale = 10;
-    spriteNode.yScale = 10;
+    spriteNode.catrobatSize = 10.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -112,18 +96,12 @@
     ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
 
-    Formula *size = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    size.formulaTree = formulaTree;
-    brick.size = size;
+    brick.size = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
 
-    XCTAssertEqualWithAccuracy([spriteNode scaleX], 1000.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy([spriteNode scaleY], 1000.0f, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
 @end

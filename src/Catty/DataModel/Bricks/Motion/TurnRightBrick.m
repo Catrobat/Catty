@@ -58,7 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"TurnRight (%f degrees)", [self.degrees interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"TurnRightBrick"];
 }
 
 #pragma mark - Resources

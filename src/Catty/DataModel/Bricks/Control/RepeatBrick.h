@@ -29,5 +29,6 @@
 @interface RepeatBrick : LoopBeginBrick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *timesToRepeat;
+@property (nonatomic, assign) int loopCount;
 
 @end

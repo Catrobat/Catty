@@ -45,7 +45,7 @@
         [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopBeginBrick but \
          got %@", NSStringFromClass([openingNestingBrick class])];
     }
-    loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    loopEndBrick.loopBeginBrick = (LoopBeginBrick<CBConditionProtocol>*)openingNestingBrick;
     LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
     loopBeginBrick.loopEndBrick = loopEndBrick;
     return loopEndBrick;

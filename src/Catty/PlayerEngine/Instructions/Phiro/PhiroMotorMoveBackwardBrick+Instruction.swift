@@ -28,7 +28,7 @@ import Foundation
         guard let object = self.script?.object
             else { fatalError("This should never happen!") }
         return CBInstruction.execClosure { (context, _) in
-            let speedValue:Int = Int(self.formula.interpretInteger(forSprite: object))
+            let speedValue = context.formulaInterpreter.interpretInteger(self.formula, for: object)
             
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else{
                 return

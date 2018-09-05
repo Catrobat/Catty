@@ -37,7 +37,8 @@ final class WaitBrickTests: XCTestCase {
         logger = CBLogger(name: "Logger");
         
         spriteObject = SpriteObject();
-        spriteNode = CBSpriteNode();
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteNode.name = "SpriteNode";
         spriteNode.spriteObject = spriteObject;
         spriteObject.spriteNode = spriteNode;
@@ -79,10 +80,12 @@ final class WaitBrickTests: XCTestCase {
     
     func measureExecutionTime(instruction: CBInstruction) -> Double {
         let start = NSDate()
+        let formulaInterpreter = FormulaManager()
+        let scheduler = CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger), formulaInterpreter: formulaInterpreter)
        
         switch instruction {
             case let .waitExecClosure(closure):
-                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode)!, CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger)))
+                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: formulaInterpreter)!, scheduler)
             default: break
         }
         

@@ -26,7 +26,6 @@
 @interface CameraPreviewHandler : NSObject <UIGestureRecognizerDelegate>
 
 + (instancetype)shared;
-+ (void)resetSharedInstance;
 
 @property (readonly, nonatomic) UIView* camView;
 @property (readonly, nonatomic) AVCaptureDevicePosition cameraPosition;
@@ -35,6 +34,7 @@
 - (void)startCameraPreview;
 - (void)stopCamera;
 - (void)switchCameraPositionTo:(AVCaptureDevicePosition)position;
+- (void)reset;
 - (AVCaptureSession*)getSession;
 
 @end

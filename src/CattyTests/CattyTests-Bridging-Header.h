@@ -25,3 +25,5 @@
 //
 
 #import "Catty-Bridging-Header.h"
+
+#import "ProgramMock.h"

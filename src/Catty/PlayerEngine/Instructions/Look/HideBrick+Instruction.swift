@@ -23,9 +23,9 @@
 @objc extension HideBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode

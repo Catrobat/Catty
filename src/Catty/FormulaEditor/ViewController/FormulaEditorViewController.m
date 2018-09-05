@@ -47,7 +47,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
-
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCellFormulaData *brickCellData;
 
@@ -96,13 +95,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
 @end
 
-
-
 @implementation FormulaEditorViewController
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager
 {
     self = [super init];
     
@@ -110,6 +107,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setBrickCellFormulaData:brickCellData];
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
         [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+        
+        self.formulaManager = formulaManager;
     }
     
     return self;
@@ -118,6 +117,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self.formulaEditorTextView];
+    self.formulaManager = nil;
 }
 
 - (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
@@ -138,9 +138,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andForce:(BOOL)forceChange
-
 {
-    InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+    InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+    
     Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
     [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
     FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
@@ -192,8 +192,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
-    [self initObjectView];
-    [self initSensorView];
+    
+    
+    [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
+    [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
+    [self.normalTypeButton addObjectsFromArray:[self initSensorSectionWithScrollView:self.sensorScrollView buttonHeight:self.calcButton.frame.size.height]];
+    
     [self initSegmentedControls];
     [self colorFormulaEditor];
     [self hideScrollViews];
@@ -304,142 +308,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.varOrListSegmentedControl.tintColor = [UIColor globalTintColor];
 }
 
-#pragma mark initObjectView
--(void)initObjectView
-{
-    NSInteger buttonCount = 0;
-    NSMutableArray<NSNumber*> *sensorArray = [NSMutableArray arrayWithObjects:
-                                              [NSNumber numberWithInteger:OBJECT_X],
-                                              [NSNumber numberWithInteger:OBJECT_Y],
-                                              [NSNumber numberWithInteger:OBJECT_GHOSTEFFECT],
-                                              [NSNumber numberWithInteger:OBJECT_BRIGHTNESS],
-                                              [NSNumber numberWithInteger:OBJECT_COLOR],
-                                              nil];
-    if (self.object.isBackground) {
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_BACKGROUND_NUMBER]];
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_BACKGROUND_NAME]];
-    } else {
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_LOOK_NUMBER]];
-        [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_LOOK_NAME]];
-    }
-    
-    [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_SIZE]];
-    [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_ROTATION]];
-    [sensorArray addObject:[NSNumber numberWithInteger:OBJECT_LAYER]];
-    
-    UIView* topAnchorView = nil;
-    for (NSNumber *tag in sensorArray) {
-        NSString *title = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[tag integerValue]]];
-        topAnchorView = [self addButtonToScrollView:self.objectScrollView withTag:[tag integerValue] andTitle:title andTopAnchor:topAnchorView];
-        buttonCount++;
-    }
-    
-    self.objectScrollView.frame = CGRectMake(self.objectScrollView.frame.origin.x, self.objectScrollView.frame.origin.y, self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-    self.objectScrollView.contentSize = CGSizeMake(self.objectScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-}
-
-#pragma mark initSensorView
--(void)initSensorView
-{
-    NSInteger buttonCount = 0;
-    NSMutableArray<NSNumber*> *sensorArray = [NSMutableArray arrayWithObjects:
-                     [NSNumber numberWithInteger:X_INCLINATION],
-                     [NSNumber numberWithInteger:Y_INCLINATION],
-                     [NSNumber numberWithInteger:X_ACCELERATION],
-                     [NSNumber numberWithInteger:Y_ACCELERATION],
-                     [NSNumber numberWithInteger:Z_ACCELERATION],
-                     [NSNumber numberWithInteger:COMPASS_DIRECTION],
-                     [NSNumber numberWithInteger:LATITUDE],
-                     [NSNumber numberWithInteger:LONGITUDE],
-                     [NSNumber numberWithInteger:LOCATION_ACCURACY],
-                     [NSNumber numberWithInteger:ALTITUDE],
-                     [NSNumber numberWithInteger:FINGER_TOUCHED],
-                     [NSNumber numberWithInteger:FINGER_X],
-                     [NSNumber numberWithInteger:FINGER_Y],
-                     [NSNumber numberWithInteger:LAST_FINGER_INDEX],
-                     [NSNumber numberWithInteger:LOUDNESS],
-                     [NSNumber numberWithInteger:DATE_YEAR],
-                     [NSNumber numberWithInteger:DATE_MONTH],
-                     [NSNumber numberWithInteger:DATE_DAY],
-                     [NSNumber numberWithInteger:DATE_WEEKDAY],
-                     [NSNumber numberWithInteger:TIME_HOUR],
-                     [NSNumber numberWithInteger:TIME_MINUTE],
-                     [NSNumber numberWithInteger:TIME_SECOND],
-                     nil];
-    
-    NSArray<NSNumber*> *functionSensorArray = [NSArray arrayWithObjects:
-                                               [NSNumber numberWithInteger:MULTI_FINGER_TOUCHED],
-                                               [NSNumber numberWithInteger:MULTI_FINGER_X],
-                                               [NSNumber numberWithInteger:MULTI_FINGER_Y],
-                                               nil];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseFaceDetectionSensors]) {
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_DETECTED]];
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_SIZE]];
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_POSITION_X]];
-        [sensorArray addObject: [NSNumber numberWithInteger:FACE_POSITION_Y]];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_front_left]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_front_right]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_side_left]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_side_right]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_bottom_left]];
-        [sensorArray addObject: [NSNumber numberWithInteger:phiro_bottom_left]];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
-        [sensorArray addObject: [NSNumber numberWithInteger:arduino_analogPin]];
-        [sensorArray addObject: [NSNumber numberWithInteger:arduino_digitalPin]];
-    }
-    
-    UIView* topAnchorView = nil;
-    for (NSNumber *tag in sensorArray) {
-        NSString *title = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[tag integerValue]]];
-        topAnchorView = [self addButtonToScrollView:self.sensorScrollView withTag:[tag integerValue] andTitle:title andTopAnchor:topAnchorView];
-        buttonCount++;
-    }
-    
-    for (NSNumber *tag in functionSensorArray) {
-        NSString *title = [[Functions getExternName:[Functions getName:(Function)[tag integerValue]]] stringByAppendingString:@"(1)"];
-        topAnchorView = [self addButtonToScrollView:self.sensorScrollView withTag:[tag integerValue] andTitle:title andTopAnchor:topAnchorView];
-        buttonCount++;
-    }
-    
-    self.sensorScrollView.frame = CGRectMake(self.sensorScrollView.frame.origin.x, self.sensorScrollView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-    self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollView.frame.size.width, buttonCount * self.calcButton.frame.size.height);
-}
-
--(UIButton*)addButtonToScrollView:(UIScrollView*)scrollView withTag:(NSInteger)tag andTitle:(NSString*)title andTopAnchor:(UIView*)topAnchorView
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [button addTarget:self
-               action:@selector(buttonPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    button.tag = tag;
-    button.titleLabel.font = [UIFont systemFontOfSize:18.0f];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    [scrollView addSubview:button];
-    
-    if (topAnchorView == nil) {
-        [button.topAnchor constraintEqualToAnchor:scrollView.topAnchor constant: 0].active = YES;
-    } else {
-        [button.topAnchor constraintEqualToAnchor:topAnchorView.bottomAnchor constant: 0].active = YES;
-    }
-    
-    [button.heightAnchor constraintEqualToAnchor:self.calcButton.heightAnchor constant:0].active = YES;
-    [button.widthAnchor constraintEqualToAnchor:scrollView.widthAnchor constant:0].active = YES;
-    [button.leadingAnchor constraintEqualToAnchor:scrollView.leadingAnchor constant:0].active = YES;
-    
-    [self.normalTypeButton addObject:button];
-    return button;
-}
-
 #pragma mark - localizeView
 - (void)localizeView
 {
@@ -491,11 +359,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-//3011 for string
-
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
+    [self handleInput];
+}
+
+- (void)handleInput
+{
     NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
@@ -563,17 +434,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)compute:(id)sender
 {
     if (self.internFormula != nil) {
-        InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+        InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+        
         Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
-        NSString *computedString;
-
+        
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
-                
-                computedString = [formula getResultForComputeDialog:brick.script.object];
-                [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
-
+                [self showComputeDialog:formula andSpriteObject:brick.script.object];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
                 [self showFormulaTooLongView];
@@ -584,8 +452,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     if (![brick allowsStringFormula]) {
                         [self showSyntaxErrorView];
                     } else {
-                        computedString = [formula getResultForComputeDialog:brick.script.object];
-                        [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
+                        [self showComputeDialog:formula andSpriteObject:brick.script.object];
                     }
                 }
                 
@@ -596,6 +463,31 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 break;
         }
     }
+}
+
+- (void)showComputeDialog:(Formula*)formula andSpriteObject:(SpriteObject*)spriteObject
+{
+    [self.formulaManager setupForFormula:formula];
+    
+    NSString *computedString = [self interpretFormula:formula forSpriteObject:spriteObject];
+    [self showNotification:computedString andDuration:kFormulaEditorShowResultDuration];
+    
+    [self.formulaManager stop];
+}
+
+- (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject {
+    id result = [self.formulaManager interpret:formula forSpriteObject:spriteObject];
+    
+    if ([result isKindOfClass:[NSString class]]) {
+        return result;
+    }
+    if ([result isKindOfClass:[NSNumber class]]) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        return [formatter stringFromNumber:result];
+    }
+    
+    return @"";
 }
 
 #pragma mark - UI
@@ -709,7 +601,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
-            InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+            InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+            
             Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
             FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
