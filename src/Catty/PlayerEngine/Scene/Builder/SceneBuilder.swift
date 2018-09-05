@@ -23,36 +23,20 @@
 @objc final class SceneBuilder: NSObject {
     
     private var program: Program
-    private var scheduler: CBSchedulerProtocol
-    private var frontend: CBFrontendProtocol
-    private var backend: CBBackendProtocol
-    private var broadcastHandler: CBBroadcastHandler
-    private var formulaManager: FormulaManagerProtocol
     private var logger: CBLogger
     private var size: CGSize
+    private var scheduler: CBSchedulerProtocol?
+    private var frontend: CBFrontendProtocol?
+    private var backend: CBBackendProtocol?
+    private var broadcastHandler: CBBroadcastHandler?
+    private var formulaManager: FormulaManagerProtocol?
     
     @objc init(program: Program) {
         self.program = program
         
-        guard
-            let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID),
-            let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID),
-            let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID),
-            let backendLogger = Swell.getLogger(LoggerConfig.PlayerBackendID),
-            let bcHandlerLogger = Swell.getLogger(LoggerConfig.PlayerBroadcastHandlerID)
-            else { preconditionFailure() }
+        guard let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID) else { preconditionFailure() }
         
         self.logger = sceneLogger
-        self.formulaManager = FormulaManager()
-        self.broadcastHandler = CBBroadcastHandler(logger: bcHandlerLogger)
-        
-        self.scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
-        broadcastHandler.scheduler = scheduler
-        
-        self.frontend = CBFrontend(logger: frontendLogger, program: program)
-        frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
-        
-        self.backend = CBBackend(logger: backendLogger) // setup backend
         
         self.size = CGSize(
             width: CGFloat(program.header.screenWidth.floatValue),
@@ -80,17 +64,68 @@
         return self
     }
     
-    func withFormulaManager(formulaManager: FormulaManagerProtocol) -> Self {
+    @objc(andFormulaManager:)
+    func withFormulaManager(formulaManager: FormulaManager) -> Self {
         self.formulaManager = formulaManager
         return self
     }
     
-    @objc func withSize(size: CGSize) -> Self {
+    @objc(andSize:)
+    func withSize(size: CGSize) -> Self {
         self.size = size
         return self
     }
     
     @objc func build() -> CBScene {
+        let formulaManager = getFormulaManager()
+        let frontend = getFrontend()
+        let backend = getBackend()
+        let broadcastHandler = getBroadcastHandler()
+        let scheduler = getScheduler(broadcastHandler: broadcastHandler, formulaInterpreter: formulaManager)
+        
         return CBScene(size: size, logger: logger, scheduler: scheduler, frontend: frontend, backend: backend, broadcastHandler: broadcastHandler, formulaManager: formulaManager)
+    }
+    
+    private func getFormulaManager() -> FormulaManagerProtocol {
+        guard let formulaManager = self.formulaManager else {
+            return FormulaManager()
+        }
+        return formulaManager
+    }
+    
+    private func getBroadcastHandler() -> CBBroadcastHandler {
+        guard let broadcastHandler = self.broadcastHandler else {
+            guard let bcHandlerLogger = Swell.getLogger(LoggerConfig.PlayerBroadcastHandlerID) else { preconditionFailure() }
+            return CBBroadcastHandler(logger: bcHandlerLogger)
+        }
+        return broadcastHandler
+    }
+    
+    private func getFrontend() -> CBFrontendProtocol {
+        guard let frontend = self.frontend else {
+            guard let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID) else { preconditionFailure() }
+            let frontend = CBFrontend(logger: frontendLogger, program: program)
+            frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
+            return frontend
+        }
+        return frontend
+    }
+    
+    private func getBackend() -> CBBackendProtocol {
+        guard let backend = self.backend else {
+            guard let backendLogger = Swell.getLogger(LoggerConfig.PlayerBackendID) else { preconditionFailure() }
+            return CBBackend(logger: backendLogger)
+        }
+        return backend
+    }
+    
+    private func getScheduler(broadcastHandler: CBBroadcastHandler, formulaInterpreter: FormulaInterpreterProtocol) -> CBSchedulerProtocol {
+        guard let scheduler = self.scheduler else {
+            guard let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID) else { preconditionFailure() }
+            let scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+            broadcastHandler.scheduler = scheduler
+            return scheduler
+        }
+        return scheduler
     }
 }

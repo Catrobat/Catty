@@ -25,11 +25,13 @@
 
 @protocol SpriteManagerDelegate;
 @class Program;
+@class FormulaManager;
 @class LoadingView;
 
 @interface ScenePresenterViewController : UIViewController
 
 @property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) FormulaManager *formulaManager;
 
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic, weak) UIButton* backButton;

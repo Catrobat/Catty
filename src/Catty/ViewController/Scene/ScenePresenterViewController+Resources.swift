@@ -25,7 +25,10 @@ import BluetoothHelper
 
 @objc extension ScenePresenterViewController {
     
-    @objc func checkResourcesAndPushTo(navigationController: UINavigationController) -> Void {
+    @objc(checkResourcesAndPushViewControllerTo:)
+    func checkResourcesAndPushViewControllerTo(navigationController: UINavigationController) -> Void {
+        self.formulaManager = FormulaManager()
+        
         navigationController.view.addSubview(self.loadingView)
         self.showLoadingView()
         
@@ -43,9 +46,8 @@ import BluetoothHelper
         }
     }
     
-    @nonobjc func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
+    @nonobjc private func notifyUserAboutUnavailableResources(navigationController: UINavigationController) -> Bool {
         let requiredResources = program.getRequiredResources()
-        let formulaManager = FormulaManager()
         
         // Bluetooth
         var unconnectedBluetoothDevices = [BluetoothDeviceID]()
@@ -112,7 +114,7 @@ import BluetoothHelper
         return true
     }
     
-    @nonobjc func bluetoothDevicesUnconnected(navigationController: UINavigationController, bluetoothDevices: [BluetoothDeviceID]) -> Void {
+    @nonobjc private func bluetoothDevicesUnconnected(navigationController: UINavigationController, bluetoothDevices: [BluetoothDeviceID]) -> Void {
         let intDevices = bluetoothDevices.map { $0.rawValue }
         
         if CentralManager.sharedInstance.state == ManagerState.poweredOn || CentralManager.sharedInstance.state == ManagerState.unknown {
@@ -130,7 +132,7 @@ import BluetoothHelper
         }
     }
     
-    @nonobjc func continueWithoutRequiredResources(navigationController: UINavigationController) {
+    @nonobjc private func continueWithoutRequiredResources(navigationController: UINavigationController) {
         navigationController.pushViewController(self, animated: true)
     }
 }

@@ -99,7 +99,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager
 {
     self = [super init];
     
@@ -108,7 +108,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
         [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
         
-        self.formulaManager = [FormulaManager new];
+        self.formulaManager = formulaManager;
     }
     
     return self;

@@ -46,7 +46,7 @@
 @property (strong, nonatomic) FormulaManager *formulaManager;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 
-- (id)initWithBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andFormulaManager:(FormulaManager*)formulaManager;
 - (void)setBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;

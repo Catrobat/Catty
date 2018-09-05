@@ -119,7 +119,7 @@
 
 - (void)playSceneAction:(id)sender
 {
-    [self.scenePresenterViewController checkResourcesAndPushToNavigationController:self.navigationController];
+    [self.scenePresenterViewController checkResourcesAndPushViewControllerTo:self.navigationController];
 }
 
 #pragma mark - Setup Toolbar
