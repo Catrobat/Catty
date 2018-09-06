@@ -28,8 +28,8 @@ protocol SelectedChartProgramsDataSource: class {
     func selectedCell(dataSource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
     func scrollViewHandler()
     func errorAlertHandler(error: StoreProgramDownloaderError)
-    func showLoadingIndicator()
-    func hideLoadingIndicator()
+    func showLoadingIndicator(_ inTableFooter: Bool)
+    func hideLoadingIndicator(_ inTableFooter: Bool)
 }
 
 class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
@@ -55,6 +55,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
     var mostRecentScrollViewOffset = CGPoint(x: 0.0, y: 0.0)
     
     var scrollView = UIScrollView()
+    var isReloadingData: Bool = false
     
     var programs: [StoreProgram] {
         switch programType {
@@ -157,8 +158,11 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: kImageCell, for: indexPath)
         if let cell = cell as? ChartProgramCell {
             cell.tag = indexPath.row
-            if programs.isEmpty == false {
+            if programs.isEmpty == false && indexPath.row < self.programs.count {
                 cell.chartImage = nil
+                cell.chartTitle = programs[indexPath.row].projectName
+                cell.program = programs[indexPath.row]
+                
                 DispatchQueue.global().async {
                     guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
                     guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
@@ -169,10 +173,6 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
                         guard cell.tag == indexPath.row else { return }
                         cell.chartImage = UIImage(data: data)
                     }
-                }
-                if indexPath.row < self.programs.count {
-                    cell.chartTitle = programs[indexPath.row].projectName
-                    cell.program = programs[indexPath.row]
                 }
             }
         }
@@ -188,9 +188,9 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()
-            self.delegate?.hideLoadingIndicator()
+            self.delegate?.hideLoadingIndicator(false)
         }
-        self.delegate?.showLoadingIndicator()
+        self.delegate?.showLoadingIndicator(false)
         
         self.downloader.downloadProgram(for: cellProgram) { program, error in
             guard timer.isValid else { return }
@@ -198,7 +198,7 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
             cell.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
             timer.invalidate()
-            self.delegate?.hideLoadingIndicator()
+            self.delegate?.hideLoadingIndicator(false)
         }
     }
     
@@ -219,10 +219,16 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         let checkPoint = Float(scrollView.contentSize.height - TableUtil.heightForImageCell())
         let currentViewBottomEdge = Float(scrollView.contentOffset.y + scrollView.frame.size.height)
         
-        if currentViewBottomEdge >= checkPoint {
+        if currentViewBottomEdge >= checkPoint && !isReloadingData {
+            self.delegate?.showLoadingIndicator(true)
+            self.isReloadingData = true
+            
             self.fetchItems(type: self.programType) { error in
+                self.delegate?.hideLoadingIndicator(true)
+                self.isReloadingData = false
                 if error != nil {
                     self.delegate?.errorAlertHandler(error: error!)
+                    self.delegate = nil
                 }
             }
             self.delegate?.scrollViewHandler()
