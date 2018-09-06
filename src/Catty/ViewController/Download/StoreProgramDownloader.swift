@@ -29,9 +29,8 @@ protocol StoreProgramDownloaderProtocol {
 final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
     
     let session: URLSession
-    var timers = [TimerWithBlock]()
     
-    init(session: URLSession = URLSession.shared) {
+    init(session: URLSession = StoreProgramDownloader.defaultSession()) {
         self.session = session
     }
     
@@ -39,19 +38,9 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         
         guard let indexURL = URL(string: String(format: "%@/%@?q=%@&%@%i&%@%i&%@%@", kConnectionHost, kConnectionSearch, searchTerm.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "", kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0, kMaxVersion, Util.catrobatLanguageVersion())) else { return }
         
-        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
-            self.session.invalidateAndCancel()
-            self.timers.forEach{b in b.invalidate() }
-            self.timers.removeAll()
-            completion(nil, .timeout)
-        }
-        timers += timer
-        
         self.session.dataTask(with: indexURL) { (data, response, error) in
-            guard timer.isValid else { return }
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionNumber?, error: StoreProgramDownloaderError?)
             handleDataTaskCompletion = { (data, response, error) in
-                timer.invalidate()
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
                 let items: StoreProgramCollection.StoreProgramCollectionNumber?
@@ -91,23 +80,18 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             guard let url = URL(string: "\(kConnectionHost)/\(kConnectionRecent)?\(kProgramsOffset)\(offset)\(kProgramsLimit)\(kRecentProgramsMaxResults)&\(kMaxVersion)\(version)") else { return }
             indexURL = url
         }
-
-        let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
-            self.session.invalidateAndCancel()
-            self.timers.forEach{b in b.invalidate() }
-            self.timers.removeAll()
-            completion(nil, .timeout)
-        }
-        timers += timer
         
         self.session.dataTask(with: indexURL) { (data, response, error) in
-            
-            guard timer.isValid else { return }
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionText?, error: StoreProgramDownloaderError?)
             handleDataTaskCompletion = { (data, response, error) in
-                timer.invalidate()
+                if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
+                    return (nil, .timeout)
+                }
+                
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
-                guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
+                guard let data = data, response.statusCode == 200, error == nil else {
+                    return (nil, .request(error: error, statusCode: response.statusCode))
+                }
                 let items: StoreProgramCollection.StoreProgramCollectionText?
                 do {
                     items = try JSONDecoder().decode(StoreProgramCollection.StoreProgramCollectionText.self, from: data)
@@ -146,6 +130,12 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
                 completion(result.program, result.error)
             }
             }.resume()
+    }
+    
+    static func defaultSession() -> URLSession {
+        let config = URLSessionConfiguration.ephemeral
+        config.timeoutIntervalForRequest = Double(kConnectionTimeout)
+        return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }
 }
 

@@ -162,11 +162,13 @@ class ChartProgramsStoreViewController: UIViewController, SelectedChartProgramsD
             message = kLocalizeChartProgramsLoadFailureMessage
         }
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            self.present(alertController, animated: true, completion: nil)
         }
-        self.present(alertController, animated: true, completion: nil)
     }
     
     func loadingViewHandlerAfterFetchData() {
@@ -224,24 +226,35 @@ extension ChartProgramsStoreViewController {
     func errorAlertHandler(error: StoreProgramDownloaderError) {
         self.shouldHideLoadingView = true
         self.hideLoadingView()
-        DispatchQueue.global().async {
-            self.showConnectionIssueAlertAndDismiss(error: error)
-        }
+        self.showConnectionIssueAlertAndDismiss(error: error)
         self.chartProgramsTableView.separatorStyle = .singleLine
         return
     }
     
-    func showLoadingIndicator() {
+    func showLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
-            self.shouldHideLoadingView = false
-            self.showLoadingView()
+            if inTableFooter {
+                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                spinner.startAnimating()
+                spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: self.chartProgramsTableView.bounds.width, height: CGFloat(44))
+                
+                self.chartProgramsTableView.tableFooterView = spinner
+                self.chartProgramsTableView.tableFooterView?.isHidden = false
+            } else {
+                self.shouldHideLoadingView = false
+                self.showLoadingView()
+            }
         }
     }
     
-    func hideLoadingIndicator() {
+    func hideLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
-            self.shouldHideLoadingView = true
-            self.hideLoadingView()
+            if inTableFooter {
+                self.chartProgramsTableView.tableFooterView?.isHidden = true
+            } else {
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
+            }
         }
     }
 }
