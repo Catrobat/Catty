@@ -124,12 +124,10 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
                 title = kLocalizedFeaturedProgramsLoadFailureTitle
                 message = kLocalizedFeaturedProgramsLoadFailureMessage
         }
-        
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(title: buttonTitle, style: .default) { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
-        }
-        self.present(alertController, animated: true, completion: nil)
+
+        AlertControllerBuilder.alert(title: title, message: message)
+            .addDefaultAction(title: buttonTitle) { self.navigationController?.popViewController(animated: true) }.build()
+            .showWithController(self)
     }
     
     func showLoadingView() {
