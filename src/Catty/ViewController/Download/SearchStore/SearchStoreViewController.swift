@@ -220,17 +220,31 @@ extension SearchStoreViewController {
         return
     }
     
-    func showLoadingIndicator() {
+
+    func showLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
-            self.shouldHideLoadingView = false
-            self.showLoadingView()
+            if inTableFooter {
+                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                spinner.startAnimating()
+                spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: self.searchStoreTableView.bounds.width, height: CGFloat(44))
+                
+                self.searchStoreTableView.tableFooterView = spinner
+                self.searchStoreTableView.tableFooterView?.isHidden = false
+            } else {
+                self.shouldHideLoadingView = false
+                self.showLoadingView()
+            }
         }
     }
     
-    func hideLoadingIndicator() {
+    func hideLoadingIndicator(_ inTableFooter: Bool = false) {
         DispatchQueue.main.async {
-            self.shouldHideLoadingView = true
-            self.hideLoadingView()
+            if inTableFooter {
+                self.searchStoreTableView.tableFooterView?.isHidden = true
+            } else {
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
+            }
         }
     }
 }

@@ -31,8 +31,8 @@ protocol SelectedSearchStoreDataSource: class {
     func hideNoResultsAlert()
     func updateTableView()
     func errorAlertHandler(error: StoreProgramDownloaderError)
-    func showLoadingIndicator()
-    func hideLoadingIndicator()
+    func showLoadingIndicator(_ inTableFooter: Bool)
+    func hideLoadingIndicator(_ inTableFooter: Bool)
 }
 
 class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -47,6 +47,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     var baseUrl = ""
     
     var searchBar = UISearchBar()
+    var isReloadingData: Bool = false
     
     // MARK: - Initializer
     
@@ -92,7 +93,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: kSearchCell, for: indexPath)
         if let cell = cell as? SearchStoreCell {
             cell.tag = indexPath.row
-            if programs.isEmpty == false {
+            if programs.isEmpty == false && indexPath.row < self.programs.count {
                 DispatchQueue.global().async {
                     if indexPath.row < self.programs.count {
                         guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
@@ -100,6 +101,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                         if let data = try? Data(contentsOf: imageUrl) {
                             DispatchQueue.main.async {
                                 guard cell.tag == indexPath.row else { return }
+                                guard indexPath.row <= self.programs.count else { return }
                                 cell.searchImage = UIImage(data: data)
                                 cell.searchTitle = self.programs[indexPath.row].projectName
                                 cell.program = self.programs[indexPath.row]
@@ -120,9 +122,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()
-            self.delegate?.hideLoadingIndicator()
+            self.delegate?.hideLoadingIndicator(false)
         }
-        self.delegate?.showLoadingIndicator()
+        self.delegate?.showLoadingIndicator(false)
         
         guard let cellProgram = cell?.program else { return }
         self.downloader.downloadProgram(for: cellProgram) { program, error in
@@ -132,7 +134,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
             cell.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
             timer.invalidate()
-            self.delegate?.hideLoadingIndicator()
+            self.delegate?.hideLoadingIndicator(false)
         }
     }
     
