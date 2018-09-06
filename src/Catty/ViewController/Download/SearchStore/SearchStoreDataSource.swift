@@ -101,7 +101,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                         if let data = try? Data(contentsOf: imageUrl) {
                             DispatchQueue.main.async {
                                 guard cell.tag == indexPath.row else { return }
-                                guard indexPath.row <= self.programs.count else { return }
+                                guard indexPath.row < self.programs.count else { return }
                                 cell.searchImage = UIImage(data: data)
                                 cell.searchTitle = self.programs[indexPath.row].projectName
                                 cell.program = self.programs[indexPath.row]
