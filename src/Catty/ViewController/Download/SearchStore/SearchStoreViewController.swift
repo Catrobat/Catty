@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource {
+class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchStoreTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -129,7 +129,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         self.searchStoreTableView.separatorColor = UIColor.globalTint()
         self.searchStoreTableView.dataSource = self.dataSource
         self.searchStoreTableView.delegate = self.dataSource
-        self.searchBar.delegate  = self.dataSource
+        self.searchBar.delegate  = self
     }
     
     func loadingViewHandlerAfterFetchData() {
@@ -137,8 +137,7 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
             self.showLoadingView()
             self.shouldHideLoadingView = true
             self.hideLoadingView()
-        }
-        else {
+        } else {
             self.shouldHideLoadingView = true
             self.hideLoadingView()
             loadingViewFlag = false
@@ -166,6 +165,37 @@ class SearchStoreViewController: UIViewController, SelectedSearchStoreDataSource
         let app = UIApplication.shared
         app.isNetworkActivityIndicatorVisible = value
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 2 {
+            hideNoResultsAlert()
+            
+            showLoadingView()
+            self.dataSource.fetchItems(searchTerm: searchText) { error in
+                if error != nil {
+                    self.shouldHideLoadingView = true
+                    self.hideLoadingView()
+                    self.showConnectionIssueAlertAndDismiss(error: error!)
+                    return
+                }
+                self.searchStoreTableView.reloadData()
+                self.shouldHideLoadingView = true
+                self.hideLoadingView()
+                self.searchStoreTableView.separatorStyle = .singleLine
+            }
+        } else {
+            self.dataSource.programs.removeAll()
+            self.updateTableView()
+        }
+    }
+    
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
 
 extension SearchStoreViewController: SearchStoreCellProtocol {
@@ -183,22 +213,6 @@ extension SearchStoreViewController {
     func updateTableView() {
         self.searchStoreTableView.reloadData()
         self.searchStoreTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-    }
-    
-    func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm: String) {
-        self.showLoadingView()
-        self.dataSource.fetchItems(searchTerm: searchTerm) { error in
-            if error != nil {
-                self.shouldHideLoadingView = true
-                self.hideLoadingView()
-                self.showConnectionIssueAlertAndDismiss(error: error!)
-                return
-            }
-            self.searchStoreTableView.reloadData()
-            self.shouldHideLoadingView = true
-            self.hideLoadingView()
-            self.searchStoreTableView.separatorStyle = .singleLine
-        }
     }
     
     func showNoResultsAlert() {
@@ -219,30 +233,17 @@ extension SearchStoreViewController {
     }
     
 
-    func showLoadingIndicator(_ inTableFooter: Bool = false) {
+    func showLoadingIndicator() {
         DispatchQueue.main.async {
-            if inTableFooter {
-                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-                spinner.startAnimating()
-                spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: self.searchStoreTableView.bounds.width, height: CGFloat(44))
-                
-                self.searchStoreTableView.tableFooterView = spinner
-                self.searchStoreTableView.tableFooterView?.isHidden = false
-            } else {
-                self.shouldHideLoadingView = false
-                self.showLoadingView()
-            }
+            self.shouldHideLoadingView = false
+            self.showLoadingView()
         }
     }
     
-    func hideLoadingIndicator(_ inTableFooter: Bool = false) {
+    func hideLoadingIndicator() {
         DispatchQueue.main.async {
-            if inTableFooter {
-                self.searchStoreTableView.tableFooterView?.isHidden = true
-            } else {
-                self.shouldHideLoadingView = true
-                self.hideLoadingView()
-            }
+            self.shouldHideLoadingView = true
+            self.hideLoadingView()
         }
     }
 }

@@ -26,27 +26,24 @@ protocol SearchStoreDataSourceDelegate: class {
 
 protocol SelectedSearchStoreDataSource: class {
     func selectedCell(dataSource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
-    func searchBarHandler(dataSource: SearchStoreDataSource, searchTerm term: String)
     func showNoResultsAlert()
     func hideNoResultsAlert()
     func updateTableView()
     func errorAlertHandler(error: StoreProgramDownloaderError)
-    func showLoadingIndicator(_ inTableFooter: Bool)
-    func hideLoadingIndicator(_ inTableFooter: Bool)
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
-class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Properties
     
     weak var delegate: SelectedSearchStoreDataSource?
-    weak var searchBarDelegate: UISearchBarDelegate?
     
     let downloader: StoreProgramDownloaderProtocol
     var programs = [StoreProgram]()
     var baseUrl = ""
     
-    var searchBar = UISearchBar()
     var isReloadingData: Bool = false
     
     // MARK: - Initializer
@@ -122,9 +119,9 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         let timer = TimerWithBlock(timeInterval: TimeInterval(kConnectionTimeout), repeats: false) { timer in
             self.delegate?.errorAlertHandler(error: .timeout)
             timer.invalidate()
-            self.delegate?.hideLoadingIndicator(false)
+            self.delegate?.hideLoadingIndicator()
         }
-        self.delegate?.showLoadingIndicator(false)
+        self.delegate?.showLoadingIndicator()
         
         guard let cellProgram = cell?.program else { return }
         self.downloader.downloadProgram(for: cellProgram) { program, error in
@@ -134,18 +131,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
             cell.program = StoreProgram
             self.delegate?.selectedCell(dataSource: self, didSelectCellWith: cell)
             timer.invalidate()
-            self.delegate?.hideLoadingIndicator(false)
-        }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count > 2 {
-            self.delegate?.hideNoResultsAlert()
-            self.delegate?.searchBarHandler(dataSource: self, searchTerm: searchText)
-        }
-        else {
-            programs.removeAll()
-            self.delegate?.updateTableView()
+            self.delegate?.hideLoadingIndicator()
         }
     }
 }
