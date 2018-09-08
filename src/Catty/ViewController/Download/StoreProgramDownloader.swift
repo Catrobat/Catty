@@ -41,6 +41,10 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
         self.session.dataTask(with: indexURL) { (data, response, error) in
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: StoreProgramCollection.StoreProgramCollectionNumber?, error: StoreProgramDownloaderError?)
             handleDataTaskCompletion = { (data, response, error) in
+                if let error = error as NSError?, error.domain == NSURLErrorDomain && error.code == NSURLErrorTimedOut {
+                    return (nil, .timeout)
+                }
+                
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
                 guard let data = data, response.statusCode == 200, error == nil else { return (nil, .request(error: error, statusCode: response.statusCode)) }
                 let items: StoreProgramCollection.StoreProgramCollectionNumber?
