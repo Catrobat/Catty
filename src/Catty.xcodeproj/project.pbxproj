@@ -1166,6 +1166,7 @@
 		E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
 		E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */; };
+		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
@@ -2937,6 +2938,7 @@
 		E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloader.swift; sourceTree = "<group>"; };
+		E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgram.swift; sourceTree = "<group>"; };
 		F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InternFormula+KeyboardAdapter.swift"; sourceTree = "<group>"; };
 		F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensor.swift; sourceTree = "<group>"; };
@@ -7595,6 +7597,7 @@
 				E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */,
 				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
 				4C0C164821439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift */,
+				E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -8440,6 +8443,7 @@
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
