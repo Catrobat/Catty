@@ -153,6 +153,8 @@
 #import "BaseTableViewController.h"
 #import "LooksTableViewController.h"
 #import "FormulaEditorViewController.h"
+#import "MyProgramsViewController.h"
+#import "ProgramTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
 
