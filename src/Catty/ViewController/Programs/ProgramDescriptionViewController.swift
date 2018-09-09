@@ -29,7 +29,6 @@ import UIKit
 @objc class ProgramDescriptionViewController: UIViewController {
     @objc weak var delegate: SetProgramDescriptionDelegate?
     
-    private var scrollView: UIScrollView!
     private var header: UILabel!
     private var descriptionTextView: UITextView!
     private var descriptionTextViewBottomConstraint: NSLayoutConstraint!
@@ -62,20 +61,19 @@ import UIKit
     
     //MARK: Initialization
     func initControls() {
-        scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
         header = UILabel()
         descriptionTextView = UITextView()
-        scrollView.setAnchors(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, bottom: view.bottomAnchor)
-        scrollView.addSubview(header)
-        scrollView.addSubview(descriptionTextView)
+        view.addSubview(header)
+        view.addSubview(descriptionTextView)
         
         header.textAlignment = .center
         header.text = kLocalizedSetDescription
         header.textColor = UIColor.globalTint()
-        header.setAnchors(top: view.safeTopAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding:20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
-        
+        var navTopAnchor = view.safeTopAnchor;
+        if (self.navigationController != nil) {
+            navTopAnchor = topLayoutGuide.bottomAnchor
+        }
+        header.setAnchors(top: navTopAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding:20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
         
         descriptionTextView.setAnchors(top: header.bottomAnchor, left: view.safeLeftAnchor, right: view.safeRightAnchor, bottom: nil, topPadding:20, leftPadding: 20, rightPadding: 20, bottomPadding: 0)
         //manual constraint (because we need to store the bottom anchor)
