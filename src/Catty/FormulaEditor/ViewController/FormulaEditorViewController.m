@@ -211,8 +211,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self localizeView];
     
-    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kFormulaEditorTopOffset)];
+    CGFloat topInsetNavigationBar = 0.0f;
+    if (@available(iOS 11, *)) {
+        topInsetNavigationBar = [UIApplication sharedApplication].statusBarFrame.size.height;
+        UIView *insetNavBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, topInsetNavigationBar)];
+        insetNavBarView.backgroundColor = [UIColor globalTintColor];
+        [self.view addSubview:insetNavBarView];
+    }
+    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0.0f, topInsetNavigationBar, self.view.frame.size.width, kFormulaEditorTopOffset)];
     [UINavigationBar appearance].barTintColor = [UIColor globalTintColor];
+    myNav.translucent = NO;
     [self.view addSubview:myNav];
     
 
