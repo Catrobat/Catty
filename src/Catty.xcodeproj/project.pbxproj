@@ -7,13 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2DE385082105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
-		2DE385092105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */; };
+		2D6E3F39210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */; };
+		2D6E3F3B210A0AB700FB8139 /* ChartProgramStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */; };
+		2D7BE51E21441DE500F78A10 /* StoreProgramDownloader.searchPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE51B21441DE500F78A10 /* StoreProgramDownloader.searchPrograms.success.json */; };
+		2D7BE52021441FAE00F78A10 /* StoreProgramDownloader.searchPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE51F21441FAD00F78A10 /* StoreProgramDownloader.searchPrograms.fail.request.json */; };
+		2D7BE5222144238C00F78A10 /* StoreProgramDownloader.fetchSearchPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BE5212144238B00F78A10 /* StoreProgramDownloader.fetchSearchPrograms.fail.parse.json */; };
+		2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */; };
+		2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */; };
+		2DCB4916212E9B56005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */; };
+		2DCB4918212E9BF4005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4917212E9BF3005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json */; };
+		2DCB491E212EA006005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB491D212EA005005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json */; };
+		2DCB4920212EA096005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB491F212EA095005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json */; };
+		2DCB4922212EA251005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4921212EA250005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json */; };
+		2DCB4924212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4923212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json */; };
+		2DCB4928212EA477005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4927212EA476005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json */; };
+		2DCB492A212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4929212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json */; };
+		2DCB492E212EA7EC005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB492D212EA7EB005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json */; };
+		2DCB4930212EA88E005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB492F212EA88D005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json */; };
+		2DCB4932212EA923005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4931212EA922005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json */; };
+		2DCB4934212EA9BF005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */; };
+		2DCB4936212EAAEF005E8E3D /* StoreProgramDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */; };
+		2DCB4938212EAB36005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */; };
 		4C03A4BE2133FD05007BFFD2 /* FormulaManager+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */; };
 		4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */; };
 		4C03A4C42133FF4B007BFFD2 /* FormulaManager+Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */; };
 		4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */; };
 		4C099F6E1C282B3C00E190CA /* CBBackendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */; };
+		4C0C164921439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C164821439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift */; };
 		4C0E25E920D39E5000A80273 /* ScenePresenterViewController+Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */; };
 		4C0F9F1C204ADB5900E71B2D /* ChooseCameraBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */; };
 		4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F9F1E204ADB9200E71B2D /* IfThenLogicBeginBrick.m */; };
@@ -108,6 +128,8 @@
 		4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
 		4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */; };
+		4C1C8B14213FE76B003B3AA4 /* ChartProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProgramCell.swift */; };
+		4C1C8B16213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */; };
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
@@ -805,8 +827,6 @@
 		92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31311A24DEB300093DA7 /* ProgramTableViewController.m */; };
 		92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */; };
 		92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */; };
-		92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313A1A24DEB300093DA7 /* RecentProgramsStoreViewController.m */; };
-		92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313C1A24DEB300093DA7 /* SearchStoreViewController.m */; };
 		92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF313F1A24DEB300093DA7 /* HelpWebViewController.m */; };
 		92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */; };
 		92FF31601A24DEB300093DA7 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31451A24DEB300093DA7 /* SaveToProjectActivity.m */; };
@@ -1139,22 +1159,17 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405EABA212D4E420074ADDB /* SearchStoreCell.swift */; };
 		E438738A210623230062209F /* TimerWithBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4387389210623230062209F /* TimerWithBlock.swift */; };
 		E4668B3820FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */; };
 		E4668B3C20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */; };
 		E4668B4220FE02F40021FA0B /* FeaturedProgramsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */; };
 		E4AEC86D210843D20081A980 /* ProgramInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC86C210843D20081A980 /* ProgramInformation.swift */; };
 		E4AEC8712108445D0081A980 /* StoreProgramCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */; };
-		E4AEC8942108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */; };
-		E4AEC8962108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */; };
-		E4AEC8982108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */; };
-		E4AEC89A2108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */; };
-		E4AEC89C2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */; };
-		E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */; };
+		E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */; };
 		E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */; };
-		E4AEC8A3210853130081A980 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */; };
-		E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */; };
-		E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */; };
+		E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */; };
+		E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */; };
 		E4E5599820FCD6AD004B4A08 /* StoreProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */; };
 		F411560320E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */; };
 		F4201CF220D795DB0030181B /* DateWeekdaySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */; };
@@ -1254,13 +1269,34 @@
 
 /* Begin PBXFileReference section */
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDownloaderMock.swift; sourceTree = "<group>"; };
+		2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreDataSource.swift; sourceTree = "<group>"; };
+		2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramStoreViewController.swift; sourceTree = "<group>"; };
+		2D7BE51B21441DE500F78A10 /* StoreProgramDownloader.searchPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.searchPrograms.success.json; sourceTree = "<group>"; };
+		2D7BE51F21441FAD00F78A10 /* StoreProgramDownloader.searchPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.searchPrograms.fail.request.json; sourceTree = "<group>"; };
+		2D7BE5212144238B00F78A10 /* StoreProgramDownloader.fetchSearchPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchSearchPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreViewController.swift; sourceTree = "<group>"; };
+		2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSource.swift; sourceTree = "<group>"; };
+		2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
+		2DCB4917212E9BF3005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostDownloadedPrograms.success.json; sourceTree = "<group>"; };
+		2DCB491D212EA005005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostViewedPrograms.success.json; sourceTree = "<group>"; };
+		2DCB491F212EA095005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.success.json; sourceTree = "<group>"; };
+		2DCB4921212EA250005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB4923212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB4927212EA476005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB4929212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json; sourceTree = "<group>"; };
+		2DCB492D212EA7EB005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB492F212EA88D005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB4931212EA922005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json; sourceTree = "<group>"; };
+		2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.success.json; sourceTree = "<group>"; };
+		2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoreProgramDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C03A4BD2133FD05007BFFD2 /* FormulaManager+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Resources.swift"; sourceTree = "<group>"; };
 		4C03A4C12133FDE7007BFFD2 /* FormulaManager+Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Editor.swift"; sourceTree = "<group>"; };
 		4C03A4C32133FF4B007BFFD2 /* FormulaManager+Interpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormulaManager+Interpreter.swift"; sourceTree = "<group>"; };
 		4C06A2A61C3D5F0100E9234C /* XMLParserBlackBoxTests097.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests097.m; sourceTree = "<group>"; };
 		4C099F6D1C282B3C00E190CA /* CBBackendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackendTests.swift; path = PlayerEngine/CBBackendTests.swift; sourceTree = "<group>"; };
+		4C0C164821439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramsStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		4C0E25E820D39E5000A80273 /* ScenePresenterViewController+Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresenterViewController+Resources.swift"; sourceTree = "<group>"; };
 		4C0F9F19204ADB5800E71B2D /* ChooseCameraBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChooseCameraBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Look/ChooseCameraBrick+Instruction.swift"; sourceTree = "<group>"; };
 		4C0F9F1D204ADB9200E71B2D /* IfThenLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfThenLogicBeginBrick.h; sourceTree = "<group>"; };
@@ -1394,6 +1430,8 @@
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
 		4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBrickTests.h; sourceTree = "<group>"; };
 		4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBrickTests.m; sourceTree = "<group>"; };
+		4C1C8B13213FE76B003B3AA4 /* ChartProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartProgramCell.swift; sourceTree = "<group>"; };
+		4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderMock.swift; sourceTree = "<group>"; };
 		4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepeatBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
@@ -2368,10 +2406,6 @@
 		92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadTabBarController.m; sourceTree = "<group>"; };
 		92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramDetailStoreViewController.h; sourceTree = "<group>"; };
 		92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramDetailStoreViewController.m; sourceTree = "<group>"; };
-		92FF31391A24DEB300093DA7 /* RecentProgramsStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProgramsStoreViewController.h; sourceTree = "<group>"; };
-		92FF313A1A24DEB300093DA7 /* RecentProgramsStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentProgramsStoreViewController.m; sourceTree = "<group>"; };
-		92FF313B1A24DEB300093DA7 /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
-		92FF313C1A24DEB300093DA7 /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		92FF313E1A24DEB300093DA7 /* HelpWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpWebViewController.h; sourceTree = "<group>"; };
 		92FF313F1A24DEB300093DA7 /* HelpWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpWebViewController.m; sourceTree = "<group>"; };
 		92FF31411A24DEB300093DA7 /* MyProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProgramsViewController.h; sourceTree = "<group>"; };
@@ -2900,24 +2934,17 @@
 		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
 		D638646D1AE63F80008569E6 /* KeychainUserDefaultsDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainUserDefaultsDefines.h; sourceTree = "<group>"; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E405EABA212D4E420074ADDB /* SearchStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreCell.swift; sourceTree = "<group>"; };
 		E4387389210623230062209F /* TimerWithBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWithBlock.swift; sourceTree = "<group>"; };
 		E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableViewController.swift; sourceTree = "<group>"; };
 		E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreTableDataSource.swift; sourceTree = "<group>"; };
 		E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsCell.swift; sourceTree = "<group>"; };
 		E4AEC86C210843D20081A980 /* ProgramInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramInformation.swift; sourceTree = "<group>"; };
 		E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProgramCollection.swift; sourceTree = "<group>"; };
-		E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.fail.request.json; sourceTree = "<group>"; };
-		E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json; sourceTree = "<group>"; };
-		E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json; sourceTree = "<group>"; };
-		E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json; sourceTree = "<group>"; };
-		E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeaturedProgramsStoreDownloader.downloadData.success.json; sourceTree = "<group>"; };
-		E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloaderTests.swift; sourceTree = "<group>"; };
+		E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloaderTests.swift; sourceTree = "<group>"; };
 		E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramStoreDataSourceTests.swift; sourceTree = "<group>"; };
-		E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
-		E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
-		E4AEC8A5210853630081A980 /* RecentProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
-		E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
-		E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedProgramsStoreDownloader.swift; sourceTree = "<group>"; };
+		E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgramDownloader.swift; sourceTree = "<group>"; };
+		E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreDataSourceTests.swift; sourceTree = "<group>"; };
 		E4E5599620FCD6AD004B4A08 /* StoreProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProgram.swift; sourceTree = "<group>"; };
 		F411560220E7732D00E2F254 /* InternFormula+KeyboardAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InternFormula+KeyboardAdapter.swift"; sourceTree = "<group>"; };
 		F4201CF120D795DB0030181B /* DateWeekdaySensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWeekdaySensor.swift; sourceTree = "<group>"; };
@@ -3068,6 +3095,26 @@
 				92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2DA8790F212BD67700FE0585 /* ChartPrograms */ = {
+			isa = PBXGroup;
+			children = (
+				4C1C8B13213FE76B003B3AA4 /* ChartProgramCell.swift */,
+				2D6E3F38210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift */,
+				2D6E3F3A210A0AB700FB8139 /* ChartProgramStoreViewController.swift */,
+			);
+			path = ChartPrograms;
+			sourceTree = "<group>";
+		};
+		2DA87910212BD6C000FE0585 /* SearchStore */ = {
+			isa = PBXGroup;
+			children = (
+				2DA8790D212B444E00FE0585 /* SearchStoreDataSource.swift */,
+				2DA8790B212B443500FE0585 /* SearchStoreViewController.swift */,
+				E405EABA212D4E420074ADDB /* SearchStoreCell.swift */,
+			);
+			path = SearchStore;
 			sourceTree = "<group>";
 		};
 		4C0DC6651C3D5CE5006D6691 /* CatrobatLanguage0.97 */ = {
@@ -4837,7 +4884,7 @@
 				599E64A5202DB2FB009494B5 /* MediaLibraryDownloaderMock.swift */,
 				5973F243202EF37600A4CED9 /* SoundsLibraryCollectionViewDataSourceDelegateMock.swift */,
 				599E649D202D9F95009494B5 /* URLSessionMock.swift */,
-				2DE385072105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift */,
+				4C1C8B15213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -6079,15 +6126,14 @@
 			isa = PBXGroup;
 			children = (
 				E4AEC8702108445D0081A980 /* StoreProgramCollection.swift */,
+				E4B7DC5520F6857A001351E3 /* StoreProgramDownloader.swift */,
 				E4B1BF4D20F719DB00800555 /* FeaturedPrograms */,
+				2DA8790F212BD67700FE0585 /* ChartPrograms */,
+				2DA87910212BD6C000FE0585 /* SearchStore */,
 				92FF31331A24DEB300093DA7 /* DownloadTabBarController.h */,
 				92FF31341A24DEB300093DA7 /* DownloadTabBarController.m */,
 				92FF31371A24DEB300093DA7 /* ProgramDetailStoreViewController.h */,
 				92FF31381A24DEB300093DA7 /* ProgramDetailStoreViewController.m */,
-				92FF31391A24DEB300093DA7 /* RecentProgramsStoreViewController.h */,
-				92FF313A1A24DEB300093DA7 /* RecentProgramsStoreViewController.m */,
-				92FF313B1A24DEB300093DA7 /* SearchStoreViewController.h */,
-				92FF313C1A24DEB300093DA7 /* SearchStoreViewController.m */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -7554,12 +7600,10 @@
 			isa = PBXGroup;
 			children = (
 				E4AEC8872108506A0081A980 /* Fixtures */,
-				E4AEC89D210852010081A980 /* FeaturedProgramsStoreDownloaderTests.swift */,
+				E4AEC89D210852010081A980 /* StoreProgramDownloaderTests.swift */,
 				E4AEC89E210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift */,
-				E4AEC8A5210853630081A980 /* RecentProgramsStoreViewControllerTests.h */,
-				E4AEC8A1210853110081A980 /* RecentProgramsStoreViewControllerTests.m */,
-				E4AEC8A6210853640081A980 /* SearchStoreViewControllerTests.h */,
-				E4AEC8A2210853120081A980 /* SearchStoreViewControllerTests.m */,
+				4C0C164821439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift */,
+				E4C5C1112143A3150054F236 /* SearchStoreDataSourceTests.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -7567,11 +7611,23 @@
 		E4AEC8872108506A0081A980 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				E4AEC88E210851380081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json */,
-				E4AEC8922108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json */,
-				E4AEC8902108513A0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json */,
-				E4AEC88F210851390081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json */,
-				E4AEC8912108513C0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json */,
+				2DCB4915212E9B55005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json */,
+				2DCB4917212E9BF3005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json */,
+				2DCB491D212EA005005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json */,
+				2DCB491F212EA095005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json */,
+				2DCB4921212EA250005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json */,
+				2DCB4923212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json */,
+				2DCB4927212EA476005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json */,
+				2DCB4929212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json */,
+				2DCB492D212EA7EB005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json */,
+				2DCB492F212EA88D005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json */,
+				2DCB4931212EA922005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json */,
+				2DCB4933212EA9BE005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json */,
+				2DCB4935212EAAEE005E8E3D /* StoreProgramDownloader.downloadData.success.json */,
+				2DCB4937212EAB35005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json */,
+				2D7BE51B21441DE500F78A10 /* StoreProgramDownloader.searchPrograms.success.json */,
+				2D7BE51F21441FAD00F78A10 /* StoreProgramDownloader.searchPrograms.fail.request.json */,
+				2D7BE5212144238B00F78A10 /* StoreProgramDownloader.fetchSearchPrograms.fail.parse.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -7579,7 +7635,6 @@
 		E4B1BF4D20F719DB00800555 /* FeaturedPrograms */ = {
 			isa = PBXGroup;
 			children = (
-				E4B7DC5520F6857A001351E3 /* FeaturedProgramsStoreDownloader.swift */,
 				E4668B3720FDC1B90021FA0B /* FeaturedProgramsStoreTableViewController.swift */,
 				E4668B3B20FDCA6D0021FA0B /* FeaturedProgramsStoreTableDataSource.swift */,
 				E4668B4120FE02F40021FA0B /* FeaturedProgramsCell.swift */,
@@ -7799,6 +7854,7 @@
 				4CE2D3F91C294F3300938B5E /* Drink_more_water_097.xml in Resources */,
 				BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
+				2DCB4918212E9BF4005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.success.json in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
 				4C0F9FEF204BD47F00E71B2D /* Gossip_Girl_0991.xml in Resources */,
@@ -7806,12 +7862,15 @@
 				CAE3E55D1B4C50B300CC88BD /* SKYPASCAL_093.xml in Resources */,
 				4C2EE3F11B555740006DE9B8 /* Drink_more_water_095.xml in Resources */,
 				4C994DD7207A260300C415FD /* ReplaceItemInUserListBrick098.xml in Resources */,
+				2DCB492E212EA7EC005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */,
 				4C2EE3FB1B55579D006DE9B8 /* Memory_095.xml in Resources */,
 				4C2EE3FF1B5557BF006DE9B8 /* Minions__095.xml in Resources */,
 				4CE2D3F51C294F2000938B5E /* Compass_0.1_097.xml in Resources */,
 				CAE3E5391B4C50B300CC88BD /* Airplane_with_shadow_091.xml in Resources */,
+				2DCB492A212EA547005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.request.json in Resources */,
 				CAE3E53E1B4C50B300CC88BD /* Demonstration_093.xml in Resources */,
 				599E64A4202DB037009494B5 /* MediaLibraryDownloader.downloadIndex.fail.parse.json in Resources */,
+				2DCB4920212EA096005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.success.json in Resources */,
 				4C647C7E1D48E19C0060E70D /* Air_fight_0.5_098.xml in Resources */,
 				4C2EE3F91B55578C006DE9B8 /* Gossip_Girl_095.xml in Resources */,
 				4C0F9FDF204BD41B00E71B2D /* Airplane_with_shadow_0991.xml in Resources */,
@@ -7831,6 +7890,7 @@
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				4C0FA004204BD4FF00E71B2D /* Rock_paper_scissors_0991.xml in Resources */,
+				2DCB4922212EA251005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.fail.request.json in Resources */,
 				4C994DD9207A26D700C415FD /* AddItemToUserListBrick0991.xml in Resources */,
 				4CE2D40B1C29504300938B5E /* Piano_097.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
@@ -7840,6 +7900,7 @@
 				CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				4CE2D4071C29503300938B5E /* Minions__097.xml in Resources */,
 				4C6D15EE1D7AC61000CE53CD /* Rock_paper_scissors_098.xml in Resources */,
+				2D7BE52021441FAE00F78A10 /* StoreProgramDownloader.searchPrograms.fail.request.json in Resources */,
 				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
 				4C6D15F81D7AC62E00CE53CD /* X_Ray_phone_098.xml in Resources */,
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
@@ -7869,19 +7930,22 @@
 				CAE3E53F1B4C50B300CC88BD /* Drink_more_water_09.xml in Resources */,
 				4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */,
 				4CE2D4031C29502300938B5E /* Memory_097.xml in Resources */,
-				E4AEC8962108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.request.json in Resources */,
 				4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */,
+				2DCB4938212EAB36005E8E3D /* StoreProgramDownloader.downloadData.fail.request.json in Resources */,
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
 				4C6D15D01D7AC5A500CE53CD /* Compass_0.1_098.xml in Resources */,
 				4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */,
 				4C6D15F41D7AC62200CE53CD /* Tic_Tac_Toe_Master_098.xml in Resources */,
+				2DCB4932212EA923005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.parse.json in Resources */,
 				4C0F9FF4204BD4A000E71B2D /* LogicBricks_0991.xml in Resources */,
+				2DCB4934212EA9BF005E8E3D /* StoreProgramDownloader.fetchMostRecentPrograms.fail.parse.json in Resources */,
 				CAE3E54F1B4C50B300CC88BD /* Nyancat_1.0_091.xml in Resources */,
 				4CEF0CC81B9C63A2003C9B20 /* Drink_more_water_096.xml in Resources */,
 				CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */,
 				4C0F9FDD204BD40A00E71B2D /* Air_fight_0.5_0991.xml in Resources */,
 				4CE2D4191C29509400938B5E /* X_Ray_phone_097.xml in Resources */,
 				4C0FA00D204BD53400E71B2D /* Tic_Tac_Toe_Master_0991.xml in Resources */,
+				2DCB4930212EA88E005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.parse.json in Resources */,
 				4C6D15DA1D7AC5D300CE53CD /* Flappy_v3.0_098.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				4C994DDD207A26E000C415FD /* InsertItemIntoUserListBrick0991.xml in Resources */,
@@ -7895,6 +7959,8 @@
 				4C6D15E81D7AC5FE00CE53CD /* Piano_098.xml in Resources */,
 				4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */,
 				4CE2D4051C29502C00938B5E /* Minecraft_Work_In_Progress_097.xml in Resources */,
+				2DCB491E212EA006005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.success.json in Resources */,
+				2D7BE5222144238C00F78A10 /* StoreProgramDownloader.fetchSearchPrograms.fail.parse.json in Resources */,
 				4CE2D41B1C2950A200938B5E /* ValidHeader097.xml in Resources */,
 				CAE3E4EB1B4C509800CC88BD /* test.png in Resources */,
 				4C0FA017204BD57400E71B2D /* X_Ray_phone_0991.xml in Resources */,
@@ -7903,20 +7969,19 @@
 				4C6D15E21D7AC5ED00CE53CD /* Minecraft_Work_In_Progress_098.xml in Resources */,
 				599E6498202D953F009494B5 /* MediaLibraryDownloader.downloadData.success.json in Resources */,
 				4C0F9FFC204BD4D400E71B2D /* Nyancat_1.0_0991.xml in Resources */,
-				E4AEC8942108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.fail.request.json in Resources */,
 				4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */,
 				4C6D15D61D7AC5C500CE53CD /* Encapsulated_098.xml in Resources */,
 				4C0F9FFE204BD4DE00E71B2D /* Piano_0991.xml in Resources */,
 				4CE2D4091C29503B00938B5E /* Nyancat_1.0_097.xml in Resources */,
 				4C0FA015204BD56800E71B2D /* Word_balloon_demo_0991.xml in Resources */,
-				E4AEC8982108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.fail.parse.json in Resources */,
 				4C6D16001D7AC65400CE53CD /* ValidProgramAllBricks093.xml in Resources */,
+				2DCB4924212EA31B005E8E3D /* StoreProgramDownloader.fetchMostDownloadedPrograms.fail.request.json in Resources */,
+				2DCB4916212E9B56005E8E3D /* StoreProgramDownloader.fetchFeaturedPrograms.success.json in Resources */,
 				4C0FA011204BD54E00E71B2D /* ValidProgram0991.xml in Resources */,
 				4CE2D3FB1C294FFE00938B5E /* Flap_Pac_Man_097.xml in Resources */,
 				4C0FA013204BD55B00E71B2D /* ValidProgramAllBricks0991.xml in Resources */,
 				4C2EE3EF1B55572D006DE9B8 /* Demonstration_095.xml in Resources */,
 				4CE2D4171C29508A00938B5E /* Word_balloon_demo_097.xml in Resources */,
-				E4AEC89C2108513D0081A980 /* FeaturedProgramsStoreDownloader.downloadData.success.json in Resources */,
 				CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */,
 				CAE3E5511B4C50B300CC88BD /* Piano_09.xml in Resources */,
 				4C0FA002204BD4F400E71B2D /* Pythagorean_Theorem_0991.xml in Resources */,
@@ -7937,13 +8002,16 @@
 				4C6D15CE1D7AC59A00CE53CD /* Airplane_with_shadow_098.xml in Resources */,
 				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
 				4C6D15D41D7AC5BD00CE53CD /* Drink_more_water_098.xml in Resources */,
+				2DCB4936212EAAEF005E8E3D /* StoreProgramDownloader.downloadData.success.json in Resources */,
 				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
 				4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */,
 				CAE3E5591B4C50B300CC88BD /* Rock_paper_scissors_093.xml in Resources */,
 				4CE2D41F1C2950B500938B5E /* ValidProgramAllBricks097.xml in Resources */,
 				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
+				2D7BE51E21441DE500F78A10 /* StoreProgramDownloader.searchPrograms.success.json in Resources */,
 				4C8B79561CB141AA001231F1 /* Solar_System_v1.0_092.xml in Resources */,
+				2DCB4928212EA477005E8E3D /* StoreProgramDownloader.fetchMostViewedPrograms.fail.request.json in Resources */,
 				4C6D15F21D7AC61C00CE53CD /* Solar_System_v1.0_098.xml in Resources */,
 				4C994DD5207A25F600C415FD /* DeleteItemOfUserListBrick098.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
@@ -7998,7 +8066,6 @@
 				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
 				BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */,
 				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
-				E4AEC89A2108513D0081A980 /* FeaturedProgramsStoreDownloader.fetchFeaturedPrograms.success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8274,7 +8341,6 @@
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
-				2DE385092105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				4C6FE15B212D2D2E0067B7D5 /* CeilFunctionTest.swift in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
@@ -8357,9 +8423,9 @@
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				4C82267D213FA7A400F3D750 /* PositionYSensorTest.swift in Sources */,
 				4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */,
+				4C1C8B16213FE7F1003B3AA4 /* StoreProgramDownloaderMock.swift in Sources */,
 				E4AEC8A0210852030081A980 /* FeaturedProgramStoreDataSourceTests.swift in Sources */,
 				4C822680213FA7A400F3D750 /* BrightnessSensorTest.swift in Sources */,
-				E4AEC8A4210853130081A980 /* SearchStoreViewControllerTests.m in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IfOnEdgeBounceBrickTests.m in Sources */,
@@ -8373,12 +8439,11 @@
 				4CC614B7212EA84E006E4720 /* FormulaEditorItemTest.swift in Sources */,
 				4C822676213FA7A400F3D750 /* LookNameSensorTest.swift in Sources */,
 				4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */,
-				E4AEC89F210852030081A980 /* FeaturedProgramsStoreDownloaderTests.swift in Sources */,
+				E4AEC89F210852030081A980 /* StoreProgramDownloaderTests.swift in Sources */,
 				4C0F9FD7204BD3CC00E71B2D /* PreviousLookBrickTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				4CC50A60213BE18F004BC914 /* SingleParameterDoubleFunctionMock.swift in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
-				E4AEC8A3210853130081A980 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				4C822682213FA7A400F3D750 /* PhiroSensorTest.swift in Sources */,
 				4C822669213FA7A400F3D750 /* TimeMinuteSensorTest.swift in Sources */,
 				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
@@ -8390,12 +8455,14 @@
 				4C6FE16B212D2D2E0067B7D5 /* SqrtFunctionTest.swift in Sources */,
 				4C6FE170212D2D2E0067B7D5 /* AbsFunctionTest.swift in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
+				E4C5C1122143A3150054F236 /* SearchStoreDataSourceTests.swift in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C6FE177212D2D2E0067B7D5 /* LengthFunctionTest.swift in Sources */,
 				4C6FE161212D2D2E0067B7D5 /* RoundFunctionTest.swift in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				4C822678213FA7A400F3D750 /* ColorSensorTest.swift in Sources */,
 				4C82267F213FA7A400F3D750 /* PositionXSensorTest.swift in Sources */,
+				4C0C164921439B2F005ADE86 /* ChartProgramsStoreDataSourceTests.swift in Sources */,
 				4CC50A62213BE4D3004BC914 /* DoubleParameterDoubleFunctionMock.swift in Sources */,
 				4C0F9FCF204BD37300E71B2D /* XMLSerializerBlackBoxTests.m in Sources */,
 				BA1FA9941F02A1150084184D /* UserListFunctionsTest.m in Sources */,
@@ -8525,6 +8592,7 @@
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */,
+				2D6E3F3B210A0AB700FB8139 /* ChartProgramStoreViewController.swift in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				AA74EFEC1BC05B5F00D1E954 /* ChangeVariableBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
@@ -8551,6 +8619,7 @@
 				4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				4C724E5F1B4D3E8C00E27479 /* VariablesContainer+CBXMLHandler.m in Sources */,
+				E405EABB212D4E420074ADDB /* SearchStoreCell.swift in Sources */,
 				9218B2121CC4AB75007B4C60 /* ResizeViewManager.m in Sources */,
 				AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
@@ -8581,7 +8650,6 @@
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
-				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
@@ -8616,13 +8684,14 @@
 				AA74EEFC1BC057C900D1E954 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
-				E4B7DC5620F6857B001351E3 /* FeaturedProgramsStoreDownloader.swift in Sources */,
 				4C03A4C22133FDE7007BFFD2 /* FormulaManager+Editor.swift in Sources */,
+				E4B7DC5620F6857B001351E3 /* StoreProgramDownloader.swift in Sources */,
 				4C0F9F1F204ADB9200E71B2D /* IfThenLogicBeginBrick.m in Sources */,
 				92C95FDB1BD8DBEB00742F7E /* BluetoothService.swift in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
 				CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */,
 				929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */,
+				2DA8790C212B443500FE0585 /* SearchStoreViewController.swift in Sources */,
 				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
 				F4E6E5C0210E1FE900D86FE6 /* RandFunction.swift in Sources */,
 				92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */,
@@ -8863,10 +8932,12 @@
 				4CF0729A20D66C4800F93AB5 /* BackgroundNumberSensor.swift in Sources */,
 				4C724E5A1B4D3E8C00E27479 /* Program+CBXMLHandler.m in Sources */,
 				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
+				4C1C8B14213FE76B003B3AA4 /* ChartProgramCell.swift in Sources */,
 				4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */,
 				4CE3D68B2107A89B00005629 /* FaceDetectionManager.swift in Sources */,
 				AA74EFF71BC05B5F00D1E954 /* SetLookBrick.m in Sources */,
 				4CF429F3213A88A600B78897 /* RepeatUntilBrick+Condition.swift in Sources */,
+				2D6E3F39210A0A9F00FB8139 /* ChartProgramStoreDataSource.swift in Sources */,
 				4C0F9F76204BD1D600E71B2D /* PreviousLookBrick+Instruction.swift in Sources */,
 				927F79E31BEE39DA008D1635 /* PhiroIfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -8892,7 +8963,6 @@
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				AA74F0931BC05FCE00D1E954 /* BrickCellFormulaData.m in Sources */,
 				AA74EF701BC0588A00D1E954 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
-				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
 				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				AA74F0951BC05FCE00D1E954 /* BrickCellMessageData.m in Sources */,
 				597AB578202089E0007CD10D /* NetworkDefinesSwift.swift in Sources */,
@@ -8945,7 +9015,6 @@
 				926198021BF48384006D1A61 /* BluetoothMocks.swift in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
-				2DE385082105EC1B004D8180 /* FeaturedProgramStoreDownloaderMock.swift in Sources */,
 				AA74EFF51BC05B5F00D1E954 /* NextLookBrick.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				BAEE49C01F165D1300F06741 /* ReplaceItemInUserListBrick+Instruction.swift in Sources */,
@@ -9087,6 +9156,7 @@
 				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92D56C341BF202E700A54750 /* FirmataDevice.swift in Sources */,
+				2DA8790E212B444E00FE0585 /* SearchStoreDataSource.swift in Sources */,
 				AA74EFFF1BC05B5F00D1E954 /* GlideToBrick.m in Sources */,
 				AA74F0081BC05B5F00D1E954 /* TurnLeftBrick.m in Sources */,
 				AA74F0C71BC05FCE00D1E954 /* SpeakBrickCell.m in Sources */,

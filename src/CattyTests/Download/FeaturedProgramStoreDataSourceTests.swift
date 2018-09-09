@@ -25,12 +25,12 @@ import XCTest
 
 class FeaturedProgramsStoreDataSourceTests: XCTestCase {
     
-    var downloaderMock: FeaturedProgramsStoreDownloaderMock!
+    var downloaderMock: StoreProgramDownloaderMock!
     var tableView: UITableView!
     
     override func setUp() {
         super.setUp()
-        self.downloaderMock = FeaturedProgramsStoreDownloaderMock()
+        self.downloaderMock = StoreProgramDownloaderMock()
         self.tableView = UITableView(frame: .zero)
     }
     

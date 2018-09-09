@@ -49,5 +49,6 @@ final class TimerWithBlock {
     
     func invalidate() {
         self.timer?.invalidate()
+        self.timer = nil
     }
 }

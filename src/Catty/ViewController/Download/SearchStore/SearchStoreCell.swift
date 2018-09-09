@@ -20,24 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "RecentProgramsStoreViewController.h"
+import UIKit
 
-@class CatrobatInformation;
+protocol SearchStoreCellProtocol: class {
+    func selectedCell(dataSource datasource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
+}
 
-@interface RecentProgramsStoreViewController (Test)
-- (void)loadProjectsWithIndicator:(NSInteger)indicator;
-- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response;
-- (void)initSegmentedControl;
-@end
-
-@interface TestRecentProgramsStoreViewController : RecentProgramsStoreViewController
-@property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
-@property (nonatomic, strong) NSMutableArray* mostViewedProjects;
-@property (nonatomic, strong) NSMutableArray* mostRecentProjects;
-@property (nonatomic, weak) XCTestExpectation *downloadFinished;
-- (id)initWithExpectation:(XCTestExpectation*) expectation;
-@end
-
-@interface RecentProgramsStoreViewControllerTests : XCTestCase
-@property (nonatomic, strong) TestRecentProgramsStoreViewController *recentProgramsStoreViewController;
-@end
+class SearchStoreCell: UITableViewCell {
+    
+    weak var delegete: SearchStoreCellProtocol?
+    var program: StoreProgram?
+    
+    @IBOutlet weak var searchProgramImage: UIImageView!
+    @IBOutlet weak var searchProgramTitle: UILabel!
+    
+    var searchImage: UIImage? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    var searchTitle: String? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    func updateTable() {
+        searchProgramImage?.image = searchImage
+        searchProgramTitle?.text = searchTitle
+        searchProgramTitle.textColor = UIColor.globalTint()
+    }
+}

@@ -551,6 +551,9 @@
 "Failed to load featured programs" = "Failed to load featured programs";
 
 /* No comment provided by engineer. */
+"Failed to load recent programs" = "Failed to load recent programs";
+
+/* No comment provided by engineer. */
 "Failed to load sound" = "Failed to load sound";
 
 /* No comment provided by engineer. */
@@ -1517,6 +1520,9 @@
 "The name contains blocked characters. Please try again!" = "The name contains blocked characters. Please try again!";
 
 /* No comment provided by engineer. */
+"The recent programs cannot be loaded" = "The recent programs cannot be loaded";
+
+/* No comment provided by engineer. */
 "The requested program can not be found. Please choose a different one." = "The requested program can not be found. Please choose a different one.";
 
 /* No comment provided by engineer. */
@@ -1605,6 +1611,12 @@
 
 /* Description text in alert view if user shakes the device */
 "Undo Typing?" = "Undo Typing?";
+
+/* No comment provided by engineer. */
+"Unexpected Error" = "Unexpected Error";
+
+/* No comment provided by engineer. */
+"Unexpected Error, please try again later." = "Unexpected Error, please try again later.";
 
 /* No comment provided by engineer. */
 "Unknown Element" = "Unknown Element";

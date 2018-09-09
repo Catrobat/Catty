@@ -20,26 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "ProgramStoreDelegate.h"
-#import "BaseTableViewController.h"
-#import "CatrobatProgram.h"
+import UIKit
 
-#define kRecentProgramsMaxResults 20
+protocol ChartProgramCellProtocol: class {
+    func selectedCell(dataSource datasource: ChartProgramStoreDataSource, didSelectCellWith cell: ChartProgramCell)
+}
 
-@protocol RecentProgramsStoreDelegate <NSObject>
+class ChartProgramCell: UITableViewCell {
+    
+    weak var delegete: ChartProgramCellProtocol?
+    var program: StoreProgram?
 
-- (void)reloadWithProject:(CatrobatProgram *)loadedProject;
-
-@end
-
-@interface RecentProgramsStoreViewController : UIViewController<NSURLConnectionDataDelegate, UITableViewDelegate,
-                                                                UITableViewDataSource,UIScrollViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *downloadSegmentedControl;
-@property (strong, nonatomic) UIView *footerView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *segmentedControlView;
-@property (weak, nonatomic) id<RecentProgramsStoreDelegate>delegate;
-
-@end
+    @IBOutlet weak var chartProgramImage: UIImageView!
+    @IBOutlet weak var chartProgramTitle: UILabel!
+    
+    var chartImage: UIImage? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    var chartTitle: String? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    func updateTable() {
+        chartProgramImage?.image = chartImage
+        chartProgramTitle?.text = chartTitle
+        chartProgramTitle.textColor = UIColor.globalTint()
+    }
+}

@@ -20,22 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import XCTest
 @testable import Pocket_Code
 
-final class FeaturedProgramsStoreDownloaderMock: FeaturedProgramsStoreDownloaderProtocol {
+class SearchStoreDataSourceTests: XCTestCase {
     
-    var program: StoreProgram?
-    var collection: StoreProgramCollection.StoreProgramCollectionText?
+    var downloaderMock: StoreProgramDownloaderMock!
+    var tableView: UITableView!
     
-    func fetchFeaturedPrograms(completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.collection, nil)
-        }
+    override func setUp() {
+        super.setUp()
+        self.downloaderMock = StoreProgramDownloaderMock()
+        self.tableView = UITableView(frame: .zero)
     }
     
-    func downloadProgram(for program: StoreProgram, completion: @escaping (StoreProgram?, FeaturedProgramsDownloadError?) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            completion(self.program, nil)
+    override func tearDown() {
+        self.downloaderMock = nil
+        self.tableView = nil
+        super.tearDown()
+    }
+    
+    // MARK: - SearchStoreDataSource Tests
+    
+    func testFetchSearchProgram() {
+        let dataSource = SearchStoreDataSource.dataSource(with: self.downloaderMock)
+        let expectation = XCTestExpectation(description: "Fetch program from data source")
+        
+        dataSource.fetchItems(searchTerm: "Galaxy") { [unowned self] error in
+            XCTAssertNil(error)
+            XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 1.0)
     }
 }

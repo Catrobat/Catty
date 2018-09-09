@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol FeaturedProgramsStoreTableDataSourceDelegete: class {
+protocol FeaturedProgramsStoreTableDataSourceDelegate: class {
     func featuredProgramsStoreTableDataSource(_ dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith item: StoreProgram)
 }
 
@@ -34,24 +34,24 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
     
     weak var delegate: SelectedFeaturedProgramsDataSource?
     
-    fileprivate let downloader: FeaturedProgramsStoreDownloaderProtocol
+    fileprivate let downloader: StoreProgramDownloaderProtocol
     fileprivate var programs = [StoreProgram]()
     fileprivate var baseUrl = ""
     
     // MARK: - Initializer
     
-    fileprivate init(with downloader: FeaturedProgramsStoreDownloaderProtocol) {
+    fileprivate init(with downloader: StoreProgramDownloaderProtocol) {
         self.downloader = downloader
     }
     
-    static func dataSource(with downloader: FeaturedProgramsStoreDownloaderProtocol = FeaturedProgramsStoreDownloader()) -> FeaturedProgramsStoreTableDataSource {
+    static func dataSource(with downloader: StoreProgramDownloaderProtocol = StoreProgramDownloader()) -> FeaturedProgramsStoreTableDataSource {
         return FeaturedProgramsStoreTableDataSource(with: downloader)
     }
     
     // MARK: - DataSource
     
-    func fetchItems(completion: @escaping (FeaturedProgramsDownloadError?) -> Void) {
-        self.downloader.fetchFeaturedPrograms() {items, error in
+    func fetchItems(completion: @escaping (StoreProgramDownloaderError?) -> Void) {
+        self.downloader.fetchPrograms(forType: .featured, offset: 0) {items, error in
             guard let collection = items, error == nil else { completion(error); return }
             self.programs = collection.projects
             self.baseUrl = collection.information.baseUrl
