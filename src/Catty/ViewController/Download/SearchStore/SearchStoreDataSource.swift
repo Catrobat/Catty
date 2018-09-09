@@ -91,6 +91,10 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
         if let cell = cell as? SearchStoreCell {
             cell.tag = indexPath.row
             if programs.isEmpty == false && indexPath.row < self.programs.count {
+                cell.searchImage = nil
+                cell.searchTitle = self.programs[indexPath.row].projectName
+                cell.program = self.programs[indexPath.row]
+                
                 DispatchQueue.global().async {
                     if indexPath.row < self.programs.count {
                         guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
@@ -98,10 +102,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                         if let data = try? Data(contentsOf: imageUrl) {
                             DispatchQueue.main.async {
                                 guard cell.tag == indexPath.row else { return }
-                                guard indexPath.row < self.programs.count else { return }
                                 cell.searchImage = UIImage(data: data)
-                                cell.searchTitle = self.programs[indexPath.row].projectName
-                                cell.program = self.programs[indexPath.row]
                             }
                         }
                     }
