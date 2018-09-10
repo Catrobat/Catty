@@ -43,8 +43,8 @@
     header.programLicense = [Util catrobatProgramLicense];
     header.programName = nil;
     header.remixOf = nil;
-    header.screenHeight = @([Util screenHeight]);
-    header.screenWidth = @([Util screenWidth]);
+    header.screenHeight = @([Util screenHeight:TRUE]);
+    header.screenWidth = @([Util screenWidth:TRUE]);
     header.screenMode = kCatrobatHeaderScreenModeStretch;
     header.url = nil;
     header.userHandle = nil;

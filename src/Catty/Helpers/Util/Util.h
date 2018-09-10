@@ -31,7 +31,7 @@
 #define IS_IPHONE4 (([Util screenHeight] - kIphone4ScreenHeight) ? NO : YES)
 #define IS_IPHONE5 (([Util screenHeight] - kIphone5ScreenHeight) ? NO : YES)
 #define IS_IPHONE6 (([Util screenHeight] - kIphone6ScreenHeight) ? NO : YES)
-#define IS_IPHONE6P (([Util screenHeight] - kIphone6PScreenHeight) ? NO : YES)
+#define IS_IPHONEPLUS (([Util screenHeight] - kIphone6PScreenHeight) ? NO : YES)
 
 #define IS_OS_5_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0)
 #define IS_OS_6_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
@@ -98,10 +98,19 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString*)platformVersion;
 
-+ (CGSize)screenSize;
+/* Returns the screen size in pixel or points */
++ (CGSize)screenSize:(BOOL)inPixel;
 
+/* Returns the screen height in pixel or points */
++ (CGFloat)screenHeight:(BOOL)inPixel;
+
+/* Returns the screen width in pixel or points */
++ (CGFloat)screenWidth:(BOOL)inPixel;
+
+/* Returns the screen height in points */
 + (CGFloat)screenHeight;
 
+/* Returns the screen width in points */
 + (CGFloat)screenWidth;
 
 + (CATransition*)getPushCATransition;
