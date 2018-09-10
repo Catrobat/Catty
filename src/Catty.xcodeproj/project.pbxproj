@@ -125,7 +125,6 @@
 		4C11795420AEC36D006C6E32 /* ProtocolConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */; };
 		4C1329041CD9259900F16E48 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1329031CD9259900F16E48 /* AudioManagerTests.swift */; };
 		4C13290B1CD92D5500F16E48 /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4C13290A1CD92D5500F16E48 /* silence.mp3 */; };
-		4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */; };
 		4C15FE7F1D168C0D009C1A2B /* transparency-rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */; };
 		4C1604301F0025F6004525A5 /* AbstractBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */; };
 		4C1C8B14213FE76B003B3AA4 /* ChartProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1C8B13213FE76B003B3AA4 /* ChartProgramCell.swift */; };
@@ -362,6 +361,8 @@
 		4C9E076B1CD9D47E00B14B2F /* CBSceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E076A1CD9D47E00B14B2F /* CBSceneHelper.swift */; };
 		4C9F37A91D167630002C3B45 /* transparency-gray-alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */; };
 		4CA1574D1C4695E50019D319 /* Encapsulated_097.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */; };
+		4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */; };
+		4CAA66C221469C0400CCDD6E /* UserVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */; };
 		4CAB10091ECF1A9A0019A67B /* HideTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */; };
 		4CAB100D1ECF1AB20019A67B /* SetVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */; };
 		4CAB100F1ECF1AC60019A67B /* ShowTextBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */; };
@@ -1428,7 +1429,6 @@
 		4C11795320AEC36D006C6E32 /* ProtocolConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolConformance.swift; sourceTree = "<group>"; };
 		4C1329031CD9259900F16E48 /* AudioManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		4C13290A1CD92D5500F16E48 /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
-		4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
 		4C15FE7E1D168C0D009C1A2B /* transparency-rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-rgb.png"; path = "CattyTests/Resources/Images/transparency-rgb.png"; sourceTree = SOURCE_ROOT; };
 		4C16042E1F0025F6004525A5 /* AbstractBrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractBrickTests.h; sourceTree = "<group>"; };
 		4C16042F1F0025F6004525A5 /* AbstractBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractBrickTests.m; sourceTree = "<group>"; };
@@ -1716,6 +1716,8 @@
 		4C9E07731CD9DB0A00B14B2F /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		4C9F37A81D167630002C3B45 /* transparency-gray-alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparency-gray-alpha.png"; path = "CattyTests/Resources/Images/transparency-gray-alpha.png"; sourceTree = SOURCE_ROOT; };
 		4CA1574C1C4695E50019D319 /* Encapsulated_097.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_097.xml; sourceTree = "<group>"; };
+		4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserVariable+Scene.swift"; sourceTree = "<group>"; };
+		4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVariableTests.swift; sourceTree = "<group>"; };
 		4CAB10081ECF1A9A0019A67B /* HideTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideTextBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100C1ECF1AB20019A67B /* SetVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CAB100E1ECF1AC60019A67B /* ShowTextBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextBrickTests.swift; sourceTree = "<group>"; };
@@ -3280,15 +3282,6 @@
 			path = CattyTests/Resources/Sounds;
 			sourceTree = SOURCE_ROOT;
 		};
-		4C14CF1A1EC991DA00E53B25 /* UserVariable */ = {
-			isa = PBXGroup;
-			children = (
-				4C14CF1B1EC991DA00E53B25 /* UserVariableTests.swift */,
-			);
-			name = UserVariable;
-			path = Formula/UserVariable;
-			sourceTree = "<group>";
-		};
 		4C16042D1F0025F6004525A5 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -3500,7 +3493,6 @@
 			children = (
 				4C28D7872132A82700870CE2 /* Mock */,
 				4CC614B3212EA838006E4720 /* Dto */,
-				4C14CF1A1EC991DA00E53B25 /* UserVariable */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
 				4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */,
 				4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */,
@@ -4458,6 +4450,7 @@
 			isa = PBXGroup;
 			children = (
 				4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */,
+				4CAA66C121469C0400CCDD6E /* UserVariableTests.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -6028,6 +6021,7 @@
 			children = (
 				92FF30C21A24DCAA00093DA7 /* UserVariable.h */,
 				92FF30C31A24DCAA00093DA7 /* UserVariable.m */,
+				4CAA66BD21469AB900CCDD6E /* UserVariable+Scene.swift */,
 			);
 			path = UserVariable;
 			sourceTree = "<group>";
@@ -8359,6 +8353,7 @@
 				4C6FE15D212D2D2E0067B7D5 /* LogFunctionTest.swift in Sources */,
 				4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
+				4CAA66C221469C0400CCDD6E /* UserVariableTests.swift in Sources */,
 				4C37A0A7212E76C90074F417 /* ArduinoDigitalPingFunctionTest.swift in Sources */,
 				4C82265F213FA7A400F3D750 /* FingerTouchedSensorTest.swift in Sources */,
 				4CAC7DA21DCF444A00EC7D6F /* CBSceneTouchTests.swift in Sources */,
@@ -8428,7 +8423,6 @@
 				4CFAD35F1CFAB3EC0019C636 /* UIImageExtensionTests.swift in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C82266A213FA7A400F3D750 /* TimeSecondSensorTest.swift in Sources */,
-				4C14CF1C1EC991DA00E53B25 /* UserVariableTests.swift in Sources */,
 				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4C822671213FA7A400F3D750 /* AccelerationXSensorTest.swift in Sources */,
 				4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */,
@@ -8676,6 +8670,7 @@
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C48ED2520EF9A1D00784CD5 /* AudioManagerProtocol.swift in Sources */,
+				4CAA66BE21469AB900CCDD6E /* UserVariable+Scene.swift in Sources */,
 				AA74F0B71BC05FCE00D1E954 /* ChangeYByNBrickCell.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,

@@ -20,19 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import XCTest
-
-@testable import Pocket_Code
-
-final class UserVariableTests: XCTestCase {
+extension UserVariable {
     
-    func testMutableCopyWithContext() {
-        let userVariable = UserVariable()
-        userVariable.name = "userVar"
+    func sizeForSKLabel(sceneSize: CGSize) -> CGFloat {
+        let iPhone8PlusLabelSize = CGFloat(42.0)
+        let iPhone8PlusScreenHeightInPixel = CGFloat(1920.0)
         
-        let userVariableCopy = userVariable.mutableCopy(with: CBMutableCopyContext()) as! UserVariable
-        
-        XCTAssertEqual(userVariable.name, userVariableCopy.name, "mutableCopyWithContext not working")
-        XCTAssertTrue(userVariable === userVariableCopy, "mutableCopyWithContext not working")
+        let sizeForSKLabel = iPhone8PlusLabelSize / iPhone8PlusScreenHeightInPixel * sceneSize.height
+        return sizeForSKLabel
     }
 }
