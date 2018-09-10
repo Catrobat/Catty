@@ -109,7 +109,7 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         
     }
     
-    func testBackgroundsCanCopyAndDeleteSingelBackgroundViaEditMode(){
+    func testBackgroundsCanCopyAndDeleteSingleBackgroundViaEditMode(){
         
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars

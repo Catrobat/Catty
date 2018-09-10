@@ -142,7 +142,30 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         XCTAssert(app.navigationBars["My first program"].exists)
     }
     
-    func testCanAbortAddDescriptionViaEditMode(){
+    func testCanEditDescriptionViaEditMode(){
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["Programs"].tap()
+        app.tables.staticTexts["My first program"].tap()
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        
+        XCTAssert(app.buttons["Description"].exists)
+        app.buttons["Description"].tap()
+        
+        app.textViews["descriptionTextView"].typeText("This is test description")
+        
+        app.navigationBars.buttons["Done"].tap()
+        XCTAssert(app.navigationBars["My first program"].exists)
+        
+        app.navigationBars["My first program"].buttons["Edit"].tap()
+        
+        XCTAssert(app.buttons["Description"].exists)
+        app.buttons["Description"].tap()
+        
+        XCTAssertEqual(app.textViews["descriptionTextView"].value as! String, "This is test description")
+    }
+    
+    func testCanAbortEditDescriptionViaEditMode(){
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
@@ -171,7 +194,7 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         XCTAssert(app.tables.staticTexts["Mole 3"].exists)
     }
     
-    func testCanDeleteSingelObjectViaSwipe() {
+    func testCanDeleteSingleObjectViaSwipe() {
         
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
