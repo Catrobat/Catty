@@ -47,7 +47,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.screenSize = [Util screenSize];
+    self.screenSize = [Util screenSize: false];
     
     self.pocketCodeCenter = CGPointMake(0, 0);
     self.pocketCodeBottomLeft = CGPointMake(-240, -400);

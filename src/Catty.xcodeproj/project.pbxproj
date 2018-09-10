@@ -400,6 +400,8 @@
 		4CC85CEA1B9C717C0097E470 /* ValidProgramAllBricks095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */; };
 		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
 		4CD085DE1CD9EE59009A6428 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD085DC1CD9EE59009A6428 /* SceneTests.m */; };
+		4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0BA952146791D00BF17A4 /* UtilTests.swift */; };
+		4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */; };
 		4CD487761ED2C2A3001BB80A /* ChangeVariableBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */; };
 		4CDA808121366AD20052FA24 /* FormulaInterpreterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */; };
 		4CDA808521366AEA0052FA24 /* FormulaManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */; };
@@ -1759,6 +1761,8 @@
 		4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks096.xml; sourceTree = "<group>"; };
 		4CD085DB1CD9EE59009A6428 /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneTests.h; path = Scene/SceneTests.h; sourceTree = "<group>"; };
 		4CD085DC1CD9EE59009A6428 /* SceneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneTests.m; path = Scene/SceneTests.m; sourceTree = "<group>"; };
+		4CD0BA952146791D00BF17A4 /* UtilTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTests.swift; sourceTree = "<group>"; };
+		4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 		4CD487751ED2C2A3001BB80A /* ChangeVariableBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeVariableBrickTests.swift; sourceTree = "<group>"; };
 		4CDA808021366AD20052FA24 /* FormulaInterpreterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormulaInterpreterProtocol.swift; path = PlayerEngine/Protocols/FormulaInterpreterProtocol.swift; sourceTree = "<group>"; };
 		4CDA808421366AEA0052FA24 /* FormulaManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormulaManagerProtocol.swift; path = PlayerEngine/Protocols/FormulaManagerProtocol.swift; sourceTree = "<group>"; };
@@ -4442,6 +4446,22 @@
 			path = CattyTests/Resources/ParserTests/ValidProgramAllBricks;
 			sourceTree = SOURCE_ROOT;
 		};
+		4CD0BA92214678D500BF17A4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0BA952146791D00BF17A4 /* UtilTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4CD0BA9721467C4500BF17A4 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				4CD0BA9821467C5A00BF17A4 /* HeaderTests.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -6995,22 +7015,24 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				59A58D81202C712F008B1A8F /* MediaLibrary */,
-				599E649C202D9F85009494B5 /* Mocks */,
 				4C1329021CD9259900F16E48 /* AudioManager */,
 				92BCDC801BF1DE2A00F9CB23 /* BluetoothDevices */,
-				AA70F7EF1B866E63003057C6 /* PlayerEngine */,
-				4CD194F21A0631B200484E4F /* Parser & Serialization */,
-				CAD740E61AF2D3F600C32937 /* CBStack */,
-				4C3C03F5199BA5250004F594 /* Formula */,
-				C34B44FB17F3403400624730 /* Extensions */,
 				4CEB222C1B95E47500B3BE2F /* Bricks */,
+				CAD740E61AF2D3F600C32937 /* CBStack */,
+				4CD0BA9721467C4500BF17A4 /* DataModel */,
+				E4AEC8732108503D0081A980 /* Download */,
+				C34B44FB17F3403400624730 /* Extensions */,
+				4C3C03F5199BA5250004F594 /* Formula */,
+				59A58D81202C712F008B1A8F /* MediaLibrary */,
+				599E649C202D9F85009494B5 /* Mocks */,
+				4CD194F21A0631B200484E4F /* Parser & Serialization */,
+				AA70F7EF1B866E63003057C6 /* PlayerEngine */,
 				4CE5C56C1E0AD71800FD021C /* Program */,
+				4C1608A31A095480002C7032 /* Resources */,
+				B496F5131775996D004BF78A /* Scene */,
 				4C26506D1A6566C60050775B /* SpriteObject */,
 				B46B270417703F9400172837 /* Supporting Files */,
-				B496F5131775996D004BF78A /* Scene */,
-				E4AEC8732108503D0081A980 /* Download */,
-				4C1608A31A095480002C7032 /* Resources */,
+				4CD0BA92214678D500BF17A4 /* Utils */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
@@ -8310,6 +8332,7 @@
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
 				4C822675213FA7A400F3D750 /* LoudnessSensorTest.swift in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
+				4CD0BA962146791D00BF17A4 /* UtilTests.swift in Sources */,
 				4CE1D431213E5C130014DAF9 /* CBSpriteNodeMock.swift in Sources */,
 				4C6FE178212D2D2E0067B7D5 /* JoinFunctionTest.swift in Sources */,
 				4C0F9FD1204BD37300E71B2D /* XMLParserBlackBoxTests0991.m in Sources */,
@@ -8487,6 +8510,7 @@
 				4C82265E213FA7A400F3D750 /* LastFingerIndexSensorTest.swift in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				4C6FE168212D2D2E0067B7D5 /* TanFunctionTest.swift in Sources */,
+				4CD0BA9921467C5A00BF17A4 /* HeaderTests.swift in Sources */,
 				4CEB22601B95E47500B3BE2F /* PointInDirectionBrickTests.m in Sources */,
 				4C82268F213FB2C600F3D750 /* MultiFingerYFunctionTests.swift in Sources */,
 				4C6FE16D212D2D2E0067B7D5 /* PowFunctionTest.swift in Sources */,
