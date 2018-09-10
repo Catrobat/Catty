@@ -43,6 +43,7 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     let downloader: StoreProgramDownloaderProtocol
     var programs = [StoreProgram]()
     var baseUrl = ""
+    var lastSearchTerm = ""
     
     var isReloadingData: Bool = false
     
@@ -56,14 +57,20 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
     
     func fetchItems(searchTerm: String?, completion: @escaping (StoreProgramDownloaderError?) -> Void) {
         if let searchTerm: String = searchTerm {
+            lastSearchTerm = searchTerm
+            
             self.downloader.fetchSearchQuery(searchTerm: searchTerm) { items,error in
+                guard searchTerm == self.lastSearchTerm else { return }
                 guard let collection = items, error == nil else { completion(error); return }
+                
                 self.programs = collection.projects
                 self.baseUrl = collection.information.baseUrl
                 self.delegate?.updateTableView()
                 completion(nil)
                 if self.programs.isEmpty {
                     self.delegate?.showNoResultsAlert()
+                } else {
+                    self.delegate?.hideNoResultsAlert()
                 }
             }
         }
@@ -96,14 +103,14 @@ class SearchStoreDataSource: NSObject, UITableViewDataSource, UITableViewDelegat
                 cell.program = self.programs[indexPath.row]
                 
                 DispatchQueue.global().async {
-                    if indexPath.row < self.programs.count {
-                        guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
-                        guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
-                        if let data = try? Data(contentsOf: imageUrl) {
-                            DispatchQueue.main.async {
-                                guard cell.tag == indexPath.row else { return }
-                                cell.searchImage = UIImage(data: data)
-                            }
+                    guard let screenshotSmall = self.programs[indexPath.row].screenshotSmall else { return }
+                    guard let imageUrl = URL(string: self.baseUrl.appending(screenshotSmall)) else { return }
+                    if let data = try? Data(contentsOf: imageUrl) {
+                        DispatchQueue.main.async {
+                            // this check is supposed to prevent setting an asynchronously downloaded
+                            // image into a cell that has already been reused since then
+                            guard cell.tag == indexPath.row else { return }
+                            cell.searchImage = UIImage(data: data)
                         }
                     }
                 }
