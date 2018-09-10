@@ -46,7 +46,7 @@ class ModFunction: DoubleParameterDoubleFunction {
                 return type(of: self).defaultValue
         }
         
-        if secondValue == 0.0 {
+        if secondValue == 0.0 || firstValue == 0.0 {
             return type(of: self).defaultValue
         }
         
