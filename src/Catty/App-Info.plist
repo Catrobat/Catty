@@ -38,7 +38,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>13</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -51,6 +51,8 @@
 	<string>iOS</string>
 	<key>CatrobatProgramLicense</key>
 	<string>http://developer.catrobat.org/agpl_v3</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -103,6 +105,5 @@
 			</dict>
 		</dict>
 	</array>
-        <key>ITSAppUsesNonExemptEncryption</key><false/>
 </dict>
 </plist>
