@@ -27,6 +27,7 @@ final class CBScheduler: CBSchedulerProtocol {
     //    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
     var running = false
     private let _broadcastHandler: CBBroadcastHandlerProtocol
+    private let _formulaInterpreter: FormulaInterpreterProtocol
 
     private var _spriteNodes = [String:CBSpriteNode]()
     private var _contexts = [CBScriptContextProtocol]()
@@ -43,10 +44,11 @@ final class CBScheduler: CBSchedulerProtocol {
     static let vibrateSerialQueue = OperationQueue()
 
     // MARK: - Initializers
-    init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol) {
+    init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol, formulaInterpreter: FormulaInterpreterProtocol) {
         self.logger = logger
         //        self.schedulingAlgorithm = nil // default scheduling behaviour
         _broadcastHandler = broadcastHandler
+        _formulaInterpreter = formulaInterpreter
     }
 
     // MARK: - Queries
@@ -123,8 +125,8 @@ final class CBScheduler: CBSchedulerProtocol {
                         nextLongActionElements += (context, durationFormula, actionCreateClosure)
                     case let .waitExecClosure(closure):
                         nextWaitClosures += (context, closure)
-                    case let .action(action):
-                        nextActionElements += (context, action)
+                    case let .action(closure):
+                        nextActionElements += (context, closure)
                     case let .formulaBuffer(brick):
                         nextBufferElements += (context, brick)
                     case let .conditionalFormulaBuffer(condition):
@@ -142,23 +144,24 @@ final class CBScheduler: CBSchedulerProtocol {
             // execute actions (node dependend!)
             if nextActionElements.count > 0 {
                 let groupAction = nextActionElements.count > 1
-                    ? SKAction.group(nextActionElements.map { $0.action })
-                    : nextActionElements[0].1
+                    ? SKAction.group(nextActionElements.map { $0.closure($0.context) })
+                    : nextActionElements[0].closure(nextActionElements[0].context)
+                
                 spriteNode.run(groupAction) { [weak self] in
                     nextActionElements.forEach { $0.context.state = .runnable }
                     self?.runNextInstructionsGroup()
                 }
             }
 
-            for (context, duration, actionCreateClosure) in nextLongActionElements {
+            for (context, duration, closure) in nextLongActionElements {
                 var durationTime = 0.0
                 switch duration {
                 case let .varTime(formula):
-                    durationTime = formula.interpretDouble(forSprite: context.spriteNode.spriteObject)
+                    durationTime = _formulaInterpreter.interpretDouble(formula, for: context.spriteNode.spriteObject)
                 case let .fixedTime(time):
                     durationTime = time
                 }
-                let action = actionCreateClosure(durationTime)
+                let action = closure(durationTime, context)
                 spriteNode.run(action) { [weak self] in
                     context.state = .runnable
                     self?.runNextInstructionsGroup()
@@ -210,7 +213,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     let index = context.index
                     if let formulaArray = brick.getFormulas() {
                         for formula in formulaArray {
-                            formula.preCalculate(forSprite: context.spriteNode.spriteObject)
+                            let _ = context.formulaInterpreter.interpretAndCache(formula, for: context.spriteNode.spriteObject)
                         }
                     }
                     print("preCalculate")
@@ -237,7 +240,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 }
                 queue.async {
                     let index = context.index
-                    condition.bufferCondition(context.spriteNode.spriteObject)
+                    condition.bufferCondition(context: context)
                     self._lockBufferQueue.async {
                         self._availableBufferQueues += queue
                     }

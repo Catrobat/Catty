@@ -33,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
@@ -65,18 +64,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 0.0f;
+    object.spriteNode.catrobatBrightness = 0.0;
     
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"100";
-    brightness.formulaTree = formulaTree;
-    brick.changeBrightness = brightness;
+    brick.changeBrightness = [[Formula alloc] initWithInteger:100];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    XCTAssertEqualWithAccuracy(100.0f, spriteNode.catrobatBrightness, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -103,18 +99,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.catrobatBrightness = 100.0;
 
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    brightness.formulaTree = formulaTree;
-    brick.changeBrightness = brightness;
+    brick.changeBrightness = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    XCTAssertEqualWithAccuracy(100.0f, spriteNode.catrobatBrightness, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -141,18 +134,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 0.0f;
+    object.spriteNode.catrobatBrightness = 0.0;
 
-    Formula *brightness = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"50";
-    brightness.formulaTree = formulaTree;
-    brick.changeBrightness = brightness;
+    brick.changeBrightness = [[Formula alloc] initWithInteger:50];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 50.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    XCTAssertEqualWithAccuracy(50.0f, spriteNode.catrobatBrightness, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -179,18 +169,15 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    object.spriteNode.catrobatBrightness = 100.0;
 
-    Formula* brightness = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-50";
-    brightness.formulaTree = formulaTree;
-    brick.changeBrightness = brightness;
+    brick.changeBrightness = [[Formula alloc] initWithInteger:-50];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.brightness, 50.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
+    XCTAssertEqualWithAccuracy(50.0f, spriteNode.catrobatBrightness, 0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

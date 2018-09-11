@@ -38,7 +38,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>11</string>
+	<string>12</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -57,12 +57,12 @@
 	<string>Communicate with your Arduino device using Blueetoth.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Import pictures from your device camera to use as Look or Background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This program is requesting access to your location.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Record your own sounds or use the microphone for screen recording.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Import pictures from your Photo Library to use as Look or Background.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This program is requesting access to your location.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -103,5 +103,6 @@
 			</dict>
 		</dict>
 	</array>
+        <key>ITSAppUsesNonExemptEncryption</key><false/>
 </dict>
 </plist>

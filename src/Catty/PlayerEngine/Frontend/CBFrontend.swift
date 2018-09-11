@@ -92,7 +92,7 @@ final class CBFrontend: CBFrontendProtocol {
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let elseBrick = ifLogicEndBrick.ifElseBrick
                 var ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
-                    conditionBrick: ifBrick!, sequenceList: currentSequenceList)
+                    condition: ifBrick!, sequenceList: currentSequenceList)
 
                 if elseBrick != nil {
                     // currentSequenceList is ElseSequenceList
@@ -101,7 +101,7 @@ final class CBFrontend: CBFrontendProtocol {
                     assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                     currentSequenceList = topMostSequenceList!
                     ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
-                        conditionBrick: ifBrick!, ifSequenceList:currentSequenceList,
+                        condition: ifBrick!, ifSequenceList:currentSequenceList,
                         elseSequenceList: elseSequenceList)
                 }
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
@@ -113,7 +113,7 @@ final class CBFrontend: CBFrontendProtocol {
             case let ifLogicEndBrick as IfThenLogicEndBrick:
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
-                                                         conditionBrick: ifBrick!, sequenceList: currentSequenceList)
+                                                         condition: ifBrick!, sequenceList: currentSequenceList)
                 
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
                 assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
@@ -131,7 +131,8 @@ final class CBFrontend: CBFrontendProtocol {
             case let loopEndBrick as LoopEndBrick:
                 // loop end -> fetch currentSequenceList from stack
                 let conditionalSequence = CBConditionalSequence(rootSequenceList: scriptSequenceList,
-                    conditionBrick: loopEndBrick.loopBeginBrick!, sequenceList: currentSequenceList)
+                                                                condition: loopEndBrick.loopBeginBrick as! CBConditionProtocol,
+                                                                sequenceList: currentSequenceList)
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
                 assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                 currentSequenceList = topMostSequenceList!

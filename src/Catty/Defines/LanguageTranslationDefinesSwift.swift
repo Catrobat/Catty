@@ -239,10 +239,6 @@ let kLocalizedPhiro = NSLocalizedString("Phiro", comment: "")
 let kLocalizedArduino = NSLocalizedString("Arduino", comment: "")
 let kLocalizedPhiroBricks = NSLocalizedString("Use Phiro bricks", comment: "")
 let kLocalizedArduinoBricks = NSLocalizedString("Use Arduino bricks", comment: "")
-let kLocalizedFaceDetection = NSLocalizedString("Use face detection", comment: "")
-let kLocalizedFaceDetectionCamera = NSLocalizedString("Face detection camera", comment: "")
-let kLocalizedFaceDetectionDefaultCamera = NSLocalizedString("default camera is back camera", comment: "")
-let kLocalizedBackCamera = NSLocalizedString("Back camera", comment: "")
 let kLocalizedFrontCamera = NSLocalizedString("Front camera", comment: "")
 let kLocalizedDisconnectAllDevices = NSLocalizedString("Disconnect all devices", comment: "")
 let kLocalizedRemoveKnownDevices = NSLocalizedString("Remove known devices", comment: "")
@@ -255,7 +251,6 @@ let kLocalizedLoginToReport = NSLocalizedString("Please log in to report this pr
 let kLocalizedName = NSLocalizedString("Name", comment: "")
 let kLocalizedDownloaded = NSLocalizedString("Download sucessful", comment: "")
 let kLocalizedSettings = NSLocalizedString("Settings", comment: "")
-let kLocalizedWiFiProgramDownloads = NSLocalizedString("Download only with WiFi", comment: "")
 let kLocalizedNoWifiConnection = NSLocalizedString("Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", comment: "")
 let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
@@ -650,6 +645,7 @@ let kUIFESensorArduinoDigital = NSLocalizedString("arduino_digital", comment: ""
 
 let kLocalizedSensorCompass = NSLocalizedString("compass", comment: "")
 let kLocalizedSensorLocation = NSLocalizedString("location", comment: "")
+let kLocalizedSensorDeviceMotion = NSLocalizedString("device motion-sensor", comment: "")
 let kLocalizedSensorAcceleration = NSLocalizedString("acceleration-sensor", comment: "")
 let kLocalizedSensorRotation = NSLocalizedString("gyro-sensor", comment: "")
 let kLocalizedSensorMagnetic = NSLocalizedString("magnetic-sensor", comment: "")
@@ -662,6 +658,8 @@ let kUIFESensorFaceDetected = NSLocalizedString("face_detected", comment: "")
 let kUIFESensorFaceSize = NSLocalizedString("facesize", comment: "")
 let kUIFESensorFaceX = NSLocalizedString("faceposition_x", comment: "")
 let kUIFESensorFaceY = NSLocalizedString("faceposition_y", comment: "")
+
+let kUIFEUnknownElementType = NSLocalizedString("Unknown Element", comment: "")
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
@@ -723,6 +721,29 @@ let kLocalizedMediaLibrarySoundLoadFailureTitle = NSLocalizedString("Failed to l
 let kLocalizedMediaLibrarySoundLoadFailureMessage = NSLocalizedString("The sound item cannot be loaded", comment: "")
 let kLocalizedMediaLibrarySoundPlayFailureTitle = NSLocalizedString("Failed to play sound", comment: "")
 let kLocalizedMediaLibrarySoundPlayFailureMessage = NSLocalizedString("The sound item cannot be played", comment: "")
+
+//************************************************************************************************************
+//**********************************       FeaturedPrograms        *******************************************
+//************************************************************************************************************
+
+let kLocalizedFeaturedProgramsLoadFailureTitle = NSLocalizedString("Failed to load featured programs", comment: "")
+let kLocalizedFeaturedProgramsLoadFailureMessage = NSLocalizedString("The featured programs cannot be loaded", comment: "")
+
+//************************************************************************************************************
+//***********************************       ChartPrograms        *********************************************
+//************************************************************************************************************
+
+let kLocalizedChartProgramsLoadFailureTitle = NSLocalizedString("Failed to load recent programs", comment: "")
+let kLocalizeChartProgramsLoadFailureMessage = NSLocalizedString("The recent programs cannot be loaded", comment: "")
+
+//************************************************************************************************************
+//**************************************       Networking        *********************************************
+//************************************************************************************************************
+
+let kLocalizedServerTimeoutIssueTitle = NSLocalizedString("Connection failed", comment: "")
+let kLocalizedServerTimeoutIssueMessage = NSLocalizedString("Server is taking to long to respond, please try again later.", comment: "")
+let kLocalizedUnexpectedErrorTitle = NSLocalizedString("Unexpected Error", comment: "")
+let kLocalizedUnexpectedErrorMessage = NSLocalizedString("Unexpected Error, please try again later.", comment: "")
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

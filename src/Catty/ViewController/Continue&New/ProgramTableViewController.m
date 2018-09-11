@@ -38,12 +38,10 @@
 #import "NSMutableArray+CustomExtensions.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
-#import "DescriptionViewController.h"
 #import "PlaceHolderView.h"
 #import "Pocket_Code-Swift.h"
 
-
-@interface ProgramTableViewController () <UINavigationBarDelegate, SetDescriptionDelegate>
+@interface ProgramTableViewController () <UINavigationBarDelegate, SetProgramDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) BOOL deletionMode;
 @end
@@ -130,6 +128,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
          if (!result.valid) {
              return result;
          }
+         // Alert for Objects with same name
          if ([[self.program allObjectNames] containsObject:name]) {
              return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedObjectNameAlreadyExistsDescription];
          }
@@ -271,10 +270,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self toggleDetailCellsMode];
     }]
     addDefaultActionWithTitle:kLocalizedDescription handler:^{
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-        DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+        ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
         dViewController.delegate = self;
-        [self.navigationController presentViewController:dViewController animated:YES completion:nil];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
     }] build]
     showWithController:self];
 }

@@ -37,7 +37,6 @@
 #import "Util.h"
 
 //BrickImports
-#import "Brick+UnitTestingExtensions.h"
 #import "ComeToFrontBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"
@@ -73,12 +72,13 @@
 #import "ChangeBrightnessByNBrick.h"
 #import "ChangeColorByNBrick.h"
 #import "NextLookBrick.h"
-
+#import "Pocket_Code-Swift.h"
 
 @interface AbstractBrickTests : XCTestCase
 
 @property (strong, nonatomic) NSMutableArray* programs;
 @property (strong, nonatomic) SKView *skView;
-@property (strong, nonatomic) SKScene *scene;
+@property (strong, nonatomic) CBScene *scene;
+@property (strong, nonatomic) FormulaManager *formulaInterpreter;
 
 @end

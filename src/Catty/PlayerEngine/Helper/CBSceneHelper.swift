@@ -23,55 +23,12 @@
 @objc class CBSceneHelper: NSObject {
     
     // MARK: - Operations (Helpers)
-    @objc class func convertPointToScene(_ point: CGPoint, sceneSize: CGSize) -> CGPoint {
-        let x = convertXCoordinateToScene(point.x, sceneSize: sceneSize)
-        let y = convertYCoordinateToScene(point.y, sceneSize: sceneSize)
-        return CGPoint(x: x, y: y)
-    }
-    
-    @objc class func convertXCoordinateToScene(_ x: CGFloat, sceneSize: CGSize) -> CGFloat {
-        return (sceneSize.width/2.0 + x)
-    }
-    
-    @objc class func convertYCoordinateToScene(_ y: CGFloat, sceneSize: CGSize) -> CGFloat {
-        return (sceneSize.height/2.0 + y)
-    }
-    
-    @objc class func convertSceneCoordinateToPoint(_ point: CGPoint, sceneSize: CGSize) -> CGPoint {
-        let x = point.x - sceneSize.width/2.0
-        let y = point.y - sceneSize.height/2.0
-        return CGPoint(x: x, y: y);
-    }
-    
-    @objc class func convertDegreesToScene(_ degrees: Double) -> Double {
-        if degrees < 0.0 {
-            return (-1 * (360.0 - PlayerConfig.RotationDegreeOffset) - (degrees.truncatingRemainder(dividingBy: -360.0))).truncatingRemainder(dividingBy: -360.0)
-        }
-        
-        return (360.0 - (degrees.truncatingRemainder(dividingBy: 360.0) - PlayerConfig.RotationDegreeOffset)).truncatingRemainder(dividingBy: 360.0)
-    }
-    
-    @objc class func convertSceneToDegrees(_ scene: Double) -> Double {
-        let sceneDegrees = self.convertDegreesToScene(scene)
-        
-        if sceneDegrees > 180.0 {
-            return sceneDegrees - 360.0
-        }
-        
-        if sceneDegrees < -180.0 {
-            return 360 + sceneDegrees
-        }
-        
-        return sceneDegrees
-    }
-    
     @objc class func convertTouchCoordinateToPoint(coordinate: CGPoint, sceneSize: CGSize) -> CGPoint {
-        let screenSize = Util.screenSize()
+        let screenSize = Util.screenSize(false)
         var x = (coordinate.x - screenSize.width/2.0)
         x = x * (sceneSize.width / screenSize.width)
         var y = (screenSize.height/2.0 - coordinate.y)
         y = y * (sceneSize.height / screenSize.height)
         return CGPoint(x: x, y: y)
     }
-
 }

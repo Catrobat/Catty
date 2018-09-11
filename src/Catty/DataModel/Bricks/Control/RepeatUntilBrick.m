@@ -48,11 +48,6 @@
     return NO;
 }
 
-- (NSArray*)conditions
-{
-    return [self getFormulas];
-}
-
 - (NSArray*)getFormulas
 {
     return @[self.repeatCondition];
@@ -68,19 +63,10 @@
     return [kLocalizedRepeatUntil stringByAppendingString:[@"%@ " stringByAppendingString:kLocalizedRepeatUntilIsTrue]];
 }
 
-- (BOOL)checkCondition
-{
-    return ! [self.repeatCondition interpretBOOLForSprite:self.script.object];
-}
-
-- (void)resetCondition
-{
-}
-
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.repeatCondition interpretIntegerForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"RepeatLoop"];
 }
 
 #pragma mark - Copy

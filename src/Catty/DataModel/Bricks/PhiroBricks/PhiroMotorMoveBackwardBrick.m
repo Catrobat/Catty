@@ -34,7 +34,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Move Phiro Motor backward (Motor: %lu,Speed: %f)", (unsigned long)self.motor,[self.formula interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"PhiroMotorMoveBackwardBrick (Motor: %lu)", (unsigned long)self.motor];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

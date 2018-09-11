@@ -21,11 +21,12 @@
  */
 
 #import "InternFormula.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InternFormula()
 
 @property (nonatomic, strong)ExternInternRepresentationMapping *externInternRepresentationMapping;
-@property (nonatomic, strong)NSMutableArray *internTokenFormulaList;
+@property (nonatomic, strong)NSMutableArray<InternToken*> *internTokenFormulaList;
 @property (nonatomic, strong)NSString *externFormulaString;
 @property (nonatomic, strong)InternFormulaTokenSelection *internFormulaTokenSelection;
 @property (nonatomic, strong)InternToken *cursorPositionInternToken;
@@ -68,7 +69,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return _externFormulaString;
 }
 
-- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+- (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList
 {
     self = [super init];
     if(self)
@@ -82,7 +83,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return self;
 }
 
-- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+- (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList
               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
                      externCursorPosition:(int)externCursorPosition
 {
@@ -120,21 +121,20 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
 {
-    NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListByResourceId:resourceId name:name];
-    
+    NSMutableArray<InternToken*> *keyInputInternTokenList = [[NSMutableArray alloc] initWithArray:[self createInternTokenListByResourceIdWithResource:resourceId name:name]];
+    [self handleKeyInputWithInternTokenList:keyInputInternTokenList andResourceId:resourceId];
+}
+
+- (void)handleKeyInputWithInternTokenList:(NSMutableArray*)keyInputInternTokenList andResourceId:(int)resourceId
+{
     CursorTokenPropertiesAfterModification cursorTokenPropertiesAfterInput = DO_NOT_MODIFY;
-    if(resourceId == CLEAR)
-    {
+    if(resourceId == CLEAR) {
         cursorTokenPropertiesAfterInput = [self handleDeletion];
-    }else if ([self isTokenSelected])
-    {
+    } else if ([self isTokenSelected]) {
         cursorTokenPropertiesAfterInput = [self replaceSelection:keyInputInternTokenList];
-        
-    }else if(self.cursorTokenPosition == 0)
-    {
+    } else if(self.cursorTokenPosition == 0) {
         cursorTokenPropertiesAfterInput = [self insertRightToCurrentToken:keyInputInternTokenList];
-    }
-    else{
+    } else {
         switch (self.cursorTokenPosition) {
             case LEFT:
                 cursorTokenPropertiesAfterInput = [self insertLeftToCurrentToken:keyInputInternTokenList];
@@ -964,12 +964,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return self.externCursorPosition;
 }
 
-- (InternFormulaParser *)getInternFormulaParser
-{
-    self.internTokenFormulaParser = [[InternFormulaParser alloc]initWithTokens:self.internTokenFormulaList];
-    return self.internTokenFormulaParser;
-}
-
 - (TokenSelectionType)getExternSelectionType
 {
     if(![self isTokenSelected])
@@ -1094,6 +1088,11 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return [[InternFormulaState alloc]initWithList:deepCopyOfInternTokenFormula
                                          selection:deepCopyOfInternFormulaTokenSelection
                            andExternCursorPosition:self.externCursorPosition];
+}
+
+- (NSArray<InternToken*>*)getInternTokenList
+{
+    return self.internTokenFormulaList;
 }
 
 - (BOOL)isEmpty

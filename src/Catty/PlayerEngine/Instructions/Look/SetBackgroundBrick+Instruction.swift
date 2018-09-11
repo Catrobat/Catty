@@ -23,9 +23,9 @@
 @objc extension SetBackgroundBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+        return .action { (context) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let object = self.script.object.program.objectList.firstObject as? SpriteObject,
               let spriteNode = object.spriteNode

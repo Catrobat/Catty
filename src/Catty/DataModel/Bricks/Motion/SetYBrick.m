@@ -58,7 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetYBrick"];
 }
 
 #pragma mark - Resources

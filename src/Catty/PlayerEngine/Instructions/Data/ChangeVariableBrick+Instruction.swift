@@ -32,9 +32,8 @@
         let variableFormula = self.variableFormula
 
         return CBInstruction.execClosure { (context, _) in
-//            self.logger.debug("Performing: ChangeVariableBrick")
-            let result = variableFormula?.interpretVariableData(forSprite: spriteObject)
-            if let userVariable = userVariable {
+            if let userVariable = userVariable, let variableFormula = variableFormula {
+                let result = context.formulaInterpreter.interpret(variableFormula, for: spriteObject)
                 if userVariable.value == nil {
                     if result is NSNumber {
                         userVariable.value = NSNumber(value: 0 as Int32)

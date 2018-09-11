@@ -25,17 +25,15 @@
 #import "ScenePresenterViewController.h"
 
 @class PlaceHolderView;
-@class BluetoothPopupVC;
-@interface BaseCollectionViewController : UICollectionViewController <BluetoothSelection>
+@interface BaseCollectionViewController : UICollectionViewController
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
-@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @property (nonatomic, assign) BOOL allBricksSelected;
 
 - (void)showPlaceHolder:(BOOL)show;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)setupToolBar;
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)playSceneAction:(id)sender;
 
 @end

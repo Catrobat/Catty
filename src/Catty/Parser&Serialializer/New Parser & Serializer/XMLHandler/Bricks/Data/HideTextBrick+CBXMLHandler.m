@@ -34,27 +34,8 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
 {
-    NSUInteger childCount = [xmlElement.childrenWithoutComments count];
-    GDataXMLElement *userVariableElement = nil;
+    GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     
-    if (childCount == 3) {
-        userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-        [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
-        
-        GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-        [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
-        
-        // inUserBrick code goes here...
-    } else if (childCount == 2) {
-        userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-        GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-        
-        if (userVariableElement == nil && inUserBrickElement == nil) {
-            [XMLError exceptionWithMessage:@"Neither userVariableElement nor inUserBrickElement found..."];
-        }
-    } else if (childCount != 1) {
-        [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
-    }
     HideTextBrick *hideTextBrick = [self new];
     
     if (userVariableElement != nil) {
@@ -73,8 +54,12 @@
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"HideTextBrick"]];
 
-    if (self.userVariable)
+    if (self.userVariable) {
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+        
+        // Element to produce Catroid equivalent XML
+        [brick addChild:[GDataXMLElement elementWithName:@"userVariableName" stringValue:self.userVariable.name context:context] context:context];
+    }
     
     return brick;
 }

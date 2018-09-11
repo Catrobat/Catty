@@ -48,16 +48,11 @@ static CameraPreviewHandler* shared = nil;
     return shared;
 }
 
-+ (void)resetSharedInstance {
-    shared = nil;
-}
-
 - (id)init
 {
     self = [super init];
     if (self) {
-        self.cameraPosition = AVCaptureDevicePositionFront;
-        self.session = [[AVCaptureSession alloc] init];
+        [self reset];
     }
     
     return self;
@@ -96,11 +91,6 @@ static CameraPreviewHandler* shared = nil;
 {
     assert(self.camView);
     
-    if (self.session.isRunning)
-    {
-        return;
-    }
-    
     camLayer = [[CALayer alloc] init];
     camLayer.accessibilityHint = camAccessibility;
     camLayer.frame = self.camView.bounds;
@@ -108,8 +98,7 @@ static CameraPreviewHandler* shared = nil;
     [self.camView.layer insertSublayer:camLayer atIndex:0];
 
     AVCaptureDevice* device = [self getCaptureDevice];
-    if (device != nil)
-    {
+    if (device != nil) {
         [self beginSessionForCaptureDevice:device toLayer:camLayer];
     } else {
         NSLog(@"Requested capture device unavailable");
@@ -129,14 +118,16 @@ static CameraPreviewHandler* shared = nil;
 - (void)beginSessionForCaptureDevice:(AVCaptureDevice*)device toLayer:(CALayer*)rootLayer
 {
     NSError* err;
-    AVCaptureDeviceInput* deviceInput;
-    deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&err];
-    if (err != nil)
-    {
-     NSLog(@"error: \(err.localizedDescription)");
+    AVCaptureDeviceInput* deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&err];
+
+    if (err != nil) {
+        NSLog(@"error: \(err.localizedDescription)");
     }
-    if ([self.session canAddInput:deviceInput])
-    {
+    
+    if ([self.session isRunning]) {
+        [self.session stopRunning];
+    }
+    if ([self.session canAddInput:deviceInput]) {
         [self.session addInput:deviceInput];
     }
     
@@ -154,7 +145,14 @@ static CameraPreviewHandler* shared = nil;
     rootLayer.masksToBounds = true;
     previewLayer.frame = rootLayer.bounds;
     [rootLayer addSublayer:previewLayer];
+    
     [self.session startRunning];
+}
+
+- (void)reset
+{
+    self.cameraPosition = AVCaptureDevicePositionFront;
+    self.session = [[AVCaptureSession alloc] init];
 }
 
 // clean up AVCapture
@@ -170,6 +168,5 @@ static CameraPreviewHandler* shared = nil;
         [self.session removeInput:input];
     }
 }
-
 
 @end

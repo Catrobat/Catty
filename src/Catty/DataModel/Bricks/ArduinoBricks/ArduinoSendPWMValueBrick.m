@@ -60,7 +60,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Arduino send pwm/analog Value (Pin: %f,Value: %f)", [self.pin interpretDoubleForSprite:self.script.object],[self.value interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ArduinoSendPWMValueBrick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

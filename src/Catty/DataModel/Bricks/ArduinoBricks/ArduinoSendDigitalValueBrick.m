@@ -60,7 +60,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Arduino send digital Value (Pin: %f,Value: %f)", [self.pin interpretDoubleForSprite:self.script.object],[self.value interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ArduinoSendDigitalValueBrick"];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

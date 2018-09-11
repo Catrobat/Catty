@@ -23,13 +23,10 @@
 @objc extension ChangeBrightnessByNBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        if let actionClosure = actionBlock() {
-            return .action(action: SKAction.run(actionClosure))
-        }
-        return .invalidInstruction()
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
-    @objc func actionBlock() -> (()->())? {
+    @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let bright = self.changeBrightness
@@ -37,26 +34,11 @@
         
         return {
             guard let look = object.spriteNode?.currentLook else { return }
-            var brightnessValue = bright.interpretDouble(forSprite: object) / 100
-            brightnessValue += Double(spriteNode.currentLookBrightness)
-            if (brightnessValue > 1) {
-                brightnessValue = 1.0;
-            }
-            else if (brightnessValue < -1){
-                brightnessValue = -1.0;
-            }
+            let brightnessIncrease = formulaInterpreter.interpretDouble(bright, for: object)
+            spriteNode.catrobatBrightness = spriteNode.catrobatBrightness + brightnessIncrease
             
             let lookImage = UIImage(contentsOfFile:self.path(for: look))
-            let brightnessDefaultValue:CGFloat = 0.0
-            spriteNode.currentLookBrightness = CGFloat(brightnessValue)
-            
-            if (CGFloat(brightnessValue) != brightnessDefaultValue){
-                spriteNode.filterDict["brightness"] = true
-            }else{
-                spriteNode.filterDict["brightness"] = false
-            }
             spriteNode.executeFilter(lookImage)
-            
         }
     }
 }

@@ -28,6 +28,9 @@
 // Data model classes
 //------------------------------------------------------------------------------------------------------------
 
+// Sensors
+#import "FlashHelper.h"
+
 // Scripts
 #import "StartScript.h"
 #import "WhenScript.h"
@@ -35,7 +38,6 @@
 
 // Bricks
 #import "Brick.h"
-#import "BrickConditionalBranchProtocol.h"
 #import "IfLogicBeginBrick.h"
 #import "IfThenLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
@@ -83,6 +85,7 @@
 #import "PhiroPlayToneBrick.h"
 #import "PhiroMotorMoveForwardBrick.h"
 #import "PhiroMotorMoveBackwardBrick.h"
+#import "PhiroIfLogicBeginBrick.h"
 #import "ArduinoSendDigitalValueBrick.h"
 #import "ArduinoSendPWMValueBrick.h"
 #import "SetTransparencyBrick.h"
@@ -113,7 +116,7 @@
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
-#import "Functions.h"
+#import "Operators.h"
 
 // UserVariable
 #import "UserVariable.h"
@@ -149,13 +152,33 @@
 
 #import "BaseTableViewController.h"
 #import "LooksTableViewController.h"
+#import "FormulaEditorViewController.h"
+#import "MyProgramsViewController.h"
+#import "ProgramTableViewController.h"
 
 //------------------------------------------------------------------------------------------------------------
+
 // Defines
 //------------------------------------------------------------------------------------------------------------
+
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
-//#import "LanguageTranslationDefines.h"
+#import "KeychainUserDefaultsDefines.h"
+#import "CatrobatLanguageDefines.h"
 
+//#import "LanguageTranslationDefines.h"
 #import "BrickFormulaProtocol.h"
 
+
+//-----------------------------------------------------------------------------------------------------------
+// Headers to sort
+//-----------------------------------------------------------------------------------------------------------
+#import "CatrobatInformation.h"
+#import "CatrobatProgram.h"
+#import "AppDelegate.h"
+#import "TableUtil.h"
+#import "CellTagDefines.h"
+#import "SegueDefines.h"
+#import "ProgramDetailStoreViewController.h"
+#import "DarkBlueGradientFeaturedCell.h"
+#import "LoadingView.h"

@@ -30,11 +30,9 @@
         let spriteObjectName = spriteObject.name
 
         return CBInstruction.execClosure { (context, _) in
-//            self.logger.debug("Performing: SetVolumeToBrick")
-            let volume = self.volume.interpretDouble(forSprite: spriteObject)
+            let volume = context.formulaInterpreter.interpretDouble(self.volume, for: spriteObject)
             audioManager?.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
             context.state = .runnable
         }
-
     }
 }

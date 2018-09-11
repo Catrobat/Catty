@@ -486,6 +486,10 @@
             <brick type="ChooseCameraBrick">
                 <spinnerSelectionID>1</spinnerSelectionID>
             </brick>
+            <brick type="HideTextBrick">
+                <userVariable reference="../../brick[13]/userVariable"/>
+                <userVariableName>global</userVariableName>
+            </brick>
           </brickList>
           <isUserScript>false</isUserScript>
         </script>

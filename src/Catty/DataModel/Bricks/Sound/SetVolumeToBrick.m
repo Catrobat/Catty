@@ -58,7 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Set Volume to: %f%%)", [self.volume interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"Set Volume Brick"];
 }
 
 #pragma mark - Resources

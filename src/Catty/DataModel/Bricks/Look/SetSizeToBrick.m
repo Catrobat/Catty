@@ -58,7 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetSizeTo (%f%%)", [self.size interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetSizeTo"];
 }
 
 #pragma mark - Resources

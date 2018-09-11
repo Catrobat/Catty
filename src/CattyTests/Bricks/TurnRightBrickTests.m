@@ -33,7 +33,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
@@ -83,7 +82,7 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.rotation = 0;
+    spriteNode.catrobatRotation = 0.0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -91,26 +90,21 @@
     TurnRightBrick *brick = [[TurnRightBrick alloc] init];
     brick.script = script;
 
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-    XCTAssertEqualWithAccuracy(spriteNode.rotation, 0.0, 0.0001, @"TurnRightBrick not correct");
+    
+    XCTAssertEqualWithAccuracy(0.0, spriteNode.catrobatRotation, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)turnRightWithInitialRotation:(CGFloat)initialRotation andRotation:(CGFloat)rotation
 {
-    rotation = fmodf(rotation, 360.0f);
-    
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    spriteNode.rotation = initialRotation;
+    
+    spriteNode.catrobatRotation = initialRotation;
     
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -118,14 +112,9 @@
     TurnRightBrick* brick = [[TurnRightBrick alloc] init];
     brick.script = script;
     
-    Formula *degrees = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = [NSString stringWithFormat:@"%f", rotation];
-    degrees.formulaTree = formulaTree;
-    brick.degrees = degrees;
+    brick.degrees = [[Formula alloc] initWithFloat:rotation];
     
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
     if (initialRotation > 180.0f) {
@@ -134,15 +123,8 @@
         initialRotation = initialRotation + 360.0f;
     }
     
-    CGFloat expectedRotation = initialRotation + rotation;
-    
-    if (expectedRotation > 180.0f) {
-        expectedRotation = -360.0f + expectedRotation;
-    } else if (expectedRotation < -180.0f) {
-        expectedRotation = expectedRotation + 360.0f;
-    }
-    
-    XCTAssertEqualWithAccuracy(expectedRotation, spriteNode.rotation, 0.0001, @"TurnRightBrick not correct");
+    CGFloat expectedRawRotation = [[RotationSensor class] convertToRawWithUserInput:(initialRotation + rotation) for: object];
+    XCTAssertEqualWithAccuracy(expectedRawRotation, spriteNode.zRotation, 0.0001, @"TurnRightBrick not correct");
 }
 
 @end

@@ -21,9 +21,11 @@
  */
 
 #import "XMLAbstractTest.h"
+#import "Pocket_Code-Swift.h"
 
 @interface XMLParserBrickTests093 : XMLAbstractTest
 
 @property (nonatomic, strong) CBXMLParserContext *parserContext;
+@property (nonatomic, strong) FormulaManager *formulaManager;
 
 @end

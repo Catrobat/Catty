@@ -22,6 +22,7 @@
 
 #import "Brick.h"
 
+@protocol CBConditionProtocol;
 @class LoopBeginBrick;
 
 @interface LoopEndBrick : Brick

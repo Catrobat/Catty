@@ -37,10 +37,9 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIUtil.h"
-#import "DescriptionViewController.h"
 #import "Pocket_Code-Swift.h"
 
-@interface MyProgramsViewController () <ProgramUpdateDelegate, UITextFieldDelegate, SetDescriptionDelegate>
+@interface MyProgramsViewController () <ProgramUpdateDelegate, UITextFieldDelegate, SetProgramDescriptionDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
@@ -421,11 +420,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
          }]
          addDefaultActionWithTitle:kLocalizedDescription handler:^{
              Program *program = [Program programWithLoadingInfo:info];
-             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-             DescriptionViewController * dViewController = [storyboard instantiateViewControllerWithIdentifier:@"DescriptionViewController"];
+             ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
              dViewController.delegate = self;
              self.selectedProgram = program;
-             [self.navigationController presentViewController:dViewController animated:YES completion:nil];
+             
+             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
+             [self.navigationController presentViewController:navigationController animated:YES completion:nil];
          }] build]
          viewWillDisappear:^{
              [self.tableView setEditing:false animated:YES];

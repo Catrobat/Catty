@@ -21,6 +21,7 @@
  */
 
 #import "InternToExternGenerator.h"
+#import "Pocket_Code-Swift.h"
 
 @interface InternToExternGenerator ()
 
@@ -107,6 +108,11 @@
         }
         
         externTokenString = [self generateExternStringFromToken:currentToken];
+        
+        if (externTokenString == nil) {
+            externTokenString = kUIFEUnknownElementType;
+        }
+        
         self.generatedExternFormulaString = [self.generatedExternFormulaString stringByAppendingString:externTokenString];
         externStringEndIndex = (int)[self.generatedExternFormulaString length];
         
@@ -163,10 +169,6 @@
             
             break;
             
-        case TOKEN_TYPE_FUNCTION_NAME:
-            return [Functions getExternName:[internToken getTokenStringValue]];
-            break;
-            
         case TOKEN_TYPE_BRACKET_OPEN:
         case TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN:
             return @"(";
@@ -204,9 +206,15 @@
             
             return returnValue;
             break;
-        case TOKEN_TYPE_SENSOR:
-            return [SensorManager getExternName:[internToken getTokenStringValue]];
+            
+        case TOKEN_TYPE_FUNCTION_NAME:
+            return [[FunctionManager class] nameWithTag:[internToken getTokenStringValue]];
             break;
+            
+        case TOKEN_TYPE_SENSOR:
+            return [[SensorManager class] nameWithTag:[internToken getTokenStringValue]];
+            break;
+            
         default:
             return [internToken getTokenStringValue];
             break;

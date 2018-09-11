@@ -38,39 +38,6 @@
     self.title = kLocalizedSettings;
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
-    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-        
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetection key:kUseFaceDetectionSensors handler:^(BOSwitchTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
-            cell.toggleSwitch.tintColor = [UIColor globalTintColor];
-            [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
-        }]];
-        
-        [section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedFaceDetectionCamera key:kUseFrontCamera handler:^(BOChoiceTableViewCell *cell) {
-            cell.visibilityKey = kUseFaceDetectionSensors;
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
-            cell.visibilityBlock = ^BOOL(id settingValue) {
-                return [settingValue boolValue];
-            };
-            cell.footerTitles = @[kLocalizedFaceDetectionDefaultCamera, kLocalizedFaceDetectionDefaultCamera];
-            cell.options = @[kLocalizedBackCamera, kLocalizedFrontCamera];
-            cell.destinationViewController = [self returnFaceDetectionCameraOptions];
-        }]];
-        
-    }]];
-    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-        
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedWiFiProgramDownloads key:kUseWiFiDownload handler:^(BOSwitchTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
-            cell.toggleSwitch.tintColor = [UIColor globalTintColor];
-            [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
-        }]];
-        
-    }]];
-    
     
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
         
@@ -211,21 +178,6 @@
 {
     [[BluetoothService sharedInstance] removeKnownDevices];
     [Util alertWithText:kLocalizedRemovedKnownBluetoothDevices];
-}
-
-- (BOTableViewController *)returnFaceDetectionCameraOptions
-{
-    BOTableViewController *cameraOptions = [[BOTableViewController alloc] init];
-    cameraOptions.view.backgroundColor = [UIColor backgroundColor];
-    cameraOptions.title = kLocalizedFaceDetectionCamera;
-    
-    [cameraOptions addSection:[BOTableViewSection sectionWithHeaderTitle:nil handler:^(BOTableViewSection *section) {
-        [section addCell:[BOOptionTableViewCell cellWithTitle:kLocalizedBackCamera key:kUseFrontCamera handler:nil]];
-        
-        [section addCell:[BOOptionTableViewCell cellWithTitle:kLocalizedFrontCamera key:kUseFrontCamera handler:nil]];
-    }]];
-    
-    return cameraOptions;
 }
 
 - (void)logoutUser

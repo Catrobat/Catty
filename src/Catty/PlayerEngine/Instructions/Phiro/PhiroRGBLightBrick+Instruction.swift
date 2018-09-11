@@ -27,9 +27,9 @@ import Foundation
     @nonobjc func instruction() -> CBInstruction {
         
         return CBInstruction.execClosure { (context, _) in
-            let redValue = self.getFormulaValue(self.redFormula)
-            let greenValue = self.getFormulaValue(self.greenFormula)
-            let blueValue = self.getFormulaValue(self.blueFormula)
+            let redValue = self.getFormulaValue(self.redFormula, formulaInterpreter: context.formulaInterpreter)
+            let greenValue = self.getFormulaValue(self.greenFormula, formulaInterpreter: context.formulaInterpreter)
+            let blueValue = self.getFormulaValue(self.blueFormula, formulaInterpreter: context.formulaInterpreter)
             
             
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
@@ -55,8 +55,8 @@ import Foundation
     }
     
     
-    @objc func getFormulaValue(_ formula:Formula) -> Int {
-        var rgbValue = Int(formula.interpretInteger(forSprite: self.script?.object))
+    @objc func getFormulaValue(_ formula:Formula, formulaInterpreter: FormulaInterpreterProtocol) -> Int {
+        var rgbValue = formulaInterpreter.interpretInteger(formula, for: (self.script?.object)!)
         if (rgbValue < 0) {
             rgbValue = 0;
         } else if (rgbValue > 255) {

@@ -66,7 +66,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetColorBrick (%f)", [self.color interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetColorBrick"];
 }
 
 #pragma mark - Resources

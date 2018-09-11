@@ -65,14 +65,9 @@
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
 
-    Formula* steps = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"1";
-    steps.formulaTree = formulaTree;
-    brick.steps = steps;
+    brick.steps = [[Formula alloc] initWithInteger:1];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(spriteNode2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
@@ -101,14 +96,9 @@
     GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
 
-    Formula *steps = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"2";
-    steps.formulaTree = formulaTree;
-    brick.steps = steps;
+    brick.steps = [[Formula alloc] initWithInteger:2];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(spriteNode2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
@@ -137,14 +127,9 @@
     GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
 
-    Formula *steps = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"2";
-    steps.formulaTree = formulaTree;
-    brick.steps = steps;
+    brick.steps = [[Formula alloc] initWithInteger:2];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(spriteNode2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
@@ -173,14 +158,9 @@
     GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
 
-    Formula *steps = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"10";
-    steps.formulaTree = formulaTree;
-    brick.steps = steps;
+    brick.steps = [[Formula alloc] initWithInteger:10];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)1.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(spriteNode2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
@@ -209,14 +189,9 @@
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
 
-    Formula *steps = [[Formula alloc] init];
-    FormulaElement *formulaTree = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"a";
-    steps.formulaTree = formulaTree;
-    brick.steps = steps;
+    brick.steps = [[Formula alloc] initWithString:@"a"];
 
-    dispatch_block_t action = [brick actionBlock];
+    dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)5.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(spriteNode2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");

@@ -20,21 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc extension ChangeXByNBrick: CBInstructionProtocol {
+extension ChangeXByNBrick: CBInstructionProtocol {
 
-    @nonobjc func instruction() -> CBInstruction {
-        return .action(action: SKAction.run(actionBlock()))
+    func instruction() -> CBInstruction {
+        return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
-    @objc func actionBlock() -> ()->() {
+    
+    func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let xMovement = self.xMovement
             else { fatalError("This should never happen!") }
         
         return {
-            let xMov = xMovement.interpretDouble(forSprite: object)
-            spriteNode.scenePosition = CGPoint(x: spriteNode.scenePosition.x + CGFloat(xMov), y: spriteNode.scenePosition.y);
+            let xMov = formulaInterpreter.interpretDouble(xMovement, for: object)
+            spriteNode.catrobatPositionX = spriteNode.catrobatPositionX + xMov
         }
     }
 }

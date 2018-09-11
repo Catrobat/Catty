@@ -27,7 +27,7 @@
         guard let object = self.script?.object else { fatalError("This should never happen!") }
 
         return CBInstruction.execClosure { (context, _) in
-            guard var speakText = self.formula.interpretString(object) else { return }
+            var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
             if(Double(speakText) !=  nil)
             {
                 let num = (speakText as NSString).doubleValue

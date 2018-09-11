@@ -89,9 +89,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.xFormula interpretDoubleForSprite:self.script.object];
-    double result1 = [self.yFormula interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"Show Variable Brick: Uservariable: %@, toX: %f toY: %f", self.userVariable, result,result1];
+    return [NSString stringWithFormat:@"ShowTextBrick (Uservariable: %@)", self.userVariable];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

@@ -25,47 +25,54 @@ import XCTest
 @testable import Pocket_Code
 
 final class SetVariableBrickTests: XCTestCase {
+    
+    var program: Program!
+    var spriteObject: SpriteObject!
+    var spriteNode: CBSpriteNode!
+    var script: Script!
+    var scheduler: CBScheduler!
+    var context: CBScriptContextProtocol!
+    
+    override func setUp() {
+        program = Program()
+        
+        spriteObject = SpriteObject()
+        spriteObject.name = "SpriteObjectName"
+        
+        spriteNode = CBSpriteNode(spriteObject: spriteObject)
+        spriteObject.spriteNode = spriteNode
+        spriteObject.program = program
+        
+        script = Script()
+        script.object = spriteObject
+        
+        let logger = CBLogger(name: "Logger")
+        let broadcastHandler = CBBroadcastHandler(logger: logger)
+        let formulaInterpreter = FormulaManager()
+        scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
+        context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
+    }
 
     func testSetVariableBrickUserVariablesNil() {
-
-        let program = Program();
-        let object = SpriteObject();
-        let spriteNode = CBSpriteNode();
-        spriteNode.name = "SpriteNode";
-        spriteNode.spriteObject = object;
-        object.spriteNode = spriteNode;
-        spriteNode.position = CGPoint(x: 0, y: 0);
-        object.program = program;
+        spriteNode.position = CGPoint(x: 0, y: 0)
         
-        let formula = Formula();
-        let formulaTree = FormulaElement();
-        formulaTree.type = ElementType.NUMBER;
-        formulaTree.value = "0";
-        formula.formulaTree = formulaTree;
-
-        let varContainer = VariablesContainer();
-        object.program.variables = varContainer;
+        let varContainer = VariablesContainer()
+        spriteObject.program.variables = varContainer
         
-        let brick = SetVariableBrick();
-        brick.variableFormula = formula;
+        let brick = SetVariableBrick()
+        brick.variableFormula = Formula(integer: 0)
+        brick.script = script
         
-        let script = Script();
-        script.object = object;
-        brick.script = script;
-        
-        let instruction = brick.instruction();
-        
-        let logger = CBLogger(name: "Logger");
-        let broadcastHandler = CBBroadcastHandler(logger: logger);
-        let scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler);
+        let instruction = brick.instruction()
         
         switch instruction {
         case let .execClosure(closure):
-            closure(CBScriptContext(script: script, spriteNode: spriteNode)!, scheduler)
-        default: break;
+            closure(context, scheduler)
+        default:
+            XCTFail()
         }
         
-        XCTAssertTrue(true); // The purpose of this test is to show that the program does not crash
+        XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
                              // when no UserVariable is selected in the IDE and the brick is executed
     }
 }

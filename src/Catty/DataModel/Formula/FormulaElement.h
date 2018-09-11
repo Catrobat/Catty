@@ -21,7 +21,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Functions.h"
 #import "Operators.h"
 #import "CBMutableCopying.h"
 
@@ -86,7 +85,12 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
         rightChild:(FormulaElement*)rightChild
             parent:(FormulaElement*)parent;
 
-- (id)interpretRecursiveForSprite:(SpriteObject*)sprite;
+- (id)initWithElementType:(ElementType)type
+                    value:(NSString*)value;
+
+- (id)initWithInteger:(int)value;
+- (id)initWithDouble:(double)value;
+- (id)initWithString:(NSString*)value;
 
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement;
 
@@ -102,15 +106,7 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 
 - (NSMutableArray*)getInternTokenList;
 
-- (BOOL)isLogicalOperator;
-
-- (BOOL)isLogicalFunction;
-
-//- (BOOL)hasFunctionStringReturnType;
-
 - (BOOL)isSingleNumberFormula;
-
-- (BOOL)containsElement:(ElementType)elementType;
 
 - (NSInteger)getRequiredResources;
 

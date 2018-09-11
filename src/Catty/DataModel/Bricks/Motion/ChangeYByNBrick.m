@@ -59,8 +59,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double yMov = [self.yMovement interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"ChangeYBy (%f)", yMov];
+    return [NSString stringWithFormat:@"ChangeYByNBrick"];
 }
 #pragma mark - Resources
 - (NSInteger)getRequiredResources

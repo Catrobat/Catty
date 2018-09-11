@@ -32,8 +32,13 @@ import ReplayKit
 final class CBScene: SKScene {
 
     // MARK: - Properties
-    let logger: CBLogger?
-
+    final let scheduler: CBSchedulerProtocol
+    private final let frontend: CBFrontendProtocol
+    private final let backend: CBBackendProtocol
+    private final let broadcastHandler: CBBroadcastHandlerProtocol
+    private final let formulaManager: FormulaManagerProtocol
+    private final let logger: CBLogger
+    
     /// ReplayKit preview view controller used when viewing recorded content.
     private var _previewViewController: AnyObject?
     @available(iOS 9.0, *)
@@ -41,10 +46,6 @@ final class CBScene: SKScene {
         get { return _previewViewController as? RPPreviewViewController }
         set { _previewViewController = newValue }
     }
-    private(set) var scheduler: CBSchedulerProtocol?
-    private(set) var frontend: CBFrontendProtocol?
-    private(set) var backend: CBBackendProtocol?
-    private(set) var broadcastHandler: CBBroadcastHandlerProtocol?
     @objc var isScreenRecorderAvailable: Bool {
     return RPScreenRecorder.shared().isAvailable
     
@@ -54,34 +55,13 @@ final class CBScene: SKScene {
     }
     @objc weak var screenRecordingDelegate: CBScreenRecordingDelegate?
 
-    // MARK: - Initializers
-
-    // MARK: Convenient initializer
-    // ATTENTION: This initializer may only be used for single action testing purposes!!
-    @objc convenience override init() {
-        self.init(size: CGSize.zero)
-    }
-
-    // MARK: initializer
-    // Note: This initializer may only be used for single action testing purposes!!
-    override init(size: CGSize) {
-        logger = nil
-        scheduler = nil
-        frontend = nil
-        backend = nil
-        broadcastHandler = nil
-        super.init(size: size)
-    }
-
-    // MARK: Designated initializer
-    init(size: CGSize, logger: CBLogger, scheduler: CBScheduler, frontend: CBFrontend,
-        backend: CBBackend, broadcastHandler: CBBroadcastHandlerProtocol)
-    {
+    init(size: CGSize, logger: CBLogger, scheduler: CBSchedulerProtocol, frontend: CBFrontendProtocol, backend: CBBackendProtocol, broadcastHandler: CBBroadcastHandlerProtocol, formulaManager: FormulaManagerProtocol) {
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend
         self.backend = backend
         self.broadcastHandler = broadcastHandler
+        self.formulaManager = formulaManager
         super.init(size: size)
         backgroundColor = UIColor.white
     }
@@ -91,7 +71,7 @@ final class CBScene: SKScene {
     }
 
     // MARK: - Deinitializer
-    @objc deinit { logger?.info("Dealloc Scene") }
+    @objc deinit { logger.info("Dealloc Scene") }
 
     // MARK: - Scene events
     @objc override func willMove(from view: SKView) {
@@ -101,14 +81,13 @@ final class CBScene: SKScene {
 
     override func didMove(to view: SKView) {
         view.isMultipleTouchEnabled = true
-        startProgram()
     }
 
     @objc
     @discardableResult
     func touchedWithTouch(_ touch: UITouch) -> Bool {
-        assert(scheduler?.running == true)
-        logger?.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
+        assert(scheduler.running == true)
+        logger.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
         
         let location = touch.location(in: self)
         
@@ -116,7 +95,7 @@ final class CBScene: SKScene {
         let nodes = self.nodes(at: location).filter({$0 is CBSpriteNode})
         if nodes.count == 0 { return false } // needed if scene has no background image!
         
-        logger?.debug("Number of touched nodes: \(nodes.count)")
+        logger.debug("Number of touched nodes: \(nodes.count)")
         
         nodes.forEach { print(">>> \(String(describing: $0.name))") }
         for node in nodes {
@@ -126,7 +105,7 @@ final class CBScene: SKScene {
                 return false
             }
             print("Current node: \(currentNode)")
-            logger?.debug("Current node: \(currentNode)")
+            logger.debug("Current node: \(currentNode)")
             if currentNode.isHidden { continue }
             
             let newPosition = touch.location(in: currentNode)
@@ -137,7 +116,7 @@ final class CBScene: SKScene {
                 var zPosition = currentNode.zPosition
                 zPosition -= 1
                 if (zPosition == -1) {
-                    logger?.debug("Found Object")
+                    logger.debug("Found Object")
                     return true
                 }
             }
@@ -148,13 +127,18 @@ final class CBScene: SKScene {
 
     // MARK: - Start program
     @objc func startProgram() {
-        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject], let variableList = frontend?.program?.variables.allVariables() as NSArray? as? [UserVariable]
-        else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
+        guard let program = frontend.program else {
+            fatalError("Invalid program. This should never happen!")
+        }
+        
+        guard let spriteObjectList = program.objectList as NSArray? as? [SpriteObject],
+              let variableList = frontend.program?.variables.allVariables() as NSArray? as? [UserVariable] else {
+                fatalError("!! Invalid sprite object list given !! This should never happen!")
+        }
         assert(Thread.current.isMainThread)
 
         removeAllChildren() // just to ensure
-
-
+        
         var zPosition = 1
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
@@ -172,33 +156,32 @@ final class CBScene: SKScene {
             }
 
             addChild(spriteNode) // now add the brick with correct visability-state to the Scene
-            logger?.debug("\(zPosition)")
+            logger.debug("\(zPosition)")
             spriteNode.start(CGFloat(zPosition))
             spriteNode.setLook()
             spriteNode.isUserInteractionEnabled = true
-            if spriteNode.spriteObject?.isBackground() == false {
+            if spriteNode.spriteObject.isBackground() == false {
                 zPosition += 1
             }
-            scheduler?.registerSpriteNode(spriteNode)
+            scheduler.registerSpriteNode(spriteNode)
 
             for script in scriptList {
-                guard let scriptSequence = frontend?.computeSequenceListForScript(script),
-                      let instructions = backend?.instructionsForSequence(scriptSequence.sequenceList)
-                else { fatalError("Unable to create ScriptSequence and Context") }
-
-                logger?.info("Generating Context of \(script)")
+                let scriptSequence = frontend.computeSequenceListForScript(script)
+                let instructions = backend.instructionsForSequence(scriptSequence.sequenceList)
+                
+                logger.info("Generating Context of \(script)")
                 var context: CBScriptContext? = nil
                 switch script {
                 case let startScript as StartScript:
-                    context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, state: .runnable)
+                    context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
 
                 case let whenScript as WhenScript:
-                    context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, state: .runnable)
+                    context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
 
                 case let bcScript as BroadcastScript:
-                    context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, state: .runnable)
+                    context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
                     if let broadcastContext = context as? CBBroadcastScriptContext {
-                        broadcastHandler?.subscribeBroadcastContext(broadcastContext)
+                        broadcastHandler.subscribeBroadcastContext(broadcastContext)
                     }
                 default:
                     break
@@ -207,7 +190,7 @@ final class CBScene: SKScene {
                     fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
                 }
                 scriptContext += instructions // generate instructions and add them to script context
-                scheduler?.registerContext(scriptContext)
+                scheduler.registerContext(scriptContext)
             }
         }
         for variable:UserVariable in variableList {
@@ -215,12 +198,13 @@ final class CBScene: SKScene {
             variable.textLabel.text = ""
             variable.textLabel.zPosition = CGFloat(zPosition + 1)
             variable.textLabel.fontColor = UIColor.black
-            variable.textLabel.fontSize = 16
+            variable.textLabel.fontSize = variable.sizeForSKLabel(sceneSize: self.size)
             variable.textLabel.isHidden = true
             addChild(variable.textLabel)
         }
 
-        scheduler?.run()
+        formulaManager.setup(for: program, and: self)
+        scheduler.run()
     }
 
     @objc func initializeScreenRecording() {
@@ -245,20 +229,21 @@ final class CBScene: SKScene {
     }
 
     @objc func pauseScheduler() {
-        scheduler?.pause()
+        scheduler.pause()
     }
     
     @objc func resumeScheduler() {
-        scheduler?.resume()
+        scheduler.resume()
     }
     
     // MARK: - Stop program
     @objc func stopProgram() {
         view?.isPaused = true
-        scheduler?.shutdown() // stops all script contexts of all objects and removes all ressources
+        scheduler.shutdown() // stops all script contexts of all objects and removes all ressources
         removeAllChildren() // remove all CBSpriteNodes from Scene
-        frontend?.program?.removeReferences() // remove all references in program hierarchy
-        logger?.info("All SpriteObjects and Scripts have been removed from Scene!")
+        frontend.program?.removeReferences() // remove all references in program hierarchy
+        formulaManager.stop()
+        logger.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
 
 }

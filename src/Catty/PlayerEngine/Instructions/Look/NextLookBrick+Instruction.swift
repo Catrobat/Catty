@@ -23,13 +23,10 @@
 @objc extension NextLookBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        if let actionClosure = actionBlock() {
-            return .action(action: SKAction.run(actionClosure))
-        }
-        return .invalidInstruction()
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> (()->())? {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }

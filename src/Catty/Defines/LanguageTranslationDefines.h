@@ -239,10 +239,6 @@
 #define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Use Arduino bricks", nil)
-#define kLocalizedFaceDetection NSLocalizedString(@"Use face detection", nil)
-#define kLocalizedFaceDetectionCamera NSLocalizedString(@"Face detection camera", nil)
-#define kLocalizedFaceDetectionDefaultCamera NSLocalizedString(@"default camera is back camera", nil)
-#define kLocalizedBackCamera NSLocalizedString(@"Back camera", nil)
 #define kLocalizedFrontCamera NSLocalizedString(@"Front camera", nil)
 #define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)
 #define kLocalizedRemoveKnownDevices NSLocalizedString(@"Remove known devices", nil)
@@ -255,7 +251,6 @@
 #define kLocalizedName NSLocalizedString(@"Name", nil)
 #define kLocalizedDownloaded NSLocalizedString(@"Download sucessful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
-#define kLocalizedWiFiProgramDownloads NSLocalizedString(@"Download only with WiFi", nil)
 #define kLocalizedNoWifiConnection NSLocalizedString(@"Not Connected to a WiFi network, please connect to one or change the settings to download also with mobile data.", nil)
 #define kLocalizedOff NSLocalizedString(@"off", nil)
 #define kLocalizedOn NSLocalizedString(@"on", nil)
@@ -650,6 +645,7 @@
 
 #define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
 #define kLocalizedSensorLocation NSLocalizedString(@"location", nil)
+#define kLocalizedSensorDeviceMotion NSLocalizedString(@"device motion-sensor", nil)
 #define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
@@ -662,6 +658,8 @@
 #define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
 #define kUIFESensorFaceX NSLocalizedString(@"faceposition_x", nil)
 #define kUIFESensorFaceY NSLocalizedString(@"faceposition_y", nil)
+
+#define kUIFEUnknownElementType NSLocalizedString(@"Unknown Element", nil)
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
@@ -723,6 +721,29 @@
 #define kLocalizedMediaLibrarySoundLoadFailureMessage NSLocalizedString(@"The sound item cannot be loaded", nil)
 #define kLocalizedMediaLibrarySoundPlayFailureTitle NSLocalizedString(@"Failed to play sound", nil)
 #define kLocalizedMediaLibrarySoundPlayFailureMessage NSLocalizedString(@"The sound item cannot be played", nil)
+
+//************************************************************************************************************
+//**********************************       FeaturedPrograms        *******************************************
+//************************************************************************************************************
+
+#define kLocalizedFeaturedProgramsLoadFailureTitle NSLocalizedString(@"Failed to load featured programs", nil)
+#define kLocalizedFeaturedProgramsLoadFailureMessage NSLocalizedString(@"The featured programs cannot be loaded", nil)
+
+//************************************************************************************************************
+//***********************************       ChartPrograms        *********************************************
+//************************************************************************************************************
+
+#define kLocalizedChartProgramsLoadFailureTitle NSLocalizedString(@"Failed to load recent programs", nil)
+#define kLocalizeChartProgramsLoadFailureMessage NSLocalizedString(@"The recent programs cannot be loaded", nil)
+
+//************************************************************************************************************
+//**************************************       Networking        *********************************************
+//************************************************************************************************************
+
+#define kLocalizedServerTimeoutIssueTitle NSLocalizedString(@"Connection failed", nil)
+#define kLocalizedServerTimeoutIssueMessage NSLocalizedString(@"Server is taking to long to respond, please try again later.", nil)
+#define kLocalizedUnexpectedErrorTitle NSLocalizedString(@"Unexpected Error", nil)
+#define kLocalizedUnexpectedErrorMessage NSLocalizedString(@"Unexpected Error, please try again later.", nil)
 
 //************************************************************************************************************
 //****************************************       Debug        ************************************************

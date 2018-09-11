@@ -26,7 +26,6 @@
 #import "InternToken.h"
 #import "InternFormulaParser.h"
 #import "InternFormulaUtils.h"
-#import "InternFormulaKeyboardAdapter.h"
 #import "InternToExternGenerator.h"
 #import "InternFormulaState.h"
 
@@ -52,17 +51,17 @@ typedef enum TokenSelectionType{
 
 @interface InternFormula : NSObject
 
-- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList;
-- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+- (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList;
+- (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList
               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
                      externCursorPosition:(int)externCursorPosition;
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId;
+- (void)handleKeyInputWithInternTokenList:(NSMutableArray<InternToken*>*)keyInputInternTokenList andResourceId:(int)resourceId;
 - (NSString *)getExternFormulaString;
 - (void)generateExternFormulaStringAndInternExternMapping;
 - (void)setCursorAndSelection:(int)externCursorPosition
                     selected:(BOOL)isSelected;
 - (InternFormulaState*)getInternFormulaState;
-- (InternFormulaParser *)getInternFormulaParser;
 - (void)setExternCursorPositionRightTo:(int)internTokenIndex;
 - (void)updateInternCursorPosition;
 - (void)selectWholeFormula;
@@ -70,6 +69,7 @@ typedef enum TokenSelectionType{
 - (int)getExternCursorPosition;
 - (int)getExternSelectionEndIndex;
 - (int)getExternSelectionStartIndex;
+- (NSArray<InternToken*>*)getInternTokenList;
 - (TokenSelectionType)getExternSelectionType;
 - (InternFormulaTokenSelection *)getSelection;
 - (void)selectParseErrorTokenAndSetCursor;

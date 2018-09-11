@@ -24,16 +24,8 @@ import UIKit
 import MXSegmentedPager
 import BluetoothHelper
 
-@objc protocol BluetoothSelection {
-    func startSceneWithVC(_ scenePresenter:ScenePresenterViewController)
-    func showLoadingView()
-}
-
 @objc class BluetoothPopupVC: MXSegmentedPagerController {
     
-    @objc weak var delegate : BluetoothSelection?
-    @objc var vc : ScenePresenterViewController?
-
     @objc var deviceArray:[Int]?
     @objc var rightButton:UIBarButtonItem = UIBarButtonItem()
     
@@ -53,9 +45,8 @@ import BluetoothHelper
 
         setHeader()
         
-        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissView))
+        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
         self.navigationItem.rightBarButtonItem = rightButton
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +64,7 @@ import BluetoothHelper
         return vc
     }
     
-    @objc func dismissView(){
+    @objc func dismissAndDisconnect(){
         self .dismiss(animated: true, completion: {
             let central = CentralManager.sharedInstance
             if central.isScanning {
@@ -82,9 +73,12 @@ import BluetoothHelper
                 central.removeAllPeripherals()
             }
         })
-        
     }
-    
+
+    @objc func dismiss(){
+        self.dismiss(animated: true, completion: nil)
+    }
+
     func setHeader() {
         if(deviceArray!.count > 0){
             if(deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
@@ -96,14 +90,6 @@ import BluetoothHelper
             }
         }
         view.setNeedsDisplay()
-    }
-    
-    @objc func startScene(){
-        DispatchQueue.main.async{
-            self.delegate!.showLoadingView()
-            self.delegate!.startSceneWithVC(self.vc!)
-        }
-        self.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -23,13 +23,10 @@
 @objc extension ClearGraphicEffectBrick: CBInstructionProtocol {
 
     @nonobjc func instruction() -> CBInstruction {
-        if let actionClosure = actionBlock() {
-            return .action(action: SKAction.run(actionClosure))
-        }
-        return .invalidInstruction()
+        return .action { (_) in SKAction.run(self.actionBlock()) }
     }
 
-    @objc func actionBlock() -> (()->())? {
+    @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
@@ -37,31 +34,28 @@
         return {
             guard let look = spriteNode.currentLook,
                   let image = UIImage(contentsOfFile: self.path(for: look)) else {return}
-            
-            let texture = SKTexture(image: image)
+
             spriteNode.currentUIImageLook = image
-            spriteNode.currentLookBrightness = 0
-            spriteNode.currentLookColor = 0
+            
+            spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)
+            spriteNode.ciHueAdjust = CGFloat(ColorSensor.defaultRawValue)
+            
             for (paramName, _) in spriteNode.filterDict {
                 spriteNode.filterDict[paramName] = false
             }
-            let xScale = spriteNode.xScale
-            let yScale = spriteNode.yScale
-            spriteNode.xScale = 1.0
-            spriteNode.yScale = 1.0
-            spriteNode.alpha = 1.0
+            
+            let currentsize = spriteNode.catrobatSize
+            let texture = SKTexture(image: image)
+            
+            spriteNode.xScale = CGFloat(SizeSensor.defaultRawValue)
+            spriteNode.yScale = CGFloat(SizeSensor.defaultRawValue)
+            spriteNode.alpha = CGFloat(TransparencySensor.defaultRawValue)
+            
             spriteNode.size = texture.size()
             spriteNode.texture = texture
+            
             spriteNode.currentLook = look
-            if xScale != 1.0 {
-                spriteNode.xScale = CGFloat(xScale)
-            }
-            if yScale != 1.0 {
-                spriteNode.yScale = CGFloat(yScale)
-            }
-
+            spriteNode.catrobatSize = currentsize
         }
-
     }
-
 }

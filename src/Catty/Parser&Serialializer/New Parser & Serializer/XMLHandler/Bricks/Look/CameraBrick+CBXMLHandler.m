@@ -22,6 +22,7 @@
 
 #import "CameraBrick+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLParserContext.h"
@@ -36,7 +37,17 @@
     CameraBrick *cameraBrick = [self new];
     
     if([brickType rangeOfString:@"CameraBrick"].location != NSNotFound){
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+        
+        NSUInteger childCount = [[xmlElement childrenWithoutComments] count];
+        
+        if (childCount != 1 && childCount != 2) {
+            [XMLError exceptionWithMessage:@"Camera Brick is faulty"];
+        } else if (childCount == 2) {
+            GDataXMLElement *spinnerValuesElement = [xmlElement childWithElementName:@"spinnerValues"];
+            [XMLError exceptionIfNil:spinnerValuesElement
+                             message:@"CameraBrick element does not contain a spinnerValues child element!"];
+        }
+
         GDataXMLElement *cameraChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
         [XMLError exceptionIfNil:cameraChoiceElement
                          message:@"CameraBrick element does not contain a spinnerSelectionID child element!"];

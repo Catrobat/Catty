@@ -46,12 +46,18 @@
 #import "DeleteItemOfUserListBrick.h"
 #import "ReplaceItemInUserListBrick.h"
 #import "InsertItemIntoUserListBrick.h"
+#import "Pocket_Code-Swift.h"
 
 @interface XMLParserTests0991 : XMLAbstractTest
-
+@property (nonatomic, strong) FormulaManager *formulaManager;
 @end
 
 @implementation XMLParserTests0991
+
+- (void)setUp
+{
+    self.formulaManager = [FormulaManager new];
+}
 
 - (void)testFlashBrick
 {
@@ -171,8 +177,8 @@
     XCTAssertEqual(SENSOR, backgroundSetVariableBrickName.variableFormula.formulaTree.type);
     XCTAssertEqual(SENSOR, backgroundSetVariableBrickNumber.variableFormula.formulaTree.type);
     
-    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NAME] isEqualToString:backgroundSetVariableBrickName.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_BACKGROUND_NUMBER] isEqualToString: backgroundSetVariableBrickNumber.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([BackgroundNameSensor.tag isEqualToString:backgroundSetVariableBrickName.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([BackgroundNumberSensor.tag isEqualToString: backgroundSetVariableBrickNumber.variableFormula.formulaTree.value], "Invalid sensor");
     
     SetVariableBrick *objectSetVariableBrickName = (SetVariableBrick*)[objectScript.brickList objectAtIndex:0];
     SetVariableBrick *objectSetVariableBrickNumber = (SetVariableBrick*)[objectScript.brickList objectAtIndex:1];
@@ -180,12 +186,12 @@
     XCTAssertEqual(SENSOR, objectSetVariableBrickName.variableFormula.formulaTree.type);
     XCTAssertEqual(SENSOR, objectSetVariableBrickNumber.variableFormula.formulaTree.type);
     
-    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_LOOK_NAME] isEqualToString: objectSetVariableBrickName.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_LOOK_NUMBER] isEqualToString: objectSetVariableBrickNumber.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([LookNameSensor.tag isEqualToString: objectSetVariableBrickName.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([LookNumberSensor.tag isEqualToString: objectSetVariableBrickNumber.variableFormula.formulaTree.value], "Invalid sensor");
     
     SetVariableBrick *objectSetVariableBrickColor = (SetVariableBrick*)[objectScript.brickList objectAtIndex:2];
     XCTAssertEqual(SENSOR, objectSetVariableBrickColor.variableFormula.formulaTree.type);
-    XCTAssertTrue([[[SensorManager class] stringForSensor:OBJECT_COLOR] isEqualToString: objectSetVariableBrickColor.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([ColorSensor.tag isEqualToString: objectSetVariableBrickColor.variableFormula.formulaTree.value], "Invalid sensor");
 }
 
 - (void)testPreviousLookBrick
@@ -264,10 +270,10 @@
     XCTAssertEqual(SENSOR, altitudeBrick.variableFormula.formulaTree.type);
     XCTAssertEqual(SENSOR, locationAccuracyBrick.variableFormula.formulaTree.type);
     
-    XCTAssertTrue([[[SensorManager class] stringForSensor:LATITUDE] isEqualToString:latitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:LONGITUDE] isEqualToString:longitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:ALTITUDE] isEqualToString:altitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:LOCATION_ACCURACY] isEqualToString:locationAccuracyBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([LatitudeSensor.tag isEqualToString:latitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([LongitudeSensor.tag isEqualToString:longitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([AltitudeSensor.tag isEqualToString:altitudeBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([LocationAccuracySensor.tag isEqualToString:locationAccuracyBrick.variableFormula.formulaTree.value], "Invalid sensor");
 }
 
 - (void)testScreenTouchSensors
@@ -292,10 +298,10 @@
     XCTAssertEqual(SENSOR, fingerYBrick.variableFormula.formulaTree.type);
     XCTAssertEqual(SENSOR, lastFingerIndexBrick.variableFormula.formulaTree.type);
     
-    XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_TOUCHED] isEqualToString:fingerTouchedBrick.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_X] isEqualToString:fingerXBrick.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:FINGER_Y] isEqualToString:fingerYBrick.variableFormula.formulaTree.value], "Invalid sensor");
-    XCTAssertTrue([[[SensorManager class] stringForSensor:LAST_FINGER_INDEX] isEqualToString:lastFingerIndexBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([FingerTouchedSensor.tag isEqualToString:fingerTouchedBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([FingerXSensor.tag isEqualToString:fingerXBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([FingerYSensor.tag isEqualToString:fingerYBrick.variableFormula.formulaTree.value], "Invalid sensor");
+    XCTAssertTrue([LastFingerIndexSensor.tag isEqualToString:lastFingerIndexBrick.variableFormula.formulaTree.value], "Invalid sensor");
 }
 
 - (void)testCameraBrick
@@ -400,13 +406,13 @@
     AddItemToUserListBrick *addItemToUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:0];
     XCTAssertEqualObjects(@"programList", addItemToUserListBrick.userList.name, @"Invalid list name");
     
-    NSNumber* numberValue = (NSNumber*)[addItemToUserListBrick.listFormula interpretVariableDataForSprite:object];
+    NSNumber* numberValue = (NSNumber*)[self.formulaManager interpret:addItemToUserListBrick.listFormula forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:66], numberValue, @"Invalid list value");
     
     addItemToUserListBrick = (AddItemToUserListBrick*)[script.brickList objectAtIndex:1];
     XCTAssertEqualObjects(@"objectList", addItemToUserListBrick.userList.name, @"Invalid list name");
     
-    NSString* stringValue = (NSString*)[addItemToUserListBrick.listFormula interpretVariableDataForSprite:object];
+    NSString* stringValue = (NSString*)[self.formulaManager interpret:addItemToUserListBrick.listFormula forSpriteObject:object];
     XCTAssertEqualObjects(@"hallo", stringValue, @"Invalid list value");
 }
 
@@ -425,12 +431,9 @@
     Formula *formula = addItemToUserListBrick.listFormula;
     
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"NUMBER_OF_ITEMS"]);
-    
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
-    XCTAssertEqual(NUMBEROFITEMS, [Functions getFunctionByValue:formula.formulaTree.value]);
-    
-    XCTAssertTrue([formula.formulaTree.value isEqualToString:[Functions getName:NUMBEROFITEMS]]);
+    XCTAssertTrue([(NSString*)formula.formulaTree.value isEqualToString:@"NUMBER_OF_ITEMS"]);
 }
 
 - (void)testElementOfListFunction
@@ -456,9 +459,7 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
     XCTAssertEqual(FUNCTION, formula.formulaTree.type);
     
-    XCTAssertEqual(ELEMENT, [Functions getFunctionByValue:formula.formulaTree.value]);
-    
-    XCTAssertTrue([formula.formulaTree.value isEqualToString:[Functions getName:ELEMENT]]);
+    XCTAssertTrue([(NSString*)formula.formulaTree.value isEqualToString:@"LIST_ITEM"]);
 }
 
 - (void)testDeleteItemOfUserListBrick
@@ -475,13 +476,13 @@
     DeleteItemOfUserListBrick *deleteItemOfUserListBrick = (DeleteItemOfUserListBrick*)[script.brickList objectAtIndex:2];
     XCTAssertEqualObjects(@"testlist", deleteItemOfUserListBrick.userList.name, @"Invalid list name");
     
-    NSNumber* numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
+    NSNumber* numberValue = (NSNumber*)[self.formulaManager interpret:deleteItemOfUserListBrick.listFormula forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:2], numberValue, @"Invalid list value");
     
     deleteItemOfUserListBrick = (DeleteItemOfUserListBrick*)[script.brickList objectAtIndex:3];
     XCTAssertEqualObjects(@"testlist", deleteItemOfUserListBrick.userList.name, @"Invalid list name");
     
-    numberValue = (NSNumber*)[deleteItemOfUserListBrick.listFormula interpretVariableDataForSprite:object];
+    numberValue = (NSNumber*)[self.formulaManager interpret:deleteItemOfUserListBrick.listFormula forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:1], numberValue, @"Invalid list value");
 }
 
@@ -499,20 +500,20 @@
     InsertItemIntoUserListBrick *insertItemIntoUserListBrick = (InsertItemIntoUserListBrick*)[script.brickList objectAtIndex:0];
     XCTAssertEqualObjects(@"hallo", insertItemIntoUserListBrick.userList.name, @"Invalid list name");
     
-    NSNumber* numberValue = (NSNumber*)[insertItemIntoUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    NSNumber* numberValue = (NSNumber*)[self.formulaManager interpret:insertItemIntoUserListBrick.elementFormula forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:55], numberValue, @"Invalid list value");
     
-    NSNumber* indexValue = (NSNumber*)[insertItemIntoUserListBrick.index interpretVariableDataForSprite:object];
+    NSNumber* indexValue = (NSNumber*)[self.formulaManager interpret:insertItemIntoUserListBrick.index forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithInt:1], indexValue, @"Invalid index value");
     
     insertItemIntoUserListBrick = (InsertItemIntoUserListBrick*)[script.brickList objectAtIndex:1];
     XCTAssertEqualObjects(@"hallo", insertItemIntoUserListBrick.userList.name, @"Invalid list name");
     
-    NSString* stringValue = (NSString*)[insertItemIntoUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    NSString* stringValue = (NSString*)[self.formulaManager interpret:insertItemIntoUserListBrick.elementFormula forSpriteObject:object];
     XCTAssertEqualObjects(@"test", stringValue, @"Invalid list value");
     
     
-    indexValue = (NSNumber*)[insertItemIntoUserListBrick.index interpretVariableDataForSprite:object];
+    indexValue = (NSNumber*)[self.formulaManager interpret:insertItemIntoUserListBrick.index forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithInt:2], indexValue, @"Invalid index value");
     
 }
@@ -531,21 +532,20 @@
     ReplaceItemInUserListBrick *replaceItemInUserListBrick = (ReplaceItemInUserListBrick*)[script.brickList objectAtIndex:2];
     XCTAssertEqualObjects(@"testlist", replaceItemInUserListBrick.userList.name, @"Invalid list name");
     
-    NSString* stringValue = (NSString*)[replaceItemInUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    NSString* stringValue = (NSString*)[self.formulaManager interpret:replaceItemInUserListBrick.elementFormula forSpriteObject:object];
     XCTAssertEqualObjects(@"hello", stringValue, @"Invalid list value");
     
-    NSNumber* indexValue = (NSNumber*)[replaceItemInUserListBrick.index interpretVariableDataForSprite:object];
+    NSNumber* indexValue = (NSNumber*)[self.formulaManager interpret:replaceItemInUserListBrick.index forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithInt:1], indexValue, @"Invalid index value");
     
     replaceItemInUserListBrick = (ReplaceItemInUserListBrick*)[script.brickList objectAtIndex:3];
     XCTAssertEqualObjects(@"testlist", replaceItemInUserListBrick.userList.name, @"Invalid list name");
     
-    NSNumber* numberValue = (NSNumber*)[replaceItemInUserListBrick.elementFormula interpretVariableDataForSprite:object];
+    NSNumber* numberValue = (NSNumber*)[self.formulaManager interpret:replaceItemInUserListBrick.elementFormula forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithFloat:33], numberValue, @"Invalid list value");
     
-    indexValue = (NSNumber*)[replaceItemInUserListBrick.index interpretVariableDataForSprite:object];
+    indexValue = (NSNumber*)[self.formulaManager interpret:replaceItemInUserListBrick.index forSpriteObject:object];
     XCTAssertEqualObjects([NSNumber numberWithInt:2], indexValue, @"Invalid index value");
-    
 }
 
 @end
