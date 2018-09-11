@@ -617,6 +617,8 @@
 		59D008ED208E4249000539E7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D008EC208E4249000539E7 /* LocationManager.swift */; };
 		59D9EC65206117000019EC10 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; };
 		59D9EC672061171F0019EC10 /* DVR.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 59D9EC62206117000019EC10 /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5EFBD5F92145533B003B3CDC /* ProgramDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */; };
+		5EFBD5FC2145AADC003B3CDC /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBD5FB2145AADC003B3CDC /* UIViewExtensions.swift */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		81D46EA41CC29E3000653EAB /* ShapeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D46EA31CC29E3000653EAB /* ShapeButton.m */; };
@@ -740,7 +742,6 @@
 		92D56C371BF2059F00A54750 /* PhiroDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C361BF2059F00A54750 /* PhiroDevice.swift */; };
 		92D56C391BF2098700A54750 /* PhiroProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C381BF2098700A54750 /* PhiroProtocol.swift */; };
 		92D56C3B1BF20B4700A54750 /* PhiroHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */; };
-		92D71C041BBBC57700F1177C /* DescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
 		92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEE1A38949E00FA9B0F /* FormulaEditorHistory.m */; };
@@ -1978,6 +1979,8 @@
 		59D008E8208E3FDC000539E7 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		59D008EC208E4249000539E7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		59D9EC62206117000019EC10 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
+		5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDescriptionViewController.swift; sourceTree = "<group>"; };
+		5EFBD5FB2145AADC003B3CDC /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
@@ -2221,8 +2224,6 @@
 		92D56C361BF2059F00A54750 /* PhiroDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroDevice.swift; sourceTree = "<group>"; };
 		92D56C381BF2098700A54750 /* PhiroProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroProtocol.swift; sourceTree = "<group>"; };
 		92D56C3A1BF20B4700A54750 /* PhiroHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhiroHelper.swift; sourceTree = "<group>"; };
-		92D71C021BBBC57700F1177C /* DescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionViewController.h; sourceTree = "<group>"; };
-		92D71C031BBBC57700F1177C /* DescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionViewController.m; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
 		92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
 		92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
@@ -5505,6 +5506,7 @@
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
 				92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */,
 				92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */,
+				5EFBD5FB2145AADC003B3CDC /* UIViewExtensions.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -6164,10 +6166,9 @@
 		92FF31401A24DEB300093DA7 /* Programs */ = {
 			isa = PBXGroup;
 			children = (
-				92D71C021BBBC57700F1177C /* DescriptionViewController.h */,
-				92D71C031BBBC57700F1177C /* DescriptionViewController.m */,
 				92FF31411A24DEB300093DA7 /* MyProgramsViewController.h */,
 				92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */,
+				5EFBD5F82145533B003B3CDC /* ProgramDescriptionViewController.swift */,
 			);
 			path = Programs;
 			sourceTree = "<group>";
@@ -8616,9 +8617,9 @@
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
 				4C822693213FBC4400F3D750 /* MultiFingerTouchedFunction.swift in Sources */,
-				92D71C041BBBC57700F1177C /* DescriptionViewController.m in Sources */,
 				4C0F9F9E204BD2B100E71B2D /* SayBubbleBrickCell.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
+				5EFBD5F92145533B003B3CDC /* ProgramDescriptionViewController.swift in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				4CE3D68F2107B68600005629 /* FaceDetectionManagerProtocol.swift in Sources */,
 				929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */,
@@ -8989,6 +8990,7 @@
 				AA74EF591BC0586F00D1E954 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				4C0F9F6F204BD1A300E71B2D /* ThinkForBubbleBrick+CBXMLHandler.m in Sources */,
 				E438738A210623230062209F /* TimerWithBlock.swift in Sources */,
+				5EFBD5FC2145AADC003B3CDC /* UIViewExtensions.swift in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				F4E6E59A210E048700D86FE6 /* MaxFunction.swift in Sources */,
 				5936893C2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift in Sources */,
