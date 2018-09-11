@@ -52,6 +52,8 @@ class ModFunctionTest: XCTestCase {
         
         XCTAssertEqual(Double(56 % 76), function.value(firstParameter: 56 as AnyObject, secondParameter: 76 as AnyObject), accuracy: 0.0001)
         
+        XCTAssertEqual(Double(0 % 10), function.value(firstParameter: 0 as AnyObject, secondParameter: 10 as AnyObject), accuracy: 0.0001)
+        
         // infinity test
         XCTAssertEqual(Double(5), function.value(firstParameter: 5 as AnyObject, secondParameter: Double.infinity as AnyObject), accuracy: 0.0001)
         
