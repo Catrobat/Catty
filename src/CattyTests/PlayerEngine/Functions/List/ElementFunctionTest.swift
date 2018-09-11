@@ -48,6 +48,14 @@ class ElementFunctionTest: XCTestCase {
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 2 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! String)
     }
     
+    func testEmptyList() {
+        let emptyList = UserVariable()
+        emptyList.value = []
+        
+        XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 0 as AnyObject, secondParameter: emptyList as AnyObject) as! String)
+        XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 1 as AnyObject, secondParameter: emptyList as AnyObject) as! String)
+    }
+    
     func testValue() {
         // number list
         let userVariableNumber = UserVariable()
