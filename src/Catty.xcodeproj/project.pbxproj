@@ -4920,14 +4920,6 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
-		5EFBD5FA2145AAD0003B3CDC /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				5EFBD5FB2145AADC003B3CDC /* UIViewExtensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		91FC81FA01E91B5CF3266F79 /* AlertController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5501,6 +5493,7 @@
 				92FF2E291A24C5A700093DA7 /* UIImage+Extension */,
 				92FF2E2C1A24C5A700093DA7 /* UIImageView+Extension */,
 				92FF2E2F1A24C5A700093DA7 /* UIViewController+CWPopup */,
+				5EFBD5FB2145AADC003B3CDC /* UIViewExtensions.swift */,
 			);
 			name = Extensions;
 			path = "Extension&Delegate&Protocol/Extensions";
@@ -5655,7 +5648,6 @@
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92EC99441BC3C8050003A891 /* Bluetooth */,
 				4C0F9F4A204BD0B400E71B2D /* BrickHelpers */,
-				5EFBD5FA2145AAD0003B3CDC /* Extensions */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
 				92EC99481BC3CA870003A891 /* Firmata */,
 				92FF2E551A24C7D800093DA7 /* Flash */,
