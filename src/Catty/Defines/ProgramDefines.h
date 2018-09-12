@@ -56,7 +56,7 @@
 #define kMinNumOfMessageNameCharacters 1
 #define kMaxNumOfMessageNameCharacters 20
 #define kMinNumOfVariableNameCharacters 1
-#define kMaxNumOfVariableNameCharacters 15
+#define kMaxNumOfVariableNameCharacters 150
 
 #define kNoProgramIDYetPlaceholder @"x"
 #define kProgramIDSeparator @"_"
