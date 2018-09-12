@@ -82,4 +82,60 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Add ").children(matching: .other).element.tap()
         XCTAssert(app.sheets["List type"].exists)
     }
+    
+    func testCreateVariableWithMaxLenght(){
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["New"].tap()
+        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
+        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        XCUIApplication().tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        app.toolbars.buttons["Add"].tap()
+        
+        if(app.navigationBars["Frequently Used"].exists) {
+            app.swipeLeft()
+        }
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        
+        app.collectionViews.staticTexts["Set variable"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
+        XCTAssert(app.sheets["Variable type"].exists)
+        
+        app.buttons["for all objects"].tap()
+        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        app.alerts["New Variable"].buttons["OK"].tap()
+        XCTAssert(app.staticTexts["When program started"].exists)
+    }
+    
+    func testCreateVariableWithMaxLenghtPlusOne(){
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["New"].tap()
+        app.alerts["New Program"].textFields["Enter your program name here..."].typeText("Test Program")
+        XCUIApplication().alerts["New Program"].buttons["OK"].tap()
+        XCUIApplication().tables.staticTexts["Background"].tap()
+        app.tables.staticTexts["Scripts"].tap()
+        app.toolbars.buttons["Add"].tap()
+        
+        if(app.navigationBars["Frequently Used"].exists) {
+            app.swipeLeft()
+        }
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        app.swipeLeft()
+        
+        app.collectionViews.staticTexts["Set variable"].tap()
+        app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
+        XCTAssert(app.sheets["Variable type"].exists)
+        
+        app.buttons["for all objects"].tap()
+        app.alerts["New Variable"].textFields["Enter your variable name here..."].typeText("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        app.alerts["New Variable"].buttons["OK"].tap()
+        XCTAssert(app.alerts["Pocket Code"].exists)
+    }
 }
