@@ -53,10 +53,15 @@ class RandFunction: DoubleParameterDoubleFunction {
             maximum = aux
         }
         
+        let intParams = floor(maximum) == maximum && floor(minimum) == minimum
+        if intParams {
+            maximum += 1
+        }
+        
         let random = Double(arc4random()) / Double(UInt32.max)
         var result = (random * (maximum - minimum)) + minimum
         
-        if floor(maximum) == maximum && floor(minimum) == minimum {
+        if intParams {
             result = Double(Int(result))
         }
         

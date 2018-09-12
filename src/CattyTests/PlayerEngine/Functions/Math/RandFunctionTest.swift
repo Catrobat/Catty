@@ -62,6 +62,33 @@ class RandFunctionTest: XCTestCase {
         XCTAssertNotEqual(Double(Int(float)), float)
     }
     
+    func testValueBetweenZeroAndOne() {
+        var results = [Double]()
+        
+        for _ in 1..<50 {
+            let value = function.value(firstParameter: 0 as AnyObject, secondParameter: 1 as AnyObject)
+            results.append(value)
+        }
+        
+        XCTAssertEqual(2, Set(results).count)
+        XCTAssertTrue(results.contains(0))
+        XCTAssertTrue(results.contains(1))
+    }
+    
+    func testValueBetweenZeroAndTwo() {
+        var results = [Double]()
+        
+        for _ in 1..<50 {
+            let value = function.value(firstParameter: 0 as AnyObject, secondParameter: 2 as AnyObject)
+            results.append(value)
+        }
+        
+        XCTAssertEqual(3, Set(results).count)
+        XCTAssertTrue(results.contains(0))
+        XCTAssertTrue(results.contains(1))
+        XCTAssertTrue(results.contains(2))
+    }
+    
     func testValueWithNegativeAndPositiveParameter() {
         var result = function.value(firstParameter: -350 as AnyObject, secondParameter: 350 as AnyObject)
         XCTAssertGreaterThan(result, -350)
