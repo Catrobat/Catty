@@ -108,7 +108,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setBrickCellFormulaData:brickCellData];
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
         [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-        
         self.formulaManager = formulaManager;
     }
     
@@ -192,8 +191,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self showFormulaEditor];
-    
     
     [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
@@ -1202,6 +1202,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.deleteButton.shapeStrokeColor = containsText ? [UIColor navTintColor] : [UIColor grayColor];
         self.deleteButton.enabled = containsText;
     }
+}
+
+#pragma mark Orientation
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end
