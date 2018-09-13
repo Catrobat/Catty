@@ -138,9 +138,23 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatPlatformName"];
 }
 
-+ (NSString*)platformVersion
++ (NSOperatingSystemVersion)platformVersion
 {
-    NSOperatingSystemVersion os = [[NSProcessInfo processInfo] operatingSystemVersion];
+    return [[NSProcessInfo processInfo] operatingSystemVersion];
+}
+
++ (NSString*)platformVersionWithPatch
+{
+    NSOperatingSystemVersion os = [self platformVersion];
+    NSString* major = [NSString stringWithFormat:@"%ld", os.majorVersion];
+    NSString* minor = [NSString stringWithFormat:@"%ld", os.minorVersion];
+    NSString* patch = [NSString stringWithFormat:@"%ld", os.patchVersion];
+    return [NSString stringWithFormat:@"%@.%@.%@", major, minor, patch];
+}
+
++ (NSString*)platformVersionWithoutPatch
+{
+    NSOperatingSystemVersion os = [self platformVersion];
     NSString* major = [NSString stringWithFormat:@"%ld", os.majorVersion];
     NSString* minor = [NSString stringWithFormat:@"%ld", os.minorVersion];
     return [NSString stringWithFormat:@"%@.%@", major, minor];
