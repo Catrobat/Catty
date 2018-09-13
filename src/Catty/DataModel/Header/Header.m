@@ -39,7 +39,7 @@
     header.deviceName = [Util deviceName];
     header.mediaLicense = [Util catrobatMediaLicense];
     header.platform = [Util platformName];
-    header.platformVersion = [Util platformVersion];
+    header.platformVersion = [Util platformVersionWithoutPatch];
     header.programLicense = [Util catrobatProgramLicense];
     header.programName = nil;
     header.remixOf = nil;
@@ -68,7 +68,7 @@
     self.deviceName = [Util deviceName];
     self.mediaLicense = [Util catrobatMediaLicense]; // always use most recent license!
     self.platform = [Util platformName];
-    self.platformVersion = [Util platformVersion];
+    self.platformVersion = [Util platformVersionWithoutPatch];
     self.programLicense = [Util catrobatProgramLicense]; // always use most recent license!
 
     // now, this becomes a remixed version
