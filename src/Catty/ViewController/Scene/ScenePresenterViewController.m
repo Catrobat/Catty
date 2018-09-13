@@ -352,12 +352,10 @@
 
 - (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
-        [[FlashHelper sharedFlashHandler] resume];
+    if (duration != kfirstSwipeDuration) {
+        [self resumeAction];
     }
-    [self.scene resumeScheduler];
-    [[BluetoothService sharedInstance] continueBluetoothDevice];
+    
     CGFloat animateDuration = 0.0f;
     animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
     
@@ -371,13 +369,8 @@
                          if (animateDuration == duration) {
                              [self takeAutomaticScreenshot];
                          }
-                         
                      }];
     self.skView.paused = NO;
-    
-    if (duration != kDontResumeSounds) {
-        [[AudioManager sharedAudioManager] resumeAllSounds];
-    }
 }
 
 - (void)stopAction:(UIButton*)sender
