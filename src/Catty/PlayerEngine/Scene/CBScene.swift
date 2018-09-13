@@ -198,7 +198,7 @@ final class CBScene: SKScene {
             variable.textLabel.text = ""
             variable.textLabel.zPosition = CGFloat(zPosition + 1)
             variable.textLabel.fontColor = UIColor.black
-            variable.textLabel.fontSize = 16
+            variable.textLabel.fontSize = variable.sizeForSKLabel(sceneSize: self.size)
             variable.textLabel.isHidden = true
             addChild(variable.textLabel)
         }

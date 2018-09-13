@@ -20,17 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "NetworkDefines.h"
+import UIKit
 
-@protocol SetDescriptionDelegate <NSObject>
+protocol SearchStoreCellProtocol: class {
+    func selectedCell(dataSource datasource: SearchStoreDataSource, didSelectCellWith cell: SearchStoreCell)
+}
 
--(void)setDescription:(NSString*)description;
-
-@end
-
-@interface DescriptionViewController : UIViewController
-
-@property (nonatomic, weak) id<SetDescriptionDelegate> delegate;
-
-@end
+class SearchStoreCell: UITableViewCell {
+    
+    weak var delegete: SearchStoreCellProtocol?
+    var program: StoreProgram?
+    
+    @IBOutlet weak var searchProgramImage: UIImageView!
+    @IBOutlet weak var searchProgramTitle: UILabel!
+    
+    var searchImage: UIImage? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    var searchTitle: String? {
+        didSet {
+            self.updateTable()
+        }
+    }
+    
+    func updateTable() {
+        searchProgramImage?.image = searchImage
+        searchProgramTitle?.text = searchTitle
+        searchProgramTitle.textColor = UIColor.globalTint()
+    }
+}

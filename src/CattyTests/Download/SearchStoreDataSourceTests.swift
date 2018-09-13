@@ -21,18 +21,37 @@
  */
 
 import XCTest
-
 @testable import Pocket_Code
 
-final class UserVariableTests: XCTestCase {
+class SearchStoreDataSourceTests: XCTestCase {
     
-    func testMutableCopyWithContext() {
-        let userVariable = UserVariable()
-        userVariable.name = "userVar"
+    var downloaderMock: StoreProgramDownloaderMock!
+    var tableView: UITableView!
+    
+    override func setUp() {
+        super.setUp()
+        self.downloaderMock = StoreProgramDownloaderMock()
+        self.tableView = UITableView(frame: .zero)
+    }
+    
+    override func tearDown() {
+        self.downloaderMock = nil
+        self.tableView = nil
+        super.tearDown()
+    }
+    
+    // MARK: - SearchStoreDataSource Tests
+    
+    func testFetchSearchProgram() {
+        let dataSource = SearchStoreDataSource.dataSource(with: self.downloaderMock)
+        let expectation = XCTestExpectation(description: "Fetch program from data source")
         
-        let userVariableCopy = userVariable.mutableCopy(with: CBMutableCopyContext()) as! UserVariable
+        dataSource.fetchItems(searchTerm: "Galaxy") { [unowned self] error in
+            XCTAssertNil(error)
+            XCTAssertEqual(dataSource.numberOfRows(in: self.tableView), 0)
+            expectation.fulfill()
+        }
         
-        XCTAssertEqual(userVariable.name, userVariableCopy.name, "mutableCopyWithContext not working")
-        XCTAssertTrue(userVariable === userVariableCopy, "mutableCopyWithContext not working")
+        wait(for: [expectation], timeout: 1.0)
     }
 }

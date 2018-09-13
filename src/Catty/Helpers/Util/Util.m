@@ -146,27 +146,44 @@
     return [NSString stringWithFormat:@"%@.%@", major, minor];
 }
 
-+ (CGSize)screenSize
++ (CGSize)screenSize:(BOOL)inPixel
 {
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    CGSize screenSize = inPixel ? [[UIScreen mainScreen] nativeBounds].size : [[UIScreen mainScreen] bounds].size;
     float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (iOSVersion < 8 && UIInterfaceOrientationIsLandscape(orientation))
     {
         screenSize.height = screenSize.width;
-        screenSize.width = [[UIScreen mainScreen] bounds].size.height;
+        screenSize.width = screenSize.height;
     }
+    
+    if (inPixel && IS_IPHONEPLUS) {
+        CGFloat iPhonePlusDownsamplingFactor = 1.15;
+        screenSize.height = screenSize.height / iPhonePlusDownsamplingFactor;
+        screenSize.width = screenSize.width / iPhonePlusDownsamplingFactor;
+    }
+    
     return screenSize;
+}
+
++ (CGFloat)screenHeight:(BOOL)inPixel
+{
+    return [self screenSize:inPixel].height;
+}
+
++ (CGFloat)screenWidth:(BOOL)inPixel
+{
+    return [self screenSize:inPixel].width;
 }
 
 + (CGFloat)screenHeight
 {
-    return [self screenSize].height;
+    return [self screenSize:false].height;
 }
 
 + (CGFloat)screenWidth
 {
-    return [self screenSize].width;
+    return [self screenSize:false].width;
 }
 
 + (CATransition*)getPushCATransition

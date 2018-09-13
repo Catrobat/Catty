@@ -53,47 +53,19 @@ class RandFunction: DoubleParameterDoubleFunction {
             maximum = aux
         }
         
-        if Int(maximum) - Int(minimum) <= 1 {
-            // the range is too small
-            
-            var result: UInt32
-            repeat {
-                result = arc4random() % 10
-            } while result == 0 || result == 1
-            
-            if result % 2 == 0 {
-                if floor(minimum) == minimum && floor(maximum) == maximum {
-                    return minimum
-                } else {
-                    return minimum + 1 / Double(result)
-                }
-            }
-            if floor(maximum) == maximum && floor(minimum) == minimum {
-                return maximum
-            } else {
-                return maximum - 1 / Double(result)
-            }
+        let intParams = floor(maximum) == maximum && floor(minimum) == minimum
+        if intParams {
+            maximum += 1
         }
         
-        let result = Double(arc4random_uniform(UInt32(maximum - minimum + 1))) + Double(minimum);
-        let resultDouble = Double(result)
-        if floor(minimum) == minimum && floor(maximum) == maximum {
-            // parameters are whole numbers, so the result will be a whole number
-            return resultDouble
+        let random = Double(arc4random()) / Double(UInt32.max)
+        var result = (random * (maximum - minimum)) + minimum
+        
+        if intParams {
+            result = Double(Int(result))
         }
         
-        // at least one of the parameters is a float number, so the result should be a float
-        var newResult = resultDouble + 1 / resultDouble
-        
-        // make sure the result is in the correct range
-        while newResult > maximum {
-            newResult -= 1 / newResult
-        }
-        while newResult < minimum {
-            newResult += 1 / newResult
-        }
-        
-        return newResult
+        return result
     }
     
     func formulaEditorSection() -> FormulaEditorSection {

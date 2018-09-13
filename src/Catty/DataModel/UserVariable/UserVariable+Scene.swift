@@ -20,24 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "RecentProgramsStoreViewController.h"
-
-@class CatrobatInformation;
-
-@interface RecentProgramsStoreViewController (Test)
-- (void)loadProjectsWithIndicator:(NSInteger)indicator;
-- (void)loadProjectsWith:(NSData*)data andResponse:(NSURLResponse*)response;
-- (void)initSegmentedControl;
-@end
-
-@interface TestRecentProgramsStoreViewController : RecentProgramsStoreViewController
-@property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
-@property (nonatomic, strong) NSMutableArray* mostViewedProjects;
-@property (nonatomic, strong) NSMutableArray* mostRecentProjects;
-@property (nonatomic, weak) XCTestExpectation *downloadFinished;
-- (id)initWithExpectation:(XCTestExpectation*) expectation;
-@end
-
-@interface RecentProgramsStoreViewControllerTests : XCTestCase
-@property (nonatomic, strong) TestRecentProgramsStoreViewController *recentProgramsStoreViewController;
-@end
+extension UserVariable {
+    
+    func sizeForSKLabel(sceneSize: CGSize) -> CGFloat {
+        let iPhone8PlusLabelSize = CGFloat(42.0)
+        let iPhone8PlusScreenHeightInPixel = CGFloat(1920.0)
+        
+        let sizeForSKLabel = iPhone8PlusLabelSize / iPhone8PlusScreenHeightInPixel * sceneSize.height
+        return sizeForSKLabel
+    }
+}

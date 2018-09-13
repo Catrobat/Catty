@@ -105,6 +105,9 @@ final class PositionXSensorTest: XCTestCase {
         
         // right
         XCTAssertEqual(Double(437 - screenWidth / 2), type(of: sensor).convertToStandardized(rawValue: 437, for: spriteObject))
+        
+        spriteObject.spriteNode = nil
+        XCTAssertEqual(type(of: sensor).defaultRawValue, type(of: sensor).convertToStandardized(rawValue: 437, for: spriteObject))
     }
     
     func testConvertToRaw() {

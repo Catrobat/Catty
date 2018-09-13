@@ -5,19 +5,18 @@
         "status" : 200,
         "headers" : {
           "Content-Type" : "application\/json",
-          "Set-Cookie" : "PHPSESSID=7vqulnj9re8hf7vnic7rgad5b4; path=\/",
+          "Set-Cookie" : "PHPSESSID=2kvnvd0dev50gkjv75ivhl6g35; path=\/",
           "Expires" : "-1",
           "Pragma" : "no-cache",
           "Strict-Transport-Security" : "max-age=15768000",
           "Server" : "nginx",
-          "Date" : "Mon, 16 Jul 2018 09:46:12 GMT",
+          "Date" : "Thu, 23 Aug 2018 08:22:21 GMT",
           "Cache-Control" : "private, must-revalidate"
         },
         "body" : {
           "CatrobatInformation" : {
             "BaseUrl" : "https:\/\/share.catrob.at\/",
-            "TotalProjects" : "2",
-            "ProjectsExtension" : ".catrobat"
+            "TotalProjects" : "2"
           },
           "CatrobatProjects" : [
             {
@@ -37,12 +36,12 @@
         },
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
       },
-      "recorded_at" : 1531734372.5984221,
+      "recorded_at" : 1535012541.680099,
       "request" : {
         "method" : "GET",
         "url" : "https:\/\/share.catrob.at\/pocketcode\/api\/projects\/ios-featured.json?limit=10"
       }
     }
   ],
-  "name" : "FeaturedProgramsDownloader.downloadFeaturedPrograms.success"
+  "name" : "StoreProgramDownloader.fetchFeaturedPrograms.fail.parse"
 }
