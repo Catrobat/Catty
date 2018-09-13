@@ -140,7 +140,10 @@
 
 + (NSString*)platformVersion
 {
-  return [[UIDevice currentDevice] systemVersion];
+    NSOperatingSystemVersion os = [[NSProcessInfo processInfo] operatingSystemVersion];
+    NSString* major = [NSString stringWithFormat:@"%ld", os.majorVersion];
+    NSString* minor = [NSString stringWithFormat:@"%ld", os.minorVersion];
+    return [NSString stringWithFormat:@"%@.%@", major, minor];
 }
 
 + (CGSize)screenSize
