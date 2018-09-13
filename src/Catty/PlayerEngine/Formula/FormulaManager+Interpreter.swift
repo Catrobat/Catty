@@ -41,7 +41,12 @@ extension FormulaManager {
     
     @objc(interpretInteger: forSpriteObject:)
     func interpretInteger(_ formula: Formula, for spriteObject: SpriteObject) -> Int {
-        return Int(interpretDouble(formula, for: spriteObject))
+        let doubleValue = interpretDouble(formula, for: spriteObject)
+        
+        if doubleValue > Double(Int.max) {
+            return Int.max
+        }
+        return Int(doubleValue)
     }
     
     @objc(interpretBool: forSpriteObject:)
