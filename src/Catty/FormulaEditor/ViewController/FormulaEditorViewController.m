@@ -47,6 +47,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
+
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCellFormulaData *brickCellData;
 
@@ -107,7 +108,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setBrickCellFormulaData:brickCellData];
         NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
         [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-        
         self.formulaManager = formulaManager;
     }
     
@@ -191,8 +191,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor backgroundColor];
+    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self showFormulaEditor];
-    
     
     [self.normalTypeButton addObjectsFromArray:[self initMathSectionWithScrollView:self.mathScrollView buttonHeight:self.calcButton.frame.size.height]];
     [self.normalTypeButton addObjectsFromArray:[self initObjectSectionWithScrollView:self.objectScrollView buttonHeight:self.calcButton.frame.size.height]];
@@ -211,11 +212,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self localizeView];
     
-    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kFormulaEditorTopOffset)];
+    //Hotfix IOS-559
+    CGFloat topInsetNavigationBar = 0.0f;
+    if (@available(iOS 11, *)) {
+        topInsetNavigationBar = [UIApplication sharedApplication].statusBarFrame.size.height;
+        UIView *insetNavBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, topInsetNavigationBar)];
+        insetNavBarView.backgroundColor = [UIColor globalTintColor];
+        [self.view addSubview:insetNavBarView];
+    }
+    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0.0f, topInsetNavigationBar, self.view.frame.size.width, kFormulaEditorTopOffset)];
     [UINavigationBar appearance].barTintColor = [UIColor globalTintColor];
+    myNav.translucent = NO;
     [self.view addSubview:myNav];
-    
-
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                       style:UIBarButtonItemStylePlain
@@ -493,7 +501,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - UI
 - (void)showFormulaEditor
 {
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + kFormulaEditorTopOffset, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    CGFloat topPadding = 0.0f;
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        topPadding = window.safeAreaInsets.top;
+    }
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, topPadding + self.brickCellData.brickCell.frame.size.height + kFormulaEditorTopOffset, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
     [self update];
@@ -1189,6 +1202,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.deleteButton.shapeStrokeColor = containsText ? [UIColor navTintColor] : [UIColor grayColor];
         self.deleteButton.enabled = containsText;
     }
+}
+
+#pragma mark Orientation
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end

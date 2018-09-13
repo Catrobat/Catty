@@ -71,6 +71,9 @@
     self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout new];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    if (@available(iOS 11, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupSubviews];
 }
