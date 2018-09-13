@@ -47,6 +47,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
+
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCellFormulaData *brickCellData;
 
@@ -211,6 +212,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self localizeView];
     
+    //Hotfix IOS-559
     CGFloat topInsetNavigationBar = 0.0f;
     if (@available(iOS 11, *)) {
         topInsetNavigationBar = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -222,8 +224,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [UINavigationBar appearance].barTintColor = [UIColor globalTintColor];
     myNav.translucent = NO;
     [self.view addSubview:myNav];
-    
-
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                       style:UIBarButtonItemStylePlain
@@ -501,7 +501,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - UI
 - (void)showFormulaEditor
 {
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + kFormulaEditorTopOffset, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    CGFloat topPadding = 0.0f;
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = UIApplication.sharedApplication.keyWindow;
+        topPadding = window.safeAreaInsets.top;
+    }
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, topPadding + self.brickCellData.brickCell.frame.size.height + kFormulaEditorTopOffset, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
     [self update];
