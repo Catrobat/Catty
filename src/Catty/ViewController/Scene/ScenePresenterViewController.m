@@ -158,9 +158,9 @@
                  andView:labelArray[i]];
     }
     [self.menuBackLabel addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuContinueLabel addTarget:self action:@selector(continueProgramAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuContinueLabel addTarget:self action:@selector(continueAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRestartLabel addTarget:self action:@selector(restartProgramAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRestartLabel addTarget:self action:@selector(restartAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuRecordLabel addTarget:self action:@selector(record:) forControlEvents:UIControlEventTouchUpInside];
 }
