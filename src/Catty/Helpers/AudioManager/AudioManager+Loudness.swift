@@ -51,6 +51,14 @@ extension AudioManager: AudioManagerProtocol {
         }
     }
     
+    func pauseLoudnessRecorder() -> Void {
+        self.recorder?.pause()
+    }
+    
+    func resumeLoudnessRecorder() -> Void {
+        self.recorder?.record()
+    }
+    
     func loudness() -> Double? {
         if self.loudnessInDecibels == nil || self.recorder == nil {
             return nil // no sound

@@ -119,4 +119,12 @@ extension FormulaManager {
         
         invalidateCache()
     }
+    
+    func pause() {
+        audioManager.pauseLoudnessRecorder()
+    }
+    
+    func resume() {
+        audioManager.resumeLoudnessRecorder()
+    }
 }

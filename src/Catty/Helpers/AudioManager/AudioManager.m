@@ -145,23 +145,23 @@
         for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
             if ([player isPlaying]) {
                 [player pause];
-            }
-            else{
+            } else {
                 [audioPlayers removeObjectForKey:player.key];
             }
         }
     }
-    
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
 - (void)resumeAllSounds
 {
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
     for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
         for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
             [player play];
         }
     }
-    
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag

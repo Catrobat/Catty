@@ -28,13 +28,24 @@ final class AudioManagerMock: AudioManagerProtocol {
     
     var isAvailable = true
     var isStarted = false
+    var isPaused = false
     
     func startLoudnessRecorder() {
         isStarted = true
+        isPaused = false
     }
     
     func stopLoudnessRecorder() {
         isStarted = false
+        isPaused = false
+    }
+    
+    func pauseLoudnessRecorder() {
+        isPaused = true
+    }
+    
+    func resumeLoudnessRecorder() {
+        isPaused = false
     }
     
     func loudness() -> Double? {

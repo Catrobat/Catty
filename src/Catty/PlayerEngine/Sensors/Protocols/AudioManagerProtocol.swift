@@ -26,6 +26,10 @@ protocol AudioManagerProtocol {
     
     func stopLoudnessRecorder() -> Void
     
+    func pauseLoudnessRecorder() -> Void
+    
+    func resumeLoudnessRecorder() -> Void
+    
     func loudness() -> Double?
     
     func loudnessAvailable() -> Bool
