@@ -40,7 +40,9 @@ final class HeaderTests: XCTestCase {
         XCTAssertEqual(Util.deviceName(), header.deviceName)
         XCTAssertEqual(Util.catrobatMediaLicense(), header.mediaLicense)
         XCTAssertEqual(Util.platformName(), header.platform)
-        XCTAssertEqual(Util.platformVersion(), header.platformVersion)
+        XCTAssertEqual(Util.platformVersionWithoutPatch(), header.platformVersion)
+        XCTAssertEqual(UtilMock.platformVersionWithoutPatch(), "11.4")
+        XCTAssertEqual(UtilMock.platformVersionWithPatch(), "11.4.1")
         XCTAssertEqual(Util.catrobatProgramLicense(), header.programLicense)
     
         XCTAssertEqual(Util.screenHeight(true), CGFloat(truncating: header.screenHeight))
@@ -58,5 +60,11 @@ final class HeaderTests: XCTestCase {
         XCTAssertNil(header.userHandle)
         XCTAssertNil(header.tags)
         XCTAssertNil(header.programID)
+    }
+}
+
+class UtilMock : Util {
+    override class func platformVersion() -> OperatingSystemVersion {
+        return OperatingSystemVersion(majorVersion: 11,minorVersion: 4,patchVersion: 1)
     }
 }

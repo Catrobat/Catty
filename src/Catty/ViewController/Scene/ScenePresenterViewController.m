@@ -158,9 +158,9 @@
                  andView:labelArray[i]];
     }
     [self.menuBackLabel addTarget:self action:@selector(stopAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuContinueLabel addTarget:self action:@selector(continueProgramAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuContinueLabel addTarget:self action:@selector(continueAction:withDuration:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRestartLabel addTarget:self action:@selector(restartProgramAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuRestartLabel addTarget:self action:@selector(restartAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuRecordLabel addTarget:self action:@selector(record:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -330,7 +330,6 @@
 - (void)pauseAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[AVAudioSession sharedInstance] setActive:NO error:nil];
         [[AudioManager sharedAudioManager] pauseAllSounds];
         [[FlashHelper sharedFlashHandler] pause];
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
@@ -341,23 +340,23 @@
 
 - (void)resumeAction
 {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AudioManager sharedAudioManager] resumeAllSounds];
-    [[BluetoothService sharedInstance] continueBluetoothDevice];
-    if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
-        [[FlashHelper sharedFlashHandler] resume];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        [[AudioManager sharedAudioManager] resumeAllSounds];
+        [[BluetoothService sharedInstance] continueBluetoothDevice];
+        if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
+            [[FlashHelper sharedFlashHandler] resume];
+        }
+    });
+    
     [self.scene resumeScheduler];
 }
 
 - (void)continueAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
-        [[FlashHelper sharedFlashHandler] resume];
+    if (duration != kfirstSwipeDuration) {
+        [self resumeAction];
     }
-    [self.scene resumeScheduler];
-    [[BluetoothService sharedInstance] continueBluetoothDevice];
+    
     CGFloat animateDuration = 0.0f;
     animateDuration = (duration > 0.0001f && duration < 1.0f)? duration : 0.35f;
     
@@ -371,13 +370,8 @@
                          if (animateDuration == duration) {
                              [self takeAutomaticScreenshot];
                          }
-                         
                      }];
     self.skView.paused = NO;
-    
-    if (duration != kDontResumeSounds) {
-        [[AudioManager sharedAudioManager] resumeAllSounds];
-    }
 }
 
 - (void)stopAction:(UIButton*)sender

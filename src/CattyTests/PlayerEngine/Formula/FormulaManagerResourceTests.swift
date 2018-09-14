@@ -148,6 +148,7 @@ final class FormulaManagerResourceTests: XCTestCase {
         manager.setup(for: FormulaMock(requiredResource: .loudness))
         
         XCTAssertTrue(audioManager.isStarted)
+        XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(faceDetectionManager.isStarted)
         XCTAssertFalse(motionManager.isDeviceMotionUpdateStarted)
         XCTAssertFalse(motionManager.isGyroUpdateStarted)
@@ -300,6 +301,19 @@ final class FormulaManagerResourceTests: XCTestCase {
         XCTAssertFalse(locationManager.isLocationUpdateStarted)
         XCTAssertFalse(faceDetectionManager.isStarted)
         XCTAssertFalse(audioManager.isStarted)
+        XCTAssertFalse(audioManager.isPaused)
         XCTAssertFalse(touchManager.isStarted)
+    }
+    
+    func testPause() {
+        audioManager.isPaused = false
+        manager.pause()
+        XCTAssertTrue(audioManager.isPaused)
+    }
+    
+    func testResume() {
+        audioManager.isPaused = true
+        manager.resume()
+        XCTAssertFalse(audioManager.isPaused)
     }
 }

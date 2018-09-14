@@ -50,7 +50,7 @@ class PositionYSensor: ObjectDoubleSensor {
     
     // We have to move (0, 0) from bottom left to the center
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
-        guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
+        guard let spriteNode = spriteObject.spriteNode, let scene = spriteNode.scene else { return defaultRawValue }
         return rawValue - Double(scene.size.height)/2.0
     }
     

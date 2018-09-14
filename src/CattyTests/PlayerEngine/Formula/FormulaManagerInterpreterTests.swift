@@ -85,6 +85,11 @@ final class FormulaManagerInterpreterTest: XCTestCase {
         XCTAssertEqual(0, interpreter.interpretInteger(formula, for: object))
     }
     
+    func testInterpretIntegerMax() {
+        let formula = Formula(formulaElement: FormulaElement(elementType: ElementType.NUMBER, value: "101010101010101010101010101010101010101010101010101010"))!
+        XCTAssertEqual(Int.max, interpreter.interpretInteger(formula, for: object))
+    }
+    
     func testInterpretBool() {
         var formula = Formula(formulaElement: FormulaElement(elementType: ElementType.NUMBER, value: "1"))!
         XCTAssertTrue(interpreter.interpretBool(formula, for: object))

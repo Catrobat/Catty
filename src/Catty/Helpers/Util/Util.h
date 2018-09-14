@@ -96,7 +96,11 @@ if (__functor) __functor(__VA_ARGS__);  \
 
 + (NSString*)platformName;
 
-+ (NSString*)platformVersion;
++ (NSOperatingSystemVersion)platformVersion;
+
++ (NSString*)platformVersionWithPatch;
+
++ (NSString*)platformVersionWithoutPatch;
 
 /* Returns the screen size in pixel or points */
 + (CGSize)screenSize:(BOOL)inPixel;

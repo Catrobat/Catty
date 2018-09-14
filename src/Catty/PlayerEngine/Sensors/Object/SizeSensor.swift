@@ -45,7 +45,6 @@ class SizeSensor: ObjectDoubleSensor {
         spriteObject.spriteNode.yScale = CGFloat(rawValue)
     }
 
-    // the sprite on Android is about 2.4 times smaller
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue * 100
     }

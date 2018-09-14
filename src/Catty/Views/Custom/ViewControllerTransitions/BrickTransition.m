@@ -73,7 +73,14 @@
             CGPoint posBrickCell = self.animateView.layer.position;
             _animatedFromPositionY = ceilf(self.animateView.frame.origin.y - scvc.collectionView.contentOffset.y);
             _animatedFromRect = self.animateView.frame;
-            posBrickCell.y = CGRectGetMidY(self.animateView.layer.bounds) + kFormulaEditorTopOffset;
+            
+            //Hotfix IOS-559
+            CGFloat topPadding = 0.0f;
+            if (@available(iOS 11.0, *)) {
+                UIWindow *window = UIApplication.sharedApplication.keyWindow;
+                topPadding = window.safeAreaInsets.top;
+            }
+            posBrickCell.y = CGRectGetMidY(self.animateView.layer.bounds) + kFormulaEditorTopOffset + topPadding;
             fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             
             UIView *animationView = [self.animateView snapshotViewAfterScreenUpdates:NO];

@@ -28,6 +28,7 @@
 @interface AudioManager()
 
 @property (nonatomic) NSInteger soundCounter;
+@property (nonatomic) AVSpeechSynthesizer* speechSynth;
 
 @property (atomic, strong) NSDictionary* sounds;
 @property (nonatomic) float current_volume;
@@ -46,6 +47,7 @@
 
 - (id)init
 {
+    self.speechSynth = [[AVSpeechSynthesizer alloc] init];
     self = [super init];
     if (self) {
     }
@@ -143,23 +145,23 @@
         for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
             if ([player isPlaying]) {
                 [player pause];
-            }
-            else{
+            } else {
                 [audioPlayers removeObjectForKey:player.key];
             }
         }
     }
-    
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
 }
 
 - (void)resumeAllSounds
 {
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    
     for(NSMutableDictionary* audioPlayers in [self.sounds allValues]) {
         for(CatrobatAudioPlayer* player in [audioPlayers allValues]) {
             [player play];
         }
     }
-    
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
@@ -176,6 +178,11 @@
     AVAudioPlayer* avAudioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:filePath]
                                                                           error:&error];
     return (CGFloat)avAudioPlayer.duration;
+}
+
+- (AVSpeechSynthesizer*)getSpeechSynth
+{
+    return self.speechSynth;
 }
 
 @end

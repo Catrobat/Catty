@@ -25,6 +25,7 @@
     @nonobjc func instruction() -> CBInstruction {
         
         guard let object = self.script?.object else { fatalError("This should never happen!") }
+        let audioManager = AudioManager.shared()
         
         return CBInstruction.waitExecClosure { (context, _) in
             let condition = NSCondition()
@@ -40,24 +41,34 @@
             let utterance = AVSpeechUtterance(string: speakText)
             utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
             
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.delegate = self
-            synthesizer.accessibilityElements = [condition]
-            synthesizer.speak(utterance)
-
-            condition.lock()
-
-            while(condition.accessibilityHint == "0") {     //accessibilityHint used because synthesizer.speaking not yet true.
-                condition.wait()
+            if let synthesizer = audioManager?.getSpeechSynth() {
+                synthesizer.delegate = self
+                if synthesizer.accessibilityElements != nil {
+                    synthesizer.accessibilityElements?.append((condition, utterance))
+                } else {
+                    synthesizer.accessibilityElements = [(condition, utterance)]
+                }
+                synthesizer.speak(utterance)
+                
+                condition.lock()
+                while(condition.accessibilityHint == "0") {     //accessibilityHint used because synthesizer.speaking not yet true.
+                    condition.wait()
+                }
+                condition.unlock()
             }
-            condition.unlock()
         }
     }
-
-    public func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didFinishSpeechUtterance utterance: AVSpeechUtterance) {
-        if let condition = synthesizer.accessibilityElements?.last as? NSCondition {
-            condition.accessibilityHint = "1"
-            condition.signal()
+    
+    open func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        for (index, object) in synthesizer.accessibilityElements!.enumerated() {
+            if let tuple = object as? (NSCondition, AVSpeechUtterance) {
+                if tuple.1 === utterance {
+                    synthesizer.accessibilityElements?.remove(at: index)
+                    tuple.0.accessibilityHint = "1"
+                    tuple.0.signal()
+                    break
+                }
+            }
         }
     }
 }
