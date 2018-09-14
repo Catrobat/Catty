@@ -30,6 +30,7 @@
 #import "BroadcastScript.h"
 #import "StartScript.h"
 #import "WhenScript.h"
+#import "WhenTouchDownScript.h"
 #import "Brick.h"
 #import "CBXMLSerializerHelper.h"
 
@@ -61,6 +62,8 @@
                       message:@"Invalid action %@ for WhenScript given", [actionElement stringValue]];
         whenScript.action = [actionElement stringValue];
         script = whenScript;
+    } else if ([scriptType isEqualToString:@"WhenTouchDownScript"]) {
+        script = [WhenTouchDownScript new];
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
         NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
@@ -185,6 +188,8 @@
                       message:@"WhenScript contains invalid action string %@", whenScript.action];
         GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:whenScript.action context:context];
         [xmlElement addChild:actionXmlElement context:context];
+    } else if ([self isKindOfClass:[WhenTouchDownScript class]]) {
+        // Nothing to do
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }
