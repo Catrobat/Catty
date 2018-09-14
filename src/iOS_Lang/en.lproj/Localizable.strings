@@ -701,6 +701,9 @@
 "Invalid URL given!" = "Invalid URL given!";
 
 /* No comment provided by engineer. */
+"iOS." = "iOS.";
+
+/* No comment provided by engineer. */
 "is true" = "is true";
 
 /* No comment provided by engineer. */
@@ -1653,9 +1656,6 @@
 
 /* No comment provided by engineer. */
 "Username must not be blank" = "Username must not be blank";
-
-/* No comment provided by engineer. */
-"v" = "v";
 
 /* No comment provided by engineer. */
 "Var/List" = "Var/List";
