@@ -57,6 +57,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Communicate with your Arduino device using Blueetoth.</string>
 	<key>NSCameraUsageDescription</key>
