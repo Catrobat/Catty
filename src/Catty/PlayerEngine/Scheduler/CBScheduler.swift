@@ -32,6 +32,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _spriteNodes = [String:CBSpriteNode]()
     private var _contexts = [CBScriptContextProtocol]()
     private var _whenContexts = [String:[CBWhenScriptContext]]()
+    private var _whenTouchDownContexts = [CBWhenTouchDownScriptContext]()
     private var _scheduledContexts = OrderedDictionary<String,[CBScriptContextProtocol]>()
 
     private var _availableWaitQueues = [DispatchQueue]()
@@ -81,6 +82,9 @@ final class CBScheduler: CBSchedulerProtocol {
                 _whenContexts[spriteName] = [CBWhenScriptContext]()
             }
             _whenContexts[spriteName]?.append(whenContext)
+        }
+        if let whenTouchDownContext = context as? CBWhenTouchDownScriptContext {
+            _whenTouchDownContexts.append(whenTouchDownContext)
         }
     }
 
@@ -309,6 +313,13 @@ final class CBScheduler: CBSchedulerProtocol {
             scheduleContext(context)
         }
 
+        runNextInstructionsGroup()
+    }
+    
+    func startWhenTouchDownContexts() {
+        for context in _whenTouchDownContexts {
+            scheduleContext(context)
+        }
         runNextInstructionsGroup()
     }
 

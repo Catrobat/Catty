@@ -128,6 +128,21 @@ final class CBWhenScriptContext: CBScriptContext {
 }
 
 //--------------------------------------------------------------------------------------------------
+final class CBWhenTouchDownScriptContext: CBScriptContext {
+    
+    convenience init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
+        self.init(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
+    }
+    
+    init?(whenTouchDownScript: WhenTouchDownScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
+        ) {
+        super.init(script: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
+                   instructionList: instructionList)
+    }
+    
+}
+
+//--------------------------------------------------------------------------------------------------
 final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextProtocol {
 
     let broadcastMessage: String

@@ -330,6 +330,7 @@
 // control bricks
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
+#define kLocalizedTouchDown NSLocalizedString(@"When screen is touched", nil)
 #define kLocalizedWait NSLocalizedString(@"Wait", nil)
 #define kLocalizedSecond NSLocalizedString(@"second ", nil)
 #define kLocalizedSeconds NSLocalizedString(@"seconds ", nil)
