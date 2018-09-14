@@ -47,7 +47,7 @@ class FacePositionYSensor: DeviceSensor {
         if rawValue == type(of: self).defaultRawValue {
             return rawValue
         }
-        return rawValue - Double(Util.screenHeight()) / 1.05
+        return -(rawValue - Double(Util.screenHeight()) / 1.05)
     }
     
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
