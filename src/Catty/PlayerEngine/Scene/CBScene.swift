@@ -230,10 +230,12 @@ final class CBScene: SKScene {
 
     @objc func pauseScheduler() {
         scheduler.pause()
+        formulaManager.pause()
     }
     
     @objc func resumeScheduler() {
         scheduler.resume()
+        formulaManager.resume()
     }
     
     // MARK: - Stop program

@@ -330,7 +330,6 @@
 - (void)pauseAction
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-        [[AVAudioSession sharedInstance] setActive:NO error:nil];
         [[AudioManager sharedAudioManager] pauseAllSounds];
         [[FlashHelper sharedFlashHandler] pause];
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
@@ -341,12 +340,14 @@
 
 - (void)resumeAction
 {
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AudioManager sharedAudioManager] resumeAllSounds];
-    [[BluetoothService sharedInstance] continueBluetoothDevice];
-    if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
-        [[FlashHelper sharedFlashHandler] resume];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        [[AudioManager sharedAudioManager] resumeAllSounds];
+        [[BluetoothService sharedInstance] continueBluetoothDevice];
+        if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
+            [[FlashHelper sharedFlashHandler] resume];
+        }
+    });
+    
     [self.scene resumeScheduler];
 }
 

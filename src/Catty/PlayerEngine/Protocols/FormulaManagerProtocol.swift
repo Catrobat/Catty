@@ -28,6 +28,10 @@ protocol FormulaManagerProtocol: FormulaInterpreterProtocol {
     
     func stop()
     
+    func pause()
+    
+    func resume()
+    
     func unavailableResources(for requiredResources: NSInteger) -> NSInteger
     
     func functionExists(tag: String) -> Bool
