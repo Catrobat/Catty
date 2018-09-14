@@ -174,6 +174,9 @@
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
 		4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */; };
+		4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F20F214BC01F0014044C /* Default-568h@2x.png */; };
+		4C33F212214BC0390014044C /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F211214BC0390014044C /* My first program.catrobat */; };
+		4C33F214214BC0680014044C /* Document-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F213214BC0680014044C /* Document-Icon.png */; };
 		4C37A0A0212DBDB40074F417 /* ArduinoAnalogPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */; };
 		4C37A0A3212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */; };
 		4C37A0A5212E767C0074F417 /* ArduinoDigitalPinFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */; };
@@ -675,7 +678,6 @@
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
-		922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922FE8E21B96430D005A19FA /* Default-568h@2x.png */; };
 		923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginViewController.m */; };
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 925819831C0206AA003247A9 /* SceneMenuView.xib */; };
@@ -1098,7 +1100,6 @@
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
 		CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */; };
 		CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
-		CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My first program.catrobat */; };
 		CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */; };
 		CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B21B115E6400419A55 /* CBOperationSequence.swift */; };
 		CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B51B115E6400419A55 /* CBSequenceList.swift */; };
@@ -1492,6 +1493,9 @@
 		4C2EE41C1B555B55006DE9B8 /* CBXMLPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLPropertyMapping.h; sourceTree = "<group>"; };
 		4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPropertyMapping.m; sourceTree = "<group>"; };
 		4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserUserVariableTests095.m; sourceTree = "<group>"; };
+		4C33F20F214BC01F0014044C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
+		4C33F211214BC0390014044C /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; name = "My first program.catrobat"; path = "Resources/My first program.catrobat"; sourceTree = "<group>"; };
+		4C33F213214BC0680014044C /* Document-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Document-Icon.png"; path = "Resources/Document-Icon.png"; sourceTree = "<group>"; };
 		4C37A09F212DBDB40074F417 /* ArduinoAnalogPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunction.swift; sourceTree = "<group>"; };
 		4C37A0A2212DBF510074F417 /* ArduinoAnalogPinFunctionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoAnalogPinFunctionTest.swift; sourceTree = "<group>"; };
 		4C37A0A4212E767C0074F417 /* ArduinoDigitalPinFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArduinoDigitalPinFunction.swift; sourceTree = "<group>"; };
@@ -2080,7 +2084,6 @@
 		92289A481A42F2A3008C771A /* iOSCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCombobox.m; sourceTree = "<group>"; };
 		922FE8DF1B963BDE005A19FA /* BrickSelectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionManager.h; sourceTree = "<group>"; };
 		922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionManager.m; sourceTree = "<group>"; };
-		922FE8E21B96430D005A19FA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		92300CEA18B2196700F2B4DC /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEB18B2196700F2B4DC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEC18B2196700F2B4DC /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bs; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2870,7 +2873,6 @@
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBBroadcastHandler.swift; sourceTree = "<group>"; };
-		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBIfConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBIfConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
@@ -6997,10 +6999,11 @@
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C33F20F214BC01F0014044C /* Default-568h@2x.png */,
+				4C33F213214BC0680014044C /* Document-Icon.png */,
 				81C27425189EF94600827A95 /* Images.xcassets */,
-				922FE8E21B96430D005A19FA /* Default-568h@2x.png */,
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
-				CA6E4C4719F9C388001B65C3 /* My first program.catrobat */,
+				4C33F211214BC0390014044C /* My first program.catrobat */,
 				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
 			);
 			name = Resources;
@@ -8096,13 +8099,13 @@
 				59697DAF201F855C00A0071A /* LibraryCategoryCollectionReusableView.xib in Resources */,
 				4CDE4CF8203DBBF500B43034 /* LCTableViewPickerControl.license in Resources */,
 				CA2D44431B12305400A3B53D /* Swell.plist in Resources */,
-				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
 				4CDE4CED203DBBF500B43034 /* NSString+FastImageSize.license in Resources */,
 				9218B1FC1CC4AB75007B4C60 /* nko_brightness_guide.png in Resources */,
 				925819841C0206AA003247A9 /* SceneMenuView.xib in Resources */,
 				4CDE4CF5203DBBF500B43034 /* UIImage+FloodFill.license in Resources */,
 				4CDE4CF9203DBBF500B43034 /* TTTAttributedLabel.license in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
+				4C33F214214BC0680014044C /* Document-Icon.png in Resources */,
 				BAD47DC51F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */,
 				4CDE4CF3203DBBF500B43034 /* FXBlurView.license in Resources */,
 				4CDE4CEE203DBBF500B43034 /* minizip.license in Resources */,
@@ -8112,7 +8115,9 @@
 				4CDE4CE6203DBBF500B43034 /* GDataXMLNode.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
 				92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */,
+				4C33F212214BC0390014044C /* My first program.catrobat in Resources */,
 				4CDE4CFA203DBBF500B43034 /* MXSegmentedPager.license in Resources */,
+				4C33F210214BC0200014044C /* Default-568h@2x.png in Resources */,
 				9218B1FD1CC4AB75007B4C60 /* nko_brightness_guide@2x.png in Resources */,
 				4CDE4CF4203DBBF500B43034 /* HMSegmentedControl.license in Resources */,
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
@@ -8127,7 +8132,6 @@
 				4CDE4CEC203DBBF500B43034 /* BDKNotifyHUD.license in Resources */,
 				4CDE4CE5203DBBF500B43034 /* ImageHelper.license in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
-				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
 				92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */,
 				4CDE4CFE203DBCC100B43034 /* Kingfisher.license in Resources */,
 				92FF2E391A24C5A700093DA7 /* LICENSE_NSString+FastImageSize in Resources */,

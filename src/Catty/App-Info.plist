@@ -10,12 +10,14 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array>
+				<string>Document-Icon.png</string>
+			</array>
 			<key>CFBundleTypeName</key>
 			<string>Catrobat Program</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.catty.catrobat</string>
+				<string>org.catrobat.pocketcode.catrobat</string>
 			</array>
 		</dict>
 	</array>
@@ -38,7 +40,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>13</string>
+	<string>14</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -94,7 +96,7 @@
 			<key>UTTypeDescription</key>
 			<string>Catrobat Program</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.catty.catrobat</string>
+			<string>org.catrobat.pocketcode.catrobat</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
