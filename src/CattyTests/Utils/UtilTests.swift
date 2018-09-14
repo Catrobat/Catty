@@ -31,27 +31,41 @@ final class UtilTests: XCTestCase {
     
     func testScreenSize() {
         let screenSizeInPoints = UIScreen.main.bounds.size
-        let screenSizeInPixel = UIScreen.main.nativeBounds.size
+        let screenSizeInPixel = mainScreenSizeInPixel()
         
         XCTAssertEqual(screenSizeInPoints, Util.screenSize(false))
         XCTAssertEqual(screenSizeInPixel, Util.screenSize(true))
+        XCTAssertNotEqual(screenSizeInPixel, screenSizeInPoints)
     }
     
     func testScreenWidth() {
         let screenWidthInPoints = UIScreen.main.bounds.size.width
-        let screenWidthInPixel = UIScreen.main.nativeBounds.size.width
+        let screenSizeInPixel = mainScreenSizeInPixel()
         
         XCTAssertEqual(screenWidthInPoints, Util.screenWidth())
         XCTAssertEqual(screenWidthInPoints, Util.screenWidth(false))
-        XCTAssertEqual(screenWidthInPixel, Util.screenWidth(true))
+        XCTAssertEqual(screenSizeInPixel.width, Util.screenWidth(true))
+        XCTAssertNotEqual(screenSizeInPixel.width, screenWidthInPoints)
     }
     
     func testScreenHeight() {
         let screenHeightInPoints = UIScreen.main.bounds.size.height
-        let screenHeightInPixel = UIScreen.main.nativeBounds.size.height
+        let screenSizeInPixel = mainScreenSizeInPixel()
         
         XCTAssertEqual(screenHeightInPoints, Util.screenHeight())
         XCTAssertEqual(screenHeightInPoints, Util.screenHeight(false))
-        XCTAssertEqual(screenHeightInPixel, Util.screenHeight(true))
+        XCTAssertEqual(screenSizeInPixel.height, Util.screenHeight(true))
+        XCTAssertNotEqual(screenSizeInPixel.height, screenHeightInPoints)
+    }
+    
+    private func mainScreenSizeInPixel() -> CGSize {
+        var screenSizeInPixel = UIScreen.main.nativeBounds.size
+        
+        if (UIScreen.main.bounds.height == CGFloat(kIphone6PScreenHeight)) {
+            let iPhonePlusDownsamplingFactor = CGFloat(1.15)
+            screenSizeInPixel.height = screenSizeInPixel.height / iPhonePlusDownsamplingFactor
+            screenSizeInPixel.width = screenSizeInPixel.width / iPhonePlusDownsamplingFactor
+        }
+        return screenSizeInPixel
     }
 }
