@@ -24,8 +24,6 @@ import XCTest
 
 protocol UITestProtocol {
     func restoreDefaultProgram()
-    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(_ numLooks: UInt)
-    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(_ numSounds: UInt)
     func dismissWelcomeScreenIfShown()
 }
 
