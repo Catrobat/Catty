@@ -56,6 +56,15 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "if [ `defaults read com.apple.iphonesimulator ConnectHardwareKeyboard` -eq 1 ]&#10; then&#10;  defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool false&#10;  killall &quot;Simulator&quot;&#10;fi">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <Testables>
       </Testables>
       <MacroExpansion>
