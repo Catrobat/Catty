@@ -26,11 +26,11 @@ import CoreBluetooth
 // CharacteristicProfile
 open class CharacteristicProfile {
     
-    open let uuid                     : CBUUID
-    open let name                     : String
-    open let permissions              : CBAttributePermissions
-    open let properties               : CBCharacteristicProperties
-    open let initialValue             : Data?
+    public let uuid                     : CBUUID
+    public let name                     : String
+    public let permissions              : CBAttributePermissions
+    public let properties               : CBCharacteristicProperties
+    public let initialValue             : Data?
 
     internal var afterDiscoveredPromise : StreamPromise<Characteristic>!
 

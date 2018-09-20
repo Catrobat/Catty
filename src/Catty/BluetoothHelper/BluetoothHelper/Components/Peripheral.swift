@@ -56,10 +56,10 @@ private func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     open var ownServices          = [CBUUID:Service]()
     open var ownCharacteristics   = [CBCharacteristic:Characteristic]()
     
-    open let cbPeripheral   : CBPeripheral
+    public let cbPeripheral     : CBPeripheral
     
-    open let advertisements   : [String: String]
-    open let rssi             : Int
+    public let advertisements   : [String: String]
+    public let rssi             : Int
     
     // MARK: Init
     public init(cbPeripheral:CBPeripheral, advertisements:[String:String], rssi:Int) {

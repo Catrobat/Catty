@@ -274,7 +274,7 @@ open class CentralManagerHelper<CM> where CM:CMWrapper,
     
     open func startScanningForServiceUUIDs(_ central:CM, uuids:[CBUUID]!, capacity:Int? = nil) -> FutureStream<CM.PeripheralWrap> {
         if !self._isScanning {
-            NSLog("UUIDs \(uuids)")
+            NSLog("UUIDs \(String(describing: uuids))")
             if let capacity = capacity {
                 self.afterPeripheralDiscoveredPromise = StreamPromise<CM.PeripheralWrap>(capacity:capacity)
             } else {
