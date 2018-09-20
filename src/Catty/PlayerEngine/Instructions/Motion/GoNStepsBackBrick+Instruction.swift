@@ -27,23 +27,23 @@
     }
     
     @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
-        guard let object = self.script?.object,
-            let spriteNode = object.spriteNode,
+        guard let currentObject = self.script?.object,
+            let currentSpriteNode = currentObject.spriteNode,
             let stepsFormula = self.steps,
             let objectList = self.script?.object?.program?.objectList
         else { fatalError("This should never happen!") }
 
         return {
-            let currentLayer = spriteNode.catrobatLayer
-            let steps = formulaInterpreter.interpretDouble(stepsFormula, for: object)
-            spriteNode.catrobatLayer = spriteNode.catrobatLayer - steps
+            let currentLayer = currentSpriteNode.catrobatLayer
+            let steps = formulaInterpreter.interpretDouble(stepsFormula, for: currentObject)
+            currentSpriteNode.catrobatLayer = currentSpriteNode.catrobatLayer - steps
             
             for obj in objectList {
-                guard let objSpriteNode = (obj as AnyObject).spriteNode, let spriteObject = obj as? SpriteObject else {
+                guard let spriteObject = obj as? SpriteObject, let spriteNode = spriteObject.spriteNode else {
                     continue
                 }
-                if objSpriteNode.catrobatLayer < currentLayer && objSpriteNode.catrobatLayer >= spriteNode.catrobatLayer && spriteObject != object {
-                    objSpriteNode.catrobatLayer += 1
+                if spriteNode.catrobatLayer < currentLayer && spriteNode.catrobatLayer >= currentSpriteNode.catrobatLayer && spriteObject != currentObject {
+                    spriteNode.catrobatLayer += 1
                 }
             }
         }

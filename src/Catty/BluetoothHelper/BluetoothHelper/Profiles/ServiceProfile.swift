@@ -27,9 +27,9 @@ open class ServiceProfile {
     
     internal var characteristicProfiles = [CBUUID:CharacteristicProfile]()
 
-    open let uuid : CBUUID
-    open let name : String
-    open let tag  : String
+    public let uuid : CBUUID
+    public let name : String
+    public let tag  : String
     
     open var characteristics : [CharacteristicProfile] {
         let values: [CharacteristicProfile] = [CharacteristicProfile](self.characteristicProfiles.values)

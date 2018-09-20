@@ -47,11 +47,7 @@ class ElementFunction: DoubleParameterFunction {
                 return type(of: self).defaultValue
         }
         
-        if elements.count == 0 {
-            return type(of: self).defaultValue
-        }
-        
-        if elementNumber - 1 < 0 || elementNumber - 1 > elements.count {
+        if elements.count == 0 || elementNumber <= 0 || elementNumber > elements.count {
             return type(of: self).defaultValue
         }
         

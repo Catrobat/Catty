@@ -68,6 +68,7 @@ class ElementFunctionTest: XCTestCase {
         
         // out of bounds
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 0 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! String)
+        XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 4 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! String)
         XCTAssertEqual(type(of: function).defaultValue as! String, function.value(firstParameter: 10 as AnyObject, secondParameter: userVariableNumber as AnyObject) as! String)
         
         // string list
