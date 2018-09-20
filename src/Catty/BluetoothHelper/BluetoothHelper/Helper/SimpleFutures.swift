@@ -448,7 +448,7 @@ public struct SimpleFuturesException {
 // Promise
 open class Promise<T> {
     
-    open let future = Future<T>()
+    public let future = Future<T>()
     
     open var completed : Bool {
         return self.future.completed
@@ -879,7 +879,7 @@ public func forcomp<T,U, V, W>(_ executionContext:ExecutionContext, f:Future<T>,
 // StreamPromise
 open class StreamPromise<T> {
     
-    open let future : FutureStream<T>
+    public let future : FutureStream<T>
     
     public init(capacity:Int?=nil) {
         self.future = FutureStream<T>(capacity:capacity)

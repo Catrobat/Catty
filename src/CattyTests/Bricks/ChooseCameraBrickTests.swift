@@ -29,16 +29,19 @@ final class ChooseCameraBrickTests: XCTestCase {
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
     var scheduler: CBScheduler!
+    var program: Program!
     var script: Script!
     var context: CBScriptContextProtocol!
     
     override func setUp() {
+        program = Program()
+        
         spriteObject = SpriteObject()
         spriteObject.name = "SpriteObjectName"
         
         spriteNode = CBSpriteNode(spriteObject: spriteObject)
         spriteObject.spriteNode = spriteNode
-        spriteObject.program = Program();
+        spriteObject.program = program
         
         script = Script();
         script.object = spriteObject;
