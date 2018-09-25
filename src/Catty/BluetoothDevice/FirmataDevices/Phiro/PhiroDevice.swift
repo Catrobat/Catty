@@ -84,7 +84,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         toneTimer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(Phiro.cancelTone), userInfo: nil, repeats: false)
     }
     
-
+    
     
     func moveLeftMotorForward(_ speed:Int){
         self.sendAnalogFirmataMessage(PIN_LEFT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
@@ -161,7 +161,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         firmata.writePinMode(.pwm, pin: analogPin)
         firmata.writePWMValue(checkedValue, pin: analogPin)
     }
-
+    
     //MARK: Reset Phiro
     func resetPins(){
         stopAllMotors()
@@ -169,7 +169,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         setRightRGBLightColor(0, green: 0, blue: 0)
         cancelTone()
     }
-
+    
     //MARK: Report Data
     @objc func reportSensorData(_ report:Bool) {
         if (isReportingSensorData == report) {
@@ -215,7 +215,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
         }
         return 0
     }
-
+    
     // MARK: Sensor Values
     
     private func getFrontLeftSensor() -> Int {
@@ -250,6 +250,6 @@ class Phiro: FirmataDevice,PhiroProtocol {
         
         phiroHelper.didReceiveAnalogMessage(analogPin, value: value)
     }
-
+    
     
 }

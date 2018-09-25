@@ -34,8 +34,8 @@
 @implementation InternFormulaTokenSelection
 
 - (InternFormulaTokenSelection *)initWithTokenSelectionType:(TokenSelectionType)tokenSelectionType
-                                 internTokenSelectionStart:(NSInteger)internTokenSelectionStart
-                                   internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd
+                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
+                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd
 {
     self = [super init];
     if(self)

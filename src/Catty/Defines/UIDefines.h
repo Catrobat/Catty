@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
 typedef NS_ENUM(NSUInteger, kBrickType) {
     // invalid brick type
     kInvalidBrick              = NSUIntegerMax,
-
+    
     // 0xx control bricks
     kProgramStartedBrick       =   0,
     kTappedBrick               =   1,
@@ -165,7 +165,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kRepeatBrick               =  13,
     kRepeatUntilBrick          =  14,
     kLoopEndBrick              =  15,
-
+    
     // 1xx motion bricks
     kPlaceAtBrick              = 100,
     kSetXBrick                 = 101,
@@ -206,7 +206,7 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSayForBubbleBrick         = 219,
     kThinkBubbleBrick          = 220,
     kThinkForBubbleBrick       = 221,
-
+    
     
     // 3xx sound bricks
     kPlaySoundBrick            = 300,
@@ -215,18 +215,18 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeVolumeByNBrick      = 303,
     kSpeakBrick                = 304,
     kSpeakAndWaitBrick         = 305,
-
-
-
+    
+    
+    
     // 4xx variable and list bricks
     kSetVariableBrick               = 400,
     kChangeVariableBrick            = 401,
     kShowTextBrick                  = 402,
     kHideTextBrick                  = 403,
     kAddItemToUserListBrick         = 404,
-	kDeleteItemOfUserListBrick 		= 405,
+    kDeleteItemOfUserListBrick 		= 405,
     kInsertItemIntoUserListBrick    = 406,
-	kReplaceItemInUserListBrick     = 407,
+    kReplaceItemInUserListBrick     = 407,
     
     // 5xx arduino bricks
     kArduinoSendDigitalValueBrick  = 500,
@@ -239,8 +239,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kPhiroPlayToneBrick          = 603,
     kPhiroRGBLightBrick          = 604,
     kPhiroIfLogicBeginBrick         = 605
-
-
+    
+    
 };
 
 #define kMinFavouriteBrickSize 5
@@ -264,32 +264,32 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 
 // brick categories
 #define kBrickCategoryNames @[\
-    kLocalizedControl,\
-    kLocalizedMotion,\
-    kLocalizedLooks,\
-    kLocalizedSound,\
-    kLocalizedVariables,\
-    kLocalizedPhiro\
+kLocalizedControl,\
+kLocalizedMotion,\
+kLocalizedLooks,\
+kLocalizedSound,\
+kLocalizedVariables,\
+kLocalizedPhiro\
 ]
 
 #define kBrickCategoryColors @[\
-    [UIColor controlBrickOrangeColor],\
-    [UIColor motionBrickBlueColor],\
-    [UIColor lookBrickGreenColor],\
-    [UIColor soundBrickVioletColor],\
-    [UIColor varibaleBrickRedColor],\
-    [UIColor ArduinoBrickColor],\
-    [UIColor PhiroBrickColor]\
+[UIColor controlBrickOrangeColor],\
+[UIColor motionBrickBlueColor],\
+[UIColor lookBrickGreenColor],\
+[UIColor soundBrickVioletColor],\
+[UIColor varibaleBrickRedColor],\
+[UIColor ArduinoBrickColor],\
+[UIColor PhiroBrickColor]\
 ]
 
 #define kBrickCategoryStrokeColors @[\
-    [UIColor controlBrickStrokeColor],\
-    [UIColor motionBrickStrokeColor],\
-    [UIColor lookBrickStrokeColor],\
-    [UIColor soundBrickStrokeColor],\
-    [UIColor variableBrickStrokeColor],\
-    [UIColor ArduinoBrickStrokeColor],\
-    [UIColor PhiroBrickStrokeColor]\
+[UIColor controlBrickStrokeColor],\
+[UIColor motionBrickStrokeColor],\
+[UIColor lookBrickStrokeColor],\
+[UIColor soundBrickStrokeColor],\
+[UIColor variableBrickStrokeColor],\
+[UIColor ArduinoBrickStrokeColor],\
+[UIColor PhiroBrickStrokeColor]\
 ]
 
 #define kWhenScriptDefaultAction @"Tapped" // at the moment Catrobat only supports this type of action for WhenScripts
@@ -297,94 +297,94 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 // map brick classes to corresponding brick type identifiers
 #define kClassNameBrickTypeMap @{\
 \
-    /* control bricks */\
-    @"StartScript"               : @(kProgramStartedBrick),\
-    @"WhenScript"                : @(kTappedBrick),\
-    @"WaitBrick"                 : @(kWaitBrick),\
-    @"BroadcastScript"           : @(kReceiveBrick),\
-    @"BroadcastBrick"            : @(kBroadcastBrick),\
-    @"BroadcastWaitBrick"        : @(kBroadcastWaitBrick),\
-    @"NoteBrick"                 : @(kNoteBrick),\
-    @"ForeverBrick"              : @(kForeverBrick),\
-    @"IfLogicBeginBrick"         : @(kIfBrick),\
-    @"IfThenLogicBeginBrick"     : @(kIfThenBrick),\
-    @"IfLogicElseBrick"          : @(kIfElseBrick),\
-    @"IfLogicEndBrick"           : @(kIfEndBrick),\
-    @"IfThenLogicEndBrick"       : @(kIfThenEndBrick),\
-    @"RepeatBrick"               : @(kRepeatBrick),\
-    @"RepeatUntilBrick"          : @(kRepeatUntilBrick),\
-    @"LoopEndBrick"              : @(kLoopEndBrick),\
+/* control bricks */\
+@"StartScript"               : @(kProgramStartedBrick),\
+@"WhenScript"                : @(kTappedBrick),\
+@"WaitBrick"                 : @(kWaitBrick),\
+@"BroadcastScript"           : @(kReceiveBrick),\
+@"BroadcastBrick"            : @(kBroadcastBrick),\
+@"BroadcastWaitBrick"        : @(kBroadcastWaitBrick),\
+@"NoteBrick"                 : @(kNoteBrick),\
+@"ForeverBrick"              : @(kForeverBrick),\
+@"IfLogicBeginBrick"         : @(kIfBrick),\
+@"IfThenLogicBeginBrick"     : @(kIfThenBrick),\
+@"IfLogicElseBrick"          : @(kIfElseBrick),\
+@"IfLogicEndBrick"           : @(kIfEndBrick),\
+@"IfThenLogicEndBrick"       : @(kIfThenEndBrick),\
+@"RepeatBrick"               : @(kRepeatBrick),\
+@"RepeatUntilBrick"          : @(kRepeatUntilBrick),\
+@"LoopEndBrick"              : @(kLoopEndBrick),\
 \
-    /* motion bricks */\
-    @"PlaceAtBrick"              : @(kPlaceAtBrick),\
-    @"SetXBrick"                 : @(kSetXBrick),\
-    @"SetYBrick"                 : @(kSetYBrick),\
-    @"ChangeXByNBrick"           : @(kChangeXByNBrick),\
-    @"ChangeYByNBrick"           : @(kChangeYByNBrick),\
-    @"IfOnEdgeBounceBrick"       : @(kIfOnEdgeBounceBrick),\
-    @"MoveNStepsBrick"           : @(kMoveNStepsBrick),\
-    @"TurnLeftBrick"             : @(kTurnLeftBrick),\
-    @"TurnRightBrick"            : @(kTurnRightBrick),\
-    @"PointInDirectionBrick"     : @(kPointInDirectionBrick),\
-    @"PointToBrick"              : @(kPointToBrick),\
-    @"GlideToBrick"              : @(kGlideToBrick),\
-    @"GoNStepsBackBrick"         : @(kGoNStepsBackBrick),\
-    @"ComeToFrontBrick"          : @(kComeToFrontBrick),\
-    @"VibrationBrick"            : @(kVibrationBrick),\
+/* motion bricks */\
+@"PlaceAtBrick"              : @(kPlaceAtBrick),\
+@"SetXBrick"                 : @(kSetXBrick),\
+@"SetYBrick"                 : @(kSetYBrick),\
+@"ChangeXByNBrick"           : @(kChangeXByNBrick),\
+@"ChangeYByNBrick"           : @(kChangeYByNBrick),\
+@"IfOnEdgeBounceBrick"       : @(kIfOnEdgeBounceBrick),\
+@"MoveNStepsBrick"           : @(kMoveNStepsBrick),\
+@"TurnLeftBrick"             : @(kTurnLeftBrick),\
+@"TurnRightBrick"            : @(kTurnRightBrick),\
+@"PointInDirectionBrick"     : @(kPointInDirectionBrick),\
+@"PointToBrick"              : @(kPointToBrick),\
+@"GlideToBrick"              : @(kGlideToBrick),\
+@"GoNStepsBackBrick"         : @(kGoNStepsBackBrick),\
+@"ComeToFrontBrick"          : @(kComeToFrontBrick),\
+@"VibrationBrick"            : @(kVibrationBrick),\
 \
-    /* sound bricks */\
-    @"PlaySoundBrick"            : @(kPlaySoundBrick),\
-    @"StopAllSoundsBrick"        : @(kStopAllSoundsBrick),\
-    @"SetVolumeToBrick"          : @(kSetVolumeToBrick),\
-    @"ChangeVolumeByNBrick"      : @(kChangeVolumeByNBrick),\
-    @"SpeakBrick"                : @(kSpeakBrick),\
-    @"SpeakAndWaitBrick"         : @(kSpeakAndWaitBrick),\
+/* sound bricks */\
+@"PlaySoundBrick"            : @(kPlaySoundBrick),\
+@"StopAllSoundsBrick"        : @(kStopAllSoundsBrick),\
+@"SetVolumeToBrick"          : @(kSetVolumeToBrick),\
+@"ChangeVolumeByNBrick"      : @(kChangeVolumeByNBrick),\
+@"SpeakBrick"                : @(kSpeakBrick),\
+@"SpeakAndWaitBrick"         : @(kSpeakAndWaitBrick),\
 \
-    /* look bricks */\
-    @"SetLookBrick"              : @(kSetLookBrick),\
-    @"SetBackgroundBrick"        : @(kSetBackgroundBrick),\
-    @"NextLookBrick"             : @(kNextLookBrick),\
-    @"PreviousLookBrick"         : @(kPreviousLookBrick),\
-    @"SetSizeToBrick"            : @(kSetSizeToBrick),\
-    @"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
-    @"HideBrick"                 : @(kHideBrick),\
-    @"ShowBrick"                 : @(kShowBrick),\
-    @"SetTransparencyBrick"      : @(kSetTransparencyBrick),\
-    @"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
-    @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
-    @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
-    @"SetColorBrick"             : @(kSetColorBrick),\
-    @"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
-    @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
-    @"FlashBrick"                : @(kFlashBrick),\
-    @"CameraBrick"               : @(kCameraBrick),\
-    @"ChooseCameraBrick"         : @(kChooseCameraBrick),\
-    @"SayBubbleBrick"            : @(kSayBubbleBrick),\
-    @"SayForBubbleBrick"         : @(kSayForBubbleBrick),\
-    @"ThinkBubbleBrick"          : @(kThinkBubbleBrick),\
-    @"ThinkForBubbleBrick"       : @(kThinkForBubbleBrick),\
+/* look bricks */\
+@"SetLookBrick"              : @(kSetLookBrick),\
+@"SetBackgroundBrick"        : @(kSetBackgroundBrick),\
+@"NextLookBrick"             : @(kNextLookBrick),\
+@"PreviousLookBrick"         : @(kPreviousLookBrick),\
+@"SetSizeToBrick"            : @(kSetSizeToBrick),\
+@"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
+@"HideBrick"                 : @(kHideBrick),\
+@"ShowBrick"                 : @(kShowBrick),\
+@"SetTransparencyBrick"      : @(kSetTransparencyBrick),\
+@"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
+@"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
+@"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
+@"SetColorBrick"             : @(kSetColorBrick),\
+@"ChangeColorByNBrick"       : @(kChangeColorByNBrick),\
+@"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
+@"FlashBrick"                : @(kFlashBrick),\
+@"CameraBrick"               : @(kCameraBrick),\
+@"ChooseCameraBrick"         : @(kChooseCameraBrick),\
+@"SayBubbleBrick"            : @(kSayBubbleBrick),\
+@"SayForBubbleBrick"         : @(kSayForBubbleBrick),\
+@"ThinkBubbleBrick"          : @(kThinkBubbleBrick),\
+@"ThinkForBubbleBrick"       : @(kThinkForBubbleBrick),\
 \
-    /* variable and list bricks */\
-    @"SetVariableBrick"             : @(kSetVariableBrick),\
-    @"ChangeVariableBrick"          : @(kChangeVariableBrick),\
-    @"ShowTextBrick"                : @(kShowTextBrick),\
-    @"HideTextBrick"                : @(kHideTextBrick),\
-    @"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
- 	@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
-    @"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
-	@"ReplaceItemInUserListBrick"   : @(kReplaceItemInUserListBrick),\
+/* variable and list bricks */\
+@"SetVariableBrick"             : @(kSetVariableBrick),\
+@"ChangeVariableBrick"          : @(kChangeVariableBrick),\
+@"ShowTextBrick"                : @(kShowTextBrick),\
+@"HideTextBrick"                : @(kHideTextBrick),\
+@"AddItemToUserListBrick"       : @(kAddItemToUserListBrick),\
+@"DeleteItemOfUserListBrick"    : @(kDeleteItemOfUserListBrick),\
+@"InsertItemIntoUserListBrick"  : @(kInsertItemIntoUserListBrick),\
+@"ReplaceItemInUserListBrick"   : @(kReplaceItemInUserListBrick),\
 \
-    /* arduino bricks */\
-    @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
-    @"ArduinoSendPWMValueBrick"     : @(kArduinoSendPWMValueBrick),\
+/* arduino bricks */\
+@"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
+@"ArduinoSendPWMValueBrick"     : @(kArduinoSendPWMValueBrick),\
 \
-    /* phiro bricks */\
-    @"PhiroMotorStopBrick"          : @(kPhiroMotorStopBrick),\
-    @"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
-    @"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
-    @"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
-    @"PhiroRGBLightBrick"           : @(kPhiroRGBLightBrick),\
-    @"PhiroIfLogicBeginBrick"       : @(kPhiroIfLogicBeginBrick)\
+/* phiro bricks */\
+@"PhiroMotorStopBrick"          : @(kPhiroMotorStopBrick),\
+@"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
+@"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
+@"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
+@"PhiroRGBLightBrick"           : @(kPhiroRGBLightBrick),\
+@"PhiroIfLogicBeginBrick"       : @(kPhiroIfLogicBeginBrick)\
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {

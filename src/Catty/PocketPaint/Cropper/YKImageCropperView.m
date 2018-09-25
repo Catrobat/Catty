@@ -1,4 +1,4 @@
-	//
+//
 //  YKImageCropperView.m
 //  Copyright (c) 2013 yuyak. All rights reserved.
 //
@@ -7,7 +7,7 @@
 
 #import "YKImageCropperOverlayView.h"
 
-    typedef NS_ENUM(NSUInteger, OverlayViewPanningMode) {
+typedef NS_ENUM(NSUInteger, OverlayViewPanningMode) {
     OverlayViewPanningModeNone     = 0,
     OverlayViewPanningModeLeft     = 1 << 0,
     OverlayViewPanningModeRight    = 1 << 1,
@@ -50,22 +50,22 @@ static CGSize minSize = {40, 40};
     if (self) {
         self.image = image;
         self.frame = frame;
-//        self.backgroundColor = [UIColor yellowColor];
-
+        //        self.backgroundColor = [UIColor yellowColor];
+        
         self.imageView = [[UIImageView alloc] init];
         self.imageView.image = image;
-
+        
         // Pinch
-//        UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
-//                                                                                                     action:@selector(pinchGesture:)];
-//        [self addGestureRecognizer:pinchGestureRecognizer];
-
+        //        UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self
+        //                                                                                                     action:@selector(pinchGesture:)];
+        //        [self addGestureRecognizer:pinchGestureRecognizer];
+        
         // Pan
         UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                                action:@selector(panGesture:)];
         panGestureRecognizer.maximumNumberOfTouches = 1;
         [self addGestureRecognizer:panGestureRecognizer];
-
+        
         CGRect frames;
         frames.origin = CGPointMake(0, 0);
         frames.size = [self getImageSizeForPreview:image];
@@ -73,7 +73,7 @@ static CGSize minSize = {40, 40};
         self.imageView.center = self.center;
         self.baseRect = self.imageView.frame;
         [self addSubview:self.imageView];
-
+        
         // Overlay
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         self.overlayView = [[YKImageCropperOverlayView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width , screenRect.size.height)];
@@ -90,10 +90,10 @@ static CGSize minSize = {40, 40};
         if (![imgdata1 isEqualToData:imgdata2]) {
             [self autoCropWithImage:self.image];
         }else{
-           [self reset];
+            [self reset];
         }
     }
-
+    
     return self;
 }
 
@@ -104,14 +104,14 @@ static CGSize minSize = {40, 40};
     rect.origin.y = (rect.origin.y - self.imageView.frame.origin.y) * scale;
     rect.size.width *= scale;
     rect.size.height *= scale;
-
+    
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef c = UIGraphicsGetCurrentContext();
     CGContextClipToRect(c, CGRectMake(0, 0, rect.size.width, rect.size.height));
     [self.image drawInRect:CGRectMake(-rect.origin.x, -rect.origin.y, self.image.size.width, self.image.size.height)];
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     return result;
 }
 
@@ -133,13 +133,13 @@ static CGSize minSize = {40, 40};
     CGFloat constrainRatio = size.width / size.height;
     CGFloat currentRatio = self.overlayView.clearRect.size.width / self.overlayView.clearRect.size.height;
     CGSize newSize = self.overlayView.clearRect.size;
-
+    
     if (currentRatio > constrainRatio) {
         newSize.width = newSize.height * constrainRatio;
     } else {
         newSize.height = newSize.width * (size.height / size.width);
     }
-
+    
     // Size should be bigger than min size
     if (newSize.width < minSize.width || newSize.height < minSize.height) {
         if (size.height / size.width > 1) {
@@ -150,39 +150,39 @@ static CGSize minSize = {40, 40};
             newSize.height = minSize.height;
         }
     }
-
+    
     CGRect frame = self.overlayView.clearRect;
     frame.size = newSize;
     self.overlayView.clearRect = frame;
-
+    
     [self.overlayView setNeedsDisplay];
 }
 
 - (CGSize)getImageSizeForPreview:(UIImage *)image {
     CGFloat maxWidth = self.frame.size.width - 40, maxHeight = self.frame.size.height - 40;
-
+    
     CGSize size = image.size;
-
+    
     if (size.width > maxWidth) {
         size.height *= (maxWidth / size.width);
         size.width = maxWidth;
     }
-
+    
     if (size.height > maxHeight) {
         size.width *= (maxHeight / size.height);
         size.height = maxHeight;
     }
-
+    
     if (size.width < minSize.width) {
         size.height *= (minSize.width / size.width);
         size.width = minSize.width;
     }
-
+    
     if (size.height < minSize.height) {
         size.width *= (minSize.height / size.height);
         size.height = minSize.height;
     }
-
+    
     return size;
 }
 
@@ -193,42 +193,42 @@ static CGSize minSize = {40, 40};
 - (BOOL)shouldRevertX {
     CGRect clearRect = self.overlayView.clearRect;
     CGRect imageRect = self.imageView.frame;
-
+    
     if (CGRectGetMinX(imageRect) > CGRectGetMinX(clearRect)
         || CGRectGetMaxX(imageRect) < CGRectGetMaxX(clearRect)) {
         return YES;
     }
-
+    
     if (CGRectGetMinX(clearRect) < CGRectGetMinX(self.baseRect)
         || CGRectGetMaxX(clearRect) > CGRectGetMaxX(self.baseRect)) {
         return YES;
     }
-
+    
     if (clearRect.size.width < minSize.width) {
         return YES;
     }
-
+    
     return NO;
 }
 
 - (BOOL)shouldRevertY {
     CGRect clearRect = self.overlayView.clearRect;
     CGRect imageRect = self.imageView.frame;
-
+    
     if (CGRectGetMinY(imageRect) > CGRectGetMinY(clearRect)
         || CGRectGetMaxY(imageRect) < CGRectGetMaxY(clearRect)) {
         return YES;
     }
-
+    
     if (CGRectGetMinY(clearRect) < CGRectGetMinY(self.baseRect)
         || CGRectGetMaxY(clearRect) > CGRectGetMaxY(self.baseRect)) {
         return YES;
     }
-
+    
     if (clearRect.size.height < minSize.height) {
         return YES;
     }
-
+    
     return NO;
 }
 
@@ -237,24 +237,24 @@ static CGSize minSize = {40, 40};
     CGRect oldImageFrame = self.imageView.frame;
     CGSize newSize = CGSizeMake(newScale * self.baseRect.size.width,
                                 newScale * self.baseRect.size.height);
-
+    
     // Update frame
     CGRect newFrame = self.imageView.frame;
     newFrame.size = newSize;
     self.imageView.frame = newFrame;
-
+    
     // Move center
     CGPoint d = CGPointMake((oldImageFrame.size.width - newFrame.size.width) / 2.0f,
                             (oldImageFrame.size.height - newFrame.size.height) / 2.0f);
     self.imageView.center = CGPointMake(self.imageView.center.x + d.x,
                                         self.imageView.center.y + d.y);
-
+    
     if (([self shouldRevertX] || [self shouldRevertY])) {
         self.imageView.frame = oldImageFrame;
     } else {
         self.currentScale = newScale;
     }
-
+    
     // Reset scale
     sender.scale = 1;
 }
@@ -277,13 +277,13 @@ static CGSize minSize = {40, 40};
     } else if (CGRectContainsPoint(self.overlayView.leftEdgeRect, point)) {
         return OverlayViewPanningModeLeft;
     }
-
+    
     return OverlayViewPanningModeNone;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
-
+    
     if ([touches count] == 1) {
         self.firstTouchedPoint = [(UITouch*)[touches anyObject] locationInView:self];
     }
@@ -292,7 +292,7 @@ static CGSize minSize = {40, 40};
 - (void)panGesture:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
         CGPoint point = self.firstTouchedPoint;
-
+        
         if ([self.overlayView isCornerContainsPoint:point] || [self.overlayView isEdgeContainsPoint:point]) {
             // Corner or Edge
             self.isPanningOverlayView = YES;
@@ -302,49 +302,49 @@ static CGSize minSize = {40, 40};
             self.isPanningOverlayView = NO;
         }
     }
-
+    
     if (self.isPanningOverlayView) {
         [self panOverlayView:sender];
     } else {
         [self panImage:sender];
     }
-
+    
     // Reset points
     [sender setTranslation:CGPointZero inView:self];
 }
 
 - (void)panOverlayView:(UIPanGestureRecognizer *)sender {
     CGPoint d = [sender translationInView:self];
-//    CGRect oldClearRect = self.overlayView.clearRect;
+    //    CGRect oldClearRect = self.overlayView.clearRect;
     CGRect newClearRect = self.overlayView.clearRect;
-
+    
     if (self.OverlayViewPanningMode & OverlayViewPanningModeLeft) {
         newClearRect.origin.x += d.x;
         newClearRect.size.width -= d.x;
     } else if (self.OverlayViewPanningMode & OverlayViewPanningModeRight) {
         newClearRect.size.width += d.x;
     }
-
+    
     if (self.OverlayViewPanningMode & OverlayViewPanningModeTop) {
         newClearRect.origin.y += d.y;
         newClearRect.size.height -= d.y;
     } else if (self.OverlayViewPanningMode & OverlayViewPanningModeBottom) {
         newClearRect.size.height += d.y;
     }
-
+    
     self.overlayView.clearRect = newClearRect;
-
+    
     // Check x
-//    if ([self shouldRevertX]) {
-//        newClearRect.origin.x = oldClearRect.origin.x;
-//        newClearRect.size.width = oldClearRect.size.width;
-//    }
-//
-//    // Check y
-//    if ([self shouldRevertY]) {
-//        newClearRect.origin.y = oldClearRect.origin.y;
-//        newClearRect.size.height = oldClearRect.size.height;
-//    }
+    //    if ([self shouldRevertX]) {
+    //        newClearRect.origin.x = oldClearRect.origin.x;
+    //        newClearRect.size.width = oldClearRect.size.width;
+    //    }
+    //
+    //    // Check y
+    //    if ([self shouldRevertY]) {
+    //        newClearRect.origin.y = oldClearRect.origin.y;
+    //        newClearRect.size.height = oldClearRect.size.height;
+    //    }
     
     self.overlayView.clearRect = newClearRect;
     [self.overlayView setNeedsDisplay];
@@ -352,21 +352,21 @@ static CGSize minSize = {40, 40};
 
 - (void)panImage:(UIPanGestureRecognizer *)sender {
     CGPoint d = [sender translationInView:self];
-//    NSDebug(@"Point: %@", d);
+    //    NSDebug(@"Point: %@", d);
     CGPoint newCenter = CGPointMake(self.imageView.center.x + d.x,
                                     self.imageView.center.y + d.y);
     self.imageView.center = newCenter;
-
-//    // Check x
-//    if ([self shouldRevertX]) {
-//        newCenter.x -= d.x;
-//    }
-//
-//    // Check y
-//    if ([self shouldRevertY]) {
-//        newCenter.y -= d.y;
-//    }
-
+    
+    //    // Check x
+    //    if ([self shouldRevertX]) {
+    //        newCenter.x -= d.x;
+    //    }
+    //
+    //    // Check y
+    //    if ([self shouldRevertY]) {
+    //        newCenter.y -= d.y;
+    //    }
+    
     self.imageView.center = newCenter;
 }
 
@@ -402,16 +402,16 @@ static CGSize minSize = {40, 40};
     float lastYValue = 0.0f;
     
     CGFloat scale = self.image.size.width / self.imageView.frame.size.width;
-
+    
     UIColor *compareColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     const CGFloat *components = CGColorGetComponents(compareColor.CGColor);
     
     int compareRed, compareGreen, compareBlue, compareAlpha;
     compareRed   = compareGreen = compareBlue = components[0] * 255;
     compareAlpha = components[1] * 255;
-
+    
     unsigned int compare_color = (compareRed << 24) | (compareGreen << 16) | (compareBlue << 8) | compareAlpha;
-
+    
     for (float y = 0; y < self.image.size.height; y++) {
         for (float x = 0; x < self.image.size.width; x++) {
             NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
@@ -454,7 +454,7 @@ static CGSize minSize = {40, 40};
             }
         }
     }
-
+    
     self.imageView.frame = self.baseRect;
     
     float diffx = (self.frame.size.width - self.baseRect.size.width) / 2.0f;
@@ -474,7 +474,7 @@ static CGSize minSize = {40, 40};
         UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-
+        
         self.image = blank;
         [self reset];
     }

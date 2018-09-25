@@ -264,7 +264,7 @@
                 }
             }
         }
-
+        
         //try again, delaying until the time when the next view needs an update.
         self.viewIndex = 0;
         [self performSelector:@selector(updateAsynchronously)

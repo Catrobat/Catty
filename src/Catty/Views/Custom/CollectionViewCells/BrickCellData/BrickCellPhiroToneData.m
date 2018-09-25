@@ -44,7 +44,7 @@
             NSString* currentLight = [toneBrick toneForLineNumber:line andParameterNumber:parameter];
             Tone current = [PhiroHelper stringToTone:currentLight];
             currentOptionIndex = current - 1;
-
+            
         }
         [options addObject:[PhiroHelper toneToString:DO]];
         [options addObject:[PhiroHelper toneToString:RE]];

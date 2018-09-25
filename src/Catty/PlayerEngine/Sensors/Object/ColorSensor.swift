@@ -21,7 +21,7 @@
  */
 
 @objc class ColorSensor: NSObject, ObjectDoubleSensor {
-
+    
     @objc static let tag = "OBJECT_COLOR"
     static let name = kUIFEObjectColor
     @objc static let defaultRawValue = 0.0
@@ -31,7 +31,7 @@
     func tag() -> String {
         return type(of: self).tag
     }
-
+    
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
             return self.defaultRawValue
@@ -43,7 +43,7 @@
         let rawValue = self.convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.ciHueAdjust = CGFloat(rawValue)
     }
-
+    
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue * 100 / Double.pi
     }

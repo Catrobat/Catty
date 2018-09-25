@@ -38,12 +38,12 @@ enum FunctionParameter {
     
     func defaultValueForFunctionSignature() -> String {
         switch self {
-            case .number(_):
-                return defaultValueString()
-            case .string(_):
-                return "'" + defaultValueString() + "'"
-            case .list(_):
-                return "*" + defaultValueString() + "*"
+        case .number(_):
+            return defaultValueString()
+        case .string(_):
+            return "'" + defaultValueString() + "'"
+        case .list(_):
+            return "*" + defaultValueString() + "*"
         }
     }
 }
@@ -56,7 +56,7 @@ extension FunctionParameter: Equatable {
             
         case (let .string(defaultValueLeft), let .string(defaultValueRight)):
             return defaultValueLeft == defaultValueRight
-
+            
         case (let .list(defaultValueLeft), let .list(defaultValueRight)):
             return defaultValueLeft == defaultValueRight
             

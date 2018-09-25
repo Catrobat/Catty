@@ -28,11 +28,11 @@ import UIKit
     @discardableResult
     @objc(addDefaultActionWithTitle:handler:)
     func addDefaultAction(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
-
+    
     @discardableResult
     @objc(addDestructiveActionWithTitle:handler:)
     func addDestructiveAction(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
-
+    
     @discardableResult
     @objc(addCancelActionWithTitle:handler:)
     func addCancelAction(title: String, handler: (() -> Void)?) -> AlertControllerBuilding
@@ -48,13 +48,13 @@ final class AlertController: BaseAlertController, AlertControllerBuilding {
         alertController.addAction(UIAlertAction(title: title, style: .cancel) {_ in handler?() })
         return self
     }
-
+    
     @objc(addDefaultActionWithTitle:handler:)
     func addDefaultAction(title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
         alertController.addAction(UIAlertAction(title: title, style: .default) {_ in handler?() })
         return self
     }
-
+    
     @objc(addDestructiveActionWithTitle:handler:)
     func addDestructiveAction(title: String, handler: (() -> Void)?) -> AlertControllerBuilding {
         alertController.addAction(UIAlertAction(title: title, style: .destructive) {_ in handler?() })

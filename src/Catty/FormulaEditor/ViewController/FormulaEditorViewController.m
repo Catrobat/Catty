@@ -132,8 +132,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self update];
     
     [self.formulaEditorTextView highlightSelection:[[self.internFormula getExternFormulaString] length]
-                       start:0
-                         end:(int)[[self.internFormula getExternFormulaString] length]];
+                                             start:0
+                                               end:(int)[[self.internFormula getExternFormulaString] length]];
     [self.internFormula selectWholeFormula];
 }
 
@@ -226,8 +226,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.view addSubview:myNav];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
-                                                      style:UIBarButtonItemStylePlain
-                                                     target:self
+                                                             style:UIBarButtonItemStylePlain
+                                                            target:self
                                                             action:@selector(dismissFormulaEditorViewController)];
     
     item.tintColor = [UIColor navTintColor];
@@ -281,13 +281,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formulaEditorTextView resignFirstResponder];
         
         [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoTypingDescription]
-         addCancelActionWithTitle:kLocalizedCancel handler:^{
-             [self.formulaEditorTextView becomeFirstResponder];
-         }]
-         addDefaultActionWithTitle:kLocalizedUndo handler:^{
-             [self undo];
-             [self.formulaEditorTextView becomeFirstResponder];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:^{
+                [self.formulaEditorTextView becomeFirstResponder];
+            }]
+           addDefaultActionWithTitle:kLocalizedUndo handler:^{
+               [self undo];
+               [self.formulaEditorTextView becomeFirstResponder];
+           }] build]
          showWithController:self];
     }
 }
@@ -465,7 +465,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                 }
                 
                 break;
-
+                
             default:
                 [self showSyntaxErrorView];
                 break;
@@ -590,7 +590,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)updateFormula
 {
-
+    
     if(self.formula != nil && self.internFormula != nil)
     {
         [self.formula setDisplayString:[self.internFormula getExternFormulaString]];
@@ -613,41 +613,41 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (BOOL)saveIfPossible
 {
-        if(self.internFormula != nil) {
-            InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
-            
-            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
-            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
-            Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-            switch ([internFormulaParser getErrorTokenIndex]) {
-                case FORMULA_PARSER_OK:
-                    if(self.delegate) {
-                        [self.delegate saveFormula:formula];
-                    }
-                    return YES;
-                    break;
-                case FORMULA_PARSER_STACK_OVERFLOW:
-                    [self showFormulaTooLongView];
-                    break;
-                case FORMULA_PARSER_STRING:
-                    if(!self.brickCellData.brickCell.isScriptBrick){
-                        Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
-                        if(![brick allowsStringFormula]){
-                            [self showSyntaxErrorView];
-                        }else{
-                            if(self.delegate) {
-                                [self.delegate saveFormula:formula];
-                            }
-                            return YES;
+    if(self.internFormula != nil) {
+        InternFormulaParser *internFormulaParser = [[InternFormulaParser alloc] initWithTokens:[self.internFormula getInternTokenList] andFormulaManager:(id<FormulaManagerProtocol>)self.formulaManager];
+        
+        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
+        FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+        Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
+        switch ([internFormulaParser getErrorTokenIndex]) {
+            case FORMULA_PARSER_OK:
+                if(self.delegate) {
+                    [self.delegate saveFormula:formula];
+                }
+                return YES;
+                break;
+            case FORMULA_PARSER_STACK_OVERFLOW:
+                [self showFormulaTooLongView];
+                break;
+            case FORMULA_PARSER_STRING:
+                if(!self.brickCellData.brickCell.isScriptBrick){
+                    Brick<BrickFormulaProtocol>* brick = (Brick<BrickFormulaProtocol>*)self.brickCellData.brickCell.scriptOrBrick;
+                    if(![brick allowsStringFormula]){
+                        [self showSyntaxErrorView];
+                    }else{
+                        if(self.delegate) {
+                            [self.delegate saveFormula:formula];
                         }
+                        return YES;
                     }
-                    
-                    break;
-                default:
-                    [self showSyntaxErrorView];
-                    break;
-            }
+                }
+                
+                break;
+            default:
+                [self showSyntaxErrorView];
+                break;
         }
+    }
     
     return NO;
 }
@@ -700,11 +700,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.sensorScrollView flashScrollIndicators];
 }
 - (IBAction)showVariable:(UIButton *)sender {
-  [self hideScrollViews];
-  self.variableScrollView.hidden = NO;
-  [self.variableButton setSelected:YES];
-  [self.variableScrollView scrollsToTop];
-  [self.variableScrollView flashScrollIndicators];
+    [self hideScrollViews];
+    self.variableScrollView.hidden = NO;
+    [self.variableButton setSelected:YES];
+    [self.variableScrollView scrollsToTop];
+    [self.variableScrollView flashScrollIndicators];
 }
 
 - (void)hideScrollViews
@@ -730,7 +730,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.isProgramVariable = isProgramVarOrList;
     self.variableSegmentedControl.selectedSegmentIndex = isProgramVarOrList ? 0 : 1;
     [self.variableSegmentedControl setNeedsDisplay];
-
+    
     [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:isList:)
                                           target:self
                                      promptTitle:promptTitle
@@ -824,7 +824,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.listSourceProgram addObject:pickerData];
     }
     
-  
+    
     // ------------------
     // Object Variables
     // ------------------
@@ -857,7 +857,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.listSourceObject addObject:pickerData];
         }
     }
-  
+    
     [self.variablePicker reloadAllComponents];
     if([self.variableSource count] > 0)
         [self.variablePicker selectRow:0 inComponent:0 animated:NO];
@@ -957,7 +957,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    promptMessage:kUIFETextMessage
                                   minInputLength:kMinNumOfProgramNameCharacters
                                   maxInputLength:kMaxNumOfProgramNameCharacters
-										  isList:NO
+                                          isList:NO
                              blockedCharacterSet:[self blockedCharacterSet]
                                     andTextField:self.formulaEditorTextView];
 }
@@ -996,7 +996,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     BOOL isList = self.varOrListSegmentedControl.selectedSegmentIndex;
     
     
-
+    
     if (component == 0 && !forObjectOnly && !isList) {
         if (row < self.variableSourceProgram.count) {
             return [[self.variableSourceProgram objectAtIndex:row] title];
@@ -1029,18 +1029,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-
+    
 }
 
 - (IBAction)choseVariableOrList:(UIButton *)sender {
-
- NSInteger row = [self.variablePicker selectedRowInComponent:0];
+    
+    NSInteger row = [self.variablePicker selectedRowInComponent:0];
     if (row >= 0) {
         int buttonType = 0;
         VariablePickerData *pickerData;
         if (self.variableSegmentedControl.selectedSegmentIndex == 0 && self.varOrListSegmentedControl.selectedSegmentIndex == 0) {
             if (row < self.variableSourceProgram.count) {
-               pickerData = [self.variableSourceProgram objectAtIndex:row];
+                pickerData = [self.variableSourceProgram objectAtIndex:row];
             }
         } else if (self.variableSegmentedControl.selectedSegmentIndex == 1 && self.varOrListSegmentedControl.selectedSegmentIndex == 0){
             if (row < self.variableSourceObject.count) {
@@ -1058,7 +1058,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
         if (pickerData) {
-             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
+            [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:buttonType];
         }
     }
 }

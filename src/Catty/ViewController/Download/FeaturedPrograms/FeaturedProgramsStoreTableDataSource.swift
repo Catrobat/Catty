@@ -25,11 +25,11 @@ protocol FeaturedProgramsStoreTableDataSourceDelegate: class {
 }
 
 protocol SelectedFeaturedProgramsDataSource: class {
-     func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
+    func selectedCell(dataSource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell)
 }
 
 class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-
+    
     // MARK: - Properties
     
     weak var delegate: SelectedFeaturedProgramsDataSource?
@@ -75,7 +75,7 @@ class FeaturedProgramsStoreTableDataSource: NSObject, UITableViewDataSource, UIT
             cell.featuredImage = UIImage(data: data!)
             cell.program = programs[indexPath.row]
         }
-
+        
         return cell
     }
     

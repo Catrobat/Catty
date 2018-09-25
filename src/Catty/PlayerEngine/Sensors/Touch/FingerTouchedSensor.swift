@@ -27,7 +27,7 @@
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
     static let position = 120 
-
+    
     let getTouchManager: () -> TouchManagerProtocol?
     
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {
@@ -46,7 +46,7 @@
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }
-
+    
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }

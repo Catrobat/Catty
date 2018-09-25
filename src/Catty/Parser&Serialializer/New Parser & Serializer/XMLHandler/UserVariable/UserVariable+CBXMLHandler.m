@@ -108,7 +108,7 @@
         }
     }
     userList = [CBXMLParserHelper findUserVariableInArray:context.programListOfLists
-                                                     withName:userListName];
+                                                 withName:userListName];
     if (userList) {
         return userList;
     }
@@ -140,21 +140,21 @@
     }else{
         xmlElement = [GDataXMLElement elementWithName:@"userList" context:context];
         GDataXMLElement *nameElement = [GDataXMLElement elementWithName:@"name" stringValue:self.name
-                                                          context:context];
+                                                                context:context];
         [xmlElement addChild:nameElement context:context];
     }
-
+    
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
-
+    
     // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
     CBXMLPositionStack *positionStackOfUserVariable = nil;
-
+    
     // check whether object variable/list or program variable/list
     SpriteObject *spriteObject = [context.variables spriteObjectForObjectVariable:self];
     if (spriteObject) {
         // it is an object variable/list!
         NSMutableDictionary *alreadySerializedVarsOrLists = self.isList ? [context.spriteObjectNameUserListOfListsPositions objectForKey:spriteObject.name] :
-                                                                        [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];
+        [context.spriteObjectNameUserVariableListPositions objectForKey:spriteObject.name];
         if (alreadySerializedVarsOrLists) {
             positionStackOfUserVariable = [alreadySerializedVarsOrLists objectForKey:self.name];
             if (positionStackOfUserVariable) {
@@ -178,21 +178,21 @@
                                                                       forKey:spriteObject.name];
             } else {
                 [context.spriteObjectNameUserListOfListsPositions setObject:alreadySerializedVarsOrLists
-                                                                      forKey:spriteObject.name];
+                                                                     forKey:spriteObject.name];
             }
         }
         // save current stack position in context
         [alreadySerializedVarsOrLists setObject:currentPositionStack forKey:self.name];
         return xmlElement;
     }
-
+    
     // it must be a program variable!
     if (! [context.variables isProgramVariableOrList:self]) {
         [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor programVariable"];
     }
-
+    
     positionStackOfUserVariable = self.isList ? [context.programUserListNamePositions objectForKey:self.name] :
-                                                [context.programUserVariableNamePositions objectForKey:self.name];
+    [context.programUserVariableNamePositions objectForKey:self.name];
     if (positionStackOfUserVariable) {
         // already serialized
         [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!

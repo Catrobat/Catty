@@ -50,7 +50,7 @@
     [XMLError exceptionIf:[[xmlElement childrenWithoutComments] count]
                 notEquals:numberOfChildNodes
                   message:@"Too less or too many child nodes found... (%lu expected)",
-                          (unsigned long)numberOfChildNodes];
+     (unsigned long)numberOfChildNodes];
     return true;
 }
 

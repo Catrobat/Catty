@@ -84,10 +84,10 @@ extension Function {
     }
     
     /* this function is used for the text functions and it allows to
-       add both string and numbers as parameters, interpreting them as strings;
-       if the number does not have a floating part, then it is
-       interpreted as a whole number
-    */
+     add both string and numbers as parameters, interpreting them as strings;
+     if the number does not have a floating part, then it is
+     interpreted as a whole number
+     */
     static func interpretParameter(parameter: AnyObject?) -> String {
         if let text = parameter as? String {
             return text

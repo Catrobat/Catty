@@ -21,13 +21,13 @@
  */
 
 @objc class BackgroundNumberSensor: NSObject, ObjectDoubleSensor {
-
+    
     @objc static let tag = "OBJECT_BACKGROUND_NUMBER"
     static let name = kUIFEObjectBackgroundNumber
     static let defaultRawValue = 0.0
     static let position = 40
     static let requiredResource = ResourceType.noResources
-
+    
     func tag() -> String {
         return type(of: self).tag
     }
@@ -42,7 +42,7 @@
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue + 1
     }
-
+    
     static func setRawValue(userInput: Double, for spriteObject: SpriteObject) {
         fatalError("This sensor is read-only")
     }

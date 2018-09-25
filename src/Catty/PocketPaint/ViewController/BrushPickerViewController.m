@@ -55,7 +55,7 @@
         if (controller.activeAction == eraser){
             self.color =[UIColor blackColor];
         } else {
-           self.color =[UIColor colorWithRed:controller.red green:controller.green blue:controller.blue alpha:controller.opacity];
+            self.color =[UIColor colorWithRed:controller.red green:controller.green blue:controller.blue alpha:controller.opacity];
         }
         
     }

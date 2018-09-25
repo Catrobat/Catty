@@ -65,7 +65,7 @@
 
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton IndexPath:(NSIndexPath*)indexPath andObject:(SpriteObject*)object
 {
-
+    
     Script *script = [object.scriptList objectAtIndex:indexPath.section];
     if (! script.brickList.count) {
         if (!selectButton.selected) {
@@ -294,7 +294,7 @@
     }
     NSIndexPath *beginPath = [NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
     Brick *beginBrick = [script.brickList objectAtIndex:beginPath.item - 1];
-
+    
     if (!isIfThen && endBrick.ifElseBrick != nil) {
         NSIndexPath *elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
         Brick *elseBrick =[script.brickList objectAtIndex:elsePath.item - 1];

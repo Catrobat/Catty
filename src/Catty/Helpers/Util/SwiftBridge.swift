@@ -24,7 +24,7 @@ import Foundation
 import Siren
 
 @objc open class SwiftBridge:NSObject {
-
+    
     @objc open class func sirenBridgeApplicationDidFinishLaunching() {
         let siren = Siren.shared
         siren.checkVersion(checkType: .daily)

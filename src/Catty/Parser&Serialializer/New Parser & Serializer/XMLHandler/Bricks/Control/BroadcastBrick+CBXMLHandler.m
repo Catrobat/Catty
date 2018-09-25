@@ -36,10 +36,10 @@
     GDataXMLElement *broadcastMessageElement = [xmlElement childWithElementName:@"broadcastMessage"];
     [XMLError exceptionIfNil:broadcastMessageElement
                      message:@"BroadcastBrick element does not contain a broadcastMessage child element!"];
-
+    
     NSString *broadcastMessage = [broadcastMessageElement stringValue];
     [XMLError exceptionIfNil:broadcastMessage message:@"No broadcastMessage given..."];
-
+    
     BroadcastBrick *broadcastBrick = [self new];
     broadcastBrick.broadcastMessage = broadcastMessage;
     return broadcastBrick;

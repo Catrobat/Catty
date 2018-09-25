@@ -30,7 +30,7 @@ class ChartProgramCell: UITableViewCell {
     
     weak var delegete: ChartProgramCellProtocol?
     var program: StoreProgram?
-
+    
     @IBOutlet weak var chartProgramImage: UIImageView!
     @IBOutlet weak var chartProgramTitle: UILabel!
     

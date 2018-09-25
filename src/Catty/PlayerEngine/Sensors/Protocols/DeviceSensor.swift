@@ -21,7 +21,7 @@
  */
 
 protocol DeviceSensor: Sensor {
-
+    
     // The iOS device specific value of the sensor
     func rawValue() -> Double
     

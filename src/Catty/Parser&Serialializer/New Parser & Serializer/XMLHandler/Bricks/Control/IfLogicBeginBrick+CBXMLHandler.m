@@ -37,7 +37,7 @@
     IfLogicBeginBrick *ifLogicBeginBrick = [self new];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
     ifLogicBeginBrick.ifCondition = formula;
-
+    
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicBeginBrick];
     return ifLogicBeginBrick;
@@ -53,7 +53,7 @@
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
-
+    
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;

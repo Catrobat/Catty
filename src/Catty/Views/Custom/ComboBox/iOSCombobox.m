@@ -95,10 +95,10 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, rect);
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-  
+    
     CGColorSpaceRelease(baseSpace); baseSpace = NULL;
     
-
+    
     
     // ============================
     // Background gradient
@@ -123,7 +123,7 @@
                                         BORDER_OFFSET,
                                         ARROW_BOX_WIDTH - BORDER_OFFSET,
                                         rect.size.height - BORDER_WIDTH));
-
+    
     CGContextRestoreGState(ctx);
     
     // ===========================
@@ -181,13 +181,13 @@
     CGPathAddLineToPoint(path, NULL, centerX, arrowY + ARROW_HEIGHT);
     CGPathCloseSubpath(path);
     
-  if (active) {
+    if (active) {
         CGContextSetFillColorWithColor(ctx, [[UIColor globalTintColor] CGColor]);
-  }
-  else {
-       CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
-  }
-
+    }
+    else {
+        CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    }
+    
     CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
     CGPathRelease(path);
@@ -214,7 +214,7 @@
             width = 20;
         }
         [self.currentImage drawInRect:CGRectMake(centerX - 10,centerY - 10.0f, width, height)];
-//        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
+        //        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
         
         CGContextAddPath(ctx, path);
         CGContextFillPath(ctx);
@@ -243,9 +243,9 @@
         
     }
     [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
-                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
-                                             rect.size.height - BORDER_WIDTH)
-                         withAttributes:attributes];
+                                      rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
+                                      rect.size.height - BORDER_WIDTH)
+            withAttributes:attributes];
     
 }
 
@@ -318,7 +318,7 @@
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
-   
+    
     [tmpView insertSubview:channelLabel atIndex:1];
     
     return tmpView;
@@ -361,7 +361,7 @@
     if (self.currentImage) {
         [self addLookData];
     }
-
+    
     [self becomeFirstResponder];
     return NO;
 }
@@ -438,7 +438,7 @@
         count++;
         
     }
-
+    
 }
 
 @end

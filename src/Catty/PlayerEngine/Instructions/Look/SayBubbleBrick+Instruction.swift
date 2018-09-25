@@ -28,9 +28,9 @@ extension SayBubbleBrick: CBInstructionProtocol {
     
     func actionBlock(context: CBScriptContextProtocol) -> ()->() {
         guard let object = self.script?.object,
-        let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
+        
         return {
             var speakText = context.formulaInterpreter.interpretString(self.formula, for: object)
             if(Double(speakText) !=  nil)

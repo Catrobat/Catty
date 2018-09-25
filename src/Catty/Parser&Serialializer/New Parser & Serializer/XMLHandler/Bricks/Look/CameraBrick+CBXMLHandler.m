@@ -47,7 +47,7 @@
             [XMLError exceptionIfNil:spinnerValuesElement
                              message:@"CameraBrick element does not contain a spinnerValues child element!"];
         }
-
+        
         GDataXMLElement *cameraChoiceElement = [xmlElement childWithElementName:@"spinnerSelectionID"];
         [XMLError exceptionIfNil:cameraChoiceElement
                          message:@"CameraBrick element does not contain a spinnerSelectionID child element!"];

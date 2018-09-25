@@ -13,21 +13,21 @@
 #define kPickerTitleBarColor [UIColor navBarColor]
 
 enum ActionType {
-  brush,
-  eraser,
-  resize,
-  pipette,
-  mirror,
-  image,
-  line,
-  rectangle,
-  ellipse,
-  rotate,
-  stamp,
-  fillTool,
-  zoom,
-  pointer,
-  text
+    brush,
+    eraser,
+    resize,
+    pipette,
+    mirror,
+    image,
+    line,
+    rectangle,
+    ellipse,
+    rotate,
+    stamp,
+    fillTool,
+    zoom,
+    pointer,
+    text
 };
 typedef enum ActionType actionType;
 

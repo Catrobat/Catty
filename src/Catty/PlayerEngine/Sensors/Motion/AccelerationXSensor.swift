@@ -27,9 +27,9 @@
     static let defaultRawValue = 0.0
     static let position = 20
     static let requiredResource = ResourceType.deviceMotion
-
+    
     let getMotionManager: () -> MotionManager?
-
+    
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }
@@ -41,7 +41,7 @@
     func rawValue() -> Double {
         return self.getMotionManager()?.deviceMotion?.userAcceleration.x ?? type(of: self).defaultRawValue
     }
-
+    
     func convertToStandardized(rawValue: Double) -> Double {
         return rawValue * 9.8
     }

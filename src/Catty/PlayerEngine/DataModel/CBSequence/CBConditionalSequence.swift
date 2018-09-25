@@ -21,29 +21,29 @@
  */
 
 class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
-
+    
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
     final let sequenceList: CBSequenceList
     final var lastLoopIterationStartTime: Date = Date()
     final let condition: CBConditionProtocol
-
+    
     // MARK: - Initializers
     init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, sequenceList: CBSequenceList) {
         self.rootSequenceList = rootSequenceList
         self.sequenceList = sequenceList
         self.condition = condition
     }
-
+    
     // MARK: - Operations
     func isEmpty() -> Bool {
         return (sequenceList.count == 0)
     }
-
+    
     final func checkCondition(context: CBScriptContextProtocol) -> Bool {
         return condition.checkCondition(formulaInterpreter: context.formulaInterpreter)
     }
-
+    
     final func resetCondition() {
         condition.resetCondition()
     }
@@ -66,5 +66,5 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-
+    
 }

@@ -27,13 +27,13 @@
     static let defaultRawValue = 0.0
     static let position = 70
     static let requiredResource = ResourceType.compass
-
+    
     let getLocationManager: () -> LocationManager?
     
     init(locationManagerGetter: @escaping () -> LocationManager?) {
         self.getLocationManager = locationManagerGetter
     }
-
+    
     func tag() -> String {
         return type(of: self).tag
     }
@@ -41,7 +41,7 @@
     func rawValue() -> Double {
         return self.getLocationManager()?.heading?.magneticHeading ?? type(of: self).defaultRawValue
     }
-
+    
     func convertToStandardized(rawValue: Double) -> Double {
         if rawValue <= 180 {
             return -rawValue

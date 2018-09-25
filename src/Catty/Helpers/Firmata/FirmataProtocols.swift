@@ -26,7 +26,7 @@ protocol FirmataDelegate: class {
     func didReceiveDigitalMessage(_ pin:Int,value:Int)
     func firmwareVersionReceived(_ name:String)
     func protocolVersionReceived(_ name:String)
-//    func I2cMessageReceived(message:String)
+    //    func I2cMessageReceived(message:String)
     func stringDataReceived(_ message:String)
     func didReceiveDigitalPort(_ port:Int, portData:[Int])
     func didUpdateAnalogMapping(_ mapping:NSMutableDictionary)

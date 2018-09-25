@@ -27,31 +27,31 @@
 @implementation FillTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+    }
+    return self;
 }
 
 - (UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color
 {
-  UIImage *newImage = [image floodFillFromPoint:point withColor:color andTolerance:50];
-  return newImage;
+    UIImage *newImage = [image floodFillFromPoint:point withColor:color andTolerance:50];
+    return newImage;
 }
 
 - (void)fillAction:(UITapGestureRecognizer*)recognizer
 {
-  CGPoint lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-  if (!self.canvas.saveView.image) {
-    UIGraphicsBeginImageContextWithOptions(self.canvas.saveView.frame.size, NO, 0.0);
-    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.canvas.saveView.image = blank;
-  }
-  
-//  NSDebug(@"%@",self.canvas.saveView.image);
+    CGPoint lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+    if (!self.canvas.saveView.image) {
+        UIGraphicsBeginImageContextWithOptions(self.canvas.saveView.frame.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.canvas.saveView.image = blank;
+    }
+    
+    //  NSDebug(@"%@",self.canvas.saveView.image);
     UIImage *image = self.canvas.saveView.image;
     //UNDO-Manager
     UndoManager* manager = [self.canvas getUndoManager];

@@ -59,7 +59,7 @@ final class StoreProgramDownloader: StoreProgramDownloaderProtocol {
             DispatchQueue.main.async {
                 completion(result.items, result.error)
             }
-        }.resume()
+            }.resume()
     }
     
     func fetchPrograms(forType: ProgramType, offset: Int, completion: @escaping (StoreProgramCollection.StoreProgramCollectionText?, StoreProgramDownloaderError?) -> Void) {

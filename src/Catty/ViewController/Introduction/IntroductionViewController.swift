@@ -21,7 +21,7 @@
  */
 
 class IntroductionViewController: UIViewController {
-
+    
     @IBOutlet weak var headline: UILabel!
     @IBOutlet weak var paragraph: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -34,12 +34,12 @@ class IntroductionViewController: UIViewController {
     }
     
     var content: Content?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = .clear
-
+        
         self.headline.text = self.content?.title
         self.paragraph.text = self.content?.description
         self.image.image = self.content?.image

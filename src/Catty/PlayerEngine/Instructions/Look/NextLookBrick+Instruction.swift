@@ -21,15 +21,15 @@
  */
 
 @objc extension NextLookBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
         return {
             guard let look = spriteNode.nextLook() else { return  }
             let cache:RuntimeImageCache = RuntimeImageCache.shared()
@@ -41,10 +41,10 @@
                 guard let imageFromDisk = UIImage(contentsOfFile: self.path(for: look)) else { return }
                 image = imageFromDisk
             }
-           
+            
             spriteNode.currentLook = look
             spriteNode.executeFilter(image)
         }
     }
-
+    
 }

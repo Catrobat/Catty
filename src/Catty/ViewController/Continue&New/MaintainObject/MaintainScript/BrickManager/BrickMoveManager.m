@@ -97,7 +97,7 @@
                         }
                     }
                 }
-
+                
             }
             
             return (toIndexPath.item != 0);
@@ -117,7 +117,7 @@
         } else {
             self.lowerRankBrick = toIndexPath;
         }
-
+        
         return NO;
     }
     return YES;
@@ -168,7 +168,7 @@
         return YES;
     }
     return NO;
- 
+    
 }
 
 
@@ -227,7 +227,7 @@
 -(void)reset
 {
     NSLog(@"reset");
-
+    
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
     self.moveToOtherScript = NO;

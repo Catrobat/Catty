@@ -27,7 +27,7 @@ protocol CBScriptContextProtocol: class {
     var formulaInterpreter: FormulaInterpreterProtocol { get }
     var state: CBScriptContextState { get set }
     var index:Int { get set }
-
+    
     func appendInstructions(_ instructionList: [CBInstruction])
     func nextInstruction() -> CBInstruction?
     func jump(numberOfInstructions: Int)
@@ -41,7 +41,7 @@ protocol CBBroadcastScriptContextProtocol: CBScriptContextProtocol {
 
 // TODO: refactor abstract class, maybe protocol extension??
 class CBScriptContext: CBScriptContextProtocol {
-
+    
     // MARK: - Properties
     final let id: String
     final let spriteNode: CBSpriteNode
@@ -50,19 +50,19 @@ class CBScriptContext: CBScriptContextProtocol {
     final var state: CBScriptContextState
     final var count: Int { return _instructionList.count }
     final var index: Int  = 0
-
+    
     final private var _instructionPointer: Int = 0
     final private lazy var _instructionList = [CBInstruction]()
-
+    
     // MARK: - Initializers
     convenience init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol) {
         self.init(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: .runnable, instructionList: [])
     }
-
+    
     init?(script: Script, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]) {
         guard let spriteNodeName = spriteNode.name else { return nil }
         let nodeIndex = spriteNode.spriteObject.scriptList.index(of: script)
-
+        
         self.spriteNode = spriteNode
         self.script = script
         self.formulaInterpreter = formulaInterpreter
@@ -73,12 +73,12 @@ class CBScriptContext: CBScriptContextProtocol {
         index = 0
         _instructionList = instructionList
     }
-
+    
     // MARK: - Operations
     final func appendInstructions(_ instructionList: [CBInstruction]) {
         _instructionList += instructionList
     }
-
+    
     final func nextInstruction() -> CBInstruction? {
         if state == .dead { return nil } // must be an old deprecated enqueued dispatch closure
         assert(state == .running)
@@ -89,7 +89,7 @@ class CBScriptContext: CBScriptContextProtocol {
         _instructionPointer += 1
         return instruction
     }
-
+    
     final func jump(numberOfInstructions: Int) {
         if state == .dead || state == .runnable { return } // must be an old deprecated enqueued dispatch closure
         if numberOfInstructions == 0 { return }
@@ -100,7 +100,7 @@ class CBScriptContext: CBScriptContextProtocol {
         }
         _instructionPointer = newInstructionPointerPosition
     }
-
+    
     final func reset() {
         _instructionPointer = 0
         index += 1 // FIXME: ThreadSanitizer detects Swift access race here
@@ -114,52 +114,52 @@ class CBScriptContext: CBScriptContextProtocol {
 
 //--------------------------------------------------------------------------------------------------
 final class CBWhenScriptContext: CBScriptContext {
-
+    
     convenience init?(whenScript: WhenScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
         self.init(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
     }
-
+    
     init?(whenScript: WhenScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState, instructionList: [CBInstruction]
-    ) {
+        ) {
         super.init(script: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
-            instructionList: instructionList)
+                   instructionList: instructionList)
     }
-
+    
 }
 
 //--------------------------------------------------------------------------------------------------
 final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextProtocol {
-
+    
     let broadcastMessage: String
     var waitingContext: CBScriptContextProtocol?
-
+    
     convenience init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
         self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
     }
-
+    
     init?(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState,
-        instructionList: [CBInstruction]
-    ) {
+          instructionList: [CBInstruction]
+        ) {
         broadcastMessage = broadcastScript.receivedMessage
         waitingContext = nil
         super.init(script: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
-            instructionList: instructionList)
+                   instructionList: instructionList)
     }
-
+    
 }
 
 //--------------------------------------------------------------------------------------------------
 final class CBStartScriptContext: CBScriptContext {
-
+    
     convenience init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState) {
         self.init(startScript: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state, instructionList: [])
     }
-
+    
     init?(startScript: StartScript, spriteNode: CBSpriteNode, formulaInterpreter: FormulaInterpreterProtocol, state: CBScriptContextState,
-        instructionList: [CBInstruction]
-    ) {
+          instructionList: [CBInstruction]
+        ) {
         super.init(script: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
-            instructionList: instructionList)
+                   instructionList: instructionList)
     }
-
+    
 }

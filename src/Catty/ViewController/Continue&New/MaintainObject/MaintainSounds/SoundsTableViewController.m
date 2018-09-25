@@ -76,7 +76,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // automatically stop current playing sound after the user turns
     // on the silent switcher on the iPhone/iPad (device is in silent state)
     self.silentDetector = [SharkfoodMuteSwitchDetector shared];
@@ -88,7 +88,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [soundsTableViewController stopAllSounds];
         }
     };
-
+    
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsSoundsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsSoundsKey];
     self.useDetailCells = [showDetailsSoundsValue boolValue];
@@ -136,7 +136,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+            NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 [self addSoundToObjectAction:(Sound*)sound];
@@ -180,9 +180,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     [[[actionSheet
-     addDefaultActionWithTitle:detailActionTitle handler:^{
-         [self toggleDetailCellsMode];
-     }] build]
+       addDefaultActionWithTitle:detailActionTitle handler:^{
+           [self toggleDetailCellsMode];
+       }] build]
      showWithController:self];
 }
 
@@ -263,7 +263,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if ([newSoundName isEqualToString:sound.name])
         return;
-
+    
     [self showLoadingView];
     newSoundName = [Util uniqueName:newSoundName existingNames:[self.object allSoundNames]];
     [self.object renameSound:sound toName:newSoundName AndSaveToDisk:YES];
@@ -337,7 +337,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
-
+    
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
@@ -346,7 +346,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     imageCell.indexPath = indexPath;
     static NSString *playIconName = @"ic_media_play";
     static NSString *stopIconName = @"ic_media_pause";
-
+    
     // determine right icon, therefore check if this song is played currently
     NSString *rightIconName = playIconName;
     @synchronized(self) {
@@ -354,7 +354,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             rightIconName = stopIconName;
         }
     }
-
+    
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     UIImage *image = [imageCache cachedImageForName:rightIconName];
     if (! image) {
@@ -369,19 +369,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         imageCell.iconImageView.image = image;
     }
-
+    
     imageCell.titleLabel.text = sound.name;
     imageCell.iconImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playSound:)];
     tapped.numberOfTapsRequired = 1;
     [imageCell.iconImageView addGestureRecognizer:tapped];
-
+    
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLength];
         detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
-
+        
         NSNumber *number = [self.dataCache objectForKey:sound.fileName];
         CGFloat duration;
         if (! number) {
@@ -390,7 +390,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         } else {
             duration = [number floatValue];
         }
-
+        
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs", (float)duration];
         detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
@@ -440,7 +440,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             return;
         }
         [self playSound:imageCell andIndexPath:indexPath];
-
+        
     }
 }
 
@@ -458,38 +458,38 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditSound]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedCopy handler:^{
-             [self copySoundActionWithSourceSound:[self.object.soundList objectAtIndex:indexPath.row]];
-         }]
-         addDefaultActionWithTitle:kLocalizedRename handler:^{
-             Sound *sound = [self.object.soundList objectAtIndex:indexPath.row];
-             [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
-                                           target:self
-                                     cancelAction:nil
-                                       withObject:sound
-                                      promptTitle:kLocalizedRenameSound
-                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
-                                      promptValue:sound.name
-                                promptPlaceholder:kLocalizedEnterYourSoundNameHere
-                                   minInputLength:kMinNumOfSoundNameCharacters
-                                   maxInputLength:kMaxNumOfSoundNameCharacters
-                              blockedCharacterSet:[self blockedCharacterSet]
-                         invalidInputAlertMessage:kLocalizedInvalidSoundNameDescription];
-         }] build]
-         viewWillDisappear:^{
+              addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedCopy handler:^{
+                 [self copySoundActionWithSourceSound:[self.object.soundList objectAtIndex:indexPath.row]];
+             }]
+            addDefaultActionWithTitle:kLocalizedRename handler:^{
+                Sound *sound = [self.object.soundList objectAtIndex:indexPath.row];
+                [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
+                                              target:self
+                                        cancelAction:nil
+                                          withObject:sound
+                                         promptTitle:kLocalizedRenameSound
+                                       promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
+                                         promptValue:sound.name
+                                   promptPlaceholder:kLocalizedEnterYourSoundNameHere
+                                      minInputLength:kMinNumOfSoundNameCharacters
+                                      maxInputLength:kMaxNumOfSoundNameCharacters
+                                 blockedCharacterSet:[self blockedCharacterSet]
+                            invalidInputAlertMessage:kLocalizedInvalidSoundNameDescription];
+            }] build]
+          viewWillDisappear:^{
               [self.tableView setEditing:false animated:YES];
-         }]
+          }]
          showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisSound message:kLocalizedThisActionCannotBeUndone]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedYes handler:^{
-             [self deleteSoundForIndexPath:indexPath];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil]
+           addDefaultActionWithTitle:kLocalizedYes handler:^{
+               [self deleteSoundForIndexPath:indexPath];
+           }] build]
          showWithController:self];
     }];
     return @[deleteAction, moreAction];
@@ -502,7 +502,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (! [gesture.view isKindOfClass:[UIImageView class]]) {
         return;
     }
-
+    
     UIImageView *imageView = (UIImageView*)gesture.view;
     CGPoint position = [imageView convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:position];
@@ -510,7 +510,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return;
     }
-
+    
     UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
     if (indexPath.row >= [self.object.soundList count]) {
         return;
@@ -671,80 +671,80 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView setEditing:false animated:YES];
     
     [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
-     }]
-     addDefaultActionWithTitle:kLocalizedPocketCodeRecorder handler:^{
-         NSDebug(@"Recorder");
-         AVAudioSession *session = [AVAudioSession sharedInstance];
-         if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
-             [session performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
-                 if (granted) {
-                     // Microphone enabled code
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         self.isAllowed = YES;
-                         [self stopAllSounds];
-                         SRViewController *soundRecorderViewController;
-                         
-                         soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
-                         soundRecorderViewController.delegate = self;
-                         [self showViewController:soundRecorderViewController sender:self];
-                         
-                     });
-                 } else {
-                     // Microphone disabled code
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         [self suggestToOpenSettingsAppWithMessage:kLocalizedNoAccesToMicrophoneCheckSettingsDescription];
-                     });
-                 }
-             }];
-         }
-     }]
-     addDefaultActionWithTitle:kLocalizedChooseSound handler:^{
-         NSDebug(@"Select music track");
-         self.isAllowed = YES;
-         CBFileManager *fileManager = [CBFileManager sharedManager];
-         if (! [fileManager existPlayableSoundsInDirectory:fileManager.documentsDirectory]) {
-             [Util alertWithTitle:kLocalizedNoImportedSoundsFoundTitle
-                          andText:kLocalizedNoImportedSoundsFoundDescription];
-             SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
-             return;
-         }
-         [self stopAllSounds];
-         SoundPickerTableViewController *soundPickerTVC;
-         soundPickerTVC = [self.storyboard instantiateViewControllerWithIdentifier:kSoundPickerTableViewControllerIdentifier];
-         soundPickerTVC.directory = fileManager.documentsDirectory;
-         UINavigationController *navigationController = [[UINavigationController alloc]
-                                                         initWithRootViewController:soundPickerTVC];
-         [self presentViewController:navigationController animated:YES completion:^{
-             SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
-         }];
-     }]
-     addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
-         self.isAllowed = YES;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [self showSoundsMediaLibrary];
-         });
-     }]
-     build]
+          addCancelActionWithTitle:kLocalizedCancel handler:^{
+              SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
+          }]
+         addDefaultActionWithTitle:kLocalizedPocketCodeRecorder handler:^{
+             NSDebug(@"Recorder");
+             AVAudioSession *session = [AVAudioSession sharedInstance];
+             if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
+                 [session performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                     if (granted) {
+                         // Microphone enabled code
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             self.isAllowed = YES;
+                             [self stopAllSounds];
+                             SRViewController *soundRecorderViewController;
+                             
+                             soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
+                             soundRecorderViewController.delegate = self;
+                             [self showViewController:soundRecorderViewController sender:self];
+                             
+                         });
+                     } else {
+                         // Microphone disabled code
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             [self suggestToOpenSettingsAppWithMessage:kLocalizedNoAccesToMicrophoneCheckSettingsDescription];
+                         });
+                     }
+                 }];
+             }
+         }]
+        addDefaultActionWithTitle:kLocalizedChooseSound handler:^{
+            NSDebug(@"Select music track");
+            self.isAllowed = YES;
+            CBFileManager *fileManager = [CBFileManager sharedManager];
+            if (! [fileManager existPlayableSoundsInDirectory:fileManager.documentsDirectory]) {
+                [Util alertWithTitle:kLocalizedNoImportedSoundsFoundTitle
+                             andText:kLocalizedNoImportedSoundsFoundDescription];
+                SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
+                return;
+            }
+            [self stopAllSounds];
+            SoundPickerTableViewController *soundPickerTVC;
+            soundPickerTVC = [self.storyboard instantiateViewControllerWithIdentifier:kSoundPickerTableViewControllerIdentifier];
+            soundPickerTVC.directory = fileManager.documentsDirectory;
+            UINavigationController *navigationController = [[UINavigationController alloc]
+                                                            initWithRootViewController:soundPickerTVC];
+            [self presentViewController:navigationController animated:YES completion:^{
+                SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
+            }];
+        }]
+       addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
+           self.isAllowed = YES;
+           dispatch_async(dispatch_get_main_queue(), ^{
+               [self showSoundsMediaLibrary];
+           });
+       }]
+      build]
      showWithController:self];
 }
 
 - (void)suggestToOpenSettingsAppWithMessage:(NSString *)message {
     [[[[[AlertControllerBuilder alertWithTitle:nil message:message]
-     addCancelActionWithTitle:kLocalizedCancel handler:nil]
-     addDefaultActionWithTitle:kLocalizedSettings handler:^{
-         NSDebug(@"Settings Action");
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-     }]
-     build]
+        addCancelActionWithTitle:kLocalizedCancel handler:nil]
+       addDefaultActionWithTitle:kLocalizedSettings handler:^{
+           NSDebug(@"Settings Action");
+           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+       }]
+      build]
      showWithController:self];
 }
 
 - (void)setupToolBar
 {
     [super setupToolBar];
-
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addSoundAction:)];
@@ -762,7 +762,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)setupEditingToolBar
 {
     [super setupEditingToolBar];
-
+    
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -809,7 +809,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSDebug(@"-.-");
         }
         self.isAllowed = NO;
-
+        
     }
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
@@ -827,12 +827,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.sound = sound;
     [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self cancelPaintSave];
-     }]
-     addDefaultActionWithTitle:kLocalizedYes handler:^{
-         [self saveSound];
-     }] build]
+        addCancelActionWithTitle:kLocalizedCancel handler:^{
+            [self cancelPaintSave];
+        }]
+       addDefaultActionWithTitle:kLocalizedYes handler:^{
+           [self saveSound];
+       }] build]
      showWithController:self];
 }
 

@@ -123,7 +123,7 @@
     self.view.backgroundColor = [UIColor backgroundColor];
     self.imageView.backgroundColor = [UIColor backgroundColor];
     vc.editingImage = img;
-//    NSDebug(@"%@",img);
+    //    NSDebug(@"%@",img);
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self.navigationController pushViewController:vc animated:YES];
@@ -134,32 +134,32 @@
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
     [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
-     addCancelActionWithTitle:kLocalizedCancel handler:nil]
-     addDefaultActionWithTitle:kLocalizedYes handler:^{
-         if (path && image) {
-             [self addPaintedImage:image andPath:path];
-         }
-     }]
-     build] showWithController:self];
+        addCancelActionWithTitle:kLocalizedCancel handler:nil]
+       addDefaultActionWithTitle:kLocalizedYes handler:^{
+           if (path && image) {
+               [self addPaintedImage:image andPath:path];
+           }
+       }]
+      build] showWithController:self];
 }
 
 #pragma mark paintDelegate
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     self.imageView.image = image;
-
+    
     NSData *imageData = UIImagePNGRepresentation(image);
     NSDebug(@"Writing file to disk");
-        // leaving the main queue here!
+    // leaving the main queue here!
     NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-            // save image to programs directory
+        // save image to programs directory
         [imageData writeToFile:self.imagePath atomically:YES];
     }];
-        // completion block is NOT executed on the main queue
+    // completion block is NOT executed on the main queue
     [saveOp setCompletionBlock:^{
-            // execute this on the main queue
+        // execute this on the main queue
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
+            
         }];
     }];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -168,18 +168,18 @@
     NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
-
+    
     if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1))) {
         abort();
         return;
     }
     
     NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
-            [fileName substringToIndex:result.location],
-            kPreviewImageNamePrefix,
-            [fileName substringFromIndex:(result.location + 1)]
-            ];
-
+                                   [fileName substringToIndex:result.location],
+                                   kPreviewImageNamePrefix,
+                                   [fileName substringFromIndex:(result.location + 1)]
+                                   ];
+    
     RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
     NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
     [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
@@ -187,7 +187,7 @@
     
     [cache replaceImage:image withName:filePath];
     
-
+    
 }
 
 - (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName

@@ -52,20 +52,20 @@
                       onCompletion:(void (^)(UIImage *image))completion
 {
     UIImage *image = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
-
+    
     if(image)
         return image;
-
+    
     dispatch_queue_t imageQueue = dispatch_queue_create(kImageDownloadQueue, NULL);
     dispatch_async(imageQueue, ^{
-
+        
         UIImage* img = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
-
+        
         if(!img) {
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             img =[[UIImage alloc] initWithData:imageData];
         }
-
+        
         if(!img && !errorImage) {
             img = placeholderImage;
         }
@@ -73,33 +73,33 @@
             img = errorImage;
         }
         [[DownloadImageCache sharedImageCache] addImage:img withName:[imageURL absoluteString]];
-
+        
         completion(img);
-
+        
     });
-
+    
     return placeholderImage;
 }
 
 + (UIImage*)setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness {
-  
-  CIImage* image = uiImage.CIImage;
-  
-  CIContext *context = [CIContext contextWithOptions:nil];
-
-  CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
-                      keysAndValues:kCIInputImageKey, image, @"inputBrightness",
-            [NSNumber numberWithFloat:(float)brightness], nil];
-  CIImage *outputImage = [filter valueForKey:@"outputImage"];
-  
-  CGImageRef cgimg =
-  [context createCGImage:outputImage fromRect:[outputImage extent]];
-  
-  UIImage *newImage = [UIImage imageWithCGImage:cgimg];
-
-  CGImageRelease(cgimg);
-  
-  return newImage;
+    
+    CIImage* image = uiImage.CIImage;
+    
+    CIContext *context = [CIContext contextWithOptions:nil];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
+                                  keysAndValues:kCIInputImageKey, image, @"inputBrightness",
+                        [NSNumber numberWithFloat:(float)brightness], nil];
+    CIImage *outputImage = [filter valueForKey:@"outputImage"];
+    
+    CGImageRef cgimg =
+    [context createCGImage:outputImage fromRect:[outputImage extent]];
+    
+    UIImage *newImage = [UIImage imageWithCGImage:cgimg];
+    
+    CGImageRelease(cgimg);
+    
+    return newImage;
 }
 
 - (CGRect)cropRectForImage:(UIImage*)image {
@@ -185,7 +185,7 @@
                                      colorSpace,
                                      (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     if (context == NULL) free (bitmapData);
-
+    
     // Make sure and release colorspace before returning
     CGColorSpaceRelease(colorSpace);
     

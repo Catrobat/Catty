@@ -23,14 +23,14 @@
 import UIKit
 
 extension UIBarButtonItem {
-
+    
     /// Creates an instance of UIBarButtonItem with a custom image view showing a transparent image.
     @objc(invisibleItem)
     static func invisibleItem() -> UIBarButtonItem {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "transparent1x1"))
         return UIBarButtonItem(customView: imageView)
     }
-
+    
     /// Creates an instance of UIBarButtonItem with flexible space.
     @objc(flexItem)
     static func flexItem() -> UIBarButtonItem {

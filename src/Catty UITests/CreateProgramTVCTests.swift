@@ -67,7 +67,7 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         XCTAssert(app.staticTexts["look"].exists)
         app.navigationBars.buttons["testObject1"].tap()
         app.navigationBars.buttons["testProgram"].tap()
-    
+        
         //Add Background
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Backgrounds"].tap()

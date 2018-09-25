@@ -84,14 +84,14 @@
         GDataXMLDocument *document = [[self class] xmlDocumentForProgram:program];
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
-
+        
         NSDebug(@"Generated XML output:\n%@", xmlString);
         NSError *error = nil;
-
+        
         if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
             NSError(@"Program could not saved to disk! %@", error);
         }
-
+        
         // update last access time
         [Program updateLastModificationTimeForProgramWithName:program.header.programName
                                                     programID:program.header.programID];

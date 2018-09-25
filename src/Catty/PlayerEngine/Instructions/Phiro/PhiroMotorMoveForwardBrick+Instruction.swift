@@ -36,14 +36,14 @@ import Foundation
             
             switch (self.phiroMotor()) {
             case .Left:
-                    phiro.moveLeftMotorForward(speedValue);
+                phiro.moveLeftMotorForward(speedValue);
                 break;
             case .Right:
-                    phiro.moveRightMotorForward(speedValue);
+                phiro.moveRightMotorForward(speedValue);
                 break;
             case .Both:
-                    phiro.moveRightMotorForward(speedValue);
-                    phiro.moveLeftMotorForward(speedValue);
+                phiro.moveRightMotorForward(speedValue);
+                phiro.moveLeftMotorForward(speedValue);
                 break;
             }
             context.state = .runnable

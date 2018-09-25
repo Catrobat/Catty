@@ -34,25 +34,25 @@ import Foundation
             
             switch (self.phiroTone()) {
             case .DO:
-                    phiro.playTone(262, duration: durationInterpretation);
+                phiro.playTone(262, duration: durationInterpretation);
                 break;
             case .RE:
-                    phiro.playTone(294, duration: durationInterpretation);
+                phiro.playTone(294, duration: durationInterpretation);
                 break;
             case .MI:
-                    phiro.playTone(330, duration: durationInterpretation);
+                phiro.playTone(330, duration: durationInterpretation);
                 break;
             case .FA:
-                    phiro.playTone(349, duration: durationInterpretation);
+                phiro.playTone(349, duration: durationInterpretation);
                 break;
             case .SO:
-                    phiro.playTone(392, duration: durationInterpretation);
+                phiro.playTone(392, duration: durationInterpretation);
                 break;
             case .LA:
-                    phiro.playTone(440, duration: durationInterpretation);
+                phiro.playTone(440, duration: durationInterpretation);
                 break;
             case .TI:
-                    phiro.playTone(494, duration: durationInterpretation);
+                phiro.playTone(494, duration: durationInterpretation);
                 break;
             }
             context.state = .runnable

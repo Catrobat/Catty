@@ -34,7 +34,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
     ForeverBrick *foreverBrick = [self new];
-
+    
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
     return foreverBrick;
@@ -45,7 +45,7 @@
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ForeverBrick"]];
-
+    
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;

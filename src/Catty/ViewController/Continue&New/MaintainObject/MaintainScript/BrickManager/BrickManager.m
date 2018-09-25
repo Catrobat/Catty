@@ -205,7 +205,7 @@
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }
-
+    
     return (NSArray*)selectableBricksForCategoryMutable;
 }
 
@@ -264,7 +264,7 @@
         } else if (after && !before){
             return 3;
         }
-      
+        
     }
     return 0;
 }

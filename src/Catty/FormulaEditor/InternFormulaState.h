@@ -31,8 +31,8 @@
 @property (nonatomic)int externCursorPosition;
 
 - (InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
-                          selection:(InternFormulaTokenSelection *)tokenSelection
-            andExternCursorPosition:(int)externCursorPosition;
+                           selection:(InternFormulaTokenSelection *)tokenSelection
+             andExternCursorPosition:(int)externCursorPosition;
 
 - (BOOL)isEqual:(id)objectToCompare;
 - (InternFormula*)createInternFormulaFromState;

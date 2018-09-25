@@ -82,13 +82,13 @@ const CGFloat PADDING = 5.0f;
 
 - (NSURLSession *)session {
     if (!_session) {
-            // Initialize Session Configuration
+        // Initialize Session Configuration
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         
-            // Configure Session Configuration
+        // Configure Session Configuration
         [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
         
-            // Initialize Session
+        // Initialize Session
         _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     }
     
@@ -134,8 +134,8 @@ const CGFloat PADDING = 5.0f;
     [self.programNamelabel setText:kLocalizedName];
     [self.programNamelabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.programNamelabel sizeToFit];
-
-
+    
+    
     
     self.programNameTextField.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 2*self.view.frame.size.width/3.0f -20, TEXTFIELD_HEIGHT);
     
@@ -145,7 +145,7 @@ const CGFloat PADDING = 5.0f;
     [self.programNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [self.programNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [self.programNameTextField setKeyboardType:UIKeyboardTypeDefault];
-
+    
     
     if(self.program.header.programName) {
         self.programNameTextField.text = self.program.header.programName;
@@ -184,7 +184,7 @@ const CGFloat PADDING = 5.0f;
 
 - (void)initDescriptionViewElements
 {
-
+    
     self.descriptionLabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.descriptionLabel.frame.size.height);
     [self.descriptionLabel setTextColor:[UIColor globalTintColor]];
     [self.descriptionLabel setText:kLocalizedDescription];
@@ -204,7 +204,7 @@ const CGFloat PADDING = 5.0f;
         self.descriptionTextView.text = self.program.header.programDescription;
     }
     self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
-
+    
     self.descriptionTextView.layer.borderWidth = 1.0f;
     self.descriptionTextView.layer.borderColor = [[UIColor textViewBorderGrayColor] CGColor];
     self.descriptionTextView.layer.cornerRadius = 8;
@@ -331,7 +331,7 @@ const CGFloat PADDING = 5.0f;
         [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
         
         NSMutableData *body = [NSMutableData data];
-
+        
         //Program Name
         [self setFormDataParameter:programNameTag withData:[self.program.header.programName dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
@@ -386,14 +386,14 @@ const CGFloat PADDING = 5.0f;
                 if ([statusCode isEqualToString:statusCodeOK]) {
                     NSDebug(@"Upload successful");
                     
-                        //Set unique Program-ID received from server
+                    //Set unique Program-ID received from server
                     NSString* projectId = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
                     self.program.header.programID = projectId;
                     [self.program saveToDiskWithNotification:YES];
                     
-                        //Set new token but when? everytime is wrong
+                    //Set new token but when? everytime is wrong
                     NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-                   [JNKeychain saveValue:newToken forKey:kUserLoginToken];
+                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
                     
                     [self showUploadSuccessfulView];
                     
@@ -412,7 +412,7 @@ const CGFloat PADDING = 5.0f;
                     });
                     
                     if([statusCode isEqualToString:statusCodeTokenWrong]) {
-                            //Token not valid
+                        //Token not valid
                         [[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn];
                         
                         NSMutableArray *viewArray = [NSMutableArray arrayWithArray:self.parentViewController.navigationController.viewControllers];
@@ -423,14 +423,14 @@ const CGFloat PADDING = 5.0f;
                     
                 }
                 
-
+                
             }
         }];
         
         if (self.dataTask) {
             [self.dataTask resume];
         }
-
+        
         
         if(self.dataTask) {
             NSDebug(@"Connection Successful");

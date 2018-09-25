@@ -55,7 +55,7 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
 @property (nonatomic,assign) BOOL isPaused;
 /**
  Currently playing? used when returning from the background (if went to background and foreground really quickly)
-*/
+ */
 @property (nonatomic,assign) BOOL isPlaying;
 
 @end
@@ -108,7 +108,7 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     static SharkfoodMuteSwitchDetector* sShared = nil;
     if (!sShared) {
         sShared = [SharkfoodMuteSwitchDetector new];
-//        sShared = [[SharkfoodMuteSwitchDetector alloc] init];
+        //        sShared = [[SharkfoodMuteSwitchDetector alloc] init];
     }
     return sShared;
 }

@@ -26,7 +26,7 @@ extension FormulaEditorViewController {
         let items = formulaManager.formulaEditorItemsForMathSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)
     }
-
+    
     @objc func initObjectSection(scrollView: UIScrollView, buttonHeight: CGFloat) -> [UIButton] {
         let items = formulaManager.formulaEditorItemsForObjectSection(spriteObject: object)
         return initWithItems(formulaEditorItems: items, scrollView: scrollView, buttonHeight: buttonHeight)

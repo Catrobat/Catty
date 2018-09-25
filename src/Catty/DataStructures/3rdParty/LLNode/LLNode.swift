@@ -15,4 +15,3 @@ class LLNode<T> {
     var previous: LLNode?
     
 }
-

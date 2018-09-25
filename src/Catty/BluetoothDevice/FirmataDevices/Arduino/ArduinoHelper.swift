@@ -24,7 +24,6 @@ import Foundation
 import CoreBluetooth
 import BluetoothHelper
 
-
 open class ArduinoHelper {
     var analogPin0 = 0;
     var analogPin1 = 0;
@@ -64,7 +63,7 @@ open class ArduinoHelper {
         default: break
             //NOT USED SENSOR
         }
-
+        
     }
     
     func didReceiveDigitalPort(_ port:Int, portData:[Int]){

@@ -27,7 +27,7 @@
 
 
 @interface ImageHelper : NSObject {
-	
+    
 }
 
 /** Converts a UIImage to RGBA8 bitmap.
@@ -49,8 +49,8 @@
  @return a UIImage that is autoreleased or nil if memory allocation issues
  */
 + (UIImage *) convertBitmapRGBA8ToUIImage:(unsigned char *)buffer 
-								withWidth:(int)width
-							   withHeight:(int)height;
+                                withWidth:(int)width
+                               withHeight:(int)height;
 
 @end
 

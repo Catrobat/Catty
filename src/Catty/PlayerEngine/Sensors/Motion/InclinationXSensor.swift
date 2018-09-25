@@ -27,13 +27,13 @@
     static let defaultRawValue = 0.0
     static let position = 50
     static let requiredResource = ResourceType.deviceMotion
-
+    
     let getMotionManager: () -> MotionManager?
     
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }
-
+    
     func tag() -> String {
         return type(of: self).tag
     }
@@ -46,7 +46,7 @@
         
         return deviceMotion.attitude.roll
     }
-
+    
     // roll is between -pi, pi on both iOS and Android
     // going to right, it is negative on Android and positive on iOS
     // going to left, it is positive on Android and negative on iOS

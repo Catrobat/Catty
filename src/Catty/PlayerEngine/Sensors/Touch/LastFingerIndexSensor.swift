@@ -21,7 +21,7 @@
  */
 
 @objc class LastFingerIndexSensor: NSObject, TouchSensor {
-
+    
     @objc static let tag = "LAST_FINGER_INDEX"
     static let name = kUIFESensorLastFingerIndex
     static let defaultRawValue = 0.0
@@ -37,12 +37,12 @@
     func tag() -> String {
         return type(of: self).tag
     }
-
+    
     func rawValue() -> Double {
         guard let numberOfTouches = getTouchManager()?.numberOfTouches() else { return type(of: self).defaultRawValue }
         return Double(numberOfTouches)
     }
-
+    
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         return rawValue
     }

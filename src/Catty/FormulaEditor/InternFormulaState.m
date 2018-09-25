@@ -34,8 +34,8 @@
 @implementation InternFormulaState
 
 - (InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
-                          selection:(InternFormulaTokenSelection *)tokenSelection
-            andExternCursorPosition:(int)externCursorPosition
+                           selection:(InternFormulaTokenSelection *)tokenSelection
+             andExternCursorPosition:(int)externCursorPosition
 {
     self = [super init];
     if (self) {
@@ -46,7 +46,7 @@
         
     }
     return self;
-
+    
 }
 
 
@@ -107,8 +107,8 @@
     return [[InternFormula alloc]initWithInternTokenList:deepCopyOfInternTokenFormula
                              internFormulaTokenSelection:deepCopyOfInternFormulaTokenSelection
                                     externCursorPosition:self.externCursorPosition];
-
-
+    
+    
 }
 
 

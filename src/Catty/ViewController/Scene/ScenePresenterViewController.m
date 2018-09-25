@@ -145,7 +145,7 @@
 #pragma mark View Setup
 - (void)setUpLabels
 {
-
+    
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
                                kLocalizedRestart,
                                kLocalizedContinue,
@@ -407,7 +407,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self stopProgram];
-    
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
             [self setupSceneAndStart];
@@ -455,7 +455,7 @@
     if (! self.scene.isScreenRecorderAvailable) {
         return;
     }
-
+    
     if (self.scene.isScreenRecording) {
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
         [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
@@ -532,10 +532,10 @@
     UIImage *imageToShare = self.snapshotImage;
     NSString *path = [self.program projectPath];
     NSArray *itemsToShare = @[imageToShare];
-
+    
     SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
     NSArray *activities = @[saveToProjectActivity];
-
+    
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
     activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
                                          UIActivityTypePostToFlickr,
@@ -599,7 +599,7 @@
                                  view.paused=YES;
                                  [self pauseAction];
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
-//                                     [self bounceAnimation];
+                                     //                                     [self bounceAnimation];
                                  }
                                  
                              }];
@@ -637,9 +637,9 @@
                                  view.paused=YES;
                                  [self pauseAction];
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
-//                                     [self bounceAnimation];
+                                     //                                     [self bounceAnimation];
                                  }
-//                                 [self.scene stopScreenRecording];
+                                 //                                 [self.scene stopScreenRecording];
                              }];
         }
     }

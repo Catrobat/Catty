@@ -36,7 +36,7 @@ typedef enum {
 } ParserDelimiters;
 
 typedef enum {
-	TOKEN_TYPE_NUMBER = 3000,
+    TOKEN_TYPE_NUMBER = 3000,
     TOKEN_TYPE_OPERATOR,
     TOKEN_TYPE_FUNCTION_NAME,
     TOKEN_TYPE_BRACKET_OPEN,

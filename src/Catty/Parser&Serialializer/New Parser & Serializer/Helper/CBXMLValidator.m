@@ -79,7 +79,7 @@
     NSLog(@"Framework = %@", framework);
     NSLog(@"Memory address = %@", memoryAddress);
 #endif // DEBUG
-
+    
     NSString *classCaller = [array objectAtIndex:index++];
     NSString *functionCaller = [array objectAtIndex:index++];
     NSString *lineCaller = [array objectAtIndex:index++];
@@ -114,7 +114,7 @@
     [self exceptionIfString:node.name
          isNotEqualToString:expectedNodeName
                     message:@"The name of the rootElement is '%@' but should be '%@'",
-                            node.name, expectedNodeName];
+     node.name, expectedNodeName];
 }
 
 + (void)exceptionIfNil:(id)object message:(NSString*)exceptionMessage, ...

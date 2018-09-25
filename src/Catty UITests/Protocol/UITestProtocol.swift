@@ -28,7 +28,7 @@ protocol UITestProtocol {
 }
 
 extension UITestProtocol {
-
+    
     func restoreDefaultProgram() {
         // Restore default program
         let app = XCUIApplication()
