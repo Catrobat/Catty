@@ -26,7 +26,7 @@ struct StoreProgramCollection: Codable {
         let completeTerm: String?
         let preHeaderMessages: String
         let information: ProgramInformation.ProgramInformationNumber
-    
+        
         private enum CodingKeys: String, CodingKey {
             case projects = "CatrobatProjects"
             case completeTerm
@@ -40,7 +40,7 @@ struct StoreProgramCollection: Codable {
         let completeTerm: String?
         let preHeaderMessages: String
         let information: ProgramInformation.ProgramInformationText
-    
+        
         private enum CodingKeys: String, CodingKey {
             case projects = "CatrobatProjects"
             case completeTerm

@@ -30,57 +30,56 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+    }
+    return self;
 }
 
 - (void)draw:(UIGestureRecognizer *)recognizer
 {
-
-  if (recognizer.state == UIGestureRecognizerStateBegan){
-      if (self.canvas.isEraser) {
-          self.canvas.saveView.hidden = YES;
-          self.canvas.drawView.image = self.canvas.saveView.image;
-          self.canvas.drawView.backgroundColor = self.canvas.saveView.backgroundColor;
-      }
-      CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-      currentPoint = CGPointMake(-1, -1);
-      [self drawLine:point];
-  }else if (recognizer.state == UIGestureRecognizerStateChanged){
-
-      CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-      [self drawLine:point];
-  }else {
-      if (self.canvas.isEraser) {
-        //UNDO-Manager
-        UndoManager* manager = [self.canvas getUndoManager];
-        [manager setImage:self.canvas.saveView.image];
-        self.canvas.saveView.image = self.canvas.drawView.image;
-        self.canvas.drawView.image = nil;
-        self.canvas.drawView.backgroundColor = nil;
-        self.canvas.saveView.hidden = NO;
-      } else {
-          UIGraphicsBeginImageContext(self.canvas.saveView.frame.size);
-          [self.canvas.saveView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
-          if (self.canvas.isEraser) {
-            [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0f];
-          } else {
-               [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
-          }
-         
-          //UNDO-Manager
-          UndoManager* manager = [self.canvas getUndoManager];
-          [manager setImage:self.canvas.saveView.image];
-          self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
-          self.canvas.drawView.image = nil;
-          UIGraphicsEndImageContext();
-      }
-  }
-  
+    if (recognizer.state == UIGestureRecognizerStateBegan){
+        if (self.canvas.isEraser) {
+            self.canvas.saveView.hidden = YES;
+            self.canvas.drawView.image = self.canvas.saveView.image;
+            self.canvas.drawView.backgroundColor = self.canvas.saveView.backgroundColor;
+        }
+        CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+        currentPoint = CGPointMake(-1, -1);
+        [self drawLine:point];
+    }else if (recognizer.state == UIGestureRecognizerStateChanged){
+        
+        CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+        [self drawLine:point];
+    }else {
+        if (self.canvas.isEraser) {
+            //UNDO-Manager
+            UndoManager* manager = [self.canvas getUndoManager];
+            [manager setImage:self.canvas.saveView.image];
+            self.canvas.saveView.image = self.canvas.drawView.image;
+            self.canvas.drawView.image = nil;
+            self.canvas.drawView.backgroundColor = nil;
+            self.canvas.saveView.hidden = NO;
+        } else {
+            UIGraphicsBeginImageContext(self.canvas.saveView.frame.size);
+            [self.canvas.saveView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+            if (self.canvas.isEraser) {
+                [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0f];
+            } else {
+                [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
+            }
+            
+            //UNDO-Manager
+            UndoManager* manager = [self.canvas getUndoManager];
+            [manager setImage:self.canvas.saveView.image];
+            self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
+            self.canvas.drawView.image = nil;
+            UIGraphicsEndImageContext();
+        }
+    }
+    
 }
 
 -(void)drawLine:(CGPoint)startPoint
@@ -104,18 +103,16 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
     CGPoint mid1 = [self midPoint:lastPoint and:beforeLastPoint];
     CGPoint mid2 = [self midPoint:currentPoint and:lastPoint];
     
-    
-    
     // 1
     UIGraphicsBeginImageContext(self.canvas.drawView.frame.size);
-//    let context = UIGraphicsGetCurrentContext()
+    //    let context = UIGraphicsGetCurrentContext()
     [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height)];
     
     // 2
-
+    
     CGContextMoveToPoint(UIGraphicsGetCurrentContext(), mid1.x, mid1.y);
     CGContextAddQuadCurveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y, mid2.x, mid2.y);
-
+    
     // 3
     switch (self.canvas.ending) {
         case Round:
@@ -136,16 +133,15 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
     }
     
     // 4
-   CGContextStrokePath(UIGraphicsGetCurrentContext());
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
     
     // 5
     self.canvas.drawView.image = UIGraphicsGetImageFromCurrentImageContext();
     if (!self.canvas.isEraser) {
-    [self.canvas.drawView setAlpha:self.canvas.opacity];
+        [self.canvas.drawView setAlpha:self.canvas.opacity];
     }
     UIGraphicsEndImageContext();
 }
-
 
 -(CGPoint) midPoint:(CGPoint) p1 and:(CGPoint) p2
 {
@@ -172,7 +168,7 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
     self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
     self.canvas.drawView.image = nil;
     UIGraphicsEndImageContext();
-
+    
 }
 
 @end

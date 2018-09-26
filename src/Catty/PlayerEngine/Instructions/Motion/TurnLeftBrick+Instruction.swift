@@ -21,16 +21,16 @@
  */
 
 @objc extension TurnLeftBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
-
+    
     @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
+            let spriteNode = object.spriteNode
             else { debugPrint("This should never happen!"); return {}}
-
+        
         return {
             let degrees = formulaInterpreter.interpretDouble(self.degrees, for: object)
             let rotation = spriteNode.catrobatRotation - degrees

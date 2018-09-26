@@ -24,52 +24,49 @@
 #import "BDKNotifyHUD.h"
 #import "UndoManager.h"
 
-
 #define kControlSize 45.0f
 
 @implementation ResizeViewManager
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas andImagePicker:(ImagePicker*)imagePicker
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-    self.imagePicker = imagePicker;
-    [self initResizeView];
-    self.gotImage = NO;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+        self.imagePicker = imagePicker;
+        [self initResizeView];
+        self.gotImage = NO;
+    }
+    return self;
 }
 - (void)initResizeView
 {
-  self.resizeViewer = [[SPUserResizableView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
-//  imageView.backgroundColor = [UIColor yellowColor];
-  self.resizeViewer.contentView = imageView;
-  self.resizeViewer.delegate = self;
-  self.resizeViewer.hidden = YES;
-  [self.resizeViewer showEditingHandles];
-  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
-  
-  self.rotateView = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotate:)];
-  self.rotateView.delegate = self.canvas;
-  [self.canvas.view addGestureRecognizer:self.rotateView];
-  self.rotateView.enabled = NO;
-  
-  self.takeView =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeImage:)];
-  self.takeView.delegate = self.canvas;
-  [self.resizeViewer addGestureRecognizer:self.takeView];
-  self.takeView.enabled = NO;
+    self.resizeViewer = [[SPUserResizableView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
+    //  imageView.backgroundColor = [UIColor yellowColor];
+    self.resizeViewer.contentView = imageView;
+    self.resizeViewer.delegate = self;
+    self.resizeViewer.hidden = YES;
+    [self.resizeViewer showEditingHandles];
+    [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
+    
+    self.rotateView = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotate:)];
+    self.rotateView.delegate = self.canvas;
+    [self.canvas.view addGestureRecognizer:self.rotateView];
+    self.rotateView.enabled = NO;
+    
+    self.takeView =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeImage:)];
+    self.takeView.delegate = self.canvas;
+    [self.resizeViewer addGestureRecognizer:self.takeView];
+    self.takeView.enabled = NO;
 }
 
-
-
 - (void)handleRotate:(UIRotationGestureRecognizer *)recognizer {
-  
-  if (self.canvas.activeAction == stamp) {
-    return;
-  }
+    
+    if (self.canvas.activeAction == stamp) {
+        return;
+    }
     
     if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
         self.resizeViewer.rotation = self.resizeViewer.rotation +[(UIRotationGestureRecognizer*)recognizer rotation];
@@ -79,108 +76,105 @@
         }
         return;
     }
-
+    
     CGAffineTransform newTransform = CGAffineTransformMakeRotation(self.resizeViewer.rotation + [recognizer rotation]);
     [self.resizeViewer setTransform:newTransform];
 }
 
 - (void)updateShape
 {
-  self.resizeViewer.contentView = nil;
-  switch (self.canvas.activeAction) {
-    case rectangle:{
-      // RECT
-      UIGraphicsBeginImageContext(self.resizeViewer.frame.size);
-      //      CGContextSetLineWidth(UIGraphicsGetCurrentContext(), thickness);
-      CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
-      CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green,self.canvas.blue, self.canvas.opacity);
-      CGRect rectangle = CGRectMake(0,
-                                    0,
-                                    self.resizeViewer.frame.size.width,
-                                    self.resizeViewer.frame.size.height);
-      CGContextFillRect(UIGraphicsGetCurrentContext(), rectangle);
-      CGContextAddRect(UIGraphicsGetCurrentContext(), rectangle);
-      CGContextStrokePath(UIGraphicsGetCurrentContext());
-      
-      switch (self.canvas.ending) {
-        case Round:
-          CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapRound);
-          break;
-        case Square:
-          CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapSquare);
-          break;
+    self.resizeViewer.contentView = nil;
+    switch (self.canvas.activeAction) {
+        case rectangle:{
+            // RECT
+            UIGraphicsBeginImageContext(self.resizeViewer.frame.size);
+            //      CGContextSetLineWidth(UIGraphicsGetCurrentContext(), thickness);
+            CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
+            CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green,self.canvas.blue, self.canvas.opacity);
+            CGRect rectangle = CGRectMake(0,
+                                          0,
+                                          self.resizeViewer.frame.size.width,
+                                          self.resizeViewer.frame.size.height);
+            CGContextFillRect(UIGraphicsGetCurrentContext(), rectangle);
+            CGContextAddRect(UIGraphicsGetCurrentContext(), rectangle);
+            CGContextStrokePath(UIGraphicsGetCurrentContext());
+            
+            switch (self.canvas.ending) {
+                case Round:
+                    CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapRound);
+                    break;
+                case Square:
+                    CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapSquare);
+                    break;
+                default:
+                    break;
+            }
+            
+            CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
+            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+            UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
+            self.resizeViewer.contentView = imageView;
+            [self.resizeViewer setAlpha:self.canvas.opacity];
+            UIGraphicsEndImageContext();
+        }
+            
+            break;
+        case ellipse:{
+            // Circle
+            UIGraphicsBeginImageContext( self.resizeViewer.frame.size);
+            //      CGContextSetLineWidth(UIGraphicsGetCurrentContext(), thickness);
+            CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
+            CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue,self.canvas.opacity);
+            //      CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [UIColor colorWithRed:red green:green blue:blue alpha:opacity].CGColor);
+            CGRect rectangle = CGRectMake(0,
+                                          0,
+                                          self.resizeViewer.frame.size.width,
+                                          self.resizeViewer.frame.size.height);
+            
+            CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rectangle);
+            CGContextAddEllipseInRect(UIGraphicsGetCurrentContext(), rectangle);
+            CGContextStrokePath(UIGraphicsGetCurrentContext());
+            
+            switch (self.canvas.ending) {
+                case Round:
+                    CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapRound);
+                    break;
+                case Square:
+                    CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapSquare);
+                    break;
+                default:
+                    break;
+            }
+            
+            CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
+            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+            UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
+            self.resizeViewer.contentView = imageView;
+            [self.resizeViewer.contentView setAlpha:self.canvas.opacity];
+            UIGraphicsEndImageContext();
+            [self.resizeViewer setNeedsDisplay];
+        }
+            break;
+        case text: {
+            UIImage* image = [self drawText:self.canvas.text];
+            UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
+            self.resizeViewer.contentView = imageView;
+            [self.resizeViewer.contentView setAlpha:self.canvas.opacity];
+            [self.resizeViewer setNeedsDisplay];
+        }
+            break;
         default:
-          break;
-      }
-      
-      CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
-      UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-      UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
-      self.resizeViewer.contentView = imageView;
-      [self.resizeViewer setAlpha:self.canvas.opacity];
-      UIGraphicsEndImageContext();
+            break;
     }
-      
-      break;
-    case ellipse:{
-      // Circle
-      UIGraphicsBeginImageContext( self.resizeViewer.frame.size);
-      //      CGContextSetLineWidth(UIGraphicsGetCurrentContext(), thickness);
-      CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
-      CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue,self.canvas.opacity);
-      //      CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [UIColor colorWithRed:red green:green blue:blue alpha:opacity].CGColor);
-      CGRect rectangle = CGRectMake(0,
-                                    0,
-                                    self.resizeViewer.frame.size.width,
-                                    self.resizeViewer.frame.size.height);
-      
-      
-      CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rectangle);
-      CGContextAddEllipseInRect(UIGraphicsGetCurrentContext(), rectangle);
-      CGContextStrokePath(UIGraphicsGetCurrentContext());
-      
-      switch (self.canvas.ending) {
-        case Round:
-          CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapRound);
-          break;
-        case Square:
-          CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapSquare);
-          break;
-        default:
-          break;
-      }
-      
-      CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
-      UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-      UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
-      self.resizeViewer.contentView = imageView;
-      [self.resizeViewer.contentView setAlpha:self.canvas.opacity];
-      UIGraphicsEndImageContext();
-      [self.resizeViewer setNeedsDisplay];
-    }
-      break;
-    case text: {
-          UIImage* image = [self drawText:self.canvas.text];
-          UIImageView *imageView =[[UIImageView alloc] initWithImage:image];
-          self.resizeViewer.contentView = imageView;
-          [self.resizeViewer.contentView setAlpha:self.canvas.opacity];
-          [self.resizeViewer setNeedsDisplay];
-      }
-          break;
-    default:
-      break;
-  }
-  
 }
 
 -(UIImage*) drawText:(NSString*)string
 {
-
     CGSize stringBoundingBox = [string sizeWithAttributes:self.canvas.textFontDictionary];
     self.resizeViewer.frame = CGRectMake(self.resizeViewer.frame.origin.x, self.resizeViewer.frame.origin.y, stringBoundingBox.width, stringBoundingBox.height);
     
     UIGraphicsBeginImageContext(self.resizeViewer.frame.size);
-//    [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
+    //    [image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
     CGRect rect = CGRectMake(0 , 0, self.resizeViewer.frame.size.width, self.resizeViewer.frame.size.height);
     CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
     CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue,self.canvas.opacity);
@@ -194,12 +188,12 @@
 
 - (void)showResizeView
 {
-  self.resizeViewer.hidden = NO;
-  self.takeView.enabled = YES;
-  self.rotateView.enabled = YES;
-  for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
-    recognizer.enabled = NO;
-  }
+    self.resizeViewer.hidden = NO;
+    self.takeView.enabled = YES;
+    self.rotateView.enabled = YES;
+    for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
+        recognizer.enabled = NO;
+    }
 }
 
 - (void)hideResizeView
@@ -216,8 +210,6 @@
         recognizer.enabled = YES;
     }
 }
-
-
 
 - (void)takeImage:(UITapGestureRecognizer *)recognizer
 {
@@ -254,7 +246,6 @@
                 //        [self updateTransform:self.saveView transform:0];
                 //        [self updateTransform:self.resizeImageView transform:-self.rotation];
                 return;
-                
             }
         }
     }
@@ -268,16 +259,15 @@
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.canvas.scrollView setZoomScale:scale];
-
+    
     //UNDO-Manager
     UndoManager* manager = [self.canvas getUndoManager];
     [manager setImage:self.canvas.saveView.image];
-
+    
     self.canvas.saveView.image = img;
     [self showUserAction];
     self.canvas.saveView.backgroundColor = color;
 }
-
 
 - (void)showUserAction
 {
@@ -310,25 +300,22 @@
 
 - (void)hideShowUserAction
 {
-  if (self.canvas.activeAction == stamp) {
-//    [self.resizeViewer hideEditingHandles];
-  } else{
-    [self.resizeViewer showEditingHandles];
-  }
-  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
+    if (self.canvas.activeAction == stamp) {
+        //    [self.resizeViewer hideEditingHandles];
+    } else{
+        [self.resizeViewer showEditingHandles];
+    }
+    [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
 }
-
-
 
 #pragma mark - resize Delegate
 - (void)userResizableViewDidBeginEditing:(SPUserResizableView *)userResizableView
 {
-  
+    
 }
 - (void)userResizableViewDidEndEditing:(SPUserResizableView *)userResizableView
 {
-  
+    
 }
-
 
 @end

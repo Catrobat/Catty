@@ -24,38 +24,38 @@
 #import "LanguageTranslationDefines.h"
 
 #define kWeekdayNamesShort @[\
-    kLocalizedSu,\
-    kLocalizedMo,\
-    kLocalizedTu,\
-    kLocalizedWe,\
-    kLocalizedTh,\
-    kLocalizedFr,\
-    kLocalizedSa\
+kLocalizedSu,\
+kLocalizedMo,\
+kLocalizedTu,\
+kLocalizedWe,\
+kLocalizedTh,\
+kLocalizedFr,\
+kLocalizedSa\
 ]
 
 #define kWeekdayNames @[\
-    kLocalizedSunday,\
-    kLocalizedMonday,\
-    kLocalizedTuesday,\
-    kLocalizedWednesday,\
-    kLocalizedThursday,\
-    kLocalizedFriday,\
-    kLocalizedSaturday\
+kLocalizedSunday,\
+kLocalizedMonday,\
+kLocalizedTuesday,\
+kLocalizedWednesday,\
+kLocalizedThursday,\
+kLocalizedFriday,\
+kLocalizedSaturday\
 ]
 
 #define kMonthNamesShort @[\
-    kLocalizedJan,\
-    kLocalizedFeb,\
-    kLocalizedMar,\
-    kLocalizedApr,\
-    kLocalizedMay,\
-    kLocalizedJun,\
-    kLocalizedJul,\
-    kLocalizedAug,\
-    kLocalizedSep,\
-    kLocalizedOct,\
-    kLocalizedNov,\
-    kLocalizedDec\
+kLocalizedJan,\
+kLocalizedFeb,\
+kLocalizedMar,\
+kLocalizedApr,\
+kLocalizedMay,\
+kLocalizedJun,\
+kLocalizedJul,\
+kLocalizedAug,\
+kLocalizedSep,\
+kLocalizedOct,\
+kLocalizedNov,\
+kLocalizedDec\
 ]
 
 @implementation NSDate (CustomExtensions)
@@ -94,7 +94,7 @@ static NSDateFormatter *sameDayDateFormatter = nil;
 {
     if ((self == nil) || (date == nil))
         return NO;
-
+    
     NSDateFormatter *dateFormatter = [[self class] sameDayDateFormatter];
     NSDate *ownDate = [dateFormatter dateFromString:[dateFormatter stringFromDate:self]];
     date = [dateFormatter dateFromString:[dateFormatter stringFromDate:date]];

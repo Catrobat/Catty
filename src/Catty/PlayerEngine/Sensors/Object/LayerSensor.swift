@@ -27,7 +27,7 @@
     static let defaultRawValue = 0.0
     static let position = 100
     static let requiredResource = ResourceType.noResources
-
+    
     func tag() -> String {
         return type(of: self).tag
     }
@@ -43,7 +43,7 @@
         let rawValue = convertToRaw(userInput: userInput, for: spriteObject)
         spriteObject.spriteNode.zPosition = CGFloat(rawValue)
     }
-
+    
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         if rawValue == 0 {
             // for background

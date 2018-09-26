@@ -20,7 +20,7 @@ typedef struct SPUserResizableViewAnchorPoint {
 @class SPGripViewBorderView;
 
 @interface SPUserResizableView : UIView {
-  
+    
     CGPoint touchStart;
     CGFloat minWidth;
     CGFloat minHeight;
@@ -36,7 +36,6 @@ typedef struct SPUserResizableViewAnchorPoint {
      */
     CGPoint m_originalAnchorPoint;
 }
-
 
 @property (nonatomic,strong)SPGripViewBorderView *borderView;
 
@@ -100,7 +99,6 @@ typedef struct SPUserResizableViewAnchorPoint {
 
 @property(nonatomic) CGFloat rotation;
 
-
 @end
 
 @protocol SPUserResizableViewDelegate <NSObject>
@@ -127,11 +125,5 @@ typedef struct SPUserResizableViewAnchorPoint {
  *  @param userResizableView
  */
 - (void)userResizableViewNewRealFrame:(SPUserResizableView *)userResizableView;
-
-
-
-
-
-
 
 @end

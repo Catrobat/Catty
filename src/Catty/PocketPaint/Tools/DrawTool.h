@@ -25,10 +25,10 @@
 #import "PaintViewController.h"
 
 @interface DrawTool : NSObject{
-  BOOL fingerSwiped;
-  CGPoint lastPoint;
-  CGPoint beforeLastPoint;
-  CGPoint currentPoint;
+    BOOL fingerSwiped;
+    CGPoint lastPoint;
+    CGPoint beforeLastPoint;
+    CGPoint currentPoint;
 }
 @property (nonatomic,weak) PaintViewController* canvas;
 

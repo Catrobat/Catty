@@ -21,7 +21,7 @@
  */
 
 protocol ObjectStringSensor: ObjectSensor {
-
+    
     // The iOS device specific value of the sensor
     static func rawValue(for spriteObject: SpriteObject) -> String
     

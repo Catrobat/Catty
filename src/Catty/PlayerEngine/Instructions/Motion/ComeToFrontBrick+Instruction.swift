@@ -21,11 +21,11 @@
  */
 
 @objc extension ComeToFrontBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let currentObject = self.script?.object,
             let currentSpriteNode = currentObject.spriteNode,

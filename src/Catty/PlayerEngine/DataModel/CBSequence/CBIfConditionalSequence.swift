@@ -21,28 +21,28 @@
  */
 
 final class CBIfConditionalSequence : CBConditionalSequence {
-
+    
     // MARK: - Properties
     let elseSequenceList : CBSequenceList?
-
+    
     // MARK: - Initializers
     override init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, sequenceList: CBSequenceList)
     {
         self.elseSequenceList = nil
         super.init(rootSequenceList: rootSequenceList, condition: condition, sequenceList: sequenceList)
     }
-
+    
     init(rootSequenceList: CBScriptSequenceList, condition: CBConditionProtocol, ifSequenceList: CBSequenceList, elseSequenceList: CBSequenceList)
     {
         self.elseSequenceList = elseSequenceList
         super.init(rootSequenceList: rootSequenceList, condition: condition, sequenceList: ifSequenceList)
     }
-
+    
     // MARK: - Operations
     override func isEmpty() -> Bool {
         return (super.isEmpty() && (elseSequenceList?.count == 0))
     }
-
+    
     override func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }

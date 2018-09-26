@@ -30,7 +30,7 @@
 {
     if(! _currentPositionStack)
         _currentPositionStack = [[CBXMLPositionStack alloc] init];
-
+    
     return _currentPositionStack;
 }
 
@@ -38,7 +38,7 @@
 {
     if(! _spriteObjectNamePositions)
         _spriteObjectNamePositions = [NSMutableDictionary dictionary];
-
+    
     return _spriteObjectNamePositions;
 }
 
@@ -54,7 +54,7 @@
 {
     if(! _programUserVariableNamePositions)
         _programUserVariableNamePositions = [NSMutableDictionary dictionary];
-
+    
     return _programUserVariableNamePositions;
 }
 

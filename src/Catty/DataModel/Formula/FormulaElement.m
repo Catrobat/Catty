@@ -258,9 +258,9 @@
                 [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
             } else {
                 [internTokenList removeAllObjects];
-               [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
             }
-            }
+        }
             break;
         case STRING:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_STRING AndValue:self.value]];
@@ -310,12 +310,12 @@
         return NO;
     if((self.parent != nil && formulaElement.parent == nil) || (self.parent == nil && formulaElement.parent != nil))
         return NO;
-// XXX: this leads to an endless recursion bug!!!
-//    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
-//        return NO;
+    // XXX: this leads to an endless recursion bug!!!
+    //    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
+    //        return NO;
     if ((self.parent && (! formulaElement.parent)) || ((! self.parent) && formulaElement.parent))
         return NO;
-
+    
     return YES;
 }
 

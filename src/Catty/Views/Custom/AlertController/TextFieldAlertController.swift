@@ -64,7 +64,6 @@ public final class InputValidationResult : NSObject {
 
 @objc public protocol TextFieldAlertControllerBuilding : TextFieldAlertActionAdding, TextFieldInputValidating { }
 
-
 final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefining, TextFieldAlertControllerBuilding, UITextFieldDelegate {
     private var characterValidator: ((String) -> Bool)?
     private var valueValidator: ((String) -> InputValidationResult)?
@@ -121,7 +120,7 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
         alertController.addAction(UIAlertAction(title: title, style: .cancel) {_ in handler?() })
         return self
     }
-
+    
     @objc func characterValidator(_ validator: @escaping (String) -> Bool) -> TextFieldInputValidating {
         characterValidator = validator
         return self

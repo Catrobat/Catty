@@ -56,7 +56,7 @@
                 default:
                     [NSException raise:NSGenericException format:@"Unexpected FormatType."];
             }
-
+            
         }
         [options addObject:[PhiroHelper lightToString:LBoth]];
         [options addObject:[PhiroHelper lightToString:LRight]];

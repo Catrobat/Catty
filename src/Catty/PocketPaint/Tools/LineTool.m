@@ -27,69 +27,68 @@
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+    }
+    return self;
 }
 
 - (void)drawLine:(UIPanGestureRecognizer *)recognizer
 {
-  if (recognizer.state == UIGestureRecognizerStateBegan){
-    
-    //    if (enabled) {
-    fingerSwiped = NO;
-    lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-    //    }
-    
-  }else if (recognizer.state == UIGestureRecognizerStateChanged){
-    fingerSwiped = YES;
-    CGPoint currentPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-    [self shapeMoved:currentPoint];
-  }else if (recognizer.state == UIGestureRecognizerStateEnded){
-    [self shapeEnd];
-  }
+    if (recognizer.state == UIGestureRecognizerStateBegan){
+        
+        //    if (enabled) {
+        fingerSwiped = NO;
+        lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+        //    }
+        
+    }else if (recognizer.state == UIGestureRecognizerStateChanged){
+        fingerSwiped = YES;
+        CGPoint currentPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+        [self shapeMoved:currentPoint];
+    }else if (recognizer.state == UIGestureRecognizerStateEnded){
+        [self shapeEnd];
+    }
 }
 
 - (void)shapeMoved:(CGPoint)currentPoint
-  {
-        //LINE
-        UIGraphicsBeginImageContext(self.canvas.drawView.frame.size);
-        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-        switch (self.canvas.ending) {
-          case Round:
+{
+    //LINE
+    UIGraphicsBeginImageContext(self.canvas.drawView.frame.size);
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+    switch (self.canvas.ending) {
+        case Round:
             CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapRound);
             break;
-          case Square:
+        case Square:
             CGContextSetLineCap(UIGraphicsGetCurrentContext(),kCGLineCapSquare);
             break;
-          default:
+        default:
             break;
-        }
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.canvas.thickness );
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
-        CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
-        CGContextStrokePath(UIGraphicsGetCurrentContext());
-        self.canvas.drawView.image = UIGraphicsGetImageFromCurrentImageContext();
-        [self.canvas.drawView setAlpha:self.canvas.opacity];
-        UIGraphicsEndImageContext();
-  }
-  
-  -(void)shapeEnd
-  {
+    }
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.canvas.thickness );
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.canvas.red, self.canvas.green, self.canvas.blue, self.canvas.opacity);
+    CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    self.canvas.drawView.image = UIGraphicsGetImageFromCurrentImageContext();
+    [self.canvas.drawView setAlpha:self.canvas.opacity];
+    UIGraphicsEndImageContext();
+}
+
+-(void)shapeEnd
+{
     UIGraphicsBeginImageContext(self.canvas.saveView.frame.size);
     [self.canvas.saveView.image drawInRect:CGRectMake(0, 0, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     [self.canvas.drawView.image drawInRect:CGRectMake(0, 0, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
-      //UNDO-Manager
-      UndoManager* manager = [self.canvas getUndoManager];
-      [manager setImage:self.canvas.saveView.image];
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
     self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
     self.canvas.drawView.image = nil;
     UIGraphicsEndImageContext();
-  }
-  
+}
 
 @end

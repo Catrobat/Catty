@@ -31,6 +31,5 @@
             audioManager?.stopAllSounds()
             context.state = .runnable
         }
-        
     }
 }

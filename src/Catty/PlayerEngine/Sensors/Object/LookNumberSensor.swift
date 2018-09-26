@@ -27,7 +27,7 @@
     static let defaultRawValue = 0.0
     static let position = 40
     static let requiredResource = ResourceType.noResources
-
+    
     func tag() -> String {
         return type(of: self).tag
     }

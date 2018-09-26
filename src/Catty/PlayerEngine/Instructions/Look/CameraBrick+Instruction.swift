@@ -30,9 +30,7 @@ extension CameraBrick: CBInstructionProtocol {
                 scene.backgroundColor = self.isEnabled() ? UIColor.clear : UIColor.white
                 self.isEnabled() ? CameraPreviewHandler.shared().startCameraPreview() : CameraPreviewHandler.shared().stopCamera()
             }
-            
             context.state = .runnable
         }
     }
-    
 }

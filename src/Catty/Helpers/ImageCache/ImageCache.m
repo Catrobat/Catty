@@ -103,7 +103,6 @@ static NSMutableDictionary *sharedImageCaches = nil;
         [self.imageCache removeObjectForKey:imageName];
         [self.imageCache setObject:image forKey:imageName];
     }
-    
 }
 
 - (void)clearImageCache

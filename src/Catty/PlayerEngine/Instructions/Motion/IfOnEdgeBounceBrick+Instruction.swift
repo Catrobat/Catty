@@ -23,19 +23,19 @@
 private let EPSILON = 0.0001
 
 @objc extension IfOnEdgeBounceBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let scene = spriteNode.scene
-        else { fatalError("This should never happen!") }
+            let spriteNode = object.spriteNode,
+            let scene = spriteNode.scene
+            else { fatalError("This should never happen!") }
         
         return {
-        
+            
             let width = spriteNode.size.width
             let height = spriteNode.size.height
             
@@ -72,7 +72,7 @@ private let EPSILON = 0.0001
                     rotation = 180 - rotation
                 }
             } else if yPosition < lowerEdge {
-                 yPosition = lowerEdge
+                yPosition = lowerEdge
                 if self.isLookingDown(rotation) {
                     rotation = 180 - rotation
                 }
@@ -115,7 +115,7 @@ private let EPSILON = 0.0001
         }
         return false
     }
-
+    
     private func normalizeRotation(_ rotation:Double) -> Double {
         var normalizedRotation = rotation
         

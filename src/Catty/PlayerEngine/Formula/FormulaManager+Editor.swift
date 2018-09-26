@@ -21,7 +21,7 @@
  */
 
 extension FormulaManager {
-
+    
     @nonobjc func formulaEditorItems(spriteObject: SpriteObject) -> [FormulaEditorItem] {
         return formulaEditorItems(for: spriteObject, mathSection: true, objectSection: true, deviceSection: true)
     }

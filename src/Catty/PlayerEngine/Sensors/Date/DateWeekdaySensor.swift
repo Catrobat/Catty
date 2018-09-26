@@ -54,4 +54,3 @@ class DateWeekdaySensor : DateSensor {
         return .device(position: type(of: self).position)
     }
 }
-

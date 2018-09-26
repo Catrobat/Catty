@@ -25,12 +25,12 @@ struct MediaItem: Codable {
     let fileExtension: String
     let category: String
     let relativePath: String
-
+    
     /// Since the API doesn't offer previews of items it would
     /// be a waste to not keep the already downloaded data
     /// in case the user decides to import the item.
     var cachedData: Data? = nil
-
+    
     private enum CodingKeys: String, CodingKey {
         case name
         case fileExtension = "extension"
@@ -47,15 +47,15 @@ extension MediaItem {
 }
 
 extension Sequence where Iterator.Element == MediaItem {
-
+    
     var groupedByCategories: [[MediaItem]] {
-
+        
         // a two dimensional list of categories and their items
         var groupedItems = [[MediaItem]]()
-
+        
         // a dictionary of categories mapped to their order of appearance
         var categories = [String: Int]()
-
+        
         for item in self {
             if let categoryIndex = categories[item.category] {
                 // category exists, add the item to the list

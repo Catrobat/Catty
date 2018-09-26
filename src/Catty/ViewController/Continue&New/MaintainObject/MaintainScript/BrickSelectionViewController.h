@@ -22,7 +22,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface BrickSelectionViewController : UIPageViewController
 
 @property(nonatomic, strong) NSMutableArray<NSNumber*> *pageIndexArray;

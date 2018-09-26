@@ -37,8 +37,6 @@
     return moreRowAction;
 }
 
-
-
 + (UITableViewRowAction*)tableViewDeleteRowActionWithHandler:(row_action_block_t)handler {
     UITableViewRowAction *deleteRowAction = nil;
     deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault

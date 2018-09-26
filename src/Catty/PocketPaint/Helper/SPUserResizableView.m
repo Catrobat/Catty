@@ -8,8 +8,8 @@
 #import "SPUserResizableView.h"
 
 /* Let's inset everything that's drawn (the handles and the content view)
-   so that users can trigger a resize from a few pixels outside of
-   what they actually see as the bounding box. */
+ so that users can trigger a resize from a few pixels outside of
+ what they actually see as the bounding box. */
 #define kSPUserResizableViewGlobalInset -5.0
 
 #define kSPUserResizableViewDefaultMinWidth 40.0
@@ -93,7 +93,6 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     CGGradientRelease(gradient); gradient = NULL;
     CGContextRestoreGState(context);
 }
-
 
 @end
 
@@ -216,7 +215,6 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     return ([self disable] || ([self disableOnMultiTouch] && [touches count] > 1));
 }
 
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if ([self isDisabledForTouches:touches]) {
         return;
@@ -230,7 +228,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     [_borderView setHidden:NO];
     UITouch *touch = [touches anyObject];
     anchorPoint = [self anchorPointForTouchLocation:[touch locationInView:self]];
-
+    
     // When resizing, all calculations are done in the superview's coordinate space.
     touchStart = [touch locationInView:self.superview];
     if (![self isResizing]) {
@@ -251,7 +249,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
     [self setAnchorPoint:m_originalAnchorPoint];
     
     // Notify the delegate we've ended our editing session.
@@ -330,7 +328,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     } else if (225.0 > rotationDeg && rotationDeg >= 135.0) {
         start   = touchPoint;
         end     = touchStart;
-
+        
         
     } else if (rotationDeg >= 225.0 && rotationDeg < 315.0) {
         start.x     = touchPoint.y;
@@ -392,10 +390,10 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     }
     
     // restore the transform
-   CGAffineTransform transform     = CGAffineTransformMakeRotation(self.rotation);
+    CGAffineTransform transform     = CGAffineTransformMakeRotation(self.rotation);
     
     [self setTransform:CGAffineTransformScale(transform, scaleX, scaleY)];
-
+    
     touchStart = touchPoint;
 }
 
@@ -461,12 +459,9 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
 
 - (void)changeBorderWithColor:(UIColor*)color
 {
-  _borderView.borderColor = color;
-  [_borderView setNeedsDisplay];
+    _borderView.borderColor = color;
+    [_borderView setNeedsDisplay];
 }
-
-
-
 
 - (void)dealloc {
     [contentView removeFromSuperview];

@@ -35,7 +35,6 @@
 
 @end
 
-
 @protocol SSZipArchiveDelegate <NSObject>
 
 @optional

@@ -21,11 +21,10 @@
  */
 
 protocol CBSequenceProtocol {
-
+    
     // MARK: - Properties
     var rootSequenceList: CBScriptSequenceList? { get set }
-
+    
     // MARK: - Operations
     func isEmpty() -> Bool
-
 }

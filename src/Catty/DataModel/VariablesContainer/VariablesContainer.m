@@ -92,7 +92,7 @@ static pthread_mutex_t variablesLock;
 {
     NSArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
     UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
-
+    
     if (! variable) {
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
     }
@@ -120,7 +120,7 @@ static pthread_mutex_t variablesLock;
     } else {
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
         if (variable) {
-                [self removeProgramUserVariableNamed:name];
+            [self removeProgramUserVariableNamed:name];
             return YES;
         }
     }
@@ -397,7 +397,6 @@ static pthread_mutex_t variablesLock;
     if([vars count] > 0){
         [vars addObjectsFromArray:lists];
     }
-    
     return vars;
 }
 
@@ -459,7 +458,7 @@ static pthread_mutex_t variablesLock;
         if (spriteObjectToCompare != spriteObject) {
             continue;
         }
-
+        
         NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
         for (UserVariable *userVariableToCompare in userVariableList) {
             if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
@@ -557,7 +556,7 @@ static pthread_mutex_t variablesLock;
             }
         }
     }
-
+    
     //----------------------------------------------------------------------------------------------------
     // programVariableList and programListOfLists
     //----------------------------------------------------------------------------------------------------
@@ -595,7 +594,7 @@ static pthread_mutex_t variablesLock;
     copiedVariablesContainer.programVariableList = [self.programVariableList mutableCopy];
     copiedVariablesContainer.objectListOfLists = [self.objectListOfLists mutableCopy];
     copiedVariablesContainer.programListOfLists = [self.programListOfLists mutableCopy];
-
+    
     return copiedVariablesContainer;
 }
 

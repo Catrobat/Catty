@@ -9,25 +9,25 @@ import Foundation
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 private func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 private func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
@@ -147,7 +147,7 @@ open class QuickFormatter: LogFormatter {
     }
     
     open func formatLog<T>(_ logger: CBLogger, level: LogLevel, message givenMessage: @autoclosure () -> T,
-                             filename: String?, line: Int?,  function: String?) -> String {
+                           filename: String?, line: Int?,  function: String?) -> String {
         var s: String;
         let message = givenMessage()
         switch format {
@@ -237,7 +237,7 @@ open class FlexFormatter: LogFormatter {
         format = parts
     }
     
-
+    
     func getFunctionFormat(_ function: String) -> String {
         var result = function;
         if (result.hasPrefix("Optional(")) {
@@ -252,40 +252,39 @@ open class FlexFormatter: LogFormatter {
         }
         return result
     }
-
+    
     open func formatLog<T>(_ logger: CBLogger, level: LogLevel, message givenMessage: @autoclosure () -> T,
-        filename: String?, line: Int?,  function: String?) -> String {
-            var logMessage = ""
-            for (index, part) in format.enumerated() {
-                switch part {
-                case .message:
-                    let message = givenMessage()
-                    logMessage += "\(message)"
-                case .name: logMessage += logger.name
-                case .level: logMessage += level.label
-                case .date: logMessage += Date().description
-                case .line:
-                    if let filename = filename, let line = line {
-                        logMessage += "[\((filename as NSString).lastPathComponent):\(line)]"
-                    }
-                case .func:
-                    if let function = function {
-                        let output = getFunctionFormat(function)
-                        logMessage += "[\(output)]"
-                    }
+                           filename: String?, line: Int?,  function: String?) -> String {
+        var logMessage = ""
+        for (index, part) in format.enumerated() {
+            switch part {
+            case .message:
+                let message = givenMessage()
+                logMessage += "\(message)"
+            case .name: logMessage += logger.name
+            case .level: logMessage += level.label
+            case .date: logMessage += Date().description
+            case .line:
+                if let filename = filename, let line = line {
+                    logMessage += "[\((filename as NSString).lastPathComponent):\(line)]"
                 }
-                
-                if (index < format.count-1) {
-                    if (format[index+1] == .message) {
-                        logMessage += ":"
-                    }
-                    logMessage += " "
+            case .func:
+                if let function = function {
+                    let output = getFunctionFormat(function)
+                    logMessage += "[\(output)]"
                 }
             }
-            return logMessage
+            
+            if (index < format.count-1) {
+                if (format[index+1] == .message) {
+                    logMessage += ":"
+                }
+                logMessage += " "
+            }
+        }
+        return logMessage
     }
-   
-
+    
     open class func logFormatterForString(_ formatString: String) -> LogFormatter {
         var formatSpec = [FlexFormatterPart]()
         let parts = formatString.uppercased().components(separatedBy: CharacterSet.whitespaces)
@@ -301,7 +300,7 @@ open class FlexFormatter: LogFormatter {
         }
         return FlexFormatter(parts: formatSpec)
     }
-
+    
     open func description() -> String {
         var desc = ""
         for (index, part) in format.enumerated() {
@@ -320,7 +319,6 @@ open class FlexFormatter: LogFormatter {
         }
         return "FlexFormatter with \(desc)"
     }
- 
 }
 
 //
@@ -333,7 +331,7 @@ open class FlexFormatter: LogFormatter {
 
 public protocol LogLocation {
     //class func getInstance(param: AnyObject? = nil) -> LogLocation
-
+    
     func log(_ message: @autoclosure () -> String);
     
     func enable();
@@ -342,8 +340,6 @@ public protocol LogLocation {
     
     func description() -> String
 }
-
-
 
 open class ConsoleLocation: LogLocation {
     var enabled = true
@@ -355,11 +351,11 @@ open class ConsoleLocation: LogLocation {
         }
         return Static.internalInstance
     }
-
+    
     open class func getInstance() -> LogLocation {
         return instance
     }
-
+    
     open func log(_ message: @autoclosure () -> String) {
         if enabled {
             print(message())
@@ -398,7 +394,6 @@ open class FileLocation: LogLocation {
         }
     }
     
-
     init(filename: String) {
         self.filename = filename
         self.setDirectory()
@@ -423,7 +418,6 @@ open class FileLocation: LogLocation {
                 handle.write(data)
             }
         }
-
     }
     
     func setDirectory() {
@@ -436,10 +430,10 @@ open class FileLocation: LogLocation {
             
             return
         }
-
+        
         //let dirs : [String]? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .AllDomainsMask, true) as? [String]
         let dirs:AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as AnyObject
-    
+        
         if let dir: String = dirs as? String {
             //let dir = directories[0]; //documents directory
             let path = (dir as NSString).appendingPathComponent(self.filename);
@@ -478,7 +472,6 @@ open class FileLocation: LogLocation {
     }
 }
 
-
 //
 //  CBLogger.swift
 //  Swell
@@ -486,7 +479,6 @@ open class FileLocation: LogLocation {
 //  Created by Hubert Rabago on 6/20/14.
 //  Copyright (c) 2014 Minute Apps LLC. All rights reserved.
 //
-
 
 open class CBLogger {
     
@@ -511,50 +503,48 @@ open class CBLogger {
         Swell.registerLogger(self);
     }
     
-    
     open func log<T>(_ logLevel: LogLevel,
-                        message: @autoclosure () -> T,
-                        filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                     message: @autoclosure () -> T,
+                     filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         if (self.enabled) && (logLevel.level >= level.level) {
             let logMessage = formatter.formatLog(self, level: logLevel, message: message,
-                filename: filename, line: line, function: function);
+                                                 filename: filename, line: line, function: function);
             for location in locations {
                 location.log(logMessage)
             }
         }
     }
     
-    
     //**********************************************************************
     // Main log methods
     
     open func trace<T>(_ message: @autoclosure () -> T,
-                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                       filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.TRACE, message: message, filename: filename, line: line, function: function)
     }
     
     open func debug<T>(_ message: @autoclosure () -> T,
-                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                       filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.DEBUG, message: message, filename: filename, line: line, function: function)
     }
     
     open func info<T>(_ message: @autoclosure () -> T,
-                     filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.INFO, message: message, filename: filename, line: line, function: function)
     }
     
     open func warn<T>(_ message: @autoclosure () -> T,
-                     filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.WARN, message: message, filename: filename, line: line, function: function)
     }
     
     open func error<T>(_ message: @autoclosure () -> T,
-                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                       filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.ERROR, message: message, filename: filename, line: line, function: function)
     }
     
     open func severe<T>(_ message: @autoclosure () -> T,
-                       filename: String? = #file, line: Int? = #line,  function: String? = #function) {
+                        filename: String? = #file, line: Int? = #line,  function: String? = #function) {
         self.log(.SEVERE, message: message, filename: filename, line: line, function: function)
     }
     
@@ -562,55 +552,53 @@ open class CBLogger {
     // Log methods that accepts closures - closures must accept no param and return a String
     
     open func log(_ logLevel: LogLevel,
-                    filename: String? = #file, line: Int? = #line,  function: String? = #function,
-        fn: () -> String) {
-            
-            if (self.enabled) && (logLevel.level >= level.level) {
-                let message = fn()
-                self.log(logLevel, message: message)
-            }
+                  filename: String? = #file, line: Int? = #line,  function: String? = #function,
+                  fn: () -> String) {
+        
+        if (self.enabled) && (logLevel.level >= level.level) {
+            let message = fn()
+            self.log(logLevel, message: message)
+        }
     }
     
     open func trace(
         _ filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String
         ) {
-            log(.TRACE, filename: filename, line: line, function: function, fn: fn)
+        log(.TRACE, filename: filename, line: line, function: function, fn: fn)
     }
     
     open func debug(
         _ filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
-            log(.DEBUG, filename: filename, line: line, function: function, fn: fn)
+        log(.DEBUG, filename: filename, line: line, function: function, fn: fn)
     }
     
     open func info(
         _ filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
-            log(.INFO, filename: filename, line: line, function: function, fn: fn)
+        log(.INFO, filename: filename, line: line, function: function, fn: fn)
     }
     
     open func warn(
         _ filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
-            log(.WARN, filename: filename, line: line, function: function, fn: fn)
+        log(.WARN, filename: filename, line: line, function: function, fn: fn)
     }
     
     open func error(
         _ filename: String? = #file, line: Int? = #line,  function: String? = #function,
         fn: () -> String) {
-            log(.ERROR, filename: filename, line: line, function: function, fn: fn)
+        log(.ERROR, filename: filename, line: line, function: function, fn: fn)
     }
     
     open func severe(
         _ filename: String? = #file, line: Int? = #line,  function: String? = #function, fn: () -> String) {
-            log(.SEVERE, filename: filename, line: line, function: function, fn: fn)
+        log(.SEVERE, filename: filename, line: line, function: function, fn: fn)
     }
-    
     
     //**********************************************************************
     // Methods to expose this functionality to Objective C code
-    
     
     class func getLogger(_ name: String) -> CBLogger {
         return CBLogger(name: name);
@@ -641,7 +629,6 @@ open class CBLogger {
     }
 }
 
-
 //
 //  LogSelector.swift
 //  Swell
@@ -649,7 +636,6 @@ open class CBLogger {
 //  Created by Hubert Rabago on 7/2/14.
 //  Copyright (c) 2014 Minute Apps LLC. All rights reserved.
 //
-
 
 /// Implements the logic for determining which loggers are enabled to actually log anything.
 /// The rules used by this are:
@@ -660,23 +646,23 @@ open class CBLogger {
 open class LogSelector {
     
     open var enableRule: String = "" {
-    didSet {
-        enabled = parseCSV(enableRule)
-    }
+        didSet {
+            enabled = parseCSV(enableRule)
+        }
     }
     open var disableRule: String = "" {
-    didSet {
-        disabled = parseCSV(disableRule)
-    }
+        didSet {
+            disabled = parseCSV(disableRule)
+        }
     }
     
     open var enabled: [String] = [String]()
     open var disabled: [String] = [String]()
     
     public init() {
-
+        
     }
-
+    
     func shouldEnable(_ logger: CBLogger) -> Bool {
         let name = logger.name
         return shouldEnableLoggerWithName(name)
@@ -749,10 +735,7 @@ open class LogSelector {
         }
         return result
     }
-    
-
 }
-
 
 //
 //  Swell.swift
@@ -761,7 +744,6 @@ open class LogSelector {
 //  Created by Hubert Rabago on 6/26/14.
 //  Copyright (c) 2014 Minute Apps LLC. All rights reserved.
 //
-
 
 struct LoggerConfiguration {
     var name: String
@@ -782,18 +764,15 @@ struct LoggerConfiguration {
     }
 }
 
-
-
 // We declare this here because there isn't any support yet for class var / class let
 let globalSwell = Swell();
 
-
 open class Swell {
-
+    
     lazy var swellLogger: CBLogger? = {
         return getLogger("Shared")
     }()
-
+    
     var selector = LogSelector()
     var allLoggers = Dictionary<String, CBLogger>()
     var rootConfiguration = LoggerConfiguration(name: "ROOT")
@@ -806,20 +785,18 @@ open class Swell {
         sharedConfiguration.formatter = QuickFormatter(format: .levelMessage)
         sharedConfiguration.level = LogLevel.TRACE
         sharedConfiguration.locations += [ConsoleLocation.getInstance()]
-
+        
         // The root configuration is where all other configurations are based off of
         rootConfiguration.formatter = QuickFormatter(format: .levelNameMessage)
         rootConfiguration.level = LogLevel.TRACE
         rootConfiguration.locations += [ConsoleLocation.getInstance()]
-
+        
         readConfigurationFile()
     }
     
-    
-
     //========================================================================================
     // Global/convenience log methods used for quick logging
-
+    
     open class func trace<T>(_ message: @autoclosure () -> T) {
         globalSwell.swellLogger?.trace(message)
     }
@@ -843,7 +820,7 @@ open class Swell {
     open class func severe<T>(_ message: @autoclosure () -> T) {
         globalSwell.swellLogger?.severe(message)
     }
-
+    
     open class func trace(_ fn: () -> String) {
         globalSwell.swellLogger?.trace(fn())
     }
@@ -871,20 +848,18 @@ open class Swell {
     //====================================================================================================
     // Public methods
     
-
+    
     /// Returns the logger configured for the given name.
     /// This is the recommended way of retrieving a Swell logger.
     open class func getLogger(_ name: String) -> CBLogger? {
         return globalSwell.getLogger(name);
     }
     
-    
     /// Turns off all logging.
     open class func disableLogging() {
         globalSwell.disableLogging()
     }
-
-
+    
     //====================================================================================================
     // Internal methods serving the public methods
     
@@ -937,7 +912,7 @@ open class Swell {
     func createLogger(_ name: String) -> CBLogger? {
         let config = getConfigurationForLoggerName(name)
         guard let level = config.level, let formatter = config.formatter else { return nil }
-
+        
         let result = CBLogger(name: name, level: level, formatter: formatter, logLocation: config.locations[0])
         
         // Now we need to handle potentially > 1 locations
@@ -951,7 +926,6 @@ open class Swell {
         
         return result
     }
-    
     
     //====================================================================================================
     // Methods for managing the configurations from the plist file
@@ -997,20 +971,16 @@ open class Swell {
                         config.locations = spec.locations
                     }
                 }
-
             }
         }
-        
         return config;
     }
     
-
-    
     //====================================================================================================
     // Methods for reading the Swell.plist file
-
+    
     func readConfigurationFile() {
-
+        
         let filename: String? = Bundle.main.path(forResource: "Swell", ofType: "plist");
         
         var dict: NSDictionary? = nil;
@@ -1066,11 +1036,8 @@ open class Swell {
                     selector.disableRule = rule
                 }
             }
-            
         }
-        
     }
-    
     
     /// Specifies or modifies the configuration of a logger.
     /// If any aspect of the configuration was not provided, and there is a pre-existing value for it,
@@ -1080,17 +1047,17 @@ open class Swell {
     ///     configureLogger("MyClass", level: LogLevel.INFO, location: ConsoleLocation())
     ///  then the resulting configuration for MyClass would have MyCustomFormatter, ConsoleLocation, and LogLevel.INFO.
     func configureLogger(_ loggerName: String,
-        level givenLevel: LogLevel? = nil,
-        formatter givenFormatter: LogFormatter? = nil,
-        location givenLocation: LogLocation? = nil) {
-
+                         level givenLevel: LogLevel? = nil,
+                         formatter givenFormatter: LogFormatter? = nil,
+                         location givenLocation: LogLocation? = nil) {
+        
         var oldConfiguration: LoggerConfiguration?
         if allConfigurations.index(forKey: loggerName) != nil {
             oldConfiguration = allConfigurations[loggerName]
         }
-
+        
         var newConfiguration = LoggerConfiguration(name: loggerName)
-            
+        
         if let level = givenLevel {
             newConfiguration.level = level
         } else if let level = oldConfiguration?.level {
@@ -1112,18 +1079,17 @@ open class Swell {
         applyLoggerConfiguration(loggerName, configuration: newConfiguration)
     }
     
-
     /// Store the configuration given for the specified logger.
     /// If the logger already exists, update its configuration to reflect what's in the logger.
-
+    
     func applyLoggerConfiguration(_ loggerName: String, configuration: LoggerConfiguration) {
         // Record this custom config in our map
         allConfigurations[loggerName] = configuration
-
+        
         // See if the logger with the given name already exists.
         // If so, update the configuration it's using.
         if let logger = allLoggers[loggerName] {
-
+            
             // TODO - There should be a way to keep calls to logger.log while this is executing
             if let level = configuration.level {
                 logger.level = level
@@ -1136,9 +1102,7 @@ open class Swell {
                 logger.locations += configuration.locations
             }
         }
-        
     }
-
     
     func readLoggerPList(_ loggerName: String, map: Dictionary<String, AnyObject>) -> LoggerConfiguration {
         var configuration = LoggerConfiguration(name: loggerName)
@@ -1172,10 +1136,8 @@ open class Swell {
         if let value: AnyObject = item {
             configuration.locations = getConfiguredLocations(configuration, item: value, map: map);
         }
-        
         return configuration
     }
-    
     
     func getConfiguredQuickFormatter(_ configuration: LoggerConfiguration, item: AnyObject) -> LogFormatter? {
         if let formatString: String = item as? String {
@@ -1202,14 +1164,14 @@ open class Swell {
     }
     
     func getConfiguredLocations(_ configuration: LoggerConfiguration, item: AnyObject,
-        map: Dictionary<String, AnyObject>) -> [LogLocation] {
+                                map: Dictionary<String, AnyObject>) -> [LogLocation] {
         var results = [LogLocation]()
         if let configuredValue: String = item as? String {
             // configuredValue is the raw value in the plist
             
             // values is the array from configuredValue
             let values = configuredValue.lowercased().components(separatedBy: CharacterSet.whitespaces)
-
+            
             for value in values {
                 if (value == "file") {
                     // handle file name
@@ -1238,10 +1200,9 @@ open class Swell {
                 return result
             }
         }
-        
         return nil;
     }
-
+    
     func getFunctionFormat(_ function: String) -> String {
         var result = function;
         if (result.hasPrefix("Optional(")) {
@@ -1256,9 +1217,4 @@ open class Swell {
         }
         return result
     }
-    
-
-
 }
-
-

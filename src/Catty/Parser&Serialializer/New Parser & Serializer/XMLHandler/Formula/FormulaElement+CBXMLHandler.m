@@ -73,7 +73,7 @@
         [formulaListOfLists addObject:formulaTree.value];
         [context.formulaListNameList setObject:formulaListOfLists forKey:context.spriteObject.name];
     }
-        
+    
     return formulaTree;
 }
 

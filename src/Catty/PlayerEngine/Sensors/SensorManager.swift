@@ -44,7 +44,6 @@ import CoreLocation
         for sensor in self.sensors() {
             items.append(FormulaEditorItem(sensor: sensor, spriteObject: spriteObject))
         }
-        
         return items
     }
     
@@ -63,7 +62,7 @@ import CoreLocation
     @objc func exists(tag: String) -> Bool {
         return self.sensor(tag: tag) != nil
     }
-
+    
     @objc func value(tag: String, spriteObject: SpriteObject? = nil) -> AnyObject {
         guard let sensor = sensor(tag: tag) else { return type(of: self).defaultValueForUndefinedSensor as AnyObject }
         var rawValue: AnyObject = type(of: sensor).defaultRawValue as AnyObject

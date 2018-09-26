@@ -78,7 +78,7 @@ import CoreLocation
     }
     
     private static func buildSensorManager(motionManager: MotionManager, locationManager: LocationManager, faceDetectionManager: FaceDetectionManager, audioManager: AudioManagerProtocol, touchManager: TouchManagerProtocol, bluetoothService: BluetoothService) -> SensorManager {
-    
+        
         let sensorList: [Sensor] = [
             LoudnessSensor(audioManagerGetter: { audioManager }),
             InclinationXSensor(motionManagerGetter: { motionManager }),

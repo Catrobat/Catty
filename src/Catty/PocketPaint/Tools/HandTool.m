@@ -24,67 +24,63 @@
 #import "ResizeViewManager.h"
 #import "PointerTool.h"
 
-
 @implementation HandTool
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-    
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+        
+    }
+    return self;
 }
-
 
 - (void)changeHandToolAction
 {
-  if (!self.canvas.scrollView.scrollEnabled) {
-    self.canvas.drawGesture.enabled = NO;
-    self.canvas.pipetteRecognizer.enabled = NO;
-    ResizeViewManager *resizeViewManager =(ResizeViewManager*)[self.canvas getResizeViewManager];
-    resizeViewManager.rotateView.enabled = NO;
-    resizeViewManager.resizeViewer.userInteractionEnabled = NO;
-    PointerTool *pointerTool =(PointerTool*)[self.canvas getPointerTool];
-    pointerTool.moveView.enabled = NO;
-    self.canvas.lineToolGesture.enabled = NO;
-    self.canvas.scrollView.scrollEnabled = YES;
-    for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
-      recognizer.enabled = YES;
+    if (!self.canvas.scrollView.scrollEnabled) {
+        self.canvas.drawGesture.enabled = NO;
+        self.canvas.pipetteRecognizer.enabled = NO;
+        ResizeViewManager *resizeViewManager =(ResizeViewManager*)[self.canvas getResizeViewManager];
+        resizeViewManager.rotateView.enabled = NO;
+        resizeViewManager.resizeViewer.userInteractionEnabled = NO;
+        PointerTool *pointerTool =(PointerTool*)[self.canvas getPointerTool];
+        pointerTool.moveView.enabled = NO;
+        self.canvas.lineToolGesture.enabled = NO;
+        self.canvas.scrollView.scrollEnabled = YES;
+        for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
+            recognizer.enabled = YES;
+        }
+        self.canvas.handToolBarButtonItem.tintColor = [UIColor whiteColor];
+    } else {
+        [self disableHandTool];
     }
-    self.canvas.handToolBarButtonItem.tintColor = [UIColor whiteColor];
-  } else {
-    [self disableHandTool];
-  }
-
 }
 
 - (void)disableHandTool
 {
-  self.canvas.handToolBarButtonItem.tintColor = [UIColor toolTintColor];
-  if (self.canvas.activeAction == brush || self.canvas.activeAction == eraser) {
-    self.canvas.drawGesture.enabled = YES;
-  } else if (self.canvas.activeAction == pipette){
-    self.canvas.pipetteRecognizer.enabled = YES;
-  }else if ( self.canvas.activeAction == rectangle || self.canvas.activeAction == image || self.canvas.activeAction == stamp || self.canvas.activeAction == ellipse)
-  {
-    ResizeViewManager *resizeViewManager =(ResizeViewManager*)[self.canvas getResizeViewManager];
-    resizeViewManager.rotateView.enabled = YES;
-    resizeViewManager.resizeViewer.userInteractionEnabled = YES;
-    for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
-      recognizer.enabled = NO;
+    self.canvas.handToolBarButtonItem.tintColor = [UIColor toolTintColor];
+    if (self.canvas.activeAction == brush || self.canvas.activeAction == eraser) {
+        self.canvas.drawGesture.enabled = YES;
+    } else if (self.canvas.activeAction == pipette){
+        self.canvas.pipetteRecognizer.enabled = YES;
+    }else if ( self.canvas.activeAction == rectangle || self.canvas.activeAction == image || self.canvas.activeAction == stamp || self.canvas.activeAction == ellipse)
+    {
+        ResizeViewManager *resizeViewManager =(ResizeViewManager*)[self.canvas getResizeViewManager];
+        resizeViewManager.rotateView.enabled = YES;
+        resizeViewManager.resizeViewer.userInteractionEnabled = YES;
+        for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
+            recognizer.enabled = NO;
+        }
+    }else if (self.canvas.activeAction == line)
+    {
+        self.canvas.lineToolGesture.enabled = YES;
+    }else if (self.canvas.activeAction == pointer){
+        PointerTool *pointerTool =(PointerTool*)[self.canvas getPointerTool];
+        pointerTool.moveView.enabled = YES;
     }
-  }else if (self.canvas.activeAction == line)
-  {
-    self.canvas.lineToolGesture.enabled = YES;
-  }else if (self.canvas.activeAction == pointer){
-    PointerTool *pointerTool =(PointerTool*)[self.canvas getPointerTool];
-    pointerTool.moveView.enabled = YES;
-  }
-  self.canvas.scrollView.scrollEnabled = NO;
-
+    self.canvas.scrollView.scrollEnabled = NO;
 }
 
 @end

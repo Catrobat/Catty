@@ -73,7 +73,6 @@
     if (keyData) {
         CFRelease(keyData);
     }
-    
     return value;
 }
 

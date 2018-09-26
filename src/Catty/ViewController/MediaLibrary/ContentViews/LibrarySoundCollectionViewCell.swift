@@ -25,18 +25,18 @@ protocol LibrarySoundCollectionViewCellDelegate: class {
 }
 
 class LibrarySoundCollectionViewCell: UICollectionViewCell {
-
+    
     weak var delegate: LibrarySoundCollectionViewCellDelegate?
-
+    
     @IBOutlet private weak var playOrStopButton: UIButton!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var titleLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleLabel.textColor = .utilityTint()
     }
-
+    
     @IBAction func playOrStop() {
         self.delegate?.soundLibraryItemCollectionViewCellDidTapPlayOrStop(self)
     }
@@ -48,7 +48,7 @@ extension LibrarySoundCollectionViewCell {
         case preparing
         case playing
     }
-
+    
     var state: State {
         get {
             if !self.playOrStopButton.isSelected {
@@ -76,7 +76,7 @@ extension LibrarySoundCollectionViewCell {
             }
         }
     }
-
+    
     var title: String? {
         get {
             return self.titleLabel.text

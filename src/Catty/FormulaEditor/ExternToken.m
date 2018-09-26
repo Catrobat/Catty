@@ -41,7 +41,6 @@
     }
     
     return self;
-    
 }
 
 - (int)getStartIndex

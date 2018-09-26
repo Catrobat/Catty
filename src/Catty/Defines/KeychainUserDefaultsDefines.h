@@ -32,7 +32,7 @@
 #define kArduinoActivated 1
 
 #if DEBUG == 1
-    #define kProductionServerActivated 0
+#define kProductionServerActivated 0
 #else
-    #define kProductionServerActivated 1
+#define kProductionServerActivated 1
 #endif

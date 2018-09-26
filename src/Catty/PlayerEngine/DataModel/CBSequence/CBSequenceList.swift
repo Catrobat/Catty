@@ -21,22 +21,22 @@
  */
 
 final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequence {
-
+    
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
     lazy var sequenceList = [CBSequenceProtocol]()
     var count : Int { return sequenceList.count }
-
+    
     // MARK: - Initializers
     init(rootSequenceList : CBScriptSequenceList?) {
         self.rootSequenceList = rootSequenceList
     }
-
+    
     // MARK: - Operations
     func append(_ sequence : CBSequenceProtocol) {
         sequenceList.append(sequence)
     }
-
+    
     // MARK: - Generator
     func makeIterator() -> AnyIterator<CBSequenceProtocol> {
         var i = 0
@@ -50,15 +50,14 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
             }
         }
     }
-
+    
     func isEmpty() -> Bool {
         return count == 0
     }
-
+    
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-
 }
 
 // MARK: - Custom operators

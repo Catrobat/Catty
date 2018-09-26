@@ -37,7 +37,6 @@
 
 @implementation Brick
 
-
 #pragma mark - NSObject
 
 - (id)init
@@ -120,7 +119,7 @@
         return NO;
     if(self.brickType != brick.brickType)
         return NO;
-
+    
     NSArray *firstPropertyList = [[Util propertiesOfInstance:self] allValues];
     NSArray *secondPropertyList = [[Util propertiesOfInstance:brick] allValues];
     
@@ -135,7 +134,7 @@
         // prevent recursion (e.g. Script->Brick->Script->Brick...)
         if([firstObject isKindOfClass:[Script class]] && [secondObject isKindOfClass:[Script class]])
             continue;
-    
+        
         if(![Util isEqual:firstObject toObject:secondObject])
             return NO;
     }
@@ -155,7 +154,6 @@
     return [self mutableCopyWithContext:context AndErrorReporting:YES];
 }
 
-
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
@@ -163,7 +161,7 @@
     brick.brickCategoryType = self.brickCategoryType;
     brick.brickType = self.brickType;
     [context updateReference:self WithReference:brick];
-
+    
     NSDictionary *properties = [Util propertiesOfInstance:self];
     for (NSString *propertyKey in properties) {
         id propertyValue = [properties objectForKey:propertyKey];
@@ -214,9 +212,8 @@
 {
     //OVERRIDE IN EVERY BRICK
     NSInteger resources = kNoResources;
-
+    
     return resources;
 }
-
 
 @end

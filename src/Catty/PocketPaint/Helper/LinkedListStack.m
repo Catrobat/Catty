@@ -18,35 +18,35 @@
  */
 - (id)init
 {
-  return [self initWithCapacity:500];
+    return [self initWithCapacity:500];
 }
 
 - (id)initWithCapacity:(NSInteger)capacity
 {
-  return [self initWithCapacity:capacity incrementSize:500 andMultiplier:1000];
+    return [self initWithCapacity:capacity incrementSize:500 andMultiplier:1000];
 }
 
 - (id)initWithCapacity:(NSInteger)capacity incrementSize:(NSInteger)increment andMultiplier:(NSInteger)mul
 {
-  self = [super init];
-  
-  if(self)
-  {
-    _cacheSizeIncrements = increment;
+    self = [super init];
     
-    NSInteger bytesRequired = capacity * sizeof(PointNode);
+    if(self)
+    {
+        _cacheSizeIncrements = increment;
+        
+        NSInteger bytesRequired = capacity * sizeof(PointNode);
+        
+        nodeCache = [[NSMutableData alloc] initWithLength:bytesRequired];
+        
+        [self initialiseNodesAtOffset:0 count:capacity];
+        
+        freeNodeOffset = 0;
+        topNodeOffset = FINAL_NODE_OFFSET;
+        
+        multiplier = mul;
+    }
     
-    nodeCache = [[NSMutableData alloc] initWithLength:bytesRequired];
-    
-    [self initialiseNodesAtOffset:0 count:capacity];
-    
-    freeNodeOffset = 0;
-    topNodeOffset = FINAL_NODE_OFFSET;
-    
-    multiplier = mul;
-  }
-  
-  return self;
+    return self;
 }
 
 #pragma mark - Stack methods
@@ -63,90 +63,89 @@
  */
 - (void)pushFrontX:(NSInteger)x andY:(NSInteger)y;
 {
-  NSInteger p = multiplier * x + y;
-  
-  PointNode *node = [self getNextFreeNode];
-  
-  node->point = p;
-  node->nextNodeOffset = topNodeOffset;
-  
-  topNodeOffset = [self offsetOfNode:node];
+    NSInteger p = multiplier * x + y;
+    
+    PointNode *node = [self getNextFreeNode];
+    
+    node->point = p;
+    node->nextNodeOffset = topNodeOffset;
+    
+    topNodeOffset = [self offsetOfNode:node];
 }
 
 - (NSInteger)popFront:(int *)x andY:(int *)y;
 {
-  if(topNodeOffset == FINAL_NODE_OFFSET)
-  {
-    return INVALID_NODE_CONTENT;
-  }
-  
-  PointNode *node = [self nodeAtOffset:topNodeOffset];
-  
-  NSInteger thisNodeOffset = topNodeOffset;
-  
+    if(topNodeOffset == FINAL_NODE_OFFSET)
+    {
+        return INVALID_NODE_CONTENT;
+    }
+    
+    PointNode *node = [self nodeAtOffset:topNodeOffset];
+    
+    NSInteger thisNodeOffset = topNodeOffset;
+    
     // Remove this node from the queue
-  topNodeOffset = node->nextNodeOffset;
-  NSInteger value = node->point;
-  
+    topNodeOffset = node->nextNodeOffset;
+    NSInteger value = node->point;
+    
     // Reset it and add it to the free node cache
-  node->point = 0;
-  node->nextNodeOffset = freeNodeOffset;
-  
-  freeNodeOffset = thisNodeOffset;
-  if (multiplier>0) {
-    *x = (int)value / multiplier;
-    *y = (int)value % multiplier;
-  }
-  
-  
-  return value;
+    node->point = 0;
+    node->nextNodeOffset = freeNodeOffset;
+    
+    freeNodeOffset = thisNodeOffset;
+    if (multiplier>0) {
+        *x = (int)value / multiplier;
+        *y = (int)value % multiplier;
+    }
+    
+    return value;
 }
 
 #pragma mark - utility functions
 - (int)offsetOfNode:(PointNode *)node
 {
-  return (int)(node - (PointNode *)nodeCache.mutableBytes);
+    return (int)(node - (PointNode *)nodeCache.mutableBytes);
 }
 
 - (PointNode *)nodeAtOffset:(NSInteger)offset
 {
-  return (PointNode *)nodeCache.mutableBytes + offset;
+    return (PointNode *)nodeCache.mutableBytes + offset;
 }
 
 - (PointNode *)getNextFreeNode
 {
-  if(freeNodeOffset < 0)
-  {
-      // Need to extend the size of the nodeCache
-    NSInteger currentSize = nodeCache.length / sizeof(PointNode);
-    [nodeCache increaseLengthBy:_cacheSizeIncrements * sizeof(PointNode)];
+    if(freeNodeOffset < 0)
+    {
+        // Need to extend the size of the nodeCache
+        NSInteger currentSize = nodeCache.length / sizeof(PointNode);
+        [nodeCache increaseLengthBy:_cacheSizeIncrements * sizeof(PointNode)];
+        
+        // Set these new nodes to be the free ones
+        [self initialiseNodesAtOffset:currentSize count:_cacheSizeIncrements];
+        freeNodeOffset = currentSize;
+    }
     
-      // Set these new nodes to be the free ones
-    [self initialiseNodesAtOffset:currentSize count:_cacheSizeIncrements];
-    freeNodeOffset = currentSize;
-  }
-  
-  PointNode *node = (PointNode*)nodeCache.mutableBytes + freeNodeOffset;
-  freeNodeOffset = node->nextNodeOffset;
-  
-  return node;
+    PointNode *node = (PointNode*)nodeCache.mutableBytes + freeNodeOffset;
+    freeNodeOffset = node->nextNodeOffset;
+    
+    return node;
 }
 
 - (void)initialiseNodesAtOffset:(NSInteger)offset count:(NSInteger)count
 {
-  PointNode *node = (PointNode *)nodeCache.mutableBytes + offset;
-  
-  for (int i=0; i<count - 1; i++)
-  {
+    PointNode *node = (PointNode *)nodeCache.mutableBytes + offset;
+    
+    for (int i=0; i<count - 1; i++)
+    {
+        node->point = 0;
+        node->nextNodeOffset = offset + i + 1;
+        node++;
+    }
+    
     node->point = 0;
-    node->nextNodeOffset = offset + i + 1;
-    node++;
-  }
-  
-  node->point = 0;
-  
+    
     // Set the next node offset to make sure we don't continue
-  node->nextNodeOffset = FINAL_NODE_OFFSET;
+    node->nextNodeOffset = FINAL_NODE_OFFSET;
 }
 
 @end

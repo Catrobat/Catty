@@ -43,7 +43,6 @@
 #define userEmailTag @"userEmail"
 #define userNameTag @"username"
 #define deviceLanguageTag @"deviceLanguage"
-
 #define statusCodeTag @"statusCode"
 #define answerTag @"answer"
 #define projectIDTag @"projectId"
@@ -70,7 +69,6 @@ const CGFloat PADDING = 5.0f;
 
 @implementation UploadInfoViewController
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -82,19 +80,17 @@ const CGFloat PADDING = 5.0f;
 
 - (NSURLSession *)session {
     if (!_session) {
-            // Initialize Session Configuration
+        // Initialize Session Configuration
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         
-            // Configure Session Configuration
+        // Configure Session Configuration
         [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
         
-            // Initialize Session
+        // Initialize Session
         _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     }
-    
     return _session;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -134,8 +130,6 @@ const CGFloat PADDING = 5.0f;
     [self.programNamelabel setText:kLocalizedName];
     [self.programNamelabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.programNamelabel sizeToFit];
-
-
     
     self.programNameTextField.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 2*self.view.frame.size.width/3.0f -20, TEXTFIELD_HEIGHT);
     
@@ -145,13 +139,11 @@ const CGFloat PADDING = 5.0f;
     [self.programNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [self.programNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [self.programNameTextField setKeyboardType:UIKeyboardTypeDefault];
-
     
     if(self.program.header.programName) {
         self.programNameTextField.text = self.program.header.programName;
     }
     self.currentHeight += self.programNameTextField.frame.size.height+4*PADDING;
-    
 }
 
 - (void)initSizeViewElements
@@ -184,7 +176,7 @@ const CGFloat PADDING = 5.0f;
 
 - (void)initDescriptionViewElements
 {
-
+    
     self.descriptionLabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.descriptionLabel.frame.size.height);
     [self.descriptionLabel setTextColor:[UIColor globalTintColor]];
     [self.descriptionLabel setText:kLocalizedDescription];
@@ -204,7 +196,7 @@ const CGFloat PADDING = 5.0f;
         self.descriptionTextView.text = self.program.header.programDescription;
     }
     self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
-
+    
     self.descriptionTextView.layer.borderWidth = 1.0f;
     self.descriptionTextView.layer.borderColor = [[UIColor textViewBorderGrayColor] CGColor];
     self.descriptionTextView.layer.cornerRadius = 8;
@@ -223,7 +215,6 @@ const CGFloat PADDING = 5.0f;
 }
 
 #pragma mark Helpers
-
 
 -(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
 {
@@ -331,7 +322,7 @@ const CGFloat PADDING = 5.0f;
         [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
         
         NSMutableData *body = [NSMutableData data];
-
+        
         //Program Name
         [self setFormDataParameter:programNameTag withData:[self.program.header.programName dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
@@ -357,7 +348,6 @@ const CGFloat PADDING = 5.0f;
         
         //zip file
         [self setAttachmentParameter:uploadParameterTag withData:self.zipFileData forHTTPBody:body];
-        
         
         // close form
         [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -386,21 +376,20 @@ const CGFloat PADDING = 5.0f;
                 if ([statusCode isEqualToString:statusCodeOK]) {
                     NSDebug(@"Upload successful");
                     
-                        //Set unique Program-ID received from server
+                    //Set unique Program-ID received from server
                     NSString* projectId = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
                     self.program.header.programID = projectId;
                     [self.program saveToDiskWithNotification:YES];
                     
-                        //Set new token but when? everytime is wrong
+                    //Set new token but when? everytime is wrong
                     NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-                   [JNKeychain saveValue:newToken forKey:kUserLoginToken];
+                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
                     
                     [self showUploadSuccessfulView];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self dismissView];
                     });
-                    
                     
                 } else {
                     
@@ -412,7 +401,7 @@ const CGFloat PADDING = 5.0f;
                     });
                     
                     if([statusCode isEqualToString:statusCodeTokenWrong]) {
-                            //Token not valid
+                        //Token not valid
                         [[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn];
                         
                         NSMutableArray *viewArray = [NSMutableArray arrayWithArray:self.parentViewController.navigationController.viewControllers];
@@ -420,17 +409,13 @@ const CGFloat PADDING = 5.0f;
                         NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
                         [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
                     }
-                    
                 }
-                
-
             }
         }];
         
         if (self.dataTask) {
             [self.dataTask resume];
         }
-
         
         if(self.dataTask) {
             NSDebug(@"Connection Successful");
@@ -490,7 +475,5 @@ const CGFloat PADDING = 5.0f;
         self.navigationItem.rightBarButtonItem.enabled = YES;
     });
 }
-
-
 
 @end

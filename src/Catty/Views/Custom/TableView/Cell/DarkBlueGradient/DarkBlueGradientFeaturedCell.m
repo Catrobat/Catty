@@ -34,13 +34,12 @@
 - (void)configureImageCell
 {
     self.accessoryView.hidden = YES;
-//    self.featuredImage.frame = self.frame;
+    //    self.featuredImage.frame = self.frame;
     self.backgroundColor = [UIColor backgroundColor];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
 }
-
 
 @end

@@ -55,18 +55,15 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
 @property (nonatomic,assign) BOOL isPaused;
 /**
  Currently playing? used when returning from the background (if went to background and foreground really quickly)
-*/
+ */
 @property (nonatomic,assign) BOOL isPlaying;
 
 @end
-
-
 
 void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clientData){
     SharkfoodMuteSwitchDetector* detecotr = (__bridge SharkfoodMuteSwitchDetector*)clientData;
     [detecotr complete];
 }
-
 
 @implementation SharkfoodMuteSwitchDetector
 
@@ -108,7 +105,7 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     static SharkfoodMuteSwitchDetector* sShared = nil;
     if (!sShared) {
         sShared = [SharkfoodMuteSwitchDetector new];
-//        sShared = [[SharkfoodMuteSwitchDetector alloc] init];
+        //        sShared = [[SharkfoodMuteSwitchDetector alloc] init];
     }
     return sShared;
 }
@@ -117,7 +114,6 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(loopCheck) object:nil];
     [self performSelector:@selector(loopCheck) withObject:nil afterDelay:1];
 }
-
 
 - (void)complete{
     self.isPlaying = NO;
@@ -139,7 +135,6 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
         AudioServicesPlaySystemSound(self.soundId);
     }
 }
-
 
 // For reference only, this DTOR will never be invoked.
 

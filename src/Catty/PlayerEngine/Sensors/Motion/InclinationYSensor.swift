@@ -23,19 +23,19 @@
 import CoreMotion
 
 @objc class InclinationYSensor : NSObject, DeviceSensor {
-
+    
     @objc static let tag = "Y_INCLINATION"
     static let name = kUIFESensorInclinationY
     static let defaultRawValue = 0.0
     static let position = 60
     static let requiredResource = ResourceType.accelerometerAndDeviceMotion
-
+    
     let getMotionManager: () -> MotionManager?
     
     init(motionManagerGetter: @escaping () -> MotionManager?) {
         self.getMotionManager = motionManagerGetter
     }
-
+    
     func tag() -> String {
         return type(of: self).tag
     }
@@ -46,7 +46,6 @@ import CoreMotion
             return type(of: self).defaultRawValue
         }
         return deviceMotion.attitude.pitch
-      
     }
     
     // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android

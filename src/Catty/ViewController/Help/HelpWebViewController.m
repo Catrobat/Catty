@@ -74,7 +74,7 @@
     
     _refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     _stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stop:)];
-
+    
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     self.URL = [NSURL URLWithString:kForumURL];
     self.webView.scrollView.delegate = self;
@@ -90,7 +90,7 @@
     
     self.touchHelperView = [[UIView alloc] initWithFrame:CGRectZero];
     self.touchHelperView.backgroundColor = UIColor.clearColor;
-     _progressView.tintColor = [UIColor navTintColor];
+    _progressView.tintColor = [UIColor navTintColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
@@ -101,8 +101,6 @@
     _urlTitleLabel.textColor = [UIColor globalTintColor];
     _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
     _urlTitleLabel.alpha = 0.6f;
-    
-    
 }
 
 - (void)setupToolBar
@@ -112,20 +110,20 @@
     self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
     self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-
+    
     UIBarButtonItem *forward = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_right"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward:)];
     forward.enabled = self.webView.canGoForward;
-
+    
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"webview_arrow_left"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack:)];
     back.enabled = self.webView.canGoBack;
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(openInSafari)];
-
-        // XXX: workaround for tap area problem:
-        // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
     self.toolbarItems = [NSArray arrayWithObjects:invisibleItem(), back, invisibleItem(), flexItem(),
-                          invisibleItem(), forward, invisibleItem(), flexItem(), flexItem(), share, flexItem(), nil];
+                         invisibleItem(), forward, invisibleItem(), flexItem(), flexItem(), share, flexItem(), nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -139,11 +137,10 @@
     
     if (!_loadingView) {
         _loadingView = [[LoadingView alloc] init];
-//        _loadingView.backgroundColor = [UIColor globalTintColor];
+        //        _loadingView.backgroundColor = [UIColor globalTintColor];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -155,7 +152,7 @@
         [self.view.window removeGestureRecognizer:self.tapGesture];
     }
     
-     _topViewController = self.navigationController.topViewController;
+    _topViewController = self.navigationController.topViewController;
     self.navigationController.hidesBarsOnSwipe = NO;
 }
 
@@ -172,8 +169,6 @@
     [super viewWillLayoutSubviews];
     
     self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
-    
-
 }
 
 - (void)dealloc
@@ -208,7 +203,7 @@
     _doneLoadingURL = YES;
     [self.loadingView hide];
     [self setProgress:1.0f];
-//    [self showNavigationButtons];
+    //    [self showNavigationButtons];
     
     [UIView animateWithDuration:0.25f animations:^{ self.webView.alpha = 1.0f; }];
 }
@@ -277,7 +272,6 @@
     return NO;
 }
 
-
 #pragma mark - Webview Navigation
 - (void)goBack:(id)sender
 {
@@ -316,7 +310,7 @@
 {
     UIBarButtonItem *refreshOrStopButton = self.webView.loading ? _stopButton : _refreshButton;
     self.urlTitleLabel.text = [NSString stringWithFormat:@"%@%@", [self.URL host], [self.URL relativePath]];
-
+    
     [self setupToolBar];
     
     self.navigationItem.rightBarButtonItems = @[refreshOrStopButton];
@@ -324,7 +318,7 @@
 
 - (void)openInSafari
 {
-   [[UIApplication sharedApplication] openURL:self.URL];
+    [[UIApplication sharedApplication] openURL:self.URL];
 }
 
 - (void)setProgress:(CGFloat)progress
@@ -366,7 +360,6 @@
     }];
 }
 
-
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
@@ -375,7 +368,6 @@
         }
     }
 }
-
 
 - (void)downloadFinishedWithURL:(NSURL *)url andProgramLoadingInfo:(ProgramLoadingInfo *)info
 {
@@ -395,8 +387,8 @@
     [self.view addSubview:hud];
     [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
                        speed:kBDKNotifyHUDPresentationSpeed
-                       inView:self.view
-                       completion:^{ [hud removeFromSuperview]; }];
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)timeoutReached
@@ -432,7 +424,6 @@
     [self setProgress:(CGFloat)progress];
     
 }
-
 
 #pragma mark Rotation
 

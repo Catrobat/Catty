@@ -48,88 +48,88 @@
 
 // ----------------- REFACTOR BEGIN -------------------
 #define kControlBrickNameParams @[\
-    @[],                            /* program started */\
-    @[],                            /* tapped          */\
-    @"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
-    @"{MESSAGE}",                   /* receive         */\
-    @"{MESSAGE}",                   /* broadcast       */\
-    @"{MESSAGE}",                   /* broadcast wait  */\
-    @"{TEXT}",                      /* note            */\
-    @[],                            /* forever         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* if              */\
-    @"{FLOAT;range=(-inf,inf)}",    /* if then         */\
-    @[],                            /* else            */\
-    @[],                            /* if end          */\
-    @[],                            /* if then end     */\
-    @"{INT;range=[0,inf)}",         /* repeat          */\
-    @"{FLOAT;range=(-inf,inf)}",    /* repeat until    */\
-    @[]                             /* loop end        */\
+@[],                            /* program started */\
+@[],                            /* tapped          */\
+@"{FLOAT;range=(0.0f,inf)}",    /* wait            */\
+@"{MESSAGE}",                   /* receive         */\
+@"{MESSAGE}",                   /* broadcast       */\
+@"{MESSAGE}",                   /* broadcast wait  */\
+@"{TEXT}",                      /* note            */\
+@[],                            /* forever         */\
+@"{FLOAT;range=(-inf,inf)}",    /* if              */\
+@"{FLOAT;range=(-inf,inf)}",    /* if then         */\
+@[],                            /* else            */\
+@[],                            /* if end          */\
+@[],                            /* if then end     */\
+@"{INT;range=[0,inf)}",         /* repeat          */\
+@"{FLOAT;range=(-inf,inf)}",    /* repeat until    */\
+@[]                             /* loop end        */\
 ]
 // motion bricks
 #define kMotionBrickNameParams @[\
-    @[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
-    @[],                                                         /* if on edge bounce  */\
-    @"{INT;range=[0,inf)}",                                      /* move N steps       */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
-    @"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
-    @"{OBJECT}",                                                 /* point to brick     */\
-    @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
-    @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
-    @[],                                                         /* come to front      */\
-    @"{FLOAT;range=(-inf,inf)}"                                  /* vibration          */\
+@[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* place at           */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* set X              */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* set Y              */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* change X by N      */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* change Y by N      */\
+@[],                                                         /* if on edge bounce  */\
+@"{INT;range=[0,inf)}",                                      /* move N steps       */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* turn left          */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* turn right         */\
+@"{FLOAT;range=(-inf,inf)}",                                 /* point in direction */\
+@"{OBJECT}",                                                 /* point to brick     */\
+@[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
+@"{INT;range=[0,inf)}",                                      /* go N steps back    */\
+@[],                                                         /* come to front      */\
+@"{FLOAT;range=(-inf,inf)}"                                  /* vibration          */\
 ]
 
 // sound bricks
 #define kSoundBrickNameParams @[\
-    @"{SOUND}",                     /* play sound         */\
-    @[],                            /* stop all sounds    */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{INT}",                       /* speak              */\
-    @"{INT}"                        /* speak and wait     */\
+@"{SOUND}",                     /* play sound         */\
+@[],                            /* stop all sounds    */\
+@"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
+@"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
+@"{INT}",                       /* speak              */\
+@"{INT}"                        /* speak and wait     */\
 ]
 
 // look bricks
 #define kLookBrickNameParams @[\
-    @"{LOOK}",                      /* set look                 */\
-    @"{LOOK}",                      /* set background           */\
-    @[],                            /* next background          */\
-    @[],                            /* previous background      */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
-    @[],                            /* hide                     */\
-    @[],                            /* show                     */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
-    @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
-    @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
-    @[],                            /* clear graphic effect     */\
-    @"{STATICCHOICE}",              /* flash brick              */\
-    @"{STATICCHOICE}",              /* camera brick             */\
-    @"{STATICCHOICE}",              /* choose camera brick      */\
-    @"{INT}",                       /* SayBubbleBrick           */\
-    @[@"{INT}", @"{INT}"],          /* SayForBubbleBrick        */\
-    @"{INT}",                       /* ThinkBubbleBrick         */\
-    @[@"{INT}", @"{INT}"]           /* ThinkForBubbleBrick      */\
+@"{LOOK}",                      /* set look                 */\
+@"{LOOK}",                      /* set background           */\
+@[],                            /* next background          */\
+@[],                            /* previous background      */\
+@"{FLOAT;range=(-inf,inf)}",    /* set size to              */\
+@"{FLOAT;range=(-inf,inf)}",    /* change size by N         */\
+@[],                            /* hide                     */\
+@[],                            /* show                     */\
+@"{FLOAT;range=(-inf,inf)}",    /* set ghost effect         */\
+@"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
+@"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
+@"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
+@"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
+@"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
+@[],                            /* clear graphic effect     */\
+@"{STATICCHOICE}",              /* flash brick              */\
+@"{STATICCHOICE}",              /* camera brick             */\
+@"{STATICCHOICE}",              /* choose camera brick      */\
+@"{INT}",                       /* SayBubbleBrick           */\
+@[@"{INT}", @"{INT}"],          /* SayForBubbleBrick        */\
+@"{INT}",                       /* ThinkBubbleBrick         */\
+@[@"{INT}", @"{INT}"]           /* ThinkForBubbleBrick      */\
 ]
 
 // variable and list bricks
 #define kVariableBrickNameParams @[\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* change size by N         */\
-    @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
-    @[@"{VARIABLE}"],     /* hide Text        */\
-    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],   /* add item to user list        */\
-    @[@"LIST",@"{INT;range=(1,inf)}"],    /* delete item of user list          */\
-    @[@"{FLOAT;range=(-inf,inf)}",@"{LIST}",@"{INT;range=(1,inf)}"],    /* insert item into user list   */\
-	@[@"{LIST}",@"{INT;range=(1,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* replace item in user list    */\
+@[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
+@[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* change size by N         */\
+@[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* ShowText              */\
+@[@"{VARIABLE}"],     /* hide Text        */\
+@[@"{FLOAT;range=(-inf,inf)}",@"{LIST}"],   /* add item to user list        */\
+@[@"LIST",@"{INT;range=(1,inf)}"],    /* delete item of user list          */\
+@[@"{FLOAT;range=(-inf,inf)}",@"{LIST}",@"{INT;range=(1,inf)}"],    /* insert item into user list   */\
+@[@"{LIST}",@"{INT;range=(1,inf)}",@"{FLOAT;range=(-inf,inf)}"],    /* replace item in user list    */\
 ]
 
 // arduino bricks
@@ -259,7 +259,7 @@
 {
     if (!_selectButton) {
         _selectButton = [[SelectButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
-                        kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
+                                                                       kBrickCellDeleteButtonWidthHeight, kBrickCellDeleteButtonWidthHeight)];
         _selectButton.alpha = 0.0f;
         [self addSubview:_selectButton];
         [_selectButton addTarget:self action:@selector(selectButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -312,9 +312,9 @@
     CGRect frame = CGRectMake(kBrickInlineViewOffsetX, inlineViewOffsetY, (self.frame.size.width - kBrickInlineViewOffsetX), inlineViewHeight);
     self.inlineView.frame = frame;
     self.inlineView.backgroundColor = [UIColor clearColor];
-
+    
     NSArray *inlineViewSubViews = [self inlineViewSubviews];
-
+    
     // call corresponding subclass method, specific implementation (overridden method)
     @try {
         [self hookUpSubViews:inlineViewSubViews];
@@ -352,7 +352,7 @@
 - (NSArray*)inlineViewSubviews
 {
     CGRect canvasFrame = CGRectMake(kBrickInlineViewCanvasOffsetX, kBrickInlineViewCanvasOffsetY, self.inlineView.frame.size.width, self.inlineView.frame.size.height);
-
+    
     // get correct NSString array
     NSArray *brickCategoryParams = nil;
     switch (self.categoryType) {
@@ -381,22 +381,22 @@
             NSError(@"unknown brick category type given");
             abort();
     }
-
+    
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
     NSString *brickTitle = self.brickTitle;
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;
-
+    
     // check if it is a "two-liner" or a "one-liner" brick
     NSArray *lines = [brickTitle componentsSeparatedByString:@"\n"];
     NSUInteger numberOfLines = [lines count];
-
+    
     if (! numberOfLines) {
         return nil;
     }
-
+    
     NSUInteger numberOfPreviousLineParams = 0;
     if (numberOfLines > 1) {
         // determine number of params per line
@@ -411,7 +411,7 @@
                 NSError *error = NULL;
                 NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"%@" options:NSRegularExpressionCaseInsensitive error:&error];
                 numberOfCurrentLineParams = [regex numberOfMatchesInString:currentLine options:0 range:NSMakeRange(0, [currentLine length])];
-
+                
                 if (numberOfCurrentLineParams) {
                     currentLineParams = [brickParams subarrayWithRange:NSMakeRange(numberOfPreviousLineParams, numberOfCurrentLineParams)];
                     ++numberOfLinesWithParams;
@@ -420,7 +420,7 @@
             numberOfPreviousLineParams = numberOfPreviousLineParams + numberOfCurrentLineParams;
             [paramsOfLines addObject:currentLineParams];
         }
-
+        
         // determine height per line and generate subviews of all lines
         CGFloat totalHeight = canvasFrame.size.height;
         CGFloat averageHeight = totalHeight / (CGFloat)numberOfLines;
@@ -464,7 +464,7 @@
         [subviews addObject:textLabel];
         return subviews;
     }
-
+    
     // case: more than one subview
     NSArray *partLabels = [labelTitle componentsSeparatedByString:@"%@"];
     NSUInteger totalNumberOfPartLabels = [partLabels count];
@@ -474,24 +474,24 @@
     for (NSString *partLabelTitle in partLabels) {
         if (partLabelTitle.length) {
             UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
-    #ifdef LAYOUT_DEBUG
+#ifdef LAYOUT_DEBUG
             NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
             textLabel.backgroundColor = [UIColor blueColor];
-    #endif
+#endif
             remainingFrame.origin.x += (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
             remainingFrame.size.width -= (textLabel.frame.size.width + kBrickInputFieldLeftMargin);
             [subviews addObject:textLabel];
         }
-
+        
         // determine UI component
         if (counter < totalNumberOfParams) {
-
+            
             // -----------------------------------
             // NOTE: * This is only code used for testing purposes. TO BE REFACTORED...
             //       * Pickers, Pluralization, Hook Ups only for inputFields ...
             CGRect inputViewFrame = remainingFrame;
-//            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
-//            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
+            //            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
+            //            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
             inputViewFrame.origin.y += (inputViewFrame.size.height - kBrickInputFieldHeight)/2 - 0.5;
             inputViewFrame.size.height = kBrickInputFieldHeight;
             inputViewFrame.size.width = kBrickInputFieldMinWidth;
@@ -539,7 +539,7 @@
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();
             }
-
+            
             remainingFrame.origin.x += (inputField.frame.size.width + kBrickInputFieldRightMargin);
             remainingFrame.size.width -= (inputField.frame.size.width + kBrickInputFieldRightMargin);
             [subviews addObject:inputField];
@@ -595,9 +595,9 @@
     [UIView animateWithDuration:0.25
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
-                                | UIViewAnimationOptionRepeat
-                                | UIViewAnimationOptionAutoreverse
-                                | UIViewAnimationOptionAllowUserInteraction
+     | UIViewAnimationOptionRepeat
+     | UIViewAnimationOptionAutoreverse
+     | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
                          [UIView setAnimationRepeatCount:4];
                          self.alpha = 1.0f;
@@ -606,7 +606,7 @@
                          self.alpha = 1.0f;
                          NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
                          self.scriptOrBrick.animate = (duration < 2.0f);
-    }];
+                     }];
 }
 
 - (void)insertAnimate:(BOOL)animate
@@ -615,24 +615,23 @@
     if (! animate) {
         return;
     }
-            self.alpha = 0.2f;
-            [UIView animateWithDuration:0.8
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseInOut
-             | UIViewAnimationOptionRepeat
-             | UIViewAnimationOptionAutoreverse
-             | UIViewAnimationOptionAllowUserInteraction
-                             animations:^{
-                                 self.alpha = 1.0f;
-                             }
-                             completion:^(BOOL finished) {
-                                 self.alpha = 1.0f;
-                                 Brick *brick = (Brick*)self.scriptOrBrick;
-                                 if (brick.animateInsertBrick) {
-                                     [self insertAnimate:brick.animateInsertBrick];
-                                 }
-                             }];
-
+    self.alpha = 0.2f;
+    [UIView animateWithDuration:0.8
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+     | UIViewAnimationOptionRepeat
+     | UIViewAnimationOptionAutoreverse
+     | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         self.alpha = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.alpha = 1.0f;
+                         Brick *brick = (Brick*)self.scriptOrBrick;
+                         if (brick.animateInsertBrick) {
+                             [self insertAnimate:brick.animateInsertBrick];
+                         }
+                     }];
 }
 
 #pragma mark - BrickCellData

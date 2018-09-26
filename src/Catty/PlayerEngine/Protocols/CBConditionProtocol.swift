@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
- @objc protocol CBConditionProtocol {
+@objc protocol CBConditionProtocol {
     @objc func checkCondition(formulaInterpreter: FormulaInterpreterProtocol) -> Bool
     @objc func resetCondition()
     @objc func conditionFormulas() -> [Formula]

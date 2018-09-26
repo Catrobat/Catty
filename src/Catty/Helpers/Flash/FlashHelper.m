@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "FlashHelper.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -58,7 +57,7 @@ static FlashHelper *sharedFlashHandler = nil;
 {
     [self toggleFlash:FlashON];
 }
-    
+
 - (void)turnOff
 {
     [self toggleFlash:FlashOFF];
@@ -79,18 +78,17 @@ static FlashHelper *sharedFlashHandler = nil;
     [self toggleFlash:FlashResume];
 }
 
-
 #pragma mark - Helper
 
 - (void)toggleFlash:(NSInteger)toggle
 {
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(self.flashQueue, ^{
-
+        
         if ((toggle == FlashON && weakSelf.wasTurnedOn != FlashPause && sharedFlashHandler.wasTurnedOn != FlashON) || toggle == FlashResume) {
             if ([self isAvailable]){
                 AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-
+                
                 [device lockForConfiguration:nil];
                 [device setTorchMode:AVCaptureTorchModeOn];
                 [device setFlashMode:AVCaptureFlashModeOn];
@@ -111,7 +109,6 @@ static FlashHelper *sharedFlashHandler = nil;
             }
         }
     });
- 
 }
 
 -(BOOL)isAvailable

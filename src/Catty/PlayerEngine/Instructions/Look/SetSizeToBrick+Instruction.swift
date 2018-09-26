@@ -21,16 +21,16 @@
  */
 
 @objc extension SetSizeToBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
     
     @objc func actionBlock(_ formulaInterpreter: FormulaInterpreterProtocol) -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
+        
         return {
             let sizeInPercent = formulaInterpreter.interpretDouble(self.size, for: object)
             spriteNode.catrobatSize = sizeInPercent

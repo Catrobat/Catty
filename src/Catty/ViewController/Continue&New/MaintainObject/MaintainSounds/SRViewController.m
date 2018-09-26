@@ -37,45 +37,42 @@
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) AVAudioSession* session;
 @property (nonatomic,assign) BOOL isSaved;
-    //@property (nonatomic,strong) UIProgressView* timeProgress;
-    //@property (nonatomic,strong) NSTimer* progressTimer;
+//@property (nonatomic,strong) UIProgressView* timeProgress;
+//@property (nonatomic,strong) NSTimer* progressTimer;
 
 @end
 
 @implementation SRViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        // Do any additional setup after loading the view, typically from a nib.
-//    [self setupToolBar];
+    // Do any additional setup after loading the view, typically from a nib.
+    //    [self setupToolBar];
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                           target:self
                                                                           action:@selector(saveSound)];
     self.navigationController.toolbarHidden = YES;
-
+    
     self.navigationItem.rightBarButtonItem = save;
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - (self.view.frame.size.height * 0.4 / 2.0f), self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4);
-
-
-        //    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
+    
+    
+    //    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
     
     self.timerLabel.timerType = TimerLabelTypeStopWatch;
     [self.view addSubview:self.timerLabel];
-        //    [self.view addSubview:self.timeProgress];
+    //    [self.view addSubview:self.timeProgress];
     self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
     self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
     self.timerLabel.timeLabel.textColor = [UIColor globalTintColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
-    
     UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recording:)];
     [self.timerLabel addGestureRecognizer:recognizer];
-        //    [self.timeProgress addGestureRecognizer:recognizer];
+    //    [self.timeProgress addGestureRecognizer:recognizer];
     
     self.view.backgroundColor = [UIColor backgroundColor];
-    
     
     self.isRecording = NO;
     self.isSaved = NO;
@@ -92,13 +89,12 @@
     if (self.sound.name && !self.isSaved) {
         [self.delegate showSaveSoundAlert:self.sound];
     }
-
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-        // Dispose of any resources that can be recreated.
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)prepareRecorder
@@ -137,8 +133,6 @@
     [self.recorder prepareToRecord];
 }
 
-
-
 - (IBAction)recording:(id)sender {
     [self recordClicked];
 }
@@ -149,17 +143,17 @@
         
         [self.record setSelected:YES];
         [self.timerLabel start];
-            //        [self.recorder record];
+        //        [self.recorder record];
         self.isRecording = YES;
         [self.session setActive:YES error:nil];
         CBFileManager *fileManager = [CBFileManager sharedManager];
         [self.recorder recordForDuration:(([fileManager freeDiskspace]/1024ll)/256.0)];
-//        [self setupToolBar];
+        //        [self setupToolBar];
         self.sound.name = kLocalizedRecording;
-            //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
+        //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
     } else {
         [self.recorder pause];
-            //        [self.progressTimer invalidate];
+        //        [self.progressTimer invalidate];
         [self.timerLabel pause];
         [self.record setSelected:NO];
         self.isRecording = NO;
@@ -174,21 +168,21 @@
     [self.record setTitle:kLocalizedRecording forState:UIControlStateNormal];
 }
 
-    //- (void)updateProgressView
-    //{
-    //    CGFloat time = 0;
-    //    float minutes = floor(self.recorder.currentTime/60);
-    //    float seconds = self.recorder.currentTime - (minutes * 60);
-    //    time = (NSInteger)(seconds)% (NSInteger)(5*60);
-    //    time = time / (5*60);
-    //    [self.timeProgress setProgress:time];
-    //    [self.timeProgress setNeedsDisplay];
-    //
-    //}
+//- (void)updateProgressView
+//{
+//    CGFloat time = 0;
+//    float minutes = floor(self.recorder.currentTime/60);
+//    float seconds = self.recorder.currentTime - (minutes * 60);
+//    time = (NSInteger)(seconds)% (NSInteger)(5*60);
+//    time = time / (5*60);
+//    [self.timeProgress setProgress:time];
+//    [self.timeProgress setNeedsDisplay];
+//
+//}
 
 - (void)setupToolBar
 {
-
+    
     UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                           target:self
                                                                           action:@selector(saveSound)];
@@ -203,10 +197,10 @@
     [button setImage:recordPauseImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(recordClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *recordPause = [[UIBarButtonItem alloc] initWithCustomView:button];
-        //    UIBarButtonItem* recordPause = [[UIBarButtonItem alloc] initWithImage:recordPauseImage style:nil target:self action:@selector(recordClicked)];
+    //    UIBarButtonItem* recordPause = [[UIBarButtonItem alloc] initWithImage:recordPauseImage style:nil target:self action:@selector(recordClicked)];
     
-        // XXX: workaround for tap area problem:
-        // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
+    // XXX: workaround for tap area problem:
+    // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
     self.toolbarItems = [NSArray arrayWithObjects:flexItem(), invisibleItem(), recordPause, invisibleItem(), flexItem(),
@@ -225,6 +219,5 @@
     self.isSaved = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 @end

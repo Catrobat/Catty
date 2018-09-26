@@ -23,15 +23,15 @@
 @objc extension ShowTextBrick: CBInstructionProtocol {
     
     @nonobjc func instruction() -> CBInstruction {
-
+        
         guard let spriteObject = self.script?.object,
             let _ = spriteObject.program?.variables,
             let xFormula = self.xFormula,
             let yFormula = self.yFormula
             else { fatalError("This should never happen!") }
-
+        
         let userVariable = self.userVariable
-
+        
         return CBInstruction.execClosure { (context, _) in
             let xResult = context.formulaInterpreter.interpretDouble(xFormula, for: spriteObject)
             let yResult = context.formulaInterpreter.interpretDouble(yFormula, for: spriteObject)

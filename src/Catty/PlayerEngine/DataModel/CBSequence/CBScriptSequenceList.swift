@@ -21,26 +21,25 @@
  */
 
 final class CBScriptSequenceList : CBSequenceVisitProtocol {
-
+    
     // MARK: - Properties
     final let script: Script
     final let sequenceList: CBSequenceList
     final var count: Int { return sequenceList.count }
-
+    
     // MARK: - Initializers
     init(script : Script, sequenceList : CBSequenceList) {
         self.script = script
         self.sequenceList = sequenceList
         sequenceList.rootSequenceList = self
     }
-
+    
     deinit {
         sequenceList.rootSequenceList = nil
     }
-
+    
     // MARK: - Operations
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-
 }

@@ -25,12 +25,12 @@
     @nonobjc func instruction() -> CBInstruction {
         
         guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
+            let variables = spriteObject.program?.variables
             else { fatalError("This should never happen!") }
         
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
-    
+        
         return CBInstruction.execClosure { (context, _) in
             guard let formula = variableFormula else { return }
             let result = context.formulaInterpreter.interpret(formula, for: spriteObject)

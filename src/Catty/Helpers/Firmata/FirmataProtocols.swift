@@ -21,12 +21,13 @@
  */
 
 protocol FirmataDelegate: class {
+    
     func sendData(_ newData: Data)
     func didReceiveAnalogMessage(_ pin:Int,value:Int)
     func didReceiveDigitalMessage(_ pin:Int,value:Int)
     func firmwareVersionReceived(_ name:String)
     func protocolVersionReceived(_ name:String)
-//    func I2cMessageReceived(message:String)
+    //    func I2cMessageReceived(message:String)
     func stringDataReceived(_ message:String)
     func didReceiveDigitalPort(_ port:Int, portData:[Int])
     func didUpdateAnalogMapping(_ mapping:NSMutableDictionary)
@@ -34,6 +35,7 @@ protocol FirmataDelegate: class {
 }
 
 protocol FirmataProtocol {
+    
     func writePinMode(_ newMode:PinMode, pin:UInt8)
     func reportVersion()
     func reportFirmware()

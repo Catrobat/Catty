@@ -30,12 +30,12 @@
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+    }
+    return self;
 }
 
 - (void)settingsActionTapped {
@@ -58,10 +58,10 @@
         }
         else {
             [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToCameraCheckSettingsDescription]
-             addCancelActionWithTitle:kLocalizedCancel handler:nil]
-             addDefaultActionWithTitle:kLocalizedSettings handler:^{
-                 [self settingsActionTapped];
-             }] build]
+                addCancelActionWithTitle:kLocalizedCancel handler:nil]
+               addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                   [self settingsActionTapped];
+               }] build]
              showWithController:self.canvas];
         }
     }
@@ -76,10 +76,10 @@
         }
         else {
             [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
-             addCancelActionWithTitle:kLocalizedCancel handler:nil]
-             addDefaultActionWithTitle:kLocalizedSettings handler:^{
-                 [self settingsActionTapped];
-             }] build]
+                addCancelActionWithTitle:kLocalizedCancel handler:nil]
+               addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                   [self settingsActionTapped];
+               }] build]
              showWithController:self.canvas];
         }
     }
@@ -87,7 +87,7 @@
 
 #pragma mark imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-  
+    
     UIImage *image = info[UIImagePickerControllerEditedImage];
     if (! image) {
         image = info[UIImagePickerControllerOriginalImage];
@@ -99,20 +99,19 @@
     image = [UIImage imageWithImage:image
                    scaledToMaxWidth:self.canvas.saveView.frame.size.width
                           maxHeight:self.canvas.saveView.frame.size.height];
-  [self.canvas setImagePickerImage:image];
-  
-  [picker dismissViewControllerAnimated:YES completion:NULL];
-  
+    [self.canvas setImagePickerImage:image];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-  
-  [picker dismissViewControllerAnimated:YES completion:NULL];
-  
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 - (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
 {
-    
     
     BOOL state = NO;
     
@@ -166,6 +165,5 @@
         [Util alertWithText:pickerType == UIImagePickerControllerSourceTypeCamera ? kLocalizedNoCamera : kLocalizedImagePickerSourceNotAvailable];
     }
 }
-
 
 @end

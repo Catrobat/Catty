@@ -127,7 +127,7 @@
 {
     UIBarButtonItem *(^invisibleItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem invisibleItem]; };
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
-
+    
     UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
@@ -162,12 +162,11 @@
     }
 }
 
-
 - (void)showLoadingView
 {
     //    self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
-
+    
     self.collectionView.scrollEnabled = NO;
     self.collectionView.userInteractionEnabled = NO;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
@@ -195,6 +194,5 @@
     }
     return _loadingView;
 }
-
 
 @end

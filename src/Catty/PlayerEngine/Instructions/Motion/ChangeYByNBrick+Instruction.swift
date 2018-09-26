@@ -21,7 +21,7 @@
  */
 
 extension ChangeYByNBrick: CBInstructionProtocol {
-
+    
     func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }
@@ -30,8 +30,8 @@ extension ChangeYByNBrick: CBInstructionProtocol {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let yMovement = self.yMovement
-        else { fatalError("This should never happen!") }
-
+            else { fatalError("This should never happen!") }
+        
         return {
             let yMov = formulaInterpreter.interpretDouble(yMovement, for: object)
             spriteNode.catrobatPositionY = spriteNode.catrobatPositionY + yMov

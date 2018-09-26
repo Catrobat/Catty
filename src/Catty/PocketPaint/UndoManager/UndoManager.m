@@ -27,15 +27,15 @@
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-    self.canvas.undo.enabled = NO;
-    self.canvas.redo.enabled = NO;
-    self.levelsOfUndo = kMaxAllowedUndos;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+        self.canvas.undo.enabled = NO;
+        self.canvas.redo.enabled = NO;
+        self.levelsOfUndo = kMaxAllowedUndos;
+    }
+    return self;
 }
 
 - (void)setImage:(UIImage*)image
@@ -58,17 +58,16 @@
 
 - (void)updateUndoToolBarItems
 {
-  if (!self.canvas.undoManager.canUndo) {
-    self.canvas.undo.enabled = NO;
-  } else{
-    self.canvas.undo.enabled = YES;
-  }
-  if (!self.canvas.undoManager.canRedo) {
-    self.canvas.redo.enabled = NO;
-  } else{
-    self.canvas.redo.enabled = YES;
-  }
-
+    if (!self.canvas.undoManager.canUndo) {
+        self.canvas.undo.enabled = NO;
+    } else{
+        self.canvas.undo.enabled = YES;
+    }
+    if (!self.canvas.undoManager.canRedo) {
+        self.canvas.redo.enabled = NO;
+    } else{
+        self.canvas.redo.enabled = YES;
+    }
 }
 
 @end

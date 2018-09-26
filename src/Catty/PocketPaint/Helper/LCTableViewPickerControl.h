@@ -13,24 +13,23 @@
 #define kPickerTitleBarColor [UIColor navBarColor]
 
 enum ActionType {
-  brush,
-  eraser,
-  resize,
-  pipette,
-  mirror,
-  image,
-  line,
-  rectangle,
-  ellipse,
-  rotate,
-  stamp,
-  fillTool,
-  zoom,
-  pointer,
-  text
+    brush,
+    eraser,
+    resize,
+    pipette,
+    mirror,
+    image,
+    line,
+    rectangle,
+    ellipse,
+    rotate,
+    stamp,
+    fillTool,
+    zoom,
+    pointer,
+    text
 };
 typedef enum ActionType actionType;
-
 
 @class LCTableViewPickerControl;
 @protocol LCItemPickerDelegate <NSObject>
@@ -39,8 +38,6 @@ typedef enum ActionType actionType;
 - (void)selectControl:(LCTableViewPickerControl *)view didCancelWithItem:(id)item;
 
 @end
-
-
 
 @interface LCTableViewPickerControl : UIView <UITableViewDataSource, UITableViewDelegate>
 

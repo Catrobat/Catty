@@ -25,16 +25,13 @@
 #import "RuntimeImageCache.h"
 #import "Look.h"
 
-
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
 #define ARROW_BOX_WIDTH 20.0f
 #define ARROW_WIDTH 10.0f
 #define ARROW_HEIGHT 10.0f
-
 #define FONT_NAME @"Helvetica"
 #define TEXT_LEFT 5.0f
-
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
 @implementation iOSCombobox
@@ -95,10 +92,8 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextClearRect(ctx, rect);
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-  
-    CGColorSpaceRelease(baseSpace); baseSpace = NULL;
     
-
+    CGColorSpaceRelease(baseSpace); baseSpace = NULL;
     
     // ============================
     // Background gradient
@@ -123,7 +118,7 @@
                                         BORDER_OFFSET,
                                         ARROW_BOX_WIDTH - BORDER_OFFSET,
                                         rect.size.height - BORDER_WIDTH));
-
+    
     CGContextRestoreGState(ctx);
     
     // ===========================
@@ -181,13 +176,13 @@
     CGPathAddLineToPoint(path, NULL, centerX, arrowY + ARROW_HEIGHT);
     CGPathCloseSubpath(path);
     
-  if (active) {
+    if (active) {
         CGContextSetFillColorWithColor(ctx, [[UIColor globalTintColor] CGColor]);
-  }
-  else {
-       CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
-  }
-
+    }
+    else {
+        CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    }
+    
     CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
     CGPathRelease(path);
@@ -214,14 +209,13 @@
             width = 20;
         }
         [self.currentImage drawInRect:CGRectMake(centerX - 10,centerY - 10.0f, width, height)];
-//        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
+        //        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
         
         CGContextAddPath(ctx, path);
         CGContextFillPath(ctx);
         CGPathRelease(path);
         CGContextRestoreGState(ctx);
     }
-    
     
     // ==============================
     // Draw the text
@@ -243,10 +237,9 @@
         
     }
     [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
-                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
-                                             rect.size.height - BORDER_WIDTH)
-                         withAttributes:attributes];
-    
+                                      rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
+                                      rect.size.height - BORDER_WIDTH)
+            withAttributes:attributes];
 }
 
 /***********************************************************
@@ -318,7 +311,7 @@
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
-   
+    
     [tmpView insertSubview:channelLabel atIndex:1];
     
     return tmpView;
@@ -361,7 +354,7 @@
     if (self.currentImage) {
         [self addLookData];
     }
-
+    
     [self becomeFirstResponder];
     return NO;
 }
@@ -387,7 +380,6 @@
     {
         [[self delegate] comboboxOpened:self];
     }
-    
     return YES;
 }
 
@@ -436,9 +428,7 @@
             [self.images addObject:[UIImage new]];
         }
         count++;
-        
     }
-
 }
 
 @end

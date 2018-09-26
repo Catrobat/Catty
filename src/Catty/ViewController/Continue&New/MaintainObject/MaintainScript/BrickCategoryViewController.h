@@ -23,7 +23,6 @@
 #import "Brick.h"
 #import "UIDefines.h"
 
-
 @class SpriteObject;
 
 @class BrickCategoryViewController;

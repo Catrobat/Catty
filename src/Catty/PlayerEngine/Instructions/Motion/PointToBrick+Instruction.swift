@@ -21,20 +21,20 @@
  */
 
 @objc extension PointToBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
             let spriteNode = object.spriteNode,
             let pointedObjectPosition = self.pointedObject?.spriteNode?.position
             else { fatalError("This should never happen!") }
-
+        
         return {
             let objectPosition = spriteNode.position
-
+            
             var rotationDegrees = 0.0
             if (objectPosition.x == pointedObjectPosition.x) && (objectPosition.y == pointedObjectPosition.y) {
                 rotationDegrees = 0.0
@@ -54,7 +54,7 @@
                 let base = fabs(objectPosition.y - pointedObjectPosition.y)
                 let height = fabs(objectPosition.x - pointedObjectPosition.x)
                 let value = Double(atan(base/height)) * 180.0 / Double.pi
-
+                
                 if objectPosition.x < pointedObjectPosition.x {
                     if objectPosition.y > pointedObjectPosition.y {
                         rotationDegrees = 90.0 + value
@@ -69,7 +69,6 @@
                     }
                 }
             }
-
             spriteNode.catrobatRotation = rotationDegrees
         }
     }

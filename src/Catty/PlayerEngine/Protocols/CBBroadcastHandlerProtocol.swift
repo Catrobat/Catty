@@ -21,7 +21,7 @@
  */
 
 protocol CBBroadcastHandlerProtocol: class {
-
+    
     func setup()
     func tearDown()
     func subscribeBroadcastContext(_ context: CBBroadcastScriptContextProtocol)
@@ -30,5 +30,4 @@ protocol CBBroadcastHandlerProtocol: class {
     func wakeUpContextsWaitingForTerminationOfBroadcastContext(_ context: CBBroadcastScriptContextProtocol)
     func isWaitingForCalledBroadcastContexts(_ context: CBScriptContextProtocol) -> Bool
     func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(_ context: CBScriptContextProtocol)
-
 }

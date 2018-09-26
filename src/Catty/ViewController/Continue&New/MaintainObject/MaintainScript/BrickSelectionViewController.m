@@ -35,7 +35,7 @@
 -(id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary<NSString *,id> *)options
 {
     self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
-
+    
     self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
     
     NSDictionary * favouritesDict = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
@@ -53,7 +53,6 @@
     
     return self;
 }
-
 
 - (void)viewDidLoad
 {
@@ -86,7 +85,7 @@
 }
 
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
-     viewControllerAfterViewController:(UIViewController*)viewController
+      viewControllerAfterViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSNumber *pageIndex = [NSNumber numberWithInt:bcVC.pageIndexCategoryType];
@@ -110,8 +109,6 @@
     }
 }
 
-
-
 #pragma mark - Pageindicator
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
@@ -122,11 +119,11 @@
 - (void)overwritePageControl
 {
     self.pageControl = [[self.view.subviews
-                                   filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
+                         filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
     self.pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
     self.pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
     self.pageControl.backgroundColor = [UIColor toolBarColor];
-
+    
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController
@@ -140,8 +137,8 @@
 - (void)setupNavBar
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                           target:self
-                                                                                           action:@selector(dismiss:)];
+                                                                                          target:self
+                                                                                          action:@selector(dismiss:)];
     
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor navTintColor];
     
@@ -185,7 +182,6 @@
         }
         arrayIndex++;
     }
-    
     return 0;
 }
 

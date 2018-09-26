@@ -44,14 +44,14 @@
                             message:@"The name of the rootElement is '%@' but should be '%@'",
          xmlElement.name, @"object or pointedObject"];
     }
-
+    
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
-
+    
     SpriteObject *spriteObject = [self new];
     context.spriteObject = spriteObject; // update context!
-
+    
     GDataXMLNode *attribute = [attributes firstObject];
     GDataXMLElement *referencedObjectElement = nil;
     // check if normal or pointed object
@@ -75,7 +75,7 @@
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
     [XMLError exceptionIfNil:spriteObject.name message:@"SpriteObject must contain a name"];
-
+    
     // sprite object could (!) already exist in spriteObjectList or pointedSpriteObjectList at this point!
     SpriteObject *alreadyExistingSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.spriteObjectList
                                                                                   withName:spriteObject.name];
@@ -88,7 +88,7 @@
         [context.spriteObjectList addObject:spriteObject];
         return alreadyExistingPointedSpriteObject;
     }
-
+    
     // IMPORTANT: DO NOT CHANGE ORDER HERE!
     [context.spriteObjectList addObject:spriteObject];
     
@@ -126,7 +126,7 @@
     if (! [soundElements count]) {
         return [NSMutableArray array];
     }
-
+    
     NSMutableArray *soundList = [NSMutableArray arrayWithCapacity:[soundElements count]];
     for (GDataXMLElement *soundElement in soundElements) {
         Sound *sound = [context parseFromElement:soundElement withClass:[Sound class]];
@@ -141,12 +141,12 @@
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
-
+    
     NSArray *scriptElements = [[scriptListElements firstObject] children];
     if (! [scriptElements count]) {
         return [NSMutableArray array];
     }
-
+    
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
         Script *script = [context parseFromElement:scriptElement withClass:[Script class]];
@@ -166,7 +166,7 @@
 {
     // update context object
     context.spriteObject = self;
-
+    
     // generate xml element for sprite object
     GDataXMLElement *xmlElement = nil;
     if (! asPointedObject) {
@@ -175,9 +175,9 @@
     } else {
         xmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
     }
-
+    
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
-
+    
     // check if spriteObject has been already serialized (e.g. within a PointToBrick)
     CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.name];
     if (positionStackOfSpriteObject) {
@@ -187,12 +187,12 @@
         [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         return xmlElement;
     }
-
+    
     // save current stack position in context
     context.spriteObjectNamePositions[self.name] = currentPositionStack;
-
+    
     [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
-
+    
     GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList" context:context];
     for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
@@ -200,7 +200,7 @@
         [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:lookListXmlElement context:context];
-
+    
     GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList" context:context];
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
@@ -208,7 +208,7 @@
         [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:soundListXmlElement context:context];
-
+    
     GDataXMLElement *scriptListXmlElement = [GDataXMLElement elementWithName:@"scriptList" context:context];
     for (id script in self.scriptList) {
         [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
@@ -216,7 +216,7 @@
         [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:scriptListXmlElement context:context];
-
+    
     //  Unused at the moment => implement this after Catroid has decided to officially activate this!
     //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
     //    [xmlElement addChild:userBricksXmlElement context:context];
@@ -226,7 +226,7 @@
     
     // add pseudo <nfcTagList/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"nfcTagList" context:nil]];
-
+    
     return xmlElement;
 }
 

@@ -30,12 +30,11 @@
 
 @end
 
-
 @implementation InternFormulaState
 
 - (InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
-                          selection:(InternFormulaTokenSelection *)tokenSelection
-            andExternCursorPosition:(int)externCursorPosition
+                           selection:(InternFormulaTokenSelection *)tokenSelection
+             andExternCursorPosition:(int)externCursorPosition
 {
     self = [super init];
     if (self) {
@@ -46,9 +45,8 @@
         
     }
     return self;
-
+    
 }
-
 
 - (BOOL)isEqual:(id)objectToCompare
 {
@@ -80,11 +78,8 @@
                 }
             }
         }
-        
-        
         return YES;
     }
-    
     return [super isEqual:objectToCompare];
 }
 
@@ -107,12 +102,7 @@
     return [[InternFormula alloc]initWithInternTokenList:deepCopyOfInternTokenFormula
                              internFormulaTokenSelection:deepCopyOfInternFormulaTokenSelection
                                     externCursorPosition:self.externCursorPosition];
-
-
+    
 }
-
-
-
-
 
 @end

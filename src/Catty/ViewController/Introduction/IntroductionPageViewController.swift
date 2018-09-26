@@ -22,43 +22,43 @@
 
 @objc
 class IntroductionPageViewController: UIPageViewController {
-
+    
     /// The pages for the introduction content plus one extra page without
     /// content, that is shown before dismissing the introduction.
     private var pages: [UIViewController]!
-
+    
     /// Content of the pages
     private let content = [
         IntroductionViewController.Content(title: kLocalizedWelcomeToPocketCode, description: kLocalizedWelcomeDescription, image: #imageLiteral(resourceName: "page1_logo")),
         IntroductionViewController.Content(title: kLocalizedExploreApps, description: kLocalizedExploreDescription, image: #imageLiteral(resourceName: "page2_explore")),
         IntroductionViewController.Content(title: kLocalizedCreateAndEdit, description: kLocalizedCreateAndEditDescription, image: #imageLiteral(resourceName: "page3_info"))
     ]
-
+    
     /// A flag that is set when scrolling to the extra page without content
     private var dismissAfterAnimation = false
-
+    
     // MARK: - Lifecycle
-
+    
     init() {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupBackground()
         self.dataSource = self
         self.delegate = self
-
+        
         let storyboard = UIStoryboard(name: "Introduction", bundle: nil)
         guard let viewController = storyboard.instantiateInitialViewController() as? IntroductionViewController else {
             fatalError("Failed to load introduction content view controllers.")
         }
-
+        
         viewController.content = self.content[0]
         self.pages = [viewController]
         self.setViewControllers(self.pages, direction: .forward, animated: false)
@@ -72,7 +72,7 @@ extension IntroductionPageViewController {
             self.view.alpha = 0.95
             return
         }
-
+        
         self.view.backgroundColor = .clear
         let blurEffect = UIBlurEffect(style: .dark)
         let backgroundView = UIVisualEffectView(effect: blurEffect)
@@ -91,36 +91,36 @@ extension IntroductionPageViewController: UIPageViewControllerDataSource {
         guard let current = self.pages.index(of: viewController), current > 0,
             self.content.indices.contains(current - 1)
             else { return nil }
-
+        
         return self.pages[current - 1]
     }
-
+    
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let current = self.pages.index(of: viewController),
             current < self.content.count
             else { return nil }
-
+        
         if self.pages.indices.contains(current + 1) {
             return self.pages[current + 1]
         }
-
+        
         guard let storyboard = viewController.storyboard,
             let viewController = storyboard.instantiateInitialViewController() as? IntroductionViewController
             else { fatalError("Failed to load introduction content view controllers.") }
-
+        
         if current + 1 < self.content.count {
             viewController.content = self.content[current + 1]
         }
         self.pages = self.pages + [viewController]
         return viewController
     }
-
+    
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         // only show page indicator for the pages that have a content
         return self.content.count
     }
-
+    
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
@@ -135,7 +135,7 @@ extension IntroductionPageViewController: UIPageViewControllerDelegate {
             self.dismissAfterAnimation = index == self.content.count
         }
     }
-
+    
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool,
                                    previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         // dismiss introduction on showing extra page without content
@@ -158,7 +158,7 @@ extension IntroductionPageViewController {
             UserDefaults.standard.set(newValue, forKey: kUserIntroductionHasBeenShown)
         }
     }
-
+    
     @objc
     static var showOnEveryLaunch: Bool {
         get {

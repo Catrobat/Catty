@@ -21,10 +21,10 @@
  */
 
 class LibraryImageCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var imageView: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.imageView.layer.borderWidth = CGFloat(kDefaultImageCellBorderWidth)
@@ -39,7 +39,7 @@ extension LibraryImageCollectionViewCell {
         case loaded(image: UIImage)
         // a failed state could be added in order to support retry
     }
-
+    
     var state: State {
         get {
             if self.activityIndicator.isAnimating {

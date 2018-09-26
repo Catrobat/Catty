@@ -54,9 +54,9 @@
     self.translatesAutoresizingMaskIntoConstraints = NO;
     self.placeholderDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))];
     self.placeholderDescriptionLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
-                                                        UIViewAutoresizingFlexibleRightMargin |
-                                                        UIViewAutoresizingFlexibleTopMargin |
-                                                        UIViewAutoresizingFlexibleBottomMargin;
+    UIViewAutoresizingFlexibleRightMargin |
+    UIViewAutoresizingFlexibleTopMargin |
+    UIViewAutoresizingFlexibleBottomMargin;
     self.placeholderDescriptionLabel.textAlignment = NSTextAlignmentCenter;
     [self.placeholderDescriptionLabel setFont:[UIFont systemFontOfSize:25]];
     self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd, self.title];

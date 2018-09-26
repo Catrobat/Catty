@@ -107,7 +107,7 @@
     
     [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count]
                   message:@"Invalid number of header properties in XML!"];
-
+    
     for (CBXMLPropertyMapping *headerProperty in headerProperties) {
         
         if (headerProperty.ignoreProperty) {
@@ -153,8 +153,8 @@
                        context:context];
     
     NSString *dateTimeUploadString = (self.dateTimeUpload
-                                   ? [[[self class] headerDateFormatter] stringFromDate:self.dateTimeUpload]
-                                   : nil);
+                                      ? [[[self class] headerDateFormatter] stringFromDate:self.dateTimeUpload]
+                                      : nil);
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"dateTimeUpload"
                                                     stringValue:dateTimeUploadString
                                                         context:context]

@@ -48,4 +48,3 @@ class DateMonthSensor : DateSensor {
         return .device(position: type(of: self).position)
     }
 }
-

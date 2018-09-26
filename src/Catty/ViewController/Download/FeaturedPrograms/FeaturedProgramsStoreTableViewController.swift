@@ -25,21 +25,21 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
     // MARK: - Properties
     
     private var dataSource: FeaturedProgramsStoreTableDataSource
-
+    
     var loadingView: LoadingView?
     var shouldHideLoadingView = false
     var programForSegue: StoreProgram?
     var catrobatProject: StoreProgram?
     
     // MARK: - Initializers
-
+    
     required init?(coder aDecoder: NSCoder) {
         self.dataSource = FeaturedProgramsStoreTableDataSource.dataSource()
         super.init(coder: aDecoder)
     }
     
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -83,7 +83,7 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         
         return CatrobatProgram(dict: programDictionary, andBaseUrl: kFeaturedImageBaseUrl)
     }
-
+    
     private func setupTableView() {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.tableView.dataSource = self.dataSource
@@ -117,14 +117,14 @@ class FeaturedProgramsStoreTableViewController: UITableViewController, SelectedF
         let buttonTitle = kLocalizedOK
         
         switch error {
-            case .timeout:
-                title = kLocalizedServerTimeoutIssueTitle
-                message = kLocalizedServerTimeoutIssueMessage
-            default:
-                title = kLocalizedFeaturedProgramsLoadFailureTitle
-                message = kLocalizedFeaturedProgramsLoadFailureMessage
+        case .timeout:
+            title = kLocalizedServerTimeoutIssueTitle
+            message = kLocalizedServerTimeoutIssueMessage
+        default:
+            title = kLocalizedFeaturedProgramsLoadFailureTitle
+            message = kLocalizedFeaturedProgramsLoadFailureMessage
         }
-
+        
         AlertControllerBuilder.alert(title: title, message: message)
             .addDefaultAction(title: buttonTitle) { self.navigationController?.popViewController(animated: true) }.build()
             .showWithController(self)
@@ -158,9 +158,9 @@ extension FeaturedProgramsStoreTableViewController: FeaturedProgramsCellProtocol
     
     func selectedCell(dataSource datasource: FeaturedProgramsStoreTableDataSource, didSelectCellWith cell: FeaturedProgramsCell) {
         if let program = cell.program {
-           self.showLoadingView()
-           programForSegue = program
-           performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
+            self.showLoadingView()
+            programForSegue = program
+            performSegue(withIdentifier: kSegueToProgramDetail, sender: self)
         }
     }
 }

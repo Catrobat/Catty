@@ -21,27 +21,26 @@
  */
 
 final class CBOperationSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
-
+    
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?
     lazy var operationList = [CBOperation]()
-
+    
     // MARK: - Initializers
     init(rootSequenceList: CBScriptSequenceList) {
         self.rootSequenceList = rootSequenceList
     }
-
+    
     // MARK: - Operations
     func isEmpty() -> Bool {
         return (operationList.count == 0)
     }
-
+    
     func addOperation(_ operation : CBOperation) {
         operationList.append(operation)
     }
-
+    
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-
 }

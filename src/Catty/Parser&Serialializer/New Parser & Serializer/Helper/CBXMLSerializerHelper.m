@@ -85,7 +85,7 @@
         }
         ++index;
     }
-
+    
     // path reconstruction
     NSMutableString *path = [NSMutableString new];
     // check if destination element is outside of source element => then we have to prepend "../../[../]"

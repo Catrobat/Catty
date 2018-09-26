@@ -38,14 +38,14 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"formula" context:context];
-
+    
     // WARNING!! no context passed to called method here!!
     //           This is because using the stack for generating the formulaTree is not allowed.
     //           If you ignore this warning, the stack will do weird things and
     //           serialization won't work any more!
     GDataXMLElement *formulaXmlElement = [self.formulaTree xmlElementWithContext:nil];
     NSArray *children = [formulaXmlElement children]; // extract child elements
-
+    
     for (GDataXMLNode *node in children) {
         [xmlElement addChild:node context:nil];
     }

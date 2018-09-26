@@ -73,7 +73,6 @@
             NSDebug(@"Invalid operator");
             break;
     }
-    
     return priority;
 }
 
@@ -125,7 +124,6 @@
             NSDebug(@"Invalid operator");
             break;
     }
-    
     return isLogical;
 }
 
@@ -181,7 +179,6 @@
             return nil;
             break;
     }
-    
     return name;
 }
 
@@ -239,10 +236,8 @@
             NSDebug(@"Invalid operator");
             break;
     }
-    
     return name;
 }
-
 
 + (Operator)getOperatorByValue:(NSString*)name
 {
@@ -290,7 +285,7 @@
         return DECIMAL_MARK;
     }
     
-//    NSError(@"Unknown Operator: %@", name);
+    //    NSError(@"Unknown Operator: %@", name);
     return NO_OPERATOR;
 }
 

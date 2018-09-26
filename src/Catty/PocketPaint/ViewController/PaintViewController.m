@@ -131,14 +131,13 @@
             NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
             if (![blankdata isEqualToData:saveViewData]) {
                 NSData *editingData = UIImagePNGRepresentation(self.editingImage);
-//                if (self.editingImage != nil && ![self.editingImage isEqual:self.saveView.image]) {
+                //                if (self.editingImage != nil && ![self.editingImage isEqual:self.saveView.image]) {
                 if (self.editingImage != nil && ![editingData isEqual:saveViewData]) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 }
             }
-
         }
         // reenable swipe back gesture
         if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -160,15 +159,13 @@
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (UIEventSubtypeMotionShake && self.undoManager.canUndo) {
         [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedUndoDrawingDescription]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedUndo handler:^{
-             [self undoAction];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil]
+           addDefaultActionWithTitle:kLocalizedUndo handler:^{
+               [self undoAction];
+           }] build]
          showWithController:self];
     }
 }
-
-
 
 #pragma mark initView
 
@@ -182,9 +179,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
-    
     self.helper = [[UIView alloc] initWithFrame:rect];
-//    self.saveView.backgroundColor = [UIColor whiteColor];
+    //    self.saveView.backgroundColor = [UIColor whiteColor];
     //add blank image at the beginning
     if (self.editingImage) {
         UIImage *image = self.editingImage;
@@ -202,7 +198,7 @@
         self.saveView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
         self.saveView.contentMode = UIViewContentModeScaleAspectFit;
         self.drawView.contentMode = UIViewContentModeScaleAspectFit;
-
+        
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
@@ -211,7 +207,7 @@
     }
     
     self.editingImage = self.saveView.image;
-
+    
     [self.helper addSubview:self.saveView];
     [self.helper addSubview:self.drawView];
     self.currentToolIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
@@ -240,7 +236,6 @@
 
 - (void)setupGestures
 {
-    
     self.drawGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(draw:)];
     self.drawGesture.delegate = self;
     [self.view addGestureRecognizer:self.drawGesture];
@@ -263,10 +258,7 @@
     self.fillRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.fillRecognizer];
     self.fillRecognizer.enabled = NO;
-    
-    
 }
-
 
 - (void)setupZoom
 {
@@ -321,14 +313,14 @@
 - (void)editAction
 {
     [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedPaintSelect]
-      addCancelActionWithTitle:kLocalizedCancel handler:nil]
-      addDefaultActionWithTitle:kLocalizedPaintSave handler:^{
-          [self saveAction];
-      }]
-      addDefaultActionWithTitle:kLocalizedPaintNewCanvas handler:^{
-          [self newCanvasAction];
-      }] build]
-      showWithController:self];
+         addCancelActionWithTitle:kLocalizedCancel handler:nil]
+        addDefaultActionWithTitle:kLocalizedPaintSave handler:^{
+            [self saveAction];
+        }]
+       addDefaultActionWithTitle:kLocalizedPaintNewCanvas handler:^{
+           [self newCanvasAction];
+       }] build]
+     showWithController:self];
 }
 
 - (void)setupUndoManager
@@ -442,7 +434,7 @@
             self.toolbarItems = [NSArray arrayWithObjects: action, flexibleSpace,self.handToolBarButtonItem ,flexibleSpace,self.colorBarButtonItem,flexibleSpace,textChanger,flexibleSpace,self.undo,flexibleSpace,self.redo, nil];
         }
             break;
-        
+            
         case stamp:
         {
             UIBarButtonItem* newStamp = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"stamp"] style:UIBarButtonItemStylePlain target:self action:@selector(stampAction)];
@@ -475,7 +467,7 @@
             break;
     }
     self.navigationController.toolbarHidden = NO;
-     self.navigationController.navigationBar.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
 - (void)setBackAllActions
@@ -532,7 +524,7 @@
             break;
         case resize:
             [self resizeInitAction];
-//            self.currentToolIndicator.image = [UIImage imageNamed:@"crop"];
+            //            self.currentToolIndicator.image = [UIImage imageNamed:@"crop"];
             break;
         case pipette:
             [self initPipette];
@@ -585,25 +577,22 @@
         default:
             break;
     }
-    
 }
 
 #pragma mark undo/redo
 
 - (void)undoAction
 {
-    
     if (self.undoManager.canUndo) {
         [self.undoManager undo];
         //    NSLog(@"undo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
-    
 }
+
 - (void)redoAction
 {
-    
     if (self.undoManager.canRedo) {
         [self.undoManager redo];
         //     NSLog(@"redo");
@@ -632,14 +621,13 @@
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
         //    enabled = NO;
-//        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
+        //        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = NO;
         }
     } else {
         [Util alertWithTitle:kLocalizedInformation andText:kLocalizedPaintNoCrop];
     }
-    
 }
 
 - (void)initPipette
@@ -703,7 +691,6 @@
     } else {
         [self resizeInitAction];
     }
-    
 }
 
 - (void)stampAction
@@ -711,7 +698,6 @@
     self.resizeViewManager.gotImage = NO;
     self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
-
 
 #pragma mark change color/thickness
 
@@ -736,7 +722,6 @@
     
     [self presentSemiViewController:bvc];
 }
-
 
 #pragma mark change text
 
@@ -763,7 +748,6 @@
     [self presentViewController:tvc animated:YES completion:nil];
 }
 
-
 #pragma mark tool helpers
 
 - (void)setImagePickerImage:(UIImage*)image
@@ -779,13 +763,14 @@
     //                                 (int)width,
     //                                 (int)height);
     self.resizeViewManager.resizeViewer.frame = CGRectMake(self.resizeViewManager.resizeViewer.frame.origin.x, self.resizeViewManager.resizeViewer.frame.origin.y,
-                                                            (int)width,
-                                                            (int)height);
+                                                           (int)width,
+                                                           (int)height);
     
     self.resizeViewManager.resizeViewer.contentView.image = image;
     self.resizeViewManager.resizeViewer.contentMode = UIViewContentModeTop;
     [self.resizeViewManager showResizeView];
 }
+
 #pragma mark actionPicker delegate
 
 - (void)dismissPickerControl:(LCTableViewPickerControl*)view
@@ -859,7 +844,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark actionSheetActions
 
 - (void)saveAction
@@ -875,22 +859,21 @@
                 });
             } else {
                 [[[[[AlertControllerBuilder alertWithTitle:nil message:kLocalizedNoAccesToImagesCheckSettingsDescription]
-                 addCancelActionWithTitle:kLocalizedCancel handler:nil]
-                 addDefaultActionWithTitle:kLocalizedSettings handler:^{
-                     if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-                         if (self.editingPath) {
-                             [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-                         } else {
-                             [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
-                         }
-                     }
-                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                 }] build]
+                    addCancelActionWithTitle:kLocalizedCancel handler:nil]
+                   addDefaultActionWithTitle:kLocalizedSettings handler:^{
+                       if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                           if (self.editingPath) {
+                               [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                           } else {
+                               [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
+                           }
+                       }
+                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                   }] build]
                  showWithController:self];
             }
         }];
     });
-    
 }
 
 - (void)showSavedView
@@ -906,21 +889,19 @@
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
-
 - (void)newCanvasAction
 {
     [[[[[AlertControllerBuilder alertWithTitle:kLocalizedPaintNewCanvas message:kLocalizedPaintAskNewCanvas]
-     addCancelActionWithTitle:kLocalizedNo handler:nil]
-     addDefaultActionWithTitle:kLocalizedYes handler:^{
-         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-         UIGraphicsEndImageContext();
-         self.saveView.image = blank;
-         self.editingImage = blank;
-     }] build]
+        addCancelActionWithTitle:kLocalizedNo handler:nil]
+       addDefaultActionWithTitle:kLocalizedYes handler:^{
+           UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+           UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+           UIGraphicsEndImageContext();
+           self.saveView.image = blank;
+           self.editingImage = blank;
+       }] build]
      showWithController:self];
 }
-
 
 #pragma mark Getter
 
@@ -955,8 +936,6 @@
     return UIStatusBarStyleLightContent;
 }
 
-
-
 #pragma mark dealloc
 
 - (void)dealloc
@@ -965,6 +944,5 @@
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
 }
-
 
 @end

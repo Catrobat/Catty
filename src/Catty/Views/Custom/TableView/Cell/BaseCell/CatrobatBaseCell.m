@@ -37,7 +37,7 @@
 - (void)initialize
 {
     self.selectedBackgroundView = [self createSelectedBackground];
-
+    
     UIImage *accessoryImage = nil;
     switch (self.accessoryType) {
         case UITableViewCellAccessoryDisclosureIndicator:

@@ -55,7 +55,7 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-
+    
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
     if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
@@ -69,7 +69,7 @@
     if (loopBeginBrick.loopEndBrick != self) {
         [XMLError exceptionWithMessage:@"LoopBeginBrick contains no or a reference to other loopEndBrick"];
     }
-
+    
     NSString *brickXmlElementTypeName = nil;
     if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
         brickXmlElementTypeName = @"LoopEndlessBrick";

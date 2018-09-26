@@ -41,7 +41,7 @@ class TouchManager: NSObject, TouchManagerProtocol, UIGestureRecognizerDelegate 
         touchRecognizer.cancelsTouchesInView = false
         touchRecognizer.delegate = self
         touchRecognizer.isEnabled = true
-    
+        
         self.touchRecognizer = touchRecognizer
         UIApplication.shared.keyWindow?.addGestureRecognizer(touchRecognizer)
         reset()

@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <Foundation/Foundation.h>
 #define FlashUninitialized 10000
 #define FlashON 10001

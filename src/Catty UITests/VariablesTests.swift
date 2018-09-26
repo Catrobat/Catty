@@ -59,7 +59,7 @@ class VariablesTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.otherElements.containing(.staticText, identifier:"Set variable").children(matching: .other).element.tap()
         XCTAssert(app.sheets["Variable type"].exists)
     }
-
+    
     func testDontShowVListPickerWhenNoListsDefinedForObject() {
         let app = XCUIApplication()
         app.tables.staticTexts["New"].tap()

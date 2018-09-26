@@ -48,7 +48,6 @@ static int update_keys(unsigned long* pkeys,const unsigned long* pcrc_32_tab,int
     return c;
 }
 
-
 /***********************************************************************
  * Initialize the encryption keys and the random header according to
  * the given password.

@@ -49,7 +49,7 @@
         _generatedExternFormulaString = [[NSString alloc]init];;
     }
     return _generatedExternFormulaString;
-        
+    
 }
 
 - (InternToExternGenerator *)init
@@ -57,7 +57,7 @@
     self = [super init];
     if(self)
     {
-      
+        
     }
     
     return self;
@@ -134,7 +134,7 @@
         case TOKEN_TYPE_NUMBER:{
             NSDecimalNumber *number = [NSDecimalNumber decimalNumberWithString:tokenString];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
+            
             if(![[NSDecimalNumber notANumber] isEqual:number])
             {
                 NSString *priorityString = [[internToken getTokenStringValue] stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -220,7 +220,6 @@
             break;
     }
 }
-
 
 - (BOOL)appendWithWhitespace:(InternToken *)currenToken andNextToken:(InternToken *)nextToken
 {

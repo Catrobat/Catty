@@ -83,13 +83,13 @@
 - (void)removeCachedImagesFromDisk
 {
     NSMutableArray *urlsToDelete = [[NSMutableArray alloc] init];
-
+    
     NSURL *imageCacheUrl = [NSURL fileURLWithPath:self.imageCacheDirectory isDirectory:YES];
     NSDirectoryEnumerator *directoryEnumerator = [[NSFileManager defaultManager] enumeratorAtURL:imageCacheUrl
                                                                       includingPropertiesForKeys:@[NSURLContentAccessDateKey]
                                                                                          options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                     errorHandler:nil];
-
+    
     NSURL *fileURL;
     while (fileURL = [directoryEnumerator nextObject])
     {
@@ -97,11 +97,11 @@
         NSDate *maxAge = [NSDate dateWithTimeIntervalSinceNow:maxCacheAge];
         NSDate *fileLastAccessDate;
         [fileURL getResourceValue:&fileLastAccessDate forKey:NSURLContentAccessDateKey error:nil];
-
+        
         if ([maxAge compare:fileLastAccessDate] == NSOrderedDescending) // Delete all files with access date older then cacheDate(defined elsewhere)
             [urlsToDelete addObject:fileURL];
     }
-
+    
     for (NSURL *URL in urlsToDelete) {
         [[NSFileManager defaultManager] removeItemAtURL:URL error:nil];
     }
@@ -112,7 +112,7 @@
     dispatch_async(self.imageCacheQueue, ^ {
         [self createCacheDirectoryIfNotExists];
         NSString *path = [[NSString alloc] initWithFormat:@"%@/%@.png", self.imageCacheDirectory, [imageName sha1]];
-
+        
         CBFileManager *fileManager = [CBFileManager sharedManager];
         if (! [fileManager fileExists:path]) {
             [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
@@ -125,8 +125,8 @@
     NSString* path = [[NSString alloc] initWithFormat:@"%@/%@.png", self.imageCacheDirectory, [imageName sha1]];
     NSError *err = nil;
     NSData *data = [NSData dataWithContentsOfFile:path
-                                        options:NSDataReadingUncached
-                                          error:&err];
+                                          options:NSDataReadingUncached
+                                            error:&err];
     return [UIImage imageWithData:data];
 }
 

@@ -70,13 +70,13 @@
     self.platform = [Util platformName];
     self.platformVersion = [Util platformVersionWithoutPatch];
     self.programLicense = [Util catrobatProgramLicense]; // always use most recent license!
-
+    
     // now, this becomes a remixed version
     // ... but URL must be valid ...
     if (self.url && ([self.url hasPrefix:@"http://"] || [self.url hasPrefix:@"https://"])) {
         self.remixOf = self.url;
     }
-
+    
     // invalidate all web fields (current user now becomes the creator of this remix!)
     self.tags = nil;
     self.userHandle = nil;

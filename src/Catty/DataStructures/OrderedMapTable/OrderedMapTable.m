@@ -38,7 +38,6 @@
     return orderedMapTable;
 }
 
-
 + (id)weakToStrongObjectsMapTable
 {
     OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];

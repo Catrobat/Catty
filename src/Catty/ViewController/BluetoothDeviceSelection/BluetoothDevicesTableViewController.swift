@@ -25,11 +25,11 @@ import BluetoothHelper
 import CoreBluetooth
 
 class BluetoothDevicesTableViewController: UITableViewController {
-
+    
     weak var delegate : BluetoothPopupVC?
     weak var loadingView: LoadingView!
     var scenePresenterVC : ScenePresenterViewController!
-
+    
     override func viewDidLoad() {
         let loadingView = LoadingView() // helper variable due to self.loadingView being a weak property
         self.view.addSubview(loadingView)
@@ -158,7 +158,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
         tableView.isUserInteractionEnabled = false
         startScene()
     }
-
+    
     func startScene(){
         let central = CentralManager.sharedInstance
         if central.isScanning {
@@ -170,5 +170,4 @@ class BluetoothDevicesTableViewController: UITableViewController {
             self.scenePresenterVC.checkResourcesAndPushViewControllerTo(navigationController: self.navigationController!)
         }
     }
-
 }

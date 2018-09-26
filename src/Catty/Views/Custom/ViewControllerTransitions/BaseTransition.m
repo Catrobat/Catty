@@ -47,5 +47,4 @@ const CGFloat kDurationDismiss = 0.25f;
     return self;
 }
 
-
 @end

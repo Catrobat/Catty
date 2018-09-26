@@ -33,22 +33,20 @@ import Foundation
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else{
                 return
             }
- 
             
             switch (self.phiroMotor()) {
             case .Left:
-                    phiro.moveLeftMotorBackward(speedValue);
+                phiro.moveLeftMotorBackward(speedValue);
                 break;
             case .Right:
-                    phiro.moveRightMotorBackward(speedValue);
+                phiro.moveRightMotorBackward(speedValue);
                 break;
             case .Both:
-                    phiro.moveRightMotorBackward(speedValue);
-                    phiro.moveLeftMotorBackward(speedValue);
+                phiro.moveRightMotorBackward(speedValue);
+                phiro.moveLeftMotorBackward(speedValue);
                 break;
             }
             context.state = .runnable
         }
     }
-
 }

@@ -25,8 +25,8 @@
 
 - (ExternInternRepresentationMapping *)init;
 - (void)putMappingWithStart:(int)externStringStartIndex
-                    andEnd:(int)externStringEndIndex
-        andInternListIndex:(int)internListIndex;
+                     andEnd:(int)externStringEndIndex
+         andInternListIndex:(int)internListIndex;
 
 - (int)getExternTokenStartIndex:(int)internIndex;
 
@@ -35,7 +35,6 @@
 - (int)getInternTokenByExternIndex:(int)externIndex;
 
 - (int)getExternTokenStartOffset:(int)externIndex
-             withInternOffsetTo:(int)internOffsetTo;
-
+              withInternOffsetTo:(int)internOffsetTo;
 
 @end

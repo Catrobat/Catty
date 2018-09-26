@@ -43,7 +43,7 @@
     
     NSMutableArray *functionInternTokenList = [[NSMutableArray alloc] init];
     [functionInternTokenList addObject:[internTokenList objectAtIndex:functionBracketCloseInternTokenListIndex]];
-
+    
     int functionIndex = functionBracketCloseInternTokenListIndex - 1;
     InternToken *tempSearchToken;
     int nestedFunctionsCounter = 1;
@@ -233,9 +233,7 @@
                 break;
             default:
                 break;
-                
         }
-        
         [functionInternTokenList addObject:tempSearchToken];
         
     } while (tempSearchToken.internTokenType != TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE || nestedFunctionsCounter != 0);
@@ -372,7 +370,6 @@
                 [currentParameterInternTokenList addObject:tempSearchToken];
                 break;
         }
-        
         searchIndex++;
         
     } while (tempSearchToken.internTokenType != TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE || nestedFunctionsCounter != 0);
@@ -380,7 +377,6 @@
     if ([currentParameterInternTokenList count] > 0) {
         [functionParameterInternTokenList addObject:currentParameterInternTokenList];
     }
-    
     return functionParameterInternTokenList;
 }
 
@@ -390,7 +386,6 @@
     if (functionList == nil || [functionList count] != [internTokenList count]) {
         return false;
     }
-    
     return true;
 }
 
@@ -399,7 +394,6 @@
     if (internTokens == nil || [internTokens count] == 0) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
-    
     return ((InternToken*)[internTokens objectAtIndex:0]).internTokenType;
 }
 
@@ -414,7 +408,6 @@
     if (firstInternTokenType == TOKEN_TYPE_PERIOD) {
         return true;
     }
-    
     return false;
 }
 
@@ -431,7 +424,6 @@
     if (firstInternTokenType == TOKEN_TYPE_FUNCTION_NAME) {
         return true;
     }
-    
     return false;
 }
 
@@ -463,8 +455,8 @@
 }
 
 + (NSMutableArray*)insertOperatorToNumberToken:(InternToken*)numberTokenToBeModified
-                         numberOffset:(int)externNumberOffset
-                               operator:(InternToken*)operatorToInsert
+                                  numberOffset:(int)externNumberOffset
+                                      operator:(InternToken*)operatorToInsert
 {
     NSMutableArray *replaceTokenList = [[NSMutableArray alloc]init];
     NSString *numberString = [numberTokenToBeModified getTokenStringValue];
@@ -478,12 +470,10 @@
     [replaceTokenList addObject:rightNumber];
     
     return replaceTokenList;
-    
-    
 }
 
 + (InternToken*)insertIntoNumberToken:(InternToken*)numberTokenToBeModified
-                               numberOffset:(int)externNumberOffset
+                         numberOffset:(int)externNumberOffset
                                number:(NSString*)numberToInsert
 {
     NSString *numberString = numberTokenToBeModified.tokenStringValue;
@@ -515,15 +505,14 @@
         if (index < [keepParameterInternTokenList count] && [[keepParameterInternTokenList objectAtIndex:index] count] > 0) {
             [replacedParametersFunction addObjectsFromArray:[keepParameterInternTokenList objectAtIndex:index]];
         } else {
-           [replacedParametersFunction addObjectsFromArray:[originalParameterInternTokenList objectAtIndex:index]];
+            [replacedParametersFunction addObjectsFromArray:[originalParameterInternTokenList objectAtIndex:index]];
         }
         
         if (index < functionParameterCount - 1) {
             [replacedParametersFunction addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
         }
-        
     }
-
+    
     [replacedParametersFunction addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
     
     return replacedParametersFunction;
@@ -531,7 +520,7 @@
 
 + (int)getFunctionParameterCount:(NSArray*)functionInternTokenList
 {
-        if (functionInternTokenList == nil
+    if (functionInternTokenList == nil
         || [functionInternTokenList count] < 4
         || ((InternToken*)[functionInternTokenList objectAtIndex:0]).internTokenType != TOKEN_TYPE_FUNCTION_NAME
         || ((InternToken*)[functionInternTokenList objectAtIndex:1]).internTokenType != TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN) {
@@ -647,13 +636,12 @@
             default:
                 break;
         }
-        
     }
     return true;
 }
 
 + (BOOL)swapBrackets:(NSMutableArray*)internFormula firstBrackIndex:(int)firstBracketIndex
-       tokenType:(InternTokenType)secondBracket
+           tokenType:(InternTokenType)secondBracket
 {
     for (int index = firstBracketIndex + 1; index < [internFormula count]; index++) {
         if (((InternToken*)[internFormula objectAtIndex:index]).internTokenType == secondBracket) {

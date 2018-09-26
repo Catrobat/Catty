@@ -33,7 +33,6 @@
 - (void)showDownloadSoundAlert:(Sound *)sound;
 @end
 
-
 @interface SoundsTableViewController : BaseTableViewController <SoundDelegate>
 
 @property (strong, nonatomic) SpriteObject *object;

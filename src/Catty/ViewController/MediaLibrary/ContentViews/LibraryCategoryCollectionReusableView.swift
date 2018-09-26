@@ -21,7 +21,7 @@
  */
 
 class LibraryCategoryCollectionReusableView: UICollectionReusableView {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var borderThicknessConstraint: NSLayoutConstraint!

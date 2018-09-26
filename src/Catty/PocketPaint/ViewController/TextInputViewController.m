@@ -100,15 +100,13 @@
     textLabel.text = kLocalizedPaintText;
     textLabel.textColor = [UIColor globalTintColor];
     
-    
     UILabel *attributesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height * 0.25 + 30 + CGRectGetMaxY(self.toolBar.frame), 100, 20)];
     attributesLabel.text = kLocalizedPaintAttributes;
     attributesLabel.textColor = [UIColor globalTintColor];
     
-    
     self.fontPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
     self.sizePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20+(self.view.frame.size.width-40) / 2.0 + 5 , self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
-
+    
     self.boldButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.boldButton.frame = CGRectMake(20, self.fontPickerView.frame.origin.y + self.fontPickerView.frame.size.height + 30, 100, 20);
     self.boldButton.tintColor = [UIColor globalTintColor];
@@ -130,7 +128,6 @@
     [self.underlineButton addTarget:self action:@selector(underlineAction) forControlEvents:UIControlEventTouchUpInside];
     self.underlineButton.selected = self.underline;
     
-
     [self.view addSubview:self.textField];
     [self.view addSubview:self.fontPickerView];
     [self.view addSubview:self.sizePickerView];
@@ -143,7 +140,6 @@
 
 - (void) setupPickerViews
 {
-
     self.fontPickerView.delegate = self;
     self.fontPickerView.dataSource = self;
     self.fontPickerView.tintColor = [UIColor globalTintColor];
@@ -154,13 +150,11 @@
     self.fontPickerData = [[NSMutableArray alloc] initWithObjects:@"Standard",@"Serif",@"SanSerif", nil];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark PickerView
 
@@ -177,10 +171,9 @@
     }
 }
 
-
 -(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSString *title = @"";
-
+    
     if (pickerView == self.fontPickerView) {
         title =  self.fontPickerData[row];
     } else {
@@ -192,7 +185,6 @@
     return attString;
 }
 
-
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (pickerView == self.fontPickerView) {
@@ -203,7 +195,6 @@
         self.fontSize = sizeString.integerValue;
     }
 }
-
 
 -(void)fontSelected:(NSInteger)row
 {
@@ -253,15 +244,15 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
     if ([self.textField.text  isEqual: @""]) {
@@ -284,18 +275,16 @@
             dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:self.fontSize], NSFontAttributeName,
                     [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
         }
-       
+        
     } else {
         dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                               [UIFont fontWithName:self.fontString size:self.fontSize], NSFontAttributeName,
-                               [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
+                [UIFont fontWithName:self.fontString size:self.fontSize], NSFontAttributeName,
+                [NSNumber numberWithFloat:1.0], NSBaselineOffsetAttributeName, nil];
     }
     
     if (self.underline) {
         [dict setObject:@(NSUnderlineStyleSingle) forKey:NSUnderlineStyleAttributeName];
     }
-    
-
     
     self.fontDictionary = dict;
     NSDictionary *saveDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:self.bold],@"Bold",[NSNumber numberWithBool:self.italic],@"Italic",[NSNumber numberWithBool:self.underline],@"Underline",[NSNumber numberWithInteger:self.fontSize],@"Size",[NSNumber numberWithInteger:self.fontType],@"Font", nil];

@@ -58,8 +58,6 @@
                 [cell.toggleSwitch setOnTintColor:[UIColor globalTintColor]];
             }]];
         }
-        
-        
     }]];
     __unsafe_unretained typeof(self) weakSelf = self;
     BluetoothService *service = [BluetoothService sharedInstance];
@@ -85,11 +83,8 @@
                         [weakSelf removeKnownDevices];
                     };
                 }]];
-                
             }
-            
         }]];
-        
     }
     
     if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue])
@@ -140,8 +135,6 @@
                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
         section.footerTitle = version;
     }]];
-    
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

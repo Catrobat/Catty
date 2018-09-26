@@ -38,7 +38,6 @@
 #import "BDKNotifyHUD.h"
 #import "Pocket_Code-Swift.h"
 
-
 @interface ProgramsForUploadViewController ()
 
 @property (nonatomic, strong) Program *lastUsedProgram;
@@ -48,7 +47,6 @@
 @property (nonatomic, strong) NSMutableArray *uploadingProgramInfos;
 
 @end
-
 
 @implementation ProgramsForUploadViewController
 
@@ -88,7 +86,6 @@
     if(_showLoginFeedback) {
         [self showLoggedInView];
     }
-    
     _showLoginFeedback = false;
 }
 
@@ -136,8 +133,7 @@
     
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     [self configureImageCell:imageCell atIndexPath:indexPath];
-
-
+    
     return imageCell;
 }
 
@@ -238,7 +234,6 @@
         currentCell.accessoryType = UITableViewCellAccessoryNone;
         [self.uploadingProgramInfos removeObject:[self.programLoadingInfos objectAtIndex:indexPath.row]];
     }
-
 }
 
 #pragma mark - Actions
@@ -261,42 +256,40 @@
 - (void)setupToolBar
 {
     [super setupToolBar];
-
+    
     self.uploadButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedUpload
                                                          style:UIBarButtonItemStylePlain
                                                         target:self
                                                         action:@selector(uploadProgramAction:)];
     
     [self.uploadButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
-
+    
     UIBarButtonItem *(^flexItem)(void) = ^UIBarButtonItem *() { return [UIBarButtonItem flexItem]; };
     self.toolbarItems = @[flexItem(), self.uploadButton, flexItem()];
 }
 
 - (void)showUploadInfoView
 {
-
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-        UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
-        if (self.uploadingProgramInfos.count) {
-            Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
-            vc.program = prog;
-            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
-            self.tableView.scrollEnabled = NO;
-
-            [self.navigationController presentViewController:navController animated:YES completion:^{
-                self.tableView.scrollEnabled = YES;
-                self.uploadButton.enabled = YES;
-                self.navigationItem.leftBarButtonItem.enabled = YES;
-                //[self showUploadSuccessfulView];
-            }];
-            self.navigationItem.leftBarButtonItem.enabled = NO;
-            self.uploadButton.enabled = NO;
-        } else {
-            NSDebug(@"Please select a program to upload");
-            [Util alertWithText:kLocalizedUploadSelectProgram];
-        }
-
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+    UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
+    if (self.uploadingProgramInfos.count) {
+        Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
+        vc.program = prog;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.tableView.scrollEnabled = NO;
+        
+        [self.navigationController presentViewController:navController animated:YES completion:^{
+            self.tableView.scrollEnabled = YES;
+            self.uploadButton.enabled = YES;
+            self.navigationItem.leftBarButtonItem.enabled = YES;
+            //[self showUploadSuccessfulView];
+        }];
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+        self.uploadButton.enabled = NO;
+    } else {
+        NSDebug(@"Please select a program to upload");
+        [Util alertWithText:kLocalizedUploadSelectProgram];
+    }
 }
 
 - (void)showLoggedInView
@@ -312,6 +305,5 @@
                       inView:self.view
                   completion:^{ [hud removeFromSuperview]; }];
 }
-
 
 @end

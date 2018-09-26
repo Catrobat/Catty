@@ -22,7 +22,6 @@
 
 #import "ProgramTableViewController.h"
 
-
 @interface ProgramTableViewController (UnitTestingExtensions)
 
 @end

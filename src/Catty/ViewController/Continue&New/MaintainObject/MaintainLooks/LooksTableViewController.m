@@ -44,8 +44,8 @@
 #import "Pocket_Code-Swift.h"
 
 @interface LooksTableViewController () <UIImagePickerControllerDelegate,
-                                        UINavigationControllerDelegate,
-                                        UITextFieldDelegate>
+UINavigationControllerDelegate,
+UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
 @property (nonatomic, assign) BOOL deletionMode;
@@ -118,19 +118,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.object.lookList.count) {
         NSString *destructiveActionTitle = self.object.isBackground ? kLocalizedDeleteBackgrounds : kLocalizedDeleteLooks;
         [[actionSheet
-         addDestructiveActionWithTitle:destructiveActionTitle handler:^{
-             self.deletionMode = YES;
-             self.copyMode = NO;
-             [self setupEditingToolBar];
-             [super changeToEditingMode:sender];
-         }]
+          addDestructiveActionWithTitle:destructiveActionTitle handler:^{
+              self.deletionMode = YES;
+              self.copyMode = NO;
+              [self setupEditingToolBar];
+              [super changeToEditingMode:sender];
+          }]
          addDefaultActionWithTitle:kLocalizedCopyLooks handler:^{
              self.deletionMode = NO;
              self.copyMode = YES;
              [self setupEditingToolBar];
              [super changeToEditingMode:sender];
          }];
-
+        
     }
     if (self.object.lookList.count >= 2) {
         [actionSheet addDefaultActionWithTitle:kLocalizedMoveLooks handler:^{
@@ -142,9 +142,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     [[[actionSheet
-     addDefaultActionWithTitle:detailActionTitle handler:^{
-         [self toggleDetailCellsMode];
-     }] build]
+       addDefaultActionWithTitle:detailActionTitle handler:^{
+           [self toggleDetailCellsMode];
+       }] build]
      showWithController:self];
 }
 
@@ -186,7 +186,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
     [self.object addLook:look AndSaveToDisk:YES];
-
+    
     [self showPlaceHolder:NO];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
@@ -242,7 +242,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if ([newLookName isEqualToString:look.name])
         return;
-
+    
     [self showLoadingView];
     newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
     [self.object renameLook:look toName:newLookName AndSaveToDisk:YES];
@@ -314,28 +314,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
-
+    
     if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)] || ! [cell isKindOfClass:[CatrobatBaseCell class]]) {
         return cell;
     }
-
+    
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
-
+    
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
     NSString *previewImagePath = [self.object previewImagePathForLookAtIndex:indexPath.row];
     NSString *imagePath = [self.object pathForLook:look];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
-
+    
     UIImage *image = [imageCache cachedImageForPath:previewImagePath];
     if (! image) {
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
-                                                  thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
+                                             thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
                                                    onCompletion:^(UIImage *img, NSString* path){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
@@ -347,13 +347,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         imageCell.iconImageView.image = image;
     }
     imageCell.titleLabel.text = look.name;
-
+    
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
         detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedMeasure];
         detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
-
+        
         NSValue *value = [self.dataCache objectForKey:look.fileName];
         CGSize dimensions;
         if (! value) {
@@ -419,28 +419,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSString *actionSheetTitle = self.object.isBackground ? kLocalizedEditBackground : kLocalizedEditLook;
         
         [[[[[[[AlertControllerBuilder actionSheetWithTitle:actionSheetTitle]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedCopy handler:^{
-             [self copyLooksActionWithSourceLooks:@[[self.object.lookList objectAtIndex:indexPath.row]]];
-         }]
-         addDefaultActionWithTitle:kLocalizedRename handler:^{
-             Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
-                                           target:self
-                                     cancelAction:nil
-                                       withObject:look
-                                      promptTitle:kLocalizedRenameImage
-                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
-                                      promptValue:look.name
-                                promptPlaceholder:kLocalizedEnterYourImageNameHere
-                                   minInputLength:kMinNumOfLookNameCharacters
-                                   maxInputLength:kMaxNumOfLookNameCharacters
-                              blockedCharacterSet:[self blockedCharacterSet]
-                         invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
-         }] build]
-         viewWillDisappear:^{
-             [tableView setEditing:false animated:YES];
-         }]
+              addCancelActionWithTitle:kLocalizedCancel handler:nil]
+             addDefaultActionWithTitle:kLocalizedCopy handler:^{
+                 [self copyLooksActionWithSourceLooks:@[[self.object.lookList objectAtIndex:indexPath.row]]];
+             }]
+            addDefaultActionWithTitle:kLocalizedRename handler:^{
+                Look *look = [self.object.lookList objectAtIndex:indexPath.row];
+                [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
+                                              target:self
+                                        cancelAction:nil
+                                          withObject:look
+                                         promptTitle:kLocalizedRenameImage
+                                       promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                         promptValue:look.name
+                                   promptPlaceholder:kLocalizedEnterYourImageNameHere
+                                      minInputLength:kMinNumOfLookNameCharacters
+                                      maxInputLength:kMaxNumOfLookNameCharacters
+                                 blockedCharacterSet:[self blockedCharacterSet]
+                            invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+            }] build]
+          viewWillDisappear:^{
+              [tableView setEditing:false animated:YES];
+          }]
          showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
@@ -448,10 +448,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // Delete button was pressed
         NSString *alertTitle = (self.object.isBackground ? kLocalizedDeleteThisBackground : kLocalizedDeleteThisLook);
         [[[[[AlertControllerBuilder alertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedYes handler:^{
-             [self deleteLookForIndexPath:indexPath];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil]
+           addDefaultActionWithTitle:kLocalizedYes handler:^{
+               [self deleteLookForIndexPath:indexPath];
+           }] build]
          showWithController:self];
     }];
     return @[deleteAction, moreAction];
@@ -459,15 +459,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-  return [TableUtil heightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-//    static NSString *segueToImage = kSegueToImage;
+    //    static NSString *segueToImage = kSegueToImage;
     if (! self.editing) {
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        //        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
         vc.delegate = self;
         self.selectedLookIndex = indexPath.row;
@@ -486,11 +486,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (! [UIImagePickerController isSourceTypeAvailable:sourceType])
         return;
-
+    
     NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
     if (! [availableMediaTypes containsObject:(NSString *)kUTTypeImage])
         return;
-
+    
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = sourceType;
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
@@ -571,7 +571,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     [self hideLoadingView];
 }
-
 
 -(void)saveImageData:(NSData*)imageData withFileName:(NSString*)imageFileName andImageFileNameExtension:(NSString*)imageFileNameExtension
 {
@@ -681,37 +680,37 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     
     [[[[actionSheet
-     addDefaultActionWithTitle:kLocalizedDrawNewImage handler:^{
-         dispatch_async(dispatch_get_main_queue(), ^{
-             PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
-             vc.delegate = self;
-             vc.editingPath = nil;
-             vc.programHeight = self.object.program.header.screenHeight.floatValue;
-             vc.programWidth = self.object.program.header.screenWidth.floatValue;
-             NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
-             [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-             [self.navigationController pushViewController:vc animated:YES];
-         });
-     }]
-     addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
-         dispatch_async(dispatch_get_main_queue(), ^{
-             if (self.object.isBackground) {
-                 [self showBackgroundsMediaLibrary];
-             } else {
-                 [self showLooksMediaLibrary];
-             }
-         });
-     }] build]
+        addDefaultActionWithTitle:kLocalizedDrawNewImage handler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
+                vc.delegate = self;
+                vc.editingPath = nil;
+                vc.programHeight = self.object.program.header.screenHeight.floatValue;
+                vc.programWidth = self.object.program.header.screenWidth.floatValue;
+                NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+                [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+                [self.navigationController pushViewController:vc animated:YES];
+            });
+        }]
+       addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
+           dispatch_async(dispatch_get_main_queue(), ^{
+               if (self.object.isBackground) {
+                   [self showBackgroundsMediaLibrary];
+               } else {
+                   [self showLooksMediaLibrary];
+               }
+           });
+       }] build]
      showWithController:self];
 }
 
 - (void)suggestToOpenSettingsAppWithMessage:(NSString *)message {
     [[[[[AlertControllerBuilder alertWithTitle:nil message:message]
-     addCancelActionWithTitle:kLocalizedCancel handler:nil]
-     addDefaultActionWithTitle:kLocalizedSettings handler:^{
+        addCancelActionWithTitle:kLocalizedCancel handler:nil]
+       addDefaultActionWithTitle:kLocalizedSettings handler:^{
            NSDebug(@"Settings Action");
            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-     }] build]
+       }] build]
      showWithController:self completion: ^{
          if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
              if (self.afterSafeBlock) {
@@ -727,7 +726,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)setupToolBar
 {
     [super setupToolBar];
-
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addLookAction:)];
@@ -745,18 +744,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)setupEditingToolBar
 {
     [super setupEditingToolBar];
-
+    
     UIBarButtonItem *editActionButton;
     if (self.deletionMode){
         editActionButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
-                                                                          style:UIBarButtonItemStylePlain
-                                                                         target:self
-                                                                         action:@selector(confirmDeleteSelectedLooksAction:)];
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(confirmDeleteSelectedLooksAction:)];
     } else{
         editActionButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCopy
-                                                                          style:UIBarButtonItemStylePlain
-                                                                         target:self
-                                                                         action:@selector(copySelectedLooksAction:)];
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(copySelectedLooksAction:)];
     }
     // XXX: workaround for tap area problem:
     // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
@@ -771,15 +770,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
     [[[[[AlertControllerBuilder alertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [self cancelPaintSave];
-     }]
-     addDefaultActionWithTitle:kLocalizedYes handler:^{
-         [self savePaintImage:image andPath:path];
-     }] build]
+        addCancelActionWithTitle:kLocalizedCancel handler:^{
+            [self cancelPaintSave];
+        }]
+       addDefaultActionWithTitle:kLocalizedYes handler:^{
+           [self savePaintImage:image andPath:path];
+       }] build]
      showWithController:self];
 }
-
 
 - (void)savePaintImage:(UIImage *)image andPath:(NSString *)path
 {
@@ -836,16 +834,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:saveOp];
-
+    
     [self reloadData];
 }
-
 
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
     if (checkImage) {
-//        NSDebug(@"Updating");
+        //        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
         NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
         NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
@@ -855,8 +852,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             abort();
             return;
         }
-
-
+        
         NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
         if(referenceCount > 1) {
             Look *look = [self.object.lookList objectAtIndex:self.selectedLookIndex];
@@ -870,21 +866,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
         
         NSDebug(@"Writing file to disk");
-            // leaving the main queue here!
+        // leaving the main queue here!
         NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-                // save image to programs directory
+            // save image to programs directory
             [imageData writeToFile:path atomically:YES];
         }];
-            // completion block is NOT executed on the main queue
+        // completion block is NOT executed on the main queue
         [saveOp setCompletionBlock:^{
-                // execute this on the main queue
+            // execute this on the main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.object.program saveToDiskWithNotification:YES];
             }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];
-    
+        
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
@@ -901,12 +897,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         [cache replaceImage:image withName:filePath];
     } else {
-          NSDebug(@"SAVING");  // add image to object now
+        NSDebug(@"SAVING");  // add image to object now
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);
         NSString *lookName = kLocalizedLook;
-            // use temporary filename, will be renamed by user afterwards
+        // use temporary filename, will be renamed by user afterwards
         NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
                                       [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
                                       kLocalizedMyImageExtension];
@@ -917,19 +913,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         self.filePath = newImagePath;
         NSDebug(@"Writing file to disk");
-            // leaving the main queue here!
+        // leaving the main queue here!
         NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-                // save image to programs directory
+            // save image to programs directory
             [imageData writeToFile:newImagePath atomically:YES];
         }];
-            // completion block is NOT executed on the main queue
+        // completion block is NOT executed on the main queue
         [saveOp setCompletionBlock:^{
-                // execute this on the main queue
+            // execute this on the main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self hideLoadingView];
                 [self showPlaceHolder:([self.object.lookList count] == 0)];
                 
-                    // ask user for image name
+                // ask user for image name
                 if (self.showAddLookActionSheetAtStartForObject) {
                     [self addLookActionWithName:look.name look:look];
                 } else if (path){
@@ -979,7 +975,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 }
             }];
         }else{
-          state = YES;
+            state = YES;
         }
     }else if (pickerType == UIImagePickerControllerSourceTypeCamera)
     {

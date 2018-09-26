@@ -30,7 +30,6 @@
 
 @end
 
-
 @implementation CameraPreviewHandler
 
 NSString* const camAccessibility = @"camLayer";
@@ -54,7 +53,6 @@ static CameraPreviewHandler* shared = nil;
     if (self) {
         [self reset];
     }
-    
     return self;
 }
 
@@ -86,7 +84,6 @@ static CameraPreviewHandler* shared = nil;
     }
 }
 
-
 - (void)startCameraPreview
 {
     assert(self.camView);
@@ -96,7 +93,7 @@ static CameraPreviewHandler* shared = nil;
     camLayer.frame = self.camView.bounds;
     self.camView.backgroundColor = [UIColor whiteColor];
     [self.camView.layer insertSublayer:camLayer atIndex:0];
-
+    
     AVCaptureDevice* device = [self getCaptureDevice];
     if (device != nil) {
         [self beginSessionForCaptureDevice:device toLayer:camLayer];
@@ -119,7 +116,7 @@ static CameraPreviewHandler* shared = nil;
 {
     NSError* err;
     AVCaptureDeviceInput* deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&err];
-
+    
     if (err != nil) {
         NSLog(@"error: \(err.localizedDescription)");
     }

@@ -22,7 +22,6 @@
 
 #import "TimerLabel.h"
 
-
 #define kDefaultTimeFormat  @"mm:ss"
 #define kDefaultFireIntervalNormal  0.1
 #define kDefaultFireIntervalHighUse  0.02
@@ -77,19 +76,19 @@
 - (id)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];
-	if (self) {
+    if (self) {
         [self setup];
-	}
-	return self;
+    }
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	self = [super initWithCoder:aDecoder];
-	if (self) {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
         [self setup];
-	}
-	return self;
+    }
+    return self;
 }
 
 #pragma mark - Getter and Setter Method
@@ -122,7 +121,7 @@
         timeToCountOff = [date1970 dateByAddingTimeInterval:0];
     }
     [self updateLabel];
-
+    
 }
 
 - (void)setTimeFormat:(NSString *)timeFormat{
@@ -162,13 +161,11 @@
     return _timeLabel;
 }
 
-
 - (void)addTimeCountedByTime:(NSTimeInterval)timeToAdd
 {
     [self setCountDownTime:timeToAdd + timeUserValue];
     [self updateLabel];
 }
-
 
 - (NSTimeInterval)getTimeCounted
 {
@@ -182,7 +179,6 @@
 }
 
 #pragma mark - Timer Control Method
-
 
 - (void)start{
     
@@ -221,14 +217,14 @@
     endedBlock = end;
 }
 #endif
-    
+
 - (void)pause{
-	if(_counting){
-	    [_timer invalidate];
-	    _timer = nil;
-	    _counting = NO;
-	    pausedTime = [NSDate date];		
-	}
+    if(_counting){
+        [_timer invalidate];
+        _timer = nil;
+        _counting = NO;
+        pausedTime = [NSDate date];		
+    }
 }
 
 - (void)reset{
@@ -238,14 +234,12 @@
     [self updateLabel];
 }
 
-
 #pragma mark - Private method
 
 - (void)setup{
     date1970 = [NSDate dateWithTimeIntervalSince1970:0];
     [self updateLabel];
 }
-
 
 - (void)updateLabel{
     
@@ -265,10 +259,10 @@
         if([_delegate respondsToSelector:@selector(timerLabel:countingTo:timertype:)]){
             [_delegate timerLabel:self countingTo:timeDiff timertype:_timerType];
         }
-    
+        
     }else{
         
-    /***MZTimerLabelTypeTimer Logic***/
+        /***MZTimerLabelTypeTimer Logic***/
         
         if (_counting) {
             
@@ -276,7 +270,7 @@
                 NSTimeInterval timeLeft = timeUserValue - timeDiff;
                 [_delegate timerLabel:self countingTo:timeLeft timertype:_timerType];
             }
-                        
+            
             if(timeDiff >= timeUserValue){
                 [self pause];
                 timeToShow = [date1970 dateByAddingTimeInterval:0];
@@ -305,7 +299,7 @@
             timeToShow = timeToCountOff;
         }
     }
-
+    
     //setting text value
     if ([_delegate respondsToSelector:@selector(timerLabel:customTextToDisplayAtTime:)]) {
         NSTimeInterval atTime = (_timerType == TimerLabelTypeStopWatch) ? timeDiff : (timeUserValue - timeDiff);
@@ -318,7 +312,6 @@
     
     NSString *strDate = [self.dateFormatter stringFromDate:timeToShow];
     self.timeLabel.text = strDate;
-    
 }
 
 @end

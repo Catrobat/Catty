@@ -81,7 +81,6 @@
     self.value = [[Formula alloc] initWithZero];
 }
 
-
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {

@@ -53,19 +53,18 @@
         [self.toolbar setBarStyle:UIBarStyleDefault];
         [self.toolbar setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth)];
         [self addSubview:self.toolbar];
-
-      
+        
+        
         [self setDoneButton:[[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"Done", @"BSKeyboardControls", @"Done button title.")
                                                              style:UIBarButtonItemStyleDone
                                                             target:self
                                                             action:@selector(doneButtonPressed:)]];
-      self.doneButton.tintColor = [UIColor globalTintColor];
+        self.doneButton.tintColor = [UIColor globalTintColor];
         
         [self setVisibleControls:(BSKeyboardControlPreviousNext | BSKeyboardControlDone)];
         
         [self setFields:fields];
     }
-    
     return self;
 }
 
@@ -94,12 +93,11 @@
         if ([self.fields containsObject:activeField])
         {
             _activeField = activeField;
-        
+            
             if (![activeField isFirstResponder])
             {
                 [activeField becomeFirstResponder];
             }
-        
         }
     }
 }
@@ -123,7 +121,6 @@
                 [(iOSCombobox *)field setInputAccessoryView:self];
             }
         }
-        
         _fields = fields;
     }
 }
@@ -147,8 +144,6 @@
         _barTintColor = barTintColor;
     }
 }
-
-
 
 - (void)setDoneTitle:(NSString *)doneTitle
 {
@@ -175,7 +170,7 @@
     if (visibleControls != _visibleControls)
     {
         _visibleControls = visibleControls;
-
+        
         [self.toolbar setItems:[self toolbarItems]];
     }
 }
@@ -190,8 +185,6 @@
         [self.delegate keyboardControlsDonePressed:self];
     }
 }
-
-
 
 - (void)selectPreviousField
 {
@@ -228,7 +221,7 @@
 - (NSArray *)toolbarItems
 {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:1];
-
+    
     
     if (self.visibleControls & BSKeyboardControlDone)
     {

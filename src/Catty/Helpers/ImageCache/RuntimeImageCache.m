@@ -46,7 +46,7 @@
     dispatch_async(self.imageCacheQueue, ^{
         UIImage *image = [UIImage imageNamed:imageName];
         [super addImage:image withName:imageName];
-
+        
         // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
             completion(image);
@@ -59,7 +59,6 @@
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
         [super addImage:image withName:path];
     });
-
 }
 
 - (void)loadImageFromDiskWithPath:(NSString*)path
@@ -68,7 +67,7 @@
     dispatch_async(self.imageCacheQueue, ^{
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
         [super addImage:image withName:path];
-
+        
         // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
             completion(image,path);
@@ -88,10 +87,10 @@
                                onCompletion:completion];
             return;
         }
-
+        
         // create thumbnail
         UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-
+        
         // generate thumbnail image (retina)
         CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);
         // determine right aspect ratio
@@ -99,7 +98,7 @@
             thumbnailImageSize.width = (image.size.width*thumbnailImageSize.width)/image.size.height;
         else
             thumbnailImageSize.height = (image.size.height*thumbnailImageSize.height)/image.size.width;
-
+        
         UIGraphicsBeginImageContext(thumbnailImageSize);
         UIImage *thumbnailImage = [image copy];
         [thumbnailImage drawInRect:CGRectMake(0, 0, thumbnailImageSize.width, thumbnailImageSize.height)];
@@ -107,7 +106,7 @@
         UIGraphicsEndImageContext();
         [UIImagePNGRepresentation(thumbnailImage) writeToFile:thumbnailPath atomically:YES];
         [super addImage:thumbnailImage withName:thumbnailPath];
-
+        
         // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
             completion(thumbnailImage,nil);
@@ -117,9 +116,9 @@
 
 - (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
 {
-        // generate thumbnail image (retina)
+    // generate thumbnail image (retina)
     CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);
-        // determine right aspect ratio
+    // determine right aspect ratio
     if (image.size.height > image.size.width)
         thumbnailImageSize.width = (image.size.width*thumbnailImageSize.width)/image.size.height;
     else
@@ -133,7 +132,6 @@
     [UIImagePNGRepresentation(thumbnailImage) writeToFile:thumbnailPath atomically:YES];
     [self clearImageCache];
 }
-
 
 - (void)clearImageCache
 {

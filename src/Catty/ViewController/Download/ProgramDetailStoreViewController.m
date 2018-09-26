@@ -35,7 +35,6 @@
 #import "KeychainUserDefaultsDefines.h"
 #import "Pocket_Code-Swift.h"
 
-
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
 
 @property (nonatomic, strong) UIView *projectView;
@@ -226,6 +225,7 @@
         [self performSegueWithIdentifier:segueToContinue sender:self];
     }
 }
+
 - (void)reportProgram
 {
     NSDebug(@"report");
@@ -258,8 +258,6 @@
     }
 }
 
-
-
 static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSCharacterSet*)blockedCharacterSet
@@ -270,7 +268,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     return blockedCharacterSet;
 }
-
 
 - (void)sendReportWithMessage:(NSString*)message
 {
@@ -288,7 +285,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
-    
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if ([Util isNetworkError:error]) {
@@ -304,7 +300,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSDebug(@"StatusCode is %@", statusCode);
                 
                 [Util alertWithText:[dictionary valueForKey:@"answer"]];
-                
             });
         }
     }];
@@ -447,8 +442,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         downloadAgainButton.enabled = YES;
     }
     [self loadingIndicator:NO];
-    
 }
+
 - (void)updateProgress:(double)progress
 {
     NSDebug(@"updateProgress:%f",((float)progress));
@@ -488,7 +483,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
 }
-
 
 #pragma mark - popup delegate
 - (BOOL)dismissPopupWithCode:(BOOL)successLogin

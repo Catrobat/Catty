@@ -27,19 +27,20 @@
 // taken from https://github.com/anjerodesu/UIColor-ColorWithHex/blob/master/UIColor%2BColorWithHex.m
 + (UIColor *)colorWithHex:(UInt32)hexadecimal
 {
-	CGFloat red, green, blue;
-
-	// bitwise AND operation
-	// hexadecimal's first 2 values
-	red = ( hexadecimal >> 16 ) & 0xFF;
-	// hexadecimal's 2 middle values
-	green = ( hexadecimal >> 8 ) & 0xFF;
-	// hexadecimal's last 2 values
-	blue = hexadecimal & 0xFF;
-
-	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
-	return color;
+    CGFloat red, green, blue;
+    
+    // bitwise AND operation
+    // hexadecimal's first 2 values
+    red = ( hexadecimal >> 16 ) & 0xFF;
+    // hexadecimal's 2 middle values
+    green = ( hexadecimal >> 8 ) & 0xFF;
+    // hexadecimal's last 2 values
+    blue = hexadecimal & 0xFF;
+    
+    UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
+    return color;
 }
+
 #pragma mark intern Colors
 
 + (UIColor*)lightColor

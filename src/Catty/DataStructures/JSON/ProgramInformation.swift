@@ -28,7 +28,7 @@ struct ProgramInformation: Codable {
         let baseUrl: String
         let totalProjects: Int
         let projectsExtension: String
-    
+        
         private enum CodingKeys: String, CodingKey {
             case baseUrl = "BaseUrl"
             case totalProjects = "TotalProjects"
@@ -40,7 +40,7 @@ struct ProgramInformation: Codable {
         let baseUrl: String
         let totalProjects: String
         let projectsExtension: String
-    
+        
         private enum CodingKeys: String, CodingKey {
             case baseUrl = "BaseUrl"
             case totalProjects = "TotalProjects"

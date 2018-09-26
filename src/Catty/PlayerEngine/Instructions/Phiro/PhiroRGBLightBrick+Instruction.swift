@@ -31,7 +31,6 @@ import Foundation
             let greenValue = self.getFormulaValue(self.greenFormula, formulaInterpreter: context.formulaInterpreter)
             let blueValue = self.getFormulaValue(self.blueFormula, formulaInterpreter: context.formulaInterpreter)
             
-            
             guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
                 //ERROR
                 return;
@@ -51,9 +50,7 @@ import Foundation
             }
             context.state = .runnable
         }
-        
     }
-    
     
     @objc func getFormulaValue(_ formula:Formula, formulaInterpreter: FormulaInterpreterProtocol) -> Int {
         var rgbValue = formulaInterpreter.interpretInteger(formula, for: (self.script?.object)!)
@@ -62,8 +59,7 @@ import Foundation
         } else if (rgbValue > 255) {
             rgbValue = 255;
         }
-    
+        
         return rgbValue;
     }
-    
 }

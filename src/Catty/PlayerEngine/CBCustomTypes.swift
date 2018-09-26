@@ -53,7 +53,6 @@ enum CBDuration {
     case fixedTime(duration: Double)
 }
 
-
 //##################################################################################################
 //                _____ __        __          ____  _
 //               / ___// /_____ _/ /____     / __ \(_)___ _____ __________ _____ ___
@@ -76,30 +75,28 @@ enum CBDuration {
 //##################################################################################################
 
 enum CBScriptContextState {
-
+    
     // initial state for a CBScriptExecContext that has
     // not yet been added to the scheduler
     case runnable
-
+    
     // indicates that CBScriptExecContext has already
     // been added to the scheduler
     case running
-
+    
     // indicates that a script is waiting for BroadcastWait scripts
     // (listening to the corresponding broadcastMessage) to be finished!!
     case waiting
-
+    
     // indicates that CBScriptExecContext is going to be removed
     // from the scheduler soon
     case dead
-
 }
 
 enum CBBroadcastType: String {
     case Broadcast = "Broadcast"
     case BroadcastWait = "BroadcastWait"
 }
-
 
 // MARK: - Protocol extensions
 // TODO: simplify and remove duplicate...
@@ -124,7 +121,6 @@ extension Collection where Iterator.Element == CBScriptContextProtocol {
         }
         return nil
     }
-    
 }
 
 extension Collection where Iterator.Element == CBBroadcastScriptContextProtocol {
@@ -148,7 +144,6 @@ extension Collection where Iterator.Element == CBBroadcastScriptContextProtocol 
         }
         return nil
     }
-    
 }
 
 // MARK: - Extensions

@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-
 @import Accelerate;
 
 @interface UIImage (ImageBlur)
@@ -31,10 +30,10 @@
         NSError (@"*** error: image must be backed by a CGImage: %@", self);
         return nil;
     }
-
+    
     CGRect imageRect = { CGPointZero, self.size };
     UIImage *effectImage = self;
-
+    
     BOOL hasBlur = blurRadius > __FLT_EPSILON__;
     if (hasBlur) {
         UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
@@ -42,13 +41,13 @@
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
         CGContextTranslateCTM(effectInContext, 0, -self.size.height);
         CGContextDrawImage(effectInContext, imageRect, self.CGImage);
-
+        
         vImage_Buffer effectInBuffer;
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
         effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
         effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
-
+        
         UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
@@ -56,7 +55,7 @@
         effectOutBuffer.width    = CGBitmapContextGetWidth(effectOutContext);
         effectOutBuffer.height   = CGBitmapContextGetHeight(effectOutContext);
         effectOutBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectOutContext);
-
+        
         if (hasBlur) {
             // A description of how to compute the box kernel width from the Gaussian
             // radius (aka standard deviation) appears in the SVG spec:
@@ -84,29 +83,30 @@
         effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-
+    
     // Set up output context.
     UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
     CGContextTranslateCTM(outputContext, 0, -self.size.height);
-
+    
     // Draw base image.
     CGContextDrawImage(outputContext, imageRect, self.CGImage);
-
+    
     // Draw effect image.
     if (hasBlur) {
         CGContextSaveGState(outputContext);
         CGContextDrawImage(outputContext, imageRect, effectImage.CGImage);
         CGContextRestoreGState(outputContext);
     }
-
+    
     // Output image is ready.
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return outputImage;
 }
+
 @end
 
 #define ANIMATION_TIME 0.25f
@@ -124,7 +124,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 - (UIImage *)getScreenImageWithFrame:(CGRect)frame{
     // frame without status bar
-   // CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    // CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     // begin image context
     UIGraphicsBeginImageContext(frame.size);
     // get current context
@@ -182,7 +182,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
             [self addBlurViewWithFrame:frame];
         }
         UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
-
+        
         // animate
         viewControllerToPresent.view.center = CGPointMake(self.view.center.x, frame.size.height+frame.origin.y);
         viewControllerToPresent.view.alpha = 0.4f;
@@ -199,14 +199,14 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                              if (centered) {
                                  viewControllerToPresent.view.center = CGPointMake(self.view.center.x, frame.size.height/2-self.navigationController.navigationBar.frame.size.height/2-10);
                              }else{
-                                  viewControllerToPresent.view.center = CGPointMake(self.view.center.x, 150+frame.origin.y);
+                                 viewControllerToPresent.view.center = CGPointMake(self.view.center.x, 150+frame.origin.y);
                              }
-                            
+                             
                              
                          } completion:^(BOOL finished) {
-            [self.popupViewController didMoveToParentViewController:self];
-            [self.popupViewController endAppearanceTransition];
-        }];
+                             [self.popupViewController didMoveToParentViewController:self];
+                             [self.popupViewController endAppearanceTransition];
+                         }];
         // if screen orientation changed
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenOrientationChanged) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     }
@@ -226,14 +226,15 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                          self.popupViewController.view.center = CGPointMake(self.view.center.x,self.view.frame.size.height);
                          self.popupViewController.view.alpha = 0.0f;
                          blurView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        [self.popupViewController removeFromParentViewController];
-        [self.popupViewController endAppearanceTransition];
-        [self.popupViewController.view removeFromSuperview];
-        [blurView removeFromSuperview];
-        self.popupViewController = nil;
-    }];
+                     } completion:^(BOOL finished) {
+                         [self.popupViewController removeFromParentViewController];
+                         [self.popupViewController endAppearanceTransition];
+                         [self.popupViewController.view removeFromSuperview];
+                         [blurView removeFromSuperview];
+                         self.popupViewController = nil;
+                     }];
 }
+
 #pragma mark - handling screen orientation change
 
 - (CGRect)getPopupFrameForViewController:(UIViewController *)viewController {
@@ -260,18 +261,18 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         } else {
             blurView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
         }
-            [UIView animateWithDuration:1.0f animations:^{
-                // for delay
-            } completion:^(BOOL finished) {
-                [blurView removeFromSuperview];
-                // popup view alpha to 0 so its not in the blur image
-                self.popupViewController.view.alpha = 0.0f;
-//                [self addBlurView];
-                self.popupViewController.view.alpha = 1.0f;
-                // display blurView again
-                UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
-                blurView.alpha = 1.0f;
-            }];
+        [UIView animateWithDuration:1.0f animations:^{
+            // for delay
+        } completion:^(BOOL finished) {
+            [blurView removeFromSuperview];
+            // popup view alpha to 0 so its not in the blur image
+            self.popupViewController.view.alpha = 0.0f;
+            //                [self addBlurView];
+            self.popupViewController.view.alpha = 1.0f;
+            // display blurView again
+            UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
+            blurView.alpha = 1.0f;
+        }];
     }];
 }
 

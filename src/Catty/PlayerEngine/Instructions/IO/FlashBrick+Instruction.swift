@@ -21,9 +21,9 @@
  */
 
 @objc extension FlashBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
-
+        
         let choice = self.flashChoice
         return CBInstruction.execClosure { (context, _) in
             //            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
@@ -39,6 +39,4 @@
             context.state = .runnable
         }
     }
-    
-
 }

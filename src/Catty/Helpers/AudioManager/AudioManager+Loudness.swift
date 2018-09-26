@@ -115,5 +115,4 @@ extension AudioManager: AudioManagerProtocol {
         
         return isGranted
     }
-    
 }

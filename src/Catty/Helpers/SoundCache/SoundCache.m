@@ -105,7 +105,6 @@ static NSMutableDictionary *sharedSoundCaches = nil;
         [self.soundCache removeObjectForKey:name];
         [self.soundCache setObject:playerItem forKey:name];
     }
-    
 }
 
 - (void)loadSoundFromDiskWithPath:(NSString*)path

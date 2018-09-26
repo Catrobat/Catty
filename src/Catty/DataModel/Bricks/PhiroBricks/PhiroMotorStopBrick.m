@@ -29,8 +29,6 @@
     return [kLocalizedStopPhiroMotor stringByAppendingString:@"\n%@"];
 }
 
-
-
 #pragma mark - Description
 - (NSString*)description
 {

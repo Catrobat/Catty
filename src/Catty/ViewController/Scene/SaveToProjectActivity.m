@@ -71,7 +71,7 @@
     NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",self.path];
     NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.image)];
     [data writeToFile:pngFilePath atomically:YES];
-
+    
     [self activityDidFinish:YES];
 }
 

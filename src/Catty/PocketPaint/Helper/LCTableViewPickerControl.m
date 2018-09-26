@@ -74,18 +74,18 @@
     /*
      create dismissItem
      */
-  
-  UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
-                                                                  style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-  rightButton.tintColor = [UIColor navTintColor];
-  UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:_title];
-  item.rightBarButtonItem = rightButton;
-  item.hidesBackButton = YES;
-  item.titleView.tintColor = [UIColor globalTintColor];
-  [_navBar pushNavigationItem:item animated:NO];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    rightButton.tintColor = [UIColor navTintColor];
+    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:_title];
+    item.rightBarButtonItem = rightButton;
+    item.hidesBackButton = YES;
+    item.titleView.tintColor = [UIColor globalTintColor];
+    [_navBar pushNavigationItem:item animated:NO];
     self.aTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, frame.size.width, frame.size.height - kNavBarHeight-self.navBarOffset) style:UITableViewStylePlain];
-  self.aTableView.backgroundColor = [UIColor backgroundColor];
-  self.aTableView.separatorColor = [UIColor globalTintColor];
+    self.aTableView.backgroundColor = [UIColor backgroundColor];
+    self.aTableView.separatorColor = [UIColor globalTintColor];
     [_aTableView setDelegate:self];
     [_aTableView setDataSource:self];
     [self addSubview:_navBar];
@@ -97,7 +97,6 @@
     [self.panRecognizer setMaximumNumberOfTouches:1];
     [self.panRecognizer setDelegate:self];
     [_navBar addGestureRecognizer:self.panRecognizer];
-
 }
 
 - (void)showInView:(UIView *)view
@@ -130,7 +129,7 @@
                 //configure your settings after view animation completion
             }];
         }];
-
+        
         NSInteger index = [self->_items indexOfObject:@(self->_currentVale)];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         [self->_aTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
@@ -141,7 +140,7 @@
 {
     //common delegate way
     if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
-      [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
+        [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
 }
 
 - (void)dismiss
@@ -155,7 +154,6 @@
         [self->_maskView removeFromSuperview];
         self.panRecognizer.enabled = NO;
     }];
-
 }
 
 - (void)dismissPickerView:(id)sender
@@ -183,8 +181,8 @@
         CGPoint translation = [gestureRecognizer translationInView:self];
         if(translation.y < 0)
             return;
-      if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
-        [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
+        if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
+            [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
     }
 }
 
@@ -221,96 +219,96 @@
     
     actionType item = [[_items objectAtIndex:row] intValue];
     if (item == _currentVale) {
-      cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }else{
-      cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     cell.tintColor = [UIColor globalTintColor];
-  cell.imageView.backgroundColor = [UIColor backgroundColor];
-  cell.textLabel.textColor = [UIColor buttonTintColor];
-  cell.backgroundColor = [UIColor backgroundColor];
-  UIView *selectionView = [UIView new];
+    cell.imageView.backgroundColor = [UIColor backgroundColor];
+    cell.textLabel.textColor = [UIColor buttonTintColor];
+    cell.backgroundColor = [UIColor backgroundColor];
+    UIView *selectionView = [UIView new];
     selectionView.backgroundColor = [UIColor navTintColor];
     [[UITableViewCell appearance] setSelectedBackgroundView:selectionView];
-  
-  switch (item) {
-    case brush:{
-      [cell.textLabel setText:kLocalizedPaintBrush];
-      cell.imageView.image = [UIImage imageNamed:@"brush"];
+    
+    switch (item) {
+        case brush:{
+            [cell.textLabel setText:kLocalizedPaintBrush];
+            cell.imageView.image = [UIImage imageNamed:@"brush"];
+        }
+            break;
+        case eraser:{
+            [cell.textLabel setText:kLocalizedPaintEraser];
+            cell.imageView.image = [UIImage imageNamed:@"eraser"];
+        }
+            break;
+        case resize:{
+            [cell.textLabel setText:kLocalizedPaintResize];
+            cell.imageView.image = [UIImage imageNamed:@"crop"];
+        }
+            break;
+        case pipette:{
+            [cell.textLabel setText:kLocalizedPaintPipette];
+            cell.imageView.image = [UIImage imageNamed:@"pipette"];
+        }
+            break;
+        case mirror:{
+            [cell.textLabel setText:kLocalizedPaintMirror];
+            cell.imageView.image = [UIImage imageNamed:@"mirror"];
+        }
+            break;
+        case image:{
+            [cell.textLabel setText:kLocalizedPaintImage];
+            cell.imageView.image = [UIImage imageNamed:@"image_select"];
+        }
+            break;
+        case line:{
+            [cell.textLabel setText:kLocalizedPaintLine];
+            cell.imageView.image = [UIImage imageNamed:@"line"];
+        }
+            break;
+        case rectangle:{
+            [cell.textLabel setText:kLocalizedPaintRect];
+            cell.imageView.image = [UIImage imageNamed:@"rect"];
+        }
+            break;
+        case ellipse:{
+            [cell.textLabel setText:kLocalizedPaintCircle];
+            cell.imageView.image = [UIImage imageNamed:@"circle"];
+        }
+            break;
+        case stamp:{
+            [cell.textLabel setText:kLocalizedPaintStamp];
+            cell.imageView.image = [UIImage imageNamed:@"stamp"];
+        }
+            break;
+        case rotate:{
+            [cell.textLabel setText:kLocalizedPaintRotate];
+            cell.imageView.image = [UIImage imageNamed:@"rotate"];
+        }
+            break;
+        case fillTool:{
+            [cell.textLabel setText:kLocalizedPaintFill];
+            cell.imageView.image = [UIImage imageNamed:@"fill"];
+        }
+            break;
+        case zoom:{
+            [cell.textLabel setText:kLocalizedPaintZoom];
+            cell.imageView.image = [UIImage imageNamed:@"zoom"];
+        }
+            break;
+        case pointer:{
+            [cell.textLabel setText:kLocalizedPaintPointer];
+            cell.imageView.image = [UIImage imageNamed:@"pointer"];
+        }
+            break;
+        case text:{
+            [cell.textLabel setText:kLocalizedPaintTextTool];
+            cell.imageView.image = [UIImage imageNamed:@"text"];
+        }
+        default:
+            break;
     }
-      break;
-    case eraser:{
-      [cell.textLabel setText:kLocalizedPaintEraser];
-      cell.imageView.image = [UIImage imageNamed:@"eraser"];
-    }
-      break;
-    case resize:{
-      [cell.textLabel setText:kLocalizedPaintResize];
-      cell.imageView.image = [UIImage imageNamed:@"crop"];
-    }
-      break;
-    case pipette:{
-      [cell.textLabel setText:kLocalizedPaintPipette];
-      cell.imageView.image = [UIImage imageNamed:@"pipette"];
-    }
-      break;
-    case mirror:{
-      [cell.textLabel setText:kLocalizedPaintMirror];
-      cell.imageView.image = [UIImage imageNamed:@"mirror"];
-    }
-      break;
-    case image:{
-      [cell.textLabel setText:kLocalizedPaintImage];
-      cell.imageView.image = [UIImage imageNamed:@"image_select"];
-    }
-      break;
-    case line:{
-      [cell.textLabel setText:kLocalizedPaintLine];
-      cell.imageView.image = [UIImage imageNamed:@"line"];
-    }
-      break;
-    case rectangle:{
-      [cell.textLabel setText:kLocalizedPaintRect];
-      cell.imageView.image = [UIImage imageNamed:@"rect"];
-    }
-      break;
-    case ellipse:{
-      [cell.textLabel setText:kLocalizedPaintCircle];
-      cell.imageView.image = [UIImage imageNamed:@"circle"];
-    }
-      break;
-    case stamp:{
-      [cell.textLabel setText:kLocalizedPaintStamp];
-      cell.imageView.image = [UIImage imageNamed:@"stamp"];
-    }
-      break;
-    case rotate:{
-      [cell.textLabel setText:kLocalizedPaintRotate];
-      cell.imageView.image = [UIImage imageNamed:@"rotate"];
-    }
-      break;
-    case fillTool:{
-      [cell.textLabel setText:kLocalizedPaintFill];
-      cell.imageView.image = [UIImage imageNamed:@"fill"];
-    }
-      break;
-    case zoom:{
-      [cell.textLabel setText:kLocalizedPaintZoom];
-      cell.imageView.image = [UIImage imageNamed:@"zoom"];
-    }
-      break;
-    case pointer:{
-      [cell.textLabel setText:kLocalizedPaintPointer];
-      cell.imageView.image = [UIImage imageNamed:@"pointer"];
-    }
-      break;
-      case text:{
-          [cell.textLabel setText:kLocalizedPaintTextTool];
-          cell.imageView.image = [UIImage imageNamed:@"text"];
-      }
-    default:
-      break;
-  }
     
     return cell;
 }
@@ -323,9 +321,8 @@
 
 - (void)cancel
 {
-  if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
-    [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
+    if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
+        [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
 }
-
 
 @end

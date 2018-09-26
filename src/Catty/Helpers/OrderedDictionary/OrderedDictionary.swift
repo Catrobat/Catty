@@ -22,7 +22,6 @@
 
 import Foundation
 
-
 public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, ExpressibleByArrayLiteral, CustomStringConvertible {
     
     // ======================================================= //
@@ -81,7 +80,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     public func containsKey(_ key: Key) -> Bool {
         return _orderedKeys.contains(key)
     }
-
+    
     @discardableResult
     public mutating func updateValue(_ value: Value, forKey key: Key) -> Value? {
         if _orderedKeys.contains(key) {
@@ -99,7 +98,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
             return nil
         }
     }
-
+    
     @discardableResult
     public mutating func removeValueForKey(_ key: Key) -> Value? {
         if let index = _orderedKeys.index(of: key) {
@@ -188,7 +187,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
         
         return currentValue
     }
-
+    
     @discardableResult
     public mutating func updateElement(_ element: Element, atIndex index: Index) -> Element? {
         guard let currentElement = elementAtIndex(index) else {
@@ -213,7 +212,7 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
             return nil
         }
     }
-
+    
     public func index(after i: Int) -> Int {
         return i + 1
     }
@@ -269,5 +268,4 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     
     /// The backing store for the mapping of keys to values.
     fileprivate var _keysToValues = [Key: Value]()
-    
 }

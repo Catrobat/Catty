@@ -48,19 +48,18 @@ typedef enum TokenSelectionType{
     PARSER_ERROR_SELECTION = 801
 }TokenSelectionType;
 
-
 @interface InternFormula : NSObject
 
 - (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList;
 - (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList
-              internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
-                     externCursorPosition:(int)externCursorPosition;
+               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
+                      externCursorPosition:(int)externCursorPosition;
 - (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId;
 - (void)handleKeyInputWithInternTokenList:(NSMutableArray<InternToken*>*)keyInputInternTokenList andResourceId:(int)resourceId;
 - (NSString *)getExternFormulaString;
 - (void)generateExternFormulaStringAndInternExternMapping;
 - (void)setCursorAndSelection:(int)externCursorPosition
-                    selected:(BOOL)isSelected;
+                     selected:(BOOL)isSelected;
 - (InternFormulaState*)getInternFormulaState;
 - (void)setExternCursorPositionRightTo:(int)internTokenIndex;
 - (void)updateInternCursorPosition;
