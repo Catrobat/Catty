@@ -146,17 +146,17 @@
 + (NSString*)platformVersionWithPatch
 {
     NSOperatingSystemVersion os = [self platformVersion];
-    NSString* major = [NSString stringWithFormat:@"%ld", os.majorVersion];
-    NSString* minor = [NSString stringWithFormat:@"%ld", os.minorVersion];
-    NSString* patch = [NSString stringWithFormat:@"%ld", os.patchVersion];
+    NSString* major = [NSString stringWithFormat:@"%ld", (long)os.majorVersion];
+    NSString* minor = [NSString stringWithFormat:@"%ld", (long)os.minorVersion];
+    NSString* patch = [NSString stringWithFormat:@"%ld", (long)os.patchVersion];
     return [NSString stringWithFormat:@"%@.%@.%@", major, minor, patch];
 }
 
 + (NSString*)platformVersionWithoutPatch
 {
     NSOperatingSystemVersion os = [self platformVersion];
-    NSString* major = [NSString stringWithFormat:@"%ld", os.majorVersion];
-    NSString* minor = [NSString stringWithFormat:@"%ld", os.minorVersion];
+    NSString* major = [NSString stringWithFormat:@"%ld", (long)os.majorVersion];
+    NSString* minor = [NSString stringWithFormat:@"%ld", (long)os.minorVersion];
     return [NSString stringWithFormat:@"%@.%@", major, minor];
 }
 
