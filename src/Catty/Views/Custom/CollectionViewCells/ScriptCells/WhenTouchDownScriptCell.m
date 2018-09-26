@@ -20,29 +20,41 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBSchedulerProtocol : class {
+#import "WhenTouchDownScriptCell.h"
 
-    // properties
-    var running:Bool { get set }
+@interface WhenTouchDownScriptCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-    // queries
-    func isContextScheduled(_ context: CBScriptContextProtocol) -> Bool
-    func startWhenContextsOfSpriteNodeWithName(_ spriteName: String)
-    func startWhenTouchDownContexts()
-    func startBroadcastContexts(_ broadcastContexts: [CBBroadcastScriptContextProtocol])
+@implementation WhenTouchDownScriptCell
 
-    // registration
-    func registerSpriteNode(_ spriteNode: CBSpriteNode)
-    func registerContext(_ context: CBScriptContextProtocol)
-
-    // events
-    func run()
-    func shutdown()
-    func pause()
-    func resume()
-    func runNextInstructionOfContext(_ context: CBScriptContextProtocol)
-    func runNextInstructionsGroup()
-    func scheduleContext(_ context: CBScriptContextProtocol)
-    func stopContext(_ context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
-
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawLargeRoundedControlBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:roundedSmallBrick width:[Util screenWidth]];
 }
+
+- (kBrickShapeType)brickShapeType
+{
+    return kBrickShapeRoundedSmall;
+}
+
++ (CGFloat)cellHeight
+{
+    return kBrickHeightControl1h;
+}
+
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+@end

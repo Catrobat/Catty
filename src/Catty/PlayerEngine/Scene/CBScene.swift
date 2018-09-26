@@ -91,6 +91,9 @@ final class CBScene: SKScene {
         
         let location = touch.location(in: self)
         
+        //Start all "When screen touched"-scripts
+        scheduler.startWhenTouchDownContexts()
+
         // Get sprite nodes only (ShowTextBrick creates a SKLabelNode)
         let nodes = self.nodes(at: location).filter({$0 is CBSpriteNode})
         if nodes.count == 0 { return false } // needed if scene has no background image!
@@ -177,6 +180,9 @@ final class CBScene: SKScene {
 
                 case let whenScript as WhenScript:
                     context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
+                    
+                case let whenTouchDownScript as WhenTouchDownScript:
+                    context = CBWhenTouchDownScriptContext(whenTouchDownScript: whenTouchDownScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)
 
                 case let bcScript as BroadcastScript:
                     context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, formulaInterpreter: formulaManager, state: .runnable)

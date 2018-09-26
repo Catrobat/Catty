@@ -264,6 +264,19 @@
                     </brickList>
                     <action>Tapped</action>
                   </script>
+                  <script type="WhenTouchDownScript">
+                      <brickList>
+                          <brick type="ChangeYByNBrick">
+                              <formulaList>
+                                  <formula category="Y_POSITION_CHANGE">
+                                      <type>NUMBER</type>
+                                      <value>10</value>
+                                  </formula>
+                              </formulaList>
+                          </brick>
+                      </brickList>
+                  </script>
+
                 </scriptList>
                 <userBricks/>
                 <nfcTagList/>

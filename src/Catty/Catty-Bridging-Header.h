@@ -34,6 +34,7 @@
 // Scripts
 #import "StartScript.h"
 #import "WhenScript.h"
+#import "WhenTouchDownScript.h"
 #import "BroadcastScript.h"
 
 // Bricks

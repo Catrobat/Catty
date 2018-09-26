@@ -1080,6 +1080,8 @@
 		BAD47DC61F12938D001C38BC /* AddItemToUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */; };
 		BAD47DC71F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
 		BAD47DC81F12938D001C38BC /* InsertItemIntoUserListBrick098.xml in Resources */ = {isa = PBXBuildFile; fileRef = BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */; };
+		BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEAB293214BCD75000B2E4B /* WhenTouchDownScript.m */; };
+		BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEAB299214BCE8D000B2E4B /* WhenTouchDownScriptCell.m */; };
 		BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49B51F165C3100F06741 /* ReplaceItemInUserListBrickCell.m */; };
 		BAEE49BB1F165C6E00F06741 /* ReplaceItemInUserListBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BA1F165C6E00F06741 /* ReplaceItemInUserListBrick.m */; };
 		BAEE49BE1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEE49BD1F165CBA00F06741 /* ReplaceItemInUserListBrick+CBXMLHandler.m */; };
@@ -2850,6 +2852,10 @@
 		BACDF35B1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DeleteItemOfUserListBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Data/DeleteItemOfUserListBrick+Instruction.swift"; sourceTree = "<group>"; };
 		BAD47DC31F12938D001C38BC /* AddItemToUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AddItemToUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/AddItemToUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
 		BAD47DC41F12938D001C38BC /* InsertItemIntoUserListBrick098.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = InsertItemIntoUserListBrick098.xml; path = CattyTests/Resources/ParserTests/ListBricks/InsertItemIntoUserListBrick098.xml; sourceTree = SOURCE_ROOT; };
+		BAEAB293214BCD75000B2E4B /* WhenTouchDownScript.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhenTouchDownScript.m; sourceTree = "<group>"; };
+		BAEAB297214BCD95000B2E4B /* WhenTouchDownScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WhenTouchDownScript.h; sourceTree = "<group>"; };
+		BAEAB298214BCE8C000B2E4B /* WhenTouchDownScriptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenTouchDownScriptCell.h; sourceTree = "<group>"; };
+		BAEAB299214BCE8D000B2E4B /* WhenTouchDownScriptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenTouchDownScriptCell.m; sourceTree = "<group>"; };
 		BAEE49B41F165C3100F06741 /* ReplaceItemInUserListBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceItemInUserListBrickCell.h; sourceTree = "<group>"; };
 		BAEE49B51F165C3100F06741 /* ReplaceItemInUserListBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceItemInUserListBrickCell.m; sourceTree = "<group>"; };
 		BAEE49B91F165C6E00F06741 /* ReplaceItemInUserListBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceItemInUserListBrick.h; sourceTree = "<group>"; };
@@ -5994,6 +6000,8 @@
 				92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */,
 				92FF30B51A24DCAA00093DA7 /* Script.h */,
 				92FF30B61A24DCAA00093DA7 /* Script.m */,
+				BAEAB297214BCD95000B2E4B /* WhenTouchDownScript.h */,
+				BAEAB293214BCD75000B2E4B /* WhenTouchDownScript.m */,
 				92FF30B71A24DCAA00093DA7 /* StartScript.h */,
 				92FF30B81A24DCAA00093DA7 /* StartScript.m */,
 				92FF30B91A24DCAA00093DA7 /* WhenScript.h */,
@@ -6956,6 +6964,8 @@
 			children = (
 				AA74F08D1BC05FCE00D1E954 /* BroadcastScriptCell.h */,
 				AA74F08E1BC05FCE00D1E954 /* BroadcastScriptCell.m */,
+				BAEAB298214BCE8C000B2E4B /* WhenTouchDownScriptCell.h */,
+				BAEAB299214BCE8D000B2E4B /* WhenTouchDownScriptCell.m */,
 				AA74F08F1BC05FCE00D1E954 /* StartScriptCell.h */,
 				AA74F0901BC05FCE00D1E954 /* StartScriptCell.m */,
 				AA74F0911BC05FCE00D1E954 /* WhenScriptCell.h */,
@@ -8671,6 +8681,7 @@
 				4CF072A020D670C400F93AB5 /* TouchSensor.swift in Sources */,
 				AA74EE2C1BC0541E00D1E954 /* IfOnEdgeBounceBrick+Instruction.swift in Sources */,
 				AA74F09E1BC05FCE00D1E954 /* ForeverBrickCell.m in Sources */,
+				BAEAB29A214BCE8D000B2E4B /* WhenTouchDownScriptCell.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				59D008E9208E3FDC000539E7 /* MotionManager.swift in Sources */,
 				AA74EFF11BC05B5F00D1E954 /* ChangeBrightnessByNBrick.m in Sources */,
@@ -8723,6 +8734,7 @@
 				BAEE49B61F165C3100F06741 /* ReplaceItemInUserListBrickCell.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
 				9218B20B1CC4AB75007B4C60 /* DrawTool.m in Sources */,
+				BAEAB294214BCD75000B2E4B /* WhenTouchDownScript.m in Sources */,
 				4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */,
 				4C0F9F79204BD1E300E71B2D /* SayForBubbleBrick+Instruction.swift in Sources */,
 				4CF429F1213A876000B78897 /* RepeatBrick+Condition.swift in Sources */,

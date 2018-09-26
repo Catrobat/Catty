@@ -548,5 +548,29 @@
     XCTAssertEqualObjects([NSNumber numberWithInt:2], indexValue, @"Invalid index value");
 }
 
+- (void)testBroadcastScript
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *object = [program.objectList objectAtIndex:1];
+    Script *broadcastScript = [object.scriptList objectAtIndex:0];
+    XCTAssertTrue([broadcastScript isKindOfClass:[BroadcastScript class]], "Invalid script type");
+}
+
+- (void)testWhenScript
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *object = [program.objectList objectAtIndex:1];
+    Script *whenScript = [object.scriptList objectAtIndex:1];
+    XCTAssertTrue([whenScript isKindOfClass:[WhenScript class]], "Invalid script type");
+}
+
+- (void)testWhenTouchDownScript
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks0991"];
+    SpriteObject *object = [program.objectList objectAtIndex:1];
+    Script *whenTouchDownScript = [object.scriptList objectAtIndex:2];
+    XCTAssertTrue([whenTouchDownScript isKindOfClass:[WhenTouchDownScript class]], "Invalid script type");
+}
+
 @end
 
