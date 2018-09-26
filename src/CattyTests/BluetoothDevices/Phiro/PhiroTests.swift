@@ -29,7 +29,7 @@ import BluetoothHelper
 class PhiroTests: XCTestCase {
     
     var phiroTest = Phiro(peripheral: Peripheral(cbPeripheral:PeripheralMock(test: true), advertisements:[String:String](), rssi: 0))
-
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -52,7 +52,7 @@ class PhiroTests: XCTestCase {
     }
     
     
-
+    
     //MARK: Motor tests
     func testMoveMotorLeftForward10() {
         //When
@@ -65,7 +65,7 @@ class PhiroTests: XCTestCase {
         XCTAssertEqual(firmataMock.receivedPin, 11 , "Pin is wrong")
         XCTAssertEqual(firmataMock.receivedPinMode, .pwm , "PinMode is wrong")
         XCTAssertEqual(firmataMock.receivedValue, 25 , "PinValue is wrong")
-
+        
     }
     func testMoveMotorLeftForward260() {
         //When

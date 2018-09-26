@@ -83,9 +83,9 @@
         SpriteObject *firstBgObject = firstProgram.objectList[0];
         SpriteObject *secondBgObject = secondProgram.objectList[0];
         firstBgObject.name = [firstBgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"
-                                                                       withString:@"Background"];
+                                                                           withString:@"Background"];
         secondBgObject.name = [secondBgObject.name stringByReplacingOccurrencesOfString:@"Hintergrund"
-                                                                       withString:@"Background"];
+                                                                             withString:@"Background"];
     }
     
     XCTAssertTrue([firstProgram isEqualToProgram:secondProgram], @"Programs are not equal");

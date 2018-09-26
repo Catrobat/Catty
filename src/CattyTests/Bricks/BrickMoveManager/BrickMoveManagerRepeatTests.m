@@ -39,7 +39,7 @@
 @implementation BrickMoveManagerRepeatTests
 
 - (void)testMoveNestedRepeatBricks {
-
+    
     /*  Test:
      
      0 startedScript
@@ -48,7 +48,7 @@
      3  repeatBeginB    <---
      4  repeatEndB
      */
-
+    
     [self.viewController.collectionView reloadData];
     
     NSUInteger addedBricks = 1;
@@ -66,14 +66,14 @@
     [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                              itemAtIndexPath:indexPathFrom
-                                                                           canMoveToIndexPath:indexPathTo
-                                                                                    andObject:self.spriteObject];
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
     XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move RepeatBrick inside other RepeatBrick");
 }
 
 - (void)testMoveIfBrickInsideRepeatBrick {
-
+    
     /*  Test:
      
      0 startedScript
@@ -110,9 +110,9 @@
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                      itemAtIndexPath:indexPathFrom
-                                                                                   canMoveToIndexPath:indexPathTo
-                                                                                            andObject:self.spriteObject];
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
     XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move IfBrick inside repeat-loop above RepeatBrick");    
 }
 
@@ -130,18 +130,18 @@
      7  repeatBeginC
      8      waitC
      9  repeatEndC
-    10  repeatBeginD
-    11      waitD               --->
-    12  repeatEndD
-    13  repeatBeginE
-    14      waitE
-    15  repeatEndE
-    16  repeatBeginF
-    17      waitF
-    18  repeatEndF
-    19  repeatBeginG
-    20      waitG
-    21  repeatEndG
+     10  repeatBeginD
+     11      waitD               --->
+     12  repeatEndD
+     13  repeatBeginE
+     14      waitE
+     15  repeatEndE
+     16  repeatBeginF
+     17      waitF
+     18  repeatEndF
+     19  repeatBeginG
+     20      waitG
+     21  repeatEndG
      */
     
     [self.viewController.collectionView reloadData];
@@ -166,9 +166,9 @@
         NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:0];
         
         BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                  itemAtIndexPath:indexPathFrom
-                                                                               canMoveToIndexPath:indexPathTo
-                                                                                        andObject:self.spriteObject];
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
         XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)destinationIDX);
     }
 }
@@ -187,18 +187,18 @@
      7  repeatBeginC
      8      waitC
      9  repeatEndC
-    10  repeatBeginD
-    11      waitD
-    12  repeatEndD
-    13  repeatBeginE
-    14      waitE                  (valid)
-    15  repeatEndE         --->
-    16  repeatBeginF
-    17      waitF
-    18  repeatEndF
-    19  repeatBeginG
-    20      waitG
-    21  repeatEndG
+     10  repeatBeginD
+     11      waitD
+     12  repeatEndD
+     13  repeatBeginE
+     14      waitE                  (valid)
+     15  repeatEndE         --->
+     16  repeatBeginF
+     17      waitF
+     18  repeatEndF
+     19  repeatBeginG
+     20      waitG
+     21  repeatEndG
      */
     
     [self.viewController.collectionView reloadData];
@@ -220,7 +220,7 @@
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
-
+    
     for(NSUInteger destinationIDX = 1; destinationIDX < addedBricks; destinationIDX++) {
         if((destinationIDX != validTarget1)&& destinationIDX != sourceIDX) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:0];
@@ -307,9 +307,9 @@
         NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget3 inSection:0];
         [[BrickMoveManager sharedInstance] reset];
         BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                 itemAtIndexPath:indexPathFrom
-                                                              canMoveToIndexPath:indexPathTo
-                                                                       andObject:self.spriteObject];
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
         XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget3);
     }
     
@@ -329,11 +329,11 @@
      7              waitA
      8          foreverEndA
      9      elseA
-    10          repeatBeginC        --->
-    11              waitB                   (valid)
-    12          repeatEndC
-    13      ifEndA
-    14  repeatEndC
+     10          repeatBeginC        --->
+     11              waitB                   (valid)
+     12          repeatEndC
+     13      ifEndA
+     14  repeatEndC
      */
     
     [self.viewController.collectionView reloadData];
@@ -535,21 +535,21 @@
      7          repeatEndB
      8      repeatEndA
      9  elseA
-    10      reapeatBeginA
-    11          repeatBeginB
-    12             repeatBeginC
-    13                  waitA                                          (valid)
-    14              repeatEndC                                          --->
-    15          repeatEndB
-    16      repeatEndA
-    17  ifEndA
-    18  reapeatBeginA
-    19      repeatBeginB            (not valid)
-    20          repeatBeginC                           (not valid)                       (all valid)
-    21              waitA                                                               --->
-    22          repeatEndC
-    23      repeatEndB                                  --->
-    24  repeatEndA                     --->
+     10      reapeatBeginA
+     11          repeatBeginB
+     12             repeatBeginC
+     13                  waitA                                          (valid)
+     14              repeatEndC                                          --->
+     15          repeatEndB
+     16      repeatEndA
+     17  ifEndA
+     18  reapeatBeginA
+     19      repeatBeginB            (not valid)
+     20          repeatBeginC                           (not valid)                       (all valid)
+     21              waitA                                                               --->
+     22          repeatEndC
+     23      repeatEndB                                  --->
+     24  repeatEndA                     --->
      */
     
     [self.viewController.collectionView reloadData];

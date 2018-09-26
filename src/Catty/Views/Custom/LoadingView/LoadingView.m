@@ -38,67 +38,67 @@
 
 - (instancetype)init
 {
-  if (self = [super initWithFrame:CGRectMake(25, 130, kLoadingBackgroundWidth, kLoadingBackgroundHeight)]) {
-    self.tag = kLoadingViewTag;
-    self.backgroundColor = [UIColor navTintColor];
-    self.alpha = 0.90f;
-    self.layer.cornerRadius = 5;
-    self.userInteractionEnabled = false;
-    [self initLoadingLabel];
-    [self initActivityIndicator];
-  }
-  return self;
+    if (self = [super initWithFrame:CGRectMake(25, 130, kLoadingBackgroundWidth, kLoadingBackgroundHeight)]) {
+        self.tag = kLoadingViewTag;
+        self.backgroundColor = [UIColor navTintColor];
+        self.alpha = 0.90f;
+        self.layer.cornerRadius = 5;
+        self.userInteractionEnabled = false;
+        [self initLoadingLabel];
+        [self initActivityIndicator];
+    }
+    return self;
 }
 
 - (void)hide
 {
-  [self.activityIndicator stopAnimating];
-  self.hidden = YES;
+    [self.activityIndicator stopAnimating];
+    self.hidden = YES;
 }
 
 - (void)show
 {
-  [self.activityIndicator startAnimating];
-  self.hidden = NO;
-  [self.superview bringSubviewToFront:self];
-  CGFloat height = (self.superview.bounds.size.height / 2) - (kLoadingBackgroundHeight/2.0f);
-  CGFloat width = self.superview.bounds.size.width / 2;
-  self.center = CGPointMake(width, height);
+    [self.activityIndicator startAnimating];
+    self.hidden = NO;
+    [self.superview bringSubviewToFront:self];
+    CGFloat height = (self.superview.bounds.size.height / 2) - (kLoadingBackgroundHeight/2.0f);
+    CGFloat width = self.superview.bounds.size.width / 2;
+    self.center = CGPointMake(width, height);
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
-  [super setBackgroundColor:backgroundColor];
-//  if ([backgroundColor isEqual:[UIColor whiteColor]])
+    [super setBackgroundColor:backgroundColor];
+    //  if ([backgroundColor isEqual:[UIColor whiteColor]])
     self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-//  else
-//    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    //  else
+    //    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
 }
 
 - (void)initLoadingLabel
 {
-  self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 170, 20)];
-  self.loadingLabel.backgroundColor = [UIColor clearColor];
-  self.loadingLabel.textColor = [UIColor backgroundColor];
-  NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kLocalizedLoading];
-  self.loadingLabel.text = loadingText;
-  self.loadingLabel.textAlignment = NSTextAlignmentCenter;
-  self.loadingLabel.font = [UIFont boldSystemFontOfSize:16];
-  self.loadingLabel.adjustsFontSizeToFitWidth = YES;
-  [self addSubview:self.loadingLabel];
+    self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 170, 20)];
+    self.loadingLabel.backgroundColor = [UIColor clearColor];
+    self.loadingLabel.textColor = [UIColor backgroundColor];
+    NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kLocalizedLoading];
+    self.loadingLabel.text = loadingText;
+    self.loadingLabel.textAlignment = NSTextAlignmentCenter;
+    self.loadingLabel.font = [UIFont boldSystemFontOfSize:16];
+    self.loadingLabel.adjustsFontSizeToFitWidth = YES;
+    [self addSubview:self.loadingLabel];
 }
 
 - (void)initActivityIndicator
 {
-  self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-  self.activityIndicator.frame = CGRectMake(80, 15, 40, 40);
-  [self addSubview:self.activityIndicator];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.frame = CGRectMake(80, 15, 40, 40);
+    [self addSubview:self.activityIndicator];
 }
 
 - (void)dealloc
 {
-  self.activityIndicator = nil;
-  self.loadingLabel = nil;
+    self.activityIndicator = nil;
+    self.loadingLabel = nil;
 }
 
 @end

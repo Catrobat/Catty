@@ -12,21 +12,21 @@
 #define INVALID_NODE_CONTENT INT_MIN
 typedef struct PointNode
 {
-  NSInteger nextNodeOffset;
-  
-  NSInteger point;
-  
+    NSInteger nextNodeOffset;
+    
+    NSInteger point;
+    
 } PointNode;
 
 @interface LinkedListStack : NSObject
 {
-  NSMutableData *nodeCache;
-  
-  NSInteger freeNodeOffset;
-  NSInteger topNodeOffset;
-  NSInteger _cacheSizeIncrements;
-  
-  NSInteger multiplier;
+    NSMutableData *nodeCache;
+    
+    NSInteger freeNodeOffset;
+    NSInteger topNodeOffset;
+    NSInteger _cacheSizeIncrements;
+    
+    NSInteger multiplier;
 }
 
 - (id)initWithCapacity:(NSInteger)capacity incrementSize:(NSInteger)increment andMultiplier:(NSInteger)mul;

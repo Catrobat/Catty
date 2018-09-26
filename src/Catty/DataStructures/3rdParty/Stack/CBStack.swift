@@ -33,7 +33,7 @@ import Foundation
 class CBStack<T> {
     
     private var top: LLNode<T>! = LLNode<T>()
-
+    
     
     //TODO: Add count computed property
     
@@ -64,16 +64,16 @@ class CBStack<T> {
             childToUse.next = top;
             top = childToUse;
             
-         
+            
         }
-
+        
     }
     
     
     
     //remove an item from the stack
     func pop() -> T? {
-     
+        
         //determine if the key or instance exist
         let topitem: T? = self.top?.key
         
@@ -95,14 +95,14 @@ class CBStack<T> {
         
         
         return queueitem
-
+        
     }
     
     
     
     //retrieve the top most item
     func peek() -> T? {
-
+        
         
         //determine if the key or instance exist
         if let topitem: T = self.top?.key {
@@ -144,7 +144,7 @@ class CBStack<T> {
         let topitem: T? = self.top?.key
         
         if (topitem == nil) {
-             return 0
+            return 0
         }
         
         
@@ -162,5 +162,5 @@ class CBStack<T> {
         
     }
     
-
+    
 }

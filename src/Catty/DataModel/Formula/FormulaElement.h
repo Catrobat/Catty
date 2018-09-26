@@ -80,10 +80,10 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
             parent:(FormulaElement*)parent;
 
 - (id)initWithElementType:(ElementType)type
-             value:(NSString*)value
-         leftChild:(FormulaElement*)leftChild
-        rightChild:(FormulaElement*)rightChild
-            parent:(FormulaElement*)parent;
+                    value:(NSString*)value
+                leftChild:(FormulaElement*)leftChild
+               rightChild:(FormulaElement*)rightChild
+                   parent:(FormulaElement*)parent;
 
 - (id)initWithElementType:(ElementType)type
                     value:(NSString*)value;

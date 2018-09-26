@@ -30,28 +30,28 @@
 @implementation MirrorRotationZoomTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+    }
+    return self;
 }
 
 - (void)mirrorVerticalAction
 {
-  UIImage* flippedImage;
-  if (!self.canvas.vertical) {
-    flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
-                                       scale:self.canvas.saveView.image.scale
-                                 orientation:UIImageOrientationUpMirrored];
-    self.canvas.vertical = YES;
-  } else{
-    flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
-                                       scale:self.canvas.saveView.image.scale
-                                 orientation:UIImageOrientationUp];
-    self.canvas.vertical=NO;
-  }
+    UIImage* flippedImage;
+    if (!self.canvas.vertical) {
+        flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
+                                           scale:self.canvas.saveView.image.scale
+                                     orientation:UIImageOrientationUpMirrored];
+        self.canvas.vertical = YES;
+    } else{
+        flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
+                                           scale:self.canvas.saveView.image.scale
+                                     orientation:UIImageOrientationUp];
+        self.canvas.vertical=NO;
+    }
     CGSize imageSize = CGSizeMake(self.canvas.saveView.bounds.size.width, self.canvas.saveView.bounds.size.height);
     
     UIGraphicsBeginImageContext(imageSize);
@@ -63,23 +63,23 @@
     UndoManager* manager = [self.canvas getUndoManager];
     [manager setImage:self.canvas.saveView.image];
     self.canvas.saveView.image = tempImage;
-  self.canvas.drawView.image = nil;
+    self.canvas.drawView.image = nil;
 }
 
 - (void)mirrorHorizontalAction
 {
-  UIImage* flippedImage;
-  if (!self.canvas.horizontal) {
-    flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
-                                       scale:self.canvas.saveView.image.scale
-                                 orientation:UIImageOrientationDownMirrored];
-    self.canvas.horizontal = YES;
-  } else{
-    flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
-                                       scale:self.canvas.saveView.image.scale
-                                 orientation:UIImageOrientationUp];
-    self.canvas.horizontal=NO;
-  }
+    UIImage* flippedImage;
+    if (!self.canvas.horizontal) {
+        flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
+                                           scale:self.canvas.saveView.image.scale
+                                     orientation:UIImageOrientationDownMirrored];
+        self.canvas.horizontal = YES;
+    } else{
+        flippedImage = [UIImage imageWithCGImage:self.canvas.saveView.image.CGImage
+                                           scale:self.canvas.saveView.image.scale
+                                     orientation:UIImageOrientationUp];
+        self.canvas.horizontal=NO;
+    }
     
     CGSize imageSize = CGSizeMake(self.canvas.saveView.bounds.size.width, self.canvas.saveView.bounds.size.height);
     
@@ -91,21 +91,21 @@
     //UNDO-Manager
     UndoManager* manager = [self.canvas getUndoManager];
     [manager setImage:self.canvas.saveView.image];
-  self.canvas.saveView.image = tempImage;
-  self.canvas.drawView.image = nil;
+    self.canvas.saveView.image = tempImage;
+    self.canvas.drawView.image = nil;
 }
 
 - (void)rotateRight
 {
-  self.canvas.degrees += 90;
+    self.canvas.degrees += 90;
     UIImage *image =[self.canvas.saveView.image imageRotatedByDegrees:90];
     CGFloat zoomScale = self.canvas.scrollView.zoomScale;
     self.canvas.scrollView.zoomScale = 1.0;
-
+    
     self.canvas.saveView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
     self.canvas.drawView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
     self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
-
+    
     self.canvas.scrollView.zoomScale = zoomScale;
     
     CGSize imageSize = CGSizeMake(self.canvas.helper.frame.size.width, self.canvas.helper.frame.size.height);
@@ -115,23 +115,23 @@
     [tempImage drawInRect:CGRectMake(0, 0, imageSize.width, imageSize.height)];
     tempImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     //UNDO-Manager
     UndoManager* manager = [self.canvas getUndoManager];
     [manager setImage:self.canvas.saveView.image];
-  self.canvas.saveView.image = tempImage;
+    self.canvas.saveView.image = tempImage;
 }
 
 - (void)rotateLeft
 {
-  self.canvas.degrees -= 90;
-  UIImage *image =[self.canvas.saveView.image imageRotatedByDegrees:-90];
-  CGFloat zoomScale = self.canvas.scrollView.zoomScale;
-  self.canvas.scrollView.zoomScale = 1.0;
-  self.canvas.saveView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
-  self.canvas.drawView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
-  self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
-  self.canvas.scrollView.zoomScale = zoomScale;
+    self.canvas.degrees -= 90;
+    UIImage *image =[self.canvas.saveView.image imageRotatedByDegrees:-90];
+    CGFloat zoomScale = self.canvas.scrollView.zoomScale;
+    self.canvas.scrollView.zoomScale = 1.0;
+    self.canvas.saveView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
+    self.canvas.drawView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
+    self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
+    self.canvas.scrollView.zoomScale = zoomScale;
     
     CGSize imageSize = CGSizeMake(self.canvas.helper.frame.size.width, self.canvas.helper.frame.size.height);
     
@@ -144,16 +144,16 @@
     //UNDO-Manager
     UndoManager* manager = [self.canvas getUndoManager];
     [manager setImage:self.canvas.saveView.image];
-  self.canvas.saveView.image = tempImage;
+    self.canvas.saveView.image = tempImage;
 }
 
 - (void)zoomIn
 {
-  if (self.canvas.scrollView.zoomScale * 1.1f < kMaxZoomScale) {
-    self.canvas.scrollView.zoomScale = self.canvas.scrollView.zoomScale * 1.1f;
-  }else{
-    self.canvas.scrollView.zoomScale = kMaxZoomScale;
-  }
+    if (self.canvas.scrollView.zoomScale * 1.1f < kMaxZoomScale) {
+        self.canvas.scrollView.zoomScale = self.canvas.scrollView.zoomScale * 1.1f;
+    }else{
+        self.canvas.scrollView.zoomScale = kMaxZoomScale;
+    }
 }
 
 - (void)zoomOut

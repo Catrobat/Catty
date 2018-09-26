@@ -50,14 +50,14 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetXBrick *brick = [[SetXBrick alloc]init];
     brick.script = script;
     brick.xPosition = [[Formula alloc] initWithInteger:20];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)20, @"SetxBrick is not correctly calculated");
@@ -71,14 +71,14 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetXBrick* brick = [[SetXBrick alloc]init];
     brick.script = script;
     brick.xPosition = [[Formula alloc] initWithInteger:-20];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)-20, @"SetxBrick is not correctly calculated");
@@ -92,14 +92,14 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetXBrick* brick = [[SetXBrick alloc]init];
     brick.script = script;
     brick.xPosition = [[Formula alloc] initWithInteger:50000];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)50000, @"SetxBrick is not correctly calculated");
@@ -113,14 +113,14 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetXBrick* brick = [[SetXBrick alloc]init];
     brick.script = script;
     brick.xPosition = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode.catrobatPosition.x, (CGFloat)0, @"SetxBrick is not correctly calculated");

@@ -21,6 +21,6 @@
  */
 
 protocol SpriteObjectProtocol {
-
+    
     //
 }

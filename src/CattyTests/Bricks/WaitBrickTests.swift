@@ -58,14 +58,14 @@ final class WaitBrickTests: XCTestCase {
     }
     
     /*func testSpeakAndWaitDuration() {
-        let speakAndWaitBrick = SpeakAndWaitBrick()
-        speakAndWaitBrick.formula = Formula(double: 1010101.0)
-        speakAndWaitBrick.script = self.script;
-        
-        let executionTime = self.measureExecutionTime(speakAndWaitBrick.instruction())
-        XCTAssertEqualWithAccuracy(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
-    }*/
-
+     let speakAndWaitBrick = SpeakAndWaitBrick()
+     speakAndWaitBrick.formula = Formula(double: 1010101.0)
+     speakAndWaitBrick.script = self.script;
+     
+     let executionTime = self.measureExecutionTime(speakAndWaitBrick.instruction())
+     XCTAssertEqualWithAccuracy(executionTime, 5.0, accuracy: 1.0, "Wrong execution time")
+     }*/
+    
     func testTitleSingular() {
         let waitBrick = WaitBrick()
         waitBrick.timeToWaitInSeconds = Formula(double: 1)
@@ -82,11 +82,11 @@ final class WaitBrickTests: XCTestCase {
         let start = NSDate()
         let formulaInterpreter = FormulaManager()
         let scheduler = CBScheduler(logger: self.logger, broadcastHandler: CBBroadcastHandler(logger: self.logger), formulaInterpreter: formulaInterpreter)
-       
+        
         switch instruction {
-            case let .waitExecClosure(closure):
-                closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: formulaInterpreter)!, scheduler)
-            default: break
+        case let .waitExecClosure(closure):
+            closure(CBScriptContext(script: self.script, spriteNode: self.spriteNode, formulaInterpreter: formulaInterpreter)!, scheduler)
+        default: break
         }
         
         let end = NSDate()

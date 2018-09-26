@@ -57,9 +57,9 @@
     
     waitBrick.animateInsertBrick = YES;
     BOOL canInsert = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                             itemAtIndexPath:indexPathFrom
-                                                          canInsertToIndexPath:indexPathTo
-                                                                   andObject:self.spriteObject];
+                                                         itemAtIndexPath:indexPathFrom
+                                                    canInsertToIndexPath:indexPathTo
+                                                               andObject:self.spriteObject];
     
     XCTAssertTrue(canInsert, @"Should be allowed to insert WaitBrick behind SetVariableBrick");
 }
@@ -89,16 +89,16 @@
     
     waitBrick.animateInsertBrick = YES;
     BOOL canInsertWaitBrickInsideForeverBrick = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                             itemAtIndexPath:indexPathFrom
-                                                          canInsertToIndexPath:indexPathTo
-                                                                   andObject:self.spriteObject];
+                                                                                    itemAtIndexPath:indexPathFrom
+                                                                               canInsertToIndexPath:indexPathTo
+                                                                                          andObject:self.spriteObject];
     XCTAssertTrue(canInsertWaitBrickInsideForeverBrick, @"Should be allowed to insert WaitBrick inside ForeverBrick");
     
     indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     BOOL canMoveWaitBrickBehindForeverBrick = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                               itemAtIndexPath:indexPathFrom
-                                                                            canInsertToIndexPath:indexPathTo
-                                                                                     andObject:self.spriteObject];
+                                                                                  itemAtIndexPath:indexPathFrom
+                                                                             canInsertToIndexPath:indexPathTo
+                                                                                        andObject:self.spriteObject];
     XCTAssertFalse(canMoveWaitBrickBehindForeverBrick, @"Should not be allowed to insert WaitBrick behind ForeverBrick");
 }
 
@@ -127,9 +127,9 @@
     
     waitBrick.animateInsertBrick = YES;
     BOOL canInsertWaitBrickBehindRepeatBrick = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canInsertToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
+                                                                                   itemAtIndexPath:indexPathFrom
+                                                                              canInsertToIndexPath:indexPathTo
+                                                                                         andObject:self.spriteObject];
     XCTAssertTrue(canInsertWaitBrickBehindRepeatBrick, @"Should be allowed to insert WaitBrick behind RepeatBrick");
 }
 

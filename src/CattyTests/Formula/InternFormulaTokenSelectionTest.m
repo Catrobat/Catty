@@ -82,7 +82,7 @@
     XCTAssertFalse([tokenSelectionDeepCopy equals:tokenSelection], @"Equal error in InternFormulaTokenSelection");
     
     XCTAssertFalse([tokenSelectionDeepCopy equals:[NSNumber numberWithInt:1]], @"Equal error in InternFormulaTokenSelection");
-
+    
 }
 
 

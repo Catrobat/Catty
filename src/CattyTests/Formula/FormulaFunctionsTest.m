@@ -86,7 +86,7 @@ const double DELTA = 0.001;
 {
     Formula *formula = [self getFormulaForFunction:@"COS" WithLeftValue:@"0" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(1, [self.formulaManager interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Wrong result for cos(0)");
-
+    
     formula = [self getFormulaForFunction:@"COS" WithLeftValue:@"90" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(0, [self.formulaManager interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Wrong result for cos(90)");
     
@@ -101,10 +101,10 @@ const double DELTA = 0.001;
     
     formula = [self getFormulaForFunction:@"COS" WithLeftValue:@"360" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(1, [self.formulaManager interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Wrong result for cos(360)");
-
+    
     formula = [self getFormulaForFunction:@"COS" WithLeftValue:@"-360" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(1, [self.formulaManager interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Wrong result for cos(-360)");
-
+    
     formula = [self getFormulaForFunction:@"COS" WithLeftValue:@"750" AndRightValue:nil]; // TODO use Function property
     XCTAssertEqualWithAccuracy(0.86602540378, [self.formulaManager interpretDouble:formula forSpriteObject:self.spriteObject], DELTA, @"Wrong result for cos(750)");
     

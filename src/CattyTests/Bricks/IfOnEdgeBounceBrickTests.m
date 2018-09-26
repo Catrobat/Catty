@@ -64,10 +64,10 @@
     self.spriteObject.spriteNode = spriteNode;
     spriteNode.catrobatPosition = CGPointMake(0, 0);
     self.spriteObject.name = @"Test";
-
+    
     self.script = [[WhenScript alloc] init];
     self.script.object = self.spriteObject;
-
+    
     self.brick = [[IfOnEdgeBounceBrick alloc] init];
     self.brick.script = self.script;
 }
@@ -99,11 +99,11 @@
                            @[[NSNumber numberWithInteger:30], [NSNumber numberWithInteger:150]],
                            @[[NSNumber numberWithInteger:60], [NSNumber numberWithInteger:120]]];
     
-      for (NSArray<NSNumber*> *rotation in rotations) {
-          CGFloat rotationBefore = rotation[0].floatValue;
-          CGFloat rotationAfter = rotation[1].floatValue;
-          [self setPosition:CGPointMake(0, TOP_BORDER_POSITION) AndRotation:rotationBefore];
-          [self checkPosition:CGPointMake(0, BOUNCE_TOP_POSITION) AndRotation:rotationAfter];
+    for (NSArray<NSNumber*> *rotation in rotations) {
+        CGFloat rotationBefore = rotation[0].floatValue;
+        CGFloat rotationAfter = rotation[1].floatValue;
+        [self setPosition:CGPointMake(0, TOP_BORDER_POSITION) AndRotation:rotationBefore];
+        [self checkPosition:CGPointMake(0, BOUNCE_TOP_POSITION) AndRotation:rotationAfter];
     }
 }
 
@@ -121,7 +121,7 @@
                            @[[NSNumber numberWithInteger:0], [NSNumber numberWithInteger:0]],
                            @[[NSNumber numberWithInteger:30], [NSNumber numberWithInteger:30]],
                            @[[NSNumber numberWithInteger:60], [NSNumber numberWithInteger:60]]];
-
+    
     for (NSArray<NSNumber*> *rotation in rotations) {
         CGFloat rotationBefore = rotation[0].floatValue;
         CGFloat rotationAfter = rotation[1].floatValue;
@@ -144,7 +144,7 @@
                            @[[NSNumber numberWithInteger:0], [NSNumber numberWithInteger:0]],
                            @[[NSNumber numberWithInteger:30], [NSNumber numberWithInteger:30]],
                            @[[NSNumber numberWithInteger:60], [NSNumber numberWithInteger:60]]];
-
+    
     for (NSArray<NSNumber*> *rotation in rotations) {
         CGFloat rotationBefore = rotation[0].floatValue;
         CGFloat rotationAfter = rotation[1].floatValue;

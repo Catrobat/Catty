@@ -32,7 +32,7 @@
 - (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted
 {
     NSString *str = nil;
-
+    
     if (xmlNode_ != NULL) {
         
         xmlBufferPtr buff = xmlBufferCreate();
@@ -55,7 +55,7 @@
             xmlBufferFree(buff);
         }
     }
-
+    
     // remove leading and trailing whitespace
     NSCharacterSet *ws = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *trimmed = [str stringByTrimmingCharactersInSet:ws];
@@ -69,12 +69,12 @@
     // ignores all other invalid characters that have to be escaped as well. Therefore
     // we can't rely on the XMLStringPrettyPrinted method.
     NSDictionary *replaceStrings = @{
-        @"&amp;lt;":   @"&lt;",
-        @"&amp;gt;":   @"&gt;",
-        @"&amp;amp;":  @"&amp;",
-        @"&amp;quot;": @"&quot;",
-        @"&amp;apos;": @"&apos;"
-    };
+                                     @"&amp;lt;":   @"&lt;",
+                                     @"&amp;gt;":   @"&gt;",
+                                     @"&amp;amp;":  @"&amp;",
+                                     @"&amp;quot;": @"&quot;",
+                                     @"&amp;apos;": @"&apos;"
+                                     };
     for (NSString *stringToBeReplaced in replaceStrings) {
         NSString *withString = replaceStrings[stringToBeReplaced];
         if ([xmlString rangeOfString:stringToBeReplaced].location != NSNotFound) {
@@ -159,7 +159,7 @@
         }
         ++index;
     }
-
+    
     NSError *error = nil;
     NSArray *nodes = [self nodesForXPath:xPath error:&error];
     if (error || ([nodes count] != 1)) {

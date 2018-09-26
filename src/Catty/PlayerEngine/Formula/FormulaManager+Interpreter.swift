@@ -253,17 +253,17 @@ extension FormulaManager {
     
     private func interpretVariable(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         guard let program = spriteObject.program,
-              let variable = program.variables.getUserVariableNamed(formulaElement.value, for: spriteObject),
-              let value = variable.value else { return 0 as AnyObject }
+            let variable = program.variables.getUserVariableNamed(formulaElement.value, for: spriteObject),
+            let value = variable.value else { return 0 as AnyObject }
         
         return value as AnyObject
     }
     
     private func interpretList(_ formulaElement: FormulaElement, for spriteObject: SpriteObject) -> AnyObject {
         guard let program = spriteObject.program,
-              let list = program.variables.getUserListNamed(formulaElement.value, for: spriteObject),
-              let value = list.value,
-              let listElements = value as? [Any] else { return 0 as AnyObject }
+            let list = program.variables.getUserListNamed(formulaElement.value, for: spriteObject),
+            let value = list.value,
+            let listElements = value as? [Any] else { return 0 as AnyObject }
         
         var stringElements = [String]()
         

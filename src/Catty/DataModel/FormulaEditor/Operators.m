@@ -290,7 +290,7 @@
         return DECIMAL_MARK;
     }
     
-//    NSError(@"Unknown Operator: %@", name);
+    //    NSError(@"Unknown Operator: %@", name);
     return NO_OPERATOR;
 }
 

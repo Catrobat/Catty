@@ -20,7 +20,7 @@ typedef struct SPUserResizableViewAnchorPoint {
 @class SPGripViewBorderView;
 
 @interface SPUserResizableView : UIView {
-  
+    
     CGPoint touchStart;
     CGFloat minWidth;
     CGFloat minHeight;

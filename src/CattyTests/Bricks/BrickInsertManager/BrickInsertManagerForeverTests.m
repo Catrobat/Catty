@@ -69,9 +69,9 @@
     
     foreverBrickA.animateInsertBrick = YES;
     BOOL canMoveInsideForeverBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canInsertToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
+                                                                                   itemAtIndexPath:indexPathFrom
+                                                                              canInsertToIndexPath:indexPathTo
+                                                                                         andObject:self.spriteObject];
     XCTAssertTrue(canMoveInsideForeverBrickInsertMode, @"Should be allowed to move ForeverBrick inside other ForeverBrick");
 }
 
@@ -81,7 +81,7 @@
     ForeverBrick *foreverBrick = [[ForeverBrick alloc] init];
     foreverBrick.script = self.startScript;
     [self.startScript.brickList addObject:foreverBrick];
-
+    
     // start if
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick.script = self.startScript;
@@ -92,7 +92,7 @@
     ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
     [self.startScript.brickList addObject:ifLogicElseBrick];
     ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
-
+    
     IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick.script = self.startScript;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
@@ -118,9 +118,9 @@
     
     ifLogicBeginBrick.animateInsertBrick = YES;
     BOOL canMoveAboveForeverBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                         itemAtIndexPath:indexPathFrom
-                                                                                      canInsertToIndexPath:indexPathTo
-                                                                                               andObject:self.spriteObject];
+                                                                                  itemAtIndexPath:indexPathFrom
+                                                                             canInsertToIndexPath:indexPathTo
+                                                                                        andObject:self.spriteObject];
     XCTAssertTrue(canMoveAboveForeverBrickInsertMode, @"Should be allowed to move IfBrick inside forever-loop above ForeverBrick");
 }
 

@@ -58,7 +58,7 @@
     [self addPlayButtonToView:view withTarget:target];
     [self addDownloadAgainButtonToView:view withTarget:target];
     [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
-
+    
     NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
     NSString *uploaded = [[CatrobatProgram uploadDateFormatter] stringFromDate:projectDate];
     
@@ -178,7 +178,7 @@
         [imageView addSubview:activity];
         [activity startAnimating];
     }
-
+    
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
@@ -303,10 +303,10 @@
     [self configureTitleLabel:informationLabel andHeight:height];
     [view addSubview:informationLabel];
     offset += height*0.075;
-        
+    
     version = [version stringByReplacingOccurrencesOfString:@"&lt;" withString:@""];
     version = [version stringByAppendingString:@" MB"];
-
+    
     NSArray* informationArray = [[NSArray alloc] initWithObjects:[views stringValue], uploaded, version, [downloads stringValue], nil];
     NSArray* informationTitleArray = [[NSArray alloc] initWithObjects:
                                       [UIImage imageNamed:@"viewsIcon"],

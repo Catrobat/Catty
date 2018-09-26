@@ -21,7 +21,7 @@
  */
 
 @objc class RotationSensor: NSObject, ObjectDoubleSensor {
-
+    
     static let tag = "OBJECT_ROTATION"
     static let name = kUIFEObjectDirection
     static let defaultRawValue = 0.0
@@ -33,7 +33,7 @@
     func tag() -> String {
         return type(of: self).tag
     }
-
+    
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else {
             return self.defaultRawValue

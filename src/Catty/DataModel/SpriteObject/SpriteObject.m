@@ -89,18 +89,18 @@
 
 - (NSString*)projectPath
 {
-  return [self.program projectPath];
+    return [self.program projectPath];
 }
 
 - (NSString*)previewImagePathForLookAtIndex:(NSUInteger)index
 {
     if (index >= [self.lookList count])
         return nil;
-
+    
     Look* look = [self.lookList objectAtIndex:index];
     if (! look)
         return nil;
-
+    
     NSString *imageDirPath = [[self projectPath] stringByAppendingString:kProgramImagesDirName];
     return [NSString stringWithFormat:@"%@/%@", imageDirPath, [look previewImageFileName]];
 }
@@ -119,12 +119,12 @@
 
 - (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramImagesDirName, look.fileName];
 }
 
 - (NSString*)pathForSound:(Sound*)sound
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self projectPath], kProgramSoundsDirName, sound.fileName];
 }
 
 - (NSUInteger)fileSizeOfLook:(Look*)look
@@ -213,7 +213,7 @@
             ++index;
             continue;
         }
-
+        
         // count references in all object of that look image
         NSUInteger lookImageReferenceCounter = [self referenceCountForLook:look.fileName];
         // if image is not used by other objects, delete it
@@ -260,7 +260,7 @@
             ++index;
             continue;
         }
-
+        
         // count references in all object of that sound file
         NSUInteger soundReferenceCounter = [self referenceCountForSound:sound.fileName];
         // if sound is not used by other objects, delete it
@@ -379,24 +379,24 @@
     if (! [self.name isEqualToString:spriteObject.name]) {
         return NO;
     }
-
+    
     // lookList
     if ([self.lookList count] != [spriteObject.lookList count])
         return NO;
-
+    
     NSUInteger index;
     for (index = 0; index < [self.lookList count]; ++index) {
         Look *firstLook = [self.lookList objectAtIndex:index];
         Look *secondLook = [spriteObject.lookList objectAtIndex:index];
-
+        
         if (! [firstLook isEqualToLook:secondLook])
             return NO;
     }
-
+    
     // soundList
     if ([self.soundList count] != [spriteObject.soundList count])
         return NO;
-
+    
     for (index = 0; index < [self.soundList count]; index++) {
         Sound *firstSound = [self.soundList objectAtIndex:index];
         Sound *secondSound = [spriteObject.soundList objectAtIndex:index];
@@ -422,12 +422,12 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
     if (! context) { NSError(@"%@ must not be nil!", [CBMutableCopyContext class]); }
-
+    
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
     newObject.program = self.program;
     [context updateReference:self WithReference:newObject];
-
+    
     // deep copy
     newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
     for (id lookObject in self.lookList) {

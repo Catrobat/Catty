@@ -30,7 +30,7 @@
 - (NSInteger)getEndIndex;
 - (enum TokenSelectionType)getToketSelectionType;
 - (InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
-                                 internTokenSelectionStart:(NSInteger)internTokenSelectionStart
-                                   internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
+                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
+                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
 
 @end

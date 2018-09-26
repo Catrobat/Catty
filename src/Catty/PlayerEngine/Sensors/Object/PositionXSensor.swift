@@ -21,7 +21,7 @@
  */
 
 class PositionXSensor: ObjectDoubleSensor {
-
+    
     static let tag = "OBJECT_X"
     static let name = kUIFEObjectPositionX
     static let defaultRawValue = 0.0
@@ -31,7 +31,7 @@ class PositionXSensor: ObjectDoubleSensor {
     func tag() -> String {
         return type(of: self).tag
     }
-
+    
     static func rawValue(for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode else { return defaultRawValue }
         
@@ -47,7 +47,7 @@ class PositionXSensor: ObjectDoubleSensor {
         guard let scene = spriteObject.spriteNode.scene else { return defaultRawValue }
         return Double(scene.size.width)/2.0 + userInput
     }
-
+    
     static func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let spriteNode = spriteObject.spriteNode, let scene = spriteNode.scene else { return defaultRawValue }
         return rawValue - Double(scene.size.width)/2.0

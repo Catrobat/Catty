@@ -49,7 +49,7 @@
         if ([cmpProgramID isEqualToString:kNoProgramIDYetPlaceholder]) {
             cmpProgramID = nil;
         }
-
+        
         if (programID == nil && cmpProgramID == nil) {
             return YES;
         }

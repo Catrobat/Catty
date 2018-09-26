@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class GlideToBrickTests: XCTestCase {
-
+    
     func testTitleSingular() {
         let glideToBrick = GlideToBrick()
         glideToBrick.durationInSeconds = Formula(double: 1)

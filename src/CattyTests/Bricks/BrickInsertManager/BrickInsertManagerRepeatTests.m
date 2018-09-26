@@ -69,9 +69,9 @@
     
     repeatBrickA.animateInsertBrick = YES;
     BOOL canMoveInsideRepeatBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                      itemAtIndexPath:indexPathFrom
-                                                                                   canInsertToIndexPath:indexPathTo
-                                                                                            andObject:self.spriteObject];
+                                                                                  itemAtIndexPath:indexPathFrom
+                                                                             canInsertToIndexPath:indexPathTo
+                                                                                        andObject:self.spriteObject];
     XCTAssertTrue(canMoveInsideRepeatBrickInsertMode, @"Should be allowed to insert RepeatBrick inside other RepeatBrick");
 }
 
@@ -118,9 +118,9 @@
     
     ifLogicBeginBrick.animateInsertBrick = YES;
     BOOL canMoveAboveRepeatBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canInsertToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
+                                                                                 itemAtIndexPath:indexPathFrom
+                                                                            canInsertToIndexPath:indexPathTo
+                                                                                       andObject:self.spriteObject];
     XCTAssertTrue(canMoveAboveRepeatBrickInsertMode, @"Should be allowed to move IfBrick inside repeat-loop above RepeatBrick");
 }
 

@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class BubbleBrickTests: XCTestCase {
-
+    
     func testSayForTitleSingular() {
         let sayForBrick = SayForBubbleBrick()
         sayForBrick.intFormula = Formula(double: 1)

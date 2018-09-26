@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class RepeatUntilBrickTests: XCTestCase {
-
+    
     var formulaInterpreter: FormulaInterpreterProtocol!
     var object: SpriteObjectMock!
     var script: Script!

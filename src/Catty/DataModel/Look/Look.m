@@ -70,19 +70,19 @@
     NSRange result = [self.fileName rangeOfString:kResourceFileNameSeparator];
     if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([self.fileName length]-1)))
         return nil; // Invalid file name convention -> this should not happen. XXX: maybe abort here??
-
+    
     return [NSString stringWithFormat:@"%@_%@%@",
-        [self.fileName substringToIndex:result.location],
-        kPreviewImageNamePrefix,
-        [self.fileName substringFromIndex:(result.location + 1)]
-    ];
+            [self.fileName substringToIndex:result.location],
+            kPreviewImageNamePrefix,
+            [self.fileName substringFromIndex:(result.location + 1)]
+            ];
 }
 
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
     if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-
+    
     Look *copiedLook = [[Look alloc] init];
     copiedLook.fileName = [NSString stringWithString:self.fileName];
     copiedLook.name = [NSString stringWithString:self.name];

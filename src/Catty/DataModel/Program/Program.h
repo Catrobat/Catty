@@ -54,7 +54,7 @@
 - (nonnull NSArray*)allObjectNames;
 - (BOOL)hasObject:(SpriteObject* _Nonnull)object;
 - (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
-    withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
+             withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
 - (BOOL)isEqualToProgram:(Program* _Nonnull)program;
 - (NSInteger)getRequiredResources;
 

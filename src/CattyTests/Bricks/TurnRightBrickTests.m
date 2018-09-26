@@ -83,15 +83,15 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     spriteNode.catrobatRotation = 0.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     TurnRightBrick *brick = [[TurnRightBrick alloc] init];
     brick.script = script;
-
+    
     brick.degrees = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     

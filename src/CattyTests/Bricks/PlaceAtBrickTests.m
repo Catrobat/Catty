@@ -32,14 +32,14 @@
 
 - (void)setUp
 {
-  [super setUp];
-  // Put setup code here; it will be run once, before the first test case.
+    [super setUp];
+    // Put setup code here; it will be run once, before the first test case.
 }
 
 - (void)tearDown
 {
-  // Put teardown code here; it will be run once, after the last test case.
-  [super tearDown];
+    // Put teardown code here; it will be run once, after the last test case.
+    [super tearDown];
 }
 
 
@@ -51,18 +51,18 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     PlaceAtBrick* brick = [[PlaceAtBrick alloc]init];
     brick.script = script;
     brick.yPosition = [[Formula alloc] initWithInteger:20];
     brick.xPosition = [[Formula alloc] initWithInteger:20];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     CGPoint testPoint = CGPointMake(20, 20);
     XCTAssertTrue(CGPointEqualToPoint(spriteNode.catrobatPosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }
@@ -75,7 +75,7 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
     
@@ -99,18 +99,18 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     PlaceAtBrick* brick = [[PlaceAtBrick alloc] init];
     brick.script = script;
     brick.yPosition = [[Formula alloc] initWithInteger:-20000];
     brick.xPosition = [[Formula alloc] initWithInteger:-20000];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     CGPoint testPoint = CGPointMake(-20000, -20000);
     XCTAssertTrue(CGPointEqualToPoint(spriteNode.catrobatPosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }
@@ -123,18 +123,18 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     PlaceAtBrick *brick = [[PlaceAtBrick alloc] init];
     brick.script = script;
     brick.yPosition = [[Formula alloc] initWithString:@"a"];
     brick.xPosition = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     CGPoint testPoint = CGPointMake(0, 0);
     XCTAssertTrue(CGPointEqualToPoint(spriteNode.catrobatPosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }

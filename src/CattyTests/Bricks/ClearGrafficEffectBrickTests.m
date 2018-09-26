@@ -51,16 +51,16 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0.0f, 0.0f);
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
@@ -74,15 +74,15 @@
     
     XCTAssertNotEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f);
     XCTAssertNotEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.0001f);
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
     clearBrick.script = script;
     action = [clearBrick actionBlock];
     action();
-
+    
     XCTAssertEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.0001f, @"ClearGraphic alpha is not correctly calculated");
     XCTAssertEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
@@ -98,22 +98,22 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0.0f, 0.0f);
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-
+    
     Formula *transparency = [[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     transparency.formulaTree = formulaTree;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     [object.lookList addObject:look];
@@ -127,16 +127,16 @@
     
     XCTAssertNotEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.001f);
     XCTAssertNotEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.001f);
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
     clearBrick.script = script;
-
+    
     action = [clearBrick actionBlock];
     action();
-
+    
     XCTAssertEqualWithAccuracy(spriteNode.alpha, TransparencySensor.defaultRawValue, 0.0001f, @"ClearGraphic is not correctly calculated");
     XCTAssertEqualWithAccuracy(spriteNode.ciBrightness, BrightnessSensor.defaultRawValue, 0.0001f, @"ClearGraphic brightness is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];

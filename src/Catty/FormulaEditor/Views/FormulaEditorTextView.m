@@ -159,9 +159,9 @@
     
     UITextPosition* beginning = self.beginningOfDocument;
     UITextPosition *cursorPositionStart = [self positionFromPosition:beginning
-                                                                    offset:startIndex];
+                                                              offset:startIndex];
     UITextPosition *cursorPositionEnd = [self positionFromPosition:beginning
-                                                                  offset:endIndex];
+                                                            offset:endIndex];
     
     NSInteger location = [self offsetFromPosition:beginning toPosition:cursorPositionStart];
     NSInteger length = [self offsetFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
@@ -172,13 +172,13 @@
     {
         self.attributedText = formulaString;
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
-                                                                   offset:cursorPostionIndex];
+                                                             offset:cursorPostionIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
     }
     else{
         [formulaString addAttribute:NSBackgroundColorAttributeName value:selectionColor range:NSMakeRange(location, length)];
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
-                                                                   offset:endIndex];
+                                                             offset:endIndex];
         self.attributedText = formulaString;
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
         
@@ -215,7 +215,7 @@
         [self.formulaEditorViewController updateDeleteButton:YES];
     }
 }
-   
+
 - (void)setAttributedText:(NSMutableAttributedString *)attributedText
 {
     [super setAttributedText:attributedText];

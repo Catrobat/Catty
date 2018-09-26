@@ -21,7 +21,7 @@
  */
 
 extension ChangeXByNBrick: CBInstructionProtocol {
-
+    
     func instruction() -> CBInstruction {
         return .action { (context) in SKAction.run(self.actionBlock(context.formulaInterpreter)) }
     }

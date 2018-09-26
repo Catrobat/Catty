@@ -85,7 +85,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [super viewDidLoad];
     [self initTableView];
-
+    
     self.freshLogin = false;
     self.lastUsedProgram = nil;
     self.defaultProgram = nil;
@@ -94,14 +94,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [fileManager createDirectory:[Program basePath]];
     }
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
-
+    
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-
+    
     self.tableView.separatorInset = UIEdgeInsetsZero;
-
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    
     [self presentIntroductionIfNeeded];
 }
 
@@ -112,7 +112,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.defaultProgram = nil;
     self.navigationController.toolbarHidden = YES;
     [self.navigationController.navigationBar setHidden:NO];
-     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
@@ -149,7 +149,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedHelp,
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
-
+    
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
@@ -159,7 +159,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.navigationItem.title = kLocalizedPocketCode;
     self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
     self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
-
+    
 #if DEBUG == 1
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDebugModeTitle
                                                                               style:UIBarButtonItemStylePlain
@@ -225,7 +225,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSString *CellIdentifier = (indexPath.row == 0) ? kContinueCell : kImageCell;
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    
     if (! cell) {
         NSError(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
         return [UITableViewCell new];
@@ -270,27 +270,27 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self performSegueWithIdentifier:identifier sender:self];
             }
             break;
-//        case kHelpVC:
-//            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-////                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
-////                [self.navigationController pushViewController:webVC animated:YES];
-//                
-//            }
-//            break;
+            //        case kHelpVC:
+            //            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+            ////                HelpWebViewController *webVC = [[HelpWebViewController alloc] initWithURL:[NSURL URLWithString:kForumURL]];
+            ////                [self.navigationController pushViewController:webVC animated:YES];
+            //                
+            //            }
+            //            break;
         case kUploadVC:
             //[[NSUserDefaults standardUserDefaults] setValue:false forKey:kUserIsLoggedIn];    //Just for testing purpose
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:@"segueToUpload" sender:self];
                 }
-    
+                
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
                 LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
                 vc.catTVC = self;
                 [self.navigationController pushViewController:vc animated:YES];
             }
-
+            
             break;
             
         default:
@@ -315,7 +315,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return [self getHeightForCellAtIndexPath:indexPath];
+    return [self getHeightForCellAtIndexPath:indexPath];
 }
 
 #pragma mark - table view helpers
@@ -354,7 +354,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if (self.lastUsedProgram) {
             return YES;
         }
-
+        
         // program failed loading...
         // update continue cell
         [Util setLastProgramWithName:nil programID:nil];

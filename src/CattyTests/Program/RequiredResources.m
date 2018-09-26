@@ -555,7 +555,7 @@
     PlaceAtBrick *brick = [PlaceAtBrick new];
     FormulaElement *element = [[FormulaElement alloc] initWithElementType:SENSOR value:PhiroBottomLeftSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick.xPosition = [[Formula alloc] initWithFormulaElement:element];
-
+    
     brick.yPosition = [[Formula alloc] initWithFormulaElement:element];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
@@ -592,7 +592,7 @@
 - (void)testGoNStepsBackBrickResources
 {
     GoNStepsBackBrick *brick = [GoNStepsBackBrick new];
-     brick.steps  =[[Formula alloc] initWithInteger:1];
+    brick.steps  =[[Formula alloc] initWithInteger:1];
     Program *prog = [self getProgramWithOneSpriteWithBrick:brick];
     
     NSInteger resources = [prog getRequiredResources];
@@ -932,9 +932,9 @@
     HideBrick *brick3 = [HideBrick new];
     
     ChangeTransparencyByNBrick *brick4 = [ChangeTransparencyByNBrick new];
-     element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
+    element = [[FormulaElement alloc] initWithElementType:SENSOR value:LoudnessSensor.tag leftChild:nil rightChild:nil parent:nil];
     brick4.changeTransparency = [[Formula alloc] initWithFormulaElement:element];
-
+    
     NSArray *brickArray2 = [NSArray arrayWithObjects:brick2,brick3,brick4, nil];
     
     Program *prog = [self getProgramWithTwoScriptsWithBricks:brickArray andBrickArray2:brickArray2];

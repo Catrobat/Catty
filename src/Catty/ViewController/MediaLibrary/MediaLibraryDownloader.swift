@@ -26,16 +26,16 @@ protocol MediaLibraryDownloaderProtocol {
 }
 
 final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
-
+    
     let session: URLSession
-
+    
     init(session: URLSession = URLSession.shared) {
         self.session = session
     }
-
+    
     func downloadIndex(for mediaType: MediaType, completion: @escaping ([[MediaItem]]?, MediaLibraryDownloadError?) -> Void) {
         self.session.dataTask(with: mediaType.indexURL) { data, response, error in
-
+            
             let handleDataTaskCompletion: (Data?, URLResponse?, Error?) -> (items: [[MediaItem]]?, error: MediaLibraryDownloadError?)
             handleDataTaskCompletion = { data, response, error in
                 guard let response = response as? HTTPURLResponse else { return (nil, .unexpectedError) }
@@ -48,14 +48,14 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
                 }
                 return (items, nil)
             }
-
+            
             let result = handleDataTaskCompletion(data, response, error)
             DispatchQueue.main.async {
                 completion(result.items, result.error)
             }
-        }.resume()
+            }.resume()
     }
-
+    
     func downloadData(for mediaItem: MediaItem, completion: @escaping (Data?, MediaLibraryDownloadError?) -> Void) {
         self.session.dataTask(with: mediaItem.downloadURL) { data, response, error in
             DispatchQueue.main.async {
@@ -66,7 +66,7 @@ final class MediaLibraryDownloader: MediaLibraryDownloaderProtocol {
                 }
                 completion(data, nil)
             }
-        }.resume()
+            }.resume()
     }
 }
 

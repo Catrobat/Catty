@@ -49,7 +49,7 @@
     NSRange range = NSMakeRange(0, testString.length);
     
     NSString* compareString =[[NSString alloc]initWithFormat:@"entities: & , \" , ' , ' , ' , ' , > and < "];
-
+    
     
     NSArray *stringsToReplace = [[NSArray alloc] initWithObjects:   @"&amp;"   ,@"&quot;"  ,@"&#x27;" ,@"&#x39;"
                                  ,@"&#x92;"  ,@"&#x96;"  ,@"&gt;"   ,@"&lt;"    ,nil];
@@ -61,15 +61,15 @@
     for (int i =0; i< [stringsReplaceBy count]; i++)
     {
         [testString replaceOccurrencesOfString:[stringsToReplace objectAtIndex:i]
-                                withString:[stringsReplaceBy objectAtIndex:i]
-                                   options:NSLiteralSearch
-                                     range:range];
+                                    withString:[stringsReplaceBy objectAtIndex:i]
+                                       options:NSLiteralSearch
+                                         range:range];
         range = NSMakeRange(0, testString.length);
     }
     
-//    [testString stringByEscapingHTMLEntities];
-
-
+    //    [testString stringByEscapingHTMLEntities];
+    
+    
     
     BOOL check = NO;
     if ([testString isEqualToString:compareString]) {
@@ -78,8 +78,8 @@
     else{
         check = YES;
     }
-//    NSDebug(@"STring1 : %@",testString);
-//    NSDebug(@"STring2 : %@",compareString);
+    //    NSDebug(@"STring1 : %@",testString);
+    //    NSDebug(@"STring2 : %@",compareString);
     
     XCTAssertFalse(check,@"stringByEscapingHTMLEntities is not correctly replaced");
     

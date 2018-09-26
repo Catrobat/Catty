@@ -29,8 +29,8 @@
 #import "TextInputViewController.h"
 
 @interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,TextInputViewControllerDelegate> {
-  CGPoint lastPoint;
-  BOOL fingerSwiped;
+    CGPoint lastPoint;
+    BOOL fingerSwiped;
 }
 @property (nonatomic) CGFloat red;
 @property (nonatomic) CGFloat green;

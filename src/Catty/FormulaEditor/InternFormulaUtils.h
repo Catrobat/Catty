@@ -56,7 +56,7 @@
 
 + (NSMutableArray*)insertOperatorToNumberToken:(InternToken*)numberTokenToBeModified
                                   numberOffset:(int)externNumberOffset
-                                        operator:(InternToken*)operatorToInsert;
+                                      operator:(InternToken*)operatorToInsert;
 
 + (InternToken*)insertIntoNumberToken:(InternToken*)numberTokenToBeModified
                          numberOffset:(int)externNumberOffset

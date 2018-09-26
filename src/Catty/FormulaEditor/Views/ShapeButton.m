@@ -167,7 +167,7 @@
     [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) + pathOffsetX, CGRectGetHeight(shapeRect) + pathOffsetY)];
     [path addLineToPoint:CGPointMake(CGRectGetWidth(shapeRect) / 2 + pathOffsetX - diffLeftRight, CGRectGetHeight(shapeRect) + pathOffsetY)];
     [path closePath];
-
+    
     UIBezierPath *leftLinePath = [UIBezierPath bezierPath];
     [leftLinePath moveToPoint:CGPointMake(CGRectGetMidX(shapeRect) - 4.f + diffLeftRight, CGRectGetMidY(shapeRect) + 4.f)];
     [leftLinePath addLineToPoint:CGPointMake(CGRectGetMidX(shapeRect) + 4.f + diffLeftRight, CGRectGetMidY(shapeRect) - 4.f)];
@@ -180,9 +180,9 @@
     [rightLinePath applyTransform:mirror];
     [rightLinePath applyTransform:translate];
     [path appendPath:rightLinePath];
-
+    
     shapeLayer.path = path.CGPath;
-
+    
     return shapeLayer;
 }
 

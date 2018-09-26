@@ -50,14 +50,14 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     PointInDirectionBrick* brick = [[PointInDirectionBrick alloc]init];
     brick.script = script;
     brick.degrees = [[Formula alloc] initWithInteger:20];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     

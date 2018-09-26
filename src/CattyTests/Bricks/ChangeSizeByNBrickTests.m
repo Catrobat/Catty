@@ -47,18 +47,18 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     spriteNode.catrobatSize = 10.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
     
     brick.size = [[Formula alloc] initWithInteger:30];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     XCTAssertEqualWithAccuracy(40.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
@@ -68,18 +68,18 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     spriteNode.catrobatSize = 50.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeSizeByNBrick* brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
-
+    
     brick.size = [[Formula alloc] initWithInteger:-30];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     XCTAssertEqualWithAccuracy(20.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 
@@ -89,18 +89,18 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     spriteNode.catrobatSize = 10.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeSizeByNBrick *brick = [[ChangeSizeByNBrick alloc] init];
     brick.script = script;
-
+    
     brick.size = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
-
+    
     XCTAssertEqualWithAccuracy(10.0f, spriteNode.catrobatSize, 0.0001, @"Size not correct");
 }
 

@@ -31,7 +31,7 @@
 {
     if(!_openedNestingBricksStack)
         _openedNestingBricksStack = [[CBXMLOpenedNestingBricksStack alloc] init];
-
+    
     return _openedNestingBricksStack;
 }
 

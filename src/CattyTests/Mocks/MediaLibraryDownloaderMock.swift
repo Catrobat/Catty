@@ -23,16 +23,16 @@
 @testable import Pocket_Code
 
 final class MediaLibraryDownloaderMock: MediaLibraryDownloaderProtocol {
-
+    
     var categories: [[MediaItem]]?
     var data: Data?
-
+    
     func downloadIndex(for mediaType: MediaType, completion: @escaping ([[MediaItem]]?, MediaLibraryDownloadError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.categories, nil)
         }
     }
-
+    
     func downloadData(for mediaItem: MediaItem, completion: @escaping (Data?, MediaLibraryDownloadError?) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             completion(self.data, nil)

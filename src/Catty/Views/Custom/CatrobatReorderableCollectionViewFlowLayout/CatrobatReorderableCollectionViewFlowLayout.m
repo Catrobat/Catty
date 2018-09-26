@@ -42,7 +42,7 @@
 - (void)setupCollectionView {
     if (![self.collectionView.gestureRecognizers containsObject:self.longPressGestureRecognizer]) {
         self.customLongPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(handleLongPressGesture:)];
+                                                                                              action:@selector(handleLongPressGesture:)];
         self.customLongPressGestureRecognizer.delegate = self;
         
         // Links the default long press gesture recognizer to the custom long press gesture recognizer we are creating now
@@ -57,7 +57,7 @@
     
     if (![self.collectionView.gestureRecognizers containsObject:self.panGestureRecognizer]) {
         self.customPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                        action:@selector(handlePanGesture:)];
+                                                                                  action:@selector(handlePanGesture:)];
         self.panGestureRecognizer.delegate = self;
         [self.collectionView addGestureRecognizer:self.panGestureRecognizer];
     }
@@ -118,7 +118,7 @@
     [self.collectionView performBatchUpdates:^{
         __strong typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
- 
+            
             if([strongSelf.collectionView numberOfItemsInSection:previousIndexPath.section] == 1) {
                 [strongSelf.collectionView deleteSections:[NSIndexSet indexSetWithIndex:previousIndexPath.section]];
                 [strongSelf.collectionView insertSections:[NSIndexSet indexSetWithIndex:newIndexPath.section]];

@@ -51,13 +51,13 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatPosition = CGPointMake(0, 0);
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ShowBrick *brick = [[ShowBrick alloc] init];
     brick.script = script;
-
+    
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqual(spriteNode.hidden, NO, @"ShowBrick is not correctly calculated");

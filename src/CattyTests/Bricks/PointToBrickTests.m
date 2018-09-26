@@ -52,23 +52,23 @@
     SpriteObject *secondObject = [[SpriteObject alloc] init];
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
-
+    
     [self.scene addChild:firstSpriteNode];
     [self.scene addChild:secondSpriteNode];
-
+    
     [firstSpriteNode setPosition:CGPointMake(0, 0)];
     [secondSpriteNode setPosition:CGPointMake(0, 10)];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = firstObject;
-
+    
     PointToBrick *brick = [[PointToBrick alloc] init];
     brick.script = script;
     brick.pointedObject = secondObject;
-
+    
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
-
+    
     XCTAssertEqualWithAccuracy(0, firstSpriteNode.catrobatRotation, 0.1f, @"PointToBrick not correct");
 }
 
@@ -80,13 +80,13 @@
     SpriteObject *secondObject = [[SpriteObject alloc] init];
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
-
+    
     [self.scene addChild:firstSpriteNode];
     [self.scene addChild:secondSpriteNode];
-
+    
     [firstSpriteNode setPosition:CGPointMake(0, 0)];
     [secondSpriteNode setPosition:CGPointMake(0, 0)];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = firstObject;
     PointToBrick *brick = [[PointToBrick alloc] init];
@@ -106,16 +106,16 @@
     SpriteObject *secondObject = [[SpriteObject alloc] init];
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
-
+    
     [self.scene addChild:firstSpriteNode];
     [self.scene addChild:secondSpriteNode];
-
+    
     [firstSpriteNode setPosition:CGPointMake(0, 0)];
     [secondSpriteNode setPosition:CGPointMake(1, 1)];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = firstObject;
-
+    
     PointToBrick *brick = [[PointToBrick alloc] init];
     brick.script = script;
     brick.pointedObject = secondObject;

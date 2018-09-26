@@ -50,7 +50,7 @@
     ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
     [self.startScript.brickList addObject:ifLogicElseBrick];
     ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
-
+    
     IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick.script = self.startScript;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
@@ -79,9 +79,9 @@
     
     foreverBrick.animateInsertBrick = YES;
     BOOL canMoveInsideIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                         itemAtIndexPath:indexPathFrom
-                                                                                      canInsertToIndexPath:indexPathTo
-                                                                                               andObject:self.spriteObject];
+                                                                              itemAtIndexPath:indexPathFrom
+                                                                         canInsertToIndexPath:indexPathTo
+                                                                                    andObject:self.spriteObject];
     XCTAssertTrue(canMoveInsideIfBrickInsertMode, @"Should be allowed to move ForeverBrick inside if-branch IfLogicBeginBrick");
     
     // else-branch
@@ -90,9 +90,9 @@
     
     foreverBrick.animateInsertBrick = YES;
     canMoveInsideIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                               itemAtIndexPath:indexPathFrom
-                                                                            canInsertToIndexPath:indexPathTo
-                                                                                     andObject:self.spriteObject];
+                                                                         itemAtIndexPath:indexPathFrom
+                                                                    canInsertToIndexPath:indexPathTo
+                                                                               andObject:self.spriteObject];
     XCTAssertTrue(canMoveInsideIfBrickInsertMode, @"Should be allowed to move ForeverBrick inside else-branch of IfLogicBeginBrick");
 }
 
@@ -189,9 +189,9 @@
     
     ifLogicBeginBrick2.animateInsertBrick = YES;
     BOOL canInsertAboveIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                    itemAtIndexPath:indexPathFrom
-                                                                                 canInsertToIndexPath:indexPathTo
-                                                                                          andObject:self.spriteObject];
+                                                                               itemAtIndexPath:indexPathFrom
+                                                                          canInsertToIndexPath:indexPathTo
+                                                                                     andObject:self.spriteObject];
     XCTAssertTrue(canInsertAboveIfBrickInsertMode, @"Should be allowed to insert nested IfLogicBeginBrick above main IfLogicBeginBrick");
 }
 
@@ -248,9 +248,9 @@
     
     ifLogicBeginBrick2.animateInsertBrick = YES;
     BOOL canInsertAboveIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                   itemAtIndexPath:indexPathFrom
-                                                                                canInsertToIndexPath:indexPathTo
-                                                                                         andObject:self.spriteObject];
+                                                                               itemAtIndexPath:indexPathFrom
+                                                                          canInsertToIndexPath:indexPathTo
+                                                                                     andObject:self.spriteObject];
     XCTAssertTrue(canInsertAboveIfBrickInsertMode, @"Should be allowed to insert nested IfLogicBeginBrick above main IfLogicElseBrick");
     
     // main else brick
@@ -260,9 +260,9 @@
     
     ifLogicElseBrick1.animateInsertBrick = YES;
     BOOL canInsertBelowIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                   itemAtIndexPath:indexPathFrom
-                                                                                canInsertToIndexPath:indexPathTo
-                                                                                         andObject:self.spriteObject];
+                                                                               itemAtIndexPath:indexPathFrom
+                                                                          canInsertToIndexPath:indexPathTo
+                                                                                     andObject:self.spriteObject];
     XCTAssertTrue(canInsertBelowIfBrickInsertMode, @"Should be allowed to insert main IfLogicElseBrick below nested IfLogicElseBrick");
 }
 
@@ -367,9 +367,9 @@
     
     ifLogicBeginBrick2.animateInsertBrick = YES;
     BOOL canInsertAboveEndBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                    itemAtIndexPath:indexPathFrom
-                                                                                 canInsertToIndexPath:indexPathTo
-                                                                                          andObject:self.spriteObject];
+                                                                                itemAtIndexPath:indexPathFrom
+                                                                           canInsertToIndexPath:indexPathTo
+                                                                                      andObject:self.spriteObject];
     XCTAssertTrue(canInsertAboveEndBrickInsertMode, @"Should be allowed to insert IfLogicBeginBrick above IfLogicEndBrick");
     
     
@@ -380,9 +380,9 @@
     
     ifLogicEndBrick1.animateInsertBrick = YES;
     BOOL canInsertBelowIfBeginBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canInsertToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
+                                                                                    itemAtIndexPath:indexPathFrom
+                                                                               canInsertToIndexPath:indexPathTo
+                                                                                          andObject:self.spriteObject];
     XCTAssertTrue(canInsertBelowIfBeginBrickInsertMode, @"Should not allowed to insert IfLogicEndBrick below IfLogicBeginBrick");
 }
 

@@ -22,19 +22,19 @@
 
 /// An URLSession subclass that doesn't send a proper URLResponse in the completion handlers.
 class URLSessionMock: URLSession {
-
+    
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return URLSessionDataTaskMock(completionHandler)
     }
-
+    
     class URLSessionDataTaskMock: URLSessionDataTask {
-
+        
         var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
-
+        
         required init(_ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
             self.completionHandler = completionHandler
         }
-
+        
         override func resume() {
             self.completionHandler?(nil, nil, nil)
             self.completionHandler = nil

@@ -454,7 +454,7 @@ class ArduinoTests: XCTestCase {
         }
         XCTAssertEqual(firmataMock.receivedPin, UInt8(pin) , "Pin is wrong")
         XCTAssertEqual(Int(value), 0, "Value is wrong")
-
+        
     }
     func testGetAnalogPin0 () {
         //Given
@@ -580,7 +580,7 @@ class ArduinoTests: XCTestCase {
             XCTAssert(true)
             return
         }
-
+        
         XCTAssertEqual(peripheralMock.dataToSend,data,"Data is wrong")
     }
     

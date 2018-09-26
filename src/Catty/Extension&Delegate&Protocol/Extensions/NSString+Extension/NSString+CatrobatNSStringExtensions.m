@@ -47,7 +47,7 @@ NSMutableString *resultString;
 {
     NSMutableString *result = [NSMutableString stringWithString:self];
     NSRange range = NSMakeRange(0, [result length]);
-
+    
     NSArray *stringsToReplace = [[NSArray alloc] initWithObjects:   @"&amp;"   ,@"&quot;"  ,@"&#x27;" ,@"&#x39;"
                                  ,@"&#x92;"  ,@"&#x96;"  ,@"&gt;"   ,@"&lt;"    ,nil];
     

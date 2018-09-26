@@ -74,36 +74,36 @@
 {
     NSError *error;
     NSString *xmlFile;
-
+    
     if (self.xmlContent) {
         xmlFile = self.xmlContent;
     } else {
         xmlFile = [NSString stringWithContentsOfFile:self.xmlPath
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:&error];
+                                            encoding:NSUTF8StringEncoding
+                                               error:&error];
     }
-
+    
     // sanity check
     if (error) {
         NSError(@"XML file could not be loaded!");
         return nil;
     }
-
+    
     NSDebug(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
-
+    
     // sanity check
     if (! xmlData) {
         NSError(@"XML file could not be loaded!");
         return nil;
     }
-
+    
     error = nil;
     GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
-
+    
     // sanity check
     if (error || (! xmlDocument)) { return nil; }
-
+    
     Program *program = nil;
     @try {
         CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];

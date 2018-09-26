@@ -67,15 +67,15 @@
 
 - (NSUInteger)addForeverLoopWithWaitBrickToScript:(Script*)script
 {
-
-    /* Setup:
     
+    /* Setup:
+     
      0  foreverBeginA
      1      waitA
      2  foreverEndA
-    */
+     */
     NSUInteger addedBricks = 0;
-
+    
     ForeverBrick *foreverBrickA = [[ForeverBrick alloc] init];
     foreverBrickA.script = script;
     [script.brickList addObject:foreverBrickA];
@@ -135,7 +135,7 @@
      */
     
     NSUInteger addedBricks = 0;
-
+    
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick.script = script;
     [script.brickList addObject:ifLogicBeginBrick];
@@ -237,9 +237,9 @@
      20  endIfA
      
      */
-
+    
     NSUInteger addedBricks = 0;
-
+    
     
     // 1
     IfLogicBeginBrick *ifLogicBeginBrickA = [[IfLogicBeginBrick alloc] init];
@@ -510,7 +510,7 @@
      */
     
     NSUInteger addedBricks = 0;
-
+    
     // 0
     WaitBrick *waitBrickA = [[WaitBrick alloc] init];
     [script.brickList addObject:waitBrickA];
@@ -535,7 +535,7 @@
     setYBrickA.yPosition = position;
     [script.brickList addObject:setYBrickA];
     addedBricks++;
-
+    
     // 3
     WaitBrick *waitBrickB = [[WaitBrick alloc] init];
     [script.brickList addObject:waitBrickB];
@@ -566,7 +566,7 @@
     [script.brickList addObject:waitBrickC];
     addedBricks++;
     
-
+    
     return addedBricks;
 }
 

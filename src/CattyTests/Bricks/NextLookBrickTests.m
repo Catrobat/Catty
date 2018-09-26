@@ -49,7 +49,7 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     object.program = program;
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
@@ -57,19 +57,19 @@
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
     Look* look1 = [[Look alloc] initWithName:@"test2" andPath:@"test2.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test2.png"]atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     NextLookBrick* brick = [[NextLookBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look1];
     spriteNode.currentLook = look;
     spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-
+    
     dispatch_block_t action = [brick actionBlock];
-
+    
     action();
     XCTAssertEqual(spriteNode.currentLook,look1, @"NextLookBrick not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];

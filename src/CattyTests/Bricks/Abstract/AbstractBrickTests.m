@@ -27,9 +27,9 @@
 
 - (NSMutableArray*) programs
 {
-  if (! self.programs)
-    self.programs = [NSMutableArray array];
-  return self.programs;
+    if (! self.programs)
+        self.programs = [NSMutableArray array];
+    return self.programs;
 }
 
 - (void)setUp

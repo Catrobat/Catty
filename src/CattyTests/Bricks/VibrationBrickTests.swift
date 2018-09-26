@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class VibrationBrickTests: XCTestCase {
-
+    
     func testTitleSingular() {
         let vibrationBrick = VibrationBrick()
         vibrationBrick.durationInSeconds = Formula(double: 1)

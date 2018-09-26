@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class CBSpriteNodeTests: XCTestCase {
-
+    
     final let epsilon = 0.001
     var spriteNode: CBSpriteNodeMock!
     

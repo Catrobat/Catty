@@ -21,13 +21,13 @@
  */
 
 final class CBOperation {
-
+    
     // MARK: - Properties
     let brick : Brick
-
+    
     // MARK: - Initializers
     init(brick : Brick) {
         self.brick = brick
     }
-
+    
 }

@@ -23,8 +23,8 @@
 #import <UIKit/UIKit.h>
 
 enum LineEnding {
-  Round,
-  Square
+    Round,
+    Square
 };
 typedef enum LineEnding BrushEnding;
 

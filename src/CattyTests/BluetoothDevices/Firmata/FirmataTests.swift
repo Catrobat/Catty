@@ -26,7 +26,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class FirmataTests : XCTestCase{
-
+    
     var mock = FirmataDelegateMock()
     override func setUp() {
         super.setUp()
@@ -120,7 +120,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
         //When
         mock.testfirmata.writePinMode(.analog, pin: 4)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -130,7 +130,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 1)
         //When
         mock.testfirmata.reportVersion()
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -140,7 +140,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
         //When
         mock.testfirmata.analogMappingQuery()
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -150,7 +150,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 4)
         //When
         mock.testfirmata.pinStateQuery(4)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -160,7 +160,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
         //When
         mock.testfirmata.capabilityQuery()
-
+        
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
     func testServoConfigData () {
@@ -169,7 +169,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 8)
         //When
         mock.testfirmata.servoConfig(4, minPulse: 1, maxPulse: 4)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -179,7 +179,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 5)
         //When
         mock.testfirmata.samplingInterval(50)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -189,7 +189,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count: 3)
         //When
         mock.testfirmata.writePWMValue(20, pin: 4)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -207,7 +207,7 @@ final class FirmataTests : XCTestCase{
         
         //When
         mock.testfirmata.writePinState(.high, pin: 4)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -217,7 +217,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:2)
         //When
         mock.testfirmata.setAnalogValueReportingforPin(4, enabled: true)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -230,7 +230,7 @@ final class FirmataTests : XCTestCase{
         let newData:Data = Data(bytes: UnsafePointer<UInt8>(bytes), count:2)
         //When
         mock.testfirmata.setDigitalStateReportingForPin(4, enabled: true)
-
+        
         //Then
         XCTAssertEqual(mock.data, newData, "Send data wrong calculated")
     }
@@ -245,7 +245,7 @@ final class FirmataTests : XCTestCase{
     }
     
     //MARK: Receive
-
+    
     func testReceiveReportVersion(){
         //Given
         let bytes:[UInt8] = [REPORT_VERSION,1,4]
@@ -375,7 +375,7 @@ final class FirmataTests : XCTestCase{
         XCTAssertTrue(mock.callbackInvolved, "Callback not called")
         XCTAssertTrue(equal(mock.capabilityQuery, givenResponse), "Received Port wrong")
     }
-
+    
     private func equal(_ lhs: [[Int:Int]], _ rhs: [[Int:Int]]) -> Bool {
         guard lhs.count == rhs.count else { return false }
         for i in 0..<lhs.count {

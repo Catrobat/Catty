@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class RepeatBrickTests: XCTestCase {
-
+    
     func testTitleSingular() {
         let repeatBrick = RepeatBrick()
         repeatBrick.timesToRepeat = Formula(double: 1)

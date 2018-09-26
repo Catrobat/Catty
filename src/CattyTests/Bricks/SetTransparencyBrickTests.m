@@ -49,14 +49,14 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     brick.transparency = [[Formula alloc] initWithInteger:20];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -71,10 +71,10 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     brick.transparency = [[Formula alloc] initWithInteger:-20];
@@ -93,10 +93,10 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 10.0;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     brick.transparency = [[Formula alloc] initWithString:@"a"];

@@ -121,7 +121,7 @@ final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefini
         alertController.addAction(UIAlertAction(title: title, style: .cancel) {_ in handler?() })
         return self
     }
-
+    
     @objc func characterValidator(_ validator: @escaping (String) -> Bool) -> TextFieldInputValidating {
         characterValidator = validator
         return self

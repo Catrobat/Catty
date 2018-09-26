@@ -25,7 +25,7 @@ import XCTest
 @testable import Pocket_Code
 
 final class CBBackendTests: XCTestCase {
-
+    
     let logger = Swell.getLogger(LoggerTestConfig.PlayerFrontendID)!
     var spriteObject: SpriteObject!
     var spriteNode: CBSpriteNode!
@@ -42,7 +42,7 @@ final class CBBackendTests: XCTestCase {
         frontend = CBFrontend(logger: logger, program: nil)
         backend = CBBackend(logger: logger)
     }
-
+    
     func testActionInstruction() {
         let startScript = StartScript()
         startScript.object = spriteObject
@@ -52,25 +52,25 @@ final class CBBackendTests: XCTestCase {
         let hideBrick = HideBrick()
         hideBrick.script = startScript
         let noteBrick = NoteBrick()
-    
+        
         startScript.brickList = [showBrick, noteBrick, hideBrick]
-
+        
         let sequenceList = frontend.computeSequenceListForScript(startScript).sequenceList
-            let instructionList = backend.instructionsForSequence(sequenceList)
+        let instructionList = backend.instructionsForSequence(sequenceList)
         XCTAssertEqual(instructionList.count, 2, "Instruction list should contain two instructions")
         
         switch instructionList[0] {
-            case let .action(action):
-                XCTAssertNotNil(action)
-            default:
-                XCTFail("Wrong instruction type")
+        case let .action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
         }
         
         switch instructionList[1] {
-            case let .action(action):
-                XCTAssertNotNil(action)
-            default:
-                XCTFail("Wrong instruction type")
+        case let .action(action):
+            XCTAssertNotNil(action)
+        default:
+            XCTFail("Wrong instruction type")
         }
     }
     
@@ -436,7 +436,7 @@ final class CBBackendTests: XCTestCase {
         default:
             XCTFail("Wrong insruction type")
         }
-            
+        
         switch instructionList[4] { // playSoundBrick
         case .invalidInstruction():
             break;

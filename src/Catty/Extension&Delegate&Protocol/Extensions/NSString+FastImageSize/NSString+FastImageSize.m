@@ -57,86 +57,86 @@
     
     FILE *file = fopen([[NSFileManager defaultManager] fileSystemRepresentationWithPath:self], "r");
     if (file)
-        {
+    {
         uint8_t buffer[4];
         if (fread(buffer, 1, 2, file) == 2 &&
             memcmp(buffer, JPEG_HEADER, 2) == 0)
-            {// JPEG
-                size = [self sizeOfImageForFilePath_JPEG:file];
-                success = size.width > 0.f && size.height > 0.f;
-            }
+        {// JPEG
+            size = [self sizeOfImageForFilePath_JPEG:file];
+            success = size.width > 0.f && size.height > 0.f;
+        }
         
         if (!success)
-            {
+        {
             fseek(file, 0, SEEK_SET);
             
             uint8_t buffer8[8];
             if (fread(buffer8, 1, 8, file) == 8 &&
                 memcmp(buffer8, PNG_HEADER, 8) == 0)
-                {
+            {
                 // PNG
                 
                 if (!fseek(file, 8, SEEK_CUR))
+                {
+                    if (fread(buffer, 1, 4, file) == 4)
                     {
-                    if (fread(buffer, 1, 4, file) == 4)
-                        {
                         size.width = (buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | buffer[3];
-                        }
+                    }
                     if (fread(buffer, 1, 4, file) == 4)
-                        {
+                    {
                         size.height = (buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | buffer[3];
                         success = YES;
-                        }
                     }
                 }
             }
+        }
         
         if (!success)
-            {
+        {
             fseek(file, 0, SEEK_SET);
             
             if (fread(buffer, 1, 3, file) == 3 &&
                 memcmp(buffer, GIF_HEADER, 3) == 0)
-                {
+            {
                 // GIF
                 
                 if (!fseek(file, 3, SEEK_CUR)) // 87a / 89a
-                    {
+                {
                     if (fread(buffer, 1, 4, file) == 4)
-                        {
+                    {
                         size = (CGSize){*((int16_t*)buffer), *((int16_t*)(buffer + 2))};
                         success = YES;
-                        }
                     }
                 }
             }
+        }
         
         if (!success)
-            {
+        {
             fseek(file, 0, SEEK_SET);
             
             if (fread(buffer, 1, 2, file) == 2 &&
                 memcmp(buffer, BMP_HEADER, 2) == 0)
-                {
+            {
                 // BMP
                 
                 if (!fseek(file, 16, SEEK_CUR))
+                {
+                    if (fread(buffer, 1, 4, file) == 4)
                     {
-                    if (fread(buffer, 1, 4, file) == 4)
-                        {
                         size.width = *((int32_t*)buffer);
-                        }
+                    }
                     if (fread(buffer, 1, 4, file) == 4)
-                        {
+                    {
                         size.height = *((int32_t*)buffer);
                         // success = YES; // Not needed, analyzer...
-                        }
                     }
                 }
             }
+        }
         
         fclose(file);
-        }
+    }
     
     return size;
 }
@@ -149,165 +149,165 @@
            ((buffer[1] >= 0xE0 && buffer[1] <= 0xEF) ||
             buffer[1] == 0xDB ||
             buffer[1] == 0xC0))
-        {
+    {
         if (buffer[1] == 0xE1)
-            { // Parse APP1 EXIF
+        { // Parse APP1 EXIF
+            
+            fpos_t offset;
+            if (fgetpos(file, &offset)) return CGSizeZero;
+            
+            // Marker segment length
+            
+            if (fread(buffer, 1, 2, file) != 2) return CGSizeZero;
+            // int blockLength = ((buffer[0] << 8) | buffer[1]) - 2;
+            
+            // Exif
+            if (fread(buffer, 1, 4, file) != 4 ||
+                memcmp(buffer, JPEG_EXIF_HEADER, 4) != 0) return CGSizeZero;
+            
+            // Read Byte alignment offset
+            if (fread(buffer, 1, 2, file) != 2 ||
+                buffer[0] != 0x00 || buffer[1] != 0x00) return CGSizeZero;
+            
+            // Read Byte alignment
+            if (fread(buffer, 1, 2, file) != 2) return CGSizeZero;
+            
+            bool littleEndian = false;
+            if (buffer[0] == 0x49 && buffer[1] == 0x49)
+            {
+                littleEndian = true;
+            }
+            else if (buffer[0] != 0x4D && buffer[1] != 0x4D) return CGSizeZero;
+            
+            // TIFF tag marker
+            if (!READ_UINT16 || LAST_UINT16 != 0x002A) return CGSizeZero;
+            
+            // Directory offset bytes
+            if (!READ_UINT32) return CGSizeZero;
+            uint32_t dirOffset = LAST_UINT32;
+            
+            int tag;
+            uint16_t numberOfTags, tagType;
+            uint32_t /*tagLength, */tagValue;
+            int orientation = 1, width = 0, height = 0;
+            uint32_t exifIFDOffset = 0;
+            
+            while (dirOffset != 0)
+            {
+                fseek(file, (long)offset + 8 + dirOffset, SEEK_SET);
                 
-                fpos_t offset;
-                if (fgetpos(file, &offset)) return CGSizeZero;
+                if (!READ_UINT16) return CGSizeZero;
+                numberOfTags = LAST_UINT16;
                 
-                // Marker segment length
-                
-                if (fread(buffer, 1, 2, file) != 2) return CGSizeZero;
-                // int blockLength = ((buffer[0] << 8) | buffer[1]) - 2;
-                
-                // Exif
-                if (fread(buffer, 1, 4, file) != 4 ||
-                    memcmp(buffer, JPEG_EXIF_HEADER, 4) != 0) return CGSizeZero;
-                
-                // Read Byte alignment offset
-                if (fread(buffer, 1, 2, file) != 2 ||
-                    buffer[0] != 0x00 || buffer[1] != 0x00) return CGSizeZero;
-                
-                // Read Byte alignment
-                if (fread(buffer, 1, 2, file) != 2) return CGSizeZero;
-                
-                bool littleEndian = false;
-                if (buffer[0] == 0x49 && buffer[1] == 0x49)
-                    {
-                    littleEndian = true;
-                    }
-                else if (buffer[0] != 0x4D && buffer[1] != 0x4D) return CGSizeZero;
-                
-                // TIFF tag marker
-                if (!READ_UINT16 || LAST_UINT16 != 0x002A) return CGSizeZero;
-                
-                // Directory offset bytes
-                if (!READ_UINT32) return CGSizeZero;
-                uint32_t dirOffset = LAST_UINT32;
-                
-                int tag;
-                uint16_t numberOfTags, tagType;
-                uint32_t /*tagLength, */tagValue;
-                int orientation = 1, width = 0, height = 0;
-                uint32_t exifIFDOffset = 0;
-                
-                while (dirOffset != 0)
-                    {
-                    fseek(file, (long)offset + 8 + dirOffset, SEEK_SET);
+                for (uint16_t i = 0; i < numberOfTags; i++)
+                {
+                    if (!READ_UINT16) return CGSizeZero;
+                    tag = LAST_UINT16;
                     
                     if (!READ_UINT16) return CGSizeZero;
-                    numberOfTags = LAST_UINT16;
-                    
-                    for (uint16_t i = 0; i < numberOfTags; i++)
-                        {
-                        if (!READ_UINT16) return CGSizeZero;
-                        tag = LAST_UINT16;
-                        
-                        if (!READ_UINT16) return CGSizeZero;
-                        tagType = LAST_UINT16;
-                        
-                        if (!READ_UINT32) return CGSizeZero;
-                        /*tagLength = LAST_UINT32*/;
-                        
-                        if (tag == EXIF_TAG_ORIENTATION ||
-                            tag == EXIF_TAG_PIX_XDIM ||
-                            tag == EXIF_TAG_PIX_YDIM ||
-                            tag == EXIF_TAG_IFD)
-                            {
-                            switch (tagType)
-                                {
-                                    default:
-                                    case 1:
-                                    tagValue = fread(buffer, 1, 1, file) == 1 && buffer[0];
-                                    fseek(file, 3, SEEK_CUR);
-                                    break;
-                                    case 3:
-                                    if (!READ_UINT16) return CGSizeZero;
-                                    tagValue = LAST_UINT16;
-                                    fseek(file, 2, SEEK_CUR);
-                                    break;
-                                    case 4:
-                                    case 9:
-                                    if (!READ_UINT32) return CGSizeZero;
-                                    tagValue = LAST_UINT32;
-                                    break;
-                                }
-                            
-                            if (tag == EXIF_TAG_ORIENTATION)
-                                { // Orientation tag
-                                    orientation = (int)tagValue;
-                                }
-                            else if (tag == EXIF_TAG_PIX_XDIM)
-                                { // Width tag
-                                    width = (int)tagValue;
-                                }
-                            else if (tag == EXIF_TAG_PIX_YDIM)
-                                { // Height tag
-                                    height = (int)tagValue;
-                                }
-                            else if (tag == EXIF_TAG_IFD)
-                                { // EXIF IFD offset tag
-                                    exifIFDOffset = tagValue;
-                                }
-                            }
-                        else
-                            {
-                            fseek(file, 4, SEEK_CUR);
-                            }
-                        }
-                    
-                    if (dirOffset == exifIFDOffset)
-                        {
-                        break;
-                        }
+                    tagType = LAST_UINT16;
                     
                     if (!READ_UINT32) return CGSizeZero;
-                    dirOffset = LAST_UINT32;
+                    /*tagLength = LAST_UINT32*/;
                     
-                    if (dirOffset == 0)
-                        {
-                        dirOffset = exifIFDOffset;
-                        }
-                    }
-                
-                if (width > 0 && height > 0)
+                    if (tag == EXIF_TAG_ORIENTATION ||
+                        tag == EXIF_TAG_PIX_XDIM ||
+                        tag == EXIF_TAG_PIX_YDIM ||
+                        tag == EXIF_TAG_IFD)
                     {
-                    if (orientation >= 5 && orientation <= 8)
+                        switch (tagType)
                         {
-                        return (CGSize){height, width};
+                            default:
+                            case 1:
+                                tagValue = fread(buffer, 1, 1, file) == 1 && buffer[0];
+                                fseek(file, 3, SEEK_CUR);
+                                break;
+                            case 3:
+                                if (!READ_UINT16) return CGSizeZero;
+                                tagValue = LAST_UINT16;
+                                fseek(file, 2, SEEK_CUR);
+                                break;
+                            case 4:
+                            case 9:
+                                if (!READ_UINT32) return CGSizeZero;
+                                tagValue = LAST_UINT32;
+                                break;
                         }
-                    else
-                        {
-                        return (CGSize){width, height};
+                        
+                        if (tag == EXIF_TAG_ORIENTATION)
+                        { // Orientation tag
+                            orientation = (int)tagValue;
+                        }
+                        else if (tag == EXIF_TAG_PIX_XDIM)
+                        { // Width tag
+                            width = (int)tagValue;
+                        }
+                        else if (tag == EXIF_TAG_PIX_YDIM)
+                        { // Height tag
+                            height = (int)tagValue;
+                        }
+                        else if (tag == EXIF_TAG_IFD)
+                        { // EXIF IFD offset tag
+                            exifIFDOffset = tagValue;
                         }
                     }
+                    else
+                    {
+                        fseek(file, 4, SEEK_CUR);
+                    }
+                }
                 
+                if (dirOffset == exifIFDOffset)
+                {
+                    break;
+                }
+                
+                if (!READ_UINT32) return CGSizeZero;
+                dirOffset = LAST_UINT32;
+                
+                if (dirOffset == 0)
+                {
+                    dirOffset = exifIFDOffset;
+                }
+            }
+            
+            if (width > 0 && height > 0)
+            {
+                if (orientation >= 5 && orientation <= 8)
+                {
+                    return (CGSize){height, width};
+                }
+                else
+                {
+                    return (CGSize){width, height};
+                }
+            }
+            
+            return CGSizeZero;
+        }
+        else if (buffer[1] == 0xC0)
+        { // Parse SOF0 (Start of Frame baseline)
+            
+            // Skip LF, P
+            if (fseek(file, 3, SEEK_CUR)) return CGSizeZero;
+            
+            // Read Y,X
+            if (fread(buffer, 1, 4, file) != 4) return CGSizeZero;
+            
+            return (CGSize){buffer[2] << 8 | buffer[3], buffer[0] << 8 | buffer[1]};
+        }
+        else
+        { // Skip APPn segment
+            if (fread(buffer, 1, 2, file) == 2)
+            { // Marker segment length
+                fseek(file, (int)((buffer[0] << 8) | buffer[1]) - 2, SEEK_CUR);
+            }
+            else
+            {
                 return CGSizeZero;
             }
-        else if (buffer[1] == 0xC0)
-            { // Parse SOF0 (Start of Frame baseline)
-                
-                // Skip LF, P
-                if (fseek(file, 3, SEEK_CUR)) return CGSizeZero;
-                
-                // Read Y,X
-                if (fread(buffer, 1, 4, file) != 4) return CGSizeZero;
-                
-                return (CGSize){buffer[2] << 8 | buffer[3], buffer[0] << 8 | buffer[1]};
-            }
-        else
-            { // Skip APPn segment
-                if (fread(buffer, 1, 2, file) == 2)
-                    { // Marker segment length
-                        fseek(file, (int)((buffer[0] << 8) | buffer[1]) - 2, SEEK_CUR);
-                    }
-                else
-                    {
-                    return CGSizeZero;
-                    }
-            }
         }
+    }
     
     return CGSizeZero;
 }

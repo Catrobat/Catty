@@ -33,7 +33,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
     
     var rxCharacteristic:CBCharacteristic?
     var txCharacteristic:CBCharacteristic?
-
+    
     //MARK: Init
     override init(peripheral: Peripheral) {
         super.init(peripheral: peripheral)
@@ -70,12 +70,12 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
                 txCharacteristic = c
                 break
             default:
-//                printLog(self, "didDiscoverCharacteristicsForService", "Found Characteristic: Unknown")
+                //                printLog(self, "didDiscoverCharacteristicsForService", "Found Characteristic: Unknown")
                 break
             }
             
         }
-
+        
         if let characteristics = service.characteristics {
             if txCharacteristic == nil {
                 for c in characteristics {
@@ -89,7 +89,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
                 for c in characteristics {
                     if ((c.properties.rawValue & CBCharacteristicProperties.read.rawValue) > 0) {
                         rxCharacteristic = c
-    //                    cbPeripheral.setNotifyValue(true, forCharacteristic: c)
+                        //                    cbPeripheral.setNotifyValue(true, forCharacteristic: c)
                     }
                 }
             }
@@ -188,7 +188,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
                 }
                 
                 let newData = data.subdata(in: loc..<loc+len)
-//                println("\(self.classForCoder.description()) writeRawData : packet_\(idx) : \(newData.hexRepresentationWithSpaces(true))")
+                //                println("\(self.classForCoder.description()) writeRawData : packet_\(idx) : \(newData.hexRepresentationWithSpaces(true))")
                 cbPeripheral.writeValue(newData, for: txCharacteristic, type: writeType)
                 
                 loc += len
@@ -205,7 +205,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
     func didReceiveDigitalPort(_ port:Int, portData:[Int]) {
         print(port,portData)
     }
-
+    
     func didReceiveAnalogMessage(_ pin:Int,value:Int){
         print(pin,value)
     }
@@ -213,11 +213,11 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
     func firmwareVersionReceived(_ name:String){
         print(name)
     }
-
+    
     func protocolVersionReceived(_ name:String){
         print(name)
     }
-
+    
     func stringDataReceived(_ message:String){
         print(message)
     }

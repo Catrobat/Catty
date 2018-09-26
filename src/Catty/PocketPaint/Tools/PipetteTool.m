@@ -26,32 +26,32 @@
 @implementation PipetteTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
-  self = [super init];
-  if(self)
-  {
-    self.canvas = canvas;
-  }
-  return self;
+    self = [super init];
+    if(self)
+    {
+        self.canvas = canvas;
+    }
+    return self;
 }
 
 - (void)pipetteAction:(UITapGestureRecognizer*)recognizer
 {
-  CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
-  if (!self.canvas.saveView.image) {
-    UIGraphicsBeginImageContextWithOptions(self.canvas.saveView.frame.size, NO, 0.0);
-    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.canvas.saveView.image = blank;
-  }
-  UIColor *color = [RGBAHelper getRGBAsFromImage:self.canvas.saveView.image atX:(int)point.x andY:(int)point.y];
-  CGFloat r,g,b,a;
-  [color getRed:&r green:&g blue:&b alpha:&a];
-  if (a != 0.0f) {
-    self.canvas.red = r;
-    self.canvas.green = g;
-    self.canvas.blue = b;
-    self.canvas.opacity = a;
-    [self.canvas updateToolbar];
-  }
+    CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
+    if (!self.canvas.saveView.image) {
+        UIGraphicsBeginImageContextWithOptions(self.canvas.saveView.frame.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.canvas.saveView.image = blank;
+    }
+    UIColor *color = [RGBAHelper getRGBAsFromImage:self.canvas.saveView.image atX:(int)point.x andY:(int)point.y];
+    CGFloat r,g,b,a;
+    [color getRed:&r green:&g blue:&b alpha:&a];
+    if (a != 0.0f) {
+        self.canvas.red = r;
+        self.canvas.green = g;
+        self.canvas.blue = b;
+        self.canvas.opacity = a;
+        [self.canvas updateToolbar];
+    }
 }
 @end

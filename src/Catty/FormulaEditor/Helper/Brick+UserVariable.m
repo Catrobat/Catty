@@ -32,10 +32,10 @@
 
 //TODO: uncomment as soon as classes exist
 /*
-#import "ReplaceItemInUserListBrick.h"
-#import "DeleteItemOfUserListBrick.h"
-#import "InsertItemIntoUserListBrick.h"
-*/
+ #import "ReplaceItemInUserListBrick.h"
+ #import "DeleteItemOfUserListBrick.h"
+ #import "InsertItemIntoUserListBrick.h"
+ */
 
 @implementation Brick (UserVariable)
 
@@ -102,7 +102,7 @@
          }
          */
     }
-
+    
     if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
         return NO;
     

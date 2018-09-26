@@ -37,12 +37,12 @@
     func tag() -> String {
         return type(of: self).tag
     }
-
+    
     func rawValue() -> Double {
         guard let lastPosition = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
         return Double(lastPosition.x)
     }
-
+    
     func convertToStandardized(rawValue: Double, for spriteObject: SpriteObject) -> Double {
         guard let _ = getTouchManager()?.lastPositionInScene() else { return type(of: self).defaultRawValue }
         return PositionXSensor.convertToStandardized(rawValue: rawValue, for: spriteObject)

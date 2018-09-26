@@ -79,7 +79,7 @@
     [internFormula handleKeyInputWithName:@"DECIMAL_MARK" butttonType:413];
     
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"0."], @"Enter decimal mark error");
-
+    
 }
 
 - (void)testInsertLeftToCurrentToken
@@ -148,7 +148,7 @@
     XCTAssertTrue([[[internTokens objectAtIndex:0] getTokenStringValue] isEqualToString:@"12"], @"Insert operator in number token error");
     XCTAssertTrue([[[internTokens objectAtIndex:1] getTokenStringValue] isEqualToString:@"MULT"], @"Insert operator in number token error");
     XCTAssertTrue([[[internTokens objectAtIndex:2] getTokenStringValue] isEqualToString:@"34"], @"Insert operator in number token error");
-
+    
     
 }
 
@@ -236,7 +236,7 @@
     
     XCTAssertEqual(0, [[internFormula getSelection] getStartIndex], @"Selection start index not as expected");
     XCTAssertEqual(5, [[internFormula getSelection] getEndIndex], @"Selection end index not as expected");
-
+    
     doubleClickIndex = (int)[@"random" length];
     
     int singleClickIndex = doubleClickIndex;
@@ -316,7 +316,7 @@
     [internFormula generateExternFormulaStringAndInternExternMapping];
     
     XCTAssertTrue([[internFormula getExternFormulaString] isEqualToString:externFormulaString], @"ExternFormulaString changed on buggy input!");
-
+    
 }
 
 - (void)testDeleteInternTokenByIndex
@@ -407,7 +407,7 @@
     XCTAssertTrue([[internFormula getExternFormulaString] isEqualToString:externFormulaString], @"ExternFormulaString changed on buggy input!");
     
     [internTokens removeAllObjects];
-
+    
 }
 
 - (void)testSetExternCursorPositionLeftTo
@@ -573,7 +573,7 @@
     
     [tokensToReplaceWith removeAllObjects];
     [tokensToReplaceWith addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_PERIOD]];
-
+    
     XCTAssertEqual(DO_NOT_MODIFY, [internFormula replaceCursorPositionInternTokenByTokenList:tokensToReplaceWith],@"Do not modify on when second period token is inserted");
     
     [internTokens removeAllObjects];
@@ -595,7 +595,7 @@
     internFormula = [[InternFormula alloc]initWithInternTokenList:internTokens];
     [internFormula generateExternFormulaStringAndInternExternMapping];
     [internFormula setCursorAndSelection:1 selected:NO];
-
+    
     XCTAssertEqual(DO_NOT_MODIFY, [internFormula replaceCursorPositionInternTokenByTokenList:tokensToReplaceWith],@"Do not modify on error");
     
     [internTokens removeAllObjects];

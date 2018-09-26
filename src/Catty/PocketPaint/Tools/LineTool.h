@@ -23,8 +23,8 @@
 #import "PaintViewController.h"
 
 @interface LineTool : NSObject{
-  BOOL fingerSwiped;
-  CGPoint lastPoint;
+    BOOL fingerSwiped;
+    CGPoint lastPoint;
 }
 
 @property (nonatomic,weak) PaintViewController* canvas;

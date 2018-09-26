@@ -68,7 +68,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.navigationController.title  = self.title = kLocalizedRegister;
+    self.navigationController.title  = self.title = kLocalizedRegister;
     [self initView];
     [self addDoneToTextFields];
     self.shouldShowAlert = YES;
@@ -107,7 +107,7 @@
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
-
+    
     
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView.image = [UIImage imageNamed:@"user"];
@@ -117,19 +117,19 @@
     leftView2.image = [UIImage imageNamed:@"password"];
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
-
+    
     self.emailField.backgroundColor = [UIColor whiteColor];
     self.emailField.placeholder =kLocalizedEmail;
     self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
     self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.emailField.layer.borderWidth = 1.0f;
     self.emailField.tag = 2;
-
+    
     UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView3.image = [UIImage imageNamed:@"email"];
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
     self.emailField.leftView = leftView3;
-
+    
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder = kLocalizedPassword;
     if (self.password) {
@@ -156,7 +156,7 @@
     self.confirmPasswordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.confirmPasswordField.layer.borderWidth = 1.0f;
     self.confirmPasswordField.tag = 4;
-
+    
     self.termsOfUseButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
@@ -165,7 +165,7 @@
     [self.termsOfUseButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.termsOfUseButton addTarget:self action:@selector(openTermsOfUse) forControlEvents:UIControlEventTouchUpInside];
-
+    
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kUIFEDone forState:UIControlStateNormal];
@@ -178,8 +178,8 @@
 {
     [self.usernameField setReturnKeyType:UIReturnKeyNext];
     [self.usernameField addTarget:self
-                       action:@selector(textFieldShouldReturn:)
-             forControlEvents:UIControlEventEditingDidEndOnExit];
+                           action:@selector(textFieldShouldReturn:)
+                 forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.emailField setReturnKeyType:UIReturnKeyNext];
     [self.emailField addTarget:self
                         action:@selector(textFieldShouldReturn:)
@@ -190,8 +190,8 @@
                  forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.confirmPasswordField setReturnKeyType:UIReturnKeyDone];
     [self.confirmPasswordField addTarget:self
-                                       action:@selector(registerAction)
-                             forControlEvents:UIControlEventEditingDidEndOnExit];
+                                  action:@selector(registerAction)
+                        forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -315,8 +315,8 @@
     }
     
     [self registerAtServerWithUsername:self.usernameField.text
-                        andPassword:self.passwordField.text
-                           andEmail:self.emailField.text];
+                           andPassword:self.passwordField.text
+                              andEmail:self.emailField.text];
 }
 
 - (void)registerAtServerWithUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email

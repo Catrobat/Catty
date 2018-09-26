@@ -62,7 +62,7 @@ import Foundation
         } else if (rgbValue > 255) {
             rgbValue = 255;
         }
-    
+        
         return rgbValue;
     }
     

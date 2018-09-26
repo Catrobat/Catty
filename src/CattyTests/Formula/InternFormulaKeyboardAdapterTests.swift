@@ -84,7 +84,7 @@ final class InternFormulaKeyboardAdapterTests: XCTestCase {
         let cursorIndex = internFormula.getExternFormulaString().count
         setCursorAndAssertSelection(internFormula, cursorIndex: cursorIndex, expectedStartIndex: expectedStartIndex, expectedEndIndex: expectedEndIndex)
     }
-        
+    
     private func setCursorAndAssertSelection(_ internFormula: InternFormula, cursorIndex: Int, expectedStartIndex: Int, expectedEndIndex: Int) {
         internFormula.setCursorAndSelection(Int32(truncatingIfNeeded: cursorIndex), selected: true)
         

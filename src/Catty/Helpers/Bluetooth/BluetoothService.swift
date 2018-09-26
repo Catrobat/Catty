@@ -31,15 +31,15 @@ import BluetoothHelper
 
 @objc
 open class BluetoothService:NSObject {
-
+    
     static let swiftSharedInstance = BluetoothService()
-
+    
     // the sharedInstance class method can be reached from ObjC
     @objc open class func sharedInstance() -> BluetoothService {
         return BluetoothService.swiftSharedInstance
     }
-
-
+    
+    
     var digitalSemaphoreArray:[DispatchSemaphore] = []
     var analogSemaphoreArray:[DispatchSemaphore] = []
     
@@ -111,10 +111,10 @@ open class BluetoothService:NSObject {
     //MARK: Bluetooth Connection
     
     @objc func connectDevice(_ peri:Peripheral) {
-     
+        
         let future = peri.connect(10, timeoutRetries: 2, disconnectRetries: 0, connectionTimeout: Double(4))
         future.onSuccess {(peripheral, connectionEvent) in
-   
+            
             switch connectionEvent {
             case .connected:
                 self.updateKnownDevices(peripheral.id)
@@ -128,7 +128,7 @@ open class BluetoothService:NSObject {
                 if let scene = self.scenePresenter {
                     scene.connectionLost();
                 }
-//                peripheral.reconnect()
+                //                peripheral.reconnect()
                 CentralManager.sharedInstance.stopScanning()
                 CentralManager.sharedInstance.disconnectAllPeripherals()
                 CentralManager.sharedInstance.removeAllPeripherals()
@@ -164,7 +164,7 @@ open class BluetoothService:NSObject {
             print("Fail \(error)")
             self.connectionFailure()
         }
-
+        
     }
     
     @objc func updateKnownDevices(_ id:UUID){
@@ -186,7 +186,7 @@ open class BluetoothService:NSObject {
     
     @objc func removeKnownDevices() {
         let userdefaults = UserDefaults.standard
-         userdefaults.set([NSString](), forKey: "KnownBluetoothDevices")
+        userdefaults.set([NSString](), forKey: "KnownBluetoothDevices")
     }
     
     @objc func setBLEDevice(_ peripheral:Peripheral,type:BluetoothDeviceID){
@@ -199,7 +199,7 @@ open class BluetoothService:NSObject {
             bluetoothDevice = Phiro(peripheral:peripheral)
         }
         
-//        let arduino:ArduinoDevice = ArduinoDevice(peripheral:peripheral)
+        //        let arduino:ArduinoDevice = ArduinoDevice(peripheral:peripheral)
         if peripheral.services.count > 0 {
             for service in peripheral.services{
                 if service.characteristics.count > 0 {
@@ -240,7 +240,7 @@ open class BluetoothService:NSObject {
                                 print("SHOULD NEVER HAPPEN")
                                 return
                             }
-//                            arduino.reportSensorData(true)
+                            //                            arduino.reportSensorData(true)
                             if let timer = self.connectionTimer {
                                 timer.invalidate()
                             }
@@ -268,7 +268,7 @@ open class BluetoothService:NSObject {
             self.serviceDiscoveryFailed()
         }
         connectionTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(BluetoothService.serviceDiscoveryFailed) , userInfo: nil, repeats: false)
-
+        
     }
     
     @objc func serviceDiscoveryFailed() {
@@ -292,77 +292,77 @@ open class BluetoothService:NSObject {
         Util.alert(withTitle: klocalizedBluetoothConnectionFailed, andText:  klocalizedBluetoothCannotConnect)
     }
     
-//    func setPhiroDevice(peripheral:Peripheral){
-//        
-//        let phiro:Phiro = Phiro(peripheral:peripheral)
-//        phiro.reportSensorData(true)
-//        if peripheral.services.count > 0 {
-//            for service in peripheral.services{
-//                if service.characteristics.count > 0 {
-//                    guard let manager = self.selectionManager else {
-//                        return
-//                    }
-//                    BluetoothService.swiftSharedInstance.phiro = phiro
-//                    manager.checkStart()
-//                    return
-//                }
-//                
-//            }
-//            
-//        }
-//        
-//        let future = phiro.discoverAllServices()
-//        
-//        future.onSuccess{peripheral in
-//            guard peripheral.services.count > 0 else {
-//                self.serviceDiscoveryFailed()
-//                return
-//            }
-//            
-//            let services:[Service] = peripheral.services
-//            
-//            for service in services{
-//                let charFuture = service.discoverAllCharacteristics();
-//                charFuture.onSuccess{service in
-//                    guard service.characteristics.count > 0 else {
-//                        self.serviceDiscoveryFailed()
-//                        return
-//                    }
-//                    if(phiro.txCharacteristic != nil && phiro.rxCharacteristic != nil){
-//                        guard let manager = self.selectionManager else {
-//                            return
-//                        }
-////                        phiro.reportSensorData(true)
-//                        BluetoothService.swiftSharedInstance.phiro = phiro
-//                        manager.checkStart()
-//                        return
-//                    }
-//                    self.serviceDiscoveryFailed()
-//                }
-//                charFuture.onFailure{error in
-//                    self.serviceDiscoveryFailed()
-//                }
-//            }
-//            
-//        }
-//        
-//        future.onFailure{error in
-//            self.serviceDiscoveryFailed()
-//        }
-//        
-//    }
+    //    func setPhiroDevice(peripheral:Peripheral){
+    //        
+    //        let phiro:Phiro = Phiro(peripheral:peripheral)
+    //        phiro.reportSensorData(true)
+    //        if peripheral.services.count > 0 {
+    //            for service in peripheral.services{
+    //                if service.characteristics.count > 0 {
+    //                    guard let manager = self.selectionManager else {
+    //                        return
+    //                    }
+    //                    BluetoothService.swiftSharedInstance.phiro = phiro
+    //                    manager.checkStart()
+    //                    return
+    //                }
+    //                
+    //            }
+    //            
+    //        }
+    //        
+    //        let future = phiro.discoverAllServices()
+    //        
+    //        future.onSuccess{peripheral in
+    //            guard peripheral.services.count > 0 else {
+    //                self.serviceDiscoveryFailed()
+    //                return
+    //            }
+    //            
+    //            let services:[Service] = peripheral.services
+    //            
+    //            for service in services{
+    //                let charFuture = service.discoverAllCharacteristics();
+    //                charFuture.onSuccess{service in
+    //                    guard service.characteristics.count > 0 else {
+    //                        self.serviceDiscoveryFailed()
+    //                        return
+    //                    }
+    //                    if(phiro.txCharacteristic != nil && phiro.rxCharacteristic != nil){
+    //                        guard let manager = self.selectionManager else {
+    //                            return
+    //                        }
+    ////                        phiro.reportSensorData(true)
+    //                        BluetoothService.swiftSharedInstance.phiro = phiro
+    //                        manager.checkStart()
+    //                        return
+    //                    }
+    //                    self.serviceDiscoveryFailed()
+    //                }
+    //                charFuture.onFailure{error in
+    //                    self.serviceDiscoveryFailed()
+    //                }
+    //            }
+    //            
+    //        }
+    //        
+    //        future.onFailure{error in
+    //            self.serviceDiscoveryFailed()
+    //        }
+    //        
+    //    }
     
     @objc func resetBluetoothDevice(){
         
-    	if let phiroReset = phiro {
+        if let phiroReset = phiro {
             phiroReset.reportSensorData(false)
             phiroReset.resetPins()
-    	}
+        }
         
         if let arduinoReset = arduino {
             arduinoReset.resetArduino()
         }
-
+        
     }
     
     @objc func continueBluetoothDevice(){
@@ -376,7 +376,7 @@ open class BluetoothService:NSObject {
         }
         
     }
-
+    
     @objc func pauseBluetoothDevice(){
         
         if let phiroReset = phiro {
@@ -388,6 +388,6 @@ open class BluetoothService:NSObject {
         }
         
     }
-
+    
     
 }

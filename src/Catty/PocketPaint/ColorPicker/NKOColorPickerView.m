@@ -53,9 +53,9 @@ CGFloat const NKOPickerViewBrightnessIndicatorHeight    = 48.f;
 CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 
 @interface NKOColorPickerView() {
-	CGFloat currentBrightness;
-	CGFloat currentHue;
-	CGFloat currentSaturation;
+    CGFloat currentBrightness;
+    CGFloat currentHue;
+    CGFloat currentSaturation;
 }
 
 @property (nonatomic, strong) NKOBrightnessView *gradientView;
@@ -128,7 +128,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 {
     CGFloat hue, saturation;
     [newColor getHue:&hue saturation:&saturation brightness:nil alpha:nil];
-
+    
     currentHue = hue;
     currentSaturation = saturation;
     [self _setColor:newColor];
@@ -189,18 +189,18 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
                                         saturation:currentSaturation
                                         brightness:1.0
                                              alpha:1.0];
-	
+    
     self.crossHairs.layer.backgroundColor = gradientColor.CGColor;
     
-	[self.gradientView setColor:gradientColor];
+    [self.gradientView setColor:gradientColor];
 }
 
 - (void)_updateHueSatWithMovement:(CGPoint)position
 {
-	currentHue = (position.x - self.hueSatImage.frame.origin.x) / self.hueSatImage.frame.size.width;
-	currentSaturation = 1.0 -  (position.y - self.hueSatImage.frame.origin.y) / self.hueSatImage.frame.size.height;
+    currentHue = (position.x - self.hueSatImage.frame.origin.x) / self.hueSatImage.frame.size.width;
+    currentSaturation = 1.0 -  (position.y - self.hueSatImage.frame.origin.y) / self.hueSatImage.frame.size.height;
     
-	UIColor *_tcolor = [UIColor colorWithHue:currentHue
+    UIColor *_tcolor = [UIColor colorWithHue:currentHue
                                   saturation:currentSaturation
                                   brightness:currentBrightness
                                        alpha:1.0];
@@ -208,7 +208,7 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
                                         saturation:currentSaturation
                                         brightness:1.0
                                              alpha:1.0];
-	
+    
     
     self.crossHairs.layer.backgroundColor = gradientColor.CGColor;
     [self _updateGradientColor];
@@ -218,9 +218,9 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 
 - (void)_updateBrightnessWithMovement:(CGPoint)position
 {
-	currentBrightness = 1.0 - ((position.x - self.gradientView.frame.origin.x)/self.gradientView.frame.size.width) ;
-	
-	UIColor *_tcolor = [UIColor colorWithHue:currentHue
+    currentBrightness = 1.0 - ((position.x - self.gradientView.frame.origin.x)/self.gradientView.frame.size.width) ;
+    
+    UIColor *_tcolor = [UIColor colorWithHue:currentHue
                                   saturation:currentSaturation
                                   brightness:currentBrightness
                                        alpha:1.0];
@@ -239,29 +239,29 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 #pragma mark - Touch Handling methods
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	for (UITouch *touch in touches){
-		[self dispatchTouchEvent:[touch locationInView:self]];
+    for (UITouch *touch in touches){
+        [self dispatchTouchEvent:[touch locationInView:self]];
         [self _updateBrightnessWithMovement:CGPointMake(11, 187.65)];
     }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	for (UITouch *touch in touches){
-		[self dispatchTouchEvent:[touch locationInView:self]];
-	}
+    for (UITouch *touch in touches){
+        [self dispatchTouchEvent:[touch locationInView:self]];
+    }
 }
 
 - (void)dispatchTouchEvent:(CGPoint)position
 {
-	if (CGRectContainsPoint(self.hueSatImage.frame,position)){
+    if (CGRectContainsPoint(self.hueSatImage.frame,position)){
         self.crossHairs.center = position;
-		[self _updateHueSatWithMovement:position];
-	}
+        [self _updateHueSatWithMovement:position];
+    }
     else if (CGRectContainsPoint(self.gradientView.frame, position)) {
         self.brightnessIndicator.center = CGPointMake(position.x, self.gradientView.center.y);
-		[self _updateBrightnessWithMovement:position];
-	}
+        [self _updateBrightnessWithMovement:position];
+    }
 }
 
 #pragma mark - Lazy loading
@@ -384,40 +384,40 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 
 - (void)setupGradient
 {
-	const CGFloat *c = CGColorGetComponents(_color.CGColor);
+    const CGFloat *c = CGColorGetComponents(_color.CGColor);
     
-	CGFloat colors[] = {
-		c[0], c[1], c[2], 1.0f,
-		0.f, 0.f, 0.f, 1.f,
-	};
-	
-	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-	
+    CGFloat colors[] = {
+        c[0], c[1], c[2], 1.0f,
+        0.f, 0.f, 0.f, 1.f,
+    };
+    
+    CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+    
     if (gradient != nil){
         CGGradientRelease(gradient);
     }
     
-	gradient = CGGradientCreateWithColorComponents(rgb, colors, NULL, sizeof(colors)/(sizeof(colors[0])*4));
-	CGColorSpaceRelease(rgb);
+    gradient = CGGradientCreateWithColorComponents(rgb, colors, NULL, sizeof(colors)/(sizeof(colors[0])*4));
+    CGColorSpaceRelease(rgb);
 }
 
 - (void)drawRect:(CGRect)rect
 {
-	CGContextRef context = UIGraphicsGetCurrentContext();
-
-	CGRect clippingRect = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
-	
-	CGPoint endPoints[] =
-	{
-		CGPointMake(0,0),
-		CGPointMake(self.frame.size.width,0),
-	};
-	
-	CGContextSaveGState(context);
-	CGContextClipToRect(context, clippingRect);
-	
-	CGContextDrawLinearGradient(context, gradient, endPoints[0], endPoints[1], 0);
-	CGContextRestoreGState(context);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGRect clippingRect = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
+    
+    CGPoint endPoints[] =
+    {
+        CGPointMake(0,0),
+        CGPointMake(self.frame.size.width,0),
+    };
+    
+    CGContextSaveGState(context);
+    CGContextClipToRect(context, clippingRect);
+    
+    CGContextDrawLinearGradient(context, gradient, endPoints[0], endPoints[1], 0);
+    CGContextRestoreGState(context);
 }
 
 - (void)dealloc

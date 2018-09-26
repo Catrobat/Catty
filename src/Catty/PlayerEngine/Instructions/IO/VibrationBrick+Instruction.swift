@@ -23,15 +23,15 @@
 //import AudioToolbox
 
 @objc extension VibrationBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
-
+        
         let durationFormula = self.durationInSeconds
         
         return CBInstruction.execClosure { (context, scheduler) in
-//            self.logger.debug("Performing: VibrationBrick")
+            //            self.logger.debug("Performing: VibrationBrick")
             
             guard let duration = durationFormula else { return }
             
@@ -48,18 +48,18 @@
             let max = Int(numberOfVibrations)
             for _ in 0 ..< max {
                 let operation : BlockOperation = BlockOperation (block: {
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                usleep(delayTime)})
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    usleep(delayTime)})
                 
                 if let previous = previousOperation {
                     operation.addDependency(previous)
                 }
-            CBScheduler.vibrateSerialQueue.addOperation(operation)
-            previousOperation = operation
+                CBScheduler.vibrateSerialQueue.addOperation(operation)
+                previousOperation = operation
             }
             
             context.state = .runnable
         }
-
+        
     }
 }

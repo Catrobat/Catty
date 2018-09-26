@@ -38,7 +38,7 @@
     PhiroIfLogicBeginBrick *ifLogicBeginBrick = [self new];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_PHIRO_SENSOR_CONDITION" withContext:context];
     ifLogicBeginBrick.ifCondition = formula;
-//    formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
+    //    formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
     GDataXMLElement *sensorSpinnerPosition = [xmlElement childWithElementName:@"sensorSpinnerPosition"];
     
     // Default value
@@ -62,7 +62,7 @@
     GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_PHIRO_SENSOR_CONDITION"]];
     [formulaList addChild:formula context:context];
-
+    
     GDataXMLElement *formula1 = [self.ifCondition xmlElementWithContext:context];
     [formula1 addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"IF_CONDITION"]];
     [formulaList addChild:formula1 context:context];

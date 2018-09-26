@@ -67,7 +67,7 @@
     NSArray *objectElements = [[objectListElements firstObject] children];
     [XMLError exceptionIf:[objectListElements count] equals:0
                   message:@"No objects in objectList, but there must exist "\
-                          "at least 1 object (background)!!"];
+     "at least 1 object (background)!!"];
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
         SpriteObject *spriteObject = [context parseFromElement:objectElement
@@ -75,7 +75,7 @@
         [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
         [objectList addObject:spriteObject];
     }
-
+    
     // sanity check => check if both objectLists are equal
     [XMLError exceptionIf:[objectList count] notEquals:[context.spriteObjectList count]
                   message:@"Both SpriteObjectLists must be identical!"];
@@ -89,7 +89,7 @@
         }
         [XMLError exceptionIf:found equals:NO message:@"Both SpriteObjectLists must be equal!"];
     }
-
+    
     // sanity check => check if objectList in context contains all objects
     for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
         BOOL found = NO;
@@ -112,11 +112,11 @@
 }
 
 + (void)addMissingVariablesAndListsToVariablesContainer:(VariablesContainer*)varAndListContainer
-                                    withContext:(CBXMLParserContext*)context
+                                            withContext:(CBXMLParserContext*)context
 {
     for(NSString *objectName in context.formulaVariableNameList) {
         NSArray *variableList = [context.formulaVariableNameList objectForKey:objectName];
-         SpriteObject *object = [self getSpriteObject:objectName withContext:context];
+        SpriteObject *object = [self getSpriteObject:objectName withContext:context];
         if(!object) {
             NSWarn(@"SpriteObject with name %@ is not found in object list", objectName);
             return;
@@ -187,11 +187,11 @@
     // update context object
     context.spriteObjectList = self.objectList;
     context.variables = self.variables;
-
+    
     // generate xml element for program
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
-
+    
     GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList"
                                                                      context:context];
     for (id object in self.objectList) {
@@ -201,11 +201,11 @@
                                context:context];
     }
     [xmlElement addChild:objectListXmlElement context:context];
-
+    
     if (self.variables) {
         [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
     }
-
+    
     // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
     return xmlElement;

@@ -43,11 +43,11 @@
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed type-attribute of script is invalid or empty!"];
-
+    
     GDataXMLNode *attribute = [attributes firstObject];
     [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                         message:@"Unsupported attribute: %@", attribute.name];
-
+    
     NSString *scriptType = [attribute stringValue];
     Script *script = nil;
     if ([scriptType isEqualToString:@"StartScript"]) {
@@ -75,7 +75,7 @@
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
-
+    
     script.object = context.spriteObject;
     script.brickList = [self parseAndCreateBricks:xmlElement forScript:script withContext:context];
     return script;
@@ -90,7 +90,7 @@
     if (! [brickElements count]) {
         return [NSMutableArray array];
     }
-
+    
     NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
     context.openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new]; // update context!
     for (GDataXMLElement *brickElement in brickElements) {
@@ -98,12 +98,12 @@
         NSArray *attributes = [brickElement attributes];
         [XMLError exceptionIf:[attributes count] notEquals:1
                       message:@"Parsed type-attribute of brick is invalid or empty!"];
-
+        
         GDataXMLNode *attribute = [attributes firstObject];
         [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                             message:@"Unsupported attribute: %@", attribute.name];
         NSString *brickTypeName = [attribute stringValue];
-
+        
         // get proper brick class via reflection
         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
@@ -129,7 +129,7 @@
         }
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBXMLNodeProtocol",
-                              brickClassName, brickClassName];
+         brickClassName, brickClassName];
         Brick *brick = [context parseFromElement:brickXmlElement withClass:class];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         brick.script = script;
@@ -154,7 +154,7 @@
         return @"ChangeTransparencyByNBrick";
     }
     if (([brickTypeName isEqualToString:@"LedOnBrick"]) ||
-       ([brickTypeName isEqualToString:@"LedOffBrick"])){
+        ([brickTypeName isEqualToString:@"LedOffBrick"])){
         return @"FlashBrick";
     }
     return (NSString*)brickXMLHandlerClassName;
@@ -171,8 +171,8 @@
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context] context:context];
     if ([self isKindOfClass:[StartScript class]]) {
         //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
-//        GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
-//        [xmlElement addChild:isUserScriptXmlElement context:context];
+        //        GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
+        //        [xmlElement addChild:isUserScriptXmlElement context:context];
     } else if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
         [XMLError exceptionIfNil:broadcastScript.receivedMessage
@@ -206,7 +206,7 @@
 {
     // update context object
     context.brickList = self.brickList;
-
+    
     // generate xml element for brickList
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brickList" context:context];
     CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];

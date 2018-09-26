@@ -46,7 +46,7 @@
     Formula *formula = [[Formula alloc] initWithInteger:1];
     NSDebug(@"Formula display string %@", [formula getDisplayString]);
     XCTAssertTrue([formula isSingularNumber]);
-
+    
     formula = [[Formula alloc] initWithDouble:1.0];
     XCTAssertTrue([formula isSingularNumber]);
     
@@ -68,7 +68,7 @@
     InternToken *tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1"];
     [internTokenList addObject:token];
     [internTokenList addObject:tokenNumber];
-
+    
     InternFormulaParser *internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     FormulaElement *parseTree = [internParser parseFormulaForSpriteObject:nil];
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
@@ -91,10 +91,10 @@
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 1");
     XCTAssertEqual(-1, [self.interpreter interpretDouble:formula forSpriteObject:[SpriteObject new]], @"Formula interpretation is not as expected");
     [internTokenList removeAllObjects];
-
+    
     formula = [[Formula alloc] initWithFormulaElement:parseTree];
     XCTAssertFalse([formula isSingularNumber], @"Formula should be single number formula");
-
+    
     token = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
     tokenNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1.0"];
     InternToken *secondToken = [[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:MINUS]];
@@ -103,7 +103,7 @@
     [internTokenList addObject:tokenNumber];
     [internTokenList addObject:secondToken];
     [internTokenList addObject:secondNumber];
-
+    
     internParser = [[InternFormulaParser alloc] initWithTokens:internTokenList andFormulaManager:self.formulaManager];
     parseTree = [internParser parseFormulaForSpriteObject:nil];
     XCTAssertNotNil(parseTree, @"Formula is not parsed correctly: - 1 - 1");

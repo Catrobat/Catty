@@ -21,20 +21,20 @@
  */
 
 @objc extension ClearGraphicEffectBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         return .action { (_) in SKAction.run(self.actionBlock()) }
     }
-
+    
     @objc func actionBlock() -> ()->() {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
+            let spriteNode = object.spriteNode
+            else { fatalError("This should never happen!") }
+        
         return {
             guard let look = spriteNode.currentLook,
-                  let image = UIImage(contentsOfFile: self.path(for: look)) else {return}
-
+                let image = UIImage(contentsOfFile: self.path(for: look)) else {return}
+            
             spriteNode.currentUIImageLook = image
             
             spriteNode.ciBrightness = CGFloat(BrightnessSensor.defaultRawValue)

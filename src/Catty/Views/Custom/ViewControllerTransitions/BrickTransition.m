@@ -101,22 +101,22 @@
                  usingSpringWithDamping:10.0f
                   initialSpringVelocity:0.0f
                                 options:UIViewAnimationOptionCurveEaseInOut
-                                animations:^{
-                                    animationView.layer.position = posBrickCell;
-                                    weakself.blurView.alpha = 1.0f;
-                                    scvc.collectionView.alpha = 0.5f;
-                                    scvc.navigationController.toolbar.alpha = 0.01f;
-                                    scvc.navigationController.navigationBar.alpha = 0.01f;
-                                } completion:^(BOOL finished) {
-                                    [animationView removeFromSuperview];
-                                    weakself.blurView.dynamic = NO;
-                                    weakself.animateView.layer.position = posBrickCell;
-                                    weakself.animateView.hidden = NO;
-                                    [toVC.view addSubview:self.animateView];
-                                    [transitionContext completeTransition:YES];
-                                }];
+                             animations:^{
+                                 animationView.layer.position = posBrickCell;
+                                 weakself.blurView.alpha = 1.0f;
+                                 scvc.collectionView.alpha = 0.5f;
+                                 scvc.navigationController.toolbar.alpha = 0.01f;
+                                 scvc.navigationController.navigationBar.alpha = 0.01f;
+                             } completion:^(BOOL finished) {
+                                 [animationView removeFromSuperview];
+                                 weakself.blurView.dynamic = NO;
+                                 weakself.animateView.layer.position = posBrickCell;
+                                 weakself.animateView.hidden = NO;
+                                 [toVC.view addSubview:self.animateView];
+                                 [transitionContext completeTransition:YES];
+                             }];
         }
-        break;
+            break;
             
         case TransitionModeDismiss: {
             for (UIViewController *controller in toVC.childViewControllers) {
@@ -152,7 +152,7 @@
                                  [transitionContext completeTransition:YES];
                              }];
         }
-        break;
+            break;
     }
 }
 

@@ -68,7 +68,7 @@
                            selector:@selector(showSavedView)
                                name:kShowSavedViewNotification
                              object:nil];
-  
+    
     NSLayoutConstraint *topConstraint = [NSLayoutConstraint
                                          constraintWithItem:self.placeHolderView
                                          attribute:NSLayoutAttributeTop
@@ -76,16 +76,16 @@
                                          toItem:self.placeHolderView.superview
                                          attribute: NSLayoutAttributeTop
                                          multiplier:1.0f constant:0];
-  
+    
     NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint
-                                           constraintWithItem:self.placeHolderView
-                                           attribute:NSLayoutAttributeLeading
-                                           relatedBy:NSLayoutRelationEqual
-                                           toItem:self.placeHolderView.superview
-                                           attribute: NSLayoutAttributeLeading
-                                           multiplier:1.0f constant:0];
-  
-  
+                                             constraintWithItem:self.placeHolderView
+                                             attribute:NSLayoutAttributeLeading
+                                             relatedBy:NSLayoutRelationEqual
+                                             toItem:self.placeHolderView.superview
+                                             attribute: NSLayoutAttributeLeading
+                                             multiplier:1.0f constant:0];
+    
+    
     NSLayoutConstraint *widthConstraint = [NSLayoutConstraint
                                            constraintWithItem:self.placeHolderView
                                            attribute:NSLayoutAttributeWidth
@@ -93,7 +93,7 @@
                                            toItem:self.placeHolderView.superview
                                            attribute: NSLayoutAttributeWidth
                                            multiplier:1.0f constant:0];
-  
+    
     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint
                                             constraintWithItem:self.placeHolderView
                                             attribute:NSLayoutAttributeHeight
@@ -153,12 +153,12 @@
 - (PlaceHolderView*)placeHolderView
 {
     if (! _placeHolderView) {
-//        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
-//        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
+        //        CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
+        //        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-      
+        
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
-      
+        
         _placeHolderView.hidden = YES;
     }
     return _placeHolderView;

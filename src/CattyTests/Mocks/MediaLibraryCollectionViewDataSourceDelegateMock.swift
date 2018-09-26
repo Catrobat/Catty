@@ -23,13 +23,13 @@
 @testable import Pocket_Code
 
 class MediaLibraryCollectionViewDataSourceDelegateMock: MediaLibraryCollectionViewDataSourceDelegate {
-
+    
     var didSelectCell: ((MediaItem) -> Void)?
-
+    
     init(didSelectCell: ((MediaItem) -> Void)? = nil) {
         self.didSelectCell = didSelectCell
     }
-
+    
     func mediaLibraryCollectionViewDataSource(_ dataSource: MediaLibraryCollectionViewDataSource, didSelectCellWith item: MediaItem) {
         self.didSelectCell?(item)
     }

@@ -92,10 +92,10 @@
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0
                                                              error:&error];
-
+    
     // sanity checks
     if (error || !doc) { return nil; }
-
+    
     // parse and return Project object
     Program* program = nil;
     @try {
@@ -201,7 +201,7 @@
                     [self.weakPropertyRetainer addObject:value];
                 }
             }
-        // omit property "object" in all subclasses of Brick class
+            // omit property "object" in all subclasses of Brick class
         } else if ([propertyName isEqualToString:@"object"] && [className hasSuffix:@"Brick"]) {
         } else {
             [NSException raise:@"PropertyNotFoundException" format:@"property <%@> does NOT exist in our implementation of <%@>", propertyName, className];
@@ -434,10 +434,10 @@
             NSString* className = [[self stripArrayBrackets:pathComponent] firstCharacterUppercaseString];
             NSMutableArray* list = [[NSMutableArray alloc] init];
             for (id obj in lastComponentList)
-                {
+            {
                 if ([obj isMemberOfClass:NSClassFromString(className)])
                     [list addObject:obj];
-                }
+            }
             
             NSInteger index = [self indexForArrayObject:pathComponent];
             
@@ -654,14 +654,14 @@ const char *property_getTypeString(objc_property_t property)
     NSUInteger length = [str length];
     NSRange range = NSMakeRange(0, length);
     while(range.location != NSNotFound)
-        {
+    {
         range = [str rangeOfString:substring options:0 range:range];
         if(range.location != NSNotFound)
-            {
+        {
             range = NSMakeRange(range.location + range.length, length - (range.location + range.length));
             cnt++;
-            }
         }
+    }
     return cnt;
 }
 

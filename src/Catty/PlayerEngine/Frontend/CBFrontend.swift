@@ -21,34 +21,34 @@
  */
 
 final class CBFrontend: CBFrontendProtocol {
-
+    
     // MARK: - Properties
     let logger: CBLogger
     private(set) weak var program: Program?
     private lazy var _sequenceFilters = [CBFrontendSequenceFilterProtocol]()
-
+    
     // MARK: - Initializers
     init(logger: CBLogger, program: Program?) {
         self.logger = logger
         self.program = program
     }
-
+    
     // MARK: - Operations
     func addSequenceFilter(_ sequenceFilter: CBFrontendSequenceFilterProtocol) {
         _sequenceFilters += sequenceFilter
     }
-
+    
     func computeSequenceListForScript(_ script : Script) -> CBScriptSequenceList {
         var currentSequenceList = CBSequenceList(rootSequenceList: nil)
         let scriptSequenceList = CBScriptSequenceList(script: script, sequenceList: currentSequenceList)
         var currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
         let sequenceStack = CBStack<CBSequenceList>()
-
+        
         guard let brickList = script.brickList as? [Brick] else {
             preconditionFailure()
         }
         for brick in brickList {
-
+            
             switch brick {
             case _ as IfLogicBeginBrick,
                  _ as IfThenLogicBeginBrick,
@@ -57,16 +57,16 @@ final class CBFrontend: CBFrontendProtocol {
                  _ as IfThenLogicEndBrick,
                  _ as LoopBeginBrick,
                  _ as LoopEndBrick:
-
+                
                 if !currentOperationSequence.isEmpty() {
                     currentSequenceList += currentOperationSequence
                 }
-
+                
             default: break
             }
-
+            
             switch brick {
-
+                
             case is IfLogicBeginBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
@@ -87,13 +87,13 @@ final class CBFrontend: CBFrontendProtocol {
                 // new sequence list for else
                 currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-
+                
             case let ifLogicEndBrick as IfLogicEndBrick:
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let elseBrick = ifLogicEndBrick.ifElseBrick
                 var ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
-                    condition: ifBrick!, sequenceList: currentSequenceList)
-
+                                                         condition: ifBrick!, sequenceList: currentSequenceList)
+                
                 if elseBrick != nil {
                     // currentSequenceList is ElseSequenceList
                     let elseSequenceList = currentSequenceList
@@ -101,15 +101,15 @@ final class CBFrontend: CBFrontendProtocol {
                     assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                     currentSequenceList = topMostSequenceList!
                     ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
-                        condition: ifBrick!, ifSequenceList:currentSequenceList,
-                        elseSequenceList: elseSequenceList)
+                                                         condition: ifBrick!, ifSequenceList:currentSequenceList,
+                                                         elseSequenceList: elseSequenceList)
                 }
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
                 assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                 currentSequenceList = topMostSequenceList!
                 currentSequenceList += ifSequence
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-            
+                
             case let ifLogicEndBrick as IfThenLogicEndBrick:
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
@@ -120,14 +120,14 @@ final class CBFrontend: CBFrontendProtocol {
                 currentSequenceList = topMostSequenceList!
                 currentSequenceList += ifSequence
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-
+                
             case is LoopBeginBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
                 // new sequence list for Loop
                 currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-
+                
             case let loopEndBrick as LoopEndBrick:
                 // loop end -> fetch currentSequenceList from stack
                 let conditionalSequence = CBConditionalSequence(rootSequenceList: scriptSequenceList,
@@ -138,21 +138,21 @@ final class CBFrontend: CBFrontendProtocol {
                 currentSequenceList = topMostSequenceList!
                 currentSequenceList += conditionalSequence
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-
+                
             case is NoteBrick:
                 break // ignore NoteBricks!
-
+                
             default:
                 currentOperationSequence.addOperation(CBOperation(brick: brick))
             }
         }
         assert(scriptSequenceList.sequenceList === currentSequenceList)
-
+        
         // add last operation sequence to script's sequence list
         if !currentOperationSequence.isEmpty() {
             scriptSequenceList.sequenceList += currentOperationSequence
         }
-
+        
         // finally apply all filters on script's sequence list
         var filteredList = scriptSequenceList
         _sequenceFilters.forEach { filteredList = $0.filterScriptSequenceList(filteredList) }

@@ -42,13 +42,13 @@ import BluetoothHelper
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyle.box
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTint()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyle.fixed
-
+        
         setHeader()
         
         rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(BluetoothPopupVC.dismissAndDisconnect))
         self.navigationItem.rightBarButtonItem = rightButton
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -74,11 +74,11 @@ import BluetoothHelper
             }
         })
     }
-
+    
     @objc func dismiss(){
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     func setHeader() {
         if(deviceArray!.count > 0){
             if(deviceArray![0] == BluetoothDeviceID.phiro.rawValue){

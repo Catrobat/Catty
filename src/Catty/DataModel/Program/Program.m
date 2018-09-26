@@ -45,22 +45,22 @@
     program.header = [Header defaultHeader];
     program.header.programName = programName;
     program.header.programID = programID;
-
+    
     CBFileManager *fileManager = [CBFileManager sharedManager];
     if (! [fileManager directoryExists:programName]) {
         [fileManager createDirectory:[program projectPath]];
     }
-
+    
     NSString *imagesDirName = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramImagesDirName];
     if (! [fileManager directoryExists:imagesDirName]) {
         [fileManager createDirectory:imagesDirName];
     }
-
+    
     NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramSoundsDirName];
     if (! [fileManager directoryExists:soundsDirName]) {
         [fileManager createDirectory:soundsDirName];
     }
-
+    
     [program addObjectWithName:kLocalizedBackground];
     NSDebug(@"%@", [program description]);
     return program;
@@ -72,20 +72,20 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-
-//    //######### FIXME remove that later!! {
-//        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks093" ofType:@"xml"];
-//    // }
-
+    
+    //    //######### FIXME remove that later!! {
+    //        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    //        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks093" ofType:@"xml"];
+    //    // }
+    
     Program *program = nil;
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
-
+    
     if (languageVersion == kCatrobatInvalidVersion) {
         NSDebug(@"Invalid catrobat language version!");
         return nil;
     }
-
+    
     // detect right parser for correct catrobat language version
     CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
     if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
@@ -95,10 +95,10 @@
         program = [catrobatParser parseAndCreateProgram];
     }
     program.header.programID = loadingInfo.programID;
-
+    
     if (! program)
         return nil;
-
+    
     NSDebug(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
     [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName programID:loadingInfo.programID];
@@ -147,7 +147,7 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     //object.originalSize;
     object.spriteNode.currentLook = nil;
-
+    
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
     [self.objectList addObject:object];
@@ -204,7 +204,7 @@
 - (NSMutableArray*)objectList
 {
     if (! _objectList) {
-         _objectList = [NSMutableArray array];
+        _objectList = [NSMutableArray array];
     }
     return _objectList;
 }
@@ -249,7 +249,7 @@
     NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName programID:sourceProgramID];
     destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
     NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:nil];
-
+    
     CBFileManager *fileManager = [CBFileManager sharedManager];
     [fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
     ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName programID:nil];
@@ -265,7 +265,7 @@
     if ([fileManager directoryExists:projectPath]) {
         [fileManager deleteDirectory:projectPath];
     }
-
+    
     // if this is currently set as last used program, then look for next program to set it as
     // the last used program
     if ([Program isLastUsedProgram:programName programID:programID]) {
@@ -276,7 +276,7 @@
             break;
         }
     }
-
+    
     // if there are no programs left, then automatically recreate default program
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 }
@@ -298,7 +298,7 @@
         NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
         id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath fileManager:fileManager];
         [serializer serializeProgram:self];
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
@@ -434,7 +434,7 @@
         resources |= [obj getRequiredResources];
     }
     return resources;
-
+    
 }
 
 #pragma mark - helpers
@@ -471,14 +471,14 @@
 + (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID
 {
     NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
-
+    
     // check if program with same ID already exists
     if (programID && [programID length]) {
         if ([[self class] programExistsWithProgramID:programID]) {
             return YES;
         }
     }
-
+    
     // no programID match => check if program with same name already exists
     for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
         if ([programName isEqualToString:programLoadingInfo.visibleName]) {
@@ -539,14 +539,14 @@
     NSError *error;
     NSArray *subdirNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
-
+    
     NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:subdirNames.count];
     for (NSString *subdirName in subdirNames) {
         // exclude .DS_Store folder on MACOSX simulator
         if ([subdirName isEqualToString:@".DS_Store"]) {
             continue;
         }
-
+        
         ProgramLoadingInfo *info = [[self class] programLoadingInfoForProgramDirectoryName:subdirName];
         if (! info) {
             NSDebug(@"Unable to load program located in directory %@", subdirName);

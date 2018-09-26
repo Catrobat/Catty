@@ -52,7 +52,7 @@ final class SetVariableBrickTests: XCTestCase {
         scheduler = CBScheduler(logger: logger, broadcastHandler: broadcastHandler, formulaInterpreter: formulaInterpreter)
         context = CBScriptContext(script: script, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter)
     }
-
+    
     func testSetVariableBrickUserVariablesNil() {
         spriteNode.position = CGPoint(x: 0, y: 0)
         
@@ -73,6 +73,6 @@ final class SetVariableBrickTests: XCTestCase {
         }
         
         XCTAssertTrue(true) // The purpose of this test is to show that the program does not crash
-                             // when no UserVariable is selected in the IDE and the brick is executed
+        // when no UserVariable is selected in the IDE and the brick is executed
     }
 }

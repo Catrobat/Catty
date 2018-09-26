@@ -38,8 +38,8 @@
     CBStack *stack = [CBStack new];
     for (NSUInteger round = 0; round < kNumberOfRoundsToTest; ++round) {
         NSUInteger numberOfElementsToPush = (arc4random()
-                                          % (kMaxNumberOfStackElements - kMinNumberOfStackElements + 1))
-                                          + kMinNumberOfStackElements;
+                                             % (kMaxNumberOfStackElements - kMinNumberOfStackElements + 1))
+        + kMinNumberOfStackElements;
         for (NSUInteger elementNumber = 0; elementNumber < numberOfElementsToPush; ++elementNumber) {
             [stack pushElement:@(elementNumber)];
         }
@@ -59,8 +59,8 @@
             [stack pushElement:@(elementNumber)];
         }
         NSUInteger numberOfElementsToPop = (arc4random()
-                                         % (kMaxNumberOfStackElements - kMinNumberOfStackElements + 1))
-                                         + kMinNumberOfStackElements;
+                                            % (kMaxNumberOfStackElements - kMinNumberOfStackElements + 1))
+        + kMinNumberOfStackElements;
         NSNumber *lastPoppedNumber = nil;
         for (NSUInteger elementNumber = 0; elementNumber < numberOfElementsToPop; ++elementNumber) {
             lastPoppedNumber = [stack popElement];

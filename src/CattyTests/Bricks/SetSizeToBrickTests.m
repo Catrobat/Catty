@@ -48,12 +48,12 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     script.object = object;
-
+    
     SetSizeToBrick *brick = [[SetSizeToBrick alloc] init];
     brick.script = script;
-
+    
     brick.size = [[Formula alloc] initWithInteger:130];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -69,9 +69,9 @@
     script.object = object;
     SetSizeToBrick *brick = [[SetSizeToBrick alloc] init];
     brick.script = script;
-
+    
     brick.size = [[Formula alloc] initWithInteger:-130];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -88,9 +88,9 @@
     
     SetSizeToBrick *brick = [[SetSizeToBrick alloc] init];
     brick.script = script;
-
+    
     brick.size = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     

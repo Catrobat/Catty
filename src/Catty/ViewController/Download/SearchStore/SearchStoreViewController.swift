@@ -232,7 +232,7 @@ extension SearchStoreViewController {
         return
     }
     
-
+    
     func showLoadingIndicator() {
         DispatchQueue.main.async {
             self.shouldHideLoadingView = false

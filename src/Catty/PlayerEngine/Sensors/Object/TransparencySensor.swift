@@ -21,7 +21,7 @@
  */
 
 @objc class TransparencySensor: NSObject, ObjectDoubleSensor {
-
+    
     @objc static let tag = "OBJECT_GHOSTEFFECT"
     static let name = kUIFEObjectTransparency
     @objc static let defaultRawValue = 1.0
@@ -46,14 +46,14 @@
     }
     
     /*  on iOS, the transparency function is descending:
-        1.0 - no transparency
-        0.0 - maximum transaprency
- 
-        on Android the transparency function is ascending:
-        0.0 - no transparency
-        100.0 - maximum transparency
+     1.0 - no transparency
+     0.0 - maximum transaprency
      
-        And they also have different ranges and scales.
+     on Android the transparency function is ascending:
+     0.0 - no transparency
+     100.0 - maximum transparency
+     
+     And they also have different ranges and scales.
      */
     
     // f:[0, 1] -> [0, 100]

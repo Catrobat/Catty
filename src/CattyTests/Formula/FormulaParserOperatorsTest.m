@@ -49,13 +49,13 @@
     [internTokens addObject:[[InternToken alloc] initWithType:firstTokenType AndValue:firstValue]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:operator]]];
     [internTokens addObject:[[InternToken alloc] initWithType:secondTokenType AndValue:secondValue]];
-
+    
     return internTokens;
 }
 
 - (NSMutableArray *)mergeOperatorLists:(NSMutableArray *)firstList
-                           withOperator:(Operator)operator
-                        andSecondList:(NSMutableArray *)secondList
+                          withOperator:(Operator)operator
+                         andSecondList:(NSMutableArray *)secondList
 {
     [firstList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:operator]]];
     [firstList addObjectsFromArray:secondList];
@@ -64,9 +64,9 @@
 }
 
 - (NSMutableArray *)appendOperationToList:(NSMutableArray *)internTokenList
-                           withOperator:(Operator)operator
-                        andTokenType:(InternTokenType)tokenType
-                            withValue:(NSString *)value
+                             withOperator:(Operator)operator
+                             andTokenType:(InternTokenType)tokenType
+                                withValue:(NSString *)value
 {
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:[Operators getName:operator]]];
     [internTokenList addObject:[[InternToken alloc] initWithType:tokenType AndValue:value]];
@@ -90,7 +90,7 @@
     firstTerm = [self appendOperationToList:firstTerm withOperator:MULT andTokenType:TOKEN_TYPE_NUMBER withValue:@"3"];
     NSMutableArray *secontTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:@"2" withOperator:PLUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"1"];
     firstTerm = [self mergeOperatorLists:firstTerm withOperator:MULT andSecondList:secontTerm];
-
+    
     [self binaryOperatorTest:firstTerm withExpectedResult:@"14"];
     
     firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:@"1" withOperator:PLUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:@"2"];

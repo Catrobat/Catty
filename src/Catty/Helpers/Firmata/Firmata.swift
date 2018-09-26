@@ -78,7 +78,7 @@ class Firmata: FirmataProtocol {
     private let FIRST_ANALOG_PIN = 14
     private let LAST_ANALOG_PIN = 19
     private let PORT_COUNT = 3
-
+    
     private var portMasks = [UInt8](repeating: 0, count: 3)
     weak var delegate: FirmataDelegate?
     private var sysexData:NSMutableData = NSMutableData()
@@ -86,11 +86,11 @@ class Firmata: FirmataProtocol {
     
     //MARK: WRITE
     /* PINMODE
-    * -------------------------------
-    * 0  SET_PIN_MODE (0xF4)
-    * 1  pin (0 to 127)
-    * 2  PinMode (rawValue)
-    */
+     * -------------------------------
+     * 0  SET_PIN_MODE (0xF4)
+     * 1  pin (0 to 127)
+     * 2  PinMode (rawValue)
+     */
     func writePinMode(_ newMode:PinMode, pin:UInt8) {
         
         //Set a pin's mode
@@ -106,9 +106,9 @@ class Firmata: FirmataProtocol {
     }
     
     /*Report Version
-    * -------------------------------
-    * 0  REPORT_VERSION //0xF9
-    */
+     * -------------------------------
+     * 0  REPORT_VERSION //0xF9
+     */
     func reportVersion(){
         
         let data0:UInt8 = REPORT_VERSION //0xF9
@@ -119,11 +119,11 @@ class Firmata: FirmataProtocol {
         delegate?.sendData(newData)
     }
     /*Report Version
-    * -------------------------------
-    * 0  START_SYSEX 0xF0
-    * 0  REPORT_FIRMWARE 0x79
-    * 0  END_SYSEX 0xF7
-    */
+     * -------------------------------
+     * 0  START_SYSEX 0xF0
+     * 0  REPORT_FIRMWARE 0x79
+     * 0  END_SYSEX 0xF7
+     */
     func reportFirmware(){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = REPORT_FIRMWARE
@@ -135,11 +135,11 @@ class Firmata: FirmataProtocol {
     }
     
     /* analog mapping query
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  analog mapping query (0x69)
-    * 2  END_SYSEX (0xF7)
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  analog mapping query (0x69)
+     * 2  END_SYSEX (0xF7)
+     */
     func analogMappingQuery(){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = ANALOG_MAPPING_QUERY
@@ -151,11 +151,11 @@ class Firmata: FirmataProtocol {
     }
     
     /* capabilities query
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  capabilities query (0x6B)
-    * 2  END_SYSEX (0xF7)
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  capabilities query (0x6B)
+     * 2  END_SYSEX (0xF7)
+     */
     func capabilityQuery(){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = CAPABILITY_QUERY
@@ -167,12 +167,12 @@ class Firmata: FirmataProtocol {
     }
     
     /* pin state query
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  pin state query (0x6D)
-    * 2  pin (0 to 127)
-    * 3  END_SYSEX (0xF7)
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  pin state query (0x6D)
+     * 2  pin (0 to 127)
+     * 3  END_SYSEX (0xF7)
+     */
     func pinStateQuery(_ pin:UInt8){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = PIN_STATE_QUERY
@@ -185,16 +185,16 @@ class Firmata: FirmataProtocol {
     }
     
     /* servo config
-    * --------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  SERVO_CONFIG (0x70)
-    * 2  pin number (0-127)
-    * 3  minPulse LSB (0-6)
-    * 4  minPulse MSB (7-13)
-    * 5  maxPulse LSB (0-6)
-    * 6  maxPulse MSB (7-13)
-    * 7  END_SYSEX (0xF7)
-    */
+     * --------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  SERVO_CONFIG (0x70)
+     * 2  pin number (0-127)
+     * 3  minPulse LSB (0-6)
+     * 4  minPulse MSB (7-13)
+     * 5  maxPulse LSB (0-6)
+     * 6  maxPulse MSB (7-13)
+     * 7  END_SYSEX (0xF7)
+     */
     func servoConfig(_ pin:UInt8,minPulse:UInt8,maxPulse:UInt8){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = SERVO_CONFIG //TODO check with PIN
@@ -212,60 +212,60 @@ class Firmata: FirmataProtocol {
     
     
     /* servo config
-    * --------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  STRING_DATA (0x71)
-    * *  data needed for string
-    * 7  END_SYSEX (0xF7)
-    */
+     * --------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  STRING_DATA (0x71)
+     * *  data needed for string
+     * 7  END_SYSEX (0xF7)
+     */
     func stringData(_ string:String){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = STRING_DATA
         let bytes1:[UInt8] = [data0,data1]
         var newData = Data(bytes: bytes1, count: 2)
-    
+        
         guard let data = string.data(using: String.Encoding.ascii) else { return }
-
+        
         let count = data.count / MemoryLayout<UInt8>.size
         var bytes = [UInt8](repeating: 0, count: count)
         (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-    
-//        for (var i = 0; i < data.length; i++){
-//            let lsb = bytes[i] & 0x7f;
-//            let msb = bytes[i] >> 7  & 0x7f;
-//    
-//            let append1:UInt8 = lsb
-//            let append2:UInt8 = msb
-//            let appendData:[UInt8] = [append1,append2]
-//            newData.appendData(NSData(bytes: appendData, length: 2))
-//        }
-//
-//        //issue #72 and #50 on firmata, will be fixed in 2.4
-//        let end1:UInt8 = 0
-//        let end2:UInt8 = 0
+        
+        //        for (var i = 0; i < data.length; i++){
+        //            let lsb = bytes[i] & 0x7f;
+        //            let msb = bytes[i] >> 7  & 0x7f;
+        //    
+        //            let append1:UInt8 = lsb
+        //            let append2:UInt8 = msb
+        //            let appendData:[UInt8] = [append1,append2]
+        //            newData.appendData(NSData(bytes: appendData, length: 2))
+        //        }
+        //
+        //        //issue #72 and #50 on firmata, will be fixed in 2.4
+        //        let end1:UInt8 = 0
+        //        let end2:UInt8 = 0
         for i in 0 ..< data.count {
             let lsb = bytes[i] & 0x7f;
             let append1:UInt8 = lsb
             let appendData:[UInt8] = [append1]
             newData.append(Data(bytes: UnsafePointer<UInt8>(appendData), count: 1))
-
+            
         }
         let end3:UInt8 = END_SYSEX
         let endData:[UInt8] = [end3]
         newData.append(Data(bytes: UnsafePointer<UInt8>(endData), count: 1))
-    
+        
         print("stringdata bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
-
+    
     /* Set sampling interval
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  SAMPLING_INTERVAL (0x7A)
-    * 2  sampling interval on the millisecond time scale (LSB)
-    * 3  sampling interval on the millisecond time scale (MSB)
-    * 4  END_SYSEX (0xF7)
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  SAMPLING_INTERVAL (0x7A)
+     * 2  sampling interval on the millisecond time scale (LSB)
+     * 3  sampling interval on the millisecond time scale (MSB)
+     * 4  END_SYSEX (0xF7)
+     */
     func samplingInterval(_ intervalMilliseconds:UInt8){
         let data0:UInt8 = START_SYSEX
         let data1:UInt8 = SAMPLING_INTERVAL
@@ -279,11 +279,11 @@ class Firmata: FirmataProtocol {
     }
     
     /* WritePWM
-    * -------------------------------
-    * 0  ANALOG_MESSAGE (0xE0) + pin
-    * 1  value (LSB)
-    * 2  value (MSB)
-    */
+     * -------------------------------
+     * 0  ANALOG_MESSAGE (0xE0) + pin
+     * 1  value (LSB)
+     * 2  value (MSB)
+     */
     func writePWMValue(_ value:UInt8, pin:UInt8) {
         
         //Set an PWM output pin's value
@@ -306,11 +306,11 @@ class Firmata: FirmataProtocol {
     
     
     /* WriteDigitalState
-    * -------------------------------
-    * 0  DIGITAL_MESSAGE (0x90) + port
-    * 1  portmask (LSB)
-    * 2  portmask (MSB)
-    */
+     * -------------------------------
+     * 0  DIGITAL_MESSAGE (0x90) + port
+     * 1  portmask (LSB)
+     * 2  portmask (MSB)
+     */
     func writePinState(_ newState: PinState, pin:UInt8){
         
         //Set an output pin's state
@@ -361,10 +361,10 @@ class Firmata: FirmataProtocol {
     
     
     /* Analog Reporting
-    * -------------------------------
-    * 0  REPORT_ANALOG (0xC0) + pin
-    * 1  enabled (0/1)
-    */
+     * -------------------------------
+     * 0  REPORT_ANALOG (0xC0) + pin
+     * 1  enabled (0/1)
+     */
     func setAnalogValueReportingforPin(_ pin:UInt8, enabled:Bool){
         
         //Enable analog read for a pin
@@ -383,10 +383,10 @@ class Firmata: FirmataProtocol {
     
     
     /* Digital Pin Reporting
-    * -------------------------------
-    * 0  REPORT_DIGITAL (0xD0) + port
-    * 1  enabled (0/1)
-    */
+     * -------------------------------
+     * 0  REPORT_DIGITAL (0xD0) + port
+     * 1  enabled (0/1)
+     */
     func setDigitalStateReportingForPin(_ digitalPin:UInt8, enabled:Bool){
         
         //Enable input/output for a digital pin
@@ -417,10 +417,10 @@ class Firmata: FirmataProtocol {
     }
     
     /* Digital Port Reporting
-    * -------------------------------
-    * 0  REPORT_DIGITAL (0xD0) + port
-    * 1  enabled (0/1)
-    */
+     * -------------------------------
+     * 0  REPORT_DIGITAL (0xD0) + port
+     * 1  enabled (0/1)
+     */
     func setDigitalStateReportingForPort(_ port:UInt8, enabled:Bool) {
         
         //Enable input/output for a digital pin
@@ -436,12 +436,12 @@ class Firmata: FirmataProtocol {
     }
     
     func i2cConfig(_ delay:UInt8,data:Data) {
-    
+        
         var data0:UInt8
         var data1:UInt8
         var data2:UInt8
         var data3:UInt8
-       
+        
         data0 = START_SYSEX
         data1 = I2C_CONFIG
         data2 = delay
@@ -453,134 +453,134 @@ class Firmata: FirmataProtocol {
         let count = data.count / MemoryLayout<UInt8>.size
         bytes = [UInt8](repeating: 0, count: count)
         (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-    
-    
+        
+        
         for i in 0 ..< data.count {
             let lsb:UInt8 = bytes[i] & 0x7f;
             let msb:UInt8 = bytes[i] >> 7  & 0x7f;
-    
+            
             let append:[UInt8] = [lsb, msb]
             newData.append(Data(bytes: UnsafePointer<UInt8>(append), count: 2))
         }
-    
+        
         data0 = END_SYSEX
         let append:[UInt8] = [data0]
         newData.append(Data(bytes: UnsafePointer<UInt8>(append), count: 1))
-    
+        
         delegate?.sendData(newData)
     }
     
     /* I2C read/write request
-    * -------------------------------
-    * 0  START_SYSEX (0xF0) (MIDI System Exclusive)
-    * 1  I2C_REQUEST (0x76)
-    * 2  slave address (LSB)
-    * 3  slave address (MSB) + read/write and address mode bits
-    {7: always 0} + {6: reserved} + {5: address mode, 1 means 10-bit mode} +
-    {4-3: read/write, 00 => write, 01 => read once, 10 => read continuously, 11 => stop reading} +
-    {2-0: slave address MSB in 10-bit mode, not used in 7-bit mode}
-    * 4  data 0 (LSB)
-    * 5  data 0 (MSB)
-    * 6  data 1 (LSB)
-    * 7  data 1 (MSB)
-    * ...
-    * n  END_SYSEX (0xF7)
-    */
-//    func i2cRequest:(I2CMODE)i2cMode address:(unsigned short int)address data:(NSData *)data selector:(SEL)aSelector
-//    {
-//    
-//    const unsigned char first[] = {START_SYSEX, I2C_REQUEST, address, i2cMode};
-//    NSMutableData *dataToSend = [[NSMutableData alloc] initWithBytes:first length:sizeof(first)];
-//    
-//    // need to split this data into msb and lsb
-//    const unsigned char *bytes = [data bytes];
-//    
-//    for (int i = 0; i < [data length]; i++)
-//    {
-//    unsigned char lsb = bytes[i] & 0x7f;
-//    unsigned char msb = bytes[i] >> 7  & 0x7f;
-//    
-//    const unsigned char append[] = { lsb, msb };
-//    [dataToSend appendBytes:append length:sizeof(append)];
-//    }
-//    
-//    const unsigned char end[] = {END_SYSEX};
-//    [dataToSend appendBytes:end length:sizeof(end)];
-//    
-//    NSLog(@"i2cRequest bytes in hex: %@", [dataToSend description]);
-//    
-//    if(aSelector)
-//    [selectorQueue enqueue:NSStringFromSelector(aSelector)];
-//    else
-//    [selectorQueue enqueue:[[NSString alloc] init]];
-//    [currentlyDisplayingService write:dataToSend];
-//    }
-
+     * -------------------------------
+     * 0  START_SYSEX (0xF0) (MIDI System Exclusive)
+     * 1  I2C_REQUEST (0x76)
+     * 2  slave address (LSB)
+     * 3  slave address (MSB) + read/write and address mode bits
+     {7: always 0} + {6: reserved} + {5: address mode, 1 means 10-bit mode} +
+     {4-3: read/write, 00 => write, 01 => read once, 10 => read continuously, 11 => stop reading} +
+     {2-0: slave address MSB in 10-bit mode, not used in 7-bit mode}
+     * 4  data 0 (LSB)
+     * 5  data 0 (MSB)
+     * 6  data 1 (LSB)
+     * 7  data 1 (MSB)
+     * ...
+     * n  END_SYSEX (0xF7)
+     */
+    //    func i2cRequest:(I2CMODE)i2cMode address:(unsigned short int)address data:(NSData *)data selector:(SEL)aSelector
+    //    {
+    //    
+    //    const unsigned char first[] = {START_SYSEX, I2C_REQUEST, address, i2cMode};
+    //    NSMutableData *dataToSend = [[NSMutableData alloc] initWithBytes:first length:sizeof(first)];
+    //    
+    //    // need to split this data into msb and lsb
+    //    const unsigned char *bytes = [data bytes];
+    //    
+    //    for (int i = 0; i < [data length]; i++)
+    //    {
+    //    unsigned char lsb = bytes[i] & 0x7f;
+    //    unsigned char msb = bytes[i] >> 7  & 0x7f;
+    //    
+    //    const unsigned char append[] = { lsb, msb };
+    //    [dataToSend appendBytes:append length:sizeof(append)];
+    //    }
+    //    
+    //    const unsigned char end[] = {END_SYSEX};
+    //    [dataToSend appendBytes:end length:sizeof(end)];
+    //    
+    //    NSLog(@"i2cRequest bytes in hex: %@", [dataToSend description]);
+    //    
+    //    if(aSelector)
+    //    [selectorQueue enqueue:NSStringFromSelector(aSelector)];
+    //    else
+    //    [selectorQueue enqueue:[[NSString alloc] init]];
+    //    [currentlyDisplayingService write:dataToSend];
+    //    }
+    
     
     //MARK: RECEIVE
     /** Received data */
     func receiveData(_ data:Data){
-
-    //data may or may not be a whole (or a single) command
-    //unless jumbled, sysex bytes should never occur in data stream
+        
+        //data may or may not be a whole (or a single) command
+        //unless jumbled, sysex bytes should never occur in data stream
         let count = data.count / MemoryLayout<UInt8>.size
         var bytes = [UInt8](repeating: 0, count: count)
         (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
         for i in 0 ..< data.count {
             let byte:UInt8 = bytes[i];
-    
+            
             if(byte==START_SYSEX){
                 print("Start sysex received, clear data");
                 sysexData.length = 0
                 sysexData.append(&bytes[i], length: 1)
                 seenStartSysex=true
-    
+                
             } else if(byte==END_SYSEX) {
                 sysexData.append(&bytes[i], length: 1)
-    
+                
                 print("End sysex received");
                 seenStartSysex=false
                 let sysexCount = data.count / MemoryLayout<UInt8>.size
                 var firmataDataBytes = [UInt8](repeating: 0, count: sysexCount)
                 sysexData.getBytes(&firmataDataBytes, length:sysexCount * MemoryLayout<UInt8>.size)
-    
+                
                 print("Sysex Command byte is %02hhx", firmataDataBytes[1]);
                 if firmataDataBytes.count < 2{
                     return
                 }
                 switch ( firmataDataBytes[1] ){
-    
-                    case ANALOG_MAPPING_RESPONSE:
-                        parseAnalogMappingResponse(sysexData as Data)
-                        break;
-                    case CAPABILITY_RESPONSE:
-                        parseCapabilityResponse(sysexData as Data)
-                        break;
-                    case PIN_STATE_RESPONSE:
-                        parsePinStateResponse(sysexData as Data)
-                        break;
-                    case REPORT_FIRMWARE:
-                        print("type of message is firmware report");
-                        parseReportFirmwareResponse(sysexData as Data)
-                        break;
-                    case STRING_DATA:
-                        parseStringData(sysexData as Data)
-                        break;
-    
-                    default:
-                        print("type of message unknown");
+                    
+                case ANALOG_MAPPING_RESPONSE:
+                    parseAnalogMappingResponse(sysexData as Data)
+                    break;
+                case CAPABILITY_RESPONSE:
+                    parseCapabilityResponse(sysexData as Data)
+                    break;
+                case PIN_STATE_RESPONSE:
+                    parsePinStateResponse(sysexData as Data)
+                    break;
+                case REPORT_FIRMWARE:
+                    print("type of message is firmware report");
+                    parseReportFirmwareResponse(sysexData as Data)
+                    break;
+                case STRING_DATA:
+                    parseStringData(sysexData as Data)
+                    break;
+                    
+                default:
+                    print("type of message unknown");
                     break;
                 }
                 sysexData.length = 0
                 break;
-    
+                
             } else if(seenStartSysex) {
                 print("In sysex, appending waiting for end sysex %c", byte);
                 sysexData.append(&bytes[i], length: 1)
-    
+                
             } else {
                 //Respond to incoming data
-
+                
                 var buf = [UInt8](repeating: 0, count: 512)  //static only works on classes & structs in swift
                 var length:Int = 0                               //again, was static
                 let dataLength:Int = data.count
@@ -657,7 +657,7 @@ class Firmata: FirmataProtocol {
                 let bytes:[UInt8] = [data[i], data[i+1],data[i+2]]
                 parseReportVersionResponse(Data(bytes: UnsafePointer<UInt8>(bytes), count: 3))
             }
-
+            
             i += 3
         }
     }
@@ -678,7 +678,7 @@ class Firmata: FirmataProtocol {
             delegate?.didReceiveDigitalMessage(pin, value: state)
             portData.append(state)
         }
-
+        
         //Save reference state mask
         portMasks[port] = UInt8(pinStates)
         delegate?.didReceiveDigitalPort(port, portData: portData)
@@ -687,60 +687,60 @@ class Firmata: FirmataProtocol {
     //MARK: PARSE
     
     /* Receive Firmware Name and Version (after query)
-    * 0  START_SYSEX (0xF0)
-    * 1  STRING_DATA (0x71)
-    * 2  first character LSB (0-6)
-    * 3  first character MSB (7-13)
-    * x  ...for as many bytes as it needs)
-    * 4  END_SYSEX (0xF7)
-    */
+     * 0  START_SYSEX (0xF0)
+     * 1  STRING_DATA (0x71)
+     * 2  first character LSB (0-6)
+     * 3  first character MSB (7-13)
+     * x  ...for as many bytes as it needs)
+     * 4  END_SYSEX (0xF7)
+     */
     private func parseStringData(_ data:Data){
         let nameData = data[2..<data.count-1]
         if let name = String(data: nameData, encoding: String.Encoding.ascii) {
             delegate?.stringDataReceived(name)
         }
     }
-
+    
     /* Receive Firmware Name and Version (after query)
-    * 0  START_SYSEX (0xF0)
-    * 1  queryFirmware (0x79)
-    * 2  major version (0-127)
-    * 3  minor version (0-127)
-    * 4  first 7-bits of firmware name
-    * 5  second 7-bits of firmware name
-    * x  ...for as many bytes as it needs)
-    * 6  END_SYSEX (0xF7)
-    */
+     * 0  START_SYSEX (0xF0)
+     * 1  queryFirmware (0x79)
+     * 2  major version (0-127)
+     * 3  minor version (0-127)
+     * 4  first 7-bits of firmware name
+     * 5  second 7-bits of firmware name
+     * x  ...for as many bytes as it needs)
+     * 6  END_SYSEX (0xF7)
+     */
     private func parseReportFirmwareResponse(_ data:Data){
         let nameData = data[4..<data.count-1]
         if let name = String(data: nameData, encoding: String.Encoding.ascii) {
             delegate?.firmwareVersionReceived(name + " \(data[2])." + "\(data[3])")
         }
     }
-
+    
     /* version report format
-    * -------------------------------------------------
-    * 0  version report header (0xF9)
-    * 1  major version (0-127)
-    * 2  minor version (0-127)
-    */
+     * -------------------------------------------------
+     * 0  version report header (0xF9)
+     * 1  major version (0-127)
+     * 2  minor version (0-127)
+     */
     private func parseReportVersionResponse(_ data:Data){
         delegate?.protocolVersionReceived("\(data[1])," + "\(data[2])")
     }
     
     /* pin state response
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  pin state response (0x6E)
-    * 2  pin (0 to 127)
-    * 3  pin mode (the currently configured mode)
-    * 4  pin state, bits 0-6
-    * 5  (optional) pin state, bits 7-13
-    * 6  (optional) pin state, bits 14-20
-    ...  additional optional bytes, as many as needed
-    * N  END_SYSEX (0xF7)
-    The pin "state" is any data written to the pin. For output modes (digital output, PWM, and Servo), the state is any value that has been previously written to the pin. A GUI needs this state to properly initialize any on-screen controls, so their initial settings match whatever the pin is actually doing. For input modes, typically the state is zero. However, for digital inputs, the state is the status of the pullup resistor.
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  pin state response (0x6E)
+     * 2  pin (0 to 127)
+     * 3  pin mode (the currently configured mode)
+     * 4  pin state, bits 0-6
+     * 5  (optional) pin state, bits 7-13
+     * 6  (optional) pin state, bits 14-20
+     ...  additional optional bytes, as many as needed
+     * N  END_SYSEX (0xF7)
+     The pin "state" is any data written to the pin. For output modes (digital output, PWM, and Servo), the state is any value that has been previously written to the pin. A GUI needs this state to properly initialize any on-screen controls, so their initial settings match whatever the pin is actually doing. For input modes, typically the state is zero. However, for digital inputs, the state is the status of the pullup resistor.
+     */
     private func parsePinStateResponse(_ data: Data) {
         let pin = data[2]
         let currentMode = data[3]
@@ -748,34 +748,34 @@ class Firmata: FirmataProtocol {
         let port = pin / 8
         print("Pin: %i, Mode: %i, Value %i", pin, currentMode, value)
         print("Setting Pin %i for port %i", pin, port)
-
-    //check if if its digital
-    
-    //    @try {
-    //        unsigned short int mask = [(NSNumber*)[ports objectAtIndex:port] unsignedShortValue];
-    //        [ports insertObject:[NSNumber numberWithUnsignedChar:mask & ~(value<<(pin % 8))] atIndex:port];
-    //
-    //    }
-    //    @catch (NSException *exception) {
-    //    }
-    //    @finally {
-    //        [ports insertObject:[NSNumber numberWithUnsignedChar:value<<(pin % 8)] atIndex:port];
-    //    }
-    
-//   TODO
-//    [peripheralDelegate didUpdatePin:pin currentMode:(PINMODE)currentMode value:value];
+        
+        //check if if its digital
+        
+        //    @try {
+        //        unsigned short int mask = [(NSNumber*)[ports objectAtIndex:port] unsignedShortValue];
+        //        [ports insertObject:[NSNumber numberWithUnsignedChar:mask & ~(value<<(pin % 8))] atIndex:port];
+        //
+        //    }
+        //    @catch (NSException *exception) {
+        //    }
+        //    @finally {
+        //        [ports insertObject:[NSNumber numberWithUnsignedChar:value<<(pin % 8)] atIndex:port];
+        //    }
+        
+        //   TODO
+        //    [peripheralDelegate didUpdatePin:pin currentMode:(PINMODE)currentMode value:value];
     }
     
     /* analog mapping response
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  analog mapping response (0x6A)
-    * 2  analog channel corresponding to pin 0, or 127 if pin 0 does not support analog
-    * 3  analog channel corresponding to pin 1, or 127 if pin 1 does not support analog
-    * 4  analog channel corresponding to pin 2, or 127 if pin 2 does not support analog
-    ...   etc, one byte for each pin
-    * N  END_SYSEX (0xF7)
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  analog mapping response (0x6A)
+     * 2  analog channel corresponding to pin 0, or 127 if pin 0 does not support analog
+     * 3  analog channel corresponding to pin 1, or 127 if pin 1 does not support analog
+     * 4  analog channel corresponding to pin 2, or 127 if pin 2 does not support analog
+     ...   etc, one byte for each pin
+     * N  END_SYSEX (0xF7)
+     */
     private func parseAnalogMappingResponse(_ data: Data) {
         var analogMapping = [UInt8: UInt8]()
         var j = UInt8(0)
@@ -789,44 +789,44 @@ class Firmata: FirmataProtocol {
         print("Analog Mapping Response %@", analogMapping)
         delegate?.didUpdateAnalogMapping(NSMutableDictionary(dictionary: analogMapping))
     }
-
+    
     /* capabilities response
-    * -------------------------------
-    * 0  START_SYSEX (0xF0)
-    * 1  capabilities response (0x6C)
-    * 2  1st mode supported of pin 0
-    * 3  1st mode's resolution of pin 0
-    * 4  2nd mode supported of pin 0
-    * 5  2nd mode's resolution of pin 0
-    ...   additional modes/resolutions, followed by a single 127 to mark the
-    end of the first pin's modes.  Each pin follows with its mode and
-    127, until all pins implemented.
-    * N  END_SYSEX (0xF7)
-    */
+     * -------------------------------
+     * 0  START_SYSEX (0xF0)
+     * 1  capabilities response (0x6C)
+     * 2  1st mode supported of pin 0
+     * 3  1st mode's resolution of pin 0
+     * 4  2nd mode supported of pin 0
+     * 5  2nd mode's resolution of pin 0
+     ...   additional modes/resolutions, followed by a single 127 to mark the
+     end of the first pin's modes.  Each pin follows with its mode and
+     127, until all pins implemented.
+     * N  END_SYSEX (0xF7)
+     */
     private func parseCapabilityResponse(_ data:Data){
         
         var pins = [[Int:Int]]()
-    
+        
         var j:UInt8 = 0
-    
+        
         let count = data.count / MemoryLayout<UInt8>.size
         var bytes = [UInt8](repeating: 0, count: count)
         (data as NSData).getBytes(&bytes, length:count * MemoryLayout<UInt8>.size)
-
+        
         //start at 2 to ditch start and command byte
         //take end byte off the end
         var i = 2
         while i < (data.count - 1) {
             //ugh altering i inside of loop...
             var modes = [Int:Int]()
-    
+            
             while(bytes[i] != 127){
                 let mode = bytes[i]
                 i += 1
                 let resolution = bytes[i]
                 i += 1
                 
-//                print("Pin %i  Mode: %02hhx Resolution:%02hhx", j, mode, resolution);
+                //                print("Pin %i  Mode: %02hhx Resolution:%02hhx", j, mode, resolution);
                 modes[Int(mode)] = Int(resolution)
             }
             j=j+1
@@ -834,12 +834,12 @@ class Firmata: FirmataProtocol {
             
             i += 1
         }
-    
+        
         print("Capability Response %@",pins)
         delegate?.didUpdateCapability(pins)
-//    [peripheralDelegate didUpdateCapability:(NSMutableArray*)pins];
+        //    [peripheralDelegate didUpdateCapability:(NSMutableArray*)pins];
     }
-
+    
     //MARK: Helper
     private func pinStateForInt(_ stateInt:Int) ->PinState{
         

@@ -49,20 +49,20 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
-
+    
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     transparency.formulaTree = formulaTree;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeTransparency = transparency;
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -77,20 +77,20 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 30.0;
-
+    
     Formula *transparency =[[Formula alloc] init];
     FormulaElement *formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     transparency.formulaTree = formulaTree;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeTransparency = transparency;
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -105,20 +105,20 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
-
+    
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"150";
     transparency.formulaTree = formulaTree;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeTransparency = transparency;
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -133,20 +133,20 @@
     
     [self.scene addChild:spriteNode];
     spriteNode.catrobatTransparency = 0.0;
-
+    
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     transparency.formulaTree = formulaTree;
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeTransparency = transparency;
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     

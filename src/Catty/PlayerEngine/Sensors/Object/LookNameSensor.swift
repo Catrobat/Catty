@@ -28,7 +28,7 @@
     static let defaultStringValue = ""
     static let position = 50
     static let requiredResource = ResourceType.noResources
-
+    
     func tag() -> String {
         return type(of: self).tag
     }
@@ -38,11 +38,11 @@
         guard let currentLook = spriteNode.currentLook else { return LookNameSensor.defaultStringValue }
         return currentLook.name
     }
-
+    
     static func convertToStandardized(rawValue: String, for spriteObject: SpriteObject) -> String {
         return rawValue
     }
-   
+    
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         if spriteObject.isBackground() == true {
             return .hidden

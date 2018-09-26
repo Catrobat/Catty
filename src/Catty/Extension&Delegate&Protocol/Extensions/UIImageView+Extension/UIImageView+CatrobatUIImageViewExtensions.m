@@ -26,22 +26,22 @@
 
 - (void)setBorder:(UIColor*)color Width:(CGFloat)width
 {
-//  [self setRoundedBorder:color Width:width CornerRadius:0.0f];
+    //  [self setRoundedBorder:color Width:width CornerRadius:0.0f];
 }
 
 - (void)setRoundedBorder:(UIColor*)color Width:(CGFloat)width CornerRadius:(CGFloat)radius
 {
-  CALayer *borderLayer = [CALayer layer];
-  CGRect borderFrame = CGRectMake(0, 0, (self.frame.size.width), (self.frame.size.height));
-  [borderLayer setBackgroundColor:[[UIColor clearColor] CGColor]];
-  [borderLayer setFrame:borderFrame];
-
-  if (radius > 0.0f)
-    [borderLayer setCornerRadius:radius];
-
-  [borderLayer setBorderWidth:width];
-  [borderLayer setBorderColor:[color CGColor]];
-  [self.layer addSublayer:borderLayer];
+    CALayer *borderLayer = [CALayer layer];
+    CGRect borderFrame = CGRectMake(0, 0, (self.frame.size.width), (self.frame.size.height));
+    [borderLayer setBackgroundColor:[[UIColor clearColor] CGColor]];
+    [borderLayer setFrame:borderFrame];
+    
+    if (radius > 0.0f)
+        [borderLayer setCornerRadius:radius];
+    
+    [borderLayer setBorderWidth:width];
+    [borderLayer setBorderColor:[color CGColor]];
+    [self.layer addSublayer:borderLayer];
 }
 
 @end

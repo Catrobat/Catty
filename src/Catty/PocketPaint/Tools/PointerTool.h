@@ -24,8 +24,8 @@
 #import "PaintViewController.h"
 
 @interface PointerTool : NSObject{
-  BOOL fingerSwiped;
-  CGPoint lastPoint;
+    BOOL fingerSwiped;
+    CGPoint lastPoint;
 }
 @property (nonatomic,weak) PaintViewController* canvas;
 @property (nonatomic,strong) UIView* pointerView;

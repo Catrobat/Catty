@@ -49,22 +49,22 @@
     CBSpriteNode *spriteNodeBG = [[CBSpriteNode alloc] initWithSpriteObject:background];
     background.spriteNode = spriteNodeBG;
     background.program = program;
-
+    
     SpriteObject* object1 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
     object1.program = program;
     spriteNode1.zPosition = 1;
-
+    
     SpriteObject* object2 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 2;
-
+    
     [program.objectList addObject:background];
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
     ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];

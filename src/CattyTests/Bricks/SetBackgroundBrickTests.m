@@ -63,10 +63,10 @@
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
     Look *look1 = [[Look alloc] initWithName:@"test2" andPath:@"test2.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test2.png"]atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-//        NextLookBrick *brick = [[NextLookBrick alloc] init];
+    //        NextLookBrick *brick = [[NextLookBrick alloc] init];
     SetBackgroundBrick *brick = [[SetBackgroundBrick alloc] init];
     brick.script = script;
     brick.look = look1;

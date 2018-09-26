@@ -58,16 +58,16 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     return basePath;
-
+    
 }
 
 + (UIViewController *)topViewControllerInViewController:(UIViewController *)viewController {
     UIViewController *result = viewController;
-
+    
     while (result.presentedViewController) {
         result = result.presentedViewController;
     }
-
+    
     return result;
 }
 
@@ -83,19 +83,19 @@
 + (void)alertWithTitle:(NSString *)title andText:(NSString *)text
 {
     [[[[AlertControllerBuilder alertWithTitle:title message:text]
-     addCancelActionWithTitle:kLocalizedOK handler:nil]
-     build]
+       addCancelActionWithTitle:kLocalizedOK handler:nil]
+      build]
      showWithController:[Util topmostViewController]];
 }
 
 + (NSString*)appName
 {
-  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
 + (NSString*)appVersion
 {
-  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
 + (NSString*)appBuildName
@@ -300,44 +300,44 @@
                     invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
                                existingNames:(NSArray*)existingNames {
     [[[[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
-     placeholder:placeholder]
-     initialText:value]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         if (target && cancelAction) {
-             IMP imp = [target methodForSelector:cancelAction];
-             void (*func)(id, SEL) = (void *)imp;
-             func(target, cancelAction);
-         }
-     }]
-     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
-         IMP imp = [target methodForSelector:action];
-         if (target && action) {
-             if (passingObject) {
-                 void (*func)(id, SEL, id, id) = (void *)imp;
-                 func(target, action, name, passingObject);
-             } else {
-                 void (*func)(id, SEL, id) = (void *)imp;
-                 func(target, action, name);
+            placeholder:placeholder]
+           initialText:value]
+          addCancelActionWithTitle:kLocalizedCancel handler:^{
+              if (target && cancelAction) {
+                  IMP imp = [target methodForSelector:cancelAction];
+                  void (*func)(id, SEL) = (void *)imp;
+                  func(target, cancelAction);
+              }
+          }]
+         addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+             IMP imp = [target methodForSelector:action];
+             if (target && action) {
+                 if (passingObject) {
+                     void (*func)(id, SEL, id, id) = (void *)imp;
+                     func(target, action, name, passingObject);
+                 } else {
+                     void (*func)(id, SEL, id) = (void *)imp;
+                     func(target, action, name);
+                 }
              }
-         }
-     }]
-     characterValidator:^BOOL(NSString *symbol) {
-         return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
-     }]
-     valueValidator:^InputValidationResult *(NSString *name) {
-         InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
-         
-         if (!result.valid) {
-             return result;
-         }
-         if ([name isEqualToString:kLocalizedNewElement]) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedInvalidInputDescription];
-         }
-         if ([existingNames containsObject:name]) {
-             return [InputValidationResult invalidInputWithLocalizedMessage:invalidInputAlertMessage];
-         }
-         return [InputValidationResult validInput];
-     }] build]
+         }]
+        characterValidator:^BOOL(NSString *symbol) {
+            return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
+        }]
+       valueValidator:^InputValidationResult *(NSString *name) {
+           InputValidationResult *result = [self validationResultWithName:name minLength:minInputLength maxlength:maxInputLength];
+           
+           if (!result.valid) {
+               return result;
+           }
+           if ([name isEqualToString:kLocalizedNewElement]) {
+               return [InputValidationResult invalidInputWithLocalizedMessage:kLocalizedInvalidInputDescription];
+           }
+           if ([existingNames containsObject:name]) {
+               return [InputValidationResult invalidInputWithLocalizedMessage:invalidInputAlertMessage];
+           }
+           return [InputValidationResult validInput];
+       }] build]
      showWithController:[self topmostViewController]];
 }
 
@@ -370,42 +370,42 @@
 }
 
 + (void)askUserForVariableNameAndPerformAction:(SEL)action
-                                         target:(id)target
-                                    promptTitle:(NSString*)title
-                                  promptMessage:(NSString*)message
-                                 minInputLength:(NSUInteger)minInputLength
-                                 maxInputLength:(NSUInteger)maxInputLength
-									     isList:(BOOL)isList
-                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                                andTextField:(FormulaEditorTextView *)textView
+                                        target:(id)target
+                                   promptTitle:(NSString*)title
+                                 promptMessage:(NSString*)message
+                                minInputLength:(NSUInteger)minInputLength
+                                maxInputLength:(NSUInteger)maxInputLength
+                                        isList:(BOOL)isList
+                           blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                                  andTextField:(FormulaEditorTextView *)textView
 {
     [[[[[[[AlertControllerBuilder textFieldAlertWithTitle:title message:message]
-     addCancelActionWithTitle:kLocalizedCancel handler:^{
-         [textView becomeFirstResponder];
-     }]
-     addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
-         if (target && action) {
-             IMP imp = [target methodForSelector:action];
-             void (*func)(id, SEL, id, BOOL) = (void *)imp;
-             func(target, action, name, isList);
-         }
-     }]
-     characterValidator:^BOOL(NSString *symbol) {
-         return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
-     }]
-     valueValidator:^InputValidationResult *(NSString *name) {
-         NSString *invalidNameMessage = nil;
-         if (name.length < minInputLength) {
-             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minInputLength];
-         } else if (name.length > maxInputLength) {
-             invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxInputLength];
-         } else {
-             return [InputValidationResult validInput];
-         }
-         
-         NSAssert(invalidNameMessage != nil, @"This case should already be handled");
-         return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
-     }] build]
+          addCancelActionWithTitle:kLocalizedCancel handler:^{
+              [textView becomeFirstResponder];
+          }]
+         addDefaultActionWithTitle:kLocalizedOK handler:^(NSString *name) {
+             if (target && action) {
+                 IMP imp = [target methodForSelector:action];
+                 void (*func)(id, SEL, id, BOOL) = (void *)imp;
+                 func(target, action, name, isList);
+             }
+         }]
+        characterValidator:^BOOL(NSString *symbol) {
+            return ![blockedCharacterSet characterIsMember:[symbol characterAtIndex:0]];
+        }]
+       valueValidator:^InputValidationResult *(NSString *name) {
+           NSString *invalidNameMessage = nil;
+           if (name.length < minInputLength) {
+               invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedNoOrTooShortInputDescription formatParameter:minInputLength];
+           } else if (name.length > maxInputLength) {
+               invalidNameMessage = [self normalizedDescriptionWithFormat:kLocalizedTooLongInputDescription formatParameter:maxInputLength];
+           } else {
+               return [InputValidationResult validInput];
+           }
+           
+           NSAssert(invalidNameMessage != nil, @"This case should already be handled");
+           return [InputValidationResult invalidInputWithLocalizedMessage:invalidNameMessage];
+       }] build]
      showWithController:[Util topmostViewController]];
 }
 
@@ -416,7 +416,7 @@
     if (lastChar == 0x20) {
         [uniqueName deleteCharactersInRange:NSMakeRange(([uniqueName length] - 1), 1)];
     }
-
+    
     NSUInteger counter = 0;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\(\\d\\)"
                                                                            options:NSRegularExpressionCaseInsensitive
@@ -490,7 +490,7 @@
     if (! xmlStringHeaderChunk) {
         return kCatrobatInvalidVersion;
     }
-
+    
     // extract catrobatLanguageVersion field out of header
     NSString *languageVersionString = [xmlStringHeaderChunk stringBetweenString:@"<catrobatLanguageVersion>"
                                                                       andString:@"</catrobatLanguageVersion>"
@@ -498,12 +498,12 @@
     if (! languageVersionString) {
         return kCatrobatInvalidVersion;
     }
-
+    
     // check if string contains valid number
     if (! [languageVersionString isValidNumber]) {
         return kCatrobatInvalidVersion;
     }
-
+    
     CGFloat languageVersion = (CGFloat)[languageVersionString floatValue];
     if (languageVersion < 0.0f) {
         return kCatrobatInvalidVersion;
@@ -692,7 +692,7 @@
     NSDictionary *insertionStatistic = [userDefaults objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     if(insertionStatistic == nil)
     {
-//        insertionStatistic = [self defaultBrickStatisticDictionary];
+        //        insertionStatistic = [self defaultBrickStatisticDictionary];
         [userDefaults setObject:insertionStatistic
                          forKey:kUserDefaultsBrickSelectionStatisticsMap];
         [userDefaults synchronize];
@@ -748,7 +748,7 @@
     NSRange range;
     range.location = 0;
     range.length = count;
-
+    
     return [sortedBricks subarrayWithRange:range];
 }
 

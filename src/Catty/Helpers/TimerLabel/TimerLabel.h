@@ -26,7 +26,7 @@ typedef enum{
     TimerLabelTypeTimer
 }TimerLabelType;
 
- 
+
 @class TimerLabel;
 @protocol TimerLabelDelegate <NSObject>
 @optional

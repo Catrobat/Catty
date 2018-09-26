@@ -50,23 +50,23 @@
     object1.spriteNode = spriteNode1;
     object1.program = program;
     spriteNode1.zPosition = 5;
-
+    
     SpriteObject* object2 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
-
+    
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
-
+    
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
-
+    
     brick.steps = [[Formula alloc] initWithInteger:1];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
@@ -81,23 +81,23 @@
     object1.spriteNode = spriteNode1;
     object1.program = program;
     spriteNode1.zPosition = 6;
-
+    
     SpriteObject *object2 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
-
+    
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
-
+    
     GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
-
+    
     brick.steps = [[Formula alloc] initWithInteger:2];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
@@ -112,23 +112,23 @@
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
     spriteNode1.zPosition = 5;
-
+    
     SpriteObject *object2 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
-
+    
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
-
+    
     GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
-
+    
     brick.steps = [[Formula alloc] initWithInteger:2];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
@@ -143,23 +143,23 @@
     object1.spriteNode = spriteNode1;
     object1.program = program;
     spriteNode1.zPosition = 5;
-
+    
     SpriteObject *object2 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
-
+    
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
-
+    
     GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
-
+    
     brick.steps = [[Formula alloc] initWithInteger:10];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)1.0, @"GoNStepsBack is not correctly calculated");
@@ -174,23 +174,23 @@
     CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
     object1.spriteNode = spriteNode1;
     spriteNode1.zPosition = 5;
-
+    
     SpriteObject *object2 = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
     object2.spriteNode = spriteNode2;
     spriteNode2.zPosition = 3;
-
+    
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
-
+    
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
     brick.script = script;
-
+    
     brick.steps = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     XCTAssertEqual(spriteNode1.zPosition, (CGFloat)5.0, @"GoNStepsBack is not correctly calculated");

@@ -45,7 +45,7 @@
     XCTAssertNil([InternFormulaUtils getFunctionByFunctionBracketClose:nil index:0], @"End function-bracket index is 0");
     XCTAssertNil([InternFormulaUtils getFunctionByFunctionBracketClose:internTokens index:2], @"End function-bracket index is InternTokenListSize");
     XCTAssertNil([InternFormulaUtils getFunctionByFunctionBracketClose:internTokens index:1], @"No function name before brackets");
-
+    
     [internTokens removeAllObjects];
     
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
@@ -75,7 +75,7 @@
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"1"]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
-
+    
     NSArray *functionTokens = [InternFormulaUtils getFunctionByParameterDelimiter:internTokens index:8];
     XCTAssertEqual([functionTokens count], [internTokens count], @"GetFunctionByParameter wrong function returned");
     
@@ -88,7 +88,7 @@
                           @"GetFunctionByParameter wrong function returned");
         }
     }
-
+    
 }
 
 - (void)testGetFunctionByParameterDelimiterOnErrorInput
@@ -101,9 +101,9 @@
     XCTAssertNil([InternFormulaUtils getFunctionByParameterDelimiter:nil index:0], @"Function delimiter index is 0");
     XCTAssertNil([InternFormulaUtils getFunctionByParameterDelimiter:internTokens index:2], @"End delimiter index is InternTokenListSize");
     XCTAssertNil([InternFormulaUtils getFunctionByParameterDelimiter:internTokens index:1], @"No function name before brackets");
-
+    
     [internTokens removeAllObjects];
-
+    
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
@@ -123,8 +123,8 @@
     XCTAssertNil([InternFormulaUtils getFunctionByFunctionBracketOpen:nil index:0], @"Function bracket index is 0");
     XCTAssertNil([InternFormulaUtils getFunctionByFunctionBracketOpen:internTokens index:2], @"End delimiter index is InternTokenListSize");
     XCTAssertNil([InternFormulaUtils getFunctionByFunctionBracketOpen:internTokens index:1], @"No function name before brackets");
-
-
+    
+    
 }
 
 - (void)testGenerateTokenListByBracketOpenOnErrorInput
@@ -136,7 +136,7 @@
     
     XCTAssertNil([InternFormulaUtils generateTokenListByBracketOpen:internTokens index:3], @"Index is >= list.size");
     XCTAssertNil([InternFormulaUtils generateTokenListByBracketOpen:internTokens index:0], @"Index Token is not bracket open");
-
+    
     
 }
 
@@ -190,7 +190,7 @@
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_CLOSE]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_CLOSE]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_CLOSE]];
-
+    
     NSArray *functionTokens = [InternFormulaUtils generateTokenListByBracketClose:internTokens index:8];
     XCTAssertEqual([functionTokens count], [internTokens count], @"GetFunctionByParameter wrong function returned");
     
@@ -214,11 +214,11 @@
     
     XCTAssertNil([InternFormulaUtils getFunctionParameterInternTokensAsLists:nil], @"InternToken list is null");
     XCTAssertNil([InternFormulaUtils getFunctionParameterInternTokensAsLists:internTokens], @"InternToken list is too small");
-
+    
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     
     XCTAssertNil([InternFormulaUtils getFunctionParameterInternTokensAsLists:internTokens], @"First token is not a FunctionName Token");
-
+    
     [internTokens removeAllObjects];
     
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME]];
@@ -226,9 +226,9 @@
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
-
+    
     XCTAssertNil([InternFormulaUtils getFunctionParameterInternTokensAsLists:internTokens], @"Second token is not a Bracket Token");
-
+    
 }
 
 - (void)testIsFunction
@@ -240,7 +240,7 @@
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     
     XCTAssertFalse([InternFormulaUtils isFunction:internTokens], @"List contains more elements than just ONE function");
-
+    
 }
 
 - (void)testgetFirstInternTokenTypeOnErrorInput
@@ -248,7 +248,7 @@
     NSArray *internTokens = [[NSArray alloc] init];
     XCTAssertThrowsSpecific([InternFormulaUtils getFirstInternTokenType:nil], InternFormulaParserException, @"Token list is null");
     XCTAssertThrowsSpecific([InternFormulaUtils getFirstInternTokenType:internTokens], InternFormulaParserException, @"Token list is null");
-
+    
 }
 
 - (void)testisPeriodTokenOnError
@@ -267,10 +267,10 @@
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
-
+    
     XCTAssertFalse([InternFormulaUtils isFunctionToken:nil], @"Shoult return false on null");
     XCTAssertFalse([InternFormulaUtils isFunctionToken:internTokens], @"Shoult return false, when List size < 1");
-
+    
 }
 
 - (void)testIsNumberOnError
@@ -282,7 +282,7 @@
 {
     NSMutableArray *internTokens = [[NSMutableArray alloc]init];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME]];
-
+    
     XCTAssertNil([InternFormulaUtils replaceFunctionButKeepParameters:nil replaceWith:nil], @"Should return null if functionToReplace is null");
     XCTAssertEqual([InternFormulaUtils replaceFunctionButKeepParameters:internTokens replaceWith:internTokens], internTokens, @"Function without params whould return null");
 }
@@ -303,14 +303,14 @@
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     
     XCTAssertEqual(0, [InternFormulaUtils getFunctionParameterCount:internTokens], @"Should return 0 if first Token is not a function name token");
-
+    
     [internTokens removeAllObjects];
     
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
     [internTokens addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER]];
-
+    
     XCTAssertEqual(0, [InternFormulaUtils getFunctionParameterCount:internTokens], @"Should return 0 if second Token is not a function bracket open token");
     
     [internTokens removeAllObjects];

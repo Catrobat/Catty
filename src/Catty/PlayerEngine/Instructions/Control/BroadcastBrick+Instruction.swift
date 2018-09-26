@@ -21,7 +21,7 @@
  */
 
 @objc extension BroadcastBrick: CBInstructionProtocol {
-
+    
     @nonobjc func instruction() -> CBInstruction {
         let msg = self.broadcastMessage
         return CBInstruction.highPriorityExecClosure { (context, _, bcHandler) in

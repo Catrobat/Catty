@@ -64,7 +64,7 @@
 {
     static NSString *CellIdentifier = @"MenuCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
+    
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         UITableViewCell <CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
         switch (indexPath.row) {
@@ -75,8 +75,8 @@
             case 1:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_looks"];
                 imageCell.titleLabel.text = (self.object.isBackground
-                                          ? kLocalizedBackgrounds
-                                          : kLocalizedLooks);
+                                             ? kLocalizedBackgrounds
+                                             : kLocalizedLooks);
                 break;
             case 2:
                 imageCell.iconImageView.image = [UIImage imageNamed:@"ic_sounds"];
@@ -99,7 +99,7 @@
     static NSString *toScriptsSegueID = kSegueToScripts;
     static NSString *toLooksSegueID = kSegueToLooks;
     static NSString *toSoundsSegueID = kSegueToSounds;
-
+    
     UITableViewCell* sender = [tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.row == 0)
         [self performSegueWithIdentifier:toScriptsSegueID sender:sender];
@@ -107,7 +107,7 @@
         [self performSegueWithIdentifier:toLooksSegueID sender:sender];
     else if (indexPath.row == 2)
         [self performSegueWithIdentifier:toSoundsSegueID sender:sender];
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -118,7 +118,7 @@
     static NSString *toScriptsSegueID = kSegueToScripts;
     static NSString *toLooksSegueID = kSegueToLooks;
     static NSString *toSoundsSegueID = kSegueToSounds;
-
+    
     UIViewController* destController = segue.destinationViewController;
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         if (([segue.identifier isEqualToString:toScriptsSegueID] ||
@@ -134,7 +134,7 @@
 - (void)setupToolBar
 {
     [super setupToolBar];
-
+    
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];

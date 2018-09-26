@@ -48,14 +48,14 @@
     gradientLayer.frame = frame;
     
     gradientLayer.colors = [NSArray arrayWithObjects:
-                               (id)[UIColor colorWithRed:103/255.0f green:174/255.0f blue:59/255.0f alpha:1.0f].CGColor,
-                               (id)[UIColor colorWithRed:61/255.0f green:118/255.0f blue:26/255.0f alpha:1.0f].CGColor,
-                               nil];
+                            (id)[UIColor colorWithRed:103/255.0f green:174/255.0f blue:59/255.0f alpha:1.0f].CGColor,
+                            (id)[UIColor colorWithRed:61/255.0f green:118/255.0f blue:26/255.0f alpha:1.0f].CGColor,
+                            nil];
     
     gradientLayer.locations = [NSArray arrayWithObjects:
-                                  [NSNumber numberWithFloat:0.0f],
-                                  [NSNumber numberWithFloat:1.0f],
-                                  nil];
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
     
     return gradientLayer;
 }

@@ -27,13 +27,13 @@ import Kingfisher
 private let exampleData = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAEElEQVR42gEFAPr/AP////8J+wP9vTv7fQAAAABJRU5ErkJggg==")! // 1x1 png image
 
 class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
-
+    
     let exampleCategories = [
         [MediaItem(name: "a", category: "A", cachedData: exampleData)],
         [MediaItem(category: "B"), MediaItem(category: "B")],
         [MediaItem(category: "C"), MediaItem(category: "C"), MediaItem(category: "C")]
     ]
-
+    
     var downloaderMock: MediaLibraryDownloaderMock!
     var collectionView: UICollectionView!
     
@@ -48,33 +48,33 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         self.collectionView = nil
         super.tearDown()
     }
-
+    
     // MARK: - MediaLibraryCollectionViewDataSource Tests
-
+    
     func testItemsNotFetched() {
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         XCTAssertEqual(dataSource.numberOfSections(in: self.collectionView), 0)
     }
-
+    
     func testItemsEmpty() {
         self.downloaderMock.categories = []
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch items from data source")
-
+        
         dataSource.fetchItems { [unowned self] error in
             XCTAssertNil(error)
             XCTAssertEqual(dataSource.numberOfSections(in: self.collectionView), 0)
             expectation.fulfill()
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testSectionAndItemCount() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         let expectation = XCTestExpectation(description: "Fetch items from data source")
-
+        
         dataSource.fetchItems { [unowned self] error in
             XCTAssertNil(error)
             XCTAssertEqual(dataSource.numberOfSections(in: self.collectionView), 3)
@@ -83,61 +83,61 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
             XCTAssertEqual(dataSource.collectionView(self.collectionView, numberOfItemsInSection: 2), 3)
             expectation.fulfill()
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testHeaderViewTitle() {
         guard #available(iOS 11, *) else { return }
-
+        
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         let expectation = XCTestExpectation(description: "Fetch items from data source")
-
+        
         dataSource.fetchItems { [unowned self] error in
             XCTAssertNil(error)
             self.collectionView.layoutSubviews()
             self.collectionView.reloadData()
-
+            
             let headerKind = UICollectionElementKindSectionHeader
             var view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 0)) as! LibraryCategoryCollectionReusableView
             XCTAssertEqual(view.titleLabel.text, "A")
-
+            
             view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 1)) as! LibraryCategoryCollectionReusableView
             XCTAssertEqual(view.titleLabel.text, "B")
-
+            
             view = dataSource.collectionView(self.collectionView, viewForSupplementaryElementOfKind: headerKind, at: IndexPath(item: 0, section: 2)) as! LibraryCategoryCollectionReusableView
             XCTAssertEqual(view.titleLabel.text, "C")
-
+            
             expectation.fulfill()
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     // MARK: - ImagesLibraryCollectionViewDataSource
-
+    
     func testImageCellContentFromCachedData() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         let expectation = XCTestExpectation(description: "Fetch items from data source")
-
+        
         dataSource.fetchItems { [unowned self] _ in
             self.collectionView.layoutSubviews()
             self.collectionView.reloadData()
-
+            
             let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 0)) as! LibraryImageCollectionViewCell
             XCTAssertEqual(cell.state, .loaded(image: UIImage()), "cached image not loaded in cell") // the actual image is ignored, see the Equatable extension
             expectation.fulfill()
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testImageCellContentFromMediaLibrary() {
         clearKingfisherCache()
         self.downloaderMock.categories = self.exampleCategories
@@ -146,54 +146,54 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         let expectation = XCTestExpectation(description: "Fetch items from data source")
-
+        
         dataSource.fetchItems { [unowned self] _ in
             self.collectionView.layoutSubviews()
             self.collectionView.reloadData()
-
+            
             // Kingfisher cache is clear, the image will be fetched from the library
             let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibraryImageCollectionViewCell
             XCTAssertEqual(cell.state, .loading, "cell doesn't show loading state")
-
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 XCTAssertEqual(cell.state, .loaded(image: UIImage()), "cached image not loaded in cell") // the actual image is ignored, see the Equatable extension
                 expectation.fulfill()
             }
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testImageCellFetchesContentFromKingfisherCache() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
-
+        
         // store image in cache
         let indexPath = IndexPath(item: 0, section: 1)
         let resource = ImageResource(downloadURL: self.exampleCategories[indexPath].downloadURL)
         ImageCache.default.store(UIImage(data: exampleData)!, forKey: resource.cacheKey)
-
+        
         let expectation = XCTestExpectation(description: "Fetch looks")
-
+        
         dataSource.fetchItems { [unowned self] _ in
             self.collectionView.layoutSubviews()
             self.collectionView.reloadData()
-
+            
             // Kingfisher cache is clear, the image will be fetched from the library
             let cell = dataSource.collectionView(self.collectionView, cellForItemAt: indexPath) as! LibraryImageCollectionViewCell
             XCTAssertEqual(cell.state, .loading, "cell doesn't show loading state")
-
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 XCTAssertEqual(cell.state, .loaded(image: UIImage()), "cached image not loaded in cell") // the actual image is ignored, see the Equatable extension
                 expectation.fulfill()
             }
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testSelectingImageCellProvidesCachedData() {
         clearKingfisherCache()
         self.downloaderMock.categories = self.exampleCategories
@@ -202,7 +202,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         // cached data in media item
         var expectation = XCTestExpectation(description: "Selecting cell triggers delegate method with media item and cached data")
         var delegateMock = MediaLibraryCollectionViewDataSourceDelegateMock(didSelectCell: { mediaItem in
@@ -212,7 +212,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
         dataSource.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
         wait(for: [expectation], timeout: 1.0)
-
+        
         // data retrieved from media library
         expectation = XCTestExpectation(description: "Selecting cell downloads data and provides it in the delegate call")
         delegateMock = MediaLibraryCollectionViewDataSourceDelegateMock(didSelectCell: { mediaItem in
@@ -222,7 +222,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
         dataSource.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 0, section: 1))
         wait(for: [expectation], timeout: 1.0)
-
+        
         // data retrieved from Kingfisher cache
         self.downloaderMock.data = nil
         expectation = XCTestExpectation(description: "Selecting cell fetches data from cache and provides it in the delegate call")
@@ -234,95 +234,95 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 0, section: 1))
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testImageCellClearCacheAfterBeingHidden() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .looks, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         let indexPath = IndexPath(item: 0, section: 0)
         var cell = dataSource.collectionView(self.collectionView, cellForItemAt: indexPath) as! LibraryImageCollectionViewCell
         XCTAssertEqual(cell.state, .loaded(image: UIImage()), "cached image not loaded in cell") // the actual image is ignored, see the Equatable extension
-
+        
         clearKingfisherCache()
         dataSource.collectionView(self.collectionView, didEndDisplaying: cell, forItemAt: indexPath)
         cell = dataSource.collectionView(self.collectionView, cellForItemAt: indexPath) as! LibraryImageCollectionViewCell
         XCTAssertEqual(cell.state, .loading)
     }
-
+    
     // MARK: - SoundsLibraryCollectionViewDataSource
-
+    
     func testSoundCellStateAndTitle() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         let expectation = XCTestExpectation(description: "Fetch sounds")
-
+        
         dataSource.fetchItems { [unowned self] _ in
             self.collectionView.layoutSubviews()
             self.collectionView.reloadData()
-
+            
             let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 0)) as! LibrarySoundCollectionViewCell
             XCTAssertEqual(cell.title, "a")
             XCTAssertEqual(cell.state, .stopped, "cell not in stopped state")
             expectation.fulfill()
         }
-
+        
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     func testSoundCellPlayAndStopCachedSound() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 0)) as! LibrarySoundCollectionViewCell
         let delegateMock = SoundsLibraryCollectionViewDataSourceDelegateMock()
         dataSource.delegate = delegateMock
-
+        
         XCTAssertEqual(cell.state, .stopped)
         cell.playOrStop()
         XCTAssertEqual(cell.state, .playing)
         cell.playOrStop()
         XCTAssertEqual(cell.state, .stopped)
     }
-
+    
     func testSoundCellFinishPlayReturnsToStoppedState() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 0)) as! LibrarySoundCollectionViewCell
         let delegateMock = SoundsLibraryCollectionViewDataSourceDelegateMock(didPlaySound: { _, completion in
             completion?() // finish immediately
         })
         dataSource.delegate = delegateMock
-
+        
         XCTAssertEqual(cell.state, .stopped)
         cell.playOrStop() // will immediately finish
         XCTAssertEqual(cell.state, .stopped)
     }
-
+    
     func testSoundCellFailToFetchSound() {
         self.downloaderMock.categories = self.exampleCategories
         let dataSource = MediaLibraryCollectionViewDataSource.dataSource(for: .sounds, with: self.downloaderMock)
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         let expectation = XCTestExpectation(description: "reach state .playing after sound is fetched")
         let delegateMock = SoundsLibraryCollectionViewDataSourceDelegateMock(didFailToLoadSound: { _ in
             expectation.fulfill()
         })
         dataSource.delegate = delegateMock
-
+        
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibrarySoundCollectionViewCell
         XCTAssertEqual(cell.state, .stopped)
         cell.playOrStop()
@@ -330,7 +330,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
         XCTAssertEqual(cell.state, .stopped)
     }
-
+    
     func testSoundCellFetchAndPlaySound() {
         self.downloaderMock.categories = self.exampleCategories
         self.downloaderMock.data = exampleData
@@ -338,7 +338,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         let expectation0 = XCTestExpectation(description: "reach state .playing after sound is fetched")
         let expectation1 = XCTestExpectation(description: "reach state .stopped after sound is fetched and finished playing")
         let delegateMock = SoundsLibraryCollectionViewDataSourceDelegateMock(didPlaySound: { _, completion in
@@ -349,7 +349,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
             }
         })
         dataSource.delegate = delegateMock
-
+        
         let cell = dataSource.collectionView(self.collectionView, cellForItemAt: IndexPath(item: 0, section: 1)) as! LibrarySoundCollectionViewCell
         XCTAssertEqual(cell.state, .stopped)
         cell.playOrStop()
@@ -359,7 +359,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         wait(for: [expectation1], timeout: 1.0)
         XCTAssertEqual(cell.state, .stopped)
     }
-
+    
     func testSelectingSoundCellProvidesCachedData() {
         self.downloaderMock.categories = self.exampleCategories
         self.downloaderMock.data = exampleData
@@ -367,7 +367,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         self.collectionView.dataSource = dataSource
         dataSource.registerContentViewClasses(self.collectionView)
         populateCollectionView(dataSource)
-
+        
         // cached data in media item
         var expectation = XCTestExpectation(description: "Selecting cell triggers delegate method with media item and cached data")
         var delegateMock = MediaLibraryCollectionViewDataSourceDelegateMock(didSelectCell: { mediaItem in
@@ -377,7 +377,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.delegate = delegateMock
         dataSource.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
         wait(for: [expectation], timeout: 1.0)
-
+        
         // data retrieved from media library
         expectation = XCTestExpectation(description: "Selecting cell downloads data and provides it in the delegate call")
         delegateMock = SoundsLibraryCollectionViewDataSourceDelegateMock(didSelectCell: { mediaItem in
@@ -388,15 +388,15 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         dataSource.collectionView(self.collectionView, didSelectItemAt: IndexPath(item: 0, section: 1))
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     // MARK: - Extension
-
+    
     func testItemIndex() {
         // out of lower bounds
         XCTAssertNil(self.exampleCategories.itemIndex(for: IndexPath(item: -1, section: 0)))
         XCTAssertNil(self.exampleCategories.itemIndex(for: IndexPath(item: 0, section: -1)))
         XCTAssertNil(self.exampleCategories.itemIndex(for: IndexPath(item: -1, section: -1)))
-
+        
         // sequential item indexes and out of bounds
         XCTAssertEqual(self.exampleCategories.itemIndex(for: IndexPath(item: 0, section: 0)), 0)
         XCTAssertNil(self.exampleCategories.itemIndex(for: IndexPath(item: 1, section: 0)))
@@ -406,12 +406,12 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         XCTAssertEqual(self.exampleCategories.itemIndex(for: IndexPath(item: 0, section: 2)), 3)
         XCTAssertEqual(self.exampleCategories.itemIndex(for: IndexPath(item: 1, section: 2)), 4)
         XCTAssertEqual(self.exampleCategories.itemIndex(for: IndexPath(item: 2, section: 2)), 5)
-
+        
         // out of upper bounds
         XCTAssertNil(self.exampleCategories.itemIndex(for: IndexPath(item: 3, section: 2)))
         XCTAssertNil(self.exampleCategories.itemIndex(for: IndexPath(item: 0, section: 3)))
     }
-
+    
     func testIndexPath() {
         XCTAssertNil(self.exampleCategories.indexPath(for: -1))
         XCTAssertEqual(self.exampleCategories.indexPath(for: 0), IndexPath(item: 0, section: 0))
@@ -422,9 +422,9 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         XCTAssertEqual(self.exampleCategories.indexPath(for: 5), IndexPath(item: 2, section: 2))
         XCTAssertNil(self.exampleCategories.indexPath(for: 6))
     }
-
+    
     // MARK: - Helper Methods
-
+    
     private func clearKingfisherCache() {
         let expectation = XCTestExpectation(description: "Clear Kingfisher cache")
         ImageCache.default.clearMemoryCache()
@@ -433,7 +433,7 @@ class MediaLibraryCollectionViewDataSourceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1.0)
     }
-
+    
     private func populateCollectionView(_ dataSource: MediaLibraryCollectionViewDataSource) {
         let expectation = XCTestExpectation(description: "Fetch items")
         dataSource.fetchItems { [unowned self] _ in

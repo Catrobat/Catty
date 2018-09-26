@@ -23,31 +23,31 @@
 @testable import Pocket_Code
 
 class SoundsLibraryCollectionViewDataSourceDelegateMock: MediaLibraryCollectionViewDataSourceDelegateMock, SoundsLibraryCollectionViewDataSourceDelegate {
-
+    
     var didFailToLoadSound: ((MediaItem) -> Void)?
     var didPlaySound: ((MediaItem, (() -> Void)?) -> Void)?
     var didStopSound: ((MediaItem) -> Void)?
-
+    
     init(
         didSelectCell: ((MediaItem) -> Void)? = nil,
         didFailToLoadSound: ((MediaItem) -> Void)? = nil,
         didPlaySound: ((MediaItem, (() -> Void)?) -> Void)? = nil,
         didStopSound: ((MediaItem) -> Void)? = nil
-    ) {
+        ) {
         self.didFailToLoadSound = didFailToLoadSound
         self.didPlaySound = didPlaySound
         self.didStopSound = didStopSound
         super.init(didSelectCell: didSelectCell)
     }
-
+    
     func soundsLibraryCollectionViewDataSource(_ dataSource: SoundsLibraryCollectionViewDataSource, didFailToLoadSoundOf item: MediaItem) {
         self.didFailToLoadSound?(item)
     }
-
+    
     func soundsLibraryCollectionViewDataSource(_ dataSource: SoundsLibraryCollectionViewDataSource, didPlaySoundOf item: MediaItem, completion: (() -> Void)?) {
         self.didPlaySound?(item, completion)
     }
-
+    
     func soundsLibraryCollectionViewDataSource(_ dataSource: SoundsLibraryCollectionViewDataSource, didStopSoundOf item: MediaItem) {
         self.didStopSound?(item)
     }

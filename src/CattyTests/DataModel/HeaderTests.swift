@@ -44,7 +44,7 @@ final class HeaderTests: XCTestCase {
         XCTAssertEqual(UtilMock.platformVersionWithoutPatch(), "11.4")
         XCTAssertEqual(UtilMock.platformVersionWithPatch(), "11.4.1")
         XCTAssertEqual(Util.catrobatProgramLicense(), header.programLicense)
-    
+        
         XCTAssertEqual(Util.screenHeight(true), CGFloat(truncating: header.screenHeight))
         XCTAssertEqual(Util.screenWidth(true), CGFloat(truncating: header.screenWidth))
         XCTAssertEqual(kCatrobatHeaderScreenModeStretch, header.screenMode)

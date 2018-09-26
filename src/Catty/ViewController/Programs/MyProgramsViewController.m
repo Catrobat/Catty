@@ -127,9 +127,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     NSString *detailActionTitle = self.useDetailCells ? kLocalizedHideDetails : kLocalizedShowDetails;
     [[[actionSheet
-     addDefaultActionWithTitle:detailActionTitle handler:^{
-         [self toggleDetailCellsMode];
-     }] build]
+       addDefaultActionWithTitle:detailActionTitle handler:^{
+           [self toggleDetailCellsMode];
+       }] build]
      showWithController:self];
 }
 
@@ -384,62 +384,62 @@ static NSCharacterSet *blockedCharacterSet = nil;
         ProgramLoadingInfo *info = sectionInfos[indexPath.row];
         
         [[[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedEditProgram]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedCopy handler:^{
-             [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:
-                                                                  sourceProgramLoadingInfo:)
-                                                 target:self
-                                           cancelAction:nil
-                                             withObject:info
-                                            promptTitle:kLocalizedCopyProgram
-                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                            promptValue:info.visibleName
-                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                         minInputLength:kMinNumOfProgramNameCharacters
-                                         maxInputLength:kMaxNumOfProgramNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
-                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                          existingNames:[Program allProgramNames]];
-         }]
-         addDefaultActionWithTitle:kLocalizedRename handler:^{
-             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
-             [unavailableNames removeString:info.visibleName];
-             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
-                                                 target:self
-                                           cancelAction:nil
-                                             withObject:info
-                                            promptTitle:kLocalizedRenameProgram
-                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                            promptValue:info.visibleName
-                                      promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                         minInputLength:kMinNumOfProgramNameCharacters
-                                         maxInputLength:kMaxNumOfProgramNameCharacters
-                                    blockedCharacterSet:[self blockedCharacterSet]
-                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                          existingNames:unavailableNames];
-         }]
-         addDefaultActionWithTitle:kLocalizedDescription handler:^{
-             Program *program = [Program programWithLoadingInfo:info];
-             ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
-             dViewController.delegate = self;
-             self.selectedProgram = program;
-             
-             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
-             [self.navigationController presentViewController:navigationController animated:YES completion:nil];
-         }] build]
-         viewWillDisappear:^{
-             [self.tableView setEditing:false animated:YES];
-         }]
+               addCancelActionWithTitle:kLocalizedCancel handler:nil]
+              addDefaultActionWithTitle:kLocalizedCopy handler:^{
+                  [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:
+                                                                       sourceProgramLoadingInfo:)
+                                                      target:self
+                                                cancelAction:nil
+                                                  withObject:info
+                                                 promptTitle:kLocalizedCopyProgram
+                                               promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                                 promptValue:info.visibleName
+                                           promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                              minInputLength:kMinNumOfProgramNameCharacters
+                                              maxInputLength:kMaxNumOfProgramNameCharacters
+                                         blockedCharacterSet:[self blockedCharacterSet]
+                                    invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                               existingNames:[Program allProgramNames]];
+              }]
+             addDefaultActionWithTitle:kLocalizedRename handler:^{
+                 NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
+                 [unavailableNames removeString:info.visibleName];
+                 [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
+                                                     target:self
+                                               cancelAction:nil
+                                                 withObject:info
+                                                promptTitle:kLocalizedRenameProgram
+                                              promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                                promptValue:info.visibleName
+                                          promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                             minInputLength:kMinNumOfProgramNameCharacters
+                                             maxInputLength:kMaxNumOfProgramNameCharacters
+                                        blockedCharacterSet:[self blockedCharacterSet]
+                                   invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                              existingNames:unavailableNames];
+             }]
+            addDefaultActionWithTitle:kLocalizedDescription handler:^{
+                Program *program = [Program programWithLoadingInfo:info];
+                ProgramDescriptionViewController *dViewController = [[ProgramDescriptionViewController alloc] init];
+                dViewController.delegate = self;
+                self.selectedProgram = program;
+                
+                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dViewController];
+                [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+            }] build]
+          viewWillDisappear:^{
+              [self.tableView setEditing:false animated:YES];
+          }]
          showWithController:self];
     }];
     moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [[[[[AlertControllerBuilder alertWithTitle:kLocalizedDeleteThisProgram message:kLocalizedThisActionCannotBeUndone]
-         addCancelActionWithTitle:kLocalizedCancel handler:nil]
-         addDefaultActionWithTitle:kLocalizedYes handler:^{
-             [self deleteProgramForIndexPath:indexPath];
-         }] build]
+            addCancelActionWithTitle:kLocalizedCancel handler:nil]
+           addDefaultActionWithTitle:kLocalizedYes handler:^{
+               [self deleteProgramForIndexPath:indexPath];
+           }] build]
          showWithController:self];
     }];
     return @[deleteAction, moreAction];
@@ -722,7 +722,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)setupToolBar
 {
     [super setupToolBar];
-
+    
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
@@ -733,7 +733,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)setupEditingToolBar
 {
     [super setupEditingToolBar];
-
+    
     UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDelete
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self

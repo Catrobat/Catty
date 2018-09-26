@@ -94,7 +94,7 @@
     
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
-
+    
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -103,15 +103,15 @@
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:28.0f];
     self.infoLabel.text = kLocalizedInfoLogin;
     [self.infoLabel sizeToFit];
-
-
+    
+    
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder =kLocalizedUsername;
     self.usernameField.font = [UIFont fontWithName:fontName size:16.0f];
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
     self.usernameField.tag = 1;
-
+    
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView.image = [UIImage imageNamed:@"user"];
     self.usernameField.leftViewMode = UITextFieldViewModeAlways;
@@ -143,8 +143,8 @@
     [self.forgotButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     [self.forgotButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
-//    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
-
+    //    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
+    
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
@@ -153,7 +153,7 @@
     UIEdgeInsets insets = { .left = 15, .right = 15, .top = 10, .bottom = 10 };
     self.registerButton.contentEdgeInsets = insets;
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
-//    self.registerButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.registerButton.frame.size.height);
+    //    self.registerButton.frame = CGRectMake(20, currentHeight, self.view.frame.size.width-40, self.registerButton.frame.size.height);
 }
 
 -(void)addDoneToTextFields
@@ -176,7 +176,7 @@
     
     [super viewWillDisappear:animated];
 }
-    
+
 
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
@@ -318,7 +318,7 @@
 - (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
 {
     NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
-
+    
     NSString *loginUrl = [Util isProductionServerActivated] ? kLoginUrl : kTestLoginUrl;
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", loginUrl, (NSString*)kConnectionLogin];
     
@@ -339,13 +339,13 @@
     self.password = password;
     [self setFormDataParameter:passwordTag withData:[password dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
     
-//    //Country
-//    NSLocale *currentLocale = [NSLocale currentLocale];
-//    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
-//    NSDebug(@"Current Country is: %@", countryCode);
-//    [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
-//    
-//    //Language ?! 
+    //    //Country
+    //    NSLocale *currentLocale = [NSLocale currentLocale];
+    //    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+    //    NSDebug(@"Current Country is: %@", countryCode);
+    //    [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+    //    
+    //    //Language ?! 
     
     // close form
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -360,7 +360,7 @@
     [self showLoadingView];
     
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
+        
         if (error) {
             if ([Util isNetworkError:error]) {
                 NSLog(@"ERROR: %@", error);
@@ -372,14 +372,14 @@
                     return;
                 });
             }
-
+            
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self handleLoginResponseWithData:data andResponse:response];
             });
         }
     }];
-  
+    
     
     if (self.dataTask) {
         [self.dataTask resume];
@@ -396,7 +396,7 @@
 -(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
 {
     if (data == nil) {
-         
+        
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
             [self hideLoadingView];
@@ -404,7 +404,7 @@
         }
         return;
     }
-     
+    
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];

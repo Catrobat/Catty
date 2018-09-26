@@ -91,7 +91,7 @@ class FirmataDelegateMock: FirmataDelegate {
         callbackInvolved = true
         capabilityQuery = pins
     }
-
+    
 }
 
 class FirmataMock:Firmata{
@@ -174,14 +174,14 @@ class CharacteristicMock: CBCharacteristic {
     
     init(test:Bool){
         //HACK
-//        self.properties = CBCharacteristicProperties(CBCharacteristicProperties.WriteWithoutResponse.rawValue)
-    
+        //        self.properties = CBCharacteristicProperties(CBCharacteristicProperties.WriteWithoutResponse.rawValue)
+        
     }
     
     override internal var properties: CBCharacteristicProperties {
         return CBCharacteristicProperties(rawValue: CBCharacteristicProperties.writeWithoutResponse.rawValue)
     }
-
+    
 }
 
 class ArduinoTestMock: ArduinoPropertyProtocol {

@@ -21,10 +21,10 @@
  */
 
 protocol Sensor { // TODO remove CB prefix
-
+    
     // Name for formula editor
     static var name: String { get }
-
+    
     // Default value for the iOS specific raw value (rawValue)
     static var defaultRawValue: Double { get }
     

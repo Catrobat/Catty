@@ -58,7 +58,7 @@
                     currentOptionIndex = optionIndex;
                 }
             }
-
+            
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];

@@ -38,7 +38,7 @@
     CGFloat horizontalPadding = 45;
     
     label.fontColor = [UIColor blackColor];
-
+    
     if (label.frame.size.width > bubbleWidth)
     {
         while (label.frame.size.width > bubbleWidth)
@@ -50,9 +50,9 @@
         }
         label.text = [label.text stringByAppendingString:@"..."];
     }
-
+    
     SKNode* oldBubble = [spriteNode childNodeWithName:kBubbleBrickNodeName];
-
+    
     if (oldBubble != nil)
     {
         [oldBubble runAction:[SKAction removeFromParent]];
@@ -66,7 +66,7 @@
     sayBubble.lineWidth = 3.5;
     
     sayBubble.position = [sayBubble convertPoint:CGPointMake(spriteNode.position.x + spriteNode.frame.size.width / 2, spriteNode.position.y + spriteNode.frame.size.height / 2) toNode:spriteNode];
-
+    
     if (type == CBBubbleTypeThought) {
         label.position = CGPointMake(sayBubble.frame.size.width/2, sayBubble.frame.size.height/2 + 21);
     } else {
@@ -77,7 +77,7 @@
     [spriteNode addChild:sayBubble];
 }
 
-                        
+
 + (CGPathRef) bubblePathWithWidth:(CGFloat)width andType:(CBBubbleType)type
 {
     

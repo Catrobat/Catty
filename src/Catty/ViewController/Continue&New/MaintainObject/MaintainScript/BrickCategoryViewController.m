@@ -38,7 +38,7 @@
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
         // check if pageIndex exists in pageIndexArray
         NSPredicate *valuePredicate = [NSPredicate predicateWithFormat:@"self.intValue == %d", type];
-
+        
         if ([[pageIndexArray filteredArrayUsingPredicate:valuePredicate] count] == 0) {
             type = [pageIndexArray firstObject].intValue;
         }
@@ -178,7 +178,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - Helpers
 - (kBrickCategoryType)brickCategoryTypForPageIndex:(NSUInteger)pageIndex {
-
+    
     return pageIndex;
 }
 

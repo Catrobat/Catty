@@ -41,9 +41,9 @@ class FaceDetectionManager: NSObject, FaceDetectionManagerProtocol, AVCaptureVid
         self.session = CameraPreviewHandler.shared().getSession()
         
         guard let session = self.session,
-              let device = camera(for: cameraPosition()),
-              let deviceInput = try? AVCaptureDeviceInput(device: device)
-        else { return }
+            let device = camera(for: cameraPosition()),
+            let deviceInput = try? AVCaptureDeviceInput(device: device)
+            else { return }
         
         if session.isRunning {
             session.stopRunning()

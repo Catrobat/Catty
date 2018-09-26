@@ -49,13 +49,13 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     object.program = program;
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
     SetBrightnessBrick *brick = [[SetBrightnessBrick alloc] init];
@@ -64,9 +64,9 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-
+    
     brick.brightness = [[Formula alloc] initWithInteger:180];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -81,13 +81,13 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     object.program = program;
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"] atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
     SetBrightnessBrick *brick = [[SetBrightnessBrick alloc] init];
@@ -96,9 +96,9 @@
     [object.lookList addObject:look];
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-
+    
     brick.brightness = [[Formula alloc] initWithInteger:-10];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -113,16 +113,16 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     object.program = program;
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look *look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetBrightnessBrick *brick = [[SetBrightnessBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
@@ -131,7 +131,7 @@
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     
     brick.brightness = [[Formula alloc] initWithInteger:210];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     
@@ -146,16 +146,16 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     object.program = program;
-
+    
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look *look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"] atomically:YES];
-
+    
     Script *script = [[WhenScript alloc] init];
     script.object = object;
-
+    
     SetBrightnessBrick *brick = [[SetBrightnessBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
@@ -163,9 +163,9 @@
     object.spriteNode.currentLook = look;
     object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.spriteNode.catrobatBrightness = 100.0;
-
+    
     brick.brightness = [[Formula alloc] initWithString:@"a"];
-
+    
     dispatch_block_t action = [brick actionBlock:self.formulaInterpreter];
     action();
     

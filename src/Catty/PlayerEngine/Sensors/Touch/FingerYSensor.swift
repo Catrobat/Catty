@@ -21,13 +21,13 @@
  */
 
 @objc class FingerYSensor: NSObject, TouchSensor {
-
+    
     @objc static let tag = "FINGER_Y"
     static let name = kUIFESensorFingerY
     static let defaultRawValue = 0.0
     static let requiredResource = ResourceType.touchHandler
     static let position = 140
-
+    
     let getTouchManager: () -> TouchManagerProtocol?
     
     init(touchManagerGetter: @escaping () -> TouchManagerProtocol?) {

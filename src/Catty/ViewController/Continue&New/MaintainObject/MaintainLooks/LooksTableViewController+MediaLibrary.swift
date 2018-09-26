@@ -21,26 +21,26 @@
  */
 
 extension LooksTableViewController {
-
+    
     @objc
     func showBackgroundsMediaLibrary() {
         let viewController = MediaLibraryViewController(for: .backgrounds)
         viewController.importDelegate = self
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-
+    
     @objc
     func showLooksMediaLibrary() {
         let viewController = MediaLibraryViewController(for: .looks)
         viewController.importDelegate = self
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-
+    
     private func showImportAlert(itemName: String) {
         let alertTitle = kLocalizedMediaLibraryImportFailedTitle
         let alertMessage = "\(kLocalizedMediaLibraryImportFailedMessage) \(itemName)"
         let buttonTitle = kLocalizedOK
-
+        
         let alertController = UIAlertController.init(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         alertController.addAction(title: buttonTitle, style: .default, handler: nil)
         self.present(alertController, animated: true, completion: nil)
@@ -51,7 +51,7 @@ extension LooksTableViewController: MediaLibraryViewControllerImportDelegate {
     func mediaLibraryViewController(_ mediaLibraryViewController: MediaLibraryViewController, didPickItemsForImport items: [MediaItem]) {
         for item in items {
             guard let data = item.cachedData else { self.showImportAlert(itemName: item.name); continue }
-
+            
             if let image = UIImage(data: data) {
                 self.addMediaLibraryLoadedImage(image, withName: item.name)
                 continue
