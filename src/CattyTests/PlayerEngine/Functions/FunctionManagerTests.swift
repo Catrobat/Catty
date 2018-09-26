@@ -83,8 +83,8 @@ final class FunctionManagerTests: XCTestCase {
         let functions = manager.functions()
         
         XCTAssertEqual(2, functions.count)
-        XCTAssertEqual(functionA.tag(), functions[0].tag())
-        XCTAssertEqual(functionB.tag(), functions[1].tag())
+        XCTAssertTrue(functions.contains { $0.tag() == functionA.tag() })
+        XCTAssertTrue(functions.contains { $0.tag() == functionB.tag() })
     }
     
     func testRequiredResource() {
@@ -165,8 +165,8 @@ final class FunctionManagerTests: XCTestCase {
         let manager = FunctionManager(functions: [functionA, functionB, functionC])
         let items = manager.formulaEditorItems()
         XCTAssertEqual(3, items.count)
-        XCTAssertNotNil(items.filter { $0.function?.tag() == functionA.tag() }.first)
-        XCTAssertNotNil(items.filter { $0.function?.tag() == functionB.tag() }.first)
-        XCTAssertNotNil(items.filter { $0.function?.tag() == functionC.tag() }.first)
+        XCTAssertTrue(items.contains { $0.function?.tag() == functionA.tag() })
+        XCTAssertTrue(items.contains { $0.function?.tag() == functionB.tag() })
+        XCTAssertTrue(items.contains { $0.function?.tag() == functionB.tag() })
     }
 }
