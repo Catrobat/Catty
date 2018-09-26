@@ -50,8 +50,6 @@
     return sharedBrickMoveManager;
 }
 
-
-
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
 {
@@ -97,9 +95,7 @@
                         }
                     }
                 }
-                
             }
-            
             return (toIndexPath.item != 0);
         }
     } else {
@@ -171,7 +167,6 @@
     
 }
 
-
 - (BOOL)checkNestedBrickToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
 {
     if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
@@ -223,7 +218,6 @@
     [self reset];
 }
 
-
 -(void)reset
 {
     NSLog(@"reset");
@@ -232,6 +226,5 @@
     self.lowerRankBrick = nil;
     self.moveToOtherScript = NO;
 }
-
 
 @end

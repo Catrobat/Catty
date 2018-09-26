@@ -94,7 +94,6 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     CGContextRestoreGState(context);
 }
 
-
 @end
 
 @interface SPUserResizableView ()
@@ -215,7 +214,6 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
 - (BOOL)isDisabledForTouches:(NSSet*)touches {
     return ([self disable] || ([self disableOnMultiTouch] && [touches count] > 1));
 }
-
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if ([self isDisabledForTouches:touches]) {
@@ -464,9 +462,6 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     _borderView.borderColor = color;
     [_borderView setNeedsDisplay];
 }
-
-
-
 
 - (void)dealloc {
     [contentView removeFromSuperview];

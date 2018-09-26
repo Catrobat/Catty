@@ -54,7 +54,6 @@
         default:
             [NSException raise:NSGenericException format:@"Unexpected FormatType."];
     }
-    
     return result;
 }
 + (Tone)stringToTone:(NSString*)string {
@@ -93,7 +92,6 @@
         default:
             [NSException raise:NSGenericException format:@"Unexpected FormatType."];
     }
-    
     return result;
 }
 + (Motor)stringToMotor:(NSString*)string {
@@ -124,7 +122,6 @@
         default:
             [NSException raise:NSGenericException format:@"Unexpected FormatType."];
     }
-    
     return result;
 }
 

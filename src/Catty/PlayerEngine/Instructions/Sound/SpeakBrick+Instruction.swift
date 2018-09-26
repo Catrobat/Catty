@@ -41,6 +41,5 @@
             synthesizer.speak(utterance)
             context.state = .runnable
         }
-        
     }
 }

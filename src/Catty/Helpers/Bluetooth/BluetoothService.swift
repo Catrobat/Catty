@@ -39,7 +39,6 @@ open class BluetoothService:NSObject {
         return BluetoothService.swiftSharedInstance
     }
     
-    
     var digitalSemaphoreArray:[DispatchSemaphore] = []
     var analogSemaphoreArray:[DispatchSemaphore] = []
     
@@ -62,10 +61,8 @@ open class BluetoothService:NSObject {
                 let sema = digitalSemaphoreArray[0]
                 digitalSemaphoreArray.remove(at: 0)
                 sema.signal()
-                
             }
         }
-        
     }
     
     @objc func setAnalogSemaphore(_ semaphore:DispatchSemaphore){
@@ -78,7 +75,6 @@ open class BluetoothService:NSObject {
             analogSemaphoreArray.remove(at: 0)
             sema.signal()
         }
-        
     }
     
     @objc func getSemaphore()->DispatchSemaphore {
@@ -105,8 +101,6 @@ open class BluetoothService:NSObject {
         self.phiro = nil
         self.arduino = nil
     }
-    
-    
     
     //MARK: Bluetooth Connection
     
@@ -164,7 +158,6 @@ open class BluetoothService:NSObject {
             print("Fail \(error)")
             self.connectionFailure()
         }
-        
     }
     
     @objc func updateKnownDevices(_ id:UUID){
@@ -179,7 +172,6 @@ open class BluetoothService:NSObject {
             var array = [String]()
             array.append(id.uuidString)
             userdefaults.set(array, forKey: "KnownBluetoothDevices")
-            
         }
         userdefaults.synchronize()
     }
@@ -211,9 +203,7 @@ open class BluetoothService:NSObject {
                     manager.checkStart()
                     return
                 }
-                
             }
-            
         }
         
         let future = bluetoothDevice.discoverAllServices()
@@ -268,7 +258,6 @@ open class BluetoothService:NSObject {
             self.serviceDiscoveryFailed()
         }
         connectionTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(BluetoothService.serviceDiscoveryFailed) , userInfo: nil, repeats: false)
-        
     }
     
     @objc func serviceDiscoveryFailed() {

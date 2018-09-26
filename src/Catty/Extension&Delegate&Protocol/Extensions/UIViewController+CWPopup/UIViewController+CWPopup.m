@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-
 @import Accelerate;
 
 @interface UIImage (ImageBlur)
@@ -107,6 +106,7 @@
     
     return outputImage;
 }
+
 @end
 
 #define ANIMATION_TIME 0.25f
@@ -234,6 +234,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                          self.popupViewController = nil;
                      }];
 }
+
 #pragma mark - handling screen orientation change
 
 - (CGRect)getPopupFrameForViewController:(UIViewController *)viewController {

@@ -19,7 +19,6 @@
 @class NSArray, NSDictionary, NSError, NSString, NSURL;
 @class GDataXMLElement, GDataXMLDocument;
 
-
 static const int kGDataXMLParseOptions = (XML_PARSE_NOCDATA | XML_PARSE_NOBLANKS);
 
 // dictionary key callbacks for string cache
@@ -44,7 +43,6 @@ static BOOL AreEqualOrBothNilPrivate(id obj1, id obj2) {
     return NO;
 }
 
-
 // convert NSString* to xmlChar*
 //
 // the "Get" part implies that ownership remains with str
@@ -67,7 +65,6 @@ static NSString *GDataFakeQNameForURIAndName(NSString *theURI, NSString *name) {
                            theURI, localName];
     return fakeQName;
 }
-
 
 // libxml2 offers xmlSplitQName2, but that searches forwards. Since we may
 // be searching for a whole URI shoved in as a prefix, like
@@ -216,7 +213,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     if (theNewAttr) {
         return [self nodeConsumingXMLNode:(xmlNodePtr) theNewAttr];
     }
-    
     return nil;
 }
 
@@ -235,7 +231,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     if (theNewAttr) {
         return [self nodeConsumingXMLNode:(xmlNodePtr) theNewAttr];
     }
-    
     return nil;
 }
 
@@ -319,7 +314,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     [cachedAttributes_ release];
     cachedAttributes_ = nil;
 }
-
 
 // convert xmlChar* to NSString*
 //
@@ -545,7 +539,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             str = [self stringFromXMLString:(xmlNode_->name)];
         }
     }
-    
     return str;
 }
 
@@ -632,10 +625,8 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             } else {
                 [array addObject:node];
             }
-            
             currChild = currChild->next;
         }
-        
         cachedChildren_ = [array retain];
     }
     return array;
@@ -897,8 +888,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
 @end
 
-
-
 @implementation GDataXMLElement
 
 - (id)initWithXMLString:(NSString *)str error:(NSError **)error {
@@ -923,7 +912,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             }
             xmlFreeDoc(doc);
         }
-        
         
         if (xmlNode_ == NULL) {
             // failure
@@ -958,7 +946,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
                     [array addObject:node];
                 }
             }
-            
             currNS = currNS->next;
         }
     }
@@ -1283,7 +1270,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             return attr;
         }
     }
-    
     return nil;
 }
 
@@ -1526,8 +1512,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     }
 }
 
-
-
 + (void)fixUpNamespacesForNode:(xmlNodePtr)nodeToFix
             graftingToTreeNode:(xmlNodePtr)graftPointNode
       namespaceSubstitutionMap:(NSMutableDictionary *)nsMap {
@@ -1595,7 +1579,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
 @end
 
-
 @interface GDataXMLDocument (PrivateMethods)
 - (void)addStringsCacheToDoc;
 @end
@@ -1635,7 +1618,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             [self addStringsCacheToDoc];
         }
     }
-    
     return self;
 }
 
@@ -1650,7 +1632,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
         
         [self addStringsCacheToDoc];
     }
-    
     return self;
 }
 
@@ -1698,7 +1679,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
         if (xmlDoc_->_private != NULL) {
             CFRelease(xmlDoc_->_private);
         }
-        
         xmlFreeDoc(xmlDoc_);
     }
     [super dealloc];

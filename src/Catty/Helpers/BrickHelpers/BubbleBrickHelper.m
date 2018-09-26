@@ -77,7 +77,6 @@
     [spriteNode addChild:sayBubble];
 }
 
-
 + (CGPathRef) bubblePathWithWidth:(CGFloat)width andType:(CBBubbleType)type
 {
     

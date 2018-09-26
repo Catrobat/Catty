@@ -24,7 +24,6 @@
 // created a document to retain it for as long as any
 // references rely on nodes inside that document tree.
 
-
 #import <Foundation/Foundation.h>
 
 // libxml includes require that the target Header Search Paths contain
@@ -40,7 +39,6 @@
 #import <libxml/xmlstring.h>
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>
-
 
 #ifdef GDATA_TARGET_NAMESPACE
 // we're using target namespace macros
@@ -163,7 +161,6 @@ typedef NSUInteger GDataXMLNodeKind;
 - (void)releaseCachedValues;
 
 @end
-
 
 @interface GDataXMLElement : GDataXMLNode
 

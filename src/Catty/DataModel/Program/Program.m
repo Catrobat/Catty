@@ -434,7 +434,6 @@
         resources |= [obj getRequiredResources];
     }
     return resources;
-    
 }
 
 #pragma mark - helpers

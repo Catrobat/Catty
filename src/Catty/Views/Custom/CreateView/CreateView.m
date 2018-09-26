@@ -101,7 +101,6 @@
     [self setMaxHeightIfGreaterForView:view withHeight:authorLabel.frame.origin.y+authorLabel.frame.size.height];
 }
 
-
 + (CGFloat)addProgramDescriptionLabelWithDescription:(NSString*)description toView:(UIView*)view target:(id)target
 {
     CGFloat height = [self height];
@@ -113,7 +112,6 @@
     
     description = [description stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
     description = [description stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
-    
     
     if ((! description) || [description isEqualToString:@""]) {
         description = kLocalizedNoDescriptionAvailable;
@@ -129,7 +127,6 @@
         attributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName];
     }
     
-    
     CGRect labelBounds = [description boundingRectWithSize:maximumLabelSize
                                                    options:NSStringDrawingUsesLineFragmentOrigin
                                                 attributes:attributes
@@ -143,7 +140,6 @@
     }else{
         descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35f+40, 280, expectedSize.height);
     }
-    
     
     [self configureDescriptionLabel:descriptionLabel];
     descriptionLabel.delegate = target;
@@ -262,7 +258,6 @@
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [playButton setTintColor:[UIColor buttonTintColor]];
     
-    
     [view addSubview:playButton];
 }
 
@@ -361,7 +356,6 @@
     button.titleLabel.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
 }
 
-
 + (void) configureTitleLabel:(UILabel*)label andHeight:(CGFloat)height
 {
     label.backgroundColor = [UIColor clearColor];
@@ -375,7 +369,6 @@
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
 
-
 + (void) configureTextLabel:(UILabel*)label andHeight:(CGFloat)height
 {
     label.backgroundColor = [UIColor clearColor];
@@ -388,6 +381,7 @@
     label.layer.shadowColor = [[UIColor whiteColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
+
 + (void) configureAuthorLabel:(UILabel*)label andHeight:(CGFloat)height
 {
     label.backgroundColor = [UIColor clearColor];

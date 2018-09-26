@@ -27,5 +27,4 @@ protocol CBSequenceProtocol {
     
     // MARK: - Operations
     func isEmpty() -> Bool
-    
 }

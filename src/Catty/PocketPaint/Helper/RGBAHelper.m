@@ -100,7 +100,6 @@
     //  //  CGContextRestoreGState(context);
     //  //  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     
-    
     //TEST2
     CGFloat r,g,b,a;
     [color getRed:&r green:&g blue:&b alpha:&a];
@@ -150,10 +149,6 @@
     //  UIImage *returnImage = [UIImage imageWithCGImage:newImageRef];
     //  CGImageRelease(newImageRef);
     //  CGDataProviderRelease(provider);
-    
-    
-    //
-    
     
     size_t bufferLength = width * height * 4;
     CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, rawData, bufferLength, NULL);
@@ -249,7 +244,6 @@
     {
         newSize=CGSizeMake(image.size.width*widthRatio,image.size.height*widthRatio);
     }
-    
     
     UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];

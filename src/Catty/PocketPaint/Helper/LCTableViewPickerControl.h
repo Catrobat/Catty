@@ -31,7 +31,6 @@ enum ActionType {
 };
 typedef enum ActionType actionType;
 
-
 @class LCTableViewPickerControl;
 @protocol LCItemPickerDelegate <NSObject>
 
@@ -39,8 +38,6 @@ typedef enum ActionType actionType;
 - (void)selectControl:(LCTableViewPickerControl *)view didCancelWithItem:(id)item;
 
 @end
-
-
 
 @interface LCTableViewPickerControl : UIView <UITableViewDataSource, UITableViewDelegate>
 

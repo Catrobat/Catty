@@ -65,7 +65,6 @@ import Foundation
         for sensor in sensors() {
             tags.append(sensor.tag)
         }
-        
         return tags
     }
     

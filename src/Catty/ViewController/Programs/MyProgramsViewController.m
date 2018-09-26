@@ -91,7 +91,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                object:nil];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -200,7 +199,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self setSectionHeaders];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationTop];
     }
-    
     
     [self reloadTableView];
     [self hideLoadingView];
@@ -625,7 +623,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                             programID:nil];
         NSDebug(@"Adding program: %@", programLoadingInfo.basePath);
         
-        
     }
     [self reloadTableView];
     return programLoadingInfo;
@@ -687,8 +684,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
         rowCounter++;
     }
-    
-    
     return [NSIndexPath indexPathForRow:rowCounter inSection:sectionCounter];
 }
 
@@ -787,7 +782,5 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self updateProgramDescriptionActionWithText:description sourceProgram:self.selectedProgram];
 }
-
-
 
 @end

@@ -79,7 +79,6 @@ import BluetoothHelper
         } else if let function = function as? DoubleParameterDoubleObjectFunction {
             value = function.value(firstParameter: firstParameter, secondParameter: secondParameter, spriteObject: spriteObject) as AnyObject
         }
-        
         return value
     }
     
@@ -89,7 +88,6 @@ import BluetoothHelper
         for function in self.functions() {
             items.append(FormulaEditorItem(function: function))
         }
-        
         return items
     }
     

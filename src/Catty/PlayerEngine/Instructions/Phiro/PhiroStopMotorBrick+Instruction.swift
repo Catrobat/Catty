@@ -22,7 +22,6 @@
 
 import Foundation
 
-
 @objc extension PhiroMotorStopBrick :CBInstructionProtocol {
     
     @nonobjc func instruction() -> CBInstruction {
@@ -47,8 +46,5 @@ import Foundation
             }
             context.state = .runnable
         }
-        
     }
-    
-    
 }

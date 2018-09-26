@@ -98,7 +98,6 @@
         *y = (int)value % multiplier;
     }
     
-    
     return value;
 }
 

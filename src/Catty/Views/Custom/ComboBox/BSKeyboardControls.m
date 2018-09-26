@@ -65,7 +65,6 @@
         
         [self setFields:fields];
     }
-    
     return self;
 }
 
@@ -99,7 +98,6 @@
             {
                 [activeField becomeFirstResponder];
             }
-            
         }
     }
 }
@@ -123,7 +121,6 @@
                 [(iOSCombobox *)field setInputAccessoryView:self];
             }
         }
-        
         _fields = fields;
     }
 }
@@ -147,8 +144,6 @@
         _barTintColor = barTintColor;
     }
 }
-
-
 
 - (void)setDoneTitle:(NSString *)doneTitle
 {
@@ -190,8 +185,6 @@
         [self.delegate keyboardControlsDonePressed:self];
     }
 }
-
-
 
 - (void)selectPreviousField
 {

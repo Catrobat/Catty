@@ -38,7 +38,6 @@
 #import "BDKNotifyHUD.h"
 #import "Pocket_Code-Swift.h"
 
-
 @interface ProgramsForUploadViewController ()
 
 @property (nonatomic, strong) Program *lastUsedProgram;
@@ -48,7 +47,6 @@
 @property (nonatomic, strong) NSMutableArray *uploadingProgramInfos;
 
 @end
-
 
 @implementation ProgramsForUploadViewController
 
@@ -88,7 +86,6 @@
     if(_showLoginFeedback) {
         [self showLoggedInView];
     }
-    
     _showLoginFeedback = false;
 }
 
@@ -136,7 +133,6 @@
     
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     [self configureImageCell:imageCell atIndexPath:indexPath];
-    
     
     return imageCell;
 }
@@ -238,7 +234,6 @@
         currentCell.accessoryType = UITableViewCellAccessoryNone;
         [self.uploadingProgramInfos removeObject:[self.programLoadingInfos objectAtIndex:indexPath.row]];
     }
-    
 }
 
 #pragma mark - Actions
@@ -275,7 +270,6 @@
 
 - (void)showUploadInfoView
 {
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
     UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
     if (self.uploadingProgramInfos.count) {
@@ -296,7 +290,6 @@
         NSDebug(@"Please select a program to upload");
         [Util alertWithText:kLocalizedUploadSelectProgram];
     }
-    
 }
 
 - (void)showLoggedInView
@@ -312,6 +305,5 @@
                       inView:self.view
                   completion:^{ [hud removeFromSuperview]; }];
 }
-
 
 @end

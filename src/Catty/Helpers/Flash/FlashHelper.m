@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "FlashHelper.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -79,7 +78,6 @@ static FlashHelper *sharedFlashHandler = nil;
     [self toggleFlash:FlashResume];
 }
 
-
 #pragma mark - Helper
 
 - (void)toggleFlash:(NSInteger)toggle
@@ -111,7 +109,6 @@ static FlashHelper *sharedFlashHandler = nil;
             }
         }
     });
-    
 }
 
 -(BOOL)isAvailable

@@ -68,7 +68,6 @@
     } else{
         self.canvas.redo.enabled = YES;
     }
-    
 }
 
 @end

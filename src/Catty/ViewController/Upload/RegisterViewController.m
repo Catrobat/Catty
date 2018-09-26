@@ -27,14 +27,12 @@
 #import "Util.h"
 #import "JNKeychain.h"
 #import "LoadingView.h"
-
 #import "KeychainUserDefaultsDefines.h"
 
 #define usernameTag @"registrationUsername"
 #define passwordTag @"registrationPassword"
 #define registrationEmailTag @"registrationEmail"
 #define registrationCountryTag @"registrationCountry"
-
 #define tokenTag @"token"
 #define statusCodeTag @"statusCode"
 #define answerTag @"answer"
@@ -43,7 +41,6 @@
 
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
-
 
 @interface RegisterViewController ()
 @property (nonatomic, strong) NSString *userEmail;
@@ -79,7 +76,6 @@
     [self.loadingView removeFromSuperview];
     self.loadingView = nil;
 }
-
 
 -(void)initView
 {
@@ -216,7 +212,6 @@
 //    [view addSubview:lineView];
 //}
 
-
 -(BOOL)stringContainsSpace:(NSString *)checkString
 {
     NSRange whiteSpaceRange = [checkString rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -235,7 +230,6 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:checkString];
 }
-
 
 -(BOOL)validPassword:(NSString*)password
 {
@@ -291,7 +285,6 @@
 }
 
 #pragma mark Actions
-
 
 -(void)registerAction
 {
@@ -387,7 +380,6 @@
             });
         }
     }];
-    
     
     if (self.dataTask) {
         [self.dataTask resume];

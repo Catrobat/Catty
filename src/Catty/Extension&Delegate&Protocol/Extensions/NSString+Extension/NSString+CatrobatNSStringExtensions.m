@@ -40,7 +40,6 @@
             ];
 }
 
-
 NSMutableString *resultString;
 
 - (NSString*)stringByEscapingHTMLEntities

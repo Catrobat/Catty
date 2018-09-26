@@ -37,5 +37,4 @@
 - (int)getExternTokenStartOffset:(int)externIndex
               withInternOffsetTo:(int)internOffsetTo;
 
-
 @end

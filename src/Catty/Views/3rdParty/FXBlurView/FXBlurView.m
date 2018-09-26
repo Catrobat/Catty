@@ -34,16 +34,13 @@
 #import "FXBlurView.h"
 #import <objc/runtime.h>
 
-
 #pragma GCC diagnostic ignored "-Wobjc-missing-property-synthesis"
 #pragma GCC diagnostic ignored "-Wdirect-ivar-access"
 #pragma GCC diagnostic ignored "-Wgnu"
 
-
 #if !__has_feature(objc_arc)
 #error This class requires automatic reference counting
 #endif
-
 
 @implementation UIImage (FXBlurView)
 
@@ -114,7 +111,6 @@
 
 @end
 
-
 @interface FXBlurScheduler : NSObject
 
 @property (nonatomic, strong) NSMutableArray *views;
@@ -125,13 +121,11 @@
 
 @end
 
-
 @interface FXBlurLayer: CALayer
 
 @property (nonatomic, assign) CGFloat blurRadius;
 
 @end
-
 
 @implementation FXBlurLayer
 
@@ -148,7 +142,6 @@
 
 @end
 
-
 @interface FXBlurView ()
 
 @property (nonatomic, assign) BOOL iterationsSet;
@@ -161,7 +154,6 @@
 - (BOOL)shouldUpdate;
 
 @end
-
 
 @implementation FXBlurScheduler
 
@@ -275,7 +267,6 @@
 }
 
 @end
-
 
 @implementation FXBlurView
 

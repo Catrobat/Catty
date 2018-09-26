@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "BrickCellListData.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
@@ -58,7 +57,6 @@
                     currentOptionIndex = optionIndex;
                 }
             }
-            
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];

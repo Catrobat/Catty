@@ -235,4 +235,3 @@ class ChartProgramStoreDataSource: NSObject, UITableViewDataSource, UITableViewD
         }
     }
 }
-

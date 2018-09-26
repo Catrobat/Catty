@@ -69,7 +69,6 @@
                     }
                 }
             }
-            
             spriteNode.catrobatRotation = rotationDegrees
         }
     }

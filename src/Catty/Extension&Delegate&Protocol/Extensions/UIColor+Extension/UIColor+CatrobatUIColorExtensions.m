@@ -40,6 +40,7 @@
     UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
     return color;
 }
+
 #pragma mark intern Colors
 
 + (UIColor*)lightColor

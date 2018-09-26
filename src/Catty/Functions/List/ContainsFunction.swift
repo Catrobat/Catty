@@ -50,7 +50,6 @@ class ContainsFunction: DoubleParameterDoubleFunction {
             return 1.0
         }
         return 0.0
-        
     }
     
     private func parameterMatch(firstParam: AnyObject?, secondParam: AnyObject?) -> Bool {

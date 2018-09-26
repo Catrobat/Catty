@@ -40,7 +40,6 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
 
 - (void)draw:(UIGestureRecognizer *)recognizer
 {
-    
     if (recognizer.state == UIGestureRecognizerStateBegan){
         if (self.canvas.isEraser) {
             self.canvas.saveView.hidden = YES;
@@ -104,8 +103,6 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
     CGPoint mid1 = [self midPoint:lastPoint and:beforeLastPoint];
     CGPoint mid2 = [self midPoint:currentPoint and:lastPoint];
     
-    
-    
     // 1
     UIGraphicsBeginImageContext(self.canvas.drawView.frame.size);
     //    let context = UIGraphicsGetCurrentContext()
@@ -145,7 +142,6 @@ static const CGFloat kPointMinDistanceSquared = kPointMinDistance * kPointMinDis
     }
     UIGraphicsEndImageContext();
 }
-
 
 -(CGPoint) midPoint:(CGPoint) p1 and:(CGPoint) p2
 {

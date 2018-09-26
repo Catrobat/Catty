@@ -35,8 +35,6 @@
 @property (nonatomic,assign) NSInteger fontSize;
 @property (nonatomic,assign) NSInteger fontType;
 
-
-
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 - (IBAction)closeAction:(UIBarButtonItem *)sender;
 - (IBAction)cancelAction:(UIBarButtonItem *)sender;

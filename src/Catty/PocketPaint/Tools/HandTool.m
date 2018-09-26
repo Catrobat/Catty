@@ -24,7 +24,6 @@
 #import "ResizeViewManager.h"
 #import "PointerTool.h"
 
-
 @implementation HandTool
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
@@ -37,7 +36,6 @@
     }
     return self;
 }
-
 
 - (void)changeHandToolAction
 {
@@ -58,7 +56,6 @@
     } else {
         [self disableHandTool];
     }
-    
 }
 
 - (void)disableHandTool
@@ -84,7 +81,6 @@
         pointerTool.moveView.enabled = YES;
     }
     self.canvas.scrollView.scrollEnabled = NO;
-    
 }
 
 @end

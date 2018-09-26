@@ -30,7 +30,6 @@
     return [[[kLocalizedPhiroMoveBackward stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroSpeed] stringByAppendingString:@"%@\%"];
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {

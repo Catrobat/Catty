@@ -76,7 +76,6 @@
     }
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -107,7 +106,6 @@
 {
     return self.imageView;
 }
-
 
 - (void)editAction
 {
@@ -186,8 +184,6 @@
     
     
     [cache replaceImage:image withName:filePath];
-    
-    
 }
 
 - (void)addMediaLibraryLoadedImage:(UIImage *)image withName:(NSString *)lookName

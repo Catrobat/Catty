@@ -53,9 +53,6 @@
     [self updateColorView];
     self.colorView.hidden = YES;
     
-    
-    
-    
     self.canvas.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
     self.drawingEnabled = NO;
     
@@ -112,7 +109,6 @@
     self.colorView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 }
-
 
 - (void)drawingChangeAction
 {
@@ -261,9 +257,7 @@
                 UIGraphicsEndImageContext();
             }
         }
-        
     }
-    
 }
 
 @end

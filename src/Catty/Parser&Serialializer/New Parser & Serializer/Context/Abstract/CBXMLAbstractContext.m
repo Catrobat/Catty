@@ -59,7 +59,6 @@
     return _variables;
 }
 
-
 - (id)mutableCopy
 {
     CBXMLAbstractContext *copiedContext = [[self class] new];

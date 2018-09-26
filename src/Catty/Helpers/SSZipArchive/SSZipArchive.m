@@ -15,13 +15,11 @@
 + (NSDate *)_dateWithMSDOSFormat:(UInt32)msdosDateTime;
 @end
 
-
 @implementation SSZipArchive {
     NSString *_path;
     NSString *_filename;
     zipFile _zip;
 }
-
 
 #pragma mark - Unzipping
 
@@ -29,16 +27,13 @@
     return [self unzipFileAtPath:path toDestination:destination delegate:nil];
 }
 
-
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error {
     return [self unzipFileAtPath:path toDestination:destination overwrite:overwrite password:password error:error delegate:nil];
 }
 
-
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZipArchiveDelegate>)delegate {
     return [self unzipFileAtPath:path toDestination:destination overwrite:YES password:nil error:nil delegate:delegate];
 }
-
 
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error delegate:(id<SSZipArchiveDelegate>)delegate {
     // Begin opening
@@ -296,7 +291,6 @@
     return success;
 }
 
-
 #pragma mark - Zipping
 
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths {
@@ -315,7 +309,6 @@
     
     return success;
 }
-
 
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath {
     BOOL success = NO;
@@ -348,14 +341,12 @@
     return success;
 }
 
-
 - (id)initWithPath:(NSString *)path {
     if ((self = [super init])) {
         _path = [path copy];
     }
     return self;
 }
-
 
 #if !__has_feature(objc_arc)
 - (void)dealloc {
@@ -364,13 +355,11 @@
 }
 #endif
 
-
 - (BOOL)open {
     NSAssert((_zip == NULL), @"Attempting open an archive which is already open");
     _zip = zipOpen([_path UTF8String], APPEND_STATUS_CREATE);
     return (NULL != _zip);
 }
-
 
 - (void)zipInfo:(zip_fileinfo*)zipInfo setDate:(NSDate*)date {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
@@ -387,7 +376,6 @@
     zipInfo->tmz_date.tm_mon = (unsigned int)components.month - 1;
     zipInfo->tmz_date.tm_year = (unsigned int)components.year;
 }
-
 
 - (BOOL)writeFile:(NSString *)path
 {
@@ -459,7 +447,6 @@
     return YES;
 }
 
-
 - (BOOL)writeData:(NSData *)data filename:(NSString *)filename {
     if (!_zip) {
         return NO;
@@ -478,13 +465,11 @@
     return YES;
 }
 
-
 - (BOOL)close {
     NSAssert((_zip != NULL), @"[SSZipArchive] Attempting to close an archive which was never opened");
     zipClose(_zip, NULL);
     return YES;
 }
-
 
 #pragma mark - Private
 

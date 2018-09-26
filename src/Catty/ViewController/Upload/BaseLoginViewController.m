@@ -92,7 +92,6 @@
     
 }
 
-
 -(void)textFieldDidEndEditing:(UITextField *)sender
 {
     self.activeField = nil;
@@ -137,7 +136,6 @@
     //    
     //    [UIView commitAnimations];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {

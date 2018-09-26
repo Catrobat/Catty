@@ -57,18 +57,15 @@
         } else {
             self.color =[UIColor colorWithRed:controller.red green:controller.green blue:controller.blue alpha:controller.opacity];
         }
-        
     }
     return self;
 }
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupToolBar];
     self.view.backgroundColor = [UIColor backgroundColor];
-    
     
     // Do any additional setup after loading the view.
 }
@@ -95,10 +92,7 @@
     self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
     self.toolBar.tintColor = [UIColor navTintColor];
     self.toolBar.barTintColor = UIColor.navBarColor;
-    
-    
 }
-
 
 - (void)setupSegmentedControl
 {
@@ -209,7 +203,6 @@
             break;
     }
     
-    
     UIGraphicsBeginImageContext(self.brushView.frame.size);
     switch (self.brushEnding) {
         case Round:
@@ -229,7 +222,6 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.brushView.image = [image imageRotatedByDegrees:45];
     UIGraphicsEndImageContext();
-    
 }
 
 - (void)sliderAction:(id)sender
@@ -260,13 +252,10 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     self.brushView.image = [image imageRotatedByDegrees:45];
     UIGraphicsEndImageContext();
-    
-    
 }
 
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
     [self.delegate closeBrushPicker:self];
 }
-
 
 @end

@@ -43,7 +43,6 @@
 #define userEmailTag @"userEmail"
 #define userNameTag @"username"
 #define deviceLanguageTag @"deviceLanguage"
-
 #define statusCodeTag @"statusCode"
 #define answerTag @"answer"
 #define projectIDTag @"projectId"
@@ -70,7 +69,6 @@ const CGFloat PADDING = 5.0f;
 
 @implementation UploadInfoViewController
 
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -91,10 +89,8 @@ const CGFloat PADDING = 5.0f;
         // Initialize Session
         _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     }
-    
     return _session;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,8 +131,6 @@ const CGFloat PADDING = 5.0f;
     [self.programNamelabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.programNamelabel sizeToFit];
     
-    
-    
     self.programNameTextField.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 2*self.view.frame.size.width/3.0f -20, TEXTFIELD_HEIGHT);
     
     self.programNameTextField.textColor = [UIColor textTintColor];
@@ -146,12 +140,10 @@ const CGFloat PADDING = 5.0f;
     [self.programNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [self.programNameTextField setKeyboardType:UIKeyboardTypeDefault];
     
-    
     if(self.program.header.programName) {
         self.programNameTextField.text = self.program.header.programName;
     }
     self.currentHeight += self.programNameTextField.frame.size.height+4*PADDING;
-    
 }
 
 - (void)initSizeViewElements
@@ -223,7 +215,6 @@ const CGFloat PADDING = 5.0f;
 }
 
 #pragma mark Helpers
-
 
 -(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
 {
@@ -358,7 +349,6 @@ const CGFloat PADDING = 5.0f;
         //zip file
         [self setAttachmentParameter:uploadParameterTag withData:self.zipFileData forHTTPBody:body];
         
-        
         // close form
         [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
         // set request body
@@ -401,7 +391,6 @@ const CGFloat PADDING = 5.0f;
                         [self dismissView];
                     });
                     
-                    
                 } else {
                     
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
@@ -420,17 +409,13 @@ const CGFloat PADDING = 5.0f;
                         NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
                         [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
                     }
-                    
                 }
-                
-                
             }
         }];
         
         if (self.dataTask) {
             [self.dataTask resume];
         }
-        
         
         if(self.dataTask) {
             NSDebug(@"Connection Successful");
@@ -490,7 +475,5 @@ const CGFloat PADDING = 5.0f;
         self.navigationItem.rightBarButtonItem.enabled = YES;
     });
 }
-
-
 
 @end

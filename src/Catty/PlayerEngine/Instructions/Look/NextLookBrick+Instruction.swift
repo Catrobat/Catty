@@ -46,5 +46,4 @@
             spriteNode.executeFilter(image)
         }
     }
-    
 }

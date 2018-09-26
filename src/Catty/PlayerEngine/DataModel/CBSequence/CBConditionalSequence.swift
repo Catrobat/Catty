@@ -66,5 +66,4 @@ class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-    
 }

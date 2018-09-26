@@ -308,7 +308,6 @@ final class CBScheduler: CBSchedulerProtocol {
         for context in contexts {
             scheduleContext(context)
         }
-        
         runNextInstructionsGroup()
     }
     
@@ -318,12 +317,9 @@ final class CBScheduler: CBSchedulerProtocol {
             if context.state == .running || context.state == .waiting {
                 _broadcastHandler.terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context)
             }
-            
             scheduleContext(context)
         }
-        
         //runNextInstructionsGroup()
-        
     }
     
     func stopContext(_ context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool) {
@@ -350,7 +346,6 @@ final class CBScheduler: CBSchedulerProtocol {
         } else {
             _scheduledContexts[spriteName] = [CBScriptContext]()
         }
-        
         logger.debug("\(script) finished!")
     }
     
@@ -381,5 +376,4 @@ final class CBScheduler: CBSchedulerProtocol {
             CBScheduler.vibrateSerialQueue.isSuspended = false
         }
     }
-    
 }

@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "AudioManager.h"
 #import "CatrobatAudioPlayer.h"
 #import "SoundCache.h"
@@ -114,7 +113,6 @@
             player.volume = self.current_volume;
         }
     }
-    
 }
 
 - (void)changeVolumeByPercent:(CGFloat)volume forKey:(NSString*)key
@@ -125,7 +123,6 @@
             player.volume = self.current_volume;
         }
     }
-    
 }
 
 - (void)stopAllSounds

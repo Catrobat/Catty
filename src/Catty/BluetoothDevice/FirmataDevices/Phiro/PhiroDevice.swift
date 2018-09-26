@@ -84,8 +84,6 @@ class Phiro: FirmataDevice,PhiroProtocol {
         toneTimer = Timer.scheduledTimer(timeInterval: duration, target: self, selector: #selector(Phiro.cancelTone), userInfo: nil, repeats: false)
     }
     
-    
-    
     func moveLeftMotorForward(_ speed:Int){
         self.sendAnalogFirmataMessage(PIN_LEFT_MOTOR_FORWARD, value: self.percentToSpeed(speed))
     }
@@ -151,7 +149,6 @@ class Phiro: FirmataDevice,PhiroProtocol {
         if (percent >= 100) {
             return 255;
         }
-        
         return (Int) (Double(percent) * 2.55);
     }
     
@@ -242,7 +239,6 @@ class Phiro: FirmataDevice,PhiroProtocol {
         return phiroHelper.bottomRightSensor;
     }
     
-    
     //MARK:Firmata Delegate override
     override func didReceiveAnalogMessage(_ pin:Int,value:Int){
         print("ANALOG::\(pin):::\(value)")
@@ -250,6 +246,4 @@ class Phiro: FirmataDevice,PhiroProtocol {
         
         phiroHelper.didReceiveAnalogMessage(analogPin, value: value)
     }
-    
-    
 }

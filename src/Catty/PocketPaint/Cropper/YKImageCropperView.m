@@ -478,7 +478,6 @@ static CGSize minSize = {40, 40};
         self.image = blank;
         [self reset];
     }
-    
 }
 
 unsigned int getColorCodeForAutoCrop (NSUInteger byteIndex, unsigned char *imageData)

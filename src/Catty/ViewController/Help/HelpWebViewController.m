@@ -101,8 +101,6 @@
     _urlTitleLabel.textColor = [UIColor globalTintColor];
     _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
     _urlTitleLabel.alpha = 0.6f;
-    
-    
 }
 
 - (void)setupToolBar
@@ -143,7 +141,6 @@
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -172,8 +169,6 @@
     [super viewWillLayoutSubviews];
     
     self.touchHelperView.frame = CGRectMake(0.0f, CGRectGetHeight(self.view.bounds) - kToolbarHeight, CGRectGetWidth(self.view.bounds), kToolbarHeight);
-    
-    
 }
 
 - (void)dealloc
@@ -277,7 +272,6 @@
     return NO;
 }
 
-
 #pragma mark - Webview Navigation
 - (void)goBack:(id)sender
 {
@@ -366,7 +360,6 @@
     }];
 }
 
-
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
@@ -375,7 +368,6 @@
         }
     }
 }
-
 
 - (void)downloadFinishedWithURL:(NSURL *)url andProgramLoadingInfo:(ProgramLoadingInfo *)info
 {
@@ -432,7 +424,6 @@
     [self setProgress:(CGFloat)progress];
     
 }
-
 
 #pragma mark Rotation
 

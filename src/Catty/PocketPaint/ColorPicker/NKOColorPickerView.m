@@ -285,7 +285,6 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
     if (self->_gradientView.superview == nil){
         [self addSubview:self->_gradientView];
     }
-    
     return self->_gradientView;
 }
 
@@ -337,7 +336,6 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
     if (self->_crossHairs.superview == nil){
         [self insertSubview:self->_crossHairs aboveSubview:self.hueSatImage];
     }
-    
     return self->_crossHairs;
 }
 
@@ -357,12 +355,10 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
     if (self->_brightnessIndicator.superview == nil){
         [self insertSubview:self->_brightnessIndicator aboveSubview:self.gradientView];
     }
-    
     return self->_brightnessIndicator;
 }
 
 @end
-
 
 // NKOBrightnessView
 @interface NKOBrightnessView(){
@@ -426,7 +422,6 @@ CGFloat const NKOPickerViewCrossHairshWidthAndHeight    = 38.f;
 }
 
 @end
-
 
 //UIImage category
 @implementation UIImage(NKO)

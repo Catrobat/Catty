@@ -75,9 +75,7 @@
         [[DownloadImageCache sharedImageCache] addImage:img withName:[imageURL absoluteString]];
         
         completion(img);
-        
     });
-    
     return placeholderImage;
 }
 
@@ -290,8 +288,5 @@
     
     return flippedImage;
 }
-
-
-
 
 @end

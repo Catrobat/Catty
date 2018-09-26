@@ -37,7 +37,6 @@
 
 @implementation Brick
 
-
 #pragma mark - NSObject
 
 - (id)init
@@ -155,7 +154,6 @@
     return [self mutableCopyWithContext:context AndErrorReporting:YES];
 }
 
-
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
@@ -217,6 +215,5 @@
     
     return resources;
 }
-
 
 @end

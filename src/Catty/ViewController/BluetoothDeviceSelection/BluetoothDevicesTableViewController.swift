@@ -170,5 +170,4 @@ class BluetoothDevicesTableViewController: UITableViewController {
             self.scenePresenterVC.checkResourcesAndPushViewControllerTo(navigationController: self.navigationController!)
         }
     }
-    
 }

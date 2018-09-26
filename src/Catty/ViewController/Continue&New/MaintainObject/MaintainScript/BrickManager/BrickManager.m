@@ -306,6 +306,7 @@
         return nil;
     }
 }
+
 - (NSArray*)loopBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script andBrick:(Brick *)brick
 {
     if ([brick isKindOfClass:[LoopBeginBrick class]]) {
@@ -546,7 +547,6 @@
     }
 }
 
-
 #pragma mark RemovingBrick from CollectionView
 
 - (NSArray*)getIndexPathsForRemovingBricks:(NSIndexPath*)indexPath andBrick:(Brick*)brick
@@ -677,7 +677,6 @@
         [brick removeFromScript];
         return @[indexPath];
     }
-    
 }
 
 @end

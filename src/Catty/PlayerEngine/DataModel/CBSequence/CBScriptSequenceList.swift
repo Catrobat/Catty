@@ -42,5 +42,4 @@ final class CBScriptSequenceList : CBSequenceVisitProtocol {
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-    
 }

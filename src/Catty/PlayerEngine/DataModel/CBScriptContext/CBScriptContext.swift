@@ -124,7 +124,6 @@ final class CBWhenScriptContext: CBScriptContext {
         super.init(script: whenScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
                    instructionList: instructionList)
     }
-    
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -145,7 +144,6 @@ final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextP
         super.init(script: broadcastScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
                    instructionList: instructionList)
     }
-    
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -161,5 +159,4 @@ final class CBStartScriptContext: CBScriptContext {
         super.init(script: startScript, spriteNode: spriteNode, formulaInterpreter: formulaInterpreter, state: state,
                    instructionList: instructionList)
     }
-    
 }

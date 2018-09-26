@@ -9,8 +9,6 @@
 - (id)ym_optionOrDefaultForKey:(NSString*)optionKey;
 @end
 //==================================================================================================
-
-
 //
 // Convenient category method to find actual ViewController that contains a view
 //
@@ -19,8 +17,6 @@
 - (id) traverseResponderChainForUIViewController;
 @end
 //==================================================================================================
-
-
 //
 //  KNSemiModalViewController.h
 //  KNSemiModalViewController

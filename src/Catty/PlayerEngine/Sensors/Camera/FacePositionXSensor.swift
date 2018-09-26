@@ -53,5 +53,4 @@ class FacePositionXSensor: DeviceSensor {
     func formulaEditorSection(for spriteObject: SpriteObject) -> FormulaEditorSection {
         return .device(position: type(of: self).position)
     }
-    
 }

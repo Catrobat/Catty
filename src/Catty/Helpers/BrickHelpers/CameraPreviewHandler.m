@@ -30,7 +30,6 @@
 
 @end
 
-
 @implementation CameraPreviewHandler
 
 NSString* const camAccessibility = @"camLayer";
@@ -54,7 +53,6 @@ static CameraPreviewHandler* shared = nil;
     if (self) {
         [self reset];
     }
-    
     return self;
 }
 
@@ -85,7 +83,6 @@ static CameraPreviewHandler* shared = nil;
         [self startCameraPreview];
     }
 }
-
 
 - (void)startCameraPreview
 {

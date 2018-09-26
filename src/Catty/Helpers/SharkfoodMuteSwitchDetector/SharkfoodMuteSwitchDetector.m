@@ -60,13 +60,10 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
 
 @end
 
-
-
 void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clientData){
     SharkfoodMuteSwitchDetector* detecotr = (__bridge SharkfoodMuteSwitchDetector*)clientData;
     [detecotr complete];
 }
-
 
 @implementation SharkfoodMuteSwitchDetector
 
@@ -118,7 +115,6 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     [self performSelector:@selector(loopCheck) withObject:nil afterDelay:1];
 }
 
-
 - (void)complete{
     self.isPlaying = NO;
     NSTimeInterval elapsed = [NSDate timeIntervalSinceReferenceDate] - self.interval;
@@ -139,7 +135,6 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
         AudioServicesPlaySystemSound(self.soundId);
     }
 }
-
 
 // For reference only, this DTOR will never be invoked.
 

@@ -33,5 +33,4 @@
         
         return { spriteNode.isHidden = true }
     }
-    
 }

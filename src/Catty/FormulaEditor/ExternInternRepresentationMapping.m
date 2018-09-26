@@ -44,7 +44,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
     
     return self;
-    
 }
 
 - (NSMutableDictionary *)externInternMapping
@@ -152,7 +151,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
     
     return MAPPING_NOT_FOUND;
-    
 }
 
 - (int)getExternTokenStartOffset:(int)externIndex withInternOffsetTo:(int)internOffsetTo
@@ -171,7 +169,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
     return -1;
 }
-
 
 - (int)searchDownIn:(NSMutableDictionary *)mapping withBeginIndex:(int)index
 {
@@ -199,6 +196,5 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
     return MAPPING_NOT_FOUND;
 }
-
 
 @end

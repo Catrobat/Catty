@@ -397,7 +397,6 @@ static pthread_mutex_t variablesLock;
     if([vars count] > 0){
         [vars addObjectsFromArray:lists];
     }
-    
     return vars;
 }
 

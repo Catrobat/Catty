@@ -22,7 +22,6 @@
 
 #import "TimerLabel.h"
 
-
 #define kDefaultTimeFormat  @"mm:ss"
 #define kDefaultFireIntervalNormal  0.1
 #define kDefaultFireIntervalHighUse  0.02
@@ -162,13 +161,11 @@
     return _timeLabel;
 }
 
-
 - (void)addTimeCountedByTime:(NSTimeInterval)timeToAdd
 {
     [self setCountDownTime:timeToAdd + timeUserValue];
     [self updateLabel];
 }
-
 
 - (NSTimeInterval)getTimeCounted
 {
@@ -182,7 +179,6 @@
 }
 
 #pragma mark - Timer Control Method
-
 
 - (void)start{
     
@@ -238,14 +234,12 @@
     [self updateLabel];
 }
 
-
 #pragma mark - Private method
 
 - (void)setup{
     date1970 = [NSDate dateWithTimeIntervalSince1970:0];
     [self updateLabel];
 }
-
 
 - (void)updateLabel{
     
@@ -318,7 +312,6 @@
     
     NSString *strDate = [self.dateFormatter stringFromDate:timeToShow];
     self.timeLabel.text = strDate;
-    
 }
 
 @end

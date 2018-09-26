@@ -24,7 +24,6 @@
 #import "BDKNotifyHUD.h"
 #import "UndoManager.h"
 
-
 #define kControlSize 45.0f
 
 @implementation ResizeViewManager
@@ -62,8 +61,6 @@
     [self.resizeViewer addGestureRecognizer:self.takeView];
     self.takeView.enabled = NO;
 }
-
-
 
 - (void)handleRotate:(UIRotationGestureRecognizer *)recognizer {
     
@@ -134,7 +131,6 @@
                                           self.resizeViewer.frame.size.width,
                                           self.resizeViewer.frame.size.height);
             
-            
             CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(), rectangle);
             CGContextAddEllipseInRect(UIGraphicsGetCurrentContext(), rectangle);
             CGContextStrokePath(UIGraphicsGetCurrentContext());
@@ -170,12 +166,10 @@
         default:
             break;
     }
-    
 }
 
 -(UIImage*) drawText:(NSString*)string
 {
-    
     CGSize stringBoundingBox = [string sizeWithAttributes:self.canvas.textFontDictionary];
     self.resizeViewer.frame = CGRectMake(self.resizeViewer.frame.origin.x, self.resizeViewer.frame.origin.y, stringBoundingBox.width, stringBoundingBox.height);
     
@@ -217,8 +211,6 @@
     }
 }
 
-
-
 - (void)takeImage:(UITapGestureRecognizer *)recognizer
 {
     if (self.canvas.activeAction == stamp) {
@@ -254,7 +246,6 @@
                 //        [self updateTransform:self.saveView transform:0];
                 //        [self updateTransform:self.resizeImageView transform:-self.rotation];
                 return;
-                
             }
         }
     }
@@ -277,7 +268,6 @@
     [self showUserAction];
     self.canvas.saveView.backgroundColor = color;
 }
-
 
 - (void)showUserAction
 {
@@ -318,8 +308,6 @@
     [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
 }
 
-
-
 #pragma mark - resize Delegate
 - (void)userResizableViewDidBeginEditing:(SPUserResizableView *)userResizableView
 {
@@ -329,6 +317,5 @@
 {
     
 }
-
 
 @end

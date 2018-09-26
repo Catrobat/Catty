@@ -34,19 +34,15 @@ class CBStack<T> {
     
     private var top: LLNode<T>! = LLNode<T>()
     
-    
     //TODO: Add count computed property
-    
     
     //push an item onto the stack
     func push(_ key: T) {
-        
         
         //check for the instance
         if (top == nil) {
             top = LLNode<T>()
         }
-        
         
         //determine if the head node is populated
         if (top.key == nil){
@@ -59,17 +55,11 @@ class CBStack<T> {
             let childToUse: LLNode<T> = LLNode<T>()
             childToUse.key = key
             
-            
             //set newly created item at the top
             childToUse.next = top;
             top = childToUse;
-            
-            
         }
-        
     }
-    
-    
     
     //remove an item from the stack
     func pop() -> T? {
@@ -84,7 +74,6 @@ class CBStack<T> {
         //retrieve and queue the next item
         let queueitem: T? = top.key!
         
-        
         //reset the top value
         if let nextitem = top.next {
             top = nextitem
@@ -93,16 +82,11 @@ class CBStack<T> {
             top = nil
         }
         
-        
         return queueitem
-        
     }
-    
-    
     
     //retrieve the top most item
     func peek() -> T? {
-        
         
         //determine if the key or instance exist
         if let topitem: T = self.top?.key {
@@ -112,11 +96,7 @@ class CBStack<T> {
         else {
             return nil
         }
-        
-        
     }
-    
-    
     
     //check for the presence of a value
     func isEmpty() -> Bool {
@@ -129,16 +109,12 @@ class CBStack<T> {
         else {
             return true
         }
-        
     }
-    
-    
     
     //determine the count of the queue
     func count() -> Int {
         
         var x: Int = 0
-        
         
         //determine if the key or instance exist
         let topitem: T? = self.top?.key
@@ -146,7 +122,6 @@ class CBStack<T> {
         if (topitem == nil) {
             return 0
         }
-        
         
         var current: LLNode = top
         
@@ -157,10 +132,6 @@ class CBStack<T> {
             current = current.next!;
             x += 1
         }
-        
         return x
-        
     }
-    
-    
 }

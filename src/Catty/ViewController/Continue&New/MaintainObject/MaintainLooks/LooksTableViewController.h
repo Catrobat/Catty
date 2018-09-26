@@ -35,7 +35,6 @@
 - (void)addMediaLibraryLoadedImage:(UIImage*)image withName:(NSString *)name;
 @end
 
-
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;

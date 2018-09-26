@@ -28,14 +28,12 @@
 #import "JNKeychain.h"
 #import "RegisterViewController.h"
 #import "LoadingView.h"
-
 #import "KeychainUserDefaultsDefines.h"
 
 #define usernameTag @"registrationUsername"
 #define passwordTag @"registrationPassword"
 #define registrationEmailTag @"registrationEmail"
 #define registrationCountryTag @"registrationCountry"
-
 #define tokenTag @"token"
 #define statusCodeTag @"statusCode"
 #define answerTag @"answer"
@@ -177,7 +175,6 @@
     [super viewWillDisappear:animated];
 }
 
-
 -(void)textFieldDidBeginEditing:(UITextField *)sender
 {
     //    if  (self.view.frame.origin.y >= 0)
@@ -211,7 +208,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 -(BOOL)stringContainsSpace:(NSString *)checkString
 {
     NSRange whiteSpaceRange = [checkString rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -230,7 +226,6 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:checkString];
 }
-
 
 -(BOOL)validPassword:(NSString*)password
 {
@@ -380,7 +375,6 @@
         }
     }];
     
-    
     if (self.dataTask) {
         [self.dataTask resume];
         self.loginButton.enabled = NO;
@@ -390,7 +384,6 @@
         [self hideLoadingView];
         [Util defaultAlertForNetworkError];
     }
-    
 }
 
 -(void)handleLoginResponseWithData:(NSData *)data andResponse:(NSURLResponse *)response
@@ -453,7 +446,6 @@
         // Initialize Session
         _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
     }
-    
     return _session;
 }
 

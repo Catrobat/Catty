@@ -43,5 +43,4 @@ final class CBOperationSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-    
 }

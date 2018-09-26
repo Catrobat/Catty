@@ -16,5 +16,4 @@
 - (void)setConstrain:(CGSize)size;
 //- (UIColor *)colorAtPoint:(CGPoint)pixelPoint fromImage:(UIImage *)image;
 
-
 @end

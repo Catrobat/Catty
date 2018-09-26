@@ -25,5 +25,4 @@ protocol CBFrontendProtocol {
     var program: Program? { get }
     func computeSequenceListForScript(_ script : Script) -> CBScriptSequenceList
     func addSequenceFilter(_ sequenceFilter: CBFrontendSequenceFilterProtocol)
-    
 }

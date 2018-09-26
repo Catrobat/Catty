@@ -116,7 +116,6 @@
             UIColor *color = [UIColor colorWithHue:(i-4) / (float)colorCount saturation:1.0 brightness:1.0 alpha:1.0];
             [self.colorArray addObject:color];
         }
-        
     }
     
     if (self.view.frame.size.height > self.view.frame.size.width) {
@@ -155,7 +154,6 @@
     }
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(colorGridTapped:)];
     [self.standardColors addGestureRecognizer:recognizer];
-    
 }
 
 - (void)setupRGBAView
@@ -169,7 +167,6 @@
 
 - (void)setupRedSlider
 {
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.05f-7, 40, 10)];
     label.text = kLocalizedPaintRed;
     label.textColor = [UIColor redColor];
@@ -192,12 +189,10 @@
     [self.rgbaSliderView addSubview:label];
     [self.rgbaSliderView addSubview:self.redLabel];
     [self.rgbaSliderView addSubview:self.redSlider];
-    
 }
 
 - (void)setupGreenSlider
 {
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.15f-7, 40, 10)];
     label.text = kLocalizedPaintGreen;
     label.textColor = [UIColor greenColor];
@@ -220,8 +215,8 @@
     [self.rgbaSliderView addSubview:label];
     [self.rgbaSliderView addSubview:self.greenLabel];
     [self.rgbaSliderView addSubview:self.greenSlider];
-    
 }
+
 - (void)setupBlueSlider
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.25f-7, 40, 10)];
@@ -274,7 +269,6 @@
     [self.rgbaSliderView addSubview:label];
     [self.rgbaSliderView addSubview:self.opacityLabel];
     [self.rgbaSliderView addSubview:self.opacitySlider];
-    
 }
 
 - (void)setupPicker
@@ -305,7 +299,6 @@
     
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -321,6 +314,7 @@
     self.red = value/255.0f;
     [self updatePreview];
 }
+
 - (void)greenAction:(id)sender
 {
     UISlider *slider = (UISlider*)sender;
@@ -330,6 +324,7 @@
     self.green = value/255.0f;
     [self updatePreview];
 }
+
 - (void)blueAction:(id)sender
 {
     UISlider *slider = (UISlider*)sender;
@@ -339,6 +334,7 @@
     self.blue = value/255.0f;
     [self updatePreview];
 }
+
 - (void)opacityAction:(id)sender
 {
     UISlider *slider = (UISlider*)sender;
@@ -372,7 +368,6 @@
         default:
             break;
     }
-    
 }
 
 - (void) colorGridTapped:(UITapGestureRecognizer *)recognizer {
@@ -434,7 +429,6 @@
     [self.rgbaView bringSubviewToFront:self.colorPicker];
 }
 
-
 /*
  #pragma mark - Navigation
  
@@ -449,8 +443,5 @@
 - (IBAction)closeAction:(UIBarButtonItem *)sender {
     [self.delegate closeColorPicker:self];
 }
-
-
-
 
 @end

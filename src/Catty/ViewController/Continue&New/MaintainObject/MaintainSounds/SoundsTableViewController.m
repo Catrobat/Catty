@@ -237,7 +237,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-
 -(BOOL)checkIfSoundFolderExists{
     CBFileManager* manager = [CBFileManager sharedManager];
     NSString * path = [NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName];
@@ -245,7 +244,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return YES;
     }
     return NO;
-    
 }
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound
@@ -440,7 +438,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             return;
         }
         [self playSound:imageCell andIndexPath:indexPath];
-        
     }
 }
 
@@ -516,8 +513,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
     }
     [self playSound:imageCell andIndexPath:indexPath];
-    
-    
 }
 
 -(void)playSound:(UITableViewCell<CatrobatImageCell>*)imageCell andIndexPath:(NSIndexPath*)indexPath
@@ -835,7 +830,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
        }] build]
      showWithController:self];
 }
-
 
 - (void)saveSound
 {

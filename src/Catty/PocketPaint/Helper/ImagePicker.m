@@ -113,7 +113,6 @@
 - (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
 {
     
-    
     BOOL state = NO;
     
     if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
@@ -166,6 +165,5 @@
         [Util alertWithText:pickerType == UIImagePickerControllerSourceTypeCamera ? kLocalizedNoCamera : kLocalizedImagePickerSourceNotAvailable];
     }
 }
-
 
 @end

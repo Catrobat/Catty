@@ -24,13 +24,11 @@ import Foundation
 import CoreBluetooth
 import BluetoothHelper
 
-
 open class BluetoothDevice:Peripheral {
     
     init(peripheral:Peripheral) {
         super.init(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi)
     }
-    
     
     open func getName() -> String{
         return "BluetoothDevice"
@@ -40,9 +38,8 @@ open class BluetoothDevice:Peripheral {
         return CBUUID.init(string: "TEST")
     }
     //
-    //    override public func peripheral(peri: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-    //        super.peripheral(peri, didDiscoverCharacteristicsForService: service, error: error)
+    //override public func peripheral(peri: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+    //super.peripheral(peri, didDiscoverCharacteristicsForService: service, error: error)
     //    }
     
 }
-

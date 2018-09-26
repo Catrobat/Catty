@@ -34,7 +34,6 @@ import Foundation
                 return
             }
             
-            
             switch (self.phiroMotor()) {
             case .Left:
                 phiro.moveLeftMotorBackward(speedValue);
@@ -50,5 +49,4 @@ import Foundation
             context.state = .runnable
         }
     }
-    
 }

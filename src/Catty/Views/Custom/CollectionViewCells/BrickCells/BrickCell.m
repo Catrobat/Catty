@@ -632,7 +632,6 @@
                              [self insertAnimate:brick.animateInsertBrick];
                          }
                      }];
-    
 }
 
 #pragma mark - BrickCellData

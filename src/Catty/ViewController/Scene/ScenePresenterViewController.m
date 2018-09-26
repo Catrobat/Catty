@@ -145,7 +145,6 @@
 #pragma mark View Setup
 - (void)setUpLabels
 {
-    
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
                                kLocalizedRestart,
                                kLocalizedContinue,
@@ -334,7 +333,6 @@
         [[FlashHelper sharedFlashHandler] pause];
         [[BluetoothService sharedInstance] pauseBluetoothDevice];
     });
-    
     [self.scene pauseScheduler];
 }
 
@@ -347,7 +345,6 @@
             [[FlashHelper sharedFlashHandler] resume];
         }
     });
-    
     [self.scene resumeScheduler];
 }
 
@@ -391,7 +388,6 @@
         [self stopProgram];
         previousScene.userInteractionEnabled = YES;
     });
-    
     
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
@@ -554,7 +550,6 @@
         view.paused=YES;
     }];
 }
-
 
 #pragma mark - Pan Gesture Handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
@@ -766,7 +761,5 @@
 - (void)hideMenuRecordButton {
     self.menuRecordButton.hidden = YES;
 }
-
-
 
 @end

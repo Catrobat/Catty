@@ -20,18 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <Foundation/Foundation.h>
-
 
 #define kLogLevel     LDEBUG
 #define kAbortAtError YES
 
-
 // NSDebug(...), NSInfo(...), NSWarn(...), NSError(...), NSLogError(error) defined in Prefix header. Use these Macros!
 
 @interface Logger : NSObject
-
 
 +(void)debug:(NSString*)format, ...;
 +(void)info:(NSString*)format, ...;

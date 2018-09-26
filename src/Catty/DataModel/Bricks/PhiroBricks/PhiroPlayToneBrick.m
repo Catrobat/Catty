@@ -30,7 +30,6 @@
     return [[[[kLocalizedPhiroPlayTone stringByAppendingString:@"%@\n"] stringByAppendingString:kLocalizedPhiroPlayDuration] stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroSecondsToPlay];
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {

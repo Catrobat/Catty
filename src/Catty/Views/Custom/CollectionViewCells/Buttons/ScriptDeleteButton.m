@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "ScriptDeleteButton.h"
 
 @implementation ScriptDeleteButton
@@ -36,6 +35,5 @@
     }
     return self;
 }
-
 
 @end

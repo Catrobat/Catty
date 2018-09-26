@@ -86,4 +86,5 @@
 {
     return kBluetoothArduino|[self.pin getRequiredResources]|[self.value getRequiredResources];
 }
+
 @end

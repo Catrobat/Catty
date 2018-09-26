@@ -154,7 +154,6 @@ final class CBBackend: CBBackendProtocol {
                 } else {
                     context.jump(numberOfInstructions: numOfBodyInstructions + 1) // includes loop end instr.!
                 }
-                
             }
             context.state = .runnable
         }
@@ -172,5 +171,4 @@ final class CBBackend: CBBackendProtocol {
         instructionList += loopEndInstruction
         return instructionList
     }
-    
 }

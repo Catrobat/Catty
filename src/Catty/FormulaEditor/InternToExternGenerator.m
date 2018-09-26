@@ -221,7 +221,6 @@
     }
 }
 
-
 - (BOOL)appendWithWhitespace:(InternToken *)currenToken andNextToken:(InternToken *)nextToken
 {
     if(currenToken == nil)

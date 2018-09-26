@@ -233,9 +233,7 @@
                 break;
             default:
                 break;
-                
         }
-        
         [functionInternTokenList addObject:tempSearchToken];
         
     } while (tempSearchToken.internTokenType != TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE || nestedFunctionsCounter != 0);
@@ -372,7 +370,6 @@
                 [currentParameterInternTokenList addObject:tempSearchToken];
                 break;
         }
-        
         searchIndex++;
         
     } while (tempSearchToken.internTokenType != TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE || nestedFunctionsCounter != 0);
@@ -380,7 +377,6 @@
     if ([currentParameterInternTokenList count] > 0) {
         [functionParameterInternTokenList addObject:currentParameterInternTokenList];
     }
-    
     return functionParameterInternTokenList;
 }
 
@@ -390,7 +386,6 @@
     if (functionList == nil || [functionList count] != [internTokenList count]) {
         return false;
     }
-    
     return true;
 }
 
@@ -399,7 +394,6 @@
     if (internTokens == nil || [internTokens count] == 0) {
         [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
-    
     return ((InternToken*)[internTokens objectAtIndex:0]).internTokenType;
 }
 
@@ -414,7 +408,6 @@
     if (firstInternTokenType == TOKEN_TYPE_PERIOD) {
         return true;
     }
-    
     return false;
 }
 
@@ -431,7 +424,6 @@
     if (firstInternTokenType == TOKEN_TYPE_FUNCTION_NAME) {
         return true;
     }
-    
     return false;
 }
 
@@ -478,8 +470,6 @@
     [replaceTokenList addObject:rightNumber];
     
     return replaceTokenList;
-    
-    
 }
 
 + (InternToken*)insertIntoNumberToken:(InternToken*)numberTokenToBeModified
@@ -521,7 +511,6 @@
         if (index < functionParameterCount - 1) {
             [replacedParametersFunction addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
         }
-        
     }
     
     [replacedParametersFunction addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
@@ -647,7 +636,6 @@
             default:
                 break;
         }
-        
     }
     return true;
 }

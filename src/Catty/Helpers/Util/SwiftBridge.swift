@@ -40,5 +40,4 @@ import Siren
         let siren = Siren.shared
         siren.checkVersion(checkType: .daily)
     }
-    
 }

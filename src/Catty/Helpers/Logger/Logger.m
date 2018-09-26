@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 typedef enum  {
     LDEBUG,
     LINFO,
@@ -34,7 +33,6 @@ typedef enum  {
 @property (nonatomic, strong) NSDictionary* loggerProperties;
 
 @end
-
 
 @implementation Logger
 
@@ -57,7 +55,6 @@ static Logger* instance;
     }
     return self;
 }
-
 
 +(void) debug:(NSString*)format, ...
 {
@@ -101,7 +98,6 @@ static Logger* instance;
     }
 }
 
-
 - (void)logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
 {
     if(level >= self.logLevel) {
@@ -126,7 +122,6 @@ static Logger* instance;
     return level >= classLogLevel;
 }
 
-
 - (NSString*)classNameForCaller
 {
     NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:3];
@@ -137,7 +132,6 @@ static Logger* instance;
         return [array objectAtIndex:5];
     }
     return [array objectAtIndex:4];
-    
 }
 
 - (NSString*)stringForLogLevel:(LogLevel)level{

@@ -118,6 +118,7 @@ class Firmata: FirmataProtocol {
         print("reportVersion bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
+    
     /*Report Version
      * -------------------------------
      * 0  START_SYSEX 0xF0
@@ -209,7 +210,6 @@ class Firmata: FirmataProtocol {
         print("servoConfig bytes in hex \(newData.description)")
         delegate?.sendData(newData)
     }
-    
     
     /* servo config
      * --------------------
@@ -304,7 +304,6 @@ class Firmata: FirmataProtocol {
         
     }
     
-    
     /* WriteDigitalState
      * -------------------------------
      * 0  DIGITAL_MESSAGE (0x90) + port
@@ -358,8 +357,6 @@ class Firmata: FirmataProtocol {
         
     }
     
-    
-    
     /* Analog Reporting
      * -------------------------------
      * 0  REPORT_ANALOG (0xC0) + pin
@@ -379,8 +376,6 @@ class Firmata: FirmataProtocol {
         
         delegate?.sendData(newData)
     }
-    
-    
     
     /* Digital Pin Reporting
      * -------------------------------
@@ -516,7 +511,6 @@ class Firmata: FirmataProtocol {
     //    [currentlyDisplayingService write:dataToSend];
     //    }
     
-    
     //MARK: RECEIVE
     /** Received data */
     func receiveData(_ data:Data){
@@ -607,7 +601,6 @@ class Firmata: FirmataProtocol {
             }
         }
     }
-    
     
     private func processInputData(_ data:[UInt8], length:Int) {
         
@@ -857,7 +850,6 @@ class Firmata: FirmataProtocol {
             state = PinState.high
             break
         }
-        
         return state
     }
     
@@ -899,7 +891,6 @@ class Firmata: FirmataProtocol {
                 addzeroes -= 1
             }
         }
-        
         return str
     }
 }

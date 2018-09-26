@@ -38,25 +38,15 @@ typedef enum{
 @interface TimerLabel : UILabel;
 
 @property (nonatomic, weak) id<TimerLabelDelegate> delegate;
-
 @property (nonatomic,copy) NSString *timeFormat;
-
-
 @property (nonatomic,strong) UILabel *timeLabel;
-
-
 @property (assign) TimerLabelType timerType;
-
 @property (assign,readonly) BOOL counting;
-
-
 @property (assign) BOOL resetTimerAfterFinish;
-
 
 - (id)initWithTimerType:(TimerLabelType)theType;
 - (id)initWithLabel:(UILabel*)theLabel andTimerType:(TimerLabelType)theType;
 - (id)initWithLabel:(UILabel*)theLabel;
-
 
 - (void)start;
 #if NS_BLOCKS_AVAILABLE
@@ -73,7 +63,4 @@ typedef enum{
 
 - (NSTimeInterval)getTimeCounted;
 
-
 @end
-
-

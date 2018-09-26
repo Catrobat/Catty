@@ -285,7 +285,6 @@ open class FlexFormatter: LogFormatter {
         return logMessage
     }
     
-    
     open class func logFormatterForString(_ formatString: String) -> LogFormatter {
         var formatSpec = [FlexFormatterPart]()
         let parts = formatString.uppercased().components(separatedBy: CharacterSet.whitespaces)
@@ -320,7 +319,6 @@ open class FlexFormatter: LogFormatter {
         }
         return "FlexFormatter with \(desc)"
     }
-    
 }
 
 //
@@ -342,8 +340,6 @@ public protocol LogLocation {
     
     func description() -> String
 }
-
-
 
 open class ConsoleLocation: LogLocation {
     var enabled = true
@@ -398,7 +394,6 @@ open class FileLocation: LogLocation {
         }
     }
     
-    
     init(filename: String) {
         self.filename = filename
         self.setDirectory()
@@ -423,7 +418,6 @@ open class FileLocation: LogLocation {
                 handle.write(data)
             }
         }
-        
     }
     
     func setDirectory() {
@@ -478,7 +472,6 @@ open class FileLocation: LogLocation {
     }
 }
 
-
 //
 //  CBLogger.swift
 //  Swell
@@ -486,7 +479,6 @@ open class FileLocation: LogLocation {
 //  Created by Hubert Rabago on 6/20/14.
 //  Copyright (c) 2014 Minute Apps LLC. All rights reserved.
 //
-
 
 open class CBLogger {
     
@@ -511,7 +503,6 @@ open class CBLogger {
         Swell.registerLogger(self);
     }
     
-    
     open func log<T>(_ logLevel: LogLevel,
                      message: @autoclosure () -> T,
                      filename: String? = #file, line: Int? = #line,  function: String? = #function) {
@@ -523,7 +514,6 @@ open class CBLogger {
             }
         }
     }
-    
     
     //**********************************************************************
     // Main log methods
@@ -607,10 +597,8 @@ open class CBLogger {
         log(.SEVERE, filename: filename, line: line, function: function, fn: fn)
     }
     
-    
     //**********************************************************************
     // Methods to expose this functionality to Objective C code
-    
     
     class func getLogger(_ name: String) -> CBLogger {
         return CBLogger(name: name);
@@ -641,7 +629,6 @@ open class CBLogger {
     }
 }
 
-
 //
 //  LogSelector.swift
 //  Swell
@@ -649,7 +636,6 @@ open class CBLogger {
 //  Created by Hubert Rabago on 7/2/14.
 //  Copyright (c) 2014 Minute Apps LLC. All rights reserved.
 //
-
 
 /// Implements the logic for determining which loggers are enabled to actually log anything.
 /// The rules used by this are:
@@ -749,10 +735,7 @@ open class LogSelector {
         }
         return result
     }
-    
-    
 }
-
 
 //
 //  Swell.swift
@@ -761,7 +744,6 @@ open class LogSelector {
 //  Created by Hubert Rabago on 6/26/14.
 //  Copyright (c) 2014 Minute Apps LLC. All rights reserved.
 //
-
 
 struct LoggerConfiguration {
     var name: String
@@ -782,11 +764,8 @@ struct LoggerConfiguration {
     }
 }
 
-
-
 // We declare this here because there isn't any support yet for class var / class let
 let globalSwell = Swell();
-
 
 open class Swell {
     
@@ -814,8 +793,6 @@ open class Swell {
         
         readConfigurationFile()
     }
-    
-    
     
     //========================================================================================
     // Global/convenience log methods used for quick logging
@@ -878,12 +855,10 @@ open class Swell {
         return globalSwell.getLogger(name);
     }
     
-    
     /// Turns off all logging.
     open class func disableLogging() {
         globalSwell.disableLogging()
     }
-    
     
     //====================================================================================================
     // Internal methods serving the public methods
@@ -952,7 +927,6 @@ open class Swell {
         return result
     }
     
-    
     //====================================================================================================
     // Methods for managing the configurations from the plist file
     
@@ -997,14 +971,10 @@ open class Swell {
                         config.locations = spec.locations
                     }
                 }
-                
             }
         }
-        
         return config;
     }
-    
-    
     
     //====================================================================================================
     // Methods for reading the Swell.plist file
@@ -1066,11 +1036,8 @@ open class Swell {
                     selector.disableRule = rule
                 }
             }
-            
         }
-        
     }
-    
     
     /// Specifies or modifies the configuration of a logger.
     /// If any aspect of the configuration was not provided, and there is a pre-existing value for it,
@@ -1112,7 +1079,6 @@ open class Swell {
         applyLoggerConfiguration(loggerName, configuration: newConfiguration)
     }
     
-    
     /// Store the configuration given for the specified logger.
     /// If the logger already exists, update its configuration to reflect what's in the logger.
     
@@ -1136,9 +1102,7 @@ open class Swell {
                 logger.locations += configuration.locations
             }
         }
-        
     }
-    
     
     func readLoggerPList(_ loggerName: String, map: Dictionary<String, AnyObject>) -> LoggerConfiguration {
         var configuration = LoggerConfiguration(name: loggerName)
@@ -1172,10 +1136,8 @@ open class Swell {
         if let value: AnyObject = item {
             configuration.locations = getConfiguredLocations(configuration, item: value, map: map);
         }
-        
         return configuration
     }
-    
     
     func getConfiguredQuickFormatter(_ configuration: LoggerConfiguration, item: AnyObject) -> LogFormatter? {
         if let formatString: String = item as? String {
@@ -1238,7 +1200,6 @@ open class Swell {
                 return result
             }
         }
-        
         return nil;
     }
     
@@ -1256,9 +1217,4 @@ open class Swell {
         }
         return result
     }
-    
-    
-    
 }
-
-

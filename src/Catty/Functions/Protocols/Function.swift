@@ -100,7 +100,6 @@ extension Function {
         }
         return ""
     }
-    
 }
 
 protocol DoubleFunction: Function {

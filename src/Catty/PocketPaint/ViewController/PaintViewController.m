@@ -138,7 +138,6 @@
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 }
             }
-            
         }
         // reenable swipe back gesture
         if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -168,8 +167,6 @@
     }
 }
 
-
-
 #pragma mark initView
 
 - (void)setupCanvas
@@ -181,7 +178,6 @@
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
     self.view.backgroundColor = [UIColor whiteColor];
     self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-    
     
     self.helper = [[UIView alloc] initWithFrame:rect];
     //    self.saveView.backgroundColor = [UIColor whiteColor];
@@ -240,7 +236,6 @@
 
 - (void)setupGestures
 {
-    
     self.drawGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(draw:)];
     self.drawGesture.delegate = self;
     [self.view addGestureRecognizer:self.drawGesture];
@@ -263,10 +258,7 @@
     self.fillRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.fillRecognizer];
     self.fillRecognizer.enabled = NO;
-    
-    
 }
-
 
 - (void)setupZoom
 {
@@ -585,25 +577,22 @@
         default:
             break;
     }
-    
 }
 
 #pragma mark undo/redo
 
 - (void)undoAction
 {
-    
     if (self.undoManager.canUndo) {
         [self.undoManager undo];
         //    NSLog(@"undo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
-    
 }
+
 - (void)redoAction
 {
-    
     if (self.undoManager.canRedo) {
         [self.undoManager redo];
         //     NSLog(@"redo");
@@ -639,7 +628,6 @@
     } else {
         [Util alertWithTitle:kLocalizedInformation andText:kLocalizedPaintNoCrop];
     }
-    
 }
 
 - (void)initPipette
@@ -703,7 +691,6 @@
     } else {
         [self resizeInitAction];
     }
-    
 }
 
 - (void)stampAction
@@ -711,7 +698,6 @@
     self.resizeViewManager.gotImage = NO;
     self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
-
 
 #pragma mark change color/thickness
 
@@ -736,7 +722,6 @@
     
     [self presentSemiViewController:bvc];
 }
-
 
 #pragma mark change text
 
@@ -763,7 +748,6 @@
     [self presentViewController:tvc animated:YES completion:nil];
 }
 
-
 #pragma mark tool helpers
 
 - (void)setImagePickerImage:(UIImage*)image
@@ -786,6 +770,7 @@
     self.resizeViewManager.resizeViewer.contentMode = UIViewContentModeTop;
     [self.resizeViewManager showResizeView];
 }
+
 #pragma mark actionPicker delegate
 
 - (void)dismissPickerControl:(LCTableViewPickerControl*)view
@@ -859,7 +844,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark actionSheetActions
 
 - (void)saveAction
@@ -890,7 +874,6 @@
             }
         }];
     });
-    
 }
 
 - (void)showSavedView
@@ -906,7 +889,6 @@
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
-
 - (void)newCanvasAction
 {
     [[[[[AlertControllerBuilder alertWithTitle:kLocalizedPaintNewCanvas message:kLocalizedPaintAskNewCanvas]
@@ -920,7 +902,6 @@
        }] build]
      showWithController:self];
 }
-
 
 #pragma mark Getter
 
@@ -955,8 +936,6 @@
     return UIStatusBarStyleLightContent;
 }
 
-
-
 #pragma mark dealloc
 
 - (void)dealloc
@@ -965,6 +944,5 @@
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
 }
-
 
 @end

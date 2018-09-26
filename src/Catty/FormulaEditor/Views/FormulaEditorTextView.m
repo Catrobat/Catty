@@ -80,7 +80,6 @@
     return _tapRecognizer;
 }
 
-
 #pragma mark - TextField properties
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -115,7 +114,6 @@
     }
 }
 
-
 - (void)formulaTapped:(UITapGestureRecognizer *)recognizer
 {
     UITextView *formulaView = (UITextView *)recognizer.view;
@@ -138,8 +136,6 @@
     int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
     
     [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
-    
-    
 }
 
 - (void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
@@ -154,8 +150,6 @@
     }
     
     NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];
-    
-    
     
     UITextPosition* beginning = self.beginningOfDocument;
     UITextPosition *cursorPositionStart = [self positionFromPosition:beginning
@@ -181,9 +175,7 @@
                                                              offset:endIndex];
         self.attributedText = formulaString;
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
-        
     }
-    
     
     [self.formulaEditorViewController.history updateCurrentSelection:[self.formulaEditorViewController.internFormula getSelection]];
     [self.formulaEditorViewController.history updateCurrentCursor:(int)cursorPostionIndex];

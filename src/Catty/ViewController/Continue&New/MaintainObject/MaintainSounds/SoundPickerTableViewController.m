@@ -218,8 +218,6 @@
     }
 }
 
-
-
 - (void)stopAllSounds
 {
     [[AudioManager sharedAudioManager] stopAllSounds];

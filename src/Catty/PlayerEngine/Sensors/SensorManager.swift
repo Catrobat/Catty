@@ -44,7 +44,6 @@ import CoreLocation
         for sensor in self.sensors() {
             items.append(FormulaEditorItem(sensor: sensor, spriteObject: spriteObject))
         }
-        
         return items
     }
     

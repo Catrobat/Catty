@@ -43,5 +43,4 @@ protocol CBSchedulerProtocol : class {
     func runNextInstructionsGroup()
     func scheduleContext(_ context: CBScriptContextProtocol)
     func stopContext(_ context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool)
-    
 }

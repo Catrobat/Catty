@@ -322,7 +322,6 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     return sensorTree;
 }
 
-
 - (NSString*)number
 {
     NSString* numberToCheck = self.currentToken.tokenStringValue;

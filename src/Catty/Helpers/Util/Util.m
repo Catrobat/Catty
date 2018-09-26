@@ -176,7 +176,6 @@
         screenSize.height = screenSize.height / iPhonePlusDownsamplingFactor;
         screenSize.width = screenSize.width / iPhonePlusDownsamplingFactor;
     }
-    
     return screenSize;
 }
 
@@ -707,7 +706,6 @@
                      forKey:kUserDefaultsBrickSelectionStatisticsMap];
     [userDefaults synchronize];
 }
-
 
 + (void)incrementStatisticCountForBrickType:(kBrickType)brickType
 {

@@ -24,7 +24,6 @@
 #import "ProgramLoadingInfo.h"
 #import "Program.h"
 
-
 @protocol FileManagerDelegate <NSObject>
 
 - (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo*)info;

@@ -24,7 +24,6 @@
 #import "ScriptCollectionViewController.h"
 #import "FXBlurView.h"
 
-
 @interface BrickTransition ()
 @property (nonatomic, strong) UIView *animateView;
 @property (nonatomic, strong) FXBlurView *blurView;

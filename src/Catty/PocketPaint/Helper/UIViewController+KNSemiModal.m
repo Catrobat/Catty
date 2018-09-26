@@ -421,8 +421,6 @@ NS_ENUM(NSUInteger, KNSemiModalTransitionStyle) {
 
 @end
 
-
-
 #pragma mark - NSObject (YMOptionsAndDefaults)
 
 //  NSObject+YMOptionsAndDefaults
@@ -449,8 +447,6 @@ static char const * const kYMStandardDefaultsTableName = "YMStandardDefaultsTabl
     return options[optionKey] ?: defaults[optionKey];
 }
 @end
-
-
 
 #pragma mark - UIView (FindUIViewController)
 

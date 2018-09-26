@@ -48,7 +48,6 @@ typedef enum TokenSelectionType{
     PARSER_ERROR_SELECTION = 801
 }TokenSelectionType;
 
-
 @interface InternFormula : NSObject
 
 - (InternFormula *)initWithInternTokenList:(NSMutableArray<InternToken*>*)internTokenList;

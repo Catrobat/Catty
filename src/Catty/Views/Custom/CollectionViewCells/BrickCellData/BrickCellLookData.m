@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "BrickCellLookData.h"
 #import "BrickCell.h"
 #import "Script.h"

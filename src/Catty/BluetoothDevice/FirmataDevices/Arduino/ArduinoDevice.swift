@@ -52,7 +52,6 @@ class ArduinoDevice:FirmataDevice,ArduinoProtocol,ArduinoPropertyProtocol {
     override var rxUUID: CBUUID { get { return CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") } }
     override var txUUID: CBUUID { get { return CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") } }
     
-    
     var digitalValue:Int = 0
     var analogValue:Double = 0
     var isReportingSensorData = false
@@ -124,7 +123,6 @@ class ArduinoDevice:FirmataDevice,ArduinoProtocol,ArduinoPropertyProtocol {
         }
         return Double(0)
     }
-    
     
     func setPWMArduinoPin(_ PWMpin:Int, value:Int) {
         let pin: UInt8 = UInt8(checkValue(PWMpin))

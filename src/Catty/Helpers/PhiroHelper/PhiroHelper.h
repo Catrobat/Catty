@@ -37,6 +37,4 @@
 
 + (Motor)stringToMotor:(NSString*)string;
 
-
-
 @end

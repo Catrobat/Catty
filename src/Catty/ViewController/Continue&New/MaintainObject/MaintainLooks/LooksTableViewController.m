@@ -572,7 +572,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self hideLoadingView];
 }
 
-
 -(void)saveImageData:(NSData*)imageData withFileName:(NSString*)imageFileName andImageFileNameExtension:(NSString*)imageFileNameExtension
 {
     if ((! [imageFileName length])) {
@@ -780,7 +779,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
      showWithController:self];
 }
 
-
 - (void)savePaintImage:(UIImage *)image andPath:(NSString *)path
 {
     if (image) {
@@ -840,7 +838,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self reloadData];
 }
 
-
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
@@ -855,7 +852,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             abort();
             return;
         }
-        
         
         NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
         if(referenceCount > 1) {

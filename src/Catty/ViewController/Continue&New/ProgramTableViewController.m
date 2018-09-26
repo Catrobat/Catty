@@ -476,7 +476,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
         return [NSIndexPath indexPathForRow:row inSection:sourceIndexPath.section];
     }
-    
     return proposedDestinationIndexPath;
 }
 

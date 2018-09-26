@@ -32,5 +32,4 @@ final class CBFilterRedundantBroadcastWaits: CBFrontendSequenceFilterProtocol {
         // TODO: implement this...
         return scriptSequenceList
     }
-    
 }

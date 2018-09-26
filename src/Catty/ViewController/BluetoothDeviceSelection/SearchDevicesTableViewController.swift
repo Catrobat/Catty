@@ -37,7 +37,6 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,7 +52,6 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         
         return CentralManager.sharedInstance.peripherals.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -116,5 +114,4 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }

@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef void(^SharkfoodMuteSwitchDetectorBlock)(BOOL silent);
 
 @interface SharkfoodMuteSwitchDetector : NSObject

@@ -54,7 +54,6 @@
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -109,8 +108,6 @@
         [self updateBrickCategoryViewControllerDelegate];
     }
 }
-
-
 
 #pragma mark - Pageindicator
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
@@ -185,7 +182,6 @@
         }
         arrayIndex++;
     }
-    
     return 0;
 }
 

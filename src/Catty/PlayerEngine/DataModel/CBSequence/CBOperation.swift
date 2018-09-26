@@ -29,5 +29,4 @@ final class CBOperation {
     init(brick : Brick) {
         self.brick = brick
     }
-    
 }

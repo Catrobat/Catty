@@ -124,7 +124,6 @@ final class CBScene: SKScene {
         return true
     }
     
-    
     // MARK: - Start program
     @objc func startProgram() {
         guard let program = frontend.program else {
@@ -247,5 +246,4 @@ final class CBScene: SKScene {
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
-    
 }

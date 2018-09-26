@@ -25,16 +25,13 @@
 #import "RuntimeImageCache.h"
 #import "Look.h"
 
-
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
 #define ARROW_BOX_WIDTH 20.0f
 #define ARROW_WIDTH 10.0f
 #define ARROW_HEIGHT 10.0f
-
 #define FONT_NAME @"Helvetica"
 #define TEXT_LEFT 5.0f
-
 #define PICKER_VIEW_HEIGHT 216.0f // This is fixed by Apple, and Stack Overflow reports some bugs can be introduced if it's changed.
 
 @implementation iOSCombobox
@@ -97,8 +94,6 @@
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
     
     CGColorSpaceRelease(baseSpace); baseSpace = NULL;
-    
-    
     
     // ============================
     // Background gradient
@@ -222,7 +217,6 @@
         CGContextRestoreGState(ctx);
     }
     
-    
     // ==============================
     // Draw the text
     // ==============================
@@ -246,7 +240,6 @@
                                       rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
                                       rect.size.height - BORDER_WIDTH)
             withAttributes:attributes];
-    
 }
 
 /***********************************************************
@@ -387,7 +380,6 @@
     {
         [[self delegate] comboboxOpened:self];
     }
-    
     return YES;
 }
 
@@ -436,9 +428,7 @@
             [self.images addObject:[UIImage new]];
         }
         count++;
-        
     }
-    
 }
 
 @end

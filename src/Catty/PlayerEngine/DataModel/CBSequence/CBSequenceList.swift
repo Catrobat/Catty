@@ -58,7 +58,6 @@ final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, Sequen
     func accept(_ visitor: CBOptimizeSequenceVisitorProtocol) {
         visitor.visit(self)
     }
-    
 }
 
 // MARK: - Custom operators

@@ -83,7 +83,6 @@
         fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
     }
     
-    
     if (fromBrick.isAnimatedInsertBrick) {
         if (toIndexPath.item != 0) {
             Script *script;
@@ -121,7 +120,6 @@
                                     return NO;
                                 }
                             }
-                            
                         }
                         return YES;
                     }
@@ -136,7 +134,6 @@
                         return NO;
                     }
                 }
-                
             }
             
             return (toIndexPath.item != 0);
@@ -154,7 +151,6 @@
             return NO;
         }
     }
-    
     return NO;
 }
 
@@ -277,7 +273,6 @@
                             }
                         }
                     }
-                    
                 }
             }
         }
@@ -335,8 +330,6 @@
     }
     return -1;
 }
-
-
 
 -(void)reset
 {

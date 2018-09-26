@@ -22,7 +22,6 @@
 
 import Foundation
 
-
 public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, ExpressibleByArrayLiteral, CustomStringConvertible {
     
     // ======================================================= //
@@ -269,5 +268,4 @@ public struct OrderedDictionary<Key: Hashable, Value>: MutableCollection, Expres
     
     /// The backing store for the mapping of keys to values.
     fileprivate var _keysToValues = [Key: Value]()
-    
 }

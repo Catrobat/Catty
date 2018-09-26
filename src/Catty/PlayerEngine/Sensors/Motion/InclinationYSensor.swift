@@ -46,7 +46,6 @@ import CoreMotion
             return type(of: self).defaultRawValue
         }
         return deviceMotion.attitude.pitch
-        
     }
     
     // pitch is between -pi/2, pi/2 on iOS and -pi,pi on Android

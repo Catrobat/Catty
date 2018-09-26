@@ -37,9 +37,7 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
             CentralManager.sharedInstance.start().onSuccess {
                 self.getKnownDevices()
             }
-            
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,7 +55,6 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         
         return knownDevices.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -88,7 +85,6 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         }
         self.updateWhenActive()
     }
-    
     
     /*
      // Override to support conditional editing of the table view.
@@ -134,5 +130,4 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }

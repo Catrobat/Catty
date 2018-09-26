@@ -77,7 +77,6 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
 UICollectionViewDataSource,
 UIViewControllerTransitioningDelegate,
@@ -427,7 +426,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             } else {
                 [script.brickList insertObject:fromBrick atIndex:toIndexPath.item+1];
             }
-            
         }
         
     } else {
@@ -507,7 +505,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
-
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -592,7 +589,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         brickCell.userInteractionEnabled = YES;
         brickCell.alpha = self.isEditingBrickMode ? kBrickCellInactiveWhileEditingOpacity : kBrickCellActiveOpacity;
     }
-    
     return brickCell;
 }
 
@@ -708,7 +704,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     //    [self.object.program saveToDisk];
 }
 
-
 #pragma mark - Brick Cell Delegate
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton
 {
@@ -720,7 +715,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [[BrickSelectionManager sharedInstance] brickCell:brickCell didSelectBrickCellButton:selectButton IndexPath:indexPath andObject:self.object];
     [self reloadData];
 }
-
 
 - (void)openFormulaEditorWithFormulaAtIndexPath:(NSIndexPath*)indexPath withEvent:(UIEvent*)event
 {
@@ -768,7 +762,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     return lastIndexPath;
 }
 
-
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (self.editing) {
         [self setEditing:YES animated:NO];
@@ -801,7 +794,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }];
 }
 
-
 - (NSString*)keyWithSelectIndexPath:(NSIndexPath*)indexPath
 {
     return [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
@@ -825,7 +817,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     dispatch_async(dispatch_get_main_queue(), ^{
         self.navigationItem.rightBarButtonItem.enabled = NO;
     });
-    
 }
 
 -(void)turnOffInsertingBrickMode
@@ -1048,7 +1039,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                  existingNames:allListNames];
 }
 
-
 #pragma mark - Setup
 - (void)setupCollectionView
 {
@@ -1069,7 +1059,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 forCellWithReuseIdentifier:className];
     }
 }
-
 
 #pragma mark - BrickCellData Delegate
 - (void)addMessageWithName:(NSString*)messageName andCompletion:(id)completion
@@ -1283,7 +1272,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (self.collectionView.contentOffset.y > maxContentOffset) {
         [self.collectionView setContentOffset:CGPointMake(0, maxContentOffset) animated:YES];
     }
-    
     [self reloadData];
 }
 
@@ -1362,7 +1350,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
      }];
 }
 
-
 - (void)selectAllRows:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
@@ -1377,7 +1364,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [[BrickSelectionManager sharedInstance] deselectAllBricks];
         }
     }
-    
     [self reloadData];
 }
 

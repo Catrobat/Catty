@@ -162,7 +162,6 @@
     }
 }
 
-
 - (void)showLoadingView
 {
     //    self.loadingView.backgroundColor = [UIColor whiteColor];
@@ -195,6 +194,5 @@
     }
     return _loadingView;
 }
-
 
 @end

@@ -32,6 +32,7 @@
     CGPoint lastPoint;
     BOOL fingerSwiped;
 }
+
 @property (nonatomic) CGFloat red;
 @property (nonatomic) CGFloat green;
 @property (nonatomic) CGFloat blue;
@@ -45,7 +46,6 @@
 @property (nonatomic) BOOL vertical;
 @property (nonatomic) BOOL horizontal;
 @property (nonatomic) NSInteger degrees;
-
 
 @property(nonatomic)  BOOL isEraser;
 
@@ -64,13 +64,10 @@
 
 @property (nonatomic,weak)id<PaintDelegate> delegate;
 
-
 @property (nonatomic,strong) UIPanGestureRecognizer *drawGesture;
 @property (nonatomic,strong) UITapGestureRecognizer *drawRecognizer;
 @property (nonatomic,strong) UIPanGestureRecognizer *lineToolGesture;
 @property (nonatomic,strong) UITapGestureRecognizer *pipetteRecognizer;
-
-
 
 @property (weak, nonatomic) IBOutlet UIButton *colorButton;
 

@@ -21,6 +21,7 @@
  */
 
 class LetterFunction: DoubleParameterStringFunction {
+    
     static var tag = "LETTER"
     static var name = "letter"
     static var defaultValue = ""

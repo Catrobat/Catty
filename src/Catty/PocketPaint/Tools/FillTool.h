@@ -25,7 +25,6 @@
 
 @interface FillTool : NSObject
 
-
 @property (nonatomic,weak) PaintViewController* canvas;
 
 - (id)initWithDrawViewCanvas:(PaintViewController*)canvas;

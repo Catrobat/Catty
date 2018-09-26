@@ -134,10 +134,8 @@
                 }
             }
         }
-        
         fclose(file);
     }
-    
     return size;
 }
 
@@ -282,9 +280,9 @@
                     return (CGSize){width, height};
                 }
             }
-            
             return CGSizeZero;
         }
+        
         else if (buffer[1] == 0xC0)
         { // Parse SOF0 (Start of Frame baseline)
             
@@ -308,7 +306,6 @@
             }
         }
     }
-    
     return CGSizeZero;
 }
 

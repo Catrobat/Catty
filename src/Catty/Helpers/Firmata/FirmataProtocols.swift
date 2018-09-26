@@ -21,6 +21,7 @@
  */
 
 protocol FirmataDelegate: class {
+    
     func sendData(_ newData: Data)
     func didReceiveAnalogMessage(_ pin:Int,value:Int)
     func didReceiveDigitalMessage(_ pin:Int,value:Int)
@@ -34,6 +35,7 @@ protocol FirmataDelegate: class {
 }
 
 protocol FirmataProtocol {
+    
     func writePinMode(_ newMode:PinMode, pin:UInt8)
     func reportVersion()
     func reportFirmware()

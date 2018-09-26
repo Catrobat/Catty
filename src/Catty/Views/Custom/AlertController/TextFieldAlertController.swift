@@ -64,7 +64,6 @@ public final class InputValidationResult : NSObject {
 
 @objc public protocol TextFieldAlertControllerBuilding : TextFieldAlertActionAdding, TextFieldInputValidating { }
 
-
 final class TextFieldAlertController : BaseAlertController, TextFieldAlertDefining, TextFieldAlertControllerBuilding, UITextFieldDelegate {
     private var characterValidator: ((String) -> Bool)?
     private var valueValidator: ((String) -> InputValidationResult)?

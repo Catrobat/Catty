@@ -41,4 +41,5 @@
 - (void)drawingChangeAction;
 - (void)disable;
 - (void)updateColorView;
+
 @end

@@ -36,7 +36,6 @@
             self.formulaTree.rightChild = rightChild;
         } else {
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
-            
         }
     }
     return self;
@@ -148,6 +147,5 @@
 {
     return [self.formulaTree getRequiredResources];
 }
-
 
 @end

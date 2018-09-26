@@ -57,9 +57,7 @@
                 CBScheduler.vibrateSerialQueue.addOperation(operation)
                 previousOperation = operation
             }
-            
             context.state = .runnable
         }
-        
     }
 }

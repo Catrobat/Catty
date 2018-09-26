@@ -29,7 +29,6 @@
     return [[[[[[[kLocalizedPhiroRGBLight stringByAppendingString:@"\n%@\n"] stringByAppendingString:kLocalizedPhiroRGBLightRed] stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroRGBLightGreen] stringByAppendingString:@"%@ "] stringByAppendingString:kLocalizedPhiroRGBLightBlue] stringByAppendingString:@"%@"];
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
@@ -46,6 +45,7 @@
         return NO;
     return YES;
 }
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if (lineNumber == 2 && paramNumber == 0) {

@@ -97,7 +97,6 @@
     [self.panRecognizer setMaximumNumberOfTouches:1];
     [self.panRecognizer setDelegate:self];
     [_navBar addGestureRecognizer:self.panRecognizer];
-    
 }
 
 - (void)showInView:(UIView *)view
@@ -155,7 +154,6 @@
         [self->_maskView removeFromSuperview];
         self.panRecognizer.enabled = NO;
     }];
-    
 }
 
 - (void)dismissPickerView:(id)sender
@@ -326,6 +324,5 @@
     if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
         [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];
 }
-
 
 @end

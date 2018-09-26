@@ -27,7 +27,6 @@
 
 @interface ResizeViewManager : NSObject <SPUserResizableViewDelegate>
 
-
 @property (nonatomic,strong) SPUserResizableView *resizeViewer;
 @property (nonatomic)        CGFloat rotation;
 @property (nonatomic,weak) PaintViewController* canvas;
@@ -36,10 +35,8 @@
 @property (nonatomic,strong) UIImage* stampImage;
 @property (nonatomic) CGFloat scale;
 
-
 @property (nonatomic,strong) UIRotationGestureRecognizer *rotateView;
 @property (nonatomic,strong) UITapGestureRecognizer *takeView;
-
 
 - (id)initWithDrawViewCanvas:(PaintViewController*)canvas andImagePicker:(ImagePicker*)imagePicker;
 - (void)initResizeView;
@@ -50,6 +47,5 @@
 - (void)takeImage:(UITapGestureRecognizer *)recognizer;
 - (void)showUserAction;
 - (void)hideShowUserAction;
-
 
 @end

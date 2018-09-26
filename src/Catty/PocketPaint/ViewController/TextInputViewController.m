@@ -100,11 +100,9 @@
     textLabel.text = kLocalizedPaintText;
     textLabel.textColor = [UIColor globalTintColor];
     
-    
     UILabel *attributesLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height * 0.25 + 30 + CGRectGetMaxY(self.toolBar.frame), 100, 20)];
     attributesLabel.text = kLocalizedPaintAttributes;
     attributesLabel.textColor = [UIColor globalTintColor];
-    
     
     self.fontPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
     self.sizePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20+(self.view.frame.size.width-40) / 2.0 + 5 , self.view.frame.size.height * 0.25 + 40 + CGRectGetMaxY(self.toolBar.frame), (self.view.frame.size.width-40) / 2.0 - 5, 100)];
@@ -130,7 +128,6 @@
     [self.underlineButton addTarget:self action:@selector(underlineAction) forControlEvents:UIControlEventTouchUpInside];
     self.underlineButton.selected = self.underline;
     
-    
     [self.view addSubview:self.textField];
     [self.view addSubview:self.fontPickerView];
     [self.view addSubview:self.sizePickerView];
@@ -143,7 +140,6 @@
 
 - (void) setupPickerViews
 {
-    
     self.fontPickerView.delegate = self;
     self.fontPickerView.dataSource = self;
     self.fontPickerView.tintColor = [UIColor globalTintColor];
@@ -154,13 +150,11 @@
     self.fontPickerData = [[NSMutableArray alloc] initWithObjects:@"Standard",@"Serif",@"SanSerif", nil];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark PickerView
 
@@ -177,7 +171,6 @@
     }
 }
 
-
 -(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSString *title = @"";
     
@@ -192,7 +185,6 @@
     return attString;
 }
 
-
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (pickerView == self.fontPickerView) {
@@ -203,7 +195,6 @@
         self.fontSize = sizeString.integerValue;
     }
 }
-
 
 -(void)fontSelected:(NSInteger)row
 {
@@ -294,8 +285,6 @@
     if (self.underline) {
         [dict setObject:@(NSUnderlineStyleSingle) forKey:NSUnderlineStyleAttributeName];
     }
-    
-    
     
     self.fontDictionary = dict;
     NSDictionary *saveDict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:self.bold],@"Bold",[NSNumber numberWithBool:self.italic],@"Italic",[NSNumber numberWithBool:self.underline],@"Underline",[NSNumber numberWithInteger:self.fontSize],@"Size",[NSNumber numberWithInteger:self.fontType],@"Font", nil];

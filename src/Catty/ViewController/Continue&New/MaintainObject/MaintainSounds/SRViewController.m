@@ -44,7 +44,6 @@
 
 @implementation SRViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,13 +68,11 @@
     self.timerLabel.timeLabel.textColor = [UIColor globalTintColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
-    
     UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recording:)];
     [self.timerLabel addGestureRecognizer:recognizer];
     //    [self.timeProgress addGestureRecognizer:recognizer];
     
     self.view.backgroundColor = [UIColor backgroundColor];
-    
     
     self.isRecording = NO;
     self.isSaved = NO;
@@ -92,7 +89,6 @@
     if (self.sound.name && !self.isSaved) {
         [self.delegate showSaveSoundAlert:self.sound];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,8 +132,6 @@
     
     [self.recorder prepareToRecord];
 }
-
-
 
 - (IBAction)recording:(id)sender {
     [self recordClicked];
@@ -225,6 +219,5 @@
     self.isSaved = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 @end

@@ -63,7 +63,6 @@ open class ArduinoHelper {
         default: break
             //NOT USED SENSOR
         }
-        
     }
     
     func didReceiveDigitalPort(_ port:Int, portData:[Int]){
@@ -73,5 +72,4 @@ open class ArduinoHelper {
     func didReceiveDigitalMessage(_ pin:Int,value:Int){
         digitalValues[pin] = value
     }
-    
 }

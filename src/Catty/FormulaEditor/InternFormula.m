@@ -266,8 +266,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         return AM_RIGHT;
     }
     
-    
-    
     if([self.cursorPositionInternToken isNumber] && [InternFormulaUtils isPeriodToken:[NSArray arrayWithArray:internTokensToInsert]])
     {
         NSString *numberString = [self.cursorPositionInternToken getTokenStringValue];
@@ -279,7 +277,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         }
         [self.cursorPositionInternToken appendToTokenStringValue:@"."];
         return AM_RIGHT;
-        
     }
     
     if([InternFormulaUtils isPeriodToken:internTokensToInsert])
@@ -297,7 +294,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
     
     return [self setCursorPositionAndSelectionAfterInput:self.cursorPositionInternTokenIndex +1];
-    
 }
 
 - (CursorTokenPropertiesAfterModification)handleDeletion
@@ -478,7 +474,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
-
 - (void)setExternCursorPositionLeftTo:(int)internTokenIndex
 {
     if([self.internTokenFormulaList count] < 1)
@@ -523,7 +518,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
     self.externCursorPosition = externTokenEndIndex;
     self.cursorTokenPosition = RIGHT;
-    
 }
 
 - (void)deleteInternTokensWithStart:(int)deleteIndexStart end:(int)deleteIndexEnd
@@ -553,7 +547,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 - (void)selectCursorPositionInternToken:(TokenSelectionType)internTokenSelectionType
 {
-    
     self.internFormulaTokenSelection = nil;
     if(self.cursorPositionInternToken == nil)
     {
@@ -564,8 +557,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     NSArray *functionInternTokens;
     NSArray *bracketsInternTokens;
     InternToken *lastFunctionToken;
-    
-    
     
     switch([self.cursorPositionInternToken getInternTokenType])
     {
@@ -681,8 +672,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             break;
             
     }
-    
-    
 }
 
 - (InternToken *)getFirstLeftInternToken:(int)externIndex
@@ -745,7 +734,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             self.cursorPositionInternTokenIndex = leftCursorPositionTokenIndex;
             break;
     }
-    
 }
 
 - (BOOL)isTokenSelected
@@ -791,7 +779,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         [self replaceInternTokensInList:tokenListToInsert replaceIndexStart:internTokenSelectionStart replaceIndexEnd:internTokenSelectionEnd];
         return [self setCursorPositionAndSelectionAfterInput:internTokenSelectionStart];
     }
-    
 }
 
 - (CursorTokenPropertiesAfterModification)setCursorPositionAndSelectionAfterInput:(int)insertedInternTokenIndex
@@ -837,7 +824,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             
             break;
     }
-    
 }
 
 - (CursorTokenPropertiesAfterModification)replaceCursorPositionInternTokenByTokenList:(NSArray *)internTokensToReplaceWith
@@ -926,7 +912,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
                         replaceIndexEnd:endIndexToReplace];
         
         return [self setCursorPositionAndSelectionAfterInput:self.cursorPositionInternTokenIndex];
-        
     }
     
     if([InternFormulaUtils isPeriodToken:internTokensToReplaceWith])
@@ -939,7 +924,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         self.cursorPositionInternTokenIndex ++;
         
         return AM_RIGHT;
-        
     }
     
     [self replaceInternTokensInList:internTokensToReplaceWith
@@ -947,8 +931,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
                     replaceIndexEnd:self.cursorPositionInternTokenIndex];
     
     return [self setCursorPositionAndSelectionAfterInput:self.cursorPositionInternTokenIndex];
-    
-    
 }
 
 - (void)addSourceArray:(NSArray *)source toTarget:(NSMutableArray *)target atIndex:(int)index
@@ -1016,8 +998,6 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     self.cursorPositionInternTokenIndex = internErrorTokenIndex;
     self.cursorPositionInternToken = [self.internTokenFormulaList objectAtIndex:self.cursorPositionInternTokenIndex];
     [self selectCursorPositionInternToken:PARSER_ERROR_SELECTION];
-    
-    
 }
 
 - (BOOL)isThereSomethingToDelete

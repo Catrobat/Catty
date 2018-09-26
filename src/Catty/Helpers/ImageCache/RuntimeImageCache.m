@@ -59,7 +59,6 @@
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
         [super addImage:image withName:path];
     });
-    
 }
 
 - (void)loadImageFromDiskWithPath:(NSString*)path
@@ -133,7 +132,6 @@
     [UIImagePNGRepresentation(thumbnailImage) writeToFile:thumbnailPath atomically:YES];
     [self clearImageCache];
 }
-
 
 - (void)clearImageCache
 {
