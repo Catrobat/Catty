@@ -178,7 +178,7 @@
 #define kLocalizedPocketCodeRecorder NSLocalizedString(@"Pocket Code Recorder", nil)
 #define kLocalizedCameraRoll NSLocalizedString(@"Camera Roll", nil)
 #define kLocalizedProject NSLocalizedString(@"Project", nil)
-#define kLocalizedPlay NSLocalizedString(@"Play", nil)
+#define kLocalizedOpen NSLocalizedString(@"Open", nil)
 #define kLocalizedDownload NSLocalizedString(@"Download", nil)
 #define kLocalizedMore NSLocalizedString(@"More", nil)
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
