@@ -30,7 +30,7 @@
 @property (nonatomic) NSInteger soundCounter;
 @property (nonatomic) AVSpeechSynthesizer* speechSynth;
 
-@property (atomic, strong) NSDictionary* sounds;
+@property (atomic, strong) NSMutableDictionary* sounds;
 @property (nonatomic) float current_volume;
 
 @end
@@ -47,6 +47,7 @@
 
 - (id)init
 {
+    self.sounds = [[NSMutableDictionary alloc] init];
     self.speechSynth = [[AVSpeechSynthesizer alloc] init];
     self = [super init];
     if (self) {
@@ -136,7 +137,7 @@
         }
         [audioPlayers removeAllObjects];
     }
-    self.sounds = nil;
+    [[SoundCache sharedSoundCache] clearSoundCache];
 }
 
 - (void)pauseAllSounds
@@ -162,6 +163,21 @@
             [player play];
         }
     }
+}
+
+- (void)pauseSpeechSynth
+{
+    [self.speechSynth pauseSpeakingAtBoundary: AVSpeechBoundaryImmediate];
+}
+
+- (void)resumeSpeechSynth
+{
+    [self.speechSynth continueSpeaking];
+}
+
+- (void)stopSpeechSynth
+{
+    [self.speechSynth stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
