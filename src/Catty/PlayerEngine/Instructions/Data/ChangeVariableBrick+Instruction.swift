@@ -41,11 +41,11 @@
                         userVariable.value = ""
                     }
                 }
-                if let userVariableDoubleValue = (userVariable.value as? NSNumber)?.doubleValue,
+                if let _ = (userVariable.value as? NSNumber)?.doubleValue,
                     let numberDoubleValue = (result as? NSNumber)?.doubleValue {
                     variables.change(userVariable, byValue: numberDoubleValue)
                     //update active UserVariable
-                    userVariable.textLabel.text = String(Int(userVariableDoubleValue))
+                    userVariable.textLabel.text = (userVariable.value as? NSNumber)?.stringValue
                 } else if userVariable.value is NSString {
                     // do nothing
                 } else {
