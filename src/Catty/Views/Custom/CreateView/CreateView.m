@@ -258,7 +258,7 @@
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     playButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     playButton.titleLabel.minimumScaleFactor = 0.4;
-    [playButton setTitle:kLocalizedPlay forState:UIControlStateNormal];
+    [playButton setTitle:kLocalizedOpen forState:UIControlStateNormal];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [playButton setTintColor:[UIColor buttonTintColor]];
     
