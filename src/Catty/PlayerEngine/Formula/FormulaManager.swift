@@ -41,7 +41,7 @@ import CoreLocation
         let motionManager = CMMotionManager()
         let locationManager = CLLocationManager()
         let faceDetectionManager = FaceDetectionManager.shared
-        let audioManager = AudioManager()
+        let audioManager = AudioManager.shared()!
         let touchManager = TouchManager()
         let bluetoothService = BluetoothService.sharedInstance()
         
