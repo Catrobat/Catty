@@ -107,8 +107,10 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
             alertQuery.textFields["Enter your program name here..."].typeText(programName)
             alertQuery.buttons["OK"].tap()
             
-            XCTAssert(app.alerts["Pocket Code"].exists)
-            app.alerts["Pocket Code"].buttons["OK"].tap()
+            let alert = waitForElementToAppear(app.alerts["Pocket Code"])
+            XCTAssert(alert.exists)
+            alert.buttons["OK"].tap()
+            
             alertQuery.buttons["Cancel"].tap()
         }
     }

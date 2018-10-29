@@ -220,10 +220,12 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         
         app.buttons["More"].tap()
         app.buttons["Rename"].tap()
-        let alertQuery = app.alerts["Rename object"]
-        alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your object name here..."].typeText("Mole 5")
-        alertQuery.buttons["OK"].tap()
+        
+        let alert = waitForElementToAppear(app.alerts["Rename object"])
+        alert.buttons["Clear text"].tap()
+        alert.textFields["Enter your object name here..."].typeText("Mole 5")
+        alert.buttons["OK"].tap()
+        
         XCTAssert(app.tables.staticTexts["Mole 5"].exists)
     }
     
@@ -238,10 +240,12 @@ class MyFirstProgramVCTests: XCTestCase, UITestProtocol  {
         
         app.buttons["More"].tap()
         app.buttons["Rename"].tap()
-        let alertQuery = app.alerts["Rename object"]
-        alertQuery.buttons["Clear text"].tap()
-        alertQuery.textFields["Enter your object name here..."].typeText("Mole 5")
-        alertQuery.buttons["Cancel"].tap()
+        
+        let alert = waitForElementToAppear(app.alerts["Rename object"])
+        alert.buttons["Clear text"].tap()
+        alert.textFields["Enter your object name here..."].typeText("Mole 5")
+        alert.buttons["Cancel"].tap()
+        
         XCTAssert(app.tables.staticTexts["Mole 1"].exists)
     }
     

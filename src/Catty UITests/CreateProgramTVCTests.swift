@@ -42,42 +42,60 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
     func testCanCreateProgramWithDrawNewImage(){
-        
         let app = XCUIApplication()
+        let programName = "testProgram"
         
         //Create new Program
         app.tables.staticTexts["New"].tap()
         let alertQuery = app.alerts["New Program"]
-        alertQuery.textFields["Enter your program name here..."].typeText("testProgram")
+        alertQuery.textFields["Enter your program name here..."].typeText(programName)
         app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssert(app.navigationBars["testProgram"].exists)
+        XCTAssert(app.navigationBars[programName].exists)
         
         //Add new Object
         app.toolbars.buttons["Add"].tap()
         app.alerts["Add object"].textFields["Enter your object name here..."].typeText("testObject1")
         app.alerts["Add object"].buttons["OK"].tap()
         app.buttons["Draw new image"].tap()
+        
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
+        
+        //Draw image
         app.tap()
+        
         app.navigationBars.buttons["Looks"].tap()
-        XCTAssert(app.alerts["Save to PocketCode"].exists)
-        app.alerts["Save to PocketCode"].buttons["Yes"].tap()
+        
+        let alert = waitForElementToAppear(app.alerts["Save to PocketCode"])
+        alert.buttons["Yes"].tap()
+        
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+    
         app.staticTexts["testObject1"].tap()
         app.staticTexts["Looks"].tap()
         XCTAssert(app.staticTexts["look"].exists)
         app.navigationBars.buttons["testObject1"].tap()
-        app.navigationBars.buttons["testProgram"].tap()
+        app.navigationBars.buttons[programName].tap()
     
         //Add Background
         app.tables.staticTexts["Background"].tap()
         app.tables.staticTexts["Backgrounds"].tap()
         app.toolbars.buttons["Add"].tap()
         app.buttons["Draw new image"].tap()
+        
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
+        
+        //Draw image
         app.tap()
+        
         app.navigationBars.buttons["Backgrounds"].tap()
         XCTAssert(app.alerts["Save to PocketCode"].exists)
         app.alerts["Save to PocketCode"].buttons["Yes"].tap()
-        app.alerts["Add image"].buttons["OK"].tap()
+        
+        let addImageAlert = waitForElementToAppear(app.alerts["Add image"])
+        addImageAlert.buttons["OK"].tap()
+        
         XCTAssert(app.staticTexts["look"].exists)
         app.navigationBars.buttons["Background"].tap()
         app.navigationBars.buttons["testProgram"].tap()
@@ -92,12 +110,12 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         app.collectionViews.cells.element(boundBy: 0).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 0).staticTexts["When program started"].exists)
         app.toolbars.buttons["Add"].tap()
+        
         if(app.navigationBars["Frequently Used"].exists) {
             app.swipeLeft()
             app.swipeLeft()
             app.swipeLeft()
-        }
-        else {
+        } else {
             app.swipeLeft()
             app.swipeLeft()
         }
@@ -126,6 +144,5 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         app.swipeLeft()
         app.collectionViews.cells.element(boundBy: 1).tap()
         XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts["Next background"].exists)
-        
     }
 }
