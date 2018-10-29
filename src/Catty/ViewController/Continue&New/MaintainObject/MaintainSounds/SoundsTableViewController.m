@@ -32,7 +32,6 @@
 #import "Util.h"
 #import "CBFileManager.h"
 #import "AppDelegate.h"
-#import "SoundPickerTableViewController.h"
 #import "NSData+Hashes.h"
 #import "RuntimeImageCache.h"
 #import "SharkfoodMuteSwitchDetector.h"
@@ -670,7 +669,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self.tableView setEditing:false animated:YES];
     
-    [[[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
+    [[[[[[AlertControllerBuilder actionSheetWithTitle:kLocalizedAddSound]
      addCancelActionWithTitle:kLocalizedCancel handler:^{
          SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
      }]
@@ -699,26 +698,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                  }
              }];
          }
-     }]
-     addDefaultActionWithTitle:kLocalizedChooseSound handler:^{
-         NSDebug(@"Select music track");
-         self.isAllowed = YES;
-         CBFileManager *fileManager = [CBFileManager sharedManager];
-         if (! [fileManager existPlayableSoundsInDirectory:fileManager.documentsDirectory]) {
-             [Util alertWithTitle:kLocalizedNoImportedSoundsFoundTitle
-                          andText:kLocalizedNoImportedSoundsFoundDescription];
-             SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
-             return;
-         }
-         [self stopAllSounds];
-         SoundPickerTableViewController *soundPickerTVC;
-         soundPickerTVC = [self.storyboard instantiateViewControllerWithIdentifier:kSoundPickerTableViewControllerIdentifier];
-         soundPickerTVC.directory = fileManager.documentsDirectory;
-         UINavigationController *navigationController = [[UINavigationController alloc]
-                                                         initWithRootViewController:soundPickerTVC];
-         [self presentViewController:navigationController animated:YES completion:^{
-             SAFE_BLOCK_CALL(self.afterSafeBlock, nil);
-         }];
      }]
      addDefaultActionWithTitle:kLocalizedMediaLibrary handler:^{
          self.isAllowed = YES;
