@@ -94,7 +94,6 @@
 #define kLocalizedCategories NSLocalizedString(@"Categories", nil)
 #define kLocalizedDetails NSLocalizedString(@"Details", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
-#define kLocalizedChooseSound NSLocalizedString(@"Choose sound", nil)
 #define kLocalizedFeaturedPrograms NSLocalizedString(@"Featured Programs", nil)
 #define kLocalizedScripts NSLocalizedString(@"Scripts", nil)
 #define kLocalizedBackgrounds NSLocalizedString(@"Backgrounds", nil)

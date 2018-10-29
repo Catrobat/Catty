@@ -826,7 +826,6 @@
 		92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */; };
 		92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311B1A24DEB300093DA7 /* LookImageViewController.m */; };
 		92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */; };
-		92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */; };
 		92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */; };
 		92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312D1A24DEB300093DA7 /* SRViewController.m */; };
 		92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312F1A24DEB300093DA7 /* ObjectTableViewController.m */; };
@@ -2404,8 +2403,6 @@
 		92FF311B1A24DEB300093DA7 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		92FF311C1A24DEB300093DA7 /* LooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksTableViewController.h; sourceTree = "<group>"; };
 		92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksTableViewController.m; sourceTree = "<group>"; };
-		92FF31281A24DEB300093DA7 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
-		92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		92FF312A1A24DEB300093DA7 /* SoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsTableViewController.h; sourceTree = "<group>"; };
 		92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsTableViewController.m; sourceTree = "<group>"; };
 		92FF312C1A24DEB300093DA7 /* SRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRViewController.h; sourceTree = "<group>"; };
@@ -6137,8 +6134,6 @@
 		92FF31271A24DEB300093DA7 /* MaintainSounds */ = {
 			isa = PBXGroup;
 			children = (
-				92FF31281A24DEB300093DA7 /* SoundPickerTableViewController.h */,
-				92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */,
 				92FF312A1A24DEB300093DA7 /* SoundsTableViewController.h */,
 				92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */,
 				5936893B2021979A00FC3115 /* SoundsTableViewController+MediaLibrary.swift */,
@@ -8696,7 +8691,6 @@
 				AA74F0B11BC05FCE00D1E954 /* SetTransparencyBrickCell.m in Sources */,
 				4C724E581B4D3E8C00E27479 /* Header+CBXMLHandler.m in Sources */,
 				E4E5599820FCD6AD004B4A08 /* StoreProgram.swift in Sources */,
-				92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */,
 				AA74F00A1BC05B5F00D1E954 /* ChangeVolumeByNBrick.m in Sources */,
 				9218B2081CC4AB75007B4C60 /* UIImage+FloodFill.m in Sources */,
 				AA74F0A11BC05FCE00D1E954 /* IfLogicEndBrickCell.m in Sources */,
