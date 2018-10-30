@@ -52,7 +52,7 @@ class CreateProgramTVCTests: XCTestCase, UITestProtocol  {
         let alertQuery = app.alerts["New Program"]
         alertQuery.textFields["Enter your program name here..."].typeText(programName)
         app.alerts["New Program"].buttons["OK"].tap()
-        XCTAssert(app.navigationBars[programName].exists)
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
         
         //Add new Object
         app.toolbars.buttons["Add"].tap()

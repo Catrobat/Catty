@@ -36,8 +36,8 @@ extension UITestProtocol {
         app.navigationBars["Programs"].buttons["Edit"].tap()
         app.buttons["Delete Programs"].tap()
         let toolbarsQuery = app.toolbars
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Delete"].tap()
+        waitForElementToAppear(toolbarsQuery.buttons["Select All"]).tap()
+        waitForElementToAppear(toolbarsQuery.buttons["Delete"]).tap()
         XCTAssert(app.tables.staticTexts.count == 1)
         // finally go back to main menu, because this method is used by other tests
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
@@ -56,9 +56,7 @@ extension UITestProtocol {
         let expectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true"), object: element)
         
         let result = XCTWaiter().wait(for: [expectation], timeout: 5)
-        if (result != .completed) {
-            assertionFailure("Element does not exist")
-        }
+        XCTAssert(result == .completed)
         
         return element
     }
