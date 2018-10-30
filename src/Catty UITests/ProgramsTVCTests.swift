@@ -56,7 +56,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         
         app.alerts["New Program"].buttons["OK"].tap()
         
-        XCTAssert(app.navigationBars["testProgram"].exists)
+        XCTAssert(waitForElementToAppear(app.navigationBars["testProgram"]).exists)
         
         app.navigationBars.buttons["Programs"].tap()
         
@@ -129,6 +129,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
         
         XCTAssert(app.tables.staticTexts.count == 2)
         XCTAssert(app.tables.staticTexts["My second program"].exists)
@@ -161,6 +162,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
         
         XCTAssert(app.tables.staticTexts.count == 1)
         XCTAssert(app.tables.staticTexts["My first program"].exists)
@@ -193,6 +195,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
         
         // check again
         XCTAssert(app.tables.staticTexts.count == 1)
@@ -226,6 +229,7 @@ class ProgramsTVCTests: XCTestCase, UITestProtocol {
         // go back and forth to force reload table view!!
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
         app.tables.staticTexts["Programs"].tap()
+        XCTAssert(waitForElementToAppear(app.navigationBars["Programs"]).exists)
         
         // check again
         XCTAssert(app.tables.staticTexts.count == 1)

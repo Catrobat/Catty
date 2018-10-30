@@ -126,8 +126,9 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
         //delete the WhenProgramStartedBrick
         app.collectionViews.cells.element(boundBy: 0).tap()
         app.buttons["Delete Script"].tap()
-        let yesButton = app.alerts["Delete this Script?"].buttons["Yes"]
-        yesButton.tap()
+        
+        let alert = waitForElementToAppear(app.alerts["Delete this Script?"])
+        alert.buttons["Yes"].tap()
         
         //Check if deltetd successful
         app.navigationBars["Scripts"].buttons["Mole 1"].tap()
@@ -177,7 +178,9 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
             app.navigationBars[object].buttons["My first program"].tap()
-            XCTAssert(app.navigationBars["My first program"].buttons["Pocket Code"].exists)
+            
+            let programVC = waitForElementToAppear(app.navigationBars["My first program"])
+            XCTAssert(programVC.buttons["Pocket Code"].exists)
         }
     }
     
@@ -197,7 +200,9 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
             XCTAssert(app.navigationBars[testElement].buttons[object].exists)
             app.navigationBars[testElement].buttons[object].tap()
             app.navigationBars[object].buttons["My first program"].tap()
-            XCTAssert(app.navigationBars["My first program"].buttons["Pocket Code"].exists)
+            
+            let programVC = waitForElementToAppear(app.navigationBars["My first program"])
+            XCTAssert(programVC.buttons["Pocket Code"].exists)
         }
     }
 }

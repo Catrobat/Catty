@@ -90,8 +90,9 @@ class BackgroundsTVCTests: XCTestCase, UITestProtocol {
         app.collectionViews.cells.element(boundBy: 0).tap()
         app.buttons["Delete Script"].tap()
         
-        let yesButton = app.alerts["Delete this Script?"].buttons["Yes"]
-        yesButton.tap()
+        let alert = waitForElementToAppear(app.alerts["Delete this Script?"])
+        alert.buttons["Yes"].tap()
+        
         app.navigationBars.buttons["Background"].tap()
         app.tables.staticTexts["Scripts"].tap()
         XCTAssert(app.staticTexts["Tap \"+\" to add Script"].exists)

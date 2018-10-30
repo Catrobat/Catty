@@ -79,7 +79,7 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
         app.alerts["New Program"].buttons["OK"].tap()
         
         // check if error message is displayed
-        XCTAssert(app.alerts["Pocket Code"].staticTexts["A program with the same name already exists, try again."].exists)
+        XCTAssert(waitForElementToAppear(app.alerts["Pocket Code"]).staticTexts["A program with the same name already exists, try again."].exists)
         app.alerts["Pocket Code"].buttons["OK"].tap()
         app.alerts["New Program"].buttons["Cancel"].tap()
         
@@ -107,8 +107,10 @@ class PocketCodeMainScreenTVCTests: XCTestCase, UITestProtocol {
             alertQuery.textFields["Enter your program name here..."].typeText(programName)
             alertQuery.buttons["OK"].tap()
             
-            XCTAssert(app.alerts["Pocket Code"].exists)
-            app.alerts["Pocket Code"].buttons["OK"].tap()
+            let alert = waitForElementToAppear(app.alerts["Pocket Code"])
+            XCTAssert(alert.exists)
+            alert.buttons["OK"].tap()
+            
             alertQuery.buttons["Cancel"].tap()
         }
     }
