@@ -573,6 +573,7 @@ let kUIFEActionVarPro = NSLocalizedString("for all objects", comment: "")
 let kUIFEChangesSaved = NSLocalizedString("Changes saved!", comment: "")
 let kUIFEChangesDiscarded = NSLocalizedString("Changes discarded!", comment: "")
 let kUIFESyntaxError = NSLocalizedString("Syntax Error!", comment: "")
+let kUIFEEmptyInput = NSLocalizedString("Empty input!", comment: "")
 
 let kUIFEVarOrList = NSLocalizedString("Variable or List", comment: "")
 
