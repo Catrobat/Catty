@@ -497,9 +497,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     picker.allowsEditing = NO;
     picker.delegate = self;
     picker.navigationBar.tintColor = [UIColor navTintColor];
-    [self presentViewController:picker animated:YES completion:^{
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    }];
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -515,7 +513,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // executed on the main queue
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:NO completion:^{
         [self showLoadingView];
         UIImage *image = info[UIImagePickerControllerEditedImage];
         if (! image) {
@@ -527,8 +525,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             return; 
         }
         image = [UIImage imageWithImage:image
-                       scaledToMaxWidth:2*[Util screenWidth]
-                              maxHeight:2*[Util screenHeight]];
+                       scaledToMaxWidth:[Util screenWidth]
+                              maxHeight:[Util screenHeight]];
         
         // add image to object now
         NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
@@ -594,39 +592,27 @@ static NSCharacterSet *blockedCharacterSet = nil;
                               [self.object projectPath], kProgramImagesDirName, newImageFileName];
     self.filePath = newImagePath;
     // leaving the main queue here!
-    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-        // save image to programs directory
-        [imageData writeToFile:newImagePath atomically:YES];
-    }];
-    // completion block is NOT executed on the main queue
-    [saveOp setCompletionBlock:^{
-        // execute this on the main queue
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self hideLoadingView];
-            [self showPlaceHolder:([self.object.lookList count] == 0)];
-            
-            if (self.showAddLookActionSheetAtStartForObject) {
-                [self addLookActionWithName:look.name look:look];
-            }else{
-                // ask user for image name
-                [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
-                                              target:self
-                                        cancelAction:@selector(cancelPaintSave)
-                                          withObject:look
-                                         promptTitle:kLocalizedAddImage
-                                       promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
-                                         promptValue:look.name
-                                   promptPlaceholder:kLocalizedEnterYourImageNameHere
-                                      minInputLength:kMinNumOfLookNameCharacters
-                                      maxInputLength:kMaxNumOfLookNameCharacters
-                                 blockedCharacterSet:[self blockedCharacterSet]
-                            invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
-            }
-        }];
-    }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:saveOp];
+    [imageData writeToFile:newImagePath atomically:YES];
     
+    [self hideLoadingView];
+    [self showPlaceHolder:([self.object.lookList count] == 0)];
+    if (self.showAddLookActionSheetAtStartForObject) {
+        [self addLookActionWithName:look.name look:look];
+    } else {
+        // ask user for image name
+        [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
+                                      target:self
+                                cancelAction:@selector(cancelPaintSave)
+                                  withObject:look
+                                 promptTitle:kLocalizedAddImage
+                               promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                 promptValue:look.name
+                           promptPlaceholder:kLocalizedEnterYourImageNameHere
+                              minInputLength:kMinNumOfLookNameCharacters
+                              maxInputLength:kMaxNumOfLookNameCharacters
+                         blockedCharacterSet:[self blockedCharacterSet]
+                    invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+    }
 }
 
 #pragma mark - text field delegates
@@ -821,23 +807,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
                               [self.object projectPath], kProgramImagesDirName, newImageFileName];
     self.filePath = newImagePath;
     NSDebug(@"Writing file to disk");
-    // leaving the main queue here!
-    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-        // save image to programs directory
-        [imageData writeToFile:newImagePath atomically:YES];
-    }];
-    // completion block is NOT executed on the main queue
-    [saveOp setCompletionBlock:^{
-        // execute this on the main queue
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self hideLoadingView];
-            [self showPlaceHolder:([self.object.lookList count] == 0)];
-            
-            [self addLookActionWithName:look.name look:look];
-        }];
-    }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:saveOp];
+    
+    [imageData writeToFile:newImagePath atomically:YES];
+    [self hideLoadingView];
+    [self showPlaceHolder:([self.object.lookList count] == 0)];
+    
+    [self addLookActionWithName:look.name look:look];
 
     [self reloadData];
 }
@@ -872,21 +847,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
         
         NSDebug(@"Writing file to disk");
-            // leaving the main queue here!
-        NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-                // save image to programs directory
-            [imageData writeToFile:path atomically:YES];
-        }];
-            // completion block is NOT executed on the main queue
-        [saveOp setCompletionBlock:^{
-                // execute this on the main queue
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.object.program saveToDiskWithNotification:YES];
-            }];
-        }];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [queue addOperation:saveOp];
-    
+        [imageData writeToFile:path atomically:YES];
+        [self.object.program saveToDiskWithNotification:YES];
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
@@ -919,41 +881,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         self.filePath = newImagePath;
         NSDebug(@"Writing file to disk");
-            // leaving the main queue here!
-        NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-                // save image to programs directory
-            [imageData writeToFile:newImagePath atomically:YES];
-        }];
-            // completion block is NOT executed on the main queue
-        [saveOp setCompletionBlock:^{
-                // execute this on the main queue
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self hideLoadingView];
-                [self showPlaceHolder:([self.object.lookList count] == 0)];
-                
-                    // ask user for image name
-                if (self.showAddLookActionSheetAtStartForObject) {
-                    [self addLookActionWithName:look.name look:look];
-                } else if (path){
-                    [self addLookActionWithName:@"settings_save" look:look];
-                } else {
-                    [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
-                                                  target:self
-                                            cancelAction:@selector(cancelPaintSave)
-                                              withObject:look
-                                             promptTitle:kLocalizedAddImage
-                                           promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
-                                             promptValue:look.name
-                                       promptPlaceholder:kLocalizedEnterYourImageNameHere
-                                          minInputLength:kMinNumOfLookNameCharacters
-                                          maxInputLength:kMaxNumOfLookNameCharacters
-                                     blockedCharacterSet:[self blockedCharacterSet]
-                                invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
-                }
-            }];
-        }];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        [queue addOperation:saveOp];
+        [imageData writeToFile:newImagePath atomically:YES];
+        [self hideLoadingView];
+        [self showPlaceHolder:([self.object.lookList count] == 0)];
+        
+        // ask user for image name
+        if (self.showAddLookActionSheetAtStartForObject) {
+            [self addLookActionWithName:look.name look:look];
+        } else if (path){
+            [self addLookActionWithName:@"settings_save" look:look];
+        } else {
+            [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
+                                          target:self
+                                    cancelAction:@selector(cancelPaintSave)
+                                      withObject:look
+                                     promptTitle:kLocalizedAddImage
+                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                     promptValue:look.name
+                               promptPlaceholder:kLocalizedEnterYourImageNameHere
+                                  minInputLength:kMinNumOfLookNameCharacters
+                                  maxInputLength:kMaxNumOfLookNameCharacters
+                             blockedCharacterSet:[self blockedCharacterSet]
+                        invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+        }
     }
     [self reloadData];
 }

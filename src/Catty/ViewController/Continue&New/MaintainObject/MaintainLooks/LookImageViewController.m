@@ -150,20 +150,8 @@
 
     NSData *imageData = UIImagePNGRepresentation(image);
     NSDebug(@"Writing file to disk");
-        // leaving the main queue here!
-    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-            // save image to programs directory
-        [imageData writeToFile:self.imagePath atomically:YES];
-    }];
-        // completion block is NOT executed on the main queue
-    [saveOp setCompletionBlock:^{
-            // execute this on the main queue
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 
-        }];
-    }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:saveOp];
+    [imageData writeToFile:self.imagePath atomically:YES];
     
     NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
