@@ -255,6 +255,7 @@
 #define kLocalizedOn NSLocalizedString(@"on", nil)
 #define kLocalizedCameraBack NSLocalizedString(@"back", nil)
 #define kLocalizedCameraFront NSLocalizedString(@"front", nil)
+#define kLocalizedSetAsPreviewImage NSLocalizedString(@"Set as Preview Image", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

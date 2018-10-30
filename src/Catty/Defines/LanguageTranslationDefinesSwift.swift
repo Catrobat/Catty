@@ -255,6 +255,7 @@ let kLocalizedOff = NSLocalizedString("off", comment: "")
 let kLocalizedOn = NSLocalizedString("on", comment: "")
 let kLocalizedCameraBack = NSLocalizedString("back", comment: "")
 let kLocalizedCameraFront = NSLocalizedString("front", comment: "")
+let kLocalizedSetAsPreviewImage = NSLocalizedString("Set as Preview Image", comment: "")
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
