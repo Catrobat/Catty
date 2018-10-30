@@ -515,61 +515,63 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // executed on the main queue
-    [self dismissViewControllerAnimated:YES completion:nil];
-    UIImage *image = info[UIImagePickerControllerEditedImage];
-    if (! image) {
-        image = info[UIImagePickerControllerOriginalImage];
-    }
-    image = [image fixOrientation];
-    if (! image) {
-        return;
-    }
-    image = [UIImage imageWithImage:image
-                   scaledToMaxWidth:2*[Util screenWidth]
-                          maxHeight:2*[Util screenHeight]];
-    
-    // add image to object now
-    NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
-    [self showLoadingView];
-    NSString *mediaType = info[UIImagePickerControllerMediaType];
-    NSDebug(@"Writing file to disk");
-    if ([mediaType isEqualToString:@"public.image"]) {
-        if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum) {
-            PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[assetURL] options:nil];
-            PHAsset *asset;
-            if (result != nil && result.count > 0) {
-                // get last photo from Photos
-                asset = [result lastObject];
-            }
-            if (asset) {
-                // get photo info from this asset IOS8 hack?!
-                PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
-                imageRequestOptions.synchronous = YES;
-                [[PHImageManager defaultManager]
-                 requestImageDataForAsset:asset
-                 options:imageRequestOptions
-                 resultHandler:^(NSData *imageData, NSString *dataUTI,
-                                 UIImageOrientation orientation,
-                                 NSDictionary *info)
-                 {
-                     if ([info objectForKey:@"PHImageFileURLKey"]) {
-                         NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
-                         NSString* imageFileName = [path lastPathComponent];
-                         NSArray *imageFileNameParts = [imageFileName componentsSeparatedByString:@"."];
-                         imageFileName = [imageFileNameParts firstObject];
-                         NSString *imageFileNameExtension = [imageFileNameParts lastObject];
-                         [self saveImageData:imageData withFileName:imageFileName andImageFileNameExtension:imageFileNameExtension];
-                     } else {
-                         [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
-                     }
-                 }];
-            }
-        } else if(picker.sourceType == UIImagePickerControllerSourceTypeCamera){
-            NSData *imageData = UIImagePNGRepresentation(image);
-            [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self showLoadingView];
+        UIImage *image = info[UIImagePickerControllerEditedImage];
+        if (! image) {
+            image = info[UIImagePickerControllerOriginalImage];
         }
-    }
-    [self hideLoadingView];
+        image = [image fixOrientation];
+        if (!image) {
+            [self hideLoadingView];
+            return; 
+        }
+        image = [UIImage imageWithImage:image
+                       scaledToMaxWidth:2*[Util screenWidth]
+                              maxHeight:2*[Util screenHeight]];
+        
+        // add image to object now
+        NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+        NSString *mediaType = info[UIImagePickerControllerMediaType];
+        NSDebug(@"Writing file to disk");
+        if ([mediaType isEqualToString:@"public.image"]) {
+            if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum) {
+                PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[assetURL] options:nil];
+                PHAsset *asset;
+                if (result != nil && result.count > 0) {
+                    // get last photo from Photos
+                    asset = [result lastObject];
+                }
+                if (asset) {
+                    // get photo info from this asset IOS8 hack?!
+                    PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
+                    imageRequestOptions.synchronous = YES;
+                    [[PHImageManager defaultManager]
+                     requestImageDataForAsset:asset
+                     options:imageRequestOptions
+                     resultHandler:^(NSData *imageData, NSString *dataUTI,
+                                     UIImageOrientation orientation,
+                                     NSDictionary *info)
+                     {
+                         if ([info objectForKey:@"PHImageFileURLKey"]) {
+                             NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
+                             NSString* imageFileName = [path lastPathComponent];
+                             NSArray *imageFileNameParts = [imageFileName componentsSeparatedByString:@"."];
+                             imageFileName = [imageFileNameParts firstObject];
+                             NSString *imageFileNameExtension = [imageFileNameParts lastObject];
+                             [self saveImageData:imageData withFileName:imageFileName andImageFileNameExtension:imageFileNameExtension];
+                         } else {
+                             [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
+                         }
+                     }];
+                }
+            } else if(picker.sourceType == UIImagePickerControllerSourceTypeCamera){
+                NSData *imageData = UIImagePNGRepresentation(image);
+                [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
+            }
+        }
+        [self hideLoadingView];
+    }];
 }
 
 
