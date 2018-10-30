@@ -22,6 +22,7 @@
 
 #import "SaveToProjectActivity.h"
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
 
 @implementation SaveToProjectActivity
 
@@ -40,7 +41,7 @@
 }
 
 - (NSString *)activityTitle {
-    return kLocalizedSaveToPocketCode;
+    return kLocalizedSetAsPreviewImage;
 }
 
 - (UIImage *)activityImage
@@ -67,11 +68,12 @@
 
 - (void)performActivity
 {
-    //Dimensions of Screenshot???
-    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",self.path];
+    NSString *fileName = @"manual_screenshot.png";
+    NSString *pngFilePath = [NSString stringWithFormat:@"%@%@",self.path, fileName];
     NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.image)];
     [data writeToFile:pngFilePath atomically:YES];
-
+    [[RuntimeImageCache sharedImageCache] overwriteThumbnailImageFromDiskWithThumbnailPath:[NSString stringWithFormat:@"%@%@%@",self.path, kScreenshotThumbnailPrefix, fileName] image:self.image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
+    
     [self activityDidFinish:YES];
 }
 

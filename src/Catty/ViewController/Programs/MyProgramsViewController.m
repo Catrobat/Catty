@@ -99,7 +99,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.selectedProgram = nil;
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:NO];
-    [self.tableView reloadData];
+    [self reloadTableView];
 }
 
 #pragma mark - system events

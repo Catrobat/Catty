@@ -503,9 +503,9 @@
 
 -(void)takeAutomaticScreenshot
 {
-    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/screenshot.png",[self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", [self.program projectPath]],
-                               [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", [self.program projectPath]]];
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@screenshot.png",[self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@manual_screenshot.png", [self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@automatic_screenshot.png", [self.program projectPath]]];
     BOOL fileExists = NO;
     for (NSString *fallbackPath in fallbackPaths) {
         NSString *fileName = [fallbackPath lastPathComponent];
@@ -522,9 +522,11 @@
         UIGraphicsEndImageContext();
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png",[self.program projectPath]];
+            NSString *fileName = @"automatic_screenshot.png";
+            NSString *pngFilePath = [NSString stringWithFormat:@"%@%@",[self.program projectPath], fileName];
             NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
             [data writeToFile:pngFilePath atomically:YES];
+            [[RuntimeImageCache sharedImageCache] overwriteThumbnailImageFromDiskWithThumbnailPath:[NSString stringWithFormat:@"%@%@%@",[self.program projectPath], kScreenshotThumbnailPrefix, fileName] image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
         });
     }
 }
@@ -546,7 +548,9 @@
                                          UIActivityTypePostToVimeo,
                                          UIActivityTypePostToWeibo,
                                          UIActivityTypePostToTwitter,
-                                         UIActivityTypeMail]; //or whichever you don't need
+                                         UIActivityTypeMail,
+                                         UIActivityTypePrint,
+                                         UIActivityTypeCopyToPasteboard]; //or whichever you don't need
     __weak ScenePresenterViewController *weakself = self;
     [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
         SKView *view = weakself.skView;
