@@ -586,6 +586,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self updateFormula];
     [self.undoButton setEnabled:[self.history undoIsPossible]];
     [self.redoButton setEnabled:[self.history redoIsPossible]];
+    if (self.internFormula != nil) {
+        [self.computeButton setEnabled:!self.internFormula.isEmpty];
+        [self.doneButton setEnabled:!self.internFormula.isEmpty];
+    }
 }
 
 - (void)updateFormula
@@ -1183,8 +1187,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)showSyntaxErrorView
 {
-    [self showNotification:kUIFESyntaxError andDuration:kBDKNotifyHUDPresentationDuration];
-    [self.formulaEditorTextView setParseErrorCursorAndSelection];
+    if (self.internFormula != nil && self.internFormula.isEmpty) {
+        [self showNotification:kUIFEEmptyInput andDuration:kBDKNotifyHUDPresentationDuration];
+    } else {
+        [self showNotification:kUIFESyntaxError andDuration:kBDKNotifyHUDPresentationDuration];
+        [self.formulaEditorTextView setParseErrorCursorAndSelection];
+    }
 }
 
 - (void)showFormulaTooLongView

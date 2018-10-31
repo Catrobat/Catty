@@ -574,6 +574,7 @@
 #define kUIFEChangesSaved NSLocalizedString(@"Changes saved!", nil)
 #define kUIFEChangesDiscarded NSLocalizedString(@"Changes discarded!", nil)
 #define kUIFESyntaxError NSLocalizedString(@"Syntax Error!", nil)
+#define kUIFEEmptyInput NSLocalizedString(@"Empty input!", nil)
 
 #define kUIFEVarOrList NSLocalizedString(@"Variable or List", nil)
 
