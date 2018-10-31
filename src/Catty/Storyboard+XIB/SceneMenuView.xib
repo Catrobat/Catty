@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,11 +29,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="125" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="125" height="791"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mj0-sa-z3d" userLabel="Back">
-                    <rect key="frame" x="10" y="8" width="25" height="25"/>
+                    <rect key="frame" x="10" y="25" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="4ba-39-Fax"/>
                         <constraint firstAttribute="height" constant="25" id="aCS-b6-Sdy"/>
@@ -41,15 +41,15 @@
                     <state key="normal" backgroundImage="back"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdn-Xp-GRX" userLabel="BackLabel">
-                    <rect key="frame" x="39" y="-9" width="86" height="58"/>
+                    <rect key="frame" x="39" y="8.5" width="86" height="58"/>
                     <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="40" maxY="20"/>
                     <state key="normal" title="Button"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJb-gF-5Jq">
-                    <rect key="frame" x="5" y="81" width="115" height="446"/>
+                    <rect key="frame" x="5" y="98.5" width="115" height="620"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c75-sd-NgK" userLabel="Restart">
-                            <rect key="frame" x="42" y="142" width="31" height="31"/>
+                            <rect key="frame" x="9.5" y="131.5" width="96" height="96"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="c75-sd-NgK" secondAttribute="height" multiplier="1:1" id="3VO-NH-pxN"/>
                                 <constraint firstAttribute="width" secondItem="c75-sd-NgK" secondAttribute="height" multiplier="1:1" id="D6o-Sr-2pE"/>
@@ -66,27 +66,27 @@
                             </variation>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAP-Vg-EGc" userLabel="ContinueLabel">
-                            <rect key="frame" x="34" y="98" width="46" height="30"/>
+                            <rect key="frame" x="34.5" y="87.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8o1-uS-vGJ" userLabel="RestartLabel">
-                            <rect key="frame" x="34" y="173" width="46" height="30"/>
+                            <rect key="frame" x="34.5" y="227.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSi-Se-IyC" userLabel="ScreenshotLabel">
-                            <rect key="frame" x="34" y="239" width="46" height="30"/>
+                            <rect key="frame" x="34.5" y="358.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENa-kr-PS6" userLabel="AxisLabel">
-                            <rect key="frame" x="34" y="305" width="46" height="30"/>
+                            <rect key="frame" x="34.5" y="489.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-Iw-jHL" userLabel="RecordLabel">
-                            <rect key="frame" x="34" y="371" width="46" height="30"/>
+                            <rect key="frame" x="34.5" y="620.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxZ-SX-2rN" userLabel="Screenshot">
-                            <rect key="frame" x="42" y="207" width="32" height="32"/>
+                            <rect key="frame" x="9" y="261.5" width="97" height="97"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="44" id="1dw-Gm-VMR"/>
                                 <constraint firstAttribute="height" constant="44" id="hEL-Ue-cWa"/>
@@ -103,7 +103,7 @@
                             </variation>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLo-Oa-NMT" userLabel="Axis">
-                            <rect key="frame" x="42" y="273" width="32" height="32"/>
+                            <rect key="frame" x="9" y="392.5" width="97" height="97"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="nLo-Oa-NMT" secondAttribute="height" multiplier="1:1" id="8B6-N0-SMj"/>
                                 <constraint firstAttribute="width" secondItem="nLo-Oa-NMT" secondAttribute="height" multiplier="1:1" id="IQQ-W6-tr3"/>
@@ -120,7 +120,7 @@
                             </variation>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtc-93-gtF" userLabel="Continue">
-                            <rect key="frame" x="36" y="56" width="42" height="42"/>
+                            <rect key="frame" x="-6.5" y="-40.5" width="128" height="128"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="height" multiplier="1:1" id="9UB-co-WR9"/>
                                 <constraint firstAttribute="height" constant="74" id="TFP-Jv-Zjh"/>
@@ -137,7 +137,7 @@
                             </variation>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-Ul-XRu" userLabel="Record">
-                            <rect key="frame" x="42" y="339" width="32" height="32"/>
+                            <rect key="frame" x="9" y="523.5" width="97" height="97"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="EOu-Ul-XRu" secondAttribute="height" multiplier="1:1" id="zRt-B8-3d6"/>
                             </constraints>
@@ -188,7 +188,7 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-oO-Ywc" userLabel="Fullscreen">
-                    <rect key="frame" x="50" y="567" width="25" height="25"/>
+                    <rect key="frame" x="50" y="758" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Nqv-gL-c4E"/>
                         <constraint firstAttribute="width" constant="25" id="ou2-Xi-qda"/>
@@ -205,28 +205,29 @@
                 <constraint firstItem="XeV-oO-Ywc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K1P-J8-2E2"/>
                 <constraint firstItem="Hdn-Xp-GRX" firstAttribute="centerY" secondItem="Mj0-sa-z3d" secondAttribute="centerY" id="N9L-og-SUh"/>
                 <constraint firstItem="XeV-oO-Ywc" firstAttribute="top" secondItem="uJb-gF-5Jq" secondAttribute="bottom" constant="39.5" id="PPx-yy-fST"/>
-                <constraint firstItem="Mj0-sa-z3d" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Sjh-KM-s41"/>
+                <constraint firstItem="Mj0-sa-z3d" firstAttribute="top" secondItem="djA-ya-O5Z" secondAttribute="top" constant="5" id="Sjh-KM-s41"/>
                 <constraint firstItem="uJb-gF-5Jq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TCh-Hp-Ule"/>
                 <constraint firstItem="uJb-gF-5Jq" firstAttribute="top" secondItem="Hdn-Xp-GRX" secondAttribute="bottom" constant="32" id="eb3-DQ-9ee"/>
                 <constraint firstAttribute="trailing" secondItem="uJb-gF-5Jq" secondAttribute="trailing" constant="5" id="h2f-Br-5I8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="djA-ya-O5Z"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="TCh-Hp-Ule"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="238.5" y="257"/>
+            <point key="canvasLocation" x="237.59999999999999" y="342.27886056971516"/>
         </view>
     </objects>
     <resources>
         <image name="back" width="43" height="56"/>
-        <image name="record" width="21" height="21"/>
-        <image name="stage_dialog_button_aspect_ratio" width="21" height="21"/>
-        <image name="stage_dialog_button_continue" width="42" height="42"/>
-        <image name="stage_dialog_button_restart" width="21" height="21"/>
-        <image name="stage_dialog_button_screenshot" width="21" height="21"/>
-        <image name="stage_dialog_button_toggle_axis" width="21" height="21"/>
+        <image name="record" width="64" height="64"/>
+        <image name="stage_dialog_button_aspect_ratio" width="64" height="64"/>
+        <image name="stage_dialog_button_continue" width="128" height="128"/>
+        <image name="stage_dialog_button_restart" width="64" height="64"/>
+        <image name="stage_dialog_button_screenshot" width="64" height="64"/>
+        <image name="stage_dialog_button_toggle_axis" width="64" height="64"/>
     </resources>
 </document>
