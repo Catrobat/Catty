@@ -21,12 +21,6 @@
  */
 
 import SpriteKit
-import ReplayKit
-
-@objc protocol CBScreenRecordingDelegate {
-    func showMenuRecordButton()
-    func hideMenuRecordButton()
-}
 
 @objc
 final class CBScene: SKScene {
@@ -38,22 +32,6 @@ final class CBScene: SKScene {
     private final let broadcastHandler: CBBroadcastHandlerProtocol
     private final let formulaManager: FormulaManagerProtocol
     private final let logger: CBLogger
-    
-    /// ReplayKit preview view controller used when viewing recorded content.
-    private var _previewViewController: AnyObject?
-    @available(iOS 9.0, *)
-    @objc var previewViewController: RPPreviewViewController? {
-        get { return _previewViewController as? RPPreviewViewController }
-        set { _previewViewController = newValue }
-    }
-    @objc var isScreenRecorderAvailable: Bool {
-    return RPScreenRecorder.shared().isAvailable
-    
-    }
-    @objc var isScreenRecording: Bool {
-        return RPScreenRecorder.shared().isRecording
-    }
-    @objc weak var screenRecordingDelegate: CBScreenRecordingDelegate?
 
     init(size: CGSize, logger: CBLogger, scheduler: CBSchedulerProtocol, frontend: CBFrontendProtocol, backend: CBBackendProtocol, broadcastHandler: CBBroadcastHandlerProtocol, formulaManager: FormulaManagerProtocol) {
         self.logger = logger
@@ -211,27 +189,6 @@ final class CBScene: SKScene {
 
         formulaManager.setup(for: program, and: self)
         scheduler.run()
-    }
-
-    @objc func initializeScreenRecording() {
-        RPScreenRecorder.shared().delegate = self
-    }
-
-    @objc func startScreenRecording() {
-        _startScreenRecording()
-    }
-
-    @objc func stopScreenRecording() {
-        
-        _stopScreenRecordingWithHandler { [weak self] in
-            guard let rootVC = self?.view?.window?.rootViewController,
-                    let previewVC = self?.previewViewController
-                    else { fatalError("Preview controller or root view controller not available.") }
-
-            // NOTE: RPPreviewViewController only supports full screen modal presentation.
-            previewVC.modalPresentationStyle = .fullScreen
-            rootVC.present(previewVC, animated: true, completion: nil)
-        }
     }
 
     @objc func pauseScheduler() {

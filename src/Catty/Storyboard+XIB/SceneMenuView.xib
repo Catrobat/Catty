@@ -19,8 +19,6 @@
                 <outlet property="menuBackLabel" destination="Hdn-Xp-GRX" id="QUO-sL-Vzg"/>
                 <outlet property="menuContinueButton" destination="wtc-93-gtF" id="HLM-Em-8G7"/>
                 <outlet property="menuContinueLabel" destination="iAP-Vg-EGc" id="mDu-94-xH4"/>
-                <outlet property="menuRecordButton" destination="EOu-Ul-XRu" id="7QH-GC-wjK"/>
-                <outlet property="menuRecordLabel" destination="cjh-Iw-jHL" id="Aag-da-Shy"/>
                 <outlet property="menuRestartButton" destination="c75-sd-NgK" id="r2F-L6-Gtq"/>
                 <outlet property="menuRestartLabel" destination="8o1-uS-vGJ" id="uUO-CL-b8Q"/>
                 <outlet property="menuScreenshotButton" destination="QxZ-SX-2rN" id="VV8-hn-3PG"/>
@@ -81,10 +79,6 @@
                             <rect key="frame" x="34.5" y="489.5" width="46" height="30"/>
                             <state key="normal" title="Button"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjh-Iw-jHL" userLabel="RecordLabel">
-                            <rect key="frame" x="34.5" y="620.5" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxZ-SX-2rN" userLabel="Screenshot">
                             <rect key="frame" x="9" y="261.5" width="97" height="97"/>
                             <constraints>
@@ -136,39 +130,24 @@
                                 </mask>
                             </variation>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-Ul-XRu" userLabel="Record">
-                            <rect key="frame" x="9" y="523.5" width="97" height="97"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="EOu-Ul-XRu" secondAttribute="height" multiplier="1:1" id="zRt-B8-3d6"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="record"/>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="nLo-Oa-NMT" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" multiplier="0.75" constant="1" id="43x-9h-5nd"/>
-                        <constraint firstItem="EOu-Ul-XRu" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="4Be-bk-d3G"/>
                         <constraint firstItem="iAP-Vg-EGc" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="5dU-g2-WOg"/>
                         <constraint firstItem="QxZ-SX-2rN" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" id="5zN-Zf-vGN"/>
                         <constraint firstItem="c75-sd-NgK" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" id="60n-5U-aiU"/>
                         <constraint firstItem="c75-sd-NgK" firstAttribute="top" secondItem="wtc-93-gtF" secondAttribute="bottom" constant="44" id="9kV-nM-xnw"/>
                         <constraint firstItem="nLo-Oa-NMT" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" id="DBj-i0-gY9"/>
                         <constraint firstItem="ENa-kr-PS6" firstAttribute="top" secondItem="nLo-Oa-NMT" secondAttribute="bottom" id="Dnh-YC-6PB"/>
-                        <constraint firstAttribute="trailing" secondItem="EOu-Ul-XRu" secondAttribute="trailing" constant="20" id="FvD-or-YmK"/>
                         <constraint firstItem="wtc-93-gtF" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="G7c-j7-1UU"/>
-                        <constraint firstItem="cjh-Iw-jHL" firstAttribute="top" secondItem="EOu-Ul-XRu" secondAttribute="bottom" id="KFJ-rI-Spp"/>
                         <constraint firstItem="QxZ-SX-2rN" firstAttribute="top" secondItem="c75-sd-NgK" secondAttribute="bottom" constant="34" id="LUi-0g-3Iw"/>
                         <constraint firstItem="uSi-Se-IyC" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="S6h-pS-4UC"/>
                         <constraint firstItem="nLo-Oa-NMT" firstAttribute="top" secondItem="QxZ-SX-2rN" secondAttribute="bottom" constant="34" id="UKj-cc-g8s"/>
                         <constraint firstItem="ENa-kr-PS6" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="Ueu-fP-aB6"/>
                         <constraint firstItem="QxZ-SX-2rN" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" multiplier="0.75" constant="1" id="WfK-YH-hx7"/>
                         <constraint firstItem="8o1-uS-vGJ" firstAttribute="top" secondItem="c75-sd-NgK" secondAttribute="bottom" id="aDv-hf-o6r"/>
-                        <constraint firstItem="EOu-Ul-XRu" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" id="aHr-bO-UV1"/>
-                        <constraint firstItem="EOu-Ul-XRu" firstAttribute="top" secondItem="nLo-Oa-NMT" secondAttribute="bottom" constant="34" id="b7P-xd-5IT"/>
-                        <constraint firstItem="cjh-Iw-jHL" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="cfM-pi-OuT"/>
                         <constraint firstItem="8o1-uS-vGJ" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="d2M-ev-T8M"/>
                         <constraint firstItem="uSi-Se-IyC" firstAttribute="top" secondItem="QxZ-SX-2rN" secondAttribute="bottom" id="dmh-6c-2ki"/>
-                        <constraint firstItem="EOu-Ul-XRu" firstAttribute="leading" secondItem="uJb-gF-5Jq" secondAttribute="leading" constant="20" id="m2Q-vf-J7G"/>
-                        <constraint firstItem="EOu-Ul-XRu" firstAttribute="width" secondItem="wtc-93-gtF" secondAttribute="width" multiplier="0.75" constant="1" id="q7t-HN-7Dk"/>
                         <constraint firstItem="c75-sd-NgK" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="qUU-7U-sS8"/>
                         <constraint firstItem="QxZ-SX-2rN" firstAttribute="centerX" secondItem="uJb-gF-5Jq" secondAttribute="centerX" id="u7l-do-jGt"/>
                         <constraint firstItem="QxZ-SX-2rN" firstAttribute="centerY" secondItem="uJb-gF-5Jq" secondAttribute="centerY" id="v8v-gd-58f"/>
@@ -181,9 +160,6 @@
                             <exclude reference="60n-5U-aiU"/>
                             <exclude reference="5zN-Zf-vGN"/>
                             <exclude reference="DBj-i0-gY9"/>
-                            <exclude reference="FvD-or-YmK"/>
-                            <exclude reference="aHr-bO-UV1"/>
-                            <exclude reference="m2Q-vf-J7G"/>
                         </mask>
                     </variation>
                 </view>
@@ -223,7 +199,6 @@
     </objects>
     <resources>
         <image name="back" width="43" height="56"/>
-        <image name="record" width="64" height="64"/>
         <image name="stage_dialog_button_aspect_ratio" width="64" height="64"/>
         <image name="stage_dialog_button_continue" width="128" height="128"/>
         <image name="stage_dialog_button_restart" width="64" height="64"/>

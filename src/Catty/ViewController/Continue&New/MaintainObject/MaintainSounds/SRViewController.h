@@ -24,7 +24,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SoundsTableViewController.h"
 
-@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,UIGestureRecognizerDelegate>
+@interface SRViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate, UIGestureRecognizerDelegate>
 
 @property(nonatomic, strong) IBOutlet UIButton *record;
 @property (nonatomic, assign) BOOL isRecording;
