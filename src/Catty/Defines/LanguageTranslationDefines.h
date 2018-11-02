@@ -221,8 +221,6 @@
 #define kLocalizedSounds NSLocalizedString(@"Sounds", nil)
 #define kLocalizedLastAccess NSLocalizedString(@"Last access", nil)
 #define kLocalizedLength NSLocalizedString(@"Length", nil)
-#define kLocalizedRecord NSLocalizedString(@"Record", nil)
-#define kLocalizedStop NSLocalizedString(@"Stop", nil)
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
 #define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")

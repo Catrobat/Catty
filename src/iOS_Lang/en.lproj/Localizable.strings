@@ -1211,9 +1211,6 @@
 "RE" = "RE";
 
 /* No comment provided by engineer. */
-"Record" = "Record";
-
-/* No comment provided by engineer. */
 "Recording" = "Recording";
 
 /* paint */
@@ -1470,9 +1467,6 @@
 
 /* No comment provided by engineer. */
 "steps" = "steps";
-
-/* No comment provided by engineer. */
-"Stop" = "Stop";
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Stop all sounds";

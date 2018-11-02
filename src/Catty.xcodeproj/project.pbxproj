@@ -550,8 +550,6 @@
 		4CF072A820D6710F00F93AB5 /* FingerXSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */; };
 		4CF072A920D6710F00F93AB5 /* FingerTouchedSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */; };
 		4CF072AE20D6753D00F93AB5 /* DateYearSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */; };
-		4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */; };
-		4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */; };
 		4CF429EA213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */; };
 		4CF429ED213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */; };
 		4CF429EF213A858D00B78897 /* CBConditionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */; };
@@ -1918,8 +1916,6 @@
 		4CF072A420D6710F00F93AB5 /* FingerXSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerXSensor.swift; sourceTree = "<group>"; };
 		4CF072A520D6710F00F93AB5 /* FingerTouchedSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FingerTouchedSensor.swift; sourceTree = "<group>"; };
 		4CF072AD20D6753D00F93AB5 /* DateYearSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateYearSensor.swift; sourceTree = "<group>"; };
-		4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecording.swift"; sourceTree = "<group>"; };
-		4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CBScene+ScreenRecordingPreview.swift"; sourceTree = "<group>"; };
 		4CF429E9213A64B600B78897 /* InternFormulaKeyboardAdapterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InternFormulaKeyboardAdapterTests.swift; path = Formula/InternFormulaKeyboardAdapterTests.swift; sourceTree = "<group>"; };
 		4CF429EC213A82EB00B78897 /* IfThenLogicBeginBrick+Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IfThenLogicBeginBrick+Condition.swift"; sourceTree = "<group>"; };
 		4CF429EE213A858D00B78897 /* CBConditionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CBConditionProtocol.swift; path = PlayerEngine/Protocols/CBConditionProtocol.swift; sourceTree = "<group>"; };
@@ -4779,16 +4775,6 @@
 			path = Date;
 			sourceTree = "<group>";
 		};
-		4CF16E301D90310100B8C99A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4CF16E311D90310100B8C99A /* CBScene+ScreenRecording.swift */,
-				4CF16E321D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift */,
-			);
-			name = Extensions;
-			path = Catty/PlayerEngine/Scene/Extensions;
-			sourceTree = SOURCE_ROOT;
-		};
 		4CF429EB213A82D300B78897 /* Condition */ = {
 			isa = PBXGroup;
 			children = (
@@ -5983,7 +5969,6 @@
 			isa = PBXGroup;
 			children = (
 				4CDF7BB42138735700FFF7F4 /* Builder */,
-				4CF16E301D90310100B8C99A /* Extensions */,
 				AABCB3CC1BB36131009F67D2 /* CBScene.swift */,
 			);
 			name = Scene;
@@ -8668,7 +8653,6 @@
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				F4E6E5C6210E24F900D86FE6 /* TrueFunction.swift in Sources */,
 				4CB0F9EC20A1731700D1BE2F /* PositionYSensor.swift in Sources */,
-				4CF16E331D90310100B8C99A /* CBScene+ScreenRecording.swift in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
 				A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */,
 				4C0F9F28204ADBE000E71B2D /* RepeatUntilBrick.m in Sources */,
@@ -8697,7 +8681,6 @@
 				BACDF35C1F1F9BFC00346167 /* DeleteItemOfUserListBrick+Instruction.swift in Sources */,
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
 				4CE67888210C4B1D00D90B5D /* Function.swift in Sources */,
-				4CF16E341D90310100B8C99A /* CBScene+ScreenRecordingPreview.swift in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
 				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,

@@ -32,7 +32,7 @@
 #import "Pocket_Code-Swift.h"
 #import "RuntimeImageCache.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate, CBScreenRecordingDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic, strong) CBScene *scene;
 @property (nonatomic, strong) SKView *skView;
 
@@ -151,9 +151,8 @@
                                kLocalizedRestart,
                                kLocalizedContinue,
                                kLocalizedScreenshot,
-                               kLocalizedAxes,
-                               kLocalizedRecord, nil];
-    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,self.menuRecordLabel, nil];
+                               kLocalizedAxes, nil];
+    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel, self.menuRestartLabel, self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel, nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
         [self setupLabel:labelTextArray[i]
                  andView:labelArray[i]];
@@ -163,7 +162,6 @@
     [self.menuScreenshotLabel addTarget:self action:@selector(takeScreenshotAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuRestartLabel addTarget:self action:@selector(restartAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.menuAxisLabel addTarget:self action:@selector(showHideAxisAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuRecordLabel addTarget:self action:@selector(record:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupLabel:(NSString*)name andView:(UIButton*)label
@@ -200,12 +198,6 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
-    [self setupButtonWithButton:self.menuRecordButton
-                ImageNameNormal:[UIImage imageNamed:@"record"]
-        andImageNameHighlighted:[UIImage imageNamed:@"record"]
-                    andSelector:@selector(record:)];
-    self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
-    self.menuRecordLabel.hidden = (! self.scene.isScreenRecorderAvailable);
 }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal
@@ -271,8 +263,6 @@
 {
     // Initialize scene
     CBScene *scene = [[[[SceneBuilder alloc] initWithProgram:self.program] andFormulaManager:self.formulaManager] build];
-    [scene initializeScreenRecording];
-    scene.screenRecordingDelegate = self;
     
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -380,13 +370,6 @@
 - (void)stopAction:(UIButton*)sender
 {
     CBScene *previousScene = self.scene;
-    if (previousScene.isScreenRecording) {
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
-        [self.menuView setNeedsDisplay];
-        [previousScene stopScreenRecording];
-        return;
-    }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         self.menuView.userInteractionEnabled = NO;
@@ -450,31 +433,6 @@
         self.gridView.hidden = YES;
     } else {
         self.gridView.hidden = NO;
-    }
-}
-
-- (void)record:(UIButton*)sender
-{
-    if (! self.scene.isScreenRecorderAvailable) {
-        return;
-    }
-
-    if (self.scene.isScreenRecording) {
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
-        [self.scene stopScreenRecording];
-        [self setupLabel:kLocalizedRecord
-                 andView:self.menuRecordLabel];
-        [self.menuView setNeedsDisplay];
-    }
-    else {
-        [self.scene startScreenRecording];
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
-        [self setupLabel:kLocalizedStop
-                 andView:self.menuRecordLabel];
-        [self.menuView setNeedsDisplay];
-        [self continueAction:nil withDuration:0];
     }
 }
 
@@ -566,7 +524,6 @@
 #pragma mark - Pan Gesture Handler
 - (void)handlePan:(UIPanGestureRecognizer*)gesture
 {
-    self.menuRecordButton.hidden = (! self.scene.isScreenRecorderAvailable);
     CGPoint translate = [gesture translationInView:gesture.view];
     translate.y = 0.0;
     CGFloat velocityX = [gesture velocityInView:gesture.view].x;
@@ -646,7 +603,6 @@
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
 //                                     [self bounceAnimation];
                                  }
-//                                 [self.scene stopScreenRecording];
                              }];
         }
     }
@@ -764,16 +720,5 @@
     CFRelease(cgimg);
     return output;
 }
-
-#pragma mark - CBScreenRecordingDelegate
-- (void)showMenuRecordButton {
-    self.menuRecordButton.hidden = NO;
-}
-
-- (void)hideMenuRecordButton {
-    self.menuRecordButton.hidden = YES;
-}
-
-
 
 @end
