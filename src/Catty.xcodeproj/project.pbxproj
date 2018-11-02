@@ -132,6 +132,7 @@
 		4C1D26611E84EFBD00BAA2D2 /* RepeatBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26601E84EFBD00BAA2D2 /* RepeatBrickTests.swift */; };
 		4C1D26651E84F12700BAA2D2 /* VibrationBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */; };
 		4C1D26671E84F1BF00BAA2D2 /* GlideToBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */; };
+		4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */; };
 		4C1F6FA5213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */; };
 		4C1F6FA7213CFB5800C20BEB /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
@@ -1441,6 +1442,7 @@
 		4C1D26641E84F12700BAA2D2 /* VibrationBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrationBrickTests.swift; sourceTree = "<group>"; };
 		4C1D26661E84F1BF00BAA2D2 /* GlideToBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlideToBrickTests.swift; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
+		4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptCollectionVCTests.swift; sourceTree = "<group>"; };
 		4C1F6FA4213CF6BE00C20BEB /* SingleParameterStringFunctionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleParameterStringFunctionMock.swift; sourceTree = "<group>"; };
 		4C1F6FA6213CFB5800C20BEB /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
@@ -6973,13 +6975,14 @@
 			isa = PBXGroup;
 			children = (
 				4CB1FB721BC2D74F0000A2FE /* Protocol */,
+				BCFED6EC2111C04000BE57BF /* BackgroundsTVCTests.swift */,
+				BC19327E21186504009DE43A /* CreateProgramTVCTests.swift */,
+				AAADA0081B9B29D500E0CA9A /* Info.plist */,
+				BCFED6F52113188700BE57BF /* MyFirstProgramTVCTests.swift */,
+				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
 				BCFED6EE2111C54100BE57BF /* PocketCodeMainScreenTVCTests.swift */,
 				BCFED6F7211318A100BE57BF /* ProgramsTVCTests.swift */,
-				BCFED6F52113188700BE57BF /* MyFirstProgramTVCTests.swift */,
-				BCFED6EC2111C04000BE57BF /* BackgroundsTVCTests.swift */,
-				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
-				AAADA0081B9B29D500E0CA9A /* Info.plist */,
-				BC19327E21186504009DE43A /* CreateProgramTVCTests.swift */,
+				4C1EDCA9218A080200B60464 /* ScriptCollectionVCTests.swift */,
 				BA6805AD21303B48004F004F /* VariablesTests.swift */,
 			);
 			path = "Catty UITests";
@@ -8295,6 +8298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCFED6F12111CA5D00BE57BF /* PocketCodeMainScreenTVCTests.swift in Sources */,
+				4C1EDCAC218A080200B60464 /* ScriptCollectionVCTests.swift in Sources */,
 				BC1EB70F2111905800D95C53 /* ObjectTVCTests.swift in Sources */,
 				BCFED6F62113188700BE57BF /* MyFirstProgramTVCTests.swift in Sources */,
 				BA6805AE21303B48004F004F /* VariablesTests.swift in Sources */,
