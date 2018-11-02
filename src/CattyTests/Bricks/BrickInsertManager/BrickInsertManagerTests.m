@@ -27,6 +27,7 @@
 #import "LoopEndBrick.h"
 #import "RepeatBrick.h"
 #import "WhenScript.h"
+#import "BrickManager.h"
 #import "BrickInsertManager.h"
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
@@ -131,6 +132,37 @@
                                                                                      canInsertToIndexPath:indexPathTo
                                                                                               andObject:self.spriteObject];
     XCTAssertTrue(canInsertWaitBrickBehindRepeatBrick, @"Should be allowed to insert WaitBrick behind RepeatBrick");
+}
+
+- (void)testCopyIfThenLogicBeginBrick {
+    [self.viewController.collectionView reloadData];
+    
+    IfThenLogicBeginBrick *ifThenLogicBeginBrick = [IfThenLogicBeginBrick new];
+    ifThenLogicBeginBrick.ifCondition = [[Formula alloc] initWithFloat:3];
+    ifThenLogicBeginBrick.script = self.startScript;
+    
+    IfThenLogicEndBrick *ifThenLogicEndBrick = [IfThenLogicEndBrick new];
+    ifThenLogicEndBrick.script = self.startScript;
+    ifThenLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick;
+    ifThenLogicBeginBrick.ifEndBrick = ifThenLogicEndBrick;
+    
+    [self.startScript.brickList addObject:ifThenLogicBeginBrick];
+    [self.startScript.brickList addObject:ifThenLogicEndBrick];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(3, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(2, [self.startScript.brickList count]);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    
+    NSArray<NSIndexPath*> *copiedBricksIndexPaths = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:ifThenLogicBeginBrick];
+    
+    XCTAssertEqual(2, [copiedBricksIndexPaths count]);
+    XCTAssertEqual(indexPath.section, copiedBricksIndexPaths[0].section);
+    XCTAssertEqual(indexPath.row, copiedBricksIndexPaths[0].row);
+    XCTAssertEqual(indexPath.section, copiedBricksIndexPaths[1].section);
+    XCTAssertEqual(indexPath.row + 1, copiedBricksIndexPaths[1].row);
+    XCTAssertEqual(4, [self.startScript.brickList count]);
 }
 
 @end
