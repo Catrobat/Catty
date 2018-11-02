@@ -529,6 +529,7 @@
             IfThenLogicEndBrick *copiedIfLogicEndBrick = [ifThenLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
             copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
             copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
+            [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
             [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];
             NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
             NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 2) inSection:indexPath.section];
