@@ -26,6 +26,7 @@
 #import "IfThenLogicBeginBrick.h"
 #import "IfThenLogicEndBrick.h"
 #import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "CBFileManager.h"
 #import "AppDelegate.h"
@@ -141,11 +142,16 @@
     IfLogicBeginBrick *ifLogicBeginBrick = [IfLogicBeginBrick new];
     ifLogicBeginBrick.ifCondition = [[Formula alloc] initWithDouble:1];
     
+    IfLogicElseBrick *ifLogicElseBrick = [IfLogicElseBrick new];
+    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
+    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+    
     IfLogicEndBrick *ifLogicEndBrick = [IfLogicEndBrick new];
     ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
+    ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
     
-    [script.brickList addObjectsFromArray:@[ifLogicBeginBrick, ifLogicEndBrick]];
+    [script.brickList addObjectsFromArray:@[ifLogicBeginBrick, ifLogicElseBrick, ifLogicEndBrick]];
     [object.scriptList addObject:script];
     [program.objectList addObject:object];
     
@@ -157,16 +163,27 @@
     XCTAssertTrue([objectList[0].name isEqualToString:objectName]);
     XCTAssertTrue([objectList[1].name isEqualToString:copiedObjectName]);
     
-    XCTAssertEqual(2, copiedObject.scriptList[0].brickList.count);
+    XCTAssertEqual(3, copiedObject.scriptList[0].brickList.count);
     XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[IfLogicBeginBrick class]]);
-    XCTAssertTrue([copiedObject.scriptList[0].brickList[1] isKindOfClass:[IfLogicEndBrick class]]);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[1] isKindOfClass:[IfLogicElseBrick class]]);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[2] isKindOfClass:[IfLogicEndBrick class]]);
     
     IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick*) copiedObject.scriptList[0].brickList[0];
-    IfLogicEndBrick *endBrick = (IfLogicEndBrick*) copiedObject.scriptList[0].brickList[1];
+    IfLogicElseBrick *elseBrick = (IfLogicElseBrick*) copiedObject.scriptList[0].brickList[1];
+    IfLogicEndBrick *endBrick = (IfLogicEndBrick*) copiedObject.scriptList[0].brickList[2];
     
     XCTAssertEqual(endBrick, beginBrick.ifEndBrick);
+    XCTAssertEqual(elseBrick, beginBrick.ifElseBrick);
+    XCTAssertEqual(elseBrick, endBrick.ifElseBrick);
+    XCTAssertEqual(beginBrick, elseBrick.ifBeginBrick);
+    XCTAssertEqual(endBrick, elseBrick.ifEndBrick);
     XCTAssertEqual(beginBrick, endBrick.ifBeginBrick);
+    
     XCTAssertNotEqual(ifLogicEndBrick, beginBrick.ifEndBrick);
+    XCTAssertNotEqual(ifLogicElseBrick, beginBrick.ifElseBrick);
+    XCTAssertNotEqual(ifLogicElseBrick, endBrick.ifElseBrick);
+    XCTAssertNotEqual(ifLogicBeginBrick, elseBrick.ifBeginBrick);
+    XCTAssertNotEqual(ifLogicEndBrick, elseBrick.ifEndBrick);
     XCTAssertNotEqual(ifLogicBeginBrick, endBrick.ifBeginBrick);
 }
 
