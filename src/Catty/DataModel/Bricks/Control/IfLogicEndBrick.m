@@ -24,6 +24,7 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "Util.h"
+#import "CBMutableCopyContext.h"
 
 @implementation IfLogicEndBrick
 
@@ -66,6 +67,29 @@
     if(![Util isEqual:self.ifElseBrick.brickTitle toObject:((IfLogicEndBrick*)brick).ifElseBrick.brickTitle])
         return NO;
     return YES;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    IfLogicEndBrick *endBrick = [self mutableCopyWithContext:context AndErrorReporting:NO];
+    IfLogicElseBrick *elseBrick = [context updatedReferenceForReference:self.ifElseBrick];
+    IfLogicBeginBrick *beginBrick = [context updatedReferenceForReference:self.ifBeginBrick];
+    
+    if(beginBrick && elseBrick) {
+        endBrick.ifBeginBrick = beginBrick;
+        endBrick.ifElseBrick = elseBrick;
+
+        elseBrick.ifBeginBrick = beginBrick;
+        elseBrick.ifEndBrick = endBrick;
+        
+        beginBrick.ifEndBrick = endBrick;
+        beginBrick.ifElseBrick = elseBrick;
+    } else {
+        NSError(@"IfLogicBeginBrick and IfLogicElseBrick must not be nil for Brick with class %@!", [self class]);
+    }
+    
+    return endBrick;
 }
 
 #pragma mark - Resources
