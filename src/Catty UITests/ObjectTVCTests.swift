@@ -27,26 +27,18 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     override func setUp() {
         super.setUp()
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        
         dismissWelcomeScreenIfShown()
         restoreDefaultProgram()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
     func testScriptsCanEnterScriptsOfAllMoles() {
-    
         let app = XCUIApplication()
         let appTables = app.tables
         let programObjects = ["Mole 1", "Mole 2", "Mole 3", "Mole 4"]
@@ -65,7 +57,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testScriptsCanDeleteBrickSetSizeTo() {
-        
         let app = XCUIApplication()
         
         app.tables.staticTexts["Continue"].tap()
@@ -137,7 +128,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testScriptsCanDeleteWaitBrick(){
-        
         let app = XCUIApplication()
         app.tables.staticTexts["Continue"].tap()
         app.tables.staticTexts["Mole 1"].tap()
@@ -151,7 +141,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testLooksCanEnterSingleLook(){
-        
         let app = XCUIApplication()
         
         app.tables.staticTexts["Continue"].tap()
@@ -162,7 +151,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testLooksCanEnterLooksOfAllMoles() {
-        
         let app = XCUIApplication()
         let appTables = app.tables
         
@@ -185,7 +173,6 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testSoundsCanEnterSoundsOfAllMoles() {
-               
         let app = XCUIApplication()
         let appTables = app.tables
         
@@ -204,5 +191,79 @@ class ObjectTVCTests: XCTestCase, UITestProtocol {
             let programVC = waitForElementToAppear(app.navigationBars["My first program"])
             XCTAssert(programVC.buttons["Pocket Code"].exists)
         }
+    }
+    
+    func testCopyObjectWithIfBricks() {
+        let app = XCUIApplication()
+        let programName = "testProgram"
+        let objectName = "testObject"
+        let copiedObjectName = objectName + " (1)"
+        
+        app.tables.staticTexts["New"].tap()
+        let alertQuery = app.alerts["New Program"]
+        alertQuery.textFields["Enter your program name here..."].typeText(programName)
+        app.alerts["New Program"].buttons["OK"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        
+        // Add new Object
+        app.toolbars.buttons["Add"].tap()
+        app.alerts["Add object"].textFields["Enter your object name here..."].typeText(objectName)
+        app.alerts["Add object"].buttons["OK"].tap()
+        app.buttons["Draw new image"].tap()
+        
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars["Pocket Paint"]))
+        
+        // Draw image
+        app.tap()
+        app.navigationBars.buttons["Looks"].tap()
+        
+        waitForElementToAppear(app.alerts["Save to PocketCode"]).buttons["Yes"].tap()
+        XCTAssertNotNil(waitForElementToAppear(app.navigationBars[programName]))
+        
+        waitForElementToAppear(app.tables.staticTexts[objectName]).tap()
+        waitForElementToAppear(app.staticTexts["Scripts"]).tap()
+        
+        waitForElementToAppear(app.toolbars.buttons["Add"]).tap()
+        if(app.navigationBars["Frequently Used"].exists) {
+            app.swipeLeft()
+        }
+        
+        XCTAssertTrue(app.navigationBars["Control"].exists)
+        
+        let startCoord = app.collectionViews.element.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        let endCoord = startCoord.withOffset(CGVector(dx: 0.0, dy: -500)); // scroll to bottom
+        startCoord.press(forDuration: 0.01, thenDragTo: endCoord)
+        
+        for cellIndex in 0...app.collectionViews.cells.count {
+            let cell = app.collectionViews.cells.element(boundBy: cellIndex)
+            if cell.staticTexts.count == 2 && cell.staticTexts["If"].exists && cell.staticTexts[" is true then"].exists {
+                cell.tap()
+            }
+        }
+        
+        XCTAssertEqual(3, app.collectionViews.cells.count)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" is true then"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts["End If"].exists)
+        
+        app.navigationBars.buttons[objectName].tap()
+        app.navigationBars.buttons[programName].tap()
+        
+        // Copy object
+        app.tables.staticTexts[objectName].swipeLeft()
+        app.buttons["More"].tap()
+        
+        let sheet = app.sheets["Edit Object"]
+        XCTAssertTrue(sheet.exists)
+        
+        sheet.buttons["Copy"].tap()
+        
+        app.navigationBars.buttons["Pocket Code"].tap()
+        app.tables.staticTexts["Continue"].tap()
+        app.tables.staticTexts[copiedObjectName].tap()
+        
+        app.staticTexts["Scripts"].tap()
+        XCTAssertEqual(3, app.collectionViews.cells.count)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 1).staticTexts[" is true then"].exists)
+        XCTAssert(app.collectionViews.cells.element(boundBy: 2).staticTexts["End If"].exists)
     }
 }
