@@ -22,6 +22,11 @@
 
 #import <XCTest/XCTest.h>
 #import "Program.h"
+#import "StartScript.h"
+#import "IfThenLogicBeginBrick.h"
+#import "IfThenLogicEndBrick.h"
+#import "IfLogicBeginBrick.h"
+#import "IfLogicEndBrick.h"
 #import "CBFileManager.h"
 #import "AppDelegate.h"
 #import "Util.h"
@@ -77,6 +82,92 @@
     [self setupForNewProgram];
     NSString *soundsDirName = [NSString stringWithFormat:@"%@%@", [self.program projectPath], kProgramSoundsDirName];
     XCTAssertTrue([self.fileManager directoryExists:soundsDirName], @"No sounds folder created for the new project");
+}
+
+- (void)testCopyObjectWithIfThenLogicBeginBrick
+{
+    NSString *objectName = @"object";
+    NSString *copiedObjectName = @"copiedObject";
+    
+    Program * program = [Program new];
+    
+    SpriteObject* object = [SpriteObject new];
+    object.name = objectName;
+    StartScript *script = [StartScript new];
+    
+    IfThenLogicBeginBrick *ifThenLogicBeginBrick = [IfThenLogicBeginBrick new];
+    ifThenLogicBeginBrick.ifCondition = [[Formula alloc] initWithDouble:2];
+    
+    IfThenLogicEndBrick *ifThenLogicEndBrick = [IfThenLogicEndBrick new];
+    ifThenLogicBeginBrick.ifEndBrick = ifThenLogicEndBrick;
+    ifThenLogicEndBrick.ifBeginBrick = ifThenLogicBeginBrick;
+    
+    [script.brickList addObjectsFromArray:@[ifThenLogicBeginBrick, ifThenLogicEndBrick]];
+    [object.scriptList addObject:script];
+    [program.objectList addObject:object];
+    
+    SpriteObject *copiedObject = [program copyObject:object withNameForCopiedObject:copiedObjectName];
+    XCTAssertEqual(1, copiedObject.scriptList.count);
+    
+    NSArray<SpriteObject*> *objectList = program.objectList;
+    XCTAssertEqual(2, objectList.count);
+    XCTAssertTrue([objectList[0].name isEqualToString:objectName]);
+    XCTAssertTrue([objectList[1].name isEqualToString:copiedObjectName]);
+    
+    XCTAssertEqual(2, copiedObject.scriptList[0].brickList.count);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[IfThenLogicBeginBrick class]]);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[1] isKindOfClass:[IfThenLogicEndBrick class]]);
+    
+    IfThenLogicBeginBrick *beginBrick = (IfThenLogicBeginBrick*) copiedObject.scriptList[0].brickList[0];
+    IfThenLogicEndBrick *endBrick = (IfThenLogicEndBrick*) copiedObject.scriptList[0].brickList[1];
+    
+    XCTAssertEqual(endBrick, beginBrick.ifEndBrick);
+    XCTAssertEqual(beginBrick, endBrick.ifBeginBrick);
+    XCTAssertNotEqual(ifThenLogicEndBrick, beginBrick.ifEndBrick);
+    XCTAssertNotEqual(ifThenLogicBeginBrick, endBrick.ifBeginBrick);
+}
+
+- (void)testCopyObjectWithIfTLogicBeginBrick
+{
+    NSString *objectName = @"object";
+    NSString *copiedObjectName = @"copiedObject";
+    
+    Program * program = [Program new];
+    
+    SpriteObject* object = [SpriteObject new];
+    object.name = objectName;
+    StartScript *script = [StartScript new];
+    
+    IfLogicBeginBrick *ifLogicBeginBrick = [IfLogicBeginBrick new];
+    ifLogicBeginBrick.ifCondition = [[Formula alloc] initWithDouble:1];
+    
+    IfLogicEndBrick *ifLogicEndBrick = [IfLogicEndBrick new];
+    ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
+    ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
+    
+    [script.brickList addObjectsFromArray:@[ifLogicBeginBrick, ifLogicEndBrick]];
+    [object.scriptList addObject:script];
+    [program.objectList addObject:object];
+    
+    SpriteObject *copiedObject = [program copyObject:object withNameForCopiedObject:copiedObjectName];
+    XCTAssertEqual(1, copiedObject.scriptList.count);
+    
+    NSArray<SpriteObject*> *objectList = program.objectList;
+    XCTAssertEqual(2, objectList.count);
+    XCTAssertTrue([objectList[0].name isEqualToString:objectName]);
+    XCTAssertTrue([objectList[1].name isEqualToString:copiedObjectName]);
+    
+    XCTAssertEqual(2, copiedObject.scriptList[0].brickList.count);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[0] isKindOfClass:[IfLogicBeginBrick class]]);
+    XCTAssertTrue([copiedObject.scriptList[0].brickList[1] isKindOfClass:[IfLogicEndBrick class]]);
+    
+    IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick*) copiedObject.scriptList[0].brickList[0];
+    IfLogicEndBrick *endBrick = (IfLogicEndBrick*) copiedObject.scriptList[0].brickList[1];
+    
+    XCTAssertEqual(endBrick, beginBrick.ifEndBrick);
+    XCTAssertEqual(beginBrick, endBrick.ifBeginBrick);
+    XCTAssertNotEqual(ifLogicEndBrick, beginBrick.ifEndBrick);
+    XCTAssertNotEqual(ifLogicBeginBrick, endBrick.ifBeginBrick);
 }
 
 #pragma mark - getters and setters
