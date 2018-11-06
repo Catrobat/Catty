@@ -33,8 +33,8 @@ extension UITestProtocol {
         // Restore default program
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
-        app.navigationBars["Programs"].buttons["Edit"].tap()
-        app.buttons["Delete Programs"].tap()
+        waitForElementToAppear(app.navigationBars["Programs"]).buttons["Edit"].tap()
+        waitForElementToAppear(app.buttons["Delete Programs"]).tap()
         let toolbarsQuery = app.toolbars
         waitForElementToAppear(toolbarsQuery.buttons["Select All"]).tap()
         waitForElementToAppear(toolbarsQuery.buttons["Delete"]).tap()
